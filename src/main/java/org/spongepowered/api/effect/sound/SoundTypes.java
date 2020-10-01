@@ -483,7 +483,7 @@ public final class SoundTypes {
 
     public static final Supplier<SoundType> ENTITY_BEE_LOOP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_bee_loop");
 
-    public static final Supplier<SoundType> ENTITY_BEE_STING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_bee_string");
+    public static final Supplier<SoundType> ENTITY_BEE_STING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_bee_sting");
 
     public static final Supplier<SoundType> ENTITY_BEE_POLLINATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_bee_pollinate");
 
@@ -973,8 +973,6 @@ public final class SoundTypes {
 
     public static final Supplier<SoundType> ENTITY_PARROT_IMITATE_ELDER_GUARDIAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_parrot_imitate_elder_guardian");
 
-    public static final Supplier<SoundType> ENTITY_PARROT_IMITATE_ENDERMAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_parrot_imitate_enderman");
-
     public static final Supplier<SoundType> ENTITY_PARROT_IMITATE_ENDERMITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_parrot_imitate_endermite");
 
     public static final Supplier<SoundType> ENTITY_PARROT_IMITATE_ENDER_DRAGON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_parrot_imitate_ender_dragon");
@@ -991,13 +989,9 @@ public final class SoundTypes {
 
     public static final Supplier<SoundType> ENTITY_PARROT_IMITATE_MAGMA_CUBE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_parrot_imitate_magma_cube");
 
-    public static final Supplier<SoundType> ENTITY_PARROT_IMITATE_PANDA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_parrot_imitate_panda");
-
     public static final Supplier<SoundType> ENTITY_PARROT_IMITATE_PHANTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_parrot_imitate_phantom");
 
     public static final Supplier<SoundType> ENTITY_PARROT_IMITATE_PILLAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_parrot_imitate_pillager");
-
-    public static final Supplier<SoundType> ENTITY_PARROT_IMITATE_POLAR_BEAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_parrot_imitate_polar_bear");
 
     public static final Supplier<SoundType> ENTITY_PARROT_IMITATE_RAVAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_parrot_imitate_ravager");
 
@@ -1023,11 +1017,7 @@ public final class SoundTypes {
 
     public static final Supplier<SoundType> ENTITY_PARROT_IMITATE_WITHER_SKELETON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_parrot_imitate_wither_skeleton");
 
-    public static final Supplier<SoundType> ENTITY_PARROT_IMITATE_WOLF = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_parrot_imitate_wolf");
-
     public static final Supplier<SoundType> ENTITY_PARROT_IMITATE_ZOMBIE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_parrot_imitate_zombie");
-
-    public static final Supplier<SoundType> ENTITY_PARROT_IMITATE_ZOMBIE_PIGMAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_parrot_imitate_zombie_pigman");
 
     public static final Supplier<SoundType> ENTITY_PARROT_IMITATE_ZOMBIE_VILLAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SoundType.class, "entity_parrot_imitate_zombie_villager");
 
