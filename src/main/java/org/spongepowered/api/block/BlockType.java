@@ -33,6 +33,7 @@ import org.spongepowered.api.state.StateContainer;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
+import java.util.function.Supplier;
 
 /**
  * Describes a base type of block.
@@ -74,5 +75,24 @@ public interface BlockType extends CatalogType, ComponentLike, StateContainer<Bl
      * @return This block's sound group.
      */
     BlockSoundGroup getSoundGroup();
+
+    /**
+     * Returns true if this type is any of the given block types
+     *
+     * @param types the block types to check
+     *
+     * @return true if this type is any of the given block types
+     */
+    @SuppressWarnings("unchecked")
+    boolean isAnyOf(Supplier<BlockType>... types);
+
+    /**
+     * Returns true if this type is any of the given block types
+     *
+     * @param types the block types to check
+     *
+     * @return true if this type is any of the given block types
+     */
+    boolean isAnyOf(BlockType... types);
 
 }
