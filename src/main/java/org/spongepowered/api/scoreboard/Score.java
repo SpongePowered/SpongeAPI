@@ -56,6 +56,20 @@ public interface Score {
     void setScore(int score);
 
     /**
+     * Checks for whether the score is locked.
+     *
+     * @return True if the score is locked, false otherwise
+     */
+    boolean isLocked();
+
+    /**
+     * Sets this score as locked.
+     *
+     * @param locked True to lock this score
+     */
+    void setLocked(boolean locked);
+
+    /**
      * Returns a {@link Set} of parent {@link Objective}s this {@link Score} is
      * registered to.
      *
