@@ -93,6 +93,10 @@ public interface BlockChangeFlag {
      */
     BlockChangeFlag withNotifyObservers(boolean notifyObservers);
 
+    BlockChangeFlag withLightingUpdates(boolean lighting);
+
+    BlockChangeFlag withPathfindingUpdates(boolean pathfindingUpdates);
+
     /**
      * Gets the inverted {@link BlockChangeFlag} of this flag.
      * Normally, this may cancel out certain interactions, such

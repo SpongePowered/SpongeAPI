@@ -27,8 +27,9 @@ package org.spongepowered.api.world.schematic;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-import java.util.Collection;
 import java.util.Optional;
+import java.util.OptionalInt;
+import java.util.stream.Stream;
 
 /**
  * Represents a mapping for types to a local identifier. Can be used for
@@ -39,7 +40,7 @@ import java.util.Optional;
  * @param <T> The type this palette will maintain
  */
 @CatalogedBy(PaletteTypes.class)
-public interface Palette<T extends CatalogType> {
+public interface Palette<T> {
 
     /**
      * Gets the type of this palette.
@@ -70,32 +71,54 @@ public interface Palette<T extends CatalogType> {
      * @param type The type
      * @return The identifier, if found
      */
-    Optional<Integer> get(T type);
+    OptionalInt get(T type);
 
-    /**
-     * Gets the identifier for the given {@code type T} from the mapping. If the
-     * {@code type T} is not yet registered in the mapping then it is registered and
-     * given the next available identifier.
-     *
-     * @param type The type
-     * @return The identifier
-     */
-    int getOrAssign(T type);
-
-    /**
-     * Removes the given {@code type T} from the mapping.
-     *
-     * <p>Note that if this palette is considered a global palette, removal is not supported.</p>
-     *
-     * @param type The type to remove
-     * @return If the type existed in the mapping
-     */
-    boolean remove(T type);
 
     /**
      * Gets all {@code type T}s contained in this palette.
      *
      * @return All contained types
      */
-    Collection<T> getEntries();
+    Stream<T> stream();
+
+    Mutable<T> asMutable();
+
+    Immutable<T> asImmutable();
+
+    interface Mutable<M> extends Palette<M> {
+
+        /**
+         * Gets the identifier for the given {@code type T} from the mapping. If the
+         * {@code type T} is not yet registered in the mapping then it is registered and
+         * given the next available identifier.
+         *
+         * @param type The type
+         * @return The identifier
+         */
+        int getOrAssign(M type);
+
+        /**
+         * Removes the given {@code type T} from the mapping.
+         *
+         * <p>Note that if this palette is considered a global palette, removal is not supported.</p>
+         *
+         * @param type The type to remove
+         * @return If the type existed in the mapping
+         */
+        boolean remove(M type);
+
+        @Override
+        default Mutable<M> asMutable() {
+            return this;
+        }
+    }
+
+    interface Immutable<I> extends Palette<I> {
+
+        @Override
+        default Immutable<I> asImmutable() {
+            return this;
+        }
+    }
+
 }

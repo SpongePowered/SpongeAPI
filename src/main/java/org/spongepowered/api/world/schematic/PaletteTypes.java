@@ -33,15 +33,41 @@ import java.util.function.Supplier;
 public final class PaletteTypes {
 
     // SORTFIELDS:ON
+    /**
+     * A type of {@link Palette} that refers to a simplified "global"
+     * {@link BiomeType} palette referring to each biome individually.
+     * <p>Note that while {@link PaletteType#create()} may allow a
+     * {@link Palette.Mutable mutable palette} to be created, all
+     * registered {@link BiomeType biomes} will have an assigned
+     * {@code integer id}.
+     */
+    public static Supplier<PaletteType<BiomeType>> GLOBAL_BIOME_PALETTE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PaletteType.class, "global_biome_palette");
 
-    public static final Supplier<PaletteType<BiomeType>> GLOBAL_BIOMES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PaletteType.class, "global_biomes");
+    /**
+     * A type of {@link Palette} that refers to a simplified "global"
+     * {@link BlockState} palette referring to each state individually.
+     * <p>Note that while {@link PaletteType#create()} may allow a
+     * {@link Palette.Mutable mutable palette} to be created, all
+     * registered {@link BlockState block states} will have an assigned
+     * {@code integer id}.
+     */
+    public static Supplier<PaletteType<BlockState>> GLOBAL_BLOCK_PALETTE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PaletteType.class, "global_block_palette");
 
-    public static final Supplier<PaletteType<BlockState>> GLOBAL_BLOCKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PaletteType.class, "global_blocks");
+    /**
+     * A type of {@link PaletteType} that refers to a localized mapping of
+     * {@link BiomeType biomes} for individualized usage. Traditionally the
+     * palette will generate {@code integer ids} in the order in which a
+     * {@link BiomeType biome} is registered via {@link Palette.Mutable#getOrAssign(Object)}
+     */
+    public static Supplier<PaletteType<BiomeType>> BIOME_PALETTE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PaletteType.class, "biome_palette");
 
-    public static final Supplier<PaletteType<BiomeType>> LOCAL_BIOMES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PaletteType.class, "local_biomnes");
-
-    public static final Supplier<PaletteType<BlockState>> LOCAL_BLOCKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PaletteType.class, "local_blocks");
-
+    /**
+     * A type of {@link PaletteType} that refers to a localized mapping of
+     * {@link BlockState block states} for individualized usage. Traditionally the
+     * palette will generate {@code integer ids} in the order in which a
+     * {@link BlockState biome} is registered via {@link Palette.Mutable#getOrAssign(Object)}
+     */
+    public static Supplier<PaletteType<BlockState>> BLOCK_STATE_PALETTE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PaletteType.class, "block_state_palette");
     // SORTFIELDS:OFF
 
     private PaletteTypes() {

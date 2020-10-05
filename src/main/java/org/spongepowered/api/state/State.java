@@ -35,7 +35,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-public interface State<S extends State<S>> extends SerializableDataHolder.Immutable<S>, CatalogType {
+public interface State<S extends State<S>> extends SerializableDataHolder.Immutable<S> {
 
     /**
      * Gets the {@link Comparable} value for the specific {@link StateProperty}
