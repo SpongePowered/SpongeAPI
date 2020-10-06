@@ -26,9 +26,10 @@ package org.spongepowered.api.map.color;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.map.MapCanvas;
 import org.spongepowered.api.util.Color;
+import org.spongepowered.api.util.ResettableBuilder;
 
 /**
  * Represents a color that may be used when drawing a {@link MapCanvas}.
@@ -91,7 +92,7 @@ public interface MapColor extends DataSerializable {
     /**
      * Builds a {@link MapColor}
      */
-    interface Builder extends DataBuilder<MapColor> {
+    interface Builder extends ResettableBuilder<MapColor, Builder> {
 
         /**
          * Sets the shade to the given shade
@@ -135,6 +136,15 @@ public interface MapColor extends DataSerializable {
          * @return Builder, for chaining
          */
         Builder baseColor(MapColorType mapColor);
+
+        /**
+         * Attempts to reconstruct the builder with all of the data from
+         * {@link MapColor#toContainer()}.
+         *
+         * @param container The container to translate
+         * @return This builder, for chaining
+         */
+        Builder fromContainer(DataView container);
 
         /**
          * Builds an instance of an MapColor.

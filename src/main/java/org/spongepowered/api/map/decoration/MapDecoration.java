@@ -26,9 +26,16 @@ package org.spongepowered.api.map.decoration;
 
 import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.data.DataView;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.entity.hanging.ItemFrame;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.map.MapCanvas;
+import org.spongepowered.api.map.decoration.orientation.MapDecorationOrientation;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.util.ResettableBuilder;
 
 /**
  * A MapDecoration that represents a Decoration on a map,
@@ -40,7 +47,7 @@ public interface MapDecoration extends DataSerializable {
 
     static Builder builder() {return Sponge.getRegistry().createBuilder(Builder.class);}
 
-    static MapDecoration of(MapDecorationType type, int x, int y, Direction rotation) {return builder().type(type).x(x).y(y).rotation(rotation).build();}
+    static MapDecoration of(MapDecorationType type, Vector2i position, MapDecorationOrientation rotation) {return builder().type(type).position(position).rotation(rotation).build();}
 
     /**
      * Gets the {@link MapDecorationType} of this MapDecoration
@@ -58,20 +65,6 @@ public interface MapDecoration extends DataSerializable {
     Vector2i getPosition();
 
     /**
-     * Gets the X position on a map, or where it will be when applied
-     * Ranges from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
-     * @return int Y world coordinate
-     */
-    int getX();
-
-    /**
-     * Gets the Y position on a map. 0 is the center of the map.
-     * Ranges from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
-     * @return int Y world coordinate
-     */
-    int getY();
-
-    /**
      * Sets the position of where the MapDecoration is on Maps,
      * or where it would be if applied to a {@link org.spongepowered.api.map.MapInfo}
      * 0,0 is the center of the map
@@ -81,34 +74,44 @@ public interface MapDecoration extends DataSerializable {
     void setPosition(Vector2i position);
 
     /**
-     * Sets the X position of where this MapDecoration is on a map
-     * or where it will be when applied
-     * Ranges from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
-     * @param x world cordinate
+     * Sets rotation with a {@link MapDecorationOrientation}
+     * @param rot MapDecorationOrientation
      */
-    void setX(int x);
+    void setRotation(MapDecorationOrientation rot);
 
     /**
-     * Sets the X position of where this MapDecoration is on a map.
-     * 0 is the center of the map.
-     * Ranges from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
-     * @param y pos
+     * Gets the {@link MapDecorationOrientation} the Map Decoration is pointing in
+     * @return MapDecorationOrientation
      */
-    void setY(int y);
+    MapDecorationOrientation getRotation();
 
     /**
-     * Sets rotation with a Direction. Must be a cardinal/ordinal/secondary ordinal
-     * @param rot Direction, a, secondary ordinal
+     * Gets whether this {@link MapDecoration} is persistent
+     * <p>A {@link MapDecoration} being persistent means it cannot be changed
+     * apart from by a plugin.</p>
+     *
+     * <p>Examples of persistent MapDecorations:</p>
+     * <ul>
+     * <p>  - Plugin added MapDecorations</p>
+     * <p>  - Structures located on the map, i.e Guardian Temple</p>
+     * </ul>
+     * <p>Examples of non-persistent MapDecorations:</p>
+     * <ul>
+     * <p>  - MapDecorations marking a {@link Player}'s current location,
+     *          (if {@link Keys#MAP_TRACKS_PLAYERS} is true and if they are in range).</p>
+     * <p>  - MapDecorations marking a {@link ItemFrame}'s position.</p>
+     * </ul>
+     *
+     * <p>This affects whether this will be serialized in {@link MapCanvas#toContainer()}.
+     * Go there if you want more details</p>
+     *
+     * <p>This does <b>not</b> affect {@link #toContainer()}, which will serialize fine.</p>
+     *
+     * @return true if this {@link MapDecoration} is persistent
      */
-    void setRotation(Direction rot);
+    boolean isPersistent();
 
-    /**
-     * Gets the direction the Map Decoration is pointing
-     * @return Direction, a cardinal/ordinal/secondary
-     */
-    Direction getRotation();
-
-    interface Builder extends DataBuilder<MapDecoration> {
+    interface Builder extends ResettableBuilder<MapDecoration, Builder> {
         /**
          * Sets the MapDecorationType
          * @param type MapDecoration to set
@@ -117,31 +120,12 @@ public interface MapDecoration extends DataSerializable {
         Builder type(MapDecorationType type);
 
         /**
-         * Sets the X position of the MapDecoration
+         * Sets the rotation for this builder
          * (for when it is applied to a {@link org.spongepowered.api.map.MapInfo})
-         * @param x map coordinate where 0 is the centre of the map.
-         * Ranges from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
+         * @param rot a {@link MapDecorationOrientation}
          * @return this Builder, for chaining
          */
-        Builder x(int x) throws IllegalArgumentException;
-
-        /**
-         * Sets the Y position of the MapDecoration
-         *
-         * (for when it is applied to a {@link org.spongepowered.api.map.MapInfo})
-         * @param y map coordinate where 0 is the centre of the map.
-         * Ranges from {@value java.lang.Byte#MIN_VALUE}-{@value java.lang.Byte#MAX_VALUE}. AKA any valid byte value
-         * @return this Builder, for chaining
-         */
-        Builder y(int y) throws IllegalArgumentException;
-
-        /**
-         * Sets the rotation in degrees for this builder
-         * (for when it is applied to a {@link org.spongepowered.api.map.MapInfo})
-         * @param rot Direction, any cardinal/ordinal/secondary ordinal direction. (Not up/down)
-         * @return this Builder, for chaining
-         */
-        Builder rotation(Direction rot) throws IllegalArgumentException;
+        Builder rotation(MapDecorationOrientation rot) throws IllegalArgumentException;
 
         /**
          * Sets the X and Y position of the MapDecoration
@@ -152,6 +136,21 @@ public interface MapDecoration extends DataSerializable {
          * @return this Builder, for chaining
          */
         Builder position(Vector2i position) throws IllegalArgumentException;
+
+        /**
+         * Attempts to reconstruct the builder with all of the data from
+         * {@link MapDecoration#toContainer()}.
+         *
+         * <p>If the given DataView was from a persistent
+         * {@link MapDecoration}, i.e,
+         * {@link MapDecoration#isPersistent()} returned true,
+         * it will create a custom MapDecoration that mimics it,
+         * which will be persistent</p>
+         *
+         * @param container The container to translate
+         * @return This builder, for chaining
+         */
+        Builder fromContainer(DataView container);
 
         /**
          * Builds an instance of MapDecoration.

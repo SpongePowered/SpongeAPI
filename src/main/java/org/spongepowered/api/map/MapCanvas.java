@@ -26,16 +26,16 @@ package org.spongepowered.api.map;
 
 import com.flowpowered.math.vector.Vector2i;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.DataView;
-import org.spongepowered.api.data.persistence.DataBuilder;
-import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.map.color.MapColor;
 import org.spongepowered.api.map.color.MapColorTypes;
+import org.spongepowered.api.map.decoration.MapDecoration;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.awt.Image;
-import java.util.Optional;
 
 /**
  * A {@code MapCanvas} represents the image that is drawn on a
@@ -91,9 +91,9 @@ public interface MapCanvas extends DataSerializable {
      */
     Image toImage(java.awt.Color color);
 
-    Builder toBuilder(MapCanvas canvas);
+    Builder toBuilder();
 
-    interface Builder extends DataBuilder<MapCanvas> {
+    interface Builder extends ResettableBuilder<MapCanvas, Builder> {
         /**
          * Paints the whole canvas a certain {@link MapColor}
          * @param color to paint whole canvas
@@ -142,8 +142,14 @@ public interface MapCanvas extends DataSerializable {
          */
         Builder fromImage(Image image) throws IllegalArgumentException;
 
-        @Override
-        Optional<MapCanvas> build(DataView container) throws InvalidDataException;
+        /**
+         * Attempts to reconstruct the builder with all of the data from
+         * {@link MapCanvas#toContainer()}.
+         *
+         * @param container The container to translate
+         * @return This builder, for chaining
+         */
+        Builder fromContainer(DataView container);
 
         MapCanvas build();
     }

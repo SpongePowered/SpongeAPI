@@ -24,10 +24,12 @@
  */
 package org.spongepowered.api.map;
 
+import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.mutable.MapInfoData;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.map.decoration.MapDecoration;
 import org.spongepowered.api.util.Identifiable;
 
 /**
@@ -50,4 +52,23 @@ public interface MapInfo extends DataHolder, Identifiable {
      * @return {@code true} if this MapInfo backs the supplied {@link ItemStack}
      */
     boolean isLinked(ItemStack itemStack);
+
+    /**
+     * Serializes this object into a comprehensible {@link DataContainer}.
+     *
+     * <p><b>This has special behaviour for serializing {@link MapDecoration MapDecorations}</b></p>
+     *
+     * <p>A {@link MapDecoration} on this MapCanvas is only
+     * serialized <b>if {@link MapDecoration#isPersistent()}
+     * returns true</b>. This is because non-persistent
+     * MapDecorations belong more to the area than the map itself.
+     * If you wish to serialize them anyway, obtain the
+     * {@link MapDecoration MapDecorations} using
+     * {@link org.spongepowered.api.data.key.Keys#MAP_DECORATIONS}
+     * and serialize each individually.</p>
+     *
+     * @return A newly created DataContainer
+     */
+    @Override
+    DataContainer toContainer();
 }
