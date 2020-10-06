@@ -46,7 +46,7 @@ import java.awt.Image;
 public interface MapCanvas extends DataSerializable {
 
     /**
-     * Creates a builder that creates a new canvas.
+     * Creates a builder for creating a new {@link MapCanvas}.
      *
      * @return A {@link Builder} to generate a new canvas.
      */
@@ -55,79 +55,112 @@ public interface MapCanvas extends DataSerializable {
     }
 
     /**
-     * Gets the {@link MapColor} at the requested location.
+     * Creates a {@link MapCanvas} where all pixels are set to
+     * {@link MapColorTypes#AIR}.
+     *
+     * @return A blank canvas
+     */
+    static MapCanvas blank() {
+        return MapCanvas.builder().build();
+    }
+
+    /**
+     * Gets the {@link MapColor} at the given location.
      *
      * @param x The x location
      * @param y The y location
-     * @return MapColor color at this location
+     * @return The {@link MapColor} at the location
      * @throws IllegalArgumentException if either of the requested
      *      co-ordinates are out of bounds.
      */
     MapColor getColor(int x, int y) throws IllegalArgumentException;
 
     /**
-     * Gets an blank canvas (Populated with {@link MapColorTypes#AIR})
-     * @return MapCanvas that is blank
-     */
-    static MapCanvas blank() {
-        return builder().build();
-    }
-
-    /**
-     * Creates an image from this MapCanvas.
-     * It creates a copy of held data, therefore changing this image will have
-     * no effect on the MapCanvas.
-     * @return Image from the canvas
+     * Generates an {@link Image} from this {@link MapCanvas}.
+     *
+     * @return An {@link Image}
      */
     Image toImage();
 
     /**
-     * Creates an image and replaces all {@link MapColorTypes#AIR}
-     * with the specified color.
-     * It creates a copy of held data, therefore changing this image will have
-     * no effect on the MapCanvas.
-     * @param color to replace the air MapColorType
-     * @return Image from the canvas
+     * Generates an {@link Image} from this {@link MapCanvas}, where any pixels
+     * that represent {@link MapColorTypes#AIR} will be replaced with the
+     * supplied {@link java.awt.Color}.
+     *
+     * @param color the {@link java.awt.Color} used in place of
+     *      {@link MapColorTypes#AIR}
+     * @return An {@link Image}
      */
     Image toImage(java.awt.Color color);
 
+
+    /**
+     * Creates a {@link Builder} populated with the state of this {@link MapCanvas}.
+     *
+     * <p>Changes to the returned builder will not affect this canvas.</p>
+     *
+     * @return A {@link Builder}
+     */
     Builder toBuilder();
 
+    /**
+     * A builder that creates a {@link MapCanvas}.
+     */
     interface Builder extends ResettableBuilder<MapCanvas, Builder> {
+
         /**
-         * Paints the whole canvas a certain {@link MapColor}
-         * @param color to paint whole canvas
-         * @return Builder, for chaining
+         * Sets the entire canvas to the supplied {@link MapColor}.
+         *
+         * @param color The {@link MapColor}
+         * @return this builder, for chaining
          */
         Builder paintAll(MapColor color);
 
         /**
-         * Paint a specified region a specified {@link MapColor}
-         * All values are inclusive
-         * @param startX bottom left corner of region to paint
-         * @param startY bottom left corner of region to paint
-         * @param endX top right corner of region to paint
-         * @param endY top right corner of region to paint
-         * @param mapColor Color to paint the given region
-         * @return This Builder, for chaining
+         * Sets the rectangle bounded by the given co-ordinates to the supplied
+         * {@link MapColor}.
+         *
+         * <p>The provided co-ordinates are <strong>included</strong> in the
+         * region.</p>
+         *
+         * @param startX Bottom left corner of region to paint
+         * @param startY Bottom left corner of region to paint
+         * @param endX Top right corner of region to paint
+         * @param endY Top right corner of region to paint
+         * @param mapColor The {@link MapColor} to paint the given region
+         * @return this builder, for chaining
          */
         Builder paint(int startX, int startY, int endX, int endY, MapColor mapColor);
 
         /**
-         * Paint a specified region a specified {@link MapColor}
-         * @param start Vector2i Start coordinate
-         * @param end Vector2i End coordinate
-         * @param mapColor MapColor to paint this region
-         * @return This Builder, for chaining
+         * Sets the rectangle bounded by the given co-ordinates to the supplied
+         * {@link MapColor}.
+         *
+         * <p>The provided co-ordinates are <strong>included</strong> in the
+         * region.</p>
+         *
+         * @param start A {@link Vector2i} that represents one corner of the
+         *  rectangle.
+         * @param end A {@link Vector2i} that represents the opposite corner of
+         *  the rectangle.
+         * @param mapColor The {@link MapColor} to paint this region
+         * @return this builder, for chaining
          */
-        default Builder paint(Vector2i start, Vector2i end, MapColor mapColor) {
-            return paint(start.getX(), end.getX(), start.getY(), end.getY(), mapColor);
+        default Builder paint(final Vector2i start, final Vector2i end, final MapColor mapColor) {
+            return this.paint(
+                    Math.min(start.getX(), end.getX()),
+                    Math.max(start.getX(), end.getX()),
+                    Math.min(start.getY(), end.getY()),
+                    Math.min(start.getY(), end.getY()),
+                    mapColor);
         }
 
         /**
-         * Creates a builder from the specified canvas
-         * @param canvas to create builder from
-         * @return Builder, for chaining
+         * Sets up this builder such that calling {@link #build()} will
+         * return a copy of the supplied {@link MapCanvas}.
+         *
+         * @param canvas {@link MapCanvas} to set the state of this builder to
+         * @return this builder, for chaining
          */
         Builder from(MapCanvas canvas);
 
@@ -151,6 +184,11 @@ public interface MapCanvas extends DataSerializable {
          */
         Builder fromContainer(DataView container);
 
+        /**
+         * Creates a {@link MapCanvas} from the state of this builder.
+         *
+         * @return The {@link MapCanvas}
+         */
         MapCanvas build();
     }
 }

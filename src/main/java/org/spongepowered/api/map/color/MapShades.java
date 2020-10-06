@@ -27,7 +27,7 @@ package org.spongepowered.api.map.color;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * A pseudo-enum of supported shades for a {@link MapColor}
+ * A pseudo-enum of supported {@link MapShade}s for a {@link MapColor}.
  */
 public final class MapShades {
 

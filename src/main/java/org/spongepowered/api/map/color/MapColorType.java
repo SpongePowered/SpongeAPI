@@ -34,6 +34,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  */
 @CatalogedBy(MapColorTypes.class)
 public interface MapColorType extends CatalogType {
+
     /**
      * Gets the {@link Color} that this type represents.
      *

@@ -29,7 +29,8 @@ import org.spongepowered.api.map.color.MapColorType;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * A pseudo-enum of supported types of MapDecoration on a {@link MapCanvas}.
+ * A pseudo-enum of {@link MapDecorationType}s that can be used on a
+ * {@link MapCanvas}.
  */
 public final class MapDecorationTypes {
 
