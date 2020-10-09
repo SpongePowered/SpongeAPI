@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.util.weighted;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
@@ -53,7 +51,9 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
      * @param rolls the rolls
      */
     public RandomObjectTable(int rolls) {
-        checkArgument(rolls >= 0, "Rolls cannot be negative");
+        if (rolls < 0) {
+            throw new IllegalArgumentException("Rolls cannot be negative!");
+        }
         this.rolls = VariableAmount.fixed(rolls);
     }
 
@@ -92,14 +92,18 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
      * @param rolls The new roll count
      */
     public void setRolls(int rolls) {
-        checkArgument(rolls >= 0, "Rolls cannot be negative");
+        if (rolls < 0) {
+            throw new IllegalArgumentException("Rolls cannot be negative!");
+        }
         this.rolls = VariableAmount.fixed(rolls);
     }
 
     @Override
     public boolean add(TableEntry<T> entry) {
         Objects.requireNonNull(entry);
-        checkArgument(entry.getWeight() >= 0, "Weight cannot be negative");
+        if (entry.getWeight() < 0) {
+            throw new IllegalArgumentException("Weight cannot be negative!");
+        }
         return this.entries.add(entry);
     }
 
@@ -112,7 +116,9 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
      */
     public boolean add(T object, double weight) {
         Objects.requireNonNull(object);
-        checkArgument(weight >= 0, "Weight cannot be negative");
+        if (weight < 0) {
+            throw new IllegalArgumentException("Weight cannot be negative!");
+        }
         return add(new WeightedObject<>(object, weight));
     }
 

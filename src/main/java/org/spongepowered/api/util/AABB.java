@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.util;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
@@ -88,9 +86,15 @@ public class AABB {
         Objects.requireNonNull(secondCorner, "secondCorner");
         this.min = firstCorner.min(secondCorner);
         this.max = firstCorner.max(secondCorner);
-        checkArgument(this.min.getX() != this.max.getX(), "The box is degenerate on x");
-        checkArgument(this.min.getY() != this.max.getY(), "The box is degenerate on y");
-        checkArgument(this.min.getZ() != this.max.getZ(), "The box is degenerate on z");
+        if (this.min.getX() == this.max.getX()) {
+            throw new IllegalArgumentException("The box is generate on x!");
+        }
+        if (this.min.getY() == this.max.getY()) {
+            throw new IllegalArgumentException("The box is generate on y!");
+        }
+        if (this.min.getZ() == this.max.getZ()) {
+            throw new IllegalArgumentException("The box is generate on z!");
+        }
     }
 
     /**

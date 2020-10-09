@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.event.impl.entity;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.event.cause.entity.damage.DamageFunction;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
@@ -57,7 +55,7 @@ public abstract class AbstractAttackEntityEvent extends AbstractModifierEvent<Da
 
     @Override
     public final double getOriginalModifierDamage(final DamageModifier damageModifier) {
-        checkArgument(damageModifier != null, "The damage modifier cannot be null!");
+        Objects.requireNonNull(damageModifier, "Damage modifier cannot be null!");
         for (final Tuple<DamageModifier, Double> tuple : this.originalModifiers) {
             if (tuple.getFirst().equals(damageModifier)) {
                 return tuple.getSecond();
@@ -89,8 +87,9 @@ public abstract class AbstractAttackEntityEvent extends AbstractModifierEvent<Da
 
     @Override
     public final double getOutputDamage(final DamageModifier damageModifier) {
-        checkArgument(this.modifiers.containsKey(Objects.requireNonNull(damageModifier)), "The provided damage modifier is not applicable : "
-                                                                                + damageModifier.toString());
+        if (!this.modifiers.containsKey(Objects.requireNonNull(damageModifier, "Damage Modifier cannot be null!"))) {
+            throw new IllegalArgumentException("The provided damage modifier is not applicable: " + damageModifier.toString());
+        }
         return this.modifiers.get(Objects.requireNonNull(damageModifier));
     }
 
@@ -124,7 +123,9 @@ public abstract class AbstractAttackEntityEvent extends AbstractModifierEvent<Da
         int indexToAddBefore = -1;
         int index = 0;
         for (final ModifierFunction<DamageModifier> tuple : this.modifierFunctions) {
-            checkArgument(!tuple.getModifier().equals(damageModifier), "Cannot add a duplicate modifier!");
+            if (tuple.getModifier().equals(damageModifier)) {
+                throw new IllegalArgumentException("Cannot add a duplicate modifier");
+            }
             if (before.contains(tuple.getModifier().getType())) {
                 indexToAddBefore = index;
             }
@@ -146,7 +147,9 @@ public abstract class AbstractAttackEntityEvent extends AbstractModifierEvent<Da
         int indexToAddAfter = -1;
         int index = 0;
         for (final ModifierFunction<DamageModifier> tuple : this.modifierFunctions) {
-            checkArgument(!tuple.getModifier().equals(damageModifier), "Cannot add a duplicate modifier!");
+            if (tuple.getModifier().equals(damageModifier)) {
+                throw new IllegalArgumentException("Cannot add a duplicate modifier");
+            }
             if (after.contains(tuple.getModifier().getType())) {
                 indexToAddAfter = index;
             }

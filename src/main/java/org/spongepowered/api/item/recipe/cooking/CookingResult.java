@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.item.recipe.cooking;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 import com.google.common.base.MoreObjects;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
@@ -50,8 +48,12 @@ public final class CookingResult {
     @SuppressWarnings("ConstantConditions")
     public CookingResult(ItemStackSnapshot result, double experience) {
         Objects.requireNonNull(result, "result");
-        checkArgument(!result.isEmpty(), "The result must not be empty.");
-        checkArgument(experience >= 0, "The experience must be non-negative.");
+        if (result.isEmpty()) {
+            throw new IllegalArgumentException("The resulting snapshot must not be empty");
+        }
+        if (experience < 0) {
+            throw new IllegalArgumentException("The experience must be non-negative.");
+        }
 
         this.result = result;
         this.experience = experience;

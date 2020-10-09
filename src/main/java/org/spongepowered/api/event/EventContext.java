@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event;
 
-import static com.google.common.base.Preconditions.checkArgument;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
@@ -242,7 +241,9 @@ public final class EventContext {
          */
         public <T> Builder add(EventContextKey<T> key, T value) {
             Objects.requireNonNull(value, "Context object cannot be null");
-            checkArgument(!this.entries.containsKey(key), "Duplicate context keys");
+            if (this.entries.containsKey(key)) {
+                throw new IllegalArgumentException("Duplicate context keys: " + key.toString());
+            }
             this.entries.put(key, value);
             return this;
         }
@@ -260,7 +261,9 @@ public final class EventContext {
             Objects.requireNonNull(value, "Context object cannot be null");
             final EventContextKey<T> suppliedKey = key.get();
             Objects.requireNonNull(suppliedKey, "Supplied key cannot be null!");
-            checkArgument(!this.entries.containsKey(suppliedKey), "Duplicate context keys");
+            if (this.entries.containsKey(suppliedKey)) {
+                throw new IllegalArgumentException("Duplicate context keys!");
+            }
             this.entries.put(suppliedKey, value);
             return this;
         }

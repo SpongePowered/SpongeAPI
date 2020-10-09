@@ -24,9 +24,6 @@
  */
 package org.spongepowered.api.event;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkState;
-
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -214,7 +211,9 @@ public final class Cause implements Iterable<Object> {
      * @return The object
      */
     public Optional<?> before(Class<?> clazz) {
-        checkArgument(clazz != null, "The provided class cannot be null!");
+        if (clazz == null) {
+            throw new IllegalArgumentException("The provided class cannot be null!");
+        }
         if (this.cause.length == 1) {
             return Optional.empty();
         }
@@ -234,7 +233,9 @@ public final class Cause implements Iterable<Object> {
      * @return The object after, if available
      */
     public Optional<?> after(Class<?> clazz) {
-        checkArgument(clazz != null, "The provided class cannot be null!");
+        if (clazz == null) {
+            throw new IllegalArgumentException("The provided class cannot be null!");
+        }
         if (this.cause.length == 1) {
             return Optional.empty();
         }
@@ -254,7 +255,7 @@ public final class Cause implements Iterable<Object> {
      * @return True if found, false otherwise
      */
     public boolean containsType(Class<?> target) {
-        checkArgument(target != null, "The provided class cannot be null!");
+        java.util.Objects.requireNonNull(target, "The provided class cannot be null!");
         for (Object aCause : this.cause) {
             if (target.isInstance(aCause)) {
                 return true;
@@ -496,7 +497,9 @@ public final class Cause implements Iterable<Object> {
          * @return The built cause
          */
         public Cause build(EventContext ctx) {
-            checkState(!this.causes.isEmpty(), "Cannot create an empty Cause!");
+            if (this.causes.isEmpty()) {
+                throw new IllegalStateException("Cannot create an empty Cause!");
+            }
             return new Cause(ctx, this.causes);
         }
 

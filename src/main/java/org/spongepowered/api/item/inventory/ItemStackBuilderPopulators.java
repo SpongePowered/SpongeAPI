@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.item.inventory;
 
-import static com.google.common.base.Preconditions.checkArgument;
 import static org.spongepowered.api.util.weighted.VariableAmount.baseWithRandomAddition;
 import static org.spongepowered.api.util.weighted.VariableAmount.fixed;
 
@@ -256,7 +255,9 @@ public final class ItemStackBuilderPopulators {
         Objects.requireNonNull(key, "Key cannot be null!");
         Objects.requireNonNull(elementPool, "Element pool cannot be null!");
         Objects.requireNonNull(amount, "VariableAmount cannot be null!");
-        checkArgument(!elementPool.isEmpty(), "Element pool cannot be empty!");
+        if (elementPool.isEmpty()) {
+            throw new IllegalArgumentException("Element pool cannot be empty!");
+        }
         WeightedTable<E> elementTable = new WeightedTable<>(amount);
         for (E element : elementPool) {
             elementTable.add(Objects.requireNonNull(element, "Element cannot be null!"), 1);
@@ -398,7 +399,9 @@ public final class ItemStackBuilderPopulators {
         Objects.requireNonNull(key, "Key cannot be null!");
         Objects.requireNonNull(elementPool, "Element pool cannot be null!");
         Objects.requireNonNull(amount, "VariableAmount cannot be null!");
-        checkArgument(!elementPool.isEmpty());
+        if (elementPool.isEmpty()) {
+            throw new IllegalArgumentException("Element pool cannot be empty!");
+        }
         WeightedTable<E> elementTable = new WeightedTable<>(amount);
         for (E element : elementPool) {
             elementTable.add(element, 1);
@@ -420,7 +423,9 @@ public final class ItemStackBuilderPopulators {
     public static <E> BiConsumer<ItemStack.Builder, Random> setValues(Key<? extends SetValue.Mutable<E>> key, WeightedTable<E> weightedTable) {
         Objects.requireNonNull(weightedTable, "WeightedTable cannot be null!");
         Objects.requireNonNull(key, "Key cannot be null!");
-        checkArgument(!weightedTable.isEmpty(), "WeightedTable cannot be empty!");
+        if (weightedTable.isEmpty()) {
+            throw new IllegalArgumentException("WeightedTable cannot be empty!");
+        }
         return setValue(key, random -> ImmutableSet.copyOf(weightedTable.get(random)));
     }
 

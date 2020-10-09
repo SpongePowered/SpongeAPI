@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.impl.entity.ai.goal;
 
-import com.google.common.base.Preconditions;
 import org.spongepowered.api.event.entity.ai.goal.GoalEvent;
 import org.spongepowered.api.event.impl.AbstractEvent;
 
@@ -32,7 +31,8 @@ public abstract class AbstractGoalEvent extends AbstractEvent implements GoalEve
 
     @Override
     public void init() {
-        Preconditions.checkArgument(this.getGoal().getOwner() == this.getAgent(),
-                String.format("The target entity '%s' is not the owner of the goal '%s'!", this.getAgent(), this.getGoal()));
+        if (this.getGoal().getOwner() != this.getAgent()) {
+            throw new IllegalArgumentException(String.format("The target entity '%s' is not the owner of the goal '%s'!", this.getAgent(), this.getGoal()));
+        }
     }
 }

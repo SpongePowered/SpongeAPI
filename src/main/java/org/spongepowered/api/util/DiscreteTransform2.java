@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.util;
 
-import com.google.common.base.Preconditions;
 import org.spongepowered.math.GenericMath;
 import org.spongepowered.math.imaginary.Complexd;
 import org.spongepowered.math.matrix.Matrix3d;
@@ -223,8 +222,12 @@ public class DiscreteTransform2 {
      * @return The scaled transform as a copy
      */
     public DiscreteTransform2 withScale(int x, int y) {
-        Preconditions.checkArgument(x != 0, "x == 0");
-        Preconditions.checkArgument(y != 0, "y == 0");
+        if (x == 0) {
+            throw new IllegalArgumentException("x == 0");
+        }
+        if (y == 0) {
+            throw new IllegalArgumentException("y == 0");
+        }
         return new DiscreteTransform2(this.matrix.scale(x, y, 1));
     }
 
@@ -370,8 +373,12 @@ public class DiscreteTransform2 {
      * @return The new scale transform
      */
     public static DiscreteTransform2 fromScale(int x, int y) {
-        Preconditions.checkArgument(x != 0, "x == 0");
-        Preconditions.checkArgument(y != 0, "y == 0");
+        if (x == 0) {
+            throw new IllegalArgumentException("x == 0");
+        }
+        if (y == 0) {
+            throw new IllegalArgumentException("y == 0");
+        }
         return new DiscreteTransform2(Matrix3d.createScaling(x, y, 1));
     }
 
@@ -448,13 +455,19 @@ public class DiscreteTransform2 {
      * @return The new rotation transform
      */
     public static DiscreteTransform2 rotationAroundCenter(int quarterTurns, Vector2i size) {
-        Preconditions.checkArgument(size.getX() > 0, "The size on x must be positive");
-        Preconditions.checkArgument(size.getY() > 0, "The size on y must be positive");
+        if (size.getX() <= 0) {
+            throw new IllegalArgumentException("The size on x must be positive");
+        }
+        if (size.getY() <= 0) {
+            throw new IllegalArgumentException("The size on y must be positive");
+        }
         final boolean mul180 = (quarterTurns & 1) == 0;
         final boolean xEven = (size.getX() & 1) == 0;
         final boolean yEven = (size.getY() & 1) == 0;
-        Preconditions.checkArgument(mul180 || xEven == yEven, "The size must have the same parity on all axes for rotations that are "
-            + "not a multiple of 180 degrees");
+        if (!mul180 || xEven != yEven) {
+            throw new IllegalArgumentException("The size must have the same parity on all axes for rotations that are "
+                + "not a multiple of 180 degrees");
+        }
         final Vector2i center = size.sub(1, 1).div(2);
         if (mul180) {
             return fromRotation(quarterTurns, center, xEven, yEven);

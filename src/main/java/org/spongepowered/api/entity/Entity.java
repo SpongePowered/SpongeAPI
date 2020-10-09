@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.entity;
 
-import static com.google.common.base.Preconditions.checkState;
-
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.event.HoverEventSource;
@@ -296,7 +294,9 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      * @return The collection of nearby entities
      */
     default Collection<? extends Entity> getNearbyEntities(final double distance) {
-        checkState(distance > 0, "Distance must be greater than 0!");
+        if (distance <= 0) {
+            throw new IllegalArgumentException("Distance must be greater than 0!");
+        }
         return this.getWorld().getNearbyEntities(this.getLocation().getPosition(), distance);
     }
 

@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.data;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.value.CopyableValueContainer;
@@ -527,7 +525,9 @@ public interface DataManipulator extends CopyableValueContainer {
          * @return This manipulator, for chaining
          */
         default <E> Mutable transform(Key<? extends Value<E>> key, Function<E, E> function) {
-            checkArgument(supports(key), "The provided key is not supported!" + key.toString());
+            if (!this.supports(key)) {
+                throw new IllegalArgumentException("The provided key is not supported: " + key.toString());
+            }
             return set(key, Objects.requireNonNull(function.apply(get(key).get()), "The function can not be returning null!"));
         }
 

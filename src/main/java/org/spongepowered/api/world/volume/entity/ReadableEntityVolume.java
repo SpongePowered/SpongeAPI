@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world.volume.entity;
 
-import com.google.common.base.Preconditions;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityPredicates;
@@ -121,7 +120,9 @@ public interface ReadableEntityVolume extends Volume {
      */
     default Collection<? extends Entity> getNearbyEntities(Vector3d location, double distance) {
         Objects.requireNonNull(location);
-        Preconditions.checkArgument(distance > 0, "distance must be > 0");
+        if (distance <= 0) {
+            throw new IllegalArgumentException("Distance must be a positive number!");
+        }
 
         return this.getEntities(new AABB(location.getX() - distance, location.getY() - distance, location.getZ() - distance,
                 location.getX() + distance, location.getY() + distance, location.getZ() + distance),

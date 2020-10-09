@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.data;
 
-import static com.google.common.base.Preconditions.checkState;
-
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
@@ -698,7 +696,9 @@ public final class DataTransactionResult {
          * @return The newly created transaction result
          */
         public DataTransactionResult build() {
-            checkState(this.resultType != null);
+            if (this.resultType == null) {
+                throw new IllegalStateException("ResultType must be set!");
+            }
             return new DataTransactionResult(this);
         }
 

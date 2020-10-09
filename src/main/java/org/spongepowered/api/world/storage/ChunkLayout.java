@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.world.storage;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.Direction.Division;
 import org.spongepowered.math.vector.Vector3i;
@@ -337,7 +335,9 @@ public interface ChunkLayout {
      */
     default Optional<Vector3i> moveToChunk(Vector3i chunkCoords, Direction direction, int steps) {
         Objects.requireNonNull(direction, "direction");
-        checkArgument(!direction.isSecondaryOrdinal(), "Secondary cardinal directions can't be used here");
+        if (direction.isSecondaryOrdinal()) {
+            throw new IllegalArgumentException("Secondary cardinal directions cannot be used here");
+        }
         return addToChunk(chunkCoords, direction.asBlockOffset().mul(steps));
     }
 

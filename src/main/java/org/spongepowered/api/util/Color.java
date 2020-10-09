@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.util;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 import net.kyori.adventure.util.RGBLike;
 import org.checkerframework.common.value.qual.IntRange;
 import org.spongepowered.api.data.persistence.DataContainer;
@@ -174,7 +172,9 @@ public final class Color implements DataSerializable, RGBLike {
      */
     public static Color mixColors(Color... colors) {
         Objects.requireNonNull(colors, "No null colors allowed!");
-        checkArgument(colors.length > 0, "Cannot have an empty color array!");
+        if (colors.length <= 0) {
+            throw new IllegalArgumentException("Cannot have an empty color array!");
+        }
         if (colors.length == 1) {
             return colors[0];
         }

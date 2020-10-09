@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.item.recipe.crafting;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -55,10 +53,14 @@ public final class RecipeResult {
     @SuppressWarnings("ConstantConditions")
     public RecipeResult(ItemStackSnapshot result, List<ItemStackSnapshot> remainingItems) {
         Objects.requireNonNull(result, "result");
-        checkArgument(!result.isEmpty(), "The result must not be empty.");
+        if (result.isEmpty()) {
+            throw new IllegalArgumentException("The result must not be empty!");
+        }
         Objects.requireNonNull(remainingItems, "remainingItems");
-        checkArgument(!remainingItems.isEmpty(), "The remainingItems list must not be empty."
+        if (remainingItems.isEmpty()) {
+            throw new IllegalArgumentException("The remainingItems list must not be empty."
                 + " It should contain empty ItemStackSnapshot values for slots which should be cleared.");
+        }
 
         this.result = result;
         this.remainingItems = ImmutableList.copyOf(remainingItems);

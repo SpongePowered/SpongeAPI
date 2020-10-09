@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.event.cause.entity.damage;
 
-import static com.google.common.base.Preconditions.checkState;
-
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -151,8 +149,12 @@ public interface DamageModifier {
          * @return The newly created damage modifier
          */
         public DamageModifier build() {
-            checkState(this.type != null, "The DamageModifierType must not be null!");
-            checkState(this.cause != null, "The cause for the DamageModifier must not be null!");
+            if (this.type == null) {
+                throw new IllegalStateException("The DamageModifierType must not be null!");
+            }
+            if (this.cause == null) {
+                throw new IllegalStateException("The cause for the DamageModifier must not be null!");
+            }
             return new ImplementedDamageModifier(this);
         }
 
