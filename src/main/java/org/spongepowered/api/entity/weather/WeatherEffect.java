@@ -27,6 +27,7 @@ package org.spongepowered.api.entity.weather;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.Ticks;
 
 import java.time.Duration;
 
@@ -47,7 +48,7 @@ public interface WeatherEffect extends Entity {
      * {@link Keys#DESPAWN_DELAY}
      * @return The delay before this effect is removed
      */
-    default Value.Mutable<Integer> expirationDelay() {
+    default Value.Mutable<Ticks> expirationDelay() {
         return this.requireValue(Keys.DESPAWN_DELAY).asMutable();
     }
 

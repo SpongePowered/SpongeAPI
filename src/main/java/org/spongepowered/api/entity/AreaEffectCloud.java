@@ -30,6 +30,7 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.effect.particle.ParticleEffect;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.util.Color;
+import org.spongepowered.api.util.Ticks;
 
 /**
  * Represents an AreaEffectCloud. The cloud will apply {@link PotionEffect}s to
@@ -66,7 +67,7 @@ public interface AreaEffectCloud extends Entity {
      * {@link Keys#DURATION}
      * @return The duration of which this cloud will linger
      */
-    default Value.Mutable<Integer> duration() {
+    default Value.Mutable<Ticks> duration() {
         return this.requireValue(Keys.DURATION).asMutable();
     }
 
@@ -74,7 +75,7 @@ public interface AreaEffectCloud extends Entity {
      * {@link Keys#WAIT_TIME}
      * @return The wait time before applying to an entity
      */
-    default Value.Mutable<Integer> waitTime() {
+    default Value.Mutable<Ticks> waitTime() {
         return this.requireValue(Keys.WAIT_TIME).asMutable();
     }
 
@@ -98,7 +99,7 @@ public interface AreaEffectCloud extends Entity {
      * {@link Keys#DURATION_ON_USE}
      * @return The duration of the potion effects when an entity gets a potion applied
      */
-    default Value.Mutable<Integer> durationOnUse() {
+    default Value.Mutable<Ticks> durationOnUse() {
         return this.requireValue(Keys.DURATION_ON_USE).asMutable();
     }
 
@@ -106,7 +107,7 @@ public interface AreaEffectCloud extends Entity {
      * {@link Keys#REAPPLICATION_DELAY}
      * @return The delay for an entity to have a potion effect applied while standing in this cloud
      */
-    default Value.Mutable<Integer> applicationDelay() {
+    default Value.Mutable<Ticks> applicationDelay() {
         return this.requireValue(Keys.REAPPLICATION_DELAY).asMutable();
     }
 

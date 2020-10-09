@@ -215,6 +215,7 @@ import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.RespawnLocation;
+import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.world.ServerLocation;
@@ -331,7 +332,7 @@ public final class Keys {
     /**
      * The time of a {@link Ravager} is considered attacking.
      */
-    public static final Supplier<Key<Value<Integer>>> ATTACK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "attack_time");
+    public static final Supplier<Key<Value<Ticks>>> ATTACK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "attack_time");
 
     /**
      * The author of a {@link ItemTypes#WRITTEN_BOOK} {@link ItemStack}.
@@ -346,7 +347,7 @@ public final class Keys {
     /**
      * The ticks until a {@link Ageable} turns into an adult.
      */
-    public static final Supplier<Key<Value<Integer>>> BABY_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "baby_ticks");
+    public static final Supplier<Key<Value<Ticks>>> BABY_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "baby_ticks");
 
     /**
      * The {@link BannerPatternLayer}s of a {@link Banner}.
@@ -444,7 +445,7 @@ public final class Keys {
     /**
      * The ticks until an {@link Animal} can breed again. Also see {@link #CAN_BREED}.
      */
-    public static final Supplier<Key<Value<Integer>>> BREEDING_COOLDOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "breeding_cooldown");
+    public static final Supplier<Key<Value<Ticks>>> BREEDING_COOLDOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "breeding_cooldown");
 
     /**
      * The burntime of an {@link ItemStack} fuel in a furnace.
@@ -564,7 +565,7 @@ public final class Keys {
      * or
      * The amount of ticks a {@link EndGateway} has to wait for the next teleportation.
      */
-    public static final Supplier<Key<Value<Integer>>> COOLDOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "cooldown");
+    public static final Supplier<Key<Value<Ticks>>> COOLDOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "cooldown");
 
     /**
      * The creator, usually of an {@link Entity}. It is up to the implementation to define.
@@ -616,7 +617,7 @@ public final class Keys {
     /**
      * The despawn delay (in ticks) of a {@link Item}, {@link Endermite}, {@link Weather} {@link TraderLlama} or {@link EyeOfEnder}.
      */
-    public static final Supplier<Key<Value<Integer>>> DESPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "despawn_delay");
+    public static final Supplier<Key<Value<Ticks>>> DESPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "despawn_delay");
 
     /**
      * The detonator of a {@link PrimedTNT}.
@@ -658,13 +659,13 @@ public final class Keys {
     /**
      * The remaining duration (in ticks) of an {@link AreaEffectCloud}.
      */
-    public static final Supplier<Key<Value<Integer>>> DURATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "duration");
+    public static final Supplier<Key<Value<Ticks>>> DURATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "duration");
 
     /**
      * The amount of ticks the duration of an {@link AreaEffectCloud}
      * is increased or reduced when it applies its effect.
      */
-    public static final Supplier<Key<Value<Integer>>> DURATION_ON_USE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "duration_on_use");
+    public static final Supplier<Key<Value<Ticks>>> DURATION_ON_USE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "duration_on_use");
 
     /**
      * The color of a dyeable {@link BlockState}, {@link ItemStack} or entity like {@link Cat}s.
@@ -676,7 +677,7 @@ public final class Keys {
     /**
      * The time a {@link Panda} has been eating (in ticks)
      */
-    public static final Supplier<Key<Value<Integer>>> EATING_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "eating_time");
+    public static final Supplier<Key<Value<Ticks>>> EATING_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "eating_time");
 
     /**
      * The efficiency of an {@link ItemStack} tool. Affects mining speed of supported materials. {@link #CAN_HARVEST}
@@ -694,12 +695,12 @@ public final class Keys {
      *     calculation is ran again.
      * </p>
      */
-    public static final Supplier<Key<Value<Integer>>> EGG_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "egg_time");
+    public static final Supplier<Key<Value<Ticks>>> EGG_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "egg_time");
 
     /**
      * The age (in ticks) of an {@link EndGateway}
      */
-    public static final Supplier<Key<Value<Long>>> END_GATEWAY_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "end_gateway_age");
+    public static final Supplier<Key<Value<Ticks>>> END_GATEWAY_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "end_gateway_age");
 
     /**
      * The {@link EquipmentType} that the target inventory supports. This usually applies to {@link EquipmentSlot}s.
@@ -769,7 +770,7 @@ public final class Keys {
     /**
      * The amount of ticks a {@link FallingBlock} has been falling for.
      */
-    public static final Supplier<Key<Value<Integer>>> FALL_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "fall_time");
+    public static final Supplier<Key<Value<Ticks>>> FALL_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "fall_time");
 
     /**
      * The {@link FireworkEffect}s of a
@@ -785,17 +786,17 @@ public final class Keys {
      * fly for roughly {@code modifier * 10 + (random number from 0 to 13)}
      * ticks in Vanilla Minecraft.</p>
      */
-    public static final Supplier<Key<Value<Integer>>> FIREWORK_FLIGHT_MODIFIER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "firework_flight_modifier");
+    public static final Supplier<Key<Value<Ticks>>> FIREWORK_FLIGHT_MODIFIER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "firework_flight_modifier");
 
     /**
      * The delay in ticks until the {@link Entity} will be damaged by the fire.
      */
-    public static final Supplier<Key<Value<Integer>>> FIRE_DAMAGE_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "fire_damage_delay");
+    public static final Supplier<Key<Value<Ticks>>> FIRE_DAMAGE_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "fire_damage_delay");
 
     /**
      * The amount of ticks an {@link Entity} is still burning.
      */
-    public static final Supplier<Key<Value<Integer>>> FIRE_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "fire_ticks");
+    public static final Supplier<Key<Value<Ticks>>> FIRE_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "fire_ticks");
 
     /**
      * The time a {@link User} first joined on the Server.
@@ -857,7 +858,7 @@ public final class Keys {
     /**
      * The time (in ticks) a {@link FusedExplosive}'s fuse will burn before the explosion.
      */
-    public static final Supplier<Key<Value<Integer>>> FUSE_DURATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "fuse_duration");
+    public static final Supplier<Key<Value<Ticks>>> FUSE_DURATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "fuse_duration");
 
     /**
      * The {@link GameMode} a {@link Humanoid} has.
@@ -1090,7 +1091,7 @@ public final class Keys {
     /**
      * The amount of ticks an {@link Entity} will remain invulnerable for.
      */
-    public static final Supplier<Key<Value<Integer>>> INVULNERABILITY_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "invulnerability_ticks");
+    public static final Supplier<Key<Value<Ticks>>> INVULNERABILITY_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "invulnerability_ticks");
 
     /**
      * Whether an {@link Entity} is invulnerable.
@@ -1702,7 +1703,7 @@ public final class Keys {
      * <p>If the Vex was summoned by a player, this value will be pegged at 0
      * and the Vex will not take any damage.</p>
      */
-    public static final Supplier<Key<Value<Integer>>> LIFE_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "life_ticks");
+    public static final Supplier<Key<Value<Ticks>>> LIFE_TICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "life_ticks");
 
     /**
      * The amount of light that emitted by a {@link BlockState}.
@@ -1746,13 +1747,13 @@ public final class Keys {
      * The maximum amount of ticks a {@link FurnaceBlockEntity}
      * can burn with the currently used fuel item.
      */
-    public static final Supplier<Key<Value<Integer>>> MAX_BURN_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "max_burn_time");
+    public static final Supplier<Key<Value<Ticks>>> MAX_BURN_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "max_burn_time");
 
     /**
      * The total time the current {@link ItemStack} in a
      * {@link FurnaceBlockEntity} has to be cooked.
      */
-    public static final Supplier<Key<Value<Integer>>> MAX_COOK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "max_cook_time");
+    public static final Supplier<Key<Value<Ticks>>> MAX_COOK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "max_cook_time");
 
     /**
      * The maximum durability of an {@link ItemStack}. {@link #ITEM_DURABILITY}
@@ -1785,7 +1786,7 @@ public final class Keys {
      * The maximum amount of ticks between two
      * batches of entities spawned by a {@link MobSpawner}.
      */
-    public static final Supplier<Key<Value<Integer>>> MAX_SPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "max_spawn_delay");
+    public static final Supplier<Key<Value<Ticks>>> MAX_SPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "max_spawn_delay");
 
     /**
      * The max speed of a {@link Boat}. In vanilla, this is 0.4
@@ -1807,7 +1808,7 @@ public final class Keys {
      * The minimum amount of ticks between two
      * batches of entities spawned by a {@link MobSpawner}.
      */
-    public static final Supplier<Key<Value<Integer>>> MIN_SPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "min_spawn_delay");
+    public static final Supplier<Key<Value<Ticks>>> MIN_SPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "min_spawn_delay");
 
     /**
      * The moisture value of a {@link BlockTypes#FARMLAND} {@link BlockState}.
@@ -1883,7 +1884,7 @@ public final class Keys {
      * <p>Once this value reaches the {@link #MAX_COOK_TIME}, the
      * item will be finished cooking.</p>
      */
-    public static final Supplier<Key<Value<Integer>>> PASSED_COOK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "passed_cook_time");
+    public static final Supplier<Key<Value<Ticks>>> PASSED_COOK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "passed_cook_time");
 
     /**
      * The entities that act as passengers for an {@link Entity}.
@@ -1906,7 +1907,7 @@ public final class Keys {
     /**
      * The pickup delay (in ticks) of an {@link Item}.
      */
-    public static final Supplier<Key<Value<Integer>>> PICKUP_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "pickup_delay");
+    public static final Supplier<Key<Value<Ticks>>> PICKUP_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "pickup_delay");
 
     /**
      * The {@link PickupRule} of an {@link ArrowEntity}.
@@ -2031,7 +2032,7 @@ public final class Keys {
      * {@link AreaEffectCloud} will reapply its effect on a previously
      * affected {@link Entity}.
      */
-    public static final Supplier<Key<Value<Integer>>> REAPPLICATION_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "reapplication_delay");
+    public static final Supplier<Key<Value<Ticks>>> REAPPLICATION_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "reapplication_delay");
 
     /**
      * The redstone delay on a {@link BlockTypes#REPEATER} {@link BlockState}.
@@ -2049,13 +2050,13 @@ public final class Keys {
      *
      * <p>If nothing is being brewed, the remaining brew time will be 0.</p>
      */
-    public static final Supplier<Key<Value<Integer>>> REMAINING_BREW_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "remaining_brew_time");
+    public static final Supplier<Key<Value<Ticks>>> REMAINING_BREW_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "remaining_brew_time");
 
     /**
      * Represents the {@link Key} for the remaining number of ticks to pass
      * before another attempt to spawn entities is made by a {@link MobSpawner}.
      */
-    public static final Supplier<Key<Value<Integer>>> REMAINING_SPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "remaining_spawn_delay");
+    public static final Supplier<Key<Value<Ticks>>> REMAINING_SPAWN_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "remaining_spawn_delay");
 
     /**
      * The amount of food a food {@link ItemStack} restores when eaten.
@@ -2100,7 +2101,7 @@ public final class Keys {
     /**
      * The time a {@link Ravager} is roaring.
      */
-    public static final Supplier<Key<Value<Integer>>> ROARING_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "attack_time");
+    public static final Supplier<Key<Value<Ticks>>> ROARING_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "roaring_time");
 
     /**
      * The {@link Rotation} of an {@link ItemFrame}.
@@ -2231,7 +2232,7 @@ public final class Keys {
     /**
      * The time a {@link Panda} has been sneezing (in ticks)
      */
-    public static final Supplier<Key<Value<Integer>>> SNEEZING_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "sneezing_time");
+    public static final Supplier<Key<Value<Ticks>>> SNEEZING_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "sneezing_time");
 
     /**
      * The list of {@link EntityArchetype}s able to be spawned by a {@link MobSpawner}.
@@ -2340,7 +2341,7 @@ public final class Keys {
     /**
      * The time (in ticks) a {@link Ravager} is stunned.
      */
-    public static final Supplier<Key<Value<Integer>>> STUNNED_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "stunned_time");
+    public static final Supplier<Key<Value<Ticks>>> STUNNED_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "stunned_time");
 
     /**
      * The amount of successful executions of a command
@@ -2390,7 +2391,7 @@ public final class Keys {
      * This value may be set to an arbitrary value
      * if the explosive is not primed.
      */
-    public static final Supplier<Key<Value<Integer>>> TICKS_REMAINING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ticks_remaining");
+    public static final Supplier<Key<Value<Ticks>>> TICKS_REMAINING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "ticks_remaining");
 
     /**
      * The {@link ToolType} of an {@link ItemStack} tool.
@@ -2428,7 +2429,7 @@ public final class Keys {
     /**
      * The time a {@link Panda} has been unhappy (in ticks)
      */
-    public static final Supplier<Key<Value<Integer>>> UNHAPPY_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "unhappy_time");
+    public static final Supplier<Key<Value<Ticks>>> UNHAPPY_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "unhappy_time");
 
     /**
      * The {@link UUID} of a custom inventory.
@@ -2505,7 +2506,7 @@ public final class Keys {
      * The duration in ticks after which an
      * {@link AreaEffectCloud} will begin to apply its effect to entities.
      */
-    public static final Supplier<Key<Value<Integer>>> WAIT_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "wait_time");
+    public static final Supplier<Key<Value<Ticks>>> WAIT_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "wait_time");
 
     /**
      * The base speed at which a {@link Player} or {@link Living} walks.

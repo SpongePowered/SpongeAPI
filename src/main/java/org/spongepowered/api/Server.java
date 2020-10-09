@@ -220,14 +220,18 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      * Gets the current ticks per second. A tick represents one cycle of the
      * game loop.
      *
-     * <p>Note: The server aims to limit itself at 20 ticks per second. Lower
-     * ticks per second may elude to the server taking more time to process
-     * information per tick. Examples of overburdening the server per tick
-     * include spawning 10,000 cows in a small area.</p>
-     *
      * @return The current ticks per second
      */
     double getTicksPerSecond();
+
+    /**
+     * Gets the target ticks per second for this server.
+     *
+     * <p>This is dependent on the implementation.</p>
+     *
+     * @return The target tick per second rate.
+     */
+    int getTargetTicksPerSecond();
 
     /**
      * Gets the default resource pack. The default resource pack is sent to
