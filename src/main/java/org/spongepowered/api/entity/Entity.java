@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.entity;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
 import net.kyori.adventure.text.Component;
@@ -225,7 +224,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      *      removed)
      */
     default boolean transferToWorld(final ServerWorld world) {
-        Objects.requireNonNull(world);
+        Objects.requireNonNull(world, "World cannot be null");
         return this.transferToWorld(world, world.getProperties().getSpawnPosition().toDouble());
     }
 
@@ -310,7 +309,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      * @return The collection of entities
      */
     default Collection<? extends Entity> getNearbyEntities(final double distance, final Predicate<? super Entity> predicate) {
-        checkNotNull(predicate);
+        Objects.requireNonNull(predicate, "Predicate cannot be null");
         return this.getWorld().getEntities(this.getBoundingBox().get().expand(distance, distance, distance), predicate);
     }
 
@@ -321,7 +320,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      * @return {@code true} if this entity can see the provided entity
      */
     default boolean canSee(final Entity entity) {
-        checkNotNull(entity);
+        Objects.requireNonNull(entity, "Entity cannot be null");
         final Optional<Boolean> optional = entity.get(Keys.VANISH);
         return !optional.isPresent() || !optional.get();
     }

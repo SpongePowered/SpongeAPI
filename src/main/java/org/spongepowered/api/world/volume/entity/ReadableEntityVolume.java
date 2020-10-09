@@ -35,6 +35,7 @@ import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Predicate;
@@ -70,7 +71,7 @@ public interface ReadableEntityVolume extends Volume {
      * @return All the intersecting entities
      */
     default Collection<? extends Entity> getEntities(AABB box) {
-        Preconditions.checkNotNull(box);
+        Objects.requireNonNull(box);
 
         return this.getEntities(box, entity -> true);
     }
@@ -119,7 +120,7 @@ public interface ReadableEntityVolume extends Volume {
      * @return A collection of nearby entities
      */
     default Collection<? extends Entity> getNearbyEntities(Vector3d location, double distance) {
-        Preconditions.checkNotNull(location);
+        Objects.requireNonNull(location);
         Preconditions.checkArgument(distance > 0, "distance must be > 0");
 
         return this.getEntities(new AABB(location.getX() - distance, location.getY() - distance, location.getZ() - distance,

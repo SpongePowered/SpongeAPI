@@ -24,11 +24,10 @@
  */
 package org.spongepowered.api.service.context;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import com.google.common.collect.Maps;
 
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Encapsulates a single attribute about the state or circumstances of a
@@ -69,8 +68,8 @@ public final class Context implements Map.Entry<String, String> {
      * @param value Context value. Must not be null.
      */
     public Context(String key, String value) {
-        checkNotNull(key, "key");
-        checkNotNull(value, "value");
+        Objects.requireNonNull(key, "key");
+        Objects.requireNonNull(value, "value");
         this.wrapped = Maps.immutableEntry(key, value);
     }
 

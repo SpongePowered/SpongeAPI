@@ -24,11 +24,11 @@
  */
 package co.aikar.timings;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import net.kyori.adventure.audience.Audience;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.plugin.PluginContainer;
+
+import java.util.Objects;
 
 /**
  * Utility class for creating and configuring timings.
@@ -45,8 +45,10 @@ public final class Timings {
      * @param name Name of the timing
      * @return A {@link Timing} instance
      */
-    public static Timing of(PluginContainer plugin, String name) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).of(checkNotNull(plugin, "plugin"), checkNotNull(name, "name"), null);
+    public static Timing of(final PluginContainer plugin, final String name) {
+        Objects.requireNonNull(plugin, "PluginContainer cannot be null!");
+        Objects.requireNonNull(name, "Timing name cannot be null!");
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).of(plugin, name, null);
     }
 
     /**
@@ -62,8 +64,11 @@ public final class Timings {
      * @param groupHandler Parent handler to mirror .start/stop calls to
      * @return A {@link Timing} instance
      */
-    public static Timing of(PluginContainer plugin, String name, Timing groupHandler) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).of(checkNotNull(plugin, "plugin"), checkNotNull(name, "name"), checkNotNull(groupHandler, "groupHandler"));
+    public static Timing of(final PluginContainer plugin, final String name, final Timing groupHandler) {
+        Objects.requireNonNull(plugin, "PluginContainer cannot be null!");
+        Objects.requireNonNull(name, "Timing name cannot be null!");
+        Objects.requireNonNull(groupHandler, "Group Handler cannot be null!");
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).of(plugin, name, groupHandler);
     }
 
     /**
@@ -80,8 +85,8 @@ public final class Timings {
      * @param name Name of timing
      * @return A {@link Timing} instance
      */
-    public static Timing ofStart(PluginContainer plugin, String name) {
-        Timing timing = of(plugin, name);
+    public static Timing ofStart(final PluginContainer plugin, final String name) {
+        final Timing timing = Timings.of(plugin, name);
         timing.startTimingIfSync();
         return timing;
     }
@@ -102,8 +107,11 @@ public final class Timings {
      * @param groupHandler Parent handler to mirror start/stop calls to
      * @return A {@link Timing} instance
      */
-    public static Timing ofStart(PluginContainer plugin, String name, Timing groupHandler) {
-        Timing timing = of(plugin, name, groupHandler);
+    public static Timing ofStart(final PluginContainer plugin, final String name, final Timing groupHandler) {
+        Objects.requireNonNull(plugin, "PluginContainer cannot be null!");
+        Objects.requireNonNull(name, "Timing name cannot be null!");
+        Objects.requireNonNull(groupHandler, "Group Handler cannot be null!");
+        final Timing timing = Timings.of(plugin, name, groupHandler);
         timing.startTimingIfSync();
         return timing;
     }
@@ -123,7 +131,7 @@ public final class Timings {
      *
      * @param enabled Should timings be reported
      */
-    public static void setTimingsEnabled(boolean enabled) {
+    public static void setTimingsEnabled(final boolean enabled) {
         Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).setTimingsEnabled(enabled);
     }
 
@@ -144,7 +152,7 @@ public final class Timings {
      *
      * @param enabled Should high-frequency timings be reported
      */
-    public static void setVerboseTimingsEnabled(boolean enabled) {
+    public static void setVerboseTimingsEnabled(final boolean enabled) {
         Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).setVerboseTimingsEnabled(enabled);
     }
 
@@ -165,7 +173,7 @@ public final class Timings {
      *
      * @param interval Interval in ticks
      */
-    public static void setHistoryInterval(int interval) {
+    public static void setHistoryInterval(final int interval) {
         Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).setHistoryInterval(interval);
     }
 
@@ -189,7 +197,7 @@ public final class Timings {
      *
      * @param length Duration in ticks
      */
-    public static void setHistoryLength(int length) {
+    public static void setHistoryLength(final int length) {
         Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).setHistoryLength(length);
     }
 
@@ -206,7 +214,7 @@ public final class Timings {
      *
      * @param channel The channel to send report to
      */
-    public static void generateReport(Audience channel) {
+    public static void generateReport(final Audience channel) {
         Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).generateReport(channel);
     }
 

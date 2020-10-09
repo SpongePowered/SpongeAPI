@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.util;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import com.google.common.collect.Lists;
 import com.google.common.primitives.Booleans;
 import com.google.common.primitives.Bytes;
@@ -49,6 +47,7 @@ import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -171,7 +170,7 @@ public final class Coerce {
      */
     @SuppressWarnings("unchecked")
     public static <T> List<T> toListOf(@Nullable Object obj, Class<T> ofClass) {
-        checkNotNull(ofClass, "ofClass");
+        Objects.requireNonNull(ofClass, "ofClass");
         List<T> filteredList = Lists.newArrayList();
 
         for (Object o : Coerce.toList(obj)) {
@@ -588,8 +587,8 @@ public final class Coerce {
      * @return Coerced enum value
      */
     public static <E extends Enum<E>> E toEnum(@Nullable Object obj, Class<E> enumClass, E defaultValue) {
-        checkNotNull(enumClass, "enumClass");
-        checkNotNull(defaultValue, "defaultValue");
+        Objects.requireNonNull(enumClass, "enumClass");
+        Objects.requireNonNull(defaultValue, "defaultValue");
         if (obj == null) {
             return defaultValue;
         }
@@ -631,9 +630,9 @@ public final class Coerce {
      * @return Coerced value or default if coercion fails
      */
     public static <T> T toPseudoEnum(@Nullable Object obj, Class<T> pseudoEnumClass, Class<?> dictionaryClass, T defaultValue) {
-        checkNotNull(pseudoEnumClass, "pseudoEnumClass");
-        checkNotNull(dictionaryClass, "dictionaryClass");
-        checkNotNull(defaultValue, "defaultValue");
+        Objects.requireNonNull(pseudoEnumClass, "pseudoEnumClass");
+        Objects.requireNonNull(dictionaryClass, "dictionaryClass");
+        Objects.requireNonNull(defaultValue, "defaultValue");
         if (obj == null) {
             return defaultValue;
         }

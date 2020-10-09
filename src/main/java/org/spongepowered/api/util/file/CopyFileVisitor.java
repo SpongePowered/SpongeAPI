@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.util.file;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.io.IOException;
@@ -36,6 +34,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.Objects;
 
 /**
  * Represents a {@link FileVisitor} which will create a copy of a directory
@@ -61,8 +60,8 @@ public final class CopyFileVisitor extends SimpleFileVisitor<Path> {
      * @param options Optional options for the copy operations
      */
     public CopyFileVisitor(Path target, CopyOption... options) {
-        this.target = checkNotNull(target, "target");
-        this.options = checkNotNull(options, "options");
+        this.target = Objects.requireNonNull(target, "target");
+        this.options = Objects.requireNonNull(options, "options");
     }
 
     private void copy(Path source, Path dest) throws IOException {

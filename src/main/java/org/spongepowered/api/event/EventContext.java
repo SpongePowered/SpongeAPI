@@ -25,7 +25,6 @@
 package org.spongepowered.api.event;
 
 import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
@@ -35,6 +34,7 @@ import org.spongepowered.api.util.annotation.DoNotStore;
 
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.StringJoiner;
@@ -65,9 +65,9 @@ public final class EventContext {
      * @return The new EventContext
      */
     public static EventContext of(Map<EventContextKey<?>, Object> entries) {
-        checkNotNull(entries, "Context entries cannot be null");
+        Objects.requireNonNull(entries, "Context entries cannot be null");
         for (Map.Entry<EventContextKey<?>, Object> entry : entries.entrySet()) {
-            checkNotNull(entry.getValue(), "Entries cannot contain null values");
+            Objects.requireNonNull(entry.getValue(), "Entries cannot contain null values");
         }
         return new EventContext(entries);
     }
@@ -96,7 +96,7 @@ public final class EventContext {
      */
     @SuppressWarnings("unchecked")
     public <T> Optional<T> get(EventContextKey<T> key) {
-        checkNotNull(key, "EventContextKey cannot be null");
+        Objects.requireNonNull(key, "EventContextKey cannot be null");
         return Optional.ofNullable((T) this.entries.get(key));
     }
 
@@ -109,7 +109,7 @@ public final class EventContext {
      */
     @SuppressWarnings("unchecked")
     public <T> Optional<T> get(Supplier<? extends EventContextKey<T>> key) {
-        checkNotNull(key, "EventContextKey cannot be null");
+        Objects.requireNonNull(key, "EventContextKey cannot be null");
         return Optional.ofNullable((T) this.entries.get(key.get()));
     }
 
@@ -241,7 +241,7 @@ public final class EventContext {
          * @return This builder, for chaining
          */
         public <T> Builder add(EventContextKey<T> key, T value) {
-            checkNotNull(value, "Context object cannot be null");
+            Objects.requireNonNull(value, "Context object cannot be null");
             checkArgument(!this.entries.containsKey(key), "Duplicate context keys");
             this.entries.put(key, value);
             return this;
@@ -257,9 +257,9 @@ public final class EventContext {
          * @return This builder, for chaining
          */
         public <T> Builder add(Supplier<? extends EventContextKey<T>> key, T value) {
-            checkNotNull(value, "Context object cannot be null");
+            Objects.requireNonNull(value, "Context object cannot be null");
             final EventContextKey<T> suppliedKey = key.get();
-            checkNotNull(suppliedKey, "Supplied key cannot be null!");
+            Objects.requireNonNull(suppliedKey, "Supplied key cannot be null!");
             checkArgument(!this.entries.containsKey(suppliedKey), "Duplicate context keys");
             this.entries.put(suppliedKey, value);
             return this;

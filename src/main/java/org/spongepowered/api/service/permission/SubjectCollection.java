@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.service.permission;
 
-import com.google.common.base.Preconditions;
 import org.spongepowered.api.service.context.Context;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -196,7 +196,7 @@ public interface SubjectCollection {
      * @return A future which will complete when the operation has finished
      */
     default CompletableFuture<Void> applyToAll(Consumer<Subject> action) {
-        Preconditions.checkNotNull(action, "action");
+        Objects.requireNonNull(action, "action");
         return CompletableFuture.runAsync(() -> {
             Set<String> identifiers = getAllIdentifiers().join();
             applyToAll(action, identifiers).join();
@@ -222,8 +222,8 @@ public interface SubjectCollection {
      * @return A future which will complete when the operation has finished
      */
     default CompletableFuture<Void> applyToAll(Consumer<Subject> action, Set<String> identifiers) {
-        Preconditions.checkNotNull(action, "action");
-        Preconditions.checkNotNull(identifiers, "identifiers");
+        Objects.requireNonNull(action, "action");
+        Objects.requireNonNull(identifiers, "identifiers");
         return CompletableFuture.runAsync(() -> {
             for (String id : identifiers) {
                 Subject subject = loadSubject(id).join();

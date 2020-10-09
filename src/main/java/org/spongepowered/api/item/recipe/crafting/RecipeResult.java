@@ -25,7 +25,6 @@
 package org.spongepowered.api.item.recipe.crafting;
 
 import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableList;
@@ -33,6 +32,7 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * The result of fulfilling a {@link CraftingRecipe}.
@@ -54,9 +54,9 @@ public final class RecipeResult {
      */
     @SuppressWarnings("ConstantConditions")
     public RecipeResult(ItemStackSnapshot result, List<ItemStackSnapshot> remainingItems) {
-        checkNotNull(result, "result");
+        Objects.requireNonNull(result, "result");
         checkArgument(!result.isEmpty(), "The result must not be empty.");
-        checkNotNull(remainingItems, "remainingItems");
+        Objects.requireNonNull(remainingItems, "remainingItems");
         checkArgument(!remainingItems.isEmpty(), "The remainingItems list must not be empty."
                 + " It should contain empty ItemStackSnapshot values for slots which should be cleared.");
 

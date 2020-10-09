@@ -25,7 +25,6 @@
 package org.spongepowered.api.data;
 
 import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.Sponge;
@@ -37,6 +36,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.annotation.eventgen.TransformWith;
 import org.spongepowered.api.world.World;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -242,8 +242,8 @@ public interface DataManipulator extends CopyableValueContainer {
          * @return This manipulator, for chaining
          */
         default <E> Immutable transform(Key<? extends Value<E>> key, Function<E, E> function) {
-            checkNotNull(function, "function");
-            return get(key).map(element -> with(key, checkNotNull(function.apply(element)))).orElse(this);
+            Objects.requireNonNull(function, "function");
+            return get(key).map(element -> with(key, Objects.requireNonNull(function.apply(element)))).orElse(this);
         }
 
         /**
@@ -485,9 +485,9 @@ public interface DataManipulator extends CopyableValueContainer {
          * @return This manipulator, for chaining
          */
         default Mutable set(Value<?>... values) {
-            for (Value<?> value : checkNotNull(values)) {
+            for (Value<?> value : Objects.requireNonNull(values)) {
                 try {
-                    set(checkNotNull(value, "A null value was provided!"));
+                    set(Objects.requireNonNull(value, "A null value was provided!"));
                 } catch (IllegalArgumentException e) {
                     e.printStackTrace();
                 }
@@ -507,9 +507,9 @@ public interface DataManipulator extends CopyableValueContainer {
          * @return This manipulator, for chaining
          */
         default Mutable set(Iterable<? extends Value<?>> values) {
-            for (Value<?> value : checkNotNull(values)) {
+            for (Value<?> value : Objects.requireNonNull(values)) {
                 try {
-                    set(checkNotNull(value, "A null value was provided!"));
+                    set(Objects.requireNonNull(value, "A null value was provided!"));
                 } catch (IllegalArgumentException e) {
                     e.printStackTrace();
                 }
@@ -528,7 +528,7 @@ public interface DataManipulator extends CopyableValueContainer {
          */
         default <E> Mutable transform(Key<? extends Value<E>> key, Function<E, E> function) {
             checkArgument(supports(key), "The provided key is not supported!" + key.toString());
-            return set(key, checkNotNull(function.apply(get(key).get()), "The function can not be returning null!"));
+            return set(key, Objects.requireNonNull(function.apply(get(key).get()), "The function can not be returning null!"));
         }
 
         Mutable remove(Key<?> key);

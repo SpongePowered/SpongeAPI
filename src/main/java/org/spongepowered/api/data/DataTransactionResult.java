@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
 import com.google.common.base.MoreObjects;
@@ -434,7 +433,7 @@ public final class DataTransactionResult {
          * @return This builder, for chaining
          */
         public Builder result(final Type type) {
-            this.resultType = checkNotNull(type);
+            this.resultType = java.util.Objects.requireNonNull(type);
             return this;
         }
 
@@ -450,7 +449,7 @@ public final class DataTransactionResult {
             if (this.replaced == null) {
                 this.replaced = Lists.newArrayList();
             }
-            this.replaced.add(checkNotNull(value));
+            this.replaced.add(java.util.Objects.requireNonNull(value));
             return this;
         }
 
@@ -464,7 +463,7 @@ public final class DataTransactionResult {
          */
         public Builder replace(final Iterable<Value.Immutable<?>> values) {
             for (Value.Immutable<?> value : values) {
-                replace(checkNotNull(value));
+                replace(java.util.Objects.requireNonNull(value));
             }
             return this;
         }
@@ -481,7 +480,7 @@ public final class DataTransactionResult {
             if (this.rejected == null) {
                 this.rejected = Lists.newArrayList();
             }
-            this.rejected.add(checkNotNull(value));
+            this.rejected.add(java.util.Objects.requireNonNull(value));
             return this;
         }
 
@@ -495,7 +494,7 @@ public final class DataTransactionResult {
          */
         public Builder reject(final Iterable<Value.Immutable<?>> values) {
             for (Value.Immutable<?> value : values) {
-                reject(checkNotNull(value));
+                reject(java.util.Objects.requireNonNull(value));
             }
             return this;
         }
@@ -512,7 +511,7 @@ public final class DataTransactionResult {
             if (this.successful == null) {
                 this.successful = Lists.newArrayList();
             }
-            this.successful.add(checkNotNull(value));
+            this.successful.add(java.util.Objects.requireNonNull(value));
             return this;
         }
 
@@ -526,7 +525,7 @@ public final class DataTransactionResult {
          */
         public Builder success(final Iterable<Value.Immutable<?>> values) {
             for (Value.Immutable<?> value : values) {
-                success(checkNotNull(value));
+                success(java.util.Objects.requireNonNull(value));
             }
             return this;
         }

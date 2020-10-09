@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.event.cause.entity.damage.source.common;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.EntityDamageSource;
+
+import java.util.Objects;
 
 public abstract class AbstractEntityDamageSource implements EntityDamageSource {
 
@@ -43,7 +43,7 @@ public abstract class AbstractEntityDamageSource implements EntityDamageSource {
     private final Entity source;
 
     protected AbstractEntityDamageSource(AbstractEntityDamageSourceBuilder<?, ?> builder) {
-        this.apiDamageType = checkNotNull(builder.damageType, "DamageType cannot be null!");
+        this.apiDamageType = Objects.requireNonNull(builder.damageType, "DamageType cannot be null!");
         this.absolute = builder.absolute;
         this.bypassesArmor = builder.bypasses;
         this.scales = builder.scales;
@@ -57,7 +57,7 @@ public abstract class AbstractEntityDamageSource implements EntityDamageSource {
         } else {
             this.exhaustion = 0.1;
         }
-        this.source = checkNotNull(builder.source, "Entity source cannot be null!");
+        this.source = Objects.requireNonNull(builder.source, "Entity source cannot be null!");
     }
 
     @Override
@@ -115,7 +115,7 @@ public abstract class AbstractEntityDamageSource implements EntityDamageSource {
 
         @Override
         public B entity(Entity entity) {
-            this.source = checkNotNull(entity, "Entity source cannot be null!");
+            this.source = Objects.requireNonNull(entity, "Entity source cannot be null!");
             return (B) this;
         }
 

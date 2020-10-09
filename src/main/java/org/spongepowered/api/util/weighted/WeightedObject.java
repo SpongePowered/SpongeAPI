@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.util.weighted;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import com.google.common.base.MoreObjects;
+
+import java.util.Objects;
 
 /**
  * An entry which contains an object.
@@ -46,7 +46,7 @@ public class WeightedObject<T> extends TableEntry<T> {
      */
     public WeightedObject(T obj, double weight) {
         super(weight);
-        this.object = checkNotNull(obj);
+        this.object = Objects.requireNonNull(obj);
     }
 
     /**

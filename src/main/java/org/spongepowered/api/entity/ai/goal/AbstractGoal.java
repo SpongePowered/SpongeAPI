@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.entity.ai.goal;
 
-import com.google.common.base.Preconditions;
-import org.spongepowered.api.registry.BuilderRegistry;
 import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.registry.BuilderRegistry;
 
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -70,7 +70,7 @@ public abstract class AbstractGoal<O extends Agent> implements Goal<O> {
      * @param type The type
      */
     public AbstractGoal(GoalType type) {
-        Preconditions.checkNotNull(type);
+        Objects.requireNonNull(type);
         this.type = type;
     }
 

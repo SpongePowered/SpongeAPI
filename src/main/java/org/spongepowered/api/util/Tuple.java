@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.util;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
@@ -61,8 +59,8 @@ public class Tuple<K, V> {
      * @param second The second object
      */
     public Tuple(K first, V second) {
-        this.first = checkNotNull(first);
-        this.second = checkNotNull(second);
+        this.first = java.util.Objects.requireNonNull(first);
+        this.second = java.util.Objects.requireNonNull(second);
     }
 
     /**

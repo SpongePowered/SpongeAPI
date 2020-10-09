@@ -25,7 +25,6 @@
 package org.spongepowered.api.item.recipe.cooking;
 
 import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.MoreObjects;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -50,7 +49,7 @@ public final class CookingResult {
      */
     @SuppressWarnings("ConstantConditions")
     public CookingResult(ItemStackSnapshot result, double experience) {
-        checkNotNull(result, "result");
+        Objects.requireNonNull(result, "result");
         checkArgument(!result.isEmpty(), "The result must not be empty.");
         checkArgument(experience >= 0, "The experience must be non-negative.");
 

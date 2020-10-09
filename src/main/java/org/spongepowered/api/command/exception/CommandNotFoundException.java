@@ -24,8 +24,9 @@
  */
 package org.spongepowered.api.command.exception;
 
-import com.google.common.base.Preconditions;
 import net.kyori.adventure.text.Component;
+
+import java.util.Objects;
 
 /**
  * This exception is thrown when a sender tries to execute a command that does
@@ -45,7 +46,7 @@ public class CommandNotFoundException extends CommandException {
      */
     public CommandNotFoundException(Component message, String command) {
         super(message);
-        this.command = Preconditions.checkNotNull(command, "command");
+        this.command = Objects.requireNonNull(command, "command");
     }
 
     /**

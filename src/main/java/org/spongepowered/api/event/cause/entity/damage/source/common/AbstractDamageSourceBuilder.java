@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.event.cause.entity.damage.source.common;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
+
+import java.util.Objects;
 
 @SuppressWarnings("unchecked")
 public abstract class AbstractDamageSourceBuilder<T extends DamageSource, B extends DamageSource.DamageSourceBuilder<T, B>>
@@ -94,7 +94,7 @@ public abstract class AbstractDamageSourceBuilder<T extends DamageSource, B exte
 
     @Override
     public B type(final DamageType damageType) {
-        this.damageType = checkNotNull(damageType, "DamageType cannot be null!");
+        this.damageType = Objects.requireNonNull(damageType, "DamageType cannot be null!");
         return (B) this;
     }
 

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.cause.entity.damage;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
 import com.google.common.base.MoreObjects;
@@ -120,17 +119,17 @@ public interface DamageModifier {
          * @return This builder, for chaining
          */
         public Builder type(DamageModifierType damageModifierType) {
-            this.type = checkNotNull(damageModifierType);
+            this.type = java.util.Objects.requireNonNull(damageModifierType);
             return this;
         }
 
         public Builder item(ItemStack itemStack) {
-            item(checkNotNull(itemStack, "ItemStack").createSnapshot());
+            item(java.util.Objects.requireNonNull(itemStack, "ItemStack").createSnapshot());
             return this;
         }
 
         public Builder item(ItemStackSnapshot snapshot) {
-            this.snapshot = checkNotNull(snapshot, "ItemStackSnapshot");
+            this.snapshot = java.util.Objects.requireNonNull(snapshot, "ItemStackSnapshot");
             return this;
         }
 
@@ -141,7 +140,7 @@ public interface DamageModifier {
          * @return This builder, for chaining
          */
         public Builder cause(Cause cause) {
-            this.cause = checkNotNull(cause);
+            this.cause = java.util.Objects.requireNonNull(cause);
             return this;
         }
 
@@ -179,8 +178,8 @@ public interface DamageModifier {
             @Nullable private final ItemStackSnapshot snapshot;
 
             ImplementedDamageModifier(Builder builder) {
-                this.type = checkNotNull(builder.type, "DamageType is null!");
-                this.cause = checkNotNull(builder.cause, "Cause is null!");
+                this.type = java.util.Objects.requireNonNull(builder.type, "DamageType is null!");
+                this.cause = java.util.Objects.requireNonNull(builder.cause, "Cause is null!");
                 this.snapshot = builder.snapshot;
             }
 

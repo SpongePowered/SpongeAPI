@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.world.volume.game;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import com.google.common.collect.ImmutableSet;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.data.DataHolder;
@@ -42,6 +40,7 @@ import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.OptionalInt;
@@ -418,7 +417,7 @@ public interface LocationBaseDataHolder {
      * @return The data or null
      */
     default <E> E getOrElse(final Vector3i position, final Key<? extends Value<E>> key, final E defaultValue) {
-        return this.get(position.getX(), position.getY(), position.getZ(), key).orElse(checkNotNull(defaultValue));
+        return this.get(position.getX(), position.getY(), position.getZ(), key).orElse(Objects.requireNonNull(defaultValue));
     }
 
     /**
@@ -433,7 +432,7 @@ public interface LocationBaseDataHolder {
      * @return The data or null
      */
     default <E> E getOrElse(final Vector3i position, final Supplier<? extends Key<? extends Value<E>>> key, final E defaultValue) {
-        return this.get(position.getX(), position.getY(), position.getZ(), key.get()).orElse(checkNotNull(defaultValue));
+        return this.get(position.getX(), position.getY(), position.getZ(), key.get()).orElse(Objects.requireNonNull(defaultValue));
     }
 
     /**
@@ -450,7 +449,7 @@ public interface LocationBaseDataHolder {
      * @return The data or null
      */
     default <E> E getOrElse(final int x, final int y, final int z, final Key<? extends Value<E>> key, final E defaultValue) {
-        return this.get(x, y, z, key).orElse(checkNotNull(defaultValue));
+        return this.get(x, y, z, key).orElse(Objects.requireNonNull(defaultValue));
     }
 
     /**
@@ -467,7 +466,7 @@ public interface LocationBaseDataHolder {
      * @return The data or null
      */
     default <E> E getOrElse(final int x, final int y, final int z, final Supplier<? extends Key<? extends Value<E>>> key, final E defaultValue) {
-        return this.get(x, y, z, key.get()).orElse(checkNotNull(defaultValue));
+        return this.get(x, y, z, key.get()).orElse(Objects.requireNonNull(defaultValue));
     }
 
 
@@ -483,7 +482,7 @@ public interface LocationBaseDataHolder {
      * @return The data or null
      */
     default <E> E getOrElse(final Vector3i position, final Key<? extends Value<E>> key, final Supplier<? extends E> defaultValue) {
-        return this.get(position.getX(), position.getY(), position.getZ(), key).orElseGet(checkNotNull(defaultValue));
+        return this.get(position.getX(), position.getY(), position.getZ(), key).orElseGet(Objects.requireNonNull(defaultValue));
     }
 
     /**
@@ -498,7 +497,7 @@ public interface LocationBaseDataHolder {
      * @return The data or null
      */
     default <E> E getOrElse(final Vector3i position, final Supplier<? extends Key<? extends Value<E>>> key, final Supplier<? extends E> defaultValue) {
-        return this.get(position.getX(), position.getY(), position.getZ(), key.get()).orElseGet(checkNotNull(defaultValue));
+        return this.get(position.getX(), position.getY(), position.getZ(), key.get()).orElseGet(Objects.requireNonNull(defaultValue));
     }
 
     /**
@@ -515,7 +514,7 @@ public interface LocationBaseDataHolder {
      * @return The data or null
      */
     default <E> E getOrElse(final int x, final int y, final int z, final Key<? extends Value<E>> key, final Supplier<E> defaultValue) {
-        return this.get(x, y, z, key).orElseGet(checkNotNull(defaultValue));
+        return this.get(x, y, z, key).orElseGet(Objects.requireNonNull(defaultValue));
     }
 
     /**
@@ -532,7 +531,7 @@ public interface LocationBaseDataHolder {
      * @return The data or null
      */
     default <E> E getOrElse(final int x, final int y, final int z, final Supplier<? extends Key<? extends Value<E>>> key, final Supplier<? extends E> defaultValue) {
-        return this.get(x, y, z, key.get()).orElseGet(checkNotNull(defaultValue));
+        return this.get(x, y, z, key.get()).orElseGet(Objects.requireNonNull(defaultValue));
     }
 
     /**

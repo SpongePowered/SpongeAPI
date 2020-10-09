@@ -25,7 +25,6 @@
 package org.spongepowered.api.event;
 
 import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
 import com.google.common.base.Objects;
@@ -78,8 +77,8 @@ public final class Cause implements Iterable<Object> {
      * @return The constructed cause
      */
     public static Cause of(EventContext ctx, Object cause) {
-        checkNotNull(ctx, "Context");
-        checkNotNull(cause, "Cause cannot be null!");
+        java.util.Objects.requireNonNull(ctx, "Context");
+        java.util.Objects.requireNonNull(cause, "Cause cannot be null!");
         return new Cause(ctx, new Object[] {cause});
     }
 
@@ -92,7 +91,7 @@ public final class Cause implements Iterable<Object> {
      * @return The built cause
      */
     public static Cause of(EventContext ctx, Object cause, Object... causes) {
-        checkNotNull(ctx, "Context");
+        java.util.Objects.requireNonNull(ctx, "Context");
         Builder builder = builder();
         builder.append(cause);
         for (Object namedCause : causes) {
@@ -109,7 +108,7 @@ public final class Cause implements Iterable<Object> {
      * @return The built cause
      */
     public static Cause of(EventContext ctx, Iterable<Object> iterable) {
-        checkNotNull(ctx, "Context");
+        java.util.Objects.requireNonNull(ctx, "Context");
         Builder builder = builder();
         for (Object cause : iterable) {
             builder.append(cause);
@@ -130,10 +129,10 @@ public final class Cause implements Iterable<Object> {
      * @param causes The causes
      */
     Cause(EventContext ctx, Object[] causes) {
-        checkNotNull(ctx, "Context");
+        java.util.Objects.requireNonNull(ctx, "Context");
         final Object[] objects = new Object[causes.length];
         for (int index = 0; index < causes.length; index++) {
-            objects[index] = checkNotNull(causes[index], "Null cause element!");
+            objects[index] = java.util.Objects.requireNonNull(causes[index], "Null cause element!");
         }
         this.cause = objects;
         this.context = ctx;
@@ -146,11 +145,11 @@ public final class Cause implements Iterable<Object> {
      * @param causes The causes
      */
     Cause(EventContext ctx, Collection<Object> causes) {
-        checkNotNull(ctx, "Context");
+        java.util.Objects.requireNonNull(ctx, "Context");
         final Object[] objects = new Object[causes.size()];
         int index = 0;
         for (Object cause: causes) {
-            objects[index++] = checkNotNull(cause, "Null cause element!");
+            objects[index++] = java.util.Objects.requireNonNull(cause, "Null cause element!");
         }
         this.cause = objects;
         this.context = ctx;
@@ -337,7 +336,7 @@ public final class Cause implements Iterable<Object> {
      * @return The new cause
      */
     public Cause with(Object additional) {
-        checkNotNull(additional, "No null arguments allowed!");
+        java.util.Objects.requireNonNull(additional, "No null arguments allowed!");
         List<Object> list = new ArrayList<>();
         list.add(additional);
         return with(list);
@@ -352,11 +351,11 @@ public final class Cause implements Iterable<Object> {
      * @return The new cause
      */
     public Cause with(Object additional, Object... additionals) {
-        checkNotNull(additional, "No null arguments allowed!");
+        java.util.Objects.requireNonNull(additional, "No null arguments allowed!");
         List<Object> list = new ArrayList<>();
         list.add(additional);
         for (Object object : additionals) {
-            checkNotNull(object, "Cannot add null objects!");
+            java.util.Objects.requireNonNull(object, "Cannot add null objects!");
             list.add(object);
         }
         return with(list);
@@ -372,7 +371,7 @@ public final class Cause implements Iterable<Object> {
     public Cause with(Iterable<Object> iterable) {
         Cause.Builder builder = new Builder().from(this);
         for (Object o : iterable) {
-            checkNotNull(o, "Cannot add null causes");
+            java.util.Objects.requireNonNull(o, "Cannot add null causes");
             builder.append(o);
         }
         return builder.build(this.context);
@@ -457,7 +456,7 @@ public final class Cause implements Iterable<Object> {
          * @return The modified builder, for chaining
          */
         public Builder append(Object cause) {
-            checkNotNull(cause, "Cause cannot be null!");
+            java.util.Objects.requireNonNull(cause, "Cause cannot be null!");
             if (!this.causes.isEmpty() && this.causes.get(this.causes.size() - 1) == cause) {
                 return this;
             }
@@ -473,7 +472,7 @@ public final class Cause implements Iterable<Object> {
          * @return The modified builder, for chaining
          */
         public Builder insert(int position, Object cause) {
-            checkNotNull(cause, "Cause cannot be null!");
+            java.util.Objects.requireNonNull(cause, "Cause cannot be null!");
             this.causes.add(position, cause);
             return this;
         }
@@ -485,7 +484,7 @@ public final class Cause implements Iterable<Object> {
          * @return The modified builder, for chaining
          */
         public Builder appendAll(Collection<Object> causes) {
-            checkNotNull(causes, "Causes cannot be null!");
+            java.util.Objects.requireNonNull(causes, "Causes cannot be null!");
             causes.forEach(this::append);
             return this;
         }

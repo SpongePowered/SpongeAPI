@@ -25,12 +25,12 @@
 package org.spongepowered.api.world.storage;
 
 import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.Direction.Division;
 import org.spongepowered.math.vector.Vector3i;
 
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -91,7 +91,7 @@ public interface ChunkLayout {
      * @return Whether or not the coordinates are valid for chunks
      */
     default boolean isValidChunk(Vector3i coords) {
-        checkNotNull(coords, "coords");
+        Objects.requireNonNull(coords, "coords");
         return isValidChunk(coords.getX(), coords.getY(), coords.getZ());
     }
 
@@ -118,7 +118,7 @@ public interface ChunkLayout {
      * @return Whether or not the coordinates fit in a chunk
      */
     default boolean isInChunk(Vector3i localCoords) {
-        checkNotNull(localCoords, "localCoords");
+        Objects.requireNonNull(localCoords, "localCoords");
         return isInChunk(localCoords.getX(), localCoords.getY(), localCoords.getZ());
     }
 
@@ -142,8 +142,8 @@ public interface ChunkLayout {
      * @return Whether or not the world coordinates fit in the chunk
      */
     default boolean isInChunk(Vector3i worldCoords, Vector3i chunkCoords) {
-        checkNotNull(worldCoords, "worldCoords");
-        checkNotNull(chunkCoords, "chunkCoords");
+        Objects.requireNonNull(worldCoords, "worldCoords");
+        Objects.requireNonNull(chunkCoords, "chunkCoords");
         return isInChunk(worldCoords.getX(), worldCoords.getY(), worldCoords.getZ(), chunkCoords.getX(), chunkCoords.getY(), chunkCoords.getZ());
     }
 
@@ -169,7 +169,7 @@ public interface ChunkLayout {
      * @return The chunk coordinates on success, else nothing
      */
     default Optional<Vector3i> toChunk(Vector3i worldCoords) {
-        checkNotNull(worldCoords, "worldCoords");
+        Objects.requireNonNull(worldCoords, "worldCoords");
         return toChunk(worldCoords.getX(), worldCoords.getY(), worldCoords.getZ());
     }
 
@@ -195,7 +195,7 @@ public interface ChunkLayout {
      * @return The world coordinates on success, else nothing
      */
     default Optional<Vector3i> toWorld(Vector3i chunkCoords) {
-        checkNotNull(chunkCoords, "chunkCoords");
+        Objects.requireNonNull(chunkCoords, "chunkCoords");
         return toWorld(chunkCoords.getX(), chunkCoords.getY(), chunkCoords.getZ());
     }
 
@@ -220,7 +220,7 @@ public interface ChunkLayout {
      * @return The chunk coordinates
      */
     default Vector3i forceToChunk(Vector3i worldCoords) {
-        checkNotNull(worldCoords, "worldCoords");
+        Objects.requireNonNull(worldCoords, "worldCoords");
         return forceToChunk(worldCoords.getX(), worldCoords.getY(), worldCoords.getZ());
     }
 
@@ -243,7 +243,7 @@ public interface ChunkLayout {
      * @return The world coordinates
      */
     default Vector3i forceToWorld(Vector3i chunkCoords) {
-        checkNotNull(chunkCoords, "chunkCoords");
+        Objects.requireNonNull(chunkCoords, "chunkCoords");
         return forceToWorld(chunkCoords.getX(), chunkCoords.getY(), chunkCoords.getZ());
     }
 
@@ -267,8 +267,8 @@ public interface ChunkLayout {
      * @return The new chunk coordinates if they are valid
      */
     default Optional<Vector3i> addToChunk(Vector3i chunkCoords, Vector3i chunkOffset) {
-        checkNotNull(chunkCoords, "chunkCoords");
-        checkNotNull(chunkOffset, "chunkOffset");
+        Objects.requireNonNull(chunkCoords, "chunkCoords");
+        Objects.requireNonNull(chunkOffset, "chunkOffset");
         return addToChunk(chunkCoords.getX(), chunkCoords.getY(), chunkCoords.getZ(), chunkOffset.getX(), chunkOffset.getY(), chunkOffset.getZ());
     }
 
@@ -336,7 +336,7 @@ public interface ChunkLayout {
      * {@link Division#SECONDARY_ORDINAL}
      */
     default Optional<Vector3i> moveToChunk(Vector3i chunkCoords, Direction direction, int steps) {
-        checkNotNull(direction, "direction");
+        Objects.requireNonNull(direction, "direction");
         checkArgument(!direction.isSecondaryOrdinal(), "Secondary cardinal directions can't be used here");
         return addToChunk(chunkCoords, direction.asBlockOffset().mul(steps));
     }

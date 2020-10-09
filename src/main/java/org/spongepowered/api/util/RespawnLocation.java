@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.util;
 
-import com.google.common.base.Preconditions;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
@@ -63,8 +62,8 @@ public final class RespawnLocation implements DataSerializable {
     private final boolean forced;
 
     RespawnLocation(Builder builder) {
-        this.world = Preconditions.checkNotNull(builder.world);
-        this.position = Preconditions.checkNotNull(builder.position);
+        this.world = Objects.requireNonNull(builder.world);
+        this.position = Objects.requireNonNull(builder.position);
         this.forced = builder.forced;
     }
 
@@ -176,7 +175,7 @@ public final class RespawnLocation implements DataSerializable {
          * @return This builder, for chaining
          */
         public Builder world(final ServerWorld world) {
-            return world(Preconditions.checkNotNull(world).getKey());
+            return world(Objects.requireNonNull(world).getKey());
         }
 
         /**
@@ -186,7 +185,7 @@ public final class RespawnLocation implements DataSerializable {
          * @return This builder, for chaining
          */
         public Builder world(final ResourceKey key) {
-            this.world = Preconditions.checkNotNull(key);
+            this.world = Objects.requireNonNull(key);
             return this;
         }
 
@@ -198,7 +197,7 @@ public final class RespawnLocation implements DataSerializable {
          * @return This builder, for chaining
          */
         public Builder location(final ServerLocation location) {
-            Preconditions.checkNotNull(location);
+            Objects.requireNonNull(location);
             final ServerWorld world = location.getWorld();
             this.position(location.getPosition());
             this.world(world);
@@ -212,7 +211,7 @@ public final class RespawnLocation implements DataSerializable {
          * @return This builder, for chaining
          */
         public Builder position(final Vector3d position) {
-            this.position = Preconditions.checkNotNull(position);
+            this.position = Objects.requireNonNull(position);
             return this;
         }
 
@@ -254,7 +253,7 @@ public final class RespawnLocation implements DataSerializable {
 
         @Override
         public Builder from(final RespawnLocation value) {
-            Preconditions.checkNotNull(value);
+            Objects.requireNonNull(value);
 
             this.world = value.world;
             this.position = value.getPosition();
@@ -268,8 +267,8 @@ public final class RespawnLocation implements DataSerializable {
          * @return The new respawn location
          */
         public RespawnLocation build() {
-            Preconditions.checkNotNull(this.world);
-            Preconditions.checkNotNull(this.position);
+            Objects.requireNonNull(this.world);
+            Objects.requireNonNull(this.position);
 
             return new RespawnLocation(this);
         }

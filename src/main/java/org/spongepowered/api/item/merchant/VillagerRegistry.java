@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.item.merchant;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Multimap;
 import org.spongepowered.api.data.type.ProfessionType;
@@ -33,6 +31,7 @@ import org.spongepowered.api.data.type.ProfessionType;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public interface VillagerRegistry {
@@ -56,7 +55,10 @@ public interface VillagerRegistry {
      * @return The collection of trade offer mutators, if available
      */
     default Collection<TradeOfferListMutator> getMutatorsForProfession(ProfessionType profession, int level) {
-        final Multimap<Integer, TradeOfferListMutator> map = getTradeOfferLevelMap(checkNotNull(profession, "Profession cannot be null!"));
+        final Multimap<Integer, TradeOfferListMutator> map = getTradeOfferLevelMap(Objects.requireNonNull(
+            profession,
+            "Profession cannot be null!"
+        ));
         final Collection<TradeOfferListMutator> mutators = map.get(level);
         return ImmutableList.copyOf(mutators);
     }
@@ -126,7 +128,7 @@ public interface VillagerRegistry {
      * @return The generated list of trade offers
      */
     default Collection<TradeOffer> generateTradeOffers(Merchant merchant, ProfessionType profession, int level, Random random) {
-        checkNotNull(random, "Random cannot be null!");
+        Objects.requireNonNull(random, "Random cannot be null!");
         List<TradeOffer> generatedList = new ArrayList<>();
         this.getMutatorsForProfession(profession, level)
                 .forEach(mutator -> mutator.accept(merchant, generatedList, random));

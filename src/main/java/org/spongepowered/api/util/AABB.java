@@ -25,12 +25,12 @@
 package org.spongepowered.api.util;
 
 import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -58,7 +58,7 @@ public class AABB {
      * @param secondCorner The second corner
      */
     public AABB(Vector3i firstCorner, Vector3i secondCorner) {
-        this(checkNotNull(firstCorner, "firstCorner").toDouble(), checkNotNull(secondCorner, "secondCorner").toDouble());
+        this(Objects.requireNonNull(firstCorner, "firstCorner").toDouble(), Objects.requireNonNull(secondCorner, "secondCorner").toDouble());
     }
 
     /**
@@ -84,8 +84,8 @@ public class AABB {
      * @param secondCorner The second corner
      */
     public AABB(Vector3d firstCorner, Vector3d secondCorner) {
-        checkNotNull(firstCorner, "firstCorner");
-        checkNotNull(secondCorner, "secondCorner");
+        Objects.requireNonNull(firstCorner, "firstCorner");
+        Objects.requireNonNull(secondCorner, "secondCorner");
         this.min = firstCorner.min(secondCorner);
         this.max = firstCorner.max(secondCorner);
         checkArgument(this.min.getX() != this.max.getX(), "The box is degenerate on x");
@@ -142,7 +142,7 @@ public class AABB {
      * @return Whether or not the box contains the point
      */
     public boolean contains(Vector3i point) {
-        checkNotNull(point, "point");
+        Objects.requireNonNull(point, "point");
         return contains(point.getX(), point.getY(), point.getZ());
     }
 
@@ -153,7 +153,7 @@ public class AABB {
      * @return Whether or not the box contains the point
      */
     public boolean contains(Vector3d point) {
-        checkNotNull(point, "point");
+        Objects.requireNonNull(point, "point");
         return contains(point.getX(), point.getY(), point.getZ());
     }
 
@@ -178,7 +178,7 @@ public class AABB {
      * @return Whether this bounding box intersects with the other
      */
     public boolean intersects(AABB other) {
-        checkNotNull(other, "other");
+        Objects.requireNonNull(other, "other");
         return this.max.getX() >= other.getMin().getX() && other.getMax().getX() >= this.min.getX()
                && this.max.getY() >= other.getMin().getY() && other.getMax().getY() >= this.min.getY()
                && this.max.getZ() >= other.getMin().getZ() && other.getMax().getZ() >= this.min.getZ();
@@ -193,8 +193,8 @@ public class AABB {
      * @return An intersection point its normal, if any
      */
     public Optional<Tuple<Vector3d, Vector3d>> intersects(Vector3d start, Vector3d direction) {
-        checkNotNull(start, "start");
-        checkNotNull(direction, "direction");
+        Objects.requireNonNull(start, "start");
+        Objects.requireNonNull(direction, "direction");
         // Adapted from: https://github.com/flow/react/blob/develop/src/main/java/com/flowpowered/react/collision/RayCaster.java#L156
         // The box is interpreted as 6 infinite perpendicular places, one for each face (being expanded infinitely)
         // "t" variables are multipliers: start + direction * t gives the intersection point
@@ -341,7 +341,7 @@ public class AABB {
      * @return The new offset box
      */
     public AABB offset(Vector3i offset) {
-        checkNotNull(offset, "offset");
+        Objects.requireNonNull(offset, "offset");
         return offset(offset.getX(), offset.getY(), offset.getZ());
     }
 
@@ -352,7 +352,7 @@ public class AABB {
      * @return The new offset box
      */
     public AABB offset(Vector3d offset) {
-        checkNotNull(offset, "offset");
+        Objects.requireNonNull(offset, "offset");
         return offset(offset.getX(), offset.getY(), offset.getZ());
     }
 
@@ -377,7 +377,7 @@ public class AABB {
      * @return The new expanded box
      */
     public AABB expand(Vector3i amount) {
-        checkNotNull(amount, "amount");
+        Objects.requireNonNull(amount, "amount");
         return expand(amount.getX(), amount.getY(), amount.getZ());
     }
 
@@ -390,7 +390,7 @@ public class AABB {
      * @return The new expanded box
      */
     public AABB expand(Vector3d amount) {
-        checkNotNull(amount, "amount");
+        Objects.requireNonNull(amount, "amount");
         return expand(amount.getX(), amount.getY(), amount.getZ());
     }
 

@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.event.cause.entity.damage;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
@@ -69,8 +67,8 @@ public class DamageFunction implements ModifierFunction<DamageModifier> {
      * @param function The function
      */
     public DamageFunction(DamageModifier modifier, DoubleUnaryOperator function) {
-        this.modifier = checkNotNull(modifier, "modifier");
-        this.function = checkNotNull(function, "function");
+        this.modifier = java.util.Objects.requireNonNull(modifier, "modifier");
+        this.function = java.util.Objects.requireNonNull(function, "function");
     }
 
     /**
