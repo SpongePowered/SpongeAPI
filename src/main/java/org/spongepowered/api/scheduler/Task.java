@@ -27,10 +27,11 @@ package org.spongepowered.api.scheduler;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.util.TemporalUnits;
+import org.spongepowered.api.util.Ticks;
 import org.spongepowered.plugin.PluginContainer;
 
 import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalUnit;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
@@ -97,8 +98,8 @@ public interface Task {
          * @param runnable The actual task to run
          * @return This builder, for chaining
          */
-        default Builder execute(Runnable runnable) {
-            return execute(task -> runnable.run());
+        default Builder execute(final Runnable runnable) {
+            return this.execute(task -> runnable.run());
         }
 
         /**
@@ -119,8 +120,8 @@ public interface Task {
          * @return This builder, for chaining
          * @throws IllegalArgumentException If the delay is below 0
          */
-        default Builder delay(long delay, TemporalUnit unit) {
-            return delay(Duration.of(delay, unit));
+        default Builder delay(final long delay, final TemporalUnit unit) {
+            return this.delay(Duration.of(delay, unit));
         }
 
         /**
@@ -133,22 +134,18 @@ public interface Task {
          * @return This builder, for chaining
          * @throws IllegalArgumentException If the delay is below 0
          */
-        default Builder delay(long delay, TimeUnit unit) {
-            return delay(unit.toNanos(delay), TemporalUnits.NANOS);
+        default Builder delay(final long delay, final TimeUnit unit) {
+            return this.delay(unit.toNanos(delay), ChronoUnit.NANOS);
         }
 
         /**
-         * Sets the delay before the task runs, in unit ticks.
+         * Sets the delay before the task runs, in {@link Ticks}.
          *
          * @param ticks The delay in ticks
          * @return This builder, for chaining
          * @throws IllegalArgumentException If the delay is below 0
-         * @see #delay(long, TemporalUnit)
-         * @see TemporalUnits#MINECRAFT_TICKS
          */
-        default Builder delayTicks(long ticks) {
-            return delay(Duration.of(ticks, TemporalUnits.MINECRAFT_TICKS));
-        }
+        Builder delay(final Ticks ticks);
 
         /**
          * Sets the delay before the task runs. This delay is an initial offset,
@@ -194,8 +191,8 @@ public interface Task {
          * @return This builder, for chaining
          * @throws IllegalArgumentException If the interval is below 0
          */
-        default Builder interval(long interval, TemporalUnit unit) {
-            return interval(Duration.of(interval, unit));
+        default Builder interval(final long interval, final TemporalUnit unit) {
+            return this.interval(Duration.of(interval, unit));
         }
 
         /**
@@ -214,22 +211,18 @@ public interface Task {
          * @return This builder, for chaining
          * @throws IllegalArgumentException If the interval is below 0
          */
-        default Builder interval(long interval, TimeUnit unit) {
-            return interval(unit.toNanos(interval), TemporalUnits.NANOS);
+        default Builder interval(final long interval, final TimeUnit unit) {
+            return this.interval(unit.toNanos(interval), ChronoUnit.NANOS);
         }
 
         /**
          * Sets the interval in unit ticks between repetitions of the task.
          *
-         * @param ticks The number of ticks between runs
+         * @param ticks The {@link Ticks} between runs.
          * @return This builder, for chaining
          * @throws IllegalArgumentException If the interval is below 0
-         * @see #interval(long, TemporalUnit)
-         * @see TemporalUnits#MINECRAFT_TICKS
          */
-        default Builder intervalTicks(long ticks) {
-            return interval(Duration.of(ticks, TemporalUnits.MINECRAFT_TICKS));
-        }
+        Builder interval(final Ticks ticks);
 
         /**
          * Sets the name of the task, the name cannot be blank.
