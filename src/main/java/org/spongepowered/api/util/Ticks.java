@@ -180,8 +180,9 @@ public interface Ticks {
     }
 
     /**
-     * Gets the expected {@link Duration} of this {@link Ticks} if the server
-     * is not overloaded.
+     * Gets the expected {@link Duration} of time it would take for the server
+     * to process the number of ticks this object represents under ideal
+     * conditions.
      *
      * @return The effective {@link Duration}.
      */
@@ -190,7 +191,7 @@ public interface Ticks {
     /**
      * Gets the underlying number of ticks that this object represents.
      *
-     * <p><strong>This number is platform dependant.</strong> It should not be
+     * <p><strong>This number is platform dependent.</strong> It should not be
      * stored and used beyond the current server session.</p>
      *
      * @return The number of ticks that this represents.
