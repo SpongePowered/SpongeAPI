@@ -79,11 +79,6 @@ public interface Ticks {
     Ticks SINGLE_TICK = Ticks.of(1);
 
     /**
-     * Represents the number of ticks that represents an in-game day.
-     */
-    Ticks MINECRAFT_DAY = Ticks.ofMinecraftDays(1);
-
-    /**
      * Returns a {@link Ticks} that represents the supplied number of ticks.
      *
      * <p>This is platform dependent - consult the target implementation for
@@ -111,7 +106,7 @@ public interface Ticks {
      * @return The {@link Ticks} that represents the number of ticks that would
      *      be expected to be run in an ideal scenario.
      */
-    static Ticks of(final int time, final TemporalUnit temporalUnit) {
+    static Ticks of(final long time, final TemporalUnit temporalUnit) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).of(time, temporalUnit);
     }
 
@@ -164,22 +159,6 @@ public interface Ticks {
     }
 
     /**
-     * Returns a {@link Ticks} that would correspond to the supplied number of
-     * in game days, rounded to the nearest tick.
-     */
-    static Ticks ofMinecraftDays(final double days) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).ofMinecraftDays(days);
-    }
-
-    /**
-     * Returns a {@link Ticks} that would correspond to the supplied number of
-     * in game hours, rounded to the nearest tick.
-     */
-    static Ticks ofMinecraftHours(final double hours) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).ofMinecraftDays(hours / 24.0);
-    }
-
-    /**
      * Gets the expected {@link Duration} of time it would take for the server
      * to process the number of ticks this object represents under ideal
      * conditions.
@@ -209,14 +188,9 @@ public interface Ticks {
         Ticks of(long ticks);
 
         /**
-         * @see Ticks#of(int, TemporalUnit)
+         * @see Ticks#of(long, TemporalUnit)
          */
-        Ticks of(int time, TemporalUnit temporalUnit);
-
-        /**
-         * @see Ticks#ofMinecraftDays(double)
-         */
-        Ticks ofMinecraftDays(double minecraftDays);
+        Ticks of(long time, TemporalUnit temporalUnit);
 
     }
 

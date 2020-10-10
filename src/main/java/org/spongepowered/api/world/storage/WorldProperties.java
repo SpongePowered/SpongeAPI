@@ -32,6 +32,7 @@ import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.trader.WanderingTrader;
 import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.api.util.MinecraftDayTime;
 import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.World;
@@ -192,25 +193,25 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
     void setSeed(long seed);
 
     /**
-     * Gets the time since the world was created.
+     * Gets the {@link MinecraftDayTime} since the world was created.
      *
      * @return The total time
      */
-    Ticks getGameTime();
+    MinecraftDayTime getGameTime();
 
     /**
-     * Gets the time of day, in {@link Ticks}.
+     * Gets the time of day.
      *
      * @return The time of day
      */
-    Ticks getDayTime();
+    MinecraftDayTime getDayTime();
 
     /**
-     * Sets the in-game time of day, in {@link Ticks}.
+     * Sets the in-game time of day.
      *
      * @param time The time of day
      */
-    void setDayTime(Ticks time);
+    void setDayTime(MinecraftDayTime time);
 
     /**
      * Gets the {@link DimensionType}.
