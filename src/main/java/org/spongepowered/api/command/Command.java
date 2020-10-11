@@ -214,7 +214,7 @@ public interface Command {
      * interface, and instead must use {@link Command#builder()} to do
      * so.</p>
      */
-    interface Parameterized extends Command, CommandExecutor {
+    interface Parameterized extends Command {
 
         /**
          * The {@link List} of {@link Flag}s that this {@link Command} contains.
@@ -277,12 +277,21 @@ public interface Command {
         CommandContext parseArguments(CommandCause cause, String arguments) throws ArgumentParseException;
 
         /**
+         * Gets the {@link CommandExecutor} for this command, if one exists.
+         *
+         * @return The {@link CommandExecutor}, if it exists.
+         */
+        Optional<CommandExecutor> getExecutor();
+
+        /**
          * Processes the command by parsing the arguments, then
          * executing command based on these arguments.
          *
          * <p>By default, this will call {@link #parseArguments(CommandCause, String)}
          * and pass the resulting {@link CommandContext} to
-         * {@link #execute(CommandContext)}.</p>
+         * {@link CommandExecutor#execute(CommandContext)}, if this command has
+         * an executor. If it does not, this will throw a
+         * {@link CommandException}.</p>
          *
          * @param cause The {@link Cause} of the command
          * @param arguments The raw arguments for this command
@@ -291,7 +300,10 @@ public interface Command {
          */
         @Override
         default CommandResult process(final CommandCause cause, final String arguments) throws CommandException {
-            return this.execute(this.parseArguments(cause, arguments));
+            if (this.getExecutor().isPresent()) {
+                return this.getExecutor().get().execute(this.parseArguments(cause, arguments));
+            }
+            throw new CommandException(Component.text("This command does not have an executor!"));
         }
 
     }
