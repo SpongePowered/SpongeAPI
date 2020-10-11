@@ -64,19 +64,55 @@ import java.time.temporal.TemporalUnit;
  * may resolve on the same tick).</p>
  *
  * <p>Information about the current platform's expected tick rate can be
- * determined by calling {@link #SINGLE_TICK#getExpectedDuration()}</p>
+ * determined by calling {@link #single()} #getExpectedDuration()}. The tick
+ * rate is not defined by the API so may vary amongst different implementations.
+ * For vanilla Minecraft and any implementations based upon this, this is 50ms
+ * for a 20 tick per second rate.</p>
+ *
+ * <p>While a tick is not a reliable measure of wall-clock time, implementations
+ * may tie in-game world time to a given number of ticks. This object can thus
+ * be used as an accurate <strong>in-game</strong> duration. However, it is not
+ * defined in the API what the correlation between ticks and in-game time is,
+ * again, this may vary amongst implementations. For vanilla Minecraft, 1000
+ * ticks corresponds to one in-game hour, meaning there is <strong>not</strong>
+ * an integer correspondence between an in-game minute or second and number of
+ * ticks.</p>
  */
 public interface Ticks {
 
     /**
      * Represents zero ticks.
+     *
+     * @return A {@link Ticks}
      */
-    Ticks ZERO_TICKS = Ticks.of(0);
+    static Ticks zero() {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Ticks.Factory.class).zero();
+    }
 
     /**
      * Represents a single tick.
+     *
+     * @return A {@link Ticks}
      */
-    Ticks SINGLE_TICK = Ticks.of(1);
+    static Ticks single() {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Ticks.Factory.class).single();
+    }
+
+    /**
+     * Represents a minecraft hour in ticks.
+     */
+    static Ticks minecraftHour() {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Ticks.Factory.class).minecraftHour();
+    }
+
+    /**
+     * Represents a minecraft in-game day in ticks.
+     *
+     * @return A {@link Ticks}
+     */
+    static Ticks minecraftDay() {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Ticks.Factory.class).minecraftDay();
+    }
 
     /**
      * Returns a {@link Ticks} that represents the supplied number of ticks.
@@ -92,7 +128,7 @@ public interface Ticks {
     }
 
     /**
-     * Returns a {@link Ticks} that would represent the supplied time
+     * Returns a {@link Ticks} that would represent the supplied wall-clock time
      * in the ideal case. If the given time would result in a non-integer number
      * of ticks, the number of ticks will be rounded up, resulting in a slightly
      * larger ideal duration.
@@ -106,56 +142,124 @@ public interface Ticks {
      * @return The {@link Ticks} that represents the number of ticks that would
      *      be expected to be run in an ideal scenario.
      */
-    static Ticks of(final long time, final TemporalUnit temporalUnit) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).of(time, temporalUnit);
+    static Ticks ofWallClockTime(final long time, final TemporalUnit temporalUnit) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).ofWallClockTime(time, temporalUnit);
     }
 
     /**
      * Returns a {@link Ticks} that would be executed in the given number of
-     * seconds in an ideal case.
+     * wall-clock seconds in an ideal case.
      *
      * @param seconds The number of seconds
      * @return The {@link Ticks} that represents the number of ticks that would
      *      be expected to be run in an ideal scenario.
      */
-    static Ticks ofSeconds(final int seconds) {
-        return Ticks.of(seconds, ChronoUnit.SECONDS);
+    static Ticks ofWallClockSeconds(final int seconds) {
+        return Ticks.ofWallClockTime(seconds, ChronoUnit.SECONDS);
     }
 
     /**
      * Returns a {@link Ticks} that would be executed in the given number of
-     * minutes in an ideal case.
+     * wall-clock minutes in an ideal case.
      *
      * @param minutes The number of seconds
      * @return The {@link Ticks} that represents the number of ticks that would
      *      be expected to be run in an ideal scenario.
      */
-    static Ticks ofMinutes(final int minutes) {
-        return Ticks.of(minutes, ChronoUnit.MINUTES);
+    static Ticks ofWallClockMinutes(final int minutes) {
+        return Ticks.ofWallClockTime(minutes, ChronoUnit.MINUTES);
     }
 
     /**
      * Returns a {@link Ticks} that would be executed in the given number of
-     * hours in an ideal case.
+     * wall-clock hours in an ideal case.
      *
      * @param hours The number of hours
      * @return The {@link Ticks} that represents the number of ticks that would
      *      be expected to be run in an ideal scenario.
      */
-    static Ticks ofHours(final int hours) {
-        return Ticks.of(hours, ChronoUnit.HOURS);
+    static Ticks ofWallClockHours(final int hours) {
+        return Ticks.ofWallClockTime(hours, ChronoUnit.HOURS);
     }
 
     /**
      * Returns a {@link Ticks} that would be executed in the given number of
-     * days in an ideal case.
+     * wall-clock days in an ideal case.
      *
      * @param days The number of days
      * @return The {@link Ticks} that represents the number of ticks that would
      *      be expected to be run in an ideal scenario.
      */
-    static Ticks ofDays(final int days) {
-        return Ticks.of(days, ChronoUnit.DAYS);
+    static Ticks ofWallClockDays(final int days) {
+        return Ticks.ofWallClockTime(days, ChronoUnit.DAYS);
+    }
+
+    /**
+     * Returns a {@link Ticks} that represents the given number of Minecraft
+     * day-time seconds.
+     *
+     * <p>As a tick may not be an integer number of minecraft seconds, the
+     * returned {@link Ticks} object may be slightly larger than requested. The
+     * number of ticks returned will always be at least the requested duration.
+     * </p>
+     *
+     * @param seconds The number of minecraft seconds
+     * @return The {@link Ticks} that represents the number of ticks that would
+     *      be expected to be run in an ideal scenario.
+     */
+    static Ticks ofMinecraftSeconds(final long seconds) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).ofMinecraftSeconds(seconds);
+    }
+
+    /**
+     * Returns a {@link Ticks} that represents the given number of Minecraft
+     * day-time seconds.
+     *
+     * <p>As a tick may not be an integer number of minecraft minutes, the
+     * returned {@link Ticks} object may be slightly larger than requested. The
+     * number of ticks returned will always be at least the requested duration.
+     * </p>
+     *
+     * @param minutes The number of minecraft minutes
+     * @return The {@link Ticks} that represents the number of ticks that would
+     *      be expected to be run in an ideal scenario.
+     */
+    static Ticks ofMinecraftMinutes(final long minutes) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).ofMinecraftSeconds(minutes * 60);
+    }
+
+    /**
+     * Returns a {@link Ticks} that represents the given number of Minecraft
+     * day-time hours.
+     *
+     * <p>As a tick may not be an integer number of minecraft hours, the
+     * returned {@link Ticks} object may be slightly larger than requested. The
+     * number of ticks returned will always be at least the requested duration.
+     * </p>
+     *
+     * @param hours The number of minecraft hours
+     * @return The {@link Ticks} that represents the number of ticks that would
+     *      be expected to be run in an ideal scenario.
+     */
+    static Ticks ofMinecraftHours(final long hours) {
+        return Ticks.ofMinecraftHours(hours);
+    }
+
+    /**
+     * Returns a {@link Ticks} that represents the given number of Minecraft
+     * day-time days.
+     *
+     * <p>As a tick may not be an integer number of minecraft days, the
+     * returned {@link Ticks} object may be slightly larger than requested. The
+     * number of ticks returned will always be at least the requested duration.
+     * </p>
+     *
+     * @param days The number of minecraft days
+     * @return The {@link Ticks} that represents the number of ticks that would
+     *      be expected to be run in an ideal scenario.
+     */
+    static Ticks ofMinecraftDays(final long days) {
+        return Ticks.ofMinecraftHours(days * 24);
     }
 
     /**
@@ -178,6 +282,29 @@ public interface Ticks {
     long getTicks();
 
     /**
+     * Gets the number of in-game seconds that this {@link Ticks} represents.
+     *
+     * <p>As there may not be a integer - integer relationship between seconds
+     * and ticks, this may be approximate. If the conversion results in
+     * a millisecond remainder, the duration is truncated rather than rounded -
+     * that is, if this object represents 6.7 seconds, this will return 6, not
+     * 7.</p>
+     *
+     * @return The approximate number of in-game seconds
+     */
+    long getMinecraftSeconds();
+
+    /**
+     * Returns the <strong>in-game time</strong> as a {@link Duration}.
+     *
+     * <p><strong>This is not wall-clock time.</strong> This should not be used
+     * with any {@link Duration} that represents wall-clock times.</p>
+     *
+     * @return A duration represeting the in game time.
+     */
+    Duration getMinecraftDayTimeDuration();
+
+    /**
      * Produces {@link Ticks} objects.
      */
     interface Factory {
@@ -188,9 +315,39 @@ public interface Ticks {
         Ticks of(long ticks);
 
         /**
-         * @see Ticks#of(long, TemporalUnit)
+         * @see Ticks#ofWallClockTime(long, TemporalUnit) (long, TemporalUnit)
          */
-        Ticks of(long time, TemporalUnit temporalUnit);
+        Ticks ofWallClockTime(long time, TemporalUnit temporalUnit);
+
+        /**
+         * @see Ticks#ofMinecraftSeconds(long)
+         */
+        Ticks ofMinecraftSeconds(long time);
+
+        /**
+         * @see Ticks#ofMinecraftHours(long)
+         */
+        Ticks ofMinecraftHours(long time);
+
+        /**
+         * @see Ticks#zero()
+         */
+        Ticks zero();
+
+        /**
+         * @see Ticks#single()
+         */
+        Ticks single();
+
+        /**
+         * @see Ticks#minecraftHour()
+         */
+        Ticks minecraftHour();
+
+        /**
+         * @see Ticks#minecraftDay()
+         */
+        Ticks minecraftDay();
 
     }
 

@@ -38,7 +38,9 @@ public interface MinecraftDayTime {
      * A {@link MinecraftDayTime} that represents the Minecraft Epoch, which is
      * 6:00am on Day 1.
      */
-    MinecraftDayTime MINECRAFT_EPOCH = MinecraftDayTime.of(Ticks.ZERO_TICKS);
+    static MinecraftDayTime minecraftEpoch() {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(MinecraftDayTime.Factory.class).epoch();
+    }
 
     /**
      * Creates a {@link MinecraftDayTime} based on the in-game time since the
@@ -79,7 +81,7 @@ public interface MinecraftDayTime {
      * @throws IllegalArgumentException if the duration is negative
      */
     static MinecraftDayTime ofWallClockDuration(final Duration duration) {
-        return MinecraftDayTime.of(Ticks.of(duration.toMillis(), ChronoUnit.MILLIS));
+        return MinecraftDayTime.of(Ticks.ofWallClockTime(duration.toMillis(), ChronoUnit.MILLIS));
     }
 
     /**
@@ -149,6 +151,25 @@ public interface MinecraftDayTime {
     int minute();
 
     /**
+     * Adds the time given by the provided {@link Ticks} object and returns a
+     * new object with the result.
+     *
+     * @param ticks The {@link Ticks} to add.
+     * @return A new {@link MinecraftDayTime}
+     */
+    MinecraftDayTime plus(final Ticks ticks);
+
+    /**
+     * Substracts the time given by the provided {@link Ticks} object and
+     * returns a new object with the result.
+     *
+     * @param ticks The {@link Ticks} to subtract.
+     * @return A new {@link MinecraftDayTime}
+     * @throws IllegalArgumentException if the result would be a negative time.
+     */
+    MinecraftDayTime minus(final Ticks ticks);
+
+    /**
      * Adds the time given by the arguments and returns a new object with
      * the result.
      *
@@ -168,7 +189,8 @@ public interface MinecraftDayTime {
      * @param hour The number of hours to advance (between 0 and 23)
      * @param minute The number of minutes to advance (between 0 and 59)
      * @return A new {@link MinecraftDayTime}
-     * @throws IllegalArgumentException if any of the arguments are negative.
+     * @throws IllegalArgumentException if any of the arguments are negative or
+     *      the result would be a negative time.
      */
     MinecraftDayTime minus(int days, int hour, int minute);
 
@@ -204,6 +226,11 @@ public interface MinecraftDayTime {
      * Creates {@link MinecraftDayTime} objects.
      */
     interface Factory {
+
+        /**
+         * @see MinecraftDayTime#minecraftEpoch()
+         */
+        MinecraftDayTime epoch();
 
         /**
          * @see MinecraftDayTime#ofInGameDuration(Duration)
