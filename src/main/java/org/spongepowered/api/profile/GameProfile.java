@@ -27,6 +27,7 @@ package org.spongepowered.api.profile;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.Multimap;
+import net.kyori.adventure.identity.Identity;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataSerializable;
@@ -43,7 +44,7 @@ import java.util.UUID;
  * <p>Use the {@link UserManager} service to
  * obtain the stored data associated with a profile.</p>
  */
-public interface GameProfile extends Identifiable, DataSerializable {
+public interface GameProfile extends Identifiable, Identity, DataSerializable {
 
     /**
      * Creates a {@link GameProfile} from the provided ID.
@@ -66,6 +67,11 @@ public interface GameProfile extends Identifiable, DataSerializable {
      */
     static GameProfile of(UUID uniqueId, @Nullable String name) {
         return Sponge.getServer().getGameProfileManager().createProfile(uniqueId, name);
+    }
+
+    @Override
+    default UUID uuid() {
+        return this.getUniqueId();
     }
 
     /**

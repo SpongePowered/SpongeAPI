@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.living.player.server;
 
+import net.kyori.adventure.identity.Identity;
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Server;
@@ -147,7 +148,7 @@ public interface ServerPlayer extends Player, Subject {
      *
      * <p>This method sends a message as if it came from this player.
      * To send a message to this player instead, see
-     * {@link #sendMessage(Component)}.</p>
+     * {@link #sendMessage(Identity, Component)}.</p>
      *
      * <p>If text formatting is not supported in the implementation
      * it will be displayed as plain text.</p>
