@@ -36,7 +36,7 @@ import org.spongepowered.math.vector.Vector3i;
  * without impunity, but no guarantees on the provider type of what this
  * primitive volume is based on.
  */
-public interface PrimitiveGameVolume extends ReadableBlockVolume, ReadableBlockEntityVolume {
+public interface PrimitiveGameVolume extends ReadableBlockVolume, ReadableBlockEntityVolume, LocationBaseDataHolder {
 
     default int getMaximumLight() {
         return 15;

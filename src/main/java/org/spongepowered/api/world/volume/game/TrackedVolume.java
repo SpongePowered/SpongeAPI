@@ -26,13 +26,14 @@ package org.spongepowered.api.world.volume.game;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Optional;
 import java.util.UUID;
 
-public interface TrackedVolume extends ReadableBlockVolume {
+public interface TrackedVolume extends ReadableBlockVolume, LocationBaseDataHolder.Mutable {
 
     /**
      * Gets the {@link UUID}, if available, of the user who created the
@@ -41,8 +42,8 @@ public interface TrackedVolume extends ReadableBlockVolume {
      * @param pos The position to be checked
      * @return The {@link UUID} if one exists
      */
-    default Optional<UUID> getCreator(Vector3i pos) {
-        return getCreator(pos.getX(), pos.getY(), pos.getZ());
+    default Optional<UUID> getCreator(final Vector3i pos) {
+        return this.getCreator(pos.getX(), pos.getY(), pos.getZ());
     }
 
     /**
@@ -54,7 +55,9 @@ public interface TrackedVolume extends ReadableBlockVolume {
      * @param z The z coordinate
      * @return The {@link UUID} if one exists
      */
-    Optional<UUID> getCreator(int x, int y, int z);
+    default Optional<UUID> getCreator(final int x, final int y, final int z) {
+        return this.get(x, y, z, Keys.CREATOR);
+    }
 
     /**
      * Gets the {@link UUID}, if available, of the user who last notified the
@@ -63,8 +66,8 @@ public interface TrackedVolume extends ReadableBlockVolume {
      * @param pos The position to be checked
      * @return The {@link UUID} if one exists
      */
-    default Optional<UUID> getNotifier(Vector3i pos) {
-        return getNotifier(pos.getX(), pos.getY(), pos.getZ());
+    default Optional<UUID> getNotifier(final Vector3i pos) {
+        return this.getNotifier(pos.getX(), pos.getY(), pos.getZ());
     }
 
     /**
@@ -76,7 +79,9 @@ public interface TrackedVolume extends ReadableBlockVolume {
      * @param z The z coordinate
      * @return The {@link UUID} if available
      */
-    Optional<UUID> getNotifier(int x, int y, int z);
+    default Optional<UUID> getNotifier(final int x, final int y, final int z) {
+        return this.get(x, y, z, Keys.NOTIFIER);
+    }
 
     /**
      * Sets the {@link UUID} of the user who created the {@link BlockSnapshot}
@@ -85,8 +90,8 @@ public interface TrackedVolume extends ReadableBlockVolume {
      * @param pos The block position where the user data should be applied
      * @param uuid The {@link UUID} to set as creator
      */
-    default void setCreator(Vector3i pos, @Nullable UUID uuid) {
-        setCreator(pos.getX(), pos.getY(), pos.getZ(), uuid);
+    default void setCreator(final Vector3i pos, @Nullable final UUID uuid) {
+        this.setCreator(pos.getX(), pos.getY(), pos.getZ(), uuid);
     }
 
     /**
@@ -98,7 +103,13 @@ public interface TrackedVolume extends ReadableBlockVolume {
      * @param z The z coordinate where the user data should be applied
      * @param uuid The {@link UUID} to set as creator
      */
-    void setCreator(int x, int y, int z, @Nullable UUID uuid);
+    default void setCreator(final int x, final int y, final int z, @Nullable final UUID uuid) {
+        if (uuid == null) {
+            this.remove(x, y, z, Keys.CREATOR);
+        } else {
+            this.offer(x, y, z, Keys.CREATOR, uuid);
+        }
+    }
 
     /**
      * Sets the {@link UUID} of the user who last notified the
@@ -107,8 +118,8 @@ public interface TrackedVolume extends ReadableBlockVolume {
      * @param pos The block position where the user data should be applied
      * @param uuid The {@link UUID} to set as notifier
      */
-    default void setNotifier(Vector3i pos, @Nullable UUID uuid) {
-        setNotifier(pos.getX(), pos.getY(), pos.getZ(), uuid);
+    default void setNotifier(final Vector3i pos, @Nullable final UUID uuid) {
+        this.setNotifier(pos.getX(), pos.getY(), pos.getZ(), uuid);
     }
 
     /**
@@ -120,5 +131,11 @@ public interface TrackedVolume extends ReadableBlockVolume {
      * @param z The z coordinate where the user data should be applied
      * @param uuid The {@link UUID} to set as notifier
      */
-    void setNotifier(int x, int y, int z, @Nullable UUID uuid);
+    default void setNotifier(final int x, final int y, final int z, @Nullable final UUID uuid) {
+        if (uuid == null) {
+            this.remove(x, y, z, Keys.NOTIFIER);
+        } else {
+            this.offer(x, y, z, Keys.NOTIFIER, uuid);
+        }
+    }
 }

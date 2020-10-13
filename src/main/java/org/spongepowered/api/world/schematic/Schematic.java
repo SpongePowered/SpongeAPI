@@ -37,6 +37,7 @@ import org.spongepowered.api.world.volume.archetype.entity.ReadableEntityArchety
 import org.spongepowered.api.world.volume.biome.MutableBiomeVolume;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
 import org.spongepowered.api.world.volume.block.entity.ReadableBlockEntityVolume;
+import org.spongepowered.api.world.volume.game.LocationBaseDataHolder;
 import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Collection;
@@ -46,7 +47,7 @@ import java.util.Optional;
  * A special archetype volume designed to be persisted. Contains additional
  * metadata to assist with this persistence.
  */
-public interface Schematic extends ArchetypeVolume {
+public interface Schematic extends ArchetypeVolume, LocationBaseDataHolder.Mutable {
 
     String METADATA_NAME = "Name";
     String METADATA_AUTHOR = "Author";
