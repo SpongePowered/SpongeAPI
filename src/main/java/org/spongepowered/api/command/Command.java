@@ -511,21 +511,12 @@ public interface Command {
         /**
          * The permission that the responsible {@link Subject} in the given
          * {@link Cause} requires to run this command, or {@code null} if no
-         * permission is required.
-         *
-         * <p>For more control over whether a command can be executed, use
-         * {@link #setExecutionRequirements(Predicate)}. However, note that
-         * setting a permission here will not override anything set in
-         * {@link #setExecutionRequirements(Predicate)}, both will be checked
-         * during execution.</p>
+         * permission is required. Calling this method will overwrite anything
+         * set via {@link #setExecutionRequirements(Predicate)}, or will replace
+         * the previous permission set by this method.
          *
          * <p>Any permission checks set here will be performed during the
          * {@link Command#canExecute(CommandCause)}.</p>
-         *
-         * <p>Calling this repeatedly will not add additional permission
-         * checks, instead replacing the permission check. If multiple
-         * permission checks are required, use
-         * {@link #setExecutionRequirements(Predicate)}.</p>
          *
          * @param permission The permission that is required, or {@code null}
          *                   for no permission
@@ -535,16 +526,12 @@ public interface Command {
 
         /**
          * Sets a function that determines what is required of the provided
-         * {@link Cause} before this command executes.
+         * {@link Cause} before this command executes. Calling this method
+         * will overwrite anything set via {@link #setPermission(String)} or
+         * anything previously set via this method.
          *
-         * <p>Any requirements here are in addition to the permission check
-         * from {@link #setPermission(String)}</p>
-         *
-         * <p>Any requirements set here will be performed during the
+         * <p>Any requirements set here will be performed as part of
          * {@link Command#canExecute(CommandCause)}.</p>
-         *
-         * <p>Calling this repeatedly will not add additional checks, instead
-         * replacing the previous requirements.</p>
          *
          * @param executionRequirements A function that sets the
          * @return This builder, for chaining
