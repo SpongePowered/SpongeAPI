@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.config;
 
+import org.spongepowered.configurate.serialize.TypeSerializerCollection;
 import org.spongepowered.plugin.PluginContainer;
 
 /**
@@ -75,4 +76,22 @@ public interface ConfigManager {
      * @return A plugin-specific configuration root
      */
     ConfigRoot getPluginConfig(PluginContainer plugin);
+
+    /**
+     * Get a type serializer collection supporting Sponge types.
+     *
+     * <p>This collection is expected to handle:</p>
+     * <ul>
+     *     <li>Every type built-in to Configurate</li>
+     *     <li>Registered subtypes of {@link org.spongepowered.api.CatalogType}</li>
+     *     <li>{@link org.spongepowered.api.ResourceKey}s</li>
+     *     <li>Registered implementations of {@link org.spongepowered.api.data.persistence.DataSerializable}</li>
+     *     <li>All Adventure types including {@link net.kyori.adventure.text.Component}</li>
+     *     <li>Any type with a {@link org.spongepowered.api.data.persistence.DataTranslator} (see
+     *         {@link org.spongepowered.api.data.persistence.DataTranslators})</li>
+     * </ul>
+     *
+     * @return a type serializer collection aware of Sponge serializers
+     */
+    TypeSerializerCollection getSerializers();
 }

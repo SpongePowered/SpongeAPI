@@ -26,6 +26,7 @@ package org.spongepowered.api.config;
 
 import org.spongepowered.configurate.CommentedConfigurationNode;
 import org.spongepowered.configurate.loader.ConfigurationLoader;
+import org.spongepowered.configurate.serialize.TypeSerializerCollection;
 
 import java.nio.file.Path;
 
@@ -73,6 +74,18 @@ public interface ConfigRoot {
      * @see #getConfigPath()
      */
     ConfigurationLoader<CommentedConfigurationNode> getConfig();
+
+    /**
+     * Get the serializers applicable to this root.
+     *
+     * <p>The returned serializers will be for Sponge and Adventure types, as
+     * well as an object mapper that can use any applicable
+     * Guice {@link com.google.inject.Injector} to create instances.</p>
+     *
+     * @return applicable serializers
+     * @see ConfigManager#getSerializers() for globally available serializers
+     */
+    TypeSerializerCollection getSerializers();
 
     /**
      * Gets the directory that this configuration root refers to.
