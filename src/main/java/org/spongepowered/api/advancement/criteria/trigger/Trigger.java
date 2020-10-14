@@ -25,6 +25,9 @@
 package org.spongepowered.api.advancement.criteria.trigger;
 
 import com.google.gson.Gson;
+import io.leangen.geantyref.TypeToken;
+import org.spongepowered.api.config.ConfigManager;
+import org.spongepowered.configurate.ConfigurationOptions;
 import org.spongepowered.configurate.serialize.TypeSerializer;
 import org.spongepowered.configurate.serialize.TypeSerializerCollection;
 import org.spongepowered.api.CatalogType;
@@ -39,7 +42,9 @@ import org.spongepowered.api.scoreboard.criteria.Criterion;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
+import java.lang.reflect.Type;
 import java.util.function.Consumer;
+import java.util.function.UnaryOperator;
 
 /**
  * Represents a source that can trigger a {@link AdvancementCriterion}.
@@ -63,9 +68,11 @@ public interface Trigger<C extends FilteredTriggerConfiguration> extends Catalog
     /**
      * Gets the type of the used {@link FilteredTriggerConfiguration}.
      *
+     * <p>This type represents the {@code C} type parameter of this instance.</p>
+     *
      * @return The configuration type
      */
-    Class<C> getConfigurationType();
+    Type getConfigurationType();
 
     /**
      * Triggers the {@link Trigger} for all the online
@@ -113,6 +120,55 @@ public interface Trigger<C extends FilteredTriggerConfiguration> extends Catalog
          * a config serializable. This configuration will be constructed
          * using Configurate (with {@link TypeSerializer}s).
          *
+         * <p>By default, the configuration will be loaded with
+         * Sponge-default options, with serializers as defined in
+         * {@link ConfigManager#getSerializers()}.</p>
+         *
+         * @param configClass The configuration class
+         * @param <T> The configuration type
+         * @return This builder, for chaining
+         */
+        <T extends FilteredTriggerConfiguration> Builder<T> typeSerializableConfig(TypeToken<T> configClass);
+
+        /**
+         * Sets the class for the {@link FilteredTriggerConfiguration} as
+         * a config serializable. This configuration will be constructed using
+         * Configurate (with {@link TypeSerializer}s) with a
+         * specific {@link TypeSerializerCollection} instead of the global one.
+         *
+         * @param configClass The configuration class
+         * @param options The configuration options that control loading of data
+         * @param <T> The configuration type
+         * @return This builder, for chaining
+         */
+        <T extends FilteredTriggerConfiguration> Builder<T> typeSerializableConfig(TypeToken<T> configClass, ConfigurationOptions options);
+
+        /**
+         * Sets the class for the {@link FilteredTriggerConfiguration} as
+         * a config serializable. This configuration will be constructed using
+         * Configurate with specific options.
+         *
+         * <p>The configuration will be loaded with the returned
+         * derivation of Sponge-default options, with serializers as defined in
+         * {@link ConfigManager#getSerializers()}.</p>
+         *
+         * @param configClass The configuration class
+         * @param options A callback that will receive options to modify
+         * @param <T> The configuration type
+         * @return This builder, for chaining
+         */
+        <T extends FilteredTriggerConfiguration> Builder<T> typeSerializableConfig(TypeToken<T> configClass,
+                UnaryOperator<ConfigurationOptions> options);
+
+        /**
+         * Sets the class for the {@link FilteredTriggerConfiguration} as
+         * a config serializable. This configuration will be constructed
+         * using Configurate (with {@link TypeSerializer}s).
+         *
+         * <p>By default, the configuration will be loaded with
+         * Sponge-default options, with serializers as defined in
+         * {@link ConfigManager#getSerializers()}.</p>
+         *
          * @param configClass The configuration class
          * @param <T> The configuration type
          * @return This builder, for chaining
@@ -126,12 +182,28 @@ public interface Trigger<C extends FilteredTriggerConfiguration> extends Catalog
          * specific {@link TypeSerializerCollection} instead of the global one.
          *
          * @param configClass The configuration class
-         * @param typeSerializerCollection The type serializer collection
+         * @param options The configuration options that control loading of data
          * @param <T> The configuration type
          * @return This builder, for chaining
          */
-        <T extends FilteredTriggerConfiguration> Builder<T> typeSerializableConfig(Class<T> configClass,
-                TypeSerializerCollection typeSerializerCollection);
+        <T extends FilteredTriggerConfiguration> Builder<T> typeSerializableConfig(Class<T> configClass, ConfigurationOptions options);
+
+        /**
+         * Sets the class for the {@link FilteredTriggerConfiguration} as
+         * a config serializable. This configuration will be constructed using
+         * Configurate with customized options based off of the Sponge-default
+         * options.
+         *
+         * <p>The configuration will be loaded with the returned
+         * derivation of Sponge-default options, with serializers as defined in
+         * {@link ConfigManager#getSerializers()}.</p>
+         *
+         * @param configClass The configuration class
+         * @param options A callback that will receive options to modify
+         * @param <T> The configuration type
+         * @return This builder, for chaining
+         */
+        <T extends FilteredTriggerConfiguration> Builder<T> typeSerializableConfig(Class<T> configClass, UnaryOperator<ConfigurationOptions> options);
 
         /**
          * Sets the class for the {@link FilteredTriggerConfiguration} as

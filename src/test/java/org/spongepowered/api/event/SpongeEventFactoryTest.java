@@ -33,8 +33,6 @@ import com.google.common.collect.ImmutableSet;
 import io.leangen.geantyref.GenericTypeReflector;
 import io.leangen.geantyref.TypeToken;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.mockito.Mockito;
 import org.mockito.stubbing.Answer;
@@ -50,7 +48,7 @@ import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.server.ServerWorld;
-import org.spongepowered.configurate.util.Typing;
+import org.spongepowered.configurate.util.Types;
 import org.spongepowered.math.vector.Vector3d;
 
 import java.lang.reflect.Array;
@@ -212,7 +210,7 @@ public class SpongeEventFactoryTest {
             return false;
         } else if (paramType == void.class || paramType == Void.class) {
             return null;
-        } else if (Typing.isArray(paramType)) {
+        } else if (Types.isArray(paramType)) {
             final Type componentType = GenericTypeReflector.getArrayComponentType(paramType);
             Object array = Array.newInstance(GenericTypeReflector.erase(componentType), 1);
             Array.set(array, 0, mockParam(componentType));

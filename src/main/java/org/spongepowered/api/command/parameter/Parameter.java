@@ -56,9 +56,11 @@ import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.storage.WorldProperties;
+import org.spongepowered.configurate.util.Types;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.plugin.PluginContainer;
 
+import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.InetAddress;
@@ -115,6 +117,20 @@ public interface Parameter {
     }
 
     /**
+     * Creates a {@link Parameter.Key} for storing values against.
+     *
+     * @param key The string key
+     * @param type The type of value that this key represents. Must not omit any
+     *             type parameters.
+     * @param <T> The type
+     * @return The {@link Key}
+     */
+    static <T> Key<T> key(@NonNull final String key, @NonNull final Class<T> type) {
+        Types.requireCompleteParameters(type);
+        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Key.Builder.class).build(key, type);
+    }
+
+    /**
      * Gets a builder that builds a {@link Parameter.Value}.
      *
      * <p>If your parameter type is generic, use
@@ -125,7 +141,7 @@ public interface Parameter {
      * @return The {@link Value.Builder}
      */
     static <T> Value.Builder<T> builder(@NonNull final Class<T> valueClass) {
-        return builder(TypeToken.get(valueClass));
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createParameterBuilder(valueClass);
     }
 
     /**
@@ -151,7 +167,7 @@ public interface Parameter {
      * @return The {@link Value.Builder}
      */
     static <T> Value.Builder<T> builder(@NonNull final Class<T> valueClass, @NonNull final ValueParameter<T> parameter) {
-        return builder(TypeToken.get(valueClass), parameter);
+        return builder(valueClass).parser(parameter);
     }
 
     /**
@@ -882,7 +898,24 @@ public interface Parameter {
          *
          * @return The {@link TypeToken}
          */
-        TypeToken<T> getTypeToken();
+        Type getType();
+
+        /**
+         * Return whether the value is an instance of this key's value type.
+         *
+         * @param value value to check
+         * @return if instance
+         */
+        boolean isInstance(Object value);
+
+        /**
+         * Cast the provided value to the value type.
+         *
+         * @param value value
+         * @return the casted value
+         * @throws ClassCastException if {@code value} is not of the correct type
+         */
+        T cast(Object value);
 
         /**
          * A "builder" that allows for keys to be built.
@@ -900,6 +933,17 @@ public interface Parameter {
              * @return The built {@link Key}
              */
             <T> Key<T> build(@NonNull String key, @NonNull TypeToken<T> typeToken);
+            /**
+             * Creates a key with the provided key and value class it
+             * represents.
+             *
+             * @param key The key
+             * @param type The {@link Class} that represents the
+             *                   non-parameterized type of value it stores
+             * @param <T> The type of the value represented by the key
+             * @return The built {@link Key}
+             */
+            <T> Key<T> build(@NonNull String key, @NonNull Class<T> type);
         }
 
     }
@@ -1445,6 +1489,16 @@ public interface Parameter {
          * @return The builder.
          */
         <T> Value.Builder<T> createParameterBuilder(TypeToken<T> parameterClass);
+
+        /**
+         * Creates a {@link Parameter.Value.Builder} of the indicated generic type.
+         *
+         * @param parameterClass The class
+         * @param <T> The type of object that will be returned by the built
+         *            {@link Parameter.Value}
+         * @return The builder.
+         */
+        <T> Value.Builder<T> createParameterBuilder(Class<T> parameterClass);
 
     }
 

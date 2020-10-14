@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data;
 
-import com.google.common.reflect.TypeToken;
+import io.leangen.geantyref.TypeToken;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.ResettableBuilder;
 
@@ -35,6 +35,7 @@ public interface ImmutableDataProviderBuilder<H extends DataHolder, V extends Va
 
     <NV extends Value<NE>, NE> ImmutableDataProviderBuilder<H, NV, NE> key(Key<NV> key);
     <NH extends H> ImmutableDataProviderBuilder<NH, V, E> dataHolder(TypeToken<NH> holder);
+    <NH extends H> ImmutableDataProviderBuilder<NH, V, E> dataHolder(Class<NH> holder);
 
     ImmutableDataProviderBuilder<H, V, E> get(Function<H, E> get);
     ImmutableDataProviderBuilder<H, V, E> set(BiFunction<H, E, H> set);

@@ -81,7 +81,7 @@ public interface GameRule<V> extends NamedCatalogType {
          * @param <NV> The value type
          * @return This builder, for chaining
          */
-        default <NV> Builder<NV> valueType(Class<NV> valueType) {
+        default <NV> Builder<NV> valueType(final Class<NV> valueType) {
             return valueType(TypeToken.get(valueType));
         }
 

@@ -33,6 +33,7 @@ import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.ResettableBuilder;
 
+import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
@@ -42,11 +43,14 @@ import java.util.function.Function;
 public interface DataStore {
 
     /**
-     * Gets the supported {@link DataHolder} type.
+     * Gets the supported {@link DataHolder} types.
+     *
+     * <p>Every returned {@link java.lang.reflect.Type} will be a subtype
+     * of {@link DataHolder}.</p>
      *
      * @return The supported dataHolder type.
      */
-    Collection<TypeToken<? extends DataHolder>> getSupportedTokens();
+    Collection<Type> getSupportedTypes();
 
     /**
      * Serializes the values of the {@link DataManipulator}
@@ -193,6 +197,8 @@ public interface DataStore {
             /**
              * Adds one or more allowed dataHolder types
              *
+             * <p>These must not be parameterized types.</p>
+             *
              * @param types the dataHolder types
              *
              * @return this builder for chaining
@@ -252,6 +258,14 @@ public interface DataStore {
              */
             DataStore build();
         }
+=======
+
+        /**
+         * Builds a dataStore for given dataHolder type.
+         *
+         * @return The new data store
+         */
+        DataStore build();
     }
 
 }

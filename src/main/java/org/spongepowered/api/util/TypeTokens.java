@@ -25,17 +25,11 @@
 package org.spongepowered.api.util;
 
 import io.leangen.geantyref.TypeToken;
-import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.text.Component;
-import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.block.entity.BlockEntity;
-import org.spongepowered.api.block.entity.BlockEntityArchetype;
 import org.spongepowered.api.command.CommandCause;
-import org.spongepowered.api.command.CommandExecutor;
-import org.spongepowered.api.command.manager.CommandMapping;
 import org.spongepowered.api.data.meta.BannerPatternLayer;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.type.ArmorMaterial;
@@ -50,7 +44,6 @@ import org.spongepowered.api.data.type.DoorHinge;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.type.FoxType;
 import org.spongepowered.api.data.type.HandPreference;
-import org.spongepowered.api.data.type.HandType;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.InstrumentType;
@@ -95,24 +88,12 @@ import org.spongepowered.api.entity.attribute.type.AttributeType;
 import org.spongepowered.api.entity.explosive.EnderCrystal;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.animal.Sheep;
-import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
-import org.spongepowered.api.entity.living.player.server.ServerPlayer;
-import org.spongepowered.api.event.block.ChangeBlockEvent;
-import org.spongepowered.api.event.cause.entity.DismountType;
-import org.spongepowered.api.event.cause.entity.MovementType;
-import org.spongepowered.api.event.cause.entity.SpawnType;
-import org.spongepowered.api.event.cause.entity.damage.DamageType;
-import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
-import org.spongepowered.api.fluid.FluidStack;
 import org.spongepowered.api.fluid.FluidStackSnapshot;
-import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.FireworkShape;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.enchantment.Enchantment;
-import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.merchant.TradeOffer;
@@ -121,15 +102,10 @@ import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.projectile.source.ProjectileSource;
 import org.spongepowered.api.raid.RaidWave;
-import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.util.orientation.Orientation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.util.weighted.WeightedTable;
-import org.spongepowered.api.world.LocatableBlock;
-import org.spongepowered.api.world.ServerLocation;
-import org.spongepowered.api.world.server.ServerWorld;
-import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.math.vector.Vector2i;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
@@ -148,107 +124,49 @@ public final class TypeTokens {
     // SORTFIELDS:ON
     // @formatter:off
 
-    public static final TypeToken<Audience> AUDIENCE = new TypeToken<Audience>() {};
-
-    public static final TypeToken<ArmorMaterial> ARMOR_MATERIAL_TOKEN = new TypeToken<ArmorMaterial>() {};
-
     public static final TypeToken<Value<ArmorMaterial>> ARMOR_MATERIAL_VALUE_TOKEN = new TypeToken<Value<ArmorMaterial>>() {};
-
-    public static final TypeToken<AttributeOperation> ATTRIBUTE_OPERATION_TOKEN = new TypeToken<AttributeOperation>() {};
 
     public static final TypeToken<Value<AttributeOperation>> ATTRIBUTE_OPERATION_VALUE_TOKEN = new TypeToken<Value<AttributeOperation>>() {};
 
-    public static final TypeToken<AttributeType> ATTRIBUTE_TYPE_TOKEN = new TypeToken<AttributeType>() {};
-
     public static final TypeToken<Value<AttributeType>> ATTRIBUTE_TYPE_VALUE_TOKEN = new TypeToken<Value<AttributeType>>() {};
-
-    public static final TypeToken<ArtType> ART_TYPE_TOKEN = new TypeToken<ArtType>() {};
 
     public static final TypeToken<Value<ArtType>> ART_TYPE_VALUE_TOKEN = new TypeToken<Value<ArtType>>() {};
 
-    public static final TypeToken<AttachmentSurface> ATTACHMENT_SURFACE_TOKEN = new TypeToken<AttachmentSurface>() {};
-
     public static final TypeToken<Value<AttachmentSurface>> ATTACHMENT_SURFACE_VALUE_TOKEN = new TypeToken<Value<AttachmentSurface>>() {};
-
-    public static final TypeToken<Axis> AXIS_TOKEN = new TypeToken<Axis>() {};
 
     public static final TypeToken<Value<Axis>> AXIS_VALUE_TOKEN = new TypeToken<Value<Axis>>() {};
 
-    public static final TypeToken<BlockEntityArchetype> BLOCK_ENTITY_ARCHETYPE_TOKEN = new TypeToken<BlockEntityArchetype>() {};
-
-    public static final TypeToken<BlockEntity> BLOCK_ENTITY_TOKEN = new TypeToken<BlockEntity>() {};
-
-    public static final TypeToken<BlockSnapshot> BLOCK_SNAPSHOT_TOKEN = new TypeToken<BlockSnapshot>() {};
-
-    public static final TypeToken<BlockState> BLOCK_STATE_TOKEN = new TypeToken<BlockState>() {};
-
     public static final TypeToken<Value<BlockState>> BLOCK_STATE_VALUE_TOKEN = new TypeToken<Value<BlockState>>() {};
-
-    public static final TypeToken<BoatType> BOAT_TYPE_TOKEN = new TypeToken<BoatType>() {};
 
     public static final TypeToken<Value<BoatType>> BOAT_TYPE_VALUE_TOKEN = new TypeToken<Value<BoatType>>() {};
 
-    public static final TypeToken<Boolean> BOOLEAN_TOKEN = new TypeToken<Boolean>() {};
-
     public static final TypeToken<Value<Boolean>> BOOLEAN_VALUE_TOKEN = new TypeToken<Value<Boolean>>() {};
-
-    public static final TypeToken<BossBar> BOSS_BAR_TOKEN = new TypeToken<BossBar>() {};
 
     public static final TypeToken<Value<BossBar>> BOSS_BAR_VALUE_TOKEN = new TypeToken<Value<BossBar>>() {};
 
-    public static final TypeToken<CatType> CAT_TYPE_TOKEN = new TypeToken<CatType>() {};
-
     public static final TypeToken<Value<CatType>> CAT_TYPE_VALUE_TOKEN = new TypeToken<Value<CatType>>() {};
 
-    public static final TypeToken<ChestAttachmentType> CHEST_ATTACHMENT_TYPE_TOKEN = new TypeToken<ChestAttachmentType>() {};
-
     public static final TypeToken<Value<ChestAttachmentType>> CHEST_ATTACHMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<ChestAttachmentType>>() {};
-
-    public static final TypeToken<Color> COLOR_TOKEN = new TypeToken<Color>() {};
 
     public static final TypeToken<Value<Color>> COLOR_VALUE_TOKEN = new TypeToken<Value<Color>>() {};
 
     public static final TypeToken<Consumer<CommandCause>> COMMAND_CAUSE_CONSUMER = new TypeToken<Consumer<CommandCause>>() {};
 
-    public static final TypeToken<CommandExecutor> COMMAND_EXECUTOR = new TypeToken<CommandExecutor>() {};
-
-    public static final TypeToken<CommandMapping> COMMAND_MAPPING = new TypeToken<CommandMapping>() {};
-
-    public static final TypeToken<ComparatorMode> COMPARATOR_MODE_TOKEN = new TypeToken<ComparatorMode>() {};
-
     public static final TypeToken<Value<ComparatorMode>> COMPARATOR_MODE_VALUE_TOKEN = new TypeToken<Value<ComparatorMode>>() {};
-
-    public static final TypeToken<Component> COMPONENT_TOKEN = new TypeToken<Component>() {};
 
     public static final TypeToken<Value<Component>> COMPONENT_VALUE_TOKEN = new TypeToken<Value<Component>>() {};
 
-    public static final TypeToken<Direction> DIRECTION_TOKEN = new TypeToken<Direction>() {};
-
     public static final TypeToken<Value<Direction>> DIRECTION_VALUE_TOKEN = new TypeToken<Value<Direction>>() {};
-
-    public static final TypeToken<DoorHinge> DOOR_HINGE_TOKEN = new TypeToken<DoorHinge>() {};
 
     public static final TypeToken<Value<DoorHinge>> DOOR_HINGE_VALUE_TOKEN = new TypeToken<Value<DoorHinge>>() {};
 
-    public static final TypeToken<Double> DOUBLE_TOKEN = new TypeToken<Double>() {};
-
     public static final TypeToken<Value<Double>> DOUBLE_VALUE_TOKEN = new TypeToken<Value<Double>>() {};
-
-    public static final TypeToken<DyeColor> DYE_COLOR_TOKEN = new TypeToken<DyeColor>() {};
 
     public static final TypeToken<Value<DyeColor>> DYE_COLOR_VALUE_TOKEN = new TypeToken<Value<DyeColor>>() {};
 
-    public static final TypeToken<EnderCrystal> ENDER_CRYSTAL_TOKEN = new TypeToken<EnderCrystal>() {};
-
     public static final TypeToken<Value<EnderCrystal>> ENDER_CRYSTAL_VALUE_TOKEN = new TypeToken<Value<EnderCrystal>>() {};
 
-    public static final TypeToken<EntityArchetype> ENTITY_ARCHETYPE_TOKEN = new TypeToken<EntityArchetype>() {};
-
-    public static final TypeToken<EntitySnapshot> ENTITY_SNAPSHOT_TOKEN = new TypeToken<EntitySnapshot>() {};
-
     public static final TypeToken<Value<EntitySnapshot>> ENTITY_SNAPSHOT_VALUE_TOKEN = new TypeToken<Value<EntitySnapshot>>() {};
-
-    public static final TypeToken<Entity> ENTITY_TOKEN = new TypeToken<Entity>() {};
 
     public static final TypeToken<Value<Entity>> ENTITY_VALUE_TOKEN = new TypeToken<Value<Entity>>() {};
 
@@ -256,71 +174,35 @@ public final class TypeTokens {
 
     public static final TypeToken<MapValue<EntityType<?>, Double>> MAP_ENTITY_TYPE_DOUBLE_VALUE_TOKEN = new TypeToken<MapValue<EntityType<?>, Double>>() {};
 
-    public static final TypeToken<EntityType<?>> ENTITY_TYPE_TOKEN = new TypeToken<EntityType<?>>() {};
-
     public static final TypeToken<Value<EntityType<?>>> ENTITY_TYPE_VALUE_TOKEN = new TypeToken<Value<EntityType<?>>>() {};
-
-    public static final TypeToken<EquipmentType> EQUIPMENT_TYPE_TOKEN = new TypeToken<EquipmentType>() {};
 
     public static final TypeToken<Value<EquipmentType>> EQUIPMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<EquipmentType>>() {};
 
     public static final TypeToken<Value<FireworkShape>> FIREWORK_SHAPE_VALUE_TOKEN = new TypeToken<Value<FireworkShape>>() {};
 
-    public static final TypeToken<Float> FLOAT_TOKEN = new TypeToken<Float>() {};
-
-    public static final TypeToken<FluidStack> FLUID_STACK_TOKEN = new TypeToken<FluidStack>() {};
-
-    public static final TypeToken<FluidState> FLUID_STATE_TOKEN = new TypeToken<FluidState>() {};
-
-    public static final TypeToken<FluidStackSnapshot> FLUID_STACK_SNAPSHOT_TOKEN = new TypeToken<FluidStackSnapshot>() {};
-
     public static final TypeToken<Value<FluidStackSnapshot>> FLUID_STACK_SNAPSHOT_VALUE_TOKEN = new TypeToken<Value<FluidStackSnapshot>>() {};
-
-    public static final TypeToken<FoxType> FOX_TYPE_TOKEN = new TypeToken<FoxType>() {};
 
     public static final TypeToken<Value<FoxType>> FOX_TYPE_VALUE_TOKEN = new TypeToken<Value<FoxType>>() {};
 
-    public static final TypeToken<GameMode> GAME_MODE_TOKEN = new TypeToken<GameMode>() {};
-
     public static final TypeToken<Value<GameMode>> GAME_MODE_VALUE_TOKEN = new TypeToken<Value<GameMode>>() {};
-
-    public static final TypeToken<GameProfile> GAME_PROFILE_TOKEN = new TypeToken<GameProfile>() {};
 
     public static final TypeToken<Value<GameProfile>> GAME_PROFILE_VALUE_TOKEN = new TypeToken<Value<GameProfile>>() {};
 
-    public static final TypeToken<HandPreference> HAND_PREFERENCE_TOKEN = new TypeToken<HandPreference>() {};
-
     public static final TypeToken<Value<HandPreference>> HAND_PREFERENCE_VALUE_TOKEN = new TypeToken<Value<HandPreference>>() {};
-
-    public static final TypeToken<HorseColor> HORSE_COLOR_TOKEN = new TypeToken<HorseColor>() {};
 
     public static final TypeToken<Value<HorseColor>> HORSE_COLOR_VALUE_TOKEN = new TypeToken<Value<HorseColor>>() {};
 
-    public static final TypeToken<HorseStyle> HORSE_STYLE_TOKEN = new TypeToken<HorseStyle>() {};
-
     public static final TypeToken<Value<HorseStyle>> HORSE_STYLE_VALUE_TOKEN = new TypeToken<Value<HorseStyle>>() {};
-
-    public static final TypeToken<Instant> INSTANT_TOKEN = new TypeToken<Instant>() {};
 
     public static final TypeToken<Value<Instant>> INSTANT_VALUE_TOKEN = new TypeToken<Value<Instant>>() {};
 
-    public static final TypeToken<InstrumentType> INSTRUMENT_TYPE_TOKEN = new TypeToken<InstrumentType>() {};
-
     public static final TypeToken<Value<InstrumentType>> INSTRUMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<InstrumentType>>() {};
-
-    public static final TypeToken<Integer> INTEGER_TOKEN = new TypeToken<Integer>() {};
 
     public static final TypeToken<Value<Integer>> INTEGER_VALUE_TOKEN = new TypeToken<Value<Integer>>() {};
 
-    public static final TypeToken<ItemType> ITEM_TYPE_TOKEN = new TypeToken<ItemType>() {};
-
     public static final TypeToken<Value<ItemType>> ITEM_TYPE_VALUE_TOKEN = new TypeToken<Value<ItemType>>() {};
 
-    public static final TypeToken<ItemStackSnapshot> ITEM_STACK_SNAPSHOT_TOKEN = new TypeToken<ItemStackSnapshot>() {};
-
     public static final TypeToken<Value<ItemStackSnapshot>> ITEM_STACK_SNAPSHOT_VALUE_TOKEN = new TypeToken<Value<ItemStackSnapshot>>() {};
-
-    public static final TypeToken<ItemStack> ITEM_STACK_TOKEN = new TypeToken<ItemStack>() {};
 
     public static final TypeToken<List<BannerPatternLayer>> LIST_BANNER_PATTERN_LAYER_TOKEN = new TypeToken<List<BannerPatternLayer>>() {};
 
@@ -358,15 +240,9 @@ public final class TypeTokens {
 
     public static final TypeToken<ListValue<TradeOffer>> LIST_TRADE_OFFER_VALUE_TOKEN = new TypeToken<ListValue<TradeOffer>>() {};
 
-    public static final TypeToken<Living> LIVING_TOKEN = new TypeToken<Living>() {};
-
     public static final TypeToken<Value<Living>> LIVING_VALUE_TOKEN = new TypeToken<Value<Living>>() {};
 
-    public static final TypeToken<LlamaType> LLAMA_TYPE_TOKEN = new TypeToken<LlamaType>() {};
-
     public static final TypeToken<Value<LlamaType>> LLAMA_TYPE_VALUE_TOKEN = new TypeToken<Value<LlamaType>>() {};
-
-    public static final TypeToken<Long> LONG_TOKEN = new TypeToken<Long>() {};
 
     public static final TypeToken<Value<Long>> LONG_VALUE_TOKEN = new TypeToken<Value<Long>>() {};
 
@@ -390,97 +266,49 @@ public final class TypeTokens {
 
     public static final TypeToken<MapValue<UUID, Vector3d>> MAP_UUID_VECTOR3D_VALUE_TOKEN = new TypeToken<MapValue<UUID, Vector3d>>() {};
 
-    public static final TypeToken<MatterState> MATTER_STATE_TOKEN = new TypeToken<MatterState>() {};
-
     public static final TypeToken<Value<MatterState>> MATTER_STATE_VALUE_TOKEN = new TypeToken<Value<MatterState>>() {};
-
-    public static final TypeToken<MooshroomType> MOOSHROOM_TYPE_TOKEN = new TypeToken<MooshroomType>() {};
 
     public static final TypeToken<Value<MooshroomType>> MOOSHROOM_TYPE_VALUE_TOKEN = new TypeToken<Value<MooshroomType>>() {};
 
-    public static final TypeToken<MusicDisc> MUSIC_DISC_TOKEN = new TypeToken<MusicDisc>() {};
-
     public static final TypeToken<Value<MusicDisc>> MUSIC_DISC_VALUE_TOKEN = new TypeToken<Value<MusicDisc>>() {};
-
-    public static final TypeToken<NotePitch> NOTE_PITCH_TOKEN = new TypeToken<NotePitch>() {};
 
     public static final TypeToken<Value<NotePitch>> NOTE_PITCH_VALUE_TOKEN = new TypeToken<Value<NotePitch>>() {};
 
-    public static final TypeToken<Object> OBJECT = TypeToken.get(Object.class);
-
-    public static final TypeToken<Orientation> ORIENTATION_TOKEN = new TypeToken<Orientation>() {};
-
     public static final TypeToken<Value<Orientation>> ORIENTATION_VALUE_TOKEN = new TypeToken<Value<Orientation>>() {};
-
-    public static final TypeToken<PandaGene> PANDA_GENE_TOKEN = new TypeToken<PandaGene>() {};
 
     public static final TypeToken<Value<PandaGene>> PANDA_GENE_VALUE_TOKEN = new TypeToken<Value<PandaGene>>() {};
 
-    public static final TypeToken<ParrotType> PARROT_TYPE_TOKEN = new TypeToken<ParrotType>() {};
-
     public static final TypeToken<Value<ParrotType>> PARROT_TYPE_VALUE_TOKEN = new TypeToken<Value<ParrotType>>() {};
-
-    public static final TypeToken<ParticleEffect> PARTICLE_EFFECT_TOKEN = new TypeToken<ParticleEffect>() {};
 
     public static final TypeToken<Value<ParticleEffect>> PARTICLE_EFFECT_VALUE_TOKEN = new TypeToken<Value<ParticleEffect>>() {};
 
-    public static final TypeToken<ParticleType> PARTICLE_TYPE_TOKEN = new TypeToken<ParticleType>() {};
-
     public static final TypeToken<Value<ParticleType>> PARTICLE_TYPE_VALUE_TOKEN = new TypeToken<Value<ParticleType>>() {};
-
-    public static final TypeToken<PhantomPhase> PHANTOM_PHASE_TOKEN = new TypeToken<PhantomPhase>() {};
 
     public static final TypeToken<Value<PhantomPhase>> PHANTOM_PHASE_VALUE_TOKEN = new TypeToken<Value<PhantomPhase>>() {};
 
-    public static final TypeToken<PickupRule> PICKUP_RULE_TOKEN = new TypeToken<PickupRule>() {};
-
     public static final TypeToken<Value<PickupRule>> PICKUP_RULE_VALUE_TOKEN = new TypeToken<Value<PickupRule>>() {};
-
-    public static final TypeToken<PistonType> PISTON_TYPE_TOKEN = new TypeToken<PistonType>() {};
 
     public static final TypeToken<Value<PistonType>> PISTON_TYPE_VALUE_TOKEN = new TypeToken<Value<PistonType>>() {};
 
-    public static final TypeToken<PluginContainer> PLUGIN_CONTAINER_TOKEN = new TypeToken<PluginContainer>() {};
-
     public static final TypeToken<Value<PluginContainer>> PLUGIN_CONTAINER_VALUE_TOKEN = new TypeToken<Value<PluginContainer>>() {};
-
-    public static final TypeToken<PortionType> PORTION_TYPE_TOKEN = new TypeToken<PortionType>() {};
 
     public static final TypeToken<Value<PortionType>> PORTION_TYPE_VALUE_TOKEN = new TypeToken<Value<PortionType>>() {};
 
-    public static final TypeToken<PotionEffectType> POTION_EFFECT_TYPE_TOKEN = new TypeToken<PotionEffectType>() {};
-
     public static final TypeToken<Value<PotionEffectType>> POTION_EFFECT_TYPE_VALUE_TOKEN = new TypeToken<Value<PotionEffectType>>() {};
-
-    public static final TypeToken<PotionType> POTION_TYPE_TOKEN = new TypeToken<PotionType>() {};
 
     public static final TypeToken<Value<PotionType>> POTION_TYPE_VALUE_TOKEN = new TypeToken<Value<PotionType>>() {};
 
-    public static final TypeToken<ProfessionType> PROFESSION_TOKEN = new TypeToken<ProfessionType>() {};
-
     public static final TypeToken<Value<ProfessionType>> PROFESSION_VALUE_TOKEN = new TypeToken<Value<ProfessionType>>() {};
-
-    public static final TypeToken<ProfileProperty> PROFILE_PROPERTY_TOKEN = new TypeToken<ProfileProperty>() {};
 
     public static final TypeToken<Value<ProfileProperty>> PROFILE_PROPERTY_VALUE_TOKEN = new TypeToken<Value<ProfileProperty>>() {};
 
-    public static final TypeToken<ProjectileSource> PROJECTILE_SOURCE_TOKEN = new TypeToken<ProjectileSource>() {};
-
     public static final TypeToken<Value<ProjectileSource>> PROJECTILE_SOURCE_VALUE_TOKEN = new TypeToken<Value<ProjectileSource>>() {};
-
-    public static final TypeToken<RabbitType> RABBIT_TYPE_TOKEN = new TypeToken<RabbitType>() {};
 
     public static final TypeToken<Value<RabbitType>> RABBIT_TYPE_VALUE_TOKEN = new TypeToken<Value<RabbitType>>() {};
 
-    public static final TypeToken<RaidWave> RAID_WAVE_TOKEN = new TypeToken<RaidWave>() {};
-
     public static final TypeToken<Value<RaidWave>> RAID_WAVE_VALUE_TOKEN = new TypeToken<Value<RaidWave>>() {};
 
-    public static final TypeToken<RailDirection> RAIL_DIRECTION_TOKEN = new TypeToken<RailDirection>() {};
-
     public static final TypeToken<Value<RailDirection>> RAIL_DIRECTION_VALUE_TOKEN = new TypeToken<Value<RailDirection>>() {};
-
-    public static final TypeToken<Orientation> ROTATION_TOKEN = new TypeToken<Orientation>() {};
 
     public static final TypeToken<Value<Orientation>> ROTATION_VALUE_TOKEN = new TypeToken<Value<Orientation>>() {};
 
@@ -496,21 +324,11 @@ public final class TypeTokens {
 
     public static final TypeToken<SetValue<String>> SET_STRING_VALUE_TOKEN = new TypeToken<SetValue<String>>() {};
 
-    public static final TypeToken<Sheep> SHEEP_TOKEN = new TypeToken<Sheep>() {};
-
     public static final TypeToken<Value<Sheep>> SHEEP_VALUE_TOKEN = new TypeToken<Value<Sheep>>() {};
-
-    public static final TypeToken<Short> SHORT_TOKEN = new TypeToken<Short>() {};
-
-    public static final TypeToken<SlabPortion> SLAB_PORTION_TOKEN = new TypeToken<SlabPortion>() {};
 
     public static final TypeToken<Value<SlabPortion>> SLAB_PORTION_VALUE_TOKEN = new TypeToken<Value<SlabPortion>>() {};
 
-    public static final TypeToken<SpellType> SPELL_TYPE_TOKEN = new TypeToken<SpellType>() {};
-
     public static final TypeToken<Value<SpellType>> SPELL_TYPE_VALUE_TOKEN = new TypeToken<Value<SpellType>>() {};
-
-    public static final TypeToken<StairShape> STAIR_SHAPE_TOKEN = new TypeToken<StairShape>() {};
 
     public static final TypeToken<Value<StairShape>> STAIR_SHAPE_VALUE_TOKEN = new TypeToken<Value<StairShape>>() {};
 
@@ -518,41 +336,21 @@ public final class TypeTokens {
 
     public static final TypeToken<MapValue<Statistic, Long>> MAP_STATISTIC_LONG_VALUE_TOKEN = new TypeToken<MapValue<Statistic, Long>>() {};
 
-    public static final TypeToken<String> STRING_TOKEN = new TypeToken<String>() {};
-
     public static final TypeToken<Value<String>> STRING_VALUE_TOKEN = new TypeToken<Value<String>>() {};
-
-    public static final TypeToken<StructureMode> STRUCTURE_MODE_TOKEN = new TypeToken<StructureMode>() {};
 
     public static final TypeToken<Value<StructureMode>> STRUCTURE_MODE_VALUE_TOKEN = new TypeToken<Value<StructureMode>>() {};
 
-    public static final TypeToken<ToolType> TOOL_TYPE_TOKEN = new TypeToken<ToolType>() {};
-
     public static final TypeToken<Value<ToolType>> TOOL_TYPE_VALUE_TOKEN = new TypeToken<Value<ToolType>>() {};
-
-    public static final TypeToken<TropicalFishShape> TROPICAL_FISH_SHAPE_TOKEN = new TypeToken<TropicalFishShape>() {};
 
     public static final TypeToken<Value<TropicalFishShape>> TROPICAL_FISH_SHAPE_VALUE_TOKEN = new TypeToken<Value<TropicalFishShape>>() {};
 
-    public static final TypeToken<User> USER_TOKEN = new TypeToken<User>() {};
-
-    public static final TypeToken<UUID> UUID_TOKEN = new TypeToken<UUID>() {};
-
     public static final TypeToken<Value<UUID>> UUID_VALUE_TOKEN = new TypeToken<Value<UUID>>() {};
-
-    public static final TypeToken<Vector2i> VECTOR_2I_TOKEN = new TypeToken<Vector2i>() {};
 
     public static final TypeToken<Value<Vector2i>> VECTOR_2I_VALUE_TOKEN = new TypeToken<Value<Vector2i>>() {};
 
-    public static final TypeToken<Vector3d> VECTOR_3D_TOKEN = new TypeToken<Vector3d>() {};
-
     public static final TypeToken<Value<Vector3d>> VECTOR_3D_VALUE_TOKEN = new TypeToken<Value<Vector3d>>() {};
 
-    public static final TypeToken<Vector3i> VECTOR_3I_TOKEN = new TypeToken<Vector3i>() {};
-
     public static final TypeToken<Value<Vector3i>> VECTOR_3I_VALUE_TOKEN = new TypeToken<Value<Vector3i>>() {};
-
-    public static final TypeToken<VillagerType> VILLAGER_TYPE_TOKEN = new TypeToken<VillagerType>() {};
 
     public static final TypeToken<Value<VillagerType>> VILLAGER_TYPE_VALUE_TOKEN = new TypeToken<Value<VillagerType>>() {};
 
@@ -570,49 +368,9 @@ public final class TypeTokens {
 
     public static final TypeToken<MapValue<Direction, WireAttachmentType>> MAP_DIRECTION_WIRE_ATTACHMENT_VALUE_TOKEN = new TypeToken<MapValue<Direction, WireAttachmentType>>() {};
 
-    public static final TypeToken<WireAttachmentType> WIRE_ATTACHMENT_TYPE_TOKEN = new TypeToken<WireAttachmentType>() {};
-
     public static final TypeToken<Value<WireAttachmentType>> WIRE_ATTACHMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<WireAttachmentType>>() {};
 
-    public static final TypeToken<WoodType> WOOD_TYPE_TOKEN = new TypeToken<WoodType>() {};
-
     public static final TypeToken<Value<WoodType>> WOOD_TYPE_VALUE_TOKEN = new TypeToken<Value<WoodType>>() {};
-
-    public static final TypeToken<WorldProperties> WORLD_PROPERTIES_TOKEN = new TypeToken<WorldProperties>() {};
-
-    public static final TypeToken<LocatableBlock> LOCATABLE_BLOCK_TOKEN = new TypeToken<LocatableBlock>() {};
-
-    public static final TypeToken<ChangeBlockEvent.Break> CHANGE_BLOCK_EVENT_BREAK_TOKEN = new TypeToken<ChangeBlockEvent.Break>() {};
-
-    public static final TypeToken<DamageType> DAMAGE_TYPE_TOKEN = new TypeToken<DamageType>() {};
-
-    public static final TypeToken<ChangeBlockEvent.Decay> CHANGE_BLOCK_EVENT_DECAY_TOKEN = new TypeToken<ChangeBlockEvent.Decay>() {};
-
-    public static final TypeToken<DismountType> DISMOUNT_TYPE_TOKEN = new TypeToken<DismountType>() {};
-
-    public static final TypeToken<Player> PLAYER_TOKEN = new TypeToken<Player>() {};
-
-    public static final TypeToken<ServerPlayer> SERVER_PLAYER_TOKEN = new TypeToken<ServerPlayer>() {};
-
-    public static final TypeToken<ServerWorld> SERVER_WORLD_TOKEN = new TypeToken<ServerWorld>() {};
-
-    public static final TypeToken<ChangeBlockEvent.Grow> CHANGE_BLOCK_EVENT_GROW_TOKEN = new TypeToken<ChangeBlockEvent.Grow>() {};
-
-    public static final TypeToken<ServerLocation> SERVER_LOCATION_TOKEN = new TypeToken<ServerLocation>() {};
-
-    public static final TypeToken<DamageSource> DAMAGE_SOURCE_TOKEN = new TypeToken<DamageSource>() {};
-
-    public static final TypeToken<ChangeBlockEvent.Modify> CHANGE_BLOCK_EVENT_MODIFY_TOKEN = new TypeToken<ChangeBlockEvent.Modify>() {};
-
-    public static final TypeToken<ChangeBlockEvent.Place> CHANGE_BLOCK_EVENT_PLACE_TOKEN = new TypeToken<ChangeBlockEvent.Place>() {};
-
-    public static final TypeToken<SpawnType> SPAWN_TYPE_TOKEN = new TypeToken<SpawnType>() {};
-
-    public static final TypeToken<Subject> SUBJECT_TOKEN = new TypeToken<Subject>() {};
-
-    public static final TypeToken<MovementType> MOVEMENT_TYPE_TOKEN = new TypeToken<MovementType>() {};
-
-    public static final TypeToken<HandType> HAND_TYPE_TOKEN = new TypeToken<HandType>() {};
 
     // @formatter:on
     // SORTFIELDS:OFF

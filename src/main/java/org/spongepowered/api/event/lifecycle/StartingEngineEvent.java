@@ -25,7 +25,6 @@
 package org.spongepowered.api.event.lifecycle;
 
 import org.spongepowered.api.Engine;
-import org.spongepowered.api.event.GenericEvent;
 
 public interface StartingEngineEvent<E extends Engine> extends EngineLifecycleEvent<E> {
 }
