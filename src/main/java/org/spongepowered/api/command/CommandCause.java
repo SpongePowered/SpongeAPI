@@ -27,6 +27,8 @@ package org.spongepowered.api.command;
 import static com.google.common.base.Preconditions.checkArgument;
 
 import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.identity.Identified;
+import net.kyori.adventure.identity.Identity;
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.SystemSubject;
@@ -296,9 +298,22 @@ public interface CommandCause extends SubjectProxy {
      * Sends a message to the {@link Audience} as given by
      * {@link #getAudience()}.
      *
+     * @see Audience#sendMessage(Identified, Component)
+     *
+     * @param source The {@link Identified} to send a message from.
      * @param message The message to send.
      */
-    void sendMessage(final Component message);
+    void sendMessage(final Identified source, final Component message);
+
+    /**
+     * Sends a message to the {@link Audience} as given by
+     * {@link #getAudience()}.
+     *
+     * @see Audience#sendMessage(Identity, Component)
+     *
+     * @param message The message to send.
+     */
+    void sendMessage(final Identity source, final Component message);
 
     /**
      * Creates instances of the {@link CommandCause}.
