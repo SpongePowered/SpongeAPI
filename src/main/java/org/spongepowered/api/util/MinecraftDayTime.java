@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.util;
 
+import org.spongepowered.api.Engine;
+import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
 
 import java.time.Duration;
@@ -44,7 +46,7 @@ public interface MinecraftDayTime {
 
     /**
      * Creates a {@link MinecraftDayTime} based on the in-game time since the
-     * Minecraft epoch (6:00am on Day 1).
+     * Minecraft epoch (6:00am on Day 1) for the given {@link Engine}.
      *
      * <p>For example, if the supplied {@link Duration} was 1 day, 3 hours and
      * 40 minutes, this would correspond to an in game time of 9:40am on Day 2.
@@ -54,18 +56,19 @@ public interface MinecraftDayTime {
      * align with a valid {@link MinecraftDayTime}, the nearest valid time will
      * be returned.</p>
      *
+     * @param engine The {@link Engine} to use in calculating the day time
      * @param duration The duration since the Minecraft Epoch.
      * @return The {@link MinecraftDayTime}
      * @throws IllegalArgumentException if the duration is negative
      */
-    static MinecraftDayTime ofInGameDuration(final Duration duration) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(MinecraftDayTime.Factory.class).of(duration);
+    static MinecraftDayTime ofInGameDuration(final Engine engine, final Duration duration) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(MinecraftDayTime.Factory.class).of(engine, duration);
     }
 
     /**
      * Creates a {@link MinecraftDayTime} that represents the world time
      * if the world has been running for the supplied {@link Duration} in
-     * real world time under idealised conditions.
+     * real world time under idealised conditions for the given {@link Engine}.
      *
      * <p>For example, if the supplied {@link Duration} was 1 day, 3 hours and
      * 40 minutes and each Minecraft day lasts 20 minutes in the vanilla game,
@@ -76,12 +79,13 @@ public interface MinecraftDayTime {
      * align with a valid {@link MinecraftDayTime}, the nearest valid time will
      * be returned.</p>
      *
+     * @param engine The {@link Engine} to use in calculating the day time
      * @param duration The wall-clock duration
      * @return The {@link MinecraftDayTime}
      * @throws IllegalArgumentException if the duration is negative
      */
-    static MinecraftDayTime ofWallClockDuration(final Duration duration) {
-        return MinecraftDayTime.of(Ticks.ofWallClockTime(duration.toMillis(), ChronoUnit.MILLIS));
+    static MinecraftDayTime ofWallClockDuration(final Engine engine, final Duration duration) {
+        return MinecraftDayTime.of(engine, Ticks.ofWallClockTime(engine, duration.toMillis(), ChronoUnit.MILLIS));
     }
 
     /**
@@ -115,18 +119,20 @@ public interface MinecraftDayTime {
 
     /**
      * Creates a {@link MinecraftDayTime} based on the number of {@link Ticks}
-     * elapsed since the Minecraft epoch (6:00am on Day 1).
+     * elapsed since the Minecraft epoch (6:00am on Day 1) for the given
+     * {@link Engine}.
      *
      * <p>For example, if the supplied {@link Ticks} was {@code Ticks.of(18000)
      * on the vanilla server, this would correspond to an in game time of
      * 12:00am on Day 2 (18 hours after Minecraft epoch).</p>
      *
+     * @param engine The {@link Engine} to calculate the time for.
      * @param ticks The {@link Ticks} since the Minecraft Epoch.
      * @return The {@link MinecraftDayTime}
      * @throws IllegalArgumentException if the tick count is negative
      */
-    static MinecraftDayTime of(final Ticks ticks) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(MinecraftDayTime.Factory.class).of(ticks);
+    static MinecraftDayTime of(final Engine engine, final Ticks ticks) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(MinecraftDayTime.Factory.class).of(engine, ticks);
     }
 
     /**
@@ -205,13 +211,14 @@ public interface MinecraftDayTime {
 
     /**
      * Returns a {@link Duration} that represents wall-clock time from the
-     * minecraft epoch (so, for Day 2 at 12:30pm will return a duration of
-     * 25 minutes and 25 seconds for a vanilla minecraft server).
+     * minecraft epoch for the given {@link Engine}. (For example, if this
+     * object represents Day 2 at 12:30pm, will return a {@link Duration} of
+     * 25 minutes and 25 seconds for a vanilla minecraft {@link Server}).
      *
      * @return A {@link Duration}
      */
-    default Duration asWallClockDuration() {
-        return this.asTicks().getExpectedDuration();
+    default Duration asWallClockDuration(final Engine engine) {
+        return this.asTicks().getExpectedDuration(engine);
     }
 
     /**
@@ -233,9 +240,9 @@ public interface MinecraftDayTime {
         MinecraftDayTime epoch();
 
         /**
-         * @see MinecraftDayTime#ofInGameDuration(Duration)
+         * @see MinecraftDayTime#ofInGameDuration(Engine, Duration)
          */
-        MinecraftDayTime of(Duration duration);
+        MinecraftDayTime of(Engine engine, Duration duration);
 
         /**
          * @see MinecraftDayTime#of(int, int, int)
@@ -243,9 +250,9 @@ public interface MinecraftDayTime {
         MinecraftDayTime of(int days, int hours, int minutes);
 
         /**
-         * @see MinecraftDayTime#of(Ticks)
+         * @see MinecraftDayTime#of(Engine, Ticks)
          */
-        MinecraftDayTime of(Ticks ticks);
+        MinecraftDayTime of(Engine engine, Ticks ticks);
 
     }
 
