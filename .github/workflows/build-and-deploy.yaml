@@ -27,12 +27,12 @@ jobs:
             echo ::set-env name=BUILD_NUMBER::$(($NUM+93))
           - run: echo BUILD_NUMBER
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew clean build
         env:
           CI_SYSTEM: Github Actions
           GIT_COMMIT: ${{ GITHUB_SHA }}
           GIT_BRANCH: ${{ GITHUB_REF }}
-      - name: Archive artifacts for build
+      - name: Add artifacts to build
         uses: actions/upload-artifact@v2
         with:
           name: Sponge Jars
