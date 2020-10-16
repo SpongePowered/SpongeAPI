@@ -28,9 +28,7 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: run number with offset
-        env:
-          NUM: ${{ github.GITHUB_RUN_NUMBER }}
-        run: echo "BUILD_NUMBER=$(($NUM+93))" >> $GITHUB_ENV
+        run: echo "BUILD_NUMBER=$(($GITHUB_RUN_NUMBER+93))" >> $GITHUB_ENV
       - name: Build with Gradle
         run: ./gradlew --refresh-dependencies -s clean build
         env:
