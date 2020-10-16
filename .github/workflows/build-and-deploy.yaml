@@ -30,10 +30,9 @@ jobs:
       - name: run number with offset
         env:
           NUM: ${{ github.GITHUB_RUN_NUMBER }}
-        run: |
-          echo "BUILD_NUMBER=$(($NUM+93))" >> $GITHUB_ENV
+        run: echo "BUILD_NUMBER=$(($NUM+93))" >> $GITHUB_ENV
       - name: Build with Gradle
-        run: ./gradlew clean build
+        run: ./gradlew --refresh-dependencies -s clean build
         env:
           CI_SYSTEM: Github Actions
           GIT_COMMIT: ${{ github.GITHUB_SHA }}
@@ -47,7 +46,7 @@ jobs:
       # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
       # the publishing section of your build.gradle
       - name: Publish to Sponge Maven & GitHub Packages
-        run: ./gradlew uploadArchives
+        run: ./gradlew :uploadArchives
         env:
           GITHUB_USERNAME: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
