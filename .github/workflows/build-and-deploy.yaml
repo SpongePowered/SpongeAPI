@@ -31,7 +31,7 @@ jobs:
         env:
           NUM: ${{ github.GITHUB_RUN_NUMBER }}
         run: |
-          echo ::set-env name=BUILD_NUMBER::$(($NUM+93))
+          echo "BUILD_NUMBER=$(($NUM+93))" >> $GITHUB_ENV
       - name: Build with Gradle
         run: ./gradlew clean build
         env:
