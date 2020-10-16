@@ -31,8 +31,8 @@ jobs:
         run: echo "BUILD_NUMBER=$(($GITHUB_RUN_NUMBER+93))" >> $GITHUB_ENV
       - name: Build with Gradle
         run: |
-          echo "GIT_COMMIT=$GITHUB_SHA" >> $GITHUB_ENV
-          echo "GIT_BRANCH=$GITHUB_REF" >> $GITHUB_ENV
+          echo "GIT_COMMIT=${GITHUB_SHA}" >> $GITHUB_ENV
+          echo "GIT_BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
           ./gradlew --refresh-dependencies -s clean build
         env:
           CI_SYSTEM: Github Actions
