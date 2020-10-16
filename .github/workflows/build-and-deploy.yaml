@@ -30,11 +30,12 @@ jobs:
       - name: run number with offset
         run: echo "BUILD_NUMBER=$(($GITHUB_RUN_NUMBER+93))" >> $GITHUB_ENV
       - name: Build with Gradle
-        run: ./gradlew --refresh-dependencies -s clean build
+        run: |
+          echo "GIT_COMMIT=$GITHUB_SHA" >> $GITHUB_ENV
+          echo "GIT_BRANCH=$GITHUB_REF" >> $GITHUB_ENV
+          ./gradlew --refresh-dependencies -s clean build
         env:
           CI_SYSTEM: Github Actions
-          GIT_COMMIT: ${{ GITHUB_SHA }}
-          GIT_BRANCH: ${{ GITHUB_REF }}
       - name: Add artifacts to build
         uses: actions/upload-artifact@v2
         with:
