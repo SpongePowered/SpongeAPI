@@ -43,19 +43,19 @@ dependencies {
     api("com.google.code.gson:gson:2.8.0")
 
     // Adventure
-    api("net.kyori:adventure-api:4.0.0") {
+    api("net.kyori:adventure-api:4.1.1") {
         exclude(group = "org.checkerframework", module = "checker-qual")
     }
-    api("net.kyori:adventure-text-serializer-gson:4.0.0") {
+    api("net.kyori:adventure-text-serializer-gson:4.1.1") {
         exclude(group = "org.checkerframework", module = "checker-qual")
         exclude(group = "com.google.code.gson", module = "gson")
         exclude(group = "net.kyori", module = "adventure-api")
     }
-    api("net.kyori:adventure-text-serializer-legacy:4.0.0") {
+    api("net.kyori:adventure-text-serializer-legacy:4.1.1") {
         exclude(group = "org.checkerframework", module = "checker-qual")
         exclude(group = "net.kyori", module = "adventure-api")
     }
-    api("net.kyori:adventure-text-serializer-plain:4.0.0") {
+    api("net.kyori:adventure-text-serializer-plain:4.1.1") {
         exclude(group = "org.checkerframework", module = "checker-qual")
         exclude(group = "net.kyori", module = "adventure-api")
     }
