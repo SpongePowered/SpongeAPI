@@ -137,6 +137,10 @@ public interface Key<V extends Value<?>> extends CatalogType {
      */
     <E extends DataHolder> void registerEvent(PluginContainer plugin, Class<E> holderFilter, EventListener<ChangeDataHolderEvent.ValueChange> listener);
 
+    static <E, V extends Value<E>> Key<V> of(PluginContainer plugin, String name, TypeToken<V> type) {
+        return Key.builder().key(ResourceKey.of(plugin, name)).type(type).build();
+    }
+
     interface Builder<E, V extends Value<E>> extends CatalogBuilder<Key<V>, Builder<E, V>> {
 
         /**
