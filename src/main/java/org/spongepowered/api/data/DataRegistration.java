@@ -27,12 +27,14 @@ package org.spongepowered.api.data;
 import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.persistence.DataQuery;
 import org.spongepowered.api.data.persistence.DataStore;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.plugin.PluginContainer;
 
+import java.util.Collection;
 import java.util.Optional;
 
 /**
@@ -84,7 +86,7 @@ public interface DataRegistration extends CatalogType {
      * @throws UnregisteredKeyException If the key is not registered in this
      *     registration
      */
-    <V extends Value<E>, E> Optional<DataProvider<V, E>> getProviderFor(Key<V> key) throws UnregisteredKeyException;
+    <V extends Value<E>, E> Collection<DataProvider<V, E>> getProvidersFor(Key<V> key) throws UnregisteredKeyException;
 
     /**
      * Gets the appropriate {@link DataStore} for the context of the
@@ -117,6 +119,21 @@ public interface DataRegistration extends CatalogType {
      * @return The owning plugin container for this registration
      */
     PluginContainer getPluginContainer();
+
+    /**
+     * Creates a DataRegistration for a single key with a DataStore for given data-holders.
+     *
+     *
+     * @param key the data key
+     * @param dataHolders the data-holders
+     * @param <T> the keys value type
+     *
+     * @return The built data registration
+     */
+    static <T> DataRegistration of(Key<Value<T>> key, Class<? extends DataHolder> dataHolder, Class<? extends DataHolder>... dataHolders) {
+        final DataStore dataStore = DataStore.of(key, DataQuery.of(key.getKey().getNamespace(), key.getKey().getValue()), dataHolder, dataHolders);
+        return DataRegistration.builder().dataKey(key).store(dataStore).key(key.getKey()).build();
+    }
 
     /**
      * A standard builder for constructing new {@link DataRegistration}s. It's
@@ -173,7 +190,7 @@ public interface DataRegistration extends CatalogType {
          * @param key The key to register
          * @return This builder, for chaining
          */
-        Builder key(Key<?> key);
+        Builder dataKey(Key<?> key);
 
         /**
          * Gives the {@link Key} to this builder signifying the key is to be
@@ -189,7 +206,7 @@ public interface DataRegistration extends CatalogType {
          * @param others The additional keys
          * @return This builder, for chaining
          */
-        Builder key(Key<?> key, Key<?>... others);
+        Builder dataKey(Key<?> key, Key<?>... others);
 
         /**
          * Gives the {@link Key} to this builder signifying the key is to be
@@ -204,7 +221,7 @@ public interface DataRegistration extends CatalogType {
          * @param keys The key to register
          * @return This builder, for chaining
          */
-        Builder key(Iterable<Key<?>> keys);
+        Builder dataKey(Iterable<Key<?>> keys);
 
         @Override
         Builder reset();

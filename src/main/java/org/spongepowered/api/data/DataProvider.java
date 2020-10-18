@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data;
 
+import com.google.common.reflect.TypeToken;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.value.Value;
@@ -121,6 +122,8 @@ public interface DataProvider<V extends Value<E>, E> {
      * @return Whether it's supported
      */
     boolean isSupported(DataHolder dataHolder);
+
+    boolean isSupported(TypeToken<? extends DataHolder> dataHolder);
 
     DataTransactionResult offer(DataHolder.Mutable dataHolder, E element);
 

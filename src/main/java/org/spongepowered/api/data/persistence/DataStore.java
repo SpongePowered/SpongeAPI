@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.persistence;
 
 import com.google.common.reflect.TypeToken;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataManipulator;
@@ -32,6 +33,7 @@ import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.ResettableBuilder;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
@@ -86,7 +88,7 @@ public interface DataStore {
      */
     default DataView serialize(DataManipulator dataManipulator) {
         final DataView dataView = DataContainer.createNew();
-        serialize(dataManipulator, dataView);
+        this.serialize(dataManipulator, dataView);
         return dataView;
     }
 
@@ -115,18 +117,36 @@ public interface DataStore {
      * Provides a {@link DataStore} for a single {@link Key}.
      * <p>
      *     Note that default deserializers do not support {@link Collection}, {@link Map} or Array types!
-     *     Use {@link Builder#key(Key, BiConsumer, Function)} for these.
+     *     Use {@link Builder.SerializersStep#key(Key, BiConsumer, Function)} for these.
      * </p>
      *
      * @param key The data key
      * @param dataQuery The dataQuery to serialize this key under
-     * @param typeToken The dataHolder type
+     * @param typeTokens The dataHolder types
      *
      * @return The new data store
      */
     @SafeVarargs
-    static <T> DataStore of(Key<Value<T>> key, DataQuery dataQuery, TypeToken<? extends DataHolder>... typeToken) {
-        return builder().key(key, dataQuery).holder(typeToken).build();
+    static <T> DataStore of(Key<Value<T>> key, DataQuery dataQuery, TypeToken<? extends DataHolder> typeToken, TypeToken<? extends DataHolder>... typeTokens) {
+        return DataStore.builder().pluginData(key.getKey()).holder(typeToken).holder(typeTokens).key(key, dataQuery).build();
+    }
+
+    /**
+     * Provides a {@link DataStore} for a single {@link Key}.
+     * <p>
+     *     Note that default deserializers do not support {@link Collection}, {@link Map} or Array types!
+     *     Use {@link Builder.SerializersStep#key(Key, BiConsumer, Function)} for these.
+     * </p>
+     *
+     * @param key The data key
+     * @param dataQuery The dataQuery to serialize this key under
+     * @param types The dataHolder types
+     *
+     * @return The new data store
+     */
+    @SafeVarargs
+    static <T> DataStore of(Key<Value<T>> key, DataQuery dataQuery, Class<?extends DataHolder> type, Class<? extends DataHolder>... types) {
+        return DataStore.builder().pluginData(key.getKey()).holder(type).holder(types).key(key, dataQuery).build();
     }
 
     /**
@@ -141,62 +161,98 @@ public interface DataStore {
     interface Builder extends ResettableBuilder<DataStore, Builder> {
 
         /**
-         * Adds the default implemented serializers for the given key.
-         * <p>
-         *     Note that default deserializers do not support {@link Collection}, {@link Map} or Array types!
-         *     Use {@link #key(Key, BiConsumer, Function)} for these.
-         * </p>
+         * Starts building a DataStore for plugin data.
+         * <p>Serializers and Deserializers will operate on their own {@link DataView}.</p>
          *
-         * @param key The data key
-         * @param dataQueries The dataQuery to serialize this key under
+         * @param key the key under which all data from this DataStore is registered
          *
          * @return this builder for chaining
          */
-        default <T> Builder key(Key<? extends Value<T>> key, String... dataQueries) {
-            return this.key(key, DataQuery.of(dataQueries));
+        HolderStep pluginData(ResourceKey key);
+
+        /**
+         * Starts building a DataStore for raw data.
+         * <p>Serializers and deserializers will operate on the root {@link DataView}
+         * which includes all data from vanilla minecraft and more</p>
+         * <p>Consider using {@link #pluginData} instead.</p>
+         *
+         * @return this builder for chaining
+         */
+        HolderStep vanillaData();
+
+        interface HolderStep extends ResettableBuilder<DataStore, Builder> {
+            /**
+             * Adds one or more allowed dataHolder types
+             *
+             * @param typeTokens the dataHolder types
+             *
+             * @return this builder for chaining
+             */
+            @SuppressWarnings("unchecked")
+            SerializersStep holder(TypeToken<? extends DataHolder>... typeTokens);
+
+            /**
+             * Adds one or more allowed dataHolder types
+             *
+             * @param types the dataHolder types
+             *
+             * @return this builder for chaining
+             */
+            @SuppressWarnings("unchecked")
+            SerializersStep holder(Class<? extends DataHolder>... types);
         }
 
-        /**
-         * Adds the default implemented serializers for the given key.
-         * <p>
-         *     Note that default deserializers do not support {@link Collection}, {@link Map} or Array types!
-         *     Use {@link #key(Key, BiConsumer, Function)} for these.
-         * </p>
-         *
-         * @param key The data key
-         * @param dataQuery The dataQuery to serialize this key under
-         *
-         * @return this builder for chaining
-         */
-        <T> Builder key(Key<? extends Value<T>> key, DataQuery dataQuery);
+        interface SerializersStep extends HolderStep, ResettableBuilder<DataStore, Builder>{
+            /**
+             * Adds the default implemented serializers for the given key.
+             * <p>
+             *     Note that default deserializers do not support {@link Collection}, {@link Map} or Array types!
+             *     Use {@link #key(Key, BiConsumer, Function)} for these.
+             * </p>
+             *
+             * @param key The data key
+             * @param dataQueries The dataQuery to serialize this key under
+             *
+             * @return this builder for chaining
+             */
+            default <T> Builder.EndStep key(Key<? extends Value<T>> key, String... dataQueries) {
+                return this.key(key, DataQuery.of(dataQueries));
+            }
 
-        /**
-         * Adds the serializers for the given key.
-         *
-         * @param key The data key
-         * @param serializer the data serializer
-         * @param deserializer the data serserializer
-         *
-         * @return this builder for chaining
-         */
-        <T> Builder key(Key<? extends Value<T>> key, BiConsumer<DataView, T> serializer, Function<DataView, Optional<T>> deserializer);
+            /**
+             * Adds the default implemented serializers for the given key.
+             * <p>
+             *     Note that default deserializers do not support {@link Collection}, {@link Map} or Array types!
+             *     Use {@link #key(Key, BiConsumer, Function)} for these.
+             * </p>
+             *
+             * @param key The data key
+             * @param dataQuery The dataQuery to serialize this key under
+             *
+             * @return this builder for chaining
+             */
+            <T> Builder.EndStep key(Key<? extends Value<T>> key, DataQuery dataQuery);
 
-        /**
-         * Adds one or more allowed dataHolder types
-         *
-         * @param typeTokens the dataHolder types
-         *
-         * @return this builder for chaining
-         */
-        @SuppressWarnings("unchecked")
-        Builder holder(TypeToken<? extends DataHolder>... typeTokens);
+            /**
+             * Adds the serializers for the given key.
+             *
+             * @param key The data key
+             * @param serializer the data serializer
+             * @param deserializer the data serserializer
+             *
+             * @return this builder for chaining
+             */
+            <T> Builder.EndStep key(Key<? extends Value<T>> key, BiConsumer<DataView, T> serializer, Function<DataView, Optional<T>> deserializer);
+        }
 
-        /**
-         * Builds a dataStore for given dataHolder type.
-         *
-         * @return The new data store
-         */
-        DataStore build();
+        interface EndStep extends SerializersStep, ResettableBuilder<DataStore, Builder>{
+            /**
+             * Builds a dataStore for given dataHolder type.
+             *
+             * @return The new data store
+             */
+            DataStore build();
+        }
     }
 
 }
