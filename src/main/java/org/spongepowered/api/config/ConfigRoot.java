@@ -25,8 +25,8 @@
 package org.spongepowered.api.config;
 
 import org.spongepowered.configurate.CommentedConfigurationNode;
+import org.spongepowered.configurate.ConfigurationOptions;
 import org.spongepowered.configurate.loader.ConfigurationLoader;
-import org.spongepowered.configurate.serialize.TypeSerializerCollection;
 
 import java.nio.file.Path;
 
@@ -70,22 +70,31 @@ public interface ConfigRoot {
      * Gets the configuration file that utilizes the default configuration
      * pathname.
      *
+     * <p>The returned loader will default to using options that:</p>
+     * <ul>
+     *     <li>Copy default values to the configuration</li>
+     *     <li>Implicitly initialize values (so will provide an empty value if
+     *     no default is provided)</li>
+     *     <li>Use the Sponge default {@link org.spongepowered.configurate.serialize.TypeSerializer TypeSerializers},
+     *     as described in {@link ConfigManager#getSerializers()}.</li>
+     * </ul>
+     *
      * @return A configuration object
      * @see #getConfigPath()
      */
     ConfigurationLoader<CommentedConfigurationNode> getConfig();
 
     /**
-     * Get the serializers applicable to this root.
+     * Gets the configuration file that utilizes the default configuration
+     * pathname.
      *
-     * <p>The returned serializers will be for Sponge and Adventure types, as
-     * well as an object mapper that can use any applicable
-     * Guice {@link com.google.inject.Injector} to create instances.</p>
+     * <p>The returned loader will default to using the provided options.</p>
      *
-     * @return applicable serializers
-     * @see ConfigManager#getSerializers() for globally available serializers
+     * @param options Default options to be used when loading
+     * @return A configuration object
+     * @see #getConfigPath()
      */
-    TypeSerializerCollection getSerializers();
+    ConfigurationLoader<CommentedConfigurationNode> getConfig(final ConfigurationOptions options);
 
     /**
      * Gets the directory that this configuration root refers to.
