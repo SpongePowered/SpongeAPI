@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.config;
 
+import org.spongepowered.configurate.reference.WatchServiceListener;
 import org.spongepowered.configurate.serialize.TypeSerializerCollection;
 import org.spongepowered.plugin.PluginContainer;
 
@@ -91,7 +92,18 @@ public interface ConfigManager {
      *         {@link org.spongepowered.api.data.persistence.DataTranslators})</li>
      * </ul>
      *
-     * @return a type serializer collection aware of Sponge serializers
+     * @return A type serializer collection aware of Sponge serializers
      */
     TypeSerializerCollection getSerializers();
+
+    /**
+     * Get a file watch listener using the game executor.
+     *
+     * <p>This can be used to get {@link org.spongepowered.configurate.reference.ConfigurationReference auto-reloading references}
+     * to configuration files.</p>
+     *
+     * @return The game watch service listener
+     */
+    WatchServiceListener getWatchServiceListener();
+
 }
