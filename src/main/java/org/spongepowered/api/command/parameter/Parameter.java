@@ -48,6 +48,8 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Cause;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.util.Color;
@@ -474,8 +476,18 @@ public interface Parameter {
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<InetAddress> ipOrSource() {
-        return ip().orDefault(cause -> cause.getCause().root() instanceof RemoteConnection ?
+        return Parameter.ip().orDefault(cause -> cause.getCause().root() instanceof RemoteConnection ?
                 ((RemoteConnection) cause.getCause().root()).getAddress().getAddress() : null);
+    }
+
+    /**
+     * Creates a builder that has the {@link ValueParameter} set to
+     * {@link CatalogedValueParameters#ITEM_STACK_SNAPSHOT}.
+     *
+     * @return A {@link Parameter.Value.Builder}
+     */
+    static Parameter.Value.Builder<ItemStackSnapshot> itemStackSnapshot() {
+        return Parameter.builder(ItemStackSnapshot.class, CatalogedValueParameters.ITEM_STACK_SNAPSHOT);
     }
 
     /**

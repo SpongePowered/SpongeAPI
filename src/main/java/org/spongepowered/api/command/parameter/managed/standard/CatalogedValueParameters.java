@@ -34,6 +34,8 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Cause;
+import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.world.Locatable;
@@ -182,9 +184,16 @@ public final class CatalogedValueParameters {
     /**
      * Require an argument to be an IP address.
      *
-     * <p>Returns an {@link InetAddress}</p>
+     * <p>Returns an {@link InetAddress}.</p>
      */
     public static final Supplier<CatalogedValueParameter<InetAddress>> IP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "ip");
+
+    /**
+     * Require an argument to represent an item.
+     *
+     * <p>Returns a {@link ItemStackSnapshot} with a quantity of 1.</p>
+     */
+    public static final Supplier<CatalogedValueParameter<ItemStackSnapshot>> ITEM_STACK_SNAPSHOT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "item_stack_snapshot");
 
     /**
      * Expect an argument to represent a {@link ServerLocation} which can
