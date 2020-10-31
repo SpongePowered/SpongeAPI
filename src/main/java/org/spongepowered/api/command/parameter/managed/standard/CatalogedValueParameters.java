@@ -89,26 +89,6 @@ public final class CatalogedValueParameters {
     /**
      * Require an argument to be a boolean.
      *
-     * <p>The recognized true values are:</p>
-     *
-     * <ul>
-     *     <li>true</li>
-     *     <li>t</li>
-     *     <li>yes</li>
-     *     <li>y</li>
-     *     <li>veryumuchso</li>
-     * </ul>
-     *
-     * <p>The recognized false values are:</p>
-     *
-     * <ul>
-     *     <li>false</li>
-     *     <li>f</li>
-     *     <li>no</li>
-     *     <li>n</li>
-     *     <li>notatall</li>
-     * </ul>
-     *
      * <p>Returns a {@link Boolean}.</p>
      */
     public static final Supplier<CatalogedValueParameter<Boolean>> BOOLEAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "boolean");
