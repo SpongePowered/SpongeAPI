@@ -142,6 +142,11 @@ tasks {
         from(ap.get().output)
         manifest {
             attributes("Main-Class" to "org.spongepowered.api.util.InformativeMain")
+            attributes("Specification-Vendor" to "SpongePowered")
+            attributes("Specification-Title" to "SpongeAPI")
+            attributes("Specification-Version" to project.version)
+            System.getenv()["GIT_COMMIT"]?.apply { attributes("Git-Commit" to this) }
+            System.getenv()["GIT_BRANCH"]?.apply { attributes("Git-Branch" to this) }
         }
     }
 
