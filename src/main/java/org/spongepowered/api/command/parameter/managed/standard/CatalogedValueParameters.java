@@ -168,12 +168,9 @@ public final class CatalogedValueParameters {
     /**
      * Expect an argument to represent a {@link GameProfile} of a user.
      *
-     * <p>This parameter accepts selectors (to obtain the game profiles of
-     * online players). As a result, this may return multiple profiles.</p>
-     *
      * <p>Returns a {@link GameProfile}.</p>
      */
-    public static final Supplier<CatalogedValueParameter<Collection<GameProfile>>> GAME_PROFILE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "game_profile");
+    public static final Supplier<CatalogedValueParameter<GameProfile>> GAME_PROFILE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "game_profile");
 
     /**
      * Require an argument to be an integer (base 10) number.
@@ -222,6 +219,16 @@ public final class CatalogedValueParameters {
      * @see #ENTITY
      */
     public static final Supplier<CatalogedValueParameter<List<Entity>>> MANY_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "many_entities");
+
+    /**
+     * Expect an argument to represent a {@link GameProfile} of a user.
+     *
+     * <p>This parameter accepts selectors (to obtain the game profiles of
+     * online players). As a result, this may return multiple profiles.</p>
+     *
+     * <p>Returns a {@link GameProfile}.</p>
+     */
+    public static final Supplier<CatalogedValueParameter<Collection<GameProfile>>> MANY_GAME_PROFILES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatalogedValueParameter.class, "many_game_profiles");
 
     /**
      * Require an argument to select many {@link ServerPlayer players}.
