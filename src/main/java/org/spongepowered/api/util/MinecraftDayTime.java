@@ -122,7 +122,7 @@ public interface MinecraftDayTime {
      * elapsed since the Minecraft epoch (6:00am on Day 1) for the given
      * {@link Engine}.
      *
-     * <p>For example, if the supplied {@link Ticks} was {@code Ticks.of(18000)
+     * <p>For example, if the supplied {@link Ticks} was {@code Ticks.of(18000)}
      * on the vanilla server, this would correspond to an in game time of
      * 12:00am on Day 2 (18 hours after Minecraft epoch).</p>
      *
