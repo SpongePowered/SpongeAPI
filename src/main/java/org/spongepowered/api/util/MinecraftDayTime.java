@@ -163,17 +163,7 @@ public interface MinecraftDayTime {
      * @param ticks The {@link Ticks} to add.
      * @return A new {@link MinecraftDayTime}
      */
-    MinecraftDayTime plus(final Ticks ticks);
-
-    /**
-     * Substracts the time given by the provided {@link Ticks} object and
-     * returns a new object with the result.
-     *
-     * @param ticks The {@link Ticks} to subtract.
-     * @return A new {@link MinecraftDayTime}
-     * @throws IllegalArgumentException if the result would be a negative time.
-     */
-    MinecraftDayTime minus(final Ticks ticks);
+    MinecraftDayTime add(final Ticks ticks);
 
     /**
      * Adds the time given by the arguments and returns a new object with
@@ -185,7 +175,17 @@ public interface MinecraftDayTime {
      * @return A new {@link MinecraftDayTime}
      * @throws IllegalArgumentException if any of the arguments are negative.
      */
-    MinecraftDayTime plus(int days, int hour, int minute);
+    MinecraftDayTime add(int days, int hour, int minute);
+
+    /**
+     * Subtracts the time given by the provided {@link Ticks} object and
+     * returns a new object with the result.
+     *
+     * @param ticks The {@link Ticks} to subtract.
+     * @return A new {@link MinecraftDayTime}
+     * @throws IllegalArgumentException if the result would be a negative time.
+     */
+    MinecraftDayTime subtract(final Ticks ticks);
 
     /**
      * Subtracts the time given by the arguments and returns a new object with
@@ -198,7 +198,7 @@ public interface MinecraftDayTime {
      * @throws IllegalArgumentException if any of the arguments are negative or
      *      the result would be a negative time.
      */
-    MinecraftDayTime minus(int days, int hour, int minute);
+    MinecraftDayTime subtract(int days, int hour, int minute);
 
     /**
      * Returns a {@link Duration} that represents in-game time from the
