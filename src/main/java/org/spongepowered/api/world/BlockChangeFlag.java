@@ -64,6 +64,28 @@ public interface BlockChangeFlag {
     boolean notifyObservers();
 
     /**
+     * Gets whether this flag will queue lighting updates, different
+     * blocks may affect lighting in locations, which can potentially
+     * cause other blocks to perform side effects due to the light
+     * changes (like mushrooms). It is not recommended to rely on this
+     * particular flag for any changes that can cause client-side
+     * lighting inconsistencies.
+     *
+     * @return True if this flag will update lighting
+     */
+    boolean updateLighting();
+
+    /**
+     * Gets whether this flag will notify pathfinders and navigators
+     * for AI on entities and potentially other entities of a block
+     * change. It may be helpful for mass block placement to bypass
+     * a notification of pathfinders within an area.
+     *
+     * @return True if this flag will update pathing
+     */
+    boolean notifyPathfinding();
+
+    /**
      * Gets the equivalent {@link BlockChangeFlag} of this flag with all
      * other flags while having the desired {@code updateNeighbors}
      * as defined by the parameter.
