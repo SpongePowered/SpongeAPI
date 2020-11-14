@@ -408,6 +408,10 @@ public final class TypeTokens {
 
     public static final TypeToken<Object> OBJECT = TypeToken.of(Object.class);
 
+    public static final TypeToken<Orientation> ORIENTATION_TOKEN = new TypeToken<Orientation>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<Orientation>> ORIENTATION_VALUE_TOKEN = new TypeToken<Value<Orientation>>() {private static final long serialVersionUID = -1;};
+
     public static final TypeToken<PandaGene> PANDA_GENE_TOKEN = new TypeToken<PandaGene>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<PandaGene>> PANDA_GENE_VALUE_TOKEN = new TypeToken<Value<PandaGene>>() {private static final long serialVersionUID = -1;};
