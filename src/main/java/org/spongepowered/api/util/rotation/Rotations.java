@@ -25,41 +25,21 @@
 package org.spongepowered.api.util.rotation;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.hanging.ItemFrame;
-import org.spongepowered.api.item.inventory.ItemStack;
 
 import java.util.function.Supplier;
 
-/**
- * An enumeration of possible rotations for something that can rotate,
- * such as an {@link ItemStack} within
- * an {@link ItemFrame}.
- */
 public final class Rotations {
 
-    // SORTFIELDS:ON
+    // sortfields:off
+    public static final Supplier<Rotation> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "none");
 
-    public static final Supplier<Rotation> BOTTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "bottom");
+    public static final Supplier<Rotation> CLOCKWISE_90 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "clockwise_90");
 
-    public static final Supplier<Rotation> BOTTOM_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "bottom_left");
+    public static final Supplier<Rotation> CLOCKWISE_180 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "clockwise_180");
 
-    public static final Supplier<Rotation> BOTTOM_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "bottom_right");
+    public static final Supplier<Rotation> COUNTER_CLOCKWISE_90 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "counter_clockwise_90");
+    // sortfields:on
 
-    public static final Supplier<Rotation> LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "left");
-
-    public static final Supplier<Rotation> RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "right");
-
-    public static final Supplier<Rotation> TOP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "top");
-
-    public static final Supplier<Rotation> TOP_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "top_left");
-
-    public static final Supplier<Rotation> TOP_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "top_right");
-
-    // SORTFIELDS:OFF
-
-    // Suppress default constructor to ensure non-instantiability.
-    private Rotations() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
-    }
+    private Rotations() {}
 
 }

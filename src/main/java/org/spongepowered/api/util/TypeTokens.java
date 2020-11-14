@@ -36,8 +36,8 @@ import org.spongepowered.api.block.entity.BlockEntityArchetype;
 import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.CommandExecutor;
 import org.spongepowered.api.command.manager.CommandMapping;
-import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.meta.BannerPatternLayer;
+import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.type.ArmorMaterial;
 import org.spongepowered.api.data.type.ArtType;
 import org.spongepowered.api.data.type.AttachmentSurface;
@@ -46,10 +46,10 @@ import org.spongepowered.api.data.type.BodyPart;
 import org.spongepowered.api.data.type.CatType;
 import org.spongepowered.api.data.type.ChestAttachmentType;
 import org.spongepowered.api.data.type.ComparatorMode;
+import org.spongepowered.api.data.type.DoorHinge;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.type.FoxType;
 import org.spongepowered.api.data.type.HandPreference;
-import org.spongepowered.api.data.type.DoorHinge;
 import org.spongepowered.api.data.type.HandType;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
@@ -100,11 +100,11 @@ import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
+import org.spongepowered.api.event.cause.entity.DismountType;
+import org.spongepowered.api.event.cause.entity.MovementType;
+import org.spongepowered.api.event.cause.entity.SpawnType;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
-import org.spongepowered.api.event.cause.entity.DismountType;
-import org.spongepowered.api.event.cause.entity.SpawnType;
-import org.spongepowered.api.event.cause.entity.MovementType;
 import org.spongepowered.api.fluid.FluidStack;
 import org.spongepowered.api.fluid.FluidStackSnapshot;
 import org.spongepowered.api.fluid.FluidState;
@@ -123,7 +123,7 @@ import org.spongepowered.api.projectile.source.ProjectileSource;
 import org.spongepowered.api.raid.RaidWave;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.statistic.Statistic;
-import org.spongepowered.api.util.rotation.Rotation;
+import org.spongepowered.api.util.orientation.Orientation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.util.weighted.WeightedTable;
 import org.spongepowered.api.world.LocatableBlock;
@@ -476,9 +476,9 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<RailDirection>> RAIL_DIRECTION_VALUE_TOKEN = new TypeToken<Value<RailDirection>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<Rotation> ROTATION_TOKEN = new TypeToken<Rotation>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<Orientation> ROTATION_TOKEN = new TypeToken<Orientation>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<Value<Rotation>> ROTATION_VALUE_TOKEN = new TypeToken<Value<Rotation>>() {private static final long serialVersionUID = -1;};
+    public static final TypeToken<Value<Orientation>> ROTATION_VALUE_TOKEN = new TypeToken<Value<Orientation>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Set<BlockType>> SET_BLOCK_TYPE_TOKEN = new TypeToken<Set<BlockType>>() {private static final long serialVersionUID = -1;};
 

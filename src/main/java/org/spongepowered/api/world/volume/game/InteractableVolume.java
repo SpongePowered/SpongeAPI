@@ -35,7 +35,7 @@ import org.spongepowered.math.vector.Vector3i;
 
 import java.time.Duration;
 
-public interface InteractableVolume extends ReadableBlockVolume {
+public interface InteractableVolume extends ReadableBlockVolume, LocationBaseDataHolder {
 
     /**
      * Simulates hitting a block as if a player had done so.

@@ -22,5 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
-package org.spongepowered.api.util.rotation;
+package org.spongepowered.api.util.mirror;
+
+import org.spongepowered.api.Sponge;
+
+import java.util.function.Supplier;
+
+public final class Mirrors {
+
+    // sortfields:off
+    public static final Supplier<Mirror> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Mirror.class, "none");
+
+    public static final Supplier<Mirror> LEFT_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Mirror.class, "left_right");
+
+    public static final Supplier<Mirror> FRONT_BACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Mirror.class, "front_back");
+    // sortfields:on
+
+    private Mirrors() {}
+
+}

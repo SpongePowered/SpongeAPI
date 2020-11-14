@@ -22,31 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.hanging;
+package org.spongepowered.api.world.volume.stream;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.util.orientation.Orientation;
+import org.spongepowered.api.world.volume.MutableVolume;
 
-/**
- * Represents an Item Frame.
- */
-public interface ItemFrame extends Hanging {
+import java.util.function.Supplier;
 
-    /**
-     * {@link Keys#ITEM_STACK_SNAPSHOT}
-     * @return The item being hung on this item frame
-     */
-    default Value.Mutable<ItemStackSnapshot> item() {
-        return this.requireValue(Keys.ITEM_STACK_SNAPSHOT).asMutable();
-    }
+public interface VolumeCollector<M extends MutableVolume, T, R> {
 
-    /**
-     * {@link Keys#ORIENTATION}
-     * @return The rotation of the item in this item frame.
-     */
-    default Value.Mutable<Orientation> itemOrientation() {
-        return this.requireValue(Keys.ORIENTATION).asMutable();
-    }
+    Supplier<M> target();
+
+    VolumePositionTranslator<M, T> positionTransform();
+
+    VolumeApplicator<M, T, R> applicator();
+
 }

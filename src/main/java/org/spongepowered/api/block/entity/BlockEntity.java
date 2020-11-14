@@ -29,10 +29,14 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.annotation.DoNotStore;
+import org.spongepowered.api.util.mirror.Mirror;
+import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.LocatableBlock;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.schematic.Schematic;
+
+import java.util.function.Supplier;
 
 /**
  * Represents a block entity. It is a functional block that is
@@ -91,6 +95,42 @@ public interface BlockEntity extends SerializableDataHolder.Mutable, Locatable {
      * @return The blockstate
      */
     BlockState getBlock();
+
+    /**
+     * Rotates this {@link BlockEntity} for the desired {@link Rotation}.
+     *
+     * @param rotation The rotation
+     * @return The rotated state if not this state
+     */
+    BlockEntity rotate(Rotation rotation);
+
+    /**
+     * Rotates this {@link BlockEntity} for the desired {@link Rotation}.
+     *
+     * @param rotation The rotation
+     * @return The rotated state if not this state
+     */
+    default BlockEntity rotate(final Supplier<Rotation> rotation) {
+        return this.rotate(rotation.get());
+    }
+
+    /**
+     * Gets the appropriate {@link BlockEntity} for the desired {@link Mirror}.
+     *
+     * @param mirror The mirror
+     * @return The mirrored BlockEntity
+     */
+    BlockEntity mirror(Mirror mirror);
+
+    /**
+     * Gets the appropriate {@link BlockEntity} for the desired {@link Mirror}.
+     *
+     * @param mirror The mirror
+     * @return The mirrored BlockEntity
+     */
+    default BlockEntity mirror(final Supplier<Mirror> mirror) {
+        return this.mirror(mirror.get());
+    }
 
     /**
      * Creates a new {@link BlockEntityArchetype} for use with {@link Schematic}s

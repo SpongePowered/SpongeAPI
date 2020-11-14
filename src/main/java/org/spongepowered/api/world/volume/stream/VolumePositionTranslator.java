@@ -22,31 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.hanging;
+package org.spongepowered.api.world.volume.stream;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.util.orientation.Orientation;
+import org.spongepowered.api.world.volume.Volume;
 
 /**
- * Represents an Item Frame.
+ * A "final step" to a {@link VolumeStream VolumeStream's} collection into a
+ * {@link VolumeCollector} to where the desired {@code T} element is potentially
+ * translated
+ * @param <V>
+ * @param <T>
  */
-public interface ItemFrame extends Hanging {
+public interface VolumePositionTranslator<V extends Volume, T> {
 
-    /**
-     * {@link Keys#ITEM_STACK_SNAPSHOT}
-     * @return The item being hung on this item frame
-     */
-    default Value.Mutable<ItemStackSnapshot> item() {
-        return this.requireValue(Keys.ITEM_STACK_SNAPSHOT).asMutable();
-    }
+    VolumeElement<V, T> apply(VolumeElement<V, T> element);
 
-    /**
-     * {@link Keys#ORIENTATION}
-     * @return The rotation of the item in this item frame.
-     */
-    default Value.Mutable<Orientation> itemOrientation() {
-        return this.requireValue(Keys.ORIENTATION).asMutable();
-    }
 }

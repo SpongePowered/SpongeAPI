@@ -22,31 +22,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.hanging;
+package org.spongepowered.api.util.orientation;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.util.orientation.Orientation;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
+import java.util.Optional;
 
 /**
- * Represents an Item Frame.
+ * Represents an orientation in relative for an ItemFrame as an example.
  */
-public interface ItemFrame extends Hanging {
+@CatalogedBy(Orientations.class)
+public interface Orientation extends CatalogType {
 
     /**
-     * {@link Keys#ITEM_STACK_SNAPSHOT}
-     * @return The item being hung on this item frame
+     * Gets the {@link Orientation} with the provided degrees.
+     *
+     * @param degrees The degrees of the rotation
+     * @return The {@link Orientation} with the given degrees or
+     *      <tt>Optional.empty()</tt> if not found
      */
-    default Value.Mutable<ItemStackSnapshot> item() {
-        return this.requireValue(Keys.ITEM_STACK_SNAPSHOT).asMutable();
+    static Optional<Orientation> fromDegrees(int degrees) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).fromDegrees(degrees);
     }
 
     /**
-     * {@link Keys#ORIENTATION}
-     * @return The rotation of the item in this item frame.
+     * The angle in degrees.
+     *
+     * @return The angle in degrees
      */
-    default Value.Mutable<Orientation> itemOrientation() {
-        return this.requireValue(Keys.ORIENTATION).asMutable();
+    //TODO we should have an Angle class in the future
+    int getAngle();
+
+    interface Factory {
+
+        Optional<Orientation> fromDegrees(int degrees);
     }
 }

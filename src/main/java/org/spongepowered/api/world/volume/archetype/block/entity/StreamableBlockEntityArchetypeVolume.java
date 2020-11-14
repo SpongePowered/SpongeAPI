@@ -25,6 +25,23 @@
 package org.spongepowered.api.world.volume.archetype.block.entity;
 
 
+import org.spongepowered.api.block.entity.BlockEntityArchetype;
+import org.spongepowered.api.world.volume.stream.StreamOptions;
+import org.spongepowered.api.world.volume.stream.VolumeStream;
+import org.spongepowered.math.vector.Vector3i;
+
 public interface StreamableBlockEntityArchetypeVolume<B extends StreamableBlockEntityArchetypeVolume<B>> extends ReadableBlockEntityArchetypeVolume {
+
+    /**
+     * Gets a {@link VolumeStream}&lt;{@code B, }{@link BlockEntityArchetype}&gt;
+     * from this volume such that the {@code min} and {@code max} are contained
+     * within this volume.
+     *
+     * @param min The minimum coordinate set
+     * @param max The maximum coordinate set
+     * @param options The options to construct the stream
+     * @return The volume stream
+     */
+    VolumeStream<B, BlockEntityArchetype> getBlockEntityArchetypeStream(Vector3i min, Vector3i max, StreamOptions options);
 
 }

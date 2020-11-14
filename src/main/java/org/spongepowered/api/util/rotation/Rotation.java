@@ -25,38 +25,18 @@
 package org.spongepowered.api.util.rotation;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-import java.util.Optional;
-
-/**
- * Represents an angle of rotation.
- */
 @CatalogedBy(Rotations.class)
 public interface Rotation extends CatalogType {
 
-    /**
-     * Gets the {@link Rotation} with the provided degrees.
-     *
-     * @param degrees The degrees of the rotation
-     * @return The {@link Rotation} with the given degrees or
-     *      <tt>Optional.empty()</tt> if not found
-     */
-    static Optional<Rotation> fromDegrees(int degrees) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).fromDegrees(degrees);
-    }
+    Rotation and(Rotation rotation);
 
     /**
-     * The angle in degrees.
+     * Gets the the rotation in degrees always in clockwise order.
      *
-     * @return The angle in degrees
+     * @return The rotation in degrees
      */
-    //TODO we should have an Angle class in the future
     int getAngle();
 
-    interface Factory {
-
-        Optional<Rotation> fromDegrees(int degrees);
-    }
 }

@@ -31,6 +31,7 @@ import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.volume.entity.ReadableEntityVolume;
 import org.spongepowered.api.world.volume.game.HeightAwareVolume;
+import org.spongepowered.api.world.volume.game.LocationBaseDataHolder;
 import org.spongepowered.api.world.volume.game.UpdatableVolume;
 import org.spongepowered.api.world.volume.biome.MutableBiomeVolume;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
@@ -52,6 +53,7 @@ public interface ProtoChunk<P extends ProtoChunk<P>> extends
         MutableBiomeVolume<P>,
         ReadableEntityVolume,
         UpdatableVolume,
+        LocationBaseDataHolder.Mutable,
         HeightAwareVolume {
 
     /**
