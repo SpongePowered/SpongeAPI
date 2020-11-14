@@ -143,6 +143,7 @@ public interface DataRegistration extends CatalogType {
      *
      * @return The built data registration
      */
+    @SafeVarargs
     static <T> DataRegistration of(Key<Value<T>> key, Class<? extends DataHolder> dataHolder, Class<? extends DataHolder>... dataHolders) {
         final DataStore dataStore = DataStore.of(key, DataQuery.of(key.getKey().getNamespace(), key.getKey().getValue()), dataHolder, dataHolders);
         return DataRegistration.builder().dataKey(key).store(dataStore).key(key.getKey()).build();

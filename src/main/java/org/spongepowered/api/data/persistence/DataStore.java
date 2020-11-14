@@ -130,6 +130,7 @@ public interface DataStore {
      * @return The new data store
      */
     @SafeVarargs
+    @SuppressWarnings("unchecked")
     static <T> DataStore of(Key<Value<T>> key, DataQuery dataQuery, TypeToken<? extends DataHolder> typeToken, TypeToken<? extends DataHolder>... typeTokens) {
         return DataStore.builder().pluginData(key.getKey()).holder(typeToken).holder(typeTokens).key(key, dataQuery).build();
     }
@@ -148,6 +149,7 @@ public interface DataStore {
      * @return The new data store
      */
     @SafeVarargs
+    @SuppressWarnings("unchecked")
     static <T> DataStore of(Key<Value<T>> key, DataQuery dataQuery, Class<?extends DataHolder> type, Class<? extends DataHolder>... types) {
         return DataStore.builder().pluginData(key.getKey()).holder(type).holder(types).key(key, dataQuery).build();
     }
@@ -258,14 +260,6 @@ public interface DataStore {
              */
             DataStore build();
         }
-=======
-
-        /**
-         * Builds a dataStore for given dataHolder type.
-         *
-         * @return The new data store
-         */
-        DataStore build();
     }
 
 }

@@ -31,6 +31,8 @@ import org.spongepowered.api.NamedCatalogType;
 import org.spongepowered.api.util.NamedCatalogBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
+import java.lang.reflect.Type;
+
 /**
  * Represents a game rule.
  *
@@ -44,7 +46,7 @@ public interface GameRule<V> extends NamedCatalogType {
      *
      * @return The value type
      */
-    TypeToken<V> getValueType();
+    Type getValueType();
 
     /**
      * Gets the default value.
@@ -77,13 +79,13 @@ public interface GameRule<V> extends NamedCatalogType {
         /**
          * Sets the value type.
          *
+         * <p>This must not be a raw parameterized type.</p>
+         *
          * @param valueType The value type
          * @param <NV> The value type
          * @return This builder, for chaining
          */
-        default <NV> Builder<NV> valueType(final Class<NV> valueType) {
-            return valueType(TypeToken.get(valueType));
-        }
+        <NV> Builder<NV> valueType(final Class<NV> valueType);
 
         /**
          * Sets the value {@link TypeToken type}.

@@ -24,13 +24,14 @@
  */
 package org.spongepowered.api.data;
 
-import com.google.common.reflect.TypeToken;
+import io.leangen.geantyref.TypeToken;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 
+import java.lang.reflect.Type;
 import java.util.Optional;
 
 @SuppressWarnings("unchecked")
@@ -123,7 +124,11 @@ public interface DataProvider<V extends Value<E>, E> {
      */
     boolean isSupported(DataHolder dataHolder);
 
-    boolean isSupported(TypeToken<? extends DataHolder> dataHolder);
+    default boolean isSupported(final TypeToken<? extends DataHolder> dataHolder) {
+        return isSupported(dataHolder.getType());
+    }
+
+    boolean isSupported(Type dataHolder);
 
     DataTransactionResult offer(DataHolder.Mutable dataHolder, E element);
 
