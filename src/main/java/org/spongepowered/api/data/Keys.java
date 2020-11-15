@@ -589,6 +589,11 @@ public final class Keys {
     public static final Supplier<Key<MapValue<EntityType<?>, Double>>> CUSTOM_ATTACK_DAMAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "custom_attack_damage");
 
     /**
+     * The custom name of an {@link Entity}.
+     */
+    public static final Supplier<Key<Value<Component>>> CUSTOM_NAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "custom_name");
+
+    /**
      * The damage absorbed by an armor {@link ItemStack}.
      * Readonly
      */
@@ -632,8 +637,8 @@ public final class Keys {
     /**
      * The display name of an {@link Entity}, {@link ItemStack} or {@link BlockEntity}.
      *
-     * <p>On a {@link ItemTypes#WRITTEN_BOOK} item this will also set the title
-     * of the book.</p>
+     * <p>On an {@link Entity}, this represents a combination of {@link Keys#CUSTOM_NAME} (if set), scoreboard info, and any click data. As such
+     * this is readonly.</p>
      */
     public static final Supplier<Key<Value<Component>>> DISPLAY_NAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "display_name");
 
