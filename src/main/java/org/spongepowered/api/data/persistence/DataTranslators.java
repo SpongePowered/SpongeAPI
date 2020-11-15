@@ -25,7 +25,7 @@
 package org.spongepowered.api.data.persistence;
 
 import net.kyori.adventure.text.Component;
-import ninja.leaping.configurate.ConfigurationNode;
+import org.spongepowered.configurate.ConfigurationNode;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.world.schematic.Schematic;
 import org.spongepowered.math.imaginary.Complexd;

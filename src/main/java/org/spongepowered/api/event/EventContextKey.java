@@ -24,11 +24,13 @@
  */
 package org.spongepowered.api.event;
 
-import com.google.common.reflect.TypeToken;
+import io.leangen.geantyref.TypeToken;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+
+import java.lang.reflect.Type;
 
 /**
  * A key for values in the {@link EventContext}.
@@ -51,15 +53,32 @@ public interface EventContextKey<T> extends CatalogType {
     /**
      * Gets the allowed type for the value of this key.
      *
+     * <p>This is a concrete type equal to the parameter {@code T}</p>
+     *
      * @return The allowed type
      */
-    TypeToken<T> getAllowedType();
+    Type getAllowedType();
+
+    /**
+     * Return whether the value is an instance of this key's value type.
+     *
+     * @param value value to check
+     * @return if instance
+     */
+    boolean isInstance(Object value);
+
+    /**
+     * Cast the provided value to the value type.
+     *
+     * @param value value
+     * @return the casted value
+     * @throws ClassCastException if {@code value} is not of the correct type
+     */
+    T cast(Object value);
 
     interface Builder<T> extends CatalogBuilder<EventContextKey<T>, Builder<T>> {
 
-        default <N> Builder<N> type(Class<N> allowedType) {
-            return type(TypeToken.of(allowedType));
-        }
+        <N> Builder<N> type(Class<N> allowedType);
 
         <N> Builder<N> type(TypeToken<N> allowedType);
     }

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data.persistence;
 
-import com.google.common.reflect.TypeToken;
+import io.leangen.geantyref.TypeToken;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
@@ -33,7 +33,7 @@ import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.ResettableBuilder;
 
-import java.util.Arrays;
+import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
@@ -43,11 +43,14 @@ import java.util.function.Function;
 public interface DataStore {
 
     /**
-     * Gets the supported {@link DataHolder} type.
+     * Gets the supported {@link DataHolder} types.
+     *
+     * <p>Every returned {@link java.lang.reflect.Type} will be a subtype
+     * of {@link DataHolder}.</p>
      *
      * @return The supported dataHolder type.
      */
-    Collection<TypeToken<? extends DataHolder>> getSupportedTokens();
+    Collection<Type> getSupportedTypes();
 
     /**
      * Serializes the values of the {@link DataManipulator}
@@ -127,6 +130,7 @@ public interface DataStore {
      * @return The new data store
      */
     @SafeVarargs
+    @SuppressWarnings("unchecked")
     static <T> DataStore of(Key<Value<T>> key, DataQuery dataQuery, TypeToken<? extends DataHolder> typeToken, TypeToken<? extends DataHolder>... typeTokens) {
         return DataStore.builder().pluginData(key.getKey()).holder(typeToken).holder(typeTokens).key(key, dataQuery).build();
     }
@@ -145,6 +149,7 @@ public interface DataStore {
      * @return The new data store
      */
     @SafeVarargs
+    @SuppressWarnings("unchecked")
     static <T> DataStore of(Key<Value<T>> key, DataQuery dataQuery, Class<?extends DataHolder> type, Class<? extends DataHolder>... types) {
         return DataStore.builder().pluginData(key.getKey()).holder(type).holder(types).key(key, dataQuery).build();
     }
@@ -193,6 +198,8 @@ public interface DataStore {
 
             /**
              * Adds one or more allowed dataHolder types
+             *
+             * <p>These must not be parameterized types.</p>
              *
              * @param types the dataHolder types
              *

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data;
 
-import com.google.common.reflect.TypeToken;
+import io.leangen.geantyref.TypeToken;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataQuery;
@@ -102,6 +102,19 @@ public interface DataRegistration extends CatalogType {
     Optional<DataStore> getDataStore(TypeToken<? extends DataHolder> token);
 
     /**
+     * Gets the appropriate {@link DataStore} for the context of the
+     * {@link TypeToken} that is being serialized/deserialized. It is always
+     * possible that there may be a {@link DataStore} that does not support
+     * the provided {@link Class}, while a {@link DataProvider} may be
+     * provided for a particular {@link Key}.
+     *
+     * @param token The class of the desired ValueContainer. Cannot be a raw type
+     * @return The relevant DataStore for the desired type token of the target
+     *     type.
+     */
+    Optional<DataStore> getDataStore(Class<? extends DataHolder> token);
+
+    /**
      * Gets the registered {@link Key Keys} this controls. Note that each
      * {@link Key} can only be registered/owned by a single
      * {@link PluginContainer}. It is possible for there to be only a single
@@ -130,6 +143,7 @@ public interface DataRegistration extends CatalogType {
      *
      * @return The built data registration
      */
+    @SafeVarargs
     static <T> DataRegistration of(Key<Value<T>> key, Class<? extends DataHolder> dataHolder, Class<? extends DataHolder>... dataHolders) {
         final DataStore dataStore = DataStore.of(key, DataQuery.of(key.getKey().getNamespace(), key.getKey().getValue()), dataHolder, dataHolders);
         return DataRegistration.builder().dataKey(key).store(dataStore).key(key.getKey()).build();

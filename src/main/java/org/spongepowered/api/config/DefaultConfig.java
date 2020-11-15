@@ -26,7 +26,7 @@ package org.spongepowered.api.config;
 
 import com.google.inject.BindingAnnotation;
 import com.google.inject.Inject;
-import ninja.leaping.configurate.loader.ConfigurationLoader;
+import org.spongepowered.configurate.loader.ConfigurationLoader;
 
 import java.io.File;
 import java.lang.annotation.ElementType;

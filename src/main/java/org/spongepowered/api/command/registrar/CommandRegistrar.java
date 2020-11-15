@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.command.registrar;
 
-import com.google.common.reflect.TypeToken;
+import io.leangen.geantyref.TypeToken;
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.command.CommandCause;

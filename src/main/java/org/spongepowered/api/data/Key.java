@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data;
 
-import com.google.common.reflect.TypeToken;
+import io.leangen.geantyref.TypeToken;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
@@ -37,6 +37,7 @@ import org.spongepowered.api.util.TypeTokens;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.plugin.PluginContainer;
 
+import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.Comparator;
@@ -62,7 +63,6 @@ import java.util.function.BiPredicate;
  *
  * @param <V> The type of {@link Value}
  */
-@SuppressWarnings("UnstableApiUsage")
 @CatalogedBy(Keys.class)
 public interface Key<V extends Value<?>> extends CatalogType {
 
@@ -88,23 +88,22 @@ public interface Key<V extends Value<?>> extends CatalogType {
     }
 
     /**
-     * Gets the class of the {@link Value} this {@link Key} is representing.
+     * Gets the type of the {@link Value} this {@link Key} is representing.
      *
-     * @return The value class
+     * @return The value generic type
      */
-    TypeToken<V> getValueToken();
+    Type getValueType();
 
     /**
-     * Gets the class of the element of the {@link Value} this {@link Key}
+     * Gets the type of the element of the {@link Value} this {@link Key}
      * is representing. On occasion, if the element is a {@link Collection} type,
-     * one can occasionally use {@link TypeToken#resolveType(Type)} with
-     * {@link Class#getTypeParameters()} as the type parameter of a collection
-     * is retrievable, such as the element type parameter for {@link List} or
-     * {@link Map}.
+     * one can use {@link ParameterizedType#getActualTypeArguments()} to access
+     * type parameters, such as the element type parameter for {@link List} or
+     * {@link Map} values.
      *
-     * @return The element class
+     * @return The element generic type
      */
-    TypeToken<?> getElementToken();
+    Type getElementType();
 
     /**
      * Gets the {@link Comparator} to
@@ -151,16 +150,30 @@ public interface Key<V extends Value<?>> extends CatalogType {
          * <p>Common {@link TypeToken TypeTokens} can be found in
          * {@link TypeTokens}. If a new TypeToken is to be created, it is
          * recommended to create an anonymous class instance of a token,
-         * as recommended by Guava's wiki found
-         * <a href="https://github.com/google/guava/wiki/ReflectionExplained#introduction">here</a>.
+         * as described in <a hrep="https://github.com/leangen/geantyref#creating-type-literals-using-typetoken">the GeAnTyRef documentation</a>
          * </p>
          *
-         * @param token The type token, preferably an anonymous
+         * @param token The type token
          * @param <T> The element type of the Key
          * @param <B> The base value type of the key
          * @return This builder, generified
          */
         <T, B extends Value<T>> Builder<T, B> type(TypeToken<B> token);
+
+
+        /**
+         * Starter method for the builder, to be used immediately after
+         * {@link Key#builder()} is called. This defines the generics for the
+         * builder itself to provide the properly generified {@link Key}.
+         *
+         * <p>This overload is provided for simple cases where a plain
+         * {@link Value} is used.</p>
+         *
+         * @param type The element type
+         * @param <T> The element type of the Key
+         * @return This builder, generified
+         */
+        <T> Builder<T, Value<T>> elementType(Class<T> type);
 
         /**
          * Sets the {@link Comparator} that can be used to compare

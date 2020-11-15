@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.config;
 
+import org.spongepowered.configurate.reference.WatchServiceListener;
+import org.spongepowered.configurate.serialize.TypeSerializerCollection;
 import org.spongepowered.plugin.PluginContainer;
 
 /**
@@ -75,4 +77,33 @@ public interface ConfigManager {
      * @return A plugin-specific configuration root
      */
     ConfigRoot getPluginConfig(PluginContainer plugin);
+
+    /**
+     * Get a type serializer collection supporting Sponge types.
+     *
+     * <p>This collection is expected to handle:</p>
+     * <ul>
+     *     <li>Every type built-in to Configurate</li>
+     *     <li>Registered subtypes of {@link org.spongepowered.api.CatalogType}</li>
+     *     <li>{@link org.spongepowered.api.ResourceKey}s</li>
+     *     <li>Registered implementations of {@link org.spongepowered.api.data.persistence.DataSerializable}</li>
+     *     <li>All Adventure types including {@link net.kyori.adventure.text.Component}</li>
+     *     <li>Any type with a {@link org.spongepowered.api.data.persistence.DataTranslator} (see
+     *         {@link org.spongepowered.api.data.persistence.DataTranslators})</li>
+     * </ul>
+     *
+     * @return A type serializer collection aware of Sponge serializers
+     */
+    TypeSerializerCollection getSerializers();
+
+    /**
+     * Get a file watch listener using the game executor.
+     *
+     * <p>This can be used to get {@link org.spongepowered.configurate.reference.ConfigurationReference auto-reloading references}
+     * to configuration files.</p>
+     *
+     * @return The game watch service listener
+     */
+    WatchServiceListener getWatchServiceListener();
+
 }

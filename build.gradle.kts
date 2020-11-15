@@ -81,24 +81,26 @@ dependencies {
     api("org.spongepowered:plugin-spi:0.1.3-SNAPSHOT")
 
     // Configurate
-    api("org.spongepowered:configurate-core:3.7.1") {
-        exclude(group = "com.google.guava", module = "guava")
-        exclude(group = "com.google.inject", module = "guice")
+    api(platform("org.spongepowered:configurate-bom:4.0.0"))
+    api("org.spongepowered:configurate-core") {
         exclude(group = "org.checkerframework", module = "checker-qual") // We use our own version
     }
-    api("org.spongepowered:configurate-hocon:3.7.1") {
+    api("org.spongepowered:configurate-hocon") {
         exclude(group = "org.spongepowered", module = "configurate-core")
         exclude(group= "org.checkerframework", module = "checker-qual")
 
     }
-    api("org.spongepowered:configurate-gson:3.7.1") {
+    api("org.spongepowered:configurate-gson") {
         exclude(group = "org.spongepowered", module = "configurate-core")
         exclude(group = "com.google.code.gson", module = "gson") // We have the same version technically, but use the gson we provide.
         exclude(group= "org.checkerframework", module = "checker-qual")
     }
-    api("org.spongepowered:configurate-yaml:3.7.1") {
+    api("org.spongepowered:configurate-yaml") {
         exclude(group = "org.spongepowered", module = "configurate-core")
         exclude(group= "org.checkerframework", module = "checker-qual")
+    }
+    api("org.spongepowered:configurate-extra-guice") {
+        exclude(group = "com.google.inject", module = "guice")
     }
 
     // Math and noise for world gen
@@ -169,8 +171,7 @@ tasks {
                                 "http://www.slf4j.org/apidocs/",
                                 "https://google.github.io/guava/releases/21.0/api/docs/",
                                 "https://google.github.io/guice/api-docs/4.1/javadoc/",
-                                "https://zml2008.github.io/configurate/configurate-core/apidocs/",
-                                "https://zml2008.github.io/configurate/configurate-hocon/apidocs/",
+                                "https://configurate.aoeu.xyz/4.0.0/apidocs/",
                                 "https://docs.oracle.com/javase/8/docs/api/"
                         )
                 )
