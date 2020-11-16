@@ -25,7 +25,6 @@
 package org.spongepowered.api.service.permission;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.service.context.ContextualService;
 import org.spongepowered.plugin.PluginContainer;
 
 import java.util.AbstractMap;
@@ -66,7 +65,7 @@ import java.util.stream.Collectors;
  * {@link CompletableFuture#join()} can be used, but care should be taken to
  * avoid blocking the server thread.</p>
  */
-public interface PermissionService extends ContextualService {
+public interface PermissionService {
 
     /**
      * The standard identifier for the collection which stores users.
@@ -169,10 +168,10 @@ public interface PermissionService extends ContextualService {
      *                     but {@link PermissionDescription} contains some common suggestions.
      * @return An optional possibly containing the subject data for the given role template
      */
-    default Optional<? extends SubjectData> getRoleTemplate(PluginContainer plugin, String roleTemplate) {
+    default Optional<? extends SubjectData> getRoleTemplate(final PluginContainer plugin, final String roleTemplate) {
         Objects.requireNonNull(plugin, "plugin");
 
-        return getCollection(SUBJECTS_ROLE_TEMPLATE).flatMap(coll ->
+        return this.getCollection(SUBJECTS_ROLE_TEMPLATE).flatMap(coll ->
                 coll.getSubject(plugin.getMetadata().getId() + ":"
                         + Objects.requireNonNull(roleTemplate, "roleTemplate")))
                 .map(Subject::getTransientSubjectData);
@@ -186,13 +185,13 @@ public interface PermissionService extends ContextualService {
      *                     but {@link PermissionDescription} contains some common suggestions.
      * @return An immutable set of mappings from plugin to subject data holder.
      */
-    default Set<Map.Entry<PluginContainer, ? extends SubjectData>> getRoleTemplates(String roleTemplate) {
-        Optional<? extends SubjectCollection> coll = getCollection(SUBJECTS_ROLE_TEMPLATE);
+    default Set<Map.Entry<PluginContainer, ? extends SubjectData>> getRoleTemplates(final String roleTemplate) {
+        final Optional<? extends SubjectCollection> coll = this.getCollection(SUBJECTS_ROLE_TEMPLATE);
         if (!coll.isPresent()) {
             return Collections.emptySet();
         }
 
-        Optional<? extends Subject> globalSubj
+        final Optional<? extends Subject> globalSubj
                 = coll.get().getSubject(Objects.requireNonNull(roleTemplate, "roleTemplate"));
         if (!globalSubj.isPresent()) {
             return Collections.emptySet();
@@ -203,12 +202,12 @@ public interface PermissionService extends ContextualService {
                 .map(SubjectReference::resolve)
                 .map(CompletableFuture::join)
                 .map(it -> {
-                    String[] name = it.getIdentifier().split(":", 2);
+                    final String[] name = it.getIdentifier().split(":", 2);
                     if (name.length < 2) {
                         return null;
                     }
 
-                    Optional<PluginContainer> container = Sponge.getPluginManager().getPlugin(name[0]);
+                    final Optional<PluginContainer> container = Sponge.getPluginManager().getPlugin(name[0]);
                     if (!container.isPresent()) {
                         return null;
                     }

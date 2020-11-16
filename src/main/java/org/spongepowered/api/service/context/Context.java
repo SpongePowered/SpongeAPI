@@ -105,11 +105,11 @@ public final class Context implements Map.Entry<String, String> {
     }
 
     @Override
-    public boolean equals(final Object o) {
-        if (this == o) {
+    public boolean equals(final Object other) {
+        if (this == other) {
             return true;
         }
-        return o instanceof Map.Entry<?, ?> && this.wrapped.equals(o);
+        return other instanceof Map.Entry<?, ?> && this.wrapped.equals(other);
     }
 
     @Override

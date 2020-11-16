@@ -49,18 +49,22 @@ import java.util.Set;
 public interface ContextualService {
 
     /**
-     * Get the active contexts from the current cause
-     * @return
+     * Get the active contexts from the current cause.
+     *
+     * @return an immutable set of contexts
      */
     Set<Context> getContexts();
 
+    /**
+     * Extract applicable contexts from the provided {@link Cause}.
+     *
+     * @param cause source cause
+     * @return immutable set of extracted contexts
+     */
     Set<Context> getContextsFor(Cause cause);
 
     /**
      * Registers a {@link ContextCalculator} for use by this service.
-     *
-     * <p>It is not guaranteed that the calculator will be used by the service,
-     * as some implementations may not support contexts.</p>
      *
      * @param calculator The context calculator to register
      */

@@ -28,7 +28,6 @@ import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * A common interface for objects that have an identifier and can have a set of
