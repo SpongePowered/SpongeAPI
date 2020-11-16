@@ -26,6 +26,7 @@ package org.spongepowered.api.util;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainComponentSerializer;
+import net.kyori.adventure.util.ComponentMessageThrowable;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
@@ -33,54 +34,53 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  * {@link Component} rather than a String. This allows formatted and localized
  * exception messages.
  */
-public class TextMessageException extends Exception {
+public class ComponentMessageException extends Exception implements ComponentMessageThrowable {
 
     private static final long serialVersionUID = -5281221645176698853L;
 
     @Nullable private final Component message;
 
     /**
-     * Constructs a new {@link TextMessageException}.
+     * Constructs a new {@link ComponentMessageException}.
      */
-    public TextMessageException() {
+    public ComponentMessageException() {
         this.message = null;
     }
 
     /**
-     * Constructs a new {@link TextMessageException} with the given message.
+     * Constructs a new {@link ComponentMessageException} with the given message.
      *
      * @param message The detail message
      */
-    public TextMessageException(Component message) {
+    public ComponentMessageException(final Component message) {
         this.message = message;
     }
 
     /**
-     * Constructs a new {@link TextMessageException} with the given message and
+     * Constructs a new {@link ComponentMessageException} with the given message and
      * cause.
      *
      * @param message The detail message
      * @param throwable The cause
      */
-    public TextMessageException(Component message, Throwable throwable) {
+    public ComponentMessageException(final Component message, final Throwable throwable) {
         super(throwable);
         this.message = message;
     }
 
     /**
-     * Constructs a new {@link TextMessageException} with the given cause.
+     * Constructs a new {@link ComponentMessageException} with the given cause.
      *
      * @param throwable The cause
      */
-    public TextMessageException(Throwable throwable) {
+    public ComponentMessageException(final Throwable throwable) {
         super(throwable);
         this.message = null;
     }
 
     @Override
-    @Nullable
-    public String getMessage() {
-        Component message = getText();
+    public @Nullable String getMessage() {
+        final /* @Nullable */ Component message = this.componentMessage();
         return message == null ? null : PlainComponentSerializer.plain().serialize(message);
     }
 
@@ -90,14 +90,13 @@ public class TextMessageException extends Exception {
      * 
      * @return The text for this message
      */
-    @Nullable
-    public Component getText() {
+    @Override
+    public @Nullable Component componentMessage() {
         return this.message;
     }
 
     @Override
-    @Nullable
-    public String getLocalizedMessage() {
-        return getMessage();
+    public @Nullable String getLocalizedMessage() {
+        return this.getMessage();
     }
 }

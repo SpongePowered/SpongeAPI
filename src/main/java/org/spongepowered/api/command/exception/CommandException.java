@@ -25,13 +25,13 @@
 package org.spongepowered.api.command.exception;
 
 import net.kyori.adventure.text.Component;
-import org.spongepowered.api.util.TextMessageException;
+import org.spongepowered.api.util.ComponentMessageException;
 
 /**
  * Thrown when an executed command raises an error or when execution of
  * the command failed.
  */
-public class CommandException extends TextMessageException {
+public class CommandException extends ComponentMessageException {
 
     private static final long serialVersionUID = 4626722485860074825L;
 
@@ -42,7 +42,7 @@ public class CommandException extends TextMessageException {
      *
      * @param message The detail message
      */
-    public CommandException(Component message) {
+    public CommandException(final Component message) {
         this(message, false);
     }
 
@@ -53,7 +53,7 @@ public class CommandException extends TextMessageException {
      * @param message The detail message
      * @param cause The cause
      */
-    public CommandException(Component message, Throwable cause) {
+    public CommandException(final Component message, final Throwable cause) {
         this(message, cause, false);
     }
 
@@ -63,7 +63,7 @@ public class CommandException extends TextMessageException {
      * @param message The detail message
      * @param includeUsage Whether to include usage in the exception
      */
-    public CommandException(Component message, boolean includeUsage) {
+    public CommandException(final Component message, final boolean includeUsage) {
         super(message);
         this.includeUsage = includeUsage;
     }
@@ -76,7 +76,7 @@ public class CommandException extends TextMessageException {
      * @param cause The cause
      * @param includeUsage Whether to include the usage in the exception
      */
-    public CommandException(Component message, Throwable cause, boolean includeUsage) {
+    public CommandException(final Component message, final Throwable cause, final boolean includeUsage) {
         super(message, cause);
         this.includeUsage = includeUsage;
     }

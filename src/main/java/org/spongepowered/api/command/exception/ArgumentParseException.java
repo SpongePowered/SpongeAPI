@@ -26,6 +26,7 @@ package org.spongepowered.api.command.exception;
 
 import com.google.common.base.Strings;
 import net.kyori.adventure.text.Component;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.command.parameter.Parameter;
 
 /**
@@ -65,10 +66,10 @@ public class ArgumentParseException extends CommandException {
     }
 
     @Override
-    public Component getText() {
-        final Component superText = super.getText();
+    public @Nullable Component componentMessage() {
+        final @Nullable Component superText = super.componentMessage();
         if (this.source == null || this.source.isEmpty()) {
-            return super.getText();
+            return super.componentMessage();
         } else if (superText == null) {
             return Component.text(this.getAnnotatedPosition());
         } else {
@@ -80,8 +81,8 @@ public class ArgumentParseException extends CommandException {
         }
     }
 
-    public Component getSuperText() {
-        return super.getText();
+    public @Nullable Component getSuperText() {
+        return super.componentMessage();
     }
 
     /**
