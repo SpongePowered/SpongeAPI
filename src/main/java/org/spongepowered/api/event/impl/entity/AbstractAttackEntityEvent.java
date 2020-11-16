@@ -28,10 +28,10 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
-import org.spongepowered.api.event.cause.entity.damage.ModifierFunction;
 import org.spongepowered.api.event.cause.entity.damage.DamageFunction;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
+import org.spongepowered.api.event.cause.entity.damage.ModifierFunction;
 import org.spongepowered.api.event.entity.AttackEntityEvent;
 import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.util.annotation.eventgen.UseField;
@@ -45,21 +45,20 @@ import java.util.function.DoubleUnaryOperator;
 public abstract class AbstractAttackEntityEvent extends AbstractModifierEvent<DamageFunction, DamageModifier> implements AttackEntityEvent {
 
     @UseField protected double originalDamage;
-    @UseField protected List<ModifierFunction<DamageModifier>> originalFunctions;
+    @UseField protected List<DamageFunction> originalFunctions;
 
     @UseField protected double baseDamage;
 
     @Override
     protected final void init() {
-        throw new IllegalStateException("This needs to be updated for 1.13!");
-        //this.originalFunctions = this.init(this.originalDamage, this.originalFunctions);
-        //this.baseDamage = this.originalDamage;
+        this.originalFunctions = this.init(this.originalDamage, this.originalFunctions);
+        this.baseDamage = this.originalDamage;
     }
 
     @Override
-    public final double getOriginalModifierDamage(DamageModifier damageModifier) {
+    public final double getOriginalModifierDamage(final DamageModifier damageModifier) {
         checkArgument(damageModifier != null, "The damage modifier cannot be null!");
-        for (Tuple<DamageModifier, Double> tuple : this.originalModifiers) {
+        for (final Tuple<DamageModifier, Double> tuple : this.originalModifiers) {
             if (tuple.getFirst().equals(damageModifier)) {
                 return tuple.getSecond();
             }
@@ -84,25 +83,25 @@ public abstract class AbstractAttackEntityEvent extends AbstractModifierEvent<Da
     }
 
     @Override
-    public final boolean isModifierApplicable(DamageModifier damageModifier) {
+    public final boolean isModifierApplicable(final DamageModifier damageModifier) {
         return this.modifiers.containsKey(checkNotNull(damageModifier));
     }
 
     @Override
-    public final double getOutputDamage(DamageModifier damageModifier) {
+    public final double getOutputDamage(final DamageModifier damageModifier) {
         checkArgument(this.modifiers.containsKey(checkNotNull(damageModifier)), "The provided damage modifier is not applicable : "
                                                                                 + damageModifier.toString());
         return this.modifiers.get(checkNotNull(damageModifier));
     }
 
     @Override
-    public final void setOutputDamage(DamageModifier damageModifier, DoubleUnaryOperator function) {
+    public final void setOutputDamage(final DamageModifier damageModifier, final DoubleUnaryOperator function) {
         checkNotNull(damageModifier, "Damage modifier was null!");
         checkNotNull(function, "Function was null!");
         int indexToAddTo = 0;
         boolean addAtEnd = true;
-        for (Iterator<DamageFunction> iterator = this.modifierFunctions.iterator(); iterator.hasNext(); ) {
-            ModifierFunction<DamageModifier> tuple = iterator.next();
+        for (final Iterator<DamageFunction> iterator = this.modifierFunctions.iterator(); iterator.hasNext(); ) {
+            final ModifierFunction<DamageModifier> tuple = iterator.next();
             if (tuple.getModifier().equals(damageModifier)) {
                 iterator.remove();
                 addAtEnd = false;
@@ -119,12 +118,12 @@ public abstract class AbstractAttackEntityEvent extends AbstractModifierEvent<Da
     }
 
     @Override
-    public void addDamageModifierBefore(DamageModifier damageModifier, DoubleUnaryOperator function, Set<DamageModifierType> before) {
+    public void addDamageModifierBefore(final DamageModifier damageModifier, final DoubleUnaryOperator function, final Set<DamageModifierType> before) {
         checkNotNull(damageModifier, "Damage modifier was null!");
         checkNotNull(function, "Function was null!");
         int indexToAddBefore = -1;
         int index = 0;
-        for (ModifierFunction<DamageModifier> tuple : this.modifierFunctions) {
+        for (final ModifierFunction<DamageModifier> tuple : this.modifierFunctions) {
             checkArgument(!tuple.getModifier().equals(damageModifier), "Cannot add a duplicate modifier!");
             if (before.contains(tuple.getModifier().getType())) {
                 indexToAddBefore = index;
@@ -141,12 +140,12 @@ public abstract class AbstractAttackEntityEvent extends AbstractModifierEvent<Da
     }
 
     @Override
-    public void addDamageModifierAfter(DamageModifier damageModifier, DoubleUnaryOperator function, Set<DamageModifierType> after) {
+    public void addDamageModifierAfter(final DamageModifier damageModifier, final DoubleUnaryOperator function, final Set<DamageModifierType> after) {
         checkNotNull(damageModifier, "Damage modifier was null!");
         checkNotNull(function, "Function was null!");
         int indexToAddAfter = -1;
         int index = 0;
-        for (ModifierFunction<DamageModifier> tuple : this.modifierFunctions) {
+        for (final ModifierFunction<DamageModifier> tuple : this.modifierFunctions) {
             checkArgument(!tuple.getModifier().equals(damageModifier), "Cannot add a duplicate modifier!");
             if (after.contains(tuple.getModifier().getType())) {
                 indexToAddAfter = index;
@@ -168,20 +167,20 @@ public abstract class AbstractAttackEntityEvent extends AbstractModifierEvent<Da
     }
 
     @Override
-    public final void setBaseOutputDamage(double baseDamage) {
+    public final void setBaseOutputDamage(final double baseDamage) {
         this.baseDamage = baseDamage;
         this.recalculateDamages(this.baseDamage);
     }
 
     @Override
-    protected DamageFunction convertTuple(DamageModifier obj, DoubleUnaryOperator function) {
+    protected DamageFunction convertTuple(final DamageModifier obj, final DoubleUnaryOperator function) {
         return new DamageFunction(obj, function);
     }
 
     @Override
     public List<DamageFunction> getModifiers() {
-        ImmutableList.Builder<DamageFunction> builder = ImmutableList.builder();
-        for (ModifierFunction<DamageModifier> entry : this.modifierFunctions) {
+        final ImmutableList.Builder<DamageFunction> builder = ImmutableList.builder();
+        for (final ModifierFunction<DamageModifier> entry : this.modifierFunctions) {
             if (entry instanceof DamageFunction) {
                 builder.add((DamageFunction) entry);
             } else {
