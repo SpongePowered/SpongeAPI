@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.util.weighted;
 
-import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
@@ -32,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import java.util.StringJoiner;
 
 /**
  * Represents a pool of tables which are rolled sequentially when retrieving
@@ -41,7 +41,7 @@ import java.util.Random;
  */
 public class LootTable<T> {
 
-    private List<RandomObjectTable<T>> pool = new ArrayList<>();
+    private final List<RandomObjectTable<T>> pool = new ArrayList<>();
 
     /**
      * Creates a new {@link LootTable}.
@@ -55,7 +55,7 @@ public class LootTable<T> {
      * 
      * @param table The new table
      */
-    public void addTable(RandomObjectTable<T> table) {
+    public void addTable(final RandomObjectTable<T> table) {
         this.pool.add(Objects.requireNonNull(table));
     }
 
@@ -64,7 +64,7 @@ public class LootTable<T> {
      * 
      * @param other The other loot table
      */
-    public void addAll(LootTable<T> other) {
+    public void addAll(final LootTable<T> other) {
         this.pool.addAll(other.pool);
     }
 
@@ -74,7 +74,7 @@ public class LootTable<T> {
      * @param table The table to remove
      * @return If the pool contained the table
      */
-    public boolean removeTable(RandomObjectTable<T> table) {
+    public boolean removeTable(final RandomObjectTable<T> table) {
         return this.pool.remove(table);
     }
     
@@ -100,23 +100,23 @@ public class LootTable<T> {
      * @param rand The random object to use
      * @return The retrieved entries
      */
-    public List<T> get(Random rand) {
-        List<T> results = Lists.newArrayList();
-        for (RandomObjectTable<T> pool : this.pool) {
+    public List<T> get(final Random rand) {
+        final List<T> results = Lists.newArrayList();
+        for (final RandomObjectTable<T> pool : this.pool) {
             results.addAll(pool.get(rand));
         }
         return results;
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (o == this) {
             return true;
         }
         if (!(o instanceof LootTable)) {
             return false;
         }
-        LootTable<?> c = (LootTable<?>) o;
+        final LootTable<?> c = (LootTable<?>) o;
         if (this.pool.size() != c.pool.size()) {
             return false;
         }
@@ -131,7 +131,7 @@ public class LootTable<T> {
     @Override
     public int hashCode() {
         int r = 1;
-        for (RandomObjectTable<T> table : this.pool) {
+        for (final RandomObjectTable<T> table : this.pool) {
             r = r * 37 + table.hashCode();
         }
         return r;
@@ -139,7 +139,8 @@ public class LootTable<T> {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).add("pool", this.pool).toString();
+        return new StringJoiner(", ", LootTable.class.getSimpleName() + "[", "]")
+            .add("pool=" + this.pool)
+            .toString();
     }
-
 }

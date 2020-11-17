@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event;
 
-import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.util.CopyableBuilder;
@@ -36,6 +35,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.StringJoiner;
 
@@ -73,7 +73,7 @@ public final class Cause implements Iterable<Object> {
      * @param cause The direct object cause
      * @return The constructed cause
      */
-    public static Cause of(EventContext ctx, Object cause) {
+    public static Cause of(final EventContext ctx, final Object cause) {
         java.util.Objects.requireNonNull(ctx, "Context");
         java.util.Objects.requireNonNull(cause, "Cause cannot be null!");
         return new Cause(ctx, new Object[] {cause});
@@ -87,11 +87,11 @@ public final class Cause implements Iterable<Object> {
      * @param causes Other associated causes
      * @return The built cause
      */
-    public static Cause of(EventContext ctx, Object cause, Object... causes) {
+    public static Cause of(final EventContext ctx, final Object cause, final Object... causes) {
         java.util.Objects.requireNonNull(ctx, "Context");
-        Builder builder = builder();
+        final Builder builder = Cause.builder();
         builder.append(cause);
-        for (Object namedCause : causes) {
+        for (final Object namedCause : causes) {
             builder.append(namedCause);
         }
         return builder.build(ctx);
@@ -104,10 +104,10 @@ public final class Cause implements Iterable<Object> {
      * @param iterable The associated causes
      * @return The built cause
      */
-    public static Cause of(EventContext ctx, Iterable<Object> iterable) {
+    public static Cause of(final EventContext ctx, final Iterable<Object> iterable) {
         java.util.Objects.requireNonNull(ctx, "Context");
-        Builder builder = builder();
-        for (Object cause : iterable) {
+        final Builder builder = Cause.builder();
+        for (final Object cause : iterable) {
             builder.append(cause);
         }
         return builder.build(ctx);
@@ -125,7 +125,7 @@ public final class Cause implements Iterable<Object> {
      * @param ctx The event context
      * @param causes The causes
      */
-    Cause(EventContext ctx, Object[] causes) {
+    Cause(final EventContext ctx, final Object[] causes) {
         java.util.Objects.requireNonNull(ctx, "Context");
         final Object[] objects = new Object[causes.length];
         for (int index = 0; index < causes.length; index++) {
@@ -141,11 +141,11 @@ public final class Cause implements Iterable<Object> {
      * @param ctx The event context
      * @param causes The causes
      */
-    Cause(EventContext ctx, Collection<Object> causes) {
+    Cause(final EventContext ctx, final Collection<Object> causes) {
         java.util.Objects.requireNonNull(ctx, "Context");
         final Object[] objects = new Object[causes.size()];
         int index = 0;
-        for (Object cause: causes) {
+        for (final Object cause: causes) {
             objects[index++] = java.util.Objects.requireNonNull(cause, "Null cause element!");
         }
         this.cause = objects;
@@ -177,8 +177,8 @@ public final class Cause implements Iterable<Object> {
      * @param <T> The type of object being queried for
      * @return The first element of the type, if available
      */
-    public <T> Optional<T> first(Class<T> target) {
-        for (Object aCause : this.cause) {
+    public <T> Optional<T> first(final Class<T> target) {
+        for (final Object aCause : this.cause) {
             if (target.isInstance(aCause)) {
                 return Optional.of((T) aCause);
             }
@@ -194,7 +194,7 @@ public final class Cause implements Iterable<Object> {
      * @param <T> The type of object being queried for
      * @return The last element of the type, if available
      */
-    public <T> Optional<T> last(Class<T> target) {
+    public <T> Optional<T> last(final Class<T> target) {
         for (int i = this.cause.length - 1; i >= 0; i--) {
             if (target.isInstance(this.cause[i])) {
                 return Optional.of((T) this.cause[i]);
@@ -210,7 +210,7 @@ public final class Cause implements Iterable<Object> {
      * @param clazz The class of the object
      * @return The object
      */
-    public Optional<?> before(Class<?> clazz) {
+    public Optional<?> before(final Class<?> clazz) {
         if (clazz == null) {
             throw new IllegalArgumentException("The provided class cannot be null!");
         }
@@ -232,7 +232,7 @@ public final class Cause implements Iterable<Object> {
      * @param clazz The class to type check
      * @return The object after, if available
      */
-    public Optional<?> after(Class<?> clazz) {
+    public Optional<?> after(final Class<?> clazz) {
         if (clazz == null) {
             throw new IllegalArgumentException("The provided class cannot be null!");
         }
@@ -254,9 +254,9 @@ public final class Cause implements Iterable<Object> {
      * @param target The class of the target type
      * @return True if found, false otherwise
      */
-    public boolean containsType(Class<?> target) {
+    public boolean containsType(final Class<?> target) {
         java.util.Objects.requireNonNull(target, "The provided class cannot be null!");
-        for (Object aCause : this.cause) {
+        for (final Object aCause : this.cause) {
             if (target.isInstance(aCause)) {
                 return true;
             }
@@ -273,8 +273,8 @@ public final class Cause implements Iterable<Object> {
      * @param object The object to check if it is contained
      * @return True if the object is contained within this cause
      */
-    public boolean contains(Object object) {
-        for (Object aCause : this.cause) {
+    public boolean contains(final Object object) {
+        for (final Object aCause : this.cause) {
             if (aCause.equals(object)) {
                 return true;
             }
@@ -290,9 +290,9 @@ public final class Cause implements Iterable<Object> {
      * @param target The class of the target type
      * @return An immutable list of the objects queried
      */
-    public <T> List<T> allOf(Class<T> target) {
-        ImmutableList.Builder<T> builder = ImmutableList.builder();
-        for (Object aCause : this.cause) {
+    public <T> List<T> allOf(final Class<T> target) {
+        final ImmutableList.Builder<T> builder = ImmutableList.builder();
+        for (final Object aCause : this.cause) {
             if (target.isInstance(aCause)) {
                 builder.add((T) aCause);
             }
@@ -307,9 +307,9 @@ public final class Cause implements Iterable<Object> {
      * @param ignoredClass The class of object types to ignore
      * @return The list of objects not an instance of the provided class
      */
-    public List<Object> noneOf(Class<?> ignoredClass) {
-        ImmutableList.Builder<Object> builder = ImmutableList.builder();
-        for (Object cause : this.cause) {
+    public List<Object> noneOf(final Class<?> ignoredClass) {
+        final ImmutableList.Builder<Object> builder = ImmutableList.builder();
+        for (final Object cause : this.cause) {
             if (!ignoredClass.isInstance(cause)) {
                 builder.add(cause);
             }
@@ -336,11 +336,11 @@ public final class Cause implements Iterable<Object> {
      * @param additional The additional object to add
      * @return The new cause
      */
-    public Cause with(Object additional) {
+    public Cause with(final Object additional) {
         java.util.Objects.requireNonNull(additional, "No null arguments allowed!");
-        List<Object> list = new ArrayList<>();
+        final List<Object> list = new ArrayList<>();
         list.add(additional);
-        return with(list);
+        return this.with(list);
     }
 
     /**
@@ -351,15 +351,15 @@ public final class Cause implements Iterable<Object> {
      * @param additionals The remaining objects to add
      * @return The new cause
      */
-    public Cause with(Object additional, Object... additionals) {
+    public Cause with(final Object additional, final Object... additionals) {
         java.util.Objects.requireNonNull(additional, "No null arguments allowed!");
-        List<Object> list = new ArrayList<>();
+        final List<Object> list = new ArrayList<>();
         list.add(additional);
-        for (Object object : additionals) {
+        for (final Object object : additionals) {
             java.util.Objects.requireNonNull(object, "Cannot add null objects!");
             list.add(object);
         }
-        return with(list);
+        return this.with(list);
     }
 
     /**
@@ -369,9 +369,9 @@ public final class Cause implements Iterable<Object> {
      * @param iterable The additional objects
      * @return The new cause
      */
-    public Cause with(Iterable<Object> iterable) {
-        Cause.Builder builder = new Builder().from(this);
-        for (Object o : iterable) {
+    public Cause with(final Iterable<Object> iterable) {
+        final Cause.Builder builder = new Builder().from(this);
+        for (final Object o : iterable) {
             java.util.Objects.requireNonNull(o, "Cannot add null causes");
             builder.append(o);
         }
@@ -384,8 +384,8 @@ public final class Cause implements Iterable<Object> {
      * @param cause The cause to merge with this
      * @return The new merged cause
      */
-    public Cause with(Cause cause) {
-        Cause.Builder builder = builder().from(this);
+    public Cause with(final Cause cause) {
+        final Cause.Builder builder = Cause.builder().from(this);
         for (int i = 0; i < cause.cause.length; i++) {
             builder.append(cause.cause[i]);
         }
@@ -398,9 +398,9 @@ public final class Cause implements Iterable<Object> {
     }
 
     @Override
-    public boolean equals(@Nullable Object object) {
+    public boolean equals(@Nullable final Object object) {
         if (object instanceof Cause) {
-            Cause cause = ((Cause) object);
+            final Cause cause = ((Cause) object);
             return Arrays.equals(this.cause, cause.cause);
         }
         return false;
@@ -413,8 +413,8 @@ public final class Cause implements Iterable<Object> {
 
     @Override
     public String toString() {
-        String causeString = "Cause[Context=" + this.context.toString() + ", Stack={";
-        StringJoiner joiner = new StringJoiner(", ");
+        final String causeString = "Cause[Context=" + this.context.toString() + ", Stack={";
+        final StringJoiner joiner = new StringJoiner(", ");
         for (int i = 0; i < this.cause.length; i++) {
             joiner.add(this.cause[i].toString());
         }
@@ -456,7 +456,7 @@ public final class Cause implements Iterable<Object> {
          * @param cause The object to append to the cause.
          * @return The modified builder, for chaining
          */
-        public Builder append(Object cause) {
+        public Builder append(final Object cause) {
             java.util.Objects.requireNonNull(cause, "Cause cannot be null!");
             if (!this.causes.isEmpty() && this.causes.get(this.causes.size() - 1) == cause) {
                 return this;
@@ -472,7 +472,7 @@ public final class Cause implements Iterable<Object> {
          * @param cause The object to insert into the cause
          * @return The modified builder, for chaining
          */
-        public Builder insert(int position, Object cause) {
+        public Builder insert(final int position, final Object cause) {
             java.util.Objects.requireNonNull(cause, "Cause cannot be null!");
             this.causes.add(position, cause);
             return this;
@@ -484,7 +484,7 @@ public final class Cause implements Iterable<Object> {
          * @param causes The objects to add onto the cause
          * @return The modified builder, for chaining
          */
-        public Builder appendAll(Collection<Object> causes) {
+        public Builder appendAll(final Collection<Object> causes) {
             java.util.Objects.requireNonNull(causes, "Causes cannot be null!");
             causes.forEach(this::append);
             return this;
@@ -496,7 +496,7 @@ public final class Cause implements Iterable<Object> {
          * @param ctx The context to build the cause with
          * @return The built cause
          */
-        public Cause build(EventContext ctx) {
+        public Cause build(final EventContext ctx) {
             if (this.causes.isEmpty()) {
                 throw new IllegalStateException("Cannot create an empty Cause!");
             }
@@ -504,7 +504,7 @@ public final class Cause implements Iterable<Object> {
         }
 
         @Override
-        public Builder from(Cause value) {
+        public Builder from(final Cause value) {
             for (int i = 0; i < value.cause.length; i++) {
                 this.causes.add(value.cause[i]);
             }

@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.item.recipe.crafting;
 
-import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 /**
  * The result of fulfilling a {@link CraftingRecipe}.
@@ -118,10 +118,9 @@ public final class RecipeResult {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
-                .add("result", this.result)
-                .add("remainingItems", this.remainingItems)
-                .toString();
+        return new StringJoiner(", ", RecipeResult.class.getSimpleName() + "[", "]")
+            .add("result=" + this.result)
+            .add("remainingItems=" + this.remainingItems)
+            .toString();
     }
-
 }

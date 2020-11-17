@@ -24,11 +24,10 @@
  */
 package org.spongepowered.api.util.weighted;
 
-import com.google.common.base.Objects;
-
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.Spliterator;
 import java.util.function.Consumer;
@@ -51,7 +50,7 @@ public class UnmodifiableWeightedTable<T> extends WeightedTable<T> {
      *
      * @param table The table to provide
      */
-    public UnmodifiableWeightedTable(WeightedTable<T> table) {
+    public UnmodifiableWeightedTable(final WeightedTable<T> table) {
         super();
         this.table = table;
     }
@@ -63,7 +62,7 @@ public class UnmodifiableWeightedTable<T> extends WeightedTable<T> {
      * @param table The table
      * @param rolls The rolls
      */
-    public UnmodifiableWeightedTable(WeightedTable<T> table, int rolls) {
+    public UnmodifiableWeightedTable(final WeightedTable<T> table, final int rolls) {
         super(rolls);
         this.table = table;
     }
@@ -75,7 +74,7 @@ public class UnmodifiableWeightedTable<T> extends WeightedTable<T> {
      * @param table The table
      * @param rolls The rolls
      */
-    public UnmodifiableWeightedTable(WeightedTable<T> table, VariableAmount rolls) {
+    public UnmodifiableWeightedTable(final WeightedTable<T> table, final VariableAmount rolls) {
         super(rolls);
         this.table = table;
     }
@@ -83,52 +82,52 @@ public class UnmodifiableWeightedTable<T> extends WeightedTable<T> {
     // FORBIDDEN METHODS
 
     @Override
-    public boolean add(TableEntry<T> entry) {
+    public boolean add(final TableEntry<T> entry) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public boolean add(T object, double weight) {
+    public boolean add(final T object, final double weight) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public boolean addAll(Collection<? extends TableEntry<T>> c) {
+    public boolean addAll(final Collection<? extends TableEntry<T>> c) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void setRolls(VariableAmount rolls) {
+    public void setRolls(final VariableAmount rolls) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void setRolls(int rolls) {
+    public void setRolls(final int rolls) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public boolean remove(Object entry) {
+    public boolean remove(final Object entry) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public boolean removeObject(Object entry) {
+    public boolean removeObject(final Object entry) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public boolean removeAll(Collection<?> c) {
+    public boolean removeAll(final Collection<?> c) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public boolean removeIf(Predicate<? super TableEntry<T>> filter) {
+    public boolean removeIf(final Predicate<? super TableEntry<T>> filter) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public boolean retainAll(Collection<?> c) {
+    public boolean retainAll(final Collection<?> c) {
         throw new UnsupportedOperationException();
     }
 
@@ -141,7 +140,7 @@ public class UnmodifiableWeightedTable<T> extends WeightedTable<T> {
 
     @Override
     public Iterator<TableEntry<T>> iterator() {
-        Iterator<TableEntry<T>> it = this.table.iterator();
+        final Iterator<TableEntry<T>> it = this.table.iterator();
         return new Iterator<TableEntry<T>>() {
             @Override
             public boolean hasNext() {
@@ -159,14 +158,14 @@ public class UnmodifiableWeightedTable<T> extends WeightedTable<T> {
             }
 
             @Override
-            public void forEachRemaining(Consumer<? super TableEntry<T>> action) {
+            public void forEachRemaining(final Consumer<? super TableEntry<T>> action) {
                 it.forEachRemaining(action);
             }
         };
     }
 
     @Override
-    public boolean contains(Object o) {
+    public boolean contains(final Object o) {
         return this.table.contains(o);
     }
 
@@ -176,22 +175,22 @@ public class UnmodifiableWeightedTable<T> extends WeightedTable<T> {
     }
 
     @Override
-    public List<T> get(Random rand) {
+    public List<T> get(final Random rand) {
         return this.table.get(rand);
     }
 
     @Override
-    public boolean containsObject(Object obj) {
+    public boolean containsObject(final Object obj) {
         return this.table.containsObject(obj);
     }
 
     @Override
-    public boolean containsAll(Collection<?> c) {
+    public boolean containsAll(final Collection<?> c) {
         return this.table.containsAll(c);
     }
 
     @Override
-    public boolean containsAllObjects(Collection<?> c) {
+    public boolean containsAllObjects(final Collection<?> c) {
         return this.table.containsAllObjects(c);
     }
 
@@ -216,7 +215,7 @@ public class UnmodifiableWeightedTable<T> extends WeightedTable<T> {
     }
 
     @Override
-    public <R> R[] toArray(R[] a) {
+    public <R> R[] toArray(final R[] a) {
         return this.table.toArray(a);
     }
 
@@ -236,7 +235,7 @@ public class UnmodifiableWeightedTable<T> extends WeightedTable<T> {
     }
 
     @Override
-    public void forEach(Consumer<? super TableEntry<T>> action) {
+    public void forEach(final Consumer<? super TableEntry<T>> action) {
         this.table.forEach(action);
     }
 
@@ -251,17 +250,17 @@ public class UnmodifiableWeightedTable<T> extends WeightedTable<T> {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
         if (!super.equals(o)) {
             return false;
         }
-        UnmodifiableWeightedTable<?> that = (UnmodifiableWeightedTable<?>) o;
-        return Objects.equal(this.table, that.table);
+        final UnmodifiableWeightedTable<?> that = (UnmodifiableWeightedTable<?>) o;
+        return Objects.equals(this.table, that.table);
     }
 }

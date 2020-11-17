@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.item.recipe.cooking;
 
-import com.google.common.base.MoreObjects;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 import java.util.Objects;
+import java.util.StringJoiner;
 
 /**
  * The result of fulfilling a {@link CookingRecipe}.
@@ -46,7 +46,7 @@ public final class CookingResult {
      * @param experience The experience that should be created from this result
      */
     @SuppressWarnings("ConstantConditions")
-    public CookingResult(ItemStackSnapshot result, double experience) {
+    public CookingResult(final ItemStackSnapshot result, final double experience) {
         Objects.requireNonNull(result, "result");
         if (result.isEmpty()) {
             throw new IllegalArgumentException("The resulting snapshot must not be empty");
@@ -85,14 +85,14 @@ public final class CookingResult {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
         if (!(o instanceof CookingResult)) {
             return false;
         }
-        CookingResult that = (CookingResult) o;
+        final CookingResult that = (CookingResult) o;
         return Double.compare(that.experience, this.experience) == 0 && Objects.equals(this.result, that.result);
     }
 
@@ -103,9 +103,9 @@ public final class CookingResult {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
-                .add("result", this.result)
-                .add("experience", this.experience)
-                .toString();
+        return new StringJoiner(", ", CookingResult.class.getSimpleName() + "[", "]")
+            .add("result=" + this.result)
+            .add("experience=" + this.experience)
+            .toString();
     }
 }

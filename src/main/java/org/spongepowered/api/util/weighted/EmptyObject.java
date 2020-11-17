@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.util.weighted;
 
-import com.google.common.base.MoreObjects;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.Queries;
+
+import java.util.StringJoiner;
 
 /**
  * Represents an entry in a table which has no associated object. Used to have
@@ -54,8 +55,8 @@ public class EmptyObject<T> extends TableEntry<T> implements DataSerializable {
     @Override
     public DataContainer toContainer() {
         return DataContainer.createNew()
-                .set(Queries.CONTENT_VERSION, getContentVersion())
-                .set(Queries.WEIGHTED_SERIALIZABLE_WEIGHT, getWeight());
+                .set(Queries.CONTENT_VERSION, this.getContentVersion())
+                .set(Queries.WEIGHTED_SERIALIZABLE_WEIGHT, this.getWeight());
     }
 
     @Override
@@ -67,19 +68,21 @@ public class EmptyObject<T> extends TableEntry<T> implements DataSerializable {
             return false;
         }
         EmptyObject<?> c = (EmptyObject<?>) o;
-        return getWeight() == c.getWeight();
+        return this.getWeight() == c.getWeight();
     }
 
     @Override
     public int hashCode() {
         int r = 1;
-        long w = Double.doubleToLongBits(getWeight());
+        long w = Double.doubleToLongBits(this.getWeight());
         r = r * 37 + (int) (w ^ (w >>> 32));
         return r;
     }
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).add("weight", getWeight()).toString();
+        return new StringJoiner(", ", EmptyObject.class.getSimpleName() + "[", "]")
+            .add("weight=" + this.getWeight())
+            .toString();
     }
 }

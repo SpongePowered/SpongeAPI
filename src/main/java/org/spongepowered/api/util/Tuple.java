@@ -24,8 +24,10 @@
  */
 package org.spongepowered.api.util;
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
+import org.checkerframework.checker.nullness.qual.Nullable;
+
+import java.util.Objects;
+import java.util.StringJoiner;
 
 /**
  * A tuple of objects.
@@ -45,7 +47,7 @@ public class Tuple<K, V> {
      * @param <V> The type of second object
      * @return The new Tuple
      */
-    public static <K, V> Tuple<K, V> of(K first, V second) {
+    public static <K, V> Tuple<K, V> of(final K first, final V second) {
         return new Tuple<>(first, second);
     }
 
@@ -58,9 +60,9 @@ public class Tuple<K, V> {
      * @param first The first object
      * @param second The second object
      */
-    public Tuple(K first, V second) {
-        this.first = java.util.Objects.requireNonNull(first);
-        this.second = java.util.Objects.requireNonNull(second);
+    public Tuple(final K first, final V second) {
+        this.first = Objects.requireNonNull(first);
+        this.second = Objects.requireNonNull(second);
     }
 
     /**
@@ -83,28 +85,28 @@ public class Tuple<K, V> {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
-            .add("first", this.first)
-            .add("second", this.second)
+        return new StringJoiner(", ", Tuple.class.getSimpleName() + "[", "]")
+            .add("first=" + this.first)
+            .add("second=" + this.second)
             .toString();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(this.first, this.second);
+        return Objects.hash(this.first, this.second);
     }
 
     @SuppressWarnings("rawtypes")
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final @Nullable Object obj) {
         if (this == obj) {
             return true;
         }
-        if (obj == null || getClass() != obj.getClass()) {
+        if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
         final Tuple other = (Tuple) obj;
-        return Objects.equal(this.first, other.first)
-                && Objects.equal(this.second, other.second);
+        return Objects.equals(this.first, other.first)
+                && Objects.equals(this.second, other.second);
     }
 }
