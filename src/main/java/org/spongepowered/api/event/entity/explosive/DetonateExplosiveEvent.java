@@ -25,7 +25,6 @@
 package org.spongepowered.api.event.entity.explosive;
 
 import org.spongepowered.api.entity.explosive.Explosive;
-import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.world.explosion.Explosion;
@@ -37,11 +36,11 @@ import org.spongepowered.api.world.explosion.Explosion.Builder;
 public interface DetonateExplosiveEvent extends Event, Cancellable {
 
     /**
-     * Gets the {@link FusedExplosive}.
+     * Gets the {@link Explosive}.
      *
-     * @return The fused explosive
+     * @return The explosive
      */
-    FusedExplosive getFusedExplosive();
+    Explosive getExplosive();
 
     /**
      * Returns the explosion of the vanilla behavior that this event was
