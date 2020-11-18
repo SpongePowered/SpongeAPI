@@ -54,6 +54,11 @@ public interface SubjectProxy extends Subject {
     }
 
     @Override
+    default Optional<?> getAssociatedObject() {
+        return this.getSubject().getAssociatedObject();
+    }
+
+    @Override
     default boolean isSubjectDataPersisted() {
         return this.subject().isSubjectDataPersisted();
     }

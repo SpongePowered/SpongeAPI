@@ -102,6 +102,16 @@ public interface Subject extends Contextual {
     SubjectReference asSubjectReference();
 
     /**
+     * Get the game object that may be associated with this subject.
+     *
+     * <p>This could be a player, system subject, or something else. The return
+     * value of this method should not be stored.</p>
+     *
+     * @return a potential game object
+     */
+    Optional<?> getAssociatedObject();
+
+    /**
      * Returns if this Subject has persistent, non-transient data.
      *
      * <p>If true, this subject should have two distinct stores of SubjectData,
