@@ -44,7 +44,9 @@ import org.spongepowered.api.registry.CatalogTypeAlreadyRegisteredException;
 import org.spongepowered.api.registry.RegistryModule;
 import org.spongepowered.api.registry.RegistryModuleAlreadyRegisteredException;
 import org.spongepowered.api.resourcepack.ResourcePack;
+import org.spongepowered.api.scoreboard.critieria.Criterion;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
+import org.spongepowered.api.scoreboard.objective.Objective;
 import org.spongepowered.api.statistic.BlockStatistic;
 import org.spongepowered.api.statistic.EntityStatistic;
 import org.spongepowered.api.statistic.ItemStatistic;
@@ -350,6 +352,28 @@ public interface GameRegistry {
      *         none could be found
      */
     Optional<ResourcePack> getResourcePackById(String id);
+
+    /**
+     * Gets a {@link Criterion} which causes an {@link Objective}
+     * to have a score for a player incremented when he kills a member of
+     * the given colored team.
+     *
+     * @param color The color for the criterion
+     * @return The team kill {@link Criterion} with the provided color,
+     * or <tt>Optional.empty()</tt> if not found
+     */
+    Optional<Criterion> getTeamKillCriterionForColor(TextColor color);
+
+    /**
+     * Gets a {@link Criterion} which causes an {@link Objective}
+     * to have a score for a player incremented when he has been killed by
+     * a member of the given colored team.
+     *
+     * @param color The color for the criterion
+     * @return The killed by team {@link Criterion} with the provided color,
+     * or <tt>Optional.empty()</tt> if not found
+     */
+    Optional<Criterion> getKilledByTeamCriterionForColor(TextColor color);
 
     /**
      * Gets a {@link DisplaySlot} which displays only for teams with the

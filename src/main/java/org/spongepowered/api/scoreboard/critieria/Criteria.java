@@ -74,6 +74,43 @@ public final class Criteria {
      */
     public static final Criterion TRIGGER = DummyObjectProvider.createFor(Criterion.class, "TRIGGER");
 
+    /**
+     * Represents a {@link Criterion} which causes an {@link Objective}
+     * to have a score that represents the amount of hunger points the
+     * player has, on a scale of 0-20. May appear as 0 for players before
+     * their foodLevel has changed for the first time.
+     */
+    public static final Criterion FOOD = DummyObjectProvider.createFor(Criterion.class, "FOOD");
+
+    /**
+     * Represents a {@link Criterion} which causes an {@link Objective}
+     * to have a score that represents the amount of air the player has
+     * left from swimming under water, matches the air nbt tag of the
+     * player, on a scale of 0-300.
+     */
+    public static final Criterion AIR = DummyObjectProvider.createFor(Criterion.class, "AIR");
+
+    /**
+     * Represents a {@link Criterion} which causes an {@link Objective}
+     * to have a score for a player represent their amount of armor points,
+     * on a scale of 0-20. May appear as 0 for players before their armor
+     * has changed for the first time.
+     */
+    public static final Criterion ARMOR = DummyObjectProvider.createFor(Criterion.class, "ARMOR");
+
+    /**
+     * Represents a {@link Criteria} which causes an {@link Objective} to have
+     * a score that matches the total amount of experience the player has
+     * collected since their last death (or in other words, their score).
+     */
+    public static final Criterion XP = DummyObjectProvider.createFor(Criterion.class, "XP");
+
+    /**
+     * Represents a {@link Criteria} which causes an {@link Objective} to have
+     * a score that matches the current experience level of the player.
+     */
+    public static final Criterion LEVEL = DummyObjectProvider.createFor(Criterion.class, "LEVEL");
+
     // SORTFIELDS:OFF
 
     // Suppress default constructor to ensure non-instantiability.
