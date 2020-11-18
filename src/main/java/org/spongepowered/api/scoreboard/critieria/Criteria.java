@@ -36,6 +36,22 @@ public final class Criteria {
     // SORTFIELDS:ON
 
     /**
+     * Represents a {@link Criterion} which causes an {@link Objective}
+     * to have a score that represents the amount of air the player has
+     * left from swimming under water, matches the air nbt tag of the
+     * player, on a scale of 0-300.
+     */
+    public static final Criterion AIR = DummyObjectProvider.createFor(Criterion.class, "AIR");
+
+    /**
+     * Represents a {@link Criterion} which causes an {@link Objective}
+     * to have a score for a player represent their amount of armor points,
+     * on a scale of 0-20. May appear as 0 for players before their armor
+     * has changed for the first time.
+     */
+    public static final Criterion ARMOR = DummyObjectProvider.createFor(Criterion.class, "ARMOR");
+
+    /**
      * Represents a {@link Criteria} which causes an {@link Objective}
      * to have a score for a player incremented when they die.
      */
@@ -48,12 +64,26 @@ public final class Criteria {
     public static final Criterion DUMMY = DummyObjectProvider.createFor(Criterion.class, "DUMMY");
 
     /**
+     * Represents a {@link Criterion} which causes an {@link Objective}
+     * to have a score that represents the amount of hunger points the
+     * player has, on a scale of 0-20. May appear as 0 for players before
+     * their foodLevel has changed for the first time.
+     */
+    public static final Criterion FOOD = DummyObjectProvider.createFor(Criterion.class, "FOOD");
+
+    /**
      * Represents a {@link Criteria} which causes an {@link Objective} to have
      * a score for a player represent their current health, on a scale of 0-20
      * (can be greater than 20 due to effects such as
      * {@link PotionEffectTypes#HEALTH_BOOST}).
      */
     public static final Criterion HEALTH = DummyObjectProvider.createFor(Criterion.class, "HEALTH");
+
+    /**
+     * Represents a {@link Criteria} which causes an {@link Objective} to have
+     * a score that matches the current experience level of the player.
+     */
+    public static final Criterion LEVEL = DummyObjectProvider.createFor(Criterion.class, "LEVEL");
 
     /**
      * Represents a {@link Criteria} which causes an {@link Objective}
@@ -73,6 +103,13 @@ public final class Criteria {
      * command.
      */
     public static final Criterion TRIGGER = DummyObjectProvider.createFor(Criterion.class, "TRIGGER");
+
+    /**
+     * Represents a {@link Criteria} which causes an {@link Objective} to have
+     * a score that matches the total amount of experience the player has
+     * collected since their last death (or in other words, their score).
+     */
+    public static final Criterion XP = DummyObjectProvider.createFor(Criterion.class, "XP");
 
     // SORTFIELDS:OFF
 

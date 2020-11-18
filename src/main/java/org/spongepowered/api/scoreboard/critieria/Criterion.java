@@ -25,7 +25,11 @@
 package org.spongepowered.api.scoreboard.critieria;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.scoreboard.Team;
+import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+
+import java.util.Optional;
 
 /**
  * Represents a set of behaviours for an objective, which may cause it to be
@@ -41,5 +45,12 @@ public interface Criterion extends CatalogType {
      */
     @Override
     String getName();
+
+    /**
+     * Gets the {@link Team} color that this criterion depending on, if set.
+     *
+     * @return The {@link Team} color that this criterion depending on, if set
+     */
+    Optional<TextColor> getTeamColor();
 
 }
