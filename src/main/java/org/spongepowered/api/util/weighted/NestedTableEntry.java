@@ -24,12 +24,10 @@
  */
 package org.spongepowered.api.util.weighted;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import com.google.common.base.MoreObjects;
-
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
+import java.util.StringJoiner;
 
 /**
  * Represents a {@link RandomObjectTable} which is nested inside the entry of
@@ -48,9 +46,9 @@ public class NestedTableEntry<T> extends TableEntry<T> {
      * @param weight The weight to apply to the entry
      * @param table The table itself
      */
-    public NestedTableEntry(double weight, RandomObjectTable<T> table) {
+    public NestedTableEntry(final double weight, final RandomObjectTable<T> table) {
         super(weight);
-        this.table = checkNotNull(table);
+        this.table = Objects.requireNonNull(table);
     }
 
     /**
@@ -59,26 +57,26 @@ public class NestedTableEntry<T> extends TableEntry<T> {
      * @param rand The random object to use
      * @return The retrieved entries
      */
-    public List<T> get(Random rand) {
+    public List<T> get(final Random rand) {
         return this.table.get(rand);
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (o == this) {
             return true;
         }
         if (!(o instanceof NestedTableEntry)) {
             return false;
         }
-        NestedTableEntry<?> c = (NestedTableEntry<?>) o;
+        final NestedTableEntry<?> c = (NestedTableEntry<?>) o;
         return this.table.equals(c.table);
     }
 
     @Override
     public int hashCode() {
         int r = 1;
-        long w = Double.doubleToLongBits(getWeight());
+        final long w = Double.doubleToLongBits(this.getWeight());
         r = r * 37 + (int) (w ^ (w >>> 32));
         r = r * 37 + this.table.hashCode();
         return r;
@@ -86,7 +84,8 @@ public class NestedTableEntry<T> extends TableEntry<T> {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).add("table", this.table).toString();
+        return new StringJoiner(", ", NestedTableEntry.class.getSimpleName() + "[", "]")
+            .add("table=" + this.table)
+            .toString();
     }
-
 }

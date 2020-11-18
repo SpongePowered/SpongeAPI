@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.service.ban;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
@@ -34,6 +32,7 @@ import org.spongepowered.api.util.CopyableBuilder;
 
 import java.net.InetAddress;
 import java.time.Instant;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -189,7 +188,7 @@ public interface Ban {
          * @return This builder
          */
         default Builder type(Supplier<? extends BanType> type) {
-            return this.type(checkNotNull(type.get()));
+            return this.type(Objects.requireNonNull(type.get()));
         }
 
         /**

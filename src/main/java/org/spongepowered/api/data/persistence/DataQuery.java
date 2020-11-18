@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.persistence;
 
-import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableList;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 
@@ -32,6 +31,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Spliterator;
+import java.util.StringJoiner;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
 
@@ -185,7 +185,7 @@ public final class DataQuery implements Iterable<String> {
     public List<DataQuery> getQueryParts() {
         if (this.queryParts == null) {
             final ImmutableList.Builder<DataQuery> builder = ImmutableList.builder();
-            for (final String part : getParts()) {
+            for (final String part : this.getParts()) {
                 builder.add(new DataQuery(part));
             }
             this.queryParts = builder.build();
@@ -202,7 +202,7 @@ public final class DataQuery implements Iterable<String> {
      */
     public DataQuery pop() {
         if (this.parts.size() <= 1) {
-            return of();
+            return DataQuery.of();
         }
         final ImmutableList.Builder<String> builder = ImmutableList.builder();
         for (int i = 0; i < this.parts.size() - 1; i++) {
@@ -220,7 +220,7 @@ public final class DataQuery implements Iterable<String> {
      */
     public DataQuery popFirst() {
         if (this.parts.size() <= 1) {
-            return of();
+            return DataQuery.of();
         }
         final ImmutableList.Builder<String> builder = ImmutableList.builder();
         for (int i = 1; i < this.parts.size(); i++) {
@@ -249,7 +249,9 @@ public final class DataQuery implements Iterable<String> {
      * @return This query as a string
      */
     public String asString(final String separator) {
-        return Joiner.on(separator).join(this.parts);
+        final StringJoiner stringJoiner = new StringJoiner(separator);
+        this.parts.forEach(stringJoiner::add);
+        return stringJoiner.toString();
     }
 
     /**
@@ -259,12 +261,12 @@ public final class DataQuery implements Iterable<String> {
      * @return This query as a string
      */
     public String asString(final char separator) {
-        return asString(String.valueOf(separator));
+        return this.asString(String.valueOf(separator));
     }
 
     @Override
     public String toString() {
-        return asString('.');
+        return this.asString('.');
     }
 
     @Override
@@ -277,7 +279,7 @@ public final class DataQuery implements Iterable<String> {
         if (this == obj) {
             return true;
         }
-        if (obj == null || getClass() != obj.getClass()) {
+        if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
         final DataQuery other = (DataQuery) obj;

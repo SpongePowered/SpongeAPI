@@ -24,9 +24,8 @@
  */
 package org.spongepowered.api.util.weighted;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import com.google.common.base.MoreObjects;
+import java.util.Objects;
+import java.util.StringJoiner;
 
 /**
  * An entry which contains an object.
@@ -44,9 +43,9 @@ public class WeightedObject<T> extends TableEntry<T> {
      * @param obj The object
      * @param weight The weight of the object
      */
-    public WeightedObject(T obj, double weight) {
+    public WeightedObject(final T obj, final double weight) {
         super(weight);
-        this.object = checkNotNull(obj);
+        this.object = Objects.requireNonNull(obj);
     }
 
     /**
@@ -59,21 +58,21 @@ public class WeightedObject<T> extends TableEntry<T> {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (o == this) {
             return true;
         }
         if (!(o instanceof WeightedObject)) {
             return false;
         }
-        WeightedObject<?> c = (WeightedObject<?>) o;
-        return this.object.equals(c.object) && getWeight() == c.getWeight();
+        final WeightedObject<?> c = (WeightedObject<?>) o;
+        return this.object.equals(c.object) && this.getWeight() == c.getWeight();
     }
 
     @Override
     public int hashCode() {
         int r = 1;
-        long w = Double.doubleToLongBits(getWeight());
+        final long w = Double.doubleToLongBits(this.getWeight());
         r = r * 37 + (int) (w ^ (w >>> 32));
         r = r * 37 + this.object.hashCode();
         return r;
@@ -81,6 +80,8 @@ public class WeightedObject<T> extends TableEntry<T> {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).add("object", this.object).toString();
+        return new StringJoiner(", ", WeightedObject.class.getSimpleName() + "[", "]")
+            .add("object=" + this.object)
+            .toString();
     }
 }

@@ -24,10 +24,9 @@
  */
 package org.spongepowered.api.data.persistence;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.spongepowered.api.Sponge;
 
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -47,7 +46,7 @@ public abstract class AbstractDataBuilder<T extends DataSerializable> implements
     private final Class<T> requiredClass;
 
     protected AbstractDataBuilder(Class<T> requiredClass, int supportedVersion) {
-        this.requiredClass = checkNotNull(requiredClass, "Required class");
+        this.requiredClass = Objects.requireNonNull(requiredClass, "Required class");
         this.supportedVersion = supportedVersion;
     }
 

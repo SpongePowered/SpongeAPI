@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api;
 
-import static com.google.common.base.Preconditions.checkState;
-
 import com.google.inject.Inject;
 import org.spongepowered.api.asset.AssetManager;
 import org.spongepowered.api.command.manager.CommandManager;
@@ -56,7 +54,9 @@ public final class Sponge {
      * @return The game instance
      */
     public static Game getGame() {
-        checkState(Sponge.game != null, "Sponge has not been initialized!");
+        if (Sponge.game == null) {
+            throw new IllegalStateException("Sponge has not been initialized!");
+        }
         return Sponge.game;
     }
 

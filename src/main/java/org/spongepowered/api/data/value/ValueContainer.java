@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.data.value;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import com.google.common.collect.ImmutableSet;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.data.DataHolder;
@@ -33,6 +31,7 @@ import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.Key;
 
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.OptionalInt;
@@ -244,7 +243,7 @@ public interface ValueContainer {
      * @return The value, or default if not set
      */
     default <E> E getOrElse(Key<? extends Value<E>> key, E defaultValue) {
-        return this.get(key).orElse(checkNotNull(defaultValue, "defaultValue"));
+        return this.get(key).orElse(Objects.requireNonNull(defaultValue, "defaultValue"));
     }
 
     /**

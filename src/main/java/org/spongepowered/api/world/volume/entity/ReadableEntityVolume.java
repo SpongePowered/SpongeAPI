@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world.volume.entity;
 
-import com.google.common.base.Preconditions;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityPredicates;
@@ -35,6 +34,7 @@ import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Predicate;
@@ -70,7 +70,7 @@ public interface ReadableEntityVolume extends Volume {
      * @return All the intersecting entities
      */
     default Collection<? extends Entity> getEntities(AABB box) {
-        Preconditions.checkNotNull(box);
+        Objects.requireNonNull(box);
 
         return this.getEntities(box, entity -> true);
     }
@@ -119,8 +119,10 @@ public interface ReadableEntityVolume extends Volume {
      * @return A collection of nearby entities
      */
     default Collection<? extends Entity> getNearbyEntities(Vector3d location, double distance) {
-        Preconditions.checkNotNull(location);
-        Preconditions.checkArgument(distance > 0, "distance must be > 0");
+        Objects.requireNonNull(location);
+        if (distance <= 0) {
+            throw new IllegalArgumentException("Distance must be a positive number!");
+        }
 
         return this.getEntities(new AABB(location.getX() - distance, location.getY() - distance, location.getZ() - distance,
                 location.getX() + distance, location.getY() + distance, location.getZ() + distance),

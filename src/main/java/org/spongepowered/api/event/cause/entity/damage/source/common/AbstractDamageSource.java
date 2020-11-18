@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.event.cause.entity.damage.source.common;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
+
+import java.util.Objects;
 
 /**
  * An abstract implementation of {@link DamageSource} to allow plugins to create
@@ -49,7 +49,7 @@ public abstract class AbstractDamageSource implements DamageSource {
     private final double exhaustion;
 
     protected AbstractDamageSource(AbstractDamageSourceBuilder<?, ?> builder) {
-        this.apiDamageType = checkNotNull(builder.damageType, "DamageType cannot be null!");
+        this.apiDamageType = Objects.requireNonNull(builder.damageType, "DamageType cannot be null!");
         this.absolute = builder.absolute;
         this.bypassesArmor = builder.bypasses;
         this.scales = builder.scales;

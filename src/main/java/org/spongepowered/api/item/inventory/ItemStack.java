@@ -24,9 +24,6 @@
  */
 package org.spongepowered.api.item.inventory;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
@@ -43,10 +40,10 @@ import org.spongepowered.api.entity.attribute.type.AttributeType;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
-import org.spongepowered.api.item.inventory.equipment.EquipmentTypes;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -353,10 +350,9 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
          * @return This builder, for chaining
          */
         default Builder fromBlockState(BlockState blockState) {
-            checkNotNull(blockState);
+            Objects.requireNonNull(blockState);
             final BlockType blockType = blockState.getType();
-            checkArgument(blockType.getItem().isPresent(), "Missing valid ItemType for BlockType: " + blockType.getKey().toString());
-            itemType(blockType.getItem().get());
+            itemType(blockType.getItem().orElseThrow(() -> new IllegalArgumentException("Missing valid ItemType for BlockType: " + blockType.getKey().toString())));
             blockState.getValues().forEach(this::add);
             return this;
         }
@@ -369,10 +365,9 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
          * @return This builder, for chaining
          */
         default Builder fromBlockState(Supplier<? extends BlockState> blockState) {
-            checkNotNull(blockState);
+            Objects.requireNonNull(blockState);
             final BlockType blockType = blockState.get().getType();
-            checkArgument(blockType.getItem().isPresent(), "Missing valid ItemType for BlockType: " + blockType.getKey().toString());
-            itemType(blockType.getItem().get());
+            itemType(blockType.getItem().orElseThrow(() -> new IllegalArgumentException("Missing valid ItemType for BlockType: " + blockType.getKey().toString())));
             blockState.get().getValues().forEach(this::add);
             return this;
         }

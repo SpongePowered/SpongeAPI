@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.world.volume;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.math.vector.Vector3d;
+
+import java.util.Objects;
 
 /**
  * The result of an intersection between a ray and an entity.
@@ -49,9 +49,9 @@ public class EntityHit {
      * @param distance The distance from the start to the intersection
      */
     public EntityHit(Entity entity, Vector3d intersection, Vector3d normal, double distance) {
-        this.entity = checkNotNull(entity, "entity");
-        this.intersection = checkNotNull(intersection, "intersection");
-        this.normal = checkNotNull(normal, "normal");
+        this.entity = Objects.requireNonNull(entity, "entity");
+        this.intersection = Objects.requireNonNull(intersection, "intersection");
+        this.normal = Objects.requireNonNull(normal, "normal");
         this.distance = distance;
     }
 

@@ -24,19 +24,18 @@
  */
 package org.spongepowered.api.util.file;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.FileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.Objects;
 
 public abstract class ForwardingFileVisitor<T> implements FileVisitor<T> {
 
     private final FileVisitor<T> visitor;
 
     protected ForwardingFileVisitor(FileVisitor<T> visitor) {
-        this.visitor = checkNotNull(visitor, "visitor");
+        this.visitor = Objects.requireNonNull(visitor, "visitor");
     }
 
     @Override

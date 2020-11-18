@@ -24,9 +24,6 @@
  */
 package org.spongepowered.api.event.impl.entity;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.event.cause.entity.damage.DamageFunction;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
@@ -39,6 +36,7 @@ import org.spongepowered.api.util.annotation.eventgen.UseField;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.DoubleUnaryOperator;
 
@@ -57,7 +55,7 @@ public abstract class AbstractAttackEntityEvent extends AbstractModifierEvent<Da
 
     @Override
     public final double getOriginalModifierDamage(final DamageModifier damageModifier) {
-        checkArgument(damageModifier != null, "The damage modifier cannot be null!");
+        Objects.requireNonNull(damageModifier, "Damage modifier cannot be null!");
         for (final Tuple<DamageModifier, Double> tuple : this.originalModifiers) {
             if (tuple.getFirst().equals(damageModifier)) {
                 return tuple.getSecond();
@@ -84,20 +82,21 @@ public abstract class AbstractAttackEntityEvent extends AbstractModifierEvent<Da
 
     @Override
     public final boolean isModifierApplicable(final DamageModifier damageModifier) {
-        return this.modifiers.containsKey(checkNotNull(damageModifier));
+        return this.modifiers.containsKey(Objects.requireNonNull(damageModifier));
     }
 
     @Override
     public final double getOutputDamage(final DamageModifier damageModifier) {
-        checkArgument(this.modifiers.containsKey(checkNotNull(damageModifier)), "The provided damage modifier is not applicable : "
-                                                                                + damageModifier.toString());
-        return this.modifiers.get(checkNotNull(damageModifier));
+        if (!this.modifiers.containsKey(Objects.requireNonNull(damageModifier, "Damage Modifier cannot be null!"))) {
+            throw new IllegalArgumentException("The provided damage modifier is not applicable: " + damageModifier.toString());
+        }
+        return this.modifiers.get(Objects.requireNonNull(damageModifier));
     }
 
     @Override
     public final void setOutputDamage(final DamageModifier damageModifier, final DoubleUnaryOperator function) {
-        checkNotNull(damageModifier, "Damage modifier was null!");
-        checkNotNull(function, "Function was null!");
+        Objects.requireNonNull(damageModifier, "Damage modifier was null!");
+        Objects.requireNonNull(function, "Function was null!");
         int indexToAddTo = 0;
         boolean addAtEnd = true;
         for (final Iterator<DamageFunction> iterator = this.modifierFunctions.iterator(); iterator.hasNext(); ) {
@@ -119,12 +118,14 @@ public abstract class AbstractAttackEntityEvent extends AbstractModifierEvent<Da
 
     @Override
     public void addDamageModifierBefore(final DamageModifier damageModifier, final DoubleUnaryOperator function, final Set<DamageModifierType> before) {
-        checkNotNull(damageModifier, "Damage modifier was null!");
-        checkNotNull(function, "Function was null!");
+        Objects.requireNonNull(damageModifier, "Damage modifier was null!");
+        Objects.requireNonNull(function, "Function was null!");
         int indexToAddBefore = -1;
         int index = 0;
         for (final ModifierFunction<DamageModifier> tuple : this.modifierFunctions) {
-            checkArgument(!tuple.getModifier().equals(damageModifier), "Cannot add a duplicate modifier!");
+            if (tuple.getModifier().equals(damageModifier)) {
+                throw new IllegalArgumentException("Cannot add a duplicate modifier");
+            }
             if (before.contains(tuple.getModifier().getType())) {
                 indexToAddBefore = index;
             }
@@ -141,12 +142,14 @@ public abstract class AbstractAttackEntityEvent extends AbstractModifierEvent<Da
 
     @Override
     public void addDamageModifierAfter(final DamageModifier damageModifier, final DoubleUnaryOperator function, final Set<DamageModifierType> after) {
-        checkNotNull(damageModifier, "Damage modifier was null!");
-        checkNotNull(function, "Function was null!");
+        Objects.requireNonNull(damageModifier, "Damage modifier was null!");
+        Objects.requireNonNull(function, "Function was null!");
         int indexToAddAfter = -1;
         int index = 0;
         for (final ModifierFunction<DamageModifier> tuple : this.modifierFunctions) {
-            checkArgument(!tuple.getModifier().equals(damageModifier), "Cannot add a duplicate modifier!");
+            if (tuple.getModifier().equals(damageModifier)) {
+                throw new IllegalArgumentException("Cannot add a duplicate modifier");
+            }
             if (after.contains(tuple.getModifier().getType())) {
                 indexToAddAfter = index;
             }

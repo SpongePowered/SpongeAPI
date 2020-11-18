@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.item.inventory.transaction;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
+
+import java.util.Objects;
 
 public class SlotTransaction extends Transaction<ItemStackSnapshot> {
     
@@ -46,7 +46,7 @@ public class SlotTransaction extends Transaction<ItemStackSnapshot> {
      */
     public SlotTransaction(Slot slot, ItemStackSnapshot original, ItemStackSnapshot defaultReplacement) {
         super(original, defaultReplacement);
-        this.slot = checkNotNull(slot, "Slot cannot be null!");
+        this.slot = Objects.requireNonNull(slot, "Slot cannot be null!");
     }
 
     /**
@@ -56,7 +56,7 @@ public class SlotTransaction extends Transaction<ItemStackSnapshot> {
      * @param stack The stack
      */
     public void setCustom(ItemStack stack) {
-        setCustom(checkNotNull(stack, "ItemStack was null").createSnapshot());
+        setCustom(Objects.requireNonNull(stack, "ItemStack was null").createSnapshot());
     }
 
     /**

@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.world.volume.block.entity;
 
-import com.google.common.base.Preconditions;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.world.volume.Volume;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -63,7 +63,7 @@ public interface ReadableBlockEntityVolume extends ReadableBlockVolume, Volume {
      * @return A collection of filtered entities
      */
     default Collection<? extends BlockEntity> getBlockEntities(Predicate<? super BlockEntity> filter) {
-        Preconditions.checkNotNull(filter);
+        Objects.requireNonNull(filter);
 
         return this.getBlockEntities().stream().filter(filter).collect(Collectors.toList());
     }
@@ -75,7 +75,7 @@ public interface ReadableBlockEntityVolume extends ReadableBlockVolume, Volume {
      * @return The block entity, or {@link Optional#empty()}
      */
     default Optional<? extends BlockEntity> getBlockEntity(Vector3i position) {
-        Preconditions.checkNotNull(position);
+        Objects.requireNonNull(position);
 
         return this.getBlockEntity(position.getX(), position.getY(), position.getZ());
     }

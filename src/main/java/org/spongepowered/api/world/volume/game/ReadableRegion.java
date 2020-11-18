@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world.volume.game;
 
-import com.google.common.base.Preconditions;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
@@ -37,6 +36,8 @@ import org.spongepowered.api.world.volume.block.StreamableBlockVolume;
 import org.spongepowered.api.world.volume.block.entity.StreamableBlockEntityVolume;
 import org.spongepowered.api.world.volume.entity.StreamableEntityVolume;
 import org.spongepowered.math.vector.Vector3i;
+
+import java.util.Objects;
 
 public interface ReadableRegion<R extends ReadableRegion<R>> extends
     EnvironmentalVolume,
@@ -91,25 +92,25 @@ public interface ReadableRegion<R extends ReadableRegion<R>> extends
     }
 
     default boolean isBlockLoaded(Vector3i position) {
-        Preconditions.checkNotNull(position);
+        Objects.requireNonNull(position);
 
         return this.isBlockLoaded(position.getX(), position.getY(), position.getZ(), true);
     }
 
     default boolean isBlockLoaded(Vector3i position, boolean allowEmpty) {
-        Preconditions.checkNotNull(position);
+        Objects.requireNonNull(position);
 
         return this.isBlockLoaded(position.getX(), position.getY(), position.getZ(), allowEmpty);
     }
 
     default boolean isAreaLoaded(Vector3i position, int radius) {
-        Preconditions.checkNotNull(position);
+        Objects.requireNonNull(position);
 
         return this.isAreaLoaded(position, radius, true);
     }
 
     default boolean isAreaLoaded(Vector3i center, int radius, boolean allowEmpty) {
-        Preconditions.checkNotNull(center);
+        Objects.requireNonNull(center);
 
         return this.isAreaLoaded(
             center.getX() - radius,

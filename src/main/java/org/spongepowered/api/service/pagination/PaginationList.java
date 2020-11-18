@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.service.pagination;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -33,6 +31,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -146,7 +145,7 @@ public interface PaginationList {
      * @param page The page to send
      */
     default void sendTo(final Iterable<Audience> receivers, final int page) {
-        checkNotNull(receivers, "The iterable of receivers cannot be null!");
+        Objects.requireNonNull(receivers, "The iterable of receivers cannot be null!");
         for (final Audience receiver : receivers) {
             this.sendTo(receiver, page);
         }
@@ -262,7 +261,7 @@ public interface PaginationList {
          * @return The constructed pagination list
          */
         default PaginationList sendTo(final Iterable<Audience> receivers) {
-            checkNotNull(receivers, "The iterable of receivers cannot be null!");
+            Objects.requireNonNull(receivers, "The iterable of receivers cannot be null!");
             final PaginationList list = this.build();
             for (final Audience r : receivers) {
                 list.sendTo(r);

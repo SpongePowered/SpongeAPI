@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world;
 
-import com.google.common.base.Preconditions;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.util.RandomProvider;
 import org.spongepowered.api.world.chunk.ProtoChunk;
@@ -41,6 +40,8 @@ import org.spongepowered.api.world.volume.game.MutableGameVolume;
 import org.spongepowered.api.world.volume.game.ReadableRegion;
 import org.spongepowered.api.world.volume.game.UpdatableVolume;
 import org.spongepowered.math.vector.Vector3i;
+
+import java.util.Objects;
 
 public interface ProtoWorld<P extends ProtoWorld<P>> extends
         ReadableRegion<P>,
@@ -74,9 +75,9 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
 
     @Override
     default boolean setBlock(Vector3i position, BlockState state, BlockChangeFlag flag) {
-        Preconditions.checkNotNull(position);
-        Preconditions.checkNotNull(state);
-        Preconditions.checkNotNull(flag);
+        Objects.requireNonNull(position);
+        Objects.requireNonNull(state);
+        Objects.requireNonNull(flag);
 
         return this.setBlock(position.getX(), position.getY(), position.getZ(), state, flag);
     }
@@ -86,7 +87,7 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
 
     @Override
     default boolean removeBlock(Vector3i position) {
-        Preconditions.checkNotNull(position);
+        Objects.requireNonNull(position);
         return this.removeBlock(position.getX(), position.getY(), position.getZ());
     }
 

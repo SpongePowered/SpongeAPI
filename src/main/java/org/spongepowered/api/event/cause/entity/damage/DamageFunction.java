@@ -24,11 +24,10 @@
  */
 package org.spongepowered.api.event.cause.entity.damage;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
-
+import java.util.Objects;
+import java.util.StringJoiner;
 import java.util.function.DoubleUnaryOperator;
 
 public class DamageFunction implements ModifierFunction<DamageModifier> {
@@ -42,7 +41,7 @@ public class DamageFunction implements ModifierFunction<DamageModifier> {
      * @param second The unary operator to use
      * @return The resulting damage function
      */
-    public static DamageFunction of(DamageModifier first, DoubleUnaryOperator second) {
+    public static DamageFunction of(final DamageModifier first, final DoubleUnaryOperator second) {
         return new DamageFunction(first, second);
     }
 
@@ -57,8 +56,8 @@ public class DamageFunction implements ModifierFunction<DamageModifier> {
      *
      * @param modifier The damage modifier
      */
-    public DamageFunction(DamageModifier modifier) {
-        this(modifier, ZERO_DAMAGE);
+    public DamageFunction(final DamageModifier modifier) {
+        this(modifier, DamageFunction.ZERO_DAMAGE);
     }
 
     /**
@@ -68,9 +67,9 @@ public class DamageFunction implements ModifierFunction<DamageModifier> {
      * @param modifier The modifier
      * @param function The function
      */
-    public DamageFunction(DamageModifier modifier, DoubleUnaryOperator function) {
-        this.modifier = checkNotNull(modifier, "modifier");
-        this.function = checkNotNull(function, "function");
+    public DamageFunction(final DamageModifier modifier, final DoubleUnaryOperator function) {
+        this.modifier = java.util.Objects.requireNonNull(modifier, "modifier");
+        this.function = java.util.Objects.requireNonNull(function, "function");
     }
 
     /**
@@ -95,27 +94,27 @@ public class DamageFunction implements ModifierFunction<DamageModifier> {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
-                .add("modifier", getModifier())
-                .add("function", getFunction())
+        return new StringJoiner(",", DamageFunction.class.getSimpleName() + "[", "]")
+                .add("modifier=" +this.getModifier())
+                .add("function=" + this.getFunction())
                 .toString();
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final @Nullable Object o) {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        DamageFunction that = (DamageFunction) o;
-        return Objects.equal(this.modifier, that.modifier)
-            && Objects.equal(this.function, that.function);
+        final DamageFunction that = (DamageFunction) o;
+        return Objects.equals(this.modifier, that.modifier)
+            && Objects.equals(this.function, that.function);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(this.modifier, this.function);
+        return Objects.hash(this.modifier, this.function);
     }
 }
