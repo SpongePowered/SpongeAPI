@@ -85,13 +85,6 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
     WorldGenerationConfig getWorldGenerationConfig();
 
     /**
-     * Gets the max {@link ServerPlayer players} allowed to join.
-     *
-     * @return The max players
-     */
-    int getMaxPlayers();
-
-    /**
      * Gets if the whitelist is currently enforced.
      *
      * @return True if enabled, false if not
@@ -218,6 +211,13 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
     Collection<ServerPlayer> getOnlinePlayers();
 
     /**
+     * Gets the max players allowed on this server.
+     *
+     * @return Maximum number of connected players
+     */
+    int getMaxPlayers();
+
+    /**
      * Gets a {@link ServerPlayer} by their UUID.
      *
      * @param uniqueId The UUID to get the player from
@@ -295,11 +295,36 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
     Optional<InetSocketAddress> getBoundAddress();
 
     /**
+     * Tests if the server has a whitelist enabled.
+     *
+     * @return True if enabled, false if not
+     */
+    boolean hasWhitelist();
+
+    /**
      * Sets whether the server is utilizing a whitelist.
      *
      * @param enabled True to enable the whitelist, false to disable
      */
     void setHasWhitelist(boolean enabled);
+
+    /**
+     * Tests if this server is set to online mode.
+     *
+     * <b>Online mode authenticates users against Minecraft's servers, false
+     * performs no validity checks.</b>
+     *
+     * @return True if enabled, false if not
+     */
+    boolean getOnlineMode();
+
+    /**
+     * Gets the default message that is displayed in the server list of the
+     * client.
+     *
+     * @return The server's default description (MOTD)
+     */
+    Component getMotd();
 
     /**
      * Shuts down the server, and kicks all players with the default kick
@@ -327,6 +352,11 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
     /**
      * Gets the current ticks per second. A tick represents one cycle of the
      * game loop.
+     *
+     * <p>Note: The server aims to limit itself at 20 ticks per second. Lower
+     * ticks per second may elude to the server taking more time to process
+     * information per tick. Examples of overburdening the server per tick
+     * include spawning 10,000 cows in a small area.</p>
      *
      * @return The current ticks per second
      */
