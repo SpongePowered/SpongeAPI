@@ -33,6 +33,7 @@ import org.spongepowered.api.entity.living.Hostile;
 import org.spongepowered.api.entity.living.animal.Animal;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
+import org.spongepowered.api.map.MapStorage;
 import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
 import org.spongepowered.api.network.ServerSideConnection;
 import org.spongepowered.api.profile.GameProfileManager;
@@ -379,4 +380,13 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      */
     CommandManager getCommandManager();
 
+    /**
+     * Gets the map storage for this server
+     *
+     * <p>This allows for control over the server's maps,
+     * including obtaining and creating them</p>
+     *
+     * @return MapStorage
+     */
+    MapStorage getMapStorage();
 }

@@ -208,6 +208,9 @@ import org.spongepowered.api.item.inventory.slot.EquipmentSlot;
 import org.spongepowered.api.item.inventory.type.GridInventory;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.item.potion.PotionType;
+import org.spongepowered.api.map.MapCanvas;
+import org.spongepowered.api.map.MapInfo;
+import org.spongepowered.api.map.decoration.MapDecoration;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.projectile.source.ProjectileSource;
@@ -1779,6 +1782,80 @@ public final class Keys {
      * instead.</p>
      */
     public static final Key<ListValue<Component>> LORE = Keys.key(ResourceKey.sponge("lore"), TypeTokens.LIST_COMPONENT_VALUE_TOKEN);
+
+    /**
+     * Represents the {@link Key} for the {@link MapCanvas} of a map
+     * for a {@link MapInfo}.
+     * This contains the colors displayed on a map.
+     *
+     */
+    public static final Supplier<Key<Value<MapCanvas>>> MAP_CANVAS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAP_CANVAS");
+
+    /**
+     * Represents the {@link Key} for the Set of {@link MapDecoration}s
+     * for a {@link MapInfo}.
+     *
+     */
+    public static final Supplier<Key<SetValue<MapDecoration>>> MAP_DECORATIONS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAP_DECORATIONS");
+
+    /**
+     * Represents the {@link Key} for the {@link MapInfo}
+     * of an {@link ItemStack} of type {@link ItemTypes#FILLED_MAP}.
+     * @see MapInfoItemData#mapInfo()
+     */
+    public static final Supplier<Key<Value<MapInfo>>> MAP_INFO = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAP_INFO");
+
+    /**
+     * Represents the {@link Key} for the centre x and z of where a
+     * {@link MapInfo} represents.
+     * This will be automatically centralised correctly.
+     * @see MapInfoData#location()
+     */
+    public static final Supplier<Key<Value<Vector2i>>> MAP_LOCATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAP_LOCATION");
+
+    /**
+     * Represents the {@link Key} for whether a map updates from players
+     * for a {@link MapInfo}.
+     * By default this is false.
+     * Can be used in combination with {@link Keys#MAP_CANVAS} to create
+     * custom static map.
+     * Just a brought forward version of <a href="https://minecraft.gamepedia.com/Map#Locking">Minecraft Wiki - Map Locking</a>
+     *
+     * @see MapInfoData#locked()
+     */
+    public static final Supplier<Key<Value<Boolean>>> MAP_LOCKED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAP_LOCKED");
+
+    /**
+     * Represents the {@link Key} for the scale of a map
+     * for a {@link MapInfo}.
+     * @see <a href="https://minecraft.gamepedia.com/Map#Zoom_details">Minecraft Wiki - Zoom Details</a>
+     * @see MapInfoData#scale()
+     */
+    public static final Supplier<Key<Value<Integer>>> MAP_SCALE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAP_SCALE");
+
+    /**
+     * Represents the {@link Key} for whether a {@link MapInfo}
+     * tracks player positions.
+     *
+     * @see MapInfoData#trackPosition()
+     */
+    public static final Supplier<Key<Value<Boolean>>> MAP_TRACKS_PLAYERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAP_TRACKS_PLAYERS");
+
+    /**
+     * Represents the {@link Key} for whether a {@link MapInfo} can track
+     * a player from anywhere in the world.
+     *
+     * @see MapInfoData#unlimitedTracking()
+     */
+    public static final Supplier<Key<Value<Boolean>>> MAP_UNLIMITED_TRACKING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAP_UNLIMITED_TRACKING");
+
+    /**
+     * Represents the {@link Key} for the world for a
+     * {@link MapInfo}
+     *
+     * @see MapInfoData#world()
+     */
+    public static final Supplier<Key<Value<World>>> MAP_WORLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DIMENSION");
 
     /**
      * The matter state of a {@link BlockState}
