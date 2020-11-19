@@ -28,6 +28,7 @@ import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.audience.ForwardingAudience;
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
+import org.spongepowered.api.map.MapStorage;
 import org.spongepowered.api.profile.GameProfileManager;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
@@ -277,4 +278,13 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      */
     ServiceProvider.ServerScoped getServiceProvider();
 
+    /**
+     * Gets the map storage for this server
+     *
+     * <p>This allows for control over the server's maps,
+     * including obtaining and creating them</p>
+     *
+     * @return MapStorage
+     */
+    MapStorage getMapStorage();
 }
