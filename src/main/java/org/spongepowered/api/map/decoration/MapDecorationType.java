@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.map.decoration;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.map.MapCanvas;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -33,6 +33,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * {@link MapDecoration}.
  */
 @CatalogedBy(MapDecorationTypes.class)
-public interface MapDecorationType extends CatalogType {
+public interface MapDecorationType extends DefaultedRegistryValue {
 
 }

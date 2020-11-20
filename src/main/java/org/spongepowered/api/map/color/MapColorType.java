@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.map.color;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.map.MapCanvas;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -33,7 +33,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a color that can be used when drawing on a {@link MapCanvas}.
  */
 @CatalogedBy(MapColorTypes.class)
-public interface MapColorType extends CatalogType {
+public interface MapColorType extends DefaultedRegistryValue {
 
     /**
      * Gets the {@link Color} that this type represents.

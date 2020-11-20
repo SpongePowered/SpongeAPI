@@ -24,10 +24,12 @@
  */
 package org.spongepowered.api.map.decoration;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.map.MapCanvas;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryTypes;
 
 /**
  * A pseudo-enum of {@link MapDecorationType}s that can be used on a
@@ -37,25 +39,58 @@ public final class MapDecorationTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<MapDecorationType> BLUE_MARKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "BLUE_MARKER");
+    public static final DefaultedRegistryReference<MapDecorationType> BLUE_MARKER = MapDecorationTypes.key(ResourceKey.sponge("blue_marker"));
 
-    public static final Supplier<MapDecorationType> GREEN_MARKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "GREEN_MARKER");
+    public static final DefaultedRegistryReference<MapDecorationType> GREEN_MARKER = MapDecorationTypes.key(ResourceKey.sponge("frame"));
 
-    public static final Supplier<MapDecorationType> MANSION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "MANSION");
+    public static final DefaultedRegistryReference<MapDecorationType> MANSION = MapDecorationTypes.key(ResourceKey.sponge("mansion"));
 
-    public static final Supplier<MapDecorationType> MONUMENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "MONUMENT");
+    public static final DefaultedRegistryReference<MapDecorationType> MONUMENT = MapDecorationTypes.key(ResourceKey.sponge("monument"));
 
-    public static final Supplier<MapDecorationType> PLAYER_MARKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "PLAYER_MARKER");
+    public static final DefaultedRegistryReference<MapDecorationType> PLAYER_MARKER = MapDecorationTypes.key(ResourceKey.sponge("player"));
 
-    public static final Supplier<MapDecorationType> PLAYER_OFF_LIMITS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "PLAYER_OFF_LIMITS");
+    public static final DefaultedRegistryReference<MapDecorationType> PLAYER_OFF_LIMITS = MapDecorationTypes.key(ResourceKey.sponge("player_off_limits"));
 
-    public static final Supplier<MapDecorationType> PLAYER_OFF_MAP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "PLAYER_OFF_MAP");
+    public static final DefaultedRegistryReference<MapDecorationType> PLAYER_OFF_MAP = MapDecorationTypes.key(ResourceKey.sponge("player_off_map"));
 
-    public static final Supplier<MapDecorationType> RED_MARKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "RED_MARKER");
+    public static final DefaultedRegistryReference<MapDecorationType> RED_MARKER = MapDecorationTypes.key(ResourceKey.sponge("red_marker"));
 
-    public static final Supplier<MapDecorationType> TARGET_POINT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "TARGET_POINT");
+    public static final DefaultedRegistryReference<MapDecorationType> TARGET_POINT = MapDecorationTypes.key(ResourceKey.sponge("target_point"));
 
-    public static final Supplier<MapDecorationType> TARGET_X = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "TARGET_X");
+    public static final DefaultedRegistryReference<MapDecorationType> BANNER_WHITE = MapDecorationTypes.key(ResourceKey.sponge("banner_white"));
 
+    public static final DefaultedRegistryReference<MapDecorationType> BANNER_ORANGE = MapDecorationTypes.key(ResourceKey.sponge("banner_orange"));
+
+    public static final DefaultedRegistryReference<MapDecorationType> BANNER_MAGENTA = MapDecorationTypes.key(ResourceKey.sponge("banner_magenta"));
+
+    public static final DefaultedRegistryReference<MapDecorationType> BANNER_LIGHT_BLUE = MapDecorationTypes.key(ResourceKey.sponge("banner_light_blue"));
+
+    public static final DefaultedRegistryReference<MapDecorationType> BANNER_YELLOW = MapDecorationTypes.key(ResourceKey.sponge("banner_yellow"));
+
+    public static final DefaultedRegistryReference<MapDecorationType> BANNER_LIME = MapDecorationTypes.key(ResourceKey.sponge("banner_lime"));
+
+    public static final DefaultedRegistryReference<MapDecorationType> BANNER_PINK = MapDecorationTypes.key(ResourceKey.sponge("banner_pink"));
+
+    public static final DefaultedRegistryReference<MapDecorationType> BANNER_GRAY = MapDecorationTypes.key(ResourceKey.sponge("banner_gray"));
+
+    public static final DefaultedRegistryReference<MapDecorationType> BANNER_LIGHT_GRAY = MapDecorationTypes.key(ResourceKey.sponge("banner_light_gray"));
+
+    public static final DefaultedRegistryReference<MapDecorationType> BANNER_CYAN = MapDecorationTypes.key(ResourceKey.sponge("banner_cyan"));
+
+    public static final DefaultedRegistryReference<MapDecorationType> BANNER_PURPLE = MapDecorationTypes.key(ResourceKey.sponge("banner_purple"));
+
+    public static final DefaultedRegistryReference<MapDecorationType> BANNER_BLUE = MapDecorationTypes.key(ResourceKey.sponge("banner_blue"));
+
+    public static final DefaultedRegistryReference<MapDecorationType> BANNER_BROWN = MapDecorationTypes.key(ResourceKey.sponge("banner_brown"));
+
+    public static final DefaultedRegistryReference<MapDecorationType> BANNER_GREEN = MapDecorationTypes.key(ResourceKey.sponge("banner_green"));
+
+    public static final DefaultedRegistryReference<MapDecorationType> BANNER_RED = MapDecorationTypes.key(ResourceKey.sponge("banner_red"));
+
+    public static final DefaultedRegistryReference<MapDecorationType> BANNER_BLACK = MapDecorationTypes.key(ResourceKey.sponge("banner_black"));
     // SORTFIELDS:OFF
+
+    private static DefaultedRegistryReference<MapDecorationType> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.MAP_DECORATION_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

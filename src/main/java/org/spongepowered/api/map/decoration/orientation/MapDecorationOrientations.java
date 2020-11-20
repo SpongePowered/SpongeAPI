@@ -24,9 +24,11 @@
  */
 package org.spongepowered.api.map.decoration.orientation;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryTypes;
 
 /**
  * A pseudo-enum of supported orientations of a {@link org.spongepowered.api.map.decoration.MapDecoration}
@@ -36,39 +38,43 @@ public class MapDecorationOrientations {
 
 	// SORTFIELDS:ON
 
-	public static final Supplier<MapDecorationOrientation> NORTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "NORTH");
+	public static final DefaultedRegistryReference<MapDecorationOrientation> NORTH = MapDecorationOrientations.key(ResourceKey.sponge("north"));
 
-	public static final Supplier<MapDecorationOrientation> NORTH_NORTHEAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "NORTH_NORTHEAST");
+	public static final DefaultedRegistryReference<MapDecorationOrientation> NORTH_NORTHEAST = MapDecorationOrientations.key(ResourceKey.sponge("north_northeast"));
 
-	public static final Supplier<MapDecorationOrientation> NORTHEAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "NORTHEAST");
+	public static final DefaultedRegistryReference<MapDecorationOrientation> NORTHEAST = MapDecorationOrientations.key(ResourceKey.sponge("northeast"));
 
-	public static final Supplier<MapDecorationOrientation> EAST_NORTHEAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "EAST_NORTHEAST");
+	public static final DefaultedRegistryReference<MapDecorationOrientation> EAST_NORTHEAST = MapDecorationOrientations.key(ResourceKey.sponge("east_northeast"));
 
-	public static final Supplier<MapDecorationOrientation> EAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "EAST");
+	public static final DefaultedRegistryReference<MapDecorationOrientation> EAST = MapDecorationOrientations.key(ResourceKey.sponge("east"));
 
-	public static final Supplier<MapDecorationOrientation> EAST_SOUTHEAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "EAST_SOUTHEAST");
+	public static final DefaultedRegistryReference<MapDecorationOrientation> EAST_SOUTHEAST = MapDecorationOrientations.key(ResourceKey.sponge("east_southeast"));
 
-	public static final Supplier<MapDecorationOrientation> SOUTHEAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "SOUTHEAST");
+	public static final DefaultedRegistryReference<MapDecorationOrientation> SOUTHEAST = MapDecorationOrientations.key(ResourceKey.sponge("southeast"));
 
-	public static final Supplier<MapDecorationOrientation> SOUTH_SOUTHEAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "SOUTH_SOUTHEAST");
+	public static final DefaultedRegistryReference<MapDecorationOrientation> SOUTH_SOUTHEAST = MapDecorationOrientations.key(ResourceKey.sponge("south_southeast"));
 
-	public static final Supplier<MapDecorationOrientation> SOUTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "SOUTH");
+	public static final DefaultedRegistryReference<MapDecorationOrientation> SOUTH = MapDecorationOrientations.key(ResourceKey.sponge("south"));
 
-	public static final Supplier<MapDecorationOrientation> SOUTH_SOUTHWEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "SOUTH_SOUTHWEST");
+	public static final DefaultedRegistryReference<MapDecorationOrientation> SOUTH_SOUTHWEST = MapDecorationOrientations.key(ResourceKey.sponge("south_southwest"));
 
-	public static final Supplier<MapDecorationOrientation> SOUTHWEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "SOUTHWEST");
+	public static final DefaultedRegistryReference<MapDecorationOrientation> SOUTHWEST = MapDecorationOrientations.key(ResourceKey.sponge("southwest"));
 
-	public static final Supplier<MapDecorationOrientation> WEST_SOUTHWEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "WEST_SOUTHWEST");
+	public static final DefaultedRegistryReference<MapDecorationOrientation> WEST_SOUTHWEST = MapDecorationOrientations.key(ResourceKey.sponge("west_southwest"));
 
-	public static final Supplier<MapDecorationOrientation> WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "WEST");
+	public static final DefaultedRegistryReference<MapDecorationOrientation> WEST = MapDecorationOrientations.key(ResourceKey.sponge("west"));
 
-	public static final Supplier<MapDecorationOrientation> WEST_NORTHWEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "WEST_NORTHWEST");
+	public static final DefaultedRegistryReference<MapDecorationOrientation> WEST_NORTHWEST = MapDecorationOrientations.key(ResourceKey.sponge("west_northwest"));
 
-	public static final Supplier<MapDecorationOrientation> NORTHWEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "NORTHWEST");
+	public static final DefaultedRegistryReference<MapDecorationOrientation> NORTHWEST = MapDecorationOrientations.key(ResourceKey.sponge("northwest"));
 
-	public static final Supplier<MapDecorationOrientation> NORTH_NORTHWEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "NORTH_NORTHWEST");
+	public static final DefaultedRegistryReference<MapDecorationOrientation> NORTH_NORTHWEST = MapDecorationOrientations.key(ResourceKey.sponge("north_northwest"));
 
 	// SORTFIELDS:OFF
 
 	private MapDecorationOrientations() { throw new AssertionError("You should not be attempting to instantiate this class."); }
+
+	private static DefaultedRegistryReference<MapDecorationOrientation> key(final ResourceKey location) {
+		return RegistryKey.of(RegistryTypes.MAP_DECORATION_ORIENTATION, location).asDefaultedReference(() -> Sponge.getGame().registries());
+	}
 }

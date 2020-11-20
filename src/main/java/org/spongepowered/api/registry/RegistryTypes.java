@@ -108,6 +108,10 @@ import org.spongepowered.api.item.inventory.menu.ClickType;
 import org.spongepowered.api.item.inventory.query.QueryType;
 import org.spongepowered.api.item.potion.PotionType;
 import org.spongepowered.api.item.recipe.RecipeType;
+import org.spongepowered.api.map.color.MapColorType;
+import org.spongepowered.api.map.color.MapShade;
+import org.spongepowered.api.map.decoration.MapDecorationType;
+import org.spongepowered.api.map.decoration.orientation.MapDecorationOrientation;
 import org.spongepowered.api.placeholder.PlaceholderParser;
 import org.spongepowered.api.scheduler.TaskPriority;
 import org.spongepowered.api.scoreboard.CollisionRule;
@@ -377,7 +381,15 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<WeatherType> WEATHER_TYPE = RegistryTypes.spongeKeyInGame("weather_type");
 
     public static final DefaultedRegistryType<WireAttachmentType> WIRE_ATTACHMENT_TYPE = RegistryTypes.spongeKeyInGame("wire_attachment_type");
-    
+
+    public static final DefaultedRegistryType<MapColorType> MAP_COLOR_TYPE = RegistryTypes.spongeKeyInGame("map_color_type");
+
+    public static final DefaultedRegistryType<MapDecorationOrientation> MAP_DECORATION_ORIENTATION = RegistryTypes.spongeKeyInGame("map_decoration_orientation");
+
+    public static final DefaultedRegistryType<MapDecorationType> MAP_DECORATION_TYPE = RegistryTypes.spongeKeyInGame("map_decoration_type");
+
+    public static final DefaultedRegistryType<MapShade> MAP_SHADE = RegistryTypes.spongeKeyInGame("map_shade");
+
     // @formatter:on
 
     private static <V> RegistryType<V> minecraftKey(final String key) {

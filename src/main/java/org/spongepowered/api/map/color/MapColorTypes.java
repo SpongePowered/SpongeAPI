@@ -24,11 +24,13 @@
  */
 package org.spongepowered.api.map.color;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.map.MapCanvas;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.Color;
-
-import java.util.function.Supplier;
 
 /**
  * A pseudo-enum of supported elements on a {@link MapCanvas}.
@@ -40,113 +42,131 @@ public final class MapColorTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<MapColorType> ADOBE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "ADOBE");
+    public static final DefaultedRegistryReference<MapColorType> NONE = MapColorTypes.key(ResourceKey.sponge("none"));
 
-    public static final Supplier<MapColorType> AIR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "AIR");
+    public static final DefaultedRegistryReference<MapColorType> COLOR_BLACK = MapColorTypes.key(ResourceKey.sponge("color_black"));
 
-    public static final Supplier<MapColorType> BLACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "BLACK");
+    public static final DefaultedRegistryReference<MapColorType> TERRACOTTA_BLACK = MapColorTypes.key(ResourceKey.sponge("terracotta_black"));
 
-    public static final Supplier<MapColorType> BLACK_STAINED_HARDENED_CLAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "BLACK_STAINED_HARDENED_CLAY");
+    public static final DefaultedRegistryReference<MapColorType> COLOR_BLUE = MapColorTypes.key(ResourceKey.sponge("color_blue"));
 
-    public static final Supplier<MapColorType> BLUE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "BLUE");
+    public static final DefaultedRegistryReference<MapColorType> TERRACOTTA_BLUE = MapColorTypes.key(ResourceKey.sponge("terracotta_blue"));
 
-    public static final Supplier<MapColorType> BLUE_STAINED_HARDENED_CLAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "BLUE_STAINED_HARDENED_CLAY");
+    public static final DefaultedRegistryReference<MapColorType> COLOR_BROWN = MapColorTypes.key(ResourceKey.sponge("color_brown"));
 
-    public static final Supplier<MapColorType> BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "BROWN");
+    public static final DefaultedRegistryReference<MapColorType> TERRACOTTA_BROWN = MapColorTypes.key(ResourceKey.sponge("terracotta_brown"));
 
-    public static final Supplier<MapColorType> BROWN_STAINED_HARDENED_CLAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "BROWN_STAINED_HARDENED_CLAY");
+    public static final DefaultedRegistryReference<MapColorType> CLAY = MapColorTypes.key(ResourceKey.sponge("clay"));
 
-    public static final Supplier<MapColorType> CLAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "CLAY");
+    public static final DefaultedRegistryReference<MapColorType> COLOR_CYAN = MapColorTypes.key(ResourceKey.sponge("color_cyan"));
 
-    public static final Supplier<MapColorType> CYAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "CYAN");
+    public static final DefaultedRegistryReference<MapColorType> TERRACOTTA_CYAN = MapColorTypes.key(ResourceKey.sponge("terracotta_cyan"));
 
-    public static final Supplier<MapColorType> CYAN_STAINED_HARDENED_CLAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "CYAN_STAINED_HARDENED_CLAY");
+    public static final DefaultedRegistryReference<MapColorType> DIAMOND = MapColorTypes.key(ResourceKey.sponge("diamond"));
 
-    public static final Supplier<MapColorType> DIAMOND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "DIAMOND");
+    public static final DefaultedRegistryReference<MapColorType> DIRT = MapColorTypes.key(ResourceKey.sponge("dirt"));
 
-    public static final Supplier<MapColorType> DIRT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "DIRT");
+    public static final DefaultedRegistryReference<MapColorType> EMERALD = MapColorTypes.key(ResourceKey.sponge("emerald"));
 
-    public static final Supplier<MapColorType> EMERALD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "EMERALD");
+    public static final DefaultedRegistryReference<MapColorType> PLANT = MapColorTypes.key(ResourceKey.sponge("plant"));
 
-    public static final Supplier<MapColorType> FOLIAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "FOLIAGE");
+    public static final DefaultedRegistryReference<MapColorType> GOLD = MapColorTypes.key(ResourceKey.sponge("gold"));
 
-    public static final Supplier<MapColorType> GOLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "GOLD");
+    public static final DefaultedRegistryReference<MapColorType> GRASS = MapColorTypes.key(ResourceKey.sponge("grass"));
 
-    public static final Supplier<MapColorType> GRASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "GRASS");
+    public static final DefaultedRegistryReference<MapColorType> COLOR_GRAY = MapColorTypes.key(ResourceKey.sponge("color_gray"));
 
-    public static final Supplier<MapColorType> GRAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "GRAY");
+    public static final DefaultedRegistryReference<MapColorType> TERRACOTTA_GRAY = MapColorTypes.key(ResourceKey.sponge("terracotta_gray"));
 
-    public static final Supplier<MapColorType> GRAY_STAINED_HARDENED_CLAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "GRAY_STAINED_HARDENED_CLAY");
+    public static final DefaultedRegistryReference<MapColorType> COLOR_GREEN = MapColorTypes.key(ResourceKey.sponge("color_green"));
 
-    public static final Supplier<MapColorType> GREEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "GREEN");
+    public static final DefaultedRegistryReference<MapColorType> TERRACOTTA_GREEN = MapColorTypes.key(ResourceKey.sponge("terracotta_green"));
 
-    public static final Supplier<MapColorType> GREEN_STAINED_HARDENED_CLAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "GREEN_STAINED_HARDENED_CLAY");
+    public static final DefaultedRegistryReference<MapColorType> ICE = MapColorTypes.key(ResourceKey.sponge("ice"));
 
-    public static final Supplier<MapColorType> ICE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "ICE");
+    public static final DefaultedRegistryReference<MapColorType> METAL = MapColorTypes.key(ResourceKey.sponge("metal"));
 
-    public static final Supplier<MapColorType> IRON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "IRON");
+    public static final DefaultedRegistryReference<MapColorType> LAPIS_LAZULI = MapColorTypes.key(ResourceKey.sponge("lapis_lazuli"));
 
-    public static final Supplier<MapColorType> LAPIS_LAZULI = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "LAPIS_LAZULI");
+    public static final DefaultedRegistryReference<MapColorType> COLOR_LIGHT_BLUE = MapColorTypes.key(ResourceKey.sponge("color_light_blue"));
 
-    public static final Supplier<MapColorType> LIGHT_BLUE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "LIGHT_BLUE");
+    public static final DefaultedRegistryReference<MapColorType> TERRACOTTA_LIGHT_BLUE = MapColorTypes.key(ResourceKey.sponge("terracotta_light_blue"));
 
-    public static final Supplier<MapColorType> LIGHT_BLUE_STAINED_HARDENED_CLAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "LIGHT_BLUE_STAINED_HARDENED_CLAY");
+    public static final DefaultedRegistryReference<MapColorType> COLOR_LIGHT_GREEN = MapColorTypes.key(ResourceKey.sponge("color_light_green"));
 
-    public static final Supplier<MapColorType> LIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "LIME");
+    public static final DefaultedRegistryReference<MapColorType> TERRACOTTA_LIGHT_GREEN = MapColorTypes.key(ResourceKey.sponge("terracotta_light_green"));
 
-    public static final Supplier<MapColorType> LIME_STAINED_HARDENED_CLAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "LIME_STAINED_HARDENED_CLAY");
+    public static final DefaultedRegistryReference<MapColorType> COLOR_MAGENTA = MapColorTypes.key(ResourceKey.sponge("color_magenta"));
 
-    public static final Supplier<MapColorType> MAGENTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "MAGENTA");
+    public static final DefaultedRegistryReference<MapColorType> TERRACOTTA_MAGENTA = MapColorTypes.key(ResourceKey.sponge("terracotta_magenta"));
 
-    public static final Supplier<MapColorType> MAGENTA_STAINED_HARDENED_CLAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "MAGENTA_STAINED_HARDENED_CLAY");
+    public static final DefaultedRegistryReference<MapColorType> NETHER = MapColorTypes.key(ResourceKey.sponge("nether"));
 
-    public static final Supplier<MapColorType> NETHERRACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "NETHERRACK");
+    public static final DefaultedRegistryReference<MapColorType> PODZOL = MapColorTypes.key(ResourceKey.sponge("podzol"));
 
-    public static final Supplier<MapColorType> OBSIDIAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "OBSIDIAN");
+    public static final DefaultedRegistryReference<MapColorType> COLOR_ORANGE = MapColorTypes.key(ResourceKey.sponge("color_orange"));
 
-    public static final Supplier<MapColorType> ORANGE_STAINED_HARDENED_CLAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "ORANGE_STAINED_HARDENED_CLAY");
+    public static final DefaultedRegistryReference<MapColorType> TERRACOTTA_ORANGE = MapColorTypes.key(ResourceKey.sponge("terracotta_orange"));
 
-    public static final Supplier<MapColorType> PINK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "PINK");
+    public static final DefaultedRegistryReference<MapColorType> COLOR_PINK = MapColorTypes.key(ResourceKey.sponge("color_pink"));
 
-    public static final Supplier<MapColorType> PINK_STAINED_HARDENED_CLAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "PINK_STAINED_HARDENED_CLAY");
+    public static final DefaultedRegistryReference<MapColorType> TERRACOTTA_PINK = MapColorTypes.key(ResourceKey.sponge("terracotta_pink"));
 
-    public static final Supplier<MapColorType> PURPLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "PURPLE");
+    public static final DefaultedRegistryReference<MapColorType> COLOR_PURPLE = MapColorTypes.key(ResourceKey.sponge("color_purple"));
 
-    public static final Supplier<MapColorType> PURPLE_STAINED_HARDENED_CLAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "PURPLE_STAINED_HARDENED_CLAY");
+    public static final DefaultedRegistryReference<MapColorType> TERRACOTTA_PURPLE = MapColorTypes.key(ResourceKey.sponge("terracotta_purple"));
 
-    public static final Supplier<MapColorType> QUARTZ = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "QUARTZ");
+    public static final DefaultedRegistryReference<MapColorType> QUARTZ = MapColorTypes.key(ResourceKey.sponge("quartz"));
 
-    public static final Supplier<MapColorType> RED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "RED");
+    public static final DefaultedRegistryReference<MapColorType> COLOR_RED = MapColorTypes.key(ResourceKey.sponge("color_red"));
 
-    public static final Supplier<MapColorType> RED_STAINED_HARDENED_CLAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "RED_STAINED_HARDENED_CLAY");
+    public static final DefaultedRegistryReference<MapColorType> TERRACOTTA_RED = MapColorTypes.key(ResourceKey.sponge("terracotta_red"));
 
-    public static final Supplier<MapColorType> SAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "SAND");
+    public static final DefaultedRegistryReference<MapColorType> SAND = MapColorTypes.key(ResourceKey.sponge("sand"));
 
-    public static final Supplier<MapColorType> SILVER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "SILVER");
+    public static final DefaultedRegistryReference<MapColorType> COLOR_LIGHT_GRAY = MapColorTypes.key(ResourceKey.sponge("color_light_gray"));
 
-    public static final Supplier<MapColorType> SILVER_STAINED_HARDENED_CLAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "SILVER_STAINED_HARDENED_CLAY");
+    public static final DefaultedRegistryReference<MapColorType> TERRACOTTA_LIGHT_GRAY = MapColorTypes.key(ResourceKey.sponge("terracotta_light_gray"));
 
-    public static final Supplier<MapColorType> SNOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "SNOW");
+    public static final DefaultedRegistryReference<MapColorType> SNOW = MapColorTypes.key(ResourceKey.sponge("snow"));
 
-    public static final Supplier<MapColorType> STONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "STONE");
+    public static final DefaultedRegistryReference<MapColorType> STONE = MapColorTypes.key(ResourceKey.sponge("stone"));
 
-    public static final Supplier<MapColorType> TNT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "TNT");
+    public static final DefaultedRegistryReference<MapColorType> FIRE = MapColorTypes.key(ResourceKey.sponge("fire"));
 
-    public static final Supplier<MapColorType> WATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "WATER");
+    public static final DefaultedRegistryReference<MapColorType> WATER = MapColorTypes.key(ResourceKey.sponge("water"));
 
-    public static final Supplier<MapColorType> WHITE_STAINED_HARDENED_CLAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "WHITE_STAINED_HARDENED_CLAY");
+    public static final DefaultedRegistryReference<MapColorType> TERRACOTTA_WHITE = MapColorTypes.key(ResourceKey.sponge("terracotta_white"));
 
-    public static final Supplier<MapColorType> WOOD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "WOOD");
+    public static final DefaultedRegistryReference<MapColorType> WOOD = MapColorTypes.key(ResourceKey.sponge("wood"));
 
-    public static final Supplier<MapColorType> WOOL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "WOOL");
+    public static final DefaultedRegistryReference<MapColorType> WOOL = MapColorTypes.key(ResourceKey.sponge("wool"));
 
-    public static final Supplier<MapColorType> YELLOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "YELLOW");
+    public static final DefaultedRegistryReference<MapColorType> COLOR_YELLOW = MapColorTypes.key(ResourceKey.sponge("color_yellow"));
 
-    public static final Supplier<MapColorType> YELLOW_STAINED_HARDENED_CLAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "YELLOW_STAINED_HARDENED_CLAY");
+    public static final DefaultedRegistryReference<MapColorType> TERRACOTTA_YELLOW = MapColorTypes.key(ResourceKey.sponge("terracotta_yellow"));
+
+    public static final DefaultedRegistryReference<MapColorType> CRIMSON_NYLIUM = MapColorTypes.key(ResourceKey.sponge("crimson-nylium"));
+
+    public static final DefaultedRegistryReference<MapColorType> CRIMSON_STEM = MapColorTypes.key(ResourceKey.sponge("crimson-stem"));
+
+    public static final DefaultedRegistryReference<MapColorType> CRIMSON_HYPHAE = MapColorTypes.key(ResourceKey.sponge("crimson-hyphae"));
+
+    public static final DefaultedRegistryReference<MapColorType> WARPED_NYLIUM = MapColorTypes.key(ResourceKey.sponge("warped-nylium"));
+
+    public static final DefaultedRegistryReference<MapColorType> WARPED_STEM = MapColorTypes.key(ResourceKey.sponge("warped-stem"));
+
+    public static final DefaultedRegistryReference<MapColorType> WARPED_HYPHAE = MapColorTypes.key(ResourceKey.sponge("warped-hyphae"));
+
+    public static final DefaultedRegistryReference<MapColorType> WARPED_WART_BLOCK = MapColorTypes.key(ResourceKey.sponge("warped-wart-block"));
 
     // SORTFIELDS:OFF
 
     private MapColorTypes() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<MapColorType> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.MAP_COLOR_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

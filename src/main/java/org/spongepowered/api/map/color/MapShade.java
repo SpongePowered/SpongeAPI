@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.map.color;
 
-import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -32,5 +32,5 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * to form a {@link MapColor}
  */
 @CatalogedBy(MapShades.class)
-public interface MapShade extends CatalogType {
+public interface MapShade extends DefaultedRegistryValue {
 }
