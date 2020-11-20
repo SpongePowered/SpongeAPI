@@ -34,8 +34,6 @@ import org.spongepowered.api.world.ChunkRegenerateFlag;
 import org.spongepowered.api.world.ChunkRegenerateFlags;
 import org.spongepowered.api.world.LocationCreator;
 import org.spongepowered.api.world.SerializationBehavior;
-import org.spongepowered.api.world.SerializationBehaviors;
-import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.difficulty.Difficulty;
@@ -46,7 +44,6 @@ import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
 import org.spongepowered.api.world.volume.game.InteractableVolume;
 import org.spongepowered.api.world.weather.WeatherUniverse;
-import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.io.IOException;
@@ -158,7 +155,7 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
      * Instructs the world to save all data.
      *
      * @return True if save was successful, or false if
-     *     {@link SerializationBehavior} is {@link SerializationBehaviors#NONE}
+     *     {@link SerializationBehavior} is {@link SerializationBehavior#NONE}
      * @throws IOException If the save failed
      */
     boolean save() throws IOException;

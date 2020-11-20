@@ -33,7 +33,6 @@ import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.trader.WanderingTrader;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.MinecraftDayTime;
-import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldBorder;

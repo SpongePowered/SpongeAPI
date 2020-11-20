@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.util.annotation.CatalogedBy;
-
-@CatalogedBy(SerializationBehaviors.class)
-public interface SerializationBehavior extends CatalogType {
-
+public enum SerializationBehavior {
+    AUTOMATIC,
+    AUTOMATIC_METADATA_ONLY,
+    MANUAL,
+    MANUAL_METADATA_ONLY,
+    NONE
 }

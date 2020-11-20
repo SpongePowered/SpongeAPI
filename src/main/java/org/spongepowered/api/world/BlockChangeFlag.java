@@ -32,7 +32,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * interactions, such as notifying neighboring blocks, performing block physics
  * on placement, etc.
  */
-@CatalogedBy(BlockChangeFlags.class)
 public interface BlockChangeFlag {
 
     /**

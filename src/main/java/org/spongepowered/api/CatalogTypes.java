@@ -272,8 +272,6 @@ public final class CatalogTypes {
 
     public static final Class<SelectorType> SELECTOR_TYPE = SelectorType.class;
 
-    public static final Class<SerializationBehavior> SERIALIZATION_BEHAVIOR = SerializationBehavior.class;
-
     public static final Class<SkinPart> SKIN_PART = SkinPart.class;
 
     public static final Class<SlabPortion> SLAB_PORTION = SlabPortion.class;
