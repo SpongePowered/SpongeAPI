@@ -98,6 +98,9 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.item.potion.PotionType;
+import org.spongepowered.api.map.MapCanvas;
+import org.spongepowered.api.map.MapInfo;
+import org.spongepowered.api.map.decoration.MapDecoration;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.projectile.source.ProjectileSource;
@@ -106,6 +109,11 @@ import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.util.orientation.Orientation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.util.weighted.WeightedTable;
+import org.spongepowered.api.world.LocatableBlock;
+import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.server.ServerWorld;
+import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.math.vector.Vector2i;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
@@ -131,6 +139,14 @@ public final class TypeTokens {
     public static final TypeToken<Value<AttributeType>> ATTRIBUTE_TYPE_VALUE_TOKEN = new TypeToken<Value<AttributeType>>() {};
 
     public static final TypeToken<Value<ArtType>> ART_TYPE_VALUE_TOKEN = new TypeToken<Value<ArtType>>() {};
+
+    public static final TypeToken<Value<MapCanvas>> MAP_CANVAS_VALUE_TOKEN = new TypeToken<Value<MapCanvas>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<SetValue<MapDecoration>> MAP_DECORATIONS_VALUE_TOKEN = new TypeToken<SetValue<MapDecoration>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<MapInfo>> MAP_INFO_VALUE_TOKEN = new TypeToken<Value<MapInfo>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<World>> WORLD_VALUE_TOKEN = new TypeToken<Value<World>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<AttachmentSurface>> ATTACHMENT_SURFACE_VALUE_TOKEN = new TypeToken<Value<AttachmentSurface>>() {};
 

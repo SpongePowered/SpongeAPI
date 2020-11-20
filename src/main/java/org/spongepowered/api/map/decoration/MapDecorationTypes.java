@@ -37,25 +37,27 @@ public final class MapDecorationTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<MapDecorationType> BLUE_MARKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "BLUE_MARKER");
+    public static final Supplier<MapDecorationType> BLUE_MARKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "blue_marker");
 
-    public static final Supplier<MapDecorationType> GREEN_MARKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "GREEN_MARKER");
+    public static final Supplier<MapDecorationType> GREEN_MARKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "frame");
 
-    public static final Supplier<MapDecorationType> MANSION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "MANSION");
+    public static final Supplier<MapDecorationType> MANSION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "mansion");
 
-    public static final Supplier<MapDecorationType> MONUMENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "MONUMENT");
+    public static final Supplier<MapDecorationType> MONUMENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "monument");
 
-    public static final Supplier<MapDecorationType> PLAYER_MARKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "PLAYER_MARKER");
+    public static final Supplier<MapDecorationType> PLAYER_MARKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "player");
 
-    public static final Supplier<MapDecorationType> PLAYER_OFF_LIMITS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "PLAYER_OFF_LIMITS");
+    public static final Supplier<MapDecorationType> PLAYER_OFF_LIMITS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "player_off_limits");
 
-    public static final Supplier<MapDecorationType> PLAYER_OFF_MAP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "PLAYER_OFF_MAP");
+    public static final Supplier<MapDecorationType> PLAYER_OFF_MAP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "player_off_map");
 
-    public static final Supplier<MapDecorationType> RED_MARKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "RED_MARKER");
+    public static final Supplier<MapDecorationType> RED_MARKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "red_marker");
 
-    public static final Supplier<MapDecorationType> TARGET_POINT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "TARGET_POINT");
+    public static final Supplier<MapDecorationType> TARGET_POINT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "target_point");
 
-    public static final Supplier<MapDecorationType> TARGET_X = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "TARGET_X");
+    public static final Supplier<MapDecorationType> TARGET_X = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "target_x");
 
     // SORTFIELDS:OFF
+
+    // TODO: banners
 }
