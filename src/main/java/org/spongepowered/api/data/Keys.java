@@ -1769,9 +1769,23 @@ public final class Keys {
     public static final Supplier<Key<Value<Integer>>> MAX_DURABILITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "max_durability");
 
     /**
+     * The maximum exhuastion of a {@link Humanoid}. Readonly.
+     *
+     * @see Keys#EXHAUSTION
+     */
+    public static final Supplier<Key<Value<Double>>> MAX_EXHAUSTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "max_exhaustion");
+
+    /**
      * The maximum damage a {@link FallingBlock} can deal.
      */
     public static final Supplier<Key<Value<Double>>> MAX_FALL_DAMAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "max_fall_damage");
+
+    /**
+     * The maximum food level of a {@link Humanoid}. Readonly.
+     *
+     * @see Keys#FOOD_LEVEL
+     */
+    public static final Supplier<Key<Value<Integer>>> MAX_FOOD_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "max_food_level");
 
     /**
      * The maximum health of a {@link Living}.
@@ -1788,6 +1802,13 @@ public final class Keys {
      * entities around than this value permits.
      */
     public static final Supplier<Key<Value<Integer>>> MAX_NEARBY_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "max_nearby_entities");
+
+    /**
+     * The maximum saturation of a {@link Humanoid}. Readonly.
+     *
+     * @see Keys#SATURATION
+     */
+    public static final Supplier<Key<Value<Double>>> MAX_SATURATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "max_saturation");
 
     /**
      * The maximum amount of ticks between two
