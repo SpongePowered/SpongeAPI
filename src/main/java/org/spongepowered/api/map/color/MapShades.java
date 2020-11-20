@@ -35,13 +35,13 @@ public final class MapShades {
 
 	// SORTFIELDS:ON
 
-	public static final Supplier<MapShade> DARKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapShade.class, "DARKER");
+	public static final Supplier<MapShade> DARKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapShade.class, "darker");
 
-	public static final Supplier<MapShade> DARK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapShade.class, "DARK");
+	public static final Supplier<MapShade> DARK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapShade.class, "dark");
 
-	public static final Supplier<MapShade> BASE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapShade.class, "BASE");
+	public static final Supplier<MapShade> BASE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapShade.class, "base");
 
-	public static final Supplier<MapShade> DARKEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapShade.class, "DARKEST");
+	public static final Supplier<MapShade> DARKEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapShade.class, "darkest");
 
 	// SORTFIELDS:OFF
 

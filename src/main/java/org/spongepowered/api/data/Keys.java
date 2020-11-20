@@ -1739,21 +1739,21 @@ public final class Keys {
      * This contains the colors displayed on a map.
      *
      */
-    public static final Supplier<Key<Value<MapCanvas>>> MAP_CANVAS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAP_CANVAS");
+    public static final Supplier<Key<Value<MapCanvas>>> MAP_CANVAS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_canvas");
 
     /**
      * Represents the {@link Key} for the Set of {@link MapDecoration}s
      * for a {@link MapInfo}.
      *
      */
-    public static final Supplier<Key<SetValue<MapDecoration>>> MAP_DECORATIONS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAP_DECORATIONS");
+    public static final Supplier<Key<SetValue<MapDecoration>>> MAP_DECORATIONS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_decorations");
 
     /**
      * Represents the {@link Key} for the {@link MapInfo}
      * of an {@link ItemStack} of type {@link ItemTypes#FILLED_MAP}.
      * @see MapInfoItemData#mapInfo()
      */
-    public static final Supplier<Key<Value<MapInfo>>> MAP_INFO = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAP_INFO");
+    public static final Supplier<Key<Value<MapInfo>>> MAP_INFO = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_info");
 
     /**
      * Represents the {@link Key} for the centre x and z of where a
@@ -1761,7 +1761,7 @@ public final class Keys {
      * This will be automatically centralised correctly.
      * @see MapInfoData#location()
      */
-    public static final Supplier<Key<Value<Vector2i>>> MAP_LOCATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAP_LOCATION");
+    public static final Supplier<Key<Value<Vector2i>>> MAP_LOCATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_location");
 
     /**
      * Represents the {@link Key} for whether a map updates from players
@@ -1773,7 +1773,7 @@ public final class Keys {
      *
      * @see MapInfoData#locked()
      */
-    public static final Supplier<Key<Value<Boolean>>> MAP_LOCKED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAP_LOCKED");
+    public static final Supplier<Key<Value<Boolean>>> MAP_LOCKED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_locked");
 
     /**
      * Represents the {@link Key} for the scale of a map
@@ -1781,7 +1781,7 @@ public final class Keys {
      * @see <a href="https://minecraft.gamepedia.com/Map#Zoom_details">Minecraft Wiki - Zoom Details</a>
      * @see MapInfoData#scale()
      */
-    public static final Supplier<Key<Value<Integer>>> MAP_SCALE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAP_SCALE");
+    public static final Supplier<Key<Value<Integer>>> MAP_SCALE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_scale");
 
     /**
      * Represents the {@link Key} for whether a {@link MapInfo}
@@ -1789,7 +1789,7 @@ public final class Keys {
      *
      * @see MapInfoData#trackPosition()
      */
-    public static final Supplier<Key<Value<Boolean>>> MAP_TRACKS_PLAYERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAP_TRACKS_PLAYERS");
+    public static final Supplier<Key<Value<Boolean>>> MAP_TRACKS_PLAYERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_tracks_players");
 
     /**
      * Represents the {@link Key} for whether a {@link MapInfo} can track
@@ -1797,7 +1797,7 @@ public final class Keys {
      *
      * @see MapInfoData#unlimitedTracking()
      */
-    public static final Supplier<Key<Value<Boolean>>> MAP_UNLIMITED_TRACKING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "MAP_UNLIMITED_TRACKING");
+    public static final Supplier<Key<Value<Boolean>>> MAP_UNLIMITED_TRACKING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_unlimited_tracking");
 
     /**
      * Represents the {@link Key} for the world for a
@@ -1805,7 +1805,7 @@ public final class Keys {
      *
      * @see MapInfoData#world()
      */
-    public static final Supplier<Key<Value<World>>> MAP_WORLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "DIMENSION");
+    public static final Supplier<Key<Value<World>>> MAP_WORLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_world");
     
     /**
      * The matter state of a {@link BlockState}

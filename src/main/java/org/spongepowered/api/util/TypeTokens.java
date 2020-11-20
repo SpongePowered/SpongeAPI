@@ -117,6 +117,9 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.item.potion.PotionType;
+import org.spongepowered.api.map.MapCanvas;
+import org.spongepowered.api.map.MapInfo;
+import org.spongepowered.api.map.decoration.MapDecoration;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.projectile.source.ProjectileSource;
@@ -128,6 +131,7 @@ import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.util.weighted.WeightedTable;
 import org.spongepowered.api.world.LocatableBlock;
 import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.math.vector.Vector2i;
@@ -369,6 +373,14 @@ public final class TypeTokens {
     public static final TypeToken<Long> LONG_TOKEN = new TypeToken<Long>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Value<Long>> LONG_VALUE_TOKEN = new TypeToken<Value<Long>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<MapCanvas>> MAP_CANVAS_VALUE_TOKEN = new TypeToken<Value<MapCanvas>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<SetValue<MapDecoration>> MAP_DECORATIONS_VALUE_TOKEN = new TypeToken<SetValue<MapDecoration>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<MapInfo>> MAP_INFO_VALUE_TOKEN = new TypeToken<Value<MapInfo>>() {private static final long serialVersionUID = -1;};
+
+    public static final TypeToken<Value<World>> WORLD_VALUE_TOKEN = new TypeToken<Value<World>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Map<EquipmentType, Boolean>> MAP_EQUIPMENT_TYPE_BOOLEAN_TOKEN = new TypeToken<Map<EquipmentType, Boolean>>() {private static final long serialVersionUID = -1;};
 

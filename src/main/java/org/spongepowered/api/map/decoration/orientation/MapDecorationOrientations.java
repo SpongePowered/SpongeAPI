@@ -36,37 +36,37 @@ public class MapDecorationOrientations {
 
 	// SORTFIELDS:ON
 
-	public static final Supplier<MapDecorationOrientation> NORTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "NORTH");
+	public static final Supplier<MapDecorationOrientation> NORTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "north");
 
-	public static final Supplier<MapDecorationOrientation> NORTH_NORTHEAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "NORTH_NORTHEAST");
+	public static final Supplier<MapDecorationOrientation> NORTH_NORTHEAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "north_northeast");
 
-	public static final Supplier<MapDecorationOrientation> NORTHEAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "NORTHEAST");
+	public static final Supplier<MapDecorationOrientation> NORTHEAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "northeast");
 
-	public static final Supplier<MapDecorationOrientation> EAST_NORTHEAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "EAST_NORTHEAST");
+	public static final Supplier<MapDecorationOrientation> EAST_NORTHEAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "east_northeast");
 
-	public static final Supplier<MapDecorationOrientation> EAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "EAST");
+	public static final Supplier<MapDecorationOrientation> EAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "east");
 
-	public static final Supplier<MapDecorationOrientation> EAST_SOUTHEAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "EAST_SOUTHEAST");
+	public static final Supplier<MapDecorationOrientation> EAST_SOUTHEAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "east_southeast");
 
-	public static final Supplier<MapDecorationOrientation> SOUTHEAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "SOUTHEAST");
+	public static final Supplier<MapDecorationOrientation> SOUTHEAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "southeast");
 
-	public static final Supplier<MapDecorationOrientation> SOUTH_SOUTHEAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "SOUTH_SOUTHEAST");
+	public static final Supplier<MapDecorationOrientation> SOUTH_SOUTHEAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "south_southeast");
 
-	public static final Supplier<MapDecorationOrientation> SOUTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "SOUTH");
+	public static final Supplier<MapDecorationOrientation> SOUTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "south");
 
-	public static final Supplier<MapDecorationOrientation> SOUTH_SOUTHWEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "SOUTH_SOUTHWEST");
+	public static final Supplier<MapDecorationOrientation> SOUTH_SOUTHWEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "south_southwest");
 
-	public static final Supplier<MapDecorationOrientation> SOUTHWEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "SOUTHWEST");
+	public static final Supplier<MapDecorationOrientation> SOUTHWEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "southwest");
 
-	public static final Supplier<MapDecorationOrientation> WEST_SOUTHWEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "WEST_SOUTHWEST");
+	public static final Supplier<MapDecorationOrientation> WEST_SOUTHWEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "west_southwest");
 
-	public static final Supplier<MapDecorationOrientation> WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "WEST");
+	public static final Supplier<MapDecorationOrientation> WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "west");
 
-	public static final Supplier<MapDecorationOrientation> WEST_NORTHWEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "WEST_NORTHWEST");
+	public static final Supplier<MapDecorationOrientation> WEST_NORTHWEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "west_northwest");
 
-	public static final Supplier<MapDecorationOrientation> NORTHWEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "NORTHWEST");
+	public static final Supplier<MapDecorationOrientation> NORTHWEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "northwest");
 
-	public static final Supplier<MapDecorationOrientation> NORTH_NORTHWEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "NORTH_NORTHWEST");
+	public static final Supplier<MapDecorationOrientation> NORTH_NORTHWEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationOrientation.class, "north_northwest");
 
 	// SORTFIELDS:OFF
 
