@@ -28,15 +28,15 @@ public final class UnknownTypeException extends RuntimeException {
 
     private static final long serialVersionUID = 5985899461691485164L;
 
-    public UnknownTypeException(String message) {
+    public UnknownTypeException(final String message) {
         super(message);
     }
 
-    public UnknownTypeException(String message, Throwable cause) {
+    public UnknownTypeException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
-    public UnknownTypeException(Throwable cause) {
+    public UnknownTypeException(final Throwable cause) {
         super(cause);
     }
 }
