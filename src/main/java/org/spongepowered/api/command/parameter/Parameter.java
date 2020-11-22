@@ -604,6 +604,32 @@ public interface Parameter {
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
+     * {@link VariableValueParameters#doubleRange()}, using the specified
+     * bounds (inclusive).
+     *
+     * @param min The minimum value.
+     * @param max The maximum value.
+     * @return A {@link Parameter.Value.Builder}
+     */
+    static Parameter.Value.Builder<Double> rangedDouble(final double min, final double max) {
+        return Parameter.builder(Double.class).parser(VariableValueParameters.doubleRange().setMin(min).setMax(max).build());
+    }
+
+    /**
+     * Creates a builder that has the {@link ValueParameter} set to
+     * {@link VariableValueParameters#integerRange()}, using the specified
+     * bounds (inclusive).
+     *
+     * @param min The minimum value.
+     * @param max The maximum value.
+     * @return A {@link Parameter.Value.Builder}
+     */
+    static Parameter.Value.Builder<Integer> rangedInteger(final int min, final int max) {
+        return Parameter.builder(Integer.class).parser(VariableValueParameters.integerRange().setMin(min).setMax(max).build());
+    }
+
+    /**
+     * Creates a builder that has the {@link ValueParameter} set to
      * {@link CatalogedValueParameters#REMAINING_JOINED_STRINGS}.
      *
      * @return A {@link Parameter.Value.Builder}
