@@ -1759,7 +1759,8 @@ public final class Keys {
     /**
      * Represents the {@link Key} for the {@link MapInfo}
      * of an {@link ItemStack} of type {@link ItemTypes#FILLED_MAP}.
-     * @see MapInfoItemData#mapInfo()
+     *
+     * <b>Can be null if the ItemStack was made by a plugin and hasn't been offered a MapInfo yet.</b>
      */
     public static final Supplier<Key<Value<MapInfo>>> MAP_INFO = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_info");
 

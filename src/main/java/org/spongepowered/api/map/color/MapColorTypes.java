@@ -122,9 +122,9 @@ public final class MapColorTypes {
 
     public static final Supplier<MapColorType> SAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "sand");
 
-    public static final Supplier<MapColorType> SILVER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "silver");
+    public static final Supplier<MapColorType> LIGHT_GRAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "light_gray");
 
-    public static final Supplier<MapColorType> SILVER_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "silver_terracotta");
+    public static final Supplier<MapColorType> LIGHT_GRAY_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "light_gray_terracotta");
 
     public static final Supplier<MapColorType> SNOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapColorType.class, "snow");
 
