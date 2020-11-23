@@ -183,7 +183,7 @@ public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDat
      * @throws IllegalStateException If a constructor cannot be found
      * @see MutableEntityVolume#createEntity(EntityType, Vector3d)
      */
-    Entity createEntity(EntityType<?> type);
+    <E extends Entity> E createEntity(EntityType<E> type);
 
     /**
      * Spawns an {@link Entity} using the already set properties (world,

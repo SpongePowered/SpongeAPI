@@ -38,16 +38,34 @@ public final class Criteria {
     // SORTFIELDS:ON
 
     /**
+     * Represents a {@link Criteria} which causes an {@link Objective} to have
+     * a score for a player represent their current air value.
+     */
+    public static final Supplier<Criterion> AIR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "air");
+
+    /**
+     * Represents a {@link Criteria} which causes an {@link Objective} to have
+     * a score for a player represent their current armor value.
+     */
+    public static final Supplier<Criterion> ARMOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "armor");
+
+    /**
      * Represents a {@link Criteria} which causes an {@link Objective}
      * to have a score for a player incremented when they die.
      */
-    public static final Supplier<Criterion> DEATHS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "deaths");
+    public static final Supplier<Criterion> DEATH_COUNT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "death_count");
 
     /**
      * Represents a {@link Criterion} which causes an {@link Objective}
      * is only updated manually, through commands or plugins.
      */
     public static final Supplier<Criterion> DUMMY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "dummy");
+
+    /**
+     * Represents a {@link Criteria} which causes an {@link Objective} to have
+     * a score for a player represent their current food.
+     */
+    public static final Supplier<Criterion> FOOD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "food");
 
     /**
      * Represents a {@link Criteria} which causes an {@link Objective} to have
@@ -58,16 +76,22 @@ public final class Criteria {
     public static final Supplier<Criterion> HEALTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "health");
 
     /**
+     * Represents a {@link Criteria} which causes an {@link Objective} to have
+     * a score for a player represent their current level.
+     */
+    public static final Supplier<Criterion> LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "level");
+
+    /**
      * Represents a {@link Criteria} which causes an {@link Objective}
      * to have a score for a player incremented when they kill a player.
      */
-    public static final Supplier<Criterion> PLAYER_KILLS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "player_kills");
+    public static final Supplier<Criterion> PLAYER_KILL_COUNT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "player_kill_count");
 
     /**
      * Represents a {@link Criteria} which causes an {@link Objective}
      * to have a score for a player incremented when they kill an entity.
      */
-    public static final Supplier<Criterion> TOTAL_KILLS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "total_kills");
+    public static final Supplier<Criterion> TOTAL_KILL_COUNT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "total_kill_count");
 
     /**
      * Represents a {@link Criterion} which causes an {@link Objective}
@@ -75,6 +99,12 @@ public final class Criteria {
      * command.
      */
     public static final Supplier<Criterion> TRIGGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "trigger");
+
+    /**
+     * Represents a {@link Criteria} which causes an {@link Objective} to have
+     * a score for a player represent their current xp.
+     */
+    public static final Supplier<Criterion> XP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "xp");
 
     // SORTFIELDS:OFF
 

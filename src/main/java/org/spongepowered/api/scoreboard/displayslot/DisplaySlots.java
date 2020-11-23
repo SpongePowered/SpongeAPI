@@ -50,7 +50,7 @@ public final class DisplaySlots {
     /**
      * Displays scores for the objective on the side of the screen in-game.
      */
-    public static final Supplier<DisplaySlot> SIDEBAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "sidebar_team");
+    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_NO_COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "sidebar_team_no_color");
 
     public static final Supplier<DisplaySlot> SIDEBAR_TEAM_AQUA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "sidebar_team_aqua");
 
