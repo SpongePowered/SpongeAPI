@@ -589,6 +589,14 @@ public final class Keys {
     public static final Supplier<Key<MapValue<EntityType<?>, Double>>> CUSTOM_ATTACK_DAMAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "custom_attack_damage");
 
     /**
+     * The resource pack model index of an {@link ItemStack}.
+     *
+     * <p>Resource packs can use the same index in their files to replace the
+     * item model of an ItemStack.</p>
+     */
+    public static final Supplier<Key<Value<Integer>>> CUSTOM_MODEL_DATA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "custom_model_data");
+
+    /**
      * The custom name of an {@link Entity}.
      */
     public static final Supplier<Key<Value<Component>>> CUSTOM_NAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "custom_name");
