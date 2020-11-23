@@ -31,6 +31,8 @@ import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.map.decoration.MapDecoration;
 import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.ServerLocation;
 
 /**
  * Represents data that may be viewed on a {@link ItemTypes#FILLED_MAP map}.
@@ -52,6 +54,15 @@ public interface MapInfo extends DataHolder.Mutable, Identifiable, DataSerializa
      * @return {@code true} if this MapInfo backs the supplied {@link ItemStack}
      */
     boolean isLinked(ItemStack itemStack);
+
+    /**
+     * Adds the banner at the given location to this map.
+     * @param bannerLocation
+     *
+     * @throws IllegalArgumentException if the given location is not a banner
+     * @throws IllegalArgumentException if the given banner
+     */
+    void addBannerDecoration(final Location<?> bannerLocation) throws IllegalArgumentException;
 
     /**
      * Serializes this object into a comprehensible {@link DataContainer}.
