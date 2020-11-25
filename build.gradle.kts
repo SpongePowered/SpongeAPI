@@ -25,6 +25,7 @@ repositories {
 base {
     archivesBaseName = "spongeapi"
 }
+
 val ap by sourceSets.registering {
     compileClasspath += sourceSets.main.get().compileClasspath + sourceSets.main.get().output
 }
@@ -43,19 +44,20 @@ dependencies {
     api("com.google.code.gson:gson:2.8.0")
 
     // Adventure
-    api("net.kyori:adventure-api:4.1.1") {
+    api(platform("net.kyori:adventure-bom:4.2.0"))
+    api("net.kyori:adventure-api") {
         exclude(group = "org.checkerframework", module = "checker-qual")
     }
-    api("net.kyori:adventure-text-serializer-gson:4.1.1") {
+    api("net.kyori:adventure-text-serializer-gson") {
         exclude(group = "org.checkerframework", module = "checker-qual")
         exclude(group = "com.google.code.gson", module = "gson")
         exclude(group = "net.kyori", module = "adventure-api")
     }
-    api("net.kyori:adventure-text-serializer-legacy:4.1.1") {
+    api("net.kyori:adventure-text-serializer-legacy") {
         exclude(group = "org.checkerframework", module = "checker-qual")
         exclude(group = "net.kyori", module = "adventure-api")
     }
-    api("net.kyori:adventure-text-serializer-plain:4.1.1") {
+    api("net.kyori:adventure-text-serializer-plain") {
         exclude(group = "org.checkerframework", module = "checker-qual")
         exclude(group = "net.kyori", module = "adventure-api")
     }
