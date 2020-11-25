@@ -32,7 +32,6 @@ import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.LocationCreator;
 import org.spongepowered.api.world.biome.BiomeType;
-import org.spongepowered.api.world.volume.archetype.block.entity.MutableBlockEntityArchetypeVolume;
 import org.spongepowered.api.world.volume.biome.MutableBiomeVolume;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
 import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
@@ -61,6 +60,34 @@ public final class VolumeApplicators {
             }
             return false;
         };
+    }
+
+    public static <M extends MutableBlockEntityVolume<M>> VolumeApplicator<M, Optional<? extends BlockEntity>, Boolean> applyOrRemoveBlockEntities() {
+        return (volume, element) -> {
+            final Optional<? extends BlockEntity> blockEntityOpt = element.getType();
+            if (blockEntityOpt.isPresent()) {
+                final BlockEntity blockEntity = blockEntityOpt.get();
+                if (volume.setBlock(element.getPosition(), blockEntity.getBlock())) {
+                    volume.addBlockEntity(element.getPosition(), blockEntity);
+                    return true;
+                }
+                return false;
+            } else {
+                return volume.removeBlock(element.getPosition());
+            }
+        };
+    }
+
+    public static <M extends MutableBlockVolume<M>> VolumeApplicator<M, Optional<BlockState>, Boolean> applyOrRemoveBlockState() {
+        return (volume, element) -> element.getType()
+            .map(blockState -> volume.setBlock(element.getPosition(), blockState))
+            .orElseGet(() -> volume.removeBlock(element.getPosition()));
+    }
+
+    public static <M extends PhysicsAwareMutableBlockVolume<M>> VolumeApplicator<M, Optional<BlockState>, Boolean> applyOrRemoveBlockState(final BlockChangeFlag flag) {
+        return (volume, element) -> element.getType()
+            .map(blockState -> volume.setBlock(element.getPosition(), blockState, flag))
+            .orElseGet(() -> volume.removeBlock(element.getPosition()));
     }
 
     public static <M extends LocationCreator & MutableBlockEntityVolume<M>> VolumeApplicator<M, BlockEntityArchetype, Optional<? extends BlockEntity>> applyBlockEntityArchetype() {

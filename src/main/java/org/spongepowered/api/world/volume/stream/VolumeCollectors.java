@@ -54,6 +54,10 @@ public final class VolumeCollectors {
         return VolumeCollectors.of(world, VolumePositionTranslators.identity(), VolumeApplicators.applyBlockEntities());
     }
 
+    public static <W extends World<W>> VolumeCollector<W, Optional<? extends BlockEntity>, Boolean> applyBlockEntitiesOrRemove(final W world) {
+        return VolumeCollectors.of(world, VolumePositionTranslators.identity(), VolumeApplicators.applyOrRemoveBlockEntities());
+    }
+
     public static <W extends World<W>> VolumeCollector<W, Entity, Boolean> applyEntitiesToWorld(final W world) {
         return VolumeCollectors.of(world, VolumePositionTranslators.identity(), VolumeApplicators.applyEntities());
     }
