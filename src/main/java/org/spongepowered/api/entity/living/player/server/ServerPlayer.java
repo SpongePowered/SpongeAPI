@@ -63,6 +63,15 @@ public interface ServerPlayer extends Player, Subject {
     User getUser();
 
     /**
+     * Returns whether this player is online or not.
+     *
+     * <p>If this returns false, this player should be considered stale and
+     * all references to it should be discarded immediately.</p>
+     * @return True if online, false if not
+     */
+    boolean isOnline();
+
+    /**
      * Returns whether this player has an open inventory at the moment
      * or not.
      *
@@ -222,7 +231,7 @@ public interface ServerPlayer extends Player, Subject {
      *
      * @return Whether the respawn was successful
      */
-    boolean respawnPlayer();
+    boolean respawn();
 
     /**
      * Gets the {@link WorldBorder} for this player, if present. If no border is
