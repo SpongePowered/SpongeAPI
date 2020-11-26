@@ -26,6 +26,6 @@ package org.spongepowered.api.entity.living.animal.horse;
 
 import org.spongepowered.api.entity.living.animal.TameableAnimal;
 
-public interface TameableHorse extends HorseEntity, TameableAnimal {
+public interface TameableHorse extends HorseLike, TameableAnimal {
 
 }

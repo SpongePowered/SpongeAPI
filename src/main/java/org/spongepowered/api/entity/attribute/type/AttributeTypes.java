@@ -41,9 +41,11 @@ public final class AttributeTypes {
 
     public static final Supplier<RangedAttributeType> GENERIC_ATTACK_DAMAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "generic.attack_damage");
 
+    public static final Supplier<RangedAttributeType> GENERIC_ATTACK_KNOCKBACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "generic.attack_knockback");
+
     public static final Supplier<RangedAttributeType> GENERIC_ATTACK_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "generic.attack_speed");
 
-    public static final Supplier<RangedAttributeType> GENERIC_ATTACK_KNOCKBACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "generic.attack_knockback");
+    public static final Supplier<RangedAttributeType> GENERIC_FLYING_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "generic.flying_speed");
 
     public static final Supplier<RangedAttributeType> GENERIC_FOLLOW_RANGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "generic.follow_range");
 

@@ -41,24 +41,17 @@ public final class ParticleTypes {
 
     public static final Supplier<ParticleType> ANGRY_VILLAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "angry_villager");
 
+    public static final Supplier<ParticleType> ASH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "ash");
+
     public static final Supplier<ParticleType> BARRIER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "barrier");
 
     public static final Supplier<ParticleType> BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "block");
-
-    /**
-     * This particle type plays the effects of when a block is broken.
-     *
-     * <p>This type only supports the {@link ParticleOptions#BLOCK_STATE} option.</p>
-     */
-    public static final Supplier<ParticleType> BREAK_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "break_block");
-
-    public static final Supplier<ParticleType> BREAK_EYE_OF_ENDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "break_eye_of_ender");
 
     public static final Supplier<ParticleType> BUBBLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "bubble");
 
     public static final Supplier<ParticleType> BUBBLE_COLUMN_UP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "bubble_column_up");
 
-    public static final Supplier<ParticleType> BUBBLE_POP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "squid_ink");
+    public static final Supplier<ParticleType> BUBBLE_POP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "bubble_pop");
 
     public static final Supplier<ParticleType> CAMPFIRE_COSY_SMOKE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "campfire_cosy_smoke");
 
@@ -67,6 +60,8 @@ public final class ParticleTypes {
     public static final Supplier<ParticleType> CLOUD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "cloud");
 
     public static final Supplier<ParticleType> COMPOSTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "composter");
+
+    public static final Supplier<ParticleType> CRIMSON_SPORE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "crimson_spore");
 
     public static final Supplier<ParticleType> CRIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "crit");
 
@@ -78,11 +73,11 @@ public final class ParticleTypes {
 
     public static final Supplier<ParticleType> DRAGON_BREATH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "dragon_breath");
 
-    public static final Supplier<ParticleType> DRAGON_BREATH_ATTACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "dragon_breath_attack");
-
     public static final Supplier<ParticleType> DRIPPING_HONEY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "dripping_honey");
 
     public static final Supplier<ParticleType> DRIPPING_LAVA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "dripping_lava");
+
+    public static final Supplier<ParticleType> DRIPPING_OBSIDIAN_TEAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "dripping_obsidian_tear");
 
     public static final Supplier<ParticleType> DRIPPING_WATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "dripping_water");
 
@@ -112,36 +107,11 @@ public final class ParticleTypes {
 
     public static final Supplier<ParticleType> FALLING_NECTAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "falling_nectar");
 
+    public static final Supplier<ParticleType> FALLING_OBSIDIAN_TEAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "falling_obsidian_tear");
+
     public static final Supplier<ParticleType> FALLING_WATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "falling_water");
 
-    /**
-     * This particle type will play the effect that will occur when
-     * a {@link Player} uses bone meal on a plant to boost the growth,
-     * this can only be played at a block location that isn't {@link BlockTypes#AIR}.
-     * <p>This type has limited {@link ParticleOption}s, only
-     * {@link ParticleOptions#QUANTITY} is supported.</p>
-     *
-     * <p>This type can no longer be spawned on air blocks. It will only
-     * show up if spawned at the location of solid blocks.</p>
-     */
-    public static final Supplier<ParticleType> FERTILIZER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "fertilizer");
-
-//    /** TODO
-//     * This particle type will play a fireworks effect.
-//     *
-//     * <p>This type has limited {@link ParticleOption}s, only
-//     * {@link ParticleOptions#FIREWORK_EFFECTS} is supported.</p>
-//     */
-//    public static final Supplier<ParticleType> FIREWORKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "fireworks");
-
     public static final Supplier<ParticleType> FIREWORK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "firework");
-
-    /**
-     * This particle type will play the smoke particles of a fire.
-     * <p>This type has limited {@link ParticleOption}s, only
-     * {@link ParticleOptions#DIRECTION} is supported.</p>
-     */
-    public static final Supplier<ParticleType> FIRE_SMOKE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "fire_smoke");
 
     public static final Supplier<ParticleType> FISHING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "fishing");
 
@@ -165,11 +135,11 @@ public final class ParticleTypes {
 
     public static final Supplier<ParticleType> LANDING_LAVA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "landing_lava");
 
+    public static final Supplier<ParticleType> LANDING_OBSIDIAN_TEAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "landing_obsidian_tear");
+
     public static final Supplier<ParticleType> LARGE_SMOKE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "large_smoke");
 
     public static final Supplier<ParticleType> LAVA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "lava");
-
-    public static final Supplier<ParticleType> MOBSPAWNER_FLAMES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "mobspawner_flames");
 
     public static final Supplier<ParticleType> MYCELIUM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "mycelium");
 
@@ -183,15 +153,19 @@ public final class ParticleTypes {
 
     public static final Supplier<ParticleType> RAIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "rain");
 
+    public static final Supplier<ParticleType> REVERSE_PORTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "reverse_portal");
+
     public static final Supplier<ParticleType> SMOKE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "smoke");
 
     public static final Supplier<ParticleType> SNEEZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "sneeze");
 
+    public static final Supplier<ParticleType> SOUL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "soul");
+
+    public static final Supplier<ParticleType> SOUL_FIRE_FLAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "soul_fire_flame");
+
     public static final Supplier<ParticleType> SPIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "spit");
 
     public static final Supplier<ParticleType> SPLASH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "splash");
-
-    public static final Supplier<ParticleType> SPLASH_POTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "splash_potion");
 
     public static final Supplier<ParticleType> SQUID_INK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "squid_ink");
 
@@ -200,6 +174,10 @@ public final class ParticleTypes {
     public static final Supplier<ParticleType> TOTEM_OF_UNDYING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "totem_of_undying");
 
     public static final Supplier<ParticleType> UNDERWATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "underwater");
+
+    public static final Supplier<ParticleType> WARPED_SPORE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "warped_spore");
+
+    public static final Supplier<ParticleType> WHITE_ASH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "white_ash");
 
     public static final Supplier<ParticleType> WITCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "witch");
 

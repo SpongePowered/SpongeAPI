@@ -28,7 +28,7 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.Ticks;
 
-public interface TraderLlama extends LlamaEntity {
+public interface TraderLlama extends LlamaLike {
 
     /**
      * {@link Keys#DESPAWN_DELAY}

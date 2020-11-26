@@ -61,9 +61,9 @@ public final class PotionTypes {
 
     public static final Supplier<PotionType> LONG_REGENERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "long_regeneration");
 
-    public static final Supplier<PotionType> LONG_SLOWNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "long_slowness");
-
     public static final Supplier<PotionType> LONG_SLOW_FALLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "long_slow_falling");
+
+    public static final Supplier<PotionType> LONG_SLOWNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "long_slowness");
 
     public static final Supplier<PotionType> LONG_STRENGTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "long_strength");
 
@@ -85,9 +85,9 @@ public final class PotionTypes {
 
     public static final Supplier<PotionType> REGENERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "regeneration");
 
-    public static final Supplier<PotionType> SLOWNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "slowness");
-
     public static final Supplier<PotionType> SLOW_FALLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "slow_falling");
+
+    public static final Supplier<PotionType> SLOWNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "slowness");
 
     public static final Supplier<PotionType> STRENGTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "strength");
 

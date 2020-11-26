@@ -22,22 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster.zombie;
+package org.spongepowered.api.entity.explosive;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.math.vector.Vector3i;
+
+import java.util.Optional;
 
 /**
- * Represents a Zombie Pigman.
+ * Represents an end crystal.
  */
-public interface ZombiePigman extends ZombieEntity {
+public interface EndCrystal extends Explosive {
 
     /**
-     * {@link Keys#ANGER_LEVEL}
-     * @return The anger level, decays over time
+     * {@link Keys#TARGET_POSITION}
+     * @return The target position of the beam
      */
-    default Value.Mutable<Integer> angerLevel() {
-        return this.requireValue(Keys.ANGER_LEVEL).asMutable();
+    default Optional<Value.Mutable<Vector3i>> beamTarget() {
+        return this.getValue(Keys.TARGET_POSITION).map(Value::asMutable);
     }
 
+    /**
+     * {@link Keys#SHOW_BOTTOM}
+     * @return The value whether this crystal is showing a bottom "pedestal"
+     */
+    default Value.Mutable<Boolean> showBottom() {
+        return this.requireValue(Keys.SHOW_BOTTOM).asMutable();
+    }
 }

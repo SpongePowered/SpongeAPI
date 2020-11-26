@@ -25,11 +25,10 @@
 package org.spongepowered.api.entity.vehicle.minecart;
 
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 
-public interface BlockOccupiedMinecart extends MinecartEntity {
+public interface BlockOccupiedMinecart extends MinecartLike {
 
     /**
      * {@link Keys#BLOCK_STATE}

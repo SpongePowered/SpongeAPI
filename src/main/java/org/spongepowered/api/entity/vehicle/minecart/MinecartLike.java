@@ -30,9 +30,9 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.math.vector.Vector3d;
 
 /**
- * Represents a Minecart.
+ * An abstract representation of a Minecart.
  */
-public interface MinecartEntity extends Entity {
+public interface MinecartLike extends Entity {
 
     /**
      * {@link Keys#IS_ON_RAIL}
