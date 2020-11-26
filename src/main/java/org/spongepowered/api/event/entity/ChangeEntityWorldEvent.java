@@ -47,6 +47,11 @@ public interface ChangeEntityWorldEvent extends Event {
     /**
      * Gets the {@link ServerWorld world} the {@link Entity} is coming from.
      *
+     * <p>One thing to keep in mind is that an implementation may choose to unload worlds, for any reason.
+     * Our API guarantees that the destination world will be loaded but we give no guarantee that the
+     * origin world is. With that in mind, we highly recommend you check {@link ServerWorld#isLoaded()} before
+     * interacting with this world in any manner.</p>
+     *
      * @return The world
      */
     @AbsoluteSortPosition(2)
