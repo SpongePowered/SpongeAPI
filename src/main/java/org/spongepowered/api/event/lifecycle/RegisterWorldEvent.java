@@ -27,7 +27,20 @@ package org.spongepowered.api.event.lifecycle;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.world.WorldArchetype;
 
+/**
+ * Lifecycle event for registering worlds to be loaded by the typical engine startup process
+ */
 public interface RegisterWorldEvent extends LifecycleEvent {
 
-    void register(ResourceKey key, WorldArchetype archetype);
+    /**
+     * Adds a {@link WorldArchetype archetype} to the pending worlds list to be loaded when the server starts.
+     *
+     * <p>The archetype is considered the default, if the world already exists it's properties will be loaded
+     * as it is on the disk.</p>
+     *
+     * @param key The key for the world
+     * @param defaultArchetype The default archetype
+     * @return True if successful, false if not
+     */
+    boolean register(ResourceKey key, WorldArchetype defaultArchetype);
 }
