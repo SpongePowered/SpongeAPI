@@ -41,7 +41,7 @@ import java.util.regex.Pattern;
 /**
  * Builders and factory for parameters that require configuration.
  */
-public class VariableValueParameters {
+public final class VariableValueParameters {
 
     private VariableValueParameters() {}
 
