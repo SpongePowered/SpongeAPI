@@ -36,6 +36,7 @@ import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.world.DimensionType;
 import org.spongepowered.api.world.GeneratorType;
 import org.spongepowered.api.world.PortalAgentType;
+import org.spongepowered.api.world.PortalType;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.difficulty.Difficulty;
@@ -218,6 +219,33 @@ public interface WorldProperties extends DataSerializable {
      * @return The portal agent type
      */
     PortalAgentType getPortalAgentType();
+
+    /**
+     * Gets the portal agent map of this world.
+     * Keys represent dimensions names.
+     * Values represent destination world names.
+     *
+     * @return The portal agent map of this world
+     */
+    Map<String, String> getPortalAgents();
+
+    /**
+     * Set the destination world for a {@link PortalType}
+     * on this world.
+     *
+     * @param portalType The type of the portal
+     * @return The name of the destination world
+     */
+    String getPortalDestination(PortalType portalType);
+
+    /**
+     * Set the destination world for a {@link PortalType}
+     * on this world.
+     *
+     * @param portalType The type of the portal
+     * @param destinationWorldName The destination world name of the portal
+     */
+    void setPortalDestination(PortalType portalType, String destinationWorldName);
 
     /**
      * Gets whether PVP combat is enabled in this world.
