@@ -2566,6 +2566,9 @@ public final class Keys {
 
     /**
      * The client view distance of a {@link ServerPlayer}. Read-only.
+     *
+     * <p>This value represents the radius (around the player) in
+     * unit chunks.</p>
      */
     public static final Supplier<Key<Value<Integer>>> VIEW_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "view_distance");
 
