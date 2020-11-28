@@ -77,6 +77,7 @@ import org.spongepowered.api.data.type.PortionType;
 import org.spongepowered.api.data.type.ProfessionType;
 import org.spongepowered.api.data.type.RabbitType;
 import org.spongepowered.api.data.type.RailDirection;
+import org.spongepowered.api.data.type.SkinPart;
 import org.spongepowered.api.data.type.SlabPortion;
 import org.spongepowered.api.data.type.SpellType;
 import org.spongepowered.api.data.type.SpellTypes;
@@ -168,7 +169,9 @@ import org.spongepowered.api.entity.living.monster.zombie.ZombiePigman;
 import org.spongepowered.api.entity.living.monster.zombie.ZombieVillager;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
+import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.entity.living.trader.Trader;
 import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
@@ -229,6 +232,7 @@ import org.spongepowered.plugin.PluginContainer;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 import java.util.function.Supplier;
 
@@ -411,7 +415,7 @@ public final class Keys {
     public static final Supplier<Key<Value<Double>>> BLOCK_TEMPERATURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "block_temperature");
 
     /**
-     * The type of the boat
+     * The type of the boat.
      */
     public static Supplier<Key<Value<BoatType>>> BOAT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "boat_type");
 
@@ -514,6 +518,16 @@ public final class Keys {
      * The type of a {@link Cat}.
      */
     public static final Supplier<Key<Value<CatType>>> CAT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "cat_type");
+
+    /**
+     * Whether a {@link ServerPlayer} can will see colours sent in messages.
+     */
+    public static final Supplier<Key<Value<Boolean>>> CHAT_COLORS_ENABLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "chat_colors_enabled");
+
+    /**
+     * The types of chat a {@link ServerPlayer} can see.
+     */
+    public static final Supplier<Key<Value<ChatVisibility>>> CHAT_VISIBILITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "chat_visibility");
 
     /**
      * The attachment of a {@link BlockTypes#CHEST} or {@link BlockTypes#TRAPPED_CHEST} {@link BlockState}.
@@ -1737,6 +1751,11 @@ public final class Keys {
     public static final Supplier<Key<Value<LlamaType>>> LLAMA_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "llama_type");
 
     /**
+     * A {@link ServerPlayer}'s client language.
+     */
+    public static final Supplier<Key<Value<Locale>>> LOCALE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "locale");
+
+    /**
      * The token used to lock a {@link CarrierBlockEntity}. Or the token on an {@link ItemStack} to unlock it.
      */
     public static final Supplier<Key<Value<String>>> LOCK_TOKEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "lock_token");
@@ -2208,6 +2227,13 @@ public final class Keys {
     public static final Supplier<Key<Value<Integer>>> SIZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "size");
 
     /**
+     * The parts of a {@link ServerPlayer} skin that should be displayed.
+     *
+     * <p>This is a read-only value, set by the client.</p>
+     */
+    public static final Supplier<Key<SetValue<SkinPart>>> SKIN_PARTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "skin_parts");
+
+    /**
      * The skin of a {@link Humanoid}.
      *
      * <p>Skins can only be manipulated by supplying the UUID of a player
@@ -2537,6 +2563,11 @@ public final class Keys {
      * The velocity of an {@link Entity}.
      */
     public static final Supplier<Key<Value<Vector3d>>> VELOCITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "velocity");
+
+    /**
+     * The client view distance of a {@link ServerPlayer}. Read-only.
+     */
+    public static final Supplier<Key<Value<Integer>>> VIEW_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "view_distance");
 
     /**
      * The type of a {@link Villager} or {@link ZombieVillager}.

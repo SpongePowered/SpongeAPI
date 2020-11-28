@@ -60,6 +60,7 @@ import org.spongepowered.api.data.type.PortionType;
 import org.spongepowered.api.data.type.ProfessionType;
 import org.spongepowered.api.data.type.RabbitType;
 import org.spongepowered.api.data.type.RailDirection;
+import org.spongepowered.api.data.type.SkinPart;
 import org.spongepowered.api.data.type.SlabPortion;
 import org.spongepowered.api.data.type.SpellType;
 import org.spongepowered.api.data.type.StairShape;
@@ -88,6 +89,7 @@ import org.spongepowered.api.entity.attribute.type.AttributeType;
 import org.spongepowered.api.entity.explosive.EnderCrystal;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.animal.Sheep;
+import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.fluid.FluidStackSnapshot;
 import org.spongepowered.api.item.FireworkEffect;
@@ -113,6 +115,7 @@ import org.spongepowered.plugin.PluginContainer;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
@@ -145,6 +148,8 @@ public final class TypeTokens {
     public static final TypeToken<Value<BossBar>> BOSS_BAR_VALUE_TOKEN = new TypeToken<Value<BossBar>>() {};
 
     public static final TypeToken<Value<CatType>> CAT_TYPE_VALUE_TOKEN = new TypeToken<Value<CatType>>() {};
+
+    public static final TypeToken<Value<ChatVisibility>> CHAT_VISIBILITY_VALUE_TOKEN = new TypeToken<Value<ChatVisibility>>() {};
 
     public static final TypeToken<Value<ChestAttachmentType>> CHEST_ATTACHMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<ChestAttachmentType>>() {};
 
@@ -244,6 +249,8 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<LlamaType>> LLAMA_TYPE_VALUE_TOKEN = new TypeToken<Value<LlamaType>>() {};
 
+    public static final TypeToken<Value<Locale>> LOCALE_VALUE_TOKEN = new TypeToken<Value<Locale>>() {};
+
     public static final TypeToken<Value<Long>> LONG_VALUE_TOKEN = new TypeToken<Value<Long>>() {};
 
     public static final TypeToken<Map<EquipmentType, Boolean>> MAP_EQUIPMENT_TYPE_BOOLEAN_TOKEN = new TypeToken<Map<EquipmentType, Boolean>>() {};
@@ -317,6 +324,8 @@ public final class TypeTokens {
     public static final TypeToken<Set<Direction>> SET_DIRECTION_TOKEN = new TypeToken<Set<Direction>>() {};
 
     public static final TypeToken<SetValue<Direction>> SET_DIRECTION_VALUE_TOKEN = new TypeToken<SetValue<Direction>>() {};
+
+    public static final TypeToken<SetValue<SkinPart>> SET_SKIN_PARTS_VALUE_TOKEN = new TypeToken<SetValue<SkinPart>>() {};
 
     public static final TypeToken<Set<String>> SET_STRING_TOKEN = new TypeToken<Set<String>>() {};
 

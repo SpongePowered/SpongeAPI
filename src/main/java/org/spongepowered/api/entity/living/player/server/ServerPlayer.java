@@ -128,7 +128,9 @@ public interface ServerPlayer extends Player, Subject {
      *
      * @return The player's view distance
      */
-    int getViewDistance();
+    default int getViewDistance() {
+        return this.require(Keys.VIEW_DISTANCE);
+    }
 
     /**
      * Sets the view distance setting of the player. This value represents the
@@ -136,21 +138,27 @@ public interface ServerPlayer extends Player, Subject {
      *
      * @param distance The player's view distance
      */
-    void setViewDistance(int distance);
+    default void setViewDistance(final int distance) {
+        this.offer(Keys.VIEW_DISTANCE, distance);
+    }
 
     /**
      * Gets the current player chat visibility setting.
      *
      * @return Chat visibility setting
      */
-    ChatVisibility getChatVisibility();
+    default ChatVisibility getChatVisibility() {
+        return this.require(Keys.CHAT_VISIBILITY);
+    }
 
     /**
      * Gets whether the player has colors enabled in chat.
      *
      * @return True if colors are enabled in chat
      */
-    boolean isChatColorsEnabled();
+    default boolean isChatColorsEnabled() {
+        return this.require(Keys.CHAT_COLORS_ENABLED);
+    }
 
     /**
      * Simulates a chat message from a player.
@@ -173,7 +181,9 @@ public interface ServerPlayer extends Player, Subject {
      *
      * @return A set of skin parts displayed
      */
-    Set<SkinPart> getDisplayedSkinParts();
+    default Set<SkinPart> getDisplayedSkinParts() {
+        return this.require(Keys.SKIN_PARTS);
+    }
 
     /**
      * Gets the appropriate {@link ServerPlayerConnection} linking this player to a
