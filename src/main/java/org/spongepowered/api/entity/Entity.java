@@ -564,4 +564,31 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
         return getValue(Keys.HAS_GRAVITY).get();
     }
 
+    /**
+     * Gets all the tags stored for this entity.
+     *
+     * @return This entity's tags
+     */
+    Collection<String> getTags();
+
+    /**
+     * Adds a tag for this entity.
+     *
+     * @return Whether the tag is effectively in the set
+     */
+    boolean addTag(String tag);
+
+    /**
+     * Removes a tag for this entity.
+     *
+     * @return Whether the tag has effectively been removed
+     */
+    boolean removeTag(String tag);
+
+    /**
+     * Returns whether this entity has the given tag.
+     *
+     * @return True if this entity has the given tag.
+     */
+    boolean hasTag(String tag);
 }
