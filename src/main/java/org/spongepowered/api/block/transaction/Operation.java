@@ -22,17 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.action;
+package org.spongepowered.api.block.transaction;
 
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.event.entity.AffectEntityEvent;
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-public interface LightningEvent extends Event {
-
-    interface Pre extends LightningEvent, Cancellable {}
-
-    interface Strike extends LightningEvent, AffectEntityEvent {}
-
-    interface Post extends LightningEvent {}
+/**
+ * Represents an operation in a {@link org.spongepowered.api.world.server.ServerWorld}
+ * that is an effective contextual "comparison" of what type of transaction is, such as
+ * {@link Operations#PLACE}, {@link Operations#BREAK}, and {@link Operations#MODIFY},
+ * but holds no bearing on the order of a transaction taking place.
+ */
+@CatalogedBy(Operations.class)
+public interface Operation extends CatalogType {
 }

@@ -24,71 +24,42 @@
  */
 package org.spongepowered.api.event.block;
 
-import com.google.common.collect.Lists;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.entity.BlockEntity;
+import org.spongepowered.api.block.transaction.BlockTransaction;
+import org.spongepowered.api.block.transaction.BlockTransactionReceipt;
+import org.spongepowered.api.block.transaction.Operation;
 import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.Cause;
-import org.spongepowered.api.event.EventContextKeys;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.world.ServerLocation;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
- * Base event for when {@link BlockState}s at {@link ServerLocation}s are being
- * changed.
+ * Plain event for when one or many {@link BlockState BlockStates} may be
+ * changing within a {@link org.spongepowered.api.world.server.ServerWorld}.
+ * Ideally, the {@link All#getTransactions()} will contain a full list in order
+ * of which the changes are taking place, but the overall list may not be the
+ * full breadth of what changes take place during some complex operations. To
+ * record the entirety of all transactions taking place, {@link Post} provides
+ * additional aide with knowing which {@link BlockTransactionReceipt}s are
+ * recorded in a particluar {@link org.spongepowered.api.world.server.ServerWorld}
+ * without the additional cost of having multiple events thrown throughout.
+ * <p>To determine whether a particular {@link BlockTransaction} is a
+ * {@code break}, {@code place}, {@code modify}, etc. please refer to the
+ * {@link BlockTransaction#getOperation()}</p>
  */
 public interface ChangeBlockEvent extends Event, Cancellable {
-
-    /**
-     * Gets a list of the {@link Transaction}s for this event. If a
-     * transaction is requested to be marked as "invalid",
-     * {@link Transaction#setValid(boolean)} can be used.
-     *
-     * @return The unmodifiable list of transactions
-     */
-    List<Transaction<BlockSnapshot>> getTransactions();
-
-    /**
-     * Applies the provided {@link Predicate} to the {@link List} of
-     * {@link Transaction}s from {@link #getTransactions()} such that
-     * any time that {@link Predicate#test(Object)} returns <code>false</code>
-     * on the location of the {@link Transaction}, the {@link Transaction} is
-     * marked as "invalid" and will not apply post event.
-     *
-     * <p>{@link Transaction#getOriginal()} is used to get the {@link ServerLocation}</p>
-     *
-     * @param predicate The predicate to use for filtering
-     * @return The transactions for which the predicate returned
-     *     <code>false</code>
-     */
-    default List<Transaction<BlockSnapshot>> filter(Predicate<ServerLocation> predicate) {
-        List<Transaction<BlockSnapshot>> invalidatedTransactions = Lists.newArrayList();
-        for (Transaction<BlockSnapshot> transaction: this.getTransactions()) {
-            if (!predicate.test(transaction.getOriginal().getLocation().get())) {
-                transaction.setValid(false);
-                invalidatedTransactions.add(transaction);
-            }
-        }
-        return invalidatedTransactions;
-    }
-
-    /**
-     * Invalidates the list as such that all {@link Transaction}s are
-     * marked as "invalid" and will not apply post event.
-     */
-    default void filterAll() {
-        for (Transaction<BlockSnapshot> transaction: this.getTransactions()) {
-            transaction.setValid(false);
-        }
-    }
 
     /**
      * Called before running specific block logic at one or more 
@@ -112,40 +83,73 @@ public interface ChangeBlockEvent extends Event, Cancellable {
         List<ServerLocation> getLocations();
     }
 
-    /**
-     * Called when specific {@link BlockType}s have a notion of "decaying"
-     * for various reasons such that the changes are always caused by
-     * themselves.
-     */
-    interface Decay extends ChangeBlockEvent {}
+    interface All extends ChangeBlockEvent, Cancellable {
 
-    /**
-     * Called when a {@link BlockType} decides to "grow" either other
-     * blocks or itself or both. Usually considered to be plants or crops.
-     * Can use {@link EventContextKeys#GROWTH_ORIGIN} to determine the origin
-     * of what is doing the "growing".
-     */
-    interface Grow extends ChangeBlockEvent {}
+        /**
+         * Gets a list of the {@link Transaction}s for this event. If a
+         * transaction is requested to be marked as "invalid",
+         * {@link Transaction#setValid(boolean)} can be used.
+         *
+         * @return The unmodifiable list of transactions
+         */
+        List<BlockTransaction> getTransactions();
 
-    /**
-     * Called when {@link BlockState}s at {@link ServerLocation}s are
-     * being broke. This usually occurs, whenever a {@link BlockState} changes
-     * to {@link BlockTypes#AIR}
-     *
-     */
-    interface Break extends ChangeBlockEvent {}
+        /**
+         * Gets a {@link Stream} of {@link BlockTransaction BlockTransactions}
+         * filtered by a particular {@link Operation block operation}. The difference
+         * between this and {@link #getTransactions()} is that while the general transactions
+         * is still an ordered {@link List}, this is a filtered stream of that list, equally
+         * unmodifiable. The {@link BlockTransaction transactions} themselves are still
+         * modifiable with {@link BlockTransaction#setCustom(BlockSnapshot)}, but altering
+         * the customized snapshot will <strong>NOT</strong> alter the {@link Operation}
+         * being performed. As a logical perspective, there is no functional difference
+         * between any two {@link Operation operations}, but it can be important to
+         * differentiate between the two in some contexts.
+         *
+         * @param operation The operation being performed
+         * @return The stream filtering on the given operation, may be empty
+         */
+        default Stream<BlockTransaction> getTransactions(final Operation operation) {
+            Objects.requireNonNull(operation, "Operation cannot be null");
+            return this.getTransactions()
+                .stream()
+                .filter(transaction -> transaction.getOperation().equals(operation));
+        }
 
-    /**
-     * Called when one or more {@link BlockType}s are added to the world.
-     *
-     */
-    interface Place extends ChangeBlockEvent {}
+        /**
+         * Applies the provided {@link Predicate} to the {@link List} of
+         * {@link Transaction}s from {@link #getTransactions()} such that
+         * any time that {@link Predicate#test(Object)} returns {@code false}
+         * on the location of the {@link Transaction}, the {@link Transaction} is
+         * marked as "invalid" and will not apply post event.
+         *
+         * <p>{@link Transaction#getOriginal()} is used to get the {@link ServerLocation}</p>
+         *
+         * @param predicate The predicate to use for filtering
+         * @return The transactions for which the predicate returned
+         *     {@code false}
+         */
+        default List<BlockTransaction> filter(final Predicate<ServerLocation> predicate) {
+            return this.getTransactions()
+                .stream()
+                .filter(blockTransaction -> {
+                    if (!predicate.test(blockTransaction.getOriginal().getLocation().get())) {
+                        blockTransaction.setValid(false);
+                        return true;
+                    }
+                    return false;
+                })
+                .collect(Collectors.toList());
+        }
 
-    /**
-     * Called when one or more {@link BlockType}s are modified in the world.
-     *
-     */
-    interface Modify extends ChangeBlockEvent {}
+        /**
+         * Invalidates the list as such that all {@link Transaction}s are
+         * marked as "invalid" and will not apply post event.
+         */
+        default void filterAll() {
+            this.getTransactions().forEach(transaction -> transaction.setValid(false));
+        }
+    }
 
     /**
      * Called when there are multiple block changes due to a
@@ -155,15 +159,15 @@ public interface ChangeBlockEvent extends Event, Cancellable {
      * or, in the case that a {@link BlockEntity} "ticked", the {@link Cause}
      * will have the {@link BlockEntity}.
      *
-     * <p>The {@link Cause} may contain {@link Event}s, such as {@link Break},
-     * {@link Place}, and {@link Modify}. These events may be cancelled,
-     * or have their transactions modified, just like normal events.</p>
-     *
-     * <p>The idea is that  a block, entity, or block entity "ticks" in which
-     * during that "tick", they make different types of block changes. If the
-     * block change is purely one type then the corresponding event is thrown
-     * instead. For example, If the block change is purely "placing" of
-     * blocks, the {@link Place} event would be thrown instead.</p>
+     * <p>The {@link Cause} may contain {@link Event}s, such as {@link All},
+     * {@link NotifyNeighborBlockEvent}, and {@link Pre}. These events may be
+     * cancelled, or have their transactions modified, just like normal events,
+     * but this event is set in stone (pun intended) with regards to the
+     * representative state the world is in. Any Post is considered the "truth"
+     * of what happened, after all {@link All} events may have been thrown for
+     * a particular cause, during some logic, so as to simplify how many
+     * batched events need to be thrown compared to the work being performed.
+     * </p>
      *
      * <p>For example, a piston extension would cause this event to be fired.
      * A piston extension involves multiple distinct transactions -
@@ -173,5 +177,9 @@ public interface ChangeBlockEvent extends Event, Cancellable {
      * <p>Note: This event is fired after processing all other
      * ChangeBlockEvent's.</p>
      */
-    interface Post extends ChangeBlockEvent {}
+    interface Post extends ChangeBlockEvent {
+
+        List<BlockTransactionReceipt> getReceipts();
+
+    }
 }
