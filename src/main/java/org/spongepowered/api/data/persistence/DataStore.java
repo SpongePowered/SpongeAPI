@@ -131,7 +131,7 @@ public interface DataStore {
      */
     @SafeVarargs
     @SuppressWarnings("unchecked")
-    static <T> DataStore of(Key<Value<T>> key, DataQuery dataQuery, TypeToken<? extends DataHolder> typeToken, TypeToken<? extends DataHolder>... typeTokens) {
+    static <T, V extends Value<T>> DataStore of(final Key<V> key, final DataQuery dataQuery, final TypeToken<? extends DataHolder> typeToken, final TypeToken<? extends DataHolder>... typeTokens) {
         return DataStore.builder().pluginData(key.getKey()).holder(typeToken).holder(typeTokens).key(key, dataQuery).build();
     }
 
@@ -150,7 +150,7 @@ public interface DataStore {
      */
     @SafeVarargs
     @SuppressWarnings("unchecked")
-    static <T> DataStore of(Key<Value<T>> key, DataQuery dataQuery, Class<?extends DataHolder> type, Class<? extends DataHolder>... types) {
+    static <T, V extends Value<T>> DataStore of(Key<V> key, DataQuery dataQuery, Class<?extends DataHolder> type, Class<? extends DataHolder>... types) {
         return DataStore.builder().pluginData(key.getKey()).holder(type).holder(types).key(key, dataQuery).build();
     }
 
@@ -222,7 +222,7 @@ public interface DataStore {
              *
              * @return this builder for chaining
              */
-            default <T> Builder.EndStep key(Key<? extends Value<T>> key, String... dataQueries) {
+            default <T, V extends Value<T>> Builder.EndStep key(final Key<V> key, final String... dataQueries) {
                 return this.key(key, DataQuery.of(dataQueries));
             }
 
@@ -238,7 +238,7 @@ public interface DataStore {
              *
              * @return this builder for chaining
              */
-            <T> Builder.EndStep key(Key<? extends Value<T>> key, DataQuery dataQuery);
+            <T, V extends Value<T>> Builder.EndStep key(final Key<V> key, final DataQuery dataQuery);
 
             /**
              * Adds the serializers for the given key.
@@ -249,7 +249,7 @@ public interface DataStore {
              *
              * @return this builder for chaining
              */
-            <T> Builder.EndStep key(Key<? extends Value<T>> key, BiConsumer<DataView, T> serializer, Function<DataView, Optional<T>> deserializer);
+            <T, V extends Value<T>> Builder.EndStep key(Key<V> key, BiConsumer<DataView, T> serializer, Function<DataView, Optional<T>> deserializer);
         }
 
         interface EndStep extends SerializersStep, ResettableBuilder<DataStore, Builder>{
