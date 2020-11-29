@@ -1375,7 +1375,10 @@ public final class Keys {
     public static final Supplier<Key<Value<Boolean>>> IS_LIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "is_lit");
 
     /**
-     *Whether a {@link Cat} is lying down.
+     * Whether a {@link Cat} is lying down.
+     *
+     * <p>In vanilla, a cat lies down near its owner when the owner goes to
+     * sleep.</p>
      */
     public static final Supplier<Key<Value<Boolean>>> IS_LYING_DOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "is_lying_down");
 
@@ -1462,6 +1465,8 @@ public final class Keys {
 
     /**
      * Whether a {@link Cat} is relaxed.
+     *
+     * <p>In vanilla, a cat relaxes before lying down.</p>
      */
     public static final Supplier<Key<Value<Boolean>>> IS_RELAXED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "is_relaxed");
 
