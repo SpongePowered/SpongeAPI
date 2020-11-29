@@ -38,6 +38,7 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.server.ServerWorld;
 
 import java.util.List;
 import java.util.Objects;
@@ -59,13 +60,20 @@ import java.util.stream.Stream;
  * {@code break}, {@code place}, {@code modify}, etc. please refer to the
  * {@link BlockTransaction#getOperation()}</p>
  */
-public interface ChangeBlockEvent extends Event, Cancellable {
+public interface ChangeBlockEvent extends Event {
+
+    /**
+     * Gets the world this event is affecting.
+     *
+     * @return The world encompassing these block changes
+     */
+    ServerWorld getWorld();
 
     /**
      * Called before running specific block logic at one or more 
      * {@link ServerLocation}'s such as {@link BlockTypes#WATER}.
      */
-    interface Pre extends Event, Cancellable {
+    interface Pre extends ChangeBlockEvent, Cancellable {
 
         /**
          * Represents a list of one or more {@link ServerLocation}'s where
@@ -129,7 +137,7 @@ public interface ChangeBlockEvent extends Event, Cancellable {
          * @return The transactions for which the predicate returned
          *     {@code false}
          */
-        default List<BlockTransaction> filter(final Predicate<ServerLocation> predicate) {
+        default List<BlockTransaction> invalidate(final Predicate<ServerLocation> predicate) {
             return this.getTransactions()
                 .stream()
                 .filter(blockTransaction -> {
@@ -146,8 +154,8 @@ public interface ChangeBlockEvent extends Event, Cancellable {
          * Invalidates the list as such that all {@link Transaction}s are
          * marked as "invalid" and will not apply post event.
          */
-        default void filterAll() {
-            this.getTransactions().forEach(transaction -> transaction.setValid(false));
+        default void invalidateAll() {
+            this.getTransactions().forEach(Transaction::invalidate);
         }
     }
 
