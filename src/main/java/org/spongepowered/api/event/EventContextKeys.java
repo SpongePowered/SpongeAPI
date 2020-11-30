@@ -29,17 +29,17 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.block.transaction.BlockTransaction;
 import org.spongepowered.api.data.type.HandType;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
-import org.spongepowered.api.event.block.ChangeBlockEvent;
+import org.spongepowered.api.event.cause.entity.DismountType;
+import org.spongepowered.api.event.cause.entity.MovementType;
+import org.spongepowered.api.event.cause.entity.SpawnType;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
-import org.spongepowered.api.event.cause.entity.DismountType;
-import org.spongepowered.api.event.cause.entity.SpawnType;
-import org.spongepowered.api.event.cause.entity.MovementType;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.projectile.source.ProjectileSource;
@@ -101,12 +101,6 @@ public final class EventContextKeys {
     public static final Supplier<EventContextKey<BlockSnapshot>> BLOCK_TARGET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "block_target");
 
     /**
-     * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
-     * the block event without relying on existing in the {@link Cause} stack.
-     */
-    public static final Supplier<EventContextKey<ChangeBlockEvent.Break>> BREAK_EVENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "break_event");
-
-    /**
      * Represents the command string that was provided to the command processor.
      */
     public static final Supplier<EventContextKey<String>> COMMAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "command");
@@ -120,12 +114,6 @@ public final class EventContextKeys {
      * Represents the {@link DamageType} to an entity.
      */
     public static final Supplier<EventContextKey<DamageType>> DAMAGE_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "damage_type");
-
-    /**
-     * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
-     * the block event without relying on existing in the {@link Cause} stack.
-     */
-    public static final Supplier<EventContextKey<ChangeBlockEvent.Decay>> DECAY_EVENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "decay_event");
 
     /**
      * Used when a {@link Player} dismounts from an {@link Entity}.
@@ -153,16 +141,13 @@ public final class EventContextKeys {
     public static final Supplier<EventContextKey<ServerWorld>> FIRE_SPREAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "fire_spread");
 
     /**
-     * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Grow} to provide
-     * the origin {@link BlockSnapshot} that is doing the "growing".
+     * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent} to provide
+     * the origin {@link BlockSnapshot} that is doing the "growing". This is likely
+     * useful to determine what is the origin with {@link BlockTransaction#getOperation()}
+     * when the {@link org.spongepowered.api.block.transaction.Operation operation} is of
+     * {@link org.spongepowered.api.block.transaction.Operations#GROWTH Operations.GROWTH}.
      */
     public static final Supplier<EventContextKey<BlockSnapshot>> GROWTH_ORIGIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "growth_origin");
-
-    /**
-     * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
-     * the block event without relying on existing in the {@link Cause} stack.
-     */
-    public static final Supplier<EventContextKey<ChangeBlockEvent.Grow>> GROW_EVENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "grow_event");
 
     /**
      * Used when an {@link Living} ignites causing an {@link Explosion}.
@@ -201,12 +186,6 @@ public final class EventContextKeys {
     public static final Supplier<EventContextKey<ServerLocation>> LOCATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "location");
 
     /**
-     * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
-     * the block event without relying on existing in the {@link Cause} stack.
-     */
-    public static final Supplier<EventContextKey<ChangeBlockEvent.Modify>> MODIFY_EVENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "modify_event");
-
-    /**
      * Represents the {@link MovementType} when an entity moves.
      */
     public static final Supplier<EventContextKey<MovementType>> MOVEMENT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "movement_type");
@@ -230,12 +209,6 @@ public final class EventContextKeys {
      * Used when a {@link BlockTypes#PISTON_HEAD} retracts.
      */
     public static final Supplier<EventContextKey<ServerWorld>> PISTON_RETRACT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "piston_retract");
-
-    /**
-     * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent.Post} to provide
-     * the block event without relying on existing in the {@link Cause} stack.
-     */
-    public static final Supplier<EventContextKey<ChangeBlockEvent.Place>> PLACE_EVENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EventContextKey.class, "place_event");
 
     /**
      * Represents a {@link Player}.

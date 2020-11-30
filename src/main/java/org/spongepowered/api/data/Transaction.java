@@ -160,6 +160,14 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
         this.valid = valid;
     }
 
+    public final void validate() {
+        this.valid = true;
+    }
+
+    public final void invalidate() {
+        this.valid = false;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(this.original, this.defaultReplacement, this.valid, this.custom);

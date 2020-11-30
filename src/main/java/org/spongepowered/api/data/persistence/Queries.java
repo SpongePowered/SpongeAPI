@@ -36,7 +36,9 @@ public final class Queries {
     public static final DataQuery ORIGINAL = of("Original");
     public static final DataQuery DEFAULT_REPLACEMENT = of("DefaultReplacement");
     public static final DataQuery CUSTOM_REPLACEMENT = of("CustomReplacement");
+    public static final DataQuery FINAL_REPLACEMENT = of("FinalReplacement");
     public static final DataQuery VALID = of("IsValid");
+    public static final DataQuery BLOCK_OPERATION = of("Operation");
 
     // WeightedSerializableObject
     public static final DataQuery WEIGHTED_SERIALIZABLE = of("DataSerializable");
