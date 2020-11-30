@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.util;
 
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
@@ -41,27 +41,37 @@ import java.util.Optional;
  * <p>This class is immutable, all objects returned are either new instances or
  * itself.</p>
  */
-public class AABB {
-
-    private final Vector3d min;
-    private final Vector3d max;
-    @Nullable private Vector3d size = null;
-    @Nullable private Vector3d center = null;
-
+public interface AABB {
     /**
-     * Constructs a new bounding box from two opposite corners.
-     * Fails the resulting box would be degenerate (a dimension is 0).
+     * Creates a new bounding box from two opposite corners.
      *
-     * @param firstCorner The first corner
-     * @param secondCorner The second corner
+     * <p>Fails the resulting box would be degenerate (a dimension is 0).</p>
+     *
+     * @param v1 The first corner
+     * @param v2 The second corner
+     * @return An AABB
      */
-    public AABB(Vector3i firstCorner, Vector3i secondCorner) {
-        this(Objects.requireNonNull(firstCorner, "firstCorner").toDouble(), Objects.requireNonNull(secondCorner, "secondCorner").toDouble());
+    static AABB of(final Vector3d v1, final Vector3d v2) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(v1, v2);
     }
 
     /**
-     * Constructs a new bounding box from two opposite corners.
-     * Fails the resulting box would be degenerate (a dimension is 0).
+     * Creates a new bounding box from two opposite corners.
+     *
+     * <p>Fails the resulting box would be degenerate (a dimension is 0).</p>
+     *
+     * @param v1 The first corner
+     * @param v2 The second corner
+     * @return An AABB
+     */
+    static AABB of(final Vector3i v1, final Vector3i v2) {
+        return AABB.of(Objects.requireNonNull(v1, "v1").toDouble(), Objects.requireNonNull(v2, "v2").toDouble());
+    }
+
+    /**
+     * Creates a new bounding box from two opposite corners.
+     *
+     * <p>Fails the resulting box would be degenerate (a dimension is 0).</p>
      *
      * @param x1 The first corner x coordinate
      * @param y1 The first corner y coordinate
@@ -70,31 +80,8 @@ public class AABB {
      * @param y2 The second corner y coordinate
      * @param z2 The second corner z coordinate
      */
-    public AABB(double x1, double y1, double z1, double x2, double y2, double z2) {
-        this(new Vector3d(x1, y1, z1), new Vector3d(x2, y2, z2));
-    }
-
-    /**
-     * Constructs a new bounding box from two opposite corners.
-     * Fails the resulting box would be degenerate (a dimension is 0).
-     *
-     * @param firstCorner The first corner
-     * @param secondCorner The second corner
-     */
-    public AABB(Vector3d firstCorner, Vector3d secondCorner) {
-        Objects.requireNonNull(firstCorner, "firstCorner");
-        Objects.requireNonNull(secondCorner, "secondCorner");
-        this.min = firstCorner.min(secondCorner);
-        this.max = firstCorner.max(secondCorner);
-        if (this.min.getX() == this.max.getX()) {
-            throw new IllegalArgumentException("The box is generate on x!");
-        }
-        if (this.min.getY() == this.max.getY()) {
-            throw new IllegalArgumentException("The box is generate on y!");
-        }
-        if (this.min.getZ() == this.max.getZ()) {
-            throw new IllegalArgumentException("The box is generate on z!");
-        }
+    static AABB of(final double x1, final double y1, final double z1, final double x2, final double y2, final double z2) {
+        return AABB.of(new Vector3d(x1, y1, z1), new Vector3d(x2, y2, z2));
     }
 
     /**
@@ -102,42 +89,28 @@ public class AABB {
      *
      * @return The minimum corner
      */
-    public Vector3d getMin() {
-        return this.min;
-    }
+    Vector3d getMin();
 
     /**
      * The maximum corner of the box.
      *
      * @return The maximum corner
      */
-    public Vector3d getMax() {
-        return this.max;
-    }
+    Vector3d getMax();
 
     /**
      * Returns the center of the box, halfway between each corner.
      *
      * @return The center
      */
-    public Vector3d getCenter() {
-        if (this.center == null) {
-            this.center = this.min.add(this.getSize().div(2));
-        }
-        return this.center;
-    }
+    Vector3d getCenter();
 
     /**
      * Gets the size of the box.
      *
      * @return The size
      */
-    public Vector3d getSize() {
-        if (this.size == null) {
-            this.size = this.max.sub(this.min);
-        }
-        return this.size;
-    }
+    Vector3d getSize();
 
     /**
      * Checks if the bounding box contains a point.
@@ -145,7 +118,7 @@ public class AABB {
      * @param point The point to check
      * @return Whether or not the box contains the point
      */
-    public boolean contains(Vector3i point) {
+    default boolean contains(final Vector3i point) {
         Objects.requireNonNull(point, "point");
         return this.contains(point.getX(), point.getY(), point.getZ());
     }
@@ -156,7 +129,7 @@ public class AABB {
      * @param point The point to check
      * @return Whether or not the box contains the point
      */
-    public boolean contains(Vector3d point) {
+    default boolean contains(final Vector3d point) {
         Objects.requireNonNull(point, "point");
         return this.contains(point.getX(), point.getY(), point.getZ());
     }
@@ -169,11 +142,7 @@ public class AABB {
      * @param z The z coordinate of the point
      * @return Whether or not the box contains the point
      */
-    public boolean contains(double x, double y, double z) {
-        return this.min.getX() <= x && this.max.getX() >= x
-               && this.min.getY() <= y && this.max.getY() >= y
-               && this.min.getZ() <= z && this.max.getZ() >= z;
-    }
+    boolean contains(final double x, final double y, final double z);
 
     /**
      * Checks if the bounding box intersects another.
@@ -181,12 +150,7 @@ public class AABB {
      * @param other The other bounding box to check
      * @return Whether this bounding box intersects with the other
      */
-    public boolean intersects(AABB other) {
-        Objects.requireNonNull(other, "other");
-        return this.max.getX() >= other.getMin().getX() && other.getMax().getX() >= this.min.getX()
-               && this.max.getY() >= other.getMin().getY() && other.getMax().getY() >= this.min.getY()
-               && this.max.getZ() >= other.getMin().getZ() && other.getMax().getZ() >= this.min.getZ();
-    }
+    boolean intersects(final AABB other);
 
     /**
      * Tests for intersection between the box and a ray defined by a starting
@@ -196,147 +160,7 @@ public class AABB {
      * @param direction The direction of the ray
      * @return An intersection point its normal, if any
      */
-    public Optional<Tuple<Vector3d, Vector3d>> intersects(Vector3d start, Vector3d direction) {
-        Objects.requireNonNull(start, "start");
-        Objects.requireNonNull(direction, "direction");
-        // Adapted from: https://github.com/flow/react/blob/develop/src/main/java/com/flowpowered/react/collision/RayCaster.java#L156
-        // The box is interpreted as 6 infinite perpendicular places, one for each face (being expanded infinitely)
-        // "t" variables are multipliers: start + direction * t gives the intersection point
-        // Find the intersections on the -x and +x planes, oriented by direction
-        final double txMin;
-        final double txMax;
-        final Vector3d xNormal;
-        if (Math.copySign(1, direction.getX()) > 0) {
-            txMin = (this.min.getX() - start.getX()) / direction.getX();
-            txMax = (this.max.getX() - start.getX()) / direction.getX();
-            xNormal = Vector3d.UNIT_X;
-        } else {
-            txMin = (this.max.getX() - start.getX()) / direction.getX();
-            txMax = (this.min.getX() - start.getX()) / direction.getX();
-            xNormal = Vector3d.UNIT_X.negate();
-        }
-        // Find the intersections on the -y and +y planes, oriented by direction
-        final double tyMin;
-        final double tyMax;
-        final Vector3d yNormal;
-        if (Math.copySign(1, direction.getY()) > 0) {
-            tyMin = (this.min.getY() - start.getY()) / direction.getY();
-            tyMax = (this.max.getY() - start.getY()) / direction.getY();
-            yNormal = Vector3d.UNIT_Y;
-        } else {
-            tyMin = (this.max.getY() - start.getY()) / direction.getY();
-            tyMax = (this.min.getY() - start.getY()) / direction.getY();
-            yNormal = Vector3d.UNIT_Y.negate();
-        }
-        // The ray should intersect the -x plane before the +y plane and intersect
-        // the -y plane before the +x plane, else it is outside the box
-        if (txMin > tyMax || txMax < tyMin) {
-            return Optional.empty();
-        }
-        // Keep track of the intersection normal which also helps with floating point errors
-        Vector3d normalMax;
-        Vector3d normalMin;
-        // The ray intersects only the furthest min plane on the box and only the closest
-        // max plane on the box
-        double tMin;
-        if (tyMin == txMin) {
-            tMin = tyMin;
-            normalMin = xNormal.negate().sub(yNormal);
-        } else if (tyMin > txMin) {
-            tMin = tyMin;
-            normalMin = yNormal.negate();
-        } else {
-            tMin = txMin;
-            normalMin = xNormal.negate();
-        }
-        double tMax;
-        if (tyMax == txMax) {
-            tMax = tyMax;
-            normalMax = xNormal.add(yNormal);
-        } else if (tyMax < txMax) {
-            tMax = tyMax;
-            normalMax = yNormal;
-        } else {
-            tMax = txMax;
-            normalMax = xNormal;
-        }
-        // Find the intersections on the -z and +z planes, oriented by direction
-        final double tzMin;
-        final double tzMax;
-        final Vector3d zNormal;
-        if (Math.copySign(1, direction.getZ()) > 0) {
-            tzMin = (this.min.getZ() - start.getZ()) / direction.getZ();
-            tzMax = (this.max.getZ() - start.getZ()) / direction.getZ();
-            zNormal = Vector3d.UNIT_Z;
-        } else {
-            tzMin = (this.max.getZ() - start.getZ()) / direction.getZ();
-            tzMax = (this.min.getZ() - start.getZ()) / direction.getZ();
-            zNormal = Vector3d.UNIT_Z.negate();
-        }
-        // The ray intersects only the furthest min plane on the box and only the closest
-        // max plane on the box
-        if (tMin > tzMax || tMax < tzMin) {
-            return Optional.empty();
-        }
-        // The ray should intersect the closest plane outside first and the furthest
-        // plane outside last
-        if (tzMin == tMin) {
-            normalMin = normalMin.sub(zNormal);
-        } else if (tzMin > tMin) {
-            tMin = tzMin;
-            normalMin = zNormal.negate();
-        }
-        if (tzMax == tMax) {
-            normalMax = normalMax.add(zNormal);
-        } else if (tzMax < tMax) {
-            tMax = tzMax;
-            normalMax = zNormal;
-        }
-        // Both intersection points are behind the start, there are no intersections
-        if (tMax < 0) {
-            return Optional.empty();
-        }
-        // Find the final intersection multiplier and normal
-        final double t;
-        Vector3d normal;
-        if (tMin < 0) {
-            // Only the furthest intersection is after the start, so use it
-            t = tMax;
-            normal = normalMax;
-        } else {
-            // Both are after the start, use the closest one
-            t = tMin;
-            normal = normalMin;
-        }
-        normal = normal.normalize();
-        // To avoid rounding point errors leaving the intersection point just off the plane
-        // we check the normal to use the actual plane value from the box coordinates
-        final double x;
-        final double y;
-        final double z;
-        if (normal.getX() > 0) {
-            x = this.max.getX();
-        } else if (normal.getX() < 0) {
-            x = this.min.getX();
-        } else {
-            x = direction.getX() * t + start.getX();
-        }
-        if (normal.getY() > 0) {
-            y = this.max.getY();
-        } else if (normal.getY() < 0) {
-            y = this.min.getY();
-        } else {
-            y = direction.getY() * t + start.getY();
-        }
-        if (normal.getZ() > 0) {
-            z = this.max.getZ();
-        } else if (normal.getZ() < 0) {
-            z = this.min.getZ();
-        } else {
-            z = direction.getZ() * t + start.getZ();
-        }
-        return Optional.of(new Tuple<>(new Vector3d(x, y, z), normal));
-    }
+    Optional<Tuple<Vector3d, Vector3d>> intersects(final Vector3d start, final Vector3d direction);
 
     /**
      * Offsets this bounding box by a given amount and returns a new box.
@@ -344,7 +168,7 @@ public class AABB {
      * @param offset The offset to apply
      * @return The new offset box
      */
-    public AABB offset(Vector3i offset) {
+    default AABB offset(final Vector3i offset) {
         Objects.requireNonNull(offset, "offset");
         return this.offset(offset.getX(), offset.getY(), offset.getZ());
     }
@@ -355,7 +179,7 @@ public class AABB {
      * @param offset The offset to apply
      * @return The new offset box
      */
-    public AABB offset(Vector3d offset) {
+    default AABB offset(final Vector3d offset) {
         Objects.requireNonNull(offset, "offset");
         return this.offset(offset.getX(), offset.getY(), offset.getZ());
     }
@@ -368,9 +192,7 @@ public class AABB {
      * @param z The amount of offset for the z coordinate
      * @return The new offset box
      */
-    public AABB offset(double x, double y, double z) {
-        return new AABB(this.min.add(x, y, z), this.max.add(x, y, z));
-    }
+    AABB offset(final double x, final double y, final double z);
 
     /**
      * Expands this bounding box by a given amount in both directions and
@@ -380,7 +202,7 @@ public class AABB {
      * @param amount The amount of expansion to apply
      * @return The new expanded box
      */
-    public AABB expand(Vector3i amount) {
+    default AABB expand(final Vector3i amount) {
         Objects.requireNonNull(amount, "amount");
         return this.expand(amount.getX(), amount.getY(), amount.getZ());
     }
@@ -393,7 +215,7 @@ public class AABB {
      * @param amount The amount of expansion to apply
      * @return The new expanded box
      */
-    public AABB expand(Vector3d amount) {
+    default AABB expand(final Vector3d amount) {
         Objects.requireNonNull(amount, "amount");
         return this.expand(amount.getX(), amount.getY(), amount.getZ());
     }
@@ -408,36 +230,9 @@ public class AABB {
      * @param z The amount of expansion for the z coordinate
      * @return The new expanded box
      */
-    public AABB expand(double x, double y, double z) {
-        x /= 2;
-        y /= 2;
-        z /= 2;
-        return new AABB(this.min.sub(x, y, z), this.max.add(x, y, z));
+    AABB expand(final double x, final double y, final double z);
+
+    interface Factory {
+        AABB create(final Vector3d v1, final Vector3d v2);
     }
-
-    @Override
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof AABB)) {
-            return false;
-        }
-        final AABB aabb = (AABB) other;
-        return this.min.equals(aabb.min) && this.max.equals(aabb.max);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = this.min.hashCode();
-        result = 31 * result + this.max.hashCode();
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "AABB(" + this.min + " to " + this.max + ")";
-    }
-
 }

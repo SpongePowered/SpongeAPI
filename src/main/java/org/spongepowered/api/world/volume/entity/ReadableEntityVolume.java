@@ -124,7 +124,7 @@ public interface ReadableEntityVolume extends Volume {
             throw new IllegalArgumentException("Distance must be a positive number!");
         }
 
-        return this.getEntities(new AABB(location.getX() - distance, location.getY() - distance, location.getZ() - distance,
+        return this.getEntities(AABB.of(location.getX() - distance, location.getY() - distance, location.getZ() - distance,
                 location.getX() + distance, location.getY() + distance, location.getZ() + distance),
             entity -> entity.getLocation().getPosition().distanceSquared(location) <= distance * distance);
     }
