@@ -102,7 +102,7 @@ public interface ResourceKey extends Key {
      * @return A new resource key
      */
     static ResourceKey of(final String namespace, final String value) {
-        return builder().namespace(namespace).value(value).build();
+        return ResourceKey.builder().namespace(namespace).value(value).build();
     }
 
     /**
@@ -113,7 +113,7 @@ public interface ResourceKey extends Key {
      * @return A new resource key
      */
     static ResourceKey of(final PluginContainer container, final String value) {
-        return builder().namespace(container).value(value).build();
+        return ResourceKey.builder().namespace(container).value(value).build();
     }
 
     /**
@@ -126,7 +126,7 @@ public interface ResourceKey extends Key {
      * @return A new resource key
      */
     static ResourceKey resolve(final String formatted) {
-        return resolve(formatted, MINECRAFT_NAMESPACE);
+        return ResourceKey.resolve(formatted, MINECRAFT_NAMESPACE);
     }
 
     /**
@@ -140,7 +140,7 @@ public interface ResourceKey extends Key {
      * @return A new resource key
      */
     static ResourceKey resolve(final String formatted, final PluginContainer defaultNamespace) {
-        return resolve(formatted, defaultNamespace.getMetadata().getId());
+        return ResourceKey.resolve(formatted, defaultNamespace.getMetadata().getId());
     }
 
     /**
