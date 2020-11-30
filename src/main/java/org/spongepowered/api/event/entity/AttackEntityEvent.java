@@ -281,7 +281,7 @@ public interface AttackEntityEvent extends Event, Cancellable {
      *
      * @return The list of damage modifier functions
      */
-    List<ModifierFunction<DamageModifier>> getOriginalFunctions();
+    List<? extends ModifierFunction<DamageModifier>> getOriginalFunctions();
 
     /**
      * Gets the "base" damage to deal to the targeted {@link Entity}. The

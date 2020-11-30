@@ -1,7 +1,7 @@
 plugins {
     `java-library`
     `maven-publish`
-    id("org.spongepowered.event-impl-gen") version "5.7.0"
+    id("org.spongepowered.event-impl-gen") version "7.0.0-SNAPSHOT"
     idea
     eclipse
     id("org.cadixdev.licenser")
@@ -109,14 +109,16 @@ dependencies {
     api("org.spongepowered:math:2.0.0-SNAPSHOT")
     api("org.spongepowered:noise:2.0.0-SNAPSHOT")
 
-    testImplementation("junit:junit:4.12")
-    testImplementation("org.hamcrest:hamcrest-library:1.3")
-    testImplementation("org.mockito:mockito-core:2.8.47")
+    testImplementation("junit:junit:4.13.1")
+    testImplementation("org.hamcrest:hamcrest:2.2")
+    testImplementation("org.mockito:mockito-core:3.6.28")
 }
 val spongeSnapshotRepo: String? by project
 val spongeReleaseRepo: String? by project
 tasks {
     genEventImpl {
+        sourceCompatibility = "1.8"
+
         outputFactory = "org.spongepowered.api.event.SpongeEventFactory"
         include("org/spongepowered/api/event/*/**/*")
         exclude("org/spongepowered/api/event/action/InteractEvent.java")
@@ -124,10 +126,6 @@ tasks {
         exclude("org/spongepowered/api/event/entity/AffectEntityEvent.java")
         exclude("org/spongepowered/api/event/filter/")
         exclude("org/spongepowered/api/event/impl/")
-        exclude("org/spongepowered/api/event/item/inventory/AffectItemStackEvent.java")
-        exclude("org/spongepowered/api/event/item/inventory/AffectSlotEvent.java")
-        exclude("org/spongepowered/api/event/lifecycle/EngineLifecycleEvent.java")
-        exclude("org/spongepowered/api/event/lifecycle/LifecycleEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/ProvideServiceEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/RegisterBuilderEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/RegisterCatalogEvent.java")
@@ -135,9 +133,6 @@ tasks {
         exclude("org/spongepowered/api/event/lifecycle/RegisterCommandEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/RegisterFactoryEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/RegisterWorldEvent.java")
-        exclude("org/spongepowered/api/event/lifecycle/StartingEngineEvent.java")
-        exclude("org/spongepowered/api/event/lifecycle/StartedEngineEvent.java")
-        exclude("org/spongepowered/api/event/lifecycle/StoppingEngineEvent.java")
         inclusiveAnnotations = setOf("org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod")
         exclusiveAnnotations = setOf("org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod")
     }
