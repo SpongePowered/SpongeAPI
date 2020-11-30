@@ -160,6 +160,7 @@ tasks {
     javadoc {
         options {
             encoding = "UTF-8"
+            source = "1.8"
             charset("UTF-8")
             isFailOnError = false
             (this as? StandardJavadocDocletOptions)?.apply {
@@ -173,6 +174,17 @@ tasks {
                         )
                 )
                 addStringOption("-quiet")
+            }
+        }
+    }
+
+    withType(JavaCompile::class).configureEach {
+        options.compilerArgumentProviders += CommandLineArgumentProvider {
+            // Use the --release option when available to ensure we only use Java 8 classes
+            if (JavaVersion.current().isJava10Compatible) {
+                listOf("--release", "8")
+            } else {
+                listOf()
             }
         }
     }
