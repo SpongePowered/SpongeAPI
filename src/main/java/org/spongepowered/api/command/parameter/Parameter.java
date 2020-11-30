@@ -746,11 +746,30 @@ public interface Parameter {
      * @param <T> The type of {@link CatalogType}
      * @return A {@link Parameter.Value.Builder}
      */
-    static <T extends CatalogType> Parameter.Value.Builder<T> catalogedElement(@NonNull final Class<T> type) {
-        return Parameter.builder(type, VariableValueParameters.catalogedElementParameterBuilder(type)
-                .defaultNamespace("minecraft")
-                .defaultNamespace("sponge")
-                .build());
+    static <T extends CatalogType> Parameter.Value.Builder<T> catalogedElementWithMinecraftAndSpongeDefaults(@NonNull final Class<T> type) {
+        return Parameter.catalogedElement(type, "minecraft", "sponge");
+    }
+
+    /**
+     * Creates a builder that has the {@link ValueParameter} that allows you to
+     * choose from cataloged types.
+     *
+     * <p>See {@link VariableValueParameters.CatalogedTypeBuilder
+     * #defaultNamespace(String)} for how default namespaces work.</p>
+     *
+     * @param type The {@link CatalogType} class to check for choices
+     * @param defaultNamespaces The default namespaces that will be used with the
+     *  provided value if the supplied argument is un-namespaced.
+     * @param <T> The type of {@link CatalogType}
+     * @return A {@link Parameter.Value.Builder}
+     */
+    static <T extends CatalogType> Parameter.Value.Builder<T> catalogedElement(@NonNull final Class<T> type,
+            @NonNull final String @NonNull... defaultNamespaces) {
+        final VariableValueParameters.CatalogedTypeBuilder<T> vvp = VariableValueParameters.catalogedElementParameterBuilder(type);
+        for (final String namespace : defaultNamespaces) {
+            vvp.defaultNamespace(namespace);
+        }
+        return Parameter.builder(type, vvp.build());
     }
 
     /**
