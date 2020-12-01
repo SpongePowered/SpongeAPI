@@ -57,13 +57,13 @@ public enum Axis implements Cycleable<Axis> {
         double z = Math.abs(vector.getZ());
         if (x < y) {
             if (z < y) {
-                return Y;
+                return Axis.Y;
             }
-            return Z;
+            return Axis.Z;
         } else if (x < z) {
-            return Z;
+            return Axis.Z;
         } else {
-            return X;
+            return Axis.X;
         }
     }
 
@@ -135,11 +135,11 @@ public enum Axis implements Cycleable<Axis> {
     @Override
     public Axis cycleNext() {
         if (this == Axis.X) {
-            return Y;
+            return Axis.Y;
         }
         if (this == Axis.Y) {
-            return Z;
+            return Axis.Z;
         }
-        return X;
+        return Axis.X;
     }
 }

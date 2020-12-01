@@ -50,7 +50,7 @@ public interface Query {
      * @return The new query
      */
     static Query orQueries(Query... queries) {
-        return builder().or(queries).build();
+        return Query.builder().or(queries).build();
     }
 
     /**
@@ -61,7 +61,7 @@ public interface Query {
      * @return The new query
      */
     static Query andQueries(Query... queries) {
-        return builder().and(queries).build();
+        return Query.builder().and(queries).build();
     }
 
     /**

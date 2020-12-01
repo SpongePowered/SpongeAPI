@@ -77,7 +77,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      * @return The new item stack
      */
     static ItemStack of(Supplier<? extends ItemType> itemType, int quantity) {
-        return of(itemType.get(), quantity);
+        return ItemStack.of(itemType.get(), quantity);
     }
 
     /**
@@ -89,7 +89,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      * @return The new item stack
      */
     static ItemStack of(ItemType itemType, int quantity) {
-        return builder().itemType(itemType).quantity(quantity).build();
+        return ItemStack.builder().itemType(itemType).quantity(quantity).build();
     }
 
     /**
@@ -99,7 +99,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      * @return The new item stack
      */
     static ItemStack of(Supplier<? extends ItemType> itemType) {
-        return of(itemType.get());
+        return ItemStack.of(itemType.get());
     }
 
     /**
@@ -109,7 +109,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      * @return The new item stack
      */
     static ItemStack of(ItemType itemType) {
-        return of(itemType, 1);
+        return ItemStack.of(itemType, 1);
     }
 
     /**
@@ -118,7 +118,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      * @return The empty ItemStack
      */
     static ItemStack empty() {
-        return builder().itemType(ItemTypes.AIR).build();
+        return ItemStack.builder().itemType(ItemTypes.AIR).build();
     }
 
     /**

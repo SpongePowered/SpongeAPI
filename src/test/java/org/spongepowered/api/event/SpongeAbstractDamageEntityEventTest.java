@@ -52,11 +52,11 @@ public class SpongeAbstractDamageEntityEventTest {
         DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.of(EventContext.empty(),"none"),
             targetEntity, Lists.newArrayList(), originalDamage);
 
-        assertThat(event.getOriginalDamage(), is(closeTo(originalDamage, ERROR)));
-        assertThat(event.getOriginalFinalDamage(), is(closeTo(originalDamage, ERROR)));
+        assertThat(event.getOriginalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        assertThat(event.getOriginalFinalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
 
-        assertThat(event.getFinalDamage(), is(closeTo(originalDamage, ERROR)));
-        assertThat(event.getBaseDamage(), is(closeTo(originalDamage, ERROR)));
+        assertThat(event.getFinalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        assertThat(event.getBaseDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
     }
 
     @Test
@@ -67,16 +67,16 @@ public class SpongeAbstractDamageEntityEventTest {
         DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.of(EventContext.empty(),"none"),
             targetEntity, Lists.newArrayList(), originalDamage);
 
-        assertThat(event.getOriginalDamage(), is(closeTo(originalDamage, ERROR)));
-        assertThat(event.getOriginalFinalDamage(), is(closeTo(originalDamage, ERROR)));
+        assertThat(event.getOriginalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        assertThat(event.getOriginalFinalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
 
         event.setBaseDamage(20);
 
-        assertThat(event.getBaseDamage(), is(closeTo(20, ERROR)));
-        assertThat(event.getFinalDamage(), is(closeTo(20, ERROR)));
+        assertThat(event.getBaseDamage(), is(closeTo(20, SpongeAbstractDamageEntityEventTest.ERROR)));
+        assertThat(event.getFinalDamage(), is(closeTo(20, SpongeAbstractDamageEntityEventTest.ERROR)));
 
-        assertThat(event.getOriginalDamage(), is(closeTo(originalDamage, ERROR)));
-        assertThat(event.getOriginalFinalDamage(), is(closeTo(originalDamage, ERROR)));
+        assertThat(event.getOriginalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        assertThat(event.getOriginalFinalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
     }
 
     @Test
@@ -101,18 +101,20 @@ public class SpongeAbstractDamageEntityEventTest {
         final List<DamageFunction> originalFunctions1 = event.getOriginalFunctions();
         assertThat(originalFunctions1, is(Matchers.equalTo(originalFunctions)));
 
-        assertThat(event.getOriginalDamage(), is(closeTo(originalDamage, ERROR)));
-        assertThat(event.getOriginalFinalDamage(), is(closeTo(originalFinalDamage, ERROR)));
+        assertThat(event.getOriginalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        assertThat(event.getOriginalFinalDamage(), is(closeTo(originalFinalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
 
         Map<DamageModifier, Double> originalDamages = event.getOriginalDamages();
 
         assertThat(originalDamages.size(), is(originalFunctions.size()));
 
-        assertThat(originalDamages.get(firstModifer), is(closeTo(firstModifierDamage, ERROR)));
-        assertThat(originalDamages.get(secondModifier), is(closeTo(secondModifierDamage, ERROR)));
+        assertThat(originalDamages.get(firstModifer), is(closeTo(firstModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        assertThat(originalDamages.get(secondModifier), is(closeTo(secondModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
 
-        assertThat(event.getOriginalModifierDamage(firstModifer), is(closeTo(firstModifierDamage, ERROR)));
-        assertThat(event.getOriginalModifierDamage(secondModifier), is(closeTo(secondModifierDamage, ERROR)));
+        assertThat(event.getOriginalModifierDamage(firstModifer), is(closeTo(firstModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        assertThat(event.getOriginalModifierDamage(secondModifier), is(closeTo(secondModifierDamage,
+            SpongeAbstractDamageEntityEventTest.ERROR
+        )));
 
         assertThat(event.getOriginalFunctions(), is(Matchers.equalTo(originalFunctions)));
     }
@@ -147,15 +149,17 @@ public class SpongeAbstractDamageEntityEventTest {
 
         event.setDamage(firstModifer, newFunction);
 
-        assertThat(event.getDamage(firstModifer), is(closeTo(firstChangedDamage, ERROR)));
-        assertThat(event.getDamage(secondModifier), is(closeTo(secondChangedDamage, ERROR)));
+        assertThat(event.getDamage(firstModifer), is(closeTo(firstChangedDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        assertThat(event.getDamage(secondModifier), is(closeTo(secondChangedDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
 
-        assertThat(event.getOriginalModifierDamage(firstModifer), is(closeTo(firstModifierDamage, ERROR)));
-        assertThat(event.getOriginalModifierDamage(secondModifier), is(closeTo(secondModifierDamage, ERROR)));
+        assertThat(event.getOriginalModifierDamage(firstModifer), is(closeTo(firstModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        assertThat(event.getOriginalModifierDamage(secondModifier), is(closeTo(secondModifierDamage,
+            SpongeAbstractDamageEntityEventTest.ERROR
+        )));
 
-        assertThat(event.getOriginalDamage(), is(closeTo(originalDamage, ERROR)));
-        assertThat(event.getOriginalFinalDamage(), is(closeTo(originalFinalDamage, ERROR)));
-        assertThat(event.getFinalDamage(), is(closeTo(modifiedFinalDamage, ERROR)));
+        assertThat(event.getOriginalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        assertThat(event.getOriginalFinalDamage(), is(closeTo(originalFinalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        assertThat(event.getFinalDamage(), is(closeTo(modifiedFinalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
 
         assertThat(event.getOriginalFunctions(), is(Matchers.equalTo(originalFunctions)));
 
@@ -198,16 +202,18 @@ public class SpongeAbstractDamageEntityEventTest {
 
         event.setDamage(thirdModifier, thirdFunction);
 
-        assertThat(event.getDamage(firstModifer), is(closeTo(firstModifierDamage, ERROR)));
-        assertThat(event.getDamage(secondModifier), is(closeTo(secondModifierDamage, ERROR)));
-        assertThat(event.getDamage(thirdModifier), is(closeTo(thirdDamage, ERROR)));
+        assertThat(event.getDamage(firstModifer), is(closeTo(firstModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        assertThat(event.getDamage(secondModifier), is(closeTo(secondModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        assertThat(event.getDamage(thirdModifier), is(closeTo(thirdDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
 
-        assertThat(event.getOriginalModifierDamage(firstModifer), is(closeTo(firstModifierDamage, ERROR)));
-        assertThat(event.getOriginalModifierDamage(secondModifier), is(closeTo(secondModifierDamage, ERROR)));
+        assertThat(event.getOriginalModifierDamage(firstModifer), is(closeTo(firstModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        assertThat(event.getOriginalModifierDamage(secondModifier), is(closeTo(secondModifierDamage,
+            SpongeAbstractDamageEntityEventTest.ERROR
+        )));
 
-        assertThat(event.getOriginalDamage(), is(closeTo(originalDamage, ERROR)));
-        assertThat(event.getOriginalFinalDamage(), is(closeTo(originalFinalDamage, ERROR)));
-        assertThat(event.getFinalDamage(), is(closeTo(modifiedFinalDamage, ERROR)));
+        assertThat(event.getOriginalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        assertThat(event.getOriginalFinalDamage(), is(closeTo(originalFinalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        assertThat(event.getFinalDamage(), is(closeTo(modifiedFinalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
 
         assertThat(event.getOriginalFunctions(), is(Matchers.equalTo(originalFunctions)));
 

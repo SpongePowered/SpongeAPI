@@ -62,7 +62,7 @@ public interface PotionEffect extends DataSerializable {
      * @return The potion effect
      */
     static PotionEffect of(PotionEffectType type, int amplifier, int duration) {
-        return builder().potionType(type).amplifier(amplifier).duration(duration).build();
+        return PotionEffect.builder().potionType(type).amplifier(amplifier).duration(duration).build();
     }
 
     /**
@@ -76,7 +76,7 @@ public interface PotionEffect extends DataSerializable {
      * @return The potion effect
      */
     static PotionEffect of(Supplier<? extends PotionEffectType> type, int amplifier, int duration) {
-        return builder().potionType(type).amplifier(amplifier).duration(duration).build();
+        return PotionEffect.builder().potionType(type).amplifier(amplifier).duration(duration).build();
     }
 
     /**

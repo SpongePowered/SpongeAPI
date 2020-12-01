@@ -116,8 +116,8 @@ public class AABBTest {
     @Test
     public void testIntersectsAABB() {
         for (int i = 0; i < 1000; i++) {
-            final AABB aabb1 = newAABB();
-            final AABB aabb2 = newIntersectingAABB(aabb1);
+            final AABB aabb1 = AABBTest.newAABB();
+            final AABB aabb2 = AABBTest.newIntersectingAABB(aabb1);
             final AABB aabb3 = aabb2.offset(aabb1.getSize().add(aabb2.getSize()));
             Assert.assertTrue(aabb1.intersects(aabb2));
             Assert.assertTrue(aabb2.intersects(aabb1));
@@ -197,19 +197,21 @@ public class AABBTest {
     }
 
     private static AABB newAABB() {
-        final Vector3d min = new Vector3d(RANDOM.nextDouble() * 20 - 10, RANDOM.nextDouble() * 20 - 10, RANDOM.nextDouble() * 20 - 10);
-        return new AABB(min, min.add(RANDOM.nextDouble() * 4 + 4, RANDOM.nextDouble() * 4 + 4, RANDOM.nextDouble() * 4 + 4));
+        final Vector3d min = new Vector3d(
+            AABBTest.RANDOM.nextDouble() * 20 - 10,
+            AABBTest.RANDOM.nextDouble() * 20 - 10, AABBTest.RANDOM.nextDouble() * 20 - 10);
+        return new AABB(min, min.add(AABBTest.RANDOM.nextDouble() * 4 + 4, AABBTest.RANDOM.nextDouble() * 4 + 4, AABBTest.RANDOM.nextDouble() * 4 + 4));
     }
 
     private static AABB newIntersectingAABB(AABB with) {
         final Vector3d wMin = with.getMin();
         final Vector3d wSize = with.getSize();
-        final double iSizeX = RANDOM.nextDouble() * wSize.getX();
-        final double iSizeY = RANDOM.nextDouble() * wSize.getY();
-        final double iSizeZ = RANDOM.nextDouble() * wSize.getZ();
-        final double eSizeX = RANDOM.nextDouble() * 4 + 4;
-        final double eSizeY = RANDOM.nextDouble() * 4 + 4;
-        final double eSizeZ = RANDOM.nextDouble() * 4 + 4;
+        final double iSizeX = AABBTest.RANDOM.nextDouble() * wSize.getX();
+        final double iSizeY = AABBTest.RANDOM.nextDouble() * wSize.getY();
+        final double iSizeZ = AABBTest.RANDOM.nextDouble() * wSize.getZ();
+        final double eSizeX = AABBTest.RANDOM.nextDouble() * 4 + 4;
+        final double eSizeY = AABBTest.RANDOM.nextDouble() * 4 + 4;
+        final double eSizeZ = AABBTest.RANDOM.nextDouble() * 4 + 4;
         final Vector3d min = wMin.sub(eSizeX, eSizeY, eSizeZ);
         final Vector3d max = wMin.add(iSizeX, iSizeY, iSizeZ);
         return new AABB(min, max);

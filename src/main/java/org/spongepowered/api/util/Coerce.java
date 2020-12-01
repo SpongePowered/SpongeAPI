@@ -693,7 +693,7 @@ public final class Coerce {
         }
 
         Matcher vecMatch = Coerce.vector2Pattern.matcher(obj.toString());
-        if (listBracketsMatch(vecMatch)) {
+        if (Coerce.listBracketsMatch(vecMatch)) {
             return new Vector2i(Integer.parseInt(vecMatch.group(1)), Integer.parseInt(vecMatch.group(2)));
         }
 

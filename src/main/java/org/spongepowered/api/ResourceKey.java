@@ -25,12 +25,12 @@
 package org.spongepowered.api;
 
 import net.kyori.adventure.key.Key;
-import org.spongepowered.configurate.ConfigurationNode;
 import org.spongepowered.api.data.DataRegistration;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataTranslator;
 import org.spongepowered.api.registry.GameRegistry;
 import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.configurate.ConfigurationNode;
 import org.spongepowered.plugin.PluginContainer;
 
 /**
@@ -70,7 +70,7 @@ public interface ResourceKey extends Key {
      * @return A new catalog key
      */
     static ResourceKey minecraft(final String value) {
-        return of(MINECRAFT_NAMESPACE, value);
+        return ResourceKey.of(ResourceKey.MINECRAFT_NAMESPACE, value);
     }
 
     /**
@@ -80,7 +80,7 @@ public interface ResourceKey extends Key {
      * @return A new catalog key
      */
     static ResourceKey sponge(final String value) {
-        return of(SPONGE_NAMESPACE, value);
+        return ResourceKey.of(ResourceKey.SPONGE_NAMESPACE, value);
     }
 
     /**

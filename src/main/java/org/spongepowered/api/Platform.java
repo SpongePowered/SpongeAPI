@@ -115,7 +115,7 @@ public interface Platform {
          * @return True if the platform is {@link #SERVER}, false otherwise
          */
         public boolean isServer() {
-            return this == SERVER;
+            return this == Type.SERVER;
         }
 
         /**
@@ -124,7 +124,7 @@ public interface Platform {
          * @return True if the platform is {@link #CLIENT}, false otherwise
          */
         public boolean isClient() {
-            return this == CLIENT;
+            return this == Type.CLIENT;
         }
 
         /**
@@ -133,7 +133,7 @@ public interface Platform {
          * @return False if the platform is {@link #UNKNOWN}, true otherwise
          */
         public boolean isKnown() {
-            return this != UNKNOWN;
+            return this != Type.UNKNOWN;
         }
 
     }

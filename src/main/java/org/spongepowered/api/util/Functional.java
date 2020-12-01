@@ -54,7 +54,7 @@ public class Functional {
     @SafeVarargs
     @SuppressWarnings("varargs")
     public static <E> Predicate<E> predicateAnd(Predicate<E>... predicates) {
-        return predicateAnd(Arrays.asList(predicates));
+        return Functional.predicateAnd(Arrays.asList(predicates));
     }
 
     /**
@@ -86,7 +86,7 @@ public class Functional {
     @SafeVarargs
     @SuppressWarnings("varargs")
     public static <L, R> BiPredicate<L, R> biPredicateAnd(BiPredicate<L, R>... predicates) {
-        return biPredicateAnd(Arrays.asList(predicates));
+        return Functional.biPredicateAnd(Arrays.asList(predicates));
     }
 
     /**

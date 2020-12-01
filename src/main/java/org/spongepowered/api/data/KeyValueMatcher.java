@@ -106,7 +106,7 @@ public interface KeyValueMatcher<V> extends DataSerializable {
      * @return The key value matcher
      */
     static <V> KeyValueMatcher<V> of(final Key<? extends Value<V>> key, final V value) {
-        return of(key, value, Operator.EQUAL);
+        return KeyValueMatcher.of(key, value, Operator.EQUAL);
     }
 
     /**
@@ -119,7 +119,7 @@ public interface KeyValueMatcher<V> extends DataSerializable {
      * @return The key value matcher
      */
     static <V> KeyValueMatcher<V> of(final Supplier<? extends Key<? extends Value<V>>> key, final V value) {
-        return of(key, value, Operator.EQUAL);
+        return KeyValueMatcher.of(key, value, Operator.EQUAL);
     }
 
     /**
@@ -133,7 +133,7 @@ public interface KeyValueMatcher<V> extends DataSerializable {
      * @return The key value matcher
      */
     static <V> KeyValueMatcher<V> of(final Key<? extends Value<V>> key, final V value, final Operator operator) {
-        return builder().key(key).value(value).operator(operator).build();
+        return KeyValueMatcher.builder().key(key).value(value).operator(operator).build();
     }
 
     /**
@@ -147,7 +147,7 @@ public interface KeyValueMatcher<V> extends DataSerializable {
      * @return The key value matcher
      */
     static <V> KeyValueMatcher<V> of(final Supplier<? extends Key<? extends Value<V>>> key, final V value, final Operator operator) {
-        return builder().key(key).value(value).operator(operator).build();
+        return KeyValueMatcher.builder().key(key).value(value).operator(operator).build();
     }
 
     /**

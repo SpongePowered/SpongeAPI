@@ -69,7 +69,8 @@ public interface TeleportHelper {
      *         {@link Optional#empty()} will be returned.
      */
     default Optional<ServerLocation> getSafeLocation(ServerLocation location) {
-        return this.getSafeLocation(location, DEFAULT_HEIGHT, DEFAULT_WIDTH, DEFAULT_FLOOR_CHECK_DISTANCE, TeleportHelperFilters.DEFAULT.get());
+        return this.getSafeLocation(location, TeleportHelper.DEFAULT_HEIGHT, TeleportHelper.DEFAULT_WIDTH,
+            TeleportHelper.DEFAULT_FLOOR_CHECK_DISTANCE, TeleportHelperFilters.DEFAULT.get());
     }
 
     /**
@@ -95,7 +96,8 @@ public interface TeleportHelper {
      *         {@link Optional#empty()} will be returned
      */
     default Optional<ServerLocation> getSafeLocation(ServerLocation location, int height, int width) {
-        return this.getSafeLocation(location, height, width, DEFAULT_FLOOR_CHECK_DISTANCE, TeleportHelperFilters.DEFAULT.get());
+        return this.getSafeLocation(location, height, width,
+            TeleportHelper.DEFAULT_FLOOR_CHECK_DISTANCE, TeleportHelperFilters.DEFAULT.get());
     }
 
     /**

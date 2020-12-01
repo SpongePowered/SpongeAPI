@@ -164,7 +164,7 @@ public interface Asset {
      * @throws IOException If any file exception is thrown
      */
     default String readString() throws IOException {
-        return this.readString(DEFAULT_CHARSET);
+        return this.readString(Asset.DEFAULT_CHARSET);
     }
 
     /**
@@ -187,7 +187,7 @@ public interface Asset {
      * @throws IOException If any file exception is thrown
      */
     default List<String> readLines() throws IOException {
-        return this.readLines(DEFAULT_CHARSET);
+        return this.readLines(Asset.DEFAULT_CHARSET);
     }
 
     /**

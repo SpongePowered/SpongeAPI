@@ -46,16 +46,16 @@ public final class TestHooks {
     }
 
     public static void setGame(Game game) throws NoSuchFieldException, IllegalAccessException {
-        if (gameField == null) {
-            gameField = Sponge.class.getDeclaredField("game");
-            gameField.setAccessible(true);
+        if (TestHooks.gameField == null) {
+            TestHooks.gameField = Sponge.class.getDeclaredField("game");
+            TestHooks.gameField.setAccessible(true);
         }
 
-        gameField.set(null, game);
+        TestHooks.gameField.set(null, game);
     }
 
     public static void setCatalogElement(Class<?> catalog, String name, Object value) throws NoSuchFieldException, IllegalAccessException {
-        setStaticFinalField(catalog.getDeclaredField(name), value);
+        TestHooks.setStaticFinalField(catalog.getDeclaredField(name), value);
     }
 
     private static void removeFinal(Field field) throws NoSuchFieldException, IllegalAccessException {
@@ -67,7 +67,7 @@ public final class TestHooks {
     }
 
     public static void setStaticFinalField(Field field, Object value) throws NoSuchFieldException, IllegalAccessException {
-        removeFinal(field);
+        TestHooks.removeFinal(field);
         field.set(null, value);
     }
 
@@ -81,7 +81,7 @@ public final class TestHooks {
                 continue;
             }
 
-            setStaticFinalField(field, mock(iface));
+            TestHooks.setStaticFinalField(field, mock(iface));
         }
     }
 

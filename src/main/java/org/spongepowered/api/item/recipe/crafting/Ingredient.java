@@ -79,9 +79,9 @@ public interface Ingredient extends Predicate<ItemStack> {
      */
     static Ingredient of(@Nullable ItemType... itemTypes) {
         if (itemTypes == null || itemTypes.length == 0) {
-            return empty();
+            return Ingredient.empty();
         }
-        return builder().with(itemTypes).build();
+        return Ingredient.builder().with(itemTypes).build();
     }
 
     /**
@@ -92,9 +92,9 @@ public interface Ingredient extends Predicate<ItemStack> {
      */
     static Ingredient of(@Nullable ItemStack... items) {
         if (items == null || items.length == 0) {
-            return empty();
+            return Ingredient.empty();
         }
-        return builder().with(items).build();
+        return Ingredient.builder().with(items).build();
     }
 
     /**
@@ -105,9 +105,9 @@ public interface Ingredient extends Predicate<ItemStack> {
      */
     static Ingredient of(@Nullable ItemStackSnapshot... items) {
         if (items == null) {
-            return empty();
+            return Ingredient.empty();
         }
-        return builder().with(items).build();
+        return Ingredient.builder().with(items).build();
     }
 
     /**
@@ -119,9 +119,9 @@ public interface Ingredient extends Predicate<ItemStack> {
     @SafeVarargs
     static Ingredient of(@Nullable Supplier<ItemType>... itemTypes) {
         if (itemTypes == null || itemTypes.length == 0) {
-            return empty();
+            return Ingredient.empty();
         }
-        return builder().with(itemTypes).build();
+        return Ingredient.builder().with(itemTypes).build();
     }
 
     /**
@@ -138,7 +138,7 @@ public interface Ingredient extends Predicate<ItemStack> {
         if (exemplaryStacks.length == 0) {
             throw new IllegalArgumentException("At least exemplary stack is required");
         }
-        return builder().with(key, predicate, exemplaryStacks).build();
+        return Ingredient.builder().with(key, predicate, exemplaryStacks).build();
     }
 
     /**
@@ -150,7 +150,7 @@ public interface Ingredient extends Predicate<ItemStack> {
      * @return The new ingredient
      */
     static Ingredient of(ResourceKey key) {
-        return builder().with(key).build();
+        return Ingredient.builder().with(key).build();
     }
 
     /**

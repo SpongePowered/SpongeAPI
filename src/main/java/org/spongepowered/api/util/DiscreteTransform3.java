@@ -388,7 +388,7 @@ public class DiscreteTransform3 {
      * @return The new translation transform
      */
     public static DiscreteTransform3 fromTranslation(Vector3i vector) {
-        return fromTranslation(vector.getX(), vector.getY(), vector.getZ());
+        return DiscreteTransform3.fromTranslation(vector.getX(), vector.getY(), vector.getZ());
     }
 
     /**
@@ -411,7 +411,7 @@ public class DiscreteTransform3 {
      * @return The new scale transform
      */
     public static DiscreteTransform3 fromScale(int a) {
-        return fromScale(a, a, a);
+        return DiscreteTransform3.fromScale(a, a, a);
     }
 
     /**
@@ -422,7 +422,7 @@ public class DiscreteTransform3 {
      * @return The new scale transform
      */
     public static DiscreteTransform3 fromScale(Vector3i vector) {
-        return fromScale(vector.getX(), vector.getY(), vector.getZ());
+        return DiscreteTransform3.fromScale(vector.getX(), vector.getY(), vector.getZ());
     }
 
     /**

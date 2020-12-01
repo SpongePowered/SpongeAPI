@@ -54,7 +54,7 @@ public interface SetValue<E> extends CollectionValue<E, Set<E>> {
      * @return The constructed mutable value
      */
     static <E> SetValue.Mutable<E> mutableOf(Supplier<? extends Key<? extends SetValue<E>>> key, Set<E> element) {
-        return mutableOf(key.get(), element);
+        return SetValue.mutableOf(key.get(), element);
     }
 
     /**
@@ -80,7 +80,7 @@ public interface SetValue<E> extends CollectionValue<E, Set<E>> {
      * @return The constructed immutable value
      */
     static <E> SetValue.Immutable<E> immutableOf(Supplier<? extends Key<? extends SetValue<E>>> key, Set<E> element) {
-        return immutableOf(key.get(), element);
+        return SetValue.immutableOf(key.get(), element);
     }
 
     @Override

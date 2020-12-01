@@ -64,7 +64,7 @@ public final class OptBool {
      * @return The constructed Optional
      */
     public static Optional<Boolean> of(boolean bool) {
-        return bool ? TRUE : FALSE;
+        return bool ? OptBool.TRUE : OptBool.FALSE;
     }
 
     /**
@@ -75,9 +75,9 @@ public final class OptBool {
      */
     public static Optional<Boolean> of(@Nullable Boolean bool) {
         if (bool != null) {
-            return of(bool.booleanValue());
+            return OptBool.of(bool.booleanValue());
         }
-        return EMPTY;
+        return OptBool.EMPTY;
     }
 
     /**
@@ -89,9 +89,9 @@ public final class OptBool {
      */
     public static Optional<Boolean> of(Optional<Boolean> bool) {
         if (bool.isPresent()) {
-            return of(bool.get().booleanValue());
+            return OptBool.of(bool.get().booleanValue());
         }
-        return EMPTY;
+        return OptBool.EMPTY;
     }
 
 }

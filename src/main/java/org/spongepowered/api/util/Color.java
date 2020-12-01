@@ -44,37 +44,37 @@ public final class Color implements DataSerializable, RGBLike {
 
     private static final int MASK = 0xFF;
 
-    public static final Color BLACK = ofRgb(0x000000);
+    public static final Color BLACK = Color.ofRgb(0x000000);
 
-    public static final Color GRAY = ofRgb(0x808080);
+    public static final Color GRAY = Color.ofRgb(0x808080);
 
-    public static final Color WHITE = ofRgb(0xFFFFFF);
+    public static final Color WHITE = Color.ofRgb(0xFFFFFF);
 
-    public static final Color BLUE = ofRgb(0x0000FF);
+    public static final Color BLUE = Color.ofRgb(0x0000FF);
 
-    public static final Color GREEN = ofRgb(0x008000);
+    public static final Color GREEN = Color.ofRgb(0x008000);
 
-    public static final Color LIME = ofRgb(0x00FF00);
+    public static final Color LIME = Color.ofRgb(0x00FF00);
 
-    public static final Color RED = ofRgb(0xFF0000);
+    public static final Color RED = Color.ofRgb(0xFF0000);
 
-    public static final Color YELLOW = ofRgb(0xFFFF00);
+    public static final Color YELLOW = Color.ofRgb(0xFFFF00);
 
-    public static final Color MAGENTA = ofRgb(0xFF00FF);
+    public static final Color MAGENTA = Color.ofRgb(0xFF00FF);
 
-    public static final Color PURPLE = ofRgb(0xAA00FF);
+    public static final Color PURPLE = Color.ofRgb(0xAA00FF);
 
-    public static final Color DARK_CYAN = ofRgb(0x008B8B);
+    public static final Color DARK_CYAN = Color.ofRgb(0x008B8B);
 
-    public static final Color DARK_GREEN = ofRgb(0x006400);
+    public static final Color DARK_GREEN = Color.ofRgb(0x006400);
 
-    public static final Color DARK_MAGENTA = ofRgb(0x8B008B);
+    public static final Color DARK_MAGENTA = Color.ofRgb(0x8B008B);
 
-    public static final Color CYAN = ofRgb(0x00FFFF);
+    public static final Color CYAN = Color.ofRgb(0x00FFFF);
 
-    public static final Color NAVY = ofRgb(0x000080);
+    public static final Color NAVY = Color.ofRgb(0x000080);
 
-    public static final Color PINK = ofRgb(0xFF00AA);
+    public static final Color PINK = Color.ofRgb(0xFF00AA);
 
     /**
      * Gets a new {@link Color} based on the hexadecimal value
@@ -85,7 +85,7 @@ public final class Color implements DataSerializable, RGBLike {
      * @return The color object
      */
     public static Color ofRgb(int hex) {
-        return ofRgb((hex >> 0x10) & MASK, (hex >> 0x8) & MASK, hex & MASK);
+        return Color.ofRgb((hex >> 0x10) & Color.MASK, (hex >> 0x8) & Color.MASK, hex & Color.MASK);
     }
 
     /**
@@ -159,7 +159,7 @@ public final class Color implements DataSerializable, RGBLike {
             actualColors[i] = colors[i].getColor();
         }
 
-        return mixColors(actualColors);
+        return Color.mixColors(actualColors);
     }
 
     /**
@@ -190,7 +190,7 @@ public final class Color implements DataSerializable, RGBLike {
         int averageRed = Math.round((float) red / colors.length);
         int averageGreen = Math.round((float) green / colors.length);
         int averageBlue = Math.round((float) blue / colors.length);
-        return ofRgb(averageRed, averageGreen, averageBlue);
+        return Color.ofRgb(averageRed, averageGreen, averageBlue);
     }
 
     private final byte red;
@@ -199,12 +199,12 @@ public final class Color implements DataSerializable, RGBLike {
     private final int rgb;
 
     private Color(int red, int green, int blue) {
-        this.red = (byte) (red & MASK);
-        this.green = (byte) (green & MASK);
-        this.blue = (byte) (blue & MASK);
-        this.rgb = ((this.red & MASK) << 0x10)
-                   | ((this.green & MASK) << 0x8)
-                   | ((this.blue & MASK) << 0);
+        this.red = (byte) (red & Color.MASK);
+        this.green = (byte) (green & Color.MASK);
+        this.blue = (byte) (blue & Color.MASK);
+        this.rgb = ((this.red & Color.MASK) << 0x10)
+                   | ((this.green & Color.MASK) << 0x8)
+                   | ((this.blue & Color.MASK) << 0);
     }
 
     /**
@@ -213,7 +213,7 @@ public final class Color implements DataSerializable, RGBLike {
      * @return The red value
      */
     public int getRed() {
-        return MASK & this.red;
+        return Color.MASK & this.red;
     }
 
     /**
@@ -225,7 +225,7 @@ public final class Color implements DataSerializable, RGBLike {
      * @return The new color object
      */
     public Color withRed(int red) {
-        return ofRgb(red, this.getGreen(), this.getBlue());
+        return Color.ofRgb(red, this.getGreen(), this.getBlue());
     }
 
     /**
@@ -234,7 +234,7 @@ public final class Color implements DataSerializable, RGBLike {
      * @return The red value
      */
     public int getGreen() {
-        return MASK & this.green;
+        return Color.MASK & this.green;
     }
 
     /**
@@ -246,7 +246,7 @@ public final class Color implements DataSerializable, RGBLike {
      * @return The new color object
      */
     public Color withGreen(int green) {
-        return ofRgb(this.getRed(), green, this.getBlue());
+        return Color.ofRgb(this.getRed(), green, this.getBlue());
     }
 
     /**
@@ -255,7 +255,7 @@ public final class Color implements DataSerializable, RGBLike {
      * @return The blue value
      */
     public int getBlue() {
-        return MASK & this.blue;
+        return Color.MASK & this.blue;
     }
 
     /**
@@ -267,7 +267,7 @@ public final class Color implements DataSerializable, RGBLike {
      * @return The new color object
      */
     public Color withBlue(int blue) {
-        return ofRgb(this.getRed(), this.getGreen(), blue);
+        return Color.ofRgb(this.getRed(), this.getGreen(), blue);
     }
 
     @Override
@@ -315,7 +315,7 @@ public final class Color implements DataSerializable, RGBLike {
         Color[] newColorArray = new Color[colors.length + 1];
         newColorArray[0] = this;
         System.arraycopy(colors, 0, newColorArray, 1, colors.length);
-        return mixColors(newColorArray);
+        return Color.mixColors(newColorArray);
     }
 
     /**
@@ -331,7 +331,7 @@ public final class Color implements DataSerializable, RGBLike {
         for (int i = 0; i < dyeColors.length; i++) {
             newColorArray[i + 1] = dyeColors[i].getColor();
         }
-        return mixColors(newColorArray);
+        return Color.mixColors(newColorArray);
     }
 
     @Override

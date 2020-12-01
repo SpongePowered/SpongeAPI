@@ -328,7 +328,7 @@ public class DiscreteTransform2 {
      * @return The new translation transform
      */
     public static DiscreteTransform2 fromTranslation(Vector2i vector) {
-        return fromTranslation(vector.getX(), vector.getY());
+        return DiscreteTransform2.fromTranslation(vector.getX(), vector.getY());
     }
 
     /**
@@ -350,7 +350,7 @@ public class DiscreteTransform2 {
      * @return The new scale transform
      */
     public static DiscreteTransform2 fromScale(int a) {
-        return fromScale(a, a);
+        return DiscreteTransform2.fromScale(a, a);
     }
 
     /**
@@ -361,7 +361,7 @@ public class DiscreteTransform2 {
      * @return The new scale transform
      */
     public static DiscreteTransform2 fromScale(Vector2i vector) {
-        return fromScale(vector.getX(), vector.getY());
+        return DiscreteTransform2.fromScale(vector.getX(), vector.getY());
     }
 
     /**
@@ -470,9 +470,9 @@ public class DiscreteTransform2 {
         }
         final Vector2i center = size.sub(1, 1).div(2);
         if (mul180) {
-            return fromRotation(quarterTurns, center, xEven, yEven);
+            return DiscreteTransform2.fromRotation(quarterTurns, center, xEven, yEven);
         }
-        return fromRotation(quarterTurns, center, xEven);
+        return DiscreteTransform2.fromRotation(quarterTurns, center, xEven);
     }
 
 }

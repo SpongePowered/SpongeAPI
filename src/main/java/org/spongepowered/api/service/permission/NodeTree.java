@@ -67,7 +67,7 @@ public class NodeTree {
      * @return The new node tree
      */
     public static NodeTree of(Map<String, Boolean> values) {
-        return of(values, Tristate.UNDEFINED);
+        return NodeTree.of(values, Tristate.UNDEFINED);
     }
 
     /**
@@ -81,7 +81,7 @@ public class NodeTree {
     public static NodeTree of(Map<String, Boolean> values, Tristate defaultValue) {
         NodeTree newTree = new NodeTree(defaultValue);
         for (Map.Entry<String, Boolean> value : values.entrySet()) {
-            Iterable<String> parts = NODE_SPLITTER.split(value.getKey().toLowerCase());
+            Iterable<String> parts = NodeTree.NODE_SPLITTER.split(value.getKey().toLowerCase());
             Node currentNode = newTree.rootNode;
             for (String part : parts) {
                 if (currentNode.children.containsKey(part)) {
@@ -105,7 +105,7 @@ public class NodeTree {
      * @return The tristate value for the given node
      */
     public Tristate get(String node) {
-        Iterable<String> parts = NODE_SPLITTER.split(node.toLowerCase());
+        Iterable<String> parts = NodeTree.NODE_SPLITTER.split(node.toLowerCase());
         Node currentNode = this.rootNode;
         Tristate lastUndefinedVal = Tristate.UNDEFINED;
         for (String str : parts) {
@@ -151,7 +151,7 @@ public class NodeTree {
      * @return The new, modified node tree
      */
     public NodeTree withValue(String node, Tristate value) {
-        Iterable<String> parts = NODE_SPLITTER.split(node.toLowerCase());
+        Iterable<String> parts = NodeTree.NODE_SPLITTER.split(node.toLowerCase());
         Node newRoot = new Node(new HashMap<>(this.rootNode.children));
         Node newPtr = newRoot;
         Node currentPtr = this.rootNode;

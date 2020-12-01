@@ -90,7 +90,7 @@ public class SpongeEventFactoryTest {
         Type returnType = GenericTypeReflector.getExactReturnType(invoc.getMethod(),
                 Mockito.mockingDetails(invoc.getMock()).getMockCreationSettings().getTypeToMock()
         );
-        return mockParam(returnType);
+        return SpongeEventFactoryTest.mockParam(returnType);
     });
 
     @Parameterized.Parameters(name = "{0}")
@@ -98,7 +98,7 @@ public class SpongeEventFactoryTest {
         ImmutableList.Builder<Object[]> methods = ImmutableList.builder();
         for (Method method : SpongeEventFactory.class.getMethods()) {
             if (method.getName().startsWith("create") && Modifier.isStatic(method.getModifiers())
-                    && !excludedEvents.contains(method.getReturnType())) {
+                    && !SpongeEventFactoryTest.excludedEvents.contains(method.getReturnType())) {
                 methods.add(new Object[]{method.getReturnType().getName(), method});
             }
         }
@@ -115,17 +115,17 @@ public class SpongeEventFactoryTest {
         try {
             // We only care about keeping extends around for the duration
             // of this particular event.
-            worlds.clear();
+            SpongeEventFactoryTest.worlds.clear();
 
             Type[] paramTypes = this.method.getGenericParameterTypes();
             Object[] params = new Object[paramTypes.length];
             for (int i = 0; i < paramTypes.length; i++) {
-                params[i] = mockParam(paramTypes[i]);
+                params[i] = SpongeEventFactoryTest.mockParam(paramTypes[i]);
             }
             Object testEvent = this.method.invoke(null, params);
             for (Method eventMethod : testEvent.getClass().getMethods()) {
 
-                if (excludedMethods.contains(eventMethod.getName())) {
+                if (SpongeEventFactoryTest.excludedMethods.contains(eventMethod.getName())) {
                     continue;
                 }
 
@@ -133,7 +133,7 @@ public class SpongeEventFactoryTest {
                     paramTypes = eventMethod.getGenericParameterTypes();
                     params = new Object[paramTypes.length];
                     for (int i = 0; i < paramTypes.length; i++) {
-                        params[i] = mockParam(paramTypes[i]);
+                        params[i] = SpongeEventFactoryTest.mockParam(paramTypes[i]);
                     }
 
                     if (eventMethod.getReturnType() != void.class) {
@@ -213,7 +213,7 @@ public class SpongeEventFactoryTest {
         } else if (Types.isArray(paramType)) {
             final Type componentType = GenericTypeReflector.getArrayComponentType(paramType);
             Object array = Array.newInstance(GenericTypeReflector.erase(componentType), 1);
-            Array.set(array, 0, mockParam(componentType));
+            Array.set(array, 0, SpongeEventFactoryTest.mockParam(componentType));
             return array;
         } else if (paramType == String.class) {
             return "Cupcakes";
@@ -224,10 +224,10 @@ public class SpongeEventFactoryTest {
         } else if (GenericTypeReflector.isSuperType(Enum.class, paramType)) {
             return GenericTypeReflector.erase(paramType).getEnumConstants()[0];
         } else if (GenericTypeReflector.isSuperType(ServerLocation.class, paramType)) {
-            ServerWorld world = (ServerWorld) mockParam(ServerWorld.class);
+            ServerWorld world = (ServerWorld) SpongeEventFactoryTest.mockParam(ServerWorld.class);
             // Make sure we keep a reference to the World,
             // as Location stores a weak reference
-            worlds.add(world);
+            SpongeEventFactoryTest.worlds.add(world);
             final ServerLocation mock = mock(ServerLocation.class);
             Mockito.when(mock.getWorld()).thenReturn(world);
             return mock;
@@ -255,19 +255,19 @@ public class SpongeEventFactoryTest {
             return Color.BLACK;
         } else if (GenericTypeReflector.isSuperType(DataHolder.class, paramType)) {
             DataHolder mock = (DataHolder) mock(GenericTypeReflector.erase(paramType),
-                    withSettings().defaultAnswer(EVENT_MOCKING_ANSWER));
+                    withSettings().defaultAnswer(SpongeEventFactoryTest.EVENT_MOCKING_ANSWER));
             return mock;
 
         } else {
             if (paramType instanceof Class<?>) {
-                return mock((Class<?>) paramType, withSettings().defaultAnswer(EVENT_MOCKING_ANSWER));
+                return mock((Class<?>) paramType, withSettings().defaultAnswer(SpongeEventFactoryTest.EVENT_MOCKING_ANSWER));
             }
             // If we have a TypeToken available, we use to try to resolve a more specific
             // return type on any of the methods that we mock. This allows us to correctly
             // return an Integer from MutableBoundedValue<Integer>#get(), instead of accidentally
             // returning an Object mock.
             return mock(GenericTypeReflector.erase(paramType), withSettings().defaultAnswer(invoc -> {
-                return mockParam(GenericTypeReflector.getExactReturnType(invoc.getMethod(), paramType));
+                return SpongeEventFactoryTest.mockParam(GenericTypeReflector.getExactReturnType(invoc.getMethod(), paramType));
             }));
         }
     }

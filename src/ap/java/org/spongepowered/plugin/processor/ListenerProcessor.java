@@ -83,7 +83,7 @@ public class ListenerProcessor extends AbstractProcessor {
                     msg.printMessage(Diagnostic.Kind.ERROR, "method must return void", method);
                 }
                 List<? extends VariableElement> parameters = method.getParameters();
-                if (parameters.isEmpty() || !this.isTypeSubclass(parameters.get(0), EVENT_CLASS)) {
+                if (parameters.isEmpty() || !this.isTypeSubclass(parameters.get(0), ListenerProcessor.EVENT_CLASS)) {
                     msg.printMessage(Diagnostic.Kind.ERROR, "method must have an Event as its first parameter", method);
                 }
             }

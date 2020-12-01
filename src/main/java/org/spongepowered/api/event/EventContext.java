@@ -54,7 +54,7 @@ public final class EventContext {
      * @return The empty context
      */
     public static EventContext empty() {
-        return EMPTY_CONTEXT;
+        return EventContext.EMPTY_CONTEXT;
     }
 
     /**

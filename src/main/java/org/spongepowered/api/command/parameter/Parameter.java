@@ -166,7 +166,7 @@ public interface Parameter {
      * @return The {@link Value.Builder}
      */
     static <T> Value.Builder<T> builder(@NonNull final Class<T> valueClass, @NonNull final ValueParameter<T> parameter) {
-        return builder(valueClass).parser(parameter);
+        return Parameter.builder(valueClass).parser(parameter);
     }
 
     /**
@@ -178,7 +178,7 @@ public interface Parameter {
      * @return The {@link Value.Builder}
      */
     static <T> Value.Builder<T> builder(@NonNull final TypeToken<T> typeToken, @NonNull final ValueParameter<T> parameter) {
-        return builder(typeToken).parser(parameter);
+        return Parameter.builder(typeToken).parser(parameter);
     }
 
     /**
@@ -190,7 +190,7 @@ public interface Parameter {
      * @return The {@link Value.Builder}
      */
     static <T, V extends ValueParameter<T>> Value.Builder<T> builder(@NonNull final Class<T> valueClass, @NonNull final Supplier<V> parameter) {
-        return builder(valueClass, parameter.get());
+        return Parameter.builder(valueClass, parameter.get());
     }
 
     /**
@@ -202,7 +202,7 @@ public interface Parameter {
      * @return The {@link Value.Builder}
      */
     static <T, V extends ValueParameter<T>> Value.Builder<T> builder(@NonNull final TypeToken<T> typeToken, @NonNull final Supplier<V> parameter) {
-        return builder(typeToken, parameter.get());
+        return Parameter.builder(typeToken, parameter.get());
     }
 
     /**
@@ -389,7 +389,7 @@ public interface Parameter {
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<LocalDateTime> dateTimeOrNow() {
-        return dateTime().orDefault(cause -> LocalDateTime.now());
+        return Parameter.dateTime().orDefault(cause -> LocalDateTime.now());
     }
 
     /**
@@ -430,7 +430,7 @@ public interface Parameter {
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<Entity> entityOrSource() {
-        return entity().orDefault(cause -> cause.getCause().root() instanceof Entity ? (Entity) cause.getCause().root() : null);
+        return Parameter.entity().orDefault(cause -> cause.getCause().root() instanceof Entity ? (Entity) cause.getCause().root() : null);
     }
 
     /**
@@ -440,7 +440,7 @@ public interface Parameter {
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<Entity> entityOrTarget() {
-        return entity().parser(CatalogedValueParameters.TARGET_ENTITY);
+        return Parameter.entity().parser(CatalogedValueParameters.TARGET_ENTITY);
     }
 
     /**
@@ -578,7 +578,7 @@ public interface Parameter {
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<ServerPlayer> playerOrSource() {
-        return player().orDefault(cause -> cause.getCause().root() instanceof ServerPlayer ? (ServerPlayer) cause.getCause().root() : null);
+        return Parameter.player().orDefault(cause -> cause.getCause().root() instanceof ServerPlayer ? (ServerPlayer) cause.getCause().root() : null);
     }
 
     /**
@@ -588,7 +588,7 @@ public interface Parameter {
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<ServerPlayer> playerOrTarget() {
-        return player().parser(CatalogedValueParameters.TARGET_PLAYER);
+        return Parameter.player().parser(CatalogedValueParameters.TARGET_PLAYER);
     }
 
     /**
@@ -685,7 +685,7 @@ public interface Parameter {
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<User> userOrSource() {
-        return user().orDefault(cause -> cause.getCause().root() instanceof User ? (User) cause.getCause().root() : null);
+        return Parameter.user().orDefault(cause -> cause.getCause().root() instanceof User ? (User) cause.getCause().root() : null);
     }
 
     /**
@@ -866,7 +866,7 @@ public interface Parameter {
             @NonNull final T returnedValue,
             final String @NonNull... literal) {
         final Collection<String> iterable = Arrays.asList(literal);
-        return literal(returnType, returnedValue, () -> iterable);
+        return Parameter.literal(returnType, returnedValue, () -> iterable);
     }
 
     /**

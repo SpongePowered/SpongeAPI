@@ -26,8 +26,8 @@ package org.spongepowered.api.profile.property;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.profile.GameProfile;
 
@@ -58,7 +58,7 @@ public interface ProfileProperty extends DataSerializable {
      * @return The new property
      */
     static ProfileProperty of(final String name, final String value) {
-        return of(name, value, null);
+        return ProfileProperty.of(name, value, null);
     }
 
     /**

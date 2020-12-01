@@ -71,7 +71,7 @@ public interface CommandResult {
      * @return The {@link CommandResult}
      */
     static CommandResult error(final Component errorMessage) {
-        return builder().error(errorMessage).build();
+        return CommandResult.builder().error(errorMessage).build();
     }
 
     /**
