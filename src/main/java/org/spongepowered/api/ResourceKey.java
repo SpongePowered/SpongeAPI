@@ -119,42 +119,14 @@ public interface ResourceKey extends Key {
     /**
      * Resolves a resource key from a string.
      *
-     * <p>If no namespace is found in {@code string} then
+     * <p>If no namespace is found in {@code formatted} then
      * {@link #MINECRAFT_NAMESPACE} will be the namespace.</p>
      *
      * @param formatted The formatted string to parse
      * @return A new resource key
      */
     static ResourceKey resolve(final String formatted) {
-        return ResourceKey.resolve(formatted, MINECRAFT_NAMESPACE);
-    }
-
-    /**
-     * Resolves a resource key from a string.
-     *
-     * <p>If no namespace is found in {@code formatted} then
-     * the specified default namespace will be used.</p>
-     *
-     * @param formatted The formatted string to parse
-     * @param defaultNamespace The default namespace to use
-     * @return A new resource key
-     */
-    static ResourceKey resolve(final String formatted, final PluginContainer defaultNamespace) {
-        return ResourceKey.resolve(formatted, defaultNamespace.getMetadata().getId());
-    }
-
-    /**
-     * Resolves a resource key from a string.
-     *
-     * <p>If no namespace is found in {@code formatted} then
-     * the specified default namespace will be used.</p>
-     *
-     * @param formatted The formatted string to parse
-     * @param defaultNamespace The default namespace to use
-     * @return A new resource key
-     */
-    static ResourceKey resolve(final String formatted, final String defaultNamespace) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).resolve(formatted, defaultNamespace);
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).resolve(formatted);
     }
 
     /**
@@ -250,13 +222,13 @@ public interface ResourceKey extends Key {
     interface Factory {
 
         /**
-         * Resolves a resource key from a string, using the provided default
-         * namespace if no namespace was found in {@code value}.
+         * Resolves a resource key from a string, using
+         * {@link #MINECRAFT_NAMESPACE} if no namespace is found within
+         * {@code formatted}.
          *
          * @param formatted The formatted string to parse
-         * @param defaultNamespace The default namespace to use
          * @return A new resource key
          */
-        ResourceKey resolve(String formatted, String defaultNamespace);
+        ResourceKey resolve(String formatted);
     }
 }
