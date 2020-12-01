@@ -295,7 +295,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
          * @return This builder, for chaining
          */
         default Builder itemType(Supplier<? extends ItemType> itemType) {
-            return itemType(itemType.get());
+            return this.itemType(itemType.get());
         }
 
         ItemType getCurrentItem();
@@ -352,7 +352,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
         default Builder fromBlockState(BlockState blockState) {
             Objects.requireNonNull(blockState);
             final BlockType blockType = blockState.getType();
-            itemType(blockType.getItem().orElseThrow(() -> new IllegalArgumentException("Missing valid ItemType for BlockType: " + blockType.getKey().toString())));
+            this.itemType(blockType.getItem().orElseThrow(() -> new IllegalArgumentException("Missing valid ItemType for BlockType: " + blockType.getKey().toString())));
             blockState.getValues().forEach(this::add);
             return this;
         }
@@ -367,7 +367,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
         default Builder fromBlockState(Supplier<? extends BlockState> blockState) {
             Objects.requireNonNull(blockState);
             final BlockType blockType = blockState.get().getType();
-            itemType(blockType.getItem().orElseThrow(() -> new IllegalArgumentException("Missing valid ItemType for BlockType: " + blockType.getKey().toString())));
+            this.itemType(blockType.getItem().orElseThrow(() -> new IllegalArgumentException("Missing valid ItemType for BlockType: " + blockType.getKey().toString())));
             blockState.get().getValues().forEach(this::add);
             return this;
         }
@@ -389,7 +389,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
          * @return This builder, for chaining
          */
         default Builder fromSnapshot(ItemStackSnapshot snapshot) {
-            return fromItemStack(snapshot.createStack());
+            return this.fromItemStack(snapshot.createStack());
         }
 
         /**

@@ -48,7 +48,6 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Cause;
-import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.service.permission.Subject;
@@ -1256,7 +1255,7 @@ public interface Parameter {
              * @return This builder, for chaining
              */
             default Builder<T> orDefault(@NonNull final T defaultValue) {
-                return orDefault(cause -> defaultValue);
+                return this.orDefault(cause -> defaultValue);
             }
 
             /**

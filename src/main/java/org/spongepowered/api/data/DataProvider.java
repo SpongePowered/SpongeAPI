@@ -125,7 +125,7 @@ public interface DataProvider<V extends Value<E>, E> {
     boolean isSupported(DataHolder dataHolder);
 
     default boolean isSupported(final TypeToken<? extends DataHolder> dataHolder) {
-        return isSupported(dataHolder.getType());
+        return this.isSupported(dataHolder.getType());
     }
 
     boolean isSupported(Type dataHolder);

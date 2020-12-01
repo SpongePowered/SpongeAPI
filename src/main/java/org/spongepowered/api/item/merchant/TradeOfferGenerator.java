@@ -64,7 +64,7 @@ public interface TradeOfferGenerator extends BiFunction<Random, Merchant, TradeO
 
     @Override
     default void accept(Merchant owner, List<TradeOffer> tradeOffers, Random random) {
-        tradeOffers.add(apply(random, owner));
+        tradeOffers.add(this.apply(random, owner));
     }
 
     /**

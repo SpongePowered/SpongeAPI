@@ -46,7 +46,7 @@ public class SpongeAbstractDamageEntityEventTest {
 
     @Test
     public void testParams() {
-        Entity targetEntity = mockParam(Entity.class);
+        Entity targetEntity = this.mockParam(Entity.class);
         int originalDamage = 5;
 
         DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.of(EventContext.empty(),"none"),
@@ -61,7 +61,7 @@ public class SpongeAbstractDamageEntityEventTest {
 
     @Test
     public void testSetBaseDamage() {
-        Entity targetEntity = mockParam(Entity.class);
+        Entity targetEntity = this.mockParam(Entity.class);
         int originalDamage = 5;
 
         DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.of(EventContext.empty(),"none"),
@@ -81,7 +81,7 @@ public class SpongeAbstractDamageEntityEventTest {
 
     @Test
     public void testUseModifiers() {
-        Entity targetEntity = mockParam(Entity.class);
+        Entity targetEntity = this.mockParam(Entity.class);
 
         final int originalDamage = 1;
         final int originalFinalDamage = 18;
@@ -89,8 +89,8 @@ public class SpongeAbstractDamageEntityEventTest {
         final int firstModifierDamage = 2;
         final int secondModifierDamage = 15;
 
-        DamageModifier firstModifer = mockParam(DamageModifier.class);
-        DamageModifier secondModifier = mockParam(DamageModifier.class);
+        DamageModifier firstModifer = this.mockParam(DamageModifier.class);
+        DamageModifier secondModifier = this.mockParam(DamageModifier.class);
 
         List<DamageFunction> originalFunctions = Lists.newArrayList(DamageFunction.of(firstModifer, p -> p * 2),
             DamageFunction.of(secondModifier, p -> p * 5));
@@ -119,7 +119,7 @@ public class SpongeAbstractDamageEntityEventTest {
 
     @Test
     public void testSetModifiers() {
-        Entity targetEntity = mockParam(Entity.class);
+        Entity targetEntity = this.mockParam(Entity.class);
 
         final int originalDamage = 1;
         final int originalFinalDamage = 18;
@@ -132,8 +132,8 @@ public class SpongeAbstractDamageEntityEventTest {
 
         final int modifiedFinalDamage = 12;
 
-        DamageModifier firstModifer = mockParam(DamageModifier.class);
-        DamageModifier secondModifier = mockParam(DamageModifier.class);
+        DamageModifier firstModifer = this.mockParam(DamageModifier.class);
+        DamageModifier secondModifier = this.mockParam(DamageModifier.class);
 
         List<DamageFunction> originalFunctions = Lists.newArrayList(DamageFunction.of(firstModifer, p -> p * 2), DamageFunction.of(secondModifier,
             p -> p * 5));
@@ -165,7 +165,7 @@ public class SpongeAbstractDamageEntityEventTest {
 
     @Test
     public void testAddModifier() {
-        Entity targetEntity = mockParam(Entity.class);
+        Entity targetEntity = this.mockParam(Entity.class);
 
         final int originalDamage = 1;
         final int originalFinalDamage = 18;
@@ -177,9 +177,9 @@ public class SpongeAbstractDamageEntityEventTest {
 
         final int thirdDamage = 18;
 
-        DamageModifier firstModifer = mockParam(DamageModifier.class);
-        DamageModifier secondModifier = mockParam(DamageModifier.class);
-        DamageModifier thirdModifier = mockParam(DamageModifier.class);
+        DamageModifier firstModifer = this.mockParam(DamageModifier.class);
+        DamageModifier secondModifier = this.mockParam(DamageModifier.class);
+        DamageModifier thirdModifier = this.mockParam(DamageModifier.class);
 
         DoubleUnaryOperator thirdFunction = p -> p;
 
@@ -216,10 +216,10 @@ public class SpongeAbstractDamageEntityEventTest {
 
     @Test
     public void testModifiersApplicable() {
-        Entity targetEntity = mockParam(Entity.class);
+        Entity targetEntity = this.mockParam(Entity.class);
 
-        DamageModifier firstModifer = mockParam(DamageModifier.class);
-        DamageModifier secondModifier = mockParam(DamageModifier.class);
+        DamageModifier firstModifer = this.mockParam(DamageModifier.class);
+        DamageModifier secondModifier = this.mockParam(DamageModifier.class);
 
         List<DamageFunction>
                 originalFunctions = Lists.newArrayList(DamageFunction.of(firstModifer, p -> p), DamageFunction.of(secondModifier, p -> p));
@@ -229,15 +229,15 @@ public class SpongeAbstractDamageEntityEventTest {
 
         assertThat(event.isModifierApplicable(firstModifer), is(true));
         assertThat(event.isModifierApplicable(secondModifier), is(true));
-        assertThat(event.isModifierApplicable(mockParam(DamageModifier.class)), is(false));
+        assertThat(event.isModifierApplicable(this.mockParam(DamageModifier.class)), is(false));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testNotApplicableModifer() {
-        DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.of(EventContext.empty(), "none"), mockParam(Entity.class),
+        DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.of(EventContext.empty(), "none"), this.mockParam(Entity.class),
             Lists.newArrayList(), 0);
 
-        DamageModifier modifier = mockParam(DamageModifier.class);
+        DamageModifier modifier = this.mockParam(DamageModifier.class);
 
         assertThat(event.isModifierApplicable(modifier), is(false));
 

@@ -104,7 +104,7 @@ public final class RespawnLocation implements DataSerializable {
      */
     public Optional<ServerLocation> asLocation() {
         Optional<ServerWorld> optWorld = Sponge.getServer().getWorldManager().getWorld(this.getWorldKey());
-        return optWorld.map(world -> ServerLocation.of(world, getPosition()));
+        return optWorld.map(world -> ServerLocation.of(world, this.getPosition()));
     }
 
     @Override
@@ -115,11 +115,11 @@ public final class RespawnLocation implements DataSerializable {
     @Override
     public DataContainer toContainer() {
         return DataContainer.createNew()
-                .set(Queries.CONTENT_VERSION, getContentVersion())
-                .set(Queries.POSITION_X, getPosition().getX())
-                .set(Queries.POSITION_Y, getPosition().getY())
-                .set(Queries.POSITION_Z, getPosition().getZ())
-                .set(Queries.FORCED_SPAWN, isForced())
+                .set(Queries.CONTENT_VERSION, this.getContentVersion())
+                .set(Queries.POSITION_X, this.getPosition().getX())
+                .set(Queries.POSITION_Y, this.getPosition().getY())
+                .set(Queries.POSITION_Z, this.getPosition().getZ())
+                .set(Queries.FORCED_SPAWN, this.isForced())
                 .set(Queries.WORLD_KEY, this.getWorldKey().getFormatted());
     }
 
@@ -175,7 +175,7 @@ public final class RespawnLocation implements DataSerializable {
          * @return This builder, for chaining
          */
         public Builder world(final ServerWorld world) {
-            return world(Objects.requireNonNull(world).getKey());
+            return this.world(Objects.requireNonNull(world).getKey());
         }
 
         /**

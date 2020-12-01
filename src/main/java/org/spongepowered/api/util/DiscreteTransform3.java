@@ -81,7 +81,7 @@ public class DiscreteTransform3 {
      * @return The transformed vector
      */
     public Vector3i transform(Vector3i vector) {
-        return transform(vector.getX(), vector.getY(), vector.getZ());
+        return this.transform(vector.getX(), vector.getY(), vector.getZ());
     }
 
     /**
@@ -94,7 +94,7 @@ public class DiscreteTransform3 {
      * @return The transformed vector
      */
     public Vector3i transform(int x, int y, int z) {
-        return new Vector3i(transformX(x, y, z), transformY(x, y, z), transformZ(x, y, z));
+        return new Vector3i(this.transformX(x, y, z), this.transformY(x, y, z), this.transformZ(x, y, z));
     }
 
     /**
@@ -106,7 +106,7 @@ public class DiscreteTransform3 {
      * @return The transformed x coordinate
      */
     public int transformX(Vector3i vector) {
-        return transformX(vector.getX(), vector.getY(), vector.getZ());
+        return this.transformX(vector.getX(), vector.getY(), vector.getZ());
     }
 
     /**
@@ -132,7 +132,7 @@ public class DiscreteTransform3 {
      * @return The transformed y coordinate
      */
     public int transformY(Vector3i vector) {
-        return transformY(vector.getX(), vector.getY(), vector.getZ());
+        return this.transformY(vector.getX(), vector.getY(), vector.getZ());
     }
 
     /**
@@ -158,7 +158,7 @@ public class DiscreteTransform3 {
      * @return The transformed z coordinate
      */
     public int transformZ(Vector3i vector) {
-        return transformZ(vector.getX(), vector.getY(), vector.getZ());
+        return this.transformZ(vector.getX(), vector.getY(), vector.getZ());
     }
 
     /**
@@ -216,7 +216,7 @@ public class DiscreteTransform3 {
      * @return The translated transform as a copy
      */
     public DiscreteTransform3 withTranslation(Vector3i vector) {
-        return withTranslation(vector.getX(), vector.getY(), vector.getZ());
+        return this.withTranslation(vector.getX(), vector.getY(), vector.getZ());
     }
 
     /**
@@ -240,7 +240,7 @@ public class DiscreteTransform3 {
      * @return The scaled transform as a copy
      */
     public DiscreteTransform3 withScale(int a) {
-        return withScale(a, a, a);
+        return this.withScale(a, a, a);
     }
 
     /**
@@ -252,7 +252,7 @@ public class DiscreteTransform3 {
      * @return The scaled transform as a copy
      */
     public DiscreteTransform3 withScale(Vector3i vector) {
-        return withScale(vector.getX(), vector.getY(), vector.getZ());
+        return this.withScale(vector.getX(), vector.getY(), vector.getZ());
     }
 
     /**
@@ -363,7 +363,7 @@ public class DiscreteTransform3 {
      * @return The added transforms as a copy
      */
     public DiscreteTransform3 withTransformation(DiscreteTransform3 transform) {
-        return new DiscreteTransform3(transform.getMatrix().mul(getMatrix()));
+        return new DiscreteTransform3(transform.getMatrix().mul(this.getMatrix()));
     }
 
     /**

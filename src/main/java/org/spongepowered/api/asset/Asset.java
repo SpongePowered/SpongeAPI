@@ -146,7 +146,7 @@ public interface Asset {
      * @return The file name
      */
     default String getFileName() {
-        String path = getUrl().getPath();
+        String path = this.getUrl().getPath();
         //We don't need to worry about file system specific file separators as we are dealing with a substring of URL
         int end = path.lastIndexOf('/');
         if (end < 0) {
@@ -164,7 +164,7 @@ public interface Asset {
      * @throws IOException If any file exception is thrown
      */
     default String readString() throws IOException {
-        return readString(DEFAULT_CHARSET);
+        return this.readString(DEFAULT_CHARSET);
     }
 
     /**
@@ -177,7 +177,7 @@ public interface Asset {
      */
     default String readString(Charset charset) throws IOException {
         Objects.requireNonNull(charset, "charset");
-        return Resources.toString(getUrl(), charset);
+        return Resources.toString(this.getUrl(), charset);
     }
 
     /**
@@ -187,7 +187,7 @@ public interface Asset {
      * @throws IOException If any file exception is thrown
      */
     default List<String> readLines() throws IOException {
-        return readLines(DEFAULT_CHARSET);
+        return this.readLines(DEFAULT_CHARSET);
     }
 
     /**
@@ -199,7 +199,7 @@ public interface Asset {
      */
     default List<String> readLines(Charset charset) throws IOException {
         Objects.requireNonNull(charset, "charset");
-        return Resources.asCharSource(getUrl(), charset).readLines();
+        return Resources.asCharSource(this.getUrl(), charset).readLines();
     }
 
     /**
@@ -210,7 +210,7 @@ public interface Asset {
      * @throws IOException If any file exception is thrown
      */
     default byte[] readBytes() throws IOException {
-        return Resources.toByteArray(getUrl());
+        return Resources.toByteArray(this.getUrl());
     }
 
 }

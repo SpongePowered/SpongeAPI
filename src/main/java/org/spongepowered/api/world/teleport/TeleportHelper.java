@@ -26,8 +26,6 @@ package org.spongepowered.api.world.teleport;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.world.ServerLocation;
-import org.spongepowered.api.world.teleport.TeleportHelperFilter;
-import org.spongepowered.api.world.teleport.TeleportHelperFilters;
 
 import java.util.Optional;
 
@@ -71,7 +69,7 @@ public interface TeleportHelper {
      *         {@link Optional#empty()} will be returned.
      */
     default Optional<ServerLocation> getSafeLocation(ServerLocation location) {
-        return getSafeLocation(location, DEFAULT_HEIGHT, DEFAULT_WIDTH, DEFAULT_FLOOR_CHECK_DISTANCE, TeleportHelperFilters.DEFAULT.get());
+        return this.getSafeLocation(location, DEFAULT_HEIGHT, DEFAULT_WIDTH, DEFAULT_FLOOR_CHECK_DISTANCE, TeleportHelperFilters.DEFAULT.get());
     }
 
     /**
@@ -97,7 +95,7 @@ public interface TeleportHelper {
      *         {@link Optional#empty()} will be returned
      */
     default Optional<ServerLocation> getSafeLocation(ServerLocation location, int height, int width) {
-        return getSafeLocation(location, height, width, DEFAULT_FLOOR_CHECK_DISTANCE, TeleportHelperFilters.DEFAULT.get());
+        return this.getSafeLocation(location, height, width, DEFAULT_FLOOR_CHECK_DISTANCE, TeleportHelperFilters.DEFAULT.get());
     }
 
     /**
@@ -126,7 +124,7 @@ public interface TeleportHelper {
      *         {@link Optional#empty()} will be returned
      */
     default Optional<ServerLocation> getSafeLocation(ServerLocation location, int height, int width, int floorDistance) {
-        return getSafeLocation(location, height, width, floorDistance, TeleportHelperFilters.DEFAULT.get(), TeleportHelperFilters.CONFIG.get());
+        return this.getSafeLocation(location, height, width, floorDistance, TeleportHelperFilters.DEFAULT.get(), TeleportHelperFilters.CONFIG.get());
     }
 
     /**
@@ -189,7 +187,7 @@ public interface TeleportHelper {
      */
     default Optional<ServerLocation> getSafeLocationWithBlacklist(ServerLocation location, int height, int width, int floorDistance,
             TeleportHelperFilter... filters) {
-        return getSafeLocation(location, height, width, floorDistance, TeleportHelperFilters.CONFIG.get(), filters);
+        return this.getSafeLocation(location, height, width, floorDistance, TeleportHelperFilters.CONFIG.get(), filters);
     }
 
 }

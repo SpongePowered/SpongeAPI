@@ -53,7 +53,7 @@ public interface Equipable {
     boolean canEquip(EquipmentType type);
 
     default boolean canEquip(final Supplier<? extends EquipmentType> type) {
-        return canEquip(type.get());
+        return this.canEquip(type.get());
     }
 
     /**
@@ -68,7 +68,7 @@ public interface Equipable {
     boolean canEquip(EquipmentType type, ItemStack equipment);
 
     default boolean canEquip(final Supplier<? extends EquipmentType> type, final ItemStack equipment) {
-        return canEquip(type.get(), equipment);
+        return this.canEquip(type.get(), equipment);
     }
 
 
@@ -81,7 +81,7 @@ public interface Equipable {
     Optional<ItemStack> getEquipped(EquipmentType type);
 
     default Optional<ItemStack> getEquipped(final Supplier<? extends EquipmentType> type) {
-        return getEquipped(type.get());
+        return this.getEquipped(type.get());
     }
 
     /**
@@ -98,6 +98,6 @@ public interface Equipable {
     boolean equip(EquipmentType type, ItemStack equipment);
 
     default boolean equip(final Supplier<? extends EquipmentType> type, final ItemStack equipment) {
-        return equip(type.get(), equipment);
+        return this.equip(type.get(), equipment);
     }
 }

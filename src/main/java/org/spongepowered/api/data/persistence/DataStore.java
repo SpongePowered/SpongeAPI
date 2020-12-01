@@ -70,7 +70,7 @@ public interface DataStore {
      * @return The view, for chaining
      */
     default DataView serialize(Iterable<Value<?>> values, DataView view) {
-        return serialize(DataManipulator.immutableOf(values), view);
+        return this.serialize(DataManipulator.immutableOf(values), view);
     }
 
     /**
@@ -80,7 +80,7 @@ public interface DataStore {
      * @return This view, for chaining
      */
     default DataView serialize(Iterable<Value<?>> values) {
-        return serialize(DataManipulator.immutableOf(values));
+        return this.serialize(DataManipulator.immutableOf(values));
     }
 
     /**
@@ -112,7 +112,7 @@ public interface DataStore {
      */
     default DataManipulator.Mutable deserialize(DataView view) {
         final DataManipulator.Mutable dataManipulator = DataManipulator.mutableOf();
-        deserialize(dataManipulator, view);
+        this.deserialize(dataManipulator, view);
         return dataManipulator;
     }
 

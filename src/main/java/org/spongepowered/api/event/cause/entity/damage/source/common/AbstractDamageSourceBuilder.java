@@ -100,7 +100,7 @@ public abstract class AbstractDamageSourceBuilder<T extends DamageSource, B exte
 
     @Override
     public B from(final T value) {
-        reset();
+        this.reset();
         this.scales = value.isScaledByDifficulty();
         this.absolute = value.isAbsolute();
         this.bypasses = value.isBypassingArmor();

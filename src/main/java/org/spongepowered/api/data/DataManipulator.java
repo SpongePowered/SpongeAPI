@@ -204,7 +204,7 @@ public interface DataManipulator extends CopyableValueContainer {
          * @return The new immutable data manipulator
          */
         default <E> Immutable with(Key<? extends Value<E>> key, E value) {
-            return asMutable().set(key, value).asImmutable();
+            return this.asMutable().set(key, value).asImmutable();
         }
 
         /**
@@ -214,7 +214,7 @@ public interface DataManipulator extends CopyableValueContainer {
          * @return The new immutable data manipulator
          */
         default Immutable without(Key<?> key) {
-            return asMutable().remove(key).asImmutable();
+            return this.asMutable().remove(key).asImmutable();
         }
 
         /**
@@ -227,7 +227,7 @@ public interface DataManipulator extends CopyableValueContainer {
          * @return The new immutable data manipulator
          */
         default <E> Immutable with(Value<E> value) {
-            return with(value.getKey(), value.get());
+            return this.with(value.getKey(), value.get());
         }
 
         /**
@@ -241,7 +241,7 @@ public interface DataManipulator extends CopyableValueContainer {
          */
         default <E> Immutable transform(Key<? extends Value<E>> key, Function<E, E> function) {
             Objects.requireNonNull(function, "function");
-            return get(key).map(element -> with(key, Objects.requireNonNull(function.apply(element)))).orElse(this);
+            return this.get(key).map(element -> this.with(key, Objects.requireNonNull(function.apply(element)))).orElse(this);
         }
 
         /**
@@ -468,7 +468,7 @@ public interface DataManipulator extends CopyableValueContainer {
          */
         @SuppressWarnings("unchecked")
         default Mutable set(Value<?> value) {
-            return set((Key<? extends Value<Object>>) value.getKey(), value.get());
+            return this.set((Key<? extends Value<Object>>) value.getKey(), value.get());
         }
 
         /**
@@ -485,7 +485,7 @@ public interface DataManipulator extends CopyableValueContainer {
         default Mutable set(Value<?>... values) {
             for (Value<?> value : Objects.requireNonNull(values)) {
                 try {
-                    set(Objects.requireNonNull(value, "A null value was provided!"));
+                    this.set(Objects.requireNonNull(value, "A null value was provided!"));
                 } catch (IllegalArgumentException e) {
                     e.printStackTrace();
                 }
@@ -507,7 +507,7 @@ public interface DataManipulator extends CopyableValueContainer {
         default Mutable set(Iterable<? extends Value<?>> values) {
             for (Value<?> value : Objects.requireNonNull(values)) {
                 try {
-                    set(Objects.requireNonNull(value, "A null value was provided!"));
+                    this.set(Objects.requireNonNull(value, "A null value was provided!"));
                 } catch (IllegalArgumentException e) {
                     e.printStackTrace();
                 }
@@ -528,7 +528,7 @@ public interface DataManipulator extends CopyableValueContainer {
             if (!this.supports(key)) {
                 throw new IllegalArgumentException("The provided key is not supported: " + key.toString());
             }
-            return set(key, Objects.requireNonNull(function.apply(get(key).get()), "The function can not be returning null!"));
+            return this.set(key, Objects.requireNonNull(function.apply(this.get(key).get()), "The function can not be returning null!"));
         }
 
         Mutable remove(Key<?> key);

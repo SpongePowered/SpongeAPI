@@ -447,7 +447,7 @@ public interface Value<E> {
 
         @Override
         default Mutable<E> asMutableCopy() {
-            return copy();
+            return this.copy();
         }
 
         /**
@@ -518,7 +518,7 @@ public interface Value<E> {
 
         @Override
         default Mutable<E> asMutableCopy() {
-            return asMutable();
+            return this.asMutable();
         }
 
         @Override

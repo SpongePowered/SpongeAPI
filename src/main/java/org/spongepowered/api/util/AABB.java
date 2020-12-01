@@ -122,7 +122,7 @@ public class AABB {
      */
     public Vector3d getCenter() {
         if (this.center == null) {
-            this.center = this.min.add(getSize().div(2));
+            this.center = this.min.add(this.getSize().div(2));
         }
         return this.center;
     }
@@ -147,7 +147,7 @@ public class AABB {
      */
     public boolean contains(Vector3i point) {
         Objects.requireNonNull(point, "point");
-        return contains(point.getX(), point.getY(), point.getZ());
+        return this.contains(point.getX(), point.getY(), point.getZ());
     }
 
     /**
@@ -158,7 +158,7 @@ public class AABB {
      */
     public boolean contains(Vector3d point) {
         Objects.requireNonNull(point, "point");
-        return contains(point.getX(), point.getY(), point.getZ());
+        return this.contains(point.getX(), point.getY(), point.getZ());
     }
 
     /**
@@ -346,7 +346,7 @@ public class AABB {
      */
     public AABB offset(Vector3i offset) {
         Objects.requireNonNull(offset, "offset");
-        return offset(offset.getX(), offset.getY(), offset.getZ());
+        return this.offset(offset.getX(), offset.getY(), offset.getZ());
     }
 
     /**
@@ -357,7 +357,7 @@ public class AABB {
      */
     public AABB offset(Vector3d offset) {
         Objects.requireNonNull(offset, "offset");
-        return offset(offset.getX(), offset.getY(), offset.getZ());
+        return this.offset(offset.getX(), offset.getY(), offset.getZ());
     }
 
     /**
@@ -382,7 +382,7 @@ public class AABB {
      */
     public AABB expand(Vector3i amount) {
         Objects.requireNonNull(amount, "amount");
-        return expand(amount.getX(), amount.getY(), amount.getZ());
+        return this.expand(amount.getX(), amount.getY(), amount.getZ());
     }
 
     /**
@@ -395,7 +395,7 @@ public class AABB {
      */
     public AABB expand(Vector3d amount) {
         Objects.requireNonNull(amount, "amount");
-        return expand(amount.getX(), amount.getY(), amount.getZ());
+        return this.expand(amount.getX(), amount.getY(), amount.getZ());
     }
 
     /**

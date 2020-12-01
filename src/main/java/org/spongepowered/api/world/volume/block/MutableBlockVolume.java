@@ -41,7 +41,7 @@ public interface MutableBlockVolume<M extends MutableBlockVolume<M>> extends Str
      *         bounds of the volume
      */
     default boolean setBlock(Vector3i position, BlockState block) {
-        return setBlock(position.getX(), position.getY(), position.getZ(), block);
+        return this.setBlock(position.getX(), position.getY(), position.getZ(), block);
     }
 
     /**
@@ -58,7 +58,7 @@ public interface MutableBlockVolume<M extends MutableBlockVolume<M>> extends Str
     boolean setBlock(int x, int y, int z, BlockState block);
 
     default boolean removeBlock(Vector3i position) {
-        return removeBlock(position.getX(), position.getY(), position.getZ());
+        return this.removeBlock(position.getX(), position.getY(), position.getZ());
     }
 
     boolean removeBlock(int x, int y, int z);

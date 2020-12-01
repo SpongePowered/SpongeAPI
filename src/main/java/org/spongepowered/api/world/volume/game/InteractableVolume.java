@@ -49,7 +49,7 @@ public interface InteractableVolume extends ReadableBlockVolume, LocationBaseDat
      * @return True if the interact succeeded
      */
     default boolean hitBlock(Vector3i position, Direction side, GameProfile profile) {
-        return hitBlock(Objects.requireNonNull(position, "position").getX(), position.getY(), position.getZ(), side, profile);
+        return this.hitBlock(Objects.requireNonNull(position, "position").getX(), position.getY(), position.getZ(), side, profile);
     }
 
     /**
@@ -77,7 +77,7 @@ public interface InteractableVolume extends ReadableBlockVolume, LocationBaseDat
      * @return True if the interact succeeded
      */
     default boolean interactBlock(Vector3i position, Direction side, GameProfile profile) {
-        return interactBlock(Objects.requireNonNull(position, "position").getX(), position.getY(), position.getZ(), side, profile);
+        return this.interactBlock(Objects.requireNonNull(position, "position").getX(), position.getY(), position.getZ(), side, profile);
     }
 
     /**
@@ -103,7 +103,7 @@ public interface InteractableVolume extends ReadableBlockVolume, LocationBaseDat
      * @return True if the interact succeeded
      */
     default boolean interactBlockWith(Vector3i position, ItemStack itemStack, Direction side, GameProfile profile) {
-        return interactBlockWith(Objects.requireNonNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, side, profile);
+        return this.interactBlockWith(Objects.requireNonNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, side, profile);
     }
 
     /**
@@ -131,7 +131,7 @@ public interface InteractableVolume extends ReadableBlockVolume, LocationBaseDat
      * @return Whether the block was successfully set
      */
     default boolean placeBlock(Vector3i position, BlockState block, Direction side, GameProfile profile) {
-        return placeBlock(Objects.requireNonNull(position, "position").getX(), position.getY(), position.getZ(), block, side, profile);
+        return this.placeBlock(Objects.requireNonNull(position, "position").getX(), position.getY(), position.getZ(), block, side, profile);
     }
 
     /**
@@ -156,7 +156,7 @@ public interface InteractableVolume extends ReadableBlockVolume, LocationBaseDat
      * @return Whether the block was destroyed
      */
     default boolean digBlock(Vector3i position, GameProfile profile) {
-        return digBlock(Objects.requireNonNull(position, "position").getX(), position.getY(), position.getZ(), profile);
+        return this.digBlock(Objects.requireNonNull(position, "position").getX(), position.getY(), position.getZ(), profile);
     }
 
     /**
@@ -180,7 +180,7 @@ public interface InteractableVolume extends ReadableBlockVolume, LocationBaseDat
      * @return Whether the block was destroyed
      */
     default boolean digBlockWith(Vector3i position, ItemStack itemStack, GameProfile profile) {
-        return digBlockWith(Objects.requireNonNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, profile);
+        return this.digBlockWith(Objects.requireNonNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, profile);
     }
 
     /**
@@ -205,7 +205,7 @@ public interface InteractableVolume extends ReadableBlockVolume, LocationBaseDat
      * @return The duration it takes to dig the block
      */
     default Duration getBlockDigTimeWith(Vector3i position, ItemStack itemStack, GameProfile profile) {
-        return getBlockDigTimeWith(Objects.requireNonNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, profile);
+        return this.getBlockDigTimeWith(Objects.requireNonNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, profile);
     }
 
     /**

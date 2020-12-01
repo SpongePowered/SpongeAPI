@@ -52,7 +52,7 @@ public interface ReadableBlockEntityArchetypeVolume extends ReadableBlockVolume 
      * @return The block entity, if found
      */
     default Optional<BlockEntityArchetype> getBlockEntityArchetype(Vector3i position) {
-        return getBlockEntityArchetype(position.getX(), position.getY(), position.getZ());
+        return this.getBlockEntityArchetype(position.getX(), position.getY(), position.getZ());
     }
 
     /**

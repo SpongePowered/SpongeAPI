@@ -120,6 +120,6 @@ public final class Context implements Map.Entry<String, String> {
 
     @Override
     public String toString() {
-        return getKey() + "=" + getValue();
+        return this.getKey() + "=" + this.getValue();
     }
 }

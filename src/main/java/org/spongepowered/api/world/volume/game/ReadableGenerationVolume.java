@@ -33,11 +33,11 @@ import java.util.function.Predicate;
 public interface ReadableGenerationVolume extends HeightAwareVolume {
 
     default boolean hasBlockState(Vector3i pos) {
-        return hasBlockState(pos.getX(), pos.getY(), pos.getZ(), block -> true);
+        return this.hasBlockState(pos.getX(), pos.getY(), pos.getZ(), block -> true);
     }
 
     default boolean hasBlockState(Vector3i pos, Predicate<? super BlockState> predicate) {
-        return hasBlockState(pos.getX(), pos.getY(), pos.getZ(), predicate);
+        return this.hasBlockState(pos.getX(), pos.getY(), pos.getZ(), predicate);
     }
 
     boolean hasBlockState(int x, int y, int z, Predicate<? super BlockState> predicate);

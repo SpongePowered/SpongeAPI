@@ -129,7 +129,7 @@ public class NodeTree {
     public Map<String, Boolean> asMap() {
         ImmutableMap.Builder<String, Boolean> ret = ImmutableMap.builder();
         for (Map.Entry<String, Node> ent : this.rootNode.children.entrySet()) {
-            populateMap(ret, ent.getKey(), ent.getValue());
+            this.populateMap(ret, ent.getKey(), ent.getValue());
         }
         return ret.build();
     }
@@ -139,7 +139,7 @@ public class NodeTree {
             values.put(prefix, currentNode.value.asBoolean());
         }
         for (Map.Entry<String, Node> ent : currentNode.children.entrySet()) {
-            populateMap(values, prefix + '.' + ent.getKey(), ent.getValue());
+            this.populateMap(values, prefix + '.' + ent.getKey(), ent.getValue());
         }
     }
 

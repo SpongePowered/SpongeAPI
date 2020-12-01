@@ -26,12 +26,12 @@ package org.spongepowered.api.util;
 
 import net.kyori.adventure.util.RGBLike;
 import org.checkerframework.common.value.qual.IntRange;
+import org.spongepowered.api.data.persistence.AbstractDataBuilder;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataView;
-import org.spongepowered.api.data.persistence.Queries;
-import org.spongepowered.api.data.persistence.AbstractDataBuilder;
 import org.spongepowered.api.data.persistence.InvalidDataException;
+import org.spongepowered.api.data.persistence.Queries;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3f;
@@ -225,7 +225,7 @@ public final class Color implements DataSerializable, RGBLike {
      * @return The new color object
      */
     public Color withRed(int red) {
-        return ofRgb(red, getGreen(), getBlue());
+        return ofRgb(red, this.getGreen(), this.getBlue());
     }
 
     /**
@@ -246,7 +246,7 @@ public final class Color implements DataSerializable, RGBLike {
      * @return The new color object
      */
     public Color withGreen(int green) {
-        return ofRgb(getRed(), green, getBlue());
+        return ofRgb(this.getRed(), green, this.getBlue());
     }
 
     /**
@@ -267,7 +267,7 @@ public final class Color implements DataSerializable, RGBLike {
      * @return The new color object
      */
     public Color withBlue(int blue) {
-        return ofRgb(getRed(), getGreen(), blue);
+        return ofRgb(this.getRed(), this.getGreen(), blue);
     }
 
     @Override
@@ -292,7 +292,7 @@ public final class Color implements DataSerializable, RGBLike {
      * @return The java awt color object
      */
     public java.awt.Color asJavaColor() {
-        return new java.awt.Color(getRed(), getGreen(), getBlue());
+        return new java.awt.Color(this.getRed(), this.getGreen(), this.getBlue());
     }
 
     /**
@@ -342,7 +342,7 @@ public final class Color implements DataSerializable, RGBLike {
     @Override
     public DataContainer toContainer() {
         return DataContainer.createNew()
-            .set(Queries.CONTENT_VERSION, getContentVersion())
+            .set(Queries.CONTENT_VERSION, this.getContentVersion())
             .set(Queries.COLOR_RED, this.getRed())
             .set(Queries.COLOR_GREEN, this.getGreen())
             .set(Queries.COLOR_BLUE, this.getBlue());
@@ -358,7 +358,7 @@ public final class Color implements DataSerializable, RGBLike {
         if (this == obj) {
             return true;
         }
-        if (obj == null || getClass() != obj.getClass()) {
+        if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
         final Color other = (Color) obj;

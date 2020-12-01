@@ -54,31 +54,31 @@ public interface GenerationRegion extends ProtoWorld<GenerationRegion> {
     Vector3i getCenterChunkPos();
 
     default int getCenterChunkX() {
-        return getCenterChunkPos().getX();
+        return this.getCenterChunkPos().getX();
     }
 
     default int getCenterChunkY() {
-        return getCenterChunkPos().getY();
+        return this.getCenterChunkPos().getY();
     }
 
     default int getCenterChunkZ() {
-        return getCenterChunkPos().getZ();
+        return this.getCenterChunkPos().getZ();
     }
 
     @Override
     default PrimitiveChunk getChunkAtBlock(Vector3i position) {
-        return getChunkAtBlock(position.getX(), position.getY(), position.getZ());
+        return this.getChunkAtBlock(position.getX(), position.getY(), position.getZ());
     }
 
     @Override
     default PrimitiveChunk getChunkAtBlock(int x, int y, int z) {
-        return getChunk(Sponge.getServer().getChunkLayout().toChunk(x, y, z)
+        return this.getChunk(Sponge.getServer().getChunkLayout().toChunk(x, y, z)
                 .orElseThrow(() -> new IllegalArgumentException(String.format("Cannot convert (%s, %s, %s) to chunk coordinates.", x, y, z))));
     }
 
     @Override
     default PrimitiveChunk getChunk(Vector3i chunkPosition) {
-        return getChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ());
+        return this.getChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ());
     }
 
     @Override

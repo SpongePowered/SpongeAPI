@@ -179,7 +179,7 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
         if (this == obj) {
             return true;
         }
-        if (obj == null || getClass() != obj.getClass()) {
+        if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
         final Transaction other = (Transaction) obj;
@@ -207,7 +207,7 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
     @Override
     public DataContainer toContainer() {
         final DataContainer container = DataContainer.createNew()
-            .set(Queries.CONTENT_VERSION, getContentVersion())
+            .set(Queries.CONTENT_VERSION, this.getContentVersion())
             .set(Queries.TYPE_CLASS, this.original.getClass().getName())
             .set(Queries.ORIGINAL, this.original)
             .set(Queries.DEFAULT_REPLACEMENT, this.defaultReplacement)

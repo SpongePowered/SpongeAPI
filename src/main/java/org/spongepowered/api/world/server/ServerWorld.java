@@ -99,7 +99,7 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
      * @return The regenerated chunk, if available
      */
     default Optional<Chunk> regenerateChunk(Vector3i chunkPosition) {
-        return regenerateChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), ChunkRegenerateFlags.ALL);
+        return this.regenerateChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), ChunkRegenerateFlags.ALL);
     }
 
     /**
@@ -111,7 +111,7 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
      * @return The regenerated chunk, if available
      */
     default Optional<Chunk> regenerateChunk(int cx, int cy, int cz) {
-        return regenerateChunk(cx, cy, cz, ChunkRegenerateFlags.ALL);
+        return this.regenerateChunk(cx, cy, cz, ChunkRegenerateFlags.ALL);
     }
 
     /**
@@ -122,7 +122,7 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
      * @return The regenerated chunk, if available
      */
     default Optional<Chunk> regenerateChunk(Vector3i chunkPosition, ChunkRegenerateFlag flag) {
-        return regenerateChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), flag);
+        return this.regenerateChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), flag);
     }
 
     /**

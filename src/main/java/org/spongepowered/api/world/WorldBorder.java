@@ -94,7 +94,7 @@ public interface WorldBorder {
      * @param temporalUnit The temporal unit of the duration
      */
     default void setDiameter(double diameter, long duration, TemporalUnit temporalUnit) {
-        setDiameter(diameter, Duration.of(duration, temporalUnit));
+        this.setDiameter(diameter, Duration.of(duration, temporalUnit));
     }
 
     /**
@@ -123,7 +123,7 @@ public interface WorldBorder {
      * @param temporalUnit The temporal unit of the duration
      */
     default void setDiameter(double startDiameter, double endDiameter, long duration, TemporalUnit temporalUnit) {
-        setDiameter(startDiameter, endDiameter, Duration.of(duration, temporalUnit));
+        this.setDiameter(startDiameter, endDiameter, Duration.of(duration, temporalUnit));
     }
 
     /**
@@ -189,7 +189,7 @@ public interface WorldBorder {
      * @param temporalUnit The temporal unit of the time
      */
     default void setWarningTime(long time, TemporalUnit temporalUnit) {
-        setWarningTime(Duration.of(time, temporalUnit));
+        this.setWarningTime(Duration.of(time, temporalUnit));
     }
 
     /**
@@ -263,12 +263,12 @@ public interface WorldBorder {
      * @param border The border whose properties are to be copied
      */
     default void copyPropertiesFrom(WorldBorder border) {
-        setCenter(border.getCenter().getX(), border.getCenter().getZ());
-        setDamageAmount(border.getDamageAmount());
-        setDamageThreshold(border.getDamageThreshold());
-        setDiameter(border.getDiameter(), border.getNewDiameter(), border.getTimeRemaining());
-        setWarningDistance(border.getWarningDistance());
-        setWarningTime(border.getWarningTime());
+        this.setCenter(border.getCenter().getX(), border.getCenter().getZ());
+        this.setDamageAmount(border.getDamageAmount());
+        this.setDamageThreshold(border.getDamageThreshold());
+        this.setDiameter(border.getDiameter(), border.getNewDiameter(), border.getTimeRemaining());
+        this.setWarningDistance(border.getWarningDistance());
+        this.setWarningTime(border.getWarningTime());
     }
 
     interface Builder extends CopyableBuilder<WorldBorder, Builder> {
@@ -310,7 +310,7 @@ public interface WorldBorder {
          * @see WorldBorder#setWarningTime(Duration)
          */
         default Builder warningTime(long time, TemporalUnit temporalUnit) {
-            return warningTime(Duration.of(time, temporalUnit));
+            return this.warningTime(Duration.of(time, temporalUnit));
         }
 
         /**

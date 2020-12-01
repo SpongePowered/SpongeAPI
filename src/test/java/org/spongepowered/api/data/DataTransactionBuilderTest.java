@@ -33,11 +33,11 @@ public class DataTransactionBuilderTest {
 
     @Test
     public void testCorrectTypeWhenAbsorbingResult() {
-        assertEquals(Type.UNDEFINED, absorbedType(Type.UNDEFINED, Type.UNDEFINED));
-        assertEquals(Type.SUCCESS, absorbedType(Type.SUCCESS, Type.UNDEFINED));
-        assertEquals(Type.FAILURE, absorbedType(Type.FAILURE, Type.SUCCESS));
-        assertEquals(Type.ERROR, absorbedType(Type.FAILURE, Type.ERROR));
-        assertEquals(Type.CANCELLED, absorbedType(Type.FAILURE, Type.CANCELLED));
+        assertEquals(Type.UNDEFINED, this.absorbedType(Type.UNDEFINED, Type.UNDEFINED));
+        assertEquals(Type.SUCCESS, this.absorbedType(Type.SUCCESS, Type.UNDEFINED));
+        assertEquals(Type.FAILURE, this.absorbedType(Type.FAILURE, Type.SUCCESS));
+        assertEquals(Type.ERROR, this.absorbedType(Type.FAILURE, Type.ERROR));
+        assertEquals(Type.CANCELLED, this.absorbedType(Type.FAILURE, Type.CANCELLED));
     }
     
     private Type absorbedType(Type builderType, Type resultType) {

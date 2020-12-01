@@ -123,7 +123,7 @@ public final class EventContext {
      * @return The context value, if found
      */
     public <T> T require(EventContextKey<T> key) {
-        final Optional<T> optional = get(key);
+        final Optional<T> optional = this.get(key);
         if (optional.isPresent()) {
             return optional.get();
         }
@@ -141,7 +141,7 @@ public final class EventContext {
      * @return The context value, if found
      */
     public <T> T require(Supplier<? extends EventContextKey<T>> key) {
-        final Optional<T> optional = get(key);
+        final Optional<T> optional = this.get(key);
         if (optional.isPresent()) {
             return optional.get();
         }

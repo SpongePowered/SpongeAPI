@@ -55,7 +55,7 @@ public interface VillagerRegistry {
      * @return The collection of trade offer mutators, if available
      */
     default Collection<TradeOfferListMutator> getMutatorsForProfession(ProfessionType profession, int level) {
-        final Multimap<Integer, TradeOfferListMutator> map = getTradeOfferLevelMap(Objects.requireNonNull(
+        final Multimap<Integer, TradeOfferListMutator> map = this.getTradeOfferLevelMap(Objects.requireNonNull(
             profession,
             "Profession cannot be null!"
         ));

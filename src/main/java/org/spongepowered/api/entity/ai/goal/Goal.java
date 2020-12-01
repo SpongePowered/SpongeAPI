@@ -56,7 +56,7 @@ public interface Goal<O extends Agent> {
      * @return The owner or {@link Optional#empty()} if not present
      */
     default Optional<O> getOwner() {
-        return getExecutor().map(GoalExecutor::getOwner);
+        return this.getExecutor().map(GoalExecutor::getOwner);
     }
 
     /**

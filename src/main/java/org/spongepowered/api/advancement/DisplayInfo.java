@@ -149,7 +149,7 @@ public interface DisplayInfo {
          * @return This builder, for chaining
          */
         default Builder icon(Supplier<? extends ItemType> itemType) {
-            return icon(itemType.get());
+            return this.icon(itemType.get());
         }
 
         /**

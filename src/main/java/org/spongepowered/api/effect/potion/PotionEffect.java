@@ -145,7 +145,7 @@ public interface PotionEffect extends DataSerializable {
          * @return This builder, for chaining
          */
         default Builder potionType(Supplier<? extends PotionEffectType> potionEffectType) {
-            return potionType(potionEffectType.get());
+            return this.potionType(potionEffectType.get());
         }
 
         /**
