@@ -201,7 +201,6 @@ public interface WorldManager {
      *     <li>World is saved</li>
      *     <li>World is unloaded</li>
      *     <li>World is renamed, up to the implementation to determine how so</li>
-     *     <li>World is loaded with it's new key</li>
      * </ul>
      *
      * <p>The default Minecraft worlds cannot be renamed. Additionally, it is left up to the
