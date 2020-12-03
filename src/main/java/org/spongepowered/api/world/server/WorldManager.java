@@ -176,12 +176,15 @@ public interface WorldManager {
      * <p>If the world is already loaded then the following will occur:</p>
      *
      * <ul>
-     *     <li>World is unloaded</li>
+     *     <li>World is saved</li>
+     *     <li>World saving is disabled</li>
      *     <li>World is copied</li>
-     *     <li>Original world is loaded</li>
+     *     <li>World saving is enabled</li>
      * </ul>
      *
-     * <p>It is left up to the implementation on exactly what is copied.</p>
+     * <p>It is left up to the implementation on exactly what is copied. The properties returned will not
+     * represent a live world, it is recommended to call {@link WorldManager#loadWorld(WorldProperties)}
+     * if desired.</p>
      *
      * @param key The key
      * @param copyKey The copied key for the new properties
@@ -205,10 +208,10 @@ public interface WorldManager {
      * implementation on exactly what is renamed.</p>
      *
      * @param key The key
-     * @param newKey The new key
+     * @param newValue The new value
      * @return The renamed properties
      */
-    CompletableFuture<WorldProperties> renameWorld(ResourceKey key, ResourceKey newKey);
+    CompletableFuture<WorldProperties> renameWorld(ResourceKey key, String newValue);
 
     /**
      * Deletes a {@link WorldProperties properties} by it's {@link ResourceKey key}.
