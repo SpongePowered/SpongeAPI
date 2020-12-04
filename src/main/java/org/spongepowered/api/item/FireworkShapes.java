@@ -24,32 +24,43 @@
  */
 package org.spongepowered.api.item;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * A class containing known {@link FireworkShape}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class FireworkShapes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<FireworkShape> SMALL_BALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "small_ball");
+    public static final DefaultedRegistryReference<FireworkShape> SMALL_BALL = FireworkShapes.key(ResourceKey.sponge("small_ball"));
 
-    public static final Supplier<FireworkShape> BURST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "burst");
+    public static final DefaultedRegistryReference<FireworkShape> BURST = FireworkShapes.key(ResourceKey.sponge("burst"));
 
-    public static final Supplier<FireworkShape> CREEPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "creeper");
+    public static final DefaultedRegistryReference<FireworkShape> CREEPER = FireworkShapes.key(ResourceKey.sponge("creeper"));
 
-    public static final Supplier<FireworkShape> LARGE_BALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "large_ball");
+    public static final DefaultedRegistryReference<FireworkShape> LARGE_BALL = FireworkShapes.key(ResourceKey.sponge("large_ball"));
 
-    public static final Supplier<FireworkShape> STAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FireworkShape.class, "star");
+    public static final DefaultedRegistryReference<FireworkShape> STAR = FireworkShapes.key(ResourceKey.sponge("star"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private FireworkShapes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<FireworkShape> key(final ResourceKey location) {
+        return RegistryKey.<FireworkShape>of(Registries.FIREWORK_SHAPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

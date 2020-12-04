@@ -24,32 +24,45 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link WoodType}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class WoodTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<WoodType> ACACIA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WoodType.class, "acacia");
+    public static final DefaultedRegistryReference<WoodType> ACACIA = WoodTypes.key(ResourceKey.sponge("acacia"));
 
-    public static final Supplier<WoodType> BIRCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WoodType.class, "birch");
+    public static final DefaultedRegistryReference<WoodType> BIRCH = WoodTypes.key(ResourceKey.sponge("birch"));
 
-    public static final Supplier<WoodType> DARK_OAK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WoodType.class, "dark_oak");
+    public static final DefaultedRegistryReference<WoodType> DARK_OAK = WoodTypes.key(ResourceKey.sponge("dark_oak"));
 
-    public static final Supplier<WoodType> JUNGLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WoodType.class, "jungle");
+    public static final DefaultedRegistryReference<WoodType> JUNGLE = WoodTypes.key(ResourceKey.sponge("jungle"));
 
-    public static final Supplier<WoodType> OAK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WoodType.class, "oak");
+    public static final DefaultedRegistryReference<WoodType> OAK = WoodTypes.key(ResourceKey.sponge("oak"));
 
-    public static final Supplier<WoodType> SPRUCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WoodType.class, "spruce");
+    public static final DefaultedRegistryReference<WoodType> SPRUCE = WoodTypes.key(ResourceKey.sponge("spruce"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private WoodTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<WoodType> key(final ResourceKey location) {
+        return RegistryKey.<WoodType>of(Registries.WOOD_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

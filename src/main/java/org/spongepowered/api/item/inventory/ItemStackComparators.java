@@ -43,7 +43,7 @@ public final class ItemStackComparators {
      * ItemStack.equals(ItemStack) for ItemStacks with extra attached data,
      * different damage values, or different sizes.
      */
-    public static final Supplier<Comparator<ItemStack>> TYPE = Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).byType().asSupplier();
+    public static final Supplier<Comparator<ItemStack>> TYPE = Sponge.getGame().getFactoryProvider().provide(Factory.class).byType().asSupplier();
 
     /**
      * Compares ItemStacks based on
@@ -52,7 +52,7 @@ public final class ItemStackComparators {
      * ItemStack.equals(ItemStack) for ItemStacks with extra attached data,
      * different types, or different damage values.
      */
-    public static final Supplier<Comparator<ItemStack>> SIZE = Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).bySize().asSupplier();
+    public static final Supplier<Comparator<ItemStack>> SIZE = Sponge.getGame().getFactoryProvider().provide(Factory.class).bySize().asSupplier();
 
     /**
      * Compares ItemStacks based on {@link ItemType}
@@ -60,31 +60,31 @@ public final class ItemStackComparators {
      * results as ItemStack.equals(ItemStack) for ItemStacks with extra attached
      * data or different damage values.
      */
-    public static final Supplier<Comparator<ItemStack>> TYPE_SIZE = Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).byType().bySize().asSupplier();
+    public static final Supplier<Comparator<ItemStack>> TYPE_SIZE = Sponge.getGame().getFactoryProvider().provide(Factory.class).byType().bySize().asSupplier();
 
     /**
      * The default comparator for {@link ItemStack}s.
      */
-    public static final Supplier<Comparator<ItemStack>> DEFAULT = Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).byType().bySize().asSupplier();
+    public static final Supplier<Comparator<ItemStack>> DEFAULT = Sponge.getGame().getFactoryProvider().provide(Factory.class).byType().bySize().asSupplier();
 
     /**
      * Compares ItemStacks based on their {@link Value}s.
      */
-    public static final Supplier<Comparator<ItemStack>> ITEM_DATA = Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).byData().byDurability().asSupplier();
+    public static final Supplier<Comparator<ItemStack>> ITEM_DATA = Sponge.getGame().getFactoryProvider().provide(Factory.class).byData().byDurability().asSupplier();
 
     /**
      * Compares ItemStacks based on their {@link Value}s ignoring {@link Keys#ITEM_DURABILITY}.
      */
-    public static final Supplier<Comparator<ItemStack>> ITEM_DATA_IGNORE_DURABILITY = Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).byData().asSupplier();
+    public static final Supplier<Comparator<ItemStack>> ITEM_DATA_IGNORE_DURABILITY = Sponge.getGame().getFactoryProvider().provide(Factory.class).byData().asSupplier();
 
     /**
      * Compares ItemStacks only ignoring their stack-size.
      *
      * <p>This means for stackable items that they can stack together</p>
      */
-    public static final Supplier<Comparator<ItemStack>> IGNORE_SIZE = Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).byType().byData().byDurability().asSupplier();
+    public static final Supplier<Comparator<ItemStack>> IGNORE_SIZE = Sponge.getGame().getFactoryProvider().provide(Factory.class).byType().byData().byDurability().asSupplier();
 
-    public static final Supplier<Comparator<ItemStack>> ALL = Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).byType().byData().byDurability().bySize().asSupplier();
+    public static final Supplier<Comparator<ItemStack>> ALL = Sponge.getGame().getFactoryProvider().provide(Factory.class).byType().byData().byDurability().bySize().asSupplier();
 
     public interface Factory {
 

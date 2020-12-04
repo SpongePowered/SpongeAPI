@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity.ai.goal;
 
 import org.spongepowered.api.entity.living.Agent;
-import org.spongepowered.api.registry.BuilderRegistry;
+import org.spongepowered.api.registry.BuilderProvider;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -35,7 +35,7 @@ import java.util.Optional;
  *
  * <p>It is required for anyone wanting to write their own logic that a Goal can
  * run to utilize this class. If you desire to use the builtin AI included with
- * Minecraft, use {@link BuilderRegistry#provideBuilder(Class)} and pass a builder to
+ * Minecraft, use {@link BuilderProvider#provide(Class)} and pass a builder to
  * it instead.</p>
  *
  * <p>At the beginning of every "AI" tick, all {@link Goal}s that are added to

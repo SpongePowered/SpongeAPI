@@ -24,43 +24,56 @@
  */
 package org.spongepowered.api.effect.sound.music;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class MusicDiscs {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<MusicDisc> BLOCKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "blocks");
+    public static final DefaultedRegistryReference<MusicDisc> BLOCKS = MusicDiscs.key(ResourceKey.sponge("blocks"));
 
-    public static final Supplier<MusicDisc> CAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "cat");
+    public static final DefaultedRegistryReference<MusicDisc> CAT = MusicDiscs.key(ResourceKey.sponge("cat"));
 
-    public static final Supplier<MusicDisc> CHIRP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "chirp");
+    public static final DefaultedRegistryReference<MusicDisc> CHIRP = MusicDiscs.key(ResourceKey.sponge("chirp"));
 
-    public static final Supplier<MusicDisc> FAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "far");
+    public static final DefaultedRegistryReference<MusicDisc> FAR = MusicDiscs.key(ResourceKey.sponge("far"));
 
-    public static final Supplier<MusicDisc> MALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "mall");
+    public static final DefaultedRegistryReference<MusicDisc> MALL = MusicDiscs.key(ResourceKey.sponge("mall"));
 
-    public static final Supplier<MusicDisc> MELLOHI = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "mellohi");
+    public static final DefaultedRegistryReference<MusicDisc> MELLOHI = MusicDiscs.key(ResourceKey.sponge("mellohi"));
 
-    public static final Supplier<MusicDisc> MUSIC_DISC_11 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "11");
+    public static final DefaultedRegistryReference<MusicDisc> MUSIC_DISC_11 = MusicDiscs.key(ResourceKey.sponge("11"));
 
-    public static final Supplier<MusicDisc> MUSIC_DISC_13 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "13");
+    public static final DefaultedRegistryReference<MusicDisc> MUSIC_DISC_13 = MusicDiscs.key(ResourceKey.sponge("13"));
 
-    public static final Supplier<MusicDisc> PIGSTEP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "pigstep");
+    public static final DefaultedRegistryReference<MusicDisc> PIGSTEP = MusicDiscs.key(ResourceKey.sponge("pigstep"));
 
-    public static final Supplier<MusicDisc> STAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "stal");
+    public static final DefaultedRegistryReference<MusicDisc> STAL = MusicDiscs.key(ResourceKey.sponge("stal"));
 
-    public static final Supplier<MusicDisc> STRAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "strad");
+    public static final DefaultedRegistryReference<MusicDisc> STRAD = MusicDiscs.key(ResourceKey.sponge("strad"));
 
-    public static final Supplier<MusicDisc> WAIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "wait");
+    public static final DefaultedRegistryReference<MusicDisc> WAIT = MusicDiscs.key(ResourceKey.sponge("wait"));
 
-    public static final Supplier<MusicDisc> WARD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MusicDisc.class, "ward");
+    public static final DefaultedRegistryReference<MusicDisc> WARD = MusicDiscs.key(ResourceKey.sponge("ward"));
 
     // SORTFIELDS:OFF
+
+    // @formatter:on
 
     private MusicDiscs() {
     }
 
+    private static DefaultedRegistryReference<MusicDisc> key(final ResourceKey location) {
+        return RegistryKey.<MusicDisc>of(Registries.MUSIC_DISC.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

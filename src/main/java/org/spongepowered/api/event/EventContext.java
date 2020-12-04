@@ -28,6 +28,7 @@ package org.spongepowered.api.event;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.DoNotStore;
 
@@ -166,7 +167,7 @@ public final class EventContext {
      * @param key The context key to check
      * @return True if the key is used and there is an entry for it
      */
-    public boolean containsKey(Supplier<? extends EventContextKey<?>> key) {
+    public boolean containsKey(DefaultedRegistryReference<? extends EventContextKey<?>> key) {
         return this.entries.containsKey(key.get());
     }
 

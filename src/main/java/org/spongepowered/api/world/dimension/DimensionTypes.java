@@ -24,23 +24,37 @@
  */
 package org.spongepowered.api.world.dimension;
 
-import org.spongepowered.api.Sponge;
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryReference;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
-
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class DimensionTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<DimensionType> OVERWORLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DimensionType.class, "overworld");
+    public static final RegistryReference<DimensionType> OVERWORLD = DimensionTypes.key(ResourceKey.sponge("overworld"));
 
-    public static final Supplier<DimensionType> THE_END = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DimensionType.class, "the_end");
+    public static final RegistryReference<DimensionType> OVERWORLD_CAVES = DimensionTypes.key(ResourceKey.sponge("overworld_caves"));
 
-    public static final Supplier<DimensionType> THE_NETHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DimensionType.class, "the_nether");
+    public static final RegistryReference<DimensionType> THE_END = DimensionTypes.key(ResourceKey.sponge("the_end"));
+
+    public static final RegistryReference<DimensionType> THE_NETHER = DimensionTypes.key(ResourceKey.sponge("the_nether"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
+    private static RegistryReference<DimensionType> key(final ResourceKey location) {
+        return RegistryKey.<DimensionType>of(Registries.DIMENSION_TYPE.registry(), location).asReference();
+    }
+
     private DimensionTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 }
+

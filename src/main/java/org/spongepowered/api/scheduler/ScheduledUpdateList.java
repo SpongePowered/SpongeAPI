@@ -26,6 +26,7 @@ package org.spongepowered.api.scheduler;
 
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.fluid.FluidType;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.time.Duration;
@@ -51,7 +52,7 @@ public interface ScheduledUpdateList<T> {
      * @return The scheduled update
      */
     default ScheduledUpdate<T> schedule(Vector3i pos, T target, int delay, TemporalUnit temporalUnit) {
-        return this.schedule(pos.getX(), pos.getY(), pos.getZ(), target, delay, temporalUnit, TaskPriorities.NORMAL);
+        return this.schedule(pos.getX(), pos.getY(), pos.getZ(), target, delay, temporalUnit, TaskPriorities.NORMAL.get());
     }
 
     /**
@@ -76,7 +77,7 @@ public interface ScheduledUpdateList<T> {
      * @return The scheduled update
      */
     default ScheduledUpdate<T> schedule(int x, int y, int z, T target, int delay, TemporalUnit temporalUnit) {
-        return this.schedule(x, y, z, target, delay, temporalUnit, TaskPriorities.NORMAL);
+        return this.schedule(x, y, z, target, delay, temporalUnit, TaskPriorities.NORMAL.get());
     }
 
     /**
@@ -138,7 +139,7 @@ public interface ScheduledUpdateList<T> {
      * @param priority The priority of the scheduled update
      * @return The scheduled update
      */
-    default ScheduledUpdate<T> schedule(Vector3i pos, T target, Duration delay, Supplier<? extends TaskPriority> priority) {
+    default ScheduledUpdate<T> schedule(Vector3i pos, T target, Duration delay, DefaultedRegistryReference<? extends TaskPriority> priority) {
         return this.schedule(pos.getX(), pos.getY(), pos.getZ(), target, delay, priority.get());
     }
 
@@ -194,7 +195,7 @@ public interface ScheduledUpdateList<T> {
      * @param priority The priority of the scheduled update
      * @return The scheduled update
      */
-    default ScheduledUpdate<T> schedule(int x, int y, int z, T target, Duration delay, Supplier<? extends TaskPriority> priority) {
+    default ScheduledUpdate<T> schedule(int x, int y, int z, T target, Duration delay, DefaultedRegistryReference<? extends TaskPriority> priority) {
         return this.schedule(x, y, z, target, delay, priority.get());
     }
 

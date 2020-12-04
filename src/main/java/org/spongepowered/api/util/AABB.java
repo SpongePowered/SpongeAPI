@@ -52,7 +52,7 @@ public interface AABB {
      * @return An AABB
      */
     static AABB of(final Vector3d v1, final Vector3d v2) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(v1, v2);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(v1, v2);
     }
 
     /**

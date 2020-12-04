@@ -24,37 +24,50 @@
  */
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class WorldArchetypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
     /**
      * Represents a typical default {@link World}.
      */
-    public static final Supplier<WorldArchetype> OVERWORLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WorldArchetype.class, "overworld");
+    public static final DefaultedRegistryReference<WorldArchetype> OVERWORLD = WorldArchetypes.key(ResourceKey.sponge("overworld"));
 
     /**
      * Represents a typical the end-style {@link World}.
      */
-    public static final Supplier<WorldArchetype> THE_END = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WorldArchetype.class, "the_end");
+    public static final DefaultedRegistryReference<WorldArchetype> THE_END = WorldArchetypes.key(ResourceKey.sponge("the_end"));
 
     /**
      * Represents a typical nether-style {@link World}.
      */
-    public static final Supplier<WorldArchetype> THE_NETHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WorldArchetype.class, "the_nether");
+    public static final DefaultedRegistryReference<WorldArchetype> THE_NETHER = WorldArchetypes.key(ResourceKey.sponge("the_nether"));
 
     /**
      * Represents a typical Sponge void-style {@link World}.
      */
-    public static final Supplier<WorldArchetype> THE_VOID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WorldArchetype.class, "the_void");
+    public static final DefaultedRegistryReference<WorldArchetype> THE_VOID = WorldArchetypes.key(ResourceKey.sponge("the_void"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private WorldArchetypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<WorldArchetype> key(final ResourceKey location) {
+        return RegistryKey.<WorldArchetype>of(Registries.WORLD_ARCHETYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

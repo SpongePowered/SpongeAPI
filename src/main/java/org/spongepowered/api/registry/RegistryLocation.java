@@ -24,19 +24,26 @@
  */
 package org.spongepowered.api.registry;
 
-public final class UnknownTypeException extends RuntimeException {
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.Sponge;
 
-    private static final long serialVersionUID = 5985899461691485164L;
+import java.util.Objects;
 
-    public UnknownTypeException(final String message) {
-        super(message);
+public interface RegistryLocation {
+
+    static RegistryLocation of(final ResourceKey root, final ResourceKey location) {
+        Objects.requireNonNull(root, "root");
+        Objects.requireNonNull(location, "location");
+
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(root, location);
     }
 
-    public UnknownTypeException(final String message, final Throwable cause) {
-        super(message, cause);
-    }
+    ResourceKey root();
 
-    public UnknownTypeException(final Throwable cause) {
-        super(cause);
+    ResourceKey location();
+
+    interface Factory {
+
+        RegistryLocation create(ResourceKey root, ResourceKey location);
     }
 }

@@ -24,11 +24,21 @@
  */
 package org.spongepowered.api.block.transaction;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class Operations {
+
+    // @formatter:off
+
+    // SORTFIELDS:ON
     /**
      * An {@link Operation} that signifies a {@link org.spongepowered.api.block.BlockState block} is either:
      * <ul>
@@ -37,29 +47,43 @@ public final class Operations {
      *     {@link org.spongepowered.api.item.inventory.ItemStack} can replace it</li>
      * </ul>
      */
-    public static final Supplier<Operation> PLACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Operation.class, "place");
+    public static final DefaultedRegistryReference<Operation> PLACE = Operations.key(ResourceKey.sponge("place"));
+
     /**
      * An {@link Operation} that signifies a non {@link org.spongepowered.api.block.BlockTypes#AIR air block} being
      * broken and replaced with {@link org.spongepowered.api.block.BlockTypes#AIR an air block}.
      */
-    public static final Supplier<Operation> BREAK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Operation.class, "break");
+    public static final DefaultedRegistryReference<Operation> BREAK = Operations.key(ResourceKey.sponge("break"));
+
     /**
      * An {@link Operation} that signifies the block change is particularly discernible as though the
      * {@link org.spongepowered.api.block.BlockState} may be different but the
      * {@link org.spongepowered.api.block.BlockType} may be the same. Or a congruency of changes that
      * result to a "similar enough" change that the blocks share a very unique common trait.
      */
-    public static final Supplier<Operation> MODIFY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Operation.class, "modify");
+    public static final DefaultedRegistryReference<Operation> MODIFY = Operations.key(ResourceKey.sponge("modify"));
+
     /**
      * An {@link Operation} that is considered specially during a plant based block to change into
      * potentially more blocks, occasionally either a combination of {@link #PLACE} and {@link #MODIFY}
      * but likewise commonly shared as a "root" plant or some kind.
      */
-    public static final Supplier<Operation> GROWTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Operation.class, "growth");
+    public static final DefaultedRegistryReference<Operation> GROWTH = Operations.key(ResourceKey.sponge("growth"));
 
-    public static final Supplier<Operation> DECAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Operation.class, "decay");
-    public static final Supplier<Operation> LIQUID_SPREAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Operation.class, "liquid_spread");
-    public static final Supplier<Operation> LIQUID_DECAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Operation.class, "liquid_decay");
+    public static final DefaultedRegistryReference<Operation> DECAY = Operations.key(ResourceKey.sponge("decay"));
 
-    private Operations() {}
+    public static final DefaultedRegistryReference<Operation> LIQUID_SPREAD = Operations.key(ResourceKey.sponge("liquid_spread"));
+
+    public static final DefaultedRegistryReference<Operation> LIQUID_DECAY = Operations.key(ResourceKey.sponge("liquid_decay"));
+
+    // SORTFIELDS:OFF
+
+    // @formatter:on
+
+    private Operations() {
+    }
+
+    private static DefaultedRegistryReference<Operation> key(final ResourceKey location) {
+        return RegistryKey.<Operation>of(Registries.OPERATION.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

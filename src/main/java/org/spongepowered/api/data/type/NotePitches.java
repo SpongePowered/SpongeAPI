@@ -24,72 +24,83 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link NotePitch}es.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class NotePitches {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<NotePitch> A1 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NotePitch.class, "A1");
+    public static final DefaultedRegistryReference<NotePitch> A1 = NotePitches.key(ResourceKey.sponge("A1"));
 
-    public static final Supplier<NotePitch> A2 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NotePitch.class, "A2");
+    public static final DefaultedRegistryReference<NotePitch> A2 = NotePitches.key(ResourceKey.sponge("A2"));
 
-    public static final Supplier<NotePitch> A_SHARP1 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NotePitch.class, "A_SHARP1");
+    public static final DefaultedRegistryReference<NotePitch> A_SHARP1 = NotePitches.key(ResourceKey.sponge("A_SHARP1"));
 
-    public static final Supplier<NotePitch> A_SHARP2 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NotePitch.class, "A_SHARP2");
+    public static final DefaultedRegistryReference<NotePitch> A_SHARP2 = NotePitches.key(ResourceKey.sponge("A_SHARP2"));
 
-    public static final Supplier<NotePitch> B1 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NotePitch.class, "B1");
+    public static final DefaultedRegistryReference<NotePitch> B1 = NotePitches.key(ResourceKey.sponge("B1"));
 
-    public static final Supplier<NotePitch> B2 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NotePitch.class, "B2");
+    public static final DefaultedRegistryReference<NotePitch> B2 = NotePitches.key(ResourceKey.sponge("B2"));
 
-    public static final Supplier<NotePitch> C1 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NotePitch.class, "C1");
+    public static final DefaultedRegistryReference<NotePitch> C1 = NotePitches.key(ResourceKey.sponge("C1"));
 
-    public static final Supplier<NotePitch> C2 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NotePitch.class, "C2");
+    public static final DefaultedRegistryReference<NotePitch> C2 = NotePitches.key(ResourceKey.sponge("C2"));
 
-    public static final Supplier<NotePitch> C_SHARP1 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NotePitch.class, "C_SHARP1");
+    public static final DefaultedRegistryReference<NotePitch> C_SHARP1 = NotePitches.key(ResourceKey.sponge("C_SHARP1"));
 
-    public static final Supplier<NotePitch> C_SHARP2 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NotePitch.class, "C_SHARP2");
+    public static final DefaultedRegistryReference<NotePitch> C_SHARP2 = NotePitches.key(ResourceKey.sponge("C_SHARP2"));
 
-    public static final Supplier<NotePitch> D1 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NotePitch.class, "D1");
+    public static final DefaultedRegistryReference<NotePitch> D1 = NotePitches.key(ResourceKey.sponge("D1"));
 
-    public static final Supplier<NotePitch> D2 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NotePitch.class, "D2");
+    public static final DefaultedRegistryReference<NotePitch> D2 = NotePitches.key(ResourceKey.sponge("D2"));
 
-    public static final Supplier<NotePitch> D_SHARP1 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NotePitch.class, "D_SHARP1");
+    public static final DefaultedRegistryReference<NotePitch> D_SHARP1 = NotePitches.key(ResourceKey.sponge("D_SHARP1"));
 
-    public static final Supplier<NotePitch> D_SHARP2 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NotePitch.class, "D_SHARP2");
+    public static final DefaultedRegistryReference<NotePitch> D_SHARP2 = NotePitches.key(ResourceKey.sponge("D_SHARP2"));
 
-    public static final Supplier<NotePitch> E1 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NotePitch.class, "E1");
+    public static final DefaultedRegistryReference<NotePitch> E1 = NotePitches.key(ResourceKey.sponge("E1"));
 
-    public static final Supplier<NotePitch> E2 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NotePitch.class, "E2");
+    public static final DefaultedRegistryReference<NotePitch> E2 = NotePitches.key(ResourceKey.sponge("E2"));
 
-    public static final Supplier<NotePitch> F1 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NotePitch.class, "F1");
+    public static final DefaultedRegistryReference<NotePitch> F1 = NotePitches.key(ResourceKey.sponge("F1"));
 
-    public static final Supplier<NotePitch> F2 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NotePitch.class, "F2");
+    public static final DefaultedRegistryReference<NotePitch> F2 = NotePitches.key(ResourceKey.sponge("F2"));
 
-    public static final Supplier<NotePitch> F_SHARP0 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NotePitch.class, "F_SHARP0");
+    public static final DefaultedRegistryReference<NotePitch> F_SHARP0 = NotePitches.key(ResourceKey.sponge("F_SHARP0"));
 
-    public static final Supplier<NotePitch> F_SHARP1 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NotePitch.class, "F_SHARP1");
+    public static final DefaultedRegistryReference<NotePitch> F_SHARP1 = NotePitches.key(ResourceKey.sponge("F_SHARP1"));
 
-    public static final Supplier<NotePitch> F_SHARP2 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NotePitch.class, "F_SHARP2");
+    public static final DefaultedRegistryReference<NotePitch> F_SHARP2 = NotePitches.key(ResourceKey.sponge("F_SHARP2"));
 
-    public static final Supplier<NotePitch> G0 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NotePitch.class, "G0");
+    public static final DefaultedRegistryReference<NotePitch> G0 = NotePitches.key(ResourceKey.sponge("G0"));
 
-    public static final Supplier<NotePitch> G1 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NotePitch.class, "G1");
+    public static final DefaultedRegistryReference<NotePitch> G1 = NotePitches.key(ResourceKey.sponge("G1"));
 
-    public static final Supplier<NotePitch> G_SHARP0 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NotePitch.class, "G_SHARP0");
+    public static final DefaultedRegistryReference<NotePitch> G_SHARP0 = NotePitches.key(ResourceKey.sponge("G_SHARP0"));
 
-    public static final Supplier<NotePitch> G_SHARP1 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NotePitch.class, "G_SHARP1");
+    public static final DefaultedRegistryReference<NotePitch> G_SHARP1 = NotePitches.key(ResourceKey.sponge("G_SHARP1"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private NotePitches() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<NotePitch> key(final ResourceKey location) {
+        return RegistryKey.<NotePitch>of(Registries.NOTE_PITCH.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

@@ -30,11 +30,11 @@ import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Objects;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 /**
  * Represents a matcher for {@link Key} values.
@@ -118,7 +118,7 @@ public interface KeyValueMatcher<V> extends DataSerializable {
      * @param <V> The value type
      * @return The key value matcher
      */
-    static <V> KeyValueMatcher<V> of(final Supplier<? extends Key<? extends Value<V>>> key, final V value) {
+    static <V> KeyValueMatcher<V> of(final DefaultedRegistryReference<? extends Key<? extends Value<V>>> key, final V value) {
         return KeyValueMatcher.of(key, value, Operator.EQUAL);
     }
 
@@ -146,7 +146,7 @@ public interface KeyValueMatcher<V> extends DataSerializable {
      * @param <V> The value type
      * @return The key value matcher
      */
-    static <V> KeyValueMatcher<V> of(final Supplier<? extends Key<? extends Value<V>>> key, final V value, final Operator operator) {
+    static <V> KeyValueMatcher<V> of(final DefaultedRegistryReference<? extends Key<? extends Value<V>>> key, final V value, final Operator operator) {
         return KeyValueMatcher.builder().key(key).value(value).operator(operator).build();
     }
 
@@ -156,7 +156,7 @@ public interface KeyValueMatcher<V> extends DataSerializable {
      * @return The builder
      */
     static Builder<?> builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -224,7 +224,7 @@ public interface KeyValueMatcher<V> extends DataSerializable {
          * @param <NV> The key value type
          * @return This builder, for chaining
          */
-        default <NV> Builder<NV> key(Supplier<? extends Key<? extends Value<NV>>> key) {
+        default <NV> Builder<NV> key(DefaultedRegistryReference<? extends Key<? extends Value<NV>>> key) {
             return this.key(key.get());
         }
 

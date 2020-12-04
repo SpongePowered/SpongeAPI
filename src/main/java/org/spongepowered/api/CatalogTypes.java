@@ -95,7 +95,6 @@ import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.inventory.query.QueryType;
 import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
 import org.spongepowered.api.placeholder.PlaceholderParser;
-import org.spongepowered.api.registry.CatalogRegistry;
 import org.spongepowered.api.registry.GameRegistry;
 import org.spongepowered.api.scoreboard.CollisionRule;
 import org.spongepowered.api.scoreboard.Visibility;

@@ -51,7 +51,7 @@ public interface BlockEntityArchetype extends Archetype<BlockSnapshot, BlockEnti
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**

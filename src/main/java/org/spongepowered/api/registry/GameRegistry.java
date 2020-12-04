@@ -34,32 +34,11 @@ import org.spongepowered.api.item.recipe.RecipeRegistry;
 public interface GameRegistry {
 
     /**
-     * Retrieves the {@link CatalogRegistry}.
-     *
-     * @return The catalog registry
-     */
-    CatalogRegistry getCatalogRegistry();
-
-    /**
      * Retrieves the {@link AdventureRegistry}.
      *
      * @return The catalog registry
      */
     AdventureRegistry getAdventureRegistry();
-
-    /**
-     * Retrieves the {@link BuilderRegistry}.
-     *
-     * @return The builder registry
-     */
-    BuilderRegistry getBuilderRegistry();
-
-    /**
-     * Retrieves the {@link FactoryRegistry}.
-     *
-     * @return The factory registry
-     */
-    FactoryRegistry getFactoryRegistry();
 
     /**
      * Retrieves the {@link RecipeRegistry}.

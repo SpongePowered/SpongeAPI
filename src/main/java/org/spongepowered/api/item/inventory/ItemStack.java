@@ -40,6 +40,7 @@ import org.spongepowered.api.entity.attribute.type.AttributeType;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 
 import java.util.Collection;
 import java.util.Map;
@@ -65,7 +66,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -294,7 +295,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
          * @param itemType The type of item
          * @return This builder, for chaining
          */
-        default Builder itemType(Supplier<? extends ItemType> itemType) {
+        default Builder itemType(final DefaultedRegistryReference<? extends ItemType> itemType) {
             return this.itemType(itemType.get());
         }
 

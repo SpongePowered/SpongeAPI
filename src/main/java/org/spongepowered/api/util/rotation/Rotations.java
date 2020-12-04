@@ -24,22 +24,37 @@
  */
 package org.spongepowered.api.util.rotation;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class Rotations {
 
-    // sortfields:off
-    public static final Supplier<Rotation> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "none");
+    // @formatter:off
 
-    public static final Supplier<Rotation> CLOCKWISE_90 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "clockwise_90");
+    // SORTFIELDS:ON
 
-    public static final Supplier<Rotation> CLOCKWISE_180 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "clockwise_180");
+    public static final DefaultedRegistryReference<Rotation> NONE = Rotations.key(ResourceKey.sponge("none"));
+    public static final DefaultedRegistryReference<Rotation> CLOCKWISE_90 = Rotations.key(ResourceKey.sponge("clockwise_90"));
 
-    public static final Supplier<Rotation> COUNTER_CLOCKWISE_90 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "counter_clockwise_90");
-    // sortfields:on
+    public static final DefaultedRegistryReference<Rotation> CLOCKWISE_180 = Rotations.key(ResourceKey.sponge("clockwise_180"));
 
-    private Rotations() {}
+    public static final DefaultedRegistryReference<Rotation> COUNTER_CLOCKWISE_90 = Rotations.key(ResourceKey.sponge("counter_clockwise_90"));
 
+    // SORTFIELDS:OFF
+
+    // @formatter:on
+
+    private Rotations() {
+    }
+
+    private static DefaultedRegistryReference<Rotation> key(final ResourceKey location) {
+        return RegistryKey.<Rotation>of(Registries.ROTATION.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

@@ -61,7 +61,7 @@ public interface PlaceholderComponent extends ComponentLike {
      * @return A {@link Builder}
      */
     static PlaceholderComponent.Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**

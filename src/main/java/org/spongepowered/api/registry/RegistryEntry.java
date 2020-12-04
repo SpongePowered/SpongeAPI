@@ -22,20 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.lifecycle;
+package org.spongepowered.api.registry;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.event.GenericEvent;
-import org.spongepowered.api.registry.DuplicateRegistrationException;
+import org.spongepowered.api.ResourceKey;
 
-public interface RegisterCatalogEvent<T extends CatalogType> extends GenericEvent<T>, LifecycleEvent {
+/**
+ * An entry within a {@link Registry}.
+ *
+ * @param <T> The type of the registry
+ */
+public interface RegistryEntry<T> {
 
     /**
-     * Registers a new {@link CatalogType}.
+     * Gets the {@link ResourceKey key} this entry exists under in a {@link Registry}.
      *
-     * @param catalog The catalog type
-     * @return The provided catalog type
-     * @throws DuplicateRegistrationException If the type is already registered
+     * @return The key
      */
-    T register(T catalog) throws DuplicateRegistrationException;
+    ResourceKey key();
+
+    /**
+     * Gets the {@link T value} this entry points to.
+     *
+     * @return The value
+     */
+    T value();
 }

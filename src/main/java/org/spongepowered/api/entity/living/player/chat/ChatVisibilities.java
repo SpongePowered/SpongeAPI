@@ -25,34 +25,48 @@
 package org.spongepowered.api.entity.living.player.chat;
 
 import net.kyori.adventure.audience.MessageType;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of the vanilla chat visibility modes for a client.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class ChatVisibilities {
 
-    private ChatVisibilities() {
-    }
+    // @formatter:off
 
     // SORTFIELDS:ON
 
     /**
      * All chat is visible.
      */
-    public static final Supplier<ChatVisibility> FULL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChatVisibility.class, "full");
+    public static final DefaultedRegistryReference<ChatVisibility> FULL = ChatVisibilities.key(ResourceKey.sponge("full"));
 
     /**
      * No chat is visible.
      */
-    public static final Supplier<ChatVisibility> HIDDEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChatVisibility.class, "hidden");
+    public static final DefaultedRegistryReference<ChatVisibility> HIDDEN = ChatVisibilities.key(ResourceKey.sponge("hidden"));
 
     /**
      * Only {@link MessageType#SYSTEM} is visible.
      */
-    public static final Supplier<ChatVisibility> SYSTEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChatVisibility.class, "system");
+    public static final DefaultedRegistryReference<ChatVisibility> SYSTEM = ChatVisibilities.key(ResourceKey.sponge("system"));
 
     // SORTFIELDS:OFF
+
+    // @formatter:on
+
+    private ChatVisibilities() {
+    }
+
+    private static DefaultedRegistryReference<ChatVisibility> key(final ResourceKey location) {
+        return RegistryKey.<ChatVisibility>of(Registries.CHAT_VISIBILITY.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

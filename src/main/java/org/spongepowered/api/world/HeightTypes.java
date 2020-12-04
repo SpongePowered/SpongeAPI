@@ -24,31 +24,44 @@
  */
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class HeightTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<HeightType> LIGHT_BLOCKING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HeightType.class, "light_blocking");
+    public static final DefaultedRegistryReference<HeightType> LIGHT_BLOCKING = HeightTypes.key(ResourceKey.sponge("light_blocking"));
 
-    public static final Supplier<HeightType> MOTION_BLOCKING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HeightType.class, "motion_blocking");
+    public static final DefaultedRegistryReference<HeightType> MOTION_BLOCKING = HeightTypes.key(ResourceKey.sponge("motion_blocking"));
 
-    public static final Supplier<HeightType> MOTION_BLOCKING_NO_LEAVES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HeightType.class, "motion_blocking_no_leaves");
+    public static final DefaultedRegistryReference<HeightType> MOTION_BLOCKING_NO_LEAVES = HeightTypes.key(ResourceKey.sponge("motion_blocking_no_leaves"));
 
-    public static final Supplier<HeightType> OCEAN_FLOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HeightType.class, "ocean_floor");
+    public static final DefaultedRegistryReference<HeightType> OCEAN_FLOOR = HeightTypes.key(ResourceKey.sponge("ocean_floor"));
 
-    public static final Supplier<HeightType> OCEAN_FLOOR_WG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HeightType.class, "ocean_floor_wg");
+    public static final DefaultedRegistryReference<HeightType> OCEAN_FLOOR_WG = HeightTypes.key(ResourceKey.sponge("ocean_floor_wg"));
 
-    public static final Supplier<HeightType> WORLD_SURFACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HeightType.class, "world_surface");
+    public static final DefaultedRegistryReference<HeightType> WORLD_SURFACE = HeightTypes.key(ResourceKey.sponge("world_surface"));
 
-    public static final Supplier<HeightType> WORLD_SURFACE_WG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HeightType.class, "world_surface_wg");
+    public static final DefaultedRegistryReference<HeightType> WORLD_SURFACE_WG = HeightTypes.key(ResourceKey.sponge("world_surface_wg"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private HeightTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<HeightType> key(final ResourceKey location) {
+        return RegistryKey.<HeightType>of(Registries.HEIGHT_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

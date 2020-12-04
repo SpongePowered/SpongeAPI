@@ -24,29 +24,42 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class SpellTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<SpellType> BLINDNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpellType.class, "blindness");
+    public static final DefaultedRegistryReference<SpellType> BLINDNESS = SpellTypes.key(ResourceKey.sponge("blindness"));
 
-    public static final Supplier<SpellType> DISAPPEAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpellType.class, "disappear");
+    public static final DefaultedRegistryReference<SpellType> DISAPPEAR = SpellTypes.key(ResourceKey.sponge("disappear"));
 
-    public static final Supplier<SpellType> FANGS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpellType.class, "fangs");
+    public static final DefaultedRegistryReference<SpellType> FANGS = SpellTypes.key(ResourceKey.sponge("fangs"));
 
-    public static final Supplier<SpellType> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpellType.class, "none");
+    public static final DefaultedRegistryReference<SpellType> NONE = SpellTypes.key(ResourceKey.sponge("none"));
 
-    public static final Supplier<SpellType> SUMMON_VEX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpellType.class, "summon_vex");
+    public static final DefaultedRegistryReference<SpellType> SUMMON_VEX = SpellTypes.key(ResourceKey.sponge("summon_vex"));
 
-    public static final Supplier<SpellType> WOLOLO = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpellType.class, "wololo");
+    public static final DefaultedRegistryReference<SpellType> WOLOLO = SpellTypes.key(ResourceKey.sponge("wololo"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private SpellTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<SpellType> key(final ResourceKey location) {
+        return RegistryKey.<SpellType>of(Registries.SPELL_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

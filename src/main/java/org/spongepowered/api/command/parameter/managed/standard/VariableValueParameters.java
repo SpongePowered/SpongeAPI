@@ -54,7 +54,7 @@ public final class VariableValueParameters {
      * @return The builder
      */
     public static <T extends CatalogType> CatalogedTypeBuilder<T> catalogedElementParameterBuilder(final Class<T> returnType) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createCatalogedTypesBuilder(returnType);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createCatalogedTypesBuilder(returnType);
     }
 
     /**
@@ -70,7 +70,7 @@ public final class VariableValueParameters {
      * @return The builder
      */
     public static <T> StaticChoicesBuilder<T> staticChoicesBuilder(final Class<T> returnType) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createStaticChoicesBuilder(returnType);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createStaticChoicesBuilder(returnType);
     }
 
     /**
@@ -86,7 +86,7 @@ public final class VariableValueParameters {
      * @return The builder
      */
     public static <T> DynamicChoicesBuilder<T> dynamicChoicesBuilder(final Class<T> returnType) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createDynamicChoicesBuilder(returnType);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createDynamicChoicesBuilder(returnType);
     }
 
     /**
@@ -99,7 +99,7 @@ public final class VariableValueParameters {
      * @return The builder
      */
     public static <T> LiteralBuilder<T> literalBuilder(final Class<T> returnType) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createLiteralBuilder(returnType);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createLiteralBuilder(returnType);
     }
 
     /**
@@ -108,7 +108,7 @@ public final class VariableValueParameters {
      * @return The new builder
      */
     public static TextBuilder textBuilder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(TextBuilder.class);
+        return Sponge.getGame().getBuilderProvider().provide(TextBuilder.class);
     }
 
     /**
@@ -120,7 +120,7 @@ public final class VariableValueParameters {
      * @return The appropriate {@link ValueParameter}
      */
     public static <T extends Enum<T>> ValueParameter<T> enumChoices(final Class<T> enumClass) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createEnumParameter(enumClass);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createEnumParameter(enumClass);
     }
 
     /**
@@ -130,7 +130,7 @@ public final class VariableValueParameters {
      * @return The {@link NumberRangeBuilder}
      */
     public static NumberRangeBuilder<Double> doubleRange() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createDoubleNumberRangeBuilder();
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createDoubleNumberRangeBuilder();
     }
 
     /**
@@ -140,7 +140,7 @@ public final class VariableValueParameters {
      * @return The {@link NumberRangeBuilder}
      */
     public static NumberRangeBuilder<Float> floatRange() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createFloatNumberRangeBuilder();
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createFloatNumberRangeBuilder();
     }
 
     /**
@@ -150,7 +150,7 @@ public final class VariableValueParameters {
      * @return The {@link NumberRangeBuilder}
      */
     public static NumberRangeBuilder<Integer> integerRange() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createIntegerNumberRangeBuilder();
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createIntegerNumberRangeBuilder();
     }
 
     /**
@@ -160,7 +160,7 @@ public final class VariableValueParameters {
      * @return The {@link NumberRangeBuilder}
      */
     public static NumberRangeBuilder<Long> longRange() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createLongNumberRangeBuilder();
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createLongNumberRangeBuilder();
     }
 
     /**
@@ -170,7 +170,7 @@ public final class VariableValueParameters {
      * @return The {@link ValueParameter}
      */
     public static ValueParameter<String> validatedString(final Pattern pattern) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class)
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class)
                 .createValidatedStringParameter(pattern);
     }
 

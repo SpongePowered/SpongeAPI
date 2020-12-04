@@ -24,88 +24,101 @@
  */
 package org.spongepowered.api.entity.living.monster.boss.dragon.phase;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.monster.boss.dragon.EnderDragon;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.explosive.fireball.DragonFireball;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of {@link DragonPhaseType}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class DragonPhaseTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
     /**
      * The {@link EnderDragon} is charging towards a {@link Player}.
      */
-    public static final Supplier<DragonPhaseType> CHARGING_PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DragonPhaseType.class, "charging_player");
+    public static final DefaultedRegistryReference<DragonPhaseType> CHARGING_PLAYER = DragonPhaseTypes.key(ResourceKey.sponge("charging_player"));
 
     /**
      * The {@link EnderDragon} is flying to the End Portal to die.
      */
-    public static final Supplier<DragonPhaseType> DYING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DragonPhaseType.class, "dying");
+    public static final DefaultedRegistryReference<DragonPhaseType> DYING = DragonPhaseTypes.key(ResourceKey.sponge("dying"));
 
     /**
      * The {@link EnderDragon} is circling around.
      */
-    public static final Supplier<DragonPhaseType> HOLDING_PATTERN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DragonPhaseType.class, "holding_pattern");
+    public static final DefaultedRegistryReference<DragonPhaseType> HOLDING_PATTERN = DragonPhaseTypes.key(ResourceKey.sponge("holding_pattern"));
 
     /**
      * The {@link EnderDragon} is hovering.
      *
      * <p>This is the default state when summoned using the {@code /summon} command.</p>
      */
-    public static final Supplier<DragonPhaseType> HOVER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DragonPhaseType.class, "hover");
+    public static final DefaultedRegistryReference<DragonPhaseType> HOVER = DragonPhaseTypes.key(ResourceKey.sponge("hover"));
 
     /**
      * The {@link EnderDragon} is landing on the End Portal.
      *
      * <p>This is part of the transition to a landed state.</p>
      */
-    public static final Supplier<DragonPhaseType> LANDING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DragonPhaseType.class, "landing");
+    public static final DefaultedRegistryReference<DragonPhaseType> LANDING = DragonPhaseTypes.key(ResourceKey.sponge("landing"));
 
     /**
      * The {@link EnderDragon} is flying to the End Portal to land.
      *
      * <p>This is part of the transition to a landed state.</p>
      */
-    public static final Supplier<DragonPhaseType> LANDING_APPROACH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DragonPhaseType.class, "landing_approach");
+    public static final DefaultedRegistryReference<DragonPhaseType> LANDING_APPROACH = DragonPhaseTypes.key(ResourceKey.sponge("landing_approach"));
 
     /**
      * The {@link EnderDragon} is growling before performing a dragon breath attack.
      */
-    public static final Supplier<DragonPhaseType> SITTING_ATTACKING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DragonPhaseType.class, "sitting_attacking");
+    public static final DefaultedRegistryReference<DragonPhaseType> SITTING_ATTACKING = DragonPhaseTypes.key(ResourceKey.sponge("sitting_attacking"));
 
     /**
      * The {@link EnderDragon} is performing a dragon breath attack.
      *
      * <p>This is part of the landed state.</p>
      */
-    public static final Supplier<DragonPhaseType> SITTING_FLAMING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DragonPhaseType.class, "sitting_flaming");
+    public static final DefaultedRegistryReference<DragonPhaseType> SITTING_FLAMING = DragonPhaseTypes.key(ResourceKey.sponge("sitting_flaming"));
 
     /**
      * The {@link EnderDragon} is looking for a {@link Player} to peform a dragon breath attack.
      */
-    public static final Supplier<DragonPhaseType> SITTING_SCANNING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DragonPhaseType.class, "sitting_scanning");
+    public static final DefaultedRegistryReference<DragonPhaseType> SITTING_SCANNING = DragonPhaseTypes.key(ResourceKey.sponge("sitting_scanning"));
 
     /**
      * The {@link EnderDragon} is preparing to shoot a {@link DragonFireball}.
      */
-    public static final Supplier<DragonPhaseType> STRAFE_PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DragonPhaseType.class, "strafe_player");
+    public static final DefaultedRegistryReference<DragonPhaseType> STRAFE_PLAYER = DragonPhaseTypes.key(ResourceKey.sponge("strafe_player"));
 
     /**
      * The {@link EnderDragon} is taking off from the End Portal.
      *
      * <p>This is part of the transition out of a landed state.</p>
      */
-    public static final Supplier<DragonPhaseType> TAKEOFF = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DragonPhaseType.class, "takeoff");
+    public static final DefaultedRegistryReference<DragonPhaseType> TAKEOFF = DragonPhaseTypes.key(ResourceKey.sponge("takeoff"));
 
     // SORTFIELDS:OFF
+
+    // @formatter:on
 
     private DragonPhaseTypes() {
     }
 
+    private static DefaultedRegistryReference<DragonPhaseType> key(final ResourceKey location) {
+        return RegistryKey.<DragonPhaseType>of(Registries.DRAGON_PHASE_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

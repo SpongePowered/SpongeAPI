@@ -24,34 +24,47 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link HorseColor}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class HorseColors {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<HorseColor> BLACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "black");
+    public static final DefaultedRegistryReference<HorseColor> BLACK = HorseColors.key(ResourceKey.sponge("black"));
 
-    public static final Supplier<HorseColor> BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "brown");
+    public static final DefaultedRegistryReference<HorseColor> BROWN = HorseColors.key(ResourceKey.sponge("brown"));
 
-    public static final Supplier<HorseColor> CHESTNUT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "chestnut");
+    public static final DefaultedRegistryReference<HorseColor> CHESTNUT = HorseColors.key(ResourceKey.sponge("chestnut"));
 
-    public static final Supplier<HorseColor> CREAMY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "creamy");
+    public static final DefaultedRegistryReference<HorseColor> CREAMY = HorseColors.key(ResourceKey.sponge("creamy"));
 
-    public static final Supplier<HorseColor> DARK_BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "dark_brown");
+    public static final DefaultedRegistryReference<HorseColor> DARK_BROWN = HorseColors.key(ResourceKey.sponge("dark_brown"));
 
-    public static final Supplier<HorseColor> GRAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "gray");
+    public static final DefaultedRegistryReference<HorseColor> GRAY = HorseColors.key(ResourceKey.sponge("gray"));
 
-    public static final Supplier<HorseColor> WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseColor.class, "white");
+    public static final DefaultedRegistryReference<HorseColor> WHITE = HorseColors.key(ResourceKey.sponge("white"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private HorseColors() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<HorseColor> key(final ResourceKey location) {
+        return RegistryKey.<HorseColor>of(Registries.HORSE_COLOR.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

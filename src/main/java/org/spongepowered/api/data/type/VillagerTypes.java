@@ -24,31 +24,44 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class VillagerTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<VillagerType> DESERT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "desert");
+    public static final DefaultedRegistryReference<VillagerType> DESERT = VillagerTypes.key(ResourceKey.sponge("desert"));
 
-    public static final Supplier<VillagerType> JUNGLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "jungle");
+    public static final DefaultedRegistryReference<VillagerType> JUNGLE = VillagerTypes.key(ResourceKey.sponge("jungle"));
 
-    public static final Supplier<VillagerType> PLAINS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "plains");
+    public static final DefaultedRegistryReference<VillagerType> PLAINS = VillagerTypes.key(ResourceKey.sponge("plains"));
 
-    public static final Supplier<VillagerType> SAVANNA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "savanna");
+    public static final DefaultedRegistryReference<VillagerType> SAVANNA = VillagerTypes.key(ResourceKey.sponge("savanna"));
 
-    public static final Supplier<VillagerType> SNOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "snow");
+    public static final DefaultedRegistryReference<VillagerType> SNOW = VillagerTypes.key(ResourceKey.sponge("snow"));
 
-    public static final Supplier<VillagerType> SWAMP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "swamp");
+    public static final DefaultedRegistryReference<VillagerType> SWAMP = VillagerTypes.key(ResourceKey.sponge("swamp"));
 
-    public static final Supplier<VillagerType> TAIGA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(VillagerType.class, "taiga");
+    public static final DefaultedRegistryReference<VillagerType> TAIGA = VillagerTypes.key(ResourceKey.sponge("taiga"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private VillagerTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<VillagerType> key(final ResourceKey location) {
+        return RegistryKey.<VillagerType>of(Registries.VILLAGER_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

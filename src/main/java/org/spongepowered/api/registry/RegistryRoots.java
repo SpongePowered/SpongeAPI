@@ -22,36 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.lifecycle;
+package org.spongepowered.api.registry;
 
-import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.registry.DuplicateRegistrationException;
 
-import java.util.Set;
-import java.util.function.Supplier;
+public final class RegistryRoots {
 
-public interface RegisterCatalogRegistryEvent extends LifecycleEvent {
+    public static final RegistryLocation MINECRAFT = RegistryRoots.newRoot(ResourceKey.minecraft("root"));
 
-    /**
-     * Registers a new {@link CatalogType} registry.
-     *
-     * @param catalogClass The catalog type
-     * @param key The key for the registry
-     * @param <T> The type
-     * @throws DuplicateRegistrationException If the type is already registered
-     */
-    <T extends CatalogType> void register(Class<T> catalogClass, ResourceKey key) throws DuplicateRegistrationException;
+    public static final RegistryLocation SPONGE = RegistryRoots.newRoot(ResourceKey.sponge("root"));
 
-    /**
-     * Registers a new {@link CatalogType} registry.
-     *
-     * @param catalogClass The catalog type
-     * @param key The key for the registry
-     * @param defaultsSupplier The default added types, added for convenience
-     * @param <T> The type
-     * @throws DuplicateRegistrationException If the type is already registered
-     */
-    <T extends CatalogType> void register(Class<T> catalogClass, ResourceKey key, @Nullable Supplier<Set<T>> defaultsSupplier) throws DuplicateRegistrationException;
+    private static RegistryLocation newRoot(final ResourceKey key) {
+        return RegistryLocation.of(key, key);
+    }
+
+    private RegistryRoots() {
+    }
 }

@@ -35,9 +35,7 @@ import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.item.recipe.RecipeType;
 import org.spongepowered.api.item.recipe.crafting.Ingredient;
-import org.spongepowered.api.item.recipe.crafting.ShapedCraftingRecipe;
 import org.spongepowered.api.util.CatalogBuilder;
-import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -48,7 +46,7 @@ import java.util.function.Supplier;
 public interface StoneCutterRecipe extends Recipe {
 
     static StoneCutterRecipe.Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(StoneCutterRecipe.Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(StoneCutterRecipe.Builder.class);
     }
 
     @Override

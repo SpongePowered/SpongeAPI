@@ -27,8 +27,6 @@ package org.spongepowered.api.world;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockTypes;
 
-import java.util.function.Supplier;
-
 /**
  * An enumeration of the possible {@link BlockChangeFlag}s.
  *
@@ -44,36 +42,36 @@ public final class BlockChangeFlags {
     /**
      * All the available flags are applied through the AND operator.
      */
-    public static final BlockChangeFlag ALL = Sponge.getRegistry().getFactoryRegistry().provideFactory(BlockChangeFlag.Factory.class).empty().inverse();
+    public static final BlockChangeFlag ALL = Sponge.getGame().getFactoryProvider().provide(BlockChangeFlag.Factory.class).empty().inverse();
 
     /**
      * A flag that defines whether a block change should notify
      * neighboring blocks.
      */
-    public static final BlockChangeFlag NEIGHBOR = Sponge.getRegistry().getFactoryRegistry().provideFactory(BlockChangeFlag.Factory.class).empty().withUpdateNeighbors(true);
+    public static final BlockChangeFlag NEIGHBOR = Sponge.getGame().getFactoryProvider().provide(BlockChangeFlag.Factory.class).empty().withUpdateNeighbors(true);
 
     /**
      * The {@link #NEIGHBOR} and {@link #OBSERVER} flags combined
      * with the AND operator.
      */
-    public static final BlockChangeFlag NEIGHBOR_OBSERVER = Sponge.getRegistry().getFactoryRegistry().provideFactory(BlockChangeFlag.Factory.class).empty().withUpdateNeighbors(true).withNotifyObservers(true);
+    public static final BlockChangeFlag NEIGHBOR_OBSERVER = Sponge.getGame().getFactoryProvider().provide(BlockChangeFlag.Factory.class).empty().withUpdateNeighbors(true).withNotifyObservers(true);
 
     /**
      * The {@link #NEIGHBOR} and {@link #PHYSICS} flags combined
      * with the AND operator.
      */
-    public static final BlockChangeFlag NEIGHBOR_PHYSICS = Sponge.getRegistry().getFactoryRegistry().provideFactory(BlockChangeFlag.Factory.class).empty().withUpdateNeighbors(true).withPhysics(true);
+    public static final BlockChangeFlag NEIGHBOR_PHYSICS = Sponge.getGame().getFactoryProvider().provide(BlockChangeFlag.Factory.class).empty().withUpdateNeighbors(true).withPhysics(true);
 
     /**
      * The {@link #NEIGHBOR}, {@link #PHYSICS} and {@link #OBSERVER} flags
      * combined with the AND operator.
      */
-    public static final BlockChangeFlag NEIGHBOR_PHYSICS_OBSERVER = Sponge.getRegistry().getFactoryRegistry().provideFactory(BlockChangeFlag.Factory.class).empty().withUpdateNeighbors(true).withPhysics(true).withNotifyObservers(true);
+    public static final BlockChangeFlag NEIGHBOR_PHYSICS_OBSERVER = Sponge.getGame().getFactoryProvider().provide(BlockChangeFlag.Factory.class).empty().withUpdateNeighbors(true).withPhysics(true).withNotifyObservers(true);
 
     /**
      * No flags are set, triggers nothing.
      */
-    public static final BlockChangeFlag NONE = Sponge.getRegistry().getFactoryRegistry().provideFactory(BlockChangeFlag.Factory.class).empty();
+    public static final BlockChangeFlag NONE = Sponge.getGame().getFactoryProvider().provide(BlockChangeFlag.Factory.class).empty();
 
     /**
      * A flag that defines whether to update observer blocks, different
@@ -82,20 +80,20 @@ public final class BlockChangeFlags {
      * whereas this focuses on {@link BlockTypes#OBSERVER} blocks
      * being told of updates.
      */
-    public static final BlockChangeFlag OBSERVER = Sponge.getRegistry().getFactoryRegistry().provideFactory(BlockChangeFlag.Factory.class).empty().withNotifyObservers(true);
+    public static final BlockChangeFlag OBSERVER = Sponge.getGame().getFactoryProvider().provide(BlockChangeFlag.Factory.class).empty().withNotifyObservers(true);
 
     /**
      * A flag that defines whether a block change should
      * perform block physics checks or not. If not, no checks
      * are performed.
      */
-    public static final BlockChangeFlag PHYSICS = Sponge.getRegistry().getFactoryRegistry().provideFactory(BlockChangeFlag.Factory.class).empty().withPhysics(true);
+    public static final BlockChangeFlag PHYSICS = Sponge.getGame().getFactoryProvider().provide(BlockChangeFlag.Factory.class).empty().withPhysics(true);
 
     /**
      * The {@link #PHYSICS} and {@link #OBSERVER} flags combined with
      * the AND operator.
      */
-    public static final BlockChangeFlag PHYSICS_OBSERVER = Sponge.getRegistry().getFactoryRegistry().provideFactory(BlockChangeFlag.Factory.class).empty().withPhysics(true).withNotifyObservers(true);
+    public static final BlockChangeFlag PHYSICS_OBSERVER = Sponge.getGame().getFactoryProvider().provide(BlockChangeFlag.Factory.class).empty().withPhysics(true).withNotifyObservers(true);
 
     // SORTFIELDS:OFF
 

@@ -24,24 +24,37 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link ComparatorMode}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class ComparatorModes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<ComparatorMode> COMPARE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ComparatorMode.class, "compare");
+    public static final DefaultedRegistryReference<ComparatorMode> COMPARE = ComparatorModes.key(ResourceKey.sponge("compare"));
 
-    public static final Supplier<ComparatorMode> SUBTRACT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ComparatorMode.class, "subtract");
+    public static final DefaultedRegistryReference<ComparatorMode> SUBTRACT = ComparatorModes.key(ResourceKey.sponge("subtract"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private ComparatorModes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<ComparatorMode> key(final ResourceKey location) {
+        return RegistryKey.<ComparatorMode>of(Registries.COMPARATOR_MODE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

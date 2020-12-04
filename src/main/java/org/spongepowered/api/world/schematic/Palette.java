@@ -39,7 +39,6 @@ import java.util.stream.Stream;
  *
  * @param <T> The type this palette will maintain
  */
-@CatalogedBy(PaletteTypes.class)
 public interface Palette<T> {
 
     /**

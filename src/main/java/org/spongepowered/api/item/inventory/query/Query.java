@@ -39,7 +39,7 @@ public interface Query {
      * @return The query builder
      */
     static Query.Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Query.Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Query.Builder.class);
     }
 
     /**

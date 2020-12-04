@@ -43,7 +43,7 @@ public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**

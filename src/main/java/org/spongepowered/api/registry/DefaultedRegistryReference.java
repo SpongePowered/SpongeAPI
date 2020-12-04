@@ -24,18 +24,31 @@
  */
 package org.spongepowered.api.registry;
 
-import org.spongepowered.api.util.ResettableBuilder;
+import java.util.Optional;
 
-public interface BuilderRegistry {
+/**
+ * A {@link RegistryReference reference} where the {@link RegistryHolder holder} is
+ * given to us to search within a no-args {@code get()} method.
+ *
+ * <p>Purely for convenience so that most default references in the API are not always
+ * calling out to the global holder simply by using it.</p>
+ *
+ * @param <T> The type
+ */
+public interface DefaultedRegistryReference<T> extends RegistryReference<T> {
 
     /**
-     * Gets a builder of the desired class type, examples may include:
-     * {@link org.spongepowered.api.item.inventory.ItemStack.Builder}, etc.
+     * Gets the value from the default {@link RegistryHolder holder} given when constructing
+     * this reference.
      *
-     * @param builderClass The class of the builder
-     * @param <T> The type of builder
-     * @throws UnknownTypeException If the type provided has not been registered
-     * @return The builder, if available
+     * <p>Great care needs to be made in calling this method with any uncertainty as to
+     * if this reference will exist in the holder. Should this reference lack a value, a
+     * {@link ValueNotFoundException}</p> will be thrown. Therefore, it is advised to call
+     * {@link RegistryReference#find(RegistryHolder)} instead.</p>
+     *
+     * @return The value
      */
-    <T extends ResettableBuilder<?, ? super T>> T provideBuilder(Class<T> builderClass) throws UnknownTypeException;
+    T get();
+
+    Optional<T> find();
 }

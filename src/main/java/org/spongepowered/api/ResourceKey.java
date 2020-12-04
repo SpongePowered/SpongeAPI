@@ -25,6 +25,7 @@
 package org.spongepowered.api;
 
 import net.kyori.adventure.key.Key;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.api.data.DataRegistration;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataTranslator;
@@ -69,6 +70,7 @@ public interface ResourceKey extends Key {
      * @param value The value
      * @return A new resource key
      */
+    @NonNull
     static ResourceKey minecraft(final String value) {
         return ResourceKey.of(ResourceKey.MINECRAFT_NAMESPACE, value);
     }
@@ -79,6 +81,7 @@ public interface ResourceKey extends Key {
      * @param value The value
      * @return A new resource key
      */
+    @NonNull
     static ResourceKey sponge(final String value) {
         return ResourceKey.of(ResourceKey.SPONGE_NAMESPACE, value);
     }
@@ -91,7 +94,7 @@ public interface ResourceKey extends Key {
      * @return The new builder instance
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -126,7 +129,7 @@ public interface ResourceKey extends Key {
      * @return A new resource key
      */
     static ResourceKey resolve(final String formatted) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).resolve(formatted);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).resolve(formatted);
     }
 
     /**

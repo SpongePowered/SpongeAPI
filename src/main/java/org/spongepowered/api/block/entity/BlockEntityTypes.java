@@ -24,84 +24,99 @@
  */
 package org.spongepowered.api.block.entity;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of all {@link BlockEntityType}s in vanilla Minecraft.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class BlockEntityTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<BlockEntityType> BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "banner");
+    public static final DefaultedRegistryReference<BlockEntityType> BANNER = BlockEntityTypes.key(ResourceKey.sponge("banner"));
 
-    public static final Supplier<BlockEntityType> BARREL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "barrel");
+    public static final DefaultedRegistryReference<BlockEntityType> BARREL = BlockEntityTypes.key(ResourceKey.sponge("barrel"));
 
-    public static final Supplier<BlockEntityType> BEACON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "beacon");
+    public static final DefaultedRegistryReference<BlockEntityType> BEACON = BlockEntityTypes.key(ResourceKey.sponge("beacon"));
 
-    public static final Supplier<BlockEntityType> BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "bed");
+    public static final DefaultedRegistryReference<BlockEntityType> BED = BlockEntityTypes.key(ResourceKey.sponge("bed"));
 
-    public static final Supplier<BlockEntityType> BEEHIVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "beehive");
+    public static final DefaultedRegistryReference<BlockEntityType> BEEHIVE = BlockEntityTypes.key(ResourceKey.sponge("beehive"));
 
-    public static final Supplier<BlockEntityType> BELL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "bell");
+    public static final DefaultedRegistryReference<BlockEntityType> BELL = BlockEntityTypes.key(ResourceKey.sponge("bell"));
 
-    public static final Supplier<BlockEntityType> BLAST_FURNACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "blast_furnace");
+    public static final DefaultedRegistryReference<BlockEntityType> BLAST_FURNACE = BlockEntityTypes.key(ResourceKey.sponge("blast_furnace"));
 
-    public static final Supplier<BlockEntityType> BREWING_STAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "brewing_stand");
+    public static final DefaultedRegistryReference<BlockEntityType> BREWING_STAND = BlockEntityTypes.key(ResourceKey.sponge("brewing_stand"));
 
-    public static final Supplier<BlockEntityType> CAMPFIRE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "campfire");
+    public static final DefaultedRegistryReference<BlockEntityType> CAMPFIRE = BlockEntityTypes.key(ResourceKey.sponge("campfire"));
 
-    public static final Supplier<BlockEntityType> CHEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "chest");
+    public static final DefaultedRegistryReference<BlockEntityType> CHEST = BlockEntityTypes.key(ResourceKey.sponge("chest"));
 
-    public static final Supplier<BlockEntityType> COMMAND_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "command_block");
+    public static final DefaultedRegistryReference<BlockEntityType> COMMAND_BLOCK = BlockEntityTypes.key(ResourceKey.sponge("command_block"));
 
-    public static final Supplier<BlockEntityType> COMPARATOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "comparator");
+    public static final DefaultedRegistryReference<BlockEntityType> COMPARATOR = BlockEntityTypes.key(ResourceKey.sponge("comparator"));
 
-    public static final Supplier<BlockEntityType> CONDUIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "conduit");
+    public static final DefaultedRegistryReference<BlockEntityType> CONDUIT = BlockEntityTypes.key(ResourceKey.sponge("conduit"));
 
-    public static final Supplier<BlockEntityType> DAYLIGHT_DETECTOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "daylight_detector");
+    public static final DefaultedRegistryReference<BlockEntityType> DAYLIGHT_DETECTOR = BlockEntityTypes.key(ResourceKey.sponge("daylight_detector"));
 
-    public static final Supplier<BlockEntityType> DISPENSER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "dispenser");
+    public static final DefaultedRegistryReference<BlockEntityType> DISPENSER = BlockEntityTypes.key(ResourceKey.sponge("dispenser"));
 
-    public static final Supplier<BlockEntityType> DROPPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "dropper");
+    public static final DefaultedRegistryReference<BlockEntityType> DROPPER = BlockEntityTypes.key(ResourceKey.sponge("dropper"));
 
-    public static final Supplier<BlockEntityType> ENCHANTMENT_TABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "enchantment_table");
+    public static final DefaultedRegistryReference<BlockEntityType> ENCHANTMENT_TABLE = BlockEntityTypes.key(ResourceKey.sponge("enchantment_table"));
 
-    public static final Supplier<BlockEntityType> ENDER_CHEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "ender_chest");
+    public static final DefaultedRegistryReference<BlockEntityType> ENDER_CHEST = BlockEntityTypes.key(ResourceKey.sponge("ender_chest"));
 
-    public static final Supplier<BlockEntityType> END_GATEWAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "end_gateway");
+    public static final DefaultedRegistryReference<BlockEntityType> END_GATEWAY = BlockEntityTypes.key(ResourceKey.sponge("end_gateway"));
 
-    public static final Supplier<BlockEntityType> END_PORTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "end_portal");
+    public static final DefaultedRegistryReference<BlockEntityType> END_PORTAL = BlockEntityTypes.key(ResourceKey.sponge("end_portal"));
 
-    public static final Supplier<BlockEntityType> FURNACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "furnace");
+    public static final DefaultedRegistryReference<BlockEntityType> FURNACE = BlockEntityTypes.key(ResourceKey.sponge("furnace"));
 
-    public static final Supplier<BlockEntityType> HOPPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "hopper");
+    public static final DefaultedRegistryReference<BlockEntityType> HOPPER = BlockEntityTypes.key(ResourceKey.sponge("hopper"));
 
-    public static final Supplier<BlockEntityType> JIGSAW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "jigsaw");
+    public static final DefaultedRegistryReference<BlockEntityType> JIGSAW = BlockEntityTypes.key(ResourceKey.sponge("jigsaw"));
 
-    public static final Supplier<BlockEntityType> JUKEBOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "jukebox");
+    public static final DefaultedRegistryReference<BlockEntityType> JUKEBOX = BlockEntityTypes.key(ResourceKey.sponge("jukebox"));
 
-    public static final Supplier<BlockEntityType> LECTERN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "lectern");
+    public static final DefaultedRegistryReference<BlockEntityType> LECTERN = BlockEntityTypes.key(ResourceKey.sponge("lectern"));
 
-    public static final Supplier<BlockEntityType> MOB_SPAWNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "mob_spawner");
+    public static final DefaultedRegistryReference<BlockEntityType> MOB_SPAWNER = BlockEntityTypes.key(ResourceKey.sponge("mob_spawner"));
 
-    public static final Supplier<BlockEntityType> PISTON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "piston");
+    public static final DefaultedRegistryReference<BlockEntityType> PISTON = BlockEntityTypes.key(ResourceKey.sponge("piston"));
 
-    public static final Supplier<BlockEntityType> SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "shulker_box");
+    public static final DefaultedRegistryReference<BlockEntityType> SHULKER_BOX = BlockEntityTypes.key(ResourceKey.sponge("shulker_box"));
 
-    public static final Supplier<BlockEntityType> SIGN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "sign");
+    public static final DefaultedRegistryReference<BlockEntityType> SIGN = BlockEntityTypes.key(ResourceKey.sponge("sign"));
 
-    public static final Supplier<BlockEntityType> SKULL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "skull");
+    public static final DefaultedRegistryReference<BlockEntityType> SKULL = BlockEntityTypes.key(ResourceKey.sponge("skull"));
 
-    public static final Supplier<BlockEntityType> SMOKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "smoker");
+    public static final DefaultedRegistryReference<BlockEntityType> SMOKER = BlockEntityTypes.key(ResourceKey.sponge("smoker"));
 
-    public static final Supplier<BlockEntityType> STRUCTURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "structure");
+    public static final DefaultedRegistryReference<BlockEntityType> STRUCTURE = BlockEntityTypes.key(ResourceKey.sponge("structure"));
 
-    public static final Supplier<BlockEntityType> TRAPPED_CHEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockEntityType.class, "trapped_chest");
+    public static final DefaultedRegistryReference<BlockEntityType> TRAPPED_CHEST = BlockEntityTypes.key(ResourceKey.sponge("trapped_chest"));
 
     // SORTFIELDS:OFF
 
-    private BlockEntityTypes() {}
+    // @formatter:on
+
+    private BlockEntityTypes() {
+    }
+
+    private static DefaultedRegistryReference<BlockEntityType> key(final ResourceKey location) {
+        return RegistryKey.<BlockEntityType>of(Registries.BLOCK_ENTITY_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

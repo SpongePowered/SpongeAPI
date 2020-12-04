@@ -28,13 +28,13 @@ import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.net.InetAddress;
 import java.time.Instant;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 /**
  * Represents a ban made on an object.
@@ -47,7 +47,7 @@ public interface Ban {
      * @return A new ban builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -187,7 +187,7 @@ public interface Ban {
          * @param type The type to be set
          * @return This builder
          */
-        default Builder type(Supplier<? extends BanType> type) {
+        default Builder type(DefaultedRegistryReference<? extends BanType> type) {
             return this.type(Objects.requireNonNull(type.get()));
         }
 

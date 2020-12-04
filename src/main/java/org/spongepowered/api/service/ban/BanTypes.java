@@ -24,29 +24,40 @@
  */
 package org.spongepowered.api.service.ban;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
+public final class BanTypes {
 
-public class BanTypes {
+    // @formatter:off
 
     // SORTFIELDS:ON
 
     /**
      * Represents a {@link Ban.IP}.
      */
-    public static final Supplier<BanType> IP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BanType.class, "ip");
+    public static final DefaultedRegistryReference<BanType> IP = BanTypes.key(ResourceKey.sponge("ip"));
 
     /**
      * Represents a {@link Ban.Profile}.
      */
-    public static final Supplier<BanType> PROFILE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BanType.class, "profile");
+    public static final DefaultedRegistryReference<BanType> PROFILE = BanTypes.key(ResourceKey.sponge("profile"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private BanTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<BanType> key(final ResourceKey location) {
+        return RegistryKey.<BanType>of(Registries.BAN_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

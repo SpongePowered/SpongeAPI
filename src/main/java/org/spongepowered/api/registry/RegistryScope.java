@@ -24,15 +24,12 @@
  */
 package org.spongepowered.api.registry;
 
-public interface FactoryRegistry {
-
-    /**
-     * Provides a factory used to create instances of the specified type
-     *
-     * @param clazz The factory class
-     * @param <T> The type of factory
-     * @throws UnknownTypeException If the type provided has not been registered
-     * @return The factory
-     */
-    <T> T provideFactory(Class<T> clazz) throws UnknownTypeException;
+/**
+ * An enumeration of the different levels in which {@link Registry registries} may
+ * reside from least specific to specific.
+ */
+public enum RegistryScope {
+    GAME,
+    ENGINE,
+    WORLD
 }

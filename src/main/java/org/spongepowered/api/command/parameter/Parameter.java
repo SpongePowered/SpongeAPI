@@ -50,6 +50,7 @@ import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.network.RemoteConnection;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.ResettableBuilder;
@@ -112,7 +113,7 @@ public interface Parameter {
      * @return The {@link Key}
      */
     static <T> Key<T> key(@NonNull final String key, @NonNull final TypeToken<T> typeToken) {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Key.Builder.class).build(key, typeToken);
+        return Sponge.getGame().getBuilderProvider().provide(Key.Builder.class).build(key, typeToken);
     }
 
     /**
@@ -126,7 +127,7 @@ public interface Parameter {
      */
     static <T> Key<T> key(@NonNull final String key, @NonNull final Class<T> type) {
         Types.requireCompleteParameters(type);
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Key.Builder.class).build(key, type);
+        return Sponge.getGame().getBuilderProvider().provide(Key.Builder.class).build(key, type);
     }
 
     /**
@@ -140,7 +141,7 @@ public interface Parameter {
      * @return The {@link Value.Builder}
      */
     static <T> Value.Builder<T> builder(@NonNull final Class<T> valueClass) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createParameterBuilder(valueClass);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createParameterBuilder(valueClass);
     }
 
     /**
@@ -151,7 +152,7 @@ public interface Parameter {
      * @return The {@link Value.Builder}
      */
     static <T> Value.Builder<T> builder(@NonNull final TypeToken<T> typeToken) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createParameterBuilder(typeToken);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createParameterBuilder(typeToken);
     }
 
     /**
@@ -189,7 +190,7 @@ public interface Parameter {
      * @param valueClass The type of value class
      * @return The {@link Value.Builder}
      */
-    static <T, V extends ValueParameter<T>> Value.Builder<T> builder(@NonNull final Class<T> valueClass, @NonNull final Supplier<V> parameter) {
+    static <T, V extends ValueParameter<T>> Value.Builder<T> builder(@NonNull final Class<T> valueClass, @NonNull final DefaultedRegistryReference<V> parameter) {
         return Parameter.builder(valueClass, parameter.get());
     }
 
@@ -220,8 +221,7 @@ public interface Parameter {
      * @return The {@link Subcommand} for use in a {@link Parameter} chain
      */
     static Subcommand subcommand(final Command.@NonNull Parameterized subcommand, @NonNull final String alias, final String @NonNull... aliases) {
-        final Subcommand.Builder builder = Sponge.getRegistry()
-                .getBuilderRegistry().provideBuilder(Subcommand.Builder.class)
+        final Subcommand.Builder builder = Sponge.getGame().getBuilderProvider().provide(Subcommand.Builder.class)
                 .setSubcommand(subcommand)
                 .alias(alias);
         for (final String a : aliases) {
@@ -241,7 +241,7 @@ public interface Parameter {
      * @return The {@link Parameter.FirstOfBuilder} to continue chaining
      */
     static Parameter.FirstOfBuilder firstOfBuilder(@NonNull final Parameter parameter) {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(FirstOfBuilder.class).or(parameter);
+        return Sponge.getGame().getBuilderProvider().provide(FirstOfBuilder.class).or(parameter);
     }
 
     /**
@@ -256,7 +256,7 @@ public interface Parameter {
      * @return The {@link Parameter}
      */
     static Parameter firstOf(@NonNull final Parameter first, @NonNull final Parameter second, final Parameter @NonNull... parameters) {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(FirstOfBuilder.class).or(first).or(second).orFirstOf(parameters).build();
+        return Sponge.getGame().getBuilderProvider().provide(FirstOfBuilder.class).or(first).or(second).orFirstOf(parameters).build();
     }
 
     /**
@@ -268,7 +268,7 @@ public interface Parameter {
      * @return The {@link Parameter}
      */
     static Parameter firstOf(@NonNull final Iterable<Parameter> parameters) {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(FirstOfBuilder.class).orFirstOf(parameters).build();
+        return Sponge.getGame().getBuilderProvider().provide(FirstOfBuilder.class).orFirstOf(parameters).build();
     }
 
     /**
@@ -280,7 +280,7 @@ public interface Parameter {
      *         chain
      */
     static Parameter.SequenceBuilder seqBuilder(@NonNull final Parameter parameter) {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(SequenceBuilder.class).then(parameter);
+        return Sponge.getGame().getBuilderProvider().provide(SequenceBuilder.class).then(parameter);
     }
 
     /**
@@ -294,7 +294,7 @@ public interface Parameter {
      * @return The {@link Parameter}
      */
     static Parameter seq(@NonNull final Parameter first, @NonNull final Parameter second, final Parameter @NonNull... parameters) {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(SequenceBuilder.class).then(first).then(second).then(parameters).build();
+        return Sponge.getGame().getBuilderProvider().provide(SequenceBuilder.class).then(first).then(second).then(parameters).build();
     }
 
     /**
@@ -305,7 +305,7 @@ public interface Parameter {
      * @return The {@link Parameter}
      */
     static Parameter seq(@NonNull final Iterable<Parameter> parameters) {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(SequenceBuilder.class).then(parameters).build();
+        return Sponge.getGame().getBuilderProvider().provide(SequenceBuilder.class).then(parameters).build();
     }
 
     // Convenience methods for getting the common parameter types - all in once place.
@@ -1138,7 +1138,7 @@ public interface Parameter {
              * @param parser The {@link ValueParameter} to use
              * @return This builder, for chaining
              */
-            default <V extends ValueParser<? extends T>> Builder<T> parser(@NonNull final Supplier<V> parser) {
+            default <V extends ValueParser<? extends T>> Builder<T> parser(@NonNull final DefaultedRegistryReference<V> parser) {
                 return this.parser(parser.get());
             }
 

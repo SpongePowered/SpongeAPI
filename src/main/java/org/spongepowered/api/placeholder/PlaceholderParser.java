@@ -30,7 +30,6 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
-import org.spongepowered.plugin.PluginContainer;
 
 import java.util.function.Function;
 
@@ -47,7 +46,7 @@ public interface PlaceholderParser extends CatalogType {
      * @return The {@link Builder}
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
