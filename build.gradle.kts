@@ -44,7 +44,7 @@ dependencies {
     api("com.google.code.gson:gson:2.8.0")
 
     // Adventure
-    api(platform("net.kyori:adventure-bom:4.2.0"))
+    api(platform("net.kyori:adventure-bom:4.3.0"))
     api("net.kyori:adventure-api") {
         exclude(group = "org.checkerframework", module = "checker-qual")
     }
