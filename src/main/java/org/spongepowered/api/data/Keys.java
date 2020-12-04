@@ -1773,7 +1773,7 @@ public final class Keys {
      * The matter state of a {@link BlockState}
      * Readonly
      */
-    public static final Supplier<Key<Value<MatterType>>> MATTER_STATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "matter_state");
+    public static final Supplier<Key<Value<MatterType>>> MATTER_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "matter_type");
 
     /**
      * The maximum air supply a {@link Living} may have.
