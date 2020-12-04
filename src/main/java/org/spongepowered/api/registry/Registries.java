@@ -22,24 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.registry;
 
 import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.type.MatterType;
 
-import java.util.Locale;
-import java.util.function.Supplier;
+public final class Registries {
 
-public enum MatterTypes implements Supplier<MatterType> {
-
-    GAS,
-    LIQUID,
-    SOLID;
-
-    private final Supplier<MatterType> supplier = Registries.MATTER_TYPE.getSupplier(ResourceKey.sponge(this.name().toLowerCase(Locale.ROOT)));
-
-    @Override
-    public MatterType get() {
-        return this.supplier.get();
-    }
+    public static final Registry<MatterType> MATTER_TYPE = Sponge.getGame().getRegistryManager().findRegistry(ResourceKey.sponge("matter_type"));
 }

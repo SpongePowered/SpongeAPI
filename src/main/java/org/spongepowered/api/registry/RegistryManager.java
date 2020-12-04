@@ -22,24 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.registry;
 
 import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.registry.Registries;
 
-import java.util.Locale;
-import java.util.function.Supplier;
+public interface RegistryManager {
 
-public enum MatterTypes implements Supplier<MatterType> {
-
-    GAS,
-    LIQUID,
-    SOLID;
-
-    private final Supplier<MatterType> supplier = Registries.MATTER_TYPE.getSupplier(ResourceKey.sponge(this.name().toLowerCase(Locale.ROOT)));
-
-    @Override
-    public MatterType get() {
-        return this.supplier.get();
-    }
+    /**
+     * Finds a {@link Registry registry} by its {@link ResourceKey key}.
+     *
+     * <p>If no registry is found, this will throw an {@link IllegalStateException}.
+     * Mostly provided for cleaner access in various API classes and when plugin
+     * developers are 100% sure the registry will always exist. See {@link Registries}
+     * for an example.</p>
+     *
+     * @param key The key
+     * @param <V> The value type
+     * @return The registry
+     */
+    <V> Registry<V> findRegistry(ResourceKey key);
 }

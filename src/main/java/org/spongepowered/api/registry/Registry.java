@@ -22,24 +22,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.registry;
 
 import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.registry.Registries;
 
-import java.util.Locale;
+import java.util.Optional;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
-public enum MatterTypes implements Supplier<MatterType> {
+public interface Registry<V> extends Iterable<RegistryEntry<V>> {
 
-    GAS,
-    LIQUID,
-    SOLID;
+    ResourceKey getKey();
 
-    private final Supplier<MatterType> supplier = Registries.MATTER_TYPE.getSupplier(ResourceKey.sponge(this.name().toLowerCase(Locale.ROOT)));
+    Optional<ResourceKey> getKey(V value);
 
-    @Override
-    public MatterType get() {
-        return this.supplier.get();
-    }
+    Optional<RegistryEntry<V>> getValue(ResourceKey key);
+
+    Supplier<V> getSupplier(ResourceKey key);
+
+    Stream<RegistryEntry<V>> stream();
+
+    /**
+     * Returns if this registry supports adding additional values.
+     *
+     * @return True if the registry can add additional values
+     */
+    boolean isDynamic();
+
+    /**
+     * Registers a new value to this registry.
+     *
+     * <p>It is recommended to check if {@link Registry#isDynamic()} returns {@code TRUE}
+     * before registering the new value. If it is not dynamic, this will throw an
+     * {@link IllegalStateException}.</p>
+     *
+     * <p>If the key already exists in the registry, a {@link DuplicateRegistrationException}
+     * will be thrown.</p>
+     *
+     * @param key The key to register under
+     * @param value The value to register
+     * @return The added {@link RegistryEntry}
+     */
+    RegistryEntry<V> register(ResourceKey key, V value);
 }
