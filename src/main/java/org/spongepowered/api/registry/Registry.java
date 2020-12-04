@@ -22,42 +22,51 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api;
+package org.spongepowered.api.registry;
 
-import org.spongepowered.api.event.CauseStackManager;
-import org.spongepowered.api.registry.ScopedRegistryHolder;
-import org.spongepowered.api.scheduler.Scheduler;
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.util.annotation.DoNotStore;
 
-/**
- * Shared functionality between {@link Client} and {@link Server} engines.
- */
-public interface Engine extends ScopedRegistryHolder {
+import java.util.Optional;
+import java.util.stream.Stream;
+
+@DoNotStore
+public interface Registry<V> extends Iterable<RegistryEntry<V>> {
+
+    RegistryHolder holder();
+
+    ResourceKey key();
+
+    Optional<ResourceKey> findKey(V value);
+
+    Optional<RegistryEntry<V>> findEntry(ResourceKey key);
+
+    Optional<V> findValue(ResourceKey key);
+
+    V value(ResourceKey key);
+
+    Stream<RegistryEntry<V>> stream();
 
     /**
-     * Gets the {@link Game} that launched this engine;
-     * @return The game
-     */
-    Game getGame();
-
-    /**
-     * Gets the {@link CauseStackManager} for handling the current event cause
-     * stack and context information.
+     * Returns if this registry supports adding additional values.
      *
-     * @return The cause stack manager
+     * @return True if the registry can add additional values
      */
-    CauseStackManager getCauseStackManager();
+    boolean isDynamic();
 
     /**
-     * Gets the {@link Scheduler} used to schedule sync tasks on this {@link Engine}.
+     * Registers a new value to this registry.
      *
-     * @return The sync scheduler
-     */
-    Scheduler getScheduler();
-
-    /**
-     * Checks if the {@link Thread#currentThread() current thread} is the main thread of the engine.
+     * <p>It is recommended to check if {@link Registry#isDynamic()} returns {@code TRUE}
+     * before registering the new value. If it is not dynamic, this will throw an
+     * {@link IllegalStateException}.</p>
      *
-     * @return {@code true} if main thread, {@code false} if not
+     * <p>If the key already exists in the registry, a {@link DuplicateRegistrationException}
+     * will be thrown.</p>
+     *
+     * @param key The key to register under
+     * @param value The value to register
+     * @return The added {@link RegistryEntry}
      */
-    boolean onMainThread();
+    RegistryEntry<V> register(ResourceKey key, V value);
 }

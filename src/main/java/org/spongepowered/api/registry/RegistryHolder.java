@@ -22,20 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.lifecycle;
+package org.spongepowered.api.registry;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.event.GenericEvent;
-import org.spongepowered.api.registry.DuplicateRegistrationException;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Stream;
 
-public interface RegisterCatalogEvent<T extends CatalogType> extends GenericEvent<T>, LifecycleEvent {
+public interface RegistryHolder {
 
-    /**
-     * Registers a new {@link CatalogType}.
-     *
-     * @param catalog The catalog type
-     * @return The provided catalog type
-     * @throws DuplicateRegistrationException If the type is already registered
-     */
-    T register(T catalog) throws DuplicateRegistrationException;
+    <R> Registry<R> registry(RegistryKey<R> key);
+
+    <R> Optional<Registry<R>> findRegistry(RegistryKey<R> key);
+
+    <V> V value(RegistryKey<V> key);
+
+    <V> V value(RegistryKey<V> key, Set<RegistryScope> scopes);
+
+    <V> Optional<V> findValue(RegistryKey<V> key);
+
+    Stream<Registry<?>> stream();
 }

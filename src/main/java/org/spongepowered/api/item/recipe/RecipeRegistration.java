@@ -26,9 +26,10 @@ package org.spongepowered.api.item.recipe;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.data.persistence.DataSerializable;
+import org.spongepowered.api.event.lifecycle.RegisterRegistryValueEvent;
 
 /**
- * A Sponge plugin recipe registration use {@link org.spongepowered.api.event.lifecycle.RegisterCatalogEvent<RecipeRegistration>} to register the recipe.
+ * A Sponge plugin recipe registration use {@link RegisterRegistryValueEvent <RecipeRegistration>} to register the recipe.
  * <p>Recipes are registered as a data-pack.</p>
  */
 public interface RecipeRegistration extends CatalogType, DataSerializable {

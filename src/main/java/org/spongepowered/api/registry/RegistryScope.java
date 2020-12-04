@@ -22,42 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api;
+package org.spongepowered.api.registry;
 
-import org.spongepowered.api.event.CauseStackManager;
-import org.spongepowered.api.registry.ScopedRegistryHolder;
-import org.spongepowered.api.scheduler.Scheduler;
+public enum RegistryScope {
 
-/**
- * Shared functionality between {@link Client} and {@link Server} engines.
- */
-public interface Engine extends ScopedRegistryHolder {
-
-    /**
-     * Gets the {@link Game} that launched this engine;
-     * @return The game
-     */
-    Game getGame();
-
-    /**
-     * Gets the {@link CauseStackManager} for handling the current event cause
-     * stack and context information.
-     *
-     * @return The cause stack manager
-     */
-    CauseStackManager getCauseStackManager();
-
-    /**
-     * Gets the {@link Scheduler} used to schedule sync tasks on this {@link Engine}.
-     *
-     * @return The sync scheduler
-     */
-    Scheduler getScheduler();
-
-    /**
-     * Checks if the {@link Thread#currentThread() current thread} is the main thread of the engine.
-     *
-     * @return {@code true} if main thread, {@code false} if not
-     */
-    boolean onMainThread();
+    GAME,
+    ENGINE,
+    WORLD
 }

@@ -22,42 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api;
+package org.spongepowered.api.registry;
 
-import org.spongepowered.api.event.CauseStackManager;
-import org.spongepowered.api.registry.ScopedRegistryHolder;
-import org.spongepowered.api.scheduler.Scheduler;
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.Sponge;
 
-/**
- * Shared functionality between {@link Client} and {@link Server} engines.
- */
-public interface Engine extends ScopedRegistryHolder {
+public interface RegistryKey<T> {
 
-    /**
-     * Gets the {@link Game} that launched this engine;
-     * @return The game
-     */
-    Game getGame();
+    static <T> RegistryKey<T> of(final ResourceKey registry, final ResourceKey location) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(registry, location);
+    }
 
-    /**
-     * Gets the {@link CauseStackManager} for handling the current event cause
-     * stack and context information.
-     *
-     * @return The cause stack manager
-     */
-    CauseStackManager getCauseStackManager();
+    ResourceKey registry();
 
-    /**
-     * Gets the {@link Scheduler} used to schedule sync tasks on this {@link Engine}.
-     *
-     * @return The sync scheduler
-     */
-    Scheduler getScheduler();
+    ResourceKey location();
 
-    /**
-     * Checks if the {@link Thread#currentThread() current thread} is the main thread of the engine.
-     *
-     * @return {@code true} if main thread, {@code false} if not
-     */
-    boolean onMainThread();
+    RegistryReference<T> asReference();
+
+    interface Factory {
+
+        <T> RegistryKey<T> create(ResourceKey registry, ResourceKey location);
+    }
 }

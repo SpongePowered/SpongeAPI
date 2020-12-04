@@ -32,6 +32,7 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.event.EventListener;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
+import org.spongepowered.api.event.lifecycle.RegisterRegistryValueEvent;
 import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.TypeTokens;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -75,7 +76,7 @@ public interface Key<V extends Value<?>> extends CatalogType {
      * persisted, a {@link DataRegistration} is required.
      *
      * <p>Registration of a custom created {@link Key} is required through
-     * {@link org.spongepowered.api.event.lifecycle.RegisterCatalogEvent}. The
+     * {@link RegisterRegistryValueEvent}. The
      * registration of a {@link DataRegistration} is done separately.
      * </p>
      *

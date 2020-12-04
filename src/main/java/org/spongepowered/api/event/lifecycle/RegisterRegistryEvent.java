@@ -24,34 +24,36 @@
  */
 package org.spongepowered.api.event.lifecycle;
 
-import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.event.GenericEvent;
 import org.spongepowered.api.registry.DuplicateRegistrationException;
+import org.spongepowered.api.registry.Registry;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.ScopedRegistryHolder;
 
-import java.util.Set;
+import java.util.Map;
 import java.util.function.Supplier;
 
-public interface RegisterCatalogRegistryEvent extends LifecycleEvent {
+public interface RegisterRegistryEvent<T extends ScopedRegistryHolder> extends GenericEvent<T>, LifecycleEvent {
+
+    T getHolder();
 
     /**
-     * Registers a new {@link CatalogType} registry.
+     * Registers a new {@link Registry}.
      *
-     * @param catalogClass The catalog type
      * @param key The key for the registry
-     * @param <T> The type
+     * @param isDynamic If this registry will support additional registrations after the lifecycle
      * @throws DuplicateRegistrationException If the type is already registered
      */
-    <T extends CatalogType> void register(Class<T> catalogClass, ResourceKey key) throws DuplicateRegistrationException;
+    <R> Registry<R> register(RegistryKey<R> key, boolean isDynamic) throws DuplicateRegistrationException;
 
     /**
-     * Registers a new {@link CatalogType} registry.
+     * Registers a new {@link Registry}.
      *
-     * @param catalogClass The catalog type
      * @param key The key for the registry
-     * @param defaultsSupplier The default added types, added for convenience
-     * @param <T> The type
+     * @param isDynamic If this registry will support additional registrations after the lifecycle
+     * @param defaultValues The values to populate the registry with
      * @throws DuplicateRegistrationException If the type is already registered
      */
-    <T extends CatalogType> void register(Class<T> catalogClass, ResourceKey key, @Nullable Supplier<Set<T>> defaultsSupplier) throws DuplicateRegistrationException;
+    <R> Registry<R> register(RegistryKey<R> key, boolean isDynamic, Supplier<Map<ResourceKey, R>> defaultValues) throws DuplicateRegistrationException;
 }

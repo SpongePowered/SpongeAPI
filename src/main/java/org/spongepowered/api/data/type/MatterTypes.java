@@ -24,23 +24,22 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.Sponge;
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryReference;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
-
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class MatterTypes {
 
-    // SORTFIELDS:ON
+    public static final RegistryReference<MatterType> GAS = MatterTypes.key(ResourceKey.sponge("gas"));
 
-    public static final Supplier<MatterType> GAS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MatterType.class, "gas");
+    public static final RegistryReference<MatterType> LIQUID = MatterTypes.key(ResourceKey.sponge("liquid"));
 
-    public static final Supplier<MatterType> LIQUID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MatterType.class, "liquid");
+    public static final RegistryReference<MatterType> SOLID = MatterTypes.key(ResourceKey.sponge("solid"));
 
-    public static final Supplier<MatterType> SOLID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MatterType.class, "solid");
-
-    // SORTFIELDS:OFF
-
-    private MatterTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    private static RegistryReference<MatterType> key(final ResourceKey location) {
+        return RegistryKey.<MatterType>of(ResourceKey.sponge("matter_type"), location).asReference();
     }
 }

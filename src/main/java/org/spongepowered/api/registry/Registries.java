@@ -22,42 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api;
+package org.spongepowered.api.registry;
 
-import org.spongepowered.api.event.CauseStackManager;
-import org.spongepowered.api.registry.ScopedRegistryHolder;
-import org.spongepowered.api.scheduler.Scheduler;
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.data.type.MatterType;
 
-/**
- * Shared functionality between {@link Client} and {@link Server} engines.
- */
-public interface Engine extends ScopedRegistryHolder {
+public final class Registries {
 
-    /**
-     * Gets the {@link Game} that launched this engine;
-     * @return The game
-     */
-    Game getGame();
+    public static final RegistryKey<MatterType> MATTER_TYPE = Registries.spongeKey("matter_type");
 
-    /**
-     * Gets the {@link CauseStackManager} for handling the current event cause
-     * stack and context information.
-     *
-     * @return The cause stack manager
-     */
-    CauseStackManager getCauseStackManager();
+    private static final ResourceKey MINECRAFT_ROOT = ResourceKey.minecraft("root");
+    private static final ResourceKey SPONGE_ROOT = ResourceKey.sponge("root");
 
-    /**
-     * Gets the {@link Scheduler} used to schedule sync tasks on this {@link Engine}.
-     *
-     * @return The sync scheduler
-     */
-    Scheduler getScheduler();
+    private static <V> RegistryKey<V> minecraftKey(final String key) {
+        return RegistryKey.of(Registries.MINECRAFT_ROOT, ResourceKey.minecraft(key));
+    }
 
-    /**
-     * Checks if the {@link Thread#currentThread() current thread} is the main thread of the engine.
-     *
-     * @return {@code true} if main thread, {@code false} if not
-     */
-    boolean onMainThread();
+    private static <V> RegistryKey<V> spongeKey(final String key) {
+        return RegistryKey.of(Registries.SPONGE_ROOT, ResourceKey.sponge(key));
+    }
 }
