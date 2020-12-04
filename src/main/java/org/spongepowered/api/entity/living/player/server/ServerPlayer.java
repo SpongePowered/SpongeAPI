@@ -33,6 +33,7 @@ import org.spongepowered.api.advancement.AdvancementProgress;
 import org.spongepowered.api.advancement.AdvancementTree;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.SkinPart;
+import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.CooldownTracker;
@@ -56,7 +57,6 @@ import org.spongepowered.plugin.PluginContainer;
 import java.time.Instant;
 import java.util.Collection;
 import java.util.Optional;
-import java.util.Set;
 
 public interface ServerPlayer extends Player, Subject {
 
@@ -123,34 +123,28 @@ public interface ServerPlayer extends Player, Subject {
     boolean closeInventory() throws IllegalArgumentException;
 
     /**
-     * Gets the view distance setting of the player. This value represents the
-     * radius (around the player) in unit chunks.
-     *
+     * {@link Keys#VIEW_DISTANCE}
      * @return The player's view distance
      */
-    int getViewDistance();
+    default Value.Mutable<Integer> viewDistance() {
+        return this.requireValue(Keys.VIEW_DISTANCE).asMutable();
+    }
 
     /**
-     * Sets the view distance setting of the player. This value represents the
-     * radius (around the player) in unit chunks.
-     *
-     * @param distance The player's view distance
-     */
-    void setViewDistance(int distance);
-
-    /**
-     * Gets the current player chat visibility setting.
-     *
+     * {@link Keys#CHAT_VISIBILITY}
      * @return Chat visibility setting
      */
-    ChatVisibility getChatVisibility();
+    default Value.Mutable<ChatVisibility> chatVisibility() {
+        return this.requireValue(Keys.CHAT_VISIBILITY).asMutable();
+    }
 
     /**
-     * Gets whether the player has colors enabled in chat.
-     *
-     * @return True if colors are enabled in chat
+     * {@link Keys#CHAT_COLORS_ENABLED}
+     * @return Whether colors are enabled in chat
      */
-    boolean isChatColorsEnabled();
+    default Value.Mutable<Boolean> chatColorsEnabled() {
+        return this.requireValue(Keys.CHAT_COLORS_ENABLED).asMutable();
+    }
 
     /**
      * Simulates a chat message from a player.
@@ -169,11 +163,12 @@ public interface ServerPlayer extends Player, Subject {
     PlayerChatEvent simulateChat(Component message, Cause cause);
 
     /**
-     * Gets the skin parts that this player has allowed to render.
-     *
+     * {@link Keys#SKIN_PARTS}
      * @return A set of skin parts displayed
      */
-    Set<SkinPart> getDisplayedSkinParts();
+    default SetValue.Mutable<SkinPart> displayedSkinParts() {
+        return this.requireValue(Keys.SKIN_PARTS).asMutable();
+    }
 
     /**
      * Gets the appropriate {@link ServerPlayerConnection} linking this player to a
