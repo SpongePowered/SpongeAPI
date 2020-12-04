@@ -27,6 +27,10 @@ package org.spongepowered.api.map.decoration.orientation;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
+/**
+ * Represents an orientation that a {@link org.spongepowered.api.map.decoration.MapDecoration} can be
+ * pointing in on a {@link org.spongepowered.api.map.MapInfo}.
+ */
 @CatalogedBy(MapDecorationOrientations.class)
 public interface MapDecorationOrientation extends CatalogType {
 

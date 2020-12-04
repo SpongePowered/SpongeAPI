@@ -55,9 +55,36 @@ public final class MapDecorationTypes {
 
     public static final Supplier<MapDecorationType> TARGET_POINT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "target_point");
 
-    public static final Supplier<MapDecorationType> TARGET_X = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "target_x");
+    public static final Supplier<MapDecorationType> BANNER_WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "banner_white");
 
+    public static final Supplier<MapDecorationType> BANNER_ORANGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "banner_orange");
+
+    public static final Supplier<MapDecorationType> BANNER_MAGENTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "banner_magenta");
+
+    public static final Supplier<MapDecorationType> BANNER_LIGHT_BLUE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "banner_light_blue");
+
+    public static final Supplier<MapDecorationType> BANNER_YELLOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "banner_yellow");
+
+    public static final Supplier<MapDecorationType> BANNER_LIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "banner_lime");
+
+    public static final Supplier<MapDecorationType> BANNER_PINK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "banner_pink");
+
+    public static final Supplier<MapDecorationType> BANNER_GRAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "banner_gray");
+
+    public static final Supplier<MapDecorationType> BANNER_LIGHT_GRAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "banner_light_gray");
+
+    public static final Supplier<MapDecorationType> BANNER_CYAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "banner_cyan");
+
+    public static final Supplier<MapDecorationType> BANNER_PURPLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "banner_purple");
+
+    public static final Supplier<MapDecorationType> BANNER_BLUE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "banner_blue");
+
+    public static final Supplier<MapDecorationType> BANNER_BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "banner_brown");
+
+    public static final Supplier<MapDecorationType> BANNER_GREEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "banner_green");
+
+    public static final Supplier<MapDecorationType> BANNER_RED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "banner_red");
+
+    public static final Supplier<MapDecorationType> BANNED_BLACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapDecorationType.class, "banner_black");
     // SORTFIELDS:OFF
-
-    // TODO: banners
 }

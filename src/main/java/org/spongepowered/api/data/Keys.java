@@ -221,7 +221,6 @@ import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.orientation.Orientation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.world.ServerLocation;
-import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.weather.Weather;
@@ -1768,7 +1767,6 @@ public final class Keys {
      * Represents the {@link Key} for the centre x and z of where a
      * {@link MapInfo} represents.
      * This will be automatically centralised correctly.
-     * @see MapInfoData#location()
      */
     public static final Supplier<Key<Value<Vector2i>>> MAP_LOCATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_location");
 
@@ -1778,9 +1776,7 @@ public final class Keys {
      * By default this is false.
      * Can be used in combination with {@link Keys#MAP_CANVAS} to create
      * custom static map.
-     * Just a brought forward version of <a href="https://minecraft.gamepedia.com/Map#Locking">Minecraft Wiki - Map Locking</a>
-     *
-     * @see MapInfoData#locked()
+     * See <a href="https://minecraft.gamepedia.com/Map#Locking">Minecraft Wiki - Map Locking</a>
      */
     public static final Supplier<Key<Value<Boolean>>> MAP_LOCKED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_locked");
 
@@ -1788,33 +1784,26 @@ public final class Keys {
      * Represents the {@link Key} for the scale of a map
      * for a {@link MapInfo}.
      * @see <a href="https://minecraft.gamepedia.com/Map#Zoom_details">Minecraft Wiki - Zoom Details</a>
-     * @see MapInfoData#scale()
      */
     public static final Supplier<Key<Value<Integer>>> MAP_SCALE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_scale");
 
     /**
      * Represents the {@link Key} for whether a {@link MapInfo}
      * tracks player positions.
-     *
-     * @see MapInfoData#trackPosition()
      */
     public static final Supplier<Key<Value<Boolean>>> MAP_TRACKS_PLAYERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_tracks_players");
 
     /**
      * Represents the {@link Key} for whether a {@link MapInfo} can track
      * a player from anywhere in the world.
-     *
-     * @see MapInfoData#unlimitedTracking()
      */
     public static final Supplier<Key<Value<Boolean>>> MAP_UNLIMITED_TRACKING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_unlimited_tracking");
 
     /**
-     * Represents the {@link Key} for the world for a
+     * Represents the {@link Key} for the {@link ResourceKey} of a {@link ServerWorld}.
      * {@link MapInfo}
-     *
-     * @see MapInfoData#world()
      */
-    public static final Supplier<Key<Value<World>>> MAP_WORLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_world");
+    public static final Supplier<Key<Value<ResourceKey>>> MAP_WORLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_world");
     
     /**
      * The matter state of a {@link BlockState}

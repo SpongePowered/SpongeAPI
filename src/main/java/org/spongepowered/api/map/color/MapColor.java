@@ -59,6 +59,13 @@ public interface MapColor extends DataSerializable {
         return MapColor.builder().baseColor(mapColorType).build();
     }
 
+    /**
+     * A method to ease using {@link MapColorTypes} enumeration.
+     * Unwraps the given supplier and calls {@link #of(MapColorType)}.
+     *
+     * @param mapColorTypeSupplier Supplier to unwrap.
+     * @return The {@link MapColor} that represents the provided type
+     */
     static MapColor of(final Supplier<MapColorType> mapColorTypeSupplier) {
         return MapColor.of(mapColorTypeSupplier.get());
     }
@@ -75,6 +82,14 @@ public interface MapColor extends DataSerializable {
         return MapColor.builder().baseColor(mapColorType).shade(mapShade).build();
     }
 
+    /**
+     * A method to ease using the {@link MapColorTypes} and {@link MapShade}.
+     * Unwraps the given suppliers and calls {@link #of(MapColorType, MapShade)}.
+     *
+     * @param mapColorTypeSupplier Supplier to unwrap
+     * @param mapShadeSupplier Supplier to unwrap
+     * @return The {@link MapColor} that represents the provided type.
+     */
     static MapColor of(final Supplier<MapColorType> mapColorTypeSupplier, final Supplier<MapShade> mapShadeSupplier) {
         return MapColor.of(mapColorTypeSupplier.get(), mapShadeSupplier.get());
     }
@@ -151,10 +166,27 @@ public interface MapColor extends DataSerializable {
          */
         Builder baseColor(MapColorType mapColor);
 
+        /**
+         * Method to ease using {@link MapColorTypes} enumerations. Unwraps
+         * then calls {@link #baseColor(MapColorType)}
+         *
+         * @param mapColorTypeSupplier Supplier to be unwrapped and applied
+         * @return This builder, for chaining
+         */
         default Builder baseColor(Supplier<MapColorType> mapColorTypeSupplier) {
             return this.baseColor(mapColorTypeSupplier.get());
         }
 
+        /**
+         * Copies all data from the given {@link MapColor} and applies it to this
+         * builder. Therefore, if {@link #build()} is called directly after, the
+         * result of {@link MapColor#equals(Object)} between them will be {@code true}.
+         * Any aspect of this builder could then be modified to produce similar but
+         * not identical MapColors.
+         *
+         * @param mapColor {@link MapColor} to copy data from.
+         * @return This builder, for chaining
+         */
         Builder from(MapColor mapColor);
 
         /**

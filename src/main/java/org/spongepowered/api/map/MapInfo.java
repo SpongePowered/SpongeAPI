@@ -57,7 +57,9 @@ public interface MapInfo extends DataHolder.Mutable, Identifiable, DataSerializa
 
     /**
      * Adds the banner at the given location to this map.
-     * @param bannerLocation
+     * This is equivalent to right clicking a banner in the world with
+     * the corresponding map.
+     * @param bannerLocation Location of the banner to add.
      *
      * @throws IllegalArgumentException if the given location is not a banner
      * @throws IllegalArgumentException if the given banner
