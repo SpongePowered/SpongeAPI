@@ -1819,8 +1819,7 @@ public final class Keys {
      * By default this is false.
      * Can be used in combination with {@link Keys#MAP_CANVAS} to create
      * custom static map.
-     * Just a brought forward version of <a href="https://minecraft.gamepedia.com/Map#Locking">Minecraft Wiki - Map Locking</a>
-     *
+     * See <a href="https://minecraft.gamepedia.com/Map#Locking">Minecraft Wiki - Map Locking</a>
      */
     public static final Key<Value<Boolean>> MAP_LOCKED = Keys.key(ResourceKey.sponge("MAP_LOCKED"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
@@ -1834,19 +1833,17 @@ public final class Keys {
     /**
      * Represents the {@link Key} for whether a {@link MapInfo}
      * tracks player positions.
-     *
      */
     public static final Key<Value<Boolean>> MAP_TRACKS_PLAYERS = Keys.key(ResourceKey.sponge("map_tracks_players"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Represents the {@link Key} for whether a {@link MapInfo} can track
      * a player from anywhere in the world.
-     *
      */
     public static final Key<Value<Boolean>> MAP_UNLIMITED_TRACKING = Keys.key(ResourceKey.sponge("map_unlimited_tracking"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
-     * Represents the {@link Key} for the world for a
+     * Represents the {@link Key} for the {@link ResourceKey} of a {@link ServerWorld}.
      * {@link MapInfo}
      *
      */

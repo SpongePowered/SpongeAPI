@@ -52,13 +52,15 @@ public interface MapStorage {
 	Optional<MapInfo> getMapInfo(final UUID uuid);
 
 	/**
-	 * Creates a new MapInfo.
+	 * Creates a new {@link MapInfo}.
+	 *
+	 * <p>The {@link MapInfo} will </p>
 	 *
 	 * <p>The MapInfo will not be successfully created if
 	 * the fired {@link org.spongepowered.api.event.action.CreateMapEvent} is cancelled.
 	 * This can happen due to either a plugin cancelling it, or
 	 * running out of room for maps.
-	 * (Max amount of maps is {@value java.lang.Short#MAX_VALUE})</p> // TODO: i think this is false now
+	 * (Max amount of maps is {@value java.lang.Integer#MAX_VALUE})</p>
 	 *
 	 * @return {@link MapInfo} the new MapInfo if available
 	 */
