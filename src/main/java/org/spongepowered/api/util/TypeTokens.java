@@ -48,7 +48,7 @@ import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.InstrumentType;
 import org.spongepowered.api.data.type.LlamaType;
-import org.spongepowered.api.data.type.MatterState;
+import org.spongepowered.api.data.type.MatterType;
 import org.spongepowered.api.data.type.MooshroomType;
 import org.spongepowered.api.data.type.NotePitch;
 import org.spongepowered.api.data.type.PandaGene;
@@ -125,8 +125,8 @@ import java.util.function.Consumer;
 public final class TypeTokens {
 
     // SORTFIELDS:ON
-    // @formatter:off
 
+    // @formatter:off
     public static final TypeToken<Value<ArmorMaterial>> ARMOR_MATERIAL_VALUE_TOKEN = new TypeToken<Value<ArmorMaterial>>() {};
 
     public static final TypeToken<Value<AttributeOperation>> ATTRIBUTE_OPERATION_VALUE_TOKEN = new TypeToken<Value<AttributeOperation>>() {};
@@ -273,7 +273,7 @@ public final class TypeTokens {
 
     public static final TypeToken<MapValue<UUID, Vector3d>> MAP_UUID_VECTOR3D_VALUE_TOKEN = new TypeToken<MapValue<UUID, Vector3d>>() {};
 
-    public static final TypeToken<Value<MatterState>> MATTER_STATE_VALUE_TOKEN = new TypeToken<Value<MatterState>>() {};
+    public static final TypeToken<Value<MatterType>> MATTER_TYPE_VALUE_TOKEN = new TypeToken<Value<MatterType>>() {};
 
     public static final TypeToken<Value<MooshroomType>> MOOSHROOM_TYPE_VALUE_TOKEN = new TypeToken<Value<MooshroomType>>() {};
 
@@ -378,8 +378,8 @@ public final class TypeTokens {
     public static final TypeToken<Value<WireAttachmentType>> WIRE_ATTACHMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<WireAttachmentType>>() {};
 
     public static final TypeToken<Value<WoodType>> WOOD_TYPE_VALUE_TOKEN = new TypeToken<Value<WoodType>>() {};
-
     // @formatter:on
+
     // SORTFIELDS:OFF
 
     // Suppress default constructor to ensure non-instantiability.

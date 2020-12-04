@@ -28,19 +28,19 @@ import org.spongepowered.api.Sponge;
 
 import java.util.function.Supplier;
 
-public final class MatterStates {
+public final class MatterTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<MatterState> GAS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MatterState.class, "gas");
+    public static final Supplier<MatterType> GAS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MatterType.class, "gas");
 
-    public static final Supplier<MatterState> LIQUID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MatterState.class, "liquid");
+    public static final Supplier<MatterType> LIQUID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MatterType.class, "liquid");
 
-    public static final Supplier<MatterState> SOLID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MatterState.class, "solid");
+    public static final Supplier<MatterType> SOLID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MatterType.class, "solid");
 
     // SORTFIELDS:OFF
 
-    private MatterStates() {
+    private MatterTypes() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 }

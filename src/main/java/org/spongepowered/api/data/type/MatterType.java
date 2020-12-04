@@ -27,7 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-@CatalogedBy(MatterStates.class)
-public interface MatterState extends CatalogType {
+@CatalogedBy(MatterTypes.class)
+public interface MatterType extends CatalogType {
 
 }

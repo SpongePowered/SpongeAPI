@@ -64,7 +64,7 @@ import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.InstrumentType;
 import org.spongepowered.api.data.type.LlamaType;
-import org.spongepowered.api.data.type.MatterState;
+import org.spongepowered.api.data.type.MatterType;
 import org.spongepowered.api.data.type.MooshroomType;
 import org.spongepowered.api.data.type.NotePitch;
 import org.spongepowered.api.data.type.PandaGene;
@@ -1773,7 +1773,7 @@ public final class Keys {
      * The matter state of a {@link BlockState}
      * Readonly
      */
-    public static final Supplier<Key<Value<MatterState>>> MATTER_STATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "matter_state");
+    public static final Supplier<Key<Value<MatterType>>> MATTER_STATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "matter_state");
 
     /**
      * The maximum air supply a {@link Living} may have.
