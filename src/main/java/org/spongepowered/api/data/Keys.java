@@ -221,6 +221,7 @@ import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.orientation.Orientation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.weather.Weather;
@@ -1804,7 +1805,7 @@ public final class Keys {
      * {@link MapInfo}
      */
     public static final Supplier<Key<Value<ResourceKey>>> MAP_WORLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_world");
-    
+
     /**
      * The matter state of a {@link BlockState}
      * Readonly

@@ -32,7 +32,6 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.map.decoration.MapDecoration;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.ServerLocation;
 
 /**
  * Represents data that may be viewed on a {@link ItemTypes#FILLED_MAP map}.

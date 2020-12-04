@@ -126,7 +126,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.function.Consumer;
 
-@SuppressWarnings({"unused"})
+@SuppressWarnings({"unused", "UnstableApiUsage"})
 public final class TypeTokens {
 
     // SORTFIELDS:ON
@@ -165,6 +165,8 @@ public final class TypeTokens {
     public static final TypeToken<Value<ChestAttachmentType>> CHEST_ATTACHMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<ChestAttachmentType>>() {};
 
     public static final TypeToken<Value<Color>> COLOR_VALUE_TOKEN = new TypeToken<Value<Color>>() {};
+
+    public static final TypeToken<Map<EquipmentType, Boolean>> MAP_EQUIPMENT_TYPE_BOOLEAN_TOKEN = new TypeToken<Map<EquipmentType, Boolean>>() {private static final long serialVersionUID = -1;};
 
     public static final TypeToken<Consumer<CommandCause>> COMMAND_CAUSE_CONSUMER = new TypeToken<Consumer<CommandCause>>() {};
 
@@ -261,8 +263,6 @@ public final class TypeTokens {
     public static final TypeToken<Value<LlamaType>> LLAMA_TYPE_VALUE_TOKEN = new TypeToken<Value<LlamaType>>() {};
 
     public static final TypeToken<Value<Long>> LONG_VALUE_TOKEN = new TypeToken<Value<Long>>() {};
-
-    public static final TypeToken<Map<EquipmentType, Boolean>> MAP_EQUIPMENT_TYPE_BOOLEAN_TOKEN = new TypeToken<Map<EquipmentType, Boolean>>() {};
 
     public static final TypeToken<MapValue<EquipmentType, Boolean>> MAP_EQUIPMENT_TYPE_BOOLEAN_VALUE_TOKEN = new TypeToken<MapValue<EquipmentType, Boolean>>() {};
 

@@ -54,7 +54,6 @@ public interface MapStorage {
 	/**
 	 * Creates a new {@link MapInfo}.
 	 *
-	 * <p>The {@link MapInfo} will </p>
 	 *
 	 * <p>The MapInfo will not be successfully created if
 	 * the fired {@link org.spongepowered.api.event.action.CreateMapEvent} is cancelled.
