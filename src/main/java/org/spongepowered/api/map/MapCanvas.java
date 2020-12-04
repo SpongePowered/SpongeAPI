@@ -71,7 +71,7 @@ public interface MapCanvas extends DataSerializable {
      * @throws IllegalArgumentException if either of the requested
      *      co-ordinates are out of bounds.
      */
-    MapColor getColor(int x, int y) throws IllegalArgumentException;
+    MapColor getColor(final int x, final int y) throws IllegalArgumentException;
 
     /**
      * Generates an {@link Image} from this {@link MapCanvas}.
@@ -89,7 +89,7 @@ public interface MapCanvas extends DataSerializable {
      *      {@link MapColorTypes#AIR}
      * @return An {@link Image}
      */
-    Image toImage(java.awt.Color color);
+    Image toImage(final java.awt.Color color);
 
 
     /**
@@ -112,7 +112,7 @@ public interface MapCanvas extends DataSerializable {
          * @param color The {@link MapColor}
          * @return this builder, for chaining
          */
-        Builder paintAll(MapColor color);
+        Builder paintAll(final MapColor color);
 
         /**
          * Sets the rectangle bounded by the given co-ordinates to the supplied
@@ -128,7 +128,7 @@ public interface MapCanvas extends DataSerializable {
          * @param mapColor The {@link MapColor} to paint the given region
          * @return this builder, for chaining
          */
-        Builder paint(int startX, int startY, int endX, int endY, MapColor mapColor);
+        Builder paint(final int startX, final int startY, final int endX, final int endY, final MapColor mapColor);
 
         /**
          * Sets the rectangle bounded by the given co-ordinates to the supplied
@@ -160,7 +160,7 @@ public interface MapCanvas extends DataSerializable {
          * @param canvas {@link MapCanvas} to set the state of this builder to
          * @return this builder, for chaining
          */
-        Builder from(MapCanvas canvas);
+        Builder from(final MapCanvas canvas);
 
         /**
          * Fills a canvas from an image
@@ -171,7 +171,7 @@ public interface MapCanvas extends DataSerializable {
          * @throws IllegalArgumentException if width/height is wrong or not known yet
          * @throws IllegalArgumentException if color found is not in the palette {@link MapColorTypes}
          */
-        Builder fromImage(Image image) throws IllegalArgumentException;
+        Builder fromImage(final Image image) throws IllegalArgumentException;
 
         /**
          * Attempts to reconstruct the builder with all of the data from
@@ -180,7 +180,7 @@ public interface MapCanvas extends DataSerializable {
          * @param container The container to translate
          * @return This builder, for chaining
          */
-        Builder fromContainer(DataView container);
+        Builder fromContainer(final DataView container);
 
         /**
          * Creates a {@link MapCanvas} from the state of this builder.
