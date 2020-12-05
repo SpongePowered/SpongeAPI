@@ -145,6 +145,7 @@ import org.spongepowered.api.world.gamerule.GameRule;
 import org.spongepowered.api.world.generation.structure.Structure;
 import org.spongepowered.api.world.portal.PortalType;
 import org.spongepowered.api.world.schematic.PaletteType;
+import org.spongepowered.api.world.server.TicketType;
 import org.spongepowered.api.world.teleport.TeleportHelperFilter;
 import org.spongepowered.api.world.weather.WeatherType;
 
@@ -349,6 +350,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<PortionType> PORTION_TYPE = RegistryTypes.spongeKeyInGame("portion_type");
 
+    public static final DefaultedRegistryType<QueryType> QUERY_TYPE = RegistryTypes.spongeKeyInGame("query_type");
+
     public static final DefaultedRegistryType<RabbitType> RABBIT_TYPE = RegistryTypes.spongeKeyInGame("rabbit_type");
 
     public static final DefaultedRegistryType<RaidStatus> RAID_STATUS = RegistryTypes.spongeKeyInGame("raid_status");
@@ -379,13 +382,13 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<TeleportHelperFilter> TELEPORT_HELPER_FILTER = RegistryTypes.spongeKeyInGame("teleport_helper_filter");
 
+    public static final DefaultedRegistryType<TicketType<?>> TICKET_TYPE = RegistryTypes.spongeKeyInGame("ticket_type");
+
     public static final DefaultedRegistryType<TransactionType> TRANSACTION_TYPE = RegistryTypes.spongeKeyInGame("transaction_type");
 
     public static final DefaultedRegistryType<Trigger<?>> TRIGGER = RegistryTypes.spongeKeyInGame("trigger");
 
     public static final DefaultedRegistryType<TropicalFishShape> TROPICAL_FISH_SHAPE = RegistryTypes.spongeKeyInGame("tropical_fish_shape");
-
-    public static final DefaultedRegistryType<QueryType> QUERY_TYPE = RegistryTypes.spongeKeyInGame("query_type");
 
     public static final DefaultedRegistryType<Visibility> VISIBILITY = RegistryTypes.spongeKeyInGame("visibility");
 
