@@ -22,22 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.merchant;
+package org.spongepowered.api.event.lifecycle;
+
+import org.spongepowered.api.item.merchant.TradeOfferGenerator;
 
 import java.util.List;
-import java.util.Random;
 
-public interface TradeOfferListMutator {
+public interface RegisterWanderingTradeGeneratorsEvent extends LifecycleEvent {
 
-    /**
-     * Mutates the provided {@link List list} of {@link TradeOffer}s
-     * with the provided {@link Merchant} and {@link Random} to provide
-     * possible contextualized information.
-     *
-     * @param owner The owner of the list
-     * @param tradeOffers The trade offers currently
-     * @param random The random to use for random number generation
-     */
-    void accept(Merchant owner, List<TradeOffer> tradeOffers, Random random);
+    List<TradeOfferGenerator> getOriginalGenerators();
+
+    List<TradeOfferGenerator> getGenerators();
+
+    List<TradeOfferGenerator> getOriginalRareGenerators();
+
+    List<TradeOfferGenerator> getRareGenerators();
 
 }

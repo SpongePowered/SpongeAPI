@@ -22,50 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.registry;
+package org.spongepowered.api.event.lifecycle;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.adventure.AdventureRegistry;
-import org.spongepowered.api.item.recipe.RecipeRegistry;
+import org.spongepowered.api.data.type.ProfessionType;
+import org.spongepowered.api.item.merchant.TradeOfferGenerator;
 
-/**
- * Provides an easy way to query various registries composed in a {@link Game}.
- */
-public interface GameRegistry {
+import java.util.List;
 
-    /**
-     * Retrieves the {@link CatalogRegistry}.
-     *
-     * @return The catalog registry
-     */
-    CatalogRegistry getCatalogRegistry();
+public interface RegisterProfessionTradeGeneratorsEvent extends LifecycleEvent {
 
-    /**
-     * Retrieves the {@link AdventureRegistry}.
-     *
-     * @return The catalog registry
-     */
-    AdventureRegistry getAdventureRegistry();
+    ProfessionType getProfession();
 
-    /**
-     * Retrieves the {@link BuilderRegistry}.
-     *
-     * @return The builder registry
-     */
-    BuilderRegistry getBuilderRegistry();
+    List<TradeOfferGenerator> getOriginalGenerators();
 
-    /**
-     * Retrieves the {@link FactoryRegistry}.
-     *
-     * @return The factory registry
-     */
-    FactoryRegistry getFactoryRegistry();
-
-    /**
-     * Retrieves the {@link RecipeRegistry}.
-     *
-     * @return The recipe registry
-     */
-    RecipeRegistry getRecipeRegistry();
+    List<TradeOfferGenerator> getGenerators();
 
 }
