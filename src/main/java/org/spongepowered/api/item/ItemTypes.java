@@ -71,6 +71,8 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> ALLIUM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "allium");
 
+    public static final Supplier<ItemType> ANCIENT_DEBRIS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "ancient_debris");
+
     public static final Supplier<ItemType> ANDESITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "andesite");
 
     public static final Supplier<ItemType> ANDESITE_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "andesite_slab");
@@ -97,6 +99,8 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> BARRIER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "barrier");
 
+    public static final Supplier<ItemType> BASALT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "basalt");
+
     public static final Supplier<ItemType> BAT_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "bat_spawn_egg");
 
     public static final Supplier<ItemType> BEACON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "beacon");
@@ -107,9 +111,9 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> BEE_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "bee_spawn_egg");
 
-    public static final Supplier<ItemType> BEEHIVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "beehive");
-
     public static final Supplier<ItemType> BEEF = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "beef");
+
+    public static final Supplier<ItemType> BEEHIVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "beehive");
 
     public static final Supplier<ItemType> BEETROOT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "beetroot");
 
@@ -173,6 +177,14 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> BLACK_WOOL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "black_wool");
 
+    public static final Supplier<ItemType> BLACKSTONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "blackstone");
+
+    public static final Supplier<ItemType> BLACKSTONE_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "blackstone_slab");
+
+    public static final Supplier<ItemType> BLACKSTONE_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "blackstone_stairs");
+
+    public static final Supplier<ItemType> BLACKSTONE_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "blackstone_wall");
+
     public static final Supplier<ItemType> BLAST_FURNACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "blast_furnace");
 
     public static final Supplier<ItemType> BLAZE_POWDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "blaze_powder");
@@ -235,13 +247,13 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> BRICK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "brick");
 
-    public static final Supplier<ItemType> BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "bricks");
-
     public static final Supplier<ItemType> BRICK_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "brick_slab");
 
     public static final Supplier<ItemType> BRICK_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "brick_stairs");
 
     public static final Supplier<ItemType> BRICK_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "brick_wall");
+
+    public static final Supplier<ItemType> BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "bricks");
 
     public static final Supplier<ItemType> BROWN_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "brown_banner");
 
@@ -299,6 +311,10 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> CAVE_SPIDER_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "cave_spider_spawn_egg");
 
+    public static final Supplier<ItemType> CHAIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "chain");
+
+    public static final Supplier<ItemType> CHAIN_COMMAND_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "chain_command_block");
+
     public static final Supplier<ItemType> CHAINMAIL_BOOTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "chainmail_boots");
 
     public static final Supplier<ItemType> CHAINMAIL_CHESTPLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "chainmail_chestplate");
@@ -306,8 +322,6 @@ public final class ItemTypes {
     public static final Supplier<ItemType> CHAINMAIL_HELMET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "chainmail_helmet");
 
     public static final Supplier<ItemType> CHAINMAIL_LEGGINGS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "chainmail_leggings");
-
-    public static final Supplier<ItemType> CHAIN_COMMAND_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "chain_command_block");
 
     public static final Supplier<ItemType> CHARCOAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "charcoal");
 
@@ -320,6 +334,10 @@ public final class ItemTypes {
     public static final Supplier<ItemType> CHICKEN_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "chicken_spawn_egg");
 
     public static final Supplier<ItemType> CHIPPED_ANVIL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "chipped_anvil");
+
+    public static final Supplier<ItemType> CHISELED_NETHER_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "chiseled_nether_bricks");
+
+    public static final Supplier<ItemType> CHISELED_POLISHED_BLACKSTONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "chiseled_polished_blackstone");
 
     public static final Supplier<ItemType> CHISELED_QUARTZ_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "chiseled_quartz_block");
 
@@ -399,6 +417,10 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> COW_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "cow_spawn_egg");
 
+    public static final Supplier<ItemType> CRACKED_NETHER_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "cracked_nether_bricks");
+
+    public static final Supplier<ItemType> CRACKED_POLISHED_BLACKSTONE_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "cracked_polished_blackstone_bricks");
+
     public static final Supplier<ItemType> CRACKED_STONE_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "cracked_stone_bricks");
 
     public static final Supplier<ItemType> CRAFTING_TABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "crafting_table");
@@ -409,7 +431,39 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> CREEPER_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "creeper_spawn_egg");
 
+    public static final Supplier<ItemType> CRIMSON_BUTTON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "crimson_button");
+
+    public static final Supplier<ItemType> CRIMSON_DOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "crimson_door");
+
+    public static final Supplier<ItemType> CRIMSON_FENCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "crimson_fence");
+
+    public static final Supplier<ItemType> CRIMSON_FENCE_GATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "crimson_fence_gate");
+
+    public static final Supplier<ItemType> CRIMSON_FUNGUS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "crimson_fungus");
+
+    public static final Supplier<ItemType> CRIMSON_HYPHAE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "crimson_hyphae");
+
+    public static final Supplier<ItemType> CRIMSON_NYLIUM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "crimson_nylium");
+
+    public static final Supplier<ItemType> CRIMSON_PLANKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "crimson_planks");
+
+    public static final Supplier<ItemType> CRIMSON_PRESSURE_PLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "crimson_pressure_plate");
+
+    public static final Supplier<ItemType> CRIMSON_ROOTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "crimson_roots");
+
+    public static final Supplier<ItemType> CRIMSON_SIGN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "crimson_sign");
+
+    public static final Supplier<ItemType> CRIMSON_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "crimson_slab");
+
+    public static final Supplier<ItemType> CRIMSON_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "crimson_stairs");
+
+    public static final Supplier<ItemType> CRIMSON_STEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "crimson_stem");
+
+    public static final Supplier<ItemType> CRIMSON_TRAPDOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "crimson_trapdoor");
+
     public static final Supplier<ItemType> CROSSBOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "crossbow");
+
+    public static final Supplier<ItemType> CRYING_OBSIDIAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "crying_obsidian");
 
     public static final Supplier<ItemType> CUT_RED_SANDSTONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "cut_red_sandstone");
 
@@ -595,16 +649,6 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> ENCHANTING_TABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "enchanting_table");
 
-    public static final Supplier<ItemType> ENDERMAN_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "enderman_spawn_egg");
-
-    public static final Supplier<ItemType> ENDERMITE_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "endermite_spawn_egg");
-
-    public static final Supplier<ItemType> ENDER_CHEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "ender_chest");
-
-    public static final Supplier<ItemType> ENDER_EYE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "ender_eye");
-
-    public static final Supplier<ItemType> ENDER_PEARL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "ender_pearl");
-
     public static final Supplier<ItemType> END_CRYSTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "end_crystal");
 
     public static final Supplier<ItemType> END_PORTAL_FRAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "end_portal_frame");
@@ -613,13 +657,23 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> END_STONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "end_stone");
 
-    public static final Supplier<ItemType> END_STONE_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "end_stone_bricks");
-
     public static final Supplier<ItemType> END_STONE_BRICK_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "end_stone_brick_slab");
 
     public static final Supplier<ItemType> END_STONE_BRICK_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "end_stone_brick_stairs");
 
     public static final Supplier<ItemType> END_STONE_BRICK_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "end_stone_brick_wall");
+
+    public static final Supplier<ItemType> END_STONE_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "end_stone_bricks");
+
+    public static final Supplier<ItemType> ENDER_CHEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "ender_chest");
+
+    public static final Supplier<ItemType> ENDER_EYE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "ender_eye");
+
+    public static final Supplier<ItemType> ENDER_PEARL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "ender_pearl");
+
+    public static final Supplier<ItemType> ENDERMAN_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "enderman_spawn_egg");
+
+    public static final Supplier<ItemType> ENDERMITE_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "endermite_spawn_egg");
 
     public static final Supplier<ItemType> EVOKER_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "evoker_spawn_egg");
 
@@ -635,10 +689,6 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> FILLED_MAP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "filled_map");
 
-    public static final Supplier<ItemType> FIREWORK_ROCKET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "firework_rocket");
-
-    public static final Supplier<ItemType> FIREWORK_STAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "firework_star");
-
     public static final Supplier<ItemType> FIRE_CHARGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "fire_charge");
 
     public static final Supplier<ItemType> FIRE_CORAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "fire_coral");
@@ -646,6 +696,10 @@ public final class ItemTypes {
     public static final Supplier<ItemType> FIRE_CORAL_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "fire_coral_block");
 
     public static final Supplier<ItemType> FIRE_CORAL_FAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "fire_coral_fan");
+
+    public static final Supplier<ItemType> FIREWORK_ROCKET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "firework_rocket");
+
+    public static final Supplier<ItemType> FIREWORK_STAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "firework_star");
 
     public static final Supplier<ItemType> FISHING_ROD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "fishing_rod");
 
@@ -669,6 +723,8 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> GHAST_TEAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "ghast_tear");
 
+    public static final Supplier<ItemType> GILDED_BLACKSTONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "gilded_blackstone");
+
     public static final Supplier<ItemType> GLASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "glass");
 
     public static final Supplier<ItemType> GLASS_BOTTLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "glass_bottle");
@@ -682,6 +738,14 @@ public final class ItemTypes {
     public static final Supplier<ItemType> GLOWSTONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "glowstone");
 
     public static final Supplier<ItemType> GLOWSTONE_DUST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "glowstone_dust");
+
+    public static final Supplier<ItemType> GOLD_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "gold_block");
+
+    public static final Supplier<ItemType> GOLD_INGOT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "gold_ingot");
+
+    public static final Supplier<ItemType> GOLD_NUGGET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "gold_nugget");
+
+    public static final Supplier<ItemType> GOLD_ORE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "gold_ore");
 
     public static final Supplier<ItemType> GOLDEN_APPLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "golden_apple");
 
@@ -706,14 +770,6 @@ public final class ItemTypes {
     public static final Supplier<ItemType> GOLDEN_SHOVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "golden_shovel");
 
     public static final Supplier<ItemType> GOLDEN_SWORD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "golden_sword");
-
-    public static final Supplier<ItemType> GOLD_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "gold_block");
-
-    public static final Supplier<ItemType> GOLD_INGOT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "gold_ingot");
-
-    public static final Supplier<ItemType> GOLD_NUGGET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "gold_nugget");
-
-    public static final Supplier<ItemType> GOLD_ORE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "gold_ore");
 
     public static final Supplier<ItemType> GRANITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "granite");
 
@@ -790,6 +846,8 @@ public final class ItemTypes {
     public static final Supplier<ItemType> HEART_OF_THE_SEA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "heart_of_the_sea");
 
     public static final Supplier<ItemType> HEAVY_WEIGHTED_PRESSURE_PLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "heavy_weighted_pressure_plate");
+
+    public static final Supplier<ItemType> HOGLIN_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "hoglin_spawn_egg");
 
     public static final Supplier<ItemType> HONEY_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "honey_block");
 
@@ -1021,6 +1079,8 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> LLAMA_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "llama_spawn_egg");
 
+    public static final Supplier<ItemType> LODESTONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "lodestone");
+
     public static final Supplier<ItemType> LOOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "loom");
 
     public static final Supplier<ItemType> MAGENTA_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "magenta_banner");
@@ -1077,13 +1137,13 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> MOSSY_COBBLESTONE_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "mossy_cobblestone_wall");
 
-    public static final Supplier<ItemType> MOSSY_STONE_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "mossy_stone_bricks");
-
     public static final Supplier<ItemType> MOSSY_STONE_BRICK_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "mossy_stone_brick_slab");
 
     public static final Supplier<ItemType> MOSSY_STONE_BRICK_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "mossy_stone_brick_stairs");
 
     public static final Supplier<ItemType> MOSSY_STONE_BRICK_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "mossy_stone_brick_wall");
+
+    public static final Supplier<ItemType> MOSSY_STONE_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "mossy_stone_bricks");
 
     public static final Supplier<ItemType> MULE_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "mule_spawn_egg");
 
@@ -1091,9 +1151,9 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> MUSHROOM_STEW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "mushroom_stew");
 
-    public static final Supplier<ItemType> MUSIC_DISC_11 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "MUSIC_DISC_11");
+    public static final Supplier<ItemType> MUSIC_DISC_11 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "music_disc_11");
 
-    public static final Supplier<ItemType> MUSIC_DISC_13 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "MUSIC_DISC_13");
+    public static final Supplier<ItemType> MUSIC_DISC_13 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "music_disc_13");
 
     public static final Supplier<ItemType> MUSIC_DISC_BLOCKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "music_disc_blocks");
 
@@ -1106,6 +1166,8 @@ public final class ItemTypes {
     public static final Supplier<ItemType> MUSIC_DISC_MALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "music_disc_mall");
 
     public static final Supplier<ItemType> MUSIC_DISC_MELLOHI = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "music_disc_mellohi");
+
+    public static final Supplier<ItemType> MUSIC_DISC_PIGSTEP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "music_disc_pigstep");
 
     public static final Supplier<ItemType> MUSIC_DISC_STAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "music_disc_stal");
 
@@ -1123,11 +1185,7 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> NAUTILUS_SHELL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "nautilus_shell");
 
-    public static final Supplier<ItemType> NETHERRACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "netherrack");
-
     public static final Supplier<ItemType> NETHER_BRICK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "nether_brick");
-
-    public static final Supplier<ItemType> NETHER_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "nether_bricks");
 
     public static final Supplier<ItemType> NETHER_BRICK_FENCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "nether_brick_fence");
 
@@ -1137,13 +1195,45 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> NETHER_BRICK_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "nether_brick_wall");
 
+    public static final Supplier<ItemType> NETHER_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "nether_bricks");
+
+    public static final Supplier<ItemType> NETHER_GOLD_ORE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "nether_gold_ore");
+
     public static final Supplier<ItemType> NETHER_QUARTZ_ORE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "nether_quartz_ore");
+
+    public static final Supplier<ItemType> NETHER_SPROUTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "nether_sprouts");
 
     public static final Supplier<ItemType> NETHER_STAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "nether_star");
 
     public static final Supplier<ItemType> NETHER_WART = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "nether_wart");
 
     public static final Supplier<ItemType> NETHER_WART_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "nether_wart_block");
+
+    public static final Supplier<ItemType> NETHERITE_AXE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "netherite_axe");
+
+    public static final Supplier<ItemType> NETHERITE_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "netherite_block");
+
+    public static final Supplier<ItemType> NETHERITE_BOOTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "netherite_boots");
+
+    public static final Supplier<ItemType> NETHERITE_CHESTPLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "netherite_chestplate");
+
+    public static final Supplier<ItemType> NETHERITE_HELMET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "netherite_helmet");
+
+    public static final Supplier<ItemType> NETHERITE_HOE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "netherite_hoe");
+
+    public static final Supplier<ItemType> NETHERITE_INGOT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "netherite_ingot");
+
+    public static final Supplier<ItemType> NETHERITE_LEGGINGS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "netherite_leggings");
+
+    public static final Supplier<ItemType> NETHERITE_PICKAXE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "netherite_pickaxe");
+
+    public static final Supplier<ItemType> NETHERITE_SCRAP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "netherite_scrap");
+
+    public static final Supplier<ItemType> NETHERITE_SHOVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "netherite_shovel");
+
+    public static final Supplier<ItemType> NETHERITE_SWORD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "netherite_sword");
+
+    public static final Supplier<ItemType> NETHERRACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "netherrack");
 
     public static final Supplier<ItemType> NOTE_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "note_block");
 
@@ -1231,6 +1321,12 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> PIG_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "pig_spawn_egg");
 
+    public static final Supplier<ItemType> PIGLIN_BANNER_PATTERN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "piglin_banner_pattern");
+
+    public static final Supplier<ItemType> PIGLIN_BRUTE_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "piglin_brute_spawn_egg");
+
+    public static final Supplier<ItemType> PIGLIN_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "piglin_spawn_egg");
+
     public static final Supplier<ItemType> PILLAGER_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "pillager_spawn_egg");
 
     public static final Supplier<ItemType> PINK_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "pink_banner");
@@ -1275,6 +1371,28 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> POLISHED_ANDESITE_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "polished_andesite_stairs");
 
+    public static final Supplier<ItemType> POLISHED_BASALT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "polished_basalt");
+
+    public static final Supplier<ItemType> POLISHED_BLACKSTONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "polished_blackstone");
+
+    public static final Supplier<ItemType> POLISHED_BLACKSTONE_BRICK_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "polished_blackstone_brick_slab");
+
+    public static final Supplier<ItemType> POLISHED_BLACKSTONE_BRICK_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "polished_blackstone_brick_stairs");
+
+    public static final Supplier<ItemType> POLISHED_BLACKSTONE_BRICK_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "polished_blackstone_brick_wall");
+
+    public static final Supplier<ItemType> POLISHED_BLACKSTONE_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "polished_blackstone_bricks");
+
+    public static final Supplier<ItemType> POLISHED_BLACKSTONE_BUTTON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "polished_blackstone_button");
+
+    public static final Supplier<ItemType> POLISHED_BLACKSTONE_PRESSURE_PLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "polished_blackstone_pressure_plate");
+
+    public static final Supplier<ItemType> POLISHED_BLACKSTONE_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "polished_blackstone_slab");
+
+    public static final Supplier<ItemType> POLISHED_BLACKSTONE_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "polished_blackstone_stairs");
+
+    public static final Supplier<ItemType> POLISHED_BLACKSTONE_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "polished_blackstone_wall");
+
     public static final Supplier<ItemType> POLISHED_DIORITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "polished_diorite");
 
     public static final Supplier<ItemType> POLISHED_DIORITE_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "polished_diorite_slab");
@@ -1301,11 +1419,11 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> PRISMARINE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "prismarine");
 
-    public static final Supplier<ItemType> PRISMARINE_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "prismarine_bricks");
-
     public static final Supplier<ItemType> PRISMARINE_BRICK_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "prismarine_brick_slab");
 
     public static final Supplier<ItemType> PRISMARINE_BRICK_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "prismarine_brick_stairs");
+
+    public static final Supplier<ItemType> PRISMARINE_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "prismarine_bricks");
 
     public static final Supplier<ItemType> PRISMARINE_CRYSTALS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "prismarine_crystals");
 
@@ -1365,6 +1483,8 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> QUARTZ_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "quartz_block");
 
+    public static final Supplier<ItemType> QUARTZ_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "quartz_bricks");
+
     public static final Supplier<ItemType> QUARTZ_PILLAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "quartz_pillar");
 
     public static final Supplier<ItemType> QUARTZ_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "quartz_slab");
@@ -1385,16 +1505,6 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> RAVAGER_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "ravager_spawn_egg");
 
-    public static final Supplier<ItemType> REDSTONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "redstone");
-
-    public static final Supplier<ItemType> REDSTONE_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "redstone_block");
-
-    public static final Supplier<ItemType> REDSTONE_LAMP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "redstone_lamp");
-
-    public static final Supplier<ItemType> REDSTONE_ORE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "redstone_ore");
-
-    public static final Supplier<ItemType> REDSTONE_TORCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "redstone_torch");
-
     public static final Supplier<ItemType> RED_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "red_banner");
 
     public static final Supplier<ItemType> RED_BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "red_bed");
@@ -1413,13 +1523,13 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> RED_MUSHROOM_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "red_mushroom_block");
 
-    public static final Supplier<ItemType> RED_NETHER_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "red_nether_bricks");
-
     public static final Supplier<ItemType> RED_NETHER_BRICK_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "red_nether_brick_slab");
 
     public static final Supplier<ItemType> RED_NETHER_BRICK_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "red_nether_brick_stairs");
 
     public static final Supplier<ItemType> RED_NETHER_BRICK_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "red_nether_brick_wall");
+
+    public static final Supplier<ItemType> RED_NETHER_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "red_nether_bricks");
 
     public static final Supplier<ItemType> RED_SAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "red_sand");
 
@@ -1443,9 +1553,21 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> RED_WOOL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "red_wool");
 
+    public static final Supplier<ItemType> REDSTONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "redstone");
+
+    public static final Supplier<ItemType> REDSTONE_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "redstone_block");
+
+    public static final Supplier<ItemType> REDSTONE_LAMP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "redstone_lamp");
+
+    public static final Supplier<ItemType> REDSTONE_ORE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "redstone_ore");
+
+    public static final Supplier<ItemType> REDSTONE_TORCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "redstone_torch");
+
     public static final Supplier<ItemType> REPEATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "repeater");
 
     public static final Supplier<ItemType> REPEATING_COMMAND_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "repeating_command_block");
+
+    public static final Supplier<ItemType> RESPAWN_ANCHOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "respawn_anchor");
 
     public static final Supplier<ItemType> ROSE_BUSH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "rose_bush");
 
@@ -1473,17 +1595,19 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> SCUTE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "scute");
 
-    public static final Supplier<ItemType> SEAGRASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "seagrass");
-
     public static final Supplier<ItemType> SEA_LANTERN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "sea_lantern");
 
     public static final Supplier<ItemType> SEA_PICKLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "sea_pickle");
+
+    public static final Supplier<ItemType> SEAGRASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "seagrass");
 
     public static final Supplier<ItemType> SHEARS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "shears");
 
     public static final Supplier<ItemType> SHEEP_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "sheep_spawn_egg");
 
     public static final Supplier<ItemType> SHIELD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "shield");
+
+    public static final Supplier<ItemType> SHROOMLIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "shroomlight");
 
     public static final Supplier<ItemType> SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "shulker_box");
 
@@ -1535,11 +1659,19 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> SNOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "snow");
 
-    public static final Supplier<ItemType> SNOWBALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "snowball");
-
     public static final Supplier<ItemType> SNOW_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "snow_block");
 
+    public static final Supplier<ItemType> SNOWBALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "snowball");
+
+    public static final Supplier<ItemType> SOUL_CAMPFIRE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "soul_campfire");
+
+    public static final Supplier<ItemType> SOUL_LANTERN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "soul_lantern");
+
     public static final Supplier<ItemType> SOUL_SAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "soul_sand");
+
+    public static final Supplier<ItemType> SOUL_SOIL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "soul_soil");
+
+    public static final Supplier<ItemType> SOUL_TORCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "soul_torch");
 
     public static final Supplier<ItemType> SPAWNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "spawner");
 
@@ -1591,17 +1723,15 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> STONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "stone");
 
-    public static final Supplier<ItemType> STONECUTTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "stonecutter");
-
     public static final Supplier<ItemType> STONE_AXE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "stone_axe");
-
-    public static final Supplier<ItemType> STONE_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "stone_bricks");
 
     public static final Supplier<ItemType> STONE_BRICK_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "stone_brick_slab");
 
     public static final Supplier<ItemType> STONE_BRICK_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "stone_brick_stairs");
 
     public static final Supplier<ItemType> STONE_BRICK_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "stone_brick_wall");
+
+    public static final Supplier<ItemType> STONE_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "stone_bricks");
 
     public static final Supplier<ItemType> STONE_BUTTON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "stone_button");
 
@@ -1619,7 +1749,11 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> STONE_SWORD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "stone_sword");
 
+    public static final Supplier<ItemType> STONECUTTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "stonecutter");
+
     public static final Supplier<ItemType> STRAY_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "stray_spawn_egg");
+
+    public static final Supplier<ItemType> STRIDER_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "strider_spawn_egg");
 
     public static final Supplier<ItemType> STRING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "string");
 
@@ -1630,6 +1764,10 @@ public final class ItemTypes {
     public static final Supplier<ItemType> STRIPPED_BIRCH_LOG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "stripped_birch_log");
 
     public static final Supplier<ItemType> STRIPPED_BIRCH_WOOD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "stripped_birch_wood");
+
+    public static final Supplier<ItemType> STRIPPED_CRIMSON_HYPHAE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "stripped_crimson_hyphae");
+
+    public static final Supplier<ItemType> STRIPPED_CRIMSON_STEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "stripped_crimson_stem");
 
     public static final Supplier<ItemType> STRIPPED_DARK_OAK_LOG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "stripped_dark_oak_log");
 
@@ -1647,6 +1785,10 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> STRIPPED_SPRUCE_WOOD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "stripped_spruce_wood");
 
+    public static final Supplier<ItemType> STRIPPED_WARPED_HYPHAE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "stripped_warped_hyphae");
+
+    public static final Supplier<ItemType> STRIPPED_WARPED_STEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "stripped_warped_stem");
+
     public static final Supplier<ItemType> STRUCTURE_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "structure_block");
 
     public static final Supplier<ItemType> STRUCTURE_VOID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "structure_void");
@@ -1662,6 +1804,8 @@ public final class ItemTypes {
     public static final Supplier<ItemType> SWEET_BERRIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "sweet_berries");
 
     public static final Supplier<ItemType> TALL_GRASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "tall_grass");
+
+    public static final Supplier<ItemType> TARGET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "target");
 
     public static final Supplier<ItemType> TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "terracotta");
 
@@ -1701,6 +1845,8 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> TURTLE_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "turtle_spawn_egg");
 
+    public static final Supplier<ItemType> TWISTING_VINES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "twisting_vines");
+
     public static final Supplier<ItemType> VEX_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "vex_spawn_egg");
 
     public static final Supplier<ItemType> VILLAGER_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "villager_spawn_egg");
@@ -1711,7 +1857,43 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> WANDERING_TRADER_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "wandering_trader_spawn_egg");
 
+    public static final Supplier<ItemType> WARPED_BUTTON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "warped_button");
+
+    public static final Supplier<ItemType> WARPED_DOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "warped_door");
+
+    public static final Supplier<ItemType> WARPED_FENCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "warped_fence");
+
+    public static final Supplier<ItemType> WARPED_FENCE_GATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "warped_fence_gate");
+
+    public static final Supplier<ItemType> WARPED_FUNGUS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "warped_fungus");
+
+    public static final Supplier<ItemType> WARPED_FUNGUS_ON_A_STICK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "warped_fungus_on_a_stick");
+
+    public static final Supplier<ItemType> WARPED_HYPHAE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "warped_hyphae");
+
+    public static final Supplier<ItemType> WARPED_NYLIUM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "warped_nylium");
+
+    public static final Supplier<ItemType> WARPED_PLANKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "warped_planks");
+
+    public static final Supplier<ItemType> WARPED_PRESSURE_PLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "warped_pressure_plate");
+
+    public static final Supplier<ItemType> WARPED_ROOTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "warped_roots");
+
+    public static final Supplier<ItemType> WARPED_SIGN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "warped_sign");
+
+    public static final Supplier<ItemType> WARPED_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "warped_slab");
+
+    public static final Supplier<ItemType> WARPED_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "warped_stairs");
+
+    public static final Supplier<ItemType> WARPED_STEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "warped_stem");
+
+    public static final Supplier<ItemType> WARPED_TRAPDOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "warped_trapdoor");
+
+    public static final Supplier<ItemType> WARPED_WART_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "warped_wart_block");
+
     public static final Supplier<ItemType> WATER_BUCKET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "water_bucket");
+
+    public static final Supplier<ItemType> WEEPING_VINES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "weeping_vines");
 
     public static final Supplier<ItemType> WET_SPONGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "wet_sponge");
 
@@ -1793,15 +1975,17 @@ public final class ItemTypes {
 
     public static final Supplier<ItemType> YELLOW_WOOL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "yellow_wool");
 
+    public static final Supplier<ItemType> ZOGLIN_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "zoglin_spawn_egg");
+
     public static final Supplier<ItemType> ZOMBIE_HEAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "zombie_head");
 
     public static final Supplier<ItemType> ZOMBIE_HORSE_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "zombie_horse_spawn_egg");
 
-    public static final Supplier<ItemType> ZOMBIE_PIGMAN_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "zombie_pigman_spawn_egg");
-
     public static final Supplier<ItemType> ZOMBIE_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "zombie_spawn_egg");
 
     public static final Supplier<ItemType> ZOMBIE_VILLAGER_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "zombie_villager_spawn_egg");
+
+    public static final Supplier<ItemType> ZOMBIFIED_PIGLIN_SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ItemType.class, "zombified_piglin_spawn_egg");
 
     // SORTFIELDS:OFF
 

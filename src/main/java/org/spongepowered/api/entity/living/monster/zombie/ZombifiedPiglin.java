@@ -25,28 +25,19 @@
 package org.spongepowered.api.entity.living.monster.zombie;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.type.ProfessionType;
-import org.spongepowered.api.data.type.ProfessionTypes;
-import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.value.Value;
 
-public interface ZombieVillager extends ZombieLike {
+/**
+ * Represents a Zombie Pigman.
+ */
+public interface ZombifiedPiglin extends ZombieLike {
 
     /**
-     * {@link Keys#VILLAGER_TYPE}
-     * @return The villager type
-     * @see org.spongepowered.api.data.type.VillagerTypes
+     * {@link Keys#ANGER_LEVEL}
+     * @return The anger level, decays over time
      */
-    default Value.Mutable<VillagerType> type() {
-        return this.requireValue(Keys.VILLAGER_TYPE).asMutable();
+    default Value.Mutable<Integer> angerLevel() {
+        return this.requireValue(Keys.ANGER_LEVEL).asMutable();
     }
 
-    /**
-     * {@link Keys#PROFESSION_TYPE}
-     * @return The profession of this zombie villager
-     * @see ProfessionTypes
-     */
-    default Value.Mutable<ProfessionType> profession() {
-        return this.requireValue(Keys.PROFESSION_TYPE).asMutable();
-    }
 }

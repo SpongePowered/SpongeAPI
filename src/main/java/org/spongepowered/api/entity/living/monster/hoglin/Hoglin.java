@@ -22,11 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster.skeleton;
+package org.spongepowered.api.entity.living.monster.hoglin;
 
-import org.spongepowered.api.entity.living.Ranger;
 import org.spongepowered.api.entity.living.Monster;
 
-public interface SkeletonEntity extends Monster, Ranger {
-
+/**
+ * Represents a Hoglin.
+ */
+public interface Hoglin extends Monster {
 }

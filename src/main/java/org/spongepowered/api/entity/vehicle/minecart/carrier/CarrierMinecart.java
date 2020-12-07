@@ -26,7 +26,6 @@ package org.spongepowered.api.entity.vehicle.minecart.carrier;
 
 import org.spongepowered.api.entity.vehicle.minecart.BlockOccupiedMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.Minecart;
-import org.spongepowered.api.entity.vehicle.minecart.MinecartEntity;
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.type.CarriedInventory;
 

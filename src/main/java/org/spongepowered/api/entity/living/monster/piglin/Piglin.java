@@ -22,32 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.explosive;
-
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.math.vector.Vector3i;
-
-import java.util.Optional;
+package org.spongepowered.api.entity.living.monster.piglin;
 
 /**
- * Represents an ender crystal.
+ * Represents a Piglin.
  */
-public interface EnderCrystal extends Explosive {
-
-    /**
-     * {@link Keys#TARGET_POSITION}
-     * @return The target position of the beam
-     */
-    default Optional<Value.Mutable<Vector3i>> beamTarget() {
-        return this.getValue(Keys.TARGET_POSITION).map(Value::asMutable);
-    }
-
-    /**
-     * {@link Keys#SHOW_BOTTOM}
-     * @return The value whether this crystal is showing a bottom "pedestal"
-     */
-    default Value.Mutable<Boolean> showBottom() {
-        return this.requireValue(Keys.SHOW_BOTTOM).asMutable();
-    }
+public interface Piglin extends PiglinLike {
 }

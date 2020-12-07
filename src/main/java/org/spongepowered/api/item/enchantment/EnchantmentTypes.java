@@ -67,6 +67,8 @@ public final class EnchantmentTypes {
      */
     public static final Supplier<EnchantmentType> BLAST_PROTECTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "blast_protection");
 
+    public static final Supplier<EnchantmentType> CHANNELING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "channeling");
+
     /**
      * Increases underwater movement speed.
      *
@@ -123,6 +125,8 @@ public final class EnchantmentTypes {
      */
     public static final Supplier<EnchantmentType> FROST_WALKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "frost_walker");
 
+    public static final Supplier<EnchantmentType> IMPALING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "impaling");
+
     /**
      * Causing shooting arrows to not consume regular arrows.
      *
@@ -144,6 +148,8 @@ public final class EnchantmentTypes {
      */
     public static final Supplier<EnchantmentType> LOOTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "looting");
 
+    public static final Supplier<EnchantmentType> LOYALTY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "loyalty");
+
     /**
      * Increases luck while fishing.
      *
@@ -164,6 +170,10 @@ public final class EnchantmentTypes {
      * <p>In vanilla the maximum level is 1.</p>
      */
     public static final Supplier<EnchantmentType> MENDING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "mending");
+
+    public static final Supplier<EnchantmentType> MULTISHOT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "multishot");
+
+    public static final Supplier<EnchantmentType> PIERCING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "piercing");
 
     /**
      * Increases shot arrow damage.
@@ -195,12 +205,16 @@ public final class EnchantmentTypes {
      */
     public static final Supplier<EnchantmentType> PUNCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "punch");
 
+    public static final Supplier<EnchantmentType> QUICK_CHARGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "quick_charge");
+
     /**
      * Extends underwater breathing time.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
     public static final Supplier<EnchantmentType> RESPIRATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "respiration");
+
+    public static final Supplier<EnchantmentType> RIPTIDE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "riptide");
 
     /**
      * Increases melee damage.
@@ -225,6 +239,8 @@ public final class EnchantmentTypes {
      * <p>In vanilla the maximum level is 5.</p>
      */
     public static final Supplier<EnchantmentType> SMITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "smite");
+
+    public static final Supplier<EnchantmentType> SOUL_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "soul_speed");
 
     /**
      * Increases the damage of the sweeping attack.

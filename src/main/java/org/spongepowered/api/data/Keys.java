@@ -108,7 +108,7 @@ import org.spongepowered.api.entity.ExperienceOrb;
 import org.spongepowered.api.entity.FallingBlock;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.ai.goal.GoalExecutorTypes;
-import org.spongepowered.api.entity.explosive.EnderCrystal;
+import org.spongepowered.api.entity.explosive.EndCrystal;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
 import org.spongepowered.api.entity.explosive.fused.PrimedTNT;
@@ -138,7 +138,7 @@ import org.spongepowered.api.entity.living.animal.Turtle;
 import org.spongepowered.api.entity.living.animal.Wolf;
 import org.spongepowered.api.entity.living.animal.cow.Mooshroom;
 import org.spongepowered.api.entity.living.animal.horse.Horse;
-import org.spongepowered.api.entity.living.animal.horse.HorseEntity;
+import org.spongepowered.api.entity.living.animal.horse.HorseLike;
 import org.spongepowered.api.entity.living.animal.horse.PackHorse;
 import org.spongepowered.api.entity.living.animal.horse.llama.Llama;
 import org.spongepowered.api.entity.living.animal.horse.llama.TraderLlama;
@@ -165,7 +165,7 @@ import org.spongepowered.api.entity.living.monster.raider.illager.spellcaster.Ev
 import org.spongepowered.api.entity.living.monster.raider.illager.spellcaster.Spellcaster;
 import org.spongepowered.api.entity.living.monster.slime.Slime;
 import org.spongepowered.api.entity.living.monster.spider.Spider;
-import org.spongepowered.api.entity.living.monster.zombie.ZombiePigman;
+import org.spongepowered.api.entity.living.monster.zombie.ZombifiedPiglin;
 import org.spongepowered.api.entity.living.monster.zombie.ZombieVillager;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
@@ -190,7 +190,7 @@ import org.spongepowered.api.entity.vehicle.minecart.BlockOccupiedMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.CommandBlockMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.FurnaceMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.Minecart;
-import org.spongepowered.api.entity.vehicle.minecart.MinecartEntity;
+import org.spongepowered.api.entity.vehicle.minecart.MinecartLike;
 import org.spongepowered.api.entity.weather.LightningBolt;
 import org.spongepowered.api.entity.weather.WeatherEffect;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSources;
@@ -286,7 +286,7 @@ public final class Keys {
     public static final Supplier<Key<Value<Vector3d>>> AIRBORNE_VELOCITY_MODIFIER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "airborne_velocity_modifier");
 
     /**
-     * The anger level of a {@link ZombiePigman}.
+     * The anger level of a {@link ZombifiedPiglin}.
      *
      * <p>Unlike {@link Keys#IS_ANGRY}, the aggressiveness represented by this key may
      * fade over time and the entity will become peaceful again once its anger
@@ -1009,12 +1009,12 @@ public final class Keys {
     public static final Supplier<Key<Value<Vector3d>>> HEAD_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "head_rotation");
 
     /**
-     * The {@link EnderCrystal} currently healing an {@link EnderDragon}.
+     * The {@link EndCrystal} currently healing an {@link EnderDragon}.
      */
-    public static final Supplier<Key<Value<EnderCrystal>>> HEALING_CRYSTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "healing_crystal");
+    public static final Supplier<Key<Value<EndCrystal>>> HEALING_CRYSTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "healing_crystal");
 
     /**
-     * A {@link Living}'s or {@link EnderCrystal}'s current health.
+     * A {@link Living}'s or {@link EndCrystal}'s current health.
      *
      * <p>The range of the health depends on the object on which this
      * method is defined. For {@link Player Players} in Minecraft, the nominal range is
@@ -1155,7 +1155,7 @@ public final class Keys {
 
     /**
      * Whether an entity is currently aggressive.
-     * e.g. {@link Wolf wolves} or {@link ZombiePigman}
+     * e.g. {@link Wolf wolves} or {@link ZombifiedPiglin}
      */
     public static final Supplier<Key<Value<Boolean>>> IS_ANGRY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "is_angry");
 
@@ -1860,7 +1860,7 @@ public final class Keys {
     public static final Supplier<Key<Value<Integer>>> MAX_STACK_SIZE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "max_stack_size");
 
     /**
-     * The represented block's offset of a {@link MinecartEntity}.
+     * The represented block's offset of a {@link MinecartLike}.
      */
     public static final Supplier<Key<Value<Integer>>> MINECART_BLOCK_OFFSET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "minecart_block_offset");
 
@@ -2210,7 +2210,7 @@ public final class Keys {
     public static final Supplier<Key<Value<ProjectileSource>>> SHOOTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "shooter");
 
     /**
-     * Whether a {@link EnderCrystal} should show it's bottom bedrock platform.
+     * Whether a {@link EndCrystal} should show it's bottom bedrock platform.
      */
     public static final Supplier<Key<Value<Boolean>>> SHOW_BOTTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "show_bottom");
 
@@ -2428,7 +2428,7 @@ public final class Keys {
     public static final Supplier<Key<Value<Double>>> SWIFTNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "swiftness");
 
     /**
-     * The tamer of a {@link TameableAnimal} or {@link HorseEntity}.
+     * The tamer of a {@link TameableAnimal} or {@link HorseLike}.
      */
     public static final Supplier<Key<Value<UUID>>> TAMER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "tamer");
 
@@ -2449,7 +2449,7 @@ public final class Keys {
      * e.g. A {@link Patroller}'s patrol target,
      * the travel position of a {@link Turtle},
      * the exit portal position of a {@link EndGateway} or
-     * an {@link EnderCrystal}'s beam target.
+     * an {@link EndCrystal}'s beam target.
      */
     public static final Supplier<Key<Value<Vector3i>>> TARGET_POSITION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "target_position");
 

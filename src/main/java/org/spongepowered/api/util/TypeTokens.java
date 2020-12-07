@@ -86,7 +86,7 @@ import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.attribute.AttributeOperation;
 import org.spongepowered.api.entity.attribute.type.AttributeType;
-import org.spongepowered.api.entity.explosive.EnderCrystal;
+import org.spongepowered.api.entity.explosive.EndCrystal;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.animal.Sheep;
 import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
@@ -169,7 +169,7 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<DyeColor>> DYE_COLOR_VALUE_TOKEN = new TypeToken<Value<DyeColor>>() {};
 
-    public static final TypeToken<Value<EnderCrystal>> ENDER_CRYSTAL_VALUE_TOKEN = new TypeToken<Value<EnderCrystal>>() {};
+    public static final TypeToken<Value<EndCrystal>> END_CRYSTAL_VALUE_TOKEN = new TypeToken<Value<EndCrystal>>() {};
 
     public static final TypeToken<Value<EntitySnapshot>> ENTITY_SNAPSHOT_VALUE_TOKEN = new TypeToken<Value<EntitySnapshot>>() {};
 

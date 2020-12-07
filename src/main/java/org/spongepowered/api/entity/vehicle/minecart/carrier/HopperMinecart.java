@@ -25,10 +25,10 @@
 package org.spongepowered.api.entity.vehicle.minecart.carrier;
 
 import org.spongepowered.api.block.entity.carrier.Hopper;
-import org.spongepowered.api.entity.vehicle.minecart.MinecartEntity;
+import org.spongepowered.api.entity.vehicle.minecart.MinecartLike;
 
 /**
- * Represents a {@link MinecartEntity} with a {@link Hopper} in it.
+ * Represents a {@link MinecartLike} with a {@link Hopper} in it.
  */
 public interface HopperMinecart extends CarrierMinecart<HopperMinecart> {
 

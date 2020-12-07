@@ -22,31 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster.zombie;
-
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.type.ProfessionType;
-import org.spongepowered.api.data.type.ProfessionTypes;
-import org.spongepowered.api.data.type.VillagerType;
-import org.spongepowered.api.data.value.Value;
-
-public interface ZombieVillager extends ZombieLike {
-
-    /**
-     * {@link Keys#VILLAGER_TYPE}
-     * @return The villager type
-     * @see org.spongepowered.api.data.type.VillagerTypes
-     */
-    default Value.Mutable<VillagerType> type() {
-        return this.requireValue(Keys.VILLAGER_TYPE).asMutable();
-    }
-
-    /**
-     * {@link Keys#PROFESSION_TYPE}
-     * @return The profession of this zombie villager
-     * @see ProfessionTypes
-     */
-    default Value.Mutable<ProfessionType> profession() {
-        return this.requireValue(Keys.PROFESSION_TYPE).asMutable();
-    }
-}
+@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
+package org.spongepowered.api.entity.living.monster.piglin;

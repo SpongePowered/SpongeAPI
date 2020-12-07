@@ -22,11 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.animal.horse;
+package org.spongepowered.api.entity.living.animal.horse.llama;
 
-import org.spongepowered.api.entity.living.animal.Animal;
-import org.spongepowered.api.item.inventory.Carrier;
+import org.spongepowered.api.entity.living.Ranger;
+import org.spongepowered.api.entity.living.animal.horse.HorseLike;
 
-public interface HorseEntity extends Animal, Carrier {
+/**
+ * An abstract representation of a Llama.
+ */
+public interface LlamaLike extends HorseLike, Ranger {
 
 }

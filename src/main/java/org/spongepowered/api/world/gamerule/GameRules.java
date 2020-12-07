@@ -27,7 +27,6 @@ package org.spongepowered.api.world.gamerule;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.entity.CommandBlock;
-import org.spongepowered.api.effect.potion.PotionEffectTypes;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Bat;
 import org.spongepowered.api.entity.living.animal.Rabbit;
@@ -41,16 +40,15 @@ import org.spongepowered.api.entity.living.monster.Phantom;
 import org.spongepowered.api.entity.living.monster.Silverfish;
 import org.spongepowered.api.entity.living.monster.boss.Wither;
 import org.spongepowered.api.entity.living.monster.boss.dragon.EnderDragon;
-import org.spongepowered.api.entity.living.monster.raider.Raider;
 import org.spongepowered.api.entity.living.monster.skeleton.Skeleton;
 import org.spongepowered.api.entity.living.monster.zombie.Zombie;
-import org.spongepowered.api.entity.living.monster.zombie.ZombiePigman;
+import org.spongepowered.api.entity.living.monster.zombie.ZombifiedPiglin;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.entity.living.trader.WanderingTrader;
 import org.spongepowered.api.entity.vehicle.Boat;
-import org.spongepowered.api.entity.vehicle.minecart.MinecartEntity;
+import org.spongepowered.api.entity.vehicle.minecart.MinecartLike;
 import org.spongepowered.api.raid.Raid;
 
 import java.util.function.Supplier;
@@ -211,6 +209,14 @@ public final class GameRules {
     public static final Supplier<GameRule<Boolean>> FIRE_DAMAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "fire_damage");
 
     /**
+     * Makes angered neutral mobs stop being angry when the targeted player dies nearby.
+     *
+     * <p>This is a boolean game rule, with a default value of
+     * {@code true}.</p>
+     */
+    public static final Supplier<GameRule<Boolean>> FORGIVE_DEAD_PLAYERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "forgive_dead_players");
+
+    /**
      * Whether {@link Player}s should keep items in their inventory
      * after death.
      *
@@ -244,7 +250,7 @@ public final class GameRules {
      * {@link GameModes#ADVENTURE adventure mode} {@link Player}s, and all
      * mobs but bats. Pushable entities include non-spectator-mode
      * {@link Player}, any mob except {@link Bat}s, as well as
-     * {@link Boat}s and {@link MinecartEntity}.</p>
+     * {@link Boat}s and {@link MinecartLike}.</p>
      *
      * <p>Setting to {@code 0} disables the rule.</p>
      *
@@ -278,7 +284,7 @@ public final class GameRules {
      *     <li>{@link Villager}</li>
      *     <li>{@link Zombie}</li>
      *     <li>{@link Skeleton}</li>
-     *     <li>{@link ZombiePigman}</li>
+     *     <li>{@link ZombifiedPiglin}</li>
      * </ul>
      *
      * <p>This is a boolean game rule, with a default value of {@code true}.</p>
@@ -347,6 +353,14 @@ public final class GameRules {
      * <p>This is a boolean game rule, with a default value of {@code true}.</p>
      */
     public static final Supplier<GameRule<Boolean>> SPECTATORS_GENERATE_CHUNKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "spectators_generate_chunks");
+
+    /**
+     * Makes angered neutral mobs attack any nearby player, not just the player that angered them.
+     *
+     * <p>This is a boolean game rule, with a default value of
+     * {@code false}.</p>
+     */
+    public static final Supplier<GameRule<Boolean>> UNIVERSAL_ANGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameRule.class, "universal_anger");
 
     // SORTFIELDS:OFF
 

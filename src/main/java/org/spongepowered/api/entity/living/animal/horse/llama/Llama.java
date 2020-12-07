@@ -35,7 +35,7 @@ import org.spongepowered.api.entity.living.animal.horse.TameableHorse;
  * they can be ridden by players, but not controlled by players. Likewise, they
  * have colors and styles and can have storage "strength".
  */
-public interface Llama extends LlamaEntity, TameableHorse, PackHorse {
+public interface Llama extends LlamaLike, TameableHorse, PackHorse {
 
     /**
      * {@link Keys#LLAMA_TYPE}

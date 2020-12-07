@@ -25,7 +25,7 @@
 package org.spongepowered.api.entity;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.explosive.EnderCrystal;
+import org.spongepowered.api.entity.explosive.EndCrystal;
 import org.spongepowered.api.entity.explosive.fused.PrimedTNT;
 import org.spongepowered.api.entity.hanging.ItemFrame;
 import org.spongepowered.api.entity.hanging.LeashKnot;
@@ -72,11 +72,16 @@ import org.spongepowered.api.entity.living.monster.Ghast;
 import org.spongepowered.api.entity.living.monster.Giant;
 import org.spongepowered.api.entity.living.monster.Phantom;
 import org.spongepowered.api.entity.living.monster.Silverfish;
+import org.spongepowered.api.entity.living.monster.Strider;
 import org.spongepowered.api.entity.living.monster.Vex;
+import org.spongepowered.api.entity.living.monster.Zoglin;
 import org.spongepowered.api.entity.living.monster.boss.Wither;
 import org.spongepowered.api.entity.living.monster.boss.dragon.EnderDragon;
 import org.spongepowered.api.entity.living.monster.guardian.ElderGuardian;
 import org.spongepowered.api.entity.living.monster.guardian.Guardian;
+import org.spongepowered.api.entity.living.monster.hoglin.Hoglin;
+import org.spongepowered.api.entity.living.monster.piglin.Piglin;
+import org.spongepowered.api.entity.living.monster.piglin.PiglinBrute;
 import org.spongepowered.api.entity.living.monster.raider.Ravager;
 import org.spongepowered.api.entity.living.monster.raider.Witch;
 import org.spongepowered.api.entity.living.monster.raider.illager.Pillager;
@@ -93,7 +98,7 @@ import org.spongepowered.api.entity.living.monster.spider.Spider;
 import org.spongepowered.api.entity.living.monster.zombie.Drowned;
 import org.spongepowered.api.entity.living.monster.zombie.Husk;
 import org.spongepowered.api.entity.living.monster.zombie.Zombie;
-import org.spongepowered.api.entity.living.monster.zombie.ZombiePigman;
+import org.spongepowered.api.entity.living.monster.zombie.ZombifiedPiglin;
 import org.spongepowered.api.entity.living.monster.zombie.ZombieVillager;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.trader.Villager;
@@ -177,15 +182,15 @@ public final class EntityTypes {
 
     public static final Supplier<EntityType<ElderGuardian>> ELDER_GUARDIAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "elder_guardian");
 
-    public static final Supplier<EntityType<Enderman>> ENDERMAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "enderman");
-
-    public static final Supplier<EntityType<Endermite>> ENDERMITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "endermite");
+    public static final Supplier<EntityType<EndCrystal>> END_CRYSTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "end_crystal");
 
     public static final Supplier<EntityType<EnderDragon>> ENDER_DRAGON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "ender_dragon");
 
     public static final Supplier<EntityType<EnderPearl>> ENDER_PEARL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "ender_pearl");
 
-    public static final Supplier<EntityType<EnderCrystal>> END_CRYSTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "end_crystal");
+    public static final Supplier<EntityType<Enderman>> ENDERMAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "enderman");
+
+    public static final Supplier<EntityType<Endermite>> ENDERMITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "endermite");
 
     public static final Supplier<EntityType<Evoker>> EVOKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "evoker");
 
@@ -214,6 +219,8 @@ public final class EntityTypes {
     public static final Supplier<EntityType<Giant>> GIANT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "giant");
 
     public static final Supplier<EntityType<Guardian>> GUARDIAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "guardian");
+
+    public static final Supplier<EntityType<Hoglin>> HOGLIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "hoglin");
 
     public static final Supplier<EntityType<HopperMinecart>> HOPPER_MINECART = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "hopper_minecart");
 
@@ -257,6 +264,10 @@ public final class EntityTypes {
 
     public static final Supplier<EntityType<Pig>> PIG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "pig");
 
+    public static final Supplier<EntityType<Piglin>> PIGLIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "piglin");
+
+    public static final Supplier<EntityType<PiglinBrute>> PIGLIN_BRUTE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "piglin_brute");
+
     public static final Supplier<EntityType<Pillager>> PILLAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "pillager");
 
     public static final Supplier<EntityType<Player>> PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "player");
@@ -289,9 +300,9 @@ public final class EntityTypes {
 
     public static final Supplier<EntityType<SmallFireball>> SMALL_FIREBALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "small_fireball");
 
-    public static final Supplier<EntityType<Snowball>> SNOWBALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "snowball");
-
     public static final Supplier<EntityType<SnowGolem>> SNOW_GOLEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "snow_golem");
+
+    public static final Supplier<EntityType<Snowball>> SNOWBALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "snowball");
 
     public static final Supplier<EntityType<SpawnerMinecart>> SPAWNER_MINECART = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "spawner_minecart");
 
@@ -302,6 +313,8 @@ public final class EntityTypes {
     public static final Supplier<EntityType<Squid>> SQUID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "squid");
 
     public static final Supplier<EntityType<Stray>> STRAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "stray");
+
+    public static final Supplier<EntityType<Strider>> STRIDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "strider");
 
     public static final Supplier<EntityType<PrimedTNT>> TNT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "tnt");
 
@@ -333,13 +346,15 @@ public final class EntityTypes {
 
     public static final Supplier<EntityType<Wolf>> WOLF = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "wolf");
 
+    public static final Supplier<EntityType<Zoglin>> ZOGLIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "zoglin");
+
     public static final Supplier<EntityType<Zombie>> ZOMBIE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "zombie");
 
     public static final Supplier<EntityType<ZombieHorse>> ZOMBIE_HORSE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "zombie_horse");
 
-    public static final Supplier<EntityType<ZombiePigman>> ZOMBIE_PIGMAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "zombie_pigman");
-
     public static final Supplier<EntityType<ZombieVillager>> ZOMBIE_VILLAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "zombie_villager");
+
+    public static final Supplier<EntityType<ZombifiedPiglin>> ZOMBIFIED_PIGLIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EntityType.class, "zombified_piglin");
 
     // SORTFIELDS:OFF
 

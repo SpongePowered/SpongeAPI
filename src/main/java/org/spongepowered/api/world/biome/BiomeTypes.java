@@ -34,8 +34,6 @@ import java.util.function.Supplier;
  */
 public final class BiomeTypes {
 
-    // Standard Biomes
-
     // SORTFIELDS:ON
 
     public static final Supplier<BiomeType> BADLANDS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "badlands");
@@ -46,6 +44,8 @@ public final class BiomeTypes {
 
     public static final Supplier<BiomeType> BAMBOO_JUNGLE_HILLS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "bamboo_jungle_hills");
 
+    public static final Supplier<BiomeType> BASALT_DELTAS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "basalt_deltas");
+
     public static final Supplier<BiomeType> BEACH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "beach");
 
     public static final Supplier<BiomeType> BIRCH_FOREST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "birch_forest");
@@ -53,6 +53,8 @@ public final class BiomeTypes {
     public static final Supplier<BiomeType> BIRCH_FOREST_HILLS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "birch_forest_hills");
 
     public static final Supplier<BiomeType> COLD_OCEAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "cold_ocean");
+
+    public static final Supplier<BiomeType> CRIMSON_FOREST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "crimson_forest");
 
     public static final Supplier<BiomeType> DARK_FOREST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "dark_forest");
 
@@ -120,15 +122,15 @@ public final class BiomeTypes {
 
     public static final Supplier<BiomeType> MODIFIED_WOODED_BADLANDS_PLATEAU = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "modified_wooded_badlands_plateau");
 
-    public static final Supplier<BiomeType> MOUNTAINS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "mountains");
-
     public static final Supplier<BiomeType> MOUNTAIN_EDGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "mountain_edge");
 
-    public static final Supplier<BiomeType> MUSHROOM_FIELDS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "mushroom_fields");
+    public static final Supplier<BiomeType> MOUNTAINS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "mountains");
 
     public static final Supplier<BiomeType> MUSHROOM_FIELD_SHORE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "mushroom_field_shore");
 
-    public static final Supplier<BiomeType> NETHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "nether");
+    public static final Supplier<BiomeType> MUSHROOM_FIELDS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "mushroom_fields");
+
+    public static final Supplier<BiomeType> NETHER_WASTES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "nether_wastes");
 
     public static final Supplier<BiomeType> OCEAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "ocean");
 
@@ -158,6 +160,8 @@ public final class BiomeTypes {
 
     public static final Supplier<BiomeType> SNOWY_TUNDRA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "snowy_tundra");
 
+    public static final Supplier<BiomeType> SOUL_SAND_VALLEY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "soul_sand_valley");
+
     public static final Supplier<BiomeType> STONE_SHORE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "stone_shore");
 
     public static final Supplier<BiomeType> SUNFLOWER_PLAINS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "sunflower_plains");
@@ -181,6 +185,8 @@ public final class BiomeTypes {
     public static final Supplier<BiomeType> THE_VOID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "the_void");
 
     public static final Supplier<BiomeType> WARM_OCEAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "warm_ocean");
+
+    public static final Supplier<BiomeType> WARPED_FOREST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "warped_forest");
 
     public static final Supplier<BiomeType> WOODED_BADLANDS_PLATEAU = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BiomeType.class, "wooded_badlands_plateau");
 

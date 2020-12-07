@@ -31,14 +31,17 @@ import java.util.function.Supplier;
 public final class FluidTypes {
 
     // SORTFIELDS:ON
-    /**
-     * Represents the absence of fluid.
-     */
+
     public static final Supplier<FluidType> EMPTY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FluidType.class, "empty");
+
+    public static final Supplier<FluidType> FLOWING_LAVA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FluidType.class, "flowing_lava");
+
+    public static final Supplier<FluidType> FLOWING_WATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FluidType.class, "flowing_water");
+
+    public static final Supplier<FluidType> LAVA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FluidType.class, "lava");
 
     public static final Supplier<FluidType> WATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FluidType.class, "water");
 
-    public static final Supplier<FluidType> LAVA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FluidType.class, "lava");
     // SORTFIELDS:OFF
 
     // Suppress default constructor to ensure non-instantiability.

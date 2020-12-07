@@ -26,6 +26,9 @@ package org.spongepowered.api.entity.living.monster.zombie;
 
 import org.spongepowered.api.entity.living.Monster;
 
-public interface ZombieEntity extends Monster {
+/**
+ * An abstract representation of a Zombie.
+ */
+public interface ZombieLike extends Monster {
 
 }

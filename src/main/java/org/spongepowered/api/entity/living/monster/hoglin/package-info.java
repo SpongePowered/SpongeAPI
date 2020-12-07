@@ -22,11 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.animal.horse.llama;
-
-import org.spongepowered.api.entity.living.Ranger;
-import org.spongepowered.api.entity.living.animal.horse.HorseEntity;
-
-public interface LlamaEntity extends HorseEntity, Ranger {
-
-}
+@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
+package org.spongepowered.api.entity.living.monster.hoglin;
