@@ -32,6 +32,7 @@ import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
+import org.spongepowered.api.projectile.source.EntityProjectileSource;
 import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.RandomProvider;
@@ -73,7 +74,8 @@ import java.util.function.UnaryOperator;
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
 @DoNotStore
-public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEntity>, Locatable, SerializableDataHolder.Mutable, RandomProvider {
+public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEntity>, Locatable, EntityProjectileSource,
+        SerializableDataHolder.Mutable, RandomProvider {
 
     /**
      * Gets the {@link EntityType}.

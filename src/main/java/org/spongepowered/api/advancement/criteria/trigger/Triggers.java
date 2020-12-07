@@ -90,8 +90,6 @@ public final class Triggers {
 
     public static final Supplier<Trigger<?>> RECIPE_UNLOCKED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "recipe_unlocked");
 
-    public static final Supplier<Trigger<?>> SAFELY_HARVEST_HONEY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "safely_harvest_honey");
-
     public static final Supplier<Trigger<?>> SHOT_CROSSBOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "shot_crossbow");
 
     public static final Supplier<Trigger<?>> SLEPT_IN_BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Trigger.class, "slept_in_bed");
