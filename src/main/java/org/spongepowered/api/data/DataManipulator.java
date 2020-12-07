@@ -38,6 +38,7 @@ import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 /**
  * Represents a changelist of data that can be applied to a {@link DataHolder.Mutable}.
@@ -59,7 +60,7 @@ public interface DataManipulator extends CopyableValueContainer {
      * @param values The values
      * @return The immutable data manipulator view
      */
-    static Immutable immutableOf(Iterable<? extends Value<?>> values) {
+    static Immutable immutableOf(final Iterable<? extends Value<?>> values) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Immutable.Factory.class).of(values);
     }
 
@@ -73,7 +74,7 @@ public interface DataManipulator extends CopyableValueContainer {
      * @param valueContainer The value container to populate values from
      * @return The immutable manipulator
      */
-    static Immutable immutableOf(ValueContainer valueContainer) {
+    static Immutable immutableOf(final ValueContainer valueContainer) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Immutable.Factory.class).of(valueContainer);
     }
 
@@ -105,7 +106,7 @@ public interface DataManipulator extends CopyableValueContainer {
      * @param values The values to populate the mutable container
      * @return The mutable manipulator containing all values
      */
-    static Mutable mutableOf(Iterable<? extends Value<?>> values) {
+    static Mutable mutableOf(final Iterable<? extends Value<?>> values) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Mutable.Factory.class).of(values);
     }
 
@@ -119,7 +120,7 @@ public interface DataManipulator extends CopyableValueContainer {
      * @param valueContainer The value container providing all values
      * @return The mutable manipulator containing all values
      */
-    static Mutable mutableOf(ValueContainer valueContainer) {
+    static Mutable mutableOf(final ValueContainer valueContainer) {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Mutable.Factory.class).of(valueContainer);
     }
 
@@ -203,7 +204,7 @@ public interface DataManipulator extends CopyableValueContainer {
          * @param <E> The type of value
          * @return The new immutable data manipulator
          */
-        default <E> Immutable with(Key<? extends Value<E>> key, E value) {
+        default <E> Immutable with(final Key<? extends Value<E>> key, final E value) {
             return this.asMutable().set(key, value).asImmutable();
         }
 
@@ -213,7 +214,7 @@ public interface DataManipulator extends CopyableValueContainer {
          * @param key The key to use
          * @return The new immutable data manipulator
          */
-        default Immutable without(Key<?> key) {
+        default Immutable without(final Key<?> key) {
             return this.asMutable().remove(key).asImmutable();
         }
 
@@ -226,7 +227,7 @@ public interface DataManipulator extends CopyableValueContainer {
          * @param value The value to set
          * @return The new immutable data manipulator
          */
-        default <E> Immutable with(Value<E> value) {
+        default <E> Immutable with(final Value<E> value) {
             return this.with(value.getKey(), value.get());
         }
 
@@ -239,7 +240,7 @@ public interface DataManipulator extends CopyableValueContainer {
          * @param <E> The type of element
          * @return This manipulator, for chaining
          */
-        default <E> Immutable transform(Key<? extends Value<E>> key, Function<E, E> function) {
+        default <E> Immutable transform(final Key<? extends Value<E>> key, final Function<E, E> function) {
             Objects.requireNonNull(function, "function");
             return this.get(key).map(element -> this.with(key, Objects.requireNonNull(function.apply(element)))).orElse(this);
         }
@@ -307,7 +308,7 @@ public interface DataManipulator extends CopyableValueContainer {
          * @return This {@link Mutable} with relevant data filled from the
          *           given {@link ValueContainer}
          */
-        default Mutable copyFrom(ValueContainer valueContainer, Predicate<Key<?>> predicate) {
+        default Mutable copyFrom(final ValueContainer valueContainer, final Predicate<Key<?>> predicate) {
             return this.copyFrom(valueContainer, MergeFunction.REPLACEMENT_PREFERRED, predicate);
         }
 
@@ -343,7 +344,7 @@ public interface DataManipulator extends CopyableValueContainer {
          * @return This {@link Mutable} with relevant data filled from the
          *           given {@link ValueContainer}
          */
-        default Mutable copyFrom(ValueContainer valueContainer, Key<?> first, Key<?>... more) {
+        default Mutable copyFrom(final ValueContainer valueContainer, final Key<?> first, final Key<?>... more) {
             return this.copyFrom(valueContainer, MergeFunction.REPLACEMENT_PREFERRED, first, more);
         }
 
@@ -365,7 +366,7 @@ public interface DataManipulator extends CopyableValueContainer {
          * @return This {@link Mutable} with relevant data filled from the
          *           given {@link ValueContainer}
          */
-        default Mutable copyFrom(ValueContainer valueContainer, MergeFunction overlap, Key<?> first, Key<?>... more) {
+        default Mutable copyFrom(final ValueContainer valueContainer, final MergeFunction overlap, final Key<?> first, final Key<?>... more) {
             return this.copyFrom(valueContainer, overlap, ImmutableList.<Key<?>>builder().add(first).add(more).build());
         }
 
@@ -383,7 +384,7 @@ public interface DataManipulator extends CopyableValueContainer {
          * @return This {@link Mutable} with relevant data filled from the
          *           given {@link ValueContainer}
          */
-        default Mutable copyFrom(ValueContainer valueContainer, Iterable<Key<?>> keys) {
+        default Mutable copyFrom(final ValueContainer valueContainer, final Iterable<Key<?>> keys) {
             return this.copyFrom(valueContainer, MergeFunction.REPLACEMENT_PREFERRED, keys);
         }
 
@@ -418,7 +419,7 @@ public interface DataManipulator extends CopyableValueContainer {
          * @return This {@link Mutable} with relevant data filled from the
          *           given {@link DataHolder}
          */
-        default Mutable copyFrom(ValueContainer valueContainer) {
+        default Mutable copyFrom(final ValueContainer valueContainer) {
             return this.copyFrom(valueContainer, MergeFunction.REPLACEMENT_PREFERRED);
         }
 
@@ -455,6 +456,15 @@ public interface DataManipulator extends CopyableValueContainer {
          */
         <E> Mutable set(Key<? extends Value<E>> key, E value);
 
+        default <E, V extends Value<E>> Mutable set(final Supplier<Key<V>> key, final E value) {
+            return this.set(key.get(), value);
+        }
+
+        default <E, V extends Value<E>> Mutable set(final Supplier<Key<V>> key, final Supplier<E> value) {
+            return this.set(Objects.requireNonNull(key, "Key supplier cannot be null").get(),
+                Objects.requireNonNull(value, "Value supplier cannot be null").get());
+        }
+
         /**
          * Sets the supported {@link Value} onto this {@link Mutable}.
          * The requirement for this to succeed is that the {@link Value} is
@@ -467,7 +477,7 @@ public interface DataManipulator extends CopyableValueContainer {
          * @return This manipulator, for chaining
          */
         @SuppressWarnings("unchecked")
-        default Mutable set(Value<?> value) {
+        default Mutable set(final Value<?> value) {
             return this.set((Key<? extends Value<Object>>) value.getKey(), value.get());
         }
 
@@ -482,11 +492,11 @@ public interface DataManipulator extends CopyableValueContainer {
          * @param values The actual values to set
          * @return This manipulator, for chaining
          */
-        default Mutable set(Value<?>... values) {
-            for (Value<?> value : Objects.requireNonNull(values)) {
+        default Mutable set(final Value<?>... values) {
+            for (final Value<?> value : Objects.requireNonNull(values)) {
                 try {
                     this.set(Objects.requireNonNull(value, "A null value was provided!"));
-                } catch (IllegalArgumentException e) {
+                } catch (final IllegalArgumentException e) {
                     e.printStackTrace();
                 }
             }
@@ -504,11 +514,11 @@ public interface DataManipulator extends CopyableValueContainer {
          * @param values The actual values to set
          * @return This manipulator, for chaining
          */
-        default Mutable set(Iterable<? extends Value<?>> values) {
-            for (Value<?> value : Objects.requireNonNull(values)) {
+        default Mutable set(final Iterable<? extends Value<?>> values) {
+            for (final Value<?> value : Objects.requireNonNull(values)) {
                 try {
                     this.set(Objects.requireNonNull(value, "A null value was provided!"));
-                } catch (IllegalArgumentException e) {
+                } catch (final IllegalArgumentException e) {
                     e.printStackTrace();
                 }
             }
@@ -524,7 +534,7 @@ public interface DataManipulator extends CopyableValueContainer {
          * @param <E> The type of element
          * @return This manipulator, for chaining
          */
-        default <E> Mutable transform(Key<? extends Value<E>> key, Function<E, E> function) {
+        default <E> Mutable transform(final Key<? extends Value<E>> key, final Function<E, E> function) {
             if (!this.supports(key)) {
                 throw new IllegalArgumentException("The provided key is not supported: " + key.toString());
             }
