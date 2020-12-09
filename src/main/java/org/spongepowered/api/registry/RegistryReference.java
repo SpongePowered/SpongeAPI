@@ -28,11 +28,9 @@ import java.util.Optional;
 
 public interface RegistryReference<V> extends RegistryKey<V> {
 
+    V get(RegistryHolder holder);
+
     default Optional<V> find(final RegistryHolder holder) {
         return holder.findValue(this);
-    }
-
-    default V get(final RegistryHolder holder) {
-        return holder.value(this);
     }
 }

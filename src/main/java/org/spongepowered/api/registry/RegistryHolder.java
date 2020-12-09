@@ -25,7 +25,6 @@
 package org.spongepowered.api.registry;
 
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Stream;
 
 public interface RegistryHolder {
@@ -35,8 +34,6 @@ public interface RegistryHolder {
     <R> Optional<Registry<R>> findRegistry(RegistryKey<R> key);
 
     <V> V value(RegistryKey<V> key);
-
-    <V> V value(RegistryKey<V> key, Set<RegistryScope> scopes);
 
     <V> Optional<V> findValue(RegistryKey<V> key);
 
