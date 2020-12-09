@@ -29,7 +29,11 @@ import org.spongepowered.api.data.type.MatterType;
 
 public final class Registries {
 
+    // @formatter:off
+
     public static final RegistryKey<MatterType> MATTER_TYPE = Registries.spongeKey("matter_type");
+
+    // @formatter:on
 
     private static final ResourceKey MINECRAFT_ROOT = ResourceKey.minecraft("root");
     private static final ResourceKey SPONGE_ROOT = ResourceKey.sponge("root");

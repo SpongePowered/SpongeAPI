@@ -34,13 +34,20 @@ import org.spongepowered.api.registry.RegistryScopes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class MatterTypes {
 
+    // @formatter:off
+
     public static final RegistryReference<MatterType> GAS = MatterTypes.key(ResourceKey.sponge("gas"));
 
     public static final RegistryReference<MatterType> LIQUID = MatterTypes.key(ResourceKey.sponge("liquid"));
 
     public static final RegistryReference<MatterType> SOLID = MatterTypes.key(ResourceKey.sponge("solid"));
 
+    // @formatter:on
+    
     private static RegistryReference<MatterType> key(final ResourceKey location) {
         return RegistryKey.of(Registries.MATTER_TYPE, location).asReference();
+    }
+
+    private MatterTypes() {
     }
 }
