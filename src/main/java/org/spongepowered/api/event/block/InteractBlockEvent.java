@@ -28,11 +28,13 @@ import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.action.InteractEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.Tristate;
 import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.math.vector.Vector3d;
 
 /**
  * Base event for all interactions involving a {@link BlockSnapshot} at a
@@ -65,7 +67,33 @@ public interface InteractBlockEvent extends InteractEvent {
      *
      * <p>This is usually left-click.</p>
      */
-    interface Primary extends InteractBlockEvent {}
+    interface Primary extends InteractBlockEvent {
+
+        /**
+         * Called when a player starts digging a block.
+         *
+         * <p>Canceling this will prevent starting to break a block in survival and breaking a block in creative</p>
+         */
+        interface Start extends Primary, Cancellable {
+
+        }
+
+        /**
+         * Called when a player cancels digging a block.
+         */
+        interface Stop extends Primary {
+
+        }
+
+        /**
+         * Called when a player finishes digging a block.
+         *
+         * <p>Canceling this will prevent breaking a block.</p>
+         */
+        interface Finish extends Primary, Cancellable {
+
+        }
+    }
 
     /**
      * An event where the targeted block is being interacted with the client's
@@ -73,7 +101,7 @@ public interface InteractBlockEvent extends InteractEvent {
      *
      * <p>This is usually right-click.</p>
      */
-    interface Secondary extends InteractBlockEvent {
+    interface Secondary extends InteractBlockEvent, Cancellable {
 
         Tristate getOriginalUseItemResult();
 
@@ -146,5 +174,12 @@ public interface InteractBlockEvent extends InteractEvent {
          *     used
          */
         void setUseBlockResult(Tristate result);
+
+        /**
+         * Gets the point of interaction where the interaction occurred as a {@link Vector3d}.
+         *
+         * @return The interaction point
+         */
+        Vector3d getInteractionPoint();
     }
 }
