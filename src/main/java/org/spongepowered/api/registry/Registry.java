@@ -27,25 +27,44 @@ package org.spongepowered.api.registry;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.util.annotation.DoNotStore;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
 
 @DoNotStore
-public interface Registry<V> extends Iterable<RegistryEntry<V>> {
+public interface Registry<T> extends Iterable<RegistryEntry<T>> {
 
     RegistryHolder holder();
 
     ResourceKey key();
 
-    Optional<ResourceKey> findKey(V value);
+    Optional<ResourceKey> findKey(T value);
 
-    Optional<RegistryEntry<V>> findEntry(ResourceKey key);
+    Optional<RegistryEntry<T>> findEntry(ResourceKey key);
 
-    Optional<V> findValue(ResourceKey key);
+    default Optional<RegistryEntry<T>> findEntry(final RegistryKey<T> key) {
+        Objects.requireNonNull(key, "key");
 
-    V value(ResourceKey key);
+        return this.findEntry(key.location());
+    }
 
-    Stream<RegistryEntry<V>> stream();
+    Optional<T> findValue(ResourceKey key);
+
+    default Optional<T> findValue(final RegistryKey<T> key) {
+        Objects.requireNonNull(key, "key");
+
+        return this.findValue(key.location());
+    }
+
+    T value(ResourceKey key);
+
+    default T value(final RegistryKey<T> key) {
+        Objects.requireNonNull(key, "key");
+
+        return this.value(key.location());
+    }
+
+    Stream<RegistryEntry<T>> stream();
 
     /**
      * Returns if this registry supports adding additional values.
@@ -68,5 +87,5 @@ public interface Registry<V> extends Iterable<RegistryEntry<V>> {
      * @param value The value to register
      * @return The added {@link RegistryEntry}
      */
-    RegistryEntry<V> register(ResourceKey key, V value);
+    RegistryEntry<T> register(ResourceKey key, T value);
 }
