@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.action;
 
-import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.math.vector.Vector3d;
 
@@ -33,13 +32,6 @@ import java.util.Optional;
 /**
  * Base event for all interactions.
  */
-public interface InteractEvent extends Event, Cancellable {
+public interface InteractEvent extends Event {
 
-    /**
-     * Gets the point of interaction where the interaction occurred as
-     * a {@link Vector3d}.
-     * 
-     * @return The interaction point if available
-     */
-    Optional<Vector3d> getInteractionPoint();
 }
