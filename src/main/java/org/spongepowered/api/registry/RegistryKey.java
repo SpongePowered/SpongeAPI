@@ -33,6 +33,10 @@ public interface RegistryKey<T> {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(registry, location);
     }
 
+    static <T> RegistryKey<T> of(final RegistryKey<T> registry, final ResourceKey location) {
+        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(registry.location(), location);
+    }
+
     ResourceKey registry();
 
     ResourceKey location();

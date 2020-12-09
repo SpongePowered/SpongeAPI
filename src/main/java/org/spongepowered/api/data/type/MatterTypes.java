@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.registry.Registries;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryReference;
 import org.spongepowered.api.registry.RegistryScope;
@@ -40,6 +41,6 @@ public final class MatterTypes {
     public static final RegistryReference<MatterType> SOLID = MatterTypes.key(ResourceKey.sponge("solid"));
 
     private static RegistryReference<MatterType> key(final ResourceKey location) {
-        return RegistryKey.<MatterType>of(ResourceKey.sponge("matter_type"), location).asReference();
+        return RegistryKey.of(Registries.MATTER_TYPE, location).asReference();
     }
 }
