@@ -31,39 +31,109 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+/**
+ * A store of {@link RegistryEntry registry entries} with a well defined type.
+ *
+ * @param <T> The type
+ */
 @DoNotStore
 public interface Registry<T> extends Iterable<RegistryEntry<T>> {
 
+    /**
+     * Gets the {@link RegistryHolder holder}.
+     *
+     * @return The holder
+     */
     RegistryHolder holder();
 
+    /**
+     * Gets the {@link ResourceKey key} identifying this registry.
+     *
+     * @return The key
+     */
     ResourceKey key();
 
+    /**
+     * Gets the {@link ResourceKey key} for a particular value, if found.
+     *
+     * <p>The value must be registered within to be retrieved by key.</p>
+     *
+     * @param value The value
+     * @return The key or {@link Optional#empty()}
+     */
     Optional<ResourceKey> findKey(T value);
 
+    /**
+     * Gets the {@link RegistryEntry entry} for a particular {@link ResourceKey key}, if found.
+     *
+     * <p>The value must be registered within to be retrieved by key.</p>
+     *
+     * @param key The key
+     * @return The entry or {@link Optional#empty()}
+     */
     Optional<RegistryEntry<T>> findEntry(ResourceKey key);
 
+    /**
+     * {@link Registry#findEntry(ResourceKey)}, provided for convenience when using {@link RegistryKey}.
+     *
+     * @param key The key
+     * @return The entry or {@link Optional#empty()}
+     */
     default Optional<RegistryEntry<T>> findEntry(final RegistryKey<T> key) {
         Objects.requireNonNull(key, "key");
 
         return this.findEntry(key.location());
     }
 
+    /**
+     * Gets the {@link T value} for a particular {@link ResourceKey key}, if found.
+     *
+     * @param key The key
+     * @return The value or {@link Optional#empty()}
+     */
     Optional<T> findValue(ResourceKey key);
 
+    /**
+     * {@link Registry#findValue(ResourceKey)}, provided for convenience when using {@link RegistryKey}.
+     *
+     * @param key The key
+     * @return The value or {@link Optional#empty()}
+     */
     default Optional<T> findValue(final RegistryKey<T> key) {
         Objects.requireNonNull(key, "key");
 
         return this.findValue(key.location());
     }
 
+    /**
+     * Gets the {@link T value} for a particular {@link ResourceKey key}.
+     *
+     * <p>Great care needs to be made in calling this method with any uncertainty as to
+     * if the key will exist. Should this key lack a value, a
+     * {@link ValueNotFoundException}</p> will be thrown. Therefore, it is advised to call
+     * {@link Registry#findValue(ResourceKey)} or {@link Registry#findValue(RegistryKey)} instead.</p>
+     *
+     * @param key The key
+     * @return The value
+     */
     T value(ResourceKey key);
 
+    /**
+     * {@link Registry#value(ResourceKey)}, provided for convenience when using {@link RegistryKey}.
+     *
+     * @param key The key
+     * @return The value
+     */
     default T value(final RegistryKey<T> key) {
         Objects.requireNonNull(key, "key");
 
         return this.value(key.location());
     }
 
+    /**
+     * Gets a {@link Stream} of all {@link RegistryEntry entries} within.
+     * @return The stream
+     */
     Stream<RegistryEntry<T>> stream();
 
     /**
@@ -76,16 +146,12 @@ public interface Registry<T> extends Iterable<RegistryEntry<T>> {
     /**
      * Registers a new value to this registry.
      *
-     * <p>It is recommended to check if {@link Registry#isDynamic()} returns {@code TRUE}
-     * before registering the new value. If it is not dynamic, this will throw an
-     * {@link IllegalStateException}.</p>
+     * <p>If this registry is not {@link Registry#isDynamic() dynamic} or the provided key is already registered,
+     * {@link Optional#empty()} is returned instead.</p>
      *
-     * <p>If the key already exists in the registry, a {@link DuplicateRegistrationException}
-     * will be thrown.</p>
-     *
-     * @param key The key to register under
-     * @param value The value to register
-     * @return The added {@link RegistryEntry}
+     * @param key The key
+     * @param value The value
+     * @return The newly added entry, {@link Optional#empty()} otherwise
      */
-    RegistryEntry<T> register(ResourceKey key, T value);
+    Optional<RegistryEntry<T>> register(ResourceKey key, T value);
 }

@@ -27,6 +27,13 @@ package org.spongepowered.api.registry;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 
+/**
+ * Similar to {@link ResourceKey} but with a defined type and id of the parent registry.
+ *
+ * <p>The inclusion of the type assists with compile-time type verification checks.</p>
+ *
+ * @param <T> The type
+ */
 public interface RegistryKey<T> {
 
     static <T> RegistryKey<T> of(final ResourceKey registry, final ResourceKey location) {
@@ -37,10 +44,26 @@ public interface RegistryKey<T> {
         return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(registry.location(), location);
     }
 
+    /**
+     * Gets the {@link ResourceKey key} defining the parent registry.
+     *
+     * @return The key
+     */
     ResourceKey registry();
 
+    /**
+     * Gets the {@link ResourceKey key} defining the id. See the documentation on resource key for
+     * more information on the composition of this key.
+     *
+     * @return The key
+     */
     ResourceKey location();
 
+    /**
+     * Generates a utility {@link RegistryReference reference} used to assist in querying a value from this key
+     *
+     * @return The reference
+     */
     RegistryReference<T> asReference();
 
     interface Factory {

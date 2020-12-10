@@ -25,12 +25,63 @@
 package org.spongepowered.api.registry;
 
 import java.util.Optional;
+import java.util.Set;
 
-public interface RegistryReference<V> extends RegistryKey<V> {
+/**
+ * A utility {@link RegistryKey key} with handy methods to make retrieval of values
+ * from a {@link RegistryHolder holder} easier.
+ *
+ * @param <T> The type
+ */
+public interface RegistryReference<T> extends RegistryKey<T> {
 
-    V get(RegistryHolder holder);
+    /**
+     * Gets the value from the {@link RegistryHolder holder}.
+     *
+     * <p>Great care needs to be made in calling this method with any uncertainty as to
+     * if this reference will exist in the holder. Should this reference lack a value, a
+     * {@link ValueNotFoundException}</p> will be thrown. Therefore, it is advised to call
+     * {@link RegistryReference#find(RegistryHolder)} instead.</p>
+     *
+     * <p>The contract leaves a large amount of flexibility in how this value is retrieved
+     * from the holder. As there are no defined rules, an implementation may choose to only
+     * query the passed in holder or may choose to run through various {@link RegistryScope scopes}
+     * for retrieval. As such, no assumption should be made whatsoever that the returned value
+     * originated from the holder. If this is important to the consumer, consider using
+     * {@link RegistryReference#get(RegistryHolder, Set)} with well defined holders instead.</p>
+     *
+     * @param holder The holder
+     * @return The value
+     */
+    T get(RegistryHolder holder);
 
-    default Optional<V> find(final RegistryHolder holder) {
-        return holder.findValue(this);
+    /**
+     * Gets the value from the {@link RegistryHolder holder} or alternatives on a first come basis.
+     *
+     * <p>Great care needs to be made in calling this method with any uncertainty as to
+     * if this reference will exist in the holder or the alternatives. Should this reference
+     * lack a value, a {@link ValueNotFoundException}</p> will be thrown. Therefore, it is advised
+     * to call {@link RegistryReference#find(RegistryHolder)} instead.</p>
+     *
+     * @param holder The holder
+     * @param alternatives Alternatives holders to search
+     * @return The value
+     */
+    T get(RegistryHolder holder, Set<RegistryHolder> alternatives);
+
+    /**
+     * Gets the value from the {@link RegistryHolder holder}, if found.
+     *
+     * <p>The contract leaves a large amount of flexibility in how this value is retrieved
+     * from the holder. As there are no defined rules, an implementation may choose to only
+     * query the passed in holder or may choose to run through various {@link ScopedRegistryHolder holders}
+     * for retrieval. As such, no assumption should be made whatsoever that the returned value
+     * originated from the holder./p>
+     *
+     * @param holder The holder
+     * @return The value
+     */
+    default Optional<T> find(final RegistryHolder holder) {
+        return holder.<T>findRegistry(this.registry()).flatMap(r -> r.findValue(this));
     }
 }

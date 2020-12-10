@@ -24,19 +24,18 @@
  */
 package org.spongepowered.api.event.lifecycle;
 
+import com.google.gson.reflect.TypeToken;
+import org.spongepowered.api.Engine;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.event.GenericEvent;
 import org.spongepowered.api.registry.DuplicateRegistrationException;
 import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
-import org.spongepowered.api.registry.ScopedRegistryHolder;
 
 import java.util.Map;
 import java.util.function.Supplier;
 
-public interface RegisterRegistryEvent<T extends ScopedRegistryHolder> extends GenericEvent<T>, LifecycleEvent {
-
-    T getHolder();
+public interface RegisterRegistryEvent<T> extends GenericEvent<T>, LifecycleEvent {
 
     /**
      * Registers a new {@link Registry}.
@@ -45,7 +44,7 @@ public interface RegisterRegistryEvent<T extends ScopedRegistryHolder> extends G
      * @param isDynamic If this registry will support additional registrations after the lifecycle
      * @throws DuplicateRegistrationException If the type is already registered
      */
-    <R> Registry<R> register(RegistryKey<R> key, boolean isDynamic) throws DuplicateRegistrationException;
+    Registry<T> register(RegistryKey<T> key, boolean isDynamic) throws DuplicateRegistrationException;
 
     /**
      * Registers a new {@link Registry}.
@@ -55,5 +54,19 @@ public interface RegisterRegistryEvent<T extends ScopedRegistryHolder> extends G
      * @param defaultValues The values to populate the registry with
      * @throws DuplicateRegistrationException If the type is already registered
      */
-    <R> Registry<R> register(RegistryKey<R> key, boolean isDynamic, Supplier<Map<ResourceKey, R>> defaultValues) throws DuplicateRegistrationException;
+    Registry<T> register(RegistryKey<T> key, boolean isDynamic, Supplier<Map<ResourceKey, T>> defaultValues) throws DuplicateRegistrationException;
+
+    interface GameScoped<T> extends RegisterRegistryEvent<T> {
+
+    }
+
+    interface EngineScoped<E extends Engine, T> extends RegisterRegistryEvent<T> {
+
+        TypeToken<E> getEngineGenericType();
+    }
+
+    interface WorldScoped<T> extends RegisterRegistryEvent<T> {
+
+        ResourceKey getWorldKey();
+    }
 }

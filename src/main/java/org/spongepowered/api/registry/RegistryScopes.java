@@ -29,6 +29,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * A marker annotation that helps the API consumer determine what {@link RegistryScope scope}
+ * the marked type should be found in the matched {@link ScopedRegistryHolder holder}.
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface RegistryScopes {

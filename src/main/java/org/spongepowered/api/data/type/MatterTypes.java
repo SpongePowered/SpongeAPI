@@ -43,7 +43,7 @@ public final class MatterTypes {
     public static final RegistryReference<MatterType> SOLID = MatterTypes.key(ResourceKey.sponge("solid"));
 
     // @formatter:on
-    
+
     private static RegistryReference<MatterType> key(final ResourceKey location) {
         return RegistryKey.of(Registries.MATTER_TYPE, location).asReference();
     }

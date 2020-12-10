@@ -27,7 +27,7 @@ package org.spongepowered.api.registry;
 import org.spongepowered.api.ResourceKey;
 
 /**
- * Represents an entry within a {@link Registry}.
+ * An entry within a {@link Registry}.
  *
  * @param <V> The type of the registry
  */

@@ -24,8 +24,11 @@
  */
 package org.spongepowered.api.registry;
 
+/**
+ * An enumeration of the different levels in which {@link Registry registries} may
+ * reside from least specific to specific.
+ */
 public enum RegistryScope {
-
     GAME,
     ENGINE,
     WORLD

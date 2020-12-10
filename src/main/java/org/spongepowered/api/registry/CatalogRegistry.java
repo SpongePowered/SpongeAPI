@@ -25,7 +25,6 @@
 package org.spongepowered.api.registry;
 
 import net.kyori.adventure.key.Key;
-import net.kyori.adventure.key.Keyed;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.plugin.PluginManager;
@@ -48,10 +47,10 @@ public interface CatalogRegistry {
      * @param suggestedId The suggested id to use
      * @param <T> The type of catalog
      * @param <E> The generic of the catalog (if applicable)
-     * @throws UnknownTypeException If the type provided has not been registered
+     * @throws TypeNotFoundException If the type provided has not been registered
      * @return The supplier
      */
-    <T extends CatalogType, E extends T> Supplier<E> provideSupplier(Class<T> catalogClass, String suggestedId) throws UnknownTypeException;
+    <T extends CatalogType, E extends T> Supplier<E> provideSupplier(Class<T> catalogClass, String suggestedId) throws TypeNotFoundException;
 
     /**
      * Attempts to retrieve the specific type of {@link CatalogType} based on

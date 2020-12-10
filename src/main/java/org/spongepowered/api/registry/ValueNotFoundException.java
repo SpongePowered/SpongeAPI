@@ -24,18 +24,17 @@
  */
 package org.spongepowered.api.registry;
 
-import org.spongepowered.api.util.ResettableBuilder;
+public final class ValueNotFoundException extends RuntimeException {
 
-public interface BuilderRegistry {
+    public ValueNotFoundException(final String message) {
+        super(message);
+    }
 
-    /**
-     * Gets a builder of the desired class type, examples may include:
-     * {@link org.spongepowered.api.item.inventory.ItemStack.Builder}, etc.
-     *
-     * @param builderClass The class of the builder
-     * @param <T> The type of builder
-     * @throws TypeNotFoundException If the type provided has not been registered
-     * @return The builder, if available
-     */
-    <T extends ResettableBuilder<?, ? super T>> T provideBuilder(Class<T> builderClass) throws TypeNotFoundException;
+    public ValueNotFoundException(final String message, final Throwable cause) {
+        super(message, cause);
+    }
+
+    public ValueNotFoundException(final Throwable cause) {
+        super(cause);
+    }
 }

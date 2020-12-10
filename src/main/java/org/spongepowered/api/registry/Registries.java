@@ -27,6 +27,9 @@ package org.spongepowered.api.registry;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.data.type.MatterType;
 
+/**
+ * All {@link RegistryKey registries} provided by this API.
+ */
 public final class Registries {
 
     // @formatter:off

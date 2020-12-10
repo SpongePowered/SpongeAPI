@@ -24,9 +24,25 @@
  */
 package org.spongepowered.api.registry;
 
+/**
+ * A holder of {@link Registry registries} with a well defined {@link RegistryScope scope}
+ * that dictates the specificity of those registries.
+ *
+ * <p>See {@link org.spongepowered.api.Game}, {@link org.spongepowered.api.Engine}, and {@link org.spongepowered.api.world.World}</p>
+ */
 public interface ScopedRegistryHolder {
 
+    /**
+     * Gets the {@link RegistryScope scope}.
+     *
+     * @return The scope
+     */
     RegistryScope registryScope();
 
+    /**
+     * Gets the {@link RegistryHolder holder} containing {@link Registry registries}.
+     *
+     * @return The holder of registries
+     */
     RegistryHolder registries();
 }

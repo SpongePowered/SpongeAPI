@@ -24,18 +24,38 @@
  */
 package org.spongepowered.api.event.lifecycle;
 
+import com.google.gson.reflect.TypeToken;
+import org.spongepowered.api.Engine;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.event.GenericEvent;
 import org.spongepowered.api.registry.DuplicateRegistrationException;
-import org.spongepowered.api.registry.RegistryEntry;
 import org.spongepowered.api.registry.RegistryKey;
-import org.spongepowered.api.registry.ScopedRegistryHolder;
 
-public interface RegisterRegistryValueEvent<H extends ScopedRegistryHolder, T> extends GenericEvent<T>, LifecycleEvent {
-
-    H getHolder();
+public interface RegisterRegistryValueEvent<T> extends GenericEvent<T>, LifecycleEvent {
 
     RegistryKey<T> getRegistry();
 
-    RegistryEntry<T> register(ResourceKey key, T value) throws DuplicateRegistrationException;
+    RegisterRegistryValueEvent<T> register(ResourceKey key, T value) throws DuplicateRegistrationException;
+
+    interface GameScoped<T> extends RegisterRegistryValueEvent<T> {
+
+        @Override
+        GameScoped<T> register(ResourceKey key, T value) throws DuplicateRegistrationException;
+    }
+
+    interface EngineScoped<E extends Engine, T> extends RegisterRegistryValueEvent<T> {
+
+        TypeToken<E> getEngineGenericType();
+
+        @Override
+        EngineScoped<E, T> register(ResourceKey key, T value) throws DuplicateRegistrationException;
+    }
+
+    interface WorldScoped<T> extends RegisterRegistryValueEvent<T> {
+
+        ResourceKey getWorldKey();
+
+        @Override
+        WorldScoped<T> register(ResourceKey key, T value) throws DuplicateRegistrationException;
+    }
 }

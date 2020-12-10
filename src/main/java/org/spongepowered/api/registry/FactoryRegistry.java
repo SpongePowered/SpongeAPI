@@ -31,8 +31,8 @@ public interface FactoryRegistry {
      *
      * @param clazz The factory class
      * @param <T> The type of factory
-     * @throws UnknownTypeException If the type provided has not been registered
+     * @throws TypeNotFoundException If the type provided has not been registered
      * @return The factory
      */
-    <T> T provideFactory(Class<T> clazz) throws UnknownTypeException;
+    <T> T provideFactory(Class<T> clazz) throws TypeNotFoundException;
 }

@@ -24,19 +24,17 @@
  */
 package org.spongepowered.api.registry;
 
-public final class UnknownTypeException extends RuntimeException {
+public final class TypeNotFoundException extends RuntimeException {
 
-    private static final long serialVersionUID = 5985899461691485164L;
-
-    public UnknownTypeException(final String message) {
+    public TypeNotFoundException(final String message) {
         super(message);
     }
 
-    public UnknownTypeException(final String message, final Throwable cause) {
+    public TypeNotFoundException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
-    public UnknownTypeException(final Throwable cause) {
+    public TypeNotFoundException(final Throwable cause) {
         super(cause);
     }
 }
