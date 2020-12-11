@@ -33,6 +33,8 @@ import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.network.channel.ChannelRegistry;
 import org.spongepowered.api.plugin.PluginManager;
+import org.spongepowered.api.registry.BuilderProvider;
+import org.spongepowered.api.registry.FactoryProvider;
 import org.spongepowered.api.registry.GameRegistry;
 import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.ScopedRegistryHolder;
@@ -130,6 +132,20 @@ public interface Game extends ScopedRegistryHolder {
      * @return The game registry
      */
     GameRegistry getRegistry();
+
+    /**
+     * Retrieves the {@link BuilderProvider}.
+     *
+     * @return The builder provider
+     */
+    BuilderProvider getBuilderProvider();
+
+    /**
+     * Retrieves the {@link FactoryProvider}.
+     *
+     * @return The factory provider
+     */
+    FactoryProvider getFactoryProvider();
 
     /**
      * Gets the {@link DataManager} instance to register

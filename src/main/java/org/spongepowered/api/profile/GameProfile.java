@@ -65,7 +65,7 @@ public interface GameProfile extends Identifiable, Identity, DataSerializable {
      * @return The created profile
      */
     static GameProfile of(final UUID uniqueId, final @Nullable String name) {
-        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).of(uniqueId, name);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(uniqueId, name);
     }
 
     @Override

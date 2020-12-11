@@ -37,7 +37,7 @@ public interface PaletteType<T> extends CatalogType {
 
     @SuppressWarnings("unchecked")
     static <E> Builder<E> builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provide(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     Palette<T> create();

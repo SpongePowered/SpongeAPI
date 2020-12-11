@@ -45,7 +45,7 @@ public interface ResourcePack {
      *         downloaded from the URI
      */
     static ResourcePack fromUri(URI uri) throws FileNotFoundException {
-        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).fromUri(uri);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).fromUri(uri);
     }
 
     /**
@@ -56,7 +56,7 @@ public interface ResourcePack {
      * @return A ResourcePack with the specified URI
      */
     static ResourcePack fromUriUnchecked(URI uri) {
-        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).fromUriUnchecked(uri);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).fromUriUnchecked(uri);
     }
 
     /**

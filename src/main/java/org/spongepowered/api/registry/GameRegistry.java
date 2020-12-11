@@ -41,20 +41,6 @@ public interface GameRegistry {
     AdventureRegistry getAdventureRegistry();
 
     /**
-     * Retrieves the {@link BuilderProvider}.
-     *
-     * @return The builder registry
-     */
-    BuilderProvider getBuilderRegistry();
-
-    /**
-     * Retrieves the {@link FactoryProvider}.
-     *
-     * @return The factory registry
-     */
-    FactoryProvider getFactoryRegistry();
-
-    /**
      * Retrieves the {@link RecipeRegistry}.
      *
      * @return The recipe registry

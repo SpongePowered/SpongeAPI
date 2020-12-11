@@ -68,7 +68,7 @@ public interface Flag {
      * @return A {@link Builder}
      */
     static Flag.Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provide(Flag.Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Flag.Builder.class);
     }
 
     /**

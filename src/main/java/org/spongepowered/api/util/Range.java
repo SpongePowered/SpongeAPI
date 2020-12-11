@@ -44,7 +44,7 @@ public interface Range<T extends Number> {
      * @throws IllegalArgumentException if min is smaller than max
      */
     static Range<Integer> intRange(@Nullable final Integer min, @Nullable final Integer max) {
-        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).intRange(min, max);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).intRange(min, max);
     }
 
     /**
@@ -55,7 +55,7 @@ public interface Range<T extends Number> {
      * @return The range.
      */
     static Range<Double> doubleRange(@Nullable final Double min, @Nullable final Double max) {
-        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).doubleRange(min, max);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).doubleRange(min, max);
     }
 
     /**

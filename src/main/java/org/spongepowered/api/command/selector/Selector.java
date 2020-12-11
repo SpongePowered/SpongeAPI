@@ -58,7 +58,7 @@ public interface Selector {
      * @throws IllegalArgumentException if the string could not be parsed.
      */
     static Selector parse(final String string) throws IllegalArgumentException {
-        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).parse(string);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).parse(string);
     }
 
     /**
@@ -70,7 +70,7 @@ public interface Selector {
      * @return The builder
      */
     static Selector.Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provide(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**

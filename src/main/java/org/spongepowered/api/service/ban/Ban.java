@@ -47,7 +47,7 @@ public interface Ban {
      * @return A new ban builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provide(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**

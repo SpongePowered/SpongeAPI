@@ -51,12 +51,12 @@ public interface FluidState extends State<FluidState> {
      * @return The builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provide(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     static FluidState fromString(final String id) {
         Objects.requireNonNull(id);
-        return Sponge.getRegistry().getBuilderRegistry().provide(FluidState.Builder.class).fromString(id).build();
+        return Sponge.getGame().getBuilderProvider().provide(FluidState.Builder.class).fromString(id).build();
     }
 
     /**

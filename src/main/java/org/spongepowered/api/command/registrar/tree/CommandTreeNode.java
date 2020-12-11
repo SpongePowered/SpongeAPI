@@ -44,7 +44,7 @@ public interface CommandTreeNode<T extends CommandTreeNode<T>> {
      * @return The root node.
      */
     static CommandTreeNode<Root> root() {
-        return Sponge.getRegistry().getFactoryRegistry().provide(NodeFactory.class).createRoot();
+        return Sponge.getGame().getFactoryProvider().provide(NodeFactory.class).createRoot();
     }
 
     /**
@@ -53,7 +53,7 @@ public interface CommandTreeNode<T extends CommandTreeNode<T>> {
      * @return The literal.
      */
     static CommandTreeNode<Basic> literal() {
-        return Sponge.getRegistry().getFactoryRegistry().provide(NodeFactory.class).createLiteral();
+        return Sponge.getGame().getFactoryProvider().provide(NodeFactory.class).createLiteral();
     }
 
     /**

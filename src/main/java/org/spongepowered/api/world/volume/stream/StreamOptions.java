@@ -33,7 +33,7 @@ import org.spongepowered.math.vector.Vector3i;
 public interface StreamOptions {
 
     public static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provide(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     public static StreamOptions lazily() {

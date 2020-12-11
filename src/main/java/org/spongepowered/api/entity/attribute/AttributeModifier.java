@@ -46,7 +46,7 @@ public interface AttributeModifier extends Identifiable {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provide(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**

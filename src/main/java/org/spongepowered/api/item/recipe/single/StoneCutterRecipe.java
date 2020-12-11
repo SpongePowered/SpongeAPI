@@ -46,7 +46,7 @@ import java.util.function.Supplier;
 public interface StoneCutterRecipe extends Recipe {
 
     static StoneCutterRecipe.Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provide(StoneCutterRecipe.Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(StoneCutterRecipe.Builder.class);
     }
 
     @Override

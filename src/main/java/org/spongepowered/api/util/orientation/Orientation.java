@@ -44,7 +44,7 @@ public interface Orientation extends CatalogType {
      *      <tt>Optional.empty()</tt> if not found
      */
     static Optional<Orientation> fromDegrees(int degrees) {
-        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).fromDegrees(degrees);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).fromDegrees(degrees);
     }
 
     /**

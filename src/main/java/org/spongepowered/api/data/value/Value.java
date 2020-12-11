@@ -341,7 +341,7 @@ public interface Value<E> {
      * @return The constructed mutable value
      */
     static <V extends Value<E>, E> V genericMutableOf(Key<V> key, E element) {
-        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).mutableOf(key, element);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).mutableOf(key, element);
     }
 
     /**
@@ -357,7 +357,7 @@ public interface Value<E> {
      * @return The constructed immutable value
      */
     static <V extends Value<E>, E> V genericImmutableOf(Key<V> key, E element) {
-        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).immutableOf(key, element);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).immutableOf(key, element);
     }
 
     /**
