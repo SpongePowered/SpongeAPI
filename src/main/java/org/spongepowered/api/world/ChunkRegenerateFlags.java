@@ -26,8 +26,6 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.Sponge;
 
-import java.util.function.Supplier;
-
 /**
  * An enumeration of the possible {@link ChunkRegenerateFlag}s.
  *
@@ -43,12 +41,12 @@ public final class ChunkRegenerateFlags {
     /**
      * All the available flags are applied through the AND operator.
      */
-    public static final ChunkRegenerateFlag ALL = Sponge.getRegistry().getFactoryRegistry().provideFactory(ChunkRegenerateFlag.Factory.class).empty().withCreate(true).withEntities(true);
+    public static final ChunkRegenerateFlag ALL = Sponge.getRegistry().getFactoryRegistry().provide(ChunkRegenerateFlag.Factory.class).empty().withCreate(true).withEntities(true);
 
     /**
      * A flag that defines whether a chunk should be created.
      */
-    public static final ChunkRegenerateFlag CREATE = Sponge.getRegistry().getFactoryRegistry().provideFactory(ChunkRegenerateFlag.Factory.class).empty().withCreate(true);
+    public static final ChunkRegenerateFlag CREATE = Sponge.getRegistry().getFactoryRegistry().provide(ChunkRegenerateFlag.Factory.class).empty().withCreate(true);
 
     /**
      * A flag that defines whether a chunk should preserve entities.
@@ -56,12 +54,12 @@ public final class ChunkRegenerateFlags {
      * Note: It is up to the implementation to decide whether this will
      * include moving entities to safe locations.
      */
-    public static final ChunkRegenerateFlag ENTITIES = Sponge.getRegistry().getFactoryRegistry().provideFactory(ChunkRegenerateFlag.Factory.class).empty().withEntities(true);
+    public static final ChunkRegenerateFlag ENTITIES = Sponge.getRegistry().getFactoryRegistry().provide(ChunkRegenerateFlag.Factory.class).empty().withEntities(true);
 
     /**
      * No flags are set, triggers nothing.
      */
-    public static final ChunkRegenerateFlag NONE = Sponge.getRegistry().getFactoryRegistry().provideFactory(ChunkRegenerateFlag.Factory.class).empty();
+    public static final ChunkRegenerateFlag NONE = Sponge.getRegistry().getFactoryRegistry().provide(ChunkRegenerateFlag.Factory.class).empty();
 
     // SORTFIELDS:OFF
 

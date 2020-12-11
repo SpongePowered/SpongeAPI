@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.lifecycle;
 
-import com.google.gson.reflect.TypeToken;
 import org.spongepowered.api.Engine;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.event.GenericEvent;
@@ -35,7 +34,7 @@ import org.spongepowered.api.registry.RegistryKey;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public interface RegisterRegistryEvent<T> extends GenericEvent<T>, LifecycleEvent {
+public interface RegisterRegistryEvent extends LifecycleEvent {
 
     /**
      * Registers a new {@link Registry}.
@@ -44,7 +43,7 @@ public interface RegisterRegistryEvent<T> extends GenericEvent<T>, LifecycleEven
      * @param isDynamic If this registry will support additional registrations after the lifecycle
      * @throws DuplicateRegistrationException If the type is already registered
      */
-    Registry<T> register(RegistryKey<T> key, boolean isDynamic) throws DuplicateRegistrationException;
+    <T> Registry<T> register(RegistryKey<T> key, boolean isDynamic) throws DuplicateRegistrationException;
 
     /**
      * Registers a new {@link Registry}.
@@ -54,18 +53,15 @@ public interface RegisterRegistryEvent<T> extends GenericEvent<T>, LifecycleEven
      * @param defaultValues The values to populate the registry with
      * @throws DuplicateRegistrationException If the type is already registered
      */
-    Registry<T> register(RegistryKey<T> key, boolean isDynamic, Supplier<Map<ResourceKey, T>> defaultValues) throws DuplicateRegistrationException;
+    <T> Registry<T> register(RegistryKey<T> key, boolean isDynamic, Supplier<Map<ResourceKey, T>> defaultValues) throws DuplicateRegistrationException;
 
-    interface GameScoped<T> extends RegisterRegistryEvent<T> {
-
+    interface GameScoped extends RegisterRegistryEvent {
     }
 
-    interface EngineScoped<E extends Engine, T> extends RegisterRegistryEvent<T> {
-
-        TypeToken<E> getEngineGenericType();
+    interface EngineScoped<E extends Engine> extends RegisterRegistryEvent, GenericEvent<E> {
     }
 
-    interface WorldScoped<T> extends RegisterRegistryEvent<T> {
+    interface WorldScoped extends RegisterRegistryEvent {
 
         ResourceKey getWorldKey();
     }

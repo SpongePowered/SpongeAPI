@@ -26,6 +26,7 @@ package org.spongepowered.api.registry;
 
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.data.type.MatterType;
+import org.spongepowered.api.world.dimension.DimensionType;
 
 /**
  * All {@link RegistryKey registries} provided by this API.
@@ -33,6 +34,8 @@ import org.spongepowered.api.data.type.MatterType;
 public final class Registries {
 
     // @formatter:off
+
+    public static final RegistryKey<DimensionType> DIMENSION_TYPE = Registries.minecraftKey("dimension_type");
 
     public static final RegistryKey<MatterType> MATTER_TYPE = Registries.spongeKey("matter_type");
 

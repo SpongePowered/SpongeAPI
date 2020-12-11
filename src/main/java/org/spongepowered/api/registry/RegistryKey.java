@@ -37,11 +37,11 @@ import org.spongepowered.api.Sponge;
 public interface RegistryKey<T> {
 
     static <T> RegistryKey<T> of(final ResourceKey registry, final ResourceKey location) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(registry, location);
+        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).create(registry, location);
     }
 
     static <T> RegistryKey<T> of(final RegistryKey<T> registry, final ResourceKey location) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(registry.location(), location);
+        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).create(registry.location(), location);
     }
 
     /**

@@ -32,31 +32,16 @@ import java.util.function.Supplier;
  * Common {@link AccountDeletionResultType}s.
  */
 public class AccountDeletionResultTypes {
+
     // SORTFIELDS:ON
 
-    /**
-     * Represents an account deletion where the account does not exist.
-     */
-    public static final Supplier<AccountDeletionResultType> ABSENT =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResultType.class, "absent");
+    public static final Supplier<AccountDeletionResultType> ABSENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResultType.class, "absent");
 
-    /**
-     * Represents an account deletion where the deletion failed.
-     */
-    public static final Supplier<AccountDeletionResultType> FAILED =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResultType.class, "failed");
+    public static final Supplier<AccountDeletionResultType> FAILED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResultType.class, "failed");
 
-    /**
-     * Represents an account deletion where the deletion was successful.
-     */
-    public static final Supplier<AccountDeletionResultType> SUCCESS =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResultType.class, "success");
+    public static final Supplier<AccountDeletionResultType> SUCCESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResultType.class, "success");
 
-    /**
-     * Represents an account deletion where the account could not be deleted.
-     */
-    public static final Supplier<AccountDeletionResultType> UNDELETABLE =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResultType.class, "undeletable");
+    public static final Supplier<AccountDeletionResultType> UNDELETABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResultType.class, "undeletable");
 
     // SORTFIELDS:OFF
 

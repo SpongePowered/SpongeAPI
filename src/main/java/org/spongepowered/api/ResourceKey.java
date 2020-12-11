@@ -94,7 +94,7 @@ public interface ResourceKey extends Key {
      * @return The new builder instance
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().provide(Builder.class);
     }
 
     /**
@@ -129,7 +129,7 @@ public interface ResourceKey extends Key {
      * @return A new resource key
      */
     static ResourceKey resolve(final String formatted) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).resolve(formatted);
+        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).resolve(formatted);
     }
 
     /**

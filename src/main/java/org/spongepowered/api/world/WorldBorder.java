@@ -49,7 +49,7 @@ public interface WorldBorder {
      * @return The builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().provide(Builder.class);
     }
 
     /**

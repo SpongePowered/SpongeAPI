@@ -28,7 +28,6 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.data.SerializableDataHolderBuilder;
 import org.spongepowered.api.state.State;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.World;
@@ -52,12 +51,12 @@ public interface FluidState extends State<FluidState> {
      * @return The builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().provide(Builder.class);
     }
 
     static FluidState fromString(final String id) {
         Objects.requireNonNull(id);
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(FluidState.Builder.class).fromString(id).build();
+        return Sponge.getRegistry().getBuilderRegistry().provide(FluidState.Builder.class).fromString(id).build();
     }
 
     /**

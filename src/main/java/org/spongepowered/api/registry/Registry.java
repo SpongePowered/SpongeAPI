@@ -40,13 +40,6 @@ import java.util.stream.Stream;
 public interface Registry<T> extends Iterable<RegistryEntry<T>> {
 
     /**
-     * Gets the {@link RegistryHolder holder}.
-     *
-     * @return The holder
-     */
-    RegistryHolder holder();
-
-    /**
      * Gets the {@link ResourceKey key} identifying this registry.
      *
      * @return The key
@@ -71,7 +64,7 @@ public interface Registry<T> extends Iterable<RegistryEntry<T>> {
      * @param key The key
      * @return The entry or {@link Optional#empty()}
      */
-    Optional<RegistryEntry<T>> findEntry(ResourceKey key);
+    <V extends T> Optional<RegistryEntry<V>> findEntry(ResourceKey key);
 
     /**
      * {@link Registry#findEntry(ResourceKey)}, provided for convenience when using {@link RegistryKey}.
@@ -79,7 +72,7 @@ public interface Registry<T> extends Iterable<RegistryEntry<T>> {
      * @param key The key
      * @return The entry or {@link Optional#empty()}
      */
-    default Optional<RegistryEntry<T>> findEntry(final RegistryKey<T> key) {
+    default <V extends T> Optional<RegistryEntry<V>> findEntry(final RegistryKey<T> key) {
         Objects.requireNonNull(key, "key");
 
         return this.findEntry(key.location());
@@ -91,7 +84,7 @@ public interface Registry<T> extends Iterable<RegistryEntry<T>> {
      * @param key The key
      * @return The value or {@link Optional#empty()}
      */
-    Optional<T> findValue(ResourceKey key);
+    <V extends T> Optional<V> findValue(ResourceKey key);
 
     /**
      * {@link Registry#findValue(ResourceKey)}, provided for convenience when using {@link RegistryKey}.
@@ -99,7 +92,7 @@ public interface Registry<T> extends Iterable<RegistryEntry<T>> {
      * @param key The key
      * @return The value or {@link Optional#empty()}
      */
-    default Optional<T> findValue(final RegistryKey<T> key) {
+    default <V extends T> Optional<V> findValue(final RegistryKey<T> key) {
         Objects.requireNonNull(key, "key");
 
         return this.findValue(key.location());
@@ -116,7 +109,7 @@ public interface Registry<T> extends Iterable<RegistryEntry<T>> {
      * @param key The key
      * @return The value
      */
-    T value(ResourceKey key);
+    <V extends T> V value(ResourceKey key);
 
     /**
      * {@link Registry#value(ResourceKey)}, provided for convenience when using {@link RegistryKey}.
@@ -124,7 +117,7 @@ public interface Registry<T> extends Iterable<RegistryEntry<T>> {
      * @param key The key
      * @return The value
      */
-    default T value(final RegistryKey<T> key) {
+    default <V extends T> V value(final RegistryKey<T> key) {
         Objects.requireNonNull(key, "key");
 
         return this.value(key.location());
@@ -153,5 +146,5 @@ public interface Registry<T> extends Iterable<RegistryEntry<T>> {
      * @param value The value
      * @return The newly added entry, {@link Optional#empty()} otherwise
      */
-    Optional<RegistryEntry<T>> register(ResourceKey key, T value);
+    <V extends T> Optional<RegistryEntry<V>> register(ResourceKey key, V value);
 }

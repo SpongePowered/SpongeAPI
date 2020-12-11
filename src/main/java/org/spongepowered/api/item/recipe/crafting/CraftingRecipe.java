@@ -25,8 +25,6 @@
 package org.spongepowered.api.item.recipe.crafting;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
 import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
 import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.item.recipe.RecipeType;
@@ -59,7 +57,7 @@ public interface CraftingRecipe extends Recipe {
      * @return The builder.
      */
     static ShapedCraftingRecipe.Builder shapedBuilder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(ShapedCraftingRecipe.Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().provide(ShapedCraftingRecipe.Builder.class);
     }
 
     /**
@@ -68,7 +66,7 @@ public interface CraftingRecipe extends Recipe {
      * @return The builder.
      */
     static ShapelessCraftingRecipe.Builder shapelessBuilder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(ShapelessCraftingRecipe.Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().provide(ShapelessCraftingRecipe.Builder.class);
     }
 
     /**
@@ -77,7 +75,7 @@ public interface CraftingRecipe extends Recipe {
      * @return The builder.
      */
     static SpecialCraftingRecipe.Builder specialBuilder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(SpecialCraftingRecipe.Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().provide(SpecialCraftingRecipe.Builder.class);
     }
 
 }

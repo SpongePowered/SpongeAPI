@@ -48,7 +48,7 @@ public final class Timings {
     public static Timing of(final PluginContainer plugin, final String name) {
         Objects.requireNonNull(plugin, "PluginContainer cannot be null!");
         Objects.requireNonNull(name, "Timing name cannot be null!");
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).of(plugin, name, null);
+        return Sponge.getRegistry().getFactoryRegistry().provide(TimingsFactory.class).of(plugin, name, null);
     }
 
     /**
@@ -68,7 +68,7 @@ public final class Timings {
         Objects.requireNonNull(plugin, "PluginContainer cannot be null!");
         Objects.requireNonNull(name, "Timing name cannot be null!");
         Objects.requireNonNull(groupHandler, "Group Handler cannot be null!");
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).of(plugin, name, groupHandler);
+        return Sponge.getRegistry().getFactoryRegistry().provide(TimingsFactory.class).of(plugin, name, groupHandler);
     }
 
     /**
@@ -122,7 +122,7 @@ public final class Timings {
      * @return Enabled or not
      */
     public static boolean isTimingsEnabled() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).isTimingsEnabled();
+        return Sponge.getRegistry().getFactoryRegistry().provide(TimingsFactory.class).isTimingsEnabled();
     }
 
     /**
@@ -132,7 +132,7 @@ public final class Timings {
      * @param enabled Should timings be reported
      */
     public static void setTimingsEnabled(final boolean enabled) {
-        Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).setTimingsEnabled(enabled);
+        Sponge.getRegistry().getFactoryRegistry().provide(TimingsFactory.class).setTimingsEnabled(enabled);
     }
 
     /**
@@ -142,7 +142,7 @@ public final class Timings {
      * @return Enabled or not
      */
     public static boolean isVerboseTimingsEnabled() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).isVerboseTimingsEnabled();
+        return Sponge.getRegistry().getFactoryRegistry().provide(TimingsFactory.class).isVerboseTimingsEnabled();
     }
 
     /**
@@ -153,7 +153,7 @@ public final class Timings {
      * @param enabled Should high-frequency timings be reported
      */
     public static void setVerboseTimingsEnabled(final boolean enabled) {
-        Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).setVerboseTimingsEnabled(enabled);
+        Sponge.getRegistry().getFactoryRegistry().provide(TimingsFactory.class).setVerboseTimingsEnabled(enabled);
     }
 
     /**
@@ -162,7 +162,7 @@ public final class Timings {
      * @return Interval in ticks
      */
     public static int getHistoryInterval() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).getHistoryInterval();
+        return Sponge.getRegistry().getFactoryRegistry().provide(TimingsFactory.class).getHistoryInterval();
     }
 
     /**
@@ -174,7 +174,7 @@ public final class Timings {
      * @param interval Interval in ticks
      */
     public static void setHistoryInterval(final int interval) {
-        Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).setHistoryInterval(interval);
+        Sponge.getRegistry().getFactoryRegistry().provide(TimingsFactory.class).setHistoryInterval(interval);
     }
 
     /**
@@ -183,7 +183,7 @@ public final class Timings {
      * @return Duration in ticks
      */
     public static int getHistoryLength() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).getHistoryLength();
+        return Sponge.getRegistry().getFactoryRegistry().provide(TimingsFactory.class).getHistoryLength();
     }
 
     /**
@@ -198,14 +198,14 @@ public final class Timings {
      * @param length Duration in ticks
      */
     public static void setHistoryLength(final int length) {
-        Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).setHistoryLength(length);
+        Sponge.getRegistry().getFactoryRegistry().provide(TimingsFactory.class).setHistoryLength(length);
     }
 
     /**
      * Resets all timing data.
      */
     public static void reset() {
-        Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).reset();
+        Sponge.getRegistry().getFactoryRegistry().provide(TimingsFactory.class).reset();
     }
 
     /**
@@ -215,7 +215,7 @@ public final class Timings {
      * @param channel The channel to send report to
      */
     public static void generateReport(final Audience channel) {
-        Sponge.getRegistry().getFactoryRegistry().provideFactory(TimingsFactory.class).generateReport(channel);
+        Sponge.getRegistry().getFactoryRegistry().provide(TimingsFactory.class).generateReport(channel);
     }
 
 }

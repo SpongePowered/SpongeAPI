@@ -33,7 +33,6 @@ import org.spongepowered.api.user.UserManager;
 import org.spongepowered.api.util.Identifiable;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Predicate;
@@ -66,7 +65,7 @@ public interface GameProfile extends Identifiable, Identity, DataSerializable {
      * @return The created profile
      */
     static GameProfile of(final UUID uniqueId, final @Nullable String name) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).of(uniqueId, name);
+        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).of(uniqueId, name);
     }
 
     @Override

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.lifecycle;
 
-import com.google.gson.reflect.TypeToken;
 import org.spongepowered.api.Engine;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.event.GenericEvent;
@@ -43,12 +42,13 @@ public interface RegisterRegistryValueEvent<T> extends GenericEvent<T>, Lifecycl
         GameScoped<T> register(ResourceKey key, T value) throws DuplicateRegistrationException;
     }
 
-    interface EngineScoped<E extends Engine, T> extends RegisterRegistryValueEvent<T> {
+    // TODO Multi-param generics for GenericEvent
+    interface EngineScoped<T> extends RegisterRegistryValueEvent<T> {
 
-        TypeToken<E> getEngineGenericType();
+        Engine getEngine();
 
         @Override
-        EngineScoped<E, T> register(ResourceKey key, T value) throws DuplicateRegistrationException;
+        EngineScoped<T> register(ResourceKey key, T value) throws DuplicateRegistrationException;
     }
 
     interface WorldScoped<T> extends RegisterRegistryValueEvent<T> {

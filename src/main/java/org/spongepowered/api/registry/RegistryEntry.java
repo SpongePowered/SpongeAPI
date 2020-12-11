@@ -29,9 +29,9 @@ import org.spongepowered.api.ResourceKey;
 /**
  * An entry within a {@link Registry}.
  *
- * @param <V> The type of the registry
+ * @param <T> The type of the registry
  */
-public interface RegistryEntry<V> {
+public interface RegistryEntry<T> {
 
     /**
      * Gets the {@link ResourceKey key} this entry exists under in a {@link Registry}.
@@ -41,9 +41,9 @@ public interface RegistryEntry<V> {
     ResourceKey key();
 
     /**
-     * Gets the {@link V value} this entry points to.
+     * Gets the {@link T value} this entry points to.
      *
      * @return The value
      */
-    V value();
+    T value();
 }

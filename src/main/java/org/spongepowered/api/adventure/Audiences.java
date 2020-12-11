@@ -49,7 +49,7 @@ public final class Audiences {
      * @return An audience
      */
     public static Audience onlinePlayers() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).onlinePlayers();
+        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).onlinePlayers();
     }
 
     /**
@@ -61,7 +61,7 @@ public final class Audiences {
      */
     public static Audience withPermission(final String permission) {
         Objects.requireNonNull(permission);
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).withPermission(permission);
+        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).withPermission(permission);
     }
 
     /**
@@ -74,7 +74,7 @@ public final class Audiences {
     }
 
     private static Factory factory() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class);
+        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class);
     }
 
     public interface Factory {

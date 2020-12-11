@@ -28,13 +28,9 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.ComponentLike;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.NamedCatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.util.CatalogBuilder;
-import org.spongepowered.api.util.NamedCatalogBuilder;
-import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Collection;
 import java.util.List;
@@ -51,7 +47,7 @@ public interface Advancement extends ComponentLike, CatalogType {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().provide(Builder.class);
     }
 
     /**

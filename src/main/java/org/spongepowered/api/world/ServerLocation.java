@@ -63,35 +63,35 @@ import java.util.function.BiFunction;
 public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDataHolder.Mutable, Location<ServerWorld> {
 
     static ServerLocation of(final ServerWorld world, final double x, final double y, final double z) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(world, new Vector3d(x, y, z));
+        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).create(world, new Vector3d(x, y, z));
     }
 
     static ServerLocation of(final ResourceKey worldKey, final double x, final double y, final double z) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(worldKey, new Vector3d(x, y, z));
+        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).create(worldKey, new Vector3d(x, y, z));
     }
 
     static ServerLocation of(final ServerWorld world, final Vector3d position) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(world, position);
+        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).create(world, position);
     }
 
     static ServerLocation of(final ResourceKey worldKey, final Vector3d position) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(worldKey, position);
+        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).create(worldKey, position);
     }
 
     static ServerLocation of(final ServerWorld world, final int x, final int y, final int z) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(world, new Vector3i(x, y, z));
+        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).create(world, new Vector3i(x, y, z));
     }
 
     static ServerLocation of(final ResourceKey worldKey, final int x, final int y, final int z) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(worldKey, new Vector3i(x, y, z));
+        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).create(worldKey, new Vector3i(x, y, z));
     }
 
     static ServerLocation of(final ServerWorld world, final Vector3i position) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(world, position);
+        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).create(world, position);
     }
 
     static ServerLocation of(final ResourceKey worldKey, final Vector3i position) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(worldKey, position);
+        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).create(worldKey, position);
     }
 
     /**

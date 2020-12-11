@@ -45,7 +45,7 @@ public interface AndCriterion extends OperatorCriterion {
      * @return The AND operation
      */
     static AdvancementCriterion of(AdvancementCriterion... criteria) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).of(criteria);
+        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).of(criteria);
     }
 
     /**
@@ -60,7 +60,7 @@ public interface AndCriterion extends OperatorCriterion {
      * @return The AND operation
      */
     static AdvancementCriterion of(Iterable<AdvancementCriterion> criteria) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).of(criteria);
+        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).of(criteria);
     }
 
     interface Factory {

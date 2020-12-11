@@ -41,7 +41,7 @@ public interface MinecraftDayTime {
      * 6:00am on Day 1.
      */
     static MinecraftDayTime minecraftEpoch() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(MinecraftDayTime.Factory.class).epoch();
+        return Sponge.getRegistry().getFactoryRegistry().provide(MinecraftDayTime.Factory.class).epoch();
     }
 
     /**
@@ -62,7 +62,7 @@ public interface MinecraftDayTime {
      * @throws IllegalArgumentException if the duration is negative
      */
     static MinecraftDayTime ofInGameDuration(final Engine engine, final Duration duration) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(MinecraftDayTime.Factory.class).of(engine, duration);
+        return Sponge.getRegistry().getFactoryRegistry().provide(MinecraftDayTime.Factory.class).of(engine, duration);
     }
 
     /**
@@ -114,7 +114,7 @@ public interface MinecraftDayTime {
      *      violated.
      */
     static MinecraftDayTime of(final int day, final int hours, final int minutes) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(MinecraftDayTime.Factory.class).of(day, hours, minutes);
+        return Sponge.getRegistry().getFactoryRegistry().provide(MinecraftDayTime.Factory.class).of(day, hours, minutes);
     }
 
     /**
@@ -132,7 +132,7 @@ public interface MinecraftDayTime {
      * @throws IllegalArgumentException if the tick count is negative
      */
     static MinecraftDayTime of(final Engine engine, final Ticks ticks) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(MinecraftDayTime.Factory.class).of(engine, ticks);
+        return Sponge.getRegistry().getFactoryRegistry().provide(MinecraftDayTime.Factory.class).of(engine, ticks);
     }
 
     /**

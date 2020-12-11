@@ -27,7 +27,6 @@ package org.spongepowered.api.block;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.block.entity.BlockEntityArchetype;
-import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.SerializableDataHolderBuilder;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataView;
@@ -56,7 +55,7 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
     Supplier<BlockSnapshot> NONE = BlockSnapshot::empty;
 
     static BlockSnapshot empty() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class).empty();
+        return Sponge.getRegistry().getBuilderRegistry().provide(Builder.class).empty();
     }
 
     /**
@@ -65,7 +64,7 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().provide(Builder.class);
     }
 
     /**

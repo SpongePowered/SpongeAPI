@@ -48,7 +48,7 @@ public interface Ingredient extends Predicate<ItemStack> {
      * An empty ingredient.
      */
     static Ingredient empty() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).empty();
+        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).empty();
     }
 
     @Override
@@ -68,7 +68,7 @@ public interface Ingredient extends Predicate<ItemStack> {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().provide(Builder.class);
     }
 
     /**

@@ -93,7 +93,7 @@ public interface Ticks {
      * @return A {@link Ticks}
      */
     static Ticks zero() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Ticks.Factory.class).zero();
+        return Sponge.getRegistry().getFactoryRegistry().provide(Ticks.Factory.class).zero();
     }
 
     /**
@@ -102,7 +102,7 @@ public interface Ticks {
      * @return A {@link Ticks}
      */
     static Ticks single() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Ticks.Factory.class).single();
+        return Sponge.getRegistry().getFactoryRegistry().provide(Ticks.Factory.class).single();
     }
 
     /**
@@ -111,7 +111,7 @@ public interface Ticks {
      * @return A {@link Ticks}
      */
     static Ticks minecraftHour() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Ticks.Factory.class).minecraftHour();
+        return Sponge.getRegistry().getFactoryRegistry().provide(Ticks.Factory.class).minecraftHour();
     }
 
     /**
@@ -120,7 +120,7 @@ public interface Ticks {
      * @return A {@link Ticks}
      */
     static Ticks minecraftDay() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Ticks.Factory.class).minecraftDay();
+        return Sponge.getRegistry().getFactoryRegistry().provide(Ticks.Factory.class).minecraftDay();
     }
 
     /**
@@ -133,7 +133,7 @@ public interface Ticks {
      * @return A {@link Ticks} object that represents the number of ticks.
      */
     static Ticks of(final long ticks) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).of(ticks);
+        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).of(ticks);
     }
 
     /**
@@ -153,7 +153,7 @@ public interface Ticks {
      *      be expected to be run on the given engine in an ideal scenario.
      */
     static Ticks ofWallClockTime(final Engine engine, final long time, final TemporalUnit temporalUnit) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).ofWallClockTime(engine, time, temporalUnit);
+        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).ofWallClockTime(engine, time, temporalUnit);
     }
 
     /**
@@ -231,7 +231,7 @@ public interface Ticks {
      *      be expected to be run in an ideal scenario.
      */
     static Ticks ofMinecraftSeconds(final Engine engine, final long seconds) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).ofMinecraftSeconds(engine, seconds);
+        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).ofMinecraftSeconds(engine, seconds);
     }
 
     /**
@@ -249,7 +249,7 @@ public interface Ticks {
      *      be expected to be run in an ideal scenario.
      */
     static Ticks ofMinecraftMinutes(final Engine engine, final long minutes) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).ofMinecraftSeconds(engine, minutes * 60);
+        return Sponge.getRegistry().getFactoryRegistry().provide(Factory.class).ofMinecraftSeconds(engine, minutes * 60);
     }
 
     /**

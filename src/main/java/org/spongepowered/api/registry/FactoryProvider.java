@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.registry;
 
-public interface FactoryRegistry {
+public interface FactoryProvider {
 
     /**
      * Provides a factory used to create instances of the specified type
@@ -34,5 +34,5 @@ public interface FactoryRegistry {
      * @throws TypeNotFoundException If the type provided has not been registered
      * @return The factory
      */
-    <T> T provideFactory(Class<T> clazz) throws TypeNotFoundException;
+    <T> T provide(Class<T> clazz) throws TypeNotFoundException;
 }

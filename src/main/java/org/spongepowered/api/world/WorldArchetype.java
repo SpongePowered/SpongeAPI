@@ -54,7 +54,7 @@ public interface WorldArchetype extends CatalogType {
      * @return A new builder instance
      */
     static WorldArchetype.Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getRegistry().getBuilderRegistry().provide(Builder.class);
     }
 
     /**
