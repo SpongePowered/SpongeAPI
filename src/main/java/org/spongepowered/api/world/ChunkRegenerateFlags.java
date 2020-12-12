@@ -41,12 +41,12 @@ public final class ChunkRegenerateFlags {
     /**
      * All the available flags are applied through the AND operator.
      */
-    public static final ChunkRegenerateFlag ALL = Sponge.getGame().getFactoryProvider().provide(ChunkRegenerateFlag.Factory.class).empty().withCreate(true).withEntities(true);
+    public static final ChunkRegenerateFlag ALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkRegenerateFlag.class, "all");
 
     /**
      * A flag that defines whether a chunk should be created.
      */
-    public static final ChunkRegenerateFlag CREATE = Sponge.getGame().getFactoryProvider().provide(ChunkRegenerateFlag.Factory.class).empty().withCreate(true);
+    public static final ChunkRegenerateFlag CREATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkRegenerateFlag.class, "create");
 
     /**
      * A flag that defines whether a chunk should preserve entities.
@@ -54,12 +54,12 @@ public final class ChunkRegenerateFlags {
      * Note: It is up to the implementation to decide whether this will
      * include moving entities to safe locations.
      */
-    public static final ChunkRegenerateFlag ENTITIES = Sponge.getGame().getFactoryProvider().provide(ChunkRegenerateFlag.Factory.class).empty().withEntities(true);
+    public static final ChunkRegenerateFlag ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkRegenerateFlag.class, "entities");
 
     /**
      * No flags are set, triggers nothing.
      */
-    public static final ChunkRegenerateFlag NONE = Sponge.getGame().getFactoryProvider().provide(ChunkRegenerateFlag.Factory.class).empty();
+    public static final ChunkRegenerateFlag NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkRegenerateFlag.class, "none");
 
     // SORTFIELDS:OFF
 

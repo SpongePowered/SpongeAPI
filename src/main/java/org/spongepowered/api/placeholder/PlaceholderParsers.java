@@ -39,12 +39,12 @@ public final class PlaceholderParsers {
      * A parser that returns the associated source's current world, if
      * applicable, else the default world.
      */
-    static Supplier<PlaceholderParser> CURRENT_WORLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PlaceholderParser.class, "current_world");
+    public static final Supplier<PlaceholderParser> CURRENT_WORLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PlaceholderParser.class, "current_world");
 
     /**
      * A parser that returns the associated source's name.
      */
-    static Supplier<PlaceholderParser> NAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PlaceholderParser.class, "name");
+    public static final Supplier<PlaceholderParser> NAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PlaceholderParser.class, "name");
 
     // SORTFIELDS: OFF
 
