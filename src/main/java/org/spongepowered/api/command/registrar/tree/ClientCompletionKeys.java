@@ -100,9 +100,9 @@ public final class ClientCompletionKeys {
 
     public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "time");
 
-    public static Supplier<ClientCompletionKey<CommandTreeNode.Basic>> VEC2 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "VEC2");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> VEC2 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "VEC2");
 
-    public static Supplier<ClientCompletionKey<CommandTreeNode.Basic>> VEC3 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "VEC3");
+    public static final Supplier<ClientCompletionKey<CommandTreeNode.Basic>> VEC3 = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionKey.class, "VEC3");
 
     // SORTFIELDS: OFF
 
