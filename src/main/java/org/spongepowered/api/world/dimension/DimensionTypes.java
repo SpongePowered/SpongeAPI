@@ -40,6 +40,8 @@ public final class DimensionTypes {
 
     public static final RegistryReference<DimensionType> OVERWORLD = DimensionTypes.key(ResourceKey.sponge("overworld"));
 
+    public static final RegistryReference<DimensionType> OVERWORLD_CAVES = DimensionTypes.key(ResourceKey.sponge("overworld_caves"));
+
     public static final RegistryReference<DimensionType> THE_END = DimensionTypes.key(ResourceKey.sponge("the_end"));
 
     public static final RegistryReference<DimensionType> THE_NETHER = DimensionTypes.key(ResourceKey.sponge("the_nether"));
