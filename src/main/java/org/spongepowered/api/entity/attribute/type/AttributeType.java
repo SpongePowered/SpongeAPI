@@ -37,13 +37,6 @@ import java.util.Optional;
 public interface AttributeType extends CatalogType {
 
     /**
-     * Gets the parent attribute type of this attribute type.
-     *
-     * @return The parent type if present.
-     */
-    Optional<AttributeType> getParent();
-
-    /**
      * Gets the default value of this attribute type before any {@link AttributeModifier}s are applied.
      *
      * @return The default value of this attribute type.
