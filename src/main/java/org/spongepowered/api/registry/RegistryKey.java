@@ -36,20 +36,16 @@ import org.spongepowered.api.Sponge;
  */
 public interface RegistryKey<T> {
 
-    static <T> RegistryKey<T> of(final ResourceKey registry, final ResourceKey location) {
+    static <T> RegistryKey<T> of(final RegistryLocation registry, final ResourceKey location) {
         return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(registry, location);
     }
 
-    static <T> RegistryKey<T> of(final RegistryKey<T> registry, final ResourceKey location) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(registry.location(), location);
-    }
-
     /**
-     * Gets the {@link ResourceKey key} defining the parent registry.
+     * Gets the {@link RegistryLocation location} defining the parent registry.
      *
-     * @return The key
+     * @return The location
      */
-    ResourceKey registry();
+    RegistryLocation registry();
 
     /**
      * Gets the {@link ResourceKey key} defining the id. See the documentation on resource key for
@@ -68,6 +64,6 @@ public interface RegistryKey<T> {
 
     interface Factory {
 
-        <T> RegistryKey<T> create(ResourceKey registry, ResourceKey location);
+        <T> RegistryKey<T> create(RegistryLocation registry, ResourceKey location);
     }
 }

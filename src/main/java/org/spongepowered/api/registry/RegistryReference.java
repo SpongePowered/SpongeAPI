@@ -82,6 +82,6 @@ public interface RegistryReference<T> extends RegistryKey<T> {
      * @return The value
      */
     default Optional<T> find(final RegistryHolder holder) {
-        return holder.<T>findRegistry(this.registry()).flatMap(r -> r.findValue(this));
+        return holder.findRegistry(this).flatMap(r -> r.findValue(this));
     }
 }

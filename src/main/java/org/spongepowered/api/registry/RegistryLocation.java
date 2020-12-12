@@ -25,28 +25,25 @@
 package org.spongepowered.api.registry;
 
 import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.data.type.MatterType;
-import org.spongepowered.api.world.dimension.DimensionType;
+import org.spongepowered.api.Sponge;
 
-/**
- * All {@link RegistryKey registries} provided by this API.
- */
-@SuppressWarnings("unchecked")
-public final class Registries {
+import java.util.Objects;
 
-    // @formatter:off
+public interface RegistryLocation {
 
-    public static final RegistryKey<Registry<DimensionType>> DIMENSION_TYPE = Registries.minecraftKey("dimension_type");
+    static RegistryLocation of(final ResourceKey root, final ResourceKey location) {
+        Objects.requireNonNull(root, "root");
+        Objects.requireNonNull(location, "location");
 
-    public static final RegistryKey<Registry<MatterType>> MATTER_TYPE = Registries.spongeKey("matter_type");
-
-    // @formatter:on
-
-    private static <V> RegistryKey<V> minecraftKey(final String key) {
-        return RegistryKey.of(RegistryRoots.MINECRAFT, ResourceKey.minecraft(key));
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(root, location);
     }
 
-    private static <V> RegistryKey<V> spongeKey(final String key) {
-        return RegistryKey.of(RegistryRoots.SPONGE, ResourceKey.sponge(key));
+    ResourceKey root();
+
+    ResourceKey location();
+
+    interface Factory {
+
+        RegistryLocation create(ResourceKey root, ResourceKey location);
     }
 }
