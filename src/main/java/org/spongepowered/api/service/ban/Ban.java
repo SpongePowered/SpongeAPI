@@ -137,7 +137,7 @@ public interface Ban {
     /**
      * Represents a ban made on an IP.
      */
-    interface Ip extends Ban {
+    interface IP extends Ban {
 
         /**
          * Gets the address this ban applies to.

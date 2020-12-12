@@ -33,7 +33,7 @@ public class BanTypes {
     // SORTFIELDS:ON
 
     /**
-     * Represents a {@link Ban.Ip}.
+     * Represents a {@link Ban.IP}.
      */
     public static final Supplier<BanType> IP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BanType.class, "ip");
 
