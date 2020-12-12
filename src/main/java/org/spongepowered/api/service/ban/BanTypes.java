@@ -28,7 +28,7 @@ import org.spongepowered.api.Sponge;
 
 import java.util.function.Supplier;
 
-public class BanTypes {
+public final class BanTypes {
 
     // SORTFIELDS:ON
 

@@ -34,7 +34,7 @@ import java.util.function.Supplier;
 /**
  * An enumeration of all {@link RecipeType}s in vanilla minecraft.
  */
-public class RecipeTypes {
+public final class RecipeTypes {
     // SORTFIELDS:ON
 
     // CRAFTING_SHAPED - CRAFTING_SHAPELESS

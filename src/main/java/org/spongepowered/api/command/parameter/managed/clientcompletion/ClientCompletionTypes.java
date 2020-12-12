@@ -41,28 +41,24 @@ public final class ClientCompletionTypes {
      * Indicates to the client that the {@link ValueParser} will parse a
      * decimal number.
      */
-    public static final Supplier<ClientCompletionType> DECIMAL_NUMBER =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionType.class, "decimal_number");
+    public static final Supplier<ClientCompletionType> DECIMAL_NUMBER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionType.class, "decimal_number");
 
     /**
      * Indicates to the client that the {@link ValueParser} will parse Json.
      */
-    public static final Supplier<ClientCompletionType> JSON =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionType.class, "json");
+    public static final Supplier<ClientCompletionType> JSON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionType.class, "json");
 
     /**
      * Hides this element from the client - useful for if the
      * {@link ValueParser} does not parse any part of the string.
      */
-    public static final Supplier<ClientCompletionType> NONE =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionType.class, "none");
+    public static final Supplier<ClientCompletionType> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionType.class, "none");
 
     /**
      * Indicates to the client that the {@link ValueParser} is a
      * {@link ResourceKey}.
      */
-    public static final Supplier<ClientCompletionType> RESOURCE_KEY =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionType.class, "resource_key");
+    public static final Supplier<ClientCompletionType> RESOURCE_KEY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionType.class, "resource_key");
 
     /**
      * Indicates to the client that the {@link ValueParser} is a standard
@@ -70,15 +66,13 @@ public final class ClientCompletionTypes {
      *
      * <p>This is the default behaviour for any custom {@link ValueParser}.</p>
      */
-    public static final Supplier<ClientCompletionType> STRING =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionType.class, "string");
+    public static final Supplier<ClientCompletionType> STRING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionType.class, "string");
 
     /**
      * Indicates to the client that the {@link ValueParser} accepts a whole
      * number.
      */
-    public static final Supplier<ClientCompletionType> WHOLE_NUMBER =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionType.class, "whole_number");
+    public static final Supplier<ClientCompletionType> WHOLE_NUMBER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionType.class, "whole_number");
 
     // SORTFIELDS: OFF
 

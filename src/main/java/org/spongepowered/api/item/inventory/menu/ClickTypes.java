@@ -35,7 +35,7 @@ import java.util.function.Supplier;
 /**
  * An enumeration of the click types in {@link Container}s.
  */
-public class ClickTypes {
+public final class ClickTypes {
 
     // SORTFIELDS:ON
 

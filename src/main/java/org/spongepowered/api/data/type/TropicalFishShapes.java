@@ -32,7 +32,7 @@ import java.util.function.Supplier;
 /**
  * An enumeration of vanilla shapes for {@link TropicalFish}.
  */
-public class TropicalFishShapes {
+public final class TropicalFishShapes {
 
     // SORTFIELDS:ON
 

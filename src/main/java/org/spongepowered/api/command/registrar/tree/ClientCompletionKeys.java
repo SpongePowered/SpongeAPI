@@ -28,7 +28,7 @@ import org.spongepowered.api.Sponge;
 
 import java.util.function.Supplier;
 
-public class ClientCompletionKeys {
+public final class ClientCompletionKeys {
 
     // SORTFIELDS: ON
 

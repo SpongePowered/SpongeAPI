@@ -31,7 +31,7 @@ import java.util.function.Supplier;
 /**
  * Common {@link AccountDeletionResultType}s.
  */
-public class AccountDeletionResultTypes {
+public final class AccountDeletionResultTypes {
 
     // SORTFIELDS:ON
 
