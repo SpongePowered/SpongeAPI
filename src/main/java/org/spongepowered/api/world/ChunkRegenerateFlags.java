@@ -26,6 +26,8 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.Sponge;
 
+import java.util.function.Supplier;
+
 /**
  * An enumeration of the possible {@link ChunkRegenerateFlag}s.
  *
@@ -41,12 +43,12 @@ public final class ChunkRegenerateFlags {
     /**
      * All the available flags are applied through the AND operator.
      */
-    public static final ChunkRegenerateFlag ALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkRegenerateFlag.class, "all");
+    public static final Supplier<ChunkRegenerateFlag> ALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkRegenerateFlag.class, "all");
 
     /**
      * A flag that defines whether a chunk should be created.
      */
-    public static final ChunkRegenerateFlag CREATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkRegenerateFlag.class, "create");
+    public static final Supplier<ChunkRegenerateFlag> CREATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkRegenerateFlag.class, "create");
 
     /**
      * A flag that defines whether a chunk should preserve entities.
@@ -54,12 +56,12 @@ public final class ChunkRegenerateFlags {
      * Note: It is up to the implementation to decide whether this will
      * include moving entities to safe locations.
      */
-    public static final ChunkRegenerateFlag ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkRegenerateFlag.class, "entities");
+    public static final Supplier<ChunkRegenerateFlag> ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkRegenerateFlag.class, "entities");
 
     /**
      * No flags are set, triggers nothing.
      */
-    public static final ChunkRegenerateFlag NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkRegenerateFlag.class, "none");
+    public static final Supplier<ChunkRegenerateFlag> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkRegenerateFlag.class, "none");
 
     // SORTFIELDS:OFF
 
