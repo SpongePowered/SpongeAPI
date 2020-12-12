@@ -417,7 +417,7 @@ public final class Keys {
     /**
      * The type of the boat.
      */
-    public static Supplier<Key<Value<BoatType>>> BOAT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "boat_type");
+    public static final Supplier<Key<Value<BoatType>>> BOAT_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "boat_type");
 
     /**
      * The rotation of specific body parts of a {@link ArmorStand} or {@link Living}.
