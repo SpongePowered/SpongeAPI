@@ -54,6 +54,7 @@ import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.InstrumentType;
 import org.spongepowered.api.data.type.LlamaType;
+import org.spongepowered.api.data.type.MatterType;
 import org.spongepowered.api.data.type.MooshroomType;
 import org.spongepowered.api.data.type.NotePitch;
 import org.spongepowered.api.data.type.PandaGene;
@@ -130,6 +131,7 @@ import org.spongepowered.api.world.WorldArchetype;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.chunk.ChunkState;
 import org.spongepowered.api.world.difficulty.Difficulty;
+import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.gamerule.GameRule;
 import org.spongepowered.api.world.gen.GeneratorModifierType;
 import org.spongepowered.api.world.portal.PortalType;
@@ -206,7 +208,9 @@ public final class Registries {
 
     public static final RegistryKey<Registry<Difficulty>> DIFFICULTY = Registries.spongeKey("difficulty");
 
-    public static final RegistryKey<Registry<DismountType>> DISMOUNT_TYPE = Registries.spongeKey("dismount_type");
+    public static final RegistryKey<Registry<DimensionType>> DIMENSION_TYPE = Registries.spongeKey("dimension_type");
+
+    public static final RegistryKey<Registry<DismountType>> DISMOUNT_TYPE = Registries.minecraftKey("dismount_type");
 
     public static final RegistryKey<Registry<DisplaySlot>> DISPLAY_SLOT = Registries.spongeKey("display_slot");
 
@@ -265,6 +269,8 @@ public final class Registries {
     public static final RegistryKey<Registry<LightType>> LIGHT_TYPE = Registries.spongeKey("light_type");
 
     public static final RegistryKey<Registry<LlamaType>> LLAMA_TYPE = Registries.spongeKey("llama_type");
+
+    public static final RegistryKey<Registry<MatterType>> MATTER_TYPE = Registries.spongeKey("matter_type");
 
     public static final RegistryKey<Registry<Mirror>> MIRROR = Registries.spongeKey("mirror");
 
