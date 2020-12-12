@@ -26,6 +26,7 @@ package org.spongepowered.api.world.portal;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.ServerLocation;
 
@@ -43,12 +44,13 @@ public interface PortalType extends CatalogType {
      * <p>It is left up to the discretion of the plugin developer on how this is implemented.
      * Portals come in all shapes and sizes or none at all.</p>
      *
-     * <p>The location is meant to be a hint and should not be considered to be the exact
-     * final location of the resulting portal.</p>
+     * <p>The location and axis are meant to be hints and should not be considered to be the exact
+     * final location/orientation of the resulting portal.</p>
      *
      * @param location The location
+     * @param axis The axis
      */
-    void generatePortal(ServerLocation location);
+    void generatePortal(ServerLocation location, Axis axis);
 
     /**
      * Finds a {@link Portal} from a {@link ServerLocation location}.
