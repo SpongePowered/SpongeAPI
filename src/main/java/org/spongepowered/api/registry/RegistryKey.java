@@ -27,6 +27,8 @@ package org.spongepowered.api.registry;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 
+import java.util.function.Supplier;
+
 /**
  * Similar to {@link ResourceKey} but with a defined type and id of the parent registry.
  *
@@ -61,6 +63,13 @@ public interface RegistryKey<T> {
      * @return The reference
      */
     RegistryReference<T> asReference();
+
+    /**
+     * Generates a utility {@link DefaultedRegistryReference reference} used to assist in querying a value from this key
+     *
+     * @return The reference
+     */
+    DefaultedRegistryReference<T> asDefaultedReference(Supplier<RegistryHolder> defaultHolder);
 
     interface Factory {
 
