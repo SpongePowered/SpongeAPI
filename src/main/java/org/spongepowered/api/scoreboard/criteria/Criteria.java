@@ -93,13 +93,13 @@ public final class Criteria {
      * Represents a {@link Criterion} which causes an {@link Objective}
      * to have a score for a player incremented when they kill a player.
      */
-    public static final DefaultedRegistryReference<Criterion> PLAYER_KILL_COUNT = Criteria.key(ResourceKey.sponge("player_kill_count"));
+    public static final DefaultedRegistryReference<Criterion> PLAYER_KILL_COUNT = Criteria.key(ResourceKey.sponge("kill_count_players"));
 
     /**
      * Represents a {@link Criterion} which causes an {@link Objective}
      * to have a score for a player incremented when they kill an entity.
      */
-    public static final DefaultedRegistryReference<Criterion> TOTAL_KILL_COUNT = Criteria.key(ResourceKey.sponge("total_kill_count"));
+    public static final DefaultedRegistryReference<Criterion> TOTAL_KILL_COUNT = Criteria.key(ResourceKey.sponge("kill_count_all"));
 
     /**
      * Represents a {@link Criterion} which causes an {@link Objective}
@@ -112,7 +112,7 @@ public final class Criteria {
      * Represents a {@link Criterion} which causes an {@link Objective} to have
      * a score for a player represent their current xp.
      */
-    public static final DefaultedRegistryReference<Criterion> XP = Criteria.key(ResourceKey.sponge("xp"));
+    public static final DefaultedRegistryReference<Criterion> EXPERIENCE = Criteria.key(ResourceKey.sponge("experience"));
 
     // SORTFIELDS:OFF
 
