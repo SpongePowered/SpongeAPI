@@ -316,9 +316,9 @@ public final class Registries {
 
     public static final RegistryKey<Registry<Orientation>> ORIENTATION = Registries.spongeKey("orientation");
 
-    public static final RegistryKey<PackType> PACK_TYPE = Registries.spongeKey("pack_type");
+    public static final RegistryKey<Registry<PackType>> PACK_TYPE = Registries.spongeKey("pack_type");
 
-    public static final RegistryKey<PackVersion> PACK_VERSION=Registries.spongeKey("pack_version");
+    public static final RegistryKey<Registry<PackVersion>> PACK_VERSION = Registries.spongeKey("pack_version");
 
     public static final RegistryKey<Registry<PaletteType<?>>> PALETTE_TYPE = Registries.spongeKey("palette_type");
 
