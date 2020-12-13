@@ -50,6 +50,7 @@ import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.network.RemoteConnection;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.ResettableBuilder;
@@ -189,7 +190,7 @@ public interface Parameter {
      * @param valueClass The type of value class
      * @return The {@link Value.Builder}
      */
-    static <T, V extends ValueParameter<T>> Value.Builder<T> builder(@NonNull final Class<T> valueClass, @NonNull final Supplier<V> parameter) {
+    static <T, V extends ValueParameter<T>> Value.Builder<T> builder(@NonNull final Class<T> valueClass, @NonNull final DefaultedRegistryReference<V> parameter) {
         return Parameter.builder(valueClass, parameter.get());
     }
 
@@ -220,8 +221,7 @@ public interface Parameter {
      * @return The {@link Subcommand} for use in a {@link Parameter} chain
      */
     static Subcommand subcommand(final Command.@NonNull Parameterized subcommand, @NonNull final String alias, final String @NonNull... aliases) {
-        final Subcommand.Builder builder = Sponge.getRegistry()
-                .getBuilderRegistry().provide(Subcommand.Builder.class)
+        final Subcommand.Builder builder = Sponge.getGame().getBuilderProvider().provide(Subcommand.Builder.class)
                 .setSubcommand(subcommand)
                 .alias(alias);
         for (final String a : aliases) {
@@ -1138,7 +1138,7 @@ public interface Parameter {
              * @param parser The {@link ValueParameter} to use
              * @return This builder, for chaining
              */
-            default <V extends ValueParser<? extends T>> Builder<T> parser(@NonNull final Supplier<V> parser) {
+            default <V extends ValueParser<? extends T>> Builder<T> parser(@NonNull final DefaultedRegistryReference<V> parser) {
                 return this.parser(parser.get());
             }
 

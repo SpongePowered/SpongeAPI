@@ -24,29 +24,40 @@
  */
 package org.spongepowered.api.fluid;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class FluidTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<FluidType> EMPTY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FluidType.class, "empty");
+    public static final DefaultedRegistryReference<FluidType> EMPTY = FluidTypes.key(ResourceKey.sponge("empty"));
 
-    public static final Supplier<FluidType> FLOWING_LAVA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FluidType.class, "flowing_lava");
+    public static final DefaultedRegistryReference<FluidType> FLOWING_LAVA = FluidTypes.key(ResourceKey.sponge("flowing_lava"));
 
-    public static final Supplier<FluidType> FLOWING_WATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FluidType.class, "flowing_water");
+    public static final DefaultedRegistryReference<FluidType> FLOWING_WATER = FluidTypes.key(ResourceKey.sponge("flowing_water"));
 
-    public static final Supplier<FluidType> LAVA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FluidType.class, "lava");
+    public static final DefaultedRegistryReference<FluidType> LAVA = FluidTypes.key(ResourceKey.sponge("lava"));
 
-    public static final Supplier<FluidType> WATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FluidType.class, "water");
+    public static final DefaultedRegistryReference<FluidType> WATER = FluidTypes.key(ResourceKey.sponge("water"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private FluidTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<FluidType> key(final ResourceKey location) {
+        return RegistryKey.<FluidType>of(Registries.FLUID_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

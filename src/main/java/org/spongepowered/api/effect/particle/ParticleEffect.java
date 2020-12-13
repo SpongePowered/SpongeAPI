@@ -27,6 +27,7 @@ package org.spongepowered.api.effect.particle;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.math.vector.Vector3d;
 
@@ -151,7 +152,7 @@ public interface ParticleEffect extends DataSerializable {
          * @return This builder for chaining
          * @throws IllegalArgumentException If the specified value isn't valid
          */
-        default <V> Builder option(Supplier<? extends ParticleOption<V>> option, V value) throws IllegalArgumentException {
+        default <V> Builder option(final DefaultedRegistryReference<? extends ParticleOption<V>> option, V value) throws IllegalArgumentException {
             return this.option(option.get(), value);
         }
 

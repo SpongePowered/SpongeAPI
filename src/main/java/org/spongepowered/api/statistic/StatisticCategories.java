@@ -24,40 +24,48 @@
  */
 package org.spongepowered.api.statistic;
 
+import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.ItemType;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
 
 public final class StatisticCategories {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<StatisticCategory.ForCatalog<BlockType>> BLOCKS_BROKEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "blocks_broken");
+    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<BlockType>> BLOCKS_BROKEN = StatisticCategories.catalogKey(ResourceKey.sponge("blocks_broken"));
 
-    public static final Supplier<StatisticCategory> CUSTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "custom");
+    public static final DefaultedRegistryReference<StatisticCategory> CUSTOM = StatisticCategories.key(ResourceKey.sponge("custom"));
 
-    public static final Supplier<StatisticCategory.ForCatalog<EntityType<?>>> ENTITIES_KILLED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "entities_killed");
+    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<EntityType<?>>> ENTITIES_KILLED = StatisticCategories.catalogKey(ResourceKey.sponge("entities_killed"));
 
-    public static final Supplier<StatisticCategory.ForCatalog<ItemType>> ITEMS_BROKEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "items_broken");
+    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<ItemType>> ITEMS_BROKEN = StatisticCategories.catalogKey(ResourceKey.sponge("items_broken"));
 
-    public static final Supplier<StatisticCategory.ForCatalog<ItemType>> ITEMS_CRAFTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "items_crafted");
+    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<ItemType>> ITEMS_CRAFTED = StatisticCategories.catalogKey(ResourceKey.sponge("items_crafted"));
 
-    public static final Supplier<StatisticCategory.ForCatalog<ItemType>> ITEMS_DROPPED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "items_dropped");
+    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<ItemType>> ITEMS_DROPPED = StatisticCategories.catalogKey(ResourceKey.sponge("items_dropped"));
 
-    public static final Supplier<StatisticCategory.ForCatalog<ItemType>> ITEMS_PICKED_UP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "items_picked_up");
+    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<ItemType>> ITEMS_PICKED_UP = StatisticCategories.catalogKey(ResourceKey.sponge("items_picked_up"));
 
-    public static final Supplier<StatisticCategory.ForCatalog<ItemType>> ITEMS_USED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "items_used");
+    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<ItemType>> ITEMS_USED = StatisticCategories.catalogKey(ResourceKey.sponge("items_used"));
 
-    public static final Supplier<StatisticCategory.ForCatalog<EntityType<?>>> KILLED_BY_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StatisticCategory.class, "killed_by_entities");
+    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<EntityType<?>>> KILLED_BY_ENTITIES = StatisticCategories.catalogKey(ResourceKey.sponge("killed_by_entities"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
     private StatisticCategories() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<StatisticCategory> key(final ResourceKey location) {
+        return RegistryKey.<StatisticCategory>of(Registries.STATISTIC_CATEGORY.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
+
+    private static <T extends CatalogType> DefaultedRegistryReference<StatisticCategory.ForCatalog<T>> catalogKey(final ResourceKey location) {
+        return RegistryKey.<StatisticCategory.ForCatalog<T>>of(Registries.STATISTIC_CATEGORY.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

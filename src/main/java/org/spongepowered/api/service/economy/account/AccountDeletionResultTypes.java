@@ -24,30 +24,42 @@
  */
 package org.spongepowered.api.service.economy.account;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * Common {@link AccountDeletionResultType}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class AccountDeletionResultTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<AccountDeletionResultType> ABSENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResultType.class, "absent");
+    public static final DefaultedRegistryReference<AccountDeletionResultType> ABSENT = AccountDeletionResultTypes.key(ResourceKey.sponge("absent"));
 
-    public static final Supplier<AccountDeletionResultType> FAILED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResultType.class, "failed");
+    public static final DefaultedRegistryReference<AccountDeletionResultType> FAILED = AccountDeletionResultTypes.key(ResourceKey.sponge("failed"));
 
-    public static final Supplier<AccountDeletionResultType> SUCCESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResultType.class, "success");
+    public static final DefaultedRegistryReference<AccountDeletionResultType> SUCCESS = AccountDeletionResultTypes.key(ResourceKey.sponge("success"));
 
-    public static final Supplier<AccountDeletionResultType> UNDELETABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResultType.class, "undeletable");
+    public static final DefaultedRegistryReference<AccountDeletionResultType> UNDELETABLE = AccountDeletionResultTypes.key(ResourceKey.sponge("undeletable"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private AccountDeletionResultTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<AccountDeletionResultType> key(final ResourceKey location) {
+        return RegistryKey.<AccountDeletionResultType>of(Registries.ACCOUNT_DELETION_RESULT_TYPE.registry(), location).asDefaultedReference(() -> Sponge
+                .getGame().registries());
+    }
 }

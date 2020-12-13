@@ -24,52 +24,65 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link InstrumentType}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class InstrumentTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<InstrumentType> BANJO = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "banjo");
+    public static final DefaultedRegistryReference<InstrumentType> BANJO = InstrumentTypes.key(ResourceKey.sponge("banjo"));
 
-    public static final Supplier<InstrumentType> BASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "bass");
+    public static final DefaultedRegistryReference<InstrumentType> BASS = InstrumentTypes.key(ResourceKey.sponge("bass"));
 
-    public static final Supplier<InstrumentType> BASE_DRUM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "basedrum");
+    public static final DefaultedRegistryReference<InstrumentType> BASE_DRUM = InstrumentTypes.key(ResourceKey.sponge("basedrum"));
 
-    public static final Supplier<InstrumentType> BELL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "bell");
+    public static final DefaultedRegistryReference<InstrumentType> BELL = InstrumentTypes.key(ResourceKey.sponge("bell"));
 
-    public static final Supplier<InstrumentType> BIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "bit");
+    public static final DefaultedRegistryReference<InstrumentType> BIT = InstrumentTypes.key(ResourceKey.sponge("bit"));
 
-    public static final Supplier<InstrumentType> CHIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "chime");
+    public static final DefaultedRegistryReference<InstrumentType> CHIME = InstrumentTypes.key(ResourceKey.sponge("chime"));
 
-    public static final Supplier<InstrumentType> COW_BELL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "cow_bell");
+    public static final DefaultedRegistryReference<InstrumentType> COW_BELL = InstrumentTypes.key(ResourceKey.sponge("cow_bell"));
 
-    public static final Supplier<InstrumentType> DIDGERIDOO = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "didgeridoo");
+    public static final DefaultedRegistryReference<InstrumentType> DIDGERIDOO = InstrumentTypes.key(ResourceKey.sponge("didgeridoo"));
 
-    public static final Supplier<InstrumentType> FLUTE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "flute");
+    public static final DefaultedRegistryReference<InstrumentType> FLUTE = InstrumentTypes.key(ResourceKey.sponge("flute"));
 
-    public static final Supplier<InstrumentType> GUITAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "guitar");
+    public static final DefaultedRegistryReference<InstrumentType> GUITAR = InstrumentTypes.key(ResourceKey.sponge("guitar"));
 
-    public static final Supplier<InstrumentType> HARP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "harp");
+    public static final DefaultedRegistryReference<InstrumentType> HARP = InstrumentTypes.key(ResourceKey.sponge("harp"));
 
-    public static final Supplier<InstrumentType> HAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "hat");
+    public static final DefaultedRegistryReference<InstrumentType> HAT = InstrumentTypes.key(ResourceKey.sponge("hat"));
 
-    public static final Supplier<InstrumentType> IRON_XYLOPHONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "iron_xylophone");
+    public static final DefaultedRegistryReference<InstrumentType> IRON_XYLOPHONE = InstrumentTypes.key(ResourceKey.sponge("iron_xylophone"));
 
-    public static final Supplier<InstrumentType> PLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "pling");
+    public static final DefaultedRegistryReference<InstrumentType> PLING = InstrumentTypes.key(ResourceKey.sponge("pling"));
 
-    public static final Supplier<InstrumentType> SNARE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "snare");
+    public static final DefaultedRegistryReference<InstrumentType> SNARE = InstrumentTypes.key(ResourceKey.sponge("snare"));
 
-    public static final Supplier<InstrumentType> XYLOPHONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(InstrumentType.class, "xylophone");
+    public static final DefaultedRegistryReference<InstrumentType> XYLOPHONE = InstrumentTypes.key(ResourceKey.sponge("xylophone"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private InstrumentTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<InstrumentType> key(final ResourceKey location) {
+        return RegistryKey.<InstrumentType>of(Registries.INSTRUMENT_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

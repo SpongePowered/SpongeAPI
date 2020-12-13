@@ -24,31 +24,42 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class ArmorMaterials {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<ArmorMaterial> CHAINMAIL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorMaterial.class, "chainmail");
+    public static final DefaultedRegistryReference<ArmorMaterial> CHAINMAIL = ArmorMaterials.key(ResourceKey.sponge("chainmail"));
 
-    public static final Supplier<ArmorMaterial> DIAMOND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorMaterial.class, "diamond");
+    public static final DefaultedRegistryReference<ArmorMaterial> DIAMOND = ArmorMaterials.key(ResourceKey.sponge("diamond"));
 
-    public static final Supplier<ArmorMaterial> GOLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorMaterial.class, "gold");
+    public static final DefaultedRegistryReference<ArmorMaterial> GOLD = ArmorMaterials.key(ResourceKey.sponge("gold"));
 
-    public static final Supplier<ArmorMaterial> IRON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorMaterial.class, "iron");
+    public static final DefaultedRegistryReference<ArmorMaterial> IRON = ArmorMaterials.key(ResourceKey.sponge("iron"));
 
-    public static final Supplier<ArmorMaterial> LEATHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorMaterial.class, "leather");
+    public static final DefaultedRegistryReference<ArmorMaterial> LEATHER = ArmorMaterials.key(ResourceKey.sponge("leather"));
 
-    public static final Supplier<ArmorMaterial> TURTLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ArmorMaterial.class, "turtle");
+    public static final DefaultedRegistryReference<ArmorMaterial> TURTLE = ArmorMaterials.key(ResourceKey.sponge("turtle"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private ArmorMaterials() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<ArmorMaterial> key(final ResourceKey location) {
+        return RegistryKey.<ArmorMaterial>of(Registries.ARMOR_MATERIAL.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

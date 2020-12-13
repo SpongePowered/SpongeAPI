@@ -24,40 +24,53 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link CatType}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class CatTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<CatType> ALL_BLACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatType.class, "all_black");
+    public static final DefaultedRegistryReference<CatType> ALL_BLACK = CatTypes.key(ResourceKey.sponge("all_black"));
 
-    public static final Supplier<CatType> BLACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatType.class, "black");
+    public static final DefaultedRegistryReference<CatType> BLACK = CatTypes.key(ResourceKey.sponge("black"));
 
-    public static final Supplier<CatType> BRITISH_SHORTHAIR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatType.class, "british_shorthair");
+    public static final DefaultedRegistryReference<CatType> BRITISH_SHORTHAIR = CatTypes.key(ResourceKey.sponge("british_shorthair"));
 
-    public static final Supplier<CatType> CALICO = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatType.class, "calico");
+    public static final DefaultedRegistryReference<CatType> CALICO = CatTypes.key(ResourceKey.sponge("calico"));
 
-    public static final Supplier<CatType> JELLIE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatType.class, "jellie");
+    public static final DefaultedRegistryReference<CatType> JELLIE = CatTypes.key(ResourceKey.sponge("jellie"));
 
-    public static final Supplier<CatType> PERSIAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatType.class, "persian");
+    public static final DefaultedRegistryReference<CatType> PERSIAN = CatTypes.key(ResourceKey.sponge("persian"));
 
-    public static final Supplier<CatType> RAGDOLL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatType.class, "ragdoll");
+    public static final DefaultedRegistryReference<CatType> RAGDOLL = CatTypes.key(ResourceKey.sponge("ragdoll"));
 
-    public static final Supplier<CatType> RED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatType.class, "red");
+    public static final DefaultedRegistryReference<CatType> RED = CatTypes.key(ResourceKey.sponge("red"));
 
-    public static final Supplier<CatType> SIAMESE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatType.class, "siamese");
+    public static final DefaultedRegistryReference<CatType> SIAMESE = CatTypes.key(ResourceKey.sponge("siamese"));
 
-    public static final Supplier<CatType> WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CatType.class, "white");
+    public static final DefaultedRegistryReference<CatType> WHITE = CatTypes.key(ResourceKey.sponge("white"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private CatTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<CatType> key(final ResourceKey location) {
+        return RegistryKey.<CatType>of(Registries.CAT_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

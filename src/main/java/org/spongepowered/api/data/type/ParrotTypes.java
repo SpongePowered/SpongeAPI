@@ -24,30 +24,43 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link ParrotType}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class ParrotTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<ParrotType> BLUE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParrotType.class, "blue");
+    public static final DefaultedRegistryReference<ParrotType> BLUE = ParrotTypes.key(ResourceKey.sponge("blue"));
 
-    public static final Supplier<ParrotType> GREY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParrotType.class, "grey");
+    public static final DefaultedRegistryReference<ParrotType> GREY = ParrotTypes.key(ResourceKey.sponge("grey"));
 
-    public static final Supplier<ParrotType> GREEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParrotType.class, "green");
+    public static final DefaultedRegistryReference<ParrotType> GREEN = ParrotTypes.key(ResourceKey.sponge("green"));
 
-    public static final Supplier<ParrotType> RED_AND_BLUE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParrotType.class, "red_and_blue");
+    public static final DefaultedRegistryReference<ParrotType> RED_AND_BLUE = ParrotTypes.key(ResourceKey.sponge("red_and_blue"));
 
-    public static final Supplier<ParrotType> YELLOW_AND_BLUE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParrotType.class, "yellow_and_blue");
+    public static final DefaultedRegistryReference<ParrotType> YELLOW_AND_BLUE = ParrotTypes.key(ResourceKey.sponge("yellow_and_blue"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private ParrotTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<ParrotType> key(final ResourceKey location) {
+        return RegistryKey.<ParrotType>of(Registries.PARROT_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

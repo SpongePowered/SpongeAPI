@@ -24,25 +24,38 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class RaidStatuses {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<RaidStatus> LOSS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RaidStatus.class, "loss");
+    public static final DefaultedRegistryReference<RaidStatus> LOSS = RaidStatuses.key(ResourceKey.sponge("loss"));
 
-    public static final Supplier<RaidStatus> ONGOING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RaidStatus.class, "ongoing");
+    public static final DefaultedRegistryReference<RaidStatus> ONGOING = RaidStatuses.key(ResourceKey.sponge("ongoing"));
 
-    public static final Supplier<RaidStatus> STOPPED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RaidStatus.class, "stopped");
+    public static final DefaultedRegistryReference<RaidStatus> STOPPED = RaidStatuses.key(ResourceKey.sponge("stopped"));
 
-    public static final Supplier<RaidStatus> VICTORY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RaidStatus.class, "victory");
+    public static final DefaultedRegistryReference<RaidStatus> VICTORY = RaidStatuses.key(ResourceKey.sponge("victory"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private RaidStatuses() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<RaidStatus> key(final ResourceKey location) {
+        return RegistryKey.<RaidStatus>of(Registries.RAID_STATUS.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

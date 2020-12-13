@@ -25,11 +25,17 @@
 package org.spongepowered.api.data.persistence;
 
 import net.kyori.adventure.text.Component;
-import org.spongepowered.configurate.ConfigurationNode;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.fluid.FluidState;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.world.schematic.Schematic;
+import org.spongepowered.configurate.ConfigurationNode;
 import org.spongepowered.math.imaginary.Complexd;
 import org.spongepowered.math.imaginary.Complexf;
 import org.spongepowered.math.imaginary.Quaterniond;
@@ -53,72 +59,81 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.util.UUID;
-import java.util.function.Supplier;
 
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class DataTranslators {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<DataTranslator<BlockState>> BLOCK_STATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "block_state");
+    public static final DefaultedRegistryReference<DataTranslator<BlockState>> BLOCK_STATE = DataTranslators.key(ResourceKey.sponge("block_state"));
 
-    public static final Supplier<DataTranslator<Complexd>> COMPLEXD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "complexd");
+    public static final DefaultedRegistryReference<DataTranslator<Complexd>> COMPLEXD = DataTranslators.key(ResourceKey.sponge("complexd"));
 
-    public static final Supplier<DataTranslator<Complexf>> COMPLEXF = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "complexf");
+    public static final DefaultedRegistryReference<DataTranslator<Complexf>> COMPLEXF = DataTranslators.key(ResourceKey.sponge("complexf"));
 
-    public static final Supplier<DataTranslator<Component>> COMPONENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "component");
+    public static final DefaultedRegistryReference<DataTranslator<Component>> COMPONENT = DataTranslators.key(ResourceKey.sponge("component"));
 
-    public static final Supplier<DataTranslator<ConfigurationNode>> CONFIGURATION_NODE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "configuration_node");
+    public static final DefaultedRegistryReference<DataTranslator<ConfigurationNode>> CONFIGURATION_NODE = DataTranslators.key(ResourceKey.sponge("configuration_node"));
 
-    public static final Supplier<DataTranslator<FluidState>> FLUID_STATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "fluid_state");
+    public static final DefaultedRegistryReference<DataTranslator<FluidState>> FLUID_STATE = DataTranslators.key(ResourceKey.sponge("fluid_state"));
 
-    public static final Supplier<DataTranslator<Instant>> INSTANT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "instant");
+    public static final DefaultedRegistryReference<DataTranslator<Instant>> INSTANT = DataTranslators.key(ResourceKey.sponge("instant"));
 
-    public static final Supplier<DataTranslator<Schematic>> LEGACY_SCHEMATIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "legacy_schematic");
+    public static final DefaultedRegistryReference<DataTranslator<Schematic>> LEGACY_SCHEMATIC = DataTranslators.key(ResourceKey.sponge("legacy_schematic"));
 
-    public static final Supplier<DataTranslator<LocalDate>> LOCAL_DATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "local_date");
+    public static final DefaultedRegistryReference<DataTranslator<LocalDate>> LOCAL_DATE = DataTranslators.key(ResourceKey.sponge("local_date"));
 
-    public static final Supplier<DataTranslator<LocalDateTime>> LOCAL_DATE_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "local_date_time");
+    public static final DefaultedRegistryReference<DataTranslator<LocalDateTime>> LOCAL_DATE_TIME = DataTranslators.key(ResourceKey.sponge("local_date_time"));
 
-    public static final Supplier<DataTranslator<LocalTime>> LOCAL_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "local_time");
+    public static final DefaultedRegistryReference<DataTranslator<LocalTime>> LOCAL_TIME = DataTranslators.key(ResourceKey.sponge("local_time"));
 
-    public static final Supplier<DataTranslator<Schematic>> MOJANG_TEMPLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "mojang_template");
+    public static final DefaultedRegistryReference<DataTranslator<Schematic>> MOJANG_TEMPLATE = DataTranslators.key(ResourceKey.sponge("mojang_template"));
 
-    public static final Supplier<DataTranslator<Quaterniond>> QUATERNIOND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "quaterniond");
+    public static final DefaultedRegistryReference<DataTranslator<Quaterniond>> QUATERNIOND = DataTranslators.key(ResourceKey.sponge("quaterniond"));
 
-    public static final Supplier<DataTranslator<Quaternionf>> QUATERNIONF = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "quaternionf");
+    public static final DefaultedRegistryReference<DataTranslator<Quaternionf>> QUATERNIONF = DataTranslators.key(ResourceKey.sponge("quaternionf"));
 
-    public static final Supplier<DataTranslator<Schematic>> SCHEMATIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "schematic");
+    public static final DefaultedRegistryReference<DataTranslator<Schematic>> SCHEMATIC = DataTranslators.key(ResourceKey.sponge("schematic"));
 
-    public static final Supplier<DataTranslator<UUID>> UUID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "uuid");
+    public static final DefaultedRegistryReference<DataTranslator<UUID>> UUID = DataTranslators.key(ResourceKey.sponge("uuid"));
 
-    public static final Supplier<DataTranslator<Vector2d>> VECTOR_2_D = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_2_D");
+    public static final DefaultedRegistryReference<DataTranslator<Vector2d>> VECTOR_2_D = DataTranslators.key(ResourceKey.sponge("VECTOR_2_D"));
 
-    public static final Supplier<DataTranslator<Vector2f>> VECTOR_2_F = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_2_F");
+    public static final DefaultedRegistryReference<DataTranslator<Vector2f>> VECTOR_2_F = DataTranslators.key(ResourceKey.sponge("VECTOR_2_F"));
 
-    public static final Supplier<DataTranslator<Vector2i>> VECTOR_2_I = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_2_I");
+    public static final DefaultedRegistryReference<DataTranslator<Vector2i>> VECTOR_2_I = DataTranslators.key(ResourceKey.sponge("VECTOR_2_I"));
 
-    public static final Supplier<DataTranslator<Vector2l>> VECTOR_2_L = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_2_L");
+    public static final DefaultedRegistryReference<DataTranslator<Vector2l>> VECTOR_2_L = DataTranslators.key(ResourceKey.sponge("VECTOR_2_L"));
 
-    public static final Supplier<DataTranslator<Vector3d>> VECTOR_3_D = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_3_D");
+    public static final DefaultedRegistryReference<DataTranslator<Vector3d>> VECTOR_3_D = DataTranslators.key(ResourceKey.sponge("VECTOR_3_D"));
 
-    public static final Supplier<DataTranslator<Vector3f>> VECTOR_3_F = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_3_F");
+    public static final DefaultedRegistryReference<DataTranslator<Vector3f>> VECTOR_3_F = DataTranslators.key(ResourceKey.sponge("VECTOR_3_F"));
 
-    public static final Supplier<DataTranslator<Vector3i>> VECTOR_3_I = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_3_I");
+    public static final DefaultedRegistryReference<DataTranslator<Vector3i>> VECTOR_3_I = DataTranslators.key(ResourceKey.sponge("VECTOR_3_I"));
 
-    public static final Supplier<DataTranslator<Vector3l>> VECTOR_3_L = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_3_L");
+    public static final DefaultedRegistryReference<DataTranslator<Vector3l>> VECTOR_3_L = DataTranslators.key(ResourceKey.sponge("VECTOR_3_L"));
 
-    public static final Supplier<DataTranslator<Vector4d>> VECTOR_4_D = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_4_D");
+    public static final DefaultedRegistryReference<DataTranslator<Vector4d>> VECTOR_4_D = DataTranslators.key(ResourceKey.sponge("VECTOR_4_D"));
 
-    public static final Supplier<DataTranslator<Vector4f>> VECTOR_4_F = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_4_F");
+    public static final DefaultedRegistryReference<DataTranslator<Vector4f>> VECTOR_4_F = DataTranslators.key(ResourceKey.sponge("VECTOR_4_F"));
 
-    public static final Supplier<DataTranslator<Vector4i>> VECTOR_4_I = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_4_I");
+    public static final DefaultedRegistryReference<DataTranslator<Vector4i>> VECTOR_4_I = DataTranslators.key(ResourceKey.sponge("VECTOR_4_I"));
 
-    public static final Supplier<DataTranslator<Vector4l>> VECTOR_4_L = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "VECTOR_4_L");
+    public static final DefaultedRegistryReference<DataTranslator<Vector4l>> VECTOR_4_L = DataTranslators.key(ResourceKey.sponge("VECTOR_4_L"));
 
-    public static final Supplier<DataTranslator<ZonedDateTime>> ZONED_DATE_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataTranslator.class, "zoned_date_time");
+    public static final DefaultedRegistryReference<DataTranslator<ZonedDateTime>> ZONED_DATE_TIME = DataTranslators.key(ResourceKey.sponge("zoned_date_time"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private DataTranslators() {
+    }
+
+    private static <T> DefaultedRegistryReference<DataTranslator<T>> key(final ResourceKey location) {
+        return RegistryKey.<DataTranslator<T>>of(Registries.DATA_TRANSLATOR.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

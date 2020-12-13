@@ -24,45 +24,58 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.aquatic.fish.school.TropicalFish;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla shapes for {@link TropicalFish}.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class TropicalFishShapes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<TropicalFishShape> BETTY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "betty");
+    public static final DefaultedRegistryReference<TropicalFishShape> BETTY = TropicalFishShapes.key(ResourceKey.sponge("betty"));
 
-    public static final Supplier<TropicalFishShape> BLOCKFISH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "blockfish");
+    public static final DefaultedRegistryReference<TropicalFishShape> BLOCKFISH = TropicalFishShapes.key(ResourceKey.sponge("blockfish"));
 
-    public static final Supplier<TropicalFishShape> BRINELY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "brinely");
+    public static final DefaultedRegistryReference<TropicalFishShape> BRINELY = TropicalFishShapes.key(ResourceKey.sponge("brinely"));
 
-    public static final Supplier<TropicalFishShape> CLAYFISH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "clayfish");
+    public static final DefaultedRegistryReference<TropicalFishShape> CLAYFISH = TropicalFishShapes.key(ResourceKey.sponge("clayfish"));
 
-    public static final Supplier<TropicalFishShape> DASHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "dasher");
+    public static final DefaultedRegistryReference<TropicalFishShape> DASHER = TropicalFishShapes.key(ResourceKey.sponge("dasher"));
 
-    public static final Supplier<TropicalFishShape> FLOPPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "flopper");
+    public static final DefaultedRegistryReference<TropicalFishShape> FLOPPER = TropicalFishShapes.key(ResourceKey.sponge("flopper"));
 
-    public static final Supplier<TropicalFishShape> GLITTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "glitter");
+    public static final DefaultedRegistryReference<TropicalFishShape> GLITTER = TropicalFishShapes.key(ResourceKey.sponge("glitter"));
 
-    public static final Supplier<TropicalFishShape> KOB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "kob");
+    public static final DefaultedRegistryReference<TropicalFishShape> KOB = TropicalFishShapes.key(ResourceKey.sponge("kob"));
 
-    public static final Supplier<TropicalFishShape> SNOOPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "snooper");
+    public static final DefaultedRegistryReference<TropicalFishShape> SNOOPER = TropicalFishShapes.key(ResourceKey.sponge("snooper"));
 
-    public static final Supplier<TropicalFishShape> SPOTTY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "spotty");
+    public static final DefaultedRegistryReference<TropicalFishShape> SPOTTY = TropicalFishShapes.key(ResourceKey.sponge("spotty"));
 
-    public static final Supplier<TropicalFishShape> STRIPEY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "stripey");
+    public static final DefaultedRegistryReference<TropicalFishShape> STRIPEY = TropicalFishShapes.key(ResourceKey.sponge("stripey"));
 
-    public static final Supplier<TropicalFishShape> SUNSTREAK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TropicalFishShape.class, "sunstreak");
+    public static final DefaultedRegistryReference<TropicalFishShape> SUNSTREAK = TropicalFishShapes.key(ResourceKey.sponge("sunstreak"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private TropicalFishShapes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<TropicalFishShape> key(final ResourceKey location) {
+        return RegistryKey.<TropicalFishShape>of(Registries.TROPICAL_FISH_SHAPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

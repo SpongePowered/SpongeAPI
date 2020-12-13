@@ -24,46 +24,59 @@
  */
 package org.spongepowered.api.entity.attribute.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
- * An enumeration of {@link AttributeType}s.
+ * An enumeration of {@link AttributeTypes}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class AttributeTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<RangedAttributeType> GENERIC_ARMOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "generic.armor");
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ARMOR = AttributeTypes.rangedKey(ResourceKey.sponge("generic.armor"));
 
-    public static final Supplier<RangedAttributeType> GENERIC_ARMOR_TOUGHNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "generic.armor_toughness");
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ARMOR_TOUGHNESS = AttributeTypes.rangedKey(ResourceKey.sponge("generic.armor_toughness"));
 
-    public static final Supplier<RangedAttributeType> GENERIC_ATTACK_DAMAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "generic.attack_damage");
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ATTACK_DAMAGE = AttributeTypes.rangedKey(ResourceKey.sponge("generic.attack_damage"));
 
-    public static final Supplier<RangedAttributeType> GENERIC_ATTACK_KNOCKBACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "generic.attack_knockback");
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ATTACK_KNOCKBACK = AttributeTypes.rangedKey(ResourceKey.sponge("generic.attack_knockback"));
 
-    public static final Supplier<RangedAttributeType> GENERIC_ATTACK_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "generic.attack_speed");
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ATTACK_SPEED = AttributeTypes.rangedKey(ResourceKey.sponge("generic.attack_speed"));
 
-    public static final Supplier<RangedAttributeType> GENERIC_FLYING_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "generic.flying_speed");
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_FLYING_SPEED = AttributeTypes.rangedKey(ResourceKey.sponge("generic.flying_speed"));
 
-    public static final Supplier<RangedAttributeType> GENERIC_FOLLOW_RANGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "generic.follow_range");
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_FOLLOW_RANGE = AttributeTypes.rangedKey(ResourceKey.sponge("generic.follow_range"));
 
-    public static final Supplier<RangedAttributeType> GENERIC_KNOCKBACK_RESISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "generic.knockback_resistance");
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_KNOCKBACK_RESISTANCE = AttributeTypes.rangedKey(ResourceKey.sponge("generic.knockback_resistance"));
 
-    public static final Supplier<RangedAttributeType> GENERIC_LUCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "generic.luck");
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_LUCK = AttributeTypes.rangedKey(ResourceKey.sponge("generic.luck"));
 
-    public static final Supplier<RangedAttributeType> GENERIC_MAX_HEALTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "generic.max_health");
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_MAX_HEALTH = AttributeTypes.rangedKey(ResourceKey.sponge("generic.max_health"));
 
-    public static final Supplier<RangedAttributeType> GENERIC_MOVEMENT_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "generic.movement_speed");
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_MOVEMENT_SPEED = AttributeTypes.rangedKey(ResourceKey.sponge("generic.movement_speed"));
 
-    public static final Supplier<RangedAttributeType> HORSE_JUMP_STRENGTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "horse.jump_strength");
+    public static final DefaultedRegistryReference<RangedAttributeType> HORSE_JUMP_STRENGTH = AttributeTypes.rangedKey(ResourceKey.sponge("horse.jump_strength"));
 
-    public static final Supplier<RangedAttributeType> ZOMBIE_SPAWN_REINFORCEMENTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RangedAttributeType.class, "zombie.spawn_reinforcements");
+    public static final DefaultedRegistryReference<RangedAttributeType> ZOMBIE_SPAWN_REINFORCEMENTS = AttributeTypes.rangedKey(ResourceKey.sponge("zombie.spawn_reinforcements"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private AttributeTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<RangedAttributeType> rangedKey(final ResourceKey location) {
+        return RegistryKey.<RangedAttributeType>of(Registries.ATTRIBUTE_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

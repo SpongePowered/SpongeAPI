@@ -24,9 +24,13 @@
  */
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of the possible {@link ChunkRegenerateFlag}s.
@@ -35,20 +39,23 @@ import java.util.function.Supplier;
  * {@link ChunkRegenerateFlag#andFlag(ChunkRegenerateFlag)} and
  * {@link ChunkRegenerateFlag#andNotFlag(ChunkRegenerateFlag)} operators.</p>
  */
-@SuppressWarnings({"unused", "WeakerAccess"})
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class ChunkRegenerateFlags {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
     /**
      * All the available flags are applied through the AND operator.
      */
-    public static final Supplier<ChunkRegenerateFlag> ALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkRegenerateFlag.class, "all");
+    public static final DefaultedRegistryReference<ChunkRegenerateFlag> ALL = ChunkRegenerateFlags.key(ResourceKey.sponge("all"));
 
     /**
      * A flag that defines whether a chunk should be created.
      */
-    public static final Supplier<ChunkRegenerateFlag> CREATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkRegenerateFlag.class, "create");
+    public static final DefaultedRegistryReference<ChunkRegenerateFlag> CREATE = ChunkRegenerateFlags.key(ResourceKey.sponge("create"));
 
     /**
      * A flag that defines whether a chunk should preserve entities.
@@ -56,16 +63,21 @@ public final class ChunkRegenerateFlags {
      * Note: It is up to the implementation to decide whether this will
      * include moving entities to safe locations.
      */
-    public static final Supplier<ChunkRegenerateFlag> ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkRegenerateFlag.class, "entities");
+    public static final DefaultedRegistryReference<ChunkRegenerateFlag> ENTITIES = ChunkRegenerateFlags.key(ResourceKey.sponge("entities"));
 
     /**
      * No flags are set, triggers nothing.
      */
-    public static final Supplier<ChunkRegenerateFlag> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkRegenerateFlag.class, "none");
+    public static final DefaultedRegistryReference<ChunkRegenerateFlag> NONE = ChunkRegenerateFlags.key(ResourceKey.sponge("none"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private ChunkRegenerateFlags() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<ChunkRegenerateFlag> key(final ResourceKey location) {
+        return RegistryKey.<ChunkRegenerateFlag>of(Registries.CHUNK_REGENERATE_FLAG.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

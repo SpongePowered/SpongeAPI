@@ -24,16 +24,24 @@
  */
 package org.spongepowered.api.item.enchantment;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of known {@link EnchantmentType}s.
  *
  * <p>In vanilla the minimum level of these is 1, while the max levels vary.</p>
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class EnchantmentTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
@@ -42,7 +50,7 @@ public final class EnchantmentTypes {
      *
      * <p>In vanilla the maximum level is 1.</p>
      */
-    public static final Supplier<EnchantmentType> AQUA_AFFINITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "aqua_affinity");
+    public static final DefaultedRegistryReference<EnchantmentType> AQUA_AFFINITY = EnchantmentTypes.key(ResourceKey.sponge("aqua_affinity"));
 
     /**
      * Increases damages and causes slowness for a variable amount of time
@@ -51,136 +59,136 @@ public final class EnchantmentTypes {
      *
      * <p>In vanilla the maximum level is 5.</p>
      */
-    public static final Supplier<EnchantmentType> BANE_OF_ARTHROPODS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "bane_of_arthropods");
+    public static final DefaultedRegistryReference<EnchantmentType> BANE_OF_ARTHROPODS = EnchantmentTypes.key(ResourceKey.sponge("bane_of_arthropods"));
 
     /**
      * Prevents removal of the cursed items that reside in the armor slots.
      *
      * <p>In vanilla the maximum level is 1.</p>
      */
-    public static final Supplier<EnchantmentType> BINDING_CURSE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "binding_curse");
+    public static final DefaultedRegistryReference<EnchantmentType> BINDING_CURSE = EnchantmentTypes.key(ResourceKey.sponge("binding_curse"));
 
     /**
      * Reduces explosion damage.
      *
      * <p>In vanilla the maximum level is 4.</p>
      */
-    public static final Supplier<EnchantmentType> BLAST_PROTECTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "blast_protection");
+    public static final DefaultedRegistryReference<EnchantmentType> BLAST_PROTECTION = EnchantmentTypes.key(ResourceKey.sponge("blast_protection"));
 
-    public static final Supplier<EnchantmentType> CHANNELING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "channeling");
+    public static final DefaultedRegistryReference<EnchantmentType> CHANNELING = EnchantmentTypes.key(ResourceKey.sponge("channeling"));
 
     /**
      * Increases underwater movement speed.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final Supplier<EnchantmentType> DEPTH_STRIDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "depth_strider");
+    public static final DefaultedRegistryReference<EnchantmentType> DEPTH_STRIDER = EnchantmentTypes.key(ResourceKey.sponge("depth_strider"));
 
     /**
      * Increases mining speed.
      *
      * <p>In vanilla the maximum level is 5.</p>
      */
-    public static final Supplier<EnchantmentType> EFFICIENCY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "efficiency");
+    public static final DefaultedRegistryReference<EnchantmentType> EFFICIENCY = EnchantmentTypes.key(ResourceKey.sponge("efficiency"));
 
     /**
      * Reduces fall damage.
      *
      * <p>In vanilla the maximum level is 4.</p>
      */
-    public static final Supplier<EnchantmentType> FEATHER_FALLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "feather_falling");
+    public static final DefaultedRegistryReference<EnchantmentType> FEATHER_FALLING = EnchantmentTypes.key(ResourceKey.sponge("feather_falling"));
 
     /**
      * Sets the target on fire.
      *
      * <p>In vanilla the maximum level is 2.</p>
      */
-    public static final Supplier<EnchantmentType> FIRE_ASPECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "fire_aspect");
+    public static final DefaultedRegistryReference<EnchantmentType> FIRE_ASPECT = EnchantmentTypes.key(ResourceKey.sponge("fire_aspect"));
 
     /**
      * Reduces fire damage.
      *
      * <p>In vanilla the maximum level is 4.</p>
      */
-    public static final Supplier<EnchantmentType> FIRE_PROTECTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "fire_protection");
+    public static final DefaultedRegistryReference<EnchantmentType> FIRE_PROTECTION = EnchantmentTypes.key(ResourceKey.sponge("fire_protection"));
 
     /**
      * Sets your shot arrows on fire.
      *
      * <p>In vanilla the maximum level is 1.</p>
      */
-    public static final Supplier<EnchantmentType> FLAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "flame");
+    public static final DefaultedRegistryReference<EnchantmentType> FLAME = EnchantmentTypes.key(ResourceKey.sponge("flame"));
 
     /**
      * Increases block drops.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final Supplier<EnchantmentType> FORTUNE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "fortune");
+    public static final DefaultedRegistryReference<EnchantmentType> FORTUNE = EnchantmentTypes.key(ResourceKey.sponge("fortune"));
 
     /**
      * Creates frosted ice blocks when walking over water.
      *
      * <p>In vanilla the maximum level is 2.</p>
      */
-    public static final Supplier<EnchantmentType> FROST_WALKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "frost_walker");
+    public static final DefaultedRegistryReference<EnchantmentType> FROST_WALKER = EnchantmentTypes.key(ResourceKey.sponge("frost_walker"));
 
-    public static final Supplier<EnchantmentType> IMPALING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "impaling");
+    public static final DefaultedRegistryReference<EnchantmentType> IMPALING = EnchantmentTypes.key(ResourceKey.sponge("impaling"));
 
     /**
      * Causing shooting arrows to not consume regular arrows.
      *
      * <p>In vanilla the maximum level is 1.</p>
      */
-    public static final Supplier<EnchantmentType> INFINITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "infinity");
+    public static final DefaultedRegistryReference<EnchantmentType> INFINITY = EnchantmentTypes.key(ResourceKey.sponge("infinity"));
 
     /**
      * Increases attack knockback.
      *
      * <p>In vanilla the maximum level is 2.</p>
      */
-    public static final Supplier<EnchantmentType> KNOCKBACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "knockback");
+    public static final DefaultedRegistryReference<EnchantmentType> KNOCKBACK = EnchantmentTypes.key(ResourceKey.sponge("knockback"));
 
     /**
      * Causes mobs drop more loot.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final Supplier<EnchantmentType> LOOTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "looting");
+    public static final DefaultedRegistryReference<EnchantmentType> LOOTING = EnchantmentTypes.key(ResourceKey.sponge("looting"));
 
-    public static final Supplier<EnchantmentType> LOYALTY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "loyalty");
+    public static final DefaultedRegistryReference<EnchantmentType> LOYALTY = EnchantmentTypes.key(ResourceKey.sponge("loyalty"));
 
     /**
      * Increases luck while fishing.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final Supplier<EnchantmentType> LUCK_OF_THE_SEA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "luck_of_the_sea");
+    public static final DefaultedRegistryReference<EnchantmentType> LUCK_OF_THE_SEA = EnchantmentTypes.key(ResourceKey.sponge("luck_of_the_sea"));
 
     /**
      * Increases rate of fish biting your hook while fishing.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final Supplier<EnchantmentType> LURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "lure");
+    public static final DefaultedRegistryReference<EnchantmentType> LURE = EnchantmentTypes.key(ResourceKey.sponge("lure"));
 
     /**
      * Repair item durability with experience.
      *
      * <p>In vanilla the maximum level is 1.</p>
      */
-    public static final Supplier<EnchantmentType> MENDING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "mending");
+    public static final DefaultedRegistryReference<EnchantmentType> MENDING = EnchantmentTypes.key(ResourceKey.sponge("mending"));
 
-    public static final Supplier<EnchantmentType> MULTISHOT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "multishot");
+    public static final DefaultedRegistryReference<EnchantmentType> MULTISHOT = EnchantmentTypes.key(ResourceKey.sponge("multishot"));
 
-    public static final Supplier<EnchantmentType> PIERCING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "piercing");
+    public static final DefaultedRegistryReference<EnchantmentType> PIERCING = EnchantmentTypes.key(ResourceKey.sponge("piercing"));
 
     /**
      * Increases shot arrow damage.
      *
      * <p>In vanilla the maximum level is 5.</p>
      */
-    public static final Supplier<EnchantmentType> POWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "power");
+    public static final DefaultedRegistryReference<EnchantmentType> POWER = EnchantmentTypes.key(ResourceKey.sponge("power"));
 
     /**
      * Reduces projectile damage you take, for example from arrows, ghasts,
@@ -188,7 +196,7 @@ public final class EnchantmentTypes {
      *
      * <p>In vanilla the maximum level is 4.</p>
      */
-    public static final Supplier<EnchantmentType> PROJECTILE_PROTECTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "projectile_protection");
+    public static final DefaultedRegistryReference<EnchantmentType> PROJECTILE_PROTECTION = EnchantmentTypes.key(ResourceKey.sponge("projectile_protection"));
 
     /**
      * Reduces all damage, outside of a few sources that bypass armor, such as
@@ -196,32 +204,32 @@ public final class EnchantmentTypes {
      *
      * <p>In vanilla the maximum level is 4.</p>
      */
-    public static final Supplier<EnchantmentType> PROTECTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "protection");
+    public static final DefaultedRegistryReference<EnchantmentType> PROTECTION = EnchantmentTypes.key(ResourceKey.sponge("protection"));
 
     /**
      * Increases knockback by shot arrows.
      *
      * <p>In vanilla the maximum level is 2.</p>
      */
-    public static final Supplier<EnchantmentType> PUNCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "punch");
+    public static final DefaultedRegistryReference<EnchantmentType> PUNCH = EnchantmentTypes.key(ResourceKey.sponge("punch"));
 
-    public static final Supplier<EnchantmentType> QUICK_CHARGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "quick_charge");
+    public static final DefaultedRegistryReference<EnchantmentType> QUICK_CHARGE = EnchantmentTypes.key(ResourceKey.sponge("quick_charge"));
 
     /**
      * Extends underwater breathing time.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final Supplier<EnchantmentType> RESPIRATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "respiration");
+    public static final DefaultedRegistryReference<EnchantmentType> RESPIRATION = EnchantmentTypes.key(ResourceKey.sponge("respiration"));
 
-    public static final Supplier<EnchantmentType> RIPTIDE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "riptide");
+    public static final DefaultedRegistryReference<EnchantmentType> RIPTIDE = EnchantmentTypes.key(ResourceKey.sponge("riptide"));
 
     /**
      * Increases melee damage.
      *
      * <p>In vanilla the maximum level is 5.</p>
      */
-    public static final Supplier<EnchantmentType> SHARPNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "sharpness");
+    public static final DefaultedRegistryReference<EnchantmentType> SHARPNESS = EnchantmentTypes.key(ResourceKey.sponge("sharpness"));
 
     /**
      * Allows collection of blocks that are normally unobtainable, such as
@@ -229,7 +237,7 @@ public final class EnchantmentTypes {
      *
      * <p>In vanilla the maximum level is 1.</p>
      */
-    public static final Supplier<EnchantmentType> SILK_TOUCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "silk_touch");
+    public static final DefaultedRegistryReference<EnchantmentType> SILK_TOUCH = EnchantmentTypes.key(ResourceKey.sponge("silk_touch"));
 
     /**
      * Increases damage to "undead" mobs. In vanilla this includes skeletons,
@@ -238,44 +246,47 @@ public final class EnchantmentTypes {
      *
      * <p>In vanilla the maximum level is 5.</p>
      */
-    public static final Supplier<EnchantmentType> SMITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "smite");
+    public static final DefaultedRegistryReference<EnchantmentType> SMITE = EnchantmentTypes.key(ResourceKey.sponge("smite"));
 
-    public static final Supplier<EnchantmentType> SOUL_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "soul_speed");
+    public static final DefaultedRegistryReference<EnchantmentType> SOUL_SPEED = EnchantmentTypes.key(ResourceKey.sponge("soul_speed"));
 
     /**
      * Increases the damage of the sweeping attack.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final Supplier<EnchantmentType> SWEEPING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "sweeping");
+    public static final DefaultedRegistryReference<EnchantmentType> SWEEPING = EnchantmentTypes.key(ResourceKey.sponge("sweeping"));
 
     /**
      * Attackers are damaged when they deal damage to the wearer.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final Supplier<EnchantmentType> THORNS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "thorns");
+    public static final DefaultedRegistryReference<EnchantmentType> THORNS = EnchantmentTypes.key(ResourceKey.sponge("thorns"));
 
     /**
      * Increases effective durability.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final Supplier<EnchantmentType> UNBREAKING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "unbreaking");
+    public static final DefaultedRegistryReference<EnchantmentType> UNBREAKING = EnchantmentTypes.key(ResourceKey.sponge("unbreaking"));
 
     /**
      * Causes the item to disappear on death.
      *
      * <p>In vanilla the maximum level is 1.</p>
      */
-    public static final Supplier<EnchantmentType> VANISHING_CURSE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EnchantmentType.class, "vanishing_curse");
+    public static final DefaultedRegistryReference<EnchantmentType> VANISHING_CURSE = EnchantmentTypes.key(ResourceKey.sponge("vanishing_curse"));
+
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private EnchantmentTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
-
+    private static DefaultedRegistryReference<EnchantmentType> key(final ResourceKey location) {
+        return RegistryKey.<EnchantmentType>of(Registries.ENCHANTMENT_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

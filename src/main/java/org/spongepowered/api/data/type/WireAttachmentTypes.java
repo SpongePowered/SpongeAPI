@@ -24,26 +24,39 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link WireAttachmentType}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class WireAttachmentTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<WireAttachmentType> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WireAttachmentType.class, "none");
+    public static final DefaultedRegistryReference<WireAttachmentType> NONE = WireAttachmentTypes.key(ResourceKey.sponge("none"));
 
-    public static final Supplier<WireAttachmentType> SIDE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WireAttachmentType.class, "side");
+    public static final DefaultedRegistryReference<WireAttachmentType> SIDE = WireAttachmentTypes.key(ResourceKey.sponge("side"));
 
-    public static final Supplier<WireAttachmentType> UP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(WireAttachmentType.class, "up");
+    public static final DefaultedRegistryReference<WireAttachmentType> UP = WireAttachmentTypes.key(ResourceKey.sponge("up"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private WireAttachmentTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<WireAttachmentType> key(final ResourceKey location) {
+        return RegistryKey.<WireAttachmentType>of(Registries.WIRE_ATTACHMENT_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

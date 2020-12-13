@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.registry;
 
+import java.util.Optional;
+
 /**
  * A {@link RegistryReference reference} where the {@link RegistryHolder holder} is
  * given to us to search within a no-args {@code get()} method.
@@ -47,4 +49,6 @@ public interface DefaultedRegistryReference<T> extends RegistryReference<T> {
      * @return The value
      */
     T get();
+
+    Optional<T> find();
 }

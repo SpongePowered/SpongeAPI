@@ -29,6 +29,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.Key;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -37,7 +38,6 @@ import java.util.OptionalDouble;
 import java.util.OptionalInt;
 import java.util.OptionalLong;
 import java.util.Set;
-import java.util.function.Supplier;
 
 /**
  * A value holder is a holder of a particular set of {@link Value}s. While
@@ -78,8 +78,9 @@ public interface ValueContainer {
      * @param <E> The type of value
      * @return The value, if available
      */
-    default <E> Optional<E> get(Supplier<? extends Key<? extends Value<E>>> key) {
-        return this.get(key.get());
+    default <E> Optional<E> get(final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
+        final Optional<? extends Key<? extends Value<E>>> foundRegistry = key.find();
+        return foundRegistry.flatMap(this::get);
     }
 
     /**
@@ -92,7 +93,7 @@ public interface ValueContainer {
      * @param key The key to retrieve the value for
      * @return The value, if available
      */
-    default OptionalInt getInt(Key<? extends Value<Integer>> key) {
+    default OptionalInt getInt(final Key<? extends Value<Integer>> key) {
         return this.get(key).map(OptionalInt::of).orElseGet(OptionalInt::empty);
     }
 
@@ -106,7 +107,7 @@ public interface ValueContainer {
      * @param key The key to retrieve the value for
      * @return The value, if available
      */
-    default OptionalInt getInt(Supplier<? extends Key<? extends Value<Integer>>> key) {
+    default OptionalInt getInt(final DefaultedRegistryReference<? extends Key<? extends Value<Integer>>> key) {
         return this.get(key).map(OptionalInt::of).orElseGet(OptionalInt::empty);
     }
 
@@ -120,7 +121,7 @@ public interface ValueContainer {
      * @param key The key to retrieve the value for
      * @return The value, if available
      */
-    default OptionalDouble getDouble(Key<? extends Value<Double>> key) {
+    default OptionalDouble getDouble(final Key<? extends Value<Double>> key) {
         return this.get(key).map(OptionalDouble::of).orElseGet(OptionalDouble::empty);
     }
 
@@ -134,7 +135,7 @@ public interface ValueContainer {
      * @param key The key to retrieve the value for
      * @return The value, if available
      */
-    default OptionalDouble getDouble(Supplier<? extends Key<? extends Value<Double>>> key) {
+    default OptionalDouble getDouble(final DefaultedRegistryReference<? extends Key<? extends Value<Double>>> key) {
         return this.get(key).map(OptionalDouble::of).orElseGet(OptionalDouble::empty);
     }
 
@@ -148,7 +149,7 @@ public interface ValueContainer {
      * @param key The key to retrieve the value for
      * @return The value, if available
      */
-    default OptionalLong getLong(Key<? extends Value<Long>> key) {
+    default OptionalLong getLong(final Key<? extends Value<Long>> key) {
         return this.get(key).map(OptionalLong::of).orElseGet(OptionalLong::empty);
     }
 
@@ -162,7 +163,7 @@ public interface ValueContainer {
      * @param key The key to retrieve the value for
      * @return The value, if available
      */
-    default OptionalLong getLong(Supplier<? extends Key<? extends Value<Long>>> key) {
+    default OptionalLong getLong(final DefaultedRegistryReference<? extends Key<? extends Value<Long>>> key) {
         return this.get(key).map(OptionalLong::of).orElseGet(OptionalLong::empty);
     }
 
@@ -178,7 +179,7 @@ public interface ValueContainer {
      * @return The value
      * @throws NoSuchElementException If the value is not supported or present
      */
-    default <E> E require(Key<? extends Value<E>> key) {
+    default <E> E require(final Key<? extends Value<E>> key) {
         return this.get(key).orElseThrow(() -> new NoSuchElementException(String.format(
                 "Could not retrieve value for key '%s'", key.toString())));
     }
@@ -195,7 +196,7 @@ public interface ValueContainer {
      * @return The value
      * @throws NoSuchElementException If the value is not supported or present
      */
-    default <E> E require(Supplier<? extends Key<? extends Value<E>>> key) {
+    default <E> E require(final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
         return this.require(key.get());
     }
 
@@ -208,7 +209,7 @@ public interface ValueContainer {
      * @param <E> The type of value
      * @return The value, or null if not set
      */
-    default <E> @Nullable E getOrNull(Key<? extends Value<E>> key) {
+    default <E> @Nullable E getOrNull(final Key<? extends Value<E>> key) {
         final Optional<E> value = this.get(key);
         if (value.isPresent()) {
             return value.get();
@@ -228,7 +229,7 @@ public interface ValueContainer {
      * @param <E> The type of value
      * @return The value, or null if not set
      */
-    default <E> @Nullable E getOrNull(Supplier<? extends Key<? extends Value<E>>> key) {
+    default <E> @Nullable E getOrNull(final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
         return this.getOrNull(key.get());
     }
 
@@ -242,7 +243,7 @@ public interface ValueContainer {
      * @param <E> The type of value
      * @return The value, or default if not set
      */
-    default <E> E getOrElse(Key<? extends Value<E>> key, E defaultValue) {
+    default <E> E getOrElse(final Key<? extends Value<E>> key, E defaultValue) {
         return this.get(key).orElse(Objects.requireNonNull(defaultValue, "defaultValue"));
     }
 
@@ -256,7 +257,7 @@ public interface ValueContainer {
      * @param <E> The type of value
      * @return The value, or default if not set
      */
-    default <E> E getOrElse(Supplier<? extends Key<? extends Value<E>>> key, E defaultValue) {
+    default <E> E getOrElse(final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, E defaultValue) {
         return this.getOrElse(key.get(), defaultValue);
     }
 
@@ -278,7 +279,7 @@ public interface ValueContainer {
      * @param <V> The type of value
      * @return The value, if available
      */
-    default <E, V extends Value<E>> Optional<V> getValue(Supplier<? extends Key<V>> key) {
+    default <E, V extends Value<E>> Optional<V> getValue(final DefaultedRegistryReference<? extends Key<V>> key) {
         return this.getValue(key.get());
     }
 
@@ -295,7 +296,7 @@ public interface ValueContainer {
      * @return The value
      * @throws NoSuchElementException If the value is not supported or present
      */
-    default <E, V extends Value<E>> V requireValue(Supplier<? extends Key<V>> key) {
+    default <E, V extends Value<E>> V requireValue(final DefaultedRegistryReference<? extends Key<V>> key) {
         return this.requireValue(key.get());
     }
 
@@ -312,7 +313,7 @@ public interface ValueContainer {
      * @return The value
      * @throws NoSuchElementException If the value is not supported or present
      */
-    default <E, V extends Value<E>> V requireValue(Key<V> key) {
+    default <E, V extends Value<E>> V requireValue(final Key<V> key) {
         return this.getValue(key).orElseThrow(() -> new NoSuchElementException(String.format(
                 "Could not retrieve value for key '%s'", key.toString())));
     }
@@ -333,7 +334,7 @@ public interface ValueContainer {
      * @param key The key to check
      * @return True if the key and value backed by the key is supported
      */
-    default boolean supports(Supplier<? extends Key<?>> key) {
+    default boolean supports(final DefaultedRegistryReference<? extends Key<?>> key) {
         return this.supports(key.get());
     }
 
@@ -343,7 +344,7 @@ public interface ValueContainer {
      * @param value The base value to check
      * @return True if the base value is supported
      */
-    default boolean supports(Value<?> value) {
+    default boolean supports(final Value<?> value) {
         return this.supports(value.getKey());
     }
 

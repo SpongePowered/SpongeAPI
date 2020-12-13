@@ -24,34 +24,47 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link SkinPart}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class SkinParts {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<SkinPart> CAPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SkinPart.class, "cape");
+    public static final DefaultedRegistryReference<SkinPart> CAPE = SkinParts.key(ResourceKey.sponge("cape"));
 
-    public static final Supplier<SkinPart> HAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SkinPart.class, "hat");
+    public static final DefaultedRegistryReference<SkinPart> HAT = SkinParts.key(ResourceKey.sponge("hat"));
 
-    public static final Supplier<SkinPart> JACKET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SkinPart.class, "jacket");
+    public static final DefaultedRegistryReference<SkinPart> JACKET = SkinParts.key(ResourceKey.sponge("jacket"));
 
-    public static final Supplier<SkinPart> LEFT_PANTS_LEG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SkinPart.class, "left_pants_leg");
+    public static final DefaultedRegistryReference<SkinPart> LEFT_PANTS_LEG = SkinParts.key(ResourceKey.sponge("left_pants_leg"));
 
-    public static final Supplier<SkinPart> LEFT_SLEEVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SkinPart.class, "left_sleeve");
+    public static final DefaultedRegistryReference<SkinPart> LEFT_SLEEVE = SkinParts.key(ResourceKey.sponge("left_sleeve"));
 
-    public static final Supplier<SkinPart> RIGHT_PANTS_LEG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SkinPart.class, "right_pants_leg");
+    public static final DefaultedRegistryReference<SkinPart> RIGHT_PANTS_LEG = SkinParts.key(ResourceKey.sponge("right_pants_leg"));
 
-    public static final Supplier<SkinPart> RIGHT_SLEEVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SkinPart.class, "right_sleeve");
+    public static final DefaultedRegistryReference<SkinPart> RIGHT_SLEEVE = SkinParts.key(ResourceKey.sponge("right_sleeve"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private SkinParts() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<SkinPart> key(final ResourceKey location) {
+        return RegistryKey.<SkinPart>of(Registries.SKIN_PART.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

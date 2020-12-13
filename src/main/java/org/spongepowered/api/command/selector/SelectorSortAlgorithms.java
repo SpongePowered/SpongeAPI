@@ -24,47 +24,55 @@
  */
 package org.spongepowered.api.command.selector;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * Sort algorithms for selectors
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class SelectorSortAlgorithms {
 
-    private SelectorSortAlgorithms() {
-        throw new AssertionError("You should not attempt to instantiate this");
-    }
+    // @formatter:off
 
     // SORTFIELDS:ON
 
     /**
      * An undefined sorting algorithm
      */
-    public static final Supplier<SelectorSortAlgorithm> ARBITRARY =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorSortAlgorithm.class, "arbitrary");
+    public static final DefaultedRegistryReference<SelectorSortAlgorithm> ARBITRARY = SelectorSortAlgorithms.key(ResourceKey.sponge("arbitrary"));
 
     /**
      * Selects the {@link Entity entities} furthest away from the target
      * location first.
      */
-    public static final Supplier<SelectorSortAlgorithm> FURTHEST =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorSortAlgorithm.class, "furthest");
+    public static final DefaultedRegistryReference<SelectorSortAlgorithm> FURTHEST = SelectorSortAlgorithms.key(ResourceKey.sponge("furthest"));
 
     /**
      * Selects the {@link Entity entities} nearest to the target location first.
      */
-    public static final Supplier<SelectorSortAlgorithm> NEAREST =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorSortAlgorithm.class, "nearest");
+    public static final DefaultedRegistryReference<SelectorSortAlgorithm> NEAREST = SelectorSortAlgorithms.key(ResourceKey.sponge("nearest"));
 
     /**
      * Returns {@link Entity entities} in a random order
      */
-    public static final Supplier<SelectorSortAlgorithm> RANDOM =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorSortAlgorithm.class, "random");
+    public static final DefaultedRegistryReference<SelectorSortAlgorithm> RANDOM = SelectorSortAlgorithms.key(ResourceKey.sponge("random"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
+    private SelectorSortAlgorithms() {
+    }
+
+    private static DefaultedRegistryReference<SelectorSortAlgorithm> key(final ResourceKey location) {
+        return RegistryKey.<SelectorSortAlgorithm>of(Registries.SELECTOR_SORT_ALGORITHM.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

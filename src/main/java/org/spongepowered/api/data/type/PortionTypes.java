@@ -24,22 +24,34 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class PortionTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<PortionType> BOTTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PortionType.class, "bottom");
+    public static final DefaultedRegistryReference<PortionType> BOTTOM = PortionTypes.key(ResourceKey.sponge("bottom"));
 
-    public static final Supplier<PortionType> TOP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PortionType.class, "top");
+    public static final DefaultedRegistryReference<PortionType> TOP = PortionTypes.key(ResourceKey.sponge("top"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private PortionTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<PortionType> key(final ResourceKey location) {
+        return RegistryKey.<PortionType>of(Registries.PORTION_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

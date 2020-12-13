@@ -24,35 +24,46 @@
  */
 package org.spongepowered.api.service.economy.transaction;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.service.economy.Currency;
 import org.spongepowered.api.service.economy.account.Account;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class TransactionTypes {
-    // SORTFIELDS:ON
 
+    // @formatter:off
+
+    // SORTFIELDS:ON
     /**
      * Represents a transaction where an {@link Account} received some amount of a {@link Currency}.
      */
-    public static final Supplier<TransactionType> DEPOSIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TransactionType.class, "deposit");
+    public static final DefaultedRegistryReference<TransactionType> DEPOSIT = TransactionTypes.key(ResourceKey.sponge("deposit"));
 
     /**
      * Represents a transaction where an {@link Account} transferred some amount of a currency to another {@link Account}.
      */
-    public static final Supplier<TransactionType> TRANSFER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TransactionType.class, "transfer");
+    public static final DefaultedRegistryReference<TransactionType> TRANSFER = TransactionTypes.key(ResourceKey.sponge("transfer"));
 
     /**
      * Represents a transaction where an {@link Account} lost some amount of a {@link Currency}.
      */
-    public static final Supplier<TransactionType> WITHDRAW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TransactionType.class, "withdraw");
+    public static final DefaultedRegistryReference<TransactionType> WITHDRAW = TransactionTypes.key(ResourceKey.sponge("withdraw"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private TransactionTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<TransactionType> key(final ResourceKey location) {
+        return RegistryKey.<TransactionType>of(Registries.TRANSACTION_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

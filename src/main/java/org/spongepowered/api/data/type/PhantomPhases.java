@@ -24,21 +24,34 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class PhantomPhases {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<PhantomPhase> CIRCLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PhantomPhase.class, "circling");
+    public static final DefaultedRegistryReference<PhantomPhase> CIRCLING = PhantomPhases.key(ResourceKey.sponge("circling"));
 
-    public static final Supplier<PhantomPhase> SWOOPING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PhantomPhase.class, "swooping");
+    public static final DefaultedRegistryReference<PhantomPhase> SWOOPING = PhantomPhases.key(ResourceKey.sponge("swooping"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private PhantomPhases() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<PhantomPhase> key(final ResourceKey location) {
+        return RegistryKey.<PhantomPhase>of(Registries.PHANTOM_PHASE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

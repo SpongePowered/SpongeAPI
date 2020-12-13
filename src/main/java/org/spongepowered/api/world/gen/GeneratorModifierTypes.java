@@ -24,27 +24,40 @@
  */
 package org.spongepowered.api.world.gen;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class GeneratorModifierTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<GeneratorModifierType> AMPLIFIED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorModifierType.class, "amplified");
+    public static final DefaultedRegistryReference<GeneratorModifierType> AMPLIFIED = GeneratorModifierTypes.key(ResourceKey.sponge("amplified"));
 
-    public static final Supplier<GeneratorModifierType> DEBUG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorModifierType.class, "debug");
+    public static final DefaultedRegistryReference<GeneratorModifierType> DEBUG = GeneratorModifierTypes.key(ResourceKey.sponge("debug"));
 
-    public static final Supplier<GeneratorModifierType> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorModifierType.class, "none");
+    public static final DefaultedRegistryReference<GeneratorModifierType> NONE = GeneratorModifierTypes.key(ResourceKey.sponge("none"));
 
-    public static final Supplier<GeneratorModifierType> FLAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorModifierType.class, "flat");
+    public static final DefaultedRegistryReference<GeneratorModifierType> FLAT = GeneratorModifierTypes.key(ResourceKey.sponge("flat"));
 
-    public static final Supplier<GeneratorModifierType> LARGE_BIOMES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GeneratorModifierType.class, "large_biomes");
+    public static final DefaultedRegistryReference<GeneratorModifierType> LARGE_BIOMES = GeneratorModifierTypes.key(ResourceKey.sponge("large_biomes"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private GeneratorModifierTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<GeneratorModifierType> key(final ResourceKey location) {
+        return RegistryKey.<GeneratorModifierType>of(Registries.GENERATOR_MODIFIER_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

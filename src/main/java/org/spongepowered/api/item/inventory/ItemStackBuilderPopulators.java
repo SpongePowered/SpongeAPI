@@ -38,6 +38,7 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.enchantment.EnchantmentType;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.util.weighted.WeightedTable;
@@ -345,7 +346,7 @@ public final class ItemStackBuilderPopulators {
         };
     }
 
-    public static <E> BiConsumer<ItemStack.Builder, Random> listValueSuppliers(Supplier<? extends Key<? extends ListValue<E>>> key,
+    public static <E> BiConsumer<ItemStack.Builder, Random> listValueSuppliers(DefaultedRegistryReference<? extends Key<? extends ListValue<E>>> key,
                                                                                WeightedTable<Function<Random, E>> weightedTable) {
         Objects.requireNonNull(key, "Key cannot be null!");
         Objects.requireNonNull(weightedTable, "WeightedTable cannot be null!");

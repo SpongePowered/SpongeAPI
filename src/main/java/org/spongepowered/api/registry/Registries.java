@@ -33,6 +33,7 @@ import org.spongepowered.api.block.transaction.Operation;
 import org.spongepowered.api.command.parameter.managed.clientcompletion.ClientCompletionType;
 import org.spongepowered.api.command.parameter.managed.standard.CatalogedValueParameter;
 import org.spongepowered.api.command.registrar.tree.ClientCompletionKey;
+import org.spongepowered.api.command.selector.SelectorSortAlgorithm;
 import org.spongepowered.api.command.selector.SelectorType;
 import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.persistence.DataFormat;
@@ -41,6 +42,7 @@ import org.spongepowered.api.data.type.ArmorMaterial;
 import org.spongepowered.api.data.type.ArtType;
 import org.spongepowered.api.data.type.AttachmentSurface;
 import org.spongepowered.api.data.type.BannerPatternShape;
+import org.spongepowered.api.data.type.BoatType;
 import org.spongepowered.api.data.type.BodyPart;
 import org.spongepowered.api.data.type.CatType;
 import org.spongepowered.api.data.type.ChestAttachmentType;
@@ -121,6 +123,7 @@ import org.spongepowered.api.state.BooleanStateProperty;
 import org.spongepowered.api.state.EnumStateProperty;
 import org.spongepowered.api.state.IntegerStateProperty;
 import org.spongepowered.api.statistic.Statistic;
+import org.spongepowered.api.statistic.StatisticCategory;
 import org.spongepowered.api.util.mirror.Mirror;
 import org.spongepowered.api.util.orientation.Orientation;
 import org.spongepowered.api.util.rotation.Rotation;
@@ -180,6 +183,8 @@ public final class Registries {
 
     public static final RegistryKey<Registry<Statistic>> STATISTIC = Registries.minecraftKey("custom_stat");
 
+    public static final RegistryKey<Registry<StatisticCategory>> STATISTIC_CATEGORY = Registries.minecraftKey("statistic_category");
+
     public static final RegistryKey<Registry<VillagerType>> VILLAGER_TYPE = Registries.minecraftKey("villager_type");
 
     // ----
@@ -197,6 +202,8 @@ public final class Registries {
     public static final RegistryKey<Registry<BanType>> BAN_TYPE = Registries.spongeKey("ban_type");
 
     public static final RegistryKey<Registry<BannerPatternShape>> BANNER_PATTERN_SHAPE = Registries.spongeKey("banner_pattern_shape");
+
+    public static final RegistryKey<Registry<BoatType>> BOAT_TYPE = Registries.spongeKey("boat_type");
 
     public static final RegistryKey<Registry<BodyPart>> BODY_PART = Registries.spongeKey("body_part");
 
@@ -335,6 +342,8 @@ public final class Registries {
     public static final RegistryKey<Registry<RailDirection>> RAIL_DIRECTION = Registries.spongeKey("rail_direction");
 
     public static final RegistryKey<Registry<Rotation>> ROTATION = Registries.spongeKey("rotation");
+
+    public static final RegistryKey<Registry<SelectorSortAlgorithm>> SELECTOR_SORT_ALGORITHM = Registries.spongeKey("selector_sort_algorithm");
 
     public static final RegistryKey<Registry<SelectorType>> SELECTOR_TYPE = Registries.spongeKey("selector_type");
 

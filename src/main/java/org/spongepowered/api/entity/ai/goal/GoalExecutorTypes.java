@@ -24,19 +24,27 @@
  */
 package org.spongepowered.api.entity.ai.goal;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class GoalExecutorTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
     /**
      * {@link GoalExecutor} that is the default set of goals for most {@link Agent}s.
      */
-    public static final Supplier<GoalExecutorType> NORMAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GoalExecutorType.class, "normal");
+    public static final DefaultedRegistryReference<GoalExecutorType> NORMAL = GoalExecutorTypes.key(ResourceKey.sponge("normal"));
 
     /**
      * {@link GoalExecutor} that is the "target" set of goals.
@@ -46,10 +54,16 @@ public final class GoalExecutorTypes {
      * and skeleton attack enemies: they seek out a target and if any of their non-target
      * goals see that they have a target, they act accordingly.</p>
      */
-    public static final Supplier<GoalExecutorType> TARGET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GoalExecutorType.class, "target");
+    public static final DefaultedRegistryReference<GoalExecutorType> TARGET = GoalExecutorTypes.key(ResourceKey.sponge("target"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private GoalExecutorTypes() {
+    }
+
+    private static DefaultedRegistryReference<GoalExecutorType> key(final ResourceKey location) {
+        return RegistryKey.<GoalExecutorType>of(Registries.GOAL_EXECUTOR_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

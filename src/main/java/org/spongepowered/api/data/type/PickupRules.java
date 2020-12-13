@@ -24,26 +24,39 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link PickupRule}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class PickupRules {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<PickupRule> ALLOWED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PickupRule.class, "allowed");
+    public static final DefaultedRegistryReference<PickupRule> ALLOWED = PickupRules.key(ResourceKey.sponge("allowed"));
 
-    public static final Supplier<PickupRule> CREATIVE_ONLY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PickupRule.class, "creative_only");
+    public static final DefaultedRegistryReference<PickupRule> CREATIVE_ONLY = PickupRules.key(ResourceKey.sponge("creative_only"));
 
-    public static final Supplier<PickupRule> DISALLOWED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PickupRule.class, "disallowed");
+    public static final DefaultedRegistryReference<PickupRule> DISALLOWED = PickupRules.key(ResourceKey.sponge("disallowed"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private PickupRules() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<PickupRule> key(final ResourceKey location) {
+        return RegistryKey.<PickupRule>of(Registries.PICKUP_RULE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

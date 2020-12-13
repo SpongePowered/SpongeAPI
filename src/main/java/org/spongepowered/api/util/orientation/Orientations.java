@@ -24,42 +24,53 @@
  */
 package org.spongepowered.api.util.orientation;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.hanging.ItemFrame;
 import org.spongepowered.api.item.inventory.ItemStack;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of possible rotations for something that can rotate,
  * such as an {@link ItemStack} within
  * an {@link ItemFrame}.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class Orientations {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<Orientation> BOTTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Orientation.class, "bottom");
+    public static final DefaultedRegistryReference<Orientation> BOTTOM = Orientations.key(ResourceKey.sponge("bottom"));
 
-    public static final Supplier<Orientation> BOTTOM_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Orientation.class, "bottom_left");
+    public static final DefaultedRegistryReference<Orientation> BOTTOM_LEFT = Orientations.key(ResourceKey.sponge("bottom_left"));
 
-    public static final Supplier<Orientation> BOTTOM_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Orientation.class, "bottom_right");
+    public static final DefaultedRegistryReference<Orientation> BOTTOM_RIGHT = Orientations.key(ResourceKey.sponge("bottom_right"));
 
-    public static final Supplier<Orientation> LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Orientation.class, "left");
+    public static final DefaultedRegistryReference<Orientation> LEFT = Orientations.key(ResourceKey.sponge("left"));
 
-    public static final Supplier<Orientation> RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Orientation.class, "right");
+    public static final DefaultedRegistryReference<Orientation> RIGHT = Orientations.key(ResourceKey.sponge("right"));
 
-    public static final Supplier<Orientation> TOP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Orientation.class, "top");
+    public static final DefaultedRegistryReference<Orientation> TOP = Orientations.key(ResourceKey.sponge("top"));
 
-    public static final Supplier<Orientation> TOP_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Orientation.class, "top_left");
+    public static final DefaultedRegistryReference<Orientation> TOP_LEFT = Orientations.key(ResourceKey.sponge("top_left"));
 
-    public static final Supplier<Orientation> TOP_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Orientation.class, "top_right");
+    public static final DefaultedRegistryReference<Orientation> TOP_RIGHT = Orientations.key(ResourceKey.sponge("top_right"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private Orientations() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<Orientation> key(final ResourceKey location) {
+        return RegistryKey.<Orientation>of(Registries.ORIENTATION.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

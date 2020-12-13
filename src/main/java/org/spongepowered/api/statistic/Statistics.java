@@ -24,170 +24,181 @@
  */
 package org.spongepowered.api.statistic;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of all available {@link Statistic}s from the vanilla game.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class Statistics {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<Statistic> ANIMALS_BRED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "animals_bred");
+    public static final DefaultedRegistryReference<Statistic> ANIMALS_BRED = Statistics.key(ResourceKey.sponge("animals_bred"));
 
-    public static final Supplier<Statistic> AVIATE_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "aviate_one_cm");
+    public static final DefaultedRegistryReference<Statistic> AVIATE_ONE_CM = Statistics.key(ResourceKey.sponge("aviate_one_cm"));
 
-    public static final Supplier<Statistic> BELL_RING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "bell_ring");
+    public static final DefaultedRegistryReference<Statistic> BELL_RING = Statistics.key(ResourceKey.sponge("bell_ring"));
 
-    public static final Supplier<Statistic> BOAT_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "boat_one_cm");
+    public static final DefaultedRegistryReference<Statistic> BOAT_ONE_CM = Statistics.key(ResourceKey.sponge("boat_one_cm"));
 
-    public static final Supplier<Statistic> CLEAN_ARMOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "clean_armor");
+    public static final DefaultedRegistryReference<Statistic> CLEAN_ARMOR = Statistics.key(ResourceKey.sponge("clean_armor"));
 
-    public static final Supplier<Statistic> CLEAN_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "clean_banner");
+    public static final DefaultedRegistryReference<Statistic> CLEAN_BANNER = Statistics.key(ResourceKey.sponge("clean_banner"));
 
-    public static final Supplier<Statistic> CLEAN_SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "clean_shulker_box");
+    public static final DefaultedRegistryReference<Statistic> CLEAN_SHULKER_BOX = Statistics.key(ResourceKey.sponge("clean_shulker_box"));
 
-    public static final Supplier<Statistic> CLIMB_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "climb_one_cm");
+    public static final DefaultedRegistryReference<Statistic> CLIMB_ONE_CM = Statistics.key(ResourceKey.sponge("climb_one_cm"));
 
-    public static final Supplier<Statistic> CROUCH_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "crouch_one_cm");
+    public static final DefaultedRegistryReference<Statistic> CROUCH_ONE_CM = Statistics.key(ResourceKey.sponge("crouch_one_cm"));
 
-    public static final Supplier<Statistic> DAMAGE_ABSORBED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "damage_absorbed");
+    public static final DefaultedRegistryReference<Statistic> DAMAGE_ABSORBED = Statistics.key(ResourceKey.sponge("damage_absorbed"));
 
-    public static final Supplier<Statistic> DAMAGE_BLOCKED_BY_SHIELD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "damage_blocked_by_shield");
+    public static final DefaultedRegistryReference<Statistic> DAMAGE_BLOCKED_BY_SHIELD = Statistics.key(ResourceKey.sponge("damage_blocked_by_shield"));
 
-    public static final Supplier<Statistic> DAMAGE_DEALT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "damage_dealt");
+    public static final DefaultedRegistryReference<Statistic> DAMAGE_DEALT = Statistics.key(ResourceKey.sponge("damage_dealt"));
 
-    public static final Supplier<Statistic> DAMAGE_DEALT_ABSORBED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "damage_dealt_absorbed");
+    public static final DefaultedRegistryReference<Statistic> DAMAGE_DEALT_ABSORBED = Statistics.key(ResourceKey.sponge("damage_dealt_absorbed"));
 
-    public static final Supplier<Statistic> DAMAGE_DEALT_RESISTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "damage_dealt_resisted");
+    public static final DefaultedRegistryReference<Statistic> DAMAGE_DEALT_RESISTED = Statistics.key(ResourceKey.sponge("damage_dealt_resisted"));
 
-    public static final Supplier<Statistic> DAMAGE_RESISTED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "damage_resisted");
+    public static final DefaultedRegistryReference<Statistic> DAMAGE_RESISTED = Statistics.key(ResourceKey.sponge("damage_resisted"));
 
-    public static final Supplier<Statistic> DAMAGE_TAKEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "damage_taken");
+    public static final DefaultedRegistryReference<Statistic> DAMAGE_TAKEN = Statistics.key(ResourceKey.sponge("damage_taken"));
 
-    public static final Supplier<Statistic> DEATHS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "deaths");
+    public static final DefaultedRegistryReference<Statistic> DEATHS = Statistics.key(ResourceKey.sponge("deaths"));
 
-    public static final Supplier<Statistic> DROP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "drop");
+    public static final DefaultedRegistryReference<Statistic> DROP = Statistics.key(ResourceKey.sponge("drop"));
 
-    public static final Supplier<Statistic> EAT_CAKE_SLICE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "eat_cake_slice");
+    public static final DefaultedRegistryReference<Statistic> EAT_CAKE_SLICE = Statistics.key(ResourceKey.sponge("eat_cake_slice"));
 
-    public static final Supplier<Statistic> ENCHANT_ITEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "enchant_item");
+    public static final DefaultedRegistryReference<Statistic> ENCHANT_ITEM = Statistics.key(ResourceKey.sponge("enchant_item"));
 
-    public static final Supplier<Statistic> FALL_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "fall_one_cm");
+    public static final DefaultedRegistryReference<Statistic> FALL_ONE_CM = Statistics.key(ResourceKey.sponge("fall_one_cm"));
 
-    public static final Supplier<Statistic> FILL_CAULDRON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "fill_cauldron");
+    public static final DefaultedRegistryReference<Statistic> FILL_CAULDRON = Statistics.key(ResourceKey.sponge("fill_cauldron"));
 
-    public static final Supplier<Statistic> FISH_CAUGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "fish_caught");
+    public static final DefaultedRegistryReference<Statistic> FISH_CAUGHT = Statistics.key(ResourceKey.sponge("fish_caught"));
 
-    public static final Supplier<Statistic> FLY_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "fly_one_cm");
+    public static final DefaultedRegistryReference<Statistic> FLY_ONE_CM = Statistics.key(ResourceKey.sponge("fly_one_cm"));
 
-    public static final Supplier<Statistic> HORSE_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "horse_one_cm");
+    public static final DefaultedRegistryReference<Statistic> HORSE_ONE_CM = Statistics.key(ResourceKey.sponge("horse_one_cm"));
 
-    public static final Supplier<Statistic> INSPECT_DISPENSER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "inspect_dispenser");
+    public static final DefaultedRegistryReference<Statistic> INSPECT_DISPENSER = Statistics.key(ResourceKey.sponge("inspect_dispenser"));
 
-    public static final Supplier<Statistic> INSPECT_DROPPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "inspect_dropper");
+    public static final DefaultedRegistryReference<Statistic> INSPECT_DROPPER = Statistics.key(ResourceKey.sponge("inspect_dropper"));
 
-    public static final Supplier<Statistic> INSPECT_HOPPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "inspect_hopper");
+    public static final DefaultedRegistryReference<Statistic> INSPECT_HOPPER = Statistics.key(ResourceKey.sponge("inspect_hopper"));
 
-    public static final Supplier<Statistic> INTERACT_WITH_ANVIL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "interact_with_anvil");
+    public static final DefaultedRegistryReference<Statistic> INTERACT_WITH_ANVIL = Statistics.key(ResourceKey.sponge("interact_with_anvil"));
 
-    public static final Supplier<Statistic> INTERACT_WITH_BEACON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "interact_with_beacon");
+    public static final DefaultedRegistryReference<Statistic> INTERACT_WITH_BEACON = Statistics.key(ResourceKey.sponge("interact_with_beacon"));
 
-    public static final Supplier<Statistic> INTERACT_WITH_BLAST_FURNACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "interact_with_blast_furnace");
+    public static final DefaultedRegistryReference<Statistic> INTERACT_WITH_BLAST_FURNACE = Statistics.key(ResourceKey.sponge("interact_with_blast_furnace"));
 
-    public static final Supplier<Statistic> INTERACT_WITH_BREWINGSTAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "interact_with_brewingstand");
+    public static final DefaultedRegistryReference<Statistic> INTERACT_WITH_BREWINGSTAND = Statistics.key(ResourceKey.sponge("interact_with_brewingstand"));
 
-    public static final Supplier<Statistic> INTERACT_WITH_CAMPFIRE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "interact_with_campfire");
+    public static final DefaultedRegistryReference<Statistic> INTERACT_WITH_CAMPFIRE = Statistics.key(ResourceKey.sponge("interact_with_campfire"));
 
-    public static final Supplier<Statistic> INTERACT_WITH_CARTOGRAPHY_TABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "interact_with_cartography_table");
+    public static final DefaultedRegistryReference<Statistic> INTERACT_WITH_CARTOGRAPHY_TABLE = Statistics.key(ResourceKey.sponge("interact_with_cartography_table"));
 
-    public static final Supplier<Statistic> INTERACT_WITH_CRAFTING_TABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "interact_with_crafting_table");
+    public static final DefaultedRegistryReference<Statistic> INTERACT_WITH_CRAFTING_TABLE = Statistics.key(ResourceKey.sponge("interact_with_crafting_table"));
 
-    public static final Supplier<Statistic> INTERACT_WITH_FURNACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "interact_with_furnace");
+    public static final DefaultedRegistryReference<Statistic> INTERACT_WITH_FURNACE = Statistics.key(ResourceKey.sponge("interact_with_furnace"));
 
-    public static final Supplier<Statistic> INTERACT_WITH_GRINDSTONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "interact_with_grindstone");
+    public static final DefaultedRegistryReference<Statistic> INTERACT_WITH_GRINDSTONE = Statistics.key(ResourceKey.sponge("interact_with_grindstone"));
 
-    public static final Supplier<Statistic> INTERACT_WITH_LECTERN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "interact_with_lectern");
+    public static final DefaultedRegistryReference<Statistic> INTERACT_WITH_LECTERN = Statistics.key(ResourceKey.sponge("interact_with_lectern"));
 
-    public static final Supplier<Statistic> INTERACT_WITH_LOOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "interact_with_loom");
+    public static final DefaultedRegistryReference<Statistic> INTERACT_WITH_LOOM = Statistics.key(ResourceKey.sponge("interact_with_loom"));
 
-    public static final Supplier<Statistic> INTERACT_WITH_SMITHING_TABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "interact_with_smithing_table");
+    public static final DefaultedRegistryReference<Statistic> INTERACT_WITH_SMITHING_TABLE = Statistics.key(ResourceKey.sponge("interact_with_smithing_table"));
 
-    public static final Supplier<Statistic> INTERACT_WITH_SMOKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "interact_with_smoker");
+    public static final DefaultedRegistryReference<Statistic> INTERACT_WITH_SMOKER = Statistics.key(ResourceKey.sponge("interact_with_smoker"));
 
-    public static final Supplier<Statistic> INTERACT_WITH_STONECUTTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "interact_with_stonecutter");
+    public static final DefaultedRegistryReference<Statistic> INTERACT_WITH_STONECUTTER = Statistics.key(ResourceKey.sponge("interact_with_stonecutter"));
 
-    public static final Supplier<Statistic> JUMP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "jump");
+    public static final DefaultedRegistryReference<Statistic> JUMP = Statistics.key(ResourceKey.sponge("jump"));
 
-    public static final Supplier<Statistic> LEAVE_GAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "leave_game");
+    public static final DefaultedRegistryReference<Statistic> LEAVE_GAME = Statistics.key(ResourceKey.sponge("leave_game"));
 
-    public static final Supplier<Statistic> MINECART_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "minecart_one_cm");
+    public static final DefaultedRegistryReference<Statistic> MINECART_ONE_CM = Statistics.key(ResourceKey.sponge("minecart_one_cm"));
 
-    public static final Supplier<Statistic> MOB_KILLS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "mob_kills");
+    public static final DefaultedRegistryReference<Statistic> MOB_KILLS = Statistics.key(ResourceKey.sponge("mob_kills"));
 
-    public static final Supplier<Statistic> OPEN_BARREL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "open_barrel");
+    public static final DefaultedRegistryReference<Statistic> OPEN_BARREL = Statistics.key(ResourceKey.sponge("open_barrel"));
 
-    public static final Supplier<Statistic> OPEN_CHEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "open_chest");
+    public static final DefaultedRegistryReference<Statistic> OPEN_CHEST = Statistics.key(ResourceKey.sponge("open_chest"));
 
-    public static final Supplier<Statistic> OPEN_ENDERCHEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "open_enderchest");
+    public static final DefaultedRegistryReference<Statistic> OPEN_ENDERCHEST = Statistics.key(ResourceKey.sponge("open_enderchest"));
 
-    public static final Supplier<Statistic> OPEN_SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "open_shulker_box");
+    public static final DefaultedRegistryReference<Statistic> OPEN_SHULKER_BOX = Statistics.key(ResourceKey.sponge("open_shulker_box"));
 
-    public static final Supplier<Statistic> PIG_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "pig_one_cm");
+    public static final DefaultedRegistryReference<Statistic> PIG_ONE_CM = Statistics.key(ResourceKey.sponge("pig_one_cm"));
 
-    public static final Supplier<Statistic> PLAY_NOTEBLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "play_noteblock");
+    public static final DefaultedRegistryReference<Statistic> PLAY_NOTEBLOCK = Statistics.key(ResourceKey.sponge("play_noteblock"));
 
-    public static final Supplier<Statistic> PLAY_ONE_MINUTE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "play_one_minute");
+    public static final DefaultedRegistryReference<Statistic> PLAY_ONE_MINUTE = Statistics.key(ResourceKey.sponge("play_one_minute"));
 
-    public static final Supplier<Statistic> PLAY_RECORD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "play_record");
+    public static final DefaultedRegistryReference<Statistic> PLAY_RECORD = Statistics.key(ResourceKey.sponge("play_record"));
 
-    public static final Supplier<Statistic> PLAYER_KILLS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "player_kills");
+    public static final DefaultedRegistryReference<Statistic> PLAYER_KILLS = Statistics.key(ResourceKey.sponge("player_kills"));
 
-    public static final Supplier<Statistic> POT_FLOWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "pot_flower");
+    public static final DefaultedRegistryReference<Statistic> POT_FLOWER = Statistics.key(ResourceKey.sponge("pot_flower"));
 
-    public static final Supplier<Statistic> RAID_TRIGGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "raid_trigger");
+    public static final DefaultedRegistryReference<Statistic> RAID_TRIGGER = Statistics.key(ResourceKey.sponge("raid_trigger"));
 
-    public static final Supplier<Statistic> RAID_WIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "raid_win");
+    public static final DefaultedRegistryReference<Statistic> RAID_WIN = Statistics.key(ResourceKey.sponge("raid_win"));
 
-    public static final Supplier<Statistic> SLEEP_IN_BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "sleep_in_bed");
+    public static final DefaultedRegistryReference<Statistic> SLEEP_IN_BED = Statistics.key(ResourceKey.sponge("sleep_in_bed"));
 
-    public static final Supplier<Statistic> SNEAK_TIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "sneak_time");
+    public static final DefaultedRegistryReference<Statistic> SNEAK_TIME = Statistics.key(ResourceKey.sponge("sneak_time"));
 
-    public static final Supplier<Statistic> SPRINT_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "sprint_one_cm");
+    public static final DefaultedRegistryReference<Statistic> SPRINT_ONE_CM = Statistics.key(ResourceKey.sponge("sprint_one_cm"));
 
-    public static final Supplier<Statistic> STRIDER_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "strider_one_cm");
+    public static final DefaultedRegistryReference<Statistic> STRIDER_ONE_CM = Statistics.key(ResourceKey.sponge("strider_one_cm"));
 
-    public static final Supplier<Statistic> SWIM_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "swim_one_cm");
+    public static final DefaultedRegistryReference<Statistic> SWIM_ONE_CM = Statistics.key(ResourceKey.sponge("swim_one_cm"));
 
-    public static final Supplier<Statistic> TALKED_TO_VILLAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "talked_to_villager");
+    public static final DefaultedRegistryReference<Statistic> TALKED_TO_VILLAGER = Statistics.key(ResourceKey.sponge("talked_to_villager"));
 
-    public static final Supplier<Statistic> TARGET_HIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "target_hit");
+    public static final DefaultedRegistryReference<Statistic> TARGET_HIT = Statistics.key(ResourceKey.sponge("target_hit"));
 
-    public static final Supplier<Statistic> TIME_SINCE_DEATH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "time_since_death");
+    public static final DefaultedRegistryReference<Statistic> TIME_SINCE_DEATH = Statistics.key(ResourceKey.sponge("time_since_death"));
 
-    public static final Supplier<Statistic> TIME_SINCE_REST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "time_since_rest");
+    public static final DefaultedRegistryReference<Statistic> TIME_SINCE_REST = Statistics.key(ResourceKey.sponge("time_since_rest"));
 
-    public static final Supplier<Statistic> TRADED_WITH_VILLAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "traded_with_villager");
+    public static final DefaultedRegistryReference<Statistic> TRADED_WITH_VILLAGER = Statistics.key(ResourceKey.sponge("traded_with_villager"));
 
-    public static final Supplier<Statistic> TRIGGER_TRAPPED_CHEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "trigger_trapped_chest");
+    public static final DefaultedRegistryReference<Statistic> TRIGGER_TRAPPED_CHEST = Statistics.key(ResourceKey.sponge("trigger_trapped_chest"));
 
-    public static final Supplier<Statistic> TUNE_NOTEBLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "tune_noteblock");
+    public static final DefaultedRegistryReference<Statistic> TUNE_NOTEBLOCK = Statistics.key(ResourceKey.sponge("tune_noteblock"));
 
-    public static final Supplier<Statistic> USE_CAULDRON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "use_cauldron");
+    public static final DefaultedRegistryReference<Statistic> USE_CAULDRON = Statistics.key(ResourceKey.sponge("use_cauldron"));
 
-    public static final Supplier<Statistic> WALK_ON_WATER_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "walk_on_water_one_cm");
+    public static final DefaultedRegistryReference<Statistic> WALK_ON_WATER_ONE_CM = Statistics.key(ResourceKey.sponge("walk_on_water_one_cm"));
 
-    public static final Supplier<Statistic> WALK_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "walk_one_cm");
+    public static final DefaultedRegistryReference<Statistic> WALK_ONE_CM = Statistics.key(ResourceKey.sponge("walk_one_cm"));
 
-    public static final Supplier<Statistic> WALK_UNDER_WATER_ONE_CM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Statistic.class, "walk_under_water_one_cm");
+    public static final DefaultedRegistryReference<Statistic> WALK_UNDER_WATER_ONE_CM = Statistics.key(ResourceKey.sponge("walk_under_water_one_cm"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private Statistics() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<Statistic> key(final ResourceKey location) {
+        return RegistryKey.<Statistic>of(Registries.STATISTIC.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }
