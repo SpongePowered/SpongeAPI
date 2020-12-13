@@ -24,21 +24,26 @@
  */
 package org.spongepowered.api.resource.pack;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
 
 public final class PackTypes {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<PackType> CLIENT_RESOURCES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PackType.class, "CLIENT_RESOURCES");
+    public static final DefaultedRegistryReference<PackType> CLIENT_RESOURCES = PackTypes.key(ResourceKey.sponge("client_resources"));
 
-    public static final Supplier<PackType> SERVER_DATA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PackType.class, "SERVER_DATA");
+    public static final DefaultedRegistryReference<PackType> SERVER_DATA = PackTypes.key(ResourceKey.sponge("server_data"));
 
     // SORTFIELDS:OFF
 
     private PackTypes() {
     }
 
+    private static DefaultedRegistryReference<PackType> key(final ResourceKey location) {
+        return RegistryKey.<PackType>of(Registries.PACK_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

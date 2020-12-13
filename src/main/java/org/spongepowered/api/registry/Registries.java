@@ -110,6 +110,9 @@ import org.spongepowered.api.item.inventory.query.QueryType;
 import org.spongepowered.api.item.potion.PotionType;
 import org.spongepowered.api.item.recipe.RecipeType;
 import org.spongepowered.api.placeholder.PlaceholderParser;
+import org.spongepowered.api.resource.meta.NamedMetaSection;
+import org.spongepowered.api.resource.pack.PackType;
+import org.spongepowered.api.resource.pack.PackVersion;
 import org.spongepowered.api.scheduler.TaskPriority;
 import org.spongepowered.api.scoreboard.CollisionRule;
 import org.spongepowered.api.scoreboard.Visibility;
@@ -303,6 +306,8 @@ public final class Registries {
 
     public static final RegistryKey<Registry<MusicDisc>> MUSIC_DISC = Registries.spongeKey("music_disc");
 
+    public static final RegistryKey<Registry<NamedMetaSection<?>>> NAMED_META_SECTION = Registries.spongeKey("named_meta_section");
+
     public static final RegistryKey<Registry<NotePitch>> NOTE_PITCH = Registries.spongeKey("note_pitch");
 
     public static final RegistryKey<Registry<ObjectiveDisplayMode>> OBJECTIVE_DISPLAY_MODE = Registries.spongeKey("objective_display_mode");
@@ -310,6 +315,10 @@ public final class Registries {
     public static final RegistryKey<Registry<Operation>> OPERATION = Registries.spongeKey("operation");
 
     public static final RegistryKey<Registry<Orientation>> ORIENTATION = Registries.spongeKey("orientation");
+
+    public static final RegistryKey<PackType> PACK_TYPE = Registries.spongeKey("pack_type");
+
+    public static final RegistryKey<PackVersion> PACK_VERSION=Registries.spongeKey("pack_version");
 
     public static final RegistryKey<Registry<PaletteType<?>>> PALETTE_TYPE = Registries.spongeKey("palette_type");
 

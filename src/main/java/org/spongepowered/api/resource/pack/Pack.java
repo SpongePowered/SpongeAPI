@@ -59,7 +59,7 @@ public interface Pack extends Nameable, Closeable {
      * @return The supplier to create a new pack.
      */
     static Supplier<Pack> fromPath(Path path) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).fromPath(path);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).fromPath(path);
     }
 
     /**
@@ -70,7 +70,7 @@ public interface Pack extends Nameable, Closeable {
      * @see PluginContainer#getPath()
      */
     static Supplier<Pack> fromPlugin(PluginContainer pluginContainer) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).fromPlugin(pluginContainer);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).fromPlugin(pluginContainer);
     }
 
     /**

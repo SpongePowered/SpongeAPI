@@ -24,23 +24,28 @@
  */
 package org.spongepowered.api.resource.pack;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
 
 public class PackVersions {
 
     // SORTFIELDS:ON
 
-    public static final Supplier<PackVersion> COMPATIBLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PackVersion.class, "COMPATIBLE");
+    public static final DefaultedRegistryReference<PackVersion> COMPATIBLE = PackVersions.key(ResourceKey.sponge("compatible"));
 
-    public static final Supplier<PackVersion> TOO_NEW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PackVersion.class, "TOO_NEW");
+    public static final DefaultedRegistryReference<PackVersion> TOO_NEW = PackVersions.key(ResourceKey.sponge("too_new"));
 
-    public static final Supplier<PackVersion> TOO_OLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PackVersion.class, "TOO_OLD");
+    public static final DefaultedRegistryReference<PackVersion> TOO_OLD = PackVersions.key(ResourceKey.sponge("too_old"));
 
     // SORTFIELDS:OFF
 
     private PackVersions() {
     }
 
+    private static DefaultedRegistryReference<PackVersion> key(final ResourceKey location) {
+        return RegistryKey.<PackVersion>of(Registries.PACK_VERSION.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

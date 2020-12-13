@@ -48,7 +48,7 @@ public interface ResourcePath extends Comparable<ResourcePath> {
      * @return The new builder instance
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**

@@ -71,7 +71,7 @@ import java.util.concurrent.Executor;
 public interface ResourceReloadListener {
 
     static Factory factory() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class);
     }
 
     /**

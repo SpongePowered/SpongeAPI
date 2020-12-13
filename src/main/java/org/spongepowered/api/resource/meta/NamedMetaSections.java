@@ -24,17 +24,24 @@
  */
 package org.spongepowered.api.resource.meta;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
 
 public class NamedMetaSections {
 
     // SORTFIELDS:ON
 
-    private static final Supplier<NamedMetaSection<PackMeta>> PACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(NamedMetaSection.class, "pack/pack");
+    private static final DefaultedRegistryReference<NamedMetaSection<PackMeta>> PACK = NamedMetaSections.key(ResourceKey.sponge("pack/pack"));
 
     // SORTFIELDS:OFF
 
-    private NamedMetaSections() {}
+    private NamedMetaSections() {
+    }
+
+    private static <T> DefaultedRegistryReference<NamedMetaSection<T>> key(final ResourceKey location) {
+        return RegistryKey.<NamedMetaSection<T>>of(Registries.NAMED_META_SECTION.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }
