@@ -96,6 +96,9 @@ import org.spongepowered.api.item.inventory.query.QueryType;
 import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
 import org.spongepowered.api.placeholder.PlaceholderParser;
 import org.spongepowered.api.registry.GameRegistry;
+import org.spongepowered.api.resource.meta.MetaSection;
+import org.spongepowered.api.resource.pack.PackType;
+import org.spongepowered.api.resource.pack.PackVersion;
 import org.spongepowered.api.scoreboard.CollisionRule;
 import org.spongepowered.api.scoreboard.Visibility;
 import org.spongepowered.api.scoreboard.criteria.Criterion;
@@ -229,6 +232,8 @@ public final class CatalogTypes {
 
     public static final Class<LlamaType> LLAMA_TYPE = LlamaType.class;
 
+    public static final Class<MetaSection> META_SECTION = MetaSection.class;
+
     public static final Class<MooshroomType> MOOSHROOM_TYPE = MooshroomType.class;
 
     public static final Class<MovementType> MOVEMENT_TYPE = MovementType.class;
@@ -240,6 +245,10 @@ public final class CatalogTypes {
     public static final Class<ObjectiveDisplayMode> OBJECTIVE_DISPLAY_MODE = ObjectiveDisplayMode.class;
 
     public static final Class<Operation> BLOCK_TRANSACTION_OPERATION = Operation.class;
+
+    public static final Class<PackType> PACK_TYPE = PackType.class;
+
+    public static final Class<PackVersion> PACK_VERSION = PackVersion.class;
 
     public static final Class<PandaGene> PANDA_GENE = PandaGene.class;
 
