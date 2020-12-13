@@ -362,7 +362,7 @@ public final class Registries {
 
     public static final RegistryKey<Registry<TropicalFishShape>> TROPICAL_FISH_SHAPE = Registries.spongeKey("tropical_fish_shape");
 
-    public static final RegistryKey<Registry<QueryType>> TWO_PARAM = Registries.spongeKey("query_type");
+    public static final RegistryKey<Registry<QueryType>> QUERY_TYPE = Registries.spongeKey("query_type");
 
     public static final RegistryKey<Registry<Visibility>> VISIBILITY = Registries.spongeKey("visibility");
 
