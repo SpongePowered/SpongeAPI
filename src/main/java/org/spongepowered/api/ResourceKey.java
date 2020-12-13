@@ -25,12 +25,13 @@
 package org.spongepowered.api;
 
 import net.kyori.adventure.key.Key;
-import ninja.leaping.configurate.ConfigurationNode;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.api.data.DataRegistration;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataTranslator;
 import org.spongepowered.api.registry.GameRegistry;
 import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.configurate.ConfigurationNode;
 import org.spongepowered.plugin.PluginContainer;
 
 /**
@@ -64,23 +65,25 @@ public interface ResourceKey extends Key {
     String SPONGE_NAMESPACE = "sponge";
 
     /**
-     * Creates a catalog key with a namespace of {@link #MINECRAFT_NAMESPACE minecraft}.
+     * Creates a resource key with a namespace of {@link #MINECRAFT_NAMESPACE minecraft}.
      *
      * @param value The value
-     * @return A new catalog key
+     * @return A new resource key
      */
+    @NonNull
     static ResourceKey minecraft(final String value) {
-        return of(MINECRAFT_NAMESPACE, value);
+        return ResourceKey.of(ResourceKey.MINECRAFT_NAMESPACE, value);
     }
 
     /**
-     * Creates a catalog key with a namespace of {@link #SPONGE_NAMESPACE sponge}.
+     * Creates a resource key with a namespace of {@link #SPONGE_NAMESPACE sponge}.
      *
      * @param value The value
-     * @return A new catalog key
+     * @return A new resource key
      */
+    @NonNull
     static ResourceKey sponge(final String value) {
-        return of(SPONGE_NAMESPACE, value);
+        return ResourceKey.of(ResourceKey.SPONGE_NAMESPACE, value);
     }
 
     /**
@@ -91,42 +94,42 @@ public interface ResourceKey extends Key {
      * @return The new builder instance
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
-     * Creates a catalog key.
+     * Creates a resource key.
      *
      * @param namespace The namespace
      * @param value The value
-     * @return A new catalog key
+     * @return A new resource key
      */
     static ResourceKey of(final String namespace, final String value) {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class).namespace(namespace).value(value).build();
+        return ResourceKey.builder().namespace(namespace).value(value).build();
     }
 
     /**
-     * Creates a catalog key
+     * Creates a resource key.
      *
      * @param container The container
      * @param value The value
-     * @return A new catalog key
+     * @return A new resource key
      */
     static ResourceKey of(final PluginContainer container, final String value) {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class).namespace(container).value(value).build();
+        return ResourceKey.builder().namespace(container).value(value).build();
     }
 
     /**
-     * Resolves a catalog key from a string.
+     * Resolves a resource key from a string.
      *
-     * <p>If no namespace is found in {@code string} then
+     * <p>If no namespace is found in {@code formatted} then
      * {@link #MINECRAFT_NAMESPACE} will be the namespace.</p>
      *
-     * @param value The value
-     * @return A new catalog key
+     * @param formatted The formatted string to parse
+     * @return A new resource key
      */
-    static ResourceKey resolve(final String value) {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class).value(value).build();
+    static ResourceKey resolve(final String formatted) {
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).resolve(formatted);
     }
 
     /**
@@ -150,10 +153,10 @@ public interface ResourceKey extends Key {
     /**
      * Gets this key as a formatted value.
      *
-     * <p>
-     *     It is up to the implementation to determine the formatting. In vanilla Minecraft,
-     *     keys are formatted as "namespace:value". For example, "minecraft:carrot".
-     * </p>
+     * <p>It is up to the implementation to determine the formatting. In
+     * vanilla Minecraft, keys are formatted as "namespace:value". For example,
+     * "minecraft:carrot".</p>
+     *
      * @return The key, formatted
      */
     default String getFormatted() {
@@ -170,14 +173,65 @@ public interface ResourceKey extends Key {
         return Key.super.compareTo(o);
     }
 
+    /**
+     * A builder to create {@link ResourceKey}s.
+     */
     interface Builder extends ResettableBuilder<ResourceKey, Builder> {
 
+        /**
+         * Sets the key's namespace.
+         *
+         * <p>If using a {@link #MINECRAFT_NAMESPACE} or
+         * {@link #SPONGE_NAMESPACE}, it is preferable to use
+         * {@link ResourceKey#minecraft(String)} or
+         * {@link ResourceKey#sponge(String)} instead.</p>
+         *
+         * @param namespace The namespace to use
+         * @return This builder, for chaining
+         */
         Builder namespace(String namespace);
 
-        Builder namespace(PluginContainer container);
+        /**
+         * Sets the key's namespace based on the provided
+         * {@link PluginContainer}'s identifier.
+         *
+         * @param container The plugin container to fetch from
+         * @return This builder, for chaining
+         */
+        default Builder namespace(PluginContainer container) {
+            return this.namespace(container.getMetadata().getId());
+        }
 
+        /**
+         * Sets the key's value.
+         *
+         * @param value The value to use
+         * @return This builder, for chaining
+         */
         Builder value(String value);
 
+        /**
+         * Builds the {@link ResourceKey}.
+         *
+         * @return The built resource key
+         * @throws IllegalStateException If {@link Builder#namespace(String)} or {@link Builder#value(String)} are not set.
+         */
         ResourceKey build() throws IllegalStateException;
+    }
+
+    /**
+     * A factory to generate {@link ResourceKey}s.
+     */
+    interface Factory {
+
+        /**
+         * Resolves a resource key from a string, using
+         * {@link #MINECRAFT_NAMESPACE} if no namespace is found within
+         * {@code formatted}.
+         *
+         * @param formatted The formatted string to parse
+         * @return A new resource key
+         */
+        ResourceKey resolve(String formatted);
     }
 }

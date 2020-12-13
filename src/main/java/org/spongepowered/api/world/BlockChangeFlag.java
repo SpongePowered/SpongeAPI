@@ -32,7 +32,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * interactions, such as notifying neighboring blocks, performing block physics
  * on placement, etc.
  */
-@CatalogedBy(BlockChangeFlags.class)
 public interface BlockChangeFlag {
 
     /**
@@ -42,6 +41,14 @@ public interface BlockChangeFlag {
      * @return True if this is set to notify neighboring blocks
      */
     boolean updateNeighbors();
+
+    /**
+     * Gets whether this flag defines that a block change should
+     * update clients to perform a rendering update
+     *
+     * @return True if this is set to update clients
+     */
+    boolean notifyClients();
 
     /**
      * Gets whether this flag defines that a block change should
@@ -64,6 +71,28 @@ public interface BlockChangeFlag {
     boolean notifyObservers();
 
     /**
+     * Gets whether this flag will queue lighting updates, different
+     * blocks may affect lighting in locations, which can potentially
+     * cause other blocks to perform side effects due to the light
+     * changes (like mushrooms). It is not recommended to rely on this
+     * particular flag for any changes that can cause client-side
+     * lighting inconsistencies.
+     *
+     * @return True if this flag will update lighting
+     */
+    boolean updateLighting();
+
+    /**
+     * Gets whether this flag will notify pathfinders and navigators
+     * for AI on entities and potentially other entities of a block
+     * change. It may be helpful for mass block placement to bypass
+     * a notification of pathfinders within an area.
+     *
+     * @return True if this flag will update pathing
+     */
+    boolean notifyPathfinding();
+
+    /**
      * Gets the equivalent {@link BlockChangeFlag} of this flag with all
      * other flags while having the desired {@code updateNeighbors}
      * as defined by the parameter.
@@ -72,6 +101,16 @@ public interface BlockChangeFlag {
      * @return The relative flag with the desired update neighbors
      */
     BlockChangeFlag withUpdateNeighbors(boolean updateNeighbors);
+
+    /**
+     * Gets the equivalent {@link BlockChangeFlag} of this flag
+     * with all other flags while having the desired {@code updateClients}
+     * as defined by the parameter.
+     *
+     * @param updateClients Whether to update clients
+     * @return The relative flag with the desired update clients
+     */
+    BlockChangeFlag withNotifyClients(boolean updateClients);
 
     /**
      * Gets the equivalent {@link BlockChangeFlag} of this flag
@@ -92,6 +131,10 @@ public interface BlockChangeFlag {
      * @return The relative flag with the desired notify observers
      */
     BlockChangeFlag withNotifyObservers(boolean notifyObservers);
+
+    BlockChangeFlag withLightingUpdates(boolean lighting);
+
+    BlockChangeFlag withPathfindingUpdates(boolean pathfindingUpdates);
 
     /**
      * Gets the inverted {@link BlockChangeFlag} of this flag.
@@ -143,7 +186,7 @@ public interface BlockChangeFlag {
      */
     BlockChangeFlag andNotFlag(BlockChangeFlag flag);
 
-    public interface Factory {
+    interface Factory {
 
         BlockChangeFlag empty();
 

@@ -28,12 +28,15 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.DirectionRelativeDataHolder;
-import org.spongepowered.api.data.SerializableDataHolderBuilder;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.state.State;
+import org.spongepowered.api.util.mirror.Mirror;
+import org.spongepowered.api.util.rotation.Rotation;
+import org.spongepowered.api.state.StateMatcher;
 import org.spongepowered.api.world.ServerLocation;
 
+import java.util.Objects;
 import java.util.function.Supplier;
 
 /**
@@ -51,27 +54,32 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
      * @return The builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+    }
+
+    static BlockState fromString(final String id) {
+        Objects.requireNonNull(id);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class).fromString(id).build();
     }
 
     /**
-     * Constructs a new builder to construct a {@link BlockStateMatcher}.
+     * Constructs a new builder to construct a {@link StateMatcher}.
      *
      * @param type The block type
      * @return The builder
      */
-    static BlockStateMatcher.Builder matcher(Supplier<? extends BlockType> type) {
+    static StateMatcher.Builder<BlockState, BlockType> matcher(final Supplier<? extends BlockType> type) {
         return BlockState.matcher(type.get());
     }
 
     /**
-     * Constructs a new builder to construct a {@link BlockStateMatcher}.
+     * Constructs a new builder to construct a {@link StateMatcher}.
      *
      * @param type The block type
      * @return The builder
      */
-    static BlockStateMatcher.Builder matcher(BlockType type) {
-        return BlockStateMatcher.builder().type(type);
+    static StateMatcher.Builder<BlockState, BlockType> matcher(final BlockType type) {
+        return StateMatcher.blockStateMatcherBuilder().type(type);
     }
 
     /**
@@ -106,6 +114,50 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
     BlockSnapshot snapshotFor(ServerLocation location);
 
     /**
+     * Gets the appropriate {@link BlockState} for the desired {@link Rotation}. It may
+     * return the same state, but some states may have extra logic associated with rotating
+     * on its axis, much like mirroring.
+     *
+     * @param rotation The rotation
+     * @return The rotated state if not this state
+     */
+    BlockState rotate(Rotation rotation);
+
+    /**
+     * Gets the appropriate {@link BlockState} for the desired {@link Rotation}. It may
+     * return the same state, but some states may have extra logic associated with rotating
+     * on its axis, much like mirroring.
+     *
+     * @param rotation The rotation
+     * @return The rotated state if not this state
+     */
+    default BlockState rotate(final Supplier<Rotation> rotation) {
+        return this.rotate(rotation.get());
+    }
+
+    /**
+     * Gets the appropriate {@link BlockState} for the desired {@link Mirror}. It may
+     * return the same state, but some states may have extra logic associated with mirroring
+     * on its axis, much like rotation.
+     *
+     * @param mirror The mirror
+     * @return The mirrored state if not this state
+     */
+    BlockState mirror(Mirror mirror);
+
+    /**
+     * Gets the appropriate {@link BlockState} for the desired {@link Mirror}. It may
+     * return the same state, but some states may have extra logic associated with mirroring
+     * on its axis, much like rotation.
+     *
+     * @param mirror The mirror
+     * @return The mirrored state if not this state
+     */
+    default BlockState mirror(final Supplier<Mirror> mirror) {
+        return this.mirror(mirror.get());
+    }
+
+    /**
      * An {@link org.spongepowered.api.data.DataHolderBuilder.Immutable} for a {@link BlockState}. Just like the
      * {@link org.spongepowered.api.data.DataHolderBuilder.Immutable}, the {@link Value}s passed in to
      * create a {@link BlockState} are copied on creation.
@@ -113,7 +165,7 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
      * <p>Note that upon creation, the {@link BlockType} must be set for validation
      * of {@link DataManipulator}s, otherwise exceptions may be thrown.</p>
      */
-    interface Builder extends SerializableDataHolderBuilder.Immutable<BlockState, Builder> {
+    interface Builder extends State.Builder<BlockState, Builder> {
 
         /**
          * Sets the {@link BlockType} for the {@link BlockState} to build.
@@ -126,7 +178,7 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
          * @param blockType The block type
          * @return This builder, for chaining
          */
-        default Builder blockType(Supplier<? extends BlockType> blockType) {
+        default Builder blockType(final Supplier<? extends BlockType> blockType) {
             return this.blockType(blockType.get());
         }
 
@@ -142,6 +194,5 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
          * @return This builder, for chaining
          */
         Builder blockType(BlockType blockType);
-
     }
 }

@@ -82,8 +82,8 @@ public interface Chunk extends ProtoChunk<Chunk> {
      * @param direction The cardinal or ordinal direction to get the chunk from
      * @return The neighbor chunk, if available
      */
-    default Optional<Chunk> getNeighbor(Direction direction) {
-        return getNeighbor(direction, false);
+    default Optional<Chunk> getNeighbor(final Direction direction) {
+        return this.getNeighbor(direction, false);
     }
 
     /**
@@ -94,9 +94,9 @@ public interface Chunk extends ProtoChunk<Chunk> {
      *     if unavailable
      * @return The neighbor chunk, if available or if {@code shouldLoad} is true
      */
-    default Optional<Chunk> getNeighbor(Direction direction, boolean shouldLoad) {
-        Optional<Vector3i> neighborPosition = Sponge.getServer().getChunkLayout().moveToChunk(this.getChunkPosition(), direction);
-        return neighborPosition.flatMap(vector3i -> getWorld().loadChunk(vector3i, shouldLoad));
+    default Optional<Chunk> getNeighbor(final Direction direction, final boolean shouldLoad) {
+        final Optional<Vector3i> neighborPosition = Sponge.getServer().getChunkLayout().moveToChunk(this.getChunkPosition(), direction);
+        return neighborPosition.flatMap(vector3i -> this.getWorld().loadChunk(vector3i, shouldLoad));
     }
 
 }

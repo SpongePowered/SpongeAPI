@@ -72,7 +72,7 @@ public interface Value<E> {
      * @return The constructed mutable value
      */
     static <E> Value.Mutable<E> mutableOf(Key<? extends Value<E>> key, E element) {
-        return genericMutableOf(key, element).asMutable();
+        return Value.genericMutableOf(key, element).asMutable();
     }
 
     /**
@@ -85,7 +85,7 @@ public interface Value<E> {
      * @return The constructed mutable value
      */
     static <E> Value.Mutable<E> mutableOf(Supplier<? extends Key<? extends Value<E>>> key, E element) {
-        return mutableOf(key.get(), element);
+        return Value.mutableOf(key.get(), element);
     }
 
     /**
@@ -98,7 +98,7 @@ public interface Value<E> {
      * @return The constructed immutable value
      */
     static <E> Value.Immutable<E> immutableOf(Key<? extends Value<E>> key, E element) {
-        return genericImmutableOf(key, element).asImmutable();
+        return Value.genericImmutableOf(key, element).asImmutable();
     }
 
     /**
@@ -111,7 +111,7 @@ public interface Value<E> {
      * @return The constructed immutable value
      */
     static <E> Value.Immutable<E> immutableOf(Supplier<? extends Key<? extends Value<E>>> key, E element) {
-        return immutableOf(key.get(), element);
+        return Value.immutableOf(key.get(), element);
     }
 
     /**
@@ -124,7 +124,7 @@ public interface Value<E> {
      * @return The constructed mutable value
      */
     static <E> ListValue.Mutable<E> mutableOf(Key<? extends ListValue<E>> key, List<E> element) {
-        return genericMutableOf(key, element).asMutable();
+        return Value.genericMutableOf(key, element).asMutable();
     }
 
     /**
@@ -137,7 +137,7 @@ public interface Value<E> {
      * @return The constructed mutable value
      */
     static <E> ListValue.Mutable<E> mutableOf(Supplier<? extends Key<? extends ListValue<E>>> key, List<E> element) {
-        return mutableOf(key.get(), element);
+        return Value.mutableOf(key.get(), element);
     }
 
     /**
@@ -150,7 +150,7 @@ public interface Value<E> {
      * @return The constructed immutable value
      */
     static <E> ListValue.Immutable<E> immutableOf(Key<? extends ListValue<E>> key, List<E> element) {
-        return genericImmutableOf(key, element).asImmutable();
+        return Value.genericImmutableOf(key, element).asImmutable();
     }
 
     /**
@@ -163,7 +163,7 @@ public interface Value<E> {
      * @return The constructed immutable value
      */
     static <E> ListValue.Immutable<E> immutableOf(Supplier<? extends Key<? extends ListValue<E>>> key, List<E> element) {
-        return immutableOf(key.get(), element);
+        return Value.immutableOf(key.get(), element);
     }
 
     /**
@@ -176,7 +176,7 @@ public interface Value<E> {
      * @return The constructed mutable value
      */
     static <E> SetValue.Mutable<E> mutableOf(Key<? extends SetValue<E>> key, Set<E> element) {
-        return genericMutableOf(key, element).asMutable();
+        return Value.genericMutableOf(key, element).asMutable();
     }
 
     /**
@@ -189,7 +189,7 @@ public interface Value<E> {
      * @return The constructed mutable value
      */
     static <E> SetValue.Mutable<E> mutableOf(Supplier<? extends Key<? extends SetValue<E>>> key, Set<E> element) {
-        return mutableOf(key.get(), element);
+        return Value.mutableOf(key.get(), element);
     }
 
     /**
@@ -202,7 +202,7 @@ public interface Value<E> {
      * @return The constructed immutable value
      */
     static <E> SetValue.Immutable<E> immutableOf(Key<? extends SetValue<E>> key, Set<E> element) {
-        return genericImmutableOf(key, element).asImmutable();
+        return Value.genericImmutableOf(key, element).asImmutable();
     }
 
     /**
@@ -215,7 +215,7 @@ public interface Value<E> {
      * @return The constructed immutable value
      */
     static <E> SetValue.Immutable<E> immutableOf(Supplier<? extends Key<? extends SetValue<E>>> key, Set<E> element) {
-        return immutableOf(key.get(), element);
+        return Value.immutableOf(key.get(), element);
     }
 
     /**
@@ -229,7 +229,7 @@ public interface Value<E> {
      * @return The constructed mutable value
      */
     static <K, V> MapValue.Mutable<K, V> mutableOf(Key<? extends MapValue<K, V>> key, Map<K, V> element) {
-        return genericMutableOf(key, element).asMutable();
+        return Value.genericMutableOf(key, element).asMutable();
     }
 
     /**
@@ -243,7 +243,7 @@ public interface Value<E> {
      * @return The constructed mutable value
      */
     static <K, V> MapValue.Mutable<K, V> mutableOf(Supplier<? extends Key<? extends MapValue<K, V>>> key, Map<K, V> element) {
-        return mutableOf(key.get(), element);
+        return Value.mutableOf(key.get(), element);
     }
 
     /**
@@ -257,7 +257,7 @@ public interface Value<E> {
      * @return The constructed immutable value
      */
     static <K, V> MapValue.Immutable<K, V> immutableOf(Key<? extends MapValue<K, V>> key, Map<K, V> element) {
-        return genericImmutableOf(key, element).asImmutable();
+        return Value.genericImmutableOf(key, element).asImmutable();
     }
 
     /**
@@ -271,7 +271,7 @@ public interface Value<E> {
      * @return The constructed immutable value
      */
     static <K, V> MapValue.Immutable<K, V> immutableOf(Supplier<? extends Key<? extends MapValue<K, V>>> key, Map<K, V> element) {
-        return immutableOf(key.get(), element);
+        return Value.immutableOf(key.get(), element);
     }
 
     /**
@@ -284,7 +284,7 @@ public interface Value<E> {
      * @return The constructed mutable value
      */
     static <E> WeightedCollectionValue.Mutable<E> mutableOf(Key<? extends WeightedCollectionValue<E>> key, WeightedTable<E> element) {
-        return genericMutableOf(key, element).asMutable();
+        return Value.genericMutableOf(key, element).asMutable();
     }
 
     /**
@@ -298,7 +298,7 @@ public interface Value<E> {
      */
     static <E> WeightedCollectionValue.Mutable<E> mutableOf(
             Supplier<? extends Key<? extends WeightedCollectionValue<E>>> key, WeightedTable<E> element) {
-        return mutableOf(key.get(), element);
+        return Value.mutableOf(key.get(), element);
     }
 
     /**
@@ -311,7 +311,7 @@ public interface Value<E> {
      * @return The constructed immutable value
      */
     static <E> WeightedCollectionValue.Immutable<E> immutableOf(Key<? extends WeightedCollectionValue<E>> key, WeightedTable<E> element) {
-        return genericImmutableOf(key, element).asImmutable();
+        return Value.genericImmutableOf(key, element).asImmutable();
     }
 
     /**
@@ -325,7 +325,7 @@ public interface Value<E> {
      */
     static <E> WeightedCollectionValue.Immutable<E> immutableOf(
             Supplier<? extends Key<? extends WeightedCollectionValue<E>>> key, WeightedTable<E> element) {
-        return immutableOf(key.get(), element);
+        return Value.immutableOf(key.get(), element);
     }
 
     /**
@@ -341,7 +341,7 @@ public interface Value<E> {
      * @return The constructed mutable value
      */
     static <V extends Value<E>, E> V genericMutableOf(Key<V> key, E element) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).mutableOf(key, element);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).mutableOf(key, element);
     }
 
     /**
@@ -357,7 +357,7 @@ public interface Value<E> {
      * @return The constructed immutable value
      */
     static <V extends Value<E>, E> V genericImmutableOf(Key<V> key, E element) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).immutableOf(key, element);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).immutableOf(key, element);
     }
 
     /**
@@ -447,7 +447,7 @@ public interface Value<E> {
 
         @Override
         default Mutable<E> asMutableCopy() {
-            return copy();
+            return this.copy();
         }
 
         /**
@@ -518,7 +518,7 @@ public interface Value<E> {
 
         @Override
         default Mutable<E> asMutableCopy() {
-            return asMutable();
+            return this.asMutable();
         }
 
         @Override

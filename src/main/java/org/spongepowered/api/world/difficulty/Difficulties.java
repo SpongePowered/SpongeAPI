@@ -24,29 +24,41 @@
  */
 package org.spongepowered.api.world.difficulty;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * A list of difficulties that Minecraft provides in vanilla.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class Difficulties {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<Difficulty> EASY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Difficulty.class, "easy");
+    public static final DefaultedRegistryReference<Difficulty> EASY = Difficulties.key(ResourceKey.sponge("easy"));
 
-    public static final Supplier<Difficulty> HARD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Difficulty.class, "hard");
+    public static final DefaultedRegistryReference<Difficulty> HARD = Difficulties.key(ResourceKey.sponge("hard"));
 
-    public static final Supplier<Difficulty> NORMAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Difficulty.class, "normal");
+    public static final DefaultedRegistryReference<Difficulty> NORMAL = Difficulties.key(ResourceKey.sponge("normal"));
 
-    public static final Supplier<Difficulty> PEACEFUL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Difficulty.class, "peaceful");
+    public static final DefaultedRegistryReference<Difficulty> PEACEFUL = Difficulties.key(ResourceKey.sponge("peaceful"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private Difficulties() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<Difficulty> key(final ResourceKey location) {
+        return RegistryKey.<Difficulty>of(Registries.DIFFICULTY.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

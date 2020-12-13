@@ -136,7 +136,7 @@ public interface ContextCalculator<T extends Contextual> {
      */
     default boolean matches(Context context, T target) {
         Set<Context> set = new HashSet<>();
-        accumulateContexts(target, set);
+        this.accumulateContexts(target, set);
         return set.contains(context);
     }
 }

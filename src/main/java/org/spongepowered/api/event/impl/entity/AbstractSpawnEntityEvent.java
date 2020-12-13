@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.impl.entity;
 
-import com.google.common.base.Preconditions;
 import org.spongepowered.api.event.EventContextKeys;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import org.spongepowered.api.event.impl.AbstractEvent;
@@ -33,6 +32,8 @@ public abstract class AbstractSpawnEntityEvent extends AbstractEvent implements 
 
     @Override
     protected void init() {
-        Preconditions.checkState(getContext().containsKey(EventContextKeys.SPAWN_TYPE), "SpawnType not set for SpawnEvent as required per contract!");
+        if (!this.getContext().containsKey(EventContextKeys.SPAWN_TYPE)) {
+            throw new IllegalStateException("SpawnType not set for SpawnEvent! Please use StackFrame.addContext(EventContextKeys.SPAWN_TYPE, SpawnTypes.<your spawn type here>); before constructing a SpawnEvent.");
+        }
     }
 }

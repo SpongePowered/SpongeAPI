@@ -24,16 +24,19 @@
  */
 package org.spongepowered.api.item.recipe.crafting;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
+import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.util.CatalogBuilder;
-import org.spongepowered.api.util.ResettableBuilder;
+
+import java.util.List;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * A ShapelessCraftingRecipe is a CraftingRecipe that does not have shape and
@@ -47,13 +50,13 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
-     * Builder for {@link ShapelessCraftingRecipe}s.
+     * The Builder for {@link ShapelessCraftingRecipe}s.
      */
-    interface Builder extends ResettableBuilder<ShapelessCraftingRecipe, Builder> {
+    interface Builder extends CatalogBuilder<RecipeRegistration, Builder> {
 
         /**
          * Adds ingredients for this recipe.
@@ -65,48 +68,84 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
         ResultStep addIngredients(ItemType... ingredients);
 
         /**
+         * Adds ingredients for this recipe.
+         *
+         * @param ingredients The ingredients to add
+         *
+         * @return This builder, for chaining
+         */
+        @SuppressWarnings("unchecked")
+        ResultStep addIngredients(Supplier<ItemType>... ingredients);
+
+        /**
+         * Adds ingredients for this recipe.
+         *
+         * @param ingredients The ingredients to add
+         *
+         * @return This builder, for chaining
+         */
+        ResultStep addIngredients(Ingredient... ingredients);
+
+        /**
          * In this Step set the result of the Recipe.
          */
         interface ResultStep extends Builder {
 
             /**
-             * Changes the result and returns this builder. The result is the
+             * Sets the remainingItems function. The function must return a list of the same size as the input CraftingGridInventory.
+             *
+             * @param remainingItemsFunction the remaining items function
+             *
+             * @return This builder, for chaining
+             */
+            ResultStep remainingItems(Function<CraftingGridInventory, List<ItemStack>> remainingItemsFunction);
+
+            /**
+             * Sets the result and returns this builder. The result is the
              * {@link ItemStack} created when the recipe is fulfilled.
              *
              * @param result The result
+             *
              * @return This builder, for chaining
              */
             EndStep result(ItemStackSnapshot result);
 
             /**
-             * Changes the result and returns this builder. The result is the
+             * Sets the result and returns this builder. The result is the
              * {@link ItemStack} created when the recipe is fulfilled.
              *
              * @param result The result
+             *
              * @return This builder, for chaining
              */
-            default EndStep result(ItemStack result) {
-                checkNotNull(result, "result");
+            EndStep result(ItemStack result);
 
-                return this.result(result.createSnapshot());
-            }
+            /**
+             * Sets the result function and an exemplary result.
+             * <p>The exemplary result is used for the recipe book.</p>
+             *
+             * @param resultFunction The result function
+             * @param exemplaryResult The exemplary result stack
+             *
+             * @return This builder, for chaining
+             */
+            EndStep result(Function<CraftingGridInventory, ItemStack> resultFunction, ItemStack exemplaryResult);
+
         }
 
         /**
          * In this Step set the group of the Recipe and/or build it.
          */
-        interface EndStep extends Builder, CatalogBuilder<ShapelessCraftingRecipe, Builder> {
+        interface EndStep extends Builder, CatalogBuilder<RecipeRegistration, Builder> {
 
             /**
              * Sets the group of the recipe.
              *
              * @param name the group
+             *
              * @return This builder, for chaining
              */
             EndStep group(@Nullable String name);
-
-            @Override
-            EndStep key(ResourceKey key);
 
             /**
              * Builds the {@link ShapelessCraftingRecipe}.
@@ -116,7 +155,7 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
              *                               or the {@link #key(ResourceKey)} isn't set.
              */
             @Override
-            ShapelessCraftingRecipe build() throws IllegalStateException;
+            RecipeRegistration build() throws IllegalStateException;
         }
 
     }

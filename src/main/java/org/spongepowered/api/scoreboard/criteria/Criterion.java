@@ -25,6 +25,7 @@
 package org.spongepowered.api.scoreboard.criteria;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -34,4 +35,5 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 @CatalogedBy(Criteria.class)
 public interface Criterion extends CatalogType {
 
+    ObjectiveDisplayMode getDisplayMode();
 }

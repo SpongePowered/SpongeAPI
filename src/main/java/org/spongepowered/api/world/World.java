@@ -35,12 +35,13 @@ import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.fluid.FluidTypes;
+import org.spongepowered.api.registry.RegistryHolder;
+import org.spongepowered.api.registry.ScopedRegistryHolder;
 import org.spongepowered.api.service.context.ContextSource;
 import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.volume.archetype.ArchetypeVolumeCreator;
 import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
-import org.spongepowered.api.world.weather.WeatherUniverse;
 import org.spongepowered.api.world.weather.Weathers;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
@@ -57,10 +58,11 @@ import java.util.function.Predicate;
 public interface World<W extends World<W>> extends ForwardingAudience,
     ProtoWorld<W>,
     LocationCreator,
-    PhysicsAwareMutableBlockVolume<BoundedWorldView<W>>,
+    PhysicsAwareMutableBlockVolume<W>,
     ContextSource,
     Viewer,
-    ArchetypeVolumeCreator
+    ArchetypeVolumeCreator,
+    ScopedRegistryHolder
 {
 
     /**
@@ -78,7 +80,7 @@ public interface World<W extends World<W>> extends ForwardingAudience,
      * @return True if loaded, false if not
      */
     boolean isLoaded();
-
+    
     /**
      * Gets an unmodifiable collection of {@link Player players} currently in this world.
      *
@@ -337,10 +339,9 @@ public interface World<W extends World<W>> extends ForwardingAudience,
      *     <ul>
      *         <li>{@link FluidTypes#LAVA} update 3 times slower</li>
      *         <li>Maps are half the size</li>
-     *         <l1>{@link Weathers#THUNDER} will not occur</l1>
-     *         <l1>The height of the world is 128 instead of the default 256</l1>
+     *         <li>{@link Weathers#THUNDER} will not occur</li>
+     *         <li>The height of the world is 128 instead of the default 256</li>
      *     </ul>
-     * </p>
      *
      * @return True if surface like, false if not
      */
@@ -354,9 +355,8 @@ public interface World<W extends World<W>> extends ForwardingAudience,
      *     <ul>
      *         <li>Players can sleep here</li>
      *         <li>Zombie Pigmen will not spawn around a nether portal</li>
-     *         <l1>Client will render clouds</l1>
+     *         <li>Client will render clouds</li>
      *     </ul>
-     * </p>
      *
      * @return True if surface like, false if not
      */

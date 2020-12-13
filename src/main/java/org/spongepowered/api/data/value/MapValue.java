@@ -60,7 +60,7 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
      * @return The constructed mutable value
      */
     static <K, V> MapValue.Mutable<K, V> mutableOf(Supplier<? extends Key<? extends MapValue<K, V>>> key, Map<K, V> element) {
-        return mutableOf(key.get(), element);
+        return MapValue.mutableOf(key.get(), element);
     }
 
     /**
@@ -88,7 +88,7 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
      * @return The constructed immutable value
      */
     static <K, V> MapValue.Immutable<K, V> immutableOf(Supplier<? extends Key<? extends MapValue<K, V>>> key, Map<K, V> element) {
-        return immutableOf(key.get(), element);
+        return MapValue.immutableOf(key.get(), element);
     }
 
     @Override

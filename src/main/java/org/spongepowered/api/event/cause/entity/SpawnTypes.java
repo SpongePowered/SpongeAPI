@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.cause.entity;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.entity.Entity;
@@ -34,14 +35,21 @@ import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.living.animal.Animal;
 import org.spongepowered.api.entity.living.trader.Trader;
 import org.spongepowered.api.entity.vehicle.minecart.SpawnerMinecart;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.plugin.PluginContainer;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class SpawnTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
@@ -50,110 +58,113 @@ public final class SpawnTypes {
      * spawn, such as {@link BlockTypes#INFESTED_STONE} where a
      * {@link EntityTypes#SILVERFISH} may spawn.
      */
-    public static final Supplier<SpawnType> BLOCK_SPAWNING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpawnType.class, "block_spawning");
+    public static final DefaultedRegistryReference<SpawnType> BLOCK_SPAWNING = SpawnTypes.key(ResourceKey.sponge("block_spawning"));
 
     /**
      * This is the equivalent to when an {@link Entity} is spawned from a
      * breeding of two other {@link Entity} instances. Usually associated
      * with {@link Animal} entities.
      */
-    public static final Supplier<SpawnType> BREEDING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpawnType.class, "breeding");
+    public static final DefaultedRegistryReference<SpawnType> BREEDING = SpawnTypes.key(ResourceKey.sponge("breeding"));
 
     /**
      * An entity spawned due to a {@link Chunk} being loaded.
      */
-    public static final Supplier<SpawnType> CHUNK_LOAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpawnType.class, "chunk_load");
+    public static final DefaultedRegistryReference<SpawnType> CHUNK_LOAD = SpawnTypes.key(ResourceKey.sponge("chunk_load"));
 
     /**
      * Custom spawn type. Usually, Sponge can decipher the spawn type
      * but in some cases, the type is just unknown.
      */
-    public static final Supplier<SpawnType> CUSTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpawnType.class, "custom");
+    public static final DefaultedRegistryReference<SpawnType> CUSTOM = SpawnTypes.key(ResourceKey.sponge("custom"));
 
     /**
      * When a {@link BlockTypes#DISPENSER} or {@link BlockTypes#DROPPER} or
      * equivalent spawns an entity as it's normal function of "dispensing".
      */
-    public static final Supplier<SpawnType> DISPENSE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpawnType.class, "dispense");
+    public static final DefaultedRegistryReference<SpawnType> DISPENSE = SpawnTypes.key(ResourceKey.sponge("dispense"));
 
     /**
      * When an {@link Item} entity is "dropped" as when a block is broken or
      * an {@link Entity} is killed.
      */
-    public static final Supplier<SpawnType> DROPPED_ITEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpawnType.class, "dropped_item");
+    public static final DefaultedRegistryReference<SpawnType> DROPPED_ITEM = SpawnTypes.key(ResourceKey.sponge("dropped_item"));
 
     /**
      * When an {@link ExperienceOrb} is spawned as a result of a "reward" from
      * an {@link Entity} granting experience for the kill, or a {@link Trader}
      * granting experience for a successful trade, or a block being mined.
      */
-    public static final Supplier<SpawnType> EXPERIENCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpawnType.class, "experience");
+    public static final DefaultedRegistryReference<SpawnType> EXPERIENCE = SpawnTypes.key(ResourceKey.sponge("experience"));
 
     /**
      * When a block becomes a {@link FallingBlock} entity due to normal gravity.
      */
-    public static final Supplier<SpawnType> FALLING_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpawnType.class, "falling_block");
+    public static final DefaultedRegistryReference<SpawnType> FALLING_BLOCK = SpawnTypes.key(ResourceKey.sponge("falling_block"));
 
     /**
      * When an {@link Entity} is spawned as a result of a
      * {@link BlockTypes#SPAWNER} or {@link SpawnerMinecart} entity
      * performs it's normal spawning.
      */
-    public static final Supplier<SpawnType> MOB_SPAWNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpawnType.class, "mob_spawner");
+    public static final DefaultedRegistryReference<SpawnType> MOB_SPAWNER = SpawnTypes.key(ResourceKey.sponge("mob_spawner"));
 
     /**
      * Unknown for now.
      */
-    public static final Supplier<SpawnType> PASSIVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpawnType.class, "passive");
+    public static final DefaultedRegistryReference<SpawnType> PASSIVE = SpawnTypes.key(ResourceKey.sponge("passive"));
 
     /**
      * When an entity is placed into the world, likely from a command.
      */
-    public static final Supplier<SpawnType> PLACEMENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpawnType.class, "placement");
+    public static final DefaultedRegistryReference<SpawnType> PLACEMENT = SpawnTypes.key(ResourceKey.sponge("placement"));
 
     /**
      * An entity spawned from a {@link PluginContainer plugin}, this can be for any reason
      * as dictated by the plugin.
      */
-    public static final Supplier<SpawnType> PLUGIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpawnType.class, "plugin");
+    public static final DefaultedRegistryReference<SpawnType> PLUGIN = SpawnTypes.key(ResourceKey.sponge("plugin"));
 
     /**
      * When an entity is spawned as a projectile, either from
      * being "thrown" or "launched".
      */
-    public static final Supplier<SpawnType> PROJECTILE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpawnType.class, "projectile");
+    public static final DefaultedRegistryReference<SpawnType> PROJECTILE = SpawnTypes.key(ResourceKey.sponge("projectile"));
 
     /**
      * When an entity is spawned from any variant of spawn eggs.
      */
-    public static final Supplier<SpawnType> SPAWN_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpawnType.class, "spawn_egg");
+    public static final DefaultedRegistryReference<SpawnType> SPAWN_EGG = SpawnTypes.key(ResourceKey.sponge("spawn_egg"));
 
     /**
      * When an entity is spawned from a structure, usually during world/chunk generation.
      */
-    public static final Supplier<SpawnType> STRUCTURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpawnType.class, "structure");
+    public static final DefaultedRegistryReference<SpawnType> STRUCTURE = SpawnTypes.key(ResourceKey.sponge("structure"));
 
     /**
      * When an entity is spawned from {@link BlockTypes#TNT}.
      */
-    public static final Supplier<SpawnType> TNT_IGNITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpawnType.class, "tnt_ignite");
+    public static final DefaultedRegistryReference<SpawnType> TNT_IGNITE = SpawnTypes.key(ResourceKey.sponge("tnt_ignite"));
 
     /**
      * When an entity is spawned from the current {@link Weather}
      * state of a {@link World}.
      */
-    public static final Supplier<SpawnType> WEATHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpawnType.class, "weather");
+    public static final DefaultedRegistryReference<SpawnType> WEATHER = SpawnTypes.key(ResourceKey.sponge("weather"));
 
     /**
      * An entity spawned from the normal world spawner (natural spawning).
      */
-    public static final Supplier<SpawnType> WORLD_SPAWNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SpawnType.class, "world_spawner");
+    public static final DefaultedRegistryReference<SpawnType> WORLD_SPAWNER = SpawnTypes.key(ResourceKey.sponge("world_spawner"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private SpawnTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<SpawnType> key(final ResourceKey location) {
+        return RegistryKey.<SpawnType>of(Registries.SPAWN_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

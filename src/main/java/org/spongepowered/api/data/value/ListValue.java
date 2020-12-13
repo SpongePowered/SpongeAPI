@@ -54,7 +54,7 @@ public interface ListValue<E> extends CollectionValue<E, List<E>> {
      * @return The constructed mutable value
      */
     static <E> ListValue.Mutable<E> mutableOf(Supplier<? extends Key<? extends ListValue<E>>> key, List<E> element) {
-        return mutableOf(key.get(), element);
+        return ListValue.mutableOf(key.get(), element);
     }
 
     /**
@@ -80,7 +80,7 @@ public interface ListValue<E> extends CollectionValue<E, List<E>> {
      * @return The constructed immutable value
      */
     static <E> ListValue.Immutable<E> immutableOf(Supplier<? extends Key<? extends ListValue<E>>> key, List<E> element) {
-        return immutableOf(key.get(), element);
+        return ListValue.immutableOf(key.get(), element);
     }
 
     @Override

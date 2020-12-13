@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.world.weather;
 
-import java.time.Duration;
+import org.spongepowered.api.util.Ticks;
 
 /**
  * A universe affected by {@link Weather}.
@@ -39,20 +39,20 @@ public interface WeatherUniverse {
     Weather getWeather();
 
     /**
-     * Gets the remaining {@link Duration} of the current
-     * {@link Weather}.
+     * Gets the remaining {@link Ticks} before the current {@link Weather}
+     * changes.
      *
-     * @return The remaining weather duration
+     * @return The remaining {@link Ticks} before the weather changes
      */
-    Duration getRemainingWeatherDuration();
+    Ticks getRemainingWeatherDuration();
 
     /**
-     * Gets the {@link Duration} the current {@link Weather}
+     * Gets the number of {@link Ticks} that the current {@link Weather}
      * has been running for.
      *
-     * @return The running weather duration
+     * @return The running weather tick duration
      */
-    Duration getRunningWeatherDuration();
+    Ticks getRunningWeatherDuration();
 
     /**
      * Sets the {@link Weather} of the volume with a random duration.
@@ -62,10 +62,11 @@ public interface WeatherUniverse {
     void setWeather(Weather weather);
 
     /**
-     * Sets the {@link Weather} of the world with the specified duration.
+     * Sets the {@link Weather} of the world with the specified {@link Ticks}
+     * duration.
      *
      * @param weather The weather that should be switched to
-     * @param duration The specified duration
+     * @param ticks The specified tick duration
      */
-    void setWeather(Weather weather, Duration duration);
+    void setWeather(Weather weather, Ticks ticks);
 }

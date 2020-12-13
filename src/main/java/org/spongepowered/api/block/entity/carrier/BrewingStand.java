@@ -27,6 +27,7 @@ package org.spongepowered.api.block.entity.carrier;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.util.Ticks;
 
 /**
  * Represents a Brewing Stand.
@@ -48,7 +49,7 @@ public interface BrewingStand extends NameableCarrierBlockEntity {
      * {@link Keys#REMAINING_BREW_TIME}
      * @return The remaining brewing time in ticks.
      */
-    default Value.Mutable<Integer> remainingBrewTime() {
+    default Value.Mutable<Ticks> remainingBrewTime() {
         return this.requireValue(Keys.REMAINING_BREW_TIME).asMutable();
     }
 

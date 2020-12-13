@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.living.player;
 
+import net.kyori.adventure.identity.Identified;
 import org.spongepowered.api.block.entity.EnderChest;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Humanoid;
@@ -36,7 +37,7 @@ import org.spongepowered.api.util.locale.LocaleSource;
 /**
  * A Player is the representation of an actual unit playing the game.
  */
-public interface Player extends Humanoid, LocaleSource, Viewer, Carrier {
+public interface Player extends Humanoid, Identified, LocaleSource, Viewer, Carrier {
 
     /**
      * Gets the associated {@link GameProfile} of this player.
@@ -44,7 +45,12 @@ public interface Player extends Humanoid, LocaleSource, Viewer, Carrier {
      * @return The user's profile
      */
     GameProfile getProfile();
-    
+
+    @Override
+    default GameProfile identity() {
+        return this.getProfile();
+    }
+
     @Override
     PlayerInventory getInventory();
 

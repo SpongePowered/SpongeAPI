@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.event.cause.entity.damage.source.common;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.IndirectEntityDamageSource;
+
+import java.util.Objects;
 
 public abstract class AbstractIndirectEntityDamageSource implements IndirectEntityDamageSource {
 
@@ -44,7 +44,7 @@ public abstract class AbstractIndirectEntityDamageSource implements IndirectEnti
     private final Entity indirect;
 
     protected AbstractIndirectEntityDamageSource(AbstractIndirectEntityDamageSourceBuilder<?, ?> builder) {
-        this.apiDamageType = checkNotNull(builder.damageType, "DamageType cannot be null!");
+        this.apiDamageType = Objects.requireNonNull(builder.damageType, "DamageType cannot be null!");
         this.absolute = builder.absolute;
         this.bypassesArmor = builder.bypasses;
         this.scales = builder.scales;
@@ -58,8 +58,8 @@ public abstract class AbstractIndirectEntityDamageSource implements IndirectEnti
         } else {
             this.exhaustion = 0.1;
         }
-        this.source = checkNotNull(builder.sourceEntity, "Entity source cannot be null!");
-        this.indirect = checkNotNull(builder.indirect, "Indirect source cannot be null!");
+        this.source = Objects.requireNonNull(builder.sourceEntity, "Entity source cannot be null!");
+        this.indirect = Objects.requireNonNull(builder.indirect, "Indirect source cannot be null!");
     }
 
     @Override
@@ -123,14 +123,14 @@ public abstract class AbstractIndirectEntityDamageSource implements IndirectEnti
 
         @Override
         public B entity(Entity entity) {
-            this.sourceEntity = checkNotNull(entity, "Entity source cannot be null!");
+            this.sourceEntity = Objects.requireNonNull(entity, "Entity source cannot be null!");
             return (B) this;
         }
 
 
         @Override
         public B proxySource(Entity projectile) {
-            this.indirect = checkNotNull(projectile);
+            this.indirect = Objects.requireNonNull(projectile);
             return (B) this;
         }
 

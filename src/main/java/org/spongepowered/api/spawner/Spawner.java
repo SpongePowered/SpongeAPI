@@ -33,6 +33,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.vehicle.minecart.SpawnerMinecart;
+import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 
 import java.util.Random;
@@ -50,7 +51,7 @@ public interface Spawner extends SerializableDataHolder.Mutable {
      *
      * @return The immutable bounded value for the remaining delay
      */
-    default Value.Mutable<Integer> remainingDelay() {
+    default Value.Mutable<Ticks> remainingDelay() {
         return this.requireValue(Keys.REMAINING_SPAWN_DELAY).asMutable();
     }
 
@@ -60,7 +61,7 @@ public interface Spawner extends SerializableDataHolder.Mutable {
      *
      * @return The bounded value of the minimum spawn delay
      */
-    default Value.Mutable<Integer> minimumSpawnDelay() {
+    default Value.Mutable<Ticks> minimumSpawnDelay() {
         return this.requireValue(Keys.MIN_SPAWN_DELAY).asMutable();
     }
 
@@ -70,7 +71,7 @@ public interface Spawner extends SerializableDataHolder.Mutable {
      *
      * @return The bounded value of the maximum spawn delay
      */
-    default Value.Mutable<Integer> maximumSpawnDelay() {
+    default Value.Mutable<Ticks> maximumSpawnDelay() {
         return this.requireValue(Keys.MAX_SPAWN_DELAY).asMutable();
     }
 

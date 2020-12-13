@@ -25,13 +25,11 @@
 package org.spongepowered.api.placeholder;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
-import org.spongepowered.plugin.PluginContainer;
 
 import java.util.function.Function;
 
@@ -48,18 +46,18 @@ public interface PlaceholderParser extends CatalogType {
      * @return The {@link Builder}
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
      * Creates a {@link Component} based on the provided {@link PlaceholderContext}.
      *
      * <p>This method should not throw an error, instead returning
-     * {@link TextComponent#empty()} if the supplied {@link PlaceholderContext} is not
+     * {@link Component#empty()} if the supplied {@link PlaceholderContext} is not
      * valid.</p>
      *
      * @param placeholderContext The {@link PlaceholderContext}
-     * @return The {@link TextComponent}
+     * @return The {@link Component}
      */
     Component parse(PlaceholderContext placeholderContext);
 

@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.world.volume.game;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.profile.GameProfile;
@@ -34,8 +32,9 @@ import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.time.Duration;
+import java.util.Objects;
 
-public interface InteractableVolume extends ReadableBlockVolume {
+public interface InteractableVolume extends ReadableBlockVolume, LocationBaseDataHolder {
 
     /**
      * Simulates hitting a block as if a player had done so.
@@ -50,7 +49,7 @@ public interface InteractableVolume extends ReadableBlockVolume {
      * @return True if the interact succeeded
      */
     default boolean hitBlock(Vector3i position, Direction side, GameProfile profile) {
-        return hitBlock(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), side, profile);
+        return this.hitBlock(Objects.requireNonNull(position, "position").getX(), position.getY(), position.getZ(), side, profile);
     }
 
     /**
@@ -78,7 +77,7 @@ public interface InteractableVolume extends ReadableBlockVolume {
      * @return True if the interact succeeded
      */
     default boolean interactBlock(Vector3i position, Direction side, GameProfile profile) {
-        return interactBlock(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), side, profile);
+        return this.interactBlock(Objects.requireNonNull(position, "position").getX(), position.getY(), position.getZ(), side, profile);
     }
 
     /**
@@ -104,7 +103,7 @@ public interface InteractableVolume extends ReadableBlockVolume {
      * @return True if the interact succeeded
      */
     default boolean interactBlockWith(Vector3i position, ItemStack itemStack, Direction side, GameProfile profile) {
-        return interactBlockWith(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, side, profile);
+        return this.interactBlockWith(Objects.requireNonNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, side, profile);
     }
 
     /**
@@ -132,7 +131,7 @@ public interface InteractableVolume extends ReadableBlockVolume {
      * @return Whether the block was successfully set
      */
     default boolean placeBlock(Vector3i position, BlockState block, Direction side, GameProfile profile) {
-        return placeBlock(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), block, side, profile);
+        return this.placeBlock(Objects.requireNonNull(position, "position").getX(), position.getY(), position.getZ(), block, side, profile);
     }
 
     /**
@@ -157,7 +156,7 @@ public interface InteractableVolume extends ReadableBlockVolume {
      * @return Whether the block was destroyed
      */
     default boolean digBlock(Vector3i position, GameProfile profile) {
-        return digBlock(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), profile);
+        return this.digBlock(Objects.requireNonNull(position, "position").getX(), position.getY(), position.getZ(), profile);
     }
 
     /**
@@ -181,7 +180,7 @@ public interface InteractableVolume extends ReadableBlockVolume {
      * @return Whether the block was destroyed
      */
     default boolean digBlockWith(Vector3i position, ItemStack itemStack, GameProfile profile) {
-        return digBlockWith(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, profile);
+        return this.digBlockWith(Objects.requireNonNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, profile);
     }
 
     /**
@@ -206,7 +205,7 @@ public interface InteractableVolume extends ReadableBlockVolume {
      * @return The duration it takes to dig the block
      */
     default Duration getBlockDigTimeWith(Vector3i position, ItemStack itemStack, GameProfile profile) {
-        return getBlockDigTimeWith(checkNotNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, profile);
+        return this.getBlockDigTimeWith(Objects.requireNonNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, profile);
     }
 
     /**

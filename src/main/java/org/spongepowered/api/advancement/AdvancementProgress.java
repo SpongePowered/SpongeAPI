@@ -79,8 +79,8 @@ public interface AdvancementProgress extends Progressable {
      * @return The criterion progress
      */
     default CriterionProgress require(AdvancementCriterion criterion) {
-        return get(criterion).orElseThrow(() -> new IllegalStateException("The criterion " + criterion.getName()
-            + " isn't present on the advancement '" + getAdvancement().getKey().toString() + "'."));
+        return this.get(criterion).orElseThrow(() -> new IllegalStateException("The criterion " + criterion.getName()
+            + " isn't present on the advancement '" + this.getAdvancement().getKey().toString() + "'."));
     }
 
     /**
@@ -91,8 +91,8 @@ public interface AdvancementProgress extends Progressable {
      * @return The score criterion progress
      */
     default ScoreCriterionProgress require(ScoreAdvancementCriterion criterion) {
-        return get(criterion).orElseThrow(() -> new IllegalStateException("The score criterion " + criterion.getName()
-            + " isn't present on the advancement '" + getAdvancement().getKey().toString() + "'."));
+        return this.get(criterion).orElseThrow(() -> new IllegalStateException("The score criterion " + criterion.getName()
+            + " isn't present on the advancement '" + this.getAdvancement().getKey().toString() + "'."));
     }
 
 }

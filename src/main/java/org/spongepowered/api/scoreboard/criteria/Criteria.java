@@ -24,62 +24,104 @@
  */
 package org.spongepowered.api.scoreboard.criteria;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.effect.potion.PotionEffectTypes;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.scoreboard.objective.Objective;
-
-import java.util.function.Supplier;
 
 /**
  * Criteria names which trigger an objective to be modified by actions in-game.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class Criteria {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
     /**
-     * Represents a {@link Criteria} which causes an {@link Objective}
+     * Represents a {@link Criterion} which causes an {@link Objective} to have
+     * a score for a player represent their current air value.
+     */
+    public static final DefaultedRegistryReference<Criterion> AIR = Criteria.key(ResourceKey.sponge("air"));
+
+    /**
+     * Represents a {@link Criterion} which causes an {@link Objective} to have
+     * a score for a player represent their current armor value.
+     */
+    public static final DefaultedRegistryReference<Criterion> ARMOR = Criteria.key(ResourceKey.sponge("armor"));
+
+    /**
+     * Represents a {@link Criterion} which causes an {@link Objective}
      * to have a score for a player incremented when they die.
      */
-    public static final Supplier<Criterion> DEATHS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "deaths");
+    public static final DefaultedRegistryReference<Criterion> DEATH_COUNT = Criteria.key(ResourceKey.sponge("death_count"));
 
     /**
      * Represents a {@link Criterion} which causes an {@link Objective}
      * is only updated manually, through commands or plugins.
      */
-    public static final Supplier<Criterion> DUMMY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "dummy");
+    public static final DefaultedRegistryReference<Criterion> DUMMY = Criteria.key(ResourceKey.sponge("dummy"));
 
     /**
-     * Represents a {@link Criteria} which causes an {@link Objective} to have
+     * Represents a {@link Criterion} which causes an {@link Objective} to have
+     * a score for a player represent their current food.
+     */
+    public static final DefaultedRegistryReference<Criterion> FOOD = Criteria.key(ResourceKey.sponge("food"));
+
+    /**
+     * Represents a {@link Criterion} which causes an {@link Objective} to have
      * a score for a player represent their current health, on a scale of 0-20
      * (can be greater than 20 due to effects such as
      * {@link PotionEffectTypes#HEALTH_BOOST}).
      */
-    public static final Supplier<Criterion> HEALTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "health");
+    public static final DefaultedRegistryReference<Criterion> HEALTH = Criteria.key(ResourceKey.sponge("health"));
 
     /**
-     * Represents a {@link Criteria} which causes an {@link Objective}
+     * Represents a {@link Criterion} which causes an {@link Objective} to have
+     * a score for a player represent their current level.
+     */
+    public static final DefaultedRegistryReference<Criterion> LEVEL = Criteria.key(ResourceKey.sponge("level"));
+
+    /**
+     * Represents a {@link Criterion} which causes an {@link Objective}
      * to have a score for a player incremented when they kill a player.
      */
-    public static final Supplier<Criterion> PLAYER_KILLS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "player_kills");
+    public static final DefaultedRegistryReference<Criterion> PLAYER_KILL_COUNT = Criteria.key(ResourceKey.sponge("player_kill_count"));
 
     /**
-     * Represents a {@link Criteria} which causes an {@link Objective}
+     * Represents a {@link Criterion} which causes an {@link Objective}
      * to have a score for a player incremented when they kill an entity.
      */
-    public static final Supplier<Criterion> TOTAL_KILLS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "total_kills");
+    public static final DefaultedRegistryReference<Criterion> TOTAL_KILL_COUNT = Criteria.key(ResourceKey.sponge("total_kill_count"));
 
     /**
      * Represents a {@link Criterion} which causes an {@link Objective}
      * to have a score for a player updated by the <code>/trigger</code>
      * command.
      */
-    public static final Supplier<Criterion> TRIGGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Criterion.class, "trigger");
+    public static final DefaultedRegistryReference<Criterion> TRIGGER = Criteria.key(ResourceKey.sponge("trigger"));
+
+    /**
+     * Represents a {@link Criterion} which causes an {@link Objective} to have
+     * a score for a player represent their current xp.
+     */
+    public static final DefaultedRegistryReference<Criterion> XP = Criteria.key(ResourceKey.sponge("xp"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private Criteria() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<Criterion> key(final ResourceKey location) {
+        return RegistryKey.<Criterion>of(Registries.CRITERION.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

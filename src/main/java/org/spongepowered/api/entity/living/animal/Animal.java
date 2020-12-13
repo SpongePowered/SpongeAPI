@@ -30,6 +30,7 @@ import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.Ageable;
 import org.spongepowered.api.entity.living.animal.cow.Cow;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.util.Ticks;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -51,7 +52,7 @@ public interface Animal extends Ageable {
      * {@link Keys#BREEDING_COOLDOWN}
      * @return The current breeding cooldown
      */
-    default Value.Mutable<Integer> breedingCooldown() {
+    default Value.Mutable<Ticks> breedingCooldown() {
         return this.requireValue(Keys.BREEDING_COOLDOWN).asMutable();
     }
 

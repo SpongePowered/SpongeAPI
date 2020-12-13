@@ -24,6 +24,23 @@
  */
 package org.spongepowered.api.world.volume.biome;
 
+import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.volume.stream.StreamOptions;
+import org.spongepowered.api.world.volume.stream.VolumeStream;
+import org.spongepowered.math.vector.Vector3i;
+
 public interface StreamableBiomeVolume<B extends StreamableBiomeVolume<B>> extends ReadableBiomeVolume {
+
+    /**
+     * Gets a {@link VolumeStream}&lt;{@code B, }{@link BiomeType}&gt;
+     * from this volume such that the {@code min} and {@code max} are contained
+     * within this volume.
+     *
+     * @param min The minimum coordinate set
+     * @param max The maximum coordinate set
+     * @param options The options to construct the stream
+     * @return The volume stream
+     */
+    VolumeStream<B, BiomeType> getBiomeStream(Vector3i min, Vector3i max, StreamOptions options);
 
 }

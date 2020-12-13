@@ -40,7 +40,7 @@ public interface ClickContainerEvent extends ChangeInventoryEvent, InteractConta
     @PropertySettings(requiredParameter = false, generateMethods = false)
     @Override
     default Container getInventory() {
-        return getContainer();
+        return this.getContainer();
     }
 
     /**

@@ -33,33 +33,33 @@ public enum Tristate {
     TRUE(true) {
         @Override
         public Tristate and(Tristate other) {
-            return other == FALSE ? FALSE : TRUE;
+            return other == Tristate.FALSE ? Tristate.FALSE : Tristate.TRUE;
         }
 
         @Override
         public Tristate or(Tristate other) {
-            return TRUE;
+            return Tristate.TRUE;
         }
 
         @Override
         public Tristate not() {
-            return FALSE;
+            return Tristate.FALSE;
         }
     },
     FALSE(false) {
         @Override
         public Tristate and(Tristate other) {
-            return FALSE;
+            return Tristate.FALSE;
         }
 
         @Override
         public Tristate or(Tristate other) {
-            return other == TRUE ? TRUE : FALSE;
+            return other == Tristate.TRUE ? Tristate.TRUE : Tristate.FALSE;
         }
 
         @Override
         public Tristate not() {
-            return TRUE;
+            return Tristate.TRUE;
         }
     },
     UNDEFINED(false) {
@@ -75,7 +75,7 @@ public enum Tristate {
 
         @Override
         public Tristate not() {
-            return UNDEFINED;
+            return Tristate.UNDEFINED;
         }
     };
 
@@ -92,7 +92,7 @@ public enum Tristate {
      * @return The appropriate tristate
      */
     public static Tristate fromBoolean(boolean val) {
-        return val ? TRUE : FALSE;
+        return val ? Tristate.TRUE : Tristate.FALSE;
     }
 
     /**
@@ -104,9 +104,9 @@ public enum Tristate {
      */
     public static Tristate fromNullableBoolean(@Nullable Boolean val) {
         if (val == null) {
-            return UNDEFINED;
+            return Tristate.UNDEFINED;
         } else {
-            return val ? TRUE : FALSE;
+            return val ? Tristate.TRUE : Tristate.FALSE;
         }
     }
 

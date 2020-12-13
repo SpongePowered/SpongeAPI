@@ -122,7 +122,7 @@ public final class Locales {
     /**
      * The default locale used when the receiver's locale is unknown.
      */
-    public static final Locale DEFAULT = EN_US;
+    public static final Locale DEFAULT = Locales.EN_US;
 
     // Suppress default constructor to ensure non-instantiability.
     private Locales() {

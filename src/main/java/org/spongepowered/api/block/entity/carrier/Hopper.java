@@ -26,6 +26,7 @@ package org.spongepowered.api.block.entity.carrier;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.util.Ticks;
 
 /**
  * Represents a Hopper.
@@ -37,7 +38,7 @@ public interface Hopper extends NameableCarrierBlockEntity {
      * @return The amount of time in ticks till the hopper can transfer another
      * item.
      */
-    default Value.Mutable<Integer> cooldown() {
+    default Value.Mutable<Ticks> cooldown() {
         return this.requireValue(Keys.COOLDOWN).asMutable();
     }
 

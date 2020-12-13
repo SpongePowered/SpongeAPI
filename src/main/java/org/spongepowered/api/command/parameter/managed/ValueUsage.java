@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.command.parameter.managed;
 
-import net.kyori.adventure.text.Component;
-
 /**
  * Defines the usage string for the parameter.
  */
@@ -33,11 +31,11 @@ import net.kyori.adventure.text.Component;
 public interface ValueUsage {
 
     /**
-     * Gets the usage string for the argument.
+     * Gets the usage string for the parameter.
      *
-     * @param key The {@link Component} that defines the parameter key
+     * @param key The {@link String} that defines the parameter key
      * @return The usage
      */
-    Component getUsage(String key);
+    String getUsage(String key);
 
 }

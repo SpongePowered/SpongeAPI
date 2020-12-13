@@ -32,13 +32,13 @@ import org.spongepowered.math.vector.Vector3i;
 public interface MutableBlockEntityVolume<M extends MutableBlockEntityVolume<M>> extends StreamableBlockEntityVolume<M>, MutableBlockVolume<M>, MutableVolume {
 
     default void addBlockEntity(Vector3i pos, BlockEntity blockEntity) {
-        addBlockEntity(pos.getX(), pos.getY(), pos.getZ(), blockEntity);
+        this.addBlockEntity(pos.getX(), pos.getY(), pos.getZ(), blockEntity);
     }
 
     void addBlockEntity(int x, int y, int z, BlockEntity blockEntity);
 
     default void removeBlockEntity(Vector3i pos) {
-        removeBlockEntity(pos.getX(), pos.getY(), pos.getZ());
+        this.removeBlockEntity(pos.getX(), pos.getY(), pos.getZ());
     }
 
     void removeBlockEntity(int x, int y, int z);

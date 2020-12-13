@@ -26,6 +26,7 @@ package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.util.Ticks;
 
 /**
  * Represents an {@link Agent} that produces offspring and grows into an adult
@@ -44,7 +45,7 @@ public interface Ageable extends Agent {
      * {@link Keys#BABY_TICKS}
      * @return The ticks until this entity turns into an adult
      */
-    default Value.Mutable<Integer> babyTicks() {
+    default Value.Mutable<Ticks> babyTicks() {
         return this.requireValue(Keys.BABY_TICKS).asMutable();
     }
 

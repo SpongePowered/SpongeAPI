@@ -24,23 +24,44 @@
  */
 package org.spongepowered.api.scheduler;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class TaskPriorities {
 
-    //sortfields:ON
-    public static final Supplier<TaskPriority> EXTREMELY_HIGH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TaskPriority.class, "extremely_high");
-    public static final Supplier<TaskPriority> VERY_HIGH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TaskPriority.class, "very_high");
-    public static final Supplier<TaskPriority> HIGH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TaskPriority.class, "high");
-    public static final Supplier<TaskPriority> NORMAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TaskPriority.class, "normal");
-    public static final Supplier<TaskPriority> LOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TaskPriority.class, "low");
-    public static final Supplier<TaskPriority> VERY_LOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TaskPriority.class, "very_low");
-    public static final Supplier<TaskPriority> EXTREMELY_LOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TaskPriority.class, "extremely_low");
-    //sortfields:OFF
+    // @formatter:off
+
+    // SORTFIELDS:ON
+
+    public static final DefaultedRegistryReference<TaskPriority> EXTREMELY_HIGH = TaskPriorities.key(ResourceKey.sponge("extremely_high"));
+
+    public static final DefaultedRegistryReference<TaskPriority> VERY_HIGH = TaskPriorities.key(ResourceKey.sponge("very_high"));
+
+    public static final DefaultedRegistryReference<TaskPriority> HIGH = TaskPriorities.key(ResourceKey.sponge("high"));
+
+    public static final DefaultedRegistryReference<TaskPriority> NORMAL = TaskPriorities.key(ResourceKey.sponge("normal"));
+
+    public static final DefaultedRegistryReference<TaskPriority> LOW = TaskPriorities.key(ResourceKey.sponge("low"));
+
+    public static final DefaultedRegistryReference<TaskPriority> VERY_LOW = TaskPriorities.key(ResourceKey.sponge("very_low"));
+
+    public static final DefaultedRegistryReference<TaskPriority> EXTREMELY_LOW = TaskPriorities.key(ResourceKey.sponge("extremely_low"));
+
+    // SORTFIELDS:OFF
+
+    // @formatter:on
 
     private TaskPriorities() {
     }
 
+    private static DefaultedRegistryReference<TaskPriority> key(final ResourceKey location) {
+        return RegistryKey.<TaskPriority>of(Registries.TASK_PRIORITY.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

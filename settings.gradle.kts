@@ -2,10 +2,9 @@ rootProject.name = "SpongeAPI"
 
 pluginManagement {
     repositories {
-        mavenLocal()
+        maven("https://repo-new.spongepowered.org/repository/maven-public")
         mavenCentral()
         gradlePluginPortal()
-        maven("https://repo-new.spongepowered.org/repository/maven-public")
         maven("https://repo.spongepowered.org/maven")
     }
     resolutionStrategy {
@@ -14,9 +13,9 @@ pluginManagement {
                 val version = requested.version ?: "0.11.7-SNAPSHOT"
                 useModule("org.spongepowered:SpongeGradle:$version")
             }
-            if (requested.id.id == "net.minecrell.licenser") {
-                val version = requested.version ?: "0.4.1"
-                useModule("gradle.plugin.net.minecrell:licenser:$version")
+            if (requested.id.id == "org.cadixdev.licenser") {
+                val version = requested.version ?: "0.5.0"
+                useModule("gradle.plugin.org.cadixdev.gradle:licenser:$version")
             }
         }
     }

@@ -1,7 +1,7 @@
 # This workflow will build a package using Gradle and then publish it to GitHub packages when a release is created
 # For more information see: https://github.com/actions/setup-java#publishing-using-gradle
 
-name: Publish plugin-meta to Maven and Github Packages
+name: Publish SpongeAPI to Maven and Github Packages
 
 on:
   push:
@@ -22,10 +22,15 @@ jobs:
           settings-path: ${{ github.workspace }} # location for the settings.xml file
       - uses: actions/cache@v2
         with:
-          path: ~/.gradle/caches
+          path:  ${{ github.workspace }}/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+      - name: Setup env variables
+        run: |
+          echo "GIT_COMMIT=${GITHUB_SHA}" >> $GITHUB_ENV
+          echo "GIT_BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
+          echo "BUILD_NUMBER=${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 

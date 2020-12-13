@@ -24,10 +24,9 @@
  */
 package org.spongepowered.api.data.value;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.checkerframework.checker.nullness.qual.Nullable;
 
+import java.util.Objects;
 import java.util.function.Function;
 
 /**
@@ -92,7 +91,7 @@ public interface MergeFunction {
     MergeFunction REPLACEMENT_PREFERRED = new MergeFunction() {
         @Override
         public <V extends Value<E>, E> V merge(@Nullable V original, @Nullable V replacement) {
-            return replacement == null ? checkNotNull(original, "Original and replacement cannot be null!") : replacement;
+            return replacement == null ? Objects.requireNonNull(original, "Original and replacement cannot be null!") : replacement;
         }
     };
 
@@ -103,7 +102,7 @@ public interface MergeFunction {
     MergeFunction ORIGINAL_PREFERRED = new MergeFunction() {
         @Override
         public <V extends Value<E>, E> V merge(@Nullable V original, @Nullable V replacement) {
-            return original == null ? checkNotNull(replacement, "Replacement and original cannot be null!") : original;
+            return original == null ? Objects.requireNonNull(replacement, "Replacement and original cannot be null!") : original;
         }
     };
 

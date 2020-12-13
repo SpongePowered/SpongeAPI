@@ -24,6 +24,23 @@
  */
 package org.spongepowered.api.world.volume.entity;
 
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.world.volume.stream.StreamOptions;
+import org.spongepowered.api.world.volume.stream.VolumeStream;
+import org.spongepowered.math.vector.Vector3i;
+
 public interface StreamableEntityVolume<E extends StreamableEntityVolume<E>> extends ReadableEntityVolume {
+
+    /**
+     * Gets a {@link VolumeStream}&lt;{@code B, }{@link Entity}&gt;
+     * from this volume such that the {@code min} and {@code max} are contained
+     * within this volume.
+     *
+     * @param min The minimum coordinate set
+     * @param max The maximum coordinate set
+     * @param options The options to construct the stream
+     * @return The volume stream
+     */
+    VolumeStream<E, Entity> getEntityStream(Vector3i min, Vector3i max, StreamOptions options);
 
 }

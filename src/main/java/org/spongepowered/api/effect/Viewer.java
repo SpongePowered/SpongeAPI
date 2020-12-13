@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.effect;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.sound.Sound;
 import org.checkerframework.checker.nullness.qual.NonNull;
@@ -39,6 +37,7 @@ import org.spongepowered.api.world.dimension.DimensionTypes;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
+import java.util.Objects;
 import java.util.function.Supplier;
 
 /**
@@ -131,7 +130,7 @@ public interface Viewer extends Audience {
      * @param state The block state
      */
     default void sendBlockChange(Vector3i vec, BlockState state) {
-        checkNotNull(vec, "vec");
+        Objects.requireNonNull(vec, "vec");
         this.sendBlockChange(vec.getX(), vec.getY(), vec.getZ(), state);
     }
 
@@ -157,7 +156,7 @@ public interface Viewer extends Audience {
      * @param vec The position
      */
     default void resetBlockChange(Vector3i vec) {
-        checkNotNull(vec, "vec");
+        Objects.requireNonNull(vec, "vec");
         this.resetBlockChange(vec.getX(), vec.getY(), vec.getZ());
     }
 

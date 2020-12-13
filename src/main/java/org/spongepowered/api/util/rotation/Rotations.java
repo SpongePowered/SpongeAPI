@@ -24,42 +24,37 @@
  */
 package org.spongepowered.api.util.rotation;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.hanging.ItemFrame;
-import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
-
-/**
- * An enumeration of possible rotations for something that can rotate,
- * such as an {@link ItemStack} within
- * an {@link ItemFrame}.
- */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class Rotations {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<Rotation> BOTTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "bottom");
+    public static final DefaultedRegistryReference<Rotation> NONE = Rotations.key(ResourceKey.sponge("none"));
+    public static final DefaultedRegistryReference<Rotation> CLOCKWISE_90 = Rotations.key(ResourceKey.sponge("clockwise_90"));
 
-    public static final Supplier<Rotation> BOTTOM_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "bottom_left");
+    public static final DefaultedRegistryReference<Rotation> CLOCKWISE_180 = Rotations.key(ResourceKey.sponge("clockwise_180"));
 
-    public static final Supplier<Rotation> BOTTOM_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "bottom_right");
-
-    public static final Supplier<Rotation> LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "left");
-
-    public static final Supplier<Rotation> RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "right");
-
-    public static final Supplier<Rotation> TOP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "top");
-
-    public static final Supplier<Rotation> TOP_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "top_left");
-
-    public static final Supplier<Rotation> TOP_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Rotation.class, "top_right");
+    public static final DefaultedRegistryReference<Rotation> COUNTER_CLOCKWISE_90 = Rotations.key(ResourceKey.sponge("counter_clockwise_90"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private Rotations() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<Rotation> key(final ResourceKey location) {
+        return RegistryKey.<Rotation>of(Registries.ROTATION.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

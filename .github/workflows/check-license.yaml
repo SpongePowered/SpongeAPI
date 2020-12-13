@@ -5,9 +5,9 @@ name: License Check
 
 on:
   push:
-    branches: [ api-8 ]
+    branches: [ stable-7, api-8 ]
   pull_request:
-    branches: [ api-8 ]
+    branches: [ stable-7, api-8 ]
 
 jobs:
   build:
@@ -28,5 +28,5 @@ jobs:
           java-version: 1.8
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-      - name: Build with Gradle
+      - name: Check license
         run: ./gradlew checkLicenses

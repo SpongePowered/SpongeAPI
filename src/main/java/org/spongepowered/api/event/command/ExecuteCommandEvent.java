@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.command;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
@@ -36,6 +37,16 @@ import java.util.Optional;
  * Events that fire when commands are executed.
  */
 public interface ExecuteCommandEvent extends Event {
+
+    /**
+     * Gets the {@link CommandCause} that is involved in this event.
+     *
+     * <p>{@link CommandCause#getCause()} returns the same {@link Cause} as
+     * {@link #getCause()}.</p>
+     *
+     * @return The {@link CommandCause}
+     */
+    CommandCause getCommandCause();
 
     /**
      * Gets the command that were requested by the {@link Cause} before any

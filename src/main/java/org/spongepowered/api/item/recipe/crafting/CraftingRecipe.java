@@ -25,8 +25,7 @@
 package org.spongepowered.api.item.recipe.crafting;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
+import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
 import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.item.recipe.RecipeType;
 
@@ -34,16 +33,10 @@ import java.util.Optional;
 
 /**
  * A CraftingRecipe represents some craftable recipe in the game.
- *
- * <p>It is essentially a Predicate that checks for if a recipe is valid as well
- * as a function from a crafting matrix to a list of {@link ItemStack} (the
- * crafting result), therefore making it an immutable interface.</p>
- *
- * <p>The passed in {@link CraftingGridInventory} is usually a crafting
- * inventory, e.g. a 2x2 or 3x3 crafting matrix.</p>
- *
- * <p>The requirements of a CraftingRecipe can be general, they just have to
- * eventually return a boolean given an crafting grid.</p>
+ * <p>Currently supported crafting recipe types are:</p>
+ * <p>{@link ShapelessCraftingRecipe} for recipes with simple ingredients/result without pattern in a {@link CraftingInventory}</p>
+ * <p>{@link ShapedCraftingRecipe} for recipes with simple ingredients/result in a pattern in a {@link CraftingInventory}</p>
+ * <p>{@link SpecialCraftingRecipe} for recipes with complex ingredients and result in a {@link CraftingInventory}</p>
  */
 public interface CraftingRecipe extends Recipe {
 
@@ -64,7 +57,7 @@ public interface CraftingRecipe extends Recipe {
      * @return The builder.
      */
     static ShapedCraftingRecipe.Builder shapedBuilder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(ShapedCraftingRecipe.Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(ShapedCraftingRecipe.Builder.class);
     }
 
     /**
@@ -73,7 +66,7 @@ public interface CraftingRecipe extends Recipe {
      * @return The builder.
      */
     static ShapelessCraftingRecipe.Builder shapelessBuilder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(ShapelessCraftingRecipe.Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(ShapelessCraftingRecipe.Builder.class);
     }
 
     /**
@@ -82,7 +75,7 @@ public interface CraftingRecipe extends Recipe {
      * @return The builder.
      */
     static SpecialCraftingRecipe.Builder specialBuilder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(SpecialCraftingRecipe.Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(SpecialCraftingRecipe.Builder.class);
     }
 
 }

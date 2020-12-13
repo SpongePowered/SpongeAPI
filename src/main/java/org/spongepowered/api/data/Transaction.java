@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.data;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataSerializable;
@@ -51,8 +49,8 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
      * @param defaultReplacement The default replacement
      */
     public Transaction(T original, T defaultReplacement) {
-        this.original = checkNotNull(original);
-        this.defaultReplacement = checkNotNull(defaultReplacement);
+        this.original = Objects.requireNonNull(original);
+        this.defaultReplacement = Objects.requireNonNull(defaultReplacement);
         this.intermediary = null;
     }
 
@@ -73,8 +71,8 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
      * @param intermediary The intermediary results
      */
     public Transaction(T original, T defaultReplacement, @Nullable List<? extends T> intermediary) {
-        this.original = checkNotNull(original, "Original cannot be null");
-        this.defaultReplacement = checkNotNull(defaultReplacement, "Default replacement cannot be null");
+        this.original = Objects.requireNonNull(original, "Original cannot be null");
+        this.defaultReplacement = Objects.requireNonNull(defaultReplacement, "Default replacement cannot be null");
         this.intermediary = intermediary == null ? null : Collections.unmodifiableList(intermediary);
     }
 
@@ -162,6 +160,14 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
         this.valid = valid;
     }
 
+    public final void validate() {
+        this.valid = true;
+    }
+
+    public final void invalidate() {
+        this.valid = false;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(this.original, this.defaultReplacement, this.valid, this.custom);
@@ -173,7 +179,7 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
         if (this == obj) {
             return true;
         }
-        if (obj == null || getClass() != obj.getClass()) {
+        if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
         final Transaction other = (Transaction) obj;
@@ -201,7 +207,7 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
     @Override
     public DataContainer toContainer() {
         final DataContainer container = DataContainer.createNew()
-            .set(Queries.CONTENT_VERSION, getContentVersion())
+            .set(Queries.CONTENT_VERSION, this.getContentVersion())
             .set(Queries.TYPE_CLASS, this.original.getClass().getName())
             .set(Queries.ORIGINAL, this.original)
             .set(Queries.DEFAULT_REPLACEMENT, this.defaultReplacement)

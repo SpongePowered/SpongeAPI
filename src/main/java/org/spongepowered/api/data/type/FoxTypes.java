@@ -24,24 +24,37 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link FoxType}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class FoxTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<FoxType> RED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FoxType.class, "red");
+    public static final DefaultedRegistryReference<FoxType> RED = FoxTypes.key(ResourceKey.sponge("red"));
 
-    public static final Supplier<FoxType> SNOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(FoxType.class, "snow");
+    public static final DefaultedRegistryReference<FoxType> SNOW = FoxTypes.key(ResourceKey.sponge("snow"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private FoxTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<FoxType> key(final ResourceKey location) {
+        return RegistryKey.<FoxType>of(Registries.FOX_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

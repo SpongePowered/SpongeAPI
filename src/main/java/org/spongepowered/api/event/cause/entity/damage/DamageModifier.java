@@ -24,11 +24,6 @@
  */
 package org.spongepowered.api.event.cause.entity.damage;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
-
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cause;
@@ -38,7 +33,9 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.CopyableBuilder;
 
+import java.util.Objects;
 import java.util.Optional;
+import java.util.StringJoiner;
 import java.util.function.DoubleUnaryOperator;
 import java.util.function.Supplier;
 
@@ -108,7 +105,7 @@ public interface DamageModifier {
          * @param damageModifierType The damage modifier type
          * @return This builder, for chaining
          */
-        public Builder type(Supplier<? extends DamageModifierType> damageModifierType) {
+        public Builder type(final Supplier<? extends DamageModifierType> damageModifierType) {
             return this.type(damageModifierType.get());
         }
 
@@ -119,18 +116,18 @@ public interface DamageModifier {
          * @param damageModifierType The damage modifier type
          * @return This builder, for chaining
          */
-        public Builder type(DamageModifierType damageModifierType) {
-            this.type = checkNotNull(damageModifierType);
+        public Builder type(final DamageModifierType damageModifierType) {
+            this.type = java.util.Objects.requireNonNull(damageModifierType);
             return this;
         }
 
-        public Builder item(ItemStack itemStack) {
-            item(checkNotNull(itemStack, "ItemStack").createSnapshot());
+        public Builder item(final ItemStack itemStack) {
+            this.item(java.util.Objects.requireNonNull(itemStack, "ItemStack").createSnapshot());
             return this;
         }
 
-        public Builder item(ItemStackSnapshot snapshot) {
-            this.snapshot = checkNotNull(snapshot, "ItemStackSnapshot");
+        public Builder item(final ItemStackSnapshot snapshot) {
+            this.snapshot = java.util.Objects.requireNonNull(snapshot, "ItemStackSnapshot");
             return this;
         }
 
@@ -140,8 +137,8 @@ public interface DamageModifier {
          * @param cause The cause for the damage modifier
          * @return This builder, for chaining
          */
-        public Builder cause(Cause cause) {
-            this.cause = checkNotNull(cause);
+        public Builder cause(final Cause cause) {
+            this.cause = java.util.Objects.requireNonNull(cause);
             return this;
         }
 
@@ -152,13 +149,17 @@ public interface DamageModifier {
          * @return The newly created damage modifier
          */
         public DamageModifier build() {
-            checkState(this.type != null, "The DamageModifierType must not be null!");
-            checkState(this.cause != null, "The cause for the DamageModifier must not be null!");
+            if (this.type == null) {
+                throw new IllegalStateException("The DamageModifierType must not be null!");
+            }
+            if (this.cause == null) {
+                throw new IllegalStateException("The cause for the DamageModifier must not be null!");
+            }
             return new ImplementedDamageModifier(this);
         }
 
         @Override
-        public Builder from(DamageModifier value) {
+        public Builder from(final DamageModifier value) {
             this.type = value.getType();
             this.cause = value.getCause();
             this.snapshot = value.getContributingItem().orElse(null);
@@ -178,9 +179,9 @@ public interface DamageModifier {
             private final Cause cause;
             @Nullable private final ItemStackSnapshot snapshot;
 
-            ImplementedDamageModifier(Builder builder) {
-                this.type = checkNotNull(builder.type, "DamageType is null!");
-                this.cause = checkNotNull(builder.cause, "Cause is null!");
+            ImplementedDamageModifier(final Builder builder) {
+                this.type = java.util.Objects.requireNonNull(builder.type, "DamageType is null!");
+                this.cause = java.util.Objects.requireNonNull(builder.cause, "Cause is null!");
                 this.snapshot = builder.snapshot;
             }
 
@@ -201,30 +202,30 @@ public interface DamageModifier {
 
             @Override
             public int hashCode() {
-                return Objects.hashCode(this.type, this.cause);
+                return Objects.hash(this.type, this.cause);
             }
 
             @Override
-            public boolean equals(Object obj) {
+            public boolean equals(final Object obj) {
                 if (this == obj) {
                     return true;
                 }
-                if (obj == null || getClass() != obj.getClass()) {
+                if (obj == null || this.getClass() != obj.getClass()) {
                     return false;
                 }
                 final ImplementedDamageModifier other = (ImplementedDamageModifier) obj;
-                return Objects.equal(this.type, other.type)
-                       && Objects.equal(this.cause, other.cause)
-                       && Objects.equal(this.snapshot, other.snapshot);
+                return Objects.equals(this.type, other.type)
+                       && Objects.equals(this.cause, other.cause)
+                       && Objects.equals(this.snapshot, other.snapshot);
             }
 
             @Override
             public String toString() {
-                return MoreObjects.toStringHelper("DamageModifier")
-                        .add("type", this.type)
-                        .add("cause", this.cause)
-                        .add("contributing", this.snapshot)
-                        .toString();
+                return new StringJoiner(", ", "DamageModifier[", "]")
+                    .add("type=" + this.type)
+                    .add("cause=" + this.cause)
+                    .add("snapshot=" + this.snapshot)
+                    .toString();
             }
         }
 

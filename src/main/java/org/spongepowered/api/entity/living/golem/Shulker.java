@@ -27,16 +27,9 @@ package org.spongepowered.api.entity.living.golem;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Monster;
 import org.spongepowered.api.entity.living.Ranger;
-import org.spongepowered.api.entity.projectile.EntityTargetingProjectile;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.projectile.ProjectileLauncher;
-import org.spongepowered.api.projectile.source.ProjectileSource;
 import org.spongepowered.api.util.Direction;
-
-import java.util.Optional;
 
 public interface Shulker extends Golem, Monster, Ranger {
 

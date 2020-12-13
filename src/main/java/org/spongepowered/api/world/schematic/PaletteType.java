@@ -25,11 +25,35 @@
 package org.spongepowered.api.world.schematic;
 
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
+import java.util.Optional;
+import java.util.function.Function;
+
 @CatalogedBy(PaletteTypes.class)
-public interface PaletteType<T extends CatalogType> extends CatalogType {
+public interface PaletteType<T> extends CatalogType {
+
+    @SuppressWarnings("unchecked")
+    static <E> Builder<E> builder() {
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+    }
 
     Palette<T> create();
+
+    Function<T, String> getEncoder();
+
+    Function<String, Optional<T>> getDecoder();
+
+    interface Builder<T> extends CatalogBuilder<PaletteType<T>, Builder<T>> {
+
+        Builder<T> encoder(Function<T, String> encoder);
+
+        Builder<T> decoder(Function<String, Optional<T>> decoder);
+
+        @Override
+        PaletteType<T> build() throws IllegalStateException;
+    }
 
 }

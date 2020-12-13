@@ -34,8 +34,6 @@ import org.spongepowered.api.world.ChunkRegenerateFlag;
 import org.spongepowered.api.world.ChunkRegenerateFlags;
 import org.spongepowered.api.world.LocationCreator;
 import org.spongepowered.api.world.SerializationBehavior;
-import org.spongepowered.api.world.SerializationBehaviors;
-import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.difficulty.Difficulty;
@@ -46,7 +44,6 @@ import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
 import org.spongepowered.api.world.volume.game.InteractableVolume;
 import org.spongepowered.api.world.weather.WeatherUniverse;
-import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.io.IOException;
@@ -102,7 +99,7 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
      * @return The regenerated chunk, if available
      */
     default Optional<Chunk> regenerateChunk(Vector3i chunkPosition) {
-        return regenerateChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), ChunkRegenerateFlags.ALL);
+        return this.regenerateChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), ChunkRegenerateFlags.ALL.get());
     }
 
     /**
@@ -114,7 +111,7 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
      * @return The regenerated chunk, if available
      */
     default Optional<Chunk> regenerateChunk(int cx, int cy, int cz) {
-        return regenerateChunk(cx, cy, cz, ChunkRegenerateFlags.ALL);
+        return this.regenerateChunk(cx, cy, cz, ChunkRegenerateFlags.ALL.get());
     }
 
     /**
@@ -124,8 +121,8 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
      * @param flag The chunk regenerate flag to use
      * @return The regenerated chunk, if available
      */
-    default Optional<Chunk> regenerateChunk(Vector3i chunkPosition, ChunkRegenerateFlag flag) {
-        return regenerateChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), flag);
+    default Optional<Chunk> regenerateChunk(final Vector3i chunkPosition, final ChunkRegenerateFlag flag) {
+        return this.regenerateChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), flag);
     }
 
     /**
@@ -158,7 +155,7 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
      * Instructs the world to save all data.
      *
      * @return True if save was successful, or false if
-     *     {@link SerializationBehavior} is {@link SerializationBehaviors#NONE}
+     *     {@link SerializationBehavior} is {@link SerializationBehavior#NONE}
      * @throws IOException If the save failed
      */
     boolean save() throws IOException;

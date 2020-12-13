@@ -41,7 +41,7 @@ public interface MutableBiomeVolume<M extends MutableBiomeVolume<M>> extends Str
      *                                      bounds of the volume
      */
     default boolean setBiome(Vector3i position, BiomeType biome) {
-        return setBiome(position.getX(), position.getY(), position.getZ(), biome);
+        return this.setBiome(position.getX(), position.getY(), position.getZ(), biome);
     }
 
     /**

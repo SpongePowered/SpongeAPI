@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.util.weighted;
 
-import com.google.common.base.MoreObjects;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.Queries;
 import org.spongepowered.math.GenericMath;
 
 import java.util.Random;
+import java.util.StringJoiner;
 
 /**
  * Represents a value which may vary randomly.
@@ -49,7 +49,7 @@ public interface VariableAmount extends DataSerializable {
      * @param value The fixed value
      * @return A variable amount representation
      */
-    static VariableAmount fixed(double value) {
+    static VariableAmount fixed(final double value) {
         return new Fixed(value);
     }
 
@@ -61,8 +61,8 @@ public interface VariableAmount extends DataSerializable {
      * @param max The maximum of the range (exclusive)
      * @return A variable amount representation
      */
-    static VariableAmount range(double min, double max) {
-        return new BaseAndAddition(min, fixed(max - min));
+    static VariableAmount range(final double min, final double max) {
+        return new BaseAndAddition(min, VariableAmount.fixed(max - min));
     }
 
     /**
@@ -74,7 +74,7 @@ public interface VariableAmount extends DataSerializable {
      * @param variance The variance
      * @return A variable amount representation
      */
-    static VariableAmount baseWithVariance(double base, double variance) {
+    static VariableAmount baseWithVariance(final double base, final double variance) {
         return new BaseAndVariance(base, VariableAmount.fixed(variance));
     }
 
@@ -87,7 +87,7 @@ public interface VariableAmount extends DataSerializable {
      * @param variance The variance
      * @return A variable amount representation
      */
-    static VariableAmount baseWithVariance(double base, VariableAmount variance) {
+    static VariableAmount baseWithVariance(final double base, final VariableAmount variance) {
         return new BaseAndVariance(base, variance);
     }
 
@@ -100,7 +100,7 @@ public interface VariableAmount extends DataSerializable {
      * @param addition The additional amount
      * @return A variable amount representation
      */
-    static VariableAmount baseWithRandomAddition(double base, double addition) {
+    static VariableAmount baseWithRandomAddition(final double base, final double addition) {
         return new BaseAndAddition(base, VariableAmount.fixed(addition));
     }
 
@@ -113,7 +113,7 @@ public interface VariableAmount extends DataSerializable {
      * @param addition The additional amount
      * @return A variable amount representation
      */
-    static VariableAmount baseWithRandomAddition(double base, VariableAmount addition) {
+    static VariableAmount baseWithRandomAddition(final double base, final VariableAmount addition) {
         return new BaseAndAddition(base, addition);
     }
 
@@ -130,8 +130,8 @@ public interface VariableAmount extends DataSerializable {
      * @param chance The chance to apply the variance
      * @return A variable amount representation
      */
-    static VariableAmount baseWithOptionalVariance(double base, double variance, double chance) {
-        return new OptionalAmount(base, chance, baseWithVariance(base, variance));
+    static VariableAmount baseWithOptionalVariance(final double base, final double variance, final double chance) {
+        return new OptionalAmount(base, chance, VariableAmount.baseWithVariance(base, variance));
     }
 
     /**
@@ -147,8 +147,8 @@ public interface VariableAmount extends DataSerializable {
      * @param chance The chance to apply the variance
      * @return A variable amount representation
      */
-    static VariableAmount baseWithOptionalVariance(double base, VariableAmount variance, double chance) {
-        return new OptionalAmount(base, chance, baseWithVariance(base, variance));
+    static VariableAmount baseWithOptionalVariance(final double base, final VariableAmount variance, final double chance) {
+        return new OptionalAmount(base, chance, VariableAmount.baseWithVariance(base, variance));
     }
 
     /**
@@ -165,8 +165,8 @@ public interface VariableAmount extends DataSerializable {
      * @param chance The chance to apply the additional amount
      * @return A variable amount representation
      */
-    static VariableAmount baseWithOptionalAddition(double base, double addition, double chance) {
-        return new OptionalAmount(base, chance, baseWithRandomAddition(base, addition));
+    static VariableAmount baseWithOptionalAddition(final double base, final double addition, final double chance) {
+        return new OptionalAmount(base, chance, VariableAmount.baseWithRandomAddition(base, addition));
     }
 
     /**
@@ -183,8 +183,8 @@ public interface VariableAmount extends DataSerializable {
      * @param chance The chance to apply the additional amount
      * @return A variable amount representation
      */
-    static VariableAmount baseWithOptionalAddition(double base, VariableAmount addition, double chance) {
-        return new OptionalAmount(base, chance, baseWithRandomAddition(base, addition));
+    static VariableAmount baseWithOptionalAddition(final double base, final VariableAmount addition, final double chance) {
+        return new OptionalAmount(base, chance, VariableAmount.baseWithRandomAddition(base, addition));
     }
 
     /**
@@ -203,8 +203,8 @@ public interface VariableAmount extends DataSerializable {
      * @param rand The random object
      * @return The floored amount
      */
-    default int getFlooredAmount(Random rand) {
-        return GenericMath.floor(getAmount(rand));
+    default int getFlooredAmount(final Random rand) {
+        return GenericMath.floor(this.getAmount(rand));
     }
 
     // This is overridden to allow this to be a functional interface as this
@@ -225,31 +225,33 @@ public interface VariableAmount extends DataSerializable {
      */
     class Fixed implements VariableAmount {
 
-        private double amount;
+        private final double amount;
 
-        Fixed(double amount) {
+        Fixed(final double amount) {
             this.amount = amount;
         }
 
         @Override
-        public double getAmount(Random rand) {
+        public double getAmount(final Random rand) {
             return this.amount;
         }
 
         @Override
         public String toString() {
-            return MoreObjects.toStringHelper(this).add("amount", this.amount).toString();
+            return new StringJoiner(", ", Fixed.class.getSimpleName() + "[", "]")
+                .add("amount=" + this.amount)
+                .toString();
         }
 
         @Override
-        public boolean equals(Object obj) {
+        public boolean equals(final Object obj) {
             if (this == obj) {
                 return true;
             }
             if (!(obj instanceof Fixed)) {
                 return false;
             }
-            Fixed amount = (Fixed) obj;
+            final Fixed amount = (Fixed) obj;
             return amount.amount == this.amount;
         }
 
@@ -263,7 +265,7 @@ public interface VariableAmount extends DataSerializable {
         @Override
         public DataContainer toContainer() {
             return DataContainer.createNew()
-                    .set(Queries.CONTENT_VERSION, getContentVersion())
+                    .set(Queries.CONTENT_VERSION, this.getContentVersion())
                     .set(Queries.VARIABLE_AMOUNT, this.amount);
         }
 
@@ -280,34 +282,37 @@ public interface VariableAmount extends DataSerializable {
      */
     class BaseAndVariance implements VariableAmount {
 
-        private double base;
-        private VariableAmount variance;
+        private final double base;
+        private final VariableAmount variance;
 
-        BaseAndVariance(double base, VariableAmount variance) {
+        BaseAndVariance(final double base, final VariableAmount variance) {
             this.base = base;
             this.variance = variance;
         }
 
         @Override
-        public double getAmount(Random rand) {
-            double var = this.variance.getAmount(rand);
+        public double getAmount(final Random rand) {
+            final double var = this.variance.getAmount(rand);
             return this.base + rand.nextDouble() * var * 2 - var;
         }
 
         @Override
         public String toString() {
-            return MoreObjects.toStringHelper(this).add("base", this.base).add("variance", this.variance).toString();
+            return new StringJoiner(", ", BaseAndVariance.class.getSimpleName() + "[", "]")
+                .add("base=" + this.base)
+                .add("variance=" + this.variance)
+                .toString();
         }
 
         @Override
-        public boolean equals(Object obj) {
+        public boolean equals(final Object obj) {
             if (this == obj) {
                 return true;
             }
             if (!(obj instanceof BaseAndVariance)) {
                 return false;
             }
-            BaseAndVariance amount = (BaseAndVariance) obj;
+            final BaseAndVariance amount = (BaseAndVariance) obj;
             return amount.base == this.base && amount.variance == this.variance;
         }
 
@@ -322,7 +327,7 @@ public interface VariableAmount extends DataSerializable {
         @Override
         public DataContainer toContainer() {
             return DataContainer.createNew()
-                    .set(Queries.CONTENT_VERSION, getContentVersion())
+                    .set(Queries.CONTENT_VERSION, this.getContentVersion())
                     .set(Queries.VARIABLE_BASE, this.base)
                     .set(Queries.VARIABLE_VARIANCE, this.variance);
         }
@@ -341,33 +346,36 @@ public interface VariableAmount extends DataSerializable {
      */
     class BaseAndAddition implements VariableAmount {
 
-        private double base;
-        private VariableAmount addition;
+        private final double base;
+        private final VariableAmount addition;
 
-        BaseAndAddition(double base, VariableAmount addition) {
+        BaseAndAddition(final double base, final VariableAmount addition) {
             this.base = base;
             this.addition = addition;
         }
 
         @Override
-        public double getAmount(Random rand) {
+        public double getAmount(final Random rand) {
             return this.base + (rand.nextDouble() * this.addition.getAmount(rand));
         }
 
         @Override
         public String toString() {
-            return MoreObjects.toStringHelper(this).add("base", this.base).add("addition", this.addition).toString();
+            return new StringJoiner(", ", BaseAndAddition.class.getSimpleName() + "[", "]")
+                .add("base=" + this.base)
+                .add("addition=" + this.addition)
+                .toString();
         }
 
         @Override
-        public boolean equals(Object obj) {
+        public boolean equals(final Object obj) {
             if (this == obj) {
                 return true;
             }
             if (!(obj instanceof BaseAndAddition)) {
                 return false;
             }
-            BaseAndAddition amount = (BaseAndAddition) obj;
+            final BaseAndAddition amount = (BaseAndAddition) obj;
             return amount.base == this.base && amount.addition == this.addition;
         }
 
@@ -382,7 +390,7 @@ public interface VariableAmount extends DataSerializable {
         @Override
         public DataContainer toContainer() {
             return DataContainer.createNew()
-                    .set(Queries.CONTENT_VERSION, getContentVersion())
+                    .set(Queries.CONTENT_VERSION, this.getContentVersion())
                     .set(Queries.VARIABLE_BASE, this.base)
                     .set(Queries.VARIABLE_VARIANCE, this.addition);
         }
@@ -400,18 +408,18 @@ public interface VariableAmount extends DataSerializable {
      */
     class OptionalAmount implements VariableAmount {
 
-        private double chance;
-        private double base;
-        private VariableAmount inner;
+        private final double chance;
+        private final double base;
+        private final VariableAmount inner;
 
-        OptionalAmount(double base, double chance, VariableAmount inner) {
+        OptionalAmount(final double base, final double chance, final VariableAmount inner) {
             this.base = base;
             this.inner = inner;
             this.chance = chance;
         }
 
         @Override
-        public double getAmount(Random rand) {
+        public double getAmount(final Random rand) {
             if (rand.nextDouble() < this.chance) {
                 return this.inner.getAmount(rand);
             }
@@ -420,18 +428,26 @@ public interface VariableAmount extends DataSerializable {
 
         @Override
         public String toString() {
-            return MoreObjects.toStringHelper(this).add("base", this.base).add("chance", this.chance).add("inner", this.inner).toString();
+            return new StringJoiner(
+                ", ",
+                OptionalAmount.class.getSimpleName() + "[",
+                "]"
+            )
+                .add("chance=" + this.chance)
+                .add("base=" + this.base)
+                .add("inner=" + this.inner)
+                .toString();
         }
 
         @Override
-        public boolean equals(Object obj) {
+        public boolean equals(final Object obj) {
             if (this == obj) {
                 return true;
             }
             if (!(obj instanceof OptionalAmount)) {
                 return false;
             }
-            OptionalAmount amount = (OptionalAmount) obj;
+            final OptionalAmount amount = (OptionalAmount) obj;
             return this.inner.equals(amount.inner) && amount.base == this.base && this.chance == amount.chance;
         }
 
@@ -447,7 +463,7 @@ public interface VariableAmount extends DataSerializable {
         @Override
         public DataContainer toContainer() {
             return DataContainer.createNew()
-                    .set(Queries.CONTENT_VERSION, getContentVersion())
+                    .set(Queries.CONTENT_VERSION, this.getContentVersion())
                     .set(Queries.VARIABLE_CHANCE, this.chance)
                     .set(Queries.VARIABLE_BASE, this.base)
                     .set(Queries.VARIABLE_VARIANCE, this.inner);

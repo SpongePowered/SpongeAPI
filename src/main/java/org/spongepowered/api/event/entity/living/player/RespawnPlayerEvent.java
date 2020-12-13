@@ -28,8 +28,10 @@ import org.spongepowered.api.block.entity.Bed;
 import org.spongepowered.api.block.entity.EndPortal;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.event.entity.ChangeEntityWorldEvent;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.dimension.DimensionTypes;
+import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3d;
 
 /**
@@ -42,76 +44,61 @@ import org.spongepowered.math.vector.Vector3d;
  *     <li>Returning from {@link DimensionTypes#THE_END} via an {@link EndPortal} (Vanilla Minecraft)</li>
  * </ul>
  */
-public interface RespawnPlayerEvent extends Event {
-
-    /**
-     * The original {@link ServerPlayer player} that this new player is a clone of.
-     *
-     * <p>When a player dies, or leaves The End, their player is re-created.</p>
-     *
-     * @return The original player
-     */
-    ServerPlayer getOriginalPlayer();
+public interface RespawnPlayerEvent extends ChangeEntityWorldEvent {
 
     /**
      * Gets the {@link ServerPlayer player}.
      *
      * @return The player
      */
-    ServerPlayer getPlayer();
+    @Override
+    ServerPlayer getEntity();
 
-    /**
-     * Gets the previous {@link ServerLocation location} the {@link ServerPlayer player} would have spawned at.
-     *
-     * @return The location
-     */
-    ServerLocation getFromLocation();
+    interface SelectWorld extends RespawnPlayerEvent {
 
-    /**
-     * Gets the {@link ServerLocation location} the {@link ServerPlayer player} will spawn at.
-     *
-     * @return The location
-     */
-    ServerLocation getToLocation();
+        /**
+         * Sets the {@link ServerWorld world} the {@link ServerPlayer player} will respawn in.
+         *
+         * @param world The world
+         */
+        void setDestinationWorld(ServerWorld world);
+    }
 
-    /**
-     * Sets the {@link ServerLocation location} the {@link ServerPlayer player} will spawn at.
-     *
-     * @param location The location
-     */
-    void setToLocation(ServerLocation location);
+    interface Recreate extends RespawnPlayerEvent, ChangeEntityWorldEvent.Reposition {
 
-    /**
-     * Gets the {@link Vector3d rotation} the {@link ServerPlayer player} would have spawned to.
-     *
-     * @return The rotation
-     */
-    Vector3d getFromRotation();
+        /**
+         * Gets the {@link ServerPlayer player} that was recreated.
+         *
+         * <p>Care must be taken in interacting with this player as at this point in time
+         * the player is not within the {@link ServerWorld world}.</p>
+         *
+         * @return The player
+         */
+        ServerPlayer getRecreatedPlayer();
 
-    /**
-     * Gets the {@link Vector3d rotation} the {@link ServerPlayer player} will spawn to.
-     * @return The rotation
-     */
-    Vector3d getToRotation();
+        /**
+         * Gets whether the position of spawn was set by a {@link Bed}.
+         *
+         * @return True if the position of spawn was due to a bed, false otherwise
+         */
+        boolean isBedSpawn();
 
-    /**
-     * Sets the {@link Vector3d rotation} the {@link ServerPlayer player} will spawn to.
-     *
-     * @param rotation The rotation
-     */
-    void setToRotation(Vector3d rotation);
+        /**
+         * Gets if this respawn is due to a {@link ServerPlayer player's} death.
+         *
+         * @return {@code true} if player died, {@code false} otherwise
+         */
+        boolean isDeath();
+    }
 
-    /**
-     * Gets whether the position of spawn was set by a {@link Bed}.
-     *
-     * @return True if the position of spawn was due to a bed, false otherwise
-     */
-    boolean isBedSpawn();
+    interface Post extends RespawnPlayerEvent {
 
-    /**
-     * Gets if this respawn is due to a {@link ServerPlayer player's} death.
-     *
-     * @return {@code true} if player died, {@code false} otherwise
-     */
-    boolean isDeath();
+        /**
+         * The {@link ServerPlayer player} after respawn is complete.
+         *
+         * @return the player
+         */
+        @Override
+        ServerPlayer getEntity();
+    }
 }

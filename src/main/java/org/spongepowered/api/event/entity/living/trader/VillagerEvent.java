@@ -29,7 +29,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Hostile;
 import org.spongepowered.api.entity.living.golem.IronGolem;
 import org.spongepowered.api.entity.living.monster.raider.Raider;
-import org.spongepowered.api.entity.living.monster.zombie.ZombieEntity;
+import org.spongepowered.api.entity.living.monster.zombie.ZombieLike;
 import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
@@ -115,7 +115,7 @@ public interface VillagerEvent extends Event {
      * Fired when a {@link Villager} starts panicking.
      *
      * <p>This can occur because of a {@link Raid} or a
-     * {@link ZombieEntity}/{@link Raider} or both a {@link Raid}
+     * {@link ZombieLike}/{@link Raider} or both a {@link Raid}
      * and {@link Entity}.</p>
      *
      * <p>The {@link Villager}'s Panic task will always prioritize the last

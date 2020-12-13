@@ -24,34 +24,47 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link RabbitType}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class RabbitTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<RabbitType> BLACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "black");
+    public static final DefaultedRegistryReference<RabbitType> BLACK = RabbitTypes.key(ResourceKey.sponge("black"));
 
-    public static final Supplier<RabbitType> BLACK_AND_WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "black_and_white");
+    public static final DefaultedRegistryReference<RabbitType> BLACK_AND_WHITE = RabbitTypes.key(ResourceKey.sponge("black_and_white"));
 
-    public static final Supplier<RabbitType> BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "brown");
+    public static final DefaultedRegistryReference<RabbitType> BROWN = RabbitTypes.key(ResourceKey.sponge("brown"));
 
-    public static final Supplier<RabbitType> GOLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "gold");
+    public static final DefaultedRegistryReference<RabbitType> GOLD = RabbitTypes.key(ResourceKey.sponge("gold"));
 
-    public static final Supplier<RabbitType> KILLER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "killer");
+    public static final DefaultedRegistryReference<RabbitType> KILLER = RabbitTypes.key(ResourceKey.sponge("killer"));
 
-    public static final Supplier<RabbitType> SALT_AND_PEPPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "salt_and_pepper");
+    public static final DefaultedRegistryReference<RabbitType> SALT_AND_PEPPER = RabbitTypes.key(ResourceKey.sponge("salt_and_pepper"));
 
-    public static final Supplier<RabbitType> WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RabbitType.class, "white");
+    public static final DefaultedRegistryReference<RabbitType> WHITE = RabbitTypes.key(ResourceKey.sponge("white"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private RabbitTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<RabbitType> key(final ResourceKey location) {
+        return RegistryKey.<RabbitType>of(Registries.RABBIT_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

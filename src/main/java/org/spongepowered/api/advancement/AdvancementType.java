@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.advancement;
 
+import net.kyori.adventure.text.format.TextColor;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -34,11 +35,11 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 @CatalogedBy(AdvancementTypes.class)
 public interface AdvancementType extends CatalogType {
 
-//    /**
-//     * Gets the {@link TextFormat} of the advancement type.
-//     *
-//     * @return The text format
-//     */
-//    TextFormat getTextFormat();
+    /**
+     * Gets the {@link TextColor} of the advancement type.
+     *
+     * @return The text format
+     */
+    TextColor getTextColor();
 
 }

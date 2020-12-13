@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.event.impl.entity;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
@@ -38,6 +36,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.DoubleUnaryOperator;
 
 /**
@@ -59,13 +58,13 @@ public abstract class AbstractModifierEvent<T extends ModifierFunction<M>, M> ex
         final ImmutableMap.Builder<M, Double> mapBuilder = ImmutableMap.builder();
         double finalDamage = originalValue;
         for (T tuple : originalFunctions) {
-            this.modifierFunctions.add(convertTuple(tuple.getModifier(), tuple.getFunction()));
-            double tempDamage = checkNotNull(tuple.getFunction().applyAsDouble(finalDamage));
+            this.modifierFunctions.add(this.convertTuple(tuple.getModifier(), tuple.getFunction()));
+            double tempDamage = Objects.requireNonNull(tuple.getFunction().applyAsDouble(finalDamage));
             finalDamage += tempDamage;
             modifierMapBuilder.add(new Tuple<>(tuple.getModifier(), tempDamage));
             mapBuilder.put(tuple.getModifier(), tempDamage);
             this.modifiers.put(tuple.getModifier(), tempDamage);
-            functionListBuilder.add(convertTuple(tuple.getModifier(), tuple.getFunction()));
+            functionListBuilder.add(this.convertTuple(tuple.getModifier(), tuple.getFunction()));
         }
         this.originalFinalAmount = finalDamage;
         this.originalModifiers = modifierMapBuilder.build();
@@ -79,7 +78,7 @@ public abstract class AbstractModifierEvent<T extends ModifierFunction<M>, M> ex
         double tempAmount = baseAmount;
         this.modifiers.clear();
         for (T entry : this.modifierFunctions) {
-            double modifierAmount = checkNotNull(entry.getFunction().applyAsDouble(tempAmount));
+            double modifierAmount = Objects.requireNonNull(entry.getFunction().applyAsDouble(tempAmount));
             if (this.modifiers.containsKey(entry.getModifier())) {
                 double oldAmount = this.modifiers.get(entry.getModifier());
                 double difference = oldAmount - modifierAmount;
@@ -98,7 +97,7 @@ public abstract class AbstractModifierEvent<T extends ModifierFunction<M>, M> ex
     protected double getFinalAmount(double baseAmount) {
         double damage = baseAmount;
         for (T entry : this.modifierFunctions) {
-            damage += checkNotNull(entry.getFunction().applyAsDouble(damage));
+            damage += Objects.requireNonNull(entry.getFunction().applyAsDouble(damage));
         }
         return damage;
     }

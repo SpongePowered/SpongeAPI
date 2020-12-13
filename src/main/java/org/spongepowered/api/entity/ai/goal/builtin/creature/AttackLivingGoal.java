@@ -40,7 +40,7 @@ public interface AttackLivingGoal extends Goal<Creature> {
      * @return A new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**

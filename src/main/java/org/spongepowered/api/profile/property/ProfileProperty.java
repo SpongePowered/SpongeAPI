@@ -26,8 +26,8 @@ package org.spongepowered.api.profile.property;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.profile.GameProfile;
 
@@ -57,8 +57,8 @@ public interface ProfileProperty extends DataSerializable {
      * @param value The value of the property
      * @return The new property
      */
-    static ProfileProperty of(String name, String value) {
-        return of(name, value, null);
+    static ProfileProperty of(final String name, final String value) {
+        return ProfileProperty.of(name, value, null);
     }
 
     /**
@@ -72,8 +72,8 @@ public interface ProfileProperty extends DataSerializable {
      * @param signature The signature of the property
      * @return The new property
      */
-    static ProfileProperty of(String name, String value, @Nullable String signature) {
-        return Sponge.getServer().getGameProfileManager().createProfileProperty(name, value, signature);
+    static ProfileProperty of(final String name, final String value, final @Nullable String signature) {
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(name, value, signature);
     }
 
     /**
@@ -109,4 +109,11 @@ public interface ProfileProperty extends DataSerializable {
         return this.getSignature().isPresent();
     }
 
+    /**
+     * A factory for {@link ProfileProperty}s.
+     */
+    interface Factory {
+
+        ProfileProperty of(String name, String value, @Nullable String signature);
+    }
 }

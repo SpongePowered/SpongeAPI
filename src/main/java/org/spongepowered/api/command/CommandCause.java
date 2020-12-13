@@ -24,16 +24,16 @@
  */
 package org.spongepowered.api.command;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.identity.Identified;
+import net.kyori.adventure.identity.Identity;
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.SystemSubject;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.Cause;
+import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.EventContext;
 import org.spongepowered.api.event.EventContextKeys;
 import org.spongepowered.api.service.permission.Subject;
@@ -115,7 +115,7 @@ public interface CommandCause extends SubjectProxy {
      * @return The {@link CommandCause}
      */
     static CommandCause create() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create();
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create();
     }
 
     /**
@@ -296,9 +296,22 @@ public interface CommandCause extends SubjectProxy {
      * Sends a message to the {@link Audience} as given by
      * {@link #getAudience()}.
      *
+     * @see Audience#sendMessage(Identified, Component)
+     *
+     * @param source The {@link Identified} to send a message from.
      * @param message The message to send.
      */
-    void sendMessage(final Component message);
+    void sendMessage(final Identified source, final Component message);
+
+    /**
+     * Sends a message to the {@link Audience} as given by
+     * {@link #getAudience()}.
+     *
+     * @see Audience#sendMessage(Identity, Component)
+     *
+     * @param message The message to send.
+     */
+    void sendMessage(final Identity source, final Component message);
 
     /**
      * Creates instances of the {@link CommandCause}.

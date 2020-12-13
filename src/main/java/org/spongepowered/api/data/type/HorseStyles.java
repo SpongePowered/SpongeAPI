@@ -24,30 +24,43 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link HorseStyle}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class HorseStyles {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<HorseStyle> BLACK_DOTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseStyle.class, "black_dots");
+    public static final DefaultedRegistryReference<HorseStyle> BLACK_DOTS = HorseStyles.key(ResourceKey.sponge("black_dots"));
 
-    public static final Supplier<HorseStyle> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseStyle.class, "none");
+    public static final DefaultedRegistryReference<HorseStyle> NONE = HorseStyles.key(ResourceKey.sponge("none"));
 
-    public static final Supplier<HorseStyle> WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseStyle.class, "white");
+    public static final DefaultedRegistryReference<HorseStyle> WHITE = HorseStyles.key(ResourceKey.sponge("white"));
 
-    public static final Supplier<HorseStyle> WHITEFIELD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseStyle.class, "whitefield");
+    public static final DefaultedRegistryReference<HorseStyle> WHITEFIELD = HorseStyles.key(ResourceKey.sponge("whitefield"));
 
-    public static final Supplier<HorseStyle> WHITE_DOTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HorseStyle.class, "white_dots");
+    public static final DefaultedRegistryReference<HorseStyle> WHITE_DOTS = HorseStyles.key(ResourceKey.sponge("white_dots"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private HorseStyles() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<HorseStyle> key(final ResourceKey location) {
+        return RegistryKey.<HorseStyle>of(Registries.HORSE_STYLE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

@@ -77,7 +77,7 @@ public interface SeededVariableAmount<T> {
      * @return The floored amount
      */
     default int getFlooredAmount(Random rand, T seed) {
-        return (int) Math.floor(getAmount(rand, seed));
+        return (int) Math.floor(this.getAmount(rand, seed));
     }
 
     /**

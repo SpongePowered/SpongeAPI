@@ -25,7 +25,6 @@
 package org.spongepowered.api.command;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
@@ -83,7 +82,7 @@ public interface Command {
      * @return The {@link Builder}
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -164,7 +163,7 @@ public interface Command {
         final Optional<Component> extended = this.getExtendedDescription(cause);
         if (extended.isPresent()) {
             if (shortDesc.isPresent()) {
-                return Optional.of(TextComponent.builder().append(shortDesc.get(), TextComponent.newline(), TextComponent.newline(), extended.get()).build());
+                return Optional.of(Component.text().append(shortDesc.get(), Component.newline(), Component.newline(), extended.get()).build());
             } else {
                 return extended;
             }
@@ -215,7 +214,7 @@ public interface Command {
      * interface, and instead must use {@link Command#builder()} to do
      * so.</p>
      */
-    interface Parameterized extends Command, CommandExecutor {
+    interface Parameterized extends Command {
 
         /**
          * The {@link List} of {@link Flag}s that this {@link Command} contains.
@@ -250,6 +249,18 @@ public interface Command {
         List<Parameter.Subcommand> subcommands();
 
         /**
+         * Gets whether
+         * {@link Command.Parameterized.Builder#setTerminal(boolean)} was
+         * explicitly set to {@code true}, such that this command will
+         * execute without any arguments, regardless of the command's
+         * {@link #parameters() parameters} or
+         * {@link #subcommands() subcommands}.
+         *
+         * @return if this {@link Command.Parameterized} is terminal.
+         */
+        boolean isTerminal();
+
+        /**
          * Gets a {@link Predicate} that backs {@link #canExecute(CommandCause)}.
          *
          * @return The predicate.
@@ -266,20 +277,33 @@ public interface Command {
         CommandContext parseArguments(CommandCause cause, String arguments) throws ArgumentParseException;
 
         /**
+         * Gets the {@link CommandExecutor} for this command, if one exists.
+         *
+         * @return The {@link CommandExecutor}, if it exists.
+         */
+        Optional<CommandExecutor> getExecutor();
+
+        /**
          * Processes the command by parsing the arguments, then
          * executing command based on these arguments.
          *
          * <p>By default, this will call {@link #parseArguments(CommandCause, String)}
          * and pass the resulting {@link CommandContext} to
-         * {@link #execute(CommandContext)}.</p>
+         * {@link CommandExecutor#execute(CommandContext)}, if this command has
+         * an executor. If it does not, this will throw a
+         * {@link CommandException}.</p>
          *
          * @param cause The {@link Cause} of the command
          * @param arguments The raw arguments for this command
          * @return The result of a command being processed
          * @throws CommandException Thrown on a command error
          */
+        @Override
         default CommandResult process(final CommandCause cause, final String arguments) throws CommandException {
-            return this.execute(this.parseArguments(cause, arguments));
+            if (this.getExecutor().isPresent()) {
+                return this.getExecutor().get().execute(this.parseArguments(cause, arguments));
+            }
+            throw new CommandException(Component.text("This command does not have an executor!"));
         }
 
     }
@@ -487,21 +511,12 @@ public interface Command {
         /**
          * The permission that the responsible {@link Subject} in the given
          * {@link Cause} requires to run this command, or {@code null} if no
-         * permission is required.
-         *
-         * <p>For more control over whether a command can be executed, use
-         * {@link #setExecutionRequirements(Predicate)}. However, note that
-         * setting a permission here will not override anything set in
-         * {@link #setExecutionRequirements(Predicate)}, both will be checked
-         * during execution.</p>
+         * permission is required. Calling this method will overwrite anything
+         * set via {@link #setExecutionRequirements(Predicate)}, or will replace
+         * the previous permission set by this method.
          *
          * <p>Any permission checks set here will be performed during the
          * {@link Command#canExecute(CommandCause)}.</p>
-         *
-         * <p>Calling this repeatedly will not add additional permission
-         * checks, instead replacing the permission check. If multiple
-         * permission checks are required, use
-         * {@link #setExecutionRequirements(Predicate)}.</p>
          *
          * @param permission The permission that is required, or {@code null}
          *                   for no permission
@@ -511,21 +526,31 @@ public interface Command {
 
         /**
          * Sets a function that determines what is required of the provided
-         * {@link Cause} before this command executes.
+         * {@link Cause} before this command executes. Calling this method
+         * will overwrite anything set via {@link #setPermission(String)} or
+         * anything previously set via this method.
          *
-         * <p>Any requirements here are in addition to the permission check
-         * from {@link #setPermission(String)}</p>
-         *
-         * <p>Any requirements set here will be performed during the
+         * <p>Any requirements set here will be performed as part of
          * {@link Command#canExecute(CommandCause)}.</p>
-         *
-         * <p>Calling this repeatedly will not add additional checks, instead
-         * replacing the previous requirements.</p>
          *
          * @param executionRequirements A function that sets the
          * @return This builder, for chaining
          */
         Builder setExecutionRequirements(@Nullable Predicate<CommandCause> executionRequirements);
+
+        /**
+         * Sets whether this command is considered "terminal" in its own right,
+         * that is, can be executed on its own if no arguments are supplied when
+         * invoked, regardless of whether any supplied {@link Parameter}s are
+         * mandatory.
+         *
+         * @see Parameter#isTerminal()
+         * @see Parameter.Value.Builder#terminal()
+         *
+         * @param terminal Whether to mark this command as terminal
+         * @return This builder, for chaining
+         */
+        Builder setTerminal(boolean terminal);
 
         /**
          * Builds this command, creating a {@link Command.Parameterized}

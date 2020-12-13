@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data.persistence;
 
-import com.google.common.reflect.TypeToken;
+import io.leangen.geantyref.TypeToken;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -79,7 +79,7 @@ public interface DataTranslator<T> extends CatalogType {
      * @return The provided data view, for chaining
      */
     default DataView addTo(T obj, DataView dataView) {
-        for (Map.Entry<DataQuery, Object> entry : translate(obj).getValues(false).entrySet()) {
+        for (Map.Entry<DataQuery, Object> entry : this.translate(obj).getValues(false).entrySet()) {
             dataView.set(entry.getKey(), entry);
         }
         return dataView;

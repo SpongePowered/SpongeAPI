@@ -24,21 +24,19 @@
  */
 package org.spongepowered.api.data;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
-
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Lists;
+import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
+import java.util.StringJoiner;
 import java.util.function.BiConsumer;
 import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
@@ -52,8 +50,8 @@ import java.util.stream.Collector;
  */
 public final class DataTransactionResult {
 
-    private static final DataTransactionResult SUCCESS_NODATA = builder().result(Type.SUCCESS).build();
-    private static final DataTransactionResult FAIL_NODATA = builder().result(Type.FAILURE).build();
+    private static final DataTransactionResult SUCCESS_NODATA = DataTransactionResult.builder().result(Type.SUCCESS).build();
+    private static final DataTransactionResult FAIL_NODATA = DataTransactionResult.builder().result(Type.FAILURE).build();
     private static final Collector<DataTransactionResult, DataTransactionResult.Builder, DataTransactionResult> COLLECTOR = new Collector<DataTransactionResult, Builder, DataTransactionResult>() {
         @Override
         public Supplier<Builder> supplier() {
@@ -82,7 +80,7 @@ public final class DataTransactionResult {
     };
 
     public static Collector<DataTransactionResult, DataTransactionResult.Builder, DataTransactionResult> toTransaction() {
-        return COLLECTOR;
+        return DataTransactionResult.COLLECTOR;
     }
 
     /**
@@ -105,113 +103,113 @@ public final class DataTransactionResult {
      * @return A clean and empty data transaction
      */
     public static DataTransactionResult successNoData() {
-        return SUCCESS_NODATA;
+        return DataTransactionResult.SUCCESS_NODATA;
     }
 
     /**
      * Creates a new {@link DataTransactionResult} with the provided
-     * {@link org.spongepowered.api.data.value.Value.Immutable} being the successful addition. The result type is
-     * still {@link Type#SUCCESS}. If a {@link org.spongepowered.api.data.value.Value.Mutable} is
-     * necessary, use {@link org.spongepowered.api.data.value.Value.Mutable}#asImmutable()} to use this method. A
+     * {@link Value.Immutable} being the successful addition. The result type is
+     * still {@link Type#SUCCESS}. If a {@link Value.Mutable} is
+     * necessary, use {@link Value.Mutable}#asImmutable()} to use this method. A
      * {@link DataTransactionResult} is always immutable once created, and any
-     * {@link Value}s should be provided as {@link org.spongepowered.api.data.value.Value.Immutable}s or
-     * transformed into {@link org.spongepowered.api.data.value.Value.Immutable}s.
+     * {@link Value}s should be provided as {@link Value.Immutable}s or
+     * transformed into {@link Value.Immutable}s.
      *
      * @param value The successfully added immutable value
      * @return The new data transaction result
      */
     public static DataTransactionResult successResult(final Value.Immutable<?> value) {
-        return builder().success(value).result(Type.SUCCESS).build();
+        return DataTransactionResult.builder().success(value).result(Type.SUCCESS).build();
     }
 
     /**
      * Creates a new {@link DataTransactionResult} with the provided
-     * {@link org.spongepowered.api.data.value.Value.Immutable} being the successful addition. The result type is
-     * still {@link Type#SUCCESS}. If a {@link org.spongepowered.api.data.value.Value.Mutable} is
-     * necessary, use {@link org.spongepowered.api.data.value.Value.Mutable}#asImmutable()} to use this method. A
+     * {@link Value.Immutable} being the successful addition. The result type is
+     * still {@link Type#SUCCESS}. If a {@link Value.Mutable} is
+     * necessary, use {@link Value.Mutable}#asImmutable()} to use this method. A
      * {@link DataTransactionResult} is always immutable once created, and any
-     * {@link Value}s should be provided as {@link org.spongepowered.api.data.value.Value.Immutable}s or
-     * transformed into {@link org.spongepowered.api.data.value.Value.Immutable}s.
+     * {@link Value}s should be provided as {@link Value.Immutable}s or
+     * transformed into {@link Value.Immutable}s.
      *
      * @param successful The successfully added immutable value
      * @param replaced The replaced value
      * @return The new data transaction result
      */
     public static DataTransactionResult successReplaceResult(final Value.Immutable<?> successful, final Value.Immutable<?> replaced) {
-        return builder().result(Type.SUCCESS).success(successful).replace(replaced).build();
+        return DataTransactionResult.builder().result(Type.SUCCESS).success(successful).replace(replaced).build();
     }
 
     /**
      * Creates a new {@link DataTransactionResult} with the provided
-     * {@link org.spongepowered.api.data.value.Value.Immutable}s being the successful additions and
-     * the provided {@link org.spongepowered.api.data.value.Value.Immutable}s that were replaced. The result type
-     * is still {@link Type#SUCCESS}. If a {@link org.spongepowered.api.data.value.Value.Mutable}
-     * is necessary, use {@link org.spongepowered.api.data.value.Value.Mutable}#asImmutable()} to use this method. A
+     * {@link Value.Immutable}s being the successful additions and
+     * the provided {@link Value.Immutable}s that were replaced. The result type
+     * is still {@link Type#SUCCESS}. If a {@link Value.Mutable}
+     * is necessary, use {@link Value.Mutable}#asImmutable()} to use this method. A
      * {@link DataTransactionResult} is always immutable once created, and any
-     * {@link Value}s should be provided as {@link org.spongepowered.api.data.value.Value.Immutable}s or
-     * transformed into {@link org.spongepowered.api.data.value.Value.Immutable}s.
+     * {@link Value}s should be provided as {@link Value.Immutable}s or
+     * transformed into {@link Value.Immutable}s.
      *
      * @param successful The successfully added immutable values
      * @param replaced The successfully replaced immutable values
      * @return The new data transaction result
      */
-    public static DataTransactionResult successReplaceResult(Collection<Value.Immutable<?>> successful, Collection<Value.Immutable<?>> replaced) {
-        return builder().success(successful).replace(replaced).result(Type.SUCCESS).build();
+    public static DataTransactionResult successReplaceResult(final Collection<Value.Immutable<?>> successful, final Collection<Value.Immutable<?>> replaced) {
+        return DataTransactionResult.builder().success(successful).replace(replaced).result(Type.SUCCESS).build();
     }
 
     /**
      * Creates a {@link DataTransactionResult} with the provided
-     * {@link org.spongepowered.api.data.value.Value.Immutable}s being successfully removed. The result type is
-     * still {@link Type#SUCCESS}. If a {@link org.spongepowered.api.data.value.Value.Mutable} is necessary, use
-     * {@link org.spongepowered.api.data.value.Value.Mutable}#asImmutable()} to use this method. A {@link DataTransactionResult}
+     * {@link Value.Immutable}s being successfully removed. The result type is
+     * still {@link Type#SUCCESS}. If a {@link Value.Mutable} is necessary, use
+     * {@link Value.Mutable}#asImmutable()} to use this method. A {@link DataTransactionResult}
      * is always immutable once created, and any {@link Value}s should be provided
-     * as {@link org.spongepowered.api.data.value.Value.Immutable}s or transformed into {@link org.spongepowered.api.data.value.Value.Immutable}s.
+     * as {@link Value.Immutable}s or transformed into {@link Value.Immutable}s.
      *
      * @param removed The successfully removed values
      * @return The new data transaction result
      */
-    public static DataTransactionResult successRemove(Collection<Value.Immutable<?>> removed) {
-        return builder().replace(removed).result(Type.SUCCESS).build();
+    public static DataTransactionResult successRemove(final Collection<Value.Immutable<?>> removed) {
+        return DataTransactionResult.builder().replace(removed).result(Type.SUCCESS).build();
     }
 
     /**
      * Creates a {@link DataTransactionResult} with the provided
-     * {@link org.spongepowered.api.data.value.Value.Immutable} being successfully removed. The result type is
-     * still {@link Type#SUCCESS}. If a {@link org.spongepowered.api.data.value.Value.Mutable} is necessary, use
-     * {@link org.spongepowered.api.data.value.Value.Mutable}#asImmutable()} to use this method. A
+     * {@link Value.Immutable} being successfully removed. The result type is
+     * still {@link Type#SUCCESS}. If a {@link Value.Mutable} is necessary, use
+     * {@link Value.Mutable}#asImmutable()} to use this method. A
      * {@link DataTransactionResult} is always immutable once created, and a
-     * {@link Value} should be provided as an {@link org.spongepowered.api.data.value.Value.Immutable} or
-     * transformed into an {@link org.spongepowered.api.data.value.Value.Immutable}.
+     * {@link Value} should be provided as an {@link Value.Immutable} or
+     * transformed into an {@link Value.Immutable}.
      *
      * @param removed The successfully removed value
      * @return The new data transaction result
      */
-    public static DataTransactionResult successRemove(Value.Immutable<?> removed) {
-        return builder().replace(removed).result(Type.SUCCESS).build();
+    public static DataTransactionResult successRemove(final Value.Immutable<?> removed) {
+        return DataTransactionResult.builder().replace(removed).result(Type.SUCCESS).build();
     }
 
     /**
      * Creates a new {@link DataTransactionResult} that ends in failure. The
-     * provided {@link org.spongepowered.api.data.value.Value.Immutable} is considered "rejected" and was not
+     * provided {@link Value.Immutable} is considered "rejected" and was not
      * successfully added.
      *
      * @param value The value that was rejected
      * @return The new data transaction result
      */
     public static DataTransactionResult failResult(final Value.Immutable<?> value) {
-        return builder().reject(value).result(Type.FAILURE).build();
+        return DataTransactionResult.builder().reject(value).result(Type.FAILURE).build();
     }
 
     /**
      * Creates a new {@link DataTransactionResult} that ends in failure. The
-     * provided {@link org.spongepowered.api.data.value.Value.Immutable}s are considered "rejected" and were not
+     * provided {@link Value.Immutable}s are considered "rejected" and were not
      * successfully added.
      *
      * @param values The values that were rejected
      * @return The new data transaction result
      */
     public static DataTransactionResult failResult(final Iterable<Value.Immutable<?>> values) {
-        return builder().reject(values).result(Type.FAILURE).build();
+        return DataTransactionResult.builder().reject(values).result(Type.FAILURE).build();
     }
 
     /**
@@ -221,19 +219,19 @@ public final class DataTransactionResult {
      * @return The new data transaction result
      */
     public static DataTransactionResult failNoData() {
-        return FAIL_NODATA;
+        return DataTransactionResult.FAIL_NODATA;
     }
 
     /**
      * Creates a new {@link DataTransactionResult} that ends in failure. The
-     * provided {@link org.spongepowered.api.data.value.Value.Immutable} is considered "incompatible" and was not
+     * provided {@link Value.Immutable} is considered "incompatible" and was not
      * successfully added.
      *
      * @param value The value that was incompatible or errored
      * @return The new data transaction result
      */
     public static DataTransactionResult errorResult(final Value.Immutable<?> value) {
-        return builder().result(Type.ERROR).reject(value).build();
+        return DataTransactionResult.builder().result(Type.ERROR).reject(value).build();
     }
 
     /**
@@ -318,7 +316,7 @@ public final class DataTransactionResult {
      * @return True if this result was successful
      */
     public boolean isSuccessful() {
-        return getType() == Type.SUCCESS;
+        return this.getType() == Type.SUCCESS;
     }
 
     /**
@@ -332,8 +330,8 @@ public final class DataTransactionResult {
     }
 
     /**
-     * If {@link org.spongepowered.api.data.value.Value.Mutable}s were supplied to the operation, this
-     * collection will return any {@link org.spongepowered.api.data.value.Value.Immutable}s which were rejected
+     * If {@link Value.Mutable}s were supplied to the operation, this
+     * collection will return any {@link Value.Immutable}s which were rejected
      * by the target {@link DataHolder}.
      *
      * @return Any data that was rejected from the operation
@@ -343,8 +341,8 @@ public final class DataTransactionResult {
     }
 
     /**
-     * If the operation replaced any {@link org.spongepowered.api.data.value.Value.Mutable}s, this returns a collection
-     * of the replaced {@link org.spongepowered.api.data.value.Value.Immutable}s.
+     * If the operation replaced any {@link Value.Mutable}s, this returns a collection
+     * of the replaced {@link Value.Immutable}s.
      *
      * @return Any data that was replaced
      */
@@ -359,8 +357,8 @@ public final class DataTransactionResult {
      *
      * @param consumer The consumer to call
      */
-    public void ifSuccessful(Consumer<List<Value.Immutable<?>>> consumer) {
-        if (isSuccessful()) {
+    public void ifSuccessful(final Consumer<List<Value.Immutable<?>>> consumer) {
+        if (this.isSuccessful()) {
             consumer.accept(this.success);
         }
     }
@@ -374,40 +372,40 @@ public final class DataTransactionResult {
      * @param <E> The type of exception
      * @throws E The exception to throw if this transaction is not successful
      */
-    public <E extends Exception> void ifNotSuccessful(Supplier<E> supplier) throws E {
-        if (!isSuccessful()) {
+    public <E extends Exception> void ifNotSuccessful(final Supplier<E> supplier) throws E {
+        if (!this.isSuccessful()) {
             throw supplier.get();
         }
     }
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
-                .add("resultType", this.type)
-                .add("rejectedData", this.rejected)
-                .add("replacedData", this.replaced)
-                .add("successfulData", this.success)
-                .toString();
+        return new StringJoiner(", ", DataTransactionResult.class.getSimpleName() + "[", "]")
+            .add("type=" + this.type)
+            .add("rejected=" + this.rejected)
+            .add("replaced=" + this.replaced)
+            .add("success=" + this.success)
+            .toString();
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final @Nullable Object o) {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        DataTransactionResult that = (DataTransactionResult) o;
+        final DataTransactionResult that = (DataTransactionResult) o;
         return this.type == that.type
-               && Objects.equal(this.rejected, that.rejected)
-               && Objects.equal(this.replaced, that.replaced)
-               && Objects.equal(this.success, that.success);
+            && Objects.equals(this.rejected, that.rejected)
+            && Objects.equals(this.replaced, that.replaced)
+            && Objects.equals(this.success, that.success);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(this.type, this.rejected, this.replaced, this.success);
+        return Objects.hash(this.type, this.rejected, this.replaced, this.success);
     }
 
     /**
@@ -417,10 +415,10 @@ public final class DataTransactionResult {
      */
     public static final class Builder implements CopyableBuilder<DataTransactionResult, Builder> {
 
-        List<Value.Immutable<?>> rejected;
-        List<Value.Immutable<?>> replaced;
-        List<Value.Immutable<?>> successful;
-        Type resultType;
+        @MonotonicNonNull List<Value.Immutable<?>> rejected;
+        @MonotonicNonNull List<Value.Immutable<?>> replaced;
+        @MonotonicNonNull List<Value.Immutable<?>> successful;
+        @MonotonicNonNull Type resultType;
 
         Builder() {
         }
@@ -434,13 +432,13 @@ public final class DataTransactionResult {
          * @return This builder, for chaining
          */
         public Builder result(final Type type) {
-            this.resultType = checkNotNull(type);
+            this.resultType = Objects.requireNonNull(type);
             return this;
         }
 
         /**
-         * Adds the provided {@link org.spongepowered.api.data.value.Value.Immutable} to the {@link List} of
-         * "replaced" {@link org.spongepowered.api.data.value.Value.Immutable}s. The replaced values are always
+         * Adds the provided {@link Value.Immutable} to the {@link List} of
+         * "replaced" {@link Value.Immutable}s. The replaced values are always
          * copied for every {@link DataTransactionResult} for referencing.
          *
          * @param value The value to replace
@@ -448,30 +446,30 @@ public final class DataTransactionResult {
          */
         public Builder replace(final Value.Immutable<?> value) {
             if (this.replaced == null) {
-                this.replaced = Lists.newArrayList();
+                this.replaced = new ArrayList<>();
             }
-            this.replaced.add(checkNotNull(value));
+            this.replaced.add(Objects.requireNonNull(value));
             return this;
         }
 
         /**
-         * Adds the provided {@link org.spongepowered.api.data.value.Value.Immutable}s to the {@link List} of
-         * "replaced" {@link org.spongepowered.api.data.value.Value.Immutable}s. The replaced values are always
+         * Adds the provided {@link Value.Immutable}s to the {@link List} of
+         * "replaced" {@link Value.Immutable}s. The replaced values are always
          * copied for every {@link DataTransactionResult} for referencing.
          *
          * @param values The values to replace
          * @return This builder, for chaining
          */
         public Builder replace(final Iterable<Value.Immutable<?>> values) {
-            for (Value.Immutable<?> value : values) {
-                replace(checkNotNull(value));
+            for (final Value.Immutable<?> value : values) {
+                this.replace(Objects.requireNonNull(value));
             }
             return this;
         }
 
         /**
-         * Adds the provided {@link org.spongepowered.api.data.value.Value.Immutable} to the {@link List} of
-         * "rejected" {@link org.spongepowered.api.data.value.Value.Immutable}s. The rejected values are always
+         * Adds the provided {@link Value.Immutable} to the {@link List} of
+         * "rejected" {@link Value.Immutable}s. The rejected values are always
          * copied for every {@link DataTransactionResult} for referencing.
          *
          * @param value The values to reject
@@ -479,30 +477,30 @@ public final class DataTransactionResult {
          */
         public Builder reject(final Value.Immutable<?> value) {
             if (this.rejected == null) {
-                this.rejected = Lists.newArrayList();
+                this.rejected = new ArrayList<>();
             }
-            this.rejected.add(checkNotNull(value));
+            this.rejected.add(Objects.requireNonNull(value));
             return this;
         }
 
         /**
-         * Adds the provided {@link org.spongepowered.api.data.value.Value.Immutable}s to the {@link List} of
-         * "rejected" {@link org.spongepowered.api.data.value.Value.Immutable}s. The rejected values are always
+         * Adds the provided {@link Value.Immutable}s to the {@link List} of
+         * "rejected" {@link Value.Immutable}s. The rejected values are always
          * copied for every {@link DataTransactionResult} for referencing.
          *
          * @param values The values to reject
          * @return This builder, for chaining
          */
         public Builder reject(final Iterable<Value.Immutable<?>> values) {
-            for (Value.Immutable<?> value : values) {
-                reject(checkNotNull(value));
+            for (final Value.Immutable<?> value : values) {
+                this.reject(Objects.requireNonNull(value));
             }
             return this;
         }
 
         /**
-         * Adds the provided {@link org.spongepowered.api.data.value.Value.Immutable} to the {@link List} of
-         * "successful" {@link org.spongepowered.api.data.value.Value.Immutable}s. The successful values are always
+         * Adds the provided {@link Value.Immutable} to the {@link List} of
+         * "successful" {@link Value.Immutable}s. The successful values are always
          * copied for every {@link DataTransactionResult} for referencing.
          *
          * @param value The value that was successfully provided
@@ -510,23 +508,23 @@ public final class DataTransactionResult {
          */
         public Builder success(final Value.Immutable<?> value) {
             if (this.successful == null) {
-                this.successful = Lists.newArrayList();
+                this.successful = new ArrayList<>();
             }
-            this.successful.add(checkNotNull(value));
+            this.successful.add(Objects.requireNonNull(value));
             return this;
         }
 
         /**
-         * Adds the provided {@link org.spongepowered.api.data.value.Value.Immutable}s to the {@link List} of
-         * "successful" {@link org.spongepowered.api.data.value.Value.Immutable}s. The rejected values are always
+         * Adds the provided {@link Value.Immutable}s to the {@link List} of
+         * "successful" {@link Value.Immutable}s. The rejected values are always
          * copied for every {@link DataTransactionResult} for referencing.
          *
          * @param values The values that were successfully provided
          * @return This builder, for chaining
          */
         public Builder success(final Iterable<Value.Immutable<?>> values) {
-            for (Value.Immutable<?> value : values) {
-                success(checkNotNull(value));
+            for (final Value.Immutable<?> value : values) {
+                this.success(Objects.requireNonNull(value));
             }
             return this;
         }
@@ -534,10 +532,10 @@ public final class DataTransactionResult {
         /**
          * Combines the currently building {@link DataTransactionResult} with the
          * one provided. Usually, this means that there is some merging of the
-         * {@link org.spongepowered.api.data.value.Value.Immutable}s based on {@link Key}. If this builder already
-         * has an {@link org.spongepowered.api.data.value.Value.Immutable} as being successfully offered, and the
+         * {@link Value.Immutable}s based on {@link Key}. If this builder already
+         * has an {@link Value.Immutable} as being successfully offered, and the
          * provided result shows the same key as being rejected, the rejected
-         * {@link org.spongepowered.api.data.value.Value.Immutable} will remain in the final result.
+         * {@link Value.Immutable} will remain in the final result.
          *
          * @param result The result to merge
          * @return This builder, for chaining
@@ -551,9 +549,9 @@ public final class DataTransactionResult {
                     this.resultType = result.getType();
                 }
             }
-            final List<Value.Immutable<?>> newSuccessful = Lists.newArrayList();
-            final List<Value.Immutable<?>> newReplaced = Lists.newArrayList();
-            final List<Value.Immutable<?>> newRejected = Lists.newArrayList();
+            final List<Value.Immutable<?>> newSuccessful = new ArrayList<>();
+            final List<Value.Immutable<?>> newReplaced = new ArrayList<>();
+            final List<Value.Immutable<?>> newRejected = new ArrayList<>();
             // Now let's handle the successful data
             if (this.successful != null) {
                 dance:
@@ -692,19 +690,21 @@ public final class DataTransactionResult {
 
         /**
          * Builds a new {@link DataTransactionResult} with the providing
-         * {@link List}s of {@link org.spongepowered.api.data.value.Value.Immutable}s that are successfully
-         * offered, {@link org.spongepowered.api.data.value.Value.Immutable}s that were replaced, and
-         * {@link org.spongepowered.api.data.value.Value.Immutable}s that were rejected.
+         * {@link List}s of {@link Value.Immutable}s that are successfully
+         * offered, {@link Value.Immutable}s that were replaced, and
+         * {@link Value.Immutable}s that were rejected.
          *
          * @return The newly created transaction result
          */
         public DataTransactionResult build() {
-            checkState(this.resultType != null);
+            if (this.resultType == null) {
+                throw new IllegalStateException("ResultType must be set!");
+            }
             return new DataTransactionResult(this);
         }
 
         @Override
-        public Builder from(DataTransactionResult value) {
+        public Builder from(final DataTransactionResult value) {
             this.resultType = value.type;
             this.rejected = new ArrayList<>(value.getRejectedData());
             this.replaced = new ArrayList<>(value.getReplacedData());

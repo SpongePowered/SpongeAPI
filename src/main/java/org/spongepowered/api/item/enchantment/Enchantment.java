@@ -25,8 +25,8 @@
 package org.spongepowered.api.item.enchantment;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.ResettableBuilder;
@@ -51,7 +51,7 @@ public interface Enchantment extends DataSerializable {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Enchantment.Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Enchantment.Builder.class);
     }
 
     /**
@@ -60,7 +60,7 @@ public interface Enchantment extends DataSerializable {
      * @return The new random list builder
      */
     static RandomListBuilder randomListBuilder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(RandomListBuilder.class);
+        return Sponge.getGame().getBuilderProvider().provide(RandomListBuilder.class);
     }
 
     /**
@@ -74,7 +74,7 @@ public interface Enchantment extends DataSerializable {
      *     {@link Short#MIN_VALUE} or larger than {@link Short#MAX_VALUE}
      */
     static Enchantment of(Supplier<? extends EnchantmentType> enchantmentType, int level) throws IllegalArgumentException {
-        return of(enchantmentType.get(), level);
+        return Enchantment.of(enchantmentType.get(), level);
     }
 
     /**
@@ -88,7 +88,7 @@ public interface Enchantment extends DataSerializable {
      *     {@link Short#MIN_VALUE} or larger than {@link Short#MAX_VALUE}
      */
     static Enchantment of(EnchantmentType enchantmentType, int level) throws IllegalArgumentException {
-        return builder()
+        return Enchantment.builder()
                 .type(enchantmentType)
                 .level(level)
                 .build();

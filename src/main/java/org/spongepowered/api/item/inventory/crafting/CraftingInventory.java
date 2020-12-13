@@ -57,7 +57,7 @@ public interface CraftingInventory extends Inventory {
      * @return The recipe or {@link Optional#empty()} if no recipe is formed
      */
     default Optional<CraftingRecipe> getRecipe(ServerWorld world) {
-        return getCraftingGrid().getRecipe(world);
+        return this.getCraftingGrid().getRecipe(world);
     }
 
 }

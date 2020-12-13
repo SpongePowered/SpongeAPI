@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event;
 
-import com.google.common.reflect.TypeToken;
+import io.leangen.geantyref.TypeToken;
 
 /**
  * All {@link Event}s that require a generic type should implement this
@@ -35,9 +35,9 @@ import com.google.common.reflect.TypeToken;
 public interface GenericEvent<T> extends Event {
 
     /**
-     * Gets the generic {@link TypeToken} used by this {@link Event}.
+     * Gets the {@link TypeToken generic type}.
      *
      * @return The type token
      */
-    TypeToken<T> getGenericType();
+    TypeToken<T> getParamType();
 }

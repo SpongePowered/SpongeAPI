@@ -48,7 +48,7 @@ public interface BannerPatternLayer extends DataSerializable {
      * @return The new pattern layer
      */
     static BannerPatternLayer of(Supplier<? extends BannerPatternShape> shape, Supplier<? extends DyeColor> color) {
-        return of(shape.get(), color.get());
+        return BannerPatternLayer.of(shape.get(), color.get());
     }
 
     /**
@@ -60,7 +60,7 @@ public interface BannerPatternLayer extends DataSerializable {
      * @return The new pattern layer
      */
     static BannerPatternLayer of(Supplier<? extends BannerPatternShape> shape, DyeColor color) {
-        return of(shape.get(), color);
+        return BannerPatternLayer.of(shape.get(), color);
     }
 
     /**
@@ -72,7 +72,7 @@ public interface BannerPatternLayer extends DataSerializable {
      * @return The new pattern layer
      */
     static BannerPatternLayer of(BannerPatternShape shape, Supplier<? extends DyeColor> color) {
-        return of(shape, color.get());
+        return BannerPatternLayer.of(shape, color.get());
     }
 
     /**
@@ -84,7 +84,7 @@ public interface BannerPatternLayer extends DataSerializable {
      * @return The new pattern layer
      */
     static BannerPatternLayer of(BannerPatternShape shape, DyeColor color) {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class)
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class)
                 .pattern(shape)
                 .color(color)
                 .build();

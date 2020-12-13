@@ -24,34 +24,47 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link PandaGene}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class PandaGenes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<PandaGene> AGGRESSIVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "aggressive");
+    public static final DefaultedRegistryReference<PandaGene> AGGRESSIVE = PandaGenes.key(ResourceKey.sponge("aggressive"));
 
-    public static final Supplier<PandaGene> BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "brown");
+    public static final DefaultedRegistryReference<PandaGene> BROWN = PandaGenes.key(ResourceKey.sponge("brown"));
 
-    public static final Supplier<PandaGene> LAZY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "lazy");
+    public static final DefaultedRegistryReference<PandaGene> LAZY = PandaGenes.key(ResourceKey.sponge("lazy"));
 
-    public static final Supplier<PandaGene> NORMAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "normal");
+    public static final DefaultedRegistryReference<PandaGene> NORMAL = PandaGenes.key(ResourceKey.sponge("normal"));
 
-    public static final Supplier<PandaGene> PLAYFUL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "playful");
+    public static final DefaultedRegistryReference<PandaGene> PLAYFUL = PandaGenes.key(ResourceKey.sponge("playful"));
 
-    public static final Supplier<PandaGene> WEAK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "weak");
+    public static final DefaultedRegistryReference<PandaGene> WEAK = PandaGenes.key(ResourceKey.sponge("weak"));
 
-    public static final Supplier<PandaGene> WORRIED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PandaGene.class, "worried");
+    public static final DefaultedRegistryReference<PandaGene> WORRIED = PandaGenes.key(ResourceKey.sponge("worried"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private PandaGenes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<PandaGene> key(final ResourceKey location) {
+        return RegistryKey.<PandaGene>of(Registries.PANDA_GENE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

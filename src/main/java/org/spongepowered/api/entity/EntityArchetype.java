@@ -43,7 +43,7 @@ public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -52,7 +52,7 @@ public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
      * @return An archetype of the given entity type
      */
     static EntityArchetype of(Supplier<? extends EntityType<?>> type) {
-        return builder().type(type).build();
+        return EntityArchetype.builder().type(type).build();
     }
 
     /**
@@ -61,7 +61,7 @@ public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
      * @return An archetype of the given entity type
      */
     static EntityArchetype of(EntityType<?> type) {
-        return builder().type(type).build();
+        return EntityArchetype.builder().type(type).build();
     }
 
     /**

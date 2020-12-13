@@ -57,7 +57,7 @@ public interface Inventory extends ValueContainer {
      * @return The builder
      */
     static Inventory.Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Inventory.Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Inventory.Builder.class);
     }
 
     /**
@@ -340,6 +340,19 @@ public interface Inventory extends ValueContainer {
      */
     default <P> Inventory query(Supplier<QueryType.OneParam<P>> queryType, P param) {
         return this.query(queryType.get().of(param));
+    }
+
+    /**
+     * Query this inventory with given {@link QueryType.OneParam} and one parameter.
+     *
+     * @param queryType The queryType
+     * @param param The parameter
+     * @param <P> The parameter type
+     *
+     * @return The queried inventory
+     */
+    default <P> Inventory query(Supplier<QueryType.OneParam<P>> queryType, Supplier<P> param) {
+        return this.query(queryType.get().of(param.get()));
     }
 
     /**

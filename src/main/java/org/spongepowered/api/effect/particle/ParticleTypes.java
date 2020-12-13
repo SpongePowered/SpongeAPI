@@ -24,193 +24,177 @@
  */
 package org.spongepowered.api.effect.particle;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.entity.living.player.Player;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of all possible {@link ParticleType}s in vanilla minecraft.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class ParticleTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<ParticleType> AMBIENT_ENTITY_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "ambient_entity_effect");
+    public static final DefaultedRegistryReference<ParticleType> AMBIENT_ENTITY_EFFECT = ParticleTypes.key(ResourceKey.sponge("ambient_entity_effect"));
 
-    public static final Supplier<ParticleType> ANGRY_VILLAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "angry_villager");
+    public static final DefaultedRegistryReference<ParticleType> ANGRY_VILLAGER = ParticleTypes.key(ResourceKey.sponge("angry_villager"));
 
-    public static final Supplier<ParticleType> BARRIER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "barrier");
+    public static final DefaultedRegistryReference<ParticleType> ASH = ParticleTypes.key(ResourceKey.sponge("ash"));
 
-    public static final Supplier<ParticleType> BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "block");
+    public static final DefaultedRegistryReference<ParticleType> BARRIER = ParticleTypes.key(ResourceKey.sponge("barrier"));
 
-    /**
-     * This particle type will play the effect of a block that
-     * is being broken and it's break sound.
-     *
-     * <p>This type has limited {@link ParticleOption}s, only
-     * {@link ParticleOptions#BLOCK_STATE} and
-     * {@link ParticleOptions#ITEM_STACK_SNAPSHOT} are supported.</p>
-     */
-    public static final Supplier<ParticleType> BREAK_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "break_block");
+    public static final DefaultedRegistryReference<ParticleType> BLOCK = ParticleTypes.key(ResourceKey.sponge("block"));
 
-    public static final Supplier<ParticleType> BREAK_EYE_OF_ENDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "break_eye_of_ender");
+    public static final DefaultedRegistryReference<ParticleType> BUBBLE = ParticleTypes.key(ResourceKey.sponge("bubble"));
 
-    public static final Supplier<ParticleType> BREAK_SPLASH_POTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "break_splash_potion");
+    public static final DefaultedRegistryReference<ParticleType> BUBBLE_COLUMN_UP = ParticleTypes.key(ResourceKey.sponge("bubble_column_up"));
 
-    public static final Supplier<ParticleType> BUBBLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "bubble");
+    public static final DefaultedRegistryReference<ParticleType> BUBBLE_POP = ParticleTypes.key(ResourceKey.sponge("bubble_pop"));
 
-    public static final Supplier<ParticleType> BUBBLE_COLUMN_UP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "bubble_column_up");
+    public static final DefaultedRegistryReference<ParticleType> CAMPFIRE_COSY_SMOKE = ParticleTypes.key(ResourceKey.sponge("campfire_cosy_smoke"));
 
-    public static final Supplier<ParticleType> BUBBLE_POP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "squid_ink");
+    public static final DefaultedRegistryReference<ParticleType> CAMPFIRE_SIGNAL_SMOKE = ParticleTypes.key(ResourceKey.sponge("campfire_signal_smoke"));
 
-    public static final Supplier<ParticleType> CLOUD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "cloud");
+    public static final DefaultedRegistryReference<ParticleType> CLOUD = ParticleTypes.key(ResourceKey.sponge("cloud"));
 
-    public static final Supplier<ParticleType> CRITICAL_HIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "critical_hit");
+    public static final DefaultedRegistryReference<ParticleType> COMPOSTER = ParticleTypes.key(ResourceKey.sponge("composter"));
 
-    public static final Supplier<ParticleType> CURRENT_DOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "current_down");
+    public static final DefaultedRegistryReference<ParticleType> CRIMSON_SPORE = ParticleTypes.key(ResourceKey.sponge("crimson_spore"));
 
-    public static final Supplier<ParticleType> DAMAGE_INDICATOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "damage_indicator");
+    public static final DefaultedRegistryReference<ParticleType> CRIT = ParticleTypes.key(ResourceKey.sponge("crit"));
 
-    public static final Supplier<ParticleType> DOLPHIN_SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "dolphin_speed");
+    public static final DefaultedRegistryReference<ParticleType> CURRENT_DOWN = ParticleTypes.key(ResourceKey.sponge("current_down"));
 
-    public static final Supplier<ParticleType> DRAGON_BREATH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "dragon_breath");
+    public static final DefaultedRegistryReference<ParticleType> DAMAGE_INDICATOR = ParticleTypes.key(ResourceKey.sponge("damage_indicator"));
 
-    public static final Supplier<ParticleType> DRAGON_BREATH_ATTACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "dragon_breath_attack");
+    public static final DefaultedRegistryReference<ParticleType> DOLPHIN = ParticleTypes.key(ResourceKey.sponge("dolphin"));
 
-    public static final Supplier<ParticleType> DRIPPING_HONEY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "dripping_honey");
+    public static final DefaultedRegistryReference<ParticleType> DRAGON_BREATH = ParticleTypes.key(ResourceKey.sponge("dragon_breath"));
 
-    public static final Supplier<ParticleType> DRIPPING_LAVA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "dripping_lava");
+    public static final DefaultedRegistryReference<ParticleType> DRIPPING_HONEY = ParticleTypes.key(ResourceKey.sponge("dripping_honey"));
 
-    public static final Supplier<ParticleType> DRIPPING_WATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "dripping_water");
+    public static final DefaultedRegistryReference<ParticleType> DRIPPING_LAVA = ParticleTypes.key(ResourceKey.sponge("dripping_lava"));
 
-    /**
-     * While this particle type the option {@link ParticleOptions#SCALE} supports, the maximum value
-     * that is supported is {@code 4.0} and higher values will be limited to this maximum.
-     */
-    public static final Supplier<ParticleType> DUST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "dust");
+    public static final DefaultedRegistryReference<ParticleType> DRIPPING_OBSIDIAN_TEAR = ParticleTypes.key(ResourceKey.sponge("dripping_obsidian_tear"));
 
-    /**
-     * While this particle type the option {@link ParticleOptions#VELOCITY} supports, this
-     * will only affect the velocity in the y direction.
-     */
-    public static final Supplier<ParticleType> EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "effect");
+    public static final DefaultedRegistryReference<ParticleType> DRIPPING_WATER = ParticleTypes.key(ResourceKey.sponge("dripping_water"));
 
-    public static final Supplier<ParticleType> ELDER_GUARDIAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "elder_guardian");
+    public static final DefaultedRegistryReference<ParticleType> DUST = ParticleTypes.key(ResourceKey.sponge("dust"));
 
-    public static final Supplier<ParticleType> ENCHANTED_HIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "enchanted_hit");
+    public static final DefaultedRegistryReference<ParticleType> EFFECT = ParticleTypes.key(ResourceKey.sponge("effect"));
 
-    public static final Supplier<ParticleType> ENCHANTING_GLYPHS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "enchanting_glyphs");
+    public static final DefaultedRegistryReference<ParticleType> ELDER_GUARDIAN = ParticleTypes.key(ResourceKey.sponge("elder_guardian"));
 
-    public static final Supplier<ParticleType> END_ROD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "end_rod");
+    public static final DefaultedRegistryReference<ParticleType> ENCHANT = ParticleTypes.key(ResourceKey.sponge("enchant"));
 
-    public static final Supplier<ParticleType> ENTITY_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "entity_effect");
+    public static final DefaultedRegistryReference<ParticleType> ENCHANTED_HIT = ParticleTypes.key(ResourceKey.sponge("enchanted_hit"));
 
-    public static final Supplier<ParticleType> EXPLOSION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "explosion");
+    public static final DefaultedRegistryReference<ParticleType> END_ROD = ParticleTypes.key(ResourceKey.sponge("end_rod"));
 
-    public static final Supplier<ParticleType> EXPLOSION_EMITTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "explosion_emitter");
+    public static final DefaultedRegistryReference<ParticleType> ENTITY_EFFECT = ParticleTypes.key(ResourceKey.sponge("entity_effect"));
 
-    public static final Supplier<ParticleType> FALLING_DUST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "falling_dust");
+    public static final DefaultedRegistryReference<ParticleType> EXPLOSION = ParticleTypes.key(ResourceKey.sponge("explosion"));
 
-    public static final Supplier<ParticleType> FALLING_HONEY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "falling_honey");
+    public static final DefaultedRegistryReference<ParticleType> EXPLOSION_EMITTER = ParticleTypes.key(ResourceKey.sponge("explosion_emitter"));
 
-    public static final Supplier<ParticleType> FALLING_NECTAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "falling_nectar");
+    public static final DefaultedRegistryReference<ParticleType> FALLING_DUST = ParticleTypes.key(ResourceKey.sponge("falling_dust"));
 
-    /**
-     * This particle type will play the effect that will occur when
-     * a {@link Player} uses bone meal on a plant to boost the growth,
-     * this can only be played at a block location that isn't {@link BlockTypes#AIR}.
-     * <p>This type has limited {@link ParticleOption}s, only
-     * {@link ParticleOptions#QUANTITY} is supported.</p>
-     *
-     * <p>This type can no longer be spawned on air blocks. It will only
-     * show up if spawned at the location of solid blocks.</p>
-     */
-    public static final Supplier<ParticleType> FERTILIZER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "fertilizer");
+    public static final DefaultedRegistryReference<ParticleType> FALLING_HONEY = ParticleTypes.key(ResourceKey.sponge("falling_honey"));
 
-    /**
-     * This particle type will play a fireworks effect.
-     *
-     * <p>This type has limited {@link ParticleOption}s, only
-     * {@link ParticleOptions#FIREWORK_EFFECTS} is supported.</p>
-     */
-    public static final Supplier<ParticleType> FIREWORKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "fireworks");
+    public static final DefaultedRegistryReference<ParticleType> FALLING_LAVA = ParticleTypes.key(ResourceKey.sponge("falling_lava"));
 
-    public static final Supplier<ParticleType> FIREWORKS_SPARK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "fireworks_spark");
+    public static final DefaultedRegistryReference<ParticleType> FALLING_NECTAR = ParticleTypes.key(ResourceKey.sponge("falling_nectar"));
 
-    /**
-     * This particle type will play the smoke particles of a fire.
-     * <p>This type has limited {@link ParticleOption}s, only
-     * {@link ParticleOptions#DIRECTION} is supported.</p>
-     */
-    public static final Supplier<ParticleType> FIRE_SMOKE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "fire_smoke");
+    public static final DefaultedRegistryReference<ParticleType> FALLING_OBSIDIAN_TEAR = ParticleTypes.key(ResourceKey.sponge("falling_obsidian_tear"));
 
-    public static final Supplier<ParticleType> FISHING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "fishing");
+    public static final DefaultedRegistryReference<ParticleType> FALLING_WATER = ParticleTypes.key(ResourceKey.sponge("falling_water"));
 
-    public static final Supplier<ParticleType> FLAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "flame");
+    public static final DefaultedRegistryReference<ParticleType> FIREWORK = ParticleTypes.key(ResourceKey.sponge("firework"));
 
-    public static final Supplier<ParticleType> HAPPY_VILLAGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "happy_villager");
+    public static final DefaultedRegistryReference<ParticleType> FISHING = ParticleTypes.key(ResourceKey.sponge("fishing"));
 
-    public static final Supplier<ParticleType> HEART = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "heart");
+    public static final DefaultedRegistryReference<ParticleType> FLAME = ParticleTypes.key(ResourceKey.sponge("flame"));
 
-    /**
-     * While this particle type the option {@link ParticleOptions#VELOCITY}
-     * supports, this will only affect the velocity in the y direction.
-     */
-    public static final Supplier<ParticleType> INSTANT_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "instant_effect");
+    public static final DefaultedRegistryReference<ParticleType> FLASH = ParticleTypes.key(ResourceKey.sponge("flash"));
 
-    public static final Supplier<ParticleType> ITEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "item");
+    public static final DefaultedRegistryReference<ParticleType> HAPPY_VILLAGER = ParticleTypes.key(ResourceKey.sponge("happy_villager"));
 
-    public static final Supplier<ParticleType> ITEM_SLIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "item_slime");
+    public static final DefaultedRegistryReference<ParticleType> HEART = ParticleTypes.key(ResourceKey.sponge("heart"));
 
-    public static final Supplier<ParticleType> ITEM_SNOWBALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "item_snowball");
+    public static final DefaultedRegistryReference<ParticleType> INSTANT_EFFECT = ParticleTypes.key(ResourceKey.sponge("instant_effect"));
 
-    public static final Supplier<ParticleType> LANDING_HONEY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "landing_honey");
+    public static final DefaultedRegistryReference<ParticleType> ITEM = ParticleTypes.key(ResourceKey.sponge("item"));
 
-    public static final Supplier<ParticleType> LARGE_SMOKE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "large_smoke");
+    public static final DefaultedRegistryReference<ParticleType> ITEM_SLIME = ParticleTypes.key(ResourceKey.sponge("item_slime"));
 
-    public static final Supplier<ParticleType> LAVA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "lava");
+    public static final DefaultedRegistryReference<ParticleType> ITEM_SNOWBALL = ParticleTypes.key(ResourceKey.sponge("item_snowball"));
 
-    public static final Supplier<ParticleType> MOBSPAWNER_FLAMES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "mobspawner_flames");
+    public static final DefaultedRegistryReference<ParticleType> LANDING_HONEY = ParticleTypes.key(ResourceKey.sponge("landing_honey"));
 
-    public static final Supplier<ParticleType> MYCELIUM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "mycelium");
+    public static final DefaultedRegistryReference<ParticleType> LANDING_LAVA = ParticleTypes.key(ResourceKey.sponge("landing_lava"));
 
-    public static final Supplier<ParticleType> NAUTILUS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "nautilus");
+    public static final DefaultedRegistryReference<ParticleType> LANDING_OBSIDIAN_TEAR = ParticleTypes.key(ResourceKey.sponge("landing_obsidian_tear"));
 
-    public static final Supplier<ParticleType> NOTE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "note");
+    public static final DefaultedRegistryReference<ParticleType> LARGE_SMOKE = ParticleTypes.key(ResourceKey.sponge("large_smoke"));
 
-    public static final Supplier<ParticleType> PORTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "portal");
+    public static final DefaultedRegistryReference<ParticleType> LAVA = ParticleTypes.key(ResourceKey.sponge("lava"));
 
-    public static final Supplier<ParticleType> RAIN_SPLASH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "rain_splash");
+    public static final DefaultedRegistryReference<ParticleType> MYCELIUM = ParticleTypes.key(ResourceKey.sponge("mycelium"));
 
-    public static final Supplier<ParticleType> SMOKE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "smoke");
+    public static final DefaultedRegistryReference<ParticleType> NAUTILUS = ParticleTypes.key(ResourceKey.sponge("nautilus"));
 
-    public static final Supplier<ParticleType> SNOWBALL_POOF = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "snowball_poof");
+    public static final DefaultedRegistryReference<ParticleType> NOTE = ParticleTypes.key(ResourceKey.sponge("note"));
 
-    public static final Supplier<ParticleType> SPIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "spit");
+    public static final DefaultedRegistryReference<ParticleType> POOF = ParticleTypes.key(ResourceKey.sponge("poof"));
 
-    public static final Supplier<ParticleType> SQUID_INK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "squid_ink");
+    public static final DefaultedRegistryReference<ParticleType> PORTAL = ParticleTypes.key(ResourceKey.sponge("portal"));
 
-    public static final Supplier<ParticleType> SWEEP_ATTACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "sweep_attack");
+    public static final DefaultedRegistryReference<ParticleType> RAIN = ParticleTypes.key(ResourceKey.sponge("rain"));
 
-    public static final Supplier<ParticleType> TOTEM_OF_UNDYING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "totem_of_undying");
+    public static final DefaultedRegistryReference<ParticleType> REVERSE_PORTAL = ParticleTypes.key(ResourceKey.sponge("reverse_portal"));
 
-    public static final Supplier<ParticleType> UNDERWATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "underwater");
+    public static final DefaultedRegistryReference<ParticleType> SMOKE = ParticleTypes.key(ResourceKey.sponge("smoke"));
 
-    public static final Supplier<ParticleType> WATER_SPLASH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "water_splash");
+    public static final DefaultedRegistryReference<ParticleType> SNEEZE = ParticleTypes.key(ResourceKey.sponge("sneeze"));
 
-    /**
-     * While this particle type the option {@link ParticleOptions#VELOCITY}
-     * supports, this will only affect the velocity in the y direction.
-     */
-    public static final Supplier<ParticleType> WITCH_MAGIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleType.class, "witch_magic");
+    public static final DefaultedRegistryReference<ParticleType> SOUL = ParticleTypes.key(ResourceKey.sponge("soul"));
+
+    public static final DefaultedRegistryReference<ParticleType> SOUL_FIRE_FLAME = ParticleTypes.key(ResourceKey.sponge("soul_fire_flame"));
+
+    public static final DefaultedRegistryReference<ParticleType> SPIT = ParticleTypes.key(ResourceKey.sponge("spit"));
+
+    public static final DefaultedRegistryReference<ParticleType> SPLASH = ParticleTypes.key(ResourceKey.sponge("splash"));
+
+    public static final DefaultedRegistryReference<ParticleType> SQUID_INK = ParticleTypes.key(ResourceKey.sponge("squid_ink"));
+
+    public static final DefaultedRegistryReference<ParticleType> SWEEP_ATTACK = ParticleTypes.key(ResourceKey.sponge("sweep_attack"));
+
+    public static final DefaultedRegistryReference<ParticleType> TOTEM_OF_UNDYING = ParticleTypes.key(ResourceKey.sponge("totem_of_undying"));
+
+    public static final DefaultedRegistryReference<ParticleType> UNDERWATER = ParticleTypes.key(ResourceKey.sponge("underwater"));
+
+    public static final DefaultedRegistryReference<ParticleType> WARPED_SPORE = ParticleTypes.key(ResourceKey.sponge("warped_spore"));
+
+    public static final DefaultedRegistryReference<ParticleType> WHITE_ASH = ParticleTypes.key(ResourceKey.sponge("white_ash"));
+
+    public static final DefaultedRegistryReference<ParticleType> WITCH = ParticleTypes.key(ResourceKey.sponge("witch"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private ParticleTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<ParticleType> key(final ResourceKey location) {
+        return RegistryKey.<ParticleType>of(Registries.PARTICLE_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

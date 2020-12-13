@@ -80,7 +80,7 @@ public final class SlotMatchers {
      * @return The property query
      */
     public static KeyValueMatcher<Vector2i> position(int x, int y) {
-        return position(new Vector2i(x, y));
+        return SlotMatchers.position(new Vector2i(x, y));
     }
 
     /**
@@ -105,7 +105,7 @@ public final class SlotMatchers {
      * @return The property query
      */
     public static KeyValueMatcher<Vector2i> position(int x, int y, KeyValueMatcher.Operator operator) {
-        return position(new Vector2i(x, y), operator);
+        return SlotMatchers.position(new Vector2i(x, y), operator);
     }
 
     // Suppress default constructor to ensure non-instantiability.

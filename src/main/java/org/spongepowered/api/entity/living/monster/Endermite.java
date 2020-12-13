@@ -27,6 +27,7 @@ package org.spongepowered.api.entity.living.monster;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Monster;
+import org.spongepowered.api.util.Ticks;
 
 import java.time.Duration;
 
@@ -39,7 +40,7 @@ public interface Endermite extends Monster {
      * {@link Keys#DESPAWN_DELAY}
      * @return The despawn delay
      */
-    default Value.Mutable<Integer> expirationDelay() {
+    default Value.Mutable<Ticks> expirationDelay() {
         return this.requireValue(Keys.DESPAWN_DELAY).asMutable();
     }
 }

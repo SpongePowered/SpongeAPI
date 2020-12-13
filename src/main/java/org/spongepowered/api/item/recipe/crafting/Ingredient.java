@@ -34,6 +34,7 @@ import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 /**
  * An Ingredient for a crafting recipe.
@@ -41,16 +42,13 @@ import java.util.function.Predicate;
  * <p>Crafting recipes can only be crafted when all of the ingredients match
  * the items in the input grid.</p>
  */
-// TODO Ingredients for normal (recipe book supporting) crafting recipes MUST be a stream of mc Ingredient.IItemList
-// which is either based on ItemStacks/IItemProvider actually serialized to ItemType only (Ingredient.SingleItemList)
-// or one Tag<Item> (Ingredient.TagList) see ItemTags
 public interface Ingredient extends Predicate<ItemStack> {
 
     /**
      * An empty ingredient.
      */
     static Ingredient empty() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).empty();
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).empty();
     }
 
     @Override
@@ -70,7 +68,7 @@ public interface Ingredient extends Predicate<ItemStack> {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -81,9 +79,66 @@ public interface Ingredient extends Predicate<ItemStack> {
      */
     static Ingredient of(@Nullable ItemType... itemTypes) {
         if (itemTypes == null || itemTypes.length == 0) {
-            return empty();
+            return Ingredient.empty();
         }
-        return builder().with(itemTypes).build();
+        return Ingredient.builder().with(itemTypes).build();
+    }
+
+    /**
+     * Creates a new {@link Ingredient} for the provided {@link ItemStack}s.
+     *
+     * @param items The items
+     * @return The new ingredient
+     */
+    static Ingredient of(@Nullable ItemStack... items) {
+        if (items == null || items.length == 0) {
+            return Ingredient.empty();
+        }
+        return Ingredient.builder().with(items).build();
+    }
+
+    /**
+     * Creates a new {@link Ingredient} for the provided {@link ItemStackSnapshot}s.
+     *
+     * @param items The item
+     * @return The new ingredient
+     */
+    static Ingredient of(@Nullable ItemStackSnapshot... items) {
+        if (items == null) {
+            return Ingredient.empty();
+        }
+        return Ingredient.builder().with(items).build();
+    }
+
+    /**
+     * Creates a new {@link Ingredient} for the provided {@link ItemType}s.
+     *
+     * @param itemTypes The items
+     * @return The new ingredient
+     */
+    @SafeVarargs
+    static Ingredient of(@Nullable Supplier<ItemType>... itemTypes) {
+        if (itemTypes == null || itemTypes.length == 0) {
+            return Ingredient.empty();
+        }
+        return Ingredient.builder().with(itemTypes).build();
+    }
+
+    /**
+     * Creates a new {@link Ingredient} for the provided {@link Predicate} and exemplary {@link ItemStack}s.
+     * <p>Note: Predicate ingredients may not be fully supported for all recipe types</p>
+     *
+     * @param key A unique resource key
+     * @param predicate The predicate
+     * @param exemplaryStacks The exemplary items
+     *
+     * @return The new ingredient
+     */
+    static Ingredient of(ResourceKey key, Predicate<ItemStack> predicate, ItemStack... exemplaryStacks) {
+        if (exemplaryStacks.length == 0) {
+            throw new IllegalArgumentException("At least exemplary stack is required");
+        }
+        return Ingredient.builder().with(key, predicate, exemplaryStacks).build();
     }
 
     /**
@@ -95,7 +150,7 @@ public interface Ingredient extends Predicate<ItemStack> {
      * @return The new ingredient
      */
     static Ingredient of(ResourceKey key) {
-        return builder().with(key).build();
+        return Ingredient.builder().with(key).build();
     }
 
     /**
@@ -110,6 +165,42 @@ public interface Ingredient extends Predicate<ItemStack> {
          * @return This Builder, for chaining
          */
         Builder with(ItemType... types);
+
+        /**
+         * Sets one or more ItemTypes for matching the ingredient.
+         *
+         * @param types The items
+         * @return This Builder, for chaining
+         */
+        @SuppressWarnings("unchecked")
+        Builder with(Supplier<ItemType>... types);
+
+        /**
+         * Sets one ore more ItemStack for matching the ingredient.
+         *
+         * @param types The items
+         * @return This Builder, for chaining
+         */
+        Builder with(ItemStack... types);
+
+        /**
+         * Sets a Predicate for matching the ingredient.
+         * <p>Exemplary types are used for the vanilla recipe book.</p>
+         * <p>Note: Predicate ingredients may not be fully supported for all recipe types</p>
+         *
+         * @param predicate The predicate
+         * @param exemplaryTypes The items
+         * @return This Builder, for chaining
+         */
+        Builder with(ResourceKey resourceKey, Predicate<ItemStack> predicate, ItemStack... exemplaryTypes);
+
+        /**
+         * Sets one ItemStack for matching the ingredient.
+         *
+         * @param types The items
+         * @return This Builder, for chaining
+         */
+        Builder with(ItemStackSnapshot... types);
 
         /**
          * Sets the item tag for matching the ingredient.

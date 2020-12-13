@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.util.weighted;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 /**
  * An abstract entry which may be contained in any table.
  *
@@ -41,7 +39,9 @@ public abstract class TableEntry<T> {
      * @param weight The weight to associate with this entry
      */
     public TableEntry(double weight) {
-        checkArgument(weight >= 0, "Weight cannot be negative");
+        if (weight < 0) {
+            throw new IllegalArgumentException("Weight cannot be negative");
+        }
         this.weight = weight;
     }
 

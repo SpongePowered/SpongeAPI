@@ -30,7 +30,7 @@ import org.spongepowered.api.data.type.ProfessionTypes;
 import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.value.Value;
 
-public interface ZombieVillager extends ZombieEntity {
+public interface ZombieVillager extends ZombieLike {
 
     /**
      * {@link Keys#VILLAGER_TYPE}

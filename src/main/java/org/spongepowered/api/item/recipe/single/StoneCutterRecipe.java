@@ -24,17 +24,21 @@
  */
 package org.spongepowered.api.item.recipe.single;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.Recipe;
+import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.item.recipe.RecipeType;
+import org.spongepowered.api.item.recipe.crafting.Ingredient;
 import org.spongepowered.api.util.CatalogBuilder;
-import org.spongepowered.api.util.ResettableBuilder;
 
-import java.util.function.Predicate;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * A StoneCutter Recipe.
@@ -42,16 +46,16 @@ import java.util.function.Predicate;
 public interface StoneCutterRecipe extends Recipe {
 
     static StoneCutterRecipe.Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(StoneCutterRecipe.Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(StoneCutterRecipe.Builder.class);
     }
 
     @Override
     RecipeType<? extends StoneCutterRecipe> getType();
 
     /**
-     * Builds a simple furnace recipe.
+     * Builds a simple stonecutter recipe
      */
-    interface Builder extends ResettableBuilder<StoneCutterRecipe, StoneCutterRecipe.Builder> {
+    interface Builder extends CatalogBuilder<RecipeRegistration, StoneCutterRecipe.Builder> {
 
         /**
          * Sets the ingredient and returns this builder.
@@ -63,14 +67,24 @@ public interface StoneCutterRecipe extends Recipe {
         ResultStep ingredient(ItemType ingredient);
 
         /**
-         * Sets the ingredient and exemplary ingredient.
+         * Sets the ingredient and returns this builder.
          *
-         * @param predicate The ingredient predicate
-         * @param exemplaryIngredient The exemplary ingredient for the recipe book
+         * @param ingredient The ingredient
          *
          * @return This builder, for chaining
          */
-        ResultStep ingredient(Predicate<ItemStackSnapshot> predicate, ItemType exemplaryIngredient);
+        default ResultStep ingredient(Supplier<ItemType> ingredient) {
+            return this.ingredient(ingredient.get());
+        }
+
+        /**
+         * Sets the ingredient and returns this builder.
+         *
+         * @param ingredient The ingredient
+         *
+         * @return This builder, for chaining
+         */
+        ResultStep ingredient(Ingredient ingredient);
 
         interface ResultStep extends StoneCutterRecipe.Builder {
 
@@ -79,6 +93,7 @@ public interface StoneCutterRecipe extends Recipe {
              * {@link ItemStack} created when the recipe is fulfilled.
              *
              * @param result The output of this recipe
+             *
              * @return This builder, for chaining
              */
             EndStep result(ItemStackSnapshot result);
@@ -88,18 +103,34 @@ public interface StoneCutterRecipe extends Recipe {
              * {@link ItemStack} created when the recipe is fulfilled.
              *
              * @param result The output of this recipe
+             *
              * @return This builder, for chaining
              */
-            default EndStep result(ItemStack result) {
-                return this.result(result.createSnapshot());
-            }
+            EndStep result(ItemStack result);
+
+            /**
+             * Changes the result and returns this builder. The result is the
+             * {@link ItemStack} created when the recipe is fulfilled.
+             *
+             * @param resultFunction The result function
+             * @param exemplaryResult The exemplary output of this recipe
+             *
+             * @return This builder, for chaining
+             */
+            EndStep result(Function<Inventory, ItemStack> resultFunction, ItemStack exemplaryResult);
 
         }
 
-        interface EndStep extends StoneCutterRecipe.Builder, CatalogBuilder<StoneCutterRecipe, Builder> {
+        interface EndStep extends StoneCutterRecipe.Builder, CatalogBuilder<RecipeRegistration, Builder> {
 
-            @Override
-            EndStep key(ResourceKey key);
+            /**
+             * Sets the group of the recipe.
+             *
+             * @param name the group
+             *
+             * @return This builder, for chaining
+             */
+            EndStep group(@Nullable String name);
 
             /**
              * Builds the {@link StoneCutterRecipe}.
@@ -109,7 +140,7 @@ public interface StoneCutterRecipe extends Recipe {
              *                               or the {@link #key(ResourceKey)} isn't set.
              */
             @Override
-            StoneCutterRecipe build() throws IllegalStateException;
+            RecipeRegistration build() throws IllegalStateException;
         }
     }
 }

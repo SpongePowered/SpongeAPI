@@ -24,18 +24,22 @@
  */
 package org.spongepowered.api.data.persistence;
 
-import com.google.common.base.Joiner;
-import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
+import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
+import java.util.Spliterator;
+import java.util.StringJoiner;
+import java.util.function.Consumer;
 import java.util.regex.Pattern;
 
 /**
  * Represents a query that can be done on views. Queries do not depend on
  * their separator, it is just a way to construct them.
  */
-public final class DataQuery {
+public final class DataQuery implements Iterable<String> {
 
     private static final DataQuery EMPTY = new DataQuery();
 
@@ -44,7 +48,7 @@ public final class DataQuery {
      */
     private final ImmutableList<String> parts;
 
-    private ImmutableList<DataQuery> queryParts; //lazy loaded
+    private @MonotonicNonNull ImmutableList<DataQuery> queryParts; //lazy loaded
 
     /**
      * Constructs a query using the given separator character and path.
@@ -56,7 +60,7 @@ public final class DataQuery {
      * @param separator The separator
      * @param path The path
      */
-    private DataQuery(char separator, String path) {
+    private DataQuery(final char separator, final String path) {
         this(path.split(Pattern.quote(String.valueOf(separator))));
     }
 
@@ -65,7 +69,7 @@ public final class DataQuery {
      *
      * @param parts The parts
      */
-    private DataQuery(String... parts) {
+    private DataQuery(final String... parts) {
         this.parts = ImmutableList.copyOf(parts);
     }
 
@@ -74,7 +78,7 @@ public final class DataQuery {
      *
      * @param parts The parts
      */
-    private DataQuery(List<String> parts) {
+    private DataQuery(final List<String> parts) {
         this.parts = ImmutableList.copyOf(parts);
     }
 
@@ -100,7 +104,7 @@ public final class DataQuery {
      * @param path The path
      * @return The newly constructed {@link DataQuery}
      */
-    public static DataQuery of(char separator, String path) {
+    public static DataQuery of(final char separator, final String path) {
         return new DataQuery(separator, path);
     }
 
@@ -110,7 +114,7 @@ public final class DataQuery {
      * @param parts The parts
      * @return The newly constructed {@link DataQuery}
      */
-    public static DataQuery of(String... parts) {
+    public static DataQuery of(final String... parts) {
         if (parts.length == 0) {
             return DataQuery.EMPTY;
         }
@@ -123,7 +127,7 @@ public final class DataQuery {
      * @param parts The parts
      * @return The newly constructed {@link DataQuery}
      */
-    public static DataQuery of(List<String> parts) {
+    public static DataQuery of(final List<String> parts) {
         if (parts.isEmpty()) {
             return DataQuery.EMPTY;
         }
@@ -146,9 +150,8 @@ public final class DataQuery {
      * @param that The given query to follow this one
      * @return The constructed query
      */
-    public DataQuery then(DataQuery that) {
-        ImmutableList.Builder<String> builder =
-            new ImmutableList.Builder<>();
+    public DataQuery then(final DataQuery that) {
+        final ImmutableList.Builder<String> builder = new ImmutableList.Builder<>();
 
         builder.addAll(this.parts);
         builder.addAll(that.parts);
@@ -163,8 +166,8 @@ public final class DataQuery {
      * @param that The given query to follow this one
      * @return The constructed query
      */
-    public DataQuery then(String that) {
-        ImmutableList.Builder<String> builder =
+    public DataQuery then(final String that) {
+        final ImmutableList.Builder<String> builder =
             new ImmutableList.Builder<>();
 
         builder.addAll(this.parts);
@@ -181,8 +184,8 @@ public final class DataQuery {
      */
     public List<DataQuery> getQueryParts() {
         if (this.queryParts == null) {
-            ImmutableList.Builder<DataQuery> builder = ImmutableList.builder();
-            for (String part : getParts()) {
+            final ImmutableList.Builder<DataQuery> builder = ImmutableList.builder();
+            for (final String part : this.getParts()) {
                 builder.add(new DataQuery(part));
             }
             this.queryParts = builder.build();
@@ -199,9 +202,9 @@ public final class DataQuery {
      */
     public DataQuery pop() {
         if (this.parts.size() <= 1) {
-            return of();
+            return DataQuery.of();
         }
-        ImmutableList.Builder<String> builder = ImmutableList.builder();
+        final ImmutableList.Builder<String> builder = ImmutableList.builder();
         for (int i = 0; i < this.parts.size() - 1; i++) {
             builder.add(this.parts.get(i));
         }
@@ -217,9 +220,9 @@ public final class DataQuery {
      */
     public DataQuery popFirst() {
         if (this.parts.size() <= 1) {
-            return of();
+            return DataQuery.of();
         }
-        ImmutableList.Builder<String> builder = ImmutableList.builder();
+        final ImmutableList.Builder<String> builder = ImmutableList.builder();
         for (int i = 1; i < this.parts.size(); i++) {
             builder.add(this.parts.get(i));
         }
@@ -245,8 +248,10 @@ public final class DataQuery {
      * @param separator The separator
      * @return This query as a string
      */
-    public String asString(String separator) {
-        return Joiner.on(separator).join(this.parts);
+    public String asString(final String separator) {
+        final StringJoiner stringJoiner = new StringJoiner(separator);
+        this.parts.forEach(stringJoiner::add);
+        return stringJoiner.toString();
     }
 
     /**
@@ -255,29 +260,45 @@ public final class DataQuery {
      * @param separator The separator
      * @return This query as a string
      */
-    public String asString(char separator) {
-        return asString(String.valueOf(separator));
+    public String asString(final char separator) {
+        return this.asString(String.valueOf(separator));
     }
 
     @Override
     public String toString() {
-        return asString('.');
+        return this.asString('.');
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(this.parts);
+        return Objects.hash(this.parts);
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         }
-        if (obj == null || getClass() != obj.getClass()) {
+        if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
         final DataQuery other = (DataQuery) obj;
-        return Objects.equal(this.parts, other.parts);
+        return Objects.equals(this.parts, other.parts);
     }
+
+    @Override
+    public Iterator<String> iterator() {
+        return this.parts.iterator();
+    }
+
+    @Override
+    public void forEach(final Consumer<? super String> action) {
+        this.parts.forEach(action);
+    }
+
+    @Override
+    public Spliterator<String> spliterator() {
+        return this.parts.spliterator();
+    }
+
 }

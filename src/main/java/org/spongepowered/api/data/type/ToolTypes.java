@@ -24,30 +24,43 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link ToolType}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class ToolTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<ToolType> DIAMOND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ToolType.class, "diamond");
+    public static final DefaultedRegistryReference<ToolType> DIAMOND = ToolTypes.key(ResourceKey.sponge("diamond"));
 
-    public static final Supplier<ToolType> GOLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ToolType.class, "gold");
+    public static final DefaultedRegistryReference<ToolType> GOLD = ToolTypes.key(ResourceKey.sponge("gold"));
 
-    public static final Supplier<ToolType> IRON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ToolType.class, "iron");
+    public static final DefaultedRegistryReference<ToolType> IRON = ToolTypes.key(ResourceKey.sponge("iron"));
 
-    public static final Supplier<ToolType> STONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ToolType.class, "stone");
+    public static final DefaultedRegistryReference<ToolType> STONE = ToolTypes.key(ResourceKey.sponge("stone"));
 
-    public static final Supplier<ToolType> WOOD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ToolType.class, "wood");
+    public static final DefaultedRegistryReference<ToolType> WOOD = ToolTypes.key(ResourceKey.sponge("wood"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private ToolTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<ToolType> key(final ResourceKey location) {
+        return RegistryKey.<ToolType>of(Registries.TOOL_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

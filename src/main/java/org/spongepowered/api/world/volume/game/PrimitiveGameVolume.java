@@ -24,26 +24,27 @@
  */
 package org.spongepowered.api.world.volume.game;
 
-import com.google.common.base.Preconditions;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
 import org.spongepowered.api.world.volume.block.entity.ReadableBlockEntityVolume;
 import org.spongepowered.math.vector.Vector3i;
 
+import java.util.Objects;
+
 /**
  * A very primitive rudimentary volume that can be used by the {@link Game}
  * without impunity, but no guarantees on the provider type of what this
  * primitive volume is based on.
  */
-public interface PrimitiveGameVolume extends ReadableBlockVolume, ReadableBlockEntityVolume {
+public interface PrimitiveGameVolume extends ReadableBlockVolume, ReadableBlockEntityVolume, LocationBaseDataHolder {
 
     default int getMaximumLight() {
         return 15;
     }
 
     default int getEmittedLight(Vector3i position) {
-        Preconditions.checkNotNull(position);
+        Objects.requireNonNull(position);
 
         return this.getInt(position, Keys.LIGHT_EMISSION).orElse(0);
     }

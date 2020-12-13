@@ -24,15 +24,13 @@
  */
 package org.spongepowered.api.item.recipe.crafting;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.StringJoiner;
 
 /**
  * The result of fulfilling a {@link CraftingRecipe}.
@@ -54,11 +52,15 @@ public final class RecipeResult {
      */
     @SuppressWarnings("ConstantConditions")
     public RecipeResult(ItemStackSnapshot result, List<ItemStackSnapshot> remainingItems) {
-        checkNotNull(result, "result");
-        checkArgument(!result.isEmpty(), "The result must not be empty.");
-        checkNotNull(remainingItems, "remainingItems");
-        checkArgument(!remainingItems.isEmpty(), "The remainingItems list must not be empty."
+        Objects.requireNonNull(result, "result");
+        if (result.isEmpty()) {
+            throw new IllegalArgumentException("The result must not be empty!");
+        }
+        Objects.requireNonNull(remainingItems, "remainingItems");
+        if (remainingItems.isEmpty()) {
+            throw new IllegalArgumentException("The remainingItems list must not be empty."
                 + " It should contain empty ItemStackSnapshot values for slots which should be cleared.");
+        }
 
         this.result = result;
         this.remainingItems = ImmutableList.copyOf(remainingItems);
@@ -97,7 +99,7 @@ public final class RecipeResult {
             return true;
         }
 
-        if (o == null || getClass() != o.getClass()) {
+        if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
 
@@ -116,10 +118,9 @@ public final class RecipeResult {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
-                .add("result", this.result)
-                .add("remainingItems", this.remainingItems)
-                .toString();
+        return new StringJoiner(", ", RecipeResult.class.getSimpleName() + "[", "]")
+            .add("result=" + this.result)
+            .add("remainingItems=" + this.remainingItems)
+            .toString();
     }
-
 }

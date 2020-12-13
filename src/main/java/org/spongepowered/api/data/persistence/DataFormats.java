@@ -24,26 +24,43 @@
  */
 package org.spongepowered.api.data.persistence;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * A pseudo-enum of supported {@link DataFormat}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class DataFormats {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<StringDataFormat> HOCON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StringDataFormat.class, "hocon");
+    public static final DefaultedRegistryReference<StringDataFormat> HOCON = DataFormats.stringKey(ResourceKey.sponge("hocon"));
 
-    public static final Supplier<StringDataFormat> JSON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StringDataFormat.class, "json");
+    public static final DefaultedRegistryReference<StringDataFormat> JSON = DataFormats.stringKey(ResourceKey.sponge("json"));
 
-    public static final Supplier<DataFormat> NBT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DataFormat.class, "nbt");
+    public static final DefaultedRegistryReference<DataFormat> NBT = DataFormats.key(ResourceKey.sponge("nbt"));
 
     // SORTFIELDS:OFF
+
+    // @formatter:on
 
     private DataFormats() {
     }
 
+    private static DefaultedRegistryReference<StringDataFormat> stringKey(final ResourceKey location) {
+        return RegistryKey.<StringDataFormat>of(Registries.DATA_FORMAT.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
+
+    private static DefaultedRegistryReference<DataFormat> key(final ResourceKey location) {
+        return RegistryKey.<DataFormat>of(Registries.DATA_FORMAT.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

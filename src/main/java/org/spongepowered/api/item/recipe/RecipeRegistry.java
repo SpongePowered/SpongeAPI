@@ -25,11 +25,11 @@
 package org.spongepowered.api.item.recipe;
 
 import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.event.lifecycle.RegisterCatalogEvent;
+import org.spongepowered.api.event.lifecycle.RegisterRegistryValueEvent;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.crafting.RecipeResult;
-import org.spongepowered.api.item.recipe.smelting.SmeltingRecipe;
+import org.spongepowered.api.item.recipe.cooking.CookingRecipe;
 import org.spongepowered.api.world.server.ServerWorld;
 
 import java.util.Collection;
@@ -38,7 +38,7 @@ import java.util.function.Supplier;
 
 /**
  * A registry holds all registered recipes for a given game.
- * Register new Recipes during {@link RegisterCatalogEvent<Recipe>}.
+ * Register new Recipes during {@link RegisterRegistryValueEvent <Recipe>}.
  * To disable a recipe override it with an empty result.
  */
 public interface RecipeRegistry {
@@ -134,25 +134,25 @@ public interface RecipeRegistry {
     }
 
     /**
-     * Finds a matching smelting recipe for given type and ingredient
+     * Finds a matching cooking recipe for given type and ingredient
      *
      * @param type The recipe type
      * @param ingredient The ingredient
      *
      * @return The matching recipe.
      */
-    <T extends SmeltingRecipe> Optional<T> findSmeltingRecipe(RecipeType<T> type, ItemStackSnapshot ingredient);
+    <T extends CookingRecipe> Optional<T> findCookingRecipe(RecipeType<T> type, ItemStackSnapshot ingredient);
 
     /**
-     * Finds a matching smelting recipe for given type and ingredient
+     * Finds a matching cooking recipe for given type and ingredient
      *
      * @param supplier The recipe type
      * @param ingredient The ingredient
      *
      * @return The matching recipe.
      */
-    default <T extends SmeltingRecipe> Optional<T> findSmeltingRecipe(Supplier<? extends RecipeType<T>> supplier, ItemStackSnapshot ingredient) {
-        return this.findSmeltingRecipe(supplier.get(), ingredient);
+    default <T extends CookingRecipe> Optional<T> findCookingRecipe(Supplier<? extends RecipeType<T>> supplier, ItemStackSnapshot ingredient) {
+        return this.findCookingRecipe(supplier.get(), ingredient);
     }
 
     /**

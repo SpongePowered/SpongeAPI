@@ -31,7 +31,9 @@ import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
+import java.util.Arrays;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 /**
  * A type of item.
@@ -61,4 +63,23 @@ public interface ItemType extends CatalogType, ComponentLike, DataHolder.Immutab
      * @return Max stack quantity
      */
     int getMaxStackQuantity();
+
+    /**
+     * Returns true if this type is any of the given item types
+     *
+     * @param types the item types to check
+     *
+     * @return true if this type is any of the given item types
+     */
+    @SuppressWarnings("unchecked")
+    boolean isAnyOf(Supplier<ItemType>... types);
+
+    /**
+     * Returns true if this type is any of the given item types
+     *
+     * @param types the item types to check
+     *
+     * @return true if this type is any of the given item types
+     */
+    boolean isAnyOf(ItemType... types);
 }

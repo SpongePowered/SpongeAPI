@@ -32,7 +32,7 @@ import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.trader.WanderingTrader;
 import org.spongepowered.api.util.Identifiable;
-import org.spongepowered.api.util.TemporalUnits;
+import org.spongepowered.api.util.MinecraftDayTime;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldBorder;
@@ -44,7 +44,6 @@ import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 import org.spongepowered.math.vector.Vector3i;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -193,30 +192,29 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
     void setSeed(long seed);
 
     /**
-     * Gets the time since the world was created.
+     * Gets the {@link MinecraftDayTime} since the world was created.
      *
      * @return The total time
      */
-    Duration getGameTime();
+    MinecraftDayTime getGameTime();
 
     /**
-     * Gets the time of day, in ticks. The amount of time that a minecraft day
-     * takes can be determined with the unit {@link TemporalUnits#MINECRAFT_DAYS}.
+     * Gets the time of day.
      *
      * @return The time of day
      */
-    Duration getDayTime();
+    MinecraftDayTime getDayTime();
 
     /**
-     * Sets the time of day. The amount of time that a minecraft day
-     * takes can be determined with the unit {@link TemporalUnits#MINECRAFT_DAYS}.
+     * Sets the in-game time of day.
      *
      * @param time The time of day
      */
-    void setDayTime(Duration time);
+    void setDayTime(MinecraftDayTime time);
 
     /**
      * Gets the {@link DimensionType}.
+     *
      *
      * @return The dimension type
      */

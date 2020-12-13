@@ -62,7 +62,7 @@ public interface BanService {
      *
      * @return All registered IP bans
      */
-    Collection<Ban.Ip> getIpBans();
+    Collection<Ban.IP> getIpBans();
 
     /**
      * Gets the ban for the given {@link GameProfile}, if available.
@@ -78,7 +78,7 @@ public interface BanService {
      * @param address The address.
      * @return All registered IP bans
      */
-    Optional<Ban.Ip> getBanFor(InetAddress address);
+    Optional<Ban.IP> getBanFor(InetAddress address);
 
     /**
      * Checks if a {@link GameProfile} has a ban.

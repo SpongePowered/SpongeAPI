@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.service.permission;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -39,6 +37,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentMap;
@@ -66,7 +65,7 @@ public class MemorySubjectData implements SubjectData {
      * @param subject The subject this data belongs to
      */
     public MemorySubjectData(Subject subject) {
-        this.subject = checkNotNull(subject, "subject");
+        this.subject = Objects.requireNonNull(subject, "subject");
     }
 
     /**
@@ -105,21 +104,21 @@ public class MemorySubjectData implements SubjectData {
      * @return The node tree
      */
     public NodeTree getNodeTree(Set<Context> contexts) {
-        NodeTree perms = this.permissions.get(checkNotNull(contexts, "contexts"));
+        NodeTree perms = this.permissions.get(Objects.requireNonNull(contexts, "contexts"));
         return perms == null ? NodeTree.of(ImmutableMap.of()) : perms;
     }
 
     @Override
     public Map<String, Boolean> getPermissions(Set<Context> contexts) {
-        NodeTree perms = this.permissions.get(checkNotNull(contexts, "contexts"));
+        NodeTree perms = this.permissions.get(Objects.requireNonNull(contexts, "contexts"));
         return perms == null ? ImmutableMap.of() : perms.asMap();
     }
 
     @Override
     public CompletableFuture<Boolean> setPermission(Set<Context> contexts, String permission, Tristate value) {
-        checkNotNull(contexts, "contexts");
-        checkNotNull(permission, "permission");
-        checkNotNull(value, "value");
+        Objects.requireNonNull(contexts, "contexts");
+        Objects.requireNonNull(permission, "permission");
+        Objects.requireNonNull(value, "value");
         contexts = ImmutableSet.copyOf(contexts);
         while (true) {
             NodeTree oldTree = this.permissions.get(contexts);
@@ -137,7 +136,7 @@ public class MemorySubjectData implements SubjectData {
                 }
             }
         }
-        onUpdate();
+        this.onUpdate();
         return CompletableFuture.completedFuture(true);
     }
 
@@ -146,16 +145,16 @@ public class MemorySubjectData implements SubjectData {
         boolean wasEmpty = this.permissions.isEmpty();
         this.permissions.clear();
         if (!wasEmpty) {
-            onUpdate();
+            this.onUpdate();
         }
         return CompletableFuture.completedFuture(!wasEmpty);
     }
 
     @Override
     public CompletableFuture<Boolean> clearPermissions(Set<Context> context) {
-        boolean ret = this.permissions.remove(checkNotNull(context, "context")) != null;
+        boolean ret = this.permissions.remove(Objects.requireNonNull(context, "context")) != null;
         if (ret) {
-            onUpdate();
+            this.onUpdate();
         }
         return CompletableFuture.completedFuture(ret);
     }
@@ -167,13 +166,13 @@ public class MemorySubjectData implements SubjectData {
 
     @Override
     public List<SubjectReference> getParents(Set<Context> contexts) {
-        return this.parents.getOrDefault(checkNotNull(contexts, "contexts"), ImmutableList.of());
+        return this.parents.getOrDefault(Objects.requireNonNull(contexts, "contexts"), ImmutableList.of());
     }
 
     @Override
     public CompletableFuture<Boolean> addParent(Set<Context> contexts, SubjectReference parent) {
-        checkNotNull(contexts, "contexts");
-        checkNotNull(parent, "parent");
+        Objects.requireNonNull(contexts, "contexts");
+        Objects.requireNonNull(parent, "parent");
         contexts = ImmutableSet.copyOf(contexts);
         while (true) {
             List<SubjectReference> oldParents = this.parents.get(contexts);
@@ -186,8 +185,8 @@ public class MemorySubjectData implements SubjectData {
                     .add(parent)
                     .build();
 
-            if (updateCollection(this.parents, contexts, oldParents, newParents)) {
-                onUpdate();
+            if (this.updateCollection(this.parents, contexts, oldParents, newParents)) {
+                this.onUpdate();
                 return CompletableFuture.completedFuture(true);
             }
         }
@@ -203,8 +202,8 @@ public class MemorySubjectData implements SubjectData {
 
     @Override
     public CompletableFuture<Boolean> removeParent(Set<Context> contexts, SubjectReference parent) {
-        checkNotNull(contexts, "contexts");
-        checkNotNull(parent, "parent");
+        Objects.requireNonNull(contexts, "contexts");
+        Objects.requireNonNull(parent, "parent");
         contexts = ImmutableSet.copyOf(contexts);
         while (true) {
             List<SubjectReference> oldParents = this.parents.get(contexts);
@@ -215,8 +214,8 @@ public class MemorySubjectData implements SubjectData {
             List<SubjectReference> newParents = new ArrayList<>(oldParents);
             newParents.remove(parent);
 
-            if (updateCollection(this.parents, contexts, oldParents, ImmutableList.copyOf(newParents))) {
-                onUpdate();
+            if (this.updateCollection(this.parents, contexts, oldParents, ImmutableList.copyOf(newParents))) {
+                this.onUpdate();
                 return CompletableFuture.completedFuture(true);
             }
         }
@@ -227,16 +226,16 @@ public class MemorySubjectData implements SubjectData {
         boolean wasEmpty = this.parents.isEmpty();
         this.parents.clear();
         if (!wasEmpty) {
-            onUpdate();
+            this.onUpdate();
         }
         return CompletableFuture.completedFuture(!wasEmpty);
     }
 
     @Override
     public CompletableFuture<Boolean> clearParents(Set<Context> contexts) {
-        boolean ret = this.parents.remove(checkNotNull(contexts, "contexts")) != null;
+        boolean ret = this.parents.remove(Objects.requireNonNull(contexts, "contexts")) != null;
         if (ret) {
-            onUpdate();
+            this.onUpdate();
         }
         return CompletableFuture.completedFuture(ret);
     }
@@ -248,13 +247,13 @@ public class MemorySubjectData implements SubjectData {
 
     @Override
     public Map<String, String> getOptions(Set<Context> contexts) {
-        return this.options.getOrDefault(checkNotNull(contexts, "contexts"), ImmutableMap.of());
+        return this.options.getOrDefault(Objects.requireNonNull(contexts, "contexts"), ImmutableMap.of());
     }
 
     @Override
     public CompletableFuture<Boolean> setOption(Set<Context> contexts, String key, @Nullable String value) {
-        checkNotNull(contexts, "contexts");
-        checkNotNull(key, "key");
+        Objects.requireNonNull(contexts, "contexts");
+        Objects.requireNonNull(key, "key");
         Map<String, String> origMap = this.options.get(contexts);
         Map<String, String> newMap;
 
@@ -264,7 +263,7 @@ public class MemorySubjectData implements SubjectData {
             }
 
             if ((origMap = this.options.putIfAbsent(ImmutableSet.copyOf(contexts), ImmutableMap.of(key.toLowerCase(), value))) == null) {
-                onUpdate();
+                this.onUpdate();
                 return CompletableFuture.completedFuture(true);
             }
         }
@@ -281,7 +280,7 @@ public class MemorySubjectData implements SubjectData {
             }
             newMap = ImmutableMap.copyOf(newMap);
         } while (!this.options.replace(contexts, origMap, newMap));
-        onUpdate();
+        this.onUpdate();
         return CompletableFuture.completedFuture(true);
     }
 
@@ -290,16 +289,16 @@ public class MemorySubjectData implements SubjectData {
         boolean wasEmpty = this.options.isEmpty();
         this.options.clear();
         if (!wasEmpty) {
-            onUpdate();
+            this.onUpdate();
         }
         return CompletableFuture.completedFuture(!wasEmpty);
     }
 
     @Override
     public CompletableFuture<Boolean> clearOptions(Set<Context> contexts) {
-        boolean ret = this.options.remove(checkNotNull(contexts, "contexts")) != null;
+        boolean ret = this.options.remove(Objects.requireNonNull(contexts, "contexts")) != null;
         if (ret) {
-            onUpdate();
+            this.onUpdate();
         }
         return CompletableFuture.completedFuture(ret);
     }

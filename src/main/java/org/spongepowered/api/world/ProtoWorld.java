@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world;
 
-import com.google.common.base.Preconditions;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.util.RandomProvider;
 import org.spongepowered.api.world.chunk.ProtoChunk;
@@ -32,6 +31,7 @@ import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.volume.biome.MutableBiomeVolume;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
 import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
+import org.spongepowered.api.world.volume.block.entity.MutableBlockEntityVolume;
 import org.spongepowered.api.world.volume.block.entity.StreamableBlockEntityVolume;
 import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
 import org.spongepowered.api.world.volume.game.GenerationVolume;
@@ -41,17 +41,19 @@ import org.spongepowered.api.world.volume.game.ReadableRegion;
 import org.spongepowered.api.world.volume.game.UpdatableVolume;
 import org.spongepowered.math.vector.Vector3i;
 
+import java.util.Objects;
+
 public interface ProtoWorld<P extends ProtoWorld<P>> extends
-        ReadableRegion<BoundedWorldView<P>>,
-        MutableBiomeVolume<BoundedWorldView<P>>, // Because this is mutable
-        MutableBlockVolume<BoundedWorldView<P>>, // Because this is mutable
-        MutableEntityVolume<BoundedWorldView<P>>, // Because this is mutable
-        StreamableBlockEntityVolume<BoundedWorldView<P>>, // Because this is mutable
+        ReadableRegion<P>,
+        MutableBiomeVolume<P>, // Because this is mutable
+        MutableBlockVolume<P>, // Because this is mutable
+        MutableEntityVolume<P>, // Because this is mutable
+        MutableBlockEntityVolume<P>, // Because this is mutable
         GenerationVolume,
         LocationBaseDataHolder.Mutable,
         UpdatableVolume,
         RandomProvider,
-        PhysicsAwareMutableBlockVolume<BoundedWorldView<P>>,
+        PhysicsAwareMutableBlockVolume<P>,
         MutableGameVolume
 {
 
@@ -73,9 +75,9 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
 
     @Override
     default boolean setBlock(Vector3i position, BlockState state, BlockChangeFlag flag) {
-        Preconditions.checkNotNull(position);
-        Preconditions.checkNotNull(state);
-        Preconditions.checkNotNull(flag);
+        Objects.requireNonNull(position);
+        Objects.requireNonNull(state);
+        Objects.requireNonNull(flag);
 
         return this.setBlock(position.getX(), position.getY(), position.getZ(), state, flag);
     }
@@ -85,7 +87,7 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
 
     @Override
     default boolean removeBlock(Vector3i position) {
-        Preconditions.checkNotNull(position);
+        Objects.requireNonNull(position);
         return this.removeBlock(position.getX(), position.getY(), position.getZ());
     }
 

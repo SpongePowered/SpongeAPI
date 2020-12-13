@@ -24,28 +24,41 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link LlamaType}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class LlamaTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<LlamaType> BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(LlamaType.class, "brown");
+    public static final DefaultedRegistryReference<LlamaType> BROWN = LlamaTypes.key(ResourceKey.sponge("brown"));
 
-    public static final Supplier<LlamaType> CREAMY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(LlamaType.class, "creamy");
+    public static final DefaultedRegistryReference<LlamaType> CREAMY = LlamaTypes.key(ResourceKey.sponge("creamy"));
 
-    public static final Supplier<LlamaType> GRAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(LlamaType.class, "gray");
+    public static final DefaultedRegistryReference<LlamaType> GRAY = LlamaTypes.key(ResourceKey.sponge("gray"));
 
-    public static final Supplier<LlamaType> WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(LlamaType.class, "white");
+    public static final DefaultedRegistryReference<LlamaType> WHITE = LlamaTypes.key(ResourceKey.sponge("white"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private LlamaTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<LlamaType> key(final ResourceKey location) {
+        return RegistryKey.<LlamaType>of(Registries.LLAMA_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.item.inventory;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
 import static org.spongepowered.api.util.weighted.VariableAmount.baseWithRandomAddition;
 import static org.spongepowered.api.util.weighted.VariableAmount.fixed;
 
@@ -40,6 +38,7 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.enchantment.EnchantmentType;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.util.weighted.WeightedTable;
@@ -47,6 +46,7 @@ import org.spongepowered.api.util.weighted.WeightedTable;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
 import java.util.function.BiConsumer;
@@ -73,7 +73,7 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static BiConsumer<ItemStack.Builder, Random> itemStack(ItemStackSnapshot snapshot) {
-        checkNotNull(snapshot, "ItemStackSnapshot cannot be null!");
+        Objects.requireNonNull(snapshot, "ItemStackSnapshot cannot be null!");
         return (builder, random) -> builder.fromSnapshot(snapshot);
     }
 
@@ -87,11 +87,11 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static BiConsumer<ItemStack.Builder, Random> itemStacks(ItemStackSnapshot snapshot, ItemStackSnapshot... snapshots) {
-        checkNotNull(snapshot, "ItemStackSnapshot cannot be null!");
+        Objects.requireNonNull(snapshot, "ItemStackSnapshot cannot be null!");
         final WeightedTable<ItemStackSnapshot> table = new WeightedTable<>(1);
         table.add(snapshot, 1);
         for (ItemStackSnapshot stackSnapshot : snapshots) {
-            table.add(checkNotNull(stackSnapshot, "ItemStackSnapshot cannot be null!"), 1);
+            table.add(Objects.requireNonNull(stackSnapshot, "ItemStackSnapshot cannot be null!"), 1);
         }
         return (builder, random) -> builder.fromSnapshot(table.get(random).get(0));
     }
@@ -104,7 +104,7 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static BiConsumer<ItemStack.Builder, Random> item(ItemType itemType) {
-        checkNotNull(itemType, "ItemType cannot be null!");
+        Objects.requireNonNull(itemType, "ItemType cannot be null!");
         return (builder, random) -> builder.itemType(itemType);
     }
 
@@ -121,8 +121,8 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static BiConsumer<ItemStack.Builder, Random> item(Supplier<? extends ItemType> supplier) {
-        checkNotNull(supplier, "Supplier cannot be null!");
-        return (builder, random) -> builder.itemType(checkNotNull(supplier.get(), "Supplier returned a null ItemType"));
+        Objects.requireNonNull(supplier, "Supplier cannot be null!");
+        return (builder, random) -> builder.itemType(Objects.requireNonNull(supplier.get(), "Supplier returned a null ItemType"));
     }
 
     /**
@@ -138,7 +138,7 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an item stack builder
      */
     public static BiConsumer<ItemStack.Builder, Random> items(ItemType itemType, ItemType... itemTypes) {
-        return items(ImmutableList.<ItemType>builder().add(itemType).addAll(Arrays.asList(itemTypes)).build());
+        return ItemStackBuilderPopulators.items(ImmutableList.<ItemType>builder().add(itemType).addAll(Arrays.asList(itemTypes)).build());
     }
 
     /**
@@ -164,7 +164,7 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static BiConsumer<ItemStack.Builder, Random> quantity(VariableAmount amount) {
-        checkNotNull(amount, "VariableAmount cannot be null!");
+        Objects.requireNonNull(amount, "VariableAmount cannot be null!");
         return (builder, random) -> builder.quantity(amount.getFlooredAmount(random));
     }
 
@@ -181,7 +181,7 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static BiConsumer<ItemStack.Builder, Random> quantity(Supplier<VariableAmount> supplier) {
-        checkNotNull(supplier, "Supplier cannot be null!");
+        Objects.requireNonNull(supplier, "Supplier cannot be null!");
         return (builder, random) -> builder.quantity(supplier.get().getFlooredAmount(random));
     }
 
@@ -222,11 +222,11 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static <E> BiConsumer<ItemStack.Builder, Random> keyValues(Key<? extends Value<E>> key, Iterable<E> values) {
-        checkNotNull(values, "Iterable cannot be null!");
-        checkNotNull(key, "Key cannot be null!");
+        Objects.requireNonNull(values, "Iterable cannot be null!");
+        Objects.requireNonNull(key, "Key cannot be null!");
         WeightedTable<E> tableEntries = new WeightedTable<>(1);
         for (E e : values) {
-            tableEntries.add(checkNotNull(e, "Value cannot be null!"), 1);
+            tableEntries.add(Objects.requireNonNull(e, "Value cannot be null!"), 1);
         }
         return (builder, random) -> {
             final ItemStack itemStack = builder.build();
@@ -253,15 +253,17 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static <E> BiConsumer<ItemStack.Builder, Random> listValues(Key<? extends ListValue.Mutable<E>> key, List<E> elementPool, VariableAmount amount) {
-        checkNotNull(key, "Key cannot be null!");
-        checkNotNull(elementPool, "Element pool cannot be null!");
-        checkNotNull(amount, "VariableAmount cannot be null!");
-        checkArgument(!elementPool.isEmpty(), "Element pool cannot be empty!");
+        Objects.requireNonNull(key, "Key cannot be null!");
+        Objects.requireNonNull(elementPool, "Element pool cannot be null!");
+        Objects.requireNonNull(amount, "VariableAmount cannot be null!");
+        if (elementPool.isEmpty()) {
+            throw new IllegalArgumentException("Element pool cannot be empty!");
+        }
         WeightedTable<E> elementTable = new WeightedTable<>(amount);
         for (E element : elementPool) {
-            elementTable.add(checkNotNull(element, "Element cannot be null!"), 1);
+            elementTable.add(Objects.requireNonNull(element, "Element cannot be null!"), 1);
         }
-        return listValues(key, elementTable);
+        return ItemStackBuilderPopulators.listValues(key, elementTable);
     }
 
     /**
@@ -282,7 +284,7 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static <E> BiConsumer<ItemStack.Builder, Random> listValues(Key<? extends ListValue.Mutable<E>> key, List<E> elementPool) {
-        return listValues(key, elementPool, baseWithRandomAddition(1, elementPool.size() - 1));
+        return ItemStackBuilderPopulators.listValues(key, elementPool, baseWithRandomAddition(1, elementPool.size() - 1));
     }
 
     /**
@@ -300,9 +302,9 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static <E> BiConsumer<ItemStack.Builder, Random> listValues(Key<? extends ListValue.Mutable<E>> key, WeightedTable<E> weightedTable) {
-        checkNotNull(weightedTable, "Weighted table cannot be null!");
-        checkNotNull(key, "Key cannot be null!");
-        return setValue(key, random -> ImmutableList.copyOf(weightedTable.get(random)));
+        Objects.requireNonNull(weightedTable, "Weighted table cannot be null!");
+        Objects.requireNonNull(key, "Key cannot be null!");
+        return ItemStackBuilderPopulators.setValue(key, random -> ImmutableList.copyOf(weightedTable.get(random)));
 
     }
 
@@ -329,8 +331,8 @@ public final class ItemStackBuilderPopulators {
      */
     public static <E> BiConsumer<ItemStack.Builder, Random> listValueSuppliers(Key<? extends ListValue<E>> key,
             WeightedTable<Function<Random, E>> weightedTable) {
-        checkNotNull(key, "Key cannot be null!");
-        checkNotNull(weightedTable, "WeightedTable cannot be null!");
+        Objects.requireNonNull(key, "Key cannot be null!");
+        Objects.requireNonNull(weightedTable, "WeightedTable cannot be null!");
         return (builder, random) -> {
             final ItemStack itemStack = builder.build();
             final List<Function<Random, E>> suppliers = weightedTable.get(random);
@@ -344,10 +346,10 @@ public final class ItemStackBuilderPopulators {
         };
     }
 
-    public static <E> BiConsumer<ItemStack.Builder, Random> listValueSuppliers(Supplier<? extends Key<? extends ListValue<E>>> key,
+    public static <E> BiConsumer<ItemStack.Builder, Random> listValueSuppliers(DefaultedRegistryReference<? extends Key<? extends ListValue<E>>> key,
                                                                                WeightedTable<Function<Random, E>> weightedTable) {
-        checkNotNull(key, "Key cannot be null!");
-        checkNotNull(weightedTable, "WeightedTable cannot be null!");
+        Objects.requireNonNull(key, "Key cannot be null!");
+        Objects.requireNonNull(weightedTable, "WeightedTable cannot be null!");
         return (builder, random) -> {
             final ItemStack itemStack = builder.build();
             final List<Function<Random, E>> suppliers = weightedTable.get(random);
@@ -376,9 +378,9 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static <E> BiConsumer<ItemStack.Builder, Random> setValues(Key<? extends SetValue.Mutable<E>> key, Set<E> elementPool) {
-        checkNotNull(key, "Key cannot be null!");
-        checkNotNull(elementPool, "ElementPool cannot be null!");
-        return setValues(key, elementPool, baseWithRandomAddition(1, elementPool.size() - 1));
+        Objects.requireNonNull(key, "Key cannot be null!");
+        Objects.requireNonNull(elementPool, "ElementPool cannot be null!");
+        return ItemStackBuilderPopulators.setValues(key, elementPool, baseWithRandomAddition(1, elementPool.size() - 1));
     }
 
     /**
@@ -395,15 +397,17 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static <E> BiConsumer<ItemStack.Builder, Random> setValues(Key<? extends SetValue.Mutable<E>> key, Set<E> elementPool, VariableAmount amount) {
-        checkNotNull(key, "Key cannot be null!");
-        checkNotNull(elementPool, "Element pool cannot be null!");
-        checkNotNull(amount, "VariableAmount cannot be null!");
-        checkArgument(!elementPool.isEmpty());
+        Objects.requireNonNull(key, "Key cannot be null!");
+        Objects.requireNonNull(elementPool, "Element pool cannot be null!");
+        Objects.requireNonNull(amount, "VariableAmount cannot be null!");
+        if (elementPool.isEmpty()) {
+            throw new IllegalArgumentException("Element pool cannot be empty!");
+        }
         WeightedTable<E> elementTable = new WeightedTable<>(amount);
         for (E element : elementPool) {
             elementTable.add(element, 1);
         }
-        return setValues(key, elementTable);
+        return ItemStackBuilderPopulators.setValues(key, elementTable);
     }
 
     /**
@@ -418,10 +422,12 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static <E> BiConsumer<ItemStack.Builder, Random> setValues(Key<? extends SetValue.Mutable<E>> key, WeightedTable<E> weightedTable) {
-        checkNotNull(weightedTable, "WeightedTable cannot be null!");
-        checkNotNull(key, "Key cannot be null!");
-        checkArgument(!weightedTable.isEmpty(), "WeightedTable cannot be empty!");
-        return setValue(key, random -> ImmutableSet.copyOf(weightedTable.get(random)));
+        Objects.requireNonNull(weightedTable, "WeightedTable cannot be null!");
+        Objects.requireNonNull(key, "Key cannot be null!");
+        if (weightedTable.isEmpty()) {
+            throw new IllegalArgumentException("WeightedTable cannot be empty!");
+        }
+        return ItemStackBuilderPopulators.setValue(key, random -> ImmutableSet.copyOf(weightedTable.get(random)));
     }
 
     /*Note : This is used internally only, no validation is performed.*/
@@ -466,7 +472,7 @@ public final class ItemStackBuilderPopulators {
     public static <E, V extends Value<E>> BiConsumer<ItemStack.Builder, Random> values(Iterable<V> values) {
         WeightedTable<V> tableEntries = new WeightedTable<>(1);
         for (V value : values) {
-            tableEntries.add(checkNotNull(value, "Value cannot be null!"), 1);
+            tableEntries.add(Objects.requireNonNull(value, "Value cannot be null!"), 1);
         }
         return ((builder, random) -> {
             final V value = tableEntries.get(random).get(0);
@@ -489,13 +495,13 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static BiConsumer<ItemStack.Builder, Random> values(Collection<Value.Immutable<?>> manipulators, VariableAmount rolls) {
-        checkNotNull(manipulators, "Manipulators cannot be null!");
-        checkNotNull(rolls, "VariableAmount cannot be null!");
+        Objects.requireNonNull(manipulators, "Manipulators cannot be null!");
+        Objects.requireNonNull(rolls, "VariableAmount cannot be null!");
         final ImmutableList<Value.Immutable<?>> copied = ImmutableList.copyOf(manipulators);
         final WeightedTable<Value.Immutable<?>> table = new WeightedTable<>();
         table.setRolls(rolls);
         copied.forEach(manipulator1 -> table.add(manipulator1, 1));
-        return values(table);
+        return ItemStackBuilderPopulators.values(table);
     }
 
     /**
@@ -508,7 +514,7 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static BiConsumer<ItemStack.Builder, Random> values(WeightedTable<Value.Immutable<?>> weightedTable) {
-        checkNotNull(weightedTable, "WeightedTable cannot be null!");
+        Objects.requireNonNull(weightedTable, "WeightedTable cannot be null!");
         return (builder, random) -> weightedTable.get(random).forEach(builder::add);
     }
 
@@ -521,7 +527,7 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static BiConsumer<ItemStack.Builder, Random> enchantment(EnchantmentType enchantmentType) {
-        return enchantment(fixed(1), enchantmentType);
+        return ItemStackBuilderPopulators.enchantment(fixed(1), enchantmentType);
     }
 
     /**
@@ -534,9 +540,9 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static BiConsumer<ItemStack.Builder, Random> enchantment(VariableAmount level, EnchantmentType enchantmentType) {
-        checkNotNull(level, "VariableAmount cannot be null!");
-        checkNotNull(enchantmentType, "EnchantmentType cannot be null!");
-        return enchantments(fixed(1), ImmutableList.of(new Tuple<>(enchantmentType, level)));
+        Objects.requireNonNull(level, "VariableAmount cannot be null!");
+        Objects.requireNonNull(enchantmentType, "EnchantmentType cannot be null!");
+        return ItemStackBuilderPopulators.enchantments(fixed(1), ImmutableList.of(new Tuple<>(enchantmentType, level)));
     }
 
     /**
@@ -549,7 +555,7 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static BiConsumer<ItemStack.Builder, Random> enchantmentsWithVanillaLevelVariance(Collection<EnchantmentType> enchantmentTypes) {
-        return enchantmentsWithVanillaLevelVariance(fixed(1), ImmutableList.copyOf(enchantmentTypes));
+        return ItemStackBuilderPopulators.enchantmentsWithVanillaLevelVariance(fixed(1), ImmutableList.copyOf(enchantmentTypes));
     }
 
     /**
@@ -564,7 +570,7 @@ public final class ItemStackBuilderPopulators {
      */
     public static BiConsumer<ItemStack.Builder, Random> enchantmentsWithVanillaLevelVariance(VariableAmount amount, EnchantmentType enchantmentType,
             EnchantmentType... enchantmentTypes) {
-        return enchantmentsWithVanillaLevelVariance(amount,
+        return ItemStackBuilderPopulators.enchantmentsWithVanillaLevelVariance(amount,
                 ImmutableList.<EnchantmentType>builder().add(enchantmentType).addAll(Arrays.asList(enchantmentTypes)).build());
     }
 
@@ -579,17 +585,17 @@ public final class ItemStackBuilderPopulators {
      */
     public static BiConsumer<ItemStack.Builder, Random> enchantmentsWithVanillaLevelVariance(VariableAmount amount,
             Collection<EnchantmentType> itemEnchantmentTypes) {
-        checkNotNull(amount, "Variable amount cannot be null!");
-        checkNotNull(itemEnchantmentTypes, "EnchantmentType collection cannot be null!");
+        Objects.requireNonNull(amount, "Variable amount cannot be null!");
+        Objects.requireNonNull(itemEnchantmentTypes, "EnchantmentType collection cannot be null!");
         List<Tuple<EnchantmentType, VariableAmount>> list = itemEnchantmentTypes.stream()
                 .map(enchantment -> {
-                    checkNotNull(enchantment, "EnchantmentType cannot be null!");
+                    Objects.requireNonNull(enchantment, "EnchantmentType cannot be null!");
                     final int minimum = enchantment.getMinimumLevel();
                     final int maximum = enchantment.getMaximumLevel();
                     return new Tuple<>(enchantment, baseWithRandomAddition(minimum, maximum - minimum));
                 })
                 .collect(Collectors.toList());
-        return enchantments(amount, list);
+        return ItemStackBuilderPopulators.enchantments(amount, list);
     }
 
     /**
@@ -605,13 +611,13 @@ public final class ItemStackBuilderPopulators {
      */
     public static BiConsumer<ItemStack.Builder, Random> enchantments(VariableAmount amount,
             Collection<Tuple<EnchantmentType, VariableAmount>> enchantments) {
-        checkNotNull(amount, "VariableAmount cannot be null!");
+        Objects.requireNonNull(amount, "VariableAmount cannot be null!");
         final WeightedTable<Function<Random, Enchantment>> suppliers = new WeightedTable<>(amount);
         for (Tuple<EnchantmentType, VariableAmount> enchantment : enchantments) {
             suppliers.add(random ->
                 Enchantment.builder().type(enchantment.getFirst()).level(enchantment.getSecond().getFlooredAmount(random)).build(), 1);
         }
-        return listValueSuppliers(Keys.APPLIED_ENCHANTMENTS, suppliers);
+        return ItemStackBuilderPopulators.listValueSuppliers(Keys.APPLIED_ENCHANTMENTS, suppliers);
     }
 
     // Suppress default constructor to ensure non-instantiability.

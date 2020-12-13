@@ -24,9 +24,8 @@
  */
 package org.spongepowered.api.util;
 
-import java.awt.GraphicsEnvironment;
-
-import javax.swing.JOptionPane;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * A class containing a main method which throws an Exception to cleanly
@@ -50,9 +49,9 @@ public class InformativeMain {
      */
     public static void main(String[] args) throws PEBKACException {
         if (!GraphicsEnvironment.isHeadless()) {
-            JOptionPane.showMessageDialog(null, ERROR, "PEBKACException!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, InformativeMain.ERROR, "PEBKACException!", JOptionPane.ERROR_MESSAGE);
         } else {
-            throw new PEBKACException(ERROR);
+            throw new PEBKACException(InformativeMain.ERROR);
         }
     }
 

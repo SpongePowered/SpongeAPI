@@ -24,31 +24,48 @@
  */
 package org.spongepowered.api.item.recipe;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.item.recipe.cooking.CookingRecipe;
 import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
 import org.spongepowered.api.item.recipe.single.StoneCutterRecipe;
-import org.spongepowered.api.item.recipe.smelting.SmeltingRecipe;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of all {@link RecipeType}s in vanilla minecraft.
  */
-public class RecipeTypes {
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
+public final class RecipeTypes {
+
+    // @formatter:off
+
     // SORTFIELDS:ON
 
-    // CRAFTING_SHAPED - CRAFTING_SHAPELESS
-    public static final Supplier<RecipeType<CraftingRecipe>> CRAFTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "crafting");
-    public static final Supplier<RecipeType<SmeltingRecipe>> SMELTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "smelting");
-    public static final Supplier<RecipeType<SmeltingRecipe>> BLASTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "blasting");
-    public static final Supplier<RecipeType<SmeltingRecipe>> SMOKING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "smoking");
-    public static final Supplier<RecipeType<SmeltingRecipe>> CAMPFIRE_COOKING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "campfire_cooking");
-    public static final Supplier<RecipeType<StoneCutterRecipe>> STONECUTTING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RecipeType.class, "stonecutting");
+    public static final DefaultedRegistryReference<RecipeType<CraftingRecipe>> CRAFTING = RecipeTypes.key(ResourceKey.sponge("crafting"));
+
+    public static final DefaultedRegistryReference<RecipeType<CookingRecipe>> SMELTING = RecipeTypes.key(ResourceKey.sponge("smelting"));
+
+    public static final DefaultedRegistryReference<RecipeType<CookingRecipe>> BLASTING = RecipeTypes.key(ResourceKey.sponge("blasting"));
+
+    public static final DefaultedRegistryReference<RecipeType<CookingRecipe>> SMOKING = RecipeTypes.key(ResourceKey.sponge("smoking"));
+
+    public static final DefaultedRegistryReference<RecipeType<CookingRecipe>> CAMPFIRE_COOKING = RecipeTypes.key(ResourceKey.sponge("campfire_cooking"));
+
+    public static final DefaultedRegistryReference<RecipeType<StoneCutterRecipe>> STONECUTTING = RecipeTypes.key(ResourceKey.sponge("stonecutting"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private RecipeTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static <T extends Recipe> DefaultedRegistryReference<RecipeType<T>> key(final ResourceKey location) {
+        return RegistryKey.<RecipeType<T>>of(Registries.RECIPE_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

@@ -289,7 +289,7 @@ public interface Location<W extends World<W>> {
      * @return The block type
      */
     default BlockType getBlockType() {
-        return getBlock().getType();
+        return this.getBlock().getType();
     }
 
     /**

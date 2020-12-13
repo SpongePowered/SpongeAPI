@@ -27,11 +27,10 @@ package org.spongepowered.api.advancement;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.ComponentLike;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.NamedCatalogType;
+import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
-import org.spongepowered.api.util.NamedCatalogBuilder;
+import org.spongepowered.api.util.CatalogBuilder;
 
 import java.util.Collection;
 import java.util.List;
@@ -40,7 +39,7 @@ import java.util.Optional;
 /**
  * An advancement.
  */
-public interface Advancement extends ComponentLike, NamedCatalogType {
+public interface Advancement extends ComponentLike, CatalogType {
 
     /**
      * Creates a new {@link Builder} to create {@link Advancement}s.
@@ -48,7 +47,7 @@ public interface Advancement extends ComponentLike, NamedCatalogType {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -104,15 +103,39 @@ public interface Advancement extends ComponentLike, NamedCatalogType {
     /**
      * A builder to create {@link Advancement}s.
      */
-    interface Builder extends NamedCatalogBuilder<Advancement, Builder> {
+    interface Builder extends CatalogBuilder<Advancement, Builder> {
 
         /**
-         * Sets the parent {@link Advancement}. Defaults to {code null}.
+         * Sets the parent {@link Advancement}.
+         * <p>For the root advancement use {@link #root}</p>
          *
          * @param parent The parent advancement
          * @return This builder, for chaining
          */
-        Builder parent(@Nullable Advancement parent);
+        Builder parent(Advancement parent);
+
+        /**
+         * Sets this advancement as root.
+         *
+         * @return This builder, for chaining
+         */
+        Builder.RootStep root();
+
+        /**
+         * Define root advancement only parameters.
+         */
+        interface RootStep extends Builder {
+
+            /**
+             * Sets the background path..
+             *
+             * @param backgroundPath The {@link AdvancementTree}s background.
+             *
+             * @return This builder, for chaining
+             */
+            // TODO: Deprecate when ResourcePath is available
+            Builder background(String backgroundPath);
+        }
 
         /**
          * Sets the {@link AdvancementCriterion} that should be used
@@ -131,16 +154,5 @@ public interface Advancement extends ComponentLike, NamedCatalogType {
          */
         Builder displayInfo(@Nullable DisplayInfo displayInfo);
 
-        /**
-         * Sets the name of the {@link Advancement}. Defaults to
-         * the plain {@link DisplayInfo#getTitle()} if the
-         * {@link DisplayInfo} is present. Otherwise will it default
-         * to the identifier ({@link #key(ResourceKey)}).
-         *
-         * @param name The name
-         * @return This builder, for chaining
-         */
-        @Override
-        Builder name(String name);
     }
 }

@@ -24,9 +24,6 @@
  */
 package org.spongepowered.api.entity;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
-
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.event.HoverEventSource;
@@ -35,10 +32,12 @@ import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
+import org.spongepowered.api.projectile.source.EntityProjectileSource;
 import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.RandomProvider;
 import org.spongepowered.api.util.RelativePositions;
+import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.Locatable;
@@ -75,7 +74,8 @@ import java.util.function.UnaryOperator;
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
 @DoNotStore
-public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEntity>, Locatable, SerializableDataHolder.Mutable, RandomProvider {
+public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEntity>, Locatable, EntityProjectileSource,
+        SerializableDataHolder.Mutable, RandomProvider {
 
     /**
      * Gets the {@link EntityType}.
@@ -224,7 +224,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      *      removed)
      */
     default boolean transferToWorld(final ServerWorld world) {
-        Objects.requireNonNull(world);
+        Objects.requireNonNull(world, "World cannot be null");
         return this.transferToWorld(world, world.getProperties().getSpawnPosition().toDouble());
     }
 
@@ -275,7 +275,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      * @param damageSource The cause of the damage
      * @return True if damaging the entity was successful
      */
-    default boolean damage(double damage, Supplier<? extends DamageSource> damageSource) {
+    default boolean damage(final double damage, final Supplier<? extends DamageSource> damageSource) {
         return this.damage(damage, damageSource.get());
     }
 
@@ -295,8 +295,10 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      * @param distance The distance
      * @return The collection of nearby entities
      */
-    default Collection<? extends Entity> getNearbyEntities(double distance) {
-        checkState(distance > 0, "Distance must be greater than 0!");
+    default Collection<? extends Entity> getNearbyEntities(final double distance) {
+        if (distance <= 0) {
+            throw new IllegalArgumentException("Distance must be greater than 0!");
+        }
         return this.getWorld().getNearbyEntities(this.getLocation().getPosition(), distance);
     }
 
@@ -308,8 +310,8 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      * @param predicate The predicate to use
      * @return The collection of entities
      */
-    default Collection<? extends Entity> getNearbyEntities(double distance, Predicate<? super Entity> predicate) {
-        checkNotNull(predicate);
+    default Collection<? extends Entity> getNearbyEntities(final double distance, final Predicate<? super Entity> predicate) {
+        Objects.requireNonNull(predicate, "Predicate cannot be null");
         return this.getWorld().getEntities(this.getBoundingBox().get().expand(distance, distance, distance), predicate);
     }
 
@@ -319,8 +321,8 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      * @param entity The entity to check visibility for
      * @return {@code true} if this entity can see the provided entity
      */
-    default boolean canSee(Entity entity) {
-        checkNotNull(entity);
+    default boolean canSee(final Entity entity) {
+        Objects.requireNonNull(entity, "Entity cannot be null");
         final Optional<Boolean> optional = entity.get(Keys.VANISH);
         return !optional.isPresent() || !optional.get();
     }
@@ -417,7 +419,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      * {@link Keys#FIRE_TICKS}
      * @return The amount of time in ticks an Entity is will continue burn for.
      */
-    default Optional<Value.Mutable<Integer>> fireTicks() {
+    default Optional<Value.Mutable<Ticks>> fireTicks() {
         return this.getValue(Keys.FIRE_TICKS).map(Value::asMutable);
     }
 
@@ -425,7 +427,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      * {@link Keys#FIRE_DAMAGE_DELAY}
      * @return The amount of time to delay in ticks before an Entity will be burned by fire.
      */
-    default Optional<Value.Mutable<Integer>> fireImmuneTicks() {
+    default Optional<Value.Mutable<Ticks>> fireImmuneTicks() {
         return this.getValue(Keys.FIRE_DAMAGE_DELAY).map(Value::asMutable);
     }
 

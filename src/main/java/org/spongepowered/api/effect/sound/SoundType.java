@@ -43,7 +43,7 @@ public interface SoundType extends CatalogType, Sound.Type {
      * @return A new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     @Override

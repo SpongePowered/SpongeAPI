@@ -40,22 +40,6 @@ public interface MessageEvent extends Event {
     Component getOriginalMessage();
 
     /**
-     * Returns true if the {@link Component} returned by
-     * {@link #getMessage()} should not be sent.
-     *
-     * @return True if message should not be sent
-     */
-    boolean isMessageCancelled();
-
-    /**
-     * Sets whether the {@link Component} returned by
-     * {@link #getMessage()} should be sent.
-     *
-     * @param cancelled True if should not be sent
-     */
-    void setMessageCancelled(boolean cancelled);
-
-    /**
      * Gets the message.
      *
      * @return Message

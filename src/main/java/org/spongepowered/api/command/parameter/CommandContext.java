@@ -25,6 +25,8 @@
 package org.spongepowered.api.command.parameter;
 
 import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.identity.Identified;
+import net.kyori.adventure.identity.Identity;
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.command.Command;
 import org.spongepowered.api.command.CommandCause;
@@ -200,9 +202,22 @@ public interface CommandContext extends SubjectProxy {
     /**
      * Sends a message via {@link CommandCause#getAudience()}
      *
-     * @param message The message to send.
+     * @see Audience#sendMessage(Identified, Component)
+     *
+     * @param source The {@link Identified} that is the sender of the message
+     * @param message The message to send
      */
-    void sendMessage(final Component message);
+    void sendMessage(Identified source, Component message);
+
+    /**
+     * Sends a message via {@link CommandCause#getAudience()}
+     *
+     * @see Audience#sendMessage(Identity, Component)
+     *
+     * @param source The {@link Identity} of the sender of the message
+     * @param message The message to send
+     */
+    void sendMessage(Identity source, Component message);
 
     /**
      * A builder for creating this context.

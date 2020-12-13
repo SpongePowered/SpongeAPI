@@ -24,24 +24,35 @@
  */
 package org.spongepowered.api.data;
 
+import io.leangen.geantyref.TypeToken;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 
+import java.lang.reflect.Type;
 import java.util.Optional;
 
 @SuppressWarnings("unchecked")
 public interface DataProvider<V extends Value<E>, E> {
 
     /**
-     * Constructs a new {@link DataProviderBuilder}.
+     * Constructs a new {@link MutableDataProviderBuilder}.
      *
      * @return The builder
      */
-    static DataProviderBuilder.BaseBuilder<?, ?> builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(DataProviderBuilder.BaseBuilder.class);
+    static <H extends DataHolder.Mutable, V extends Value<E>, E> MutableDataProviderBuilder<H, V, E> mutableBuilder() {
+        return Sponge.getGame().getBuilderProvider().provide(MutableDataProviderBuilder.class);
+    }
+
+    /**
+     * Constructs a new {@link ImmutableDataProviderBuilder}.
+     *
+     * @return The builder
+     */
+    static <H extends DataHolder, V extends Value<E>, E> ImmutableDataProviderBuilder<H, V, E> immutableBuilder() {
+        return Sponge.getGame().getBuilderProvider().provide(ImmutableDataProviderBuilder.class);
     }
 
     /**
@@ -112,6 +123,12 @@ public interface DataProvider<V extends Value<E>, E> {
      * @return Whether it's supported
      */
     boolean isSupported(DataHolder dataHolder);
+
+    default boolean isSupported(final TypeToken<? extends DataHolder> dataHolder) {
+        return this.isSupported(dataHolder.getType());
+    }
+
+    boolean isSupported(Type dataHolder);
 
     DataTransactionResult offer(DataHolder.Mutable dataHolder, E element);
 

@@ -53,7 +53,7 @@ public interface ScheduledTask extends Identifiable {
      * @return The plugin that scheduled the task
      */
     default PluginContainer getOwner() {
-        return getTask().getOwner();
+        return this.getTask().getOwner();
     }
 
     /**

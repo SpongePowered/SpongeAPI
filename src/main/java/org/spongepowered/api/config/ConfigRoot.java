@@ -24,8 +24,9 @@
  */
 package org.spongepowered.api.config;
 
-import ninja.leaping.configurate.commented.CommentedConfigurationNode;
-import ninja.leaping.configurate.loader.ConfigurationLoader;
+import org.spongepowered.configurate.CommentedConfigurationNode;
+import org.spongepowered.configurate.ConfigurationOptions;
+import org.spongepowered.configurate.loader.ConfigurationLoader;
 
 import java.nio.file.Path;
 
@@ -69,10 +70,31 @@ public interface ConfigRoot {
      * Gets the configuration file that utilizes the default configuration
      * pathname.
      *
+     * <p>The returned loader will default to using options that:</p>
+     * <ul>
+     *     <li>Copy default values to the configuration</li>
+     *     <li>Implicitly initialize values (so will provide an empty value if
+     *     no default is provided)</li>
+     *     <li>Use the Sponge default {@link org.spongepowered.configurate.serialize.TypeSerializer TypeSerializers},
+     *     as described in {@link ConfigManager#getSerializers()}.</li>
+     * </ul>
+     *
      * @return A configuration object
      * @see #getConfigPath()
      */
     ConfigurationLoader<CommentedConfigurationNode> getConfig();
+
+    /**
+     * Gets the configuration file that utilizes the default configuration
+     * pathname.
+     *
+     * <p>The returned loader will default to using the provided options.</p>
+     *
+     * @param options Default options to be used when loading
+     * @return A configuration object
+     * @see #getConfigPath()
+     */
+    ConfigurationLoader<CommentedConfigurationNode> getConfig(final ConfigurationOptions options);
 
     /**
      * Gets the directory that this configuration root refers to.

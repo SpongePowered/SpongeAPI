@@ -24,27 +24,39 @@
  */
 package org.spongepowered.api.world.weather;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * All possible {@link Weather}s in vanilla minecraft.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class Weathers {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<Weather> CLEAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Weather.class, "clear");
+    public static final DefaultedRegistryReference<Weather> CLEAR = Weathers.key(ResourceKey.sponge("clear"));
 
-    public static final Supplier<Weather> RAIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Weather.class, "rain");
+    public static final DefaultedRegistryReference<Weather> RAIN = Weathers.key(ResourceKey.sponge("rain"));
 
-    public static final Supplier<Weather> THUNDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Weather.class, "thunder");
+    public static final DefaultedRegistryReference<Weather> THUNDER = Weathers.key(ResourceKey.sponge("thunder"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private Weathers() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<Weather> key(final ResourceKey location) {
+        return RegistryKey.<Weather>of(Registries.WEATHER.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

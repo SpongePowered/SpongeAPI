@@ -40,7 +40,7 @@ public interface ReadableBiomeVolume extends Volume {
      *         bounds of the volume
      */
     default BiomeType getBiome(Vector3i position) {
-        return getBiome(position.getX(), position.getY(), position.getZ());
+        return this.getBiome(position.getX(), position.getY(), position.getZ());
     }
 
     /**

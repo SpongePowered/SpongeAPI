@@ -24,25 +24,37 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla known {@link PistonType}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class PistonTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<PistonType> NORMAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PistonType.class, "normal");
+    public static final DefaultedRegistryReference<PistonType> NORMAL = PistonTypes.key(ResourceKey.sponge("normal"));
 
-    public static final Supplier<PistonType> STICKY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PistonType.class, "sticky");
+    public static final DefaultedRegistryReference<PistonType> STICKY = PistonTypes.key(ResourceKey.sponge("sticky"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private PistonTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<PistonType> key(final ResourceKey location) {
+        return RegistryKey.<PistonType>of(Registries.PISTON_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

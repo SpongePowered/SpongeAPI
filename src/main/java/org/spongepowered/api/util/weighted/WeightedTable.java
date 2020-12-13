@@ -74,7 +74,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
     public boolean add(TableEntry<T> entry) {
         boolean added = super.add(entry);
         if (added) {
-            recalculateWeight();
+            this.recalculateWeight();
         }
         return added;
     }
@@ -83,7 +83,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
     public boolean add(T object, double weight) {
         boolean added = super.add(object, weight);
         if (added) {
-            recalculateWeight();
+            this.recalculateWeight();
         }
         return added;
     }
@@ -92,7 +92,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
     public boolean addAll(Collection<? extends TableEntry<T>> c) {
         boolean added = super.addAll(c);
         if (added) {
-            recalculateWeight();
+            this.recalculateWeight();
         }
         return added;
     }
@@ -101,7 +101,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
     public boolean remove(Object entry) {
         boolean removed = super.remove(entry);
         if (removed) {
-            recalculateWeight();
+            this.recalculateWeight();
         }
         return removed;
     }
@@ -110,7 +110,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
     public boolean removeObject(Object entry) {
         boolean removed = super.removeObject(entry);
         if (removed) {
-            recalculateWeight();
+            this.recalculateWeight();
         }
         return removed;
     }
@@ -119,7 +119,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
     public boolean removeAll(Collection<?> c) {
         boolean removed = super.removeAll(c);
         if (removed) {
-            recalculateWeight();
+            this.recalculateWeight();
         }
         return removed;
     }
@@ -128,7 +128,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
     public boolean retainAll(Collection<?> c) {
         boolean removed = super.retainAll(c);
         if (removed) {
-            recalculateWeight();
+            this.recalculateWeight();
         }
         return removed;
     }
@@ -136,7 +136,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
     @Override
     public void clear() {
         super.clear();
-        recalculateWeight();
+        this.recalculateWeight();
     }
 
     /**
@@ -163,7 +163,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
         if (this.entries.isEmpty()) {
             return results;
         }
-        int rolls = getRolls().getFlooredAmount(rand);
+        int rolls = this.getRolls().getFlooredAmount(rand);
         for (int i = 0; i < rolls; i++) {
             double roll = rand.nextDouble() * this.totalWeight;
             for (Iterator<TableEntry<T>> it = this.entries.iterator(); it.hasNext();) {
@@ -196,7 +196,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
             return false;
         }
         WeightedTable<?> c = (WeightedTable<?>) o;
-        if (getRolls() != c.getRolls()) {
+        if (this.getRolls() != c.getRolls()) {
             return false;
         }
         if (this.entries.size() != c.entries.size()) {
@@ -213,7 +213,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
     @Override
     public int hashCode() {
         int r = 1;
-        r = r * 37 + getRolls().hashCode();
+        r = r * 37 + this.getRolls().hashCode();
         for (TableEntry<T> entry : this.entries) {
             r = r * 37 + entry.hashCode();
         }
@@ -223,7 +223,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
     @Override
     public String toString() {
         StringBuilder r = new StringBuilder();
-        r.append("WeightedTable (rolls=").append(getRolls());
+        r.append("WeightedTable (rolls=").append(this.getRolls());
         r.append(",entries=").append(this.entries.size()).append(") {\n");
         for (TableEntry<T> entry : this.entries) {
             r.append("\t").append(entry.toString()).append("\n");

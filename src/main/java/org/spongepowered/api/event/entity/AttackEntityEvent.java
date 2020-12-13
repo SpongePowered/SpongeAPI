@@ -33,14 +33,14 @@ import org.spongepowered.api.entity.living.monster.skeleton.Skeleton;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.arrow.ArrowEntity;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.Cause;
-import org.spongepowered.api.event.cause.entity.damage.ModifierFunction;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.cause.entity.damage.DamageFunction;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierTypes;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
+import org.spongepowered.api.event.cause.entity.damage.ModifierFunction;
 import org.spongepowered.api.event.cause.entity.damage.source.BlockDamageSource;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.event.cause.entity.damage.source.EntityDamageSource;
@@ -182,25 +182,25 @@ public interface AttackEntityEvent extends Event, Cancellable {
      * {@link DamageModifierTypes#ARMOR} and the {@link Cause} contains
      * an {@link ItemStackSnapshot} for a "helmet".
      */
-    String HELMET = GENERAL_ARMOR + ":head";
+    String HELMET = AttackEntityEvent.GENERAL_ARMOR + ":head";
     /**
      * For use with a {@link DamageModifier} where it's type is a
      * {@link DamageModifierTypes#ARMOR} and the {@link Cause} contains
      * an {@link ItemStackSnapshot} for a "chestplate".
      */
-    String CHESTPLATE = GENERAL_ARMOR + ":chestplate";
+    String CHESTPLATE = AttackEntityEvent.GENERAL_ARMOR + ":chestplate";
     /**
      * For use with a {@link DamageModifier} where it's type is a
      * {@link DamageModifierTypes#ARMOR} and the {@link Cause} contains
      * an {@link ItemStackSnapshot} for "leggings".
      */
-    String LEGGINGS = GENERAL_ARMOR + ":leggings";
+    String LEGGINGS = AttackEntityEvent.GENERAL_ARMOR + ":leggings";
     /**
      * For use with a {@link DamageModifier} where it's type is a
      * {@link DamageModifierTypes#ARMOR} and the {@link Cause} contains
      * an {@link ItemStackSnapshot} for "boots".
      */
-    String BOOTS = GENERAL_ARMOR + ":boots";
+    String BOOTS = AttackEntityEvent.GENERAL_ARMOR + ":boots";
     /**
      * For use with a {@link DamageModifier} where it's type is a
      * {@link DamageModifierTypes#HARD_HAT} and the {@link Cause} contains
@@ -281,7 +281,7 @@ public interface AttackEntityEvent extends Event, Cancellable {
      *
      * @return The list of damage modifier functions
      */
-    List<ModifierFunction<DamageModifier>> getOriginalFunctions();
+    List<? extends ModifierFunction<DamageModifier>> getOriginalFunctions();
 
     /**
      * Gets the "base" damage to deal to the targeted {@link Entity}. The

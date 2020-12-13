@@ -51,7 +51,7 @@ public interface TreeLayoutElement {
      * @param position The position
      */
     default void setPosition(Vector2d position) {
-        setPosition(position.getX(), position.getY());
+        this.setPosition(position.getX(), position.getY());
     }
 
     /**

@@ -27,7 +27,7 @@ package org.spongepowered.api.entity.hanging;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.util.rotation.Rotation;
+import org.spongepowered.api.util.orientation.Orientation;
 
 /**
  * Represents an Item Frame.
@@ -43,10 +43,10 @@ public interface ItemFrame extends Hanging {
     }
 
     /**
-     * {@link Keys#ROTATION}
+     * {@link Keys#ORIENTATION}
      * @return The rotation of the item in this item frame.
      */
-    default Value.Mutable<Rotation> itemRotation() {
-        return this.requireValue(Keys.ROTATION).asMutable();
+    default Value.Mutable<Orientation> itemOrientation() {
+        return this.requireValue(Keys.ORIENTATION).asMutable();
     }
 }

@@ -32,7 +32,7 @@ import org.spongepowered.api.world.volume.game.LocationBaseDataHolder;
 import org.spongepowered.math.vector.Vector2i;
 import org.spongepowered.math.vector.Vector3i;
 
-public interface ReadableBlockVolume extends Volume, LocationBaseDataHolder {
+public interface ReadableBlockVolume extends Volume {
 
     BlockState getBlock(int x, int y, int z);
 

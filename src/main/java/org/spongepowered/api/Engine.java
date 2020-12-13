@@ -31,6 +31,7 @@ import org.spongepowered.api.resource.ResourceReloadListener;
 import org.spongepowered.api.resource.pack.Pack;
 import org.spongepowered.api.resource.pack.PackDiscoverer;
 import org.spongepowered.api.resource.pack.PackList;
+import org.spongepowered.api.registry.ScopedRegistryHolder;
 import org.spongepowered.api.scheduler.Scheduler;
 
 import java.util.concurrent.CompletableFuture;
@@ -38,7 +39,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * Shared functionality between {@link Client} and {@link Server} engines.
  */
-public interface Engine {
+public interface Engine extends ScopedRegistryHolder {
 
     /**
      * Gets the {@link Game} that launched this engine;

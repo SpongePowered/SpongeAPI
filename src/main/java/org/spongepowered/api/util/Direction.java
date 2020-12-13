@@ -68,17 +68,17 @@ public enum Direction {
     NONE(new Vector3d(0, 0, 0), Division.NONE);
 
     private static final Direction[] SECONDARY_ORDINAL_SET = {
-        NORTH, NORTH_NORTHEAST, NORTHEAST, EAST_NORTHEAST,
-        EAST, EAST_SOUTHEAST, SOUTHEAST, SOUTH_SOUTHEAST,
-        SOUTH, SOUTH_SOUTHWEST, SOUTHWEST, WEST_SOUTHWEST,
-        WEST, WEST_NORTHWEST, NORTHWEST, NORTH_NORTHWEST,
+        Direction.NORTH, Direction.NORTH_NORTHEAST, Direction.NORTHEAST, Direction.EAST_NORTHEAST,
+        Direction.EAST, Direction.EAST_SOUTHEAST, Direction.SOUTHEAST, Direction.SOUTH_SOUTHEAST,
+        Direction.SOUTH, Direction.SOUTH_SOUTHWEST, Direction.SOUTHWEST, Direction.WEST_SOUTHWEST,
+        Direction.WEST, Direction.WEST_NORTHWEST, Direction.NORTHWEST, Direction.NORTH_NORTHWEST,
     };
     private static final Direction[] ORDINAL_SET = {
-        NORTH, NORTHEAST, EAST, SOUTHEAST,
-        SOUTH, SOUTHWEST, WEST, NORTHWEST,
+        Direction.NORTH, Direction.NORTHEAST, Direction.EAST, Direction.SOUTHEAST,
+        Direction.SOUTH, Direction.SOUTHWEST, Direction.WEST, Direction.NORTHWEST,
     };
     private static final Direction[] CARDINAL_SET = {
-        NORTH, EAST, SOUTH, WEST
+        Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST
     };
     private final Vector3d offset;
     private final Vector3i blockOffset;
@@ -86,29 +86,29 @@ public enum Direction {
     private Direction opposite;
 
     static {
-        NORTH.opposite = SOUTH;
-        EAST.opposite = WEST;
-        SOUTH.opposite = NORTH;
-        WEST.opposite = EAST;
+        Direction.NORTH.opposite = Direction.SOUTH;
+        Direction.EAST.opposite = Direction.WEST;
+        Direction.SOUTH.opposite = Direction.NORTH;
+        Direction.WEST.opposite = Direction.EAST;
 
-        UP.opposite = DOWN;
-        DOWN.opposite = UP;
+        Direction.UP.opposite = Direction.DOWN;
+        Direction.DOWN.opposite = Direction.UP;
 
-        NONE.opposite = NONE;
+        Direction.NONE.opposite = Direction.NONE;
 
-        NORTHEAST.opposite = SOUTHWEST;
-        NORTHWEST.opposite = SOUTHEAST;
-        SOUTHEAST.opposite = NORTHWEST;
-        SOUTHWEST.opposite = NORTHEAST;
+        Direction.NORTHEAST.opposite = Direction.SOUTHWEST;
+        Direction.NORTHWEST.opposite = Direction.SOUTHEAST;
+        Direction.SOUTHEAST.opposite = Direction.NORTHWEST;
+        Direction.SOUTHWEST.opposite = Direction.NORTHEAST;
 
-        WEST_NORTHWEST.opposite = EAST_SOUTHEAST;
-        WEST_SOUTHWEST.opposite = EAST_NORTHEAST;
-        NORTH_NORTHWEST.opposite = SOUTH_SOUTHEAST;
-        NORTH_NORTHEAST.opposite = SOUTH_SOUTHWEST;
-        EAST_SOUTHEAST.opposite = WEST_NORTHWEST;
-        EAST_NORTHEAST.opposite = WEST_SOUTHWEST;
-        SOUTH_SOUTHEAST.opposite = NORTH_NORTHWEST;
-        SOUTH_SOUTHWEST.opposite = NORTH_NORTHEAST;
+        Direction.WEST_NORTHWEST.opposite = Direction.EAST_SOUTHEAST;
+        Direction.WEST_SOUTHWEST.opposite = Direction.EAST_NORTHEAST;
+        Direction.NORTH_NORTHWEST.opposite = Direction.SOUTH_SOUTHEAST;
+        Direction.NORTH_NORTHEAST.opposite = Direction.SOUTH_SOUTHWEST;
+        Direction.EAST_SOUTHEAST.opposite = Direction.WEST_NORTHWEST;
+        Direction.EAST_NORTHEAST.opposite = Direction.WEST_SOUTHWEST;
+        Direction.SOUTH_SOUTHEAST.opposite = Direction.NORTH_NORTHWEST;
+        Direction.SOUTH_SOUTHWEST.opposite = Direction.NORTH_NORTHEAST;
     }
 
     Direction(Vector3d direction, Division division) {
@@ -133,7 +133,7 @@ public enum Direction {
      * @return The closest horizontal direction.
      */
     public static Direction getClosest(Vector3d vector) {
-        return getClosest(vector, Division.SECONDARY_ORDINAL);
+        return Direction.getClosest(vector, Division.SECONDARY_ORDINAL);
     }
 
     /**
@@ -150,11 +150,11 @@ public enum Direction {
      */
     public static Direction getClosest(Vector3d vector, Division smallestDivision) {
         if (vector.getY() * vector.getY() <= vector.getX() * vector.getX() + vector.getZ() * vector.getZ()) {
-            return getClosestHorizontal(vector, smallestDivision);
+            return Direction.getClosestHorizontal(vector, smallestDivision);
         } else if (vector.getY() > 0) {
-            return UP;
+            return Direction.UP;
         } else {
-            return DOWN;
+            return Direction.DOWN;
         }
     }
 
@@ -168,7 +168,7 @@ public enum Direction {
      * @return The closest horizontal direction.
      */
     public static Direction getClosestHorizontal(Vector3d vector) {
-        return getClosestHorizontal(vector, Division.SECONDARY_ORDINAL);
+        return Direction.getClosestHorizontal(vector, Division.SECONDARY_ORDINAL);
     }
 
     /**
@@ -185,7 +185,7 @@ public enum Direction {
     public static Direction getClosestHorizontal(Vector3d vector, Division smallestDivision) {
         // Ignore vectors not in the xz plane
         if (Math.abs(vector.getX()) <= GenericMath.DBL_EPSILON && Math.abs(vector.getZ()) <= GenericMath.DBL_EPSILON) {
-            return NONE;
+            return Direction.NONE;
         }
         // Normalize so it lies on the unit circle in xz
         vector = vector.normalize();
@@ -200,13 +200,13 @@ public enum Direction {
         final Direction[] set;
         switch (smallestDivision) {
             case CARDINAL:
-                set = CARDINAL_SET;
+                set = Direction.CARDINAL_SET;
                 break;
             case ORDINAL:
-                set = ORDINAL_SET;
+                set = Direction.ORDINAL_SET;
                 break;
             case SECONDARY_ORDINAL:
-                set = SECONDARY_ORDINAL_SET;
+                set = Direction.SECONDARY_ORDINAL_SET;
                 break;
             default:
                 throw new IllegalArgumentException(smallestDivision.name());
@@ -224,11 +224,11 @@ public enum Direction {
     public static Direction getFromAxis(final Axis axis) {
         switch (axis) {
             case X:
-                return EAST;
+                return Direction.EAST;
             case Y:
-                return UP;
+                return Direction.UP;
             case Z:
-                return SOUTH;
+                return Direction.SOUTH;
             default:
                 throw new IllegalArgumentException(axis.name());
         }
@@ -244,11 +244,11 @@ public enum Direction {
     public static Direction getFromAxis(final Axis axis, final AxisDirection direction) {
         switch (direction) {
             case PLUS:
-                return getFromAxis(axis);
+                return Direction.getFromAxis(axis);
             case ZERO:
-                return NONE;
+                return Direction.NONE;
             case MINUS:
-                return getFromAxis(axis).getOpposite();
+                return Direction.getFromAxis(axis).getOpposite();
             default:
                 throw new IllegalArgumentException(axis.name());
         }
@@ -312,7 +312,7 @@ public enum Direction {
      * @return True if the Y component is non-zero
      */
     public boolean isUpright() {
-        return this == UP || this == DOWN;
+        return this == Direction.UP || this == Direction.DOWN;
     }
 
     /**

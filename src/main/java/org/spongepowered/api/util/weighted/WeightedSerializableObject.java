@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.util.weighted;
 
-import com.google.common.base.MoreObjects;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.Queries;
+
+import java.util.StringJoiner;
 
 /**
  * An entry which contains an object with the added restriction that the object
@@ -44,29 +45,29 @@ public class WeightedSerializableObject<T extends DataSerializable> extends Weig
      * @param object The serializable object
      * @param weight The weight
      */
-    public WeightedSerializableObject(T object, int weight) {
+    public WeightedSerializableObject(final T object, final int weight) {
         super(object, weight);
     }
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
-                .add("object", get())
-                .add("weight", getWeight())
-                .toString();
+        return new StringJoiner(", ", WeightedSerializableObject.class.getSimpleName() + "[", "]")
+            .add("object=" + this.get())
+            .add("weight=" + this.getWeight())
+            .toString();
     }
 
     @SuppressWarnings("rawtypes")
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
         if (!(o instanceof WeightedSerializableObject)) {
             return false;
         }
-        WeightedSerializableObject object = (WeightedSerializableObject) o;
-        return get().equals(object.get()) && getWeight() == object.getWeight();
+        final WeightedSerializableObject object = (WeightedSerializableObject) o;
+        return this.get().equals(object.get()) && this.getWeight() == object.getWeight();
     }
 
     @Override
@@ -77,8 +78,8 @@ public class WeightedSerializableObject<T extends DataSerializable> extends Weig
     @Override
     public DataContainer toContainer() {
         return DataContainer.createNew()
-                .set(Queries.CONTENT_VERSION, getContentVersion())
-                .set(Queries.WEIGHTED_SERIALIZABLE, get())
-                .set(Queries.WEIGHTED_SERIALIZABLE_WEIGHT, getWeight());
+                .set(Queries.CONTENT_VERSION, this.getContentVersion())
+                .set(Queries.WEIGHTED_SERIALIZABLE, this.get())
+                .set(Queries.WEIGHTED_SERIALIZABLE_WEIGHT, this.getWeight());
     }
 }

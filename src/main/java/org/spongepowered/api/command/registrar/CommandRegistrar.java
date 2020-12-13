@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.command.registrar;
 
-import com.google.common.reflect.TypeToken;
+import io.leangen.geantyref.TypeToken;
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.command.CommandCause;
@@ -35,7 +35,7 @@ import org.spongepowered.api.command.manager.CommandManager;
 import org.spongepowered.api.command.manager.CommandMapping;
 import org.spongepowered.api.command.registrar.tree.CommandTreeNode;
 import org.spongepowered.api.event.EventContextKeys;
-import org.spongepowered.api.event.lifecycle.RegisterCatalogEvent;
+import org.spongepowered.api.event.lifecycle.RegisterRegistryValueEvent;
 import org.spongepowered.plugin.PluginContainer;
 
 import java.util.List;
@@ -67,7 +67,7 @@ import java.util.Optional;
  *
  * <ul>
  *     <li>The registrar <strong>must</strong> be registered during the
- *     {@link RegisterCatalogEvent} for {@link CommandRegistrar}s; and</li>
+ *     {@link RegisterRegistryValueEvent} for {@link CommandRegistrar}s; and</li>
  *     <li>Commands registered through the registrar must be synced back
  *     to the {@link CommandManager}, otherwise such commands will not
  *     be passed back to this registrar.</li>

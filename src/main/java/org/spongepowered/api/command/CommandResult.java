@@ -42,7 +42,7 @@ public interface CommandResult {
      * @return The {@link Builder}
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -71,7 +71,7 @@ public interface CommandResult {
      * @return The {@link CommandResult}
      */
     static CommandResult error(final Component errorMessage) {
-        return builder().error(errorMessage).build();
+        return CommandResult.builder().error(errorMessage).build();
     }
 
     /**

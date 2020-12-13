@@ -24,1382 +24,1559 @@
  */
 package org.spongepowered.api.block;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of all possible {@link BlockType}s in vanilla minecraft.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class BlockTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<BlockType> ACACIA_BUTTON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "acacia_button");
+    public static final DefaultedRegistryReference<BlockType> ACACIA_BUTTON = BlockTypes.key(ResourceKey.sponge("acacia_button"));
 
-    public static final Supplier<BlockType> ACACIA_DOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "acacia_door");
+    public static final DefaultedRegistryReference<BlockType> ACACIA_DOOR = BlockTypes.key(ResourceKey.sponge("acacia_door"));
 
-    public static final Supplier<BlockType> ACACIA_FENCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "acacia_fence");
+    public static final DefaultedRegistryReference<BlockType> ACACIA_FENCE = BlockTypes.key(ResourceKey.sponge("acacia_fence"));
 
-    public static final Supplier<BlockType> ACACIA_FENCE_GATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "acacia_fence_gate");
+    public static final DefaultedRegistryReference<BlockType> ACACIA_FENCE_GATE = BlockTypes.key(ResourceKey.sponge("acacia_fence_gate"));
 
-    public static final Supplier<BlockType> ACACIA_LEAVES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "acacia_leaves");
+    public static final DefaultedRegistryReference<BlockType> ACACIA_LEAVES = BlockTypes.key(ResourceKey.sponge("acacia_leaves"));
 
-    public static final Supplier<BlockType> ACACIA_LOG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "acacia_log");
+    public static final DefaultedRegistryReference<BlockType> ACACIA_LOG = BlockTypes.key(ResourceKey.sponge("acacia_log"));
 
-    public static final Supplier<BlockType> ACACIA_PLANKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "acacia_planks");
+    public static final DefaultedRegistryReference<BlockType> ACACIA_PLANKS = BlockTypes.key(ResourceKey.sponge("acacia_planks"));
 
-    public static final Supplier<BlockType> ACACIA_PRESSURE_PLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "acacia_pressure_plate");
+    public static final DefaultedRegistryReference<BlockType> ACACIA_PRESSURE_PLATE = BlockTypes.key(ResourceKey.sponge("acacia_pressure_plate"));
 
-    public static final Supplier<BlockType> ACACIA_SAPLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "acacia_sapling");
+    public static final DefaultedRegistryReference<BlockType> ACACIA_SAPLING = BlockTypes.key(ResourceKey.sponge("acacia_sapling"));
 
-    public static final Supplier<BlockType> ACACIA_SIGN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "acacia_sign");
+    public static final DefaultedRegistryReference<BlockType> ACACIA_SIGN = BlockTypes.key(ResourceKey.sponge("acacia_sign"));
 
-    public static final Supplier<BlockType> ACACIA_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "acacia_slab");
+    public static final DefaultedRegistryReference<BlockType> ACACIA_SLAB = BlockTypes.key(ResourceKey.sponge("acacia_slab"));
 
-    public static final Supplier<BlockType> ACACIA_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "acacia_stairs");
+    public static final DefaultedRegistryReference<BlockType> ACACIA_STAIRS = BlockTypes.key(ResourceKey.sponge("acacia_stairs"));
 
-    public static final Supplier<BlockType> ACACIA_TRAPDOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "acacia_trapdoor");
+    public static final DefaultedRegistryReference<BlockType> ACACIA_TRAPDOOR = BlockTypes.key(ResourceKey.sponge("acacia_trapdoor"));
 
-    public static final Supplier<BlockType> ACACIA_WALL_SIGN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "acacia_wall_sign");
+    public static final DefaultedRegistryReference<BlockType> ACACIA_WALL_SIGN = BlockTypes.key(ResourceKey.sponge("acacia_wall_sign"));
 
-    public static final Supplier<BlockType> ACACIA_WOOD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "acacia_wood");
+    public static final DefaultedRegistryReference<BlockType> ACACIA_WOOD = BlockTypes.key(ResourceKey.sponge("acacia_wood"));
 
-    public static final Supplier<BlockType> ACTIVATOR_RAIL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "activator_rail");
+    public static final DefaultedRegistryReference<BlockType> ACTIVATOR_RAIL = BlockTypes.key(ResourceKey.sponge("activator_rail"));
 
-    public static final Supplier<BlockType> AIR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "air");
+    public static final DefaultedRegistryReference<BlockType> AIR = BlockTypes.key(ResourceKey.sponge("air"));
 
-    public static final Supplier<BlockType> ALLIUM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "allium");
+    public static final DefaultedRegistryReference<BlockType> ALLIUM = BlockTypes.key(ResourceKey.sponge("allium"));
 
-    public static final Supplier<BlockType> ANDESITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "andesite");
+    public static final DefaultedRegistryReference<BlockType> ANCIENT_DEBRIS = BlockTypes.key(ResourceKey.sponge("ancient_debris"));
 
-    public static final Supplier<BlockType> ANDESITE_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "andesite_slab");
+    public static final DefaultedRegistryReference<BlockType> ANDESITE = BlockTypes.key(ResourceKey.sponge("andesite"));
 
-    public static final Supplier<BlockType> ANDESITE_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "andesite_stairs");
+    public static final DefaultedRegistryReference<BlockType> ANDESITE_SLAB = BlockTypes.key(ResourceKey.sponge("andesite_slab"));
 
-    public static final Supplier<BlockType> ANDESITE_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "andesite_wall");
+    public static final DefaultedRegistryReference<BlockType> ANDESITE_STAIRS = BlockTypes.key(ResourceKey.sponge("andesite_stairs"));
 
-    public static final Supplier<BlockType> ANVIL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "anvil");
+    public static final DefaultedRegistryReference<BlockType> ANDESITE_WALL = BlockTypes.key(ResourceKey.sponge("andesite_wall"));
 
-    public static final Supplier<BlockType> ATTACHED_MELON_STEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "attached_melon_stem");
+    public static final DefaultedRegistryReference<BlockType> ANVIL = BlockTypes.key(ResourceKey.sponge("anvil"));
 
-    public static final Supplier<BlockType> ATTACHED_PUMPKIN_STEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "attached_pumpkin_stem");
+    public static final DefaultedRegistryReference<BlockType> ATTACHED_MELON_STEM = BlockTypes.key(ResourceKey.sponge("attached_melon_stem"));
 
-    public static final Supplier<BlockType> AZURE_BLUET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "azure_bluet");
+    public static final DefaultedRegistryReference<BlockType> ATTACHED_PUMPKIN_STEM = BlockTypes.key(ResourceKey.sponge("attached_pumpkin_stem"));
 
-    public static final Supplier<BlockType> BAMBOO = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "bamboo");
+    public static final DefaultedRegistryReference<BlockType> AZURE_BLUET = BlockTypes.key(ResourceKey.sponge("azure_bluet"));
 
-    public static final Supplier<BlockType> BAMBOO_SAPLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "bamboo_sapling");
+    public static final DefaultedRegistryReference<BlockType> BAMBOO = BlockTypes.key(ResourceKey.sponge("bamboo"));
 
-    public static final Supplier<BlockType> BARREL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "barrel");
+    public static final DefaultedRegistryReference<BlockType> BAMBOO_SAPLING = BlockTypes.key(ResourceKey.sponge("bamboo_sapling"));
 
-    public static final Supplier<BlockType> BARRIER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "barrier");
+    public static final DefaultedRegistryReference<BlockType> BARREL = BlockTypes.key(ResourceKey.sponge("barrel"));
 
-    public static final Supplier<BlockType> BEACON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "beacon");
+    public static final DefaultedRegistryReference<BlockType> BARRIER = BlockTypes.key(ResourceKey.sponge("barrier"));
 
-    public static final Supplier<BlockType> BEDROCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "bedrock");
+    public static final DefaultedRegistryReference<BlockType> BASALT = BlockTypes.key(ResourceKey.sponge("basalt"));
 
-    public static final Supplier<BlockType> BEE_NEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "bee_nest");
+    public static final DefaultedRegistryReference<BlockType> BEACON = BlockTypes.key(ResourceKey.sponge("beacon"));
 
-    public static final Supplier<BlockType> BEEHIVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "beehive");
+    public static final DefaultedRegistryReference<BlockType> BEDROCK = BlockTypes.key(ResourceKey.sponge("bedrock"));
 
-    public static final Supplier<BlockType> BEETROOTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "beetroots");
+    public static final DefaultedRegistryReference<BlockType> BEE_NEST = BlockTypes.key(ResourceKey.sponge("bee_nest"));
 
-    public static final Supplier<BlockType> BELL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "bell");
+    public static final DefaultedRegistryReference<BlockType> BEEHIVE = BlockTypes.key(ResourceKey.sponge("beehive"));
 
-    public static final Supplier<BlockType> BIRCH_BUTTON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "birch_button");
+    public static final DefaultedRegistryReference<BlockType> BEETROOTS = BlockTypes.key(ResourceKey.sponge("beetroots"));
 
-    public static final Supplier<BlockType> BIRCH_DOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "birch_door");
+    public static final DefaultedRegistryReference<BlockType> BELL = BlockTypes.key(ResourceKey.sponge("bell"));
 
-    public static final Supplier<BlockType> BIRCH_FENCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "birch_fence");
+    public static final DefaultedRegistryReference<BlockType> BIRCH_BUTTON = BlockTypes.key(ResourceKey.sponge("birch_button"));
 
-    public static final Supplier<BlockType> BIRCH_FENCE_GATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "birch_fence_gate");
+    public static final DefaultedRegistryReference<BlockType> BIRCH_DOOR = BlockTypes.key(ResourceKey.sponge("birch_door"));
 
-    public static final Supplier<BlockType> BIRCH_LEAVES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "birch_leaves");
+    public static final DefaultedRegistryReference<BlockType> BIRCH_FENCE = BlockTypes.key(ResourceKey.sponge("birch_fence"));
 
-    public static final Supplier<BlockType> BIRCH_LOG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "birch_log");
+    public static final DefaultedRegistryReference<BlockType> BIRCH_FENCE_GATE = BlockTypes.key(ResourceKey.sponge("birch_fence_gate"));
 
-    public static final Supplier<BlockType> BIRCH_PLANKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "birch_planks");
+    public static final DefaultedRegistryReference<BlockType> BIRCH_LEAVES = BlockTypes.key(ResourceKey.sponge("birch_leaves"));
 
-    public static final Supplier<BlockType> BIRCH_PRESSURE_PLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "birch_pressure_plate");
+    public static final DefaultedRegistryReference<BlockType> BIRCH_LOG = BlockTypes.key(ResourceKey.sponge("birch_log"));
 
-    public static final Supplier<BlockType> BIRCH_SAPLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "birch_sapling");
+    public static final DefaultedRegistryReference<BlockType> BIRCH_PLANKS = BlockTypes.key(ResourceKey.sponge("birch_planks"));
 
-    public static final Supplier<BlockType> BIRCH_SIGN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "birch_sign");
+    public static final DefaultedRegistryReference<BlockType> BIRCH_PRESSURE_PLATE = BlockTypes.key(ResourceKey.sponge("birch_pressure_plate"));
 
-    public static final Supplier<BlockType> BIRCH_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "birch_slab");
+    public static final DefaultedRegistryReference<BlockType> BIRCH_SAPLING = BlockTypes.key(ResourceKey.sponge("birch_sapling"));
 
-    public static final Supplier<BlockType> BIRCH_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "birch_stairs");
+    public static final DefaultedRegistryReference<BlockType> BIRCH_SIGN = BlockTypes.key(ResourceKey.sponge("birch_sign"));
 
-    public static final Supplier<BlockType> BIRCH_TRAPDOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "birch_trapdoor");
+    public static final DefaultedRegistryReference<BlockType> BIRCH_SLAB = BlockTypes.key(ResourceKey.sponge("birch_slab"));
 
-    public static final Supplier<BlockType> BIRCH_WALL_SIGN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "birch_wall_sign");
+    public static final DefaultedRegistryReference<BlockType> BIRCH_STAIRS = BlockTypes.key(ResourceKey.sponge("birch_stairs"));
 
-    public static final Supplier<BlockType> BIRCH_WOOD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "birch_wood");
+    public static final DefaultedRegistryReference<BlockType> BIRCH_TRAPDOOR = BlockTypes.key(ResourceKey.sponge("birch_trapdoor"));
 
-    public static final Supplier<BlockType> BLACK_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "black_banner");
+    public static final DefaultedRegistryReference<BlockType> BIRCH_WALL_SIGN = BlockTypes.key(ResourceKey.sponge("birch_wall_sign"));
 
-    public static final Supplier<BlockType> BLACK_BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "black_bed");
+    public static final DefaultedRegistryReference<BlockType> BIRCH_WOOD = BlockTypes.key(ResourceKey.sponge("birch_wood"));
 
-    public static final Supplier<BlockType> BLACK_CARPET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "black_carpet");
+    public static final DefaultedRegistryReference<BlockType> BLACK_BANNER = BlockTypes.key(ResourceKey.sponge("black_banner"));
 
-    public static final Supplier<BlockType> BLACK_CONCRETE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "black_concrete");
+    public static final DefaultedRegistryReference<BlockType> BLACK_BED = BlockTypes.key(ResourceKey.sponge("black_bed"));
 
-    public static final Supplier<BlockType> BLACK_CONCRETE_POWDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "black_concrete_powder");
+    public static final DefaultedRegistryReference<BlockType> BLACK_CARPET = BlockTypes.key(ResourceKey.sponge("black_carpet"));
 
-    public static final Supplier<BlockType> BLACK_GLAZED_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "black_glazed_terracotta");
+    public static final DefaultedRegistryReference<BlockType> BLACK_CONCRETE = BlockTypes.key(ResourceKey.sponge("black_concrete"));
 
-    public static final Supplier<BlockType> BLACK_SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "black_shulker_box");
+    public static final DefaultedRegistryReference<BlockType> BLACK_CONCRETE_POWDER = BlockTypes.key(ResourceKey.sponge("black_concrete_powder"));
 
-    public static final Supplier<BlockType> BLACK_STAINED_GLASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "black_stained_glass");
+    public static final DefaultedRegistryReference<BlockType> BLACK_GLAZED_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("black_glazed_terracotta"));
 
-    public static final Supplier<BlockType> BLACK_STAINED_GLASS_PANE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "black_stained_glass_pane");
+    public static final DefaultedRegistryReference<BlockType> BLACK_SHULKER_BOX = BlockTypes.key(ResourceKey.sponge("black_shulker_box"));
 
-    public static final Supplier<BlockType> BLACK_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "black_terracotta");
+    public static final DefaultedRegistryReference<BlockType> BLACK_STAINED_GLASS = BlockTypes.key(ResourceKey.sponge("black_stained_glass"));
 
-    public static final Supplier<BlockType> BLACK_WALL_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "black_wall_banner");
+    public static final DefaultedRegistryReference<BlockType> BLACK_STAINED_GLASS_PANE = BlockTypes.key(ResourceKey.sponge("black_stained_glass_pane"));
 
-    public static final Supplier<BlockType> BLACK_WOOL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "black_wool");
+    public static final DefaultedRegistryReference<BlockType> BLACK_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("black_terracotta"));
 
-    public static final Supplier<BlockType> BLAST_FURNACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "blast_furnace");
+    public static final DefaultedRegistryReference<BlockType> BLACK_WALL_BANNER = BlockTypes.key(ResourceKey.sponge("black_wall_banner"));
 
-    public static final Supplier<BlockType> BLUE_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "blue_banner");
+    public static final DefaultedRegistryReference<BlockType> BLACK_WOOL = BlockTypes.key(ResourceKey.sponge("black_wool"));
 
-    public static final Supplier<BlockType> BLUE_BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "blue_bed");
+    public static final DefaultedRegistryReference<BlockType> BLACKSTONE = BlockTypes.key(ResourceKey.sponge("blackstone"));
 
-    public static final Supplier<BlockType> BLUE_CARPET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "blue_carpet");
+    public static final DefaultedRegistryReference<BlockType> BLACKSTONE_SLAB = BlockTypes.key(ResourceKey.sponge("blackstone_slab"));
 
-    public static final Supplier<BlockType> BLUE_CONCRETE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "blue_concrete");
+    public static final DefaultedRegistryReference<BlockType> BLACKSTONE_STAIRS = BlockTypes.key(ResourceKey.sponge("blackstone_stairs"));
 
-    public static final Supplier<BlockType> BLUE_CONCRETE_POWDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "blue_concrete_powder");
+    public static final DefaultedRegistryReference<BlockType> BLACKSTONE_WALL = BlockTypes.key(ResourceKey.sponge("blackstone_wall"));
 
-    public static final Supplier<BlockType> BLUE_GLAZED_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "blue_glazed_terracotta");
+    public static final DefaultedRegistryReference<BlockType> BLAST_FURNACE = BlockTypes.key(ResourceKey.sponge("blast_furnace"));
 
-    public static final Supplier<BlockType> BLUE_ICE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "blue_ice");
+    public static final DefaultedRegistryReference<BlockType> BLUE_BANNER = BlockTypes.key(ResourceKey.sponge("blue_banner"));
 
-    public static final Supplier<BlockType> BLUE_ORCHID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "blue_orchid");
+    public static final DefaultedRegistryReference<BlockType> BLUE_BED = BlockTypes.key(ResourceKey.sponge("blue_bed"));
 
-    public static final Supplier<BlockType> BLUE_SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "blue_shulker_box");
+    public static final DefaultedRegistryReference<BlockType> BLUE_CARPET = BlockTypes.key(ResourceKey.sponge("blue_carpet"));
 
-    public static final Supplier<BlockType> BLUE_STAINED_GLASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "blue_stained_glass");
+    public static final DefaultedRegistryReference<BlockType> BLUE_CONCRETE = BlockTypes.key(ResourceKey.sponge("blue_concrete"));
 
-    public static final Supplier<BlockType> BLUE_STAINED_GLASS_PANE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "blue_stained_glass_pane");
+    public static final DefaultedRegistryReference<BlockType> BLUE_CONCRETE_POWDER = BlockTypes.key(ResourceKey.sponge("blue_concrete_powder"));
 
-    public static final Supplier<BlockType> BLUE_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "blue_terracotta");
+    public static final DefaultedRegistryReference<BlockType> BLUE_GLAZED_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("blue_glazed_terracotta"));
 
-    public static final Supplier<BlockType> BLUE_WALL_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "blue_wall_banner");
+    public static final DefaultedRegistryReference<BlockType> BLUE_ICE = BlockTypes.key(ResourceKey.sponge("blue_ice"));
 
-    public static final Supplier<BlockType> BLUE_WOOL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "blue_wool");
+    public static final DefaultedRegistryReference<BlockType> BLUE_ORCHID = BlockTypes.key(ResourceKey.sponge("blue_orchid"));
 
-    public static final Supplier<BlockType> BONE_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "bone_block");
+    public static final DefaultedRegistryReference<BlockType> BLUE_SHULKER_BOX = BlockTypes.key(ResourceKey.sponge("blue_shulker_box"));
 
-    public static final Supplier<BlockType> BOOKSHELF = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "bookshelf");
+    public static final DefaultedRegistryReference<BlockType> BLUE_STAINED_GLASS = BlockTypes.key(ResourceKey.sponge("blue_stained_glass"));
 
-    public static final Supplier<BlockType> BRAIN_CORAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "brain_coral");
+    public static final DefaultedRegistryReference<BlockType> BLUE_STAINED_GLASS_PANE = BlockTypes.key(ResourceKey.sponge("blue_stained_glass_pane"));
 
-    public static final Supplier<BlockType> BRAIN_CORAL_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "brain_coral_block");
+    public static final DefaultedRegistryReference<BlockType> BLUE_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("blue_terracotta"));
 
-    public static final Supplier<BlockType> BRAIN_CORAL_FAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "brain_coral_fan");
+    public static final DefaultedRegistryReference<BlockType> BLUE_WALL_BANNER = BlockTypes.key(ResourceKey.sponge("blue_wall_banner"));
 
-    public static final Supplier<BlockType> BRAIN_CORAL_WALL_FAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "brain_coral_wall_fan");
+    public static final DefaultedRegistryReference<BlockType> BLUE_WOOL = BlockTypes.key(ResourceKey.sponge("blue_wool"));
 
-    public static final Supplier<BlockType> BREWING_STAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "brewing_stand");
+    public static final DefaultedRegistryReference<BlockType> BONE_BLOCK = BlockTypes.key(ResourceKey.sponge("bone_block"));
 
-    public static final Supplier<BlockType> BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "bricks");
+    public static final DefaultedRegistryReference<BlockType> BOOKSHELF = BlockTypes.key(ResourceKey.sponge("bookshelf"));
 
-    public static final Supplier<BlockType> BRICK_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "brick_slab");
+    public static final DefaultedRegistryReference<BlockType> BRAIN_CORAL = BlockTypes.key(ResourceKey.sponge("brain_coral"));
 
-    public static final Supplier<BlockType> BRICK_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "brick_stairs");
+    public static final DefaultedRegistryReference<BlockType> BRAIN_CORAL_BLOCK = BlockTypes.key(ResourceKey.sponge("brain_coral_block"));
 
-    public static final Supplier<BlockType> BRICK_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "brick_wall");
+    public static final DefaultedRegistryReference<BlockType> BRAIN_CORAL_FAN = BlockTypes.key(ResourceKey.sponge("brain_coral_fan"));
 
-    public static final Supplier<BlockType> BROWN_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "brown_banner");
+    public static final DefaultedRegistryReference<BlockType> BRAIN_CORAL_WALL_FAN = BlockTypes.key(ResourceKey.sponge("brain_coral_wall_fan"));
 
-    public static final Supplier<BlockType> BROWN_BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "brown_bed");
+    public static final DefaultedRegistryReference<BlockType> BREWING_STAND = BlockTypes.key(ResourceKey.sponge("brewing_stand"));
 
-    public static final Supplier<BlockType> BROWN_CARPET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "brown_carpet");
+    public static final DefaultedRegistryReference<BlockType> BRICK_SLAB = BlockTypes.key(ResourceKey.sponge("brick_slab"));
 
-    public static final Supplier<BlockType> BROWN_CONCRETE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "brown_concrete");
+    public static final DefaultedRegistryReference<BlockType> BRICK_STAIRS = BlockTypes.key(ResourceKey.sponge("brick_stairs"));
 
-    public static final Supplier<BlockType> BROWN_CONCRETE_POWDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "brown_concrete_powder");
+    public static final DefaultedRegistryReference<BlockType> BRICK_WALL = BlockTypes.key(ResourceKey.sponge("brick_wall"));
 
-    public static final Supplier<BlockType> BROWN_GLAZED_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "brown_glazed_terracotta");
+    public static final DefaultedRegistryReference<BlockType> BRICKS = BlockTypes.key(ResourceKey.sponge("bricks"));
 
-    public static final Supplier<BlockType> BROWN_MUSHROOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "brown_mushroom");
+    public static final DefaultedRegistryReference<BlockType> BROWN_BANNER = BlockTypes.key(ResourceKey.sponge("brown_banner"));
 
-    public static final Supplier<BlockType> BROWN_MUSHROOM_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "brown_mushroom_block");
+    public static final DefaultedRegistryReference<BlockType> BROWN_BED = BlockTypes.key(ResourceKey.sponge("brown_bed"));
 
-    public static final Supplier<BlockType> BROWN_SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "brown_shulker_box");
+    public static final DefaultedRegistryReference<BlockType> BROWN_CARPET = BlockTypes.key(ResourceKey.sponge("brown_carpet"));
 
-    public static final Supplier<BlockType> BROWN_STAINED_GLASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "brown_stained_glass");
+    public static final DefaultedRegistryReference<BlockType> BROWN_CONCRETE = BlockTypes.key(ResourceKey.sponge("brown_concrete"));
 
-    public static final Supplier<BlockType> BROWN_STAINED_GLASS_PANE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "brown_stained_glass_pane");
+    public static final DefaultedRegistryReference<BlockType> BROWN_CONCRETE_POWDER = BlockTypes.key(ResourceKey.sponge("brown_concrete_powder"));
 
-    public static final Supplier<BlockType> BROWN_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "brown_terracotta");
+    public static final DefaultedRegistryReference<BlockType> BROWN_GLAZED_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("brown_glazed_terracotta"));
 
-    public static final Supplier<BlockType> BROWN_WALL_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "brown_wall_banner");
+    public static final DefaultedRegistryReference<BlockType> BROWN_MUSHROOM = BlockTypes.key(ResourceKey.sponge("brown_mushroom"));
 
-    public static final Supplier<BlockType> BROWN_WOOL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "brown_wool");
+    public static final DefaultedRegistryReference<BlockType> BROWN_MUSHROOM_BLOCK = BlockTypes.key(ResourceKey.sponge("brown_mushroom_block"));
 
-    public static final Supplier<BlockType> BUBBLE_COLUMN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "bubble_column");
+    public static final DefaultedRegistryReference<BlockType> BROWN_SHULKER_BOX = BlockTypes.key(ResourceKey.sponge("brown_shulker_box"));
 
-    public static final Supplier<BlockType> BUBBLE_CORAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "bubble_coral");
+    public static final DefaultedRegistryReference<BlockType> BROWN_STAINED_GLASS = BlockTypes.key(ResourceKey.sponge("brown_stained_glass"));
 
-    public static final Supplier<BlockType> BUBBLE_CORAL_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "bubble_coral_block");
+    public static final DefaultedRegistryReference<BlockType> BROWN_STAINED_GLASS_PANE = BlockTypes.key(ResourceKey.sponge("brown_stained_glass_pane"));
 
-    public static final Supplier<BlockType> BUBBLE_CORAL_FAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "bubble_coral_fan");
+    public static final DefaultedRegistryReference<BlockType> BROWN_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("brown_terracotta"));
 
-    public static final Supplier<BlockType> BUBBLE_CORAL_WALL_FAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "bubble_coral_wall_fan");
+    public static final DefaultedRegistryReference<BlockType> BROWN_WALL_BANNER = BlockTypes.key(ResourceKey.sponge("brown_wall_banner"));
 
-    public static final Supplier<BlockType> CACTUS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cactus");
+    public static final DefaultedRegistryReference<BlockType> BROWN_WOOL = BlockTypes.key(ResourceKey.sponge("brown_wool"));
 
-    public static final Supplier<BlockType> CAKE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cake");
+    public static final DefaultedRegistryReference<BlockType> BUBBLE_COLUMN = BlockTypes.key(ResourceKey.sponge("bubble_column"));
 
-    public static final Supplier<BlockType> CAMPFIRE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "campfire");
+    public static final DefaultedRegistryReference<BlockType> BUBBLE_CORAL = BlockTypes.key(ResourceKey.sponge("bubble_coral"));
 
-    public static final Supplier<BlockType> CARROTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "carrots");
+    public static final DefaultedRegistryReference<BlockType> BUBBLE_CORAL_BLOCK = BlockTypes.key(ResourceKey.sponge("bubble_coral_block"));
 
-    public static final Supplier<BlockType> CARTOGRAPHY_TABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cartography_table");
+    public static final DefaultedRegistryReference<BlockType> BUBBLE_CORAL_FAN = BlockTypes.key(ResourceKey.sponge("bubble_coral_fan"));
 
-    public static final Supplier<BlockType> CARVED_PUMPKIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "carved_pumpkin");
+    public static final DefaultedRegistryReference<BlockType> BUBBLE_CORAL_WALL_FAN = BlockTypes.key(ResourceKey.sponge("bubble_coral_wall_fan"));
 
-    public static final Supplier<BlockType> CAULDRON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cauldron");
+    public static final DefaultedRegistryReference<BlockType> CACTUS = BlockTypes.key(ResourceKey.sponge("cactus"));
 
-    public static final Supplier<BlockType> CAVE_AIR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cave_air");
+    public static final DefaultedRegistryReference<BlockType> CAKE = BlockTypes.key(ResourceKey.sponge("cake"));
 
-    public static final Supplier<BlockType> CHAIN_COMMAND_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "chain_command_block");
+    public static final DefaultedRegistryReference<BlockType> CAMPFIRE = BlockTypes.key(ResourceKey.sponge("campfire"));
 
-    public static final Supplier<BlockType> CHEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "chest");
+    public static final DefaultedRegistryReference<BlockType> CARROTS = BlockTypes.key(ResourceKey.sponge("carrots"));
 
-    public static final Supplier<BlockType> CHIPPED_ANVIL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "chipped_anvil");
+    public static final DefaultedRegistryReference<BlockType> CARTOGRAPHY_TABLE = BlockTypes.key(ResourceKey.sponge("cartography_table"));
 
-    public static final Supplier<BlockType> CHISELED_QUARTZ_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "chiseled_quartz_block");
+    public static final DefaultedRegistryReference<BlockType> CARVED_PUMPKIN = BlockTypes.key(ResourceKey.sponge("carved_pumpkin"));
 
-    public static final Supplier<BlockType> CHISELED_RED_SANDSTONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "chiseled_red_sandstone");
+    public static final DefaultedRegistryReference<BlockType> CAULDRON = BlockTypes.key(ResourceKey.sponge("cauldron"));
 
-    public static final Supplier<BlockType> CHISELED_SANDSTONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "chiseled_sandstone");
+    public static final DefaultedRegistryReference<BlockType> CAVE_AIR = BlockTypes.key(ResourceKey.sponge("cave_air"));
 
-    public static final Supplier<BlockType> CHISELED_STONE_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "chiseled_stone_bricks");
+    public static final DefaultedRegistryReference<BlockType> CHAIN = BlockTypes.key(ResourceKey.sponge("chain"));
 
-    public static final Supplier<BlockType> CHORUS_FLOWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "chorus_flower");
+    public static final DefaultedRegistryReference<BlockType> CHAIN_COMMAND_BLOCK = BlockTypes.key(ResourceKey.sponge("chain_command_block"));
 
-    public static final Supplier<BlockType> CHORUS_PLANT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "chorus_plant");
+    public static final DefaultedRegistryReference<BlockType> CHEST = BlockTypes.key(ResourceKey.sponge("chest"));
 
-    public static final Supplier<BlockType> CLAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "clay");
+    public static final DefaultedRegistryReference<BlockType> CHIPPED_ANVIL = BlockTypes.key(ResourceKey.sponge("chipped_anvil"));
 
-    public static final Supplier<BlockType> COAL_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "coal_block");
+    public static final DefaultedRegistryReference<BlockType> CHISELED_NETHER_BRICKS = BlockTypes.key(ResourceKey.sponge("chiseled_nether_bricks"));
 
-    public static final Supplier<BlockType> COAL_ORE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "coal_ore");
+    public static final DefaultedRegistryReference<BlockType> CHISELED_POLISHED_BLACKSTONE = BlockTypes.key(ResourceKey.sponge("chiseled_polished_blackstone"));
 
-    public static final Supplier<BlockType> COARSE_DIRT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "coarse_dirt");
+    public static final DefaultedRegistryReference<BlockType> CHISELED_QUARTZ_BLOCK = BlockTypes.key(ResourceKey.sponge("chiseled_quartz_block"));
 
-    public static final Supplier<BlockType> COBBLESTONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cobblestone");
+    public static final DefaultedRegistryReference<BlockType> CHISELED_RED_SANDSTONE = BlockTypes.key(ResourceKey.sponge("chiseled_red_sandstone"));
 
-    public static final Supplier<BlockType> COBBLESTONE_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cobblestone_slab");
+    public static final DefaultedRegistryReference<BlockType> CHISELED_SANDSTONE = BlockTypes.key(ResourceKey.sponge("chiseled_sandstone"));
 
-    public static final Supplier<BlockType> COBBLESTONE_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cobblestone_stairs");
+    public static final DefaultedRegistryReference<BlockType> CHISELED_STONE_BRICKS = BlockTypes.key(ResourceKey.sponge("chiseled_stone_bricks"));
 
-    public static final Supplier<BlockType> COBBLESTONE_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cobblestone_wall");
+    public static final DefaultedRegistryReference<BlockType> CHORUS_FLOWER = BlockTypes.key(ResourceKey.sponge("chorus_flower"));
 
-    public static final Supplier<BlockType> COBWEB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cobweb");
+    public static final DefaultedRegistryReference<BlockType> CHORUS_PLANT = BlockTypes.key(ResourceKey.sponge("chorus_plant"));
 
-    public static final Supplier<BlockType> COCOA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cocoa");
+    public static final DefaultedRegistryReference<BlockType> CLAY = BlockTypes.key(ResourceKey.sponge("clay"));
 
-    public static final Supplier<BlockType> COMMAND_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "command_block");
+    public static final DefaultedRegistryReference<BlockType> COAL_BLOCK = BlockTypes.key(ResourceKey.sponge("coal_block"));
 
-    public static final Supplier<BlockType> COMPARATOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "comparator");
+    public static final DefaultedRegistryReference<BlockType> COAL_ORE = BlockTypes.key(ResourceKey.sponge("coal_ore"));
 
-    public static final Supplier<BlockType> COMPOSTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "composter");
+    public static final DefaultedRegistryReference<BlockType> COARSE_DIRT = BlockTypes.key(ResourceKey.sponge("coarse_dirt"));
 
-    public static final Supplier<BlockType> CONDUIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "conduit");
+    public static final DefaultedRegistryReference<BlockType> COBBLESTONE = BlockTypes.key(ResourceKey.sponge("cobblestone"));
 
-    public static final Supplier<BlockType> CORNFLOWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cornflower");
+    public static final DefaultedRegistryReference<BlockType> COBBLESTONE_SLAB = BlockTypes.key(ResourceKey.sponge("cobblestone_slab"));
 
-    public static final Supplier<BlockType> CRACKED_STONE_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cracked_stone_bricks");
+    public static final DefaultedRegistryReference<BlockType> COBBLESTONE_STAIRS = BlockTypes.key(ResourceKey.sponge("cobblestone_stairs"));
 
-    public static final Supplier<BlockType> CRAFTING_TABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "crafting_table");
+    public static final DefaultedRegistryReference<BlockType> COBBLESTONE_WALL = BlockTypes.key(ResourceKey.sponge("cobblestone_wall"));
 
-    public static final Supplier<BlockType> CREEPER_HEAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "creeper_head");
+    public static final DefaultedRegistryReference<BlockType> COBWEB = BlockTypes.key(ResourceKey.sponge("cobweb"));
 
-    public static final Supplier<BlockType> CREEPER_WALL_HEAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "creeper_wall_head");
+    public static final DefaultedRegistryReference<BlockType> COCOA = BlockTypes.key(ResourceKey.sponge("cocoa"));
 
-    public static final Supplier<BlockType> CUT_RED_SANDSTONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cut_red_sandstone");
+    public static final DefaultedRegistryReference<BlockType> COMMAND_BLOCK = BlockTypes.key(ResourceKey.sponge("command_block"));
 
-    public static final Supplier<BlockType> CUT_RED_SANDSTONE_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cut_red_sandstone_slab");
+    public static final DefaultedRegistryReference<BlockType> COMPARATOR = BlockTypes.key(ResourceKey.sponge("comparator"));
 
-    public static final Supplier<BlockType> CUT_SANDSTONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cut_sandstone");
+    public static final DefaultedRegistryReference<BlockType> COMPOSTER = BlockTypes.key(ResourceKey.sponge("composter"));
 
-    public static final Supplier<BlockType> CUT_SANDSTONE_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cut_sandstone_slab");
+    public static final DefaultedRegistryReference<BlockType> CONDUIT = BlockTypes.key(ResourceKey.sponge("conduit"));
 
-    public static final Supplier<BlockType> CYAN_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cyan_banner");
+    public static final DefaultedRegistryReference<BlockType> CORNFLOWER = BlockTypes.key(ResourceKey.sponge("cornflower"));
 
-    public static final Supplier<BlockType> CYAN_BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cyan_bed");
+    public static final DefaultedRegistryReference<BlockType> CRACKED_NETHER_BRICKS = BlockTypes.key(ResourceKey.sponge("cracked_nether_bricks"));
 
-    public static final Supplier<BlockType> CYAN_CARPET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cyan_carpet");
+    public static final DefaultedRegistryReference<BlockType> CRACKED_POLISHED_BLACKSTONE_BRICKS = BlockTypes.key(ResourceKey.sponge("cracked_polished_blackstone_bricks"));
 
-    public static final Supplier<BlockType> CYAN_CONCRETE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cyan_concrete");
+    public static final DefaultedRegistryReference<BlockType> CRACKED_STONE_BRICKS = BlockTypes.key(ResourceKey.sponge("cracked_stone_bricks"));
 
-    public static final Supplier<BlockType> CYAN_CONCRETE_POWDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cyan_concrete_powder");
+    public static final DefaultedRegistryReference<BlockType> CRAFTING_TABLE = BlockTypes.key(ResourceKey.sponge("crafting_table"));
 
-    public static final Supplier<BlockType> CYAN_GLAZED_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cyan_glazed_terracotta");
+    public static final DefaultedRegistryReference<BlockType> CREEPER_HEAD = BlockTypes.key(ResourceKey.sponge("creeper_head"));
 
-    public static final Supplier<BlockType> CYAN_SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cyan_shulker_box");
+    public static final DefaultedRegistryReference<BlockType> CREEPER_WALL_HEAD = BlockTypes.key(ResourceKey.sponge("creeper_wall_head"));
 
-    public static final Supplier<BlockType> CYAN_STAINED_GLASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cyan_stained_glass");
+    public static final DefaultedRegistryReference<BlockType> CRIMSON_BUTTON = BlockTypes.key(ResourceKey.sponge("crimson_button"));
 
-    public static final Supplier<BlockType> CYAN_STAINED_GLASS_PANE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cyan_stained_glass_pane");
+    public static final DefaultedRegistryReference<BlockType> CRIMSON_DOOR = BlockTypes.key(ResourceKey.sponge("crimson_door"));
 
-    public static final Supplier<BlockType> CYAN_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cyan_terracotta");
+    public static final DefaultedRegistryReference<BlockType> CRIMSON_FENCE = BlockTypes.key(ResourceKey.sponge("crimson_fence"));
 
-    public static final Supplier<BlockType> CYAN_WALL_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cyan_wall_banner");
+    public static final DefaultedRegistryReference<BlockType> CRIMSON_FENCE_GATE = BlockTypes.key(ResourceKey.sponge("crimson_fence_gate"));
 
-    public static final Supplier<BlockType> CYAN_WOOL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "cyan_wool");
+    public static final DefaultedRegistryReference<BlockType> CRIMSON_FUNGUS = BlockTypes.key(ResourceKey.sponge("crimson_fungus"));
 
-    public static final Supplier<BlockType> DAMAGED_ANVIL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "damaged_anvil");
+    public static final DefaultedRegistryReference<BlockType> CRIMSON_HYPHAE = BlockTypes.key(ResourceKey.sponge("crimson_hyphae"));
 
-    public static final Supplier<BlockType> DANDELION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dandelion");
+    public static final DefaultedRegistryReference<BlockType> CRIMSON_NYLIUM = BlockTypes.key(ResourceKey.sponge("crimson_nylium"));
 
-    public static final Supplier<BlockType> DARK_OAK_BUTTON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dark_oak_button");
+    public static final DefaultedRegistryReference<BlockType> CRIMSON_PLANKS = BlockTypes.key(ResourceKey.sponge("crimson_planks"));
 
-    public static final Supplier<BlockType> DARK_OAK_DOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dark_oak_door");
+    public static final DefaultedRegistryReference<BlockType> CRIMSON_PRESSURE_PLATE = BlockTypes.key(ResourceKey.sponge("crimson_pressure_plate"));
 
-    public static final Supplier<BlockType> DARK_OAK_FENCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dark_oak_fence");
+    public static final DefaultedRegistryReference<BlockType> CRIMSON_ROOTS = BlockTypes.key(ResourceKey.sponge("crimson_roots"));
 
-    public static final Supplier<BlockType> DARK_OAK_FENCE_GATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dark_oak_fence_gate");
+    public static final DefaultedRegistryReference<BlockType> CRIMSON_SIGN = BlockTypes.key(ResourceKey.sponge("crimson_sign"));
 
-    public static final Supplier<BlockType> DARK_OAK_LEAVES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dark_oak_leaves");
+    public static final DefaultedRegistryReference<BlockType> CRIMSON_SLAB = BlockTypes.key(ResourceKey.sponge("crimson_slab"));
 
-    public static final Supplier<BlockType> DARK_OAK_LOG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dark_oak_log");
+    public static final DefaultedRegistryReference<BlockType> CRIMSON_STAIRS = BlockTypes.key(ResourceKey.sponge("crimson_stairs"));
 
-    public static final Supplier<BlockType> DARK_OAK_PLANKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dark_oak_planks");
+    public static final DefaultedRegistryReference<BlockType> CRIMSON_STEM = BlockTypes.key(ResourceKey.sponge("crimson_stem"));
 
-    public static final Supplier<BlockType> DARK_OAK_PRESSURE_PLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dark_oak_pressure_plate");
+    public static final DefaultedRegistryReference<BlockType> CRIMSON_TRAPDOOR = BlockTypes.key(ResourceKey.sponge("crimson_trapdoor"));
 
-    public static final Supplier<BlockType> DARK_OAK_SAPLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dark_oak_sapling");
+    public static final DefaultedRegistryReference<BlockType> CRIMSON_WALL_SIGN = BlockTypes.key(ResourceKey.sponge("crimson_wall_sign"));
 
-    public static final Supplier<BlockType> DARK_OAK_SIGN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dark_oak_sign");
+    public static final DefaultedRegistryReference<BlockType> CRYING_OBSIDIAN = BlockTypes.key(ResourceKey.sponge("crying_obsidian"));
 
-    public static final Supplier<BlockType> DARK_OAK_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dark_oak_slab");
+    public static final DefaultedRegistryReference<BlockType> CUT_RED_SANDSTONE = BlockTypes.key(ResourceKey.sponge("cut_red_sandstone"));
 
-    public static final Supplier<BlockType> DARK_OAK_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dark_oak_stairs");
+    public static final DefaultedRegistryReference<BlockType> CUT_RED_SANDSTONE_SLAB = BlockTypes.key(ResourceKey.sponge("cut_red_sandstone_slab"));
 
-    public static final Supplier<BlockType> DARK_OAK_TRAPDOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dark_oak_trapdoor");
+    public static final DefaultedRegistryReference<BlockType> CUT_SANDSTONE = BlockTypes.key(ResourceKey.sponge("cut_sandstone"));
 
-    public static final Supplier<BlockType> DARK_OAK_WALL_SIGN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dark_oak_wall_sign");
+    public static final DefaultedRegistryReference<BlockType> CUT_SANDSTONE_SLAB = BlockTypes.key(ResourceKey.sponge("cut_sandstone_slab"));
 
-    public static final Supplier<BlockType> DARK_OAK_WOOD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dark_oak_wood");
+    public static final DefaultedRegistryReference<BlockType> CYAN_BANNER = BlockTypes.key(ResourceKey.sponge("cyan_banner"));
 
-    public static final Supplier<BlockType> DARK_PRISMARINE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dark_prismarine");
+    public static final DefaultedRegistryReference<BlockType> CYAN_BED = BlockTypes.key(ResourceKey.sponge("cyan_bed"));
 
-    public static final Supplier<BlockType> DARK_PRISMARINE_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dark_prismarine_slab");
+    public static final DefaultedRegistryReference<BlockType> CYAN_CARPET = BlockTypes.key(ResourceKey.sponge("cyan_carpet"));
 
-    public static final Supplier<BlockType> DARK_PRISMARINE_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dark_prismarine_stairs");
+    public static final DefaultedRegistryReference<BlockType> CYAN_CONCRETE = BlockTypes.key(ResourceKey.sponge("cyan_concrete"));
 
-    public static final Supplier<BlockType> DAYLIGHT_DETECTOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "daylight_detector");
+    public static final DefaultedRegistryReference<BlockType> CYAN_CONCRETE_POWDER = BlockTypes.key(ResourceKey.sponge("cyan_concrete_powder"));
 
-    public static final Supplier<BlockType> DEAD_BRAIN_CORAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dead_brain_coral");
+    public static final DefaultedRegistryReference<BlockType> CYAN_GLAZED_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("cyan_glazed_terracotta"));
 
-    public static final Supplier<BlockType> DEAD_BRAIN_CORAL_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dead_brain_coral_block");
+    public static final DefaultedRegistryReference<BlockType> CYAN_SHULKER_BOX = BlockTypes.key(ResourceKey.sponge("cyan_shulker_box"));
 
-    public static final Supplier<BlockType> DEAD_BRAIN_CORAL_FAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dead_brain_coral_fan");
+    public static final DefaultedRegistryReference<BlockType> CYAN_STAINED_GLASS = BlockTypes.key(ResourceKey.sponge("cyan_stained_glass"));
 
-    public static final Supplier<BlockType> DEAD_BRAIN_CORAL_WALL_FAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dead_brain_coral_wall_fan");
+    public static final DefaultedRegistryReference<BlockType> CYAN_STAINED_GLASS_PANE = BlockTypes.key(ResourceKey.sponge("cyan_stained_glass_pane"));
 
-    public static final Supplier<BlockType> DEAD_BUBBLE_CORAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dead_bubble_coral");
+    public static final DefaultedRegistryReference<BlockType> CYAN_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("cyan_terracotta"));
 
-    public static final Supplier<BlockType> DEAD_BUBBLE_CORAL_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dead_bubble_coral_block");
+    public static final DefaultedRegistryReference<BlockType> CYAN_WALL_BANNER = BlockTypes.key(ResourceKey.sponge("cyan_wall_banner"));
 
-    public static final Supplier<BlockType> DEAD_BUBBLE_CORAL_FAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dead_bubble_coral_fan");
+    public static final DefaultedRegistryReference<BlockType> CYAN_WOOL = BlockTypes.key(ResourceKey.sponge("cyan_wool"));
 
-    public static final Supplier<BlockType> DEAD_BUBBLE_CORAL_WALL_FAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dead_bubble_coral_wall_fan");
+    public static final DefaultedRegistryReference<BlockType> DAMAGED_ANVIL = BlockTypes.key(ResourceKey.sponge("damaged_anvil"));
 
-    public static final Supplier<BlockType> DEAD_BUSH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dead_bush");
+    public static final DefaultedRegistryReference<BlockType> DANDELION = BlockTypes.key(ResourceKey.sponge("dandelion"));
 
-    public static final Supplier<BlockType> DEAD_FIRE_CORAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dead_fire_coral");
+    public static final DefaultedRegistryReference<BlockType> DARK_OAK_BUTTON = BlockTypes.key(ResourceKey.sponge("dark_oak_button"));
 
-    public static final Supplier<BlockType> DEAD_FIRE_CORAL_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dead_fire_coral_block");
+    public static final DefaultedRegistryReference<BlockType> DARK_OAK_DOOR = BlockTypes.key(ResourceKey.sponge("dark_oak_door"));
 
-    public static final Supplier<BlockType> DEAD_FIRE_CORAL_FAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dead_fire_coral_fan");
+    public static final DefaultedRegistryReference<BlockType> DARK_OAK_FENCE = BlockTypes.key(ResourceKey.sponge("dark_oak_fence"));
 
-    public static final Supplier<BlockType> DEAD_FIRE_CORAL_WALL_FAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dead_fire_coral_wall_fan");
+    public static final DefaultedRegistryReference<BlockType> DARK_OAK_FENCE_GATE = BlockTypes.key(ResourceKey.sponge("dark_oak_fence_gate"));
 
-    public static final Supplier<BlockType> DEAD_HORN_CORAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dead_horn_coral");
+    public static final DefaultedRegistryReference<BlockType> DARK_OAK_LEAVES = BlockTypes.key(ResourceKey.sponge("dark_oak_leaves"));
 
-    public static final Supplier<BlockType> DEAD_HORN_CORAL_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dead_horn_coral_block");
+    public static final DefaultedRegistryReference<BlockType> DARK_OAK_LOG = BlockTypes.key(ResourceKey.sponge("dark_oak_log"));
 
-    public static final Supplier<BlockType> DEAD_HORN_CORAL_FAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dead_horn_coral_fan");
+    public static final DefaultedRegistryReference<BlockType> DARK_OAK_PLANKS = BlockTypes.key(ResourceKey.sponge("dark_oak_planks"));
 
-    public static final Supplier<BlockType> DEAD_HORN_CORAL_WALL_FAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dead_horn_coral_wall_fan");
+    public static final DefaultedRegistryReference<BlockType> DARK_OAK_PRESSURE_PLATE = BlockTypes.key(ResourceKey.sponge("dark_oak_pressure_plate"));
 
-    public static final Supplier<BlockType> DEAD_TUBE_CORAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dead_tube_coral");
+    public static final DefaultedRegistryReference<BlockType> DARK_OAK_SAPLING = BlockTypes.key(ResourceKey.sponge("dark_oak_sapling"));
 
-    public static final Supplier<BlockType> DEAD_TUBE_CORAL_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dead_tube_coral_block");
+    public static final DefaultedRegistryReference<BlockType> DARK_OAK_SIGN = BlockTypes.key(ResourceKey.sponge("dark_oak_sign"));
 
-    public static final Supplier<BlockType> DEAD_TUBE_CORAL_FAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dead_tube_coral_fan");
+    public static final DefaultedRegistryReference<BlockType> DARK_OAK_SLAB = BlockTypes.key(ResourceKey.sponge("dark_oak_slab"));
 
-    public static final Supplier<BlockType> DEAD_TUBE_CORAL_WALL_FAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dead_tube_coral_wall_fan");
+    public static final DefaultedRegistryReference<BlockType> DARK_OAK_STAIRS = BlockTypes.key(ResourceKey.sponge("dark_oak_stairs"));
 
-    public static final Supplier<BlockType> DETECTOR_RAIL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "detector_rail");
+    public static final DefaultedRegistryReference<BlockType> DARK_OAK_TRAPDOOR = BlockTypes.key(ResourceKey.sponge("dark_oak_trapdoor"));
 
-    public static final Supplier<BlockType> DIAMOND_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "diamond_block");
+    public static final DefaultedRegistryReference<BlockType> DARK_OAK_WALL_SIGN = BlockTypes.key(ResourceKey.sponge("dark_oak_wall_sign"));
 
-    public static final Supplier<BlockType> DIAMOND_ORE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "diamond_ore");
+    public static final DefaultedRegistryReference<BlockType> DARK_OAK_WOOD = BlockTypes.key(ResourceKey.sponge("dark_oak_wood"));
 
-    public static final Supplier<BlockType> DIORITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "diorite");
+    public static final DefaultedRegistryReference<BlockType> DARK_PRISMARINE = BlockTypes.key(ResourceKey.sponge("dark_prismarine"));
 
-    public static final Supplier<BlockType> DIORITE_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "diorite_slab");
+    public static final DefaultedRegistryReference<BlockType> DARK_PRISMARINE_SLAB = BlockTypes.key(ResourceKey.sponge("dark_prismarine_slab"));
 
-    public static final Supplier<BlockType> DIORITE_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "diorite_stairs");
+    public static final DefaultedRegistryReference<BlockType> DARK_PRISMARINE_STAIRS = BlockTypes.key(ResourceKey.sponge("dark_prismarine_stairs"));
 
-    public static final Supplier<BlockType> DIORITE_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "diorite_wall");
+    public static final DefaultedRegistryReference<BlockType> DAYLIGHT_DETECTOR = BlockTypes.key(ResourceKey.sponge("daylight_detector"));
 
-    public static final Supplier<BlockType> DIRT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dirt");
+    public static final DefaultedRegistryReference<BlockType> DEAD_BRAIN_CORAL = BlockTypes.key(ResourceKey.sponge("dead_brain_coral"));
 
-    public static final Supplier<BlockType> DISPENSER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dispenser");
+    public static final DefaultedRegistryReference<BlockType> DEAD_BRAIN_CORAL_BLOCK = BlockTypes.key(ResourceKey.sponge("dead_brain_coral_block"));
 
-    public static final Supplier<BlockType> DRAGON_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dragon_egg");
+    public static final DefaultedRegistryReference<BlockType> DEAD_BRAIN_CORAL_FAN = BlockTypes.key(ResourceKey.sponge("dead_brain_coral_fan"));
 
-    public static final Supplier<BlockType> DRAGON_HEAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dragon_head");
+    public static final DefaultedRegistryReference<BlockType> DEAD_BRAIN_CORAL_WALL_FAN = BlockTypes.key(ResourceKey.sponge("dead_brain_coral_wall_fan"));
 
-    public static final Supplier<BlockType> DRAGON_WALL_HEAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dragon_wall_head");
+    public static final DefaultedRegistryReference<BlockType> DEAD_BUBBLE_CORAL = BlockTypes.key(ResourceKey.sponge("dead_bubble_coral"));
 
-    public static final Supplier<BlockType> DRIED_KELP_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dried_kelp_block");
+    public static final DefaultedRegistryReference<BlockType> DEAD_BUBBLE_CORAL_BLOCK = BlockTypes.key(ResourceKey.sponge("dead_bubble_coral_block"));
 
-    public static final Supplier<BlockType> DROPPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "dropper");
+    public static final DefaultedRegistryReference<BlockType> DEAD_BUBBLE_CORAL_FAN = BlockTypes.key(ResourceKey.sponge("dead_bubble_coral_fan"));
 
-    public static final Supplier<BlockType> EMERALD_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "emerald_block");
+    public static final DefaultedRegistryReference<BlockType> DEAD_BUBBLE_CORAL_WALL_FAN = BlockTypes.key(ResourceKey.sponge("dead_bubble_coral_wall_fan"));
 
-    public static final Supplier<BlockType> EMERALD_ORE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "emerald_ore");
+    public static final DefaultedRegistryReference<BlockType> DEAD_BUSH = BlockTypes.key(ResourceKey.sponge("dead_bush"));
 
-    public static final Supplier<BlockType> ENCHANTING_TABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "enchanting_table");
+    public static final DefaultedRegistryReference<BlockType> DEAD_FIRE_CORAL = BlockTypes.key(ResourceKey.sponge("dead_fire_coral"));
 
-    public static final Supplier<BlockType> ENDER_CHEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "ender_chest");
+    public static final DefaultedRegistryReference<BlockType> DEAD_FIRE_CORAL_BLOCK = BlockTypes.key(ResourceKey.sponge("dead_fire_coral_block"));
 
-    public static final Supplier<BlockType> END_GATEWAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "end_gateway");
+    public static final DefaultedRegistryReference<BlockType> DEAD_FIRE_CORAL_FAN = BlockTypes.key(ResourceKey.sponge("dead_fire_coral_fan"));
 
-    public static final Supplier<BlockType> END_PORTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "end_portal");
+    public static final DefaultedRegistryReference<BlockType> DEAD_FIRE_CORAL_WALL_FAN = BlockTypes.key(ResourceKey.sponge("dead_fire_coral_wall_fan"));
 
-    public static final Supplier<BlockType> END_PORTAL_FRAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "end_portal_frame");
+    public static final DefaultedRegistryReference<BlockType> DEAD_HORN_CORAL = BlockTypes.key(ResourceKey.sponge("dead_horn_coral"));
 
-    public static final Supplier<BlockType> END_ROD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "end_rod");
+    public static final DefaultedRegistryReference<BlockType> DEAD_HORN_CORAL_BLOCK = BlockTypes.key(ResourceKey.sponge("dead_horn_coral_block"));
 
-    public static final Supplier<BlockType> END_STONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "end_stone");
+    public static final DefaultedRegistryReference<BlockType> DEAD_HORN_CORAL_FAN = BlockTypes.key(ResourceKey.sponge("dead_horn_coral_fan"));
 
-    public static final Supplier<BlockType> END_STONE_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "end_stone_bricks");
+    public static final DefaultedRegistryReference<BlockType> DEAD_HORN_CORAL_WALL_FAN = BlockTypes.key(ResourceKey.sponge("dead_horn_coral_wall_fan"));
 
-    public static final Supplier<BlockType> END_STONE_BRICK_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "end_stone_brick_slab");
+    public static final DefaultedRegistryReference<BlockType> DEAD_TUBE_CORAL = BlockTypes.key(ResourceKey.sponge("dead_tube_coral"));
 
-    public static final Supplier<BlockType> END_STONE_BRICK_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "end_stone_brick_stairs");
+    public static final DefaultedRegistryReference<BlockType> DEAD_TUBE_CORAL_BLOCK = BlockTypes.key(ResourceKey.sponge("dead_tube_coral_block"));
 
-    public static final Supplier<BlockType> END_STONE_BRICK_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "end_stone_brick_wall");
+    public static final DefaultedRegistryReference<BlockType> DEAD_TUBE_CORAL_FAN = BlockTypes.key(ResourceKey.sponge("dead_tube_coral_fan"));
 
-    public static final Supplier<BlockType> FARMLAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "farmland");
+    public static final DefaultedRegistryReference<BlockType> DEAD_TUBE_CORAL_WALL_FAN = BlockTypes.key(ResourceKey.sponge("dead_tube_coral_wall_fan"));
 
-    public static final Supplier<BlockType> FERN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "fern");
+    public static final DefaultedRegistryReference<BlockType> DETECTOR_RAIL = BlockTypes.key(ResourceKey.sponge("detector_rail"));
 
-    public static final Supplier<BlockType> FIRE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "fire");
+    public static final DefaultedRegistryReference<BlockType> DIAMOND_BLOCK = BlockTypes.key(ResourceKey.sponge("diamond_block"));
 
-    public static final Supplier<BlockType> FIRE_CORAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "fire_coral");
+    public static final DefaultedRegistryReference<BlockType> DIAMOND_ORE = BlockTypes.key(ResourceKey.sponge("diamond_ore"));
 
-    public static final Supplier<BlockType> FIRE_CORAL_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "fire_coral_block");
+    public static final DefaultedRegistryReference<BlockType> DIORITE = BlockTypes.key(ResourceKey.sponge("diorite"));
 
-    public static final Supplier<BlockType> FIRE_CORAL_FAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "fire_coral_fan");
+    public static final DefaultedRegistryReference<BlockType> DIORITE_SLAB = BlockTypes.key(ResourceKey.sponge("diorite_slab"));
 
-    public static final Supplier<BlockType> FIRE_CORAL_WALL_FAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "fire_coral_wall_fan");
+    public static final DefaultedRegistryReference<BlockType> DIORITE_STAIRS = BlockTypes.key(ResourceKey.sponge("diorite_stairs"));
 
-    public static final Supplier<BlockType> FLETCHING_TABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "fletching_table");
+    public static final DefaultedRegistryReference<BlockType> DIORITE_WALL = BlockTypes.key(ResourceKey.sponge("diorite_wall"));
 
-    public static final Supplier<BlockType> FLOWER_POT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "flower_pot");
+    public static final DefaultedRegistryReference<BlockType> DIRT = BlockTypes.key(ResourceKey.sponge("dirt"));
 
-    public static final Supplier<BlockType> FROSTED_ICE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "frosted_ice");
+    public static final DefaultedRegistryReference<BlockType> DISPENSER = BlockTypes.key(ResourceKey.sponge("dispenser"));
 
-    public static final Supplier<BlockType> FURNACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "furnace");
+    public static final DefaultedRegistryReference<BlockType> DRAGON_EGG = BlockTypes.key(ResourceKey.sponge("dragon_egg"));
 
-    public static final Supplier<BlockType> GLASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "glass");
+    public static final DefaultedRegistryReference<BlockType> DRAGON_HEAD = BlockTypes.key(ResourceKey.sponge("dragon_head"));
 
-    public static final Supplier<BlockType> GLASS_PANE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "glass_pane");
+    public static final DefaultedRegistryReference<BlockType> DRAGON_WALL_HEAD = BlockTypes.key(ResourceKey.sponge("dragon_wall_head"));
 
-    public static final Supplier<BlockType> GLOWSTONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "glowstone");
+    public static final DefaultedRegistryReference<BlockType> DRIED_KELP_BLOCK = BlockTypes.key(ResourceKey.sponge("dried_kelp_block"));
 
-    public static final Supplier<BlockType> GOLD_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "gold_block");
+    public static final DefaultedRegistryReference<BlockType> DROPPER = BlockTypes.key(ResourceKey.sponge("dropper"));
 
-    public static final Supplier<BlockType> GOLD_ORE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "gold_ore");
+    public static final DefaultedRegistryReference<BlockType> EMERALD_BLOCK = BlockTypes.key(ResourceKey.sponge("emerald_block"));
 
-    public static final Supplier<BlockType> GRANITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "granite");
+    public static final DefaultedRegistryReference<BlockType> EMERALD_ORE = BlockTypes.key(ResourceKey.sponge("emerald_ore"));
 
-    public static final Supplier<BlockType> GRANITE_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "granite_slab");
+    public static final DefaultedRegistryReference<BlockType> ENCHANTING_TABLE = BlockTypes.key(ResourceKey.sponge("enchanting_table"));
 
-    public static final Supplier<BlockType> GRANITE_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "granite_stairs");
+    public static final DefaultedRegistryReference<BlockType> END_GATEWAY = BlockTypes.key(ResourceKey.sponge("end_gateway"));
 
-    public static final Supplier<BlockType> GRANITE_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "granite_wall");
+    public static final DefaultedRegistryReference<BlockType> END_PORTAL = BlockTypes.key(ResourceKey.sponge("end_portal"));
 
-    public static final Supplier<BlockType> GRASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "grass");
+    public static final DefaultedRegistryReference<BlockType> END_PORTAL_FRAME = BlockTypes.key(ResourceKey.sponge("end_portal_frame"));
 
-    public static final Supplier<BlockType> GRASS_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "grass_block");
+    public static final DefaultedRegistryReference<BlockType> END_ROD = BlockTypes.key(ResourceKey.sponge("end_rod"));
 
-    public static final Supplier<BlockType> GRASS_PATH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "grass_path");
+    public static final DefaultedRegistryReference<BlockType> END_STONE = BlockTypes.key(ResourceKey.sponge("end_stone"));
 
-    public static final Supplier<BlockType> GRAVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "gravel");
+    public static final DefaultedRegistryReference<BlockType> END_STONE_BRICK_SLAB = BlockTypes.key(ResourceKey.sponge("end_stone_brick_slab"));
 
-    public static final Supplier<BlockType> GRAY_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "gray_banner");
+    public static final DefaultedRegistryReference<BlockType> END_STONE_BRICK_STAIRS = BlockTypes.key(ResourceKey.sponge("end_stone_brick_stairs"));
 
-    public static final Supplier<BlockType> GRAY_BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "gray_bed");
+    public static final DefaultedRegistryReference<BlockType> END_STONE_BRICK_WALL = BlockTypes.key(ResourceKey.sponge("end_stone_brick_wall"));
 
-    public static final Supplier<BlockType> GRAY_CARPET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "gray_carpet");
+    public static final DefaultedRegistryReference<BlockType> END_STONE_BRICKS = BlockTypes.key(ResourceKey.sponge("end_stone_bricks"));
 
-    public static final Supplier<BlockType> GRAY_CONCRETE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "gray_concrete");
+    public static final DefaultedRegistryReference<BlockType> ENDER_CHEST = BlockTypes.key(ResourceKey.sponge("ender_chest"));
 
-    public static final Supplier<BlockType> GRAY_CONCRETE_POWDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "gray_concrete_powder");
+    public static final DefaultedRegistryReference<BlockType> FARMLAND = BlockTypes.key(ResourceKey.sponge("farmland"));
 
-    public static final Supplier<BlockType> GRAY_GLAZED_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "gray_glazed_terracotta");
+    public static final DefaultedRegistryReference<BlockType> FERN = BlockTypes.key(ResourceKey.sponge("fern"));
 
-    public static final Supplier<BlockType> GRAY_SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "gray_shulker_box");
+    public static final DefaultedRegistryReference<BlockType> FIRE = BlockTypes.key(ResourceKey.sponge("fire"));
 
-    public static final Supplier<BlockType> GRAY_STAINED_GLASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "gray_stained_glass");
+    public static final DefaultedRegistryReference<BlockType> FIRE_CORAL = BlockTypes.key(ResourceKey.sponge("fire_coral"));
 
-    public static final Supplier<BlockType> GRAY_STAINED_GLASS_PANE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "gray_stained_glass_pane");
+    public static final DefaultedRegistryReference<BlockType> FIRE_CORAL_BLOCK = BlockTypes.key(ResourceKey.sponge("fire_coral_block"));
 
-    public static final Supplier<BlockType> GRAY_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "gray_terracotta");
+    public static final DefaultedRegistryReference<BlockType> FIRE_CORAL_FAN = BlockTypes.key(ResourceKey.sponge("fire_coral_fan"));
 
-    public static final Supplier<BlockType> GRAY_WALL_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "gray_wall_banner");
+    public static final DefaultedRegistryReference<BlockType> FIRE_CORAL_WALL_FAN = BlockTypes.key(ResourceKey.sponge("fire_coral_wall_fan"));
 
-    public static final Supplier<BlockType> GRAY_WOOL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "gray_wool");
+    public static final DefaultedRegistryReference<BlockType> FLETCHING_TABLE = BlockTypes.key(ResourceKey.sponge("fletching_table"));
 
-    public static final Supplier<BlockType> GREEN_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "green_banner");
+    public static final DefaultedRegistryReference<BlockType> FLOWER_POT = BlockTypes.key(ResourceKey.sponge("flower_pot"));
 
-    public static final Supplier<BlockType> GREEN_BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "green_bed");
+    public static final DefaultedRegistryReference<BlockType> FROSTED_ICE = BlockTypes.key(ResourceKey.sponge("frosted_ice"));
 
-    public static final Supplier<BlockType> GREEN_CARPET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "green_carpet");
+    public static final DefaultedRegistryReference<BlockType> FURNACE = BlockTypes.key(ResourceKey.sponge("furnace"));
 
-    public static final Supplier<BlockType> GREEN_CONCRETE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "green_concrete");
+    public static final DefaultedRegistryReference<BlockType> GILDED_BLACKSTONE = BlockTypes.key(ResourceKey.sponge("gilded_blackstone"));
 
-    public static final Supplier<BlockType> GREEN_CONCRETE_POWDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "green_concrete_powder");
+    public static final DefaultedRegistryReference<BlockType> GLASS = BlockTypes.key(ResourceKey.sponge("glass"));
 
-    public static final Supplier<BlockType> GREEN_GLAZED_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "green_glazed_terracotta");
+    public static final DefaultedRegistryReference<BlockType> GLASS_PANE = BlockTypes.key(ResourceKey.sponge("glass_pane"));
 
-    public static final Supplier<BlockType> GREEN_SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "green_shulker_box");
+    public static final DefaultedRegistryReference<BlockType> GLOWSTONE = BlockTypes.key(ResourceKey.sponge("glowstone"));
 
-    public static final Supplier<BlockType> GREEN_STAINED_GLASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "green_stained_glass");
+    public static final DefaultedRegistryReference<BlockType> GOLD_BLOCK = BlockTypes.key(ResourceKey.sponge("gold_block"));
 
-    public static final Supplier<BlockType> GREEN_STAINED_GLASS_PANE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "green_stained_glass_pane");
+    public static final DefaultedRegistryReference<BlockType> GOLD_ORE = BlockTypes.key(ResourceKey.sponge("gold_ore"));
 
-    public static final Supplier<BlockType> GREEN_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "green_terracotta");
+    public static final DefaultedRegistryReference<BlockType> GRANITE = BlockTypes.key(ResourceKey.sponge("granite"));
 
-    public static final Supplier<BlockType> GREEN_WALL_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "green_wall_banner");
+    public static final DefaultedRegistryReference<BlockType> GRANITE_SLAB = BlockTypes.key(ResourceKey.sponge("granite_slab"));
 
-    public static final Supplier<BlockType> GREEN_WOOL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "green_wool");
+    public static final DefaultedRegistryReference<BlockType> GRANITE_STAIRS = BlockTypes.key(ResourceKey.sponge("granite_stairs"));
 
-    public static final Supplier<BlockType> GRINDSTONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "grindstone");
+    public static final DefaultedRegistryReference<BlockType> GRANITE_WALL = BlockTypes.key(ResourceKey.sponge("granite_wall"));
 
-    public static final Supplier<BlockType> HAY_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "hay_block");
+    public static final DefaultedRegistryReference<BlockType> GRASS = BlockTypes.key(ResourceKey.sponge("grass"));
 
-    public static final Supplier<BlockType> HEAVY_WEIGHTED_PRESSURE_PLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "heavy_weighted_pressure_plate");
+    public static final DefaultedRegistryReference<BlockType> GRASS_BLOCK = BlockTypes.key(ResourceKey.sponge("grass_block"));
 
-    public static final Supplier<BlockType> HONEY_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "honey_block");
+    public static final DefaultedRegistryReference<BlockType> GRASS_PATH = BlockTypes.key(ResourceKey.sponge("grass_path"));
 
-    public static final Supplier<BlockType> HONEYCOMB_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "honeycomb_block");
+    public static final DefaultedRegistryReference<BlockType> GRAVEL = BlockTypes.key(ResourceKey.sponge("gravel"));
 
-    public static final Supplier<BlockType> HOPPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "hopper");
+    public static final DefaultedRegistryReference<BlockType> GRAY_BANNER = BlockTypes.key(ResourceKey.sponge("gray_banner"));
 
-    public static final Supplier<BlockType> HORN_CORAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "horn_coral");
+    public static final DefaultedRegistryReference<BlockType> GRAY_BED = BlockTypes.key(ResourceKey.sponge("gray_bed"));
 
-    public static final Supplier<BlockType> HORN_CORAL_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "horn_coral_block");
+    public static final DefaultedRegistryReference<BlockType> GRAY_CARPET = BlockTypes.key(ResourceKey.sponge("gray_carpet"));
 
-    public static final Supplier<BlockType> HORN_CORAL_FAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "horn_coral_fan");
+    public static final DefaultedRegistryReference<BlockType> GRAY_CONCRETE = BlockTypes.key(ResourceKey.sponge("gray_concrete"));
 
-    public static final Supplier<BlockType> HORN_CORAL_WALL_FAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "horn_coral_wall_fan");
+    public static final DefaultedRegistryReference<BlockType> GRAY_CONCRETE_POWDER = BlockTypes.key(ResourceKey.sponge("gray_concrete_powder"));
 
-    public static final Supplier<BlockType> ICE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "ice");
+    public static final DefaultedRegistryReference<BlockType> GRAY_GLAZED_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("gray_glazed_terracotta"));
 
-    public static final Supplier<BlockType> INFESTED_CHISELED_STONE_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "infested_chiseled_stone_bricks");
+    public static final DefaultedRegistryReference<BlockType> GRAY_SHULKER_BOX = BlockTypes.key(ResourceKey.sponge("gray_shulker_box"));
 
-    public static final Supplier<BlockType> INFESTED_COBBLESTONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "infested_cobblestone");
+    public static final DefaultedRegistryReference<BlockType> GRAY_STAINED_GLASS = BlockTypes.key(ResourceKey.sponge("gray_stained_glass"));
 
-    public static final Supplier<BlockType> INFESTED_CRACKED_STONE_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "infested_cracked_stone_bricks");
+    public static final DefaultedRegistryReference<BlockType> GRAY_STAINED_GLASS_PANE = BlockTypes.key(ResourceKey.sponge("gray_stained_glass_pane"));
 
-    public static final Supplier<BlockType> INFESTED_MOSSY_STONE_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "infested_mossy_stone_bricks");
+    public static final DefaultedRegistryReference<BlockType> GRAY_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("gray_terracotta"));
 
-    public static final Supplier<BlockType> INFESTED_STONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "infested_stone");
+    public static final DefaultedRegistryReference<BlockType> GRAY_WALL_BANNER = BlockTypes.key(ResourceKey.sponge("gray_wall_banner"));
 
-    public static final Supplier<BlockType> INFESTED_STONE_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "infested_stone_bricks");
+    public static final DefaultedRegistryReference<BlockType> GRAY_WOOL = BlockTypes.key(ResourceKey.sponge("gray_wool"));
 
-    public static final Supplier<BlockType> IRON_BARS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "iron_bars");
+    public static final DefaultedRegistryReference<BlockType> GREEN_BANNER = BlockTypes.key(ResourceKey.sponge("green_banner"));
 
-    public static final Supplier<BlockType> IRON_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "iron_block");
+    public static final DefaultedRegistryReference<BlockType> GREEN_BED = BlockTypes.key(ResourceKey.sponge("green_bed"));
 
-    public static final Supplier<BlockType> IRON_DOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "iron_door");
+    public static final DefaultedRegistryReference<BlockType> GREEN_CARPET = BlockTypes.key(ResourceKey.sponge("green_carpet"));
 
-    public static final Supplier<BlockType> IRON_ORE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "iron_ore");
+    public static final DefaultedRegistryReference<BlockType> GREEN_CONCRETE = BlockTypes.key(ResourceKey.sponge("green_concrete"));
 
-    public static final Supplier<BlockType> IRON_TRAPDOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "iron_trapdoor");
+    public static final DefaultedRegistryReference<BlockType> GREEN_CONCRETE_POWDER = BlockTypes.key(ResourceKey.sponge("green_concrete_powder"));
 
-    public static final Supplier<BlockType> JACK_O_LANTERN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "jack_o_lantern");
+    public static final DefaultedRegistryReference<BlockType> GREEN_GLAZED_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("green_glazed_terracotta"));
 
-    public static final Supplier<BlockType> JIGSAW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "jigsaw");
+    public static final DefaultedRegistryReference<BlockType> GREEN_SHULKER_BOX = BlockTypes.key(ResourceKey.sponge("green_shulker_box"));
 
-    public static final Supplier<BlockType> JUKEBOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "jukebox");
+    public static final DefaultedRegistryReference<BlockType> GREEN_STAINED_GLASS = BlockTypes.key(ResourceKey.sponge("green_stained_glass"));
 
-    public static final Supplier<BlockType> JUNGLE_BUTTON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "jungle_button");
+    public static final DefaultedRegistryReference<BlockType> GREEN_STAINED_GLASS_PANE = BlockTypes.key(ResourceKey.sponge("green_stained_glass_pane"));
 
-    public static final Supplier<BlockType> JUNGLE_DOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "jungle_door");
+    public static final DefaultedRegistryReference<BlockType> GREEN_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("green_terracotta"));
 
-    public static final Supplier<BlockType> JUNGLE_FENCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "jungle_fence");
+    public static final DefaultedRegistryReference<BlockType> GREEN_WALL_BANNER = BlockTypes.key(ResourceKey.sponge("green_wall_banner"));
 
-    public static final Supplier<BlockType> JUNGLE_FENCE_GATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "jungle_fence_gate");
+    public static final DefaultedRegistryReference<BlockType> GREEN_WOOL = BlockTypes.key(ResourceKey.sponge("green_wool"));
 
-    public static final Supplier<BlockType> JUNGLE_LEAVES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "jungle_leaves");
+    public static final DefaultedRegistryReference<BlockType> GRINDSTONE = BlockTypes.key(ResourceKey.sponge("grindstone"));
 
-    public static final Supplier<BlockType> JUNGLE_LOG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "jungle_log");
+    public static final DefaultedRegistryReference<BlockType> HAY_BLOCK = BlockTypes.key(ResourceKey.sponge("hay_block"));
 
-    public static final Supplier<BlockType> JUNGLE_PLANKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "jungle_planks");
+    public static final DefaultedRegistryReference<BlockType> HEAVY_WEIGHTED_PRESSURE_PLATE = BlockTypes.key(ResourceKey.sponge("heavy_weighted_pressure_plate"));
 
-    public static final Supplier<BlockType> JUNGLE_PRESSURE_PLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "jungle_pressure_plate");
+    public static final DefaultedRegistryReference<BlockType> HONEY_BLOCK = BlockTypes.key(ResourceKey.sponge("honey_block"));
 
-    public static final Supplier<BlockType> JUNGLE_SAPLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "jungle_sapling");
+    public static final DefaultedRegistryReference<BlockType> HONEYCOMB_BLOCK = BlockTypes.key(ResourceKey.sponge("honeycomb_block"));
 
-    public static final Supplier<BlockType> JUNGLE_SIGN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "jungle_sign");
+    public static final DefaultedRegistryReference<BlockType> HOPPER = BlockTypes.key(ResourceKey.sponge("hopper"));
 
-    public static final Supplier<BlockType> JUNGLE_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "jungle_slab");
+    public static final DefaultedRegistryReference<BlockType> HORN_CORAL = BlockTypes.key(ResourceKey.sponge("horn_coral"));
 
-    public static final Supplier<BlockType> JUNGLE_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "jungle_stairs");
+    public static final DefaultedRegistryReference<BlockType> HORN_CORAL_BLOCK = BlockTypes.key(ResourceKey.sponge("horn_coral_block"));
 
-    public static final Supplier<BlockType> JUNGLE_TRAPDOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "jungle_trapdoor");
+    public static final DefaultedRegistryReference<BlockType> HORN_CORAL_FAN = BlockTypes.key(ResourceKey.sponge("horn_coral_fan"));
 
-    public static final Supplier<BlockType> JUNGLE_WALL_SIGN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "jungle_wall_sign");
+    public static final DefaultedRegistryReference<BlockType> HORN_CORAL_WALL_FAN = BlockTypes.key(ResourceKey.sponge("horn_coral_wall_fan"));
 
-    public static final Supplier<BlockType> JUNGLE_WOOD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "jungle_wood");
+    public static final DefaultedRegistryReference<BlockType> ICE = BlockTypes.key(ResourceKey.sponge("ice"));
 
-    public static final Supplier<BlockType> KELP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "kelp");
+    public static final DefaultedRegistryReference<BlockType> INFESTED_CHISELED_STONE_BRICKS = BlockTypes.key(ResourceKey.sponge("infested_chiseled_stone_bricks"));
 
-    public static final Supplier<BlockType> KELP_PLANT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "kelp_plant");
+    public static final DefaultedRegistryReference<BlockType> INFESTED_COBBLESTONE = BlockTypes.key(ResourceKey.sponge("infested_cobblestone"));
 
-    public static final Supplier<BlockType> LADDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "ladder");
+    public static final DefaultedRegistryReference<BlockType> INFESTED_CRACKED_STONE_BRICKS = BlockTypes.key(ResourceKey.sponge("infested_cracked_stone_bricks"));
 
-    public static final Supplier<BlockType> LANTERN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "lantern");
+    public static final DefaultedRegistryReference<BlockType> INFESTED_MOSSY_STONE_BRICKS = BlockTypes.key(ResourceKey.sponge("infested_mossy_stone_bricks"));
 
-    public static final Supplier<BlockType> LAPIS_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "lapis_block");
+    public static final DefaultedRegistryReference<BlockType> INFESTED_STONE = BlockTypes.key(ResourceKey.sponge("infested_stone"));
 
-    public static final Supplier<BlockType> LAPIS_ORE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "lapis_ore");
+    public static final DefaultedRegistryReference<BlockType> INFESTED_STONE_BRICKS = BlockTypes.key(ResourceKey.sponge("infested_stone_bricks"));
 
-    public static final Supplier<BlockType> LARGE_FERN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "large_fern");
+    public static final DefaultedRegistryReference<BlockType> IRON_BARS = BlockTypes.key(ResourceKey.sponge("iron_bars"));
 
-    public static final Supplier<BlockType> LAVA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "lava");
+    public static final DefaultedRegistryReference<BlockType> IRON_BLOCK = BlockTypes.key(ResourceKey.sponge("iron_block"));
 
-    public static final Supplier<BlockType> LECTERN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "lectern");
+    public static final DefaultedRegistryReference<BlockType> IRON_DOOR = BlockTypes.key(ResourceKey.sponge("iron_door"));
 
-    public static final Supplier<BlockType> LEVER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "lever");
+    public static final DefaultedRegistryReference<BlockType> IRON_ORE = BlockTypes.key(ResourceKey.sponge("iron_ore"));
 
-    public static final Supplier<BlockType> LIGHT_BLUE_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "light_blue_banner");
+    public static final DefaultedRegistryReference<BlockType> IRON_TRAPDOOR = BlockTypes.key(ResourceKey.sponge("iron_trapdoor"));
 
-    public static final Supplier<BlockType> LIGHT_BLUE_BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "light_blue_bed");
+    public static final DefaultedRegistryReference<BlockType> JACK_O_LANTERN = BlockTypes.key(ResourceKey.sponge("jack_o_lantern"));
 
-    public static final Supplier<BlockType> LIGHT_BLUE_CARPET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "light_blue_carpet");
+    public static final DefaultedRegistryReference<BlockType> JIGSAW = BlockTypes.key(ResourceKey.sponge("jigsaw"));
 
-    public static final Supplier<BlockType> LIGHT_BLUE_CONCRETE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "light_blue_concrete");
+    public static final DefaultedRegistryReference<BlockType> JUKEBOX = BlockTypes.key(ResourceKey.sponge("jukebox"));
 
-    public static final Supplier<BlockType> LIGHT_BLUE_CONCRETE_POWDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "light_blue_concrete_powder");
+    public static final DefaultedRegistryReference<BlockType> JUNGLE_BUTTON = BlockTypes.key(ResourceKey.sponge("jungle_button"));
 
-    public static final Supplier<BlockType> LIGHT_BLUE_GLAZED_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "light_blue_glazed_terracotta");
+    public static final DefaultedRegistryReference<BlockType> JUNGLE_DOOR = BlockTypes.key(ResourceKey.sponge("jungle_door"));
 
-    public static final Supplier<BlockType> LIGHT_BLUE_SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "light_blue_shulker_box");
+    public static final DefaultedRegistryReference<BlockType> JUNGLE_FENCE = BlockTypes.key(ResourceKey.sponge("jungle_fence"));
 
-    public static final Supplier<BlockType> LIGHT_BLUE_STAINED_GLASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "light_blue_stained_glass");
+    public static final DefaultedRegistryReference<BlockType> JUNGLE_FENCE_GATE = BlockTypes.key(ResourceKey.sponge("jungle_fence_gate"));
 
-    public static final Supplier<BlockType> LIGHT_BLUE_STAINED_GLASS_PANE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "light_blue_stained_glass_pane");
+    public static final DefaultedRegistryReference<BlockType> JUNGLE_LEAVES = BlockTypes.key(ResourceKey.sponge("jungle_leaves"));
 
-    public static final Supplier<BlockType> LIGHT_BLUE_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "light_blue_terracotta");
+    public static final DefaultedRegistryReference<BlockType> JUNGLE_LOG = BlockTypes.key(ResourceKey.sponge("jungle_log"));
 
-    public static final Supplier<BlockType> LIGHT_BLUE_WALL_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "light_blue_wall_banner");
+    public static final DefaultedRegistryReference<BlockType> JUNGLE_PLANKS = BlockTypes.key(ResourceKey.sponge("jungle_planks"));
 
-    public static final Supplier<BlockType> LIGHT_BLUE_WOOL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "light_blue_wool");
+    public static final DefaultedRegistryReference<BlockType> JUNGLE_PRESSURE_PLATE = BlockTypes.key(ResourceKey.sponge("jungle_pressure_plate"));
 
-    public static final Supplier<BlockType> LIGHT_GRAY_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "light_gray_banner");
+    public static final DefaultedRegistryReference<BlockType> JUNGLE_SAPLING = BlockTypes.key(ResourceKey.sponge("jungle_sapling"));
 
-    public static final Supplier<BlockType> LIGHT_GRAY_BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "light_gray_bed");
+    public static final DefaultedRegistryReference<BlockType> JUNGLE_SIGN = BlockTypes.key(ResourceKey.sponge("jungle_sign"));
 
-    public static final Supplier<BlockType> LIGHT_GRAY_CARPET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "light_gray_carpet");
+    public static final DefaultedRegistryReference<BlockType> JUNGLE_SLAB = BlockTypes.key(ResourceKey.sponge("jungle_slab"));
 
-    public static final Supplier<BlockType> LIGHT_GRAY_CONCRETE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "light_gray_concrete");
+    public static final DefaultedRegistryReference<BlockType> JUNGLE_STAIRS = BlockTypes.key(ResourceKey.sponge("jungle_stairs"));
 
-    public static final Supplier<BlockType> LIGHT_GRAY_CONCRETE_POWDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "light_gray_concrete_powder");
+    public static final DefaultedRegistryReference<BlockType> JUNGLE_TRAPDOOR = BlockTypes.key(ResourceKey.sponge("jungle_trapdoor"));
 
-    public static final Supplier<BlockType> LIGHT_GRAY_GLAZED_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "light_gray_glazed_terracotta");
+    public static final DefaultedRegistryReference<BlockType> JUNGLE_WALL_SIGN = BlockTypes.key(ResourceKey.sponge("jungle_wall_sign"));
 
-    public static final Supplier<BlockType> LIGHT_GRAY_SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "light_gray_shulker_box");
+    public static final DefaultedRegistryReference<BlockType> JUNGLE_WOOD = BlockTypes.key(ResourceKey.sponge("jungle_wood"));
 
-    public static final Supplier<BlockType> LIGHT_GRAY_STAINED_GLASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "light_gray_stained_glass");
+    public static final DefaultedRegistryReference<BlockType> KELP = BlockTypes.key(ResourceKey.sponge("kelp"));
 
-    public static final Supplier<BlockType> LIGHT_GRAY_STAINED_GLASS_PANE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "light_gray_stained_glass_pane");
+    public static final DefaultedRegistryReference<BlockType> KELP_PLANT = BlockTypes.key(ResourceKey.sponge("kelp_plant"));
 
-    public static final Supplier<BlockType> LIGHT_GRAY_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "light_gray_terracotta");
+    public static final DefaultedRegistryReference<BlockType> LADDER = BlockTypes.key(ResourceKey.sponge("ladder"));
 
-    public static final Supplier<BlockType> LIGHT_GRAY_WALL_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "light_gray_wall_banner");
+    public static final DefaultedRegistryReference<BlockType> LANTERN = BlockTypes.key(ResourceKey.sponge("lantern"));
 
-    public static final Supplier<BlockType> LIGHT_GRAY_WOOL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "light_gray_wool");
+    public static final DefaultedRegistryReference<BlockType> LAPIS_BLOCK = BlockTypes.key(ResourceKey.sponge("lapis_block"));
 
-    public static final Supplier<BlockType> LIGHT_WEIGHTED_PRESSURE_PLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "light_weighted_pressure_plate");
+    public static final DefaultedRegistryReference<BlockType> LAPIS_ORE = BlockTypes.key(ResourceKey.sponge("lapis_ore"));
 
-    public static final Supplier<BlockType> LILAC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "lilac");
+    public static final DefaultedRegistryReference<BlockType> LARGE_FERN = BlockTypes.key(ResourceKey.sponge("large_fern"));
 
-    public static final Supplier<BlockType> LILY_OF_THE_VALLEY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "lily_of_the_valley");
+    public static final DefaultedRegistryReference<BlockType> LAVA = BlockTypes.key(ResourceKey.sponge("lava"));
 
-    public static final Supplier<BlockType> LILY_PAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "lily_pad");
+    public static final DefaultedRegistryReference<BlockType> LECTERN = BlockTypes.key(ResourceKey.sponge("lectern"));
 
-    public static final Supplier<BlockType> LIME_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "lime_banner");
+    public static final DefaultedRegistryReference<BlockType> LEVER = BlockTypes.key(ResourceKey.sponge("lever"));
 
-    public static final Supplier<BlockType> LIME_BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "lime_bed");
+    public static final DefaultedRegistryReference<BlockType> LIGHT_BLUE_BANNER = BlockTypes.key(ResourceKey.sponge("light_blue_banner"));
 
-    public static final Supplier<BlockType> LIME_CARPET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "lime_carpet");
+    public static final DefaultedRegistryReference<BlockType> LIGHT_BLUE_BED = BlockTypes.key(ResourceKey.sponge("light_blue_bed"));
 
-    public static final Supplier<BlockType> LIME_CONCRETE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "lime_concrete");
+    public static final DefaultedRegistryReference<BlockType> LIGHT_BLUE_CARPET = BlockTypes.key(ResourceKey.sponge("light_blue_carpet"));
 
-    public static final Supplier<BlockType> LIME_CONCRETE_POWDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "lime_concrete_powder");
+    public static final DefaultedRegistryReference<BlockType> LIGHT_BLUE_CONCRETE = BlockTypes.key(ResourceKey.sponge("light_blue_concrete"));
 
-    public static final Supplier<BlockType> LIME_GLAZED_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "lime_glazed_terracotta");
+    public static final DefaultedRegistryReference<BlockType> LIGHT_BLUE_CONCRETE_POWDER = BlockTypes.key(ResourceKey.sponge("light_blue_concrete_powder"));
 
-    public static final Supplier<BlockType> LIME_SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "lime_shulker_box");
+    public static final DefaultedRegistryReference<BlockType> LIGHT_BLUE_GLAZED_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("light_blue_glazed_terracotta"));
 
-    public static final Supplier<BlockType> LIME_STAINED_GLASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "lime_stained_glass");
+    public static final DefaultedRegistryReference<BlockType> LIGHT_BLUE_SHULKER_BOX = BlockTypes.key(ResourceKey.sponge("light_blue_shulker_box"));
 
-    public static final Supplier<BlockType> LIME_STAINED_GLASS_PANE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "lime_stained_glass_pane");
+    public static final DefaultedRegistryReference<BlockType> LIGHT_BLUE_STAINED_GLASS = BlockTypes.key(ResourceKey.sponge("light_blue_stained_glass"));
 
-    public static final Supplier<BlockType> LIME_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "lime_terracotta");
+    public static final DefaultedRegistryReference<BlockType> LIGHT_BLUE_STAINED_GLASS_PANE = BlockTypes.key(ResourceKey.sponge("light_blue_stained_glass_pane"));
 
-    public static final Supplier<BlockType> LIME_WALL_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "lime_wall_banner");
+    public static final DefaultedRegistryReference<BlockType> LIGHT_BLUE_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("light_blue_terracotta"));
 
-    public static final Supplier<BlockType> LIME_WOOL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "lime_wool");
+    public static final DefaultedRegistryReference<BlockType> LIGHT_BLUE_WALL_BANNER = BlockTypes.key(ResourceKey.sponge("light_blue_wall_banner"));
 
-    public static final Supplier<BlockType> LOOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "loom");
+    public static final DefaultedRegistryReference<BlockType> LIGHT_BLUE_WOOL = BlockTypes.key(ResourceKey.sponge("light_blue_wool"));
 
-    public static final Supplier<BlockType> MAGENTA_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "magenta_banner");
+    public static final DefaultedRegistryReference<BlockType> LIGHT_GRAY_BANNER = BlockTypes.key(ResourceKey.sponge("light_gray_banner"));
 
-    public static final Supplier<BlockType> MAGENTA_BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "magenta_bed");
+    public static final DefaultedRegistryReference<BlockType> LIGHT_GRAY_BED = BlockTypes.key(ResourceKey.sponge("light_gray_bed"));
 
-    public static final Supplier<BlockType> MAGENTA_CARPET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "magenta_carpet");
+    public static final DefaultedRegistryReference<BlockType> LIGHT_GRAY_CARPET = BlockTypes.key(ResourceKey.sponge("light_gray_carpet"));
 
-    public static final Supplier<BlockType> MAGENTA_CONCRETE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "magenta_concrete");
+    public static final DefaultedRegistryReference<BlockType> LIGHT_GRAY_CONCRETE = BlockTypes.key(ResourceKey.sponge("light_gray_concrete"));
 
-    public static final Supplier<BlockType> MAGENTA_CONCRETE_POWDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "magenta_concrete_powder");
+    public static final DefaultedRegistryReference<BlockType> LIGHT_GRAY_CONCRETE_POWDER = BlockTypes.key(ResourceKey.sponge("light_gray_concrete_powder"));
 
-    public static final Supplier<BlockType> MAGENTA_GLAZED_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "magenta_glazed_terracotta");
+    public static final DefaultedRegistryReference<BlockType> LIGHT_GRAY_GLAZED_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("light_gray_glazed_terracotta"));
 
-    public static final Supplier<BlockType> MAGENTA_SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "magenta_shulker_box");
+    public static final DefaultedRegistryReference<BlockType> LIGHT_GRAY_SHULKER_BOX = BlockTypes.key(ResourceKey.sponge("light_gray_shulker_box"));
 
-    public static final Supplier<BlockType> MAGENTA_STAINED_GLASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "magenta_stained_glass");
+    public static final DefaultedRegistryReference<BlockType> LIGHT_GRAY_STAINED_GLASS = BlockTypes.key(ResourceKey.sponge("light_gray_stained_glass"));
 
-    public static final Supplier<BlockType> MAGENTA_STAINED_GLASS_PANE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "magenta_stained_glass_pane");
+    public static final DefaultedRegistryReference<BlockType> LIGHT_GRAY_STAINED_GLASS_PANE = BlockTypes.key(ResourceKey.sponge("light_gray_stained_glass_pane"));
 
-    public static final Supplier<BlockType> MAGENTA_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "magenta_terracotta");
+    public static final DefaultedRegistryReference<BlockType> LIGHT_GRAY_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("light_gray_terracotta"));
 
-    public static final Supplier<BlockType> MAGENTA_WALL_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "magenta_wall_banner");
+    public static final DefaultedRegistryReference<BlockType> LIGHT_GRAY_WALL_BANNER = BlockTypes.key(ResourceKey.sponge("light_gray_wall_banner"));
 
-    public static final Supplier<BlockType> MAGENTA_WOOL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "magenta_wool");
+    public static final DefaultedRegistryReference<BlockType> LIGHT_GRAY_WOOL = BlockTypes.key(ResourceKey.sponge("light_gray_wool"));
 
-    public static final Supplier<BlockType> MAGMA_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "magma_block");
+    public static final DefaultedRegistryReference<BlockType> LIGHT_WEIGHTED_PRESSURE_PLATE = BlockTypes.key(ResourceKey.sponge("light_weighted_pressure_plate"));
 
-    public static final Supplier<BlockType> MELON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "melon");
+    public static final DefaultedRegistryReference<BlockType> LILAC = BlockTypes.key(ResourceKey.sponge("lilac"));
 
-    public static final Supplier<BlockType> MELON_STEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "melon_stem");
+    public static final DefaultedRegistryReference<BlockType> LILY_OF_THE_VALLEY = BlockTypes.key(ResourceKey.sponge("lily_of_the_valley"));
 
-    public static final Supplier<BlockType> MOSSY_COBBLESTONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "mossy_cobblestone");
+    public static final DefaultedRegistryReference<BlockType> LILY_PAD = BlockTypes.key(ResourceKey.sponge("lily_pad"));
 
-    public static final Supplier<BlockType> MOSSY_COBBLESTONE_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "mossy_cobblestone_slab");
+    public static final DefaultedRegistryReference<BlockType> LIME_BANNER = BlockTypes.key(ResourceKey.sponge("lime_banner"));
 
-    public static final Supplier<BlockType> MOSSY_COBBLESTONE_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "mossy_cobblestone_stairs");
+    public static final DefaultedRegistryReference<BlockType> LIME_BED = BlockTypes.key(ResourceKey.sponge("lime_bed"));
 
-    public static final Supplier<BlockType> MOSSY_COBBLESTONE_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "mossy_cobblestone_wall");
+    public static final DefaultedRegistryReference<BlockType> LIME_CARPET = BlockTypes.key(ResourceKey.sponge("lime_carpet"));
 
-    public static final Supplier<BlockType> MOSSY_STONE_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "mossy_stone_bricks");
+    public static final DefaultedRegistryReference<BlockType> LIME_CONCRETE = BlockTypes.key(ResourceKey.sponge("lime_concrete"));
 
-    public static final Supplier<BlockType> MOSSY_STONE_BRICK_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "mossy_stone_brick_slab");
+    public static final DefaultedRegistryReference<BlockType> LIME_CONCRETE_POWDER = BlockTypes.key(ResourceKey.sponge("lime_concrete_powder"));
 
-    public static final Supplier<BlockType> MOSSY_STONE_BRICK_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "mossy_stone_brick_stairs");
+    public static final DefaultedRegistryReference<BlockType> LIME_GLAZED_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("lime_glazed_terracotta"));
 
-    public static final Supplier<BlockType> MOSSY_STONE_BRICK_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "mossy_stone_brick_wall");
+    public static final DefaultedRegistryReference<BlockType> LIME_SHULKER_BOX = BlockTypes.key(ResourceKey.sponge("lime_shulker_box"));
 
-    public static final Supplier<BlockType> MOVING_PISTON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "moving_piston");
+    public static final DefaultedRegistryReference<BlockType> LIME_STAINED_GLASS = BlockTypes.key(ResourceKey.sponge("lime_stained_glass"));
 
-    public static final Supplier<BlockType> MUSHROOM_STEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "mushroom_stem");
+    public static final DefaultedRegistryReference<BlockType> LIME_STAINED_GLASS_PANE = BlockTypes.key(ResourceKey.sponge("lime_stained_glass_pane"));
 
-    public static final Supplier<BlockType> MYCELIUM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "mycelium");
+    public static final DefaultedRegistryReference<BlockType> LIME_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("lime_terracotta"));
 
-    public static final Supplier<BlockType> NETHERRACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "netherrack");
+    public static final DefaultedRegistryReference<BlockType> LIME_WALL_BANNER = BlockTypes.key(ResourceKey.sponge("lime_wall_banner"));
 
-    public static final Supplier<BlockType> NETHER_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "nether_bricks");
+    public static final DefaultedRegistryReference<BlockType> LIME_WOOL = BlockTypes.key(ResourceKey.sponge("lime_wool"));
 
-    public static final Supplier<BlockType> NETHER_BRICK_FENCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "nether_brick_fence");
+    public static final DefaultedRegistryReference<BlockType> LODESTONE = BlockTypes.key(ResourceKey.sponge("lodestone"));
 
-    public static final Supplier<BlockType> NETHER_BRICK_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "nether_brick_slab");
+    public static final DefaultedRegistryReference<BlockType> LOOM = BlockTypes.key(ResourceKey.sponge("loom"));
 
-    public static final Supplier<BlockType> NETHER_BRICK_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "nether_brick_stairs");
+    public static final DefaultedRegistryReference<BlockType> MAGENTA_BANNER = BlockTypes.key(ResourceKey.sponge("magenta_banner"));
 
-    public static final Supplier<BlockType> NETHER_BRICK_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "nether_brick_wall");
+    public static final DefaultedRegistryReference<BlockType> MAGENTA_BED = BlockTypes.key(ResourceKey.sponge("magenta_bed"));
 
-    public static final Supplier<BlockType> NETHER_PORTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "nether_portal");
+    public static final DefaultedRegistryReference<BlockType> MAGENTA_CARPET = BlockTypes.key(ResourceKey.sponge("magenta_carpet"));
 
-    public static final Supplier<BlockType> NETHER_QUARTZ_ORE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "nether_quartz_ore");
+    public static final DefaultedRegistryReference<BlockType> MAGENTA_CONCRETE = BlockTypes.key(ResourceKey.sponge("magenta_concrete"));
 
-    public static final Supplier<BlockType> NETHER_WART = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "nether_wart");
+    public static final DefaultedRegistryReference<BlockType> MAGENTA_CONCRETE_POWDER = BlockTypes.key(ResourceKey.sponge("magenta_concrete_powder"));
 
-    public static final Supplier<BlockType> NETHER_WART_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "nether_wart_block");
+    public static final DefaultedRegistryReference<BlockType> MAGENTA_GLAZED_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("magenta_glazed_terracotta"));
 
-    public static final Supplier<BlockType> NOTE_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "note_block");
+    public static final DefaultedRegistryReference<BlockType> MAGENTA_SHULKER_BOX = BlockTypes.key(ResourceKey.sponge("magenta_shulker_box"));
 
-    public static final Supplier<BlockType> OAK_BUTTON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "oak_button");
+    public static final DefaultedRegistryReference<BlockType> MAGENTA_STAINED_GLASS = BlockTypes.key(ResourceKey.sponge("magenta_stained_glass"));
 
-    public static final Supplier<BlockType> OAK_DOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "oak_door");
+    public static final DefaultedRegistryReference<BlockType> MAGENTA_STAINED_GLASS_PANE = BlockTypes.key(ResourceKey.sponge("magenta_stained_glass_pane"));
 
-    public static final Supplier<BlockType> OAK_FENCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "oak_fence");
+    public static final DefaultedRegistryReference<BlockType> MAGENTA_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("magenta_terracotta"));
 
-    public static final Supplier<BlockType> OAK_FENCE_GATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "oak_fence_gate");
+    public static final DefaultedRegistryReference<BlockType> MAGENTA_WALL_BANNER = BlockTypes.key(ResourceKey.sponge("magenta_wall_banner"));
 
-    public static final Supplier<BlockType> OAK_LEAVES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "oak_leaves");
+    public static final DefaultedRegistryReference<BlockType> MAGENTA_WOOL = BlockTypes.key(ResourceKey.sponge("magenta_wool"));
 
-    public static final Supplier<BlockType> OAK_LOG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "oak_log");
+    public static final DefaultedRegistryReference<BlockType> MAGMA_BLOCK = BlockTypes.key(ResourceKey.sponge("magma_block"));
 
-    public static final Supplier<BlockType> OAK_PLANKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "oak_planks");
+    public static final DefaultedRegistryReference<BlockType> MELON = BlockTypes.key(ResourceKey.sponge("melon"));
 
-    public static final Supplier<BlockType> OAK_PRESSURE_PLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "oak_pressure_plate");
+    public static final DefaultedRegistryReference<BlockType> MELON_STEM = BlockTypes.key(ResourceKey.sponge("melon_stem"));
 
-    public static final Supplier<BlockType> OAK_SAPLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "oak_sapling");
+    public static final DefaultedRegistryReference<BlockType> MOSSY_COBBLESTONE = BlockTypes.key(ResourceKey.sponge("mossy_cobblestone"));
 
-    public static final Supplier<BlockType> OAK_SIGN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "oak_sign");
+    public static final DefaultedRegistryReference<BlockType> MOSSY_COBBLESTONE_SLAB = BlockTypes.key(ResourceKey.sponge("mossy_cobblestone_slab"));
 
-    public static final Supplier<BlockType> OAK_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "oak_slab");
+    public static final DefaultedRegistryReference<BlockType> MOSSY_COBBLESTONE_STAIRS = BlockTypes.key(ResourceKey.sponge("mossy_cobblestone_stairs"));
 
-    public static final Supplier<BlockType> OAK_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "oak_stairs");
+    public static final DefaultedRegistryReference<BlockType> MOSSY_COBBLESTONE_WALL = BlockTypes.key(ResourceKey.sponge("mossy_cobblestone_wall"));
 
-    public static final Supplier<BlockType> OAK_TRAPDOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "oak_trapdoor");
+    public static final DefaultedRegistryReference<BlockType> MOSSY_STONE_BRICK_SLAB = BlockTypes.key(ResourceKey.sponge("mossy_stone_brick_slab"));
 
-    public static final Supplier<BlockType> OAK_WALL_SIGN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "oak_wall_sign");
+    public static final DefaultedRegistryReference<BlockType> MOSSY_STONE_BRICK_STAIRS = BlockTypes.key(ResourceKey.sponge("mossy_stone_brick_stairs"));
 
-    public static final Supplier<BlockType> OAK_WOOD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "oak_wood");
+    public static final DefaultedRegistryReference<BlockType> MOSSY_STONE_BRICK_WALL = BlockTypes.key(ResourceKey.sponge("mossy_stone_brick_wall"));
 
-    public static final Supplier<BlockType> OBSERVER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "observer");
+    public static final DefaultedRegistryReference<BlockType> MOSSY_STONE_BRICKS = BlockTypes.key(ResourceKey.sponge("mossy_stone_bricks"));
 
-    public static final Supplier<BlockType> OBSIDIAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "obsidian");
+    public static final DefaultedRegistryReference<BlockType> MOVING_PISTON = BlockTypes.key(ResourceKey.sponge("moving_piston"));
 
-    public static final Supplier<BlockType> ORANGE_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "orange_banner");
+    public static final DefaultedRegistryReference<BlockType> MUSHROOM_STEM = BlockTypes.key(ResourceKey.sponge("mushroom_stem"));
 
-    public static final Supplier<BlockType> ORANGE_BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "orange_bed");
+    public static final DefaultedRegistryReference<BlockType> MYCELIUM = BlockTypes.key(ResourceKey.sponge("mycelium"));
 
-    public static final Supplier<BlockType> ORANGE_CARPET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "orange_carpet");
+    public static final DefaultedRegistryReference<BlockType> NETHER_BRICK_FENCE = BlockTypes.key(ResourceKey.sponge("nether_brick_fence"));
 
-    public static final Supplier<BlockType> ORANGE_CONCRETE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "orange_concrete");
+    public static final DefaultedRegistryReference<BlockType> NETHER_BRICK_SLAB = BlockTypes.key(ResourceKey.sponge("nether_brick_slab"));
 
-    public static final Supplier<BlockType> ORANGE_CONCRETE_POWDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "orange_concrete_powder");
+    public static final DefaultedRegistryReference<BlockType> NETHER_BRICK_STAIRS = BlockTypes.key(ResourceKey.sponge("nether_brick_stairs"));
 
-    public static final Supplier<BlockType> ORANGE_GLAZED_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "orange_glazed_terracotta");
+    public static final DefaultedRegistryReference<BlockType> NETHER_BRICK_WALL = BlockTypes.key(ResourceKey.sponge("nether_brick_wall"));
 
-    public static final Supplier<BlockType> ORANGE_SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "orange_shulker_box");
+    public static final DefaultedRegistryReference<BlockType> NETHER_BRICKS = BlockTypes.key(ResourceKey.sponge("nether_bricks"));
 
-    public static final Supplier<BlockType> ORANGE_STAINED_GLASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "orange_stained_glass");
+    public static final DefaultedRegistryReference<BlockType> NETHER_GOLD_ORE = BlockTypes.key(ResourceKey.sponge("nether_gold_ore"));
 
-    public static final Supplier<BlockType> ORANGE_STAINED_GLASS_PANE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "orange_stained_glass_pane");
+    public static final DefaultedRegistryReference<BlockType> NETHER_PORTAL = BlockTypes.key(ResourceKey.sponge("nether_portal"));
 
-    public static final Supplier<BlockType> ORANGE_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "orange_terracotta");
+    public static final DefaultedRegistryReference<BlockType> NETHER_QUARTZ_ORE = BlockTypes.key(ResourceKey.sponge("nether_quartz_ore"));
 
-    public static final Supplier<BlockType> ORANGE_TULIP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "orange_tulip");
+    public static final DefaultedRegistryReference<BlockType> NETHER_SPROUTS = BlockTypes.key(ResourceKey.sponge("nether_sprouts"));
 
-    public static final Supplier<BlockType> ORANGE_WALL_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "orange_wall_banner");
+    public static final DefaultedRegistryReference<BlockType> NETHER_WART = BlockTypes.key(ResourceKey.sponge("nether_wart"));
 
-    public static final Supplier<BlockType> ORANGE_WOOL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "orange_wool");
+    public static final DefaultedRegistryReference<BlockType> NETHER_WART_BLOCK = BlockTypes.key(ResourceKey.sponge("nether_wart_block"));
 
-    public static final Supplier<BlockType> OXEYE_DAISY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "oxeye_daisy");
+    public static final DefaultedRegistryReference<BlockType> NETHERITE_BLOCK = BlockTypes.key(ResourceKey.sponge("netherite_block"));
 
-    public static final Supplier<BlockType> PACKED_ICE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "packed_ice");
+    public static final DefaultedRegistryReference<BlockType> NETHERRACK = BlockTypes.key(ResourceKey.sponge("netherrack"));
 
-    public static final Supplier<BlockType> PEONY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "peony");
+    public static final DefaultedRegistryReference<BlockType> NOTE_BLOCK = BlockTypes.key(ResourceKey.sponge("note_block"));
 
-    public static final Supplier<BlockType> PETRIFIED_OAK_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "petrified_oak_slab");
+    public static final DefaultedRegistryReference<BlockType> OAK_BUTTON = BlockTypes.key(ResourceKey.sponge("oak_button"));
 
-    public static final Supplier<BlockType> PINK_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "pink_banner");
+    public static final DefaultedRegistryReference<BlockType> OAK_DOOR = BlockTypes.key(ResourceKey.sponge("oak_door"));
 
-    public static final Supplier<BlockType> PINK_BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "pink_bed");
+    public static final DefaultedRegistryReference<BlockType> OAK_FENCE = BlockTypes.key(ResourceKey.sponge("oak_fence"));
 
-    public static final Supplier<BlockType> PINK_CARPET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "pink_carpet");
+    public static final DefaultedRegistryReference<BlockType> OAK_FENCE_GATE = BlockTypes.key(ResourceKey.sponge("oak_fence_gate"));
 
-    public static final Supplier<BlockType> PINK_CONCRETE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "pink_concrete");
+    public static final DefaultedRegistryReference<BlockType> OAK_LEAVES = BlockTypes.key(ResourceKey.sponge("oak_leaves"));
 
-    public static final Supplier<BlockType> PINK_CONCRETE_POWDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "pink_concrete_powder");
+    public static final DefaultedRegistryReference<BlockType> OAK_LOG = BlockTypes.key(ResourceKey.sponge("oak_log"));
 
-    public static final Supplier<BlockType> PINK_GLAZED_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "pink_glazed_terracotta");
+    public static final DefaultedRegistryReference<BlockType> OAK_PLANKS = BlockTypes.key(ResourceKey.sponge("oak_planks"));
 
-    public static final Supplier<BlockType> PINK_SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "pink_shulker_box");
+    public static final DefaultedRegistryReference<BlockType> OAK_PRESSURE_PLATE = BlockTypes.key(ResourceKey.sponge("oak_pressure_plate"));
 
-    public static final Supplier<BlockType> PINK_STAINED_GLASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "pink_stained_glass");
+    public static final DefaultedRegistryReference<BlockType> OAK_SAPLING = BlockTypes.key(ResourceKey.sponge("oak_sapling"));
 
-    public static final Supplier<BlockType> PINK_STAINED_GLASS_PANE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "pink_stained_glass_pane");
+    public static final DefaultedRegistryReference<BlockType> OAK_SIGN = BlockTypes.key(ResourceKey.sponge("oak_sign"));
 
-    public static final Supplier<BlockType> PINK_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "pink_terracotta");
+    public static final DefaultedRegistryReference<BlockType> OAK_SLAB = BlockTypes.key(ResourceKey.sponge("oak_slab"));
 
-    public static final Supplier<BlockType> PINK_TULIP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "pink_tulip");
+    public static final DefaultedRegistryReference<BlockType> OAK_STAIRS = BlockTypes.key(ResourceKey.sponge("oak_stairs"));
 
-    public static final Supplier<BlockType> PINK_WALL_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "pink_wall_banner");
+    public static final DefaultedRegistryReference<BlockType> OAK_TRAPDOOR = BlockTypes.key(ResourceKey.sponge("oak_trapdoor"));
 
-    public static final Supplier<BlockType> PINK_WOOL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "pink_wool");
+    public static final DefaultedRegistryReference<BlockType> OAK_WALL_SIGN = BlockTypes.key(ResourceKey.sponge("oak_wall_sign"));
 
-    public static final Supplier<BlockType> PISTON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "piston");
+    public static final DefaultedRegistryReference<BlockType> OAK_WOOD = BlockTypes.key(ResourceKey.sponge("oak_wood"));
 
-    public static final Supplier<BlockType> PISTON_HEAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "piston_head");
+    public static final DefaultedRegistryReference<BlockType> OBSERVER = BlockTypes.key(ResourceKey.sponge("observer"));
 
-    public static final Supplier<BlockType> PLAYER_HEAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "player_head");
+    public static final DefaultedRegistryReference<BlockType> OBSIDIAN = BlockTypes.key(ResourceKey.sponge("obsidian"));
 
-    public static final Supplier<BlockType> PLAYER_WALL_HEAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "player_wall_head");
+    public static final DefaultedRegistryReference<BlockType> ORANGE_BANNER = BlockTypes.key(ResourceKey.sponge("orange_banner"));
 
-    public static final Supplier<BlockType> PODZOL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "podzol");
+    public static final DefaultedRegistryReference<BlockType> ORANGE_BED = BlockTypes.key(ResourceKey.sponge("orange_bed"));
 
-    public static final Supplier<BlockType> POLISHED_ANDESITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "polished_andesite");
+    public static final DefaultedRegistryReference<BlockType> ORANGE_CARPET = BlockTypes.key(ResourceKey.sponge("orange_carpet"));
 
-    public static final Supplier<BlockType> POLISHED_ANDESITE_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "polished_andesite_slab");
+    public static final DefaultedRegistryReference<BlockType> ORANGE_CONCRETE = BlockTypes.key(ResourceKey.sponge("orange_concrete"));
 
-    public static final Supplier<BlockType> POLISHED_ANDESITE_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "polished_andesite_stairs");
+    public static final DefaultedRegistryReference<BlockType> ORANGE_CONCRETE_POWDER = BlockTypes.key(ResourceKey.sponge("orange_concrete_powder"));
 
-    public static final Supplier<BlockType> POLISHED_DIORITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "polished_diorite");
+    public static final DefaultedRegistryReference<BlockType> ORANGE_GLAZED_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("orange_glazed_terracotta"));
 
-    public static final Supplier<BlockType> POLISHED_DIORITE_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "polished_diorite_slab");
+    public static final DefaultedRegistryReference<BlockType> ORANGE_SHULKER_BOX = BlockTypes.key(ResourceKey.sponge("orange_shulker_box"));
 
-    public static final Supplier<BlockType> POLISHED_DIORITE_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "polished_diorite_stairs");
+    public static final DefaultedRegistryReference<BlockType> ORANGE_STAINED_GLASS = BlockTypes.key(ResourceKey.sponge("orange_stained_glass"));
 
-    public static final Supplier<BlockType> POLISHED_GRANITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "polished_granite");
+    public static final DefaultedRegistryReference<BlockType> ORANGE_STAINED_GLASS_PANE = BlockTypes.key(ResourceKey.sponge("orange_stained_glass_pane"));
 
-    public static final Supplier<BlockType> POLISHED_GRANITE_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "polished_granite_slab");
+    public static final DefaultedRegistryReference<BlockType> ORANGE_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("orange_terracotta"));
 
-    public static final Supplier<BlockType> POLISHED_GRANITE_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "polished_granite_stairs");
+    public static final DefaultedRegistryReference<BlockType> ORANGE_TULIP = BlockTypes.key(ResourceKey.sponge("orange_tulip"));
 
-    public static final Supplier<BlockType> POPPY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "poppy");
+    public static final DefaultedRegistryReference<BlockType> ORANGE_WALL_BANNER = BlockTypes.key(ResourceKey.sponge("orange_wall_banner"));
 
-    public static final Supplier<BlockType> POTATOES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potatoes");
+    public static final DefaultedRegistryReference<BlockType> ORANGE_WOOL = BlockTypes.key(ResourceKey.sponge("orange_wool"));
 
-    public static final Supplier<BlockType> POTTED_ACACIA_SAPLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potted_acacia_sapling");
+    public static final DefaultedRegistryReference<BlockType> OXEYE_DAISY = BlockTypes.key(ResourceKey.sponge("oxeye_daisy"));
 
-    public static final Supplier<BlockType> POTTED_ALLIUM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potted_allium");
+    public static final DefaultedRegistryReference<BlockType> PACKED_ICE = BlockTypes.key(ResourceKey.sponge("packed_ice"));
 
-    public static final Supplier<BlockType> POTTED_AZURE_BLUET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potted_azure_bluet");
+    public static final DefaultedRegistryReference<BlockType> PEONY = BlockTypes.key(ResourceKey.sponge("peony"));
 
-    public static final Supplier<BlockType> POTTED_BAMBOO = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potted_bamboo");
+    public static final DefaultedRegistryReference<BlockType> PETRIFIED_OAK_SLAB = BlockTypes.key(ResourceKey.sponge("petrified_oak_slab"));
 
-    public static final Supplier<BlockType> POTTED_BIRCH_SAPLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potted_birch_sapling");
+    public static final DefaultedRegistryReference<BlockType> PINK_BANNER = BlockTypes.key(ResourceKey.sponge("pink_banner"));
 
-    public static final Supplier<BlockType> POTTED_BLUE_ORCHID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potted_blue_orchid");
+    public static final DefaultedRegistryReference<BlockType> PINK_BED = BlockTypes.key(ResourceKey.sponge("pink_bed"));
 
-    public static final Supplier<BlockType> POTTED_BROWN_MUSHROOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potted_brown_mushroom");
+    public static final DefaultedRegistryReference<BlockType> PINK_CARPET = BlockTypes.key(ResourceKey.sponge("pink_carpet"));
 
-    public static final Supplier<BlockType> POTTED_CACTUS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potted_cactus");
+    public static final DefaultedRegistryReference<BlockType> PINK_CONCRETE = BlockTypes.key(ResourceKey.sponge("pink_concrete"));
 
-    public static final Supplier<BlockType> POTTED_CORNFLOWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potted_cornflower");
+    public static final DefaultedRegistryReference<BlockType> PINK_CONCRETE_POWDER = BlockTypes.key(ResourceKey.sponge("pink_concrete_powder"));
 
-    public static final Supplier<BlockType> POTTED_DANDELION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potted_dandelion");
+    public static final DefaultedRegistryReference<BlockType> PINK_GLAZED_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("pink_glazed_terracotta"));
 
-    public static final Supplier<BlockType> POTTED_DARK_OAK_SAPLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potted_dark_oak_sapling");
+    public static final DefaultedRegistryReference<BlockType> PINK_SHULKER_BOX = BlockTypes.key(ResourceKey.sponge("pink_shulker_box"));
 
-    public static final Supplier<BlockType> POTTED_DEAD_BUSH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potted_dead_bush");
+    public static final DefaultedRegistryReference<BlockType> PINK_STAINED_GLASS = BlockTypes.key(ResourceKey.sponge("pink_stained_glass"));
 
-    public static final Supplier<BlockType> POTTED_FERN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potted_fern");
+    public static final DefaultedRegistryReference<BlockType> PINK_STAINED_GLASS_PANE = BlockTypes.key(ResourceKey.sponge("pink_stained_glass_pane"));
 
-    public static final Supplier<BlockType> POTTED_JUNGLE_SAPLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potted_jungle_sapling");
+    public static final DefaultedRegistryReference<BlockType> PINK_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("pink_terracotta"));
 
-    public static final Supplier<BlockType> POTTED_LILY_OF_THE_VALLEY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potted_lily_of_the_valley");
+    public static final DefaultedRegistryReference<BlockType> PINK_TULIP = BlockTypes.key(ResourceKey.sponge("pink_tulip"));
 
-    public static final Supplier<BlockType> POTTED_OAK_SAPLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potted_oak_sapling");
+    public static final DefaultedRegistryReference<BlockType> PINK_WALL_BANNER = BlockTypes.key(ResourceKey.sponge("pink_wall_banner"));
 
-    public static final Supplier<BlockType> POTTED_ORANGE_TULIP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potted_orange_tulip");
+    public static final DefaultedRegistryReference<BlockType> PINK_WOOL = BlockTypes.key(ResourceKey.sponge("pink_wool"));
 
-    public static final Supplier<BlockType> POTTED_OXEYE_DAISY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potted_oxeye_daisy");
+    public static final DefaultedRegistryReference<BlockType> PISTON = BlockTypes.key(ResourceKey.sponge("piston"));
 
-    public static final Supplier<BlockType> POTTED_PINK_TULIP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potted_pink_tulip");
+    public static final DefaultedRegistryReference<BlockType> PISTON_HEAD = BlockTypes.key(ResourceKey.sponge("piston_head"));
 
-    public static final Supplier<BlockType> POTTED_POPPY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potted_poppy");
+    public static final DefaultedRegistryReference<BlockType> PLAYER_HEAD = BlockTypes.key(ResourceKey.sponge("player_head"));
 
-    public static final Supplier<BlockType> POTTED_RED_MUSHROOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potted_red_mushroom");
+    public static final DefaultedRegistryReference<BlockType> PLAYER_WALL_HEAD = BlockTypes.key(ResourceKey.sponge("player_wall_head"));
 
-    public static final Supplier<BlockType> POTTED_RED_TULIP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potted_red_tulip");
+    public static final DefaultedRegistryReference<BlockType> PODZOL = BlockTypes.key(ResourceKey.sponge("podzol"));
 
-    public static final Supplier<BlockType> POTTED_SPRUCE_SAPLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potted_spruce_sapling");
+    public static final DefaultedRegistryReference<BlockType> POLISHED_ANDESITE = BlockTypes.key(ResourceKey.sponge("polished_andesite"));
 
-    public static final Supplier<BlockType> POTTED_WHITE_TULIP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potted_white_tulip");
+    public static final DefaultedRegistryReference<BlockType> POLISHED_ANDESITE_SLAB = BlockTypes.key(ResourceKey.sponge("polished_andesite_slab"));
 
-    public static final Supplier<BlockType> POTTED_WITHER_ROSE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "potted_wither_rose");
+    public static final DefaultedRegistryReference<BlockType> POLISHED_ANDESITE_STAIRS = BlockTypes.key(ResourceKey.sponge("polished_andesite_stairs"));
 
-    public static final Supplier<BlockType> POWERED_RAIL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "powered_rail");
+    public static final DefaultedRegistryReference<BlockType> POLISHED_BASALT = BlockTypes.key(ResourceKey.sponge("polished_basalt"));
 
-    public static final Supplier<BlockType> PRISMARINE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "prismarine");
+    public static final DefaultedRegistryReference<BlockType> POLISHED_BLACKSTONE = BlockTypes.key(ResourceKey.sponge("polished_blackstone"));
 
-    public static final Supplier<BlockType> PRISMARINE_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "prismarine_bricks");
+    public static final DefaultedRegistryReference<BlockType> POLISHED_BLACKSTONE_BRICK_SLAB = BlockTypes.key(ResourceKey.sponge("polished_blackstone_brick_slab"));
 
-    public static final Supplier<BlockType> PRISMARINE_BRICK_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "prismarine_brick_slab");
+    public static final DefaultedRegistryReference<BlockType> POLISHED_BLACKSTONE_BRICK_STAIRS = BlockTypes.key(ResourceKey.sponge("polished_blackstone_brick_stairs"));
 
-    public static final Supplier<BlockType> PRISMARINE_BRICK_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "prismarine_brick_stairs");
+    public static final DefaultedRegistryReference<BlockType> POLISHED_BLACKSTONE_BRICK_WALL = BlockTypes.key(ResourceKey.sponge("polished_blackstone_brick_wall"));
 
-    public static final Supplier<BlockType> PRISMARINE_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "prismarine_slab");
+    public static final DefaultedRegistryReference<BlockType> POLISHED_BLACKSTONE_BRICKS = BlockTypes.key(ResourceKey.sponge("polished_blackstone_bricks"));
 
-    public static final Supplier<BlockType> PRISMARINE_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "prismarine_stairs");
+    public static final DefaultedRegistryReference<BlockType> POLISHED_BLACKSTONE_BUTTON = BlockTypes.key(ResourceKey.sponge("polished_blackstone_button"));
 
-    public static final Supplier<BlockType> PRISMARINE_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "prismarine_wall");
+    public static final DefaultedRegistryReference<BlockType> POLISHED_BLACKSTONE_PRESSURE_PLATE = BlockTypes.key(ResourceKey.sponge("polished_blackstone_pressure_plate"));
 
-    public static final Supplier<BlockType> PUMPKIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "pumpkin");
+    public static final DefaultedRegistryReference<BlockType> POLISHED_BLACKSTONE_SLAB = BlockTypes.key(ResourceKey.sponge("polished_blackstone_slab"));
 
-    public static final Supplier<BlockType> PUMPKIN_STEM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "pumpkin_stem");
+    public static final DefaultedRegistryReference<BlockType> POLISHED_BLACKSTONE_STAIRS = BlockTypes.key(ResourceKey.sponge("polished_blackstone_stairs"));
 
-    public static final Supplier<BlockType> PURPLE_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "purple_banner");
+    public static final DefaultedRegistryReference<BlockType> POLISHED_BLACKSTONE_WALL = BlockTypes.key(ResourceKey.sponge("polished_blackstone_wall"));
 
-    public static final Supplier<BlockType> PURPLE_BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "purple_bed");
+    public static final DefaultedRegistryReference<BlockType> POLISHED_DIORITE = BlockTypes.key(ResourceKey.sponge("polished_diorite"));
 
-    public static final Supplier<BlockType> PURPLE_CARPET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "purple_carpet");
+    public static final DefaultedRegistryReference<BlockType> POLISHED_DIORITE_SLAB = BlockTypes.key(ResourceKey.sponge("polished_diorite_slab"));
 
-    public static final Supplier<BlockType> PURPLE_CONCRETE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "purple_concrete");
+    public static final DefaultedRegistryReference<BlockType> POLISHED_DIORITE_STAIRS = BlockTypes.key(ResourceKey.sponge("polished_diorite_stairs"));
 
-    public static final Supplier<BlockType> PURPLE_CONCRETE_POWDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "purple_concrete_powder");
+    public static final DefaultedRegistryReference<BlockType> POLISHED_GRANITE = BlockTypes.key(ResourceKey.sponge("polished_granite"));
 
-    public static final Supplier<BlockType> PURPLE_GLAZED_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "purple_glazed_terracotta");
+    public static final DefaultedRegistryReference<BlockType> POLISHED_GRANITE_SLAB = BlockTypes.key(ResourceKey.sponge("polished_granite_slab"));
 
-    public static final Supplier<BlockType> PURPLE_SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "purple_shulker_box");
+    public static final DefaultedRegistryReference<BlockType> POLISHED_GRANITE_STAIRS = BlockTypes.key(ResourceKey.sponge("polished_granite_stairs"));
 
-    public static final Supplier<BlockType> PURPLE_STAINED_GLASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "purple_stained_glass");
+    public static final DefaultedRegistryReference<BlockType> POPPY = BlockTypes.key(ResourceKey.sponge("poppy"));
 
-    public static final Supplier<BlockType> PURPLE_STAINED_GLASS_PANE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "purple_stained_glass_pane");
+    public static final DefaultedRegistryReference<BlockType> POTATOES = BlockTypes.key(ResourceKey.sponge("potatoes"));
 
-    public static final Supplier<BlockType> PURPLE_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "purple_terracotta");
+    public static final DefaultedRegistryReference<BlockType> POTTED_ACACIA_SAPLING = BlockTypes.key(ResourceKey.sponge("potted_acacia_sapling"));
 
-    public static final Supplier<BlockType> PURPLE_WALL_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "purple_wall_banner");
+    public static final DefaultedRegistryReference<BlockType> POTTED_ALLIUM = BlockTypes.key(ResourceKey.sponge("potted_allium"));
 
-    public static final Supplier<BlockType> PURPLE_WOOL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "purple_wool");
+    public static final DefaultedRegistryReference<BlockType> POTTED_AZURE_BLUET = BlockTypes.key(ResourceKey.sponge("potted_azure_bluet"));
 
-    public static final Supplier<BlockType> PURPUR_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "purpur_block");
+    public static final DefaultedRegistryReference<BlockType> POTTED_BAMBOO = BlockTypes.key(ResourceKey.sponge("potted_bamboo"));
 
-    public static final Supplier<BlockType> PURPUR_PILLAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "purpur_pillar");
+    public static final DefaultedRegistryReference<BlockType> POTTED_BIRCH_SAPLING = BlockTypes.key(ResourceKey.sponge("potted_birch_sapling"));
 
-    public static final Supplier<BlockType> PURPUR_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "purpur_slab");
+    public static final DefaultedRegistryReference<BlockType> POTTED_BLUE_ORCHID = BlockTypes.key(ResourceKey.sponge("potted_blue_orchid"));
 
-    public static final Supplier<BlockType> PURPUR_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "purpur_stairs");
+    public static final DefaultedRegistryReference<BlockType> POTTED_BROWN_MUSHROOM = BlockTypes.key(ResourceKey.sponge("potted_brown_mushroom"));
 
-    public static final Supplier<BlockType> QUARTZ_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "quartz_block");
+    public static final DefaultedRegistryReference<BlockType> POTTED_CACTUS = BlockTypes.key(ResourceKey.sponge("potted_cactus"));
 
-    public static final Supplier<BlockType> QUARTZ_PILLAR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "quartz_pillar");
+    public static final DefaultedRegistryReference<BlockType> POTTED_CORNFLOWER = BlockTypes.key(ResourceKey.sponge("potted_cornflower"));
 
-    public static final Supplier<BlockType> QUARTZ_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "quartz_slab");
+    public static final DefaultedRegistryReference<BlockType> POTTED_CRIMSON_FUNGUS = BlockTypes.key(ResourceKey.sponge("potted_crimson_fungus"));
 
-    public static final Supplier<BlockType> QUARTZ_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "quartz_stairs");
+    public static final DefaultedRegistryReference<BlockType> POTTED_CRIMSON_ROOTS = BlockTypes.key(ResourceKey.sponge("potted_crimson_roots"));
 
-    public static final Supplier<BlockType> RAIL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "rail");
+    public static final DefaultedRegistryReference<BlockType> POTTED_DANDELION = BlockTypes.key(ResourceKey.sponge("potted_dandelion"));
 
-    public static final Supplier<BlockType> REDSTONE_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "redstone_block");
+    public static final DefaultedRegistryReference<BlockType> POTTED_DARK_OAK_SAPLING = BlockTypes.key(ResourceKey.sponge("potted_dark_oak_sapling"));
 
-    public static final Supplier<BlockType> REDSTONE_LAMP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "redstone_lamp");
+    public static final DefaultedRegistryReference<BlockType> POTTED_DEAD_BUSH = BlockTypes.key(ResourceKey.sponge("potted_dead_bush"));
 
-    public static final Supplier<BlockType> REDSTONE_ORE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "redstone_ore");
+    public static final DefaultedRegistryReference<BlockType> POTTED_FERN = BlockTypes.key(ResourceKey.sponge("potted_fern"));
 
-    public static final Supplier<BlockType> REDSTONE_TORCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "redstone_torch");
+    public static final DefaultedRegistryReference<BlockType> POTTED_JUNGLE_SAPLING = BlockTypes.key(ResourceKey.sponge("potted_jungle_sapling"));
 
-    public static final Supplier<BlockType> REDSTONE_WALL_TORCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "redstone_wall_torch");
+    public static final DefaultedRegistryReference<BlockType> POTTED_LILY_OF_THE_VALLEY = BlockTypes.key(ResourceKey.sponge("potted_lily_of_the_valley"));
 
-    public static final Supplier<BlockType> REDSTONE_WIRE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "redstone_wire");
+    public static final DefaultedRegistryReference<BlockType> POTTED_OAK_SAPLING = BlockTypes.key(ResourceKey.sponge("potted_oak_sapling"));
 
-    public static final Supplier<BlockType> RED_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "red_banner");
+    public static final DefaultedRegistryReference<BlockType> POTTED_ORANGE_TULIP = BlockTypes.key(ResourceKey.sponge("potted_orange_tulip"));
 
-    public static final Supplier<BlockType> RED_BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "red_bed");
+    public static final DefaultedRegistryReference<BlockType> POTTED_OXEYE_DAISY = BlockTypes.key(ResourceKey.sponge("potted_oxeye_daisy"));
 
-    public static final Supplier<BlockType> RED_CARPET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "red_carpet");
+    public static final DefaultedRegistryReference<BlockType> POTTED_PINK_TULIP = BlockTypes.key(ResourceKey.sponge("potted_pink_tulip"));
 
-    public static final Supplier<BlockType> RED_CONCRETE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "red_concrete");
+    public static final DefaultedRegistryReference<BlockType> POTTED_POPPY = BlockTypes.key(ResourceKey.sponge("potted_poppy"));
 
-    public static final Supplier<BlockType> RED_CONCRETE_POWDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "red_concrete_powder");
+    public static final DefaultedRegistryReference<BlockType> POTTED_RED_MUSHROOM = BlockTypes.key(ResourceKey.sponge("potted_red_mushroom"));
 
-    public static final Supplier<BlockType> RED_GLAZED_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "red_glazed_terracotta");
+    public static final DefaultedRegistryReference<BlockType> POTTED_RED_TULIP = BlockTypes.key(ResourceKey.sponge("potted_red_tulip"));
 
-    public static final Supplier<BlockType> RED_MUSHROOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "red_mushroom");
+    public static final DefaultedRegistryReference<BlockType> POTTED_SPRUCE_SAPLING = BlockTypes.key(ResourceKey.sponge("potted_spruce_sapling"));
 
-    public static final Supplier<BlockType> RED_MUSHROOM_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "red_mushroom_block");
+    public static final DefaultedRegistryReference<BlockType> POTTED_WARPED_FUNGUS = BlockTypes.key(ResourceKey.sponge("potted_warped_fungus"));
 
-    public static final Supplier<BlockType> RED_NETHER_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "red_nether_bricks");
+    public static final DefaultedRegistryReference<BlockType> POTTED_WARPED_ROOTS = BlockTypes.key(ResourceKey.sponge("potted_warped_roots"));
 
-    public static final Supplier<BlockType> RED_NETHER_BRICK_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "red_nether_brick_slab");
+    public static final DefaultedRegistryReference<BlockType> POTTED_WHITE_TULIP = BlockTypes.key(ResourceKey.sponge("potted_white_tulip"));
 
-    public static final Supplier<BlockType> RED_NETHER_BRICK_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "red_nether_brick_stairs");
+    public static final DefaultedRegistryReference<BlockType> POTTED_WITHER_ROSE = BlockTypes.key(ResourceKey.sponge("potted_wither_rose"));
 
-    public static final Supplier<BlockType> RED_NETHER_BRICK_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "red_nether_brick_wall");
+    public static final DefaultedRegistryReference<BlockType> POWERED_RAIL = BlockTypes.key(ResourceKey.sponge("powered_rail"));
 
-    public static final Supplier<BlockType> RED_SAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "red_sand");
+    public static final DefaultedRegistryReference<BlockType> PRISMARINE = BlockTypes.key(ResourceKey.sponge("prismarine"));
 
-    public static final Supplier<BlockType> RED_SANDSTONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "red_sandstone");
+    public static final DefaultedRegistryReference<BlockType> PRISMARINE_BRICK_SLAB = BlockTypes.key(ResourceKey.sponge("prismarine_brick_slab"));
 
-    public static final Supplier<BlockType> RED_SANDSTONE_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "red_sandstone_slab");
+    public static final DefaultedRegistryReference<BlockType> PRISMARINE_BRICK_STAIRS = BlockTypes.key(ResourceKey.sponge("prismarine_brick_stairs"));
 
-    public static final Supplier<BlockType> RED_SANDSTONE_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "red_sandstone_stairs");
+    public static final DefaultedRegistryReference<BlockType> PRISMARINE_BRICKS = BlockTypes.key(ResourceKey.sponge("prismarine_bricks"));
 
-    public static final Supplier<BlockType> RED_SANDSTONE_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "red_sandstone_wall");
+    public static final DefaultedRegistryReference<BlockType> PRISMARINE_SLAB = BlockTypes.key(ResourceKey.sponge("prismarine_slab"));
 
-    public static final Supplier<BlockType> RED_SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "red_shulker_box");
+    public static final DefaultedRegistryReference<BlockType> PRISMARINE_STAIRS = BlockTypes.key(ResourceKey.sponge("prismarine_stairs"));
 
-    public static final Supplier<BlockType> RED_STAINED_GLASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "red_stained_glass");
+    public static final DefaultedRegistryReference<BlockType> PRISMARINE_WALL = BlockTypes.key(ResourceKey.sponge("prismarine_wall"));
 
-    public static final Supplier<BlockType> RED_STAINED_GLASS_PANE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "red_stained_glass_pane");
+    public static final DefaultedRegistryReference<BlockType> PUMPKIN = BlockTypes.key(ResourceKey.sponge("pumpkin"));
 
-    public static final Supplier<BlockType> RED_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "red_terracotta");
+    public static final DefaultedRegistryReference<BlockType> PUMPKIN_STEM = BlockTypes.key(ResourceKey.sponge("pumpkin_stem"));
 
-    public static final Supplier<BlockType> RED_TULIP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "red_tulip");
+    public static final DefaultedRegistryReference<BlockType> PURPLE_BANNER = BlockTypes.key(ResourceKey.sponge("purple_banner"));
 
-    public static final Supplier<BlockType> RED_WALL_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "red_wall_banner");
+    public static final DefaultedRegistryReference<BlockType> PURPLE_BED = BlockTypes.key(ResourceKey.sponge("purple_bed"));
 
-    public static final Supplier<BlockType> RED_WOOL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "red_wool");
+    public static final DefaultedRegistryReference<BlockType> PURPLE_CARPET = BlockTypes.key(ResourceKey.sponge("purple_carpet"));
 
-    public static final Supplier<BlockType> REPEATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "repeater");
+    public static final DefaultedRegistryReference<BlockType> PURPLE_CONCRETE = BlockTypes.key(ResourceKey.sponge("purple_concrete"));
 
-    public static final Supplier<BlockType> REPEATING_COMMAND_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "repeating_command_block");
+    public static final DefaultedRegistryReference<BlockType> PURPLE_CONCRETE_POWDER = BlockTypes.key(ResourceKey.sponge("purple_concrete_powder"));
 
-    public static final Supplier<BlockType> ROSE_BUSH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "rose_bush");
+    public static final DefaultedRegistryReference<BlockType> PURPLE_GLAZED_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("purple_glazed_terracotta"));
 
-    public static final Supplier<BlockType> SAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "sand");
+    public static final DefaultedRegistryReference<BlockType> PURPLE_SHULKER_BOX = BlockTypes.key(ResourceKey.sponge("purple_shulker_box"));
 
-    public static final Supplier<BlockType> SANDSTONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "sandstone");
+    public static final DefaultedRegistryReference<BlockType> PURPLE_STAINED_GLASS = BlockTypes.key(ResourceKey.sponge("purple_stained_glass"));
 
-    public static final Supplier<BlockType> SANDSTONE_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "sandstone_slab");
+    public static final DefaultedRegistryReference<BlockType> PURPLE_STAINED_GLASS_PANE = BlockTypes.key(ResourceKey.sponge("purple_stained_glass_pane"));
 
-    public static final Supplier<BlockType> SANDSTONE_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "sandstone_stairs");
+    public static final DefaultedRegistryReference<BlockType> PURPLE_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("purple_terracotta"));
 
-    public static final Supplier<BlockType> SANDSTONE_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "sandstone_wall");
+    public static final DefaultedRegistryReference<BlockType> PURPLE_WALL_BANNER = BlockTypes.key(ResourceKey.sponge("purple_wall_banner"));
 
-    public static final Supplier<BlockType> SCAFFOLDING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "scaffolding");
+    public static final DefaultedRegistryReference<BlockType> PURPLE_WOOL = BlockTypes.key(ResourceKey.sponge("purple_wool"));
 
-    public static final Supplier<BlockType> SEAGRASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "seagrass");
+    public static final DefaultedRegistryReference<BlockType> PURPUR_BLOCK = BlockTypes.key(ResourceKey.sponge("purpur_block"));
 
-    public static final Supplier<BlockType> SEA_LANTERN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "sea_lantern");
+    public static final DefaultedRegistryReference<BlockType> PURPUR_PILLAR = BlockTypes.key(ResourceKey.sponge("purpur_pillar"));
 
-    public static final Supplier<BlockType> SEA_PICKLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "sea_pickle");
+    public static final DefaultedRegistryReference<BlockType> PURPUR_SLAB = BlockTypes.key(ResourceKey.sponge("purpur_slab"));
 
-    public static final Supplier<BlockType> SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "shulker_box");
+    public static final DefaultedRegistryReference<BlockType> PURPUR_STAIRS = BlockTypes.key(ResourceKey.sponge("purpur_stairs"));
 
-    public static final Supplier<BlockType> SKELETON_SKULL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "skeleton_skull");
+    public static final DefaultedRegistryReference<BlockType> QUARTZ_BLOCK = BlockTypes.key(ResourceKey.sponge("quartz_block"));
 
-    public static final Supplier<BlockType> SKELETON_WALL_SKULL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "skeleton_wall_skull");
+    public static final DefaultedRegistryReference<BlockType> QUARTZ_BRICKS = BlockTypes.key(ResourceKey.sponge("quartz_bricks"));
 
-    public static final Supplier<BlockType> SLIME_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "slime_block");
+    public static final DefaultedRegistryReference<BlockType> QUARTZ_PILLAR = BlockTypes.key(ResourceKey.sponge("quartz_pillar"));
 
-    public static final Supplier<BlockType> SMITHING_TABLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "smithing_table");
+    public static final DefaultedRegistryReference<BlockType> QUARTZ_SLAB = BlockTypes.key(ResourceKey.sponge("quartz_slab"));
 
-    public static final Supplier<BlockType> SMOKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "smoker");
+    public static final DefaultedRegistryReference<BlockType> QUARTZ_STAIRS = BlockTypes.key(ResourceKey.sponge("quartz_stairs"));
 
-    public static final Supplier<BlockType> SMOOTH_QUARTZ = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "smooth_quartz");
+    public static final DefaultedRegistryReference<BlockType> RAIL = BlockTypes.key(ResourceKey.sponge("rail"));
 
-    public static final Supplier<BlockType> SMOOTH_QUARTZ_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "smooth_quartz_slab");
+    public static final DefaultedRegistryReference<BlockType> RED_BANNER = BlockTypes.key(ResourceKey.sponge("red_banner"));
 
-    public static final Supplier<BlockType> SMOOTH_QUARTZ_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "smooth_quartz_stairs");
+    public static final DefaultedRegistryReference<BlockType> RED_BED = BlockTypes.key(ResourceKey.sponge("red_bed"));
 
-    public static final Supplier<BlockType> SMOOTH_RED_SANDSTONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "smooth_red_sandstone");
+    public static final DefaultedRegistryReference<BlockType> RED_CARPET = BlockTypes.key(ResourceKey.sponge("red_carpet"));
 
-    public static final Supplier<BlockType> SMOOTH_RED_SANDSTONE_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "smooth_red_sandstone_slab");
+    public static final DefaultedRegistryReference<BlockType> RED_CONCRETE = BlockTypes.key(ResourceKey.sponge("red_concrete"));
 
-    public static final Supplier<BlockType> SMOOTH_RED_SANDSTONE_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "smooth_red_sandstone_stairs");
+    public static final DefaultedRegistryReference<BlockType> RED_CONCRETE_POWDER = BlockTypes.key(ResourceKey.sponge("red_concrete_powder"));
 
-    public static final Supplier<BlockType> SMOOTH_SANDSTONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "smooth_sandstone");
+    public static final DefaultedRegistryReference<BlockType> RED_GLAZED_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("red_glazed_terracotta"));
 
-    public static final Supplier<BlockType> SMOOTH_SANDSTONE_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "smooth_sandstone_slab");
+    public static final DefaultedRegistryReference<BlockType> RED_MUSHROOM = BlockTypes.key(ResourceKey.sponge("red_mushroom"));
 
-    public static final Supplier<BlockType> SMOOTH_SANDSTONE_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "smooth_sandstone_stairs");
+    public static final DefaultedRegistryReference<BlockType> RED_MUSHROOM_BLOCK = BlockTypes.key(ResourceKey.sponge("red_mushroom_block"));
 
-    public static final Supplier<BlockType> SMOOTH_STONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "smooth_stone");
+    public static final DefaultedRegistryReference<BlockType> RED_NETHER_BRICK_SLAB = BlockTypes.key(ResourceKey.sponge("red_nether_brick_slab"));
 
-    public static final Supplier<BlockType> SMOOTH_STONE_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "smooth_stone_slab");
+    public static final DefaultedRegistryReference<BlockType> RED_NETHER_BRICK_STAIRS = BlockTypes.key(ResourceKey.sponge("red_nether_brick_stairs"));
 
-    public static final Supplier<BlockType> SNOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "snow");
+    public static final DefaultedRegistryReference<BlockType> RED_NETHER_BRICK_WALL = BlockTypes.key(ResourceKey.sponge("red_nether_brick_wall"));
 
-    public static final Supplier<BlockType> SNOW_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "snow_block");
+    public static final DefaultedRegistryReference<BlockType> RED_NETHER_BRICKS = BlockTypes.key(ResourceKey.sponge("red_nether_bricks"));
 
-    public static final Supplier<BlockType> SOUL_SAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "soul_sand");
+    public static final DefaultedRegistryReference<BlockType> RED_SAND = BlockTypes.key(ResourceKey.sponge("red_sand"));
 
-    public static final Supplier<BlockType> SPAWNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "spawner");
+    public static final DefaultedRegistryReference<BlockType> RED_SANDSTONE = BlockTypes.key(ResourceKey.sponge("red_sandstone"));
 
-    public static final Supplier<BlockType> SPONGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "sponge");
+    public static final DefaultedRegistryReference<BlockType> RED_SANDSTONE_SLAB = BlockTypes.key(ResourceKey.sponge("red_sandstone_slab"));
 
-    public static final Supplier<BlockType> SPRUCE_BUTTON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "spruce_button");
+    public static final DefaultedRegistryReference<BlockType> RED_SANDSTONE_STAIRS = BlockTypes.key(ResourceKey.sponge("red_sandstone_stairs"));
 
-    public static final Supplier<BlockType> SPRUCE_DOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "spruce_door");
+    public static final DefaultedRegistryReference<BlockType> RED_SANDSTONE_WALL = BlockTypes.key(ResourceKey.sponge("red_sandstone_wall"));
 
-    public static final Supplier<BlockType> SPRUCE_FENCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "spruce_fence");
+    public static final DefaultedRegistryReference<BlockType> RED_SHULKER_BOX = BlockTypes.key(ResourceKey.sponge("red_shulker_box"));
 
-    public static final Supplier<BlockType> SPRUCE_FENCE_GATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "spruce_fence_gate");
+    public static final DefaultedRegistryReference<BlockType> RED_STAINED_GLASS = BlockTypes.key(ResourceKey.sponge("red_stained_glass"));
 
-    public static final Supplier<BlockType> SPRUCE_LEAVES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "spruce_leaves");
+    public static final DefaultedRegistryReference<BlockType> RED_STAINED_GLASS_PANE = BlockTypes.key(ResourceKey.sponge("red_stained_glass_pane"));
 
-    public static final Supplier<BlockType> SPRUCE_LOG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "spruce_log");
+    public static final DefaultedRegistryReference<BlockType> RED_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("red_terracotta"));
 
-    public static final Supplier<BlockType> SPRUCE_PLANKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "spruce_planks");
+    public static final DefaultedRegistryReference<BlockType> RED_TULIP = BlockTypes.key(ResourceKey.sponge("red_tulip"));
 
-    public static final Supplier<BlockType> SPRUCE_PRESSURE_PLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "spruce_pressure_plate");
+    public static final DefaultedRegistryReference<BlockType> RED_WALL_BANNER = BlockTypes.key(ResourceKey.sponge("red_wall_banner"));
 
-    public static final Supplier<BlockType> SPRUCE_SAPLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "spruce_sapling");
+    public static final DefaultedRegistryReference<BlockType> RED_WOOL = BlockTypes.key(ResourceKey.sponge("red_wool"));
 
-    public static final Supplier<BlockType> SPRUCE_SIGN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "spruce_sign");
+    public static final DefaultedRegistryReference<BlockType> REDSTONE_BLOCK = BlockTypes.key(ResourceKey.sponge("redstone_block"));
 
-    public static final Supplier<BlockType> SPRUCE_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "spruce_slab");
+    public static final DefaultedRegistryReference<BlockType> REDSTONE_LAMP = BlockTypes.key(ResourceKey.sponge("redstone_lamp"));
 
-    public static final Supplier<BlockType> SPRUCE_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "spruce_stairs");
+    public static final DefaultedRegistryReference<BlockType> REDSTONE_ORE = BlockTypes.key(ResourceKey.sponge("redstone_ore"));
 
-    public static final Supplier<BlockType> SPRUCE_TRAPDOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "spruce_trapdoor");
+    public static final DefaultedRegistryReference<BlockType> REDSTONE_TORCH = BlockTypes.key(ResourceKey.sponge("redstone_torch"));
 
-    public static final Supplier<BlockType> SPRUCE_WALL_SIGN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "spruce_wall_sign");
+    public static final DefaultedRegistryReference<BlockType> REDSTONE_WALL_TORCH = BlockTypes.key(ResourceKey.sponge("redstone_wall_torch"));
 
-    public static final Supplier<BlockType> SPRUCE_WOOD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "spruce_wood");
+    public static final DefaultedRegistryReference<BlockType> REDSTONE_WIRE = BlockTypes.key(ResourceKey.sponge("redstone_wire"));
 
-    public static final Supplier<BlockType> STICKY_PISTON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "sticky_piston");
+    public static final DefaultedRegistryReference<BlockType> REPEATER = BlockTypes.key(ResourceKey.sponge("repeater"));
 
-    public static final Supplier<BlockType> STONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "stone");
+    public static final DefaultedRegistryReference<BlockType> REPEATING_COMMAND_BLOCK = BlockTypes.key(ResourceKey.sponge("repeating_command_block"));
 
-    public static final Supplier<BlockType> STONECUTTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "stonecutter");
+    public static final DefaultedRegistryReference<BlockType> RESPAWN_ANCHOR = BlockTypes.key(ResourceKey.sponge("respawn_anchor"));
 
-    public static final Supplier<BlockType> STONE_BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "stone_bricks");
+    public static final DefaultedRegistryReference<BlockType> ROSE_BUSH = BlockTypes.key(ResourceKey.sponge("rose_bush"));
 
-    public static final Supplier<BlockType> STONE_BRICK_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "stone_brick_slab");
+    public static final DefaultedRegistryReference<BlockType> SAND = BlockTypes.key(ResourceKey.sponge("sand"));
 
-    public static final Supplier<BlockType> STONE_BRICK_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "stone_brick_stairs");
+    public static final DefaultedRegistryReference<BlockType> SANDSTONE = BlockTypes.key(ResourceKey.sponge("sandstone"));
 
-    public static final Supplier<BlockType> STONE_BRICK_WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "stone_brick_wall");
+    public static final DefaultedRegistryReference<BlockType> SANDSTONE_SLAB = BlockTypes.key(ResourceKey.sponge("sandstone_slab"));
 
-    public static final Supplier<BlockType> STONE_BUTTON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "stone_button");
+    public static final DefaultedRegistryReference<BlockType> SANDSTONE_STAIRS = BlockTypes.key(ResourceKey.sponge("sandstone_stairs"));
 
-    public static final Supplier<BlockType> STONE_PRESSURE_PLATE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "stone_pressure_plate");
+    public static final DefaultedRegistryReference<BlockType> SANDSTONE_WALL = BlockTypes.key(ResourceKey.sponge("sandstone_wall"));
 
-    public static final Supplier<BlockType> STONE_SLAB = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "stone_slab");
+    public static final DefaultedRegistryReference<BlockType> SCAFFOLDING = BlockTypes.key(ResourceKey.sponge("scaffolding"));
 
-    public static final Supplier<BlockType> STONE_STAIRS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "stone_stairs");
+    public static final DefaultedRegistryReference<BlockType> SEA_LANTERN = BlockTypes.key(ResourceKey.sponge("sea_lantern"));
 
-    public static final Supplier<BlockType> STRIPPED_ACACIA_LOG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "stripped_acacia_log");
+    public static final DefaultedRegistryReference<BlockType> SEA_PICKLE = BlockTypes.key(ResourceKey.sponge("sea_pickle"));
 
-    public static final Supplier<BlockType> STRIPPED_ACACIA_WOOD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "stripped_acacia_wood");
+    public static final DefaultedRegistryReference<BlockType> SEAGRASS = BlockTypes.key(ResourceKey.sponge("seagrass"));
 
-    public static final Supplier<BlockType> STRIPPED_BIRCH_LOG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "stripped_birch_log");
+    public static final DefaultedRegistryReference<BlockType> SHROOMLIGHT = BlockTypes.key(ResourceKey.sponge("shroomlight"));
 
-    public static final Supplier<BlockType> STRIPPED_BIRCH_WOOD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "stripped_birch_wood");
+    public static final DefaultedRegistryReference<BlockType> SHULKER_BOX = BlockTypes.key(ResourceKey.sponge("shulker_box"));
 
-    public static final Supplier<BlockType> STRIPPED_DARK_OAK_LOG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "stripped_dark_oak_log");
+    public static final DefaultedRegistryReference<BlockType> SKELETON_SKULL = BlockTypes.key(ResourceKey.sponge("skeleton_skull"));
 
-    public static final Supplier<BlockType> STRIPPED_DARK_OAK_WOOD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "stripped_dark_oak_wood");
+    public static final DefaultedRegistryReference<BlockType> SKELETON_WALL_SKULL = BlockTypes.key(ResourceKey.sponge("skeleton_wall_skull"));
 
-    public static final Supplier<BlockType> STRIPPED_JUNGLE_LOG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "stripped_jungle_log");
+    public static final DefaultedRegistryReference<BlockType> SLIME_BLOCK = BlockTypes.key(ResourceKey.sponge("slime_block"));
 
-    public static final Supplier<BlockType> STRIPPED_JUNGLE_WOOD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "stripped_jungle_wood");
+    public static final DefaultedRegistryReference<BlockType> SMITHING_TABLE = BlockTypes.key(ResourceKey.sponge("smithing_table"));
 
-    public static final Supplier<BlockType> STRIPPED_OAK_LOG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "stripped_oak_log");
+    public static final DefaultedRegistryReference<BlockType> SMOKER = BlockTypes.key(ResourceKey.sponge("smoker"));
 
-    public static final Supplier<BlockType> STRIPPED_OAK_WOOD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "stripped_oak_wood");
+    public static final DefaultedRegistryReference<BlockType> SMOOTH_QUARTZ = BlockTypes.key(ResourceKey.sponge("smooth_quartz"));
 
-    public static final Supplier<BlockType> STRIPPED_SPRUCE_LOG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "stripped_spruce_log");
+    public static final DefaultedRegistryReference<BlockType> SMOOTH_QUARTZ_SLAB = BlockTypes.key(ResourceKey.sponge("smooth_quartz_slab"));
 
-    public static final Supplier<BlockType> STRIPPED_SPRUCE_WOOD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "stripped_spruce_wood");
+    public static final DefaultedRegistryReference<BlockType> SMOOTH_QUARTZ_STAIRS = BlockTypes.key(ResourceKey.sponge("smooth_quartz_stairs"));
 
-    public static final Supplier<BlockType> STRUCTURE_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "structure_block");
+    public static final DefaultedRegistryReference<BlockType> SMOOTH_RED_SANDSTONE = BlockTypes.key(ResourceKey.sponge("smooth_red_sandstone"));
 
-    public static final Supplier<BlockType> STRUCTURE_VOID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "structure_void");
+    public static final DefaultedRegistryReference<BlockType> SMOOTH_RED_SANDSTONE_SLAB = BlockTypes.key(ResourceKey.sponge("smooth_red_sandstone_slab"));
 
-    public static final Supplier<BlockType> SUGAR_CANE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "sugar_cane");
+    public static final DefaultedRegistryReference<BlockType> SMOOTH_RED_SANDSTONE_STAIRS = BlockTypes.key(ResourceKey.sponge("smooth_red_sandstone_stairs"));
 
-    public static final Supplier<BlockType> SUNFLOWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "sunflower");
+    public static final DefaultedRegistryReference<BlockType> SMOOTH_SANDSTONE = BlockTypes.key(ResourceKey.sponge("smooth_sandstone"));
 
-    public static final Supplier<BlockType> SWEET_BERRY_BUSH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "sweet_berry_bush");
+    public static final DefaultedRegistryReference<BlockType> SMOOTH_SANDSTONE_SLAB = BlockTypes.key(ResourceKey.sponge("smooth_sandstone_slab"));
 
-    public static final Supplier<BlockType> TALL_GRASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "tall_grass");
+    public static final DefaultedRegistryReference<BlockType> SMOOTH_SANDSTONE_STAIRS = BlockTypes.key(ResourceKey.sponge("smooth_sandstone_stairs"));
 
-    public static final Supplier<BlockType> TALL_SEAGRASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "tall_seagrass");
+    public static final DefaultedRegistryReference<BlockType> SMOOTH_STONE = BlockTypes.key(ResourceKey.sponge("smooth_stone"));
 
-    public static final Supplier<BlockType> TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "terracotta");
+    public static final DefaultedRegistryReference<BlockType> SMOOTH_STONE_SLAB = BlockTypes.key(ResourceKey.sponge("smooth_stone_slab"));
 
-    public static final Supplier<BlockType> TNT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "tnt");
+    public static final DefaultedRegistryReference<BlockType> SNOW = BlockTypes.key(ResourceKey.sponge("snow"));
 
-    public static final Supplier<BlockType> TORCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "torch");
+    public static final DefaultedRegistryReference<BlockType> SNOW_BLOCK = BlockTypes.key(ResourceKey.sponge("snow_block"));
 
-    public static final Supplier<BlockType> TRAPPED_CHEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "trapped_chest");
+    public static final DefaultedRegistryReference<BlockType> SOUL_CAMPFIRE = BlockTypes.key(ResourceKey.sponge("soul_campfire"));
 
-    public static final Supplier<BlockType> TRIPWIRE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "tripwire");
+    public static final DefaultedRegistryReference<BlockType> SOUL_FIRE = BlockTypes.key(ResourceKey.sponge("soul_fire"));
 
-    public static final Supplier<BlockType> TRIPWIRE_HOOK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "tripwire_hook");
+    public static final DefaultedRegistryReference<BlockType> SOUL_LANTERN = BlockTypes.key(ResourceKey.sponge("soul_lantern"));
 
-    public static final Supplier<BlockType> TUBE_CORAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "tube_coral");
+    public static final DefaultedRegistryReference<BlockType> SOUL_SAND = BlockTypes.key(ResourceKey.sponge("soul_sand"));
 
-    public static final Supplier<BlockType> TUBE_CORAL_BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "tube_coral_block");
+    public static final DefaultedRegistryReference<BlockType> SOUL_SOIL = BlockTypes.key(ResourceKey.sponge("soul_soil"));
 
-    public static final Supplier<BlockType> TUBE_CORAL_FAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "tube_coral_fan");
+    public static final DefaultedRegistryReference<BlockType> SOUL_TORCH = BlockTypes.key(ResourceKey.sponge("soul_torch"));
 
-    public static final Supplier<BlockType> TUBE_CORAL_WALL_FAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "tube_coral_wall_fan");
+    public static final DefaultedRegistryReference<BlockType> SOUL_WALL_TORCH = BlockTypes.key(ResourceKey.sponge("soul_wall_torch"));
 
-    public static final Supplier<BlockType> TURTLE_EGG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "turtle_egg");
+    public static final DefaultedRegistryReference<BlockType> SPAWNER = BlockTypes.key(ResourceKey.sponge("spawner"));
 
-    public static final Supplier<BlockType> VINE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "vine");
+    public static final DefaultedRegistryReference<BlockType> SPONGE = BlockTypes.key(ResourceKey.sponge("sponge"));
 
-    public static final Supplier<BlockType> VOID_AIR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "void_air");
+    public static final DefaultedRegistryReference<BlockType> SPRUCE_BUTTON = BlockTypes.key(ResourceKey.sponge("spruce_button"));
 
-    public static final Supplier<BlockType> WALL_TORCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "wall_torch");
+    public static final DefaultedRegistryReference<BlockType> SPRUCE_DOOR = BlockTypes.key(ResourceKey.sponge("spruce_door"));
 
-    public static final Supplier<BlockType> WATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "water");
+    public static final DefaultedRegistryReference<BlockType> SPRUCE_FENCE = BlockTypes.key(ResourceKey.sponge("spruce_fence"));
 
-    public static final Supplier<BlockType> WET_SPONGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "wet_sponge");
+    public static final DefaultedRegistryReference<BlockType> SPRUCE_FENCE_GATE = BlockTypes.key(ResourceKey.sponge("spruce_fence_gate"));
 
-    public static final Supplier<BlockType> WHEAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "wheat");
+    public static final DefaultedRegistryReference<BlockType> SPRUCE_LEAVES = BlockTypes.key(ResourceKey.sponge("spruce_leaves"));
 
-    public static final Supplier<BlockType> WHITE_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "white_banner");
+    public static final DefaultedRegistryReference<BlockType> SPRUCE_LOG = BlockTypes.key(ResourceKey.sponge("spruce_log"));
 
-    public static final Supplier<BlockType> WHITE_BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "white_bed");
+    public static final DefaultedRegistryReference<BlockType> SPRUCE_PLANKS = BlockTypes.key(ResourceKey.sponge("spruce_planks"));
 
-    public static final Supplier<BlockType> WHITE_CARPET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "white_carpet");
+    public static final DefaultedRegistryReference<BlockType> SPRUCE_PRESSURE_PLATE = BlockTypes.key(ResourceKey.sponge("spruce_pressure_plate"));
 
-    public static final Supplier<BlockType> WHITE_CONCRETE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "white_concrete");
+    public static final DefaultedRegistryReference<BlockType> SPRUCE_SAPLING = BlockTypes.key(ResourceKey.sponge("spruce_sapling"));
 
-    public static final Supplier<BlockType> WHITE_CONCRETE_POWDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "white_concrete_powder");
+    public static final DefaultedRegistryReference<BlockType> SPRUCE_SIGN = BlockTypes.key(ResourceKey.sponge("spruce_sign"));
 
-    public static final Supplier<BlockType> WHITE_GLAZED_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "white_glazed_terracotta");
+    public static final DefaultedRegistryReference<BlockType> SPRUCE_SLAB = BlockTypes.key(ResourceKey.sponge("spruce_slab"));
 
-    public static final Supplier<BlockType> WHITE_SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "white_shulker_box");
+    public static final DefaultedRegistryReference<BlockType> SPRUCE_STAIRS = BlockTypes.key(ResourceKey.sponge("spruce_stairs"));
 
-    public static final Supplier<BlockType> WHITE_STAINED_GLASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "white_stained_glass");
+    public static final DefaultedRegistryReference<BlockType> SPRUCE_TRAPDOOR = BlockTypes.key(ResourceKey.sponge("spruce_trapdoor"));
 
-    public static final Supplier<BlockType> WHITE_STAINED_GLASS_PANE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "white_stained_glass_pane");
+    public static final DefaultedRegistryReference<BlockType> SPRUCE_WALL_SIGN = BlockTypes.key(ResourceKey.sponge("spruce_wall_sign"));
 
-    public static final Supplier<BlockType> WHITE_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "white_terracotta");
+    public static final DefaultedRegistryReference<BlockType> SPRUCE_WOOD = BlockTypes.key(ResourceKey.sponge("spruce_wood"));
 
-    public static final Supplier<BlockType> WHITE_TULIP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "white_tulip");
+    public static final DefaultedRegistryReference<BlockType> STICKY_PISTON = BlockTypes.key(ResourceKey.sponge("sticky_piston"));
 
-    public static final Supplier<BlockType> WHITE_WALL_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "white_wall_banner");
+    public static final DefaultedRegistryReference<BlockType> STONE = BlockTypes.key(ResourceKey.sponge("stone"));
 
-    public static final Supplier<BlockType> WHITE_WOOL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "white_wool");
+    public static final DefaultedRegistryReference<BlockType> STONE_BRICK_SLAB = BlockTypes.key(ResourceKey.sponge("stone_brick_slab"));
 
-    public static final Supplier<BlockType> WITHER_ROSE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "wither_rose");
+    public static final DefaultedRegistryReference<BlockType> STONE_BRICK_STAIRS = BlockTypes.key(ResourceKey.sponge("stone_brick_stairs"));
 
-    public static final Supplier<BlockType> WITHER_SKELETON_SKULL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "wither_skeleton_skull");
+    public static final DefaultedRegistryReference<BlockType> STONE_BRICK_WALL = BlockTypes.key(ResourceKey.sponge("stone_brick_wall"));
 
-    public static final Supplier<BlockType> WITHER_SKELETON_WALL_SKULL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "wither_skeleton_wall_skull");
+    public static final DefaultedRegistryReference<BlockType> STONE_BRICKS = BlockTypes.key(ResourceKey.sponge("stone_bricks"));
 
-    public static final Supplier<BlockType> YELLOW_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "yellow_banner");
+    public static final DefaultedRegistryReference<BlockType> STONE_BUTTON = BlockTypes.key(ResourceKey.sponge("stone_button"));
 
-    public static final Supplier<BlockType> YELLOW_BED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "yellow_bed");
+    public static final DefaultedRegistryReference<BlockType> STONE_PRESSURE_PLATE = BlockTypes.key(ResourceKey.sponge("stone_pressure_plate"));
 
-    public static final Supplier<BlockType> YELLOW_CARPET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "yellow_carpet");
+    public static final DefaultedRegistryReference<BlockType> STONE_SLAB = BlockTypes.key(ResourceKey.sponge("stone_slab"));
 
-    public static final Supplier<BlockType> YELLOW_CONCRETE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "yellow_concrete");
+    public static final DefaultedRegistryReference<BlockType> STONE_STAIRS = BlockTypes.key(ResourceKey.sponge("stone_stairs"));
 
-    public static final Supplier<BlockType> YELLOW_CONCRETE_POWDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "yellow_concrete_powder");
+    public static final DefaultedRegistryReference<BlockType> STONECUTTER = BlockTypes.key(ResourceKey.sponge("stonecutter"));
 
-    public static final Supplier<BlockType> YELLOW_GLAZED_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "yellow_glazed_terracotta");
+    public static final DefaultedRegistryReference<BlockType> STRIPPED_ACACIA_LOG = BlockTypes.key(ResourceKey.sponge("stripped_acacia_log"));
 
-    public static final Supplier<BlockType> YELLOW_SHULKER_BOX = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "yellow_shulker_box");
+    public static final DefaultedRegistryReference<BlockType> STRIPPED_ACACIA_WOOD = BlockTypes.key(ResourceKey.sponge("stripped_acacia_wood"));
 
-    public static final Supplier<BlockType> YELLOW_STAINED_GLASS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "yellow_stained_glass");
+    public static final DefaultedRegistryReference<BlockType> STRIPPED_BIRCH_LOG = BlockTypes.key(ResourceKey.sponge("stripped_birch_log"));
 
-    public static final Supplier<BlockType> YELLOW_STAINED_GLASS_PANE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "yellow_stained_glass_pane");
+    public static final DefaultedRegistryReference<BlockType> STRIPPED_BIRCH_WOOD = BlockTypes.key(ResourceKey.sponge("stripped_birch_wood"));
 
-    public static final Supplier<BlockType> YELLOW_TERRACOTTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "yellow_terracotta");
+    public static final DefaultedRegistryReference<BlockType> STRIPPED_CRIMSON_HYPHAE = BlockTypes.key(ResourceKey.sponge("stripped_crimson_hyphae"));
 
-    public static final Supplier<BlockType> YELLOW_WALL_BANNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "yellow_wall_banner");
+    public static final DefaultedRegistryReference<BlockType> STRIPPED_CRIMSON_STEM = BlockTypes.key(ResourceKey.sponge("stripped_crimson_stem"));
 
-    public static final Supplier<BlockType> YELLOW_WOOL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "yellow_wool");
+    public static final DefaultedRegistryReference<BlockType> STRIPPED_DARK_OAK_LOG = BlockTypes.key(ResourceKey.sponge("stripped_dark_oak_log"));
 
-    public static final Supplier<BlockType> ZOMBIE_HEAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "zombie_head");
+    public static final DefaultedRegistryReference<BlockType> STRIPPED_DARK_OAK_WOOD = BlockTypes.key(ResourceKey.sponge("stripped_dark_oak_wood"));
 
-    public static final Supplier<BlockType> ZOMBIE_WALL_HEAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BlockType.class, "zombie_wall_head");
+    public static final DefaultedRegistryReference<BlockType> STRIPPED_JUNGLE_LOG = BlockTypes.key(ResourceKey.sponge("stripped_jungle_log"));
+
+    public static final DefaultedRegistryReference<BlockType> STRIPPED_JUNGLE_WOOD = BlockTypes.key(ResourceKey.sponge("stripped_jungle_wood"));
+
+    public static final DefaultedRegistryReference<BlockType> STRIPPED_OAK_LOG = BlockTypes.key(ResourceKey.sponge("stripped_oak_log"));
+
+    public static final DefaultedRegistryReference<BlockType> STRIPPED_OAK_WOOD = BlockTypes.key(ResourceKey.sponge("stripped_oak_wood"));
+
+    public static final DefaultedRegistryReference<BlockType> STRIPPED_SPRUCE_LOG = BlockTypes.key(ResourceKey.sponge("stripped_spruce_log"));
+
+    public static final DefaultedRegistryReference<BlockType> STRIPPED_SPRUCE_WOOD = BlockTypes.key(ResourceKey.sponge("stripped_spruce_wood"));
+
+    public static final DefaultedRegistryReference<BlockType> STRIPPED_WARPED_HYPHAE = BlockTypes.key(ResourceKey.sponge("stripped_warped_hyphae"));
+
+    public static final DefaultedRegistryReference<BlockType> STRIPPED_WARPED_STEM = BlockTypes.key(ResourceKey.sponge("stripped_warped_stem"));
+
+    public static final DefaultedRegistryReference<BlockType> STRUCTURE_BLOCK = BlockTypes.key(ResourceKey.sponge("structure_block"));
+
+    public static final DefaultedRegistryReference<BlockType> STRUCTURE_VOID = BlockTypes.key(ResourceKey.sponge("structure_void"));
+
+    public static final DefaultedRegistryReference<BlockType> SUGAR_CANE = BlockTypes.key(ResourceKey.sponge("sugar_cane"));
+
+    public static final DefaultedRegistryReference<BlockType> SUNFLOWER = BlockTypes.key(ResourceKey.sponge("sunflower"));
+
+    public static final DefaultedRegistryReference<BlockType> SWEET_BERRY_BUSH = BlockTypes.key(ResourceKey.sponge("sweet_berry_bush"));
+
+    public static final DefaultedRegistryReference<BlockType> TALL_GRASS = BlockTypes.key(ResourceKey.sponge("tall_grass"));
+
+    public static final DefaultedRegistryReference<BlockType> TALL_SEAGRASS = BlockTypes.key(ResourceKey.sponge("tall_seagrass"));
+
+    public static final DefaultedRegistryReference<BlockType> TARGET = BlockTypes.key(ResourceKey.sponge("target"));
+
+    public static final DefaultedRegistryReference<BlockType> TERRACOTTA = BlockTypes.key(ResourceKey.sponge("terracotta"));
+
+    public static final DefaultedRegistryReference<BlockType> TNT = BlockTypes.key(ResourceKey.sponge("tnt"));
+
+    public static final DefaultedRegistryReference<BlockType> TORCH = BlockTypes.key(ResourceKey.sponge("torch"));
+
+    public static final DefaultedRegistryReference<BlockType> TRAPPED_CHEST = BlockTypes.key(ResourceKey.sponge("trapped_chest"));
+
+    public static final DefaultedRegistryReference<BlockType> TRIPWIRE = BlockTypes.key(ResourceKey.sponge("tripwire"));
+
+    public static final DefaultedRegistryReference<BlockType> TRIPWIRE_HOOK = BlockTypes.key(ResourceKey.sponge("tripwire_hook"));
+
+    public static final DefaultedRegistryReference<BlockType> TUBE_CORAL = BlockTypes.key(ResourceKey.sponge("tube_coral"));
+
+    public static final DefaultedRegistryReference<BlockType> TUBE_CORAL_BLOCK = BlockTypes.key(ResourceKey.sponge("tube_coral_block"));
+
+    public static final DefaultedRegistryReference<BlockType> TUBE_CORAL_FAN = BlockTypes.key(ResourceKey.sponge("tube_coral_fan"));
+
+    public static final DefaultedRegistryReference<BlockType> TUBE_CORAL_WALL_FAN = BlockTypes.key(ResourceKey.sponge("tube_coral_wall_fan"));
+
+    public static final DefaultedRegistryReference<BlockType> TURTLE_EGG = BlockTypes.key(ResourceKey.sponge("turtle_egg"));
+
+    public static final DefaultedRegistryReference<BlockType> TWISTING_VINES = BlockTypes.key(ResourceKey.sponge("twisting_vines"));
+
+    public static final DefaultedRegistryReference<BlockType> TWISTING_VINES_PLANT = BlockTypes.key(ResourceKey.sponge("twisting_vines_plant"));
+
+    public static final DefaultedRegistryReference<BlockType> VINE = BlockTypes.key(ResourceKey.sponge("vine"));
+
+    public static final DefaultedRegistryReference<BlockType> VOID_AIR = BlockTypes.key(ResourceKey.sponge("void_air"));
+
+    public static final DefaultedRegistryReference<BlockType> WALL_TORCH = BlockTypes.key(ResourceKey.sponge("wall_torch"));
+
+    public static final DefaultedRegistryReference<BlockType> WARPED_BUTTON = BlockTypes.key(ResourceKey.sponge("warped_button"));
+
+    public static final DefaultedRegistryReference<BlockType> WARPED_DOOR = BlockTypes.key(ResourceKey.sponge("warped_door"));
+
+    public static final DefaultedRegistryReference<BlockType> WARPED_FENCE = BlockTypes.key(ResourceKey.sponge("warped_fence"));
+
+    public static final DefaultedRegistryReference<BlockType> WARPED_FENCE_GATE = BlockTypes.key(ResourceKey.sponge("warped_fence_gate"));
+
+    public static final DefaultedRegistryReference<BlockType> WARPED_FUNGUS = BlockTypes.key(ResourceKey.sponge("warped_fungus"));
+
+    public static final DefaultedRegistryReference<BlockType> WARPED_HYPHAE = BlockTypes.key(ResourceKey.sponge("warped_hyphae"));
+
+    public static final DefaultedRegistryReference<BlockType> WARPED_NYLIUM = BlockTypes.key(ResourceKey.sponge("warped_nylium"));
+
+    public static final DefaultedRegistryReference<BlockType> WARPED_PLANKS = BlockTypes.key(ResourceKey.sponge("warped_planks"));
+
+    public static final DefaultedRegistryReference<BlockType> WARPED_PRESSURE_PLATE = BlockTypes.key(ResourceKey.sponge("warped_pressure_plate"));
+
+    public static final DefaultedRegistryReference<BlockType> WARPED_ROOTS = BlockTypes.key(ResourceKey.sponge("warped_roots"));
+
+    public static final DefaultedRegistryReference<BlockType> WARPED_SIGN = BlockTypes.key(ResourceKey.sponge("warped_sign"));
+
+    public static final DefaultedRegistryReference<BlockType> WARPED_SLAB = BlockTypes.key(ResourceKey.sponge("warped_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> WARPED_STAIRS = BlockTypes.key(ResourceKey.sponge("warped_stairs"));
+
+    public static final DefaultedRegistryReference<BlockType> WARPED_STEM = BlockTypes.key(ResourceKey.sponge("warped_stem"));
+
+    public static final DefaultedRegistryReference<BlockType> WARPED_TRAPDOOR = BlockTypes.key(ResourceKey.sponge("warped_trapdoor"));
+
+    public static final DefaultedRegistryReference<BlockType> WARPED_WALL_SIGN = BlockTypes.key(ResourceKey.sponge("warped_wall_sign"));
+
+    public static final DefaultedRegistryReference<BlockType> WARPED_WART_BLOCK = BlockTypes.key(ResourceKey.sponge("warped_wart_block"));
+
+    public static final DefaultedRegistryReference<BlockType> WATER = BlockTypes.key(ResourceKey.sponge("water"));
+
+    public static final DefaultedRegistryReference<BlockType> WEEPING_VINES = BlockTypes.key(ResourceKey.sponge("weeping_vines"));
+
+    public static final DefaultedRegistryReference<BlockType> WEEPING_VINES_PLANT = BlockTypes.key(ResourceKey.sponge("weeping_vines_plant"));
+
+    public static final DefaultedRegistryReference<BlockType> WET_SPONGE = BlockTypes.key(ResourceKey.sponge("wet_sponge"));
+
+    public static final DefaultedRegistryReference<BlockType> WHEAT = BlockTypes.key(ResourceKey.sponge("wheat"));
+
+    public static final DefaultedRegistryReference<BlockType> WHITE_BANNER = BlockTypes.key(ResourceKey.sponge("white_banner"));
+
+    public static final DefaultedRegistryReference<BlockType> WHITE_BED = BlockTypes.key(ResourceKey.sponge("white_bed"));
+
+    public static final DefaultedRegistryReference<BlockType> WHITE_CARPET = BlockTypes.key(ResourceKey.sponge("white_carpet"));
+
+    public static final DefaultedRegistryReference<BlockType> WHITE_CONCRETE = BlockTypes.key(ResourceKey.sponge("white_concrete"));
+
+    public static final DefaultedRegistryReference<BlockType> WHITE_CONCRETE_POWDER = BlockTypes.key(ResourceKey.sponge("white_concrete_powder"));
+
+    public static final DefaultedRegistryReference<BlockType> WHITE_GLAZED_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("white_glazed_terracotta"));
+
+    public static final DefaultedRegistryReference<BlockType> WHITE_SHULKER_BOX = BlockTypes.key(ResourceKey.sponge("white_shulker_box"));
+
+    public static final DefaultedRegistryReference<BlockType> WHITE_STAINED_GLASS = BlockTypes.key(ResourceKey.sponge("white_stained_glass"));
+
+    public static final DefaultedRegistryReference<BlockType> WHITE_STAINED_GLASS_PANE = BlockTypes.key(ResourceKey.sponge("white_stained_glass_pane"));
+
+    public static final DefaultedRegistryReference<BlockType> WHITE_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("white_terracotta"));
+
+    public static final DefaultedRegistryReference<BlockType> WHITE_TULIP = BlockTypes.key(ResourceKey.sponge("white_tulip"));
+
+    public static final DefaultedRegistryReference<BlockType> WHITE_WALL_BANNER = BlockTypes.key(ResourceKey.sponge("white_wall_banner"));
+
+    public static final DefaultedRegistryReference<BlockType> WHITE_WOOL = BlockTypes.key(ResourceKey.sponge("white_wool"));
+
+    public static final DefaultedRegistryReference<BlockType> WITHER_ROSE = BlockTypes.key(ResourceKey.sponge("wither_rose"));
+
+    public static final DefaultedRegistryReference<BlockType> WITHER_SKELETON_SKULL = BlockTypes.key(ResourceKey.sponge("wither_skeleton_skull"));
+
+    public static final DefaultedRegistryReference<BlockType> WITHER_SKELETON_WALL_SKULL = BlockTypes.key(ResourceKey.sponge("wither_skeleton_wall_skull"));
+
+    public static final DefaultedRegistryReference<BlockType> YELLOW_BANNER = BlockTypes.key(ResourceKey.sponge("yellow_banner"));
+
+    public static final DefaultedRegistryReference<BlockType> YELLOW_BED = BlockTypes.key(ResourceKey.sponge("yellow_bed"));
+
+    public static final DefaultedRegistryReference<BlockType> YELLOW_CARPET = BlockTypes.key(ResourceKey.sponge("yellow_carpet"));
+
+    public static final DefaultedRegistryReference<BlockType> YELLOW_CONCRETE = BlockTypes.key(ResourceKey.sponge("yellow_concrete"));
+
+    public static final DefaultedRegistryReference<BlockType> YELLOW_CONCRETE_POWDER = BlockTypes.key(ResourceKey.sponge("yellow_concrete_powder"));
+
+    public static final DefaultedRegistryReference<BlockType> YELLOW_GLAZED_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("yellow_glazed_terracotta"));
+
+    public static final DefaultedRegistryReference<BlockType> YELLOW_SHULKER_BOX = BlockTypes.key(ResourceKey.sponge("yellow_shulker_box"));
+
+    public static final DefaultedRegistryReference<BlockType> YELLOW_STAINED_GLASS = BlockTypes.key(ResourceKey.sponge("yellow_stained_glass"));
+
+    public static final DefaultedRegistryReference<BlockType> YELLOW_STAINED_GLASS_PANE = BlockTypes.key(ResourceKey.sponge("yellow_stained_glass_pane"));
+
+    public static final DefaultedRegistryReference<BlockType> YELLOW_TERRACOTTA = BlockTypes.key(ResourceKey.sponge("yellow_terracotta"));
+
+    public static final DefaultedRegistryReference<BlockType> YELLOW_WALL_BANNER = BlockTypes.key(ResourceKey.sponge("yellow_wall_banner"));
+
+    public static final DefaultedRegistryReference<BlockType> YELLOW_WOOL = BlockTypes.key(ResourceKey.sponge("yellow_wool"));
+
+    public static final DefaultedRegistryReference<BlockType> ZOMBIE_HEAD = BlockTypes.key(ResourceKey.sponge("zombie_head"));
+
+    public static final DefaultedRegistryReference<BlockType> ZOMBIE_WALL_HEAD = BlockTypes.key(ResourceKey.sponge("zombie_wall_head"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private BlockTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<BlockType> key(final ResourceKey location) {
+        return RegistryKey.<BlockType>of(Registries.BLOCK_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

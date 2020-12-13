@@ -39,7 +39,7 @@ public interface Progressable {
      * @return Is achieved
      */
     default boolean achieved() {
-        return get().isPresent();
+        return this.get().isPresent();
     }
 
     /**

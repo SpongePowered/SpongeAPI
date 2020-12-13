@@ -46,7 +46,7 @@ public interface Inventory2D extends Inventory {
      * @return matching stacks, as per the semantics of {@link Inventory#poll()}
      */
     default InventoryTransactionResult.Poll poll(Vector2i pos) {
-        return getSlot(pos).map(Inventory::poll).orElse(InventoryTransactionResult.builder().type(InventoryTransactionResult.Type.NO_SLOT).poll(ItemStackSnapshot.empty()).build());
+        return this.getSlot(pos).map(Inventory::poll).orElse(InventoryTransactionResult.builder().type(InventoryTransactionResult.Type.NO_SLOT).poll(ItemStackSnapshot.empty()).build());
     }
 
     /**
@@ -58,7 +58,7 @@ public interface Inventory2D extends Inventory {
      * @return matching stacks, as per the semantics of {@link Inventory#poll()}
      */
     default InventoryTransactionResult.Poll poll(Vector2i pos, int limit) {
-        return getSlot(pos).map(slot -> slot.poll(limit)).orElse(InventoryTransactionResult.builder().type(InventoryTransactionResult.Type.NO_SLOT).poll(ItemStackSnapshot.empty()).build());
+        return this.getSlot(pos).map(slot -> slot.poll(limit)).orElse(InventoryTransactionResult.builder().type(InventoryTransactionResult.Type.NO_SLOT).poll(ItemStackSnapshot.empty()).build());
     }
 
     /**
@@ -70,7 +70,7 @@ public interface Inventory2D extends Inventory {
      * @return matching stacks, as per the semantics of {@link Inventory#peek()}
      */
     default Optional<ItemStack> peek(Vector2i pos) {
-        return getSlot(pos).map(Inventory::peek);
+        return this.getSlot(pos).map(Inventory::peek);
     }
 
     /**
@@ -82,7 +82,7 @@ public interface Inventory2D extends Inventory {
      * @return matching stacks, as per the semantics of {@link Inventory#set}
      */
     default InventoryTransactionResult set(Vector2i pos, ItemStack stack) {
-        return getSlot(pos).map(slot -> slot.set(stack)).orElse(InventoryTransactionResult.failNoTransactions());
+        return this.getSlot(pos).map(slot -> slot.set(stack)).orElse(InventoryTransactionResult.failNoTransactions());
     }
 
     /**

@@ -32,7 +32,11 @@ import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.network.channel.ChannelRegistry;
 import org.spongepowered.api.plugin.PluginManager;
+import org.spongepowered.api.registry.BuilderProvider;
+import org.spongepowered.api.registry.FactoryProvider;
 import org.spongepowered.api.registry.GameRegistry;
+import org.spongepowered.api.registry.RegistryHolder;
+import org.spongepowered.api.registry.ScopedRegistryHolder;
 import org.spongepowered.api.scheduler.Scheduler;
 import org.spongepowered.api.sql.SqlManager;
 import org.spongepowered.api.util.metric.MetricsConfigManager;
@@ -45,7 +49,7 @@ import java.util.Locale;
  * The core accessor of the API. The implementation uses this to pass
  * constructed objects.
  */
-public interface Game {
+public interface Game extends ScopedRegistryHolder {
 
     /**
      * Gets the async {@link Scheduler}.
@@ -129,6 +133,20 @@ public interface Game {
     GameRegistry getRegistry();
 
     /**
+     * Retrieves the {@link BuilderProvider}.
+     *
+     * @return The builder provider
+     */
+    BuilderProvider getBuilderProvider();
+
+    /**
+     * Retrieves the {@link FactoryProvider}.
+     *
+     * @return The factory provider
+     */
+    FactoryProvider getFactoryProvider();
+
+    /**
      * Gets the {@link DataManager} instance to register
      * {@link DataSerializable}s, and get the related {@link DataBuilder}s.
      *
@@ -187,7 +205,7 @@ public interface Game {
      * @return The {@link SqlManager} instance.
      */
     SqlManager getSqlManager();
-
+    
     /**
      * Gets the {@link ServiceProvider.GameScoped}, used to provide Sponge
      * services that plugins may provide. Services provided here are

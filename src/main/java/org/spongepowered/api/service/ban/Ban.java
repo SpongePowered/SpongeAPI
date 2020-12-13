@@ -24,18 +24,17 @@
  */
 package org.spongepowered.api.service.ban;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.profile.GameProfile;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.net.InetAddress;
 import java.time.Instant;
+import java.util.Objects;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 /**
  * Represents a ban made on an object.
@@ -48,7 +47,7 @@ public interface Ban {
      * @return A new ban builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -58,7 +57,7 @@ public interface Ban {
      * @return The created ban
      */
     static Ban of(GameProfile profile) {
-        return builder().type(BanTypes.PROFILE).profile(profile).build();
+        return Ban.builder().type(BanTypes.PROFILE).profile(profile).build();
     }
 
     /**
@@ -69,7 +68,7 @@ public interface Ban {
      * @return The created ban
      */
     static Ban of(GameProfile profile, Component reason) {
-        return builder().type(BanTypes.PROFILE).profile(profile).reason(reason).build();
+        return Ban.builder().type(BanTypes.PROFILE).profile(profile).reason(reason).build();
     }
 
     /**
@@ -138,7 +137,7 @@ public interface Ban {
     /**
      * Represents a ban made on an IP.
      */
-    interface Ip extends Ban {
+    interface IP extends Ban {
 
         /**
          * Gets the address this ban applies to.
@@ -188,8 +187,8 @@ public interface Ban {
          * @param type The type to be set
          * @return This builder
          */
-        default Builder type(Supplier<? extends BanType> type) {
-            return this.type(checkNotNull(type.get()));
+        default Builder type(DefaultedRegistryReference<? extends BanType> type) {
+            return this.type(Objects.requireNonNull(type.get()));
         }
 
         /**

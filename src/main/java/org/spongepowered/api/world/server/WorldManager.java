@@ -28,7 +28,6 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.world.WorldArchetype;
 import org.spongepowered.api.world.storage.WorldProperties;
 
-import java.io.IOException;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -171,39 +170,59 @@ public interface WorldManager {
     CompletableFuture<Boolean> saveProperties(WorldProperties properties);
 
     /**
-     * Creates a world copy asynchronously using the new name given and returns
-     * the new world properties if the copy was possible.
+     * Copies a {@link WorldProperties properties} under the provided {@link ResourceKey key}.
      *
      * <p>If the world is already loaded then the following will occur:</p>
      *
      * <ul>
-     * <li>World is saved.</li>
-     * <li>World saving is disabled.</li>
-     * <li>World is copied. </li>
-     * <li>World saving is enabled.</li>
+     *     <li>World is saved</li>
+     *     <li>World saving is disabled</li>
+     *     <li>World is copied</li>
+     *     <li>World saving is enabled</li>
      * </ul>
      *
+     * <p>It is left up to the implementation on exactly what is copied. The properties returned will not
+     * represent a live world, it is recommended to call {@link WorldManager#loadWorld(WorldProperties)}
+     * if desired.</p>
+     *
      * @param key The key
-     * @param copyValue The copied value for the new properties
-     * @return The world properties
+     * @param copyKey The copied key for the new properties
+     * @return The copied properties
      */
-    CompletableFuture<WorldProperties> copyWorld(ResourceKey key, String copyValue);
+    CompletableFuture<WorldProperties> copyWorld(ResourceKey key, ResourceKey copyKey);
 
     /**
-     * Renames a {@link WorldProperties}.
+     * Renames a {@link WorldProperties properties}.
      *
-     * <p>If the properties represents an online world, an attempt will be made to unload it. Once unloaded and if
-     * the attempt is successful, an attempt will be made to load it. It is left up to the implementation to determine
-     * the conditions for a rename to be successful.</p>
+     * <p>If the world is loaded, the following will occur:</p>
+     *
+     * <ul>
+     *     <li>World is saved</li>
+     *     <li>World is unloaded</li>
+     *     <li>World is renamed, up to the implementation to determine how so</li>
+     * </ul>
+     *
+     * <p>The default Minecraft worlds cannot be renamed. Additionally, it is left up to the
+     * implementation on exactly what is renamed.</p>
      *
      * @param key The key
      * @param newValue The new value
-     * @return The world properties
+     * @return The renamed properties
      */
     CompletableFuture<WorldProperties> renameWorld(ResourceKey key, String newValue);
 
     /**
-     * Deletes the {@link WorldProperties} by it's {@link ResourceKey key}.
+     * Deletes a {@link WorldProperties properties} by it's {@link ResourceKey key}.
+     *
+     * <p>If the world is loaded, the following will occur:</p>
+     *
+     * <u1>
+     *     <li>World is unloaded</li>
+     *     <li>World is deleted</li>
+     * </u1>
+     *
+     * <p>The default Minecraft world, based on the implementation, cannot be deleted. Additionally,
+     * it is left up to the implementation on what is deleted.</p>
      *
      * @param key The key
      * @return True if the deletion was successful.

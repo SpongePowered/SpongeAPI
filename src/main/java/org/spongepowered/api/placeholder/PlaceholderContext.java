@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.placeholder;
 
-import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
@@ -47,7 +47,7 @@ public interface PlaceholderContext {
      * @return The builder.
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -78,7 +78,7 @@ public interface PlaceholderContext {
      *
      * <p>If an invalid {@link Object} is provided for the context
      * of the placeholder, then the associated {@link PlaceholderParser} must
-     * return a {@link TextComponent#empty()}.</p>
+     * return a {@link Component#empty()}.</p>
      *
      * @return The associated {@link Object}, if any.
      */
@@ -106,9 +106,9 @@ public interface PlaceholderContext {
          *
          * @see #getAssociatedObject()
          */
-        default Builder setAssociatedObject(Player player) {
+        default Builder setAssociatedObject(final Player player) {
             final UUID uuid = player.getUniqueId();
-            return setAssociatedObject(() -> Sponge.getServer().getPlayer(uuid).orElse(null));
+            return this.setAssociatedObject(() -> Sponge.getServer().getPlayer(uuid).orElse(null));
         }
 
         /**

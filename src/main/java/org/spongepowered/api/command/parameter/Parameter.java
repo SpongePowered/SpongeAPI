@@ -24,12 +24,14 @@
  */
 package org.spongepowered.api.command.parameter;
 
-import com.google.common.reflect.TypeToken;
+import io.leangen.geantyref.TypeToken;
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.Game;
 import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.command.Command;
@@ -48,15 +50,22 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Cause;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.network.RemoteConnection;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
+import org.spongepowered.api.registry.RegistryHolder;
+import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.storage.WorldProperties;
+import org.spongepowered.configurate.util.Types;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.plugin.PluginContainer;
 
+import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.InetAddress;
@@ -67,6 +76,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.function.Function;
@@ -82,10 +92,10 @@ import java.util.function.Supplier;
  * ways that parameters can be used:</p>
  *
  * <ul>
- *     <li>{@link #firstOf(Parameter)} allows for multiple parameters that
+ *     <li>{@link #firstOfBuilder(Parameter)} allows for multiple parameters that
  *     do not have the same return type to attempt to parse an input
  *     successfully.</li>
- *     <li>{@link #seq(Parameter)} allows for the grouping of multiple
+ *     <li>{@link #seqBuilder(Parameter)} allows for the grouping of multiple
  *     parameters that will be executed one after another.</li>
  *     <li>{@link Subcommand}s can be placed anywhere in a parameter
  *     chain where a {@link Parameter} can be added, if successfully parsed,
@@ -108,7 +118,21 @@ public interface Parameter {
      * @return The {@link Key}
      */
     static <T> Key<T> key(@NonNull final String key, @NonNull final TypeToken<T> typeToken) {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Key.Builder.class).build(key, typeToken);
+        return Sponge.getGame().getBuilderProvider().provide(Key.Builder.class).build(key, typeToken);
+    }
+
+    /**
+     * Creates a {@link Parameter.Key} for storing values against.
+     *
+     * @param key The string key
+     * @param type The type of value that this key represents. Must not omit any
+     *             type parameters.
+     * @param <T> The type
+     * @return The {@link Key}
+     */
+    static <T> Key<T> key(@NonNull final String key, @NonNull final Class<T> type) {
+        Types.requireCompleteParameters(type);
+        return Sponge.getGame().getBuilderProvider().provide(Key.Builder.class).build(key, type);
     }
 
     /**
@@ -122,7 +146,7 @@ public interface Parameter {
      * @return The {@link Value.Builder}
      */
     static <T> Value.Builder<T> builder(@NonNull final Class<T> valueClass) {
-        return builder(TypeToken.of(valueClass));
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createParameterBuilder(valueClass);
     }
 
     /**
@@ -133,7 +157,7 @@ public interface Parameter {
      * @return The {@link Value.Builder}
      */
     static <T> Value.Builder<T> builder(@NonNull final TypeToken<T> typeToken) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).createParameterBuilder(typeToken);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createParameterBuilder(typeToken);
     }
 
     /**
@@ -147,8 +171,8 @@ public interface Parameter {
      * @param parameter The value parameter
      * @return The {@link Value.Builder}
      */
-    static <T> Value.Builder<T> builder(@NonNull final Class<T> valueClass, @NonNull final ValueParameter<T> parameter) {
-        return builder(TypeToken.of(valueClass), parameter);
+    static <T> Value.Builder<T> builder(@NonNull final Class<T> valueClass, @NonNull final ValueParameter<? extends T> parameter) {
+        return Parameter.builder(valueClass).parser(parameter);
     }
 
     /**
@@ -159,8 +183,8 @@ public interface Parameter {
      * @param parameter The value parameter
      * @return The {@link Value.Builder}
      */
-    static <T> Value.Builder<T> builder(@NonNull final TypeToken<T> typeToken, @NonNull final ValueParameter<T> parameter) {
-        return builder(typeToken).parser(parameter);
+    static <T> Value.Builder<T> builder(@NonNull final TypeToken<T> typeToken, @NonNull final ValueParameter<? extends T> parameter) {
+        return Parameter.builder(typeToken).parser(parameter);
     }
 
     /**
@@ -171,8 +195,8 @@ public interface Parameter {
      * @param valueClass The type of value class
      * @return The {@link Value.Builder}
      */
-    static <T, V extends ValueParameter<T>> Value.Builder<T> builder(@NonNull final Class<T> valueClass, @NonNull final Supplier<V> parameter) {
-        return builder(valueClass, parameter.get());
+    static <T, V extends ValueParameter<T>> Value.Builder<T> builder(@NonNull final Class<T> valueClass, @NonNull final DefaultedRegistryReference<V> parameter) {
+        return Parameter.builder(valueClass, parameter.get());
     }
 
     /**
@@ -184,7 +208,7 @@ public interface Parameter {
      * @return The {@link Value.Builder}
      */
     static <T, V extends ValueParameter<T>> Value.Builder<T> builder(@NonNull final TypeToken<T> typeToken, @NonNull final Supplier<V> parameter) {
-        return builder(typeToken, parameter.get());
+        return Parameter.builder(typeToken, parameter.get());
     }
 
     /**
@@ -202,8 +226,7 @@ public interface Parameter {
      * @return The {@link Subcommand} for use in a {@link Parameter} chain
      */
     static Subcommand subcommand(final Command.@NonNull Parameterized subcommand, @NonNull final String alias, final String @NonNull... aliases) {
-        final Subcommand.Builder builder = Sponge.getRegistry()
-                .getBuilderRegistry().provideBuilder(Subcommand.Builder.class)
+        final Subcommand.Builder builder = Sponge.getGame().getBuilderProvider().provide(Subcommand.Builder.class)
                 .setSubcommand(subcommand)
                 .alias(alias);
         for (final String a : aliases) {
@@ -222,8 +245,8 @@ public interface Parameter {
      * @param parameter The first {@link Parameter}
      * @return The {@link Parameter.FirstOfBuilder} to continue chaining
      */
-    static Parameter.FirstOfBuilder firstOf(@NonNull final Parameter parameter) {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(FirstOfBuilder.class).or(parameter);
+    static Parameter.FirstOfBuilder firstOfBuilder(@NonNull final Parameter parameter) {
+        return Sponge.getGame().getBuilderProvider().provide(FirstOfBuilder.class).or(parameter);
     }
 
     /**
@@ -238,7 +261,7 @@ public interface Parameter {
      * @return The {@link Parameter}
      */
     static Parameter firstOf(@NonNull final Parameter first, @NonNull final Parameter second, final Parameter @NonNull... parameters) {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(FirstOfBuilder.class).or(first).or(second).orFirstOf(parameters).build();
+        return Sponge.getGame().getBuilderProvider().provide(FirstOfBuilder.class).or(first).or(second).orFirstOf(parameters).build();
     }
 
     /**
@@ -250,7 +273,7 @@ public interface Parameter {
      * @return The {@link Parameter}
      */
     static Parameter firstOf(@NonNull final Iterable<Parameter> parameters) {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(FirstOfBuilder.class).orFirstOf(parameters).build();
+        return Sponge.getGame().getBuilderProvider().provide(FirstOfBuilder.class).orFirstOf(parameters).build();
     }
 
     /**
@@ -261,8 +284,8 @@ public interface Parameter {
      * @return The {@link Parameter.SequenceBuilder}, to continue building the
      *         chain
      */
-    static Parameter.SequenceBuilder seq(@NonNull final Parameter parameter) {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(SequenceBuilder.class).then(parameter);
+    static Parameter.SequenceBuilder seqBuilder(@NonNull final Parameter parameter) {
+        return Sponge.getGame().getBuilderProvider().provide(SequenceBuilder.class).then(parameter);
     }
 
     /**
@@ -276,7 +299,7 @@ public interface Parameter {
      * @return The {@link Parameter}
      */
     static Parameter seq(@NonNull final Parameter first, @NonNull final Parameter second, final Parameter @NonNull... parameters) {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(SequenceBuilder.class).then(first).then(second).then(parameters).build();
+        return Sponge.getGame().getBuilderProvider().provide(SequenceBuilder.class).then(first).then(second).then(parameters).build();
     }
 
     /**
@@ -287,7 +310,7 @@ public interface Parameter {
      * @return The {@link Parameter}
      */
     static Parameter seq(@NonNull final Iterable<Parameter> parameters) {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(SequenceBuilder.class).then(parameters).build();
+        return Sponge.getGame().getBuilderProvider().provide(SequenceBuilder.class).then(parameters).build();
     }
 
     // Convenience methods for getting the common parameter types - all in once place.
@@ -371,7 +394,7 @@ public interface Parameter {
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<LocalDateTime> dateTimeOrNow() {
-        return dateTime().orDefault(cause -> LocalDateTime.now());
+        return Parameter.dateTime().orDefault(cause -> LocalDateTime.now());
     }
 
     /**
@@ -412,7 +435,7 @@ public interface Parameter {
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<Entity> entityOrSource() {
-        return entity().orDefault(cause -> cause.getCause().root() instanceof Entity ? (Entity) cause.getCause().root() : null);
+        return Parameter.entity().orDefault(cause -> cause.getCause().root() instanceof Entity ? (Entity) cause.getCause().root() : null);
     }
 
     /**
@@ -422,7 +445,7 @@ public interface Parameter {
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<Entity> entityOrTarget() {
-        return entity().parser(CatalogedValueParameters.TARGET_ENTITY);
+        return Parameter.entity().parser(CatalogedValueParameters.TARGET_ENTITY);
     }
 
     /**
@@ -473,8 +496,18 @@ public interface Parameter {
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<InetAddress> ipOrSource() {
-        return ip().orDefault(cause -> cause.getCause().root() instanceof RemoteConnection ?
+        return Parameter.ip().orDefault(cause -> cause.getCause().root() instanceof RemoteConnection ?
                 ((RemoteConnection) cause.getCause().root()).getAddress().getAddress() : null);
+    }
+
+    /**
+     * Creates a builder that has the {@link ValueParameter} set to
+     * {@link CatalogedValueParameters#ITEM_STACK_SNAPSHOT}.
+     *
+     * @return A {@link Parameter.Value.Builder}
+     */
+    static Parameter.Value.Builder<ItemStackSnapshot> itemStackSnapshot() {
+        return Parameter.builder(ItemStackSnapshot.class, CatalogedValueParameters.ITEM_STACK_SNAPSHOT);
     }
 
     /**
@@ -550,7 +583,7 @@ public interface Parameter {
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<ServerPlayer> playerOrSource() {
-        return player().orDefault(cause -> cause.getCause().root() instanceof ServerPlayer ? (ServerPlayer) cause.getCause().root() : null);
+        return Parameter.player().orDefault(cause -> cause.getCause().root() instanceof ServerPlayer ? (ServerPlayer) cause.getCause().root() : null);
     }
 
     /**
@@ -560,7 +593,7 @@ public interface Parameter {
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<ServerPlayer> playerOrTarget() {
-        return player().parser(CatalogedValueParameters.TARGET_PLAYER);
+        return Parameter.player().parser(CatalogedValueParameters.TARGET_PLAYER);
     }
 
     /**
@@ -571,6 +604,32 @@ public interface Parameter {
      */
     static Parameter.Value.Builder<PluginContainer> plugin() {
         return Parameter.builder(PluginContainer.class, CatalogedValueParameters.PLUGIN);
+    }
+
+    /**
+     * Creates a builder that has the {@link ValueParameter} set to
+     * {@link VariableValueParameters#doubleRange()}, using the specified
+     * bounds (inclusive).
+     *
+     * @param min The minimum value.
+     * @param max The maximum value.
+     * @return A {@link Parameter.Value.Builder}
+     */
+    static Parameter.Value.Builder<Double> rangedDouble(final double min, final double max) {
+        return Parameter.builder(Double.class).parser(VariableValueParameters.doubleRange().setMin(min).setMax(max).build());
+    }
+
+    /**
+     * Creates a builder that has the {@link ValueParameter} set to
+     * {@link VariableValueParameters#integerRange()}, using the specified
+     * bounds (inclusive).
+     *
+     * @param min The minimum value.
+     * @param max The maximum value.
+     * @return A {@link Parameter.Value.Builder}
+     */
+    static Parameter.Value.Builder<Integer> rangedInteger(final int min, final int max) {
+        return Parameter.builder(Integer.class).parser(VariableValueParameters.integerRange().setMin(min).setMax(max).build());
     }
 
     /**
@@ -631,7 +690,7 @@ public interface Parameter {
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<User> userOrSource() {
-        return user().orDefault(cause -> cause.getCause().root() instanceof User ? (User) cause.getCause().root() : null);
+        return Parameter.user().orDefault(cause -> cause.getCause().root() instanceof User ? (User) cause.getCause().root() : null);
     }
 
     /**
@@ -684,18 +743,63 @@ public interface Parameter {
      * Creates a builder that has the {@link ValueParameter} that allows you to
      * choose from cataloged types.
      *
-     * <p>The parameter will be set to allow users to omit the "minecraft:" or
-     * "sponge:" namespace.</p>
+     * <p>See {@link VariableValueParameters.CatalogedTypeBuilder
+     * #defaultNamespace(String)} for how default namespaces work.</p>
+     *
+     * <p>If the {@link Game} or {@link Server} scoped {@link RegistryHolder}
+     * is required,
+     * {@link VariableValueParameters.CatalogedTypeBuilder#GLOBAL_HOLDER_PROVIDER}
+     * or {@link VariableValueParameters.CatalogedTypeBuilder#SERVER_HOLDER_PROVIDER}
+     * may be used.</p>
      *
      * @param type The {@link CatalogType} class to check for choices
+     * @param holderProvider A {@link Function} that provides the appropriate
+     *      {@link RegistryHolder} to get the appropriate {@link Registry}
+     * @param registryKey The {@link RegistryKey} that represents the target
+     *      {@link Registry}
+     * @param defaultNamespaces The default namespaces that will be used with the
+     *  provided value if the supplied argument is un-namespaced
      * @param <T> The type of {@link CatalogType}
      * @return A {@link Parameter.Value.Builder}
      */
-    static <T extends CatalogType> Parameter.Value.Builder<T> catalogedElement(@NonNull final Class<T> type) {
-        return Parameter.builder(type, VariableValueParameters.catalogedElementParameterBuilder(type)
-                .defaultNamespace("minecraft")
-                .defaultNamespace("sponge")
-                .build());
+    static <T> Parameter.Value.Builder<T> registryElement(
+            final TypeToken<T> type,
+            @NonNull final Function<CommandContext, RegistryHolder> holderProvider,
+            @NonNull final RegistryKey<? extends Registry<? extends T>> registryKey,
+            @NonNull final String @NonNull... defaultNamespaces) {
+        final VariableValueParameters.CatalogedTypeBuilder<? extends T> vvp =
+                VariableValueParameters.registryEntryBuilder(holderProvider, registryKey);
+        for (final String namespace : defaultNamespaces) {
+            vvp.defaultNamespace(namespace);
+        }
+        return Parameter.builder(type, vvp.build());
+    }
+
+    /**
+     * Creates a builder that has the {@link ValueParameter} that allows you to
+     * choose from types registered in a given {@link Registry}.
+     *
+     * <p>See {@link VariableValueParameters.CatalogedTypeBuilder
+     * #defaultNamespace(String)} for how default namespaces work.</p>
+     *
+     * @param type The {@link CatalogType} class to check for choices
+     * @param registryReference The {@link DefaultedRegistryReference} to use
+     *          when retrieving objects
+     * @param defaultNamespaces The default namespaces that will be used with the
+     *  provided value if the supplied argument is un-namespaced
+     * @param <T> The type of {@link CatalogType}
+     * @return A {@link Parameter.Value.Builder}
+     */
+    static <T> Parameter.Value.Builder<T> registryElement(
+            final TypeToken<T> type,
+            @NonNull final DefaultedRegistryReference<? extends Registry<? extends T>> registryReference,
+            @NonNull final String @NonNull... defaultNamespaces) {
+        final VariableValueParameters.CatalogedTypeBuilder<? extends T> vvp =
+                VariableValueParameters.registryEntryBuilder(registryReference);
+        for (final String namespace : defaultNamespaces) {
+            vvp.defaultNamespace(namespace);
+        }
+        return Parameter.builder(type, vvp.build());
     }
 
     /**
@@ -793,7 +897,7 @@ public interface Parameter {
             @NonNull final T returnedValue,
             final String @NonNull... literal) {
         final Collection<String> iterable = Arrays.asList(literal);
-        return literal(returnType, returnedValue, () -> iterable);
+        return Parameter.literal(returnType, returnedValue, () -> iterable);
     }
 
     /**
@@ -829,6 +933,27 @@ public interface Parameter {
     boolean isOptional();
 
     /**
+     * Gets whether this parameter is known to be able to be explicitly
+     * considered a terminal parameter without regarding its place in a
+     * command.
+     *
+     * <p>A terminal parameter will pass control to the command's associated
+     * {@link CommandExecutor} if the parameter consumes the end of an input
+     * string.</p>
+     *
+     * <p>Because this parameter may be reused across multiple commands, there
+     * may be some circumstances where this parameter will act as a terminal
+     * parameter but this is false, such as when this is at the end of a
+     * parameter chain or the following parameters are all optional. The return
+     * value from this method generally will return whether this element is
+     * terminal <strong>without</strong> regard to other parameters in a
+     * command.</p>
+     *
+     * @return true if known to be terminal.
+     */
+    boolean isTerminal();
+
+    /**
      * A {@link Key}
      *
      * @param <T> The type.
@@ -848,7 +973,24 @@ public interface Parameter {
          *
          * @return The {@link TypeToken}
          */
-        TypeToken<T> getTypeToken();
+        Type getType();
+
+        /**
+         * Return whether the value is an instance of this key's value type.
+         *
+         * @param value value to check
+         * @return if instance
+         */
+        boolean isInstance(Object value);
+
+        /**
+         * Cast the provided value to the value type.
+         *
+         * @param value value
+         * @return the casted value
+         * @throws ClassCastException if {@code value} is not of the correct type
+         */
+        T cast(Object value);
 
         /**
          * A "builder" that allows for keys to be built.
@@ -866,6 +1008,17 @@ public interface Parameter {
              * @return The built {@link Key}
              */
             <T> Key<T> build(@NonNull String key, @NonNull TypeToken<T> typeToken);
+            /**
+             * Creates a key with the provided key and value class it
+             * represents.
+             *
+             * @param key The key
+             * @param type The {@link Class} that represents the
+             *                   non-parameterized type of value it stores
+             * @param <T> The type of the value represented by the key
+             * @return The built {@link Key}
+             */
+            <T> Key<T> build(@NonNull String key, @NonNull Class<T> type);
         }
 
     }
@@ -912,33 +1065,20 @@ public interface Parameter {
         ValueCompleter getCompleter();
 
         /**
+         * Gets the {@link ValueUsage} associated with this {@link Value}, if
+         * any was set.
+         *
+         * @return The {@link ValueUsage}, if set.
+         */
+        Optional<ValueUsage> getValueUsage();
+
+        /**
          * Gets a {@link Predicate} that indicates whether a given {@link Cause}
          * should parse this {@link Parameter}.
          *
          * @return the predicate
          */
         Predicate<CommandCause> getRequirement();
-
-        /**
-         * Gets whether this parameter is known to be able to be explicitly
-         * considered a terminal parameter without regarding its place in a
-         * command.
-         *
-         * <p>A terminal parameter will pass control to the command's associated
-         * {@link CommandExecutor} if the parameter consumes the end of an input
-         * string.</p>
-         *
-         * <p>Because this parameter may be reused across multiple commands, there
-         * may be some circumstances where this parameter will act as a terminal
-         * parameter but this is false, such as when this is at the end of a
-         * parameter chain or the following parameters are all optional. The return
-         * value from this method generally will return whether this element is
-         * terminal <strong>without</strong> regard to other parameters in a
-         * command.</p>
-         *
-         * @return true if known to be terminal.
-         */
-        boolean isTerminal();
 
         /**
          * Parses the next element(s) in the {@link CommandContext}
@@ -953,7 +1093,8 @@ public interface Parameter {
         void parse(ArgumentReader.@NonNull Mutable reader, CommandContext.@NonNull Builder context) throws ArgumentParseException;
 
         /**
-         * Returns potential completions of the current tokenized argument.
+         * Returns potential completions of the current tokenized argument. The
+         * completion will be based on {@link ArgumentReader#getRemaining()}.
          *
          * @param reader The {@link ArgumentReader} containing the strings that need
          *               to be parsed
@@ -971,7 +1112,7 @@ public interface Parameter {
          * @param cause The {@link CommandCause} that requested the usage
          * @return The usage
          */
-        Component getUsage(CommandCause cause);
+        String getUsage(CommandCause cause);
 
         /**
          * If set, this parameter will repeat until the argument string has
@@ -1028,7 +1169,7 @@ public interface Parameter {
              * @param parser The {@link ValueParameter} to use
              * @return This builder, for chaining
              */
-            default <V extends ValueParser<? extends T>> Builder<T> parser(@NonNull final Supplier<V> parser) {
+            default <V extends ValueParser<? extends T>> Builder<T> parser(@NonNull final DefaultedRegistryReference<V> parser) {
                 return this.parser(parser.get());
             }
 
@@ -1145,7 +1286,7 @@ public interface Parameter {
              * @return This builder, for chaining
              */
             default Builder<T> orDefault(@NonNull final T defaultValue) {
-                return orDefault(cause -> defaultValue);
+                return this.orDefault(cause -> defaultValue);
             }
 
             /**
@@ -1276,9 +1417,9 @@ public interface Parameter {
     interface SequenceBuilder extends ResettableBuilder<Parameter, SequenceBuilder> {
 
         /**
-         * Sets that this parameter is optional, and will be ignored if it isn't
-         * specified - but will throw an error if this is passed something to
-         * parse that it cannot parse.
+         * Sets that this sequence of parameters is optional, and will be
+         * ignored if it isn't specified - but will throw an error if this
+         * is passed something to parse that it cannot parse.
          *
          * @return This builder, for chaining
          */
@@ -1423,6 +1564,16 @@ public interface Parameter {
          * @return The builder.
          */
         <T> Value.Builder<T> createParameterBuilder(TypeToken<T> parameterClass);
+
+        /**
+         * Creates a {@link Parameter.Value.Builder} of the indicated generic type.
+         *
+         * @param parameterClass The class
+         * @param <T> The type of object that will be returned by the built
+         *            {@link Parameter.Value}
+         * @return The builder.
+         */
+        <T> Value.Builder<T> createParameterBuilder(Class<T> parameterClass);
 
     }
 

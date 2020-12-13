@@ -25,8 +25,11 @@
 package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.Key;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.util.weighted.WeightedTable;
 
 import java.util.Collection;
 import java.util.Random;
@@ -46,7 +49,7 @@ public interface ItemStackGenerator extends Function<Random, ItemStack> {
      * @return The builder to create an itemstack generator
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -79,7 +82,7 @@ public interface ItemStackGenerator extends Function<Random, ItemStack> {
          * @param itemType The base item type
          * @return This builder, for chaining
          */
-        default Builder baseItem(Supplier<? extends ItemType> itemType) {
+        default Builder baseItem(final Supplier<? extends ItemType> itemType) {
             return this.baseItem(itemType.get());
         }
 
@@ -91,6 +94,40 @@ public interface ItemStackGenerator extends Function<Random, ItemStack> {
          * @return This builder, for chaining
          */
         Builder baseItem(ItemType itemType);
+
+
+        /**
+         * Sets the base {@link ItemType} for the {@link ItemStackGenerator}. Using
+         * the defined {@link WeightedTable table} allows for some dynamic selection
+         * of the returned type, instead of requiring an {@link #add(BiConsumer)}
+         * for each individual variation of a desired type.
+         *
+         * @param itemType The base item type
+         * @return This builder, for chaining
+         */
+        Builder baseItem(WeightedTable<ItemType> itemType);
+
+        /**
+         * Adds the given {@link Key} with the given value.
+         *
+         * @param key The key to assign the value with
+         * @param value The value to assign with the key
+         * @param <V> The type of the value
+         * @return This builder, for chaining
+         */
+        <V> Builder add(Key<? extends Value<V>> key, V value);
+
+        /**
+         * Adds the given {@link Key} with the given value.
+         *
+         * @param key The key to assign the value with
+         * @param value The value to assign with the key
+         * @param <V> The type of the value
+         * @return This builder, for chaining
+         */
+        default <V> Builder add(final Supplier<? extends Key<? extends Value<V>>> key, final V value) {
+            return this.add(key.get(), value);
+        }
 
         /**
          * Creates a new {@link ItemStackGenerator} with all of the added

@@ -41,7 +41,7 @@ public interface DisplayInfo {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -126,7 +126,7 @@ public interface DisplayInfo {
         Builder type(AdvancementType advancementType);
 
         /**
-         * Sets the description. Defaults to {@link net.kyori.adventure.text.TextComponent#empty()}.
+         * Sets the description. Defaults to {@link Component#empty()}.
          *
          * @param description The description
          * @return This builder, for chaining
@@ -149,7 +149,7 @@ public interface DisplayInfo {
          * @return This builder, for chaining
          */
         default Builder icon(Supplier<? extends ItemType> itemType) {
-            return icon(itemType.get());
+            return this.icon(itemType.get());
         }
 
         /**

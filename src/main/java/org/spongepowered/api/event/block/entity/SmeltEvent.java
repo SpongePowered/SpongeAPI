@@ -28,7 +28,7 @@ import org.spongepowered.api.block.entity.carrier.furnace.FurnaceBlockEntity;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.item.inventory.AffectItemStackEvent;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.item.recipe.smelting.SmeltingRecipe;
+import org.spongepowered.api.item.recipe.cooking.CookingRecipe;
 
 import java.util.List;
 import java.util.Optional;
@@ -55,7 +55,7 @@ public interface SmeltEvent extends Event {
      *
      * @return The recipe
      */
-    Optional<SmeltingRecipe> getRecipe();
+    Optional<CookingRecipe> getRecipe();
 
     /**
      * The first tick of an item smelting.
