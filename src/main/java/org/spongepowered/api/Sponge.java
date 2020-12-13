@@ -25,6 +25,7 @@
 package org.spongepowered.api;
 
 import com.google.inject.Inject;
+import org.spongepowered.api.asset.AssetManager;
 import org.spongepowered.api.command.manager.CommandManager;
 import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
@@ -103,6 +104,15 @@ public final class Sponge {
      */
     public static EventManager getEventManager() {
         return Sponge.getGame().getEventManager();
+    }
+
+    /**
+     * Gets the {@link AssetManager} instance.
+     *
+     * @return The asset manager instance
+     */
+    public static AssetManager getAssetManager() {
+        return Sponge.getGame().getAssetManager();
     }
 
     /**
