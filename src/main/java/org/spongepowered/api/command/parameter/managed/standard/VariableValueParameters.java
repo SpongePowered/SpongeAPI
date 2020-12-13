@@ -26,9 +26,20 @@ package org.spongepowered.api.command.parameter.managed.standard;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.ComponentSerializer;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.Game;
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.command.parameter.CommandContext;
+import org.spongepowered.api.command.parameter.Parameter;
 import org.spongepowered.api.command.parameter.managed.ValueParameter;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.Registry;
+import org.spongepowered.api.registry.RegistryHolder;
+import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Collection;
@@ -49,12 +60,45 @@ public final class VariableValueParameters {
      * Creates a builder that can build a {@link ValueParameter} that returns
      * an appropriate {@link CatalogType} from an argument.
      *
-     * @param <T> The type of catalog
-     * @param returnType The return type
+     * @param holderProvider The provider for a {@link RegistryHolder} to
+     *          retrieve the selected {@link Registry} from
+     * @param registryKey The {@link RegistryKey} that represents the target
+     *          {@link Registry} to get objects from
+     * @param <T> The type in the {@link Registry}
      * @return The builder
      */
-    public static <T extends CatalogType> CatalogedTypeBuilder<T> catalogedElementParameterBuilder(final Class<T> returnType) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createCatalogedTypesBuilder(returnType);
+    public static <T> CatalogedTypeBuilder<T> registryEntryBuilder(
+            final Function<CommandContext, @Nullable RegistryHolder> holderProvider, final RegistryKey<? extends Registry<? extends T>> registryKey) {
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createRegistryEntryBuilder(holderProvider, registryKey);
+    }
+
+    /**
+     * Creates a builder that can build a {@link ValueParameter} that returns
+     * an appropriate {@link CatalogType} from an argument.
+     *
+     * @param registryProvider A {@link Function} that retrieves an appropriate
+     *      {@link Registry} to get objects from
+     * @param <T> The type in the {@link Registry}
+     * @return The builder
+     */
+    public static <T> CatalogedTypeBuilder<T> registryEntryBuilder(
+            final Function<CommandContext, @Nullable ? extends Registry<? extends T>> registryProvider) {
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createRegistryEntryBuilder(registryProvider);
+    }
+
+    /**
+     * Creates a builder that can build a {@link ValueParameter} that returns
+     * an appropriate type from the provided {@link Registry} from an argument.
+     *
+     * @param defaultedRegistryReference The {@link DefaultedRegistryReference}
+     *      to use to retrieve a {@link Registry} that contains the objects to
+     *      retrieve
+     * @param <T> The type in the {@link Registry}
+     * @return The builder
+     */
+    public static <T> CatalogedTypeBuilder<T> registryEntryBuilder(
+            final DefaultedRegistryReference<? extends Registry<? extends T>> defaultedRegistryReference) {
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createRegistryEntryBuilder(defaultedRegistryReference);
     }
 
     /**
@@ -178,7 +222,25 @@ public final class VariableValueParameters {
      * A builder that creates a {@link ValueParameter} that attempts to get a
      * specific {@link CatalogType} by the supplied ID.
      */
-    public interface CatalogedTypeBuilder<T extends CatalogType> extends ResettableBuilder<ValueParameter<T>, CatalogedTypeBuilder<T>> {
+    public interface CatalogedTypeBuilder<T> extends ResettableBuilder<ValueParameter<T>, CatalogedTypeBuilder<T>> {
+
+        /**
+         * A {@link Function} that always provides the {@link Game} scoped
+         * {@link RegistryHolder}.
+         */
+        Function<CommandContext, @Nullable RegistryHolder> GLOBAL_HOLDER_PROVIDER = in -> Sponge.getGame().registries();
+
+        /**
+         * A {@link Function} that always provides the {@link Server} scoped
+         * {@link RegistryHolder}, if the server exists.
+         */
+        Function<CommandContext, @Nullable RegistryHolder> SERVER_HOLDER_PROVIDER = in -> {
+            try {
+                return Sponge.getGame().getServer().registries();
+            } catch (final IllegalStateException ignored) {
+                return null;
+            }
+        };
 
         /**
          * Adds a prefix that could be prepended to the input argument if it
@@ -548,14 +610,63 @@ public final class VariableValueParameters {
         <T> DynamicChoicesBuilder<T> createDynamicChoicesBuilder(Class<T> returnType);
 
         /**
-         * Creates the {@link CatalogedTypeBuilder} that will create objects
-         * that parse objects and return results of type {@code T}.
+         * Creates a {@link CatalogedTypeBuilder} that retrieves objects from
+         * the {@link Registry} represented by the given {@link RegistryKey}
+         * and the provided {@link RegistryHolder}, which may be determined by
+         * the current state of the {@link CommandContext}.
          *
-         * @param returnType The {@link Class} of {@code T}
-         * @param <T> The parser return type
-         * @return The builder
+         * <p>This element can only support <strong>one</strong>
+         * {@link RegistryHolder}, due to the potential of conflicting
+         * {@link ResourceKey resource keys} across multiple registries. If
+         * testing multiple registries across multiple registry holders is
+         * required, consider using {@link Parameter#firstOf(Iterable)} with
+         * multiple versions of this parameter.</p>
+         *
+         * <p>{@link Game} and {@link Server} scoped {@link RegistryHolder}
+         * providers are available via
+         * {@link CatalogedTypeBuilder#GLOBAL_HOLDER_PROVIDER} and
+         * {@link CatalogedTypeBuilder#SERVER_HOLDER_PROVIDER}</p>
+         *
+         * @param holderProvider A {@link Function} that provides a
+         *      {@link RegistryHolder} based on the {@link CommandContext} up to
+         *      this parameter.
+         * @param registryKey The {@link RegistryKey} that represents the target
+         *      {@link Registry} in the {@link RegistryHolder} provided via
+         *      {@code holderProvider}.
+         * @param <T> The type that the target {@link Registry} holds
+         * @return The {@link CatalogedTypeBuilder}
          */
-        <T extends CatalogType> CatalogedTypeBuilder<T> createCatalogedTypesBuilder(Class<T> returnType);
+        <T> VariableValueParameters.CatalogedTypeBuilder<T> createRegistryEntryBuilder(
+                final Function<CommandContext, @Nullable RegistryHolder> holderProvider, final RegistryKey<? extends Registry<? extends T>> registryKey);
+
+        /**
+         * Creates a {@link CatalogedTypeBuilder} that retrieves objects from
+         * the provided {@link Registry}, which provided via the given
+         * {@link Function} which <strong>may</strong> use the current
+         * {@link CommandContext} to determine the appropriate
+         * {@link RegistryHolder} to retrieve the {@link Registry} from.
+         *
+         * <p>When using a {@link Registries standard registry}, it is
+         * recommended that consumers use
+         * {@link #createRegistryEntryBuilder(Function, RegistryKey)}
+         * instead, providing the appropriate {@link RegistryHolder} instead.</p>
+         *
+         * @param <T> The type that the target {@link Registry} holds
+         * @return The {@link CatalogedTypeBuilder}
+         */
+        <T> VariableValueParameters.CatalogedTypeBuilder<T> createRegistryEntryBuilder(
+                final Function<CommandContext, @Nullable ? extends Registry<? extends T>> registryProvider);
+
+        /**
+         * Creates a {@link CatalogedTypeBuilder} that retrieves objects from
+         * the provided {@link DefaultedRegistryReference}, which retrieves an
+         * object from the appropriate {@link Registry}.
+         *
+         * @param <T> The type that the target {@link Registry} holds
+         * @return The {@link CatalogedTypeBuilder}
+         */
+        <T> VariableValueParameters.CatalogedTypeBuilder<T> createRegistryEntryBuilder(
+                DefaultedRegistryReference<? extends Registry<? extends T>> registryReference);
 
         /**
          * Creates the {@link LiteralBuilder} that will create objects

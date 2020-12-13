@@ -27,6 +27,7 @@ package org.spongepowered.api.util;
 import io.leangen.geantyref.TypeToken;
 import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.text.Component;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.command.CommandCause;
@@ -172,6 +173,8 @@ public final class TypeTokens {
     public static final TypeToken<Value<EndCrystal>> END_CRYSTAL_VALUE_TOKEN = new TypeToken<Value<EndCrystal>>() {};
 
     public static final TypeToken<Value<EntitySnapshot>> ENTITY_SNAPSHOT_VALUE_TOKEN = new TypeToken<Value<EntitySnapshot>>() {};
+
+    public static final TypeToken<EntityType<@NonNull ?>> ENTITY_TYPE_TOKEN = new TypeToken<EntityType<?>>() {};
 
     public static final TypeToken<Value<Entity>> ENTITY_VALUE_TOKEN = new TypeToken<Value<Entity>>() {};
 
@@ -378,6 +381,7 @@ public final class TypeTokens {
     public static final TypeToken<Value<WireAttachmentType>> WIRE_ATTACHMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<WireAttachmentType>>() {};
 
     public static final TypeToken<Value<WoodType>> WOOD_TYPE_VALUE_TOKEN = new TypeToken<Value<WoodType>>() {};
+
     // @formatter:on
 
     // SORTFIELDS:OFF

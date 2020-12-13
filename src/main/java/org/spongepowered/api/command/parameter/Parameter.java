@@ -29,7 +29,9 @@ import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.Game;
 import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.command.Command;
@@ -51,6 +53,9 @@ import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
+import org.spongepowered.api.registry.RegistryHolder;
+import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.ResettableBuilder;
@@ -166,7 +171,7 @@ public interface Parameter {
      * @param parameter The value parameter
      * @return The {@link Value.Builder}
      */
-    static <T> Value.Builder<T> builder(@NonNull final Class<T> valueClass, @NonNull final ValueParameter<T> parameter) {
+    static <T> Value.Builder<T> builder(@NonNull final Class<T> valueClass, @NonNull final ValueParameter<? extends T> parameter) {
         return Parameter.builder(valueClass).parser(parameter);
     }
 
@@ -178,7 +183,7 @@ public interface Parameter {
      * @param parameter The value parameter
      * @return The {@link Value.Builder}
      */
-    static <T> Value.Builder<T> builder(@NonNull final TypeToken<T> typeToken, @NonNull final ValueParameter<T> parameter) {
+    static <T> Value.Builder<T> builder(@NonNull final TypeToken<T> typeToken, @NonNull final ValueParameter<? extends T> parameter) {
         return Parameter.builder(typeToken).parser(parameter);
     }
 
@@ -738,33 +743,59 @@ public interface Parameter {
      * Creates a builder that has the {@link ValueParameter} that allows you to
      * choose from cataloged types.
      *
-     * <p>The parameter will be set to allow users to omit the "minecraft:" or
-     * "sponge:" namespace.</p>
+     * <p>See {@link VariableValueParameters.CatalogedTypeBuilder
+     * #defaultNamespace(String)} for how default namespaces work.</p>
+     *
+     * <p>If the {@link Game} or {@link Server} scoped {@link RegistryHolder}
+     * is required,
+     * {@link VariableValueParameters.CatalogedTypeBuilder#GLOBAL_HOLDER_PROVIDER}
+     * or {@link VariableValueParameters.CatalogedTypeBuilder#SERVER_HOLDER_PROVIDER}
+     * may be used.</p>
      *
      * @param type The {@link CatalogType} class to check for choices
+     * @param holderProvider A {@link Function} that provides the appropriate
+     *      {@link RegistryHolder} to get the appropriate {@link Registry}
+     * @param registryKey The {@link RegistryKey} that represents the target
+     *      {@link Registry}
+     * @param defaultNamespaces The default namespaces that will be used with the
+     *  provided value if the supplied argument is un-namespaced
      * @param <T> The type of {@link CatalogType}
      * @return A {@link Parameter.Value.Builder}
      */
-    static <T extends CatalogType> Parameter.Value.Builder<T> catalogedElementWithMinecraftAndSpongeDefaults(@NonNull final Class<T> type) {
-        return Parameter.catalogedElement(type, "minecraft", "sponge");
+    static <T> Parameter.Value.Builder<T> registryElement(
+            final TypeToken<T> type,
+            @NonNull final Function<CommandContext, RegistryHolder> holderProvider,
+            @NonNull final RegistryKey<? extends Registry<? extends T>> registryKey,
+            @NonNull final String @NonNull... defaultNamespaces) {
+        final VariableValueParameters.CatalogedTypeBuilder<? extends T> vvp =
+                VariableValueParameters.registryEntryBuilder(holderProvider, registryKey);
+        for (final String namespace : defaultNamespaces) {
+            vvp.defaultNamespace(namespace);
+        }
+        return Parameter.builder(type, vvp.build());
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} that allows you to
-     * choose from cataloged types.
+     * choose from types registered in a given {@link Registry}.
      *
      * <p>See {@link VariableValueParameters.CatalogedTypeBuilder
      * #defaultNamespace(String)} for how default namespaces work.</p>
      *
      * @param type The {@link CatalogType} class to check for choices
+     * @param registryReference The {@link DefaultedRegistryReference} to use
+     *          when retrieving objects
      * @param defaultNamespaces The default namespaces that will be used with the
-     *  provided value if the supplied argument is un-namespaced.
+     *  provided value if the supplied argument is un-namespaced
      * @param <T> The type of {@link CatalogType}
      * @return A {@link Parameter.Value.Builder}
      */
-    static <T extends CatalogType> Parameter.Value.Builder<T> catalogedElement(@NonNull final Class<T> type,
+    static <T> Parameter.Value.Builder<T> registryElement(
+            final TypeToken<T> type,
+            @NonNull final DefaultedRegistryReference<? extends Registry<? extends T>> registryReference,
             @NonNull final String @NonNull... defaultNamespaces) {
-        final VariableValueParameters.CatalogedTypeBuilder<T> vvp = VariableValueParameters.catalogedElementParameterBuilder(type);
+        final VariableValueParameters.CatalogedTypeBuilder<? extends T> vvp =
+                VariableValueParameters.registryEntryBuilder(registryReference);
         for (final String namespace : defaultNamespaces) {
             vvp.defaultNamespace(namespace);
         }
