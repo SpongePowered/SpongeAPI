@@ -24,16 +24,15 @@
  */
 package org.spongepowered.api.resource;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.plugin.PluginContainer;
-
-import java.util.Collection;
-import java.util.List;
 
 /**
  * A namespaced path object used to get {@link Resource}s from the
  * {@link ResourceManager}.
+ *
+ * @see ResourceKey
  */
 public interface ResourcePath extends Comparable<ResourcePath> {
 
@@ -43,34 +42,27 @@ public interface ResourcePath extends Comparable<ResourcePath> {
     String SEPARATOR = "/";
 
     /**
-     * Creates a new {@link Builder} for creating {@link ResourcePath}s.
-     *
-     * @return The new builder instance
-     */
-    static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
-    }
-
-    /**
      * Creates a resource path.
      *
      * @param namespace The namespace
      * @param value     The value
      * @return A new resource path
+     * @see ResourceKey#of(String, String)
      */
     static ResourcePath of(final String namespace, final String value) {
-        return builder().namespace(namespace).path(value).build();
+        return ResourcePath.of(ResourceKey.of(namespace, value));
     }
 
     /**
-     * Creates a resource path.
+     * Creates a resource path from a plugin container.
      *
-     * @param container The container
+     * @param container The plugin container
      * @param value     The value
      * @return A new resource path
+     * @see ResourceKey#of(PluginContainer, String)
      */
     static ResourcePath of(final PluginContainer container, final String value) {
-        return builder().namespace(container).path(value).build();
+        return ResourcePath.of(ResourceKey.of(container, value));
     }
 
     /**
@@ -81,24 +73,48 @@ public interface ResourcePath extends Comparable<ResourcePath> {
      *
      * @param value The value
      * @return A new resource path
+     * @see ResourceKey#resolve(String)
      */
     static ResourcePath parse(final String value) {
-        return builder().path(value).build();
+        return ResourcePath.of(ResourceKey.resolve(value));
     }
+
+    /**
+     * Creates a new path using the given {@link ResourceKey}.
+     *
+     * @param key The key object
+     * @return A new path
+     */
+    static ResourcePath of(final ResourceKey key) {
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(key);
+    }
+
+    /**
+     * Gets the backing {@link ResourceKey} for this path object.
+     *
+     * @return The key object
+     */
+    ResourceKey key();
 
     /**
      * Gets the namespace portion of this resource path.
      *
      * @return The namespace
+     * @see ResourceKey#getNamespace()
      */
-    String getNamespace();
+    default String getNamespace() {
+        return this.key().getNamespace();
+    }
 
     /**
      * Gets the path portion of this resource path.
      *
      * @return The path
+     * @see ResourceKey#getValue()
      */
-    String getPath();
+    default String getPath() {
+        return this.key().getValue();
+    }
 
     // resolution methods
 
@@ -106,57 +122,31 @@ public interface ResourcePath extends Comparable<ResourcePath> {
      * Resolves this resource path's parent.
      *
      * @return The parent path
-     * @throws ResourcePathException If the parent normalizes to null
+     * @throws IllegalStateException If the path has no parent
      */
-    ResourcePath getParent() throws ResourcePathException;
-
-    /**
-     * Resolves a single file as a child of this path.
-     *
-     * @param child The child path's name
-     * @return The resolved path
-     * @throws ResourcePathException If the path is invalid or could not be
-     *                               normalized
-     * @see #resolve(String...)
-     */
-    default ResourcePath resolve(String child) throws ResourcePathException {
-        return resolve(new String[]{child});
-    }
+    ResourcePath getParent();
 
     /**
      * Resolves a path from the current location using the specified children.
      *
-     * @param children The children paths
-     * @return The resolved path
-     * @throws ResourcePathException If the path is invalid or could not be
-     *                               normalized
+     * @param first    The first child
+     * @param children The rest of the children
+     * @return The resolvedIllegalArgumentException path
+     * @throws IllegalArgumentException If the path is invalid
      */
-    ResourcePath resolve(String... children) throws ResourcePathException;
+    ResourcePath resolve(String first, String... children);
 
     /**
-     * @param sibling The sibling's name
+     * Resolves a sibling of this path.
+     *
+     * @param sibling  The sibling's name
+     * @param children The optional children of the sibling
      * @return The sibling resource path
-     * @throws ResourcePathException If the path is invalid or could not be
-     *                               normalized
+     * @throws IllegalArgumentException If the path is invalid
      */
-    ResourcePath resolveSibling(String sibling) throws ResourcePathException;
+    ResourcePath resolveSibling(String sibling, String... children);
 
     // path utility methods
-
-    /**
-     * Gets all the parts of this path. i.e. the full path split by
-     * {@link #SEPARATOR}. The result list is unmodifiable.
-     *
-     * @return The path parts
-     */
-    List<String> getPathParts();
-
-    /**
-     * Gets the parent of this path or root if this is root.
-     *
-     * @return The parent path
-     */
-    String getParentPath();
 
     /**
      * Gets the name of the file without any parent elements.
@@ -184,21 +174,21 @@ public interface ResourcePath extends Comparable<ResourcePath> {
      * Gets the string representation of this path as {@code "namspace:path"}
      *
      * @return The string representation
+     * @see ResourceKey#asString()
      */
-    String toString();
+    String asString();
 
-    interface Builder extends ResettableBuilder<ResourcePath, Builder> {
-
-        Builder namespace(String namespace);
-
-        Builder namespace(PluginContainer container);
-
-        Builder path(String path);
-
-        Builder paths(String... paths);
-
-        Builder paths(Collection<String> paths);
-
-        ResourcePath build() throws ResourcePathException;
+    /**
+     * A factory to create {@link ResourcePath}s.
+     */
+    interface Factory {
+        /**
+         * Creates a new {@link ResourcePath} using the given
+         * {@link ResourceKey}.
+         *
+         * @param key The key object
+         * @return A new path object
+         */
+        ResourcePath of(ResourceKey key);
     }
 }
