@@ -27,6 +27,8 @@ package org.spongepowered.api.data.persistence;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.data.DataManager;
+import org.spongepowered.api.registry.RegistryHolder;
+import org.spongepowered.api.registry.RegistryType;
 
 import java.util.List;
 import java.util.Map;
@@ -553,11 +555,12 @@ public interface DataView {
      * an empty value.</p>
      *
      * @param path The path of the value to get
-     * @param catalogType The class of the dummy type
+     * @param registryType The class of the dummy type
+     * @param holder The holder to get the registry from
      * @param <T> The type of dummy
      * @return The dummy type, if available
      */
-    <T extends CatalogType> Optional<T> getCatalogType(DataQuery path, Class<T> catalogType);
+    <T> Optional<T> getRegistryType(DataQuery path, RegistryType<T> registryType, RegistryHolder holder);
 
     /**
      * Gets the {@link List} of {@link CatalogType}s by path, if available.
@@ -567,11 +570,12 @@ public interface DataView {
      * of {@link CatalogType}, an absent is returned.</p>
      *
      * @param path The path of the list value to get
-     * @param catalogType The class of the dummy type
+     * @param registryType The type of registry to search
+     * @param holder the holder to get the registry from
      * @param <T> The type of dummy type
      * @return The list of dummy types, if available
      */
-    <T extends CatalogType> Optional<List<T>> getCatalogTypeList(DataQuery path, Class<T> catalogType);
+    <T> Optional<List<T>> getRegistryTypeList(DataQuery path, RegistryType<T> registryType, RegistryHolder holder);
 
     /**
      * Copies this {@link DataView} and all of it's contents into a new
