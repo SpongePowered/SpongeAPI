@@ -87,7 +87,6 @@ import org.spongepowered.api.data.type.ItemTier;
 import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.type.WireAttachmentType;
-import org.spongepowered.api.data.type.WoodType;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.data.value.SetValue;
@@ -196,6 +195,7 @@ import org.spongepowered.api.entity.weather.WeatherEffect;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSources;
 import org.spongepowered.api.fluid.FluidStackSnapshot;
 import org.spongepowered.api.item.FireworkEffect;
+import org.spongepowered.api.item.FireworkShape;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.enchantment.Enchantment;
@@ -820,6 +820,8 @@ public final class Keys {
      * ticks in Vanilla Minecraft.</p>
      */
     public static final DefaultedRegistryReference<Key<Value<Ticks>>> FIREWORK_FLIGHT_MODIFIER = Keys.key(ResourceKey.sponge("firework_flight_modifier"));
+
+    public static final DefaultedRegistryReference<Key<Value<FireworkShape>>> FIREWORK_SHAPE = Keys.key(ResourceKey.sponge("firework_shape"));
 
     /**
      * The delay in ticks until the {@link Entity} will be damaged by the fire.
@@ -2639,12 +2641,6 @@ public final class Keys {
      * spell being casted by an {@link Evoker}
      */
     public static final DefaultedRegistryReference<Key<Value<Sheep>>> WOLOLO_TARGET = Keys.key(ResourceKey.sponge("wololo_target"));
-
-    /**
-     * The {@link WoodType} of a {@link Boat}.
-     * TODO BlockState dataholders?
-     */
-    public static final DefaultedRegistryReference<Key<Value<WoodType>>> WOOD_TYPE = Keys.key(ResourceKey.sponge("wood_type"));
 
     // SORTFIELDS:OFF
 
