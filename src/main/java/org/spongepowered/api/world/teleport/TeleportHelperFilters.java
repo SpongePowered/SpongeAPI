@@ -97,6 +97,6 @@ public final class TeleportHelperFilters {
     }
 
     private static DefaultedRegistryReference<TeleportHelperFilter> key(final ResourceKey location) {
-        return RegistryKey.<TeleportHelperFilter>of(Registries.TELEPORT_HELPER_FILTER.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.TELEPORT_HELPER_FILTER, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

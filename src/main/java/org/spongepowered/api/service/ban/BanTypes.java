@@ -58,6 +58,6 @@ public final class BanTypes {
     }
 
     private static DefaultedRegistryReference<BanType> key(final ResourceKey location) {
-        return RegistryKey.<BanType>of(Registries.BAN_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.BAN_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

@@ -173,6 +173,6 @@ public final class DamageModifierTypes {
     }
 
     private static DefaultedRegistryReference<DamageModifierType> key(final ResourceKey location) {
-        return RegistryKey.<DamageModifierType>of(Registries.DAMAGE_MODIFIER_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.DAMAGE_MODIFIER_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

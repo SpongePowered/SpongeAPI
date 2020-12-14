@@ -444,6 +444,6 @@ public final class CatalogedValueParameters {
     }
 
     private static <T> DefaultedRegistryReference<CatalogedValueParameter<T>> key(final ResourceKey location) {
-        return RegistryKey.<CatalogedValueParameter<T>>of(Registries.CATALOGED_VALUE_PARAMETER.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.CATALOGED_VALUE_PARAMETER, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

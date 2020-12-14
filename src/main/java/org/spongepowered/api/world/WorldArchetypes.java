@@ -68,6 +68,6 @@ public final class WorldArchetypes {
     }
 
     private static DefaultedRegistryReference<WorldArchetype> key(final ResourceKey location) {
-        return RegistryKey.<WorldArchetype>of(Registries.WORLD_ARCHETYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.WORLD_ARCHETYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

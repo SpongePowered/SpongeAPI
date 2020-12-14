@@ -199,6 +199,6 @@ public final class Statistics {
     }
 
     private static DefaultedRegistryReference<Statistic> key(final ResourceKey location) {
-        return RegistryKey.<Statistic>of(Registries.STATISTIC.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.STATISTIC, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

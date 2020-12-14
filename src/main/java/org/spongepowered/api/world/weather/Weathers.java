@@ -57,6 +57,6 @@ public final class Weathers {
     }
 
     private static DefaultedRegistryReference<Weather> key(final ResourceKey location) {
-        return RegistryKey.<Weather>of(Registries.WEATHER.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.WEATHER, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

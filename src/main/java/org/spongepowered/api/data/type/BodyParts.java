@@ -63,6 +63,6 @@ public final class BodyParts {
     }
 
     private static DefaultedRegistryReference<BodyPart> key(final ResourceKey location) {
-        return RegistryKey.<BodyPart>of(Registries.BODY_PART.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.BODY_PART, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

@@ -62,6 +62,6 @@ public final class TaskPriorities {
     }
 
     private static DefaultedRegistryReference<TaskPriority> key(final ResourceKey location) {
-        return RegistryKey.<TaskPriority>of(Registries.TASK_PRIORITY.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.TASK_PRIORITY, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

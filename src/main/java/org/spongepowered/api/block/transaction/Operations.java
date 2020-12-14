@@ -84,6 +84,6 @@ public final class Operations {
     }
 
     private static DefaultedRegistryReference<Operation> key(final ResourceKey location) {
-        return RegistryKey.<Operation>of(Registries.OPERATION.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.OPERATION, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

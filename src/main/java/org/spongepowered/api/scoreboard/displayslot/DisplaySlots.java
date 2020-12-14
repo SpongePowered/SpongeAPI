@@ -100,6 +100,6 @@ public final class DisplaySlots {
     }
 
     private static DefaultedRegistryReference<DisplaySlot> key(final ResourceKey location) {
-        return RegistryKey.<DisplaySlot>of(Registries.DISPLAY_SLOT.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.DISPLAY_SLOT, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

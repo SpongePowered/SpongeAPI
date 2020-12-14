@@ -89,6 +89,6 @@ public final class ClientCompletionTypes {
     }
 
     private static DefaultedRegistryReference<ClientCompletionType> key(final ResourceKey location) {
-        return RegistryKey.<ClientCompletionType>of(Registries.CLIENT_COMPLETION_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.CLIENT_COMPLETION_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

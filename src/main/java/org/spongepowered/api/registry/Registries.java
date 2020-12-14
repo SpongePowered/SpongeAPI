@@ -149,247 +149,247 @@ public final class Registries {
 
     // @formatter:off
 
-    public static final RegistryKey<Registry<ArtType>> ART_TYPE = Registries.minecraftKey("motive");
+    public static final RegistryType<ArtType> ART_TYPE = Registries.minecraftKey("motive");
 
-    public static final RegistryKey<Registry<AttributeType>> ATTRIBUTE_TYPE = Registries.minecraftKey("attribute");
+    public static final RegistryType<AttributeType> ATTRIBUTE_TYPE = Registries.minecraftKey("attribute");
 
-    public static final RegistryKey<Registry<BiomeType>> BIOME_TYPE = Registries.minecraftKey("worldgen/biome");
+    public static final RegistryType<BiomeType> BIOME_TYPE = Registries.minecraftKey("worldgen/biome");
 
-    public static final RegistryKey<Registry<BlockType>> BLOCK_TYPE = Registries.minecraftKey("block");
+    public static final RegistryType<BlockType> BLOCK_TYPE = Registries.minecraftKey("block");
 
-    public static final RegistryKey<Registry<BlockEntityType>> BLOCK_ENTITY_TYPE = Registries.minecraftKey("block_entity_type");
+    public static final RegistryType<BlockEntityType> BLOCK_ENTITY_TYPE = Registries.minecraftKey("block_entity_type");
 
-    public static final RegistryKey<Registry<ChunkState>> CHUNK_STATE = Registries.minecraftKey("chunk_status");
+    public static final RegistryType<ChunkState> CHUNK_STATE = Registries.minecraftKey("chunk_status");
 
-    public static final RegistryKey<Registry<ContainerType>> CONTAINER_TYPE = Registries.minecraftKey("menu");
+    public static final RegistryType<ContainerType> CONTAINER_TYPE = Registries.minecraftKey("menu");
 
-    public static final RegistryKey<Registry<DimensionType>> DIMENSION_TYPE = Registries.minecraftKey("dimension_type");
+    public static final RegistryType<DimensionType> DIMENSION_TYPE = Registries.minecraftKey("dimension_type");
 
-    public static final RegistryKey<Registry<PotionEffectType>> POTION_EFFECT_TYPE = Registries.minecraftKey("mob_effect");
+    public static final RegistryType<PotionEffectType> POTION_EFFECT_TYPE = Registries.minecraftKey("mob_effect");
 
-    public static final RegistryKey<Registry<EnchantmentType>> ENCHANTMENT_TYPE = Registries.minecraftKey("enchantment");
+    public static final RegistryType<EnchantmentType> ENCHANTMENT_TYPE = Registries.minecraftKey("enchantment");
 
-    public static final RegistryKey<Registry<EntityType<?>>> ENTITY_TYPE = Registries.minecraftKey("entity_type");
+    public static final RegistryType<EntityType<?>> ENTITY_TYPE = Registries.minecraftKey("entity_type");
 
-    public static final RegistryKey<Registry<FluidType>> FLUID_TYPE = Registries.minecraftKey("fluid");
+    public static final RegistryType<FluidType> FLUID_TYPE = Registries.minecraftKey("fluid");
 
-    public static final RegistryKey<Registry<ItemType>> ITEM_TYPE = Registries.minecraftKey("item");
+    public static final RegistryType<ItemType> ITEM_TYPE = Registries.minecraftKey("item");
 
-    public static final RegistryKey<Registry<ParticleType>> PARTICLE_TYPE = Registries.minecraftKey("particle_type");
+    public static final RegistryType<ParticleType> PARTICLE_TYPE = Registries.minecraftKey("particle_type");
 
-    public static final RegistryKey<Registry<RecipeType<?>>> RECIPE_TYPE = Registries.minecraftKey("recipe_type");
+    public static final RegistryType<RecipeType<?>> RECIPE_TYPE = Registries.minecraftKey("recipe_type");
 
-    public static final RegistryKey<Registry<SoundType>> SOUND_TYPE = Registries.minecraftKey("sound_event");
+    public static final RegistryType<SoundType> SOUND_TYPE = Registries.minecraftKey("sound_event");
 
-    public static final RegistryKey<Registry<Statistic>> STATISTIC = Registries.minecraftKey("custom_stat");
+    public static final RegistryType<Statistic> STATISTIC = Registries.minecraftKey("custom_stat");
 
-    public static final RegistryKey<Registry<StatisticCategory>> STATISTIC_CATEGORY = Registries.minecraftKey("statistic_category");
+    public static final RegistryType<StatisticCategory> STATISTIC_CATEGORY = Registries.minecraftKey("statistic_category");
 
-    public static final RegistryKey<Registry<VillagerType>> VILLAGER_TYPE = Registries.minecraftKey("villager_type");
+    public static final RegistryType<VillagerType> VILLAGER_TYPE = Registries.minecraftKey("villager_type");
 
     // ----
 
-    public static final RegistryKey<Registry<AccountDeletionResultType>> ACCOUNT_DELETION_RESULT_TYPE = Registries.spongeKey("account_deletion_result_type");
+    public static final RegistryType<AccountDeletionResultType> ACCOUNT_DELETION_RESULT_TYPE = Registries.spongeKey("account_deletion_result_type");
 
-    public static final RegistryKey<Registry<AdvancementType>> ADVANCEMENT_TYPE = Registries.spongeKey("advancement_type");
+    public static final RegistryType<AdvancementType> ADVANCEMENT_TYPE = Registries.spongeKey("advancement_type");
 
-    public static final RegistryKey<Registry<ArmorMaterial>> ARMOR_MATERIAL = Registries.spongeKey("armor_material");
+    public static final RegistryType<ArmorMaterial> ARMOR_MATERIAL = Registries.spongeKey("armor_material");
 
-    public static final RegistryKey<Registry<AttachmentSurface>> ATTACHMENT_SURFACE = Registries.spongeKey("attachment_surface");
+    public static final RegistryType<AttachmentSurface> ATTACHMENT_SURFACE = Registries.spongeKey("attachment_surface");
 
-    public static final RegistryKey<Registry<AttributeOperation>> ATTRIBUTE_OPERATION = Registries.spongeKey("attribute_operation");
+    public static final RegistryType<AttributeOperation> ATTRIBUTE_OPERATION = Registries.spongeKey("attribute_operation");
 
-    public static final RegistryKey<Registry<BanType>> BAN_TYPE = Registries.spongeKey("ban_type");
+    public static final RegistryType<BanType> BAN_TYPE = Registries.spongeKey("ban_type");
 
-    public static final RegistryKey<Registry<BannerPatternShape>> BANNER_PATTERN_SHAPE = Registries.spongeKey("banner_pattern_shape");
+    public static final RegistryType<BannerPatternShape> BANNER_PATTERN_SHAPE = Registries.spongeKey("banner_pattern_shape");
 
-    public static final RegistryKey<Registry<BoatType>> BOAT_TYPE = Registries.spongeKey("boat_type");
+    public static final RegistryType<BoatType> BOAT_TYPE = Registries.spongeKey("boat_type");
 
-    public static final RegistryKey<Registry<BodyPart>> BODY_PART = Registries.spongeKey("body_part");
+    public static final RegistryType<BodyPart> BODY_PART = Registries.spongeKey("body_part");
 
-    public static final RegistryKey<Registry<BooleanStateProperty>> BOOLEAN_STATE_PROPERTY = Registries.spongeKey("boolean_state_property");
+    public static final RegistryType<BooleanStateProperty> BOOLEAN_STATE_PROPERTY = Registries.spongeKey("boolean_state_property");
 
-    public static final RegistryKey<Registry<CatType>> CAT_TYPE = Registries.spongeKey("cat_type");
+    public static final RegistryType<CatType> CAT_TYPE = Registries.spongeKey("cat_type");
 
-    public static final RegistryKey<Registry<CatalogedValueParameter<?>>> CATALOGED_VALUE_PARAMETER = Registries.spongeKey("cataloged_value_parameter");
+    public static final RegistryType<CatalogedValueParameter<?>> CATALOGED_VALUE_PARAMETER = Registries.spongeKey("cataloged_value_parameter");
 
-    public static final RegistryKey<Registry<ChatVisibility>> CHAT_VISIBILITY = Registries.spongeKey("chat_visibility");
+    public static final RegistryType<ChatVisibility> CHAT_VISIBILITY = Registries.spongeKey("chat_visibility");
 
-    public static final RegistryKey<Registry<ChestAttachmentType>> CHEST_ATTACHMENT_TYPE = Registries.spongeKey("chest_attachment_type");
+    public static final RegistryType<ChestAttachmentType> CHEST_ATTACHMENT_TYPE = Registries.spongeKey("chest_attachment_type");
 
-    public static final RegistryKey<Registry<ChunkRegenerateFlag>> CHUNK_REGENERATE_FLAG = Registries.spongeKey("chunk_regenerate_flag");
+    public static final RegistryType<ChunkRegenerateFlag> CHUNK_REGENERATE_FLAG = Registries.spongeKey("chunk_regenerate_flag");
 
-    public static final RegistryKey<Registry<ClickType<?>>> CLICK_TYPE = Registries.spongeKey("click_type");
+    public static final RegistryType<ClickType<?>> CLICK_TYPE = Registries.spongeKey("click_type");
 
-    public static final RegistryKey<Registry<ClientCompletionKey<?>>> CLIENT_COMPLETION_KEY = Registries.spongeKey("client_completion_key");
+    public static final RegistryType<ClientCompletionKey<?>> CLIENT_COMPLETION_KEY = Registries.spongeKey("client_completion_key");
 
-    public static final RegistryKey<Registry<ClientCompletionType>> CLIENT_COMPLETION_TYPE = Registries.spongeKey("client_completion_type");
+    public static final RegistryType<ClientCompletionType> CLIENT_COMPLETION_TYPE = Registries.spongeKey("client_completion_type");
 
-    public static final RegistryKey<Registry<CollisionRule>> COLLISION_RULE = Registries.spongeKey("collision_rule");
+    public static final RegistryType<CollisionRule> COLLISION_RULE = Registries.spongeKey("collision_rule");
 
-    public static final RegistryKey<Registry<ComparatorMode>> COMPARATOR_MODE = Registries.spongeKey("comparator_mode");
+    public static final RegistryType<ComparatorMode> COMPARATOR_MODE = Registries.spongeKey("comparator_mode");
 
-    public static final RegistryKey<Registry<Criterion>> CRITERION = Registries.spongeKey("criterion");
+    public static final RegistryType<Criterion> CRITERION = Registries.spongeKey("criterion");
 
-    public static final RegistryKey<Registry<DamageModifierType>> DAMAGE_MODIFIER_TYPE = Registries.spongeKey("damage_modifier_type");
+    public static final RegistryType<DamageModifierType> DAMAGE_MODIFIER_TYPE = Registries.spongeKey("damage_modifier_type");
 
-    public static final RegistryKey<Registry<DamageType>> DAMAGE_TYPE = Registries.spongeKey("damage_type");
+    public static final RegistryType<DamageType> DAMAGE_TYPE = Registries.spongeKey("damage_type");
 
-    public static final RegistryKey<Registry<DataFormat>> DATA_FORMAT = Registries.spongeKey("data_format");
+    public static final RegistryType<DataFormat> DATA_FORMAT = Registries.spongeKey("data_format");
 
-    public static final RegistryKey<Registry<DataTranslator<?>>> DATA_TRANSLATOR = Registries.spongeKey("data_translator");
+    public static final RegistryType<DataTranslator<?>> DATA_TRANSLATOR = Registries.spongeKey("data_translator");
 
-    public static final RegistryKey<Registry<Difficulty>> DIFFICULTY = Registries.spongeKey("difficulty");
+    public static final RegistryType<Difficulty> DIFFICULTY = Registries.spongeKey("difficulty");
 
-    public static final RegistryKey<Registry<DismountType>> DISMOUNT_TYPE = Registries.minecraftKey("dismount_type");
+    public static final RegistryType<DismountType> DISMOUNT_TYPE = Registries.minecraftKey("dismount_type");
 
-    public static final RegistryKey<Registry<DisplaySlot>> DISPLAY_SLOT = Registries.spongeKey("display_slot");
+    public static final RegistryType<DisplaySlot> DISPLAY_SLOT = Registries.spongeKey("display_slot");
 
-    public static final RegistryKey<Registry<DoorHinge>> DOOR_HINGE = Registries.spongeKey("door_hinge");
+    public static final RegistryType<DoorHinge> DOOR_HINGE = Registries.spongeKey("door_hinge");
 
-    public static final RegistryKey<Registry<DragonPhaseType>> DRAGON_PHASE_TYPE = Registries.spongeKey("dragon_phase_type");
+    public static final RegistryType<DragonPhaseType> DRAGON_PHASE_TYPE = Registries.spongeKey("dragon_phase_type");
 
-    public static final RegistryKey<Registry<DyeColor>> DYE_COLOR = Registries.spongeKey("dye_color");
+    public static final RegistryType<DyeColor> DYE_COLOR = Registries.spongeKey("dye_color");
 
-    public static final RegistryKey<Registry<EnumStateProperty<?>>> ENUM_STATE_PROPERTY = Registries.spongeKey("enum_state_property");
+    public static final RegistryType<EnumStateProperty<?>> ENUM_STATE_PROPERTY = Registries.spongeKey("enum_state_property");
 
-    public static final RegistryKey<Registry<EquipmentGroup>> EQUIPMENT_GROUP = Registries.spongeKey("equipment_group");
+    public static final RegistryType<EquipmentGroup> EQUIPMENT_GROUP = Registries.spongeKey("equipment_group");
 
-    public static final RegistryKey<Registry<EquipmentType>> EQUIPMENT_TYPE = Registries.spongeKey("equipment_type");
+    public static final RegistryType<EquipmentType> EQUIPMENT_TYPE = Registries.spongeKey("equipment_type");
 
-    public static final RegistryKey<Registry<EventContextKey<?>>> EVENT_CONTEXT_KEY = Registries.spongeKey("event_context_key");
+    public static final RegistryType<EventContextKey<?>> EVENT_CONTEXT_KEY = Registries.spongeKey("event_context_key");
 
-    public static final RegistryKey<Registry<FireworkShape>> FIREWORK_SHAPE = Registries.spongeKey("firework_shape");
+    public static final RegistryType<FireworkShape> FIREWORK_SHAPE = Registries.spongeKey("firework_shape");
 
-    public static final RegistryKey<Registry<FoxType>> FOX_TYPE = Registries.spongeKey("fox_type");
+    public static final RegistryType<FoxType> FOX_TYPE = Registries.spongeKey("fox_type");
 
-    public static final RegistryKey<Registry<GameMode>> GAME_MODE = Registries.spongeKey("game_mode");
+    public static final RegistryType<GameMode> GAME_MODE = Registries.spongeKey("game_mode");
 
-    public static final RegistryKey<Registry<GameRule<?>>> GAME_RULE = Registries.spongeKey("game_rule");
+    public static final RegistryType<GameRule<?>> GAME_RULE = Registries.spongeKey("game_rule");
 
-    public static final RegistryKey<Registry<GeneratorModifierType>> GENERATOR_MODIFIER_TYPE = Registries.spongeKey("generator_modifier_type");
+    public static final RegistryType<GeneratorModifierType> GENERATOR_MODIFIER_TYPE = Registries.spongeKey("generator_modifier_type");
 
-    public static final RegistryKey<Registry<GoalExecutorType>> GOAL_EXECUTOR_TYPE = Registries.spongeKey("goal_executor_type");
+    public static final RegistryType<GoalExecutorType> GOAL_EXECUTOR_TYPE = Registries.spongeKey("goal_executor_type");
 
-    public static final RegistryKey<Registry<GoalType>> GOAL_TYPE = Registries.spongeKey("goal_type");
+    public static final RegistryType<GoalType> GOAL_TYPE = Registries.spongeKey("goal_type");
 
-    public static final RegistryKey<Registry<HandPreference>> HAND_PREFERENCE = Registries.spongeKey("hand_preference");
+    public static final RegistryType<HandPreference> HAND_PREFERENCE = Registries.spongeKey("hand_preference");
 
-    public static final RegistryKey<Registry<HandType>> HAND_TYPE = Registries.spongeKey("hand_type");
+    public static final RegistryType<HandType> HAND_TYPE = Registries.spongeKey("hand_type");
 
-    public static final RegistryKey<Registry<HeightType>> HEIGHT_TYPE = Registries.spongeKey("height_type");
+    public static final RegistryType<HeightType> HEIGHT_TYPE = Registries.spongeKey("height_type");
 
-    public static final RegistryKey<Registry<HorseColor>> HORSE_COLOR = Registries.spongeKey("horse_color");
+    public static final RegistryType<HorseColor> HORSE_COLOR = Registries.spongeKey("horse_color");
 
-    public static final RegistryKey<Registry<HorseStyle>> HORSE_STYLE = Registries.spongeKey("horse_style");
+    public static final RegistryType<HorseStyle> HORSE_STYLE = Registries.spongeKey("horse_style");
 
-    public static final RegistryKey<Registry<InstrumentType>> INSTRUMENT_TYPE = Registries.spongeKey("instrument_type");
+    public static final RegistryType<InstrumentType> INSTRUMENT_TYPE = Registries.spongeKey("instrument_type");
 
-    public static final RegistryKey<Registry<IntegerStateProperty>> INTEGER_STATE_PROPERTY = Registries.spongeKey("integer_state_property");
+    public static final RegistryType<IntegerStateProperty> INTEGER_STATE_PROPERTY = Registries.spongeKey("integer_state_property");
 
-    public static final RegistryKey<Registry<Key<?>>> KEY = Registries.spongeKey("key");
+    public static final RegistryType<Key<?>> KEY = Registries.spongeKey("key");
 
-    public static final RegistryKey<Registry<LightType>> LIGHT_TYPE = Registries.spongeKey("light_type");
+    public static final RegistryType<LightType> LIGHT_TYPE = Registries.spongeKey("light_type");
 
-    public static final RegistryKey<Registry<LlamaType>> LLAMA_TYPE = Registries.spongeKey("llama_type");
+    public static final RegistryType<LlamaType> LLAMA_TYPE = Registries.spongeKey("llama_type");
 
-    public static final RegistryKey<Registry<MatterType>> MATTER_TYPE = Registries.spongeKey("matter_type");
+    public static final RegistryType<MatterType> MATTER_TYPE = Registries.spongeKey("matter_type");
 
-    public static final RegistryKey<Registry<Mirror>> MIRROR = Registries.spongeKey("mirror");
+    public static final RegistryType<Mirror> MIRROR = Registries.spongeKey("mirror");
 
-    public static final RegistryKey<Registry<MooshroomType>> MOOSHROOM_TYPE = Registries.spongeKey("mooshroom_type");
+    public static final RegistryType<MooshroomType> MOOSHROOM_TYPE = Registries.spongeKey("mooshroom_type");
 
-    public static final RegistryKey<Registry<MovementType>> MOVEMENT_TYPE = Registries.spongeKey("movement_type");
+    public static final RegistryType<MovementType> MOVEMENT_TYPE = Registries.spongeKey("movement_type");
 
-    public static final RegistryKey<Registry<MusicDisc>> MUSIC_DISC = Registries.spongeKey("music_disc");
+    public static final RegistryType<MusicDisc> MUSIC_DISC = Registries.spongeKey("music_disc");
 
-    public static final RegistryKey<Registry<NotePitch>> NOTE_PITCH = Registries.spongeKey("note_pitch");
+    public static final RegistryType<NotePitch> NOTE_PITCH = Registries.spongeKey("note_pitch");
 
-    public static final RegistryKey<Registry<ObjectiveDisplayMode>> OBJECTIVE_DISPLAY_MODE = Registries.spongeKey("objective_display_mode");
+    public static final RegistryType<ObjectiveDisplayMode> OBJECTIVE_DISPLAY_MODE = Registries.spongeKey("objective_display_mode");
 
-    public static final RegistryKey<Registry<Operation>> OPERATION = Registries.spongeKey("operation");
+    public static final RegistryType<Operation> OPERATION = Registries.spongeKey("operation");
 
-    public static final RegistryKey<Registry<Orientation>> ORIENTATION = Registries.spongeKey("orientation");
+    public static final RegistryType<Orientation> ORIENTATION = Registries.spongeKey("orientation");
 
-    public static final RegistryKey<Registry<PaletteType<?>>> PALETTE_TYPE = Registries.spongeKey("palette_type");
+    public static final RegistryType<PaletteType<?>> PALETTE_TYPE = Registries.spongeKey("palette_type");
 
-    public static final RegistryKey<Registry<PandaGene>> PANDA_GENE = Registries.spongeKey("panda_gene");
+    public static final RegistryType<PandaGene> PANDA_GENE = Registries.spongeKey("panda_gene");
 
-    public static final RegistryKey<Registry<ParrotType>> PARROT_TYPE = Registries.spongeKey("parrot_type");
+    public static final RegistryType<ParrotType> PARROT_TYPE = Registries.spongeKey("parrot_type");
 
-    public static final RegistryKey<Registry<ParticleOption<?>>> PARTICLE_OPTION = Registries.spongeKey("particle_option");
+    public static final RegistryType<ParticleOption<?>> PARTICLE_OPTION = Registries.spongeKey("particle_option");
 
-    public static final RegistryKey<Registry<PhantomPhase>> PHANTOM_PHASE = Registries.spongeKey("phantom_phase");
+    public static final RegistryType<PhantomPhase> PHANTOM_PHASE = Registries.spongeKey("phantom_phase");
 
-    public static final RegistryKey<Registry<PickupRule>> PICKUP_RULE = Registries.spongeKey("pickup_rule");
+    public static final RegistryType<PickupRule> PICKUP_RULE = Registries.spongeKey("pickup_rule");
 
-    public static final RegistryKey<Registry<PistonType>> PISTON_TYPE = Registries.spongeKey("piston_type");
+    public static final RegistryType<PistonType> PISTON_TYPE = Registries.spongeKey("piston_type");
 
-    public static final RegistryKey<Registry<PlaceholderParser>> PLACEHOLDER_PARSER = Registries.spongeKey("placeholder_parser");
+    public static final RegistryType<PlaceholderParser> PLACEHOLDER_PARSER = Registries.spongeKey("placeholder_parser");
 
-    public static final RegistryKey<Registry<PortalType>> PORTAL_TYPE = Registries.spongeKey("portal_type");
+    public static final RegistryType<PortalType> PORTAL_TYPE = Registries.spongeKey("portal_type");
 
-    public static final RegistryKey<Registry<PortionType>> PORTION_TYPE = Registries.spongeKey("portion_type");
+    public static final RegistryType<PortionType> PORTION_TYPE = Registries.spongeKey("portion_type");
 
-    public static final RegistryKey<Registry<PotionType>> POTION_TYPE = Registries.spongeKey("potion_type");
+    public static final RegistryType<PotionType> POTION_TYPE = Registries.spongeKey("potion_type");
 
-    public static final RegistryKey<Registry<ProfessionType>> PROFESSION_TYPE = Registries.spongeKey("profession_type");
+    public static final RegistryType<ProfessionType> PROFESSION_TYPE = Registries.spongeKey("profession_type");
 
-    public static final RegistryKey<Registry<RabbitType>> RABBIT_TYPE = Registries.spongeKey("rabbit_type");
+    public static final RegistryType<RabbitType> RABBIT_TYPE = Registries.spongeKey("rabbit_type");
 
-    public static final RegistryKey<Registry<RaidStatus>> RAID_STATUS = Registries.spongeKey("raid_status");
+    public static final RegistryType<RaidStatus> RAID_STATUS = Registries.spongeKey("raid_status");
 
-    public static final RegistryKey<Registry<RailDirection>> RAIL_DIRECTION = Registries.spongeKey("rail_direction");
+    public static final RegistryType<RailDirection> RAIL_DIRECTION = Registries.spongeKey("rail_direction");
 
-    public static final RegistryKey<Registry<Rotation>> ROTATION = Registries.spongeKey("rotation");
+    public static final RegistryType<Rotation> ROTATION = Registries.spongeKey("rotation");
 
-    public static final RegistryKey<Registry<SelectorSortAlgorithm>> SELECTOR_SORT_ALGORITHM = Registries.spongeKey("selector_sort_algorithm");
+    public static final RegistryType<SelectorSortAlgorithm> SELECTOR_SORT_ALGORITHM = Registries.spongeKey("selector_sort_algorithm");
 
-    public static final RegistryKey<Registry<SelectorType>> SELECTOR_TYPE = Registries.spongeKey("selector_type");
+    public static final RegistryType<SelectorType> SELECTOR_TYPE = Registries.spongeKey("selector_type");
 
-    public static final RegistryKey<Registry<SkinPart>> SKIN_PART = Registries.spongeKey("skin_part");
+    public static final RegistryType<SkinPart> SKIN_PART = Registries.spongeKey("skin_part");
 
-    public static final RegistryKey<Registry<SlabPortion>> SLAB_PORTION = Registries.spongeKey("slab_portion");
+    public static final RegistryType<SlabPortion> SLAB_PORTION = Registries.spongeKey("slab_portion");
 
-    public static final RegistryKey<Registry<SpawnType>> SPAWN_TYPE = Registries.spongeKey("spawn_type");
+    public static final RegistryType<SpawnType> SPAWN_TYPE = Registries.spongeKey("spawn_type");
 
-    public static final RegistryKey<Registry<SpellType>> SPELL_TYPE = Registries.spongeKey("spell_type");
+    public static final RegistryType<SpellType> SPELL_TYPE = Registries.spongeKey("spell_type");
 
-    public static final RegistryKey<Registry<StairShape>> STAIR_SHAPE = Registries.spongeKey("stair_shape");
+    public static final RegistryType<StairShape> STAIR_SHAPE = Registries.spongeKey("stair_shape");
 
-    public static final RegistryKey<Registry<StructureMode>> STRUCTURE_MODE = Registries.spongeKey("structure_mode");
+    public static final RegistryType<StructureMode> STRUCTURE_MODE = Registries.spongeKey("structure_mode");
 
-    public static final RegistryKey<Registry<TaskPriority>> TASK_PRIORITY = Registries.spongeKey("task_priority");
+    public static final RegistryType<TaskPriority> TASK_PRIORITY = Registries.spongeKey("task_priority");
 
-    public static final RegistryKey<Registry<TeleportHelperFilter>> TELEPORT_HELPER_FILTER = Registries.spongeKey("teleport_helper_filter");
+    public static final RegistryType<TeleportHelperFilter> TELEPORT_HELPER_FILTER = Registries.spongeKey("teleport_helper_filter");
 
-    public static final RegistryKey<Registry<ToolType>> TOOL_TYPE = Registries.spongeKey("tool_type");
+    public static final RegistryType<ToolType> TOOL_TYPE = Registries.spongeKey("tool_type");
 
-    public static final RegistryKey<Registry<TransactionType>> TRANSACTION_TYPE = Registries.spongeKey("transaction_type");
+    public static final RegistryType<TransactionType> TRANSACTION_TYPE = Registries.spongeKey("transaction_type");
 
-    public static final RegistryKey<Registry<Trigger<?>>> TRIGGER = Registries.spongeKey("trigger");
+    public static final RegistryType<Trigger<?>> TRIGGER = Registries.spongeKey("trigger");
 
-    public static final RegistryKey<Registry<TropicalFishShape>> TROPICAL_FISH_SHAPE = Registries.spongeKey("tropical_fish_shape");
+    public static final RegistryType<TropicalFishShape> TROPICAL_FISH_SHAPE = Registries.spongeKey("tropical_fish_shape");
 
-    public static final RegistryKey<Registry<QueryType>> QUERY_TYPE = Registries.spongeKey("query_type");
+    public static final RegistryType<QueryType> QUERY_TYPE = Registries.spongeKey("query_type");
 
-    public static final RegistryKey<Registry<Visibility>> VISIBILITY = Registries.spongeKey("visibility");
+    public static final RegistryType<Visibility> VISIBILITY = Registries.spongeKey("visibility");
 
-    public static final RegistryKey<Registry<Weather>> WEATHER = Registries.spongeKey("weather");
+    public static final RegistryType<Weather> WEATHER = Registries.spongeKey("weather");
 
-    public static final RegistryKey<Registry<WireAttachmentType>> WIRE_ATTACHMENT_TYPE = Registries.spongeKey("wire_attachment_type");
+    public static final RegistryType<WireAttachmentType> WIRE_ATTACHMENT_TYPE = Registries.spongeKey("wire_attachment_type");
 
-    public static final RegistryKey<Registry<WoodType>> WOOD_TYPE = Registries.spongeKey("wood_type");
+    public static final RegistryType<WoodType> WOOD_TYPE = Registries.spongeKey("wood_type");
 
-    public static final RegistryKey<Registry<WorldArchetype>> WORLD_ARCHETYPE = Registries.spongeKey("world_archetype");
+    public static final RegistryType<WorldArchetype> WORLD_ARCHETYPE = Registries.spongeKey("world_archetype");
 
     // @formatter:on
 
-    private static <V> RegistryKey<V> minecraftKey(final String key) {
-        return RegistryKey.of(RegistryRoots.MINECRAFT, ResourceKey.minecraft(key));
+    private static <V> RegistryType<V> minecraftKey(final String key) {
+        return RegistryType.of(RegistryRoots.MINECRAFT, ResourceKey.minecraft(key));
     }
 
-    private static <V> RegistryKey<V> spongeKey(final String key) {
-        return RegistryKey.of(RegistryRoots.SPONGE, ResourceKey.sponge(key));
+    private static <V> RegistryType<V> spongeKey(final String key) {
+        return RegistryType.of(RegistryRoots.SPONGE, ResourceKey.sponge(key));
     }
 }

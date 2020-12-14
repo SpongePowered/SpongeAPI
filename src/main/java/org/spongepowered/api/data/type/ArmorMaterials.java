@@ -60,6 +60,6 @@ public final class ArmorMaterials {
     }
 
     private static DefaultedRegistryReference<ArmorMaterial> key(final ResourceKey location) {
-        return RegistryKey.<ArmorMaterial>of(Registries.ARMOR_MATERIAL.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.ARMOR_MATERIAL, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

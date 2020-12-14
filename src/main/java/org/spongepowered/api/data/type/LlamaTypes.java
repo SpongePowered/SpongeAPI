@@ -59,6 +59,6 @@ public final class LlamaTypes {
     }
 
     private static DefaultedRegistryReference<LlamaType> key(final ResourceKey location) {
-        return RegistryKey.<LlamaType>of(Registries.LLAMA_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.LLAMA_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

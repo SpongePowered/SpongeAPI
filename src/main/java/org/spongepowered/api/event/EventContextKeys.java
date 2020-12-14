@@ -287,6 +287,6 @@ public final class EventContextKeys {
     }
 
     private static <T> DefaultedRegistryReference<EventContextKey<T>> key(final ResourceKey location) {
-        return RegistryKey.<EventContextKey<T>>of(Registries.EVENT_CONTEXT_KEY.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.EVENT_CONTEXT_KEY, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

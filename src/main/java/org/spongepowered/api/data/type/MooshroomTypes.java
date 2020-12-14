@@ -55,6 +55,6 @@ public final class MooshroomTypes {
     }
 
     private static DefaultedRegistryReference<MooshroomType> key(final ResourceKey location) {
-        return RegistryKey.<MooshroomType>of(Registries.MOOSHROOM_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.MOOSHROOM_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

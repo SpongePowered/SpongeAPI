@@ -45,7 +45,7 @@ public final class MatterTypes {
     // @formatter:on
 
     private static RegistryReference<MatterType> key(final ResourceKey location) {
-        return RegistryKey.<MatterType>of(Registries.MATTER_TYPE.registry(), location).asReference();
+        return RegistryKey.of(Registries.MATTER_TYPE, location).asReference();
     }
 
     private MatterTypes() {

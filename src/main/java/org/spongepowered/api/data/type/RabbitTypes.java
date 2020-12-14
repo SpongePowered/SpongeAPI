@@ -65,6 +65,6 @@ public final class RabbitTypes {
     }
 
     private static DefaultedRegistryReference<RabbitType> key(final ResourceKey location) {
-        return RegistryKey.<RabbitType>of(Registries.RABBIT_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.RABBIT_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

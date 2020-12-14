@@ -54,6 +54,6 @@ public final class DismountTypes {
     }
 
     private static DefaultedRegistryReference<DismountType> key(final ResourceKey location) {
-        return RegistryKey.<DismountType>of(Registries.DISMOUNT_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.DISMOUNT_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

@@ -62,10 +62,10 @@ public final class StatisticCategories {
     }
 
     private static DefaultedRegistryReference<StatisticCategory> key(final ResourceKey location) {
-        return RegistryKey.<StatisticCategory>of(Registries.STATISTIC_CATEGORY.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.STATISTIC_CATEGORY, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 
     private static <T extends CatalogType> DefaultedRegistryReference<StatisticCategory.ForCatalog<T>> catalogKey(final ResourceKey location) {
-        return RegistryKey.<StatisticCategory.ForCatalog<T>>of(Registries.STATISTIC_CATEGORY.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.STATISTIC_CATEGORY, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

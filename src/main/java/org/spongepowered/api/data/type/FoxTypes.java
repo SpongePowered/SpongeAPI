@@ -55,6 +55,6 @@ public final class FoxTypes {
     }
 
     private static DefaultedRegistryReference<FoxType> key(final ResourceKey location) {
-        return RegistryKey.<FoxType>of(Registries.FOX_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.FOX_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

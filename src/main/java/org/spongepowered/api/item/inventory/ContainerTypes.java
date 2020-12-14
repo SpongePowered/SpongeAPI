@@ -145,6 +145,6 @@ public final class ContainerTypes {
     }
 
     private static DefaultedRegistryReference<ContainerType> key(final ResourceKey location) {
-        return RegistryKey.<ContainerType>of(Registries.CONTAINER_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.CONTAINER_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

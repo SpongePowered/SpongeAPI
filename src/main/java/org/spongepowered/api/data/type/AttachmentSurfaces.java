@@ -57,6 +57,6 @@ public final class AttachmentSurfaces {
     }
 
     private static DefaultedRegistryReference<AttachmentSurface> key(final ResourceKey location) {
-        return RegistryKey.<AttachmentSurface>of(Registries.ATTACHMENT_SURFACE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.ATTACHMENT_SURFACE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

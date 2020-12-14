@@ -81,6 +81,6 @@ public final class StructureModes {
     }
 
     private static DefaultedRegistryReference<StructureMode> key(final ResourceKey location) {
-        return RegistryKey.<StructureMode>of(Registries.STRUCTURE_MODE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.STRUCTURE_MODE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

@@ -86,6 +86,6 @@ public final class PaletteTypes {
     }
 
     private static <T> DefaultedRegistryReference<PaletteType<T>> key(final ResourceKey location) {
-        return RegistryKey.<PaletteType<T>>of(Registries.PALETTE_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.PALETTE_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

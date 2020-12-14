@@ -38,16 +38,16 @@ import java.util.function.Supplier;
  */
 public interface RegistryKey<T> {
 
-    static <T> RegistryKey<T> of(final RegistryLocation registry, final ResourceKey location) {
+    static <T> RegistryKey<T> of(final RegistryType<T> registry, final ResourceKey location) {
         return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(registry, location);
     }
 
     /**
-     * Gets the {@link RegistryLocation location} defining the parent registry.
+     * Gets the {@link RegistryType location} defining the parent registry.
      *
      * @return The location
      */
-    RegistryLocation registry();
+    RegistryType<T> registry();
 
     /**
      * Gets the {@link ResourceKey key} defining the id. See the documentation on resource key for
@@ -69,10 +69,10 @@ public interface RegistryKey<T> {
      *
      * @return The reference
      */
-    DefaultedRegistryReference<T> asDefaultedReference(Supplier<RegistryHolder> defaultHolder);
+    <V extends T> DefaultedRegistryReference<V> asDefaultedReference(final Supplier<RegistryHolder> defaultHolder);
 
     interface Factory {
 
-        <T> RegistryKey<T> create(RegistryLocation registry, ResourceKey location);
+        <T> RegistryKey<T> create(final RegistryType<T> registry, final ResourceKey location);
     }
 }

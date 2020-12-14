@@ -57,6 +57,6 @@ public final class WireAttachmentTypes {
     }
 
     private static DefaultedRegistryReference<WireAttachmentType> key(final ResourceKey location) {
-        return RegistryKey.<WireAttachmentType>of(Registries.WIRE_ATTACHMENT_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.WIRE_ATTACHMENT_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

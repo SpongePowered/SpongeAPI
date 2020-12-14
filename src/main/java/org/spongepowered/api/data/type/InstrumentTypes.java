@@ -83,6 +83,6 @@ public final class InstrumentTypes {
     }
 
     private static DefaultedRegistryReference<InstrumentType> key(final ResourceKey location) {
-        return RegistryKey.<InstrumentType>of(Registries.INSTRUMENT_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.INSTRUMENT_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

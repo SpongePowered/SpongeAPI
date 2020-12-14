@@ -63,6 +63,6 @@ public final class BoatTypes {
     }
 
     private static DefaultedRegistryReference<BoatType> key(final ResourceKey location) {
-        return RegistryKey.<BoatType>of(Registries.BOAT_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.BOAT_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

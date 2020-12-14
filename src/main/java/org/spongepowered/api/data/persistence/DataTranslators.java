@@ -134,6 +134,6 @@ public final class DataTranslators {
     }
 
     private static <T> DefaultedRegistryReference<DataTranslator<T>> key(final ResourceKey location) {
-        return RegistryKey.<DataTranslator<T>>of(Registries.DATA_TRANSLATOR.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.DATA_TRANSLATOR, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

@@ -57,6 +57,6 @@ public final class PickupRules {
     }
 
     private static DefaultedRegistryReference<PickupRule> key(final ResourceKey location) {
-        return RegistryKey.<PickupRule>of(Registries.PICKUP_RULE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.PICKUP_RULE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

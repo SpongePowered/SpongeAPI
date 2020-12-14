@@ -78,6 +78,6 @@ public final class Visibilities {
     }
 
     private static DefaultedRegistryReference<Visibility> key(final ResourceKey location) {
-        return RegistryKey.<Visibility>of(Registries.VISIBILITY.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.VISIBILITY, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

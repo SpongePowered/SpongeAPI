@@ -29,9 +29,9 @@ import org.spongepowered.api.Sponge;
 
 import java.util.Objects;
 
-public interface RegistryLocation {
+public interface RegistryType<T> {
 
-    static RegistryLocation of(final ResourceKey root, final ResourceKey location) {
+    static <T> RegistryType<T> of(final ResourceKey root, final ResourceKey location) {
         Objects.requireNonNull(root, "root");
         Objects.requireNonNull(location, "location");
 
@@ -44,6 +44,6 @@ public interface RegistryLocation {
 
     interface Factory {
 
-        RegistryLocation create(ResourceKey root, ResourceKey location);
+        <T> RegistryType<T> create(final ResourceKey root, ResourceKey location);
     }
 }

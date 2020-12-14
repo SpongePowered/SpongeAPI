@@ -71,6 +71,6 @@ public final class RailDirections {
     }
 
     private static DefaultedRegistryReference<RailDirection> key(final ResourceKey location) {
-        return RegistryKey.<RailDirection>of(Registries.RAIL_DIRECTION.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.RAIL_DIRECTION, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

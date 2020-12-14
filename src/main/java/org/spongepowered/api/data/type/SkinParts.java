@@ -65,6 +65,6 @@ public final class SkinParts {
     }
 
     private static DefaultedRegistryReference<SkinPart> key(final ResourceKey location) {
-        return RegistryKey.<SkinPart>of(Registries.SKIN_PART.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.SKIN_PART, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

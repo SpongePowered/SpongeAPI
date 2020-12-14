@@ -75,6 +75,6 @@ public final class AdvancementTypes {
     }
 
     private static DefaultedRegistryReference<AdvancementType> key(final ResourceKey location) {
-        return RegistryKey.<AdvancementType>of(Registries.ADVANCEMENT_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.ADVANCEMENT_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

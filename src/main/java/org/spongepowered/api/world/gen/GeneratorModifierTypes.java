@@ -58,6 +58,6 @@ public final class GeneratorModifierTypes {
     }
 
     private static DefaultedRegistryReference<GeneratorModifierType> key(final ResourceKey location) {
-        return RegistryKey.<GeneratorModifierType>of(Registries.GENERATOR_MODIFIER_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.GENERATOR_MODIFIER_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

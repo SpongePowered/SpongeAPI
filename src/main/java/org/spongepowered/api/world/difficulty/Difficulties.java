@@ -59,6 +59,6 @@ public final class Difficulties {
     }
 
     private static DefaultedRegistryReference<Difficulty> key(final ResourceKey location) {
-        return RegistryKey.<Difficulty>of(Registries.DIFFICULTY.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.DIFFICULTY, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

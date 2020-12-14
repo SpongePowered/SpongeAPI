@@ -184,6 +184,6 @@ public final class ParticleOptions {
     }
 
     private static <T> DefaultedRegistryReference<ParticleOption<T>> key(final ResourceKey location) {
-        return RegistryKey.<ParticleOption<T>>of(Registries.PARTICLE_OPTION.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.PARTICLE_OPTION, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

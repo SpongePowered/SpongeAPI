@@ -62,6 +62,6 @@ public final class HandTypes {
     }
 
     private static DefaultedRegistryReference<HandType> key(final ResourceKey location) {
-        return RegistryKey.<HandType>of(Registries.HAND_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.HAND_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

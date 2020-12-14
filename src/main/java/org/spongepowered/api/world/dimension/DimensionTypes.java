@@ -51,7 +51,7 @@ public final class DimensionTypes {
     // @formatter:on
 
     private static RegistryReference<DimensionType> key(final ResourceKey location) {
-        return RegistryKey.<DimensionType>of(Registries.DIMENSION_TYPE.registry(), location).asReference();
+        return RegistryKey.of(Registries.DIMENSION_TYPE, location).asReference();
     }
 
     private DimensionTypes() {

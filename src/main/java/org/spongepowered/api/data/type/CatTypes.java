@@ -73,6 +73,6 @@ public final class CatTypes {
     }
 
     private static DefaultedRegistryReference<CatType> key(final ResourceKey location) {
-        return RegistryKey.<CatType>of(Registries.CAT_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.CAT_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

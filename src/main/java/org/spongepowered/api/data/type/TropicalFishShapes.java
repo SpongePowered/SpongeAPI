@@ -76,6 +76,6 @@ public final class TropicalFishShapes {
     }
 
     private static DefaultedRegistryReference<TropicalFishShape> key(final ResourceKey location) {
-        return RegistryKey.<TropicalFishShape>of(Registries.TROPICAL_FISH_SHAPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.TROPICAL_FISH_SHAPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

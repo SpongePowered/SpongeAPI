@@ -58,6 +58,6 @@ public final class FluidTypes {
     }
 
     private static DefaultedRegistryReference<FluidType> key(final ResourceKey location) {
-        return RegistryKey.<FluidType>of(Registries.FLUID_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.FLUID_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

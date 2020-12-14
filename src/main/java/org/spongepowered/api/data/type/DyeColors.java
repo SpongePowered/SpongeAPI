@@ -83,6 +83,6 @@ public final class DyeColors {
     }
 
     private static DefaultedRegistryReference<DyeColor> key(final ResourceKey location) {
-        return RegistryKey.<DyeColor>of(Registries.DYE_COLOR.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.DYE_COLOR, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

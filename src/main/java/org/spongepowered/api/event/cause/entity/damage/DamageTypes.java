@@ -80,6 +80,6 @@ public final class DamageTypes {
     }
 
     private static DefaultedRegistryReference<DamageType> key(final ResourceKey location) {
-        return RegistryKey.<DamageType>of(Registries.DAMAGE_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.DAMAGE_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

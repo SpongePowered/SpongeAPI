@@ -2651,7 +2651,7 @@ public final class Keys {
     // @formatter:on
 
     private static <T, V extends Value<T>> DefaultedRegistryReference<Key<V>> key(final ResourceKey location) {
-        return RegistryKey.<Key<V>>of(Registries.KEY.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.KEY, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 
     private Keys() {

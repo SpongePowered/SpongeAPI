@@ -57,6 +57,6 @@ public final class ChestAttachmentTypes {
     }
 
     private static DefaultedRegistryReference<ChestAttachmentType> key(final ResourceKey location) {
-        return RegistryKey.<ChestAttachmentType>of(Registries.CHEST_ATTACHMENT_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.CHEST_ATTACHMENT_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

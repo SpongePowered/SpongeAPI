@@ -52,6 +52,6 @@ public final class LightTypes {
     }
 
     private static DefaultedRegistryReference<LightType> key(final ResourceKey location) {
-        return RegistryKey.<LightType>of(Registries.LIGHT_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.LIGHT_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

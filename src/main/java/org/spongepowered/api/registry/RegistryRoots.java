@@ -28,13 +28,9 @@ import org.spongepowered.api.ResourceKey;
 
 public final class RegistryRoots {
 
-    public static final RegistryLocation MINECRAFT = RegistryRoots.newRoot(ResourceKey.minecraft("root"));
+    public static final ResourceKey MINECRAFT = ResourceKey.minecraft("root");
 
-    public static final RegistryLocation SPONGE = RegistryRoots.newRoot(ResourceKey.sponge("root"));
-
-    private static RegistryLocation newRoot(final ResourceKey key) {
-        return RegistryLocation.of(key, key);
-    }
+    public static final ResourceKey SPONGE = ResourceKey.sponge("root");
 
     private RegistryRoots() {
     }

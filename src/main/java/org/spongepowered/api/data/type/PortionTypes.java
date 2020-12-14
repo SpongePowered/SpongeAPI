@@ -52,6 +52,6 @@ public final class PortionTypes {
     }
 
     private static DefaultedRegistryReference<PortionType> key(final ResourceKey location) {
-        return RegistryKey.<PortionType>of(Registries.PORTION_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.PORTION_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

@@ -63,6 +63,6 @@ public final class EquipmentTypes {
     }
 
     private static DefaultedRegistryReference<EquipmentType> key(final ResourceKey location) {
-        return RegistryKey.<EquipmentType>of(Registries.EQUIPMENT_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.EQUIPMENT_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

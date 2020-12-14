@@ -74,6 +74,6 @@ public final class MusicDiscs {
     }
 
     private static DefaultedRegistryReference<MusicDisc> key(final ResourceKey location) {
-        return RegistryKey.<MusicDisc>of(Registries.MUSIC_DISC.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.MUSIC_DISC, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

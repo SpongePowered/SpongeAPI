@@ -52,6 +52,6 @@ public final class EquipmentGroups {
     }
 
     private static DefaultedRegistryReference<EquipmentGroup> key(final ResourceKey location) {
-        return RegistryKey.<EquipmentGroup>of(Registries.EQUIPMENT_GROUP.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.EQUIPMENT_GROUP, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

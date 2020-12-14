@@ -64,6 +64,6 @@ public final class GoalExecutorTypes {
     }
 
     private static DefaultedRegistryReference<GoalExecutorType> key(final ResourceKey location) {
-        return RegistryKey.<GoalExecutorType>of(Registries.GOAL_EXECUTOR_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.GOAL_EXECUTOR_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

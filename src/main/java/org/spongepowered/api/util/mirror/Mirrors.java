@@ -53,6 +53,6 @@ public final class Mirrors {
     }
 
     private static DefaultedRegistryReference<Mirror> key(final ResourceKey location) {
-        return RegistryKey.<Mirror>of(Registries.MIRROR.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.MIRROR, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

@@ -57,10 +57,10 @@ public final class DataFormats {
     }
 
     private static DefaultedRegistryReference<StringDataFormat> stringKey(final ResourceKey location) {
-        return RegistryKey.<StringDataFormat>of(Registries.DATA_FORMAT.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.DATA_FORMAT, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 
     private static DefaultedRegistryReference<DataFormat> key(final ResourceKey location) {
-        return RegistryKey.<DataFormat>of(Registries.DATA_FORMAT.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.DATA_FORMAT, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

@@ -61,6 +61,6 @@ public final class ParrotTypes {
     }
 
     private static DefaultedRegistryReference<ParrotType> key(final ResourceKey location) {
-        return RegistryKey.<ParrotType>of(Registries.PARROT_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.PARROT_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

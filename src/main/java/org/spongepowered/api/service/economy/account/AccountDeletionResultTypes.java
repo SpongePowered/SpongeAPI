@@ -59,7 +59,7 @@ public final class AccountDeletionResultTypes {
     }
 
     private static DefaultedRegistryReference<AccountDeletionResultType> key(final ResourceKey location) {
-        return RegistryKey.<AccountDeletionResultType>of(Registries.ACCOUNT_DELETION_RESULT_TYPE.registry(), location).asDefaultedReference(() -> Sponge
+        return RegistryKey.of(Registries.ACCOUNT_DELETION_RESULT_TYPE, location).asDefaultedReference(() -> Sponge
                 .getGame().registries());
     }
 }

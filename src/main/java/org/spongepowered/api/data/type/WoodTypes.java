@@ -63,6 +63,6 @@ public final class WoodTypes {
     }
 
     private static DefaultedRegistryReference<WoodType> key(final ResourceKey location) {
-        return RegistryKey.<WoodType>of(Registries.WOOD_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.WOOD_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

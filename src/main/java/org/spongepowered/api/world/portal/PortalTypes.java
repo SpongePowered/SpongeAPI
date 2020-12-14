@@ -52,6 +52,6 @@ public final class PortalTypes {
     }
 
     private static DefaultedRegistryReference<PortalType> key(final ResourceKey location) {
-        return RegistryKey.<PortalType>of(Registries.PORTAL_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.PORTAL_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

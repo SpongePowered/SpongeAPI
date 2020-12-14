@@ -101,6 +101,6 @@ public final class NotePitches {
     }
 
     private static DefaultedRegistryReference<NotePitch> key(final ResourceKey location) {
-        return RegistryKey.<NotePitch>of(Registries.NOTE_PITCH.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.NOTE_PITCH, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

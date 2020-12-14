@@ -200,6 +200,6 @@ public final class IntegerStateProperties {
     }
 
     private static DefaultedRegistryReference<IntegerStateProperty> key(final ResourceKey location) {
-        return RegistryKey.<IntegerStateProperty>of(Registries.INTEGER_STATE_PROPERTY.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.INTEGER_STATE_PROPERTY, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

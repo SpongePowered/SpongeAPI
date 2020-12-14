@@ -1577,6 +1577,6 @@ public final class BlockTypes {
     }
 
     private static DefaultedRegistryReference<BlockType> key(final ResourceKey location) {
-        return RegistryKey.<BlockType>of(Registries.BLOCK_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.BLOCK_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

@@ -209,6 +209,6 @@ public final class BiomeTypes {
     }
 
     private static RegistryReference<BiomeType> key(final ResourceKey location) {
-        return RegistryKey.<BiomeType>of(Registries.BIOME_TYPE.registry(), location).asReference();
+        return RegistryKey.of(Registries.BIOME_TYPE, location).asReference();
     }
 }

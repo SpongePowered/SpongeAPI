@@ -62,6 +62,6 @@ public final class HeightTypes {
     }
 
     private static DefaultedRegistryReference<HeightType> key(final ResourceKey location) {
-        return RegistryKey.<HeightType>of(Registries.HEIGHT_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.HEIGHT_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

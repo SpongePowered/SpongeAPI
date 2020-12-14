@@ -56,6 +56,6 @@ public final class RaidStatuses {
     }
 
     private static DefaultedRegistryReference<RaidStatus> key(final ResourceKey location) {
-        return RegistryKey.<RaidStatus>of(Registries.RAID_STATUS.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.RAID_STATUS, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

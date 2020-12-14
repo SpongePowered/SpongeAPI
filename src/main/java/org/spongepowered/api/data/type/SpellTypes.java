@@ -60,6 +60,6 @@ public final class SpellTypes {
     }
 
     private static DefaultedRegistryReference<SpellType> key(final ResourceKey location) {
-        return RegistryKey.<SpellType>of(Registries.SPELL_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.SPELL_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

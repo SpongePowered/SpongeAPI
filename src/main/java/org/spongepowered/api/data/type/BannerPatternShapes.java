@@ -131,6 +131,6 @@ public final class BannerPatternShapes {
     }
 
     private static DefaultedRegistryReference<BannerPatternShape> key(final ResourceKey location) {
-        return RegistryKey.<BannerPatternShape>of(Registries.BANNER_PATTERN_SHAPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.BANNER_PATTERN_SHAPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

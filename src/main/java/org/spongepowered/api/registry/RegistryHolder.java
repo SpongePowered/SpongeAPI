@@ -24,10 +24,9 @@
  */
 package org.spongepowered.api.registry;
 
-import org.spongepowered.api.ResourceKey;
-
 import java.util.Optional;
 import java.util.stream.Stream;
+import org.spongepowered.api.ResourceKey;
 
 /**
  * A holder of {@link Registry registries}.
@@ -35,33 +34,33 @@ import java.util.stream.Stream;
 public interface RegistryHolder {
 
     /**
-     * Gets the {@link Registry} by a {@link RegistryKey key}.
+     * Gets the {@link Registry} by a {@link RegistryType key}.
      *
      * <p>Great care needs to be made in calling this method with any uncertainty as to
      * if the key will exist in the holder. Should the key lack a value, a
      * {@link ValueNotFoundException}</p> will be thrown. Therefore, it is advised to call
-     * {@link RegistryHolder#findRegistry(RegistryKey)} instead.</p>
+     * {@link RegistryHolder#findRegistry(RegistryType)} instead.</p>
      *
-     * @param key The key
+     * @param type The type
      * @param <T> The type
      * @return The registry
      */
-    <T> Registry<T> registry(RegistryKey<T> key);
+    <T> Registry<T> registry(final RegistryType<T> type);
 
     /**
-     * Gets the {@link Registry} by a {@link RegistryKey key}, if found.
+     * Gets the {@link Registry} by a {@link RegistryType type}, if found.
      *
-     * @param key The key
+     * @param type The type
      * @param <T> The type
      * @return The registry or {@link Optional#empty()}
      */
-    <T> Optional<Registry<T>> findRegistry(final RegistryKey<T> key);
+    <T> Optional<Registry<T>> findRegistry(final RegistryType<T> type);
 
     /**
      * Gets a {@link Stream} of the {@link Registry registries} in this holder within a root.
      *
-     * @param registry The location to stream registries of
+     * @param root The root to stream registries of
      * @return The stream
      */
-    Stream<Registry<?>> stream(RegistryLocation registry);
+    <T> Stream<Registry<?>> stream(final ResourceKey root);
 }

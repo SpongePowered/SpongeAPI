@@ -61,6 +61,6 @@ public final class ToolTypes {
     }
 
     private static DefaultedRegistryReference<ToolType> key(final ResourceKey location) {
-        return RegistryKey.<ToolType>of(Registries.TOOL_TYPE.registry(), location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(Registries.TOOL_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }
