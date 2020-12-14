@@ -25,7 +25,8 @@
 package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.data.type.HandType;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
+
+import java.util.function.Supplier;
 
 /**
  * <p>Represents something that can be equipped with armor, main hand and off hand items.
@@ -100,7 +101,7 @@ public interface ArmorEquipable extends Equipable {
      * @param handType The hand type to retrieve from
      * @return The item in hand, if available
      */
-    default ItemStack getItemInHand(DefaultedRegistryReference<? extends HandType> handType) {
+    default ItemStack getItemInHand(Supplier<? extends HandType> handType) {
         return this.getItemInHand(handType.get());
     }
 
@@ -118,7 +119,7 @@ public interface ArmorEquipable extends Equipable {
      * @param handType The hand type to set to
      * @param itemInHand The item in hand
      */
-    default void setItemInHand(DefaultedRegistryReference<? extends HandType> handType, ItemStack itemInHand) {
+    default void setItemInHand(Supplier<? extends HandType> handType, ItemStack itemInHand) {
         this.setItemInHand(handType.get(), itemInHand);
     }
 

@@ -26,7 +26,6 @@ package org.spongepowered.api.scoreboard.objective;
 
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.scoreboard.criteria.Criterion;
@@ -36,6 +35,7 @@ import org.spongepowered.api.util.CopyableBuilder;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Supplier;
 
 /**
  * An objective tracks an integer score for each entry it contains.
@@ -196,7 +196,7 @@ public interface Objective {
          * @param criterion The {@link Criterion} to set
          * @return This builder
          */
-        default Builder criterion(DefaultedRegistryReference<? extends Criterion> criterion) {
+        default Builder criterion(Supplier<? extends Criterion> criterion) {
             return this.criterion(criterion.get());
         }
 
@@ -214,7 +214,7 @@ public interface Objective {
          * @param objectiveDisplayMode The {@link ObjectiveDisplayMode} to set
          * @return This builder
          */
-        default Builder objectiveDisplayMode(DefaultedRegistryReference<? extends ObjectiveDisplayMode> objectiveDisplayMode) {
+        default Builder objectiveDisplayMode(Supplier<? extends ObjectiveDisplayMode> objectiveDisplayMode) {
             return this.objectiveDisplayMode(objectiveDisplayMode.get());
         }
 

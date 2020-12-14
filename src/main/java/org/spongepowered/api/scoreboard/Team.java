@@ -28,11 +28,11 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Supplier;
 
 /**
  * A team on a scoreboard that has a common display theme and other
@@ -191,7 +191,7 @@ public interface Team {
      *
      * @param visibility The {@link Visibility} for this team's nametags
      */
-    default void setNameTagVisibility(DefaultedRegistryReference<? extends Visibility> visibility) {
+    default void setNameTagVisibility(Supplier<? extends Visibility> visibility) {
         this.setNameTagVisibility(visibility.get());
     }
 
@@ -217,7 +217,7 @@ public interface Team {
      *
      * @param visibility The {@link Visibility} for this team's death Texts
      */
-    default void setDeathMessageVisibility(DefaultedRegistryReference<? extends Visibility> visibility) {
+    default void setDeathMessageVisibility(Supplier<? extends Visibility> visibility) {
         this.setDeathMessageVisibility(visibility.get());
     }
 
@@ -241,7 +241,7 @@ public interface Team {
      *
      * @param rule The {@link CollisionRule} for entities on this team
      */
-    default void setCollisionRule(DefaultedRegistryReference<? extends CollisionRule> rule) {
+    default void setCollisionRule(Supplier<? extends CollisionRule> rule) {
         this.setCollisionRule(rule.get());
     }
 
@@ -398,7 +398,7 @@ public interface Team {
          *     nametags
          * @return This builder
          */
-        default Builder nameTagVisibility(DefaultedRegistryReference<? extends Visibility> visibility) {
+        default Builder nameTagVisibility(Supplier<? extends Visibility> visibility) {
             return this.nameTagVisibility(visibility.get());
         }
 
@@ -420,7 +420,7 @@ public interface Team {
          *     death Texts
          * @return This builder
          */
-        default Builder deathTextVisibility(DefaultedRegistryReference<? extends Visibility> visibility) {
+        default Builder deathTextVisibility(Supplier<? extends Visibility> visibility) {
             return this.deathTextVisibility(visibility.get());
         }
 
@@ -440,7 +440,7 @@ public interface Team {
          * @param rule The {@link CollisionRule} for the {@link Team}'s members
          * @return This builder
          */
-        default Builder collisionRule(DefaultedRegistryReference<? extends CollisionRule> rule) {
+        default Builder collisionRule(Supplier<? extends CollisionRule> rule) {
             return this.collisionRule(rule.get());
         }
 

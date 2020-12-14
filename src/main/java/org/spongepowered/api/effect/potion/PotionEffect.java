@@ -29,8 +29,9 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
+
+import java.util.function.Supplier;
 
 /**
  * Represents an effect of a {@link PotionEffectType} for a specified
@@ -74,7 +75,7 @@ public interface PotionEffect extends DataSerializable {
      * @param duration The duration in ticks
      * @return The potion effect
      */
-    static PotionEffect of(DefaultedRegistryReference<? extends PotionEffectType> type, int amplifier, int duration) {
+    static PotionEffect of(Supplier<? extends PotionEffectType> type, int amplifier, int duration) {
         return PotionEffect.builder().potionType(type).amplifier(amplifier).duration(duration).build();
     }
 
@@ -143,7 +144,7 @@ public interface PotionEffect extends DataSerializable {
          * @param potionEffectType The type of item
          * @return This builder, for chaining
          */
-        default Builder potionType(DefaultedRegistryReference<? extends PotionEffectType> potionEffectType) {
+        default Builder potionType(Supplier<? extends PotionEffectType> potionEffectType) {
             return this.potionType(potionEffectType.get());
         }
 

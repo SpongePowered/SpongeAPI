@@ -35,6 +35,7 @@ import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 /**
  * Represents a matcher for {@link Key} values.
@@ -224,7 +225,7 @@ public interface KeyValueMatcher<V> extends DataSerializable {
          * @param <NV> The key value type
          * @return This builder, for chaining
          */
-        default <NV> Builder<NV> key(DefaultedRegistryReference<? extends Key<? extends Value<NV>>> key) {
+        default <NV> Builder<NV> key(Supplier<? extends Key<? extends Value<NV>>> key) {
             return this.key(key.get());
         }
 

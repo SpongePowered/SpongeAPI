@@ -28,13 +28,13 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.DataManipulator;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.state.State;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.schematic.Schematic;
 
 import java.util.Objects;
+import java.util.function.Supplier;
 
 /**
  * Represents a particular "state" that can exist at a {@link ServerLocation} with
@@ -98,7 +98,7 @@ public interface FluidState extends State<FluidState> {
          * @param fluidType The fluid type
          * @return This builder, for chaining
          */
-        default Builder fluid(DefaultedRegistryReference<? extends FluidType> fluidType) {
+        default Builder fluid(Supplier<? extends FluidType> fluidType) {
             return this.fluid(fluidType.get());
         }
 

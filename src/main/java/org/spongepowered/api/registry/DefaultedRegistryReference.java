@@ -25,6 +25,7 @@
 package org.spongepowered.api.registry;
 
 import java.util.Optional;
+import java.util.function.Supplier;
 
 /**
  * A {@link RegistryReference reference} where the {@link RegistryHolder holder} is
@@ -35,7 +36,7 @@ import java.util.Optional;
  *
  * @param <T> The type
  */
-public interface DefaultedRegistryReference<T> extends RegistryReference<T> {
+public interface DefaultedRegistryReference<T> extends RegistryReference<T>, Supplier<T> {
 
     /**
      * Gets the value from the default {@link RegistryHolder holder} given when constructing
@@ -48,6 +49,7 @@ public interface DefaultedRegistryReference<T> extends RegistryReference<T> {
      *
      * @return The value
      */
+    @Override
     T get();
 
     Optional<T> find();

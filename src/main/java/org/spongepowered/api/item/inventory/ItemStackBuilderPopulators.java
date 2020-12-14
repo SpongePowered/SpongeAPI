@@ -120,7 +120,7 @@ public final class ItemStackBuilderPopulators {
      * @param supplier The supplier of the item type
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static BiConsumer<ItemStack.Builder, Random> item(DefaultedRegistryReference<? extends ItemType> supplier) {
+    public static BiConsumer<ItemStack.Builder, Random> item(Supplier<? extends ItemType> supplier) {
         Objects.requireNonNull(supplier, "Supplier cannot be null!");
         return (builder, random) -> builder.itemType(Objects.requireNonNull(supplier.get(), "Supplier returned a null ItemType"));
     }
@@ -346,7 +346,7 @@ public final class ItemStackBuilderPopulators {
         };
     }
 
-    public static <E> BiConsumer<ItemStack.Builder, Random> listValueSuppliers(DefaultedRegistryReference<? extends Key<? extends ListValue<E>>> key,
+    public static <E> BiConsumer<ItemStack.Builder, Random> listValueSuppliers(Supplier<? extends Key<? extends ListValue<E>>> key,
                                                                                WeightedTable<Function<Random, E>> weightedTable) {
         Objects.requireNonNull(key, "Key cannot be null!");
         Objects.requireNonNull(weightedTable, "WeightedTable cannot be null!");

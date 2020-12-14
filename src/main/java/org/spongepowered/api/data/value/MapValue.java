@@ -25,13 +25,13 @@
 package org.spongepowered.api.data.value;
 
 import org.spongepowered.api.data.Key;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public interface MapValue<K, V> extends Value<Map<K, V>> {
 
@@ -59,7 +59,7 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
      * @param <V> The map value type
      * @return The constructed mutable value
      */
-    static <K, V> MapValue.Mutable<K, V> mutableOf(DefaultedRegistryReference<? extends Key<? extends MapValue<K, V>>> key, Map<K, V> element) {
+    static <K, V> MapValue.Mutable<K, V> mutableOf(Supplier<? extends Key<? extends MapValue<K, V>>> key, Map<K, V> element) {
         return MapValue.mutableOf(key.get(), element);
     }
 
@@ -87,7 +87,7 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
      * @param <V> The map value type
      * @return The constructed immutable value
      */
-    static <K, V> MapValue.Immutable<K, V> immutableOf(DefaultedRegistryReference<? extends Key<? extends MapValue<K, V>>> key, Map<K, V> element) {
+    static <K, V> MapValue.Immutable<K, V> immutableOf(Supplier<? extends Key<? extends MapValue<K, V>>> key, Map<K, V> element) {
         return MapValue.immutableOf(key.get(), element);
     }
 

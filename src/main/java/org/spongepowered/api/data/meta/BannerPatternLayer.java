@@ -33,6 +33,8 @@ import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
 
+import java.util.function.Supplier;
+
 /**
  * A representation on a single layer of a {@link Banner}'s pattern.
  */
@@ -46,7 +48,7 @@ public interface BannerPatternLayer extends DataSerializable {
      * @param color The color
      * @return The new pattern layer
      */
-    static BannerPatternLayer of(DefaultedRegistryReference<? extends BannerPatternShape> shape, DefaultedRegistryReference<? extends DyeColor> color) {
+    static BannerPatternLayer of(Supplier<? extends BannerPatternShape> shape, DefaultedRegistryReference<? extends DyeColor> color) {
         return BannerPatternLayer.of(shape.get(), color.get());
     }
 
@@ -58,7 +60,7 @@ public interface BannerPatternLayer extends DataSerializable {
      * @param color The color
      * @return The new pattern layer
      */
-    static BannerPatternLayer of(DefaultedRegistryReference<? extends BannerPatternShape> shape, DyeColor color) {
+    static BannerPatternLayer of(Supplier<? extends BannerPatternShape> shape, DyeColor color) {
         return BannerPatternLayer.of(shape.get(), color);
     }
 
@@ -119,7 +121,7 @@ public interface BannerPatternLayer extends DataSerializable {
          * @param shape The shape
          * @return This builder, for chaining
          */
-        default Builder pattern(DefaultedRegistryReference<? extends BannerPatternShape> shape) {
+        default Builder pattern(Supplier<? extends BannerPatternShape> shape) {
             return this.pattern(shape.get());
         }
 
@@ -137,7 +139,7 @@ public interface BannerPatternLayer extends DataSerializable {
          * @param color The color
          * @return This builder, for chaining
          */
-        default Builder color(DefaultedRegistryReference<? extends DyeColor> color) {
+        default Builder color(Supplier<? extends DyeColor> color) {
             return this.color(color.get());
         }
 

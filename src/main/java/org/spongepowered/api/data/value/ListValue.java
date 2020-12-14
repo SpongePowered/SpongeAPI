@@ -25,9 +25,9 @@
 package org.spongepowered.api.data.value;
 
 import org.spongepowered.api.data.Key;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 public interface ListValue<E> extends CollectionValue<E, List<E>> {
 
@@ -53,7 +53,7 @@ public interface ListValue<E> extends CollectionValue<E, List<E>> {
      * @param <E> The element type
      * @return The constructed mutable value
      */
-    static <E> ListValue.Mutable<E> mutableOf(DefaultedRegistryReference<? extends Key<? extends ListValue<E>>> key, List<E> element) {
+    static <E> ListValue.Mutable<E> mutableOf(Supplier<? extends Key<? extends ListValue<E>>> key, List<E> element) {
         return ListValue.mutableOf(key.get(), element);
     }
 
@@ -79,7 +79,7 @@ public interface ListValue<E> extends CollectionValue<E, List<E>> {
      * @param <E> The element type
      * @return The constructed immutable value
      */
-    static <E> ListValue.Immutable<E> immutableOf(DefaultedRegistryReference<? extends Key<? extends ListValue<E>>> key, List<E> element) {
+    static <E> ListValue.Immutable<E> immutableOf(Supplier<? extends Key<? extends ListValue<E>>> key, List<E> element) {
         return ListValue.immutableOf(key.get(), element);
     }
 

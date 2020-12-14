@@ -35,10 +35,10 @@ import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.item.recipe.RecipeType;
 import org.spongepowered.api.item.recipe.crafting.Ingredient;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.CatalogBuilder;
 
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * A StoneCutter Recipe.
@@ -73,7 +73,7 @@ public interface StoneCutterRecipe extends Recipe {
          *
          * @return This builder, for chaining
          */
-        default ResultStep ingredient(DefaultedRegistryReference<? extends ItemType> ingredient) {
+        default ResultStep ingredient(Supplier<? extends ItemType> ingredient) {
             return this.ingredient(ingredient.get());
         }
 

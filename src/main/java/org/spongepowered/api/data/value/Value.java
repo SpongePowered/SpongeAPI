@@ -28,13 +28,13 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Key;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.weighted.WeightedTable;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * The abstract base interface for all of the "Value API". In short, a
@@ -84,7 +84,7 @@ public interface Value<E> {
      * @param <E> The element type
      * @return The constructed mutable value
      */
-    static <E> Value.Mutable<E> mutableOf(DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, E element) {
+    static <E> Value.Mutable<E> mutableOf(Supplier<? extends Key<? extends Value<E>>> key, E element) {
         return Value.mutableOf(key.get(), element);
     }
 
@@ -110,7 +110,7 @@ public interface Value<E> {
      * @param <E> The element type
      * @return The constructed immutable value
      */
-    static <E> Value.Immutable<E> immutableOf(DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, E element) {
+    static <E> Value.Immutable<E> immutableOf(Supplier<? extends Key<? extends Value<E>>> key, E element) {
         return Value.immutableOf(key.get(), element);
     }
 
@@ -136,7 +136,7 @@ public interface Value<E> {
      * @param <E> The element type
      * @return The constructed mutable value
      */
-    static <E> ListValue.Mutable<E> mutableOf(DefaultedRegistryReference<? extends Key<? extends ListValue<E>>> key, List<E> element) {
+    static <E> ListValue.Mutable<E> mutableOf(Supplier<? extends Key<? extends ListValue<E>>> key, List<E> element) {
         return Value.mutableOf(key.get(), element);
     }
 
@@ -162,7 +162,7 @@ public interface Value<E> {
      * @param <E> The element type
      * @return The constructed immutable value
      */
-    static <E> ListValue.Immutable<E> immutableOf(DefaultedRegistryReference<? extends Key<? extends ListValue<E>>> key, List<E> element) {
+    static <E> ListValue.Immutable<E> immutableOf(Supplier<? extends Key<? extends ListValue<E>>> key, List<E> element) {
         return Value.immutableOf(key.get(), element);
     }
 
@@ -188,7 +188,7 @@ public interface Value<E> {
      * @param <E> The element type
      * @return The constructed mutable value
      */
-    static <E> SetValue.Mutable<E> mutableOf(DefaultedRegistryReference<? extends Key<? extends SetValue<E>>> key, Set<E> element) {
+    static <E> SetValue.Mutable<E> mutableOf(Supplier<? extends Key<? extends SetValue<E>>> key, Set<E> element) {
         return Value.mutableOf(key.get(), element);
     }
 
@@ -214,7 +214,7 @@ public interface Value<E> {
      * @param <E> The element type
      * @return The constructed immutable value
      */
-    static <E> SetValue.Immutable<E> immutableOf(DefaultedRegistryReference<? extends Key<? extends SetValue<E>>> key, Set<E> element) {
+    static <E> SetValue.Immutable<E> immutableOf(Supplier<? extends Key<? extends SetValue<E>>> key, Set<E> element) {
         return Value.immutableOf(key.get(), element);
     }
 
@@ -242,7 +242,7 @@ public interface Value<E> {
      * @param <V> The map value type
      * @return The constructed mutable value
      */
-    static <K, V> MapValue.Mutable<K, V> mutableOf(DefaultedRegistryReference<? extends Key<? extends MapValue<K, V>>> key, Map<K, V> element) {
+    static <K, V> MapValue.Mutable<K, V> mutableOf(Supplier<? extends Key<? extends MapValue<K, V>>> key, Map<K, V> element) {
         return Value.mutableOf(key.get(), element);
     }
 
@@ -270,7 +270,7 @@ public interface Value<E> {
      * @param <V> The map value type
      * @return The constructed immutable value
      */
-    static <K, V> MapValue.Immutable<K, V> immutableOf(DefaultedRegistryReference<? extends Key<? extends MapValue<K, V>>> key, Map<K, V> element) {
+    static <K, V> MapValue.Immutable<K, V> immutableOf(Supplier<? extends Key<? extends MapValue<K, V>>> key, Map<K, V> element) {
         return Value.immutableOf(key.get(), element);
     }
 
@@ -296,7 +296,7 @@ public interface Value<E> {
      * @param <E> The element type
      * @return The constructed mutable value
      */
-    static <E> WeightedCollectionValue.Mutable<E> mutableOf(DefaultedRegistryReference<? extends Key<? extends WeightedCollectionValue<E>>> key, WeightedTable<E> element) {
+    static <E> WeightedCollectionValue.Mutable<E> mutableOf(Supplier<? extends Key<? extends WeightedCollectionValue<E>>> key, WeightedTable<E> element) {
         return Value.mutableOf(key.get(), element);
     }
 
@@ -322,7 +322,7 @@ public interface Value<E> {
      * @param <E> The element type
      * @return The constructed immutable value
      */
-    static <E> WeightedCollectionValue.Immutable<E> immutableOf(DefaultedRegistryReference<? extends Key<? extends WeightedCollectionValue<E>>> key, WeightedTable<E> element) {
+    static <E> WeightedCollectionValue.Immutable<E> immutableOf(Supplier<? extends Key<? extends WeightedCollectionValue<E>>> key, WeightedTable<E> element) {
         return Value.immutableOf(key.get(), element);
     }
 

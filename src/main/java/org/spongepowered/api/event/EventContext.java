@@ -28,7 +28,6 @@ package org.spongepowered.api.event;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.DoNotStore;
 
@@ -38,6 +37,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.StringJoiner;
+import java.util.function.Supplier;
 
 /**
  * Provides context for an event outside of the direct chain of causes present
@@ -107,7 +107,7 @@ public final class EventContext {
      * @return The context value, if found
      */
     @SuppressWarnings("unchecked")
-    public <T> Optional<T> get(DefaultedRegistryReference<EventContextKey<T>> key) {
+    public <T> Optional<T> get(Supplier<EventContextKey<T>> key) {
         Objects.requireNonNull(key, "EventContextKey cannot be null");
         return Optional.ofNullable((T) this.entries.get(key.get()));
     }
@@ -140,7 +140,7 @@ public final class EventContext {
      * @param <T> The type of the value stored with the key
      * @return The context value, if found
      */
-    public <T> T require(DefaultedRegistryReference<EventContextKey<T>> key) {
+    public <T> T require(Supplier<EventContextKey<T>> key) {
         final Optional<T> optional = this.get(key);
         if (optional.isPresent()) {
             return optional.get();
@@ -166,7 +166,7 @@ public final class EventContext {
      * @param key The context key to check
      * @return True if the key is used and there is an entry for it
      */
-    public boolean containsKey(DefaultedRegistryReference<? extends EventContextKey<?>> key) {
+    public boolean containsKey(Supplier<? extends EventContextKey<?>> key) {
         return this.entries.containsKey(key.get());
     }
 
@@ -257,7 +257,7 @@ public final class EventContext {
          * @param value The value
          * @return This builder, for chaining
          */
-        public <T> Builder add(DefaultedRegistryReference<EventContextKey<T>> key, T value) {
+        public <T> Builder add(Supplier<EventContextKey<T>> key, T value) {
             Objects.requireNonNull(value, "Context object cannot be null");
             final EventContextKey<T> suppliedKey = key.get();
             Objects.requireNonNull(suppliedKey, "Supplied key cannot be null!");

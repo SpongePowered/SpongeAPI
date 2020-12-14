@@ -26,11 +26,11 @@ package org.spongepowered.api.entity.attribute;
 
 import org.spongepowered.api.entity.attribute.type.AttributeType;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 
 import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 /**
  * Represents an instance of an {@link AttributeType} that contains a value.
@@ -88,7 +88,7 @@ public interface Attribute {
      *
      * @return A collection of modifiers
      */
-    default Collection<AttributeModifier> getModifiers(DefaultedRegistryReference<? extends AttributeOperation> operation) {
+    default Collection<AttributeModifier> getModifiers(Supplier<? extends AttributeOperation> operation) {
         return this.getModifiers(operation.get());
     }
 

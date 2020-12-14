@@ -34,13 +34,13 @@ import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.menu.InventoryMenu;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.math.vector.Vector2i;
 
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 /**
  * Interface for inventories which may be interacted with by Players.
@@ -107,7 +107,7 @@ public interface ViewableInventory extends Inventory {
          * @param supplier The ContainerType supplier
          * @return The building step.
          */
-        default BuildingStep type(DefaultedRegistryReference<? extends ContainerType> supplier) {
+        default BuildingStep type(Supplier<? extends ContainerType> supplier) {
             return this.type(supplier.get());
         }
 

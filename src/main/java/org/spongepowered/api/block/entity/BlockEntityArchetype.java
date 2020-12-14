@@ -34,9 +34,10 @@ import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.world.Archetype;
 import org.spongepowered.api.world.ServerLocation;
+
+import java.util.function.Supplier;
 
 /**
  * Represents the data of a {@link BlockEntity} which does not exist in the world
@@ -129,7 +130,7 @@ public interface BlockEntityArchetype extends Archetype<BlockSnapshot, BlockEnti
          */
         Builder state(BlockState state);
 
-        default Builder blockEntity(DefaultedRegistryReference<? extends BlockEntityType> type) {
+        default Builder blockEntity(Supplier<? extends BlockEntityType> type) {
             return this.blockEntity(type.get());
         }
 

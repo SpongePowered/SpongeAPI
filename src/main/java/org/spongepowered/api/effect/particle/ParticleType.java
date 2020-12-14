@@ -25,11 +25,11 @@
 package org.spongepowered.api.effect.particle;
 
 import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 /**
  * Represents a particle that can be sent on a Minecraft client.
@@ -46,7 +46,7 @@ public interface ParticleType extends CatalogType {
      * @param <V> The value type
      * @return The option value if present, otherwise {@link Optional#empty()}
      */
-    default <V> Optional<V> getDefaultOption(DefaultedRegistryReference<? extends ParticleOption<V>> option) {
+    default <V> Optional<V> getDefaultOption(Supplier<? extends ParticleOption<V>> option) {
         return this.getDefaultOption(option.get());
     }
 

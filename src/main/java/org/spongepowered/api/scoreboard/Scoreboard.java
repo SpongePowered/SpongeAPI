@@ -37,6 +37,7 @@ import org.spongepowered.api.util.CopyableBuilder;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Supplier;
 
 /**
  * Represents a scoreboard, which contains {@link Team}s and {@link Objective}s.
@@ -71,7 +72,7 @@ public interface Scoreboard {
      * @param slot The {@link DisplaySlot}
      * @return the {@link Objective} currently displayed, if present
      */
-    default Optional<Objective> getObjective(DefaultedRegistryReference<? extends DisplaySlot> slot) {
+    default Optional<Objective> getObjective(Supplier<? extends DisplaySlot> slot) {
         return this.getObjective(slot.get());
     }
 
@@ -127,7 +128,7 @@ public interface Scoreboard {
      *
      * @param slot The {@link DisplaySlot} to remove any {@link Objective} for
      */
-    default void clearSlot(DefaultedRegistryReference<? extends DisplaySlot> slot) {
+    default void clearSlot(Supplier<? extends DisplaySlot> slot) {
         this.clearSlot(slot.get());
     }
 
@@ -146,7 +147,7 @@ public interface Scoreboard {
      * @param criterion {@link Criterion} to search by
      * @return A set of {@link Objective}s using the specified criterion
      */
-    default Set<Objective> getObjectivesByCriterion(DefaultedRegistryReference<? extends Criterion> criterion) {
+    default Set<Objective> getObjectivesByCriterion(Supplier<? extends Criterion> criterion) {
         return this.getObjectivesByCriterion(criterion.get());
     }
 

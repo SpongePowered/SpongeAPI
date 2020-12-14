@@ -28,12 +28,12 @@ import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.SerializableDataHolderBuilder;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.Cycleable;
 
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 public interface State<S extends State<S>> extends SerializableDataHolder.Immutable<S> {
 
@@ -57,7 +57,7 @@ public interface State<S extends State<S>> extends SerializableDataHolder.Immuta
      * @param <T> The generic type of state property
      * @return The comparable value, if available and compatible
      */
-    default <T extends Comparable<T>> Optional<T> getStateProperty(DefaultedRegistryReference<? extends StateProperty<T>> stateProperty) {
+    default <T extends Comparable<T>> Optional<T> getStateProperty(Supplier<? extends StateProperty<T>> stateProperty) {
         return this.getStateProperty(stateProperty.get());
     }
 
@@ -101,7 +101,7 @@ public interface State<S extends State<S>> extends SerializableDataHolder.Immuta
      * @param <V> The type of extended value
      * @return The state, if the state property and value are supported
      */
-    default <T extends Comparable<T>, V extends T> Optional<S> withStateProperty(DefaultedRegistryReference<? extends StateProperty<T>> stateProperty, V value) {
+    default <T extends Comparable<T>, V extends T> Optional<S> withStateProperty(Supplier<? extends StateProperty<T>> stateProperty, V value) {
         return this.withStateProperty(stateProperty.get(), value);
     }
 
@@ -125,7 +125,7 @@ public interface State<S extends State<S>> extends SerializableDataHolder.Immuta
      * @param stateProperty The state property
      * @return The cycled state if successful
      */
-    default <T extends Comparable<T>> Optional<S> cycleStateProperty(DefaultedRegistryReference<? extends StateProperty<T>> stateProperty) {
+    default <T extends Comparable<T>> Optional<S> cycleStateProperty(Supplier<? extends StateProperty<T>> stateProperty) {
         return this.cycleStateProperty(stateProperty.get());
     }
 
@@ -149,7 +149,7 @@ public interface State<S extends State<S>> extends SerializableDataHolder.Immuta
      * @param key The key
      * @return The cycled state if successful
      */
-    default <T extends Cycleable<T>> Optional<S> cycleValue(DefaultedRegistryReference<? extends Key<? extends Value<T>>> key) {
+    default <T extends Cycleable<T>> Optional<S> cycleValue(Supplier<? extends Key<? extends Value<T>>> key) {
         return this.cycleValue(key.get());
     }
 

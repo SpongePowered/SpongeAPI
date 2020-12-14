@@ -339,7 +339,7 @@ public interface Inventory extends ValueContainer {
      *
      * @return The queried inventory
      */
-    default <P> Inventory query(DefaultedRegistryReference<QueryType.OneParam<P>> queryType, P param) {
+    default <P> Inventory query(Supplier<QueryType.OneParam<P>> queryType, P param) {
         return this.query(queryType.get().of(param));
     }
 
@@ -352,7 +352,7 @@ public interface Inventory extends ValueContainer {
      *
      * @return The queried inventory
      */
-    default <P> Inventory query(DefaultedRegistryReference<QueryType.OneParam<P>> queryType, Supplier<P> param) {
+    default <P> Inventory query(Supplier<QueryType.OneParam<P>> queryType, Supplier<P> param) {
         return this.query(queryType.get().of(param.get()));
     }
 

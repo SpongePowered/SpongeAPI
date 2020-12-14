@@ -35,6 +35,7 @@ import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 /**
  * An Ingredient for a crafting recipe.
@@ -173,7 +174,7 @@ public interface Ingredient extends Predicate<ItemStack> {
          * @return This Builder, for chaining
          */
         @SuppressWarnings("unchecked")
-        Builder with(DefaultedRegistryReference<? extends ItemType>... types);
+        Builder with(Supplier<? extends ItemType>... types);
 
         /**
          * Sets one ore more ItemStack for matching the ingredient.

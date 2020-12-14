@@ -25,9 +25,9 @@
 package org.spongepowered.api.data.value;
 
 import org.spongepowered.api.data.Key;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 
 import java.util.Set;
+import java.util.function.Supplier;
 
 public interface SetValue<E> extends CollectionValue<E, Set<E>> {
 
@@ -53,7 +53,7 @@ public interface SetValue<E> extends CollectionValue<E, Set<E>> {
      * @param <E> The element type
      * @return The constructed mutable value
      */
-    static <E> SetValue.Mutable<E> mutableOf(DefaultedRegistryReference<? extends Key<? extends SetValue<E>>> key, Set<E> element) {
+    static <E> SetValue.Mutable<E> mutableOf(Supplier<? extends Key<? extends SetValue<E>>> key, Set<E> element) {
         return SetValue.mutableOf(key.get(), element);
     }
 
@@ -79,7 +79,7 @@ public interface SetValue<E> extends CollectionValue<E, Set<E>> {
      * @param <E> The element type
      * @return The constructed immutable value
      */
-    static <E> SetValue.Immutable<E> immutableOf(DefaultedRegistryReference<? extends Key<? extends SetValue<E>>> key, Set<E> element) {
+    static <E> SetValue.Immutable<E> immutableOf(Supplier<? extends Key<? extends SetValue<E>>> key, Set<E> element) {
         return SetValue.immutableOf(key.get(), element);
     }
 

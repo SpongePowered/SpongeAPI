@@ -31,7 +31,6 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.trader.WanderingTrader;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.MinecraftDayTime;
 import org.spongepowered.api.world.SerializationBehavior;
@@ -48,6 +47,7 @@ import org.spongepowered.math.vector.Vector3i;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 /**
  * Represents the properties of a {@link World} which are persisted across runtime instances.
@@ -163,7 +163,7 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
      *
      * @param modifier The generator modifier
      */
-    default void setGeneratorModifierType(DefaultedRegistryReference<? extends GeneratorModifierType> modifier) {
+    default void setGeneratorModifierType(Supplier<? extends GeneratorModifierType> modifier) {
         this.setGeneratorModifierType(modifier.get());
     }
 
@@ -253,7 +253,7 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
      *
      * @param gameMode The game mode
      */
-    default void setGameMode(DefaultedRegistryReference<? extends GameMode> gameMode) {
+    default void setGameMode(Supplier<? extends GameMode> gameMode) {
         this.setGameMode(gameMode.get());
     }
 
@@ -346,7 +346,7 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
      *
      * @param difficulty The difficulty
      */
-    default void setDifficulty(DefaultedRegistryReference<? extends Difficulty> difficulty) {
+    default void setDifficulty(Supplier<? extends Difficulty> difficulty) {
         this.setDifficulty(difficulty.get());
     }
 
@@ -369,7 +369,7 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
      *
      * @param behavior The serialization behavior
      */
-    default void setSerializationBehavior(DefaultedRegistryReference<? extends SerializationBehavior> behavior) {
+    default void setSerializationBehavior(Supplier<? extends SerializationBehavior> behavior) {
         this.setSerializationBehavior(behavior.get());
     }
 
