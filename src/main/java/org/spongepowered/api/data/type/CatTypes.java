@@ -61,6 +61,8 @@ public final class CatTypes {
 
     public static final DefaultedRegistryReference<CatType> SIAMESE = CatTypes.key(ResourceKey.sponge("siamese"));
 
+    public static final DefaultedRegistryReference<CatType> TABBY = CatTypes.key(ResourceKey.sponge("tabby"));
+
     public static final DefaultedRegistryReference<CatType> WHITE = CatTypes.key(ResourceKey.sponge("white"));
 
     // SORTFIELDS:OFF
