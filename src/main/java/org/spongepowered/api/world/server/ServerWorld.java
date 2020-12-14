@@ -40,6 +40,7 @@ import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.dimension.DimensionTypes;
 import org.spongepowered.api.world.explosion.Explosion;
+import org.spongepowered.api.world.storage.ServerWorldProperties;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
 import org.spongepowered.api.world.volume.game.InteractableVolume;
@@ -57,15 +58,11 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
     @Override
     Server getEngine();
 
-    /**
-     * Gets the properties for this world.
-     *
-     * @return The properties
-     */
-    WorldProperties getProperties();
+    @Override
+    ServerWorldProperties getProperties();
 
     /**
-     * @see WorldProperties#getKey()
+     * @see ServerWorldProperties#getKey()
      * @return The key
      */
     default ResourceKey getKey() {
@@ -73,7 +70,7 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
     }
 
     /**
-     * @see WorldProperties#getUniqueId()
+     * @see ServerWorldProperties#getUniqueId()
      * @return The unique id
      */
     @Override

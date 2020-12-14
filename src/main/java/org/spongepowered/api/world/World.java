@@ -40,6 +40,7 @@ import org.spongepowered.api.registry.ScopedRegistryHolder;
 import org.spongepowered.api.service.context.ContextSource;
 import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.chunk.Chunk;
+import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.volume.archetype.ArchetypeVolumeCreator;
 import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
 import org.spongepowered.api.world.weather.Weathers;
@@ -71,6 +72,13 @@ public interface World<W extends World<W>> extends ForwardingAudience,
      * @return The engine
      */
     Engine getEngine();
+
+    /**
+     * Gets the {@link WorldProperties properties}.
+     *
+     * @return The properties
+     */
+    WorldProperties getProperties();
 
     /**
      * Gets if this world is currently loaded.
@@ -309,56 +317,4 @@ public interface World<W extends World<W>> extends ForwardingAudience,
      * @return The loaded chunks
      */
     Iterable<Chunk> getLoadedChunks();
-
-    /**
-     * Gets whether players can respawn.
-     *
-     * @return True if players can respawn, false if not
-     */
-    boolean allowsPlayerRespawns();
-
-    /**
-     * Gets whether water evaporates
-     *
-     * @return True if water evaporates, false if not
-     */
-    boolean doesWaterEvaporate();
-
-    /**
-     * Returns whether this world has light provided by the sky.
-     *
-     * @return True if light is provided by the sky, false if not
-     */
-    boolean hasSkylight();
-
-    /**
-     * Gets if the logic for cave worlds will run for this world.
-     *
-     * <p>
-     *     In vanilla minecraft, a {@code true} value means:
-     *     <ul>
-     *         <li>{@link FluidTypes#LAVA} update 3 times slower</li>
-     *         <li>Maps are half the size</li>
-     *         <li>{@link Weathers#THUNDER} will not occur</li>
-     *         <li>The height of the world is 128 instead of the default 256</li>
-     *     </ul>
-     *
-     * @return True if surface like, false if not
-     */
-    boolean isCaveWorld();
-
-    /**
-     * Gets if the logic for surface worlds will run for this world.
-     *
-     * <p>
-     *     In vanilla minecraft, a {@code true} value means:
-     *     <ul>
-     *         <li>Players can sleep here</li>
-     *         <li>Zombie Pigmen will not spawn around a nether portal</li>
-     *         <li>Client will render clouds</li>
-     *     </ul>
-     *
-     * @return True if surface like, false if not
-     */
-    boolean isSurfaceWorld();
 }

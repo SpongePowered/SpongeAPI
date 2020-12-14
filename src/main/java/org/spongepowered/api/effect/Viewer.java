@@ -39,6 +39,7 @@ import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Objects;
+import java.util.function.Supplier;
 
 /**
  * A Viewer is something that sees effects.
@@ -112,7 +113,7 @@ public interface Viewer extends Audience {
      * @param position The position
      * @param musicDiscType The music disc
      */
-    void playMusicDisc(Vector3i position, DefaultedRegistryReference<? extends MusicDisc> musicDiscType);
+    void playMusicDisc(Vector3i position, Supplier<? extends MusicDisc> musicDiscType);
 
     /**
      * Stops the {@link MusicDisc} that is playing at the given position.
