@@ -50,7 +50,7 @@ public final class EnchantmentTypes {
      *
      * <p>In vanilla the maximum level is 1.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> AQUA_AFFINITY = EnchantmentTypes.key(ResourceKey.sponge("aqua_affinity"));
+    public static final DefaultedRegistryReference<EnchantmentType> AQUA_AFFINITY = EnchantmentTypes.key(ResourceKey.minecraft("aqua_affinity"));
 
     /**
      * Increases damages and causes slowness for a variable amount of time
@@ -59,136 +59,136 @@ public final class EnchantmentTypes {
      *
      * <p>In vanilla the maximum level is 5.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> BANE_OF_ARTHROPODS = EnchantmentTypes.key(ResourceKey.sponge("bane_of_arthropods"));
+    public static final DefaultedRegistryReference<EnchantmentType> BANE_OF_ARTHROPODS = EnchantmentTypes.key(ResourceKey.minecraft("bane_of_arthropods"));
 
     /**
      * Prevents removal of the cursed items that reside in the armor slots.
      *
      * <p>In vanilla the maximum level is 1.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> BINDING_CURSE = EnchantmentTypes.key(ResourceKey.sponge("binding_curse"));
+    public static final DefaultedRegistryReference<EnchantmentType> BINDING_CURSE = EnchantmentTypes.key(ResourceKey.minecraft("binding_curse"));
 
     /**
      * Reduces explosion damage.
      *
      * <p>In vanilla the maximum level is 4.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> BLAST_PROTECTION = EnchantmentTypes.key(ResourceKey.sponge("blast_protection"));
+    public static final DefaultedRegistryReference<EnchantmentType> BLAST_PROTECTION = EnchantmentTypes.key(ResourceKey.minecraft("blast_protection"));
 
-    public static final DefaultedRegistryReference<EnchantmentType> CHANNELING = EnchantmentTypes.key(ResourceKey.sponge("channeling"));
+    public static final DefaultedRegistryReference<EnchantmentType> CHANNELING = EnchantmentTypes.key(ResourceKey.minecraft("channeling"));
 
     /**
      * Increases underwater movement speed.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> DEPTH_STRIDER = EnchantmentTypes.key(ResourceKey.sponge("depth_strider"));
+    public static final DefaultedRegistryReference<EnchantmentType> DEPTH_STRIDER = EnchantmentTypes.key(ResourceKey.minecraft("depth_strider"));
 
     /**
      * Increases mining speed.
      *
      * <p>In vanilla the maximum level is 5.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> EFFICIENCY = EnchantmentTypes.key(ResourceKey.sponge("efficiency"));
+    public static final DefaultedRegistryReference<EnchantmentType> EFFICIENCY = EnchantmentTypes.key(ResourceKey.minecraft("efficiency"));
 
     /**
      * Reduces fall damage.
      *
      * <p>In vanilla the maximum level is 4.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> FEATHER_FALLING = EnchantmentTypes.key(ResourceKey.sponge("feather_falling"));
+    public static final DefaultedRegistryReference<EnchantmentType> FEATHER_FALLING = EnchantmentTypes.key(ResourceKey.minecraft("feather_falling"));
 
     /**
      * Sets the target on fire.
      *
      * <p>In vanilla the maximum level is 2.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> FIRE_ASPECT = EnchantmentTypes.key(ResourceKey.sponge("fire_aspect"));
+    public static final DefaultedRegistryReference<EnchantmentType> FIRE_ASPECT = EnchantmentTypes.key(ResourceKey.minecraft("fire_aspect"));
 
     /**
      * Reduces fire damage.
      *
      * <p>In vanilla the maximum level is 4.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> FIRE_PROTECTION = EnchantmentTypes.key(ResourceKey.sponge("fire_protection"));
+    public static final DefaultedRegistryReference<EnchantmentType> FIRE_PROTECTION = EnchantmentTypes.key(ResourceKey.minecraft("fire_protection"));
 
     /**
      * Sets your shot arrows on fire.
      *
      * <p>In vanilla the maximum level is 1.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> FLAME = EnchantmentTypes.key(ResourceKey.sponge("flame"));
+    public static final DefaultedRegistryReference<EnchantmentType> FLAME = EnchantmentTypes.key(ResourceKey.minecraft("flame"));
 
     /**
      * Increases block drops.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> FORTUNE = EnchantmentTypes.key(ResourceKey.sponge("fortune"));
+    public static final DefaultedRegistryReference<EnchantmentType> FORTUNE = EnchantmentTypes.key(ResourceKey.minecraft("fortune"));
 
     /**
      * Creates frosted ice blocks when walking over water.
      *
      * <p>In vanilla the maximum level is 2.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> FROST_WALKER = EnchantmentTypes.key(ResourceKey.sponge("frost_walker"));
+    public static final DefaultedRegistryReference<EnchantmentType> FROST_WALKER = EnchantmentTypes.key(ResourceKey.minecraft("frost_walker"));
 
-    public static final DefaultedRegistryReference<EnchantmentType> IMPALING = EnchantmentTypes.key(ResourceKey.sponge("impaling"));
+    public static final DefaultedRegistryReference<EnchantmentType> IMPALING = EnchantmentTypes.key(ResourceKey.minecraft("impaling"));
 
     /**
      * Causing shooting arrows to not consume regular arrows.
      *
      * <p>In vanilla the maximum level is 1.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> INFINITY = EnchantmentTypes.key(ResourceKey.sponge("infinity"));
+    public static final DefaultedRegistryReference<EnchantmentType> INFINITY = EnchantmentTypes.key(ResourceKey.minecraft("infinity"));
 
     /**
      * Increases attack knockback.
      *
      * <p>In vanilla the maximum level is 2.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> KNOCKBACK = EnchantmentTypes.key(ResourceKey.sponge("knockback"));
+    public static final DefaultedRegistryReference<EnchantmentType> KNOCKBACK = EnchantmentTypes.key(ResourceKey.minecraft("knockback"));
 
     /**
      * Causes mobs drop more loot.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> LOOTING = EnchantmentTypes.key(ResourceKey.sponge("looting"));
+    public static final DefaultedRegistryReference<EnchantmentType> LOOTING = EnchantmentTypes.key(ResourceKey.minecraft("looting"));
 
-    public static final DefaultedRegistryReference<EnchantmentType> LOYALTY = EnchantmentTypes.key(ResourceKey.sponge("loyalty"));
+    public static final DefaultedRegistryReference<EnchantmentType> LOYALTY = EnchantmentTypes.key(ResourceKey.minecraft("loyalty"));
 
     /**
      * Increases luck while fishing.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> LUCK_OF_THE_SEA = EnchantmentTypes.key(ResourceKey.sponge("luck_of_the_sea"));
+    public static final DefaultedRegistryReference<EnchantmentType> LUCK_OF_THE_SEA = EnchantmentTypes.key(ResourceKey.minecraft("luck_of_the_sea"));
 
     /**
      * Increases rate of fish biting your hook while fishing.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> LURE = EnchantmentTypes.key(ResourceKey.sponge("lure"));
+    public static final DefaultedRegistryReference<EnchantmentType> LURE = EnchantmentTypes.key(ResourceKey.minecraft("lure"));
 
     /**
      * Repair item durability with experience.
      *
      * <p>In vanilla the maximum level is 1.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> MENDING = EnchantmentTypes.key(ResourceKey.sponge("mending"));
+    public static final DefaultedRegistryReference<EnchantmentType> MENDING = EnchantmentTypes.key(ResourceKey.minecraft("mending"));
 
-    public static final DefaultedRegistryReference<EnchantmentType> MULTISHOT = EnchantmentTypes.key(ResourceKey.sponge("multishot"));
+    public static final DefaultedRegistryReference<EnchantmentType> MULTISHOT = EnchantmentTypes.key(ResourceKey.minecraft("multishot"));
 
-    public static final DefaultedRegistryReference<EnchantmentType> PIERCING = EnchantmentTypes.key(ResourceKey.sponge("piercing"));
+    public static final DefaultedRegistryReference<EnchantmentType> PIERCING = EnchantmentTypes.key(ResourceKey.minecraft("piercing"));
 
     /**
      * Increases shot arrow damage.
      *
      * <p>In vanilla the maximum level is 5.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> POWER = EnchantmentTypes.key(ResourceKey.sponge("power"));
+    public static final DefaultedRegistryReference<EnchantmentType> POWER = EnchantmentTypes.key(ResourceKey.minecraft("power"));
 
     /**
      * Reduces projectile damage you take, for example from arrows, ghasts,
@@ -196,7 +196,7 @@ public final class EnchantmentTypes {
      *
      * <p>In vanilla the maximum level is 4.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> PROJECTILE_PROTECTION = EnchantmentTypes.key(ResourceKey.sponge("projectile_protection"));
+    public static final DefaultedRegistryReference<EnchantmentType> PROJECTILE_PROTECTION = EnchantmentTypes.key(ResourceKey.minecraft("projectile_protection"));
 
     /**
      * Reduces all damage, outside of a few sources that bypass armor, such as
@@ -204,32 +204,32 @@ public final class EnchantmentTypes {
      *
      * <p>In vanilla the maximum level is 4.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> PROTECTION = EnchantmentTypes.key(ResourceKey.sponge("protection"));
+    public static final DefaultedRegistryReference<EnchantmentType> PROTECTION = EnchantmentTypes.key(ResourceKey.minecraft("protection"));
 
     /**
      * Increases knockback by shot arrows.
      *
      * <p>In vanilla the maximum level is 2.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> PUNCH = EnchantmentTypes.key(ResourceKey.sponge("punch"));
+    public static final DefaultedRegistryReference<EnchantmentType> PUNCH = EnchantmentTypes.key(ResourceKey.minecraft("punch"));
 
-    public static final DefaultedRegistryReference<EnchantmentType> QUICK_CHARGE = EnchantmentTypes.key(ResourceKey.sponge("quick_charge"));
+    public static final DefaultedRegistryReference<EnchantmentType> QUICK_CHARGE = EnchantmentTypes.key(ResourceKey.minecraft("quick_charge"));
 
     /**
      * Extends underwater breathing time.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> RESPIRATION = EnchantmentTypes.key(ResourceKey.sponge("respiration"));
+    public static final DefaultedRegistryReference<EnchantmentType> RESPIRATION = EnchantmentTypes.key(ResourceKey.minecraft("respiration"));
 
-    public static final DefaultedRegistryReference<EnchantmentType> RIPTIDE = EnchantmentTypes.key(ResourceKey.sponge("riptide"));
+    public static final DefaultedRegistryReference<EnchantmentType> RIPTIDE = EnchantmentTypes.key(ResourceKey.minecraft("riptide"));
 
     /**
      * Increases melee damage.
      *
      * <p>In vanilla the maximum level is 5.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> SHARPNESS = EnchantmentTypes.key(ResourceKey.sponge("sharpness"));
+    public static final DefaultedRegistryReference<EnchantmentType> SHARPNESS = EnchantmentTypes.key(ResourceKey.minecraft("sharpness"));
 
     /**
      * Allows collection of blocks that are normally unobtainable, such as
@@ -237,7 +237,7 @@ public final class EnchantmentTypes {
      *
      * <p>In vanilla the maximum level is 1.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> SILK_TOUCH = EnchantmentTypes.key(ResourceKey.sponge("silk_touch"));
+    public static final DefaultedRegistryReference<EnchantmentType> SILK_TOUCH = EnchantmentTypes.key(ResourceKey.minecraft("silk_touch"));
 
     /**
      * Increases damage to "undead" mobs. In vanilla this includes skeletons,
@@ -246,37 +246,37 @@ public final class EnchantmentTypes {
      *
      * <p>In vanilla the maximum level is 5.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> SMITE = EnchantmentTypes.key(ResourceKey.sponge("smite"));
+    public static final DefaultedRegistryReference<EnchantmentType> SMITE = EnchantmentTypes.key(ResourceKey.minecraft("smite"));
 
-    public static final DefaultedRegistryReference<EnchantmentType> SOUL_SPEED = EnchantmentTypes.key(ResourceKey.sponge("soul_speed"));
+    public static final DefaultedRegistryReference<EnchantmentType> SOUL_SPEED = EnchantmentTypes.key(ResourceKey.minecraft("soul_speed"));
 
     /**
      * Increases the damage of the sweeping attack.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> SWEEPING = EnchantmentTypes.key(ResourceKey.sponge("sweeping"));
+    public static final DefaultedRegistryReference<EnchantmentType> SWEEPING = EnchantmentTypes.key(ResourceKey.minecraft("sweeping"));
 
     /**
      * Attackers are damaged when they deal damage to the wearer.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> THORNS = EnchantmentTypes.key(ResourceKey.sponge("thorns"));
+    public static final DefaultedRegistryReference<EnchantmentType> THORNS = EnchantmentTypes.key(ResourceKey.minecraft("thorns"));
 
     /**
      * Increases effective durability.
      *
      * <p>In vanilla the maximum level is 3.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> UNBREAKING = EnchantmentTypes.key(ResourceKey.sponge("unbreaking"));
+    public static final DefaultedRegistryReference<EnchantmentType> UNBREAKING = EnchantmentTypes.key(ResourceKey.minecraft("unbreaking"));
 
     /**
      * Causes the item to disappear on death.
      *
      * <p>In vanilla the maximum level is 1.</p>
      */
-    public static final DefaultedRegistryReference<EnchantmentType> VANISHING_CURSE = EnchantmentTypes.key(ResourceKey.sponge("vanishing_curse"));
+    public static final DefaultedRegistryReference<EnchantmentType> VANISHING_CURSE = EnchantmentTypes.key(ResourceKey.minecraft("vanishing_curse"));
 
 
     // SORTFIELDS:OFF

@@ -43,57 +43,57 @@ public final class ArtTypes {
 
     // SORTFIELDS:ON
 
-    public static final DefaultedRegistryReference<ArtType> ALBAN = ArtTypes.key(ResourceKey.sponge("alban"));
+    public static final DefaultedRegistryReference<ArtType> ALBAN = ArtTypes.key(ResourceKey.minecraft("alban"));
 
-    public static final DefaultedRegistryReference<ArtType> AZTEC = ArtTypes.key(ResourceKey.sponge("aztec"));
+    public static final DefaultedRegistryReference<ArtType> AZTEC = ArtTypes.key(ResourceKey.minecraft("aztec"));
 
-    public static final DefaultedRegistryReference<ArtType> AZTEC2 = ArtTypes.key(ResourceKey.sponge("aztec2"));
+    public static final DefaultedRegistryReference<ArtType> AZTEC2 = ArtTypes.key(ResourceKey.minecraft("aztec2"));
 
-    public static final DefaultedRegistryReference<ArtType> BOMB = ArtTypes.key(ResourceKey.sponge("bomb"));
+    public static final DefaultedRegistryReference<ArtType> BOMB = ArtTypes.key(ResourceKey.minecraft("bomb"));
 
-    public static final DefaultedRegistryReference<ArtType> BURNING_SKULL = ArtTypes.key(ResourceKey.sponge("burning_skull"));
+    public static final DefaultedRegistryReference<ArtType> BURNING_SKULL = ArtTypes.key(ResourceKey.minecraft("burning_skull"));
 
-    public static final DefaultedRegistryReference<ArtType> BUST = ArtTypes.key(ResourceKey.sponge("bust"));
+    public static final DefaultedRegistryReference<ArtType> BUST = ArtTypes.key(ResourceKey.minecraft("bust"));
 
-    public static final DefaultedRegistryReference<ArtType> COURBET = ArtTypes.key(ResourceKey.sponge("courbet"));
+    public static final DefaultedRegistryReference<ArtType> COURBET = ArtTypes.key(ResourceKey.minecraft("courbet"));
 
-    public static final DefaultedRegistryReference<ArtType> CREEBET = ArtTypes.key(ResourceKey.sponge("creebet"));
+    public static final DefaultedRegistryReference<ArtType> CREEBET = ArtTypes.key(ResourceKey.minecraft("creebet"));
 
-    public static final DefaultedRegistryReference<ArtType> DONKEY_KONG = ArtTypes.key(ResourceKey.sponge("donkey_kong"));
+    public static final DefaultedRegistryReference<ArtType> DONKEY_KONG = ArtTypes.key(ResourceKey.minecraft("donkey_kong"));
 
-    public static final DefaultedRegistryReference<ArtType> FIGHTERS = ArtTypes.key(ResourceKey.sponge("fighters"));
+    public static final DefaultedRegistryReference<ArtType> FIGHTERS = ArtTypes.key(ResourceKey.minecraft("fighters"));
 
-    public static final DefaultedRegistryReference<ArtType> GRAHAM = ArtTypes.key(ResourceKey.sponge("graham"));
+    public static final DefaultedRegistryReference<ArtType> GRAHAM = ArtTypes.key(ResourceKey.minecraft("graham"));
 
-    public static final DefaultedRegistryReference<ArtType> KEBAB = ArtTypes.key(ResourceKey.sponge("kebab"));
+    public static final DefaultedRegistryReference<ArtType> KEBAB = ArtTypes.key(ResourceKey.minecraft("kebab"));
 
-    public static final DefaultedRegistryReference<ArtType> MATCH = ArtTypes.key(ResourceKey.sponge("match"));
+    public static final DefaultedRegistryReference<ArtType> MATCH = ArtTypes.key(ResourceKey.minecraft("match"));
 
-    public static final DefaultedRegistryReference<ArtType> PIGSCENE = ArtTypes.key(ResourceKey.sponge("pigscene"));
+    public static final DefaultedRegistryReference<ArtType> PIGSCENE = ArtTypes.key(ResourceKey.minecraft("pigscene"));
 
-    public static final DefaultedRegistryReference<ArtType> PLANT = ArtTypes.key(ResourceKey.sponge("plant"));
+    public static final DefaultedRegistryReference<ArtType> PLANT = ArtTypes.key(ResourceKey.minecraft("plant"));
 
-    public static final DefaultedRegistryReference<ArtType> POINTER = ArtTypes.key(ResourceKey.sponge("pointer"));
+    public static final DefaultedRegistryReference<ArtType> POINTER = ArtTypes.key(ResourceKey.minecraft("pointer"));
 
-    public static final DefaultedRegistryReference<ArtType> POOL = ArtTypes.key(ResourceKey.sponge("pool"));
+    public static final DefaultedRegistryReference<ArtType> POOL = ArtTypes.key(ResourceKey.minecraft("pool"));
 
-    public static final DefaultedRegistryReference<ArtType> SEA = ArtTypes.key(ResourceKey.sponge("sea"));
+    public static final DefaultedRegistryReference<ArtType> SEA = ArtTypes.key(ResourceKey.minecraft("sea"));
 
-    public static final DefaultedRegistryReference<ArtType> SKELETON = ArtTypes.key(ResourceKey.sponge("skeleton"));
+    public static final DefaultedRegistryReference<ArtType> SKELETON = ArtTypes.key(ResourceKey.minecraft("skeleton"));
 
-    public static final DefaultedRegistryReference<ArtType> SKULL_AND_ROSES = ArtTypes.key(ResourceKey.sponge("skull_and_roses"));
+    public static final DefaultedRegistryReference<ArtType> SKULL_AND_ROSES = ArtTypes.key(ResourceKey.minecraft("skull_and_roses"));
 
-    public static final DefaultedRegistryReference<ArtType> STAGE = ArtTypes.key(ResourceKey.sponge("stage"));
+    public static final DefaultedRegistryReference<ArtType> STAGE = ArtTypes.key(ResourceKey.minecraft("stage"));
 
-    public static final DefaultedRegistryReference<ArtType> SUNSET = ArtTypes.key(ResourceKey.sponge("sunset"));
+    public static final DefaultedRegistryReference<ArtType> SUNSET = ArtTypes.key(ResourceKey.minecraft("sunset"));
 
-    public static final DefaultedRegistryReference<ArtType> VOID = ArtTypes.key(ResourceKey.sponge("void"));
+    public static final DefaultedRegistryReference<ArtType> VOID = ArtTypes.key(ResourceKey.minecraft("void"));
 
-    public static final DefaultedRegistryReference<ArtType> WANDERER = ArtTypes.key(ResourceKey.sponge("wanderer"));
+    public static final DefaultedRegistryReference<ArtType> WANDERER = ArtTypes.key(ResourceKey.minecraft("wanderer"));
 
-    public static final DefaultedRegistryReference<ArtType> WASTELAND = ArtTypes.key(ResourceKey.sponge("wasteland"));
+    public static final DefaultedRegistryReference<ArtType> WASTELAND = ArtTypes.key(ResourceKey.minecraft("wasteland"));
 
-    public static final DefaultedRegistryReference<ArtType> WITHER = ArtTypes.key(ResourceKey.sponge("wither"));
+    public static final DefaultedRegistryReference<ArtType> WITHER = ArtTypes.key(ResourceKey.minecraft("wither"));
 
     // SORTFIELDS:OFF
 

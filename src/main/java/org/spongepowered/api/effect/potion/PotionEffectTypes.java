@@ -43,69 +43,69 @@ public final class PotionEffectTypes {
 
     // SORTFIELDS:ON
 
-    public static final DefaultedRegistryReference<PotionEffectType> ABSORPTION = PotionEffectTypes.key(ResourceKey.sponge("absorption"));
+    public static final DefaultedRegistryReference<PotionEffectType> ABSORPTION = PotionEffectTypes.key(ResourceKey.minecraft("absorption"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> BAD_OMEN = PotionEffectTypes.key(ResourceKey.sponge("bad_omen"));
+    public static final DefaultedRegistryReference<PotionEffectType> BAD_OMEN = PotionEffectTypes.key(ResourceKey.minecraft("bad_omen"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> BLINDNESS = PotionEffectTypes.key(ResourceKey.sponge("blindness"));
+    public static final DefaultedRegistryReference<PotionEffectType> BLINDNESS = PotionEffectTypes.key(ResourceKey.minecraft("blindness"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> CONDUIT_POWER = PotionEffectTypes.key(ResourceKey.sponge("conduit_power"));
+    public static final DefaultedRegistryReference<PotionEffectType> CONDUIT_POWER = PotionEffectTypes.key(ResourceKey.minecraft("conduit_power"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> DOLPHINS_GRACE = PotionEffectTypes.key(ResourceKey.sponge("dolphins_grace"));
+    public static final DefaultedRegistryReference<PotionEffectType> DOLPHINS_GRACE = PotionEffectTypes.key(ResourceKey.minecraft("dolphins_grace"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> FIRE_RESISTANCE = PotionEffectTypes.key(ResourceKey.sponge("fire_resistance"));
+    public static final DefaultedRegistryReference<PotionEffectType> FIRE_RESISTANCE = PotionEffectTypes.key(ResourceKey.minecraft("fire_resistance"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> GLOWING = PotionEffectTypes.key(ResourceKey.sponge("glowing"));
+    public static final DefaultedRegistryReference<PotionEffectType> GLOWING = PotionEffectTypes.key(ResourceKey.minecraft("glowing"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> HASTE = PotionEffectTypes.key(ResourceKey.sponge("haste"));
+    public static final DefaultedRegistryReference<PotionEffectType> HASTE = PotionEffectTypes.key(ResourceKey.minecraft("haste"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> HEALTH_BOOST = PotionEffectTypes.key(ResourceKey.sponge("health_boost"));
+    public static final DefaultedRegistryReference<PotionEffectType> HEALTH_BOOST = PotionEffectTypes.key(ResourceKey.minecraft("health_boost"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> HERO_OF_THE_VILLAGE = PotionEffectTypes.key(ResourceKey.sponge("hero_of_the_village"));
+    public static final DefaultedRegistryReference<PotionEffectType> HERO_OF_THE_VILLAGE = PotionEffectTypes.key(ResourceKey.minecraft("hero_of_the_village"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> HUNGER = PotionEffectTypes.key(ResourceKey.sponge("hunger"));
+    public static final DefaultedRegistryReference<PotionEffectType> HUNGER = PotionEffectTypes.key(ResourceKey.minecraft("hunger"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> INSTANT_DAMAGE = PotionEffectTypes.key(ResourceKey.sponge("instant_damage"));
+    public static final DefaultedRegistryReference<PotionEffectType> INSTANT_DAMAGE = PotionEffectTypes.key(ResourceKey.minecraft("instant_damage"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> INSTANT_HEALTH = PotionEffectTypes.key(ResourceKey.sponge("instant_health"));
+    public static final DefaultedRegistryReference<PotionEffectType> INSTANT_HEALTH = PotionEffectTypes.key(ResourceKey.minecraft("instant_health"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> INVISIBILITY = PotionEffectTypes.key(ResourceKey.sponge("invisibility"));
+    public static final DefaultedRegistryReference<PotionEffectType> INVISIBILITY = PotionEffectTypes.key(ResourceKey.minecraft("invisibility"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> JUMP_BOOST = PotionEffectTypes.key(ResourceKey.sponge("jump_boost"));
+    public static final DefaultedRegistryReference<PotionEffectType> JUMP_BOOST = PotionEffectTypes.key(ResourceKey.minecraft("jump_boost"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> LEVITATION = PotionEffectTypes.key(ResourceKey.sponge("levitation"));
+    public static final DefaultedRegistryReference<PotionEffectType> LEVITATION = PotionEffectTypes.key(ResourceKey.minecraft("levitation"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> LUCK = PotionEffectTypes.key(ResourceKey.sponge("luck"));
+    public static final DefaultedRegistryReference<PotionEffectType> LUCK = PotionEffectTypes.key(ResourceKey.minecraft("luck"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> MINING_FATIGUE = PotionEffectTypes.key(ResourceKey.sponge("mining_fatigue"));
+    public static final DefaultedRegistryReference<PotionEffectType> MINING_FATIGUE = PotionEffectTypes.key(ResourceKey.minecraft("mining_fatigue"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> NAUSEA = PotionEffectTypes.key(ResourceKey.sponge("nausea"));
+    public static final DefaultedRegistryReference<PotionEffectType> NAUSEA = PotionEffectTypes.key(ResourceKey.minecraft("nausea"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> NIGHT_VISION = PotionEffectTypes.key(ResourceKey.sponge("night_vision"));
+    public static final DefaultedRegistryReference<PotionEffectType> NIGHT_VISION = PotionEffectTypes.key(ResourceKey.minecraft("night_vision"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> POISON = PotionEffectTypes.key(ResourceKey.sponge("poison"));
+    public static final DefaultedRegistryReference<PotionEffectType> POISON = PotionEffectTypes.key(ResourceKey.minecraft("poison"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> REGENERATION = PotionEffectTypes.key(ResourceKey.sponge("regeneration"));
+    public static final DefaultedRegistryReference<PotionEffectType> REGENERATION = PotionEffectTypes.key(ResourceKey.minecraft("regeneration"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> RESISTANCE = PotionEffectTypes.key(ResourceKey.sponge("resistance"));
+    public static final DefaultedRegistryReference<PotionEffectType> RESISTANCE = PotionEffectTypes.key(ResourceKey.minecraft("resistance"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> SATURATION = PotionEffectTypes.key(ResourceKey.sponge("saturation"));
+    public static final DefaultedRegistryReference<PotionEffectType> SATURATION = PotionEffectTypes.key(ResourceKey.minecraft("saturation"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> SLOWNESS = PotionEffectTypes.key(ResourceKey.sponge("slowness"));
+    public static final DefaultedRegistryReference<PotionEffectType> SLOWNESS = PotionEffectTypes.key(ResourceKey.minecraft("slowness"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> SLOW_FALLING = PotionEffectTypes.key(ResourceKey.sponge("slow_falling"));
+    public static final DefaultedRegistryReference<PotionEffectType> SLOW_FALLING = PotionEffectTypes.key(ResourceKey.minecraft("slow_falling"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> SPEED = PotionEffectTypes.key(ResourceKey.sponge("speed"));
+    public static final DefaultedRegistryReference<PotionEffectType> SPEED = PotionEffectTypes.key(ResourceKey.minecraft("speed"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> STRENGTH = PotionEffectTypes.key(ResourceKey.sponge("strength"));
+    public static final DefaultedRegistryReference<PotionEffectType> STRENGTH = PotionEffectTypes.key(ResourceKey.minecraft("strength"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> UNLUCK = PotionEffectTypes.key(ResourceKey.sponge("unluck"));
+    public static final DefaultedRegistryReference<PotionEffectType> UNLUCK = PotionEffectTypes.key(ResourceKey.minecraft("unluck"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> WATER_BREATHING = PotionEffectTypes.key(ResourceKey.sponge("water_breathing"));
+    public static final DefaultedRegistryReference<PotionEffectType> WATER_BREATHING = PotionEffectTypes.key(ResourceKey.minecraft("water_breathing"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> WEAKNESS = PotionEffectTypes.key(ResourceKey.sponge("weakness"));
+    public static final DefaultedRegistryReference<PotionEffectType> WEAKNESS = PotionEffectTypes.key(ResourceKey.minecraft("weakness"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> WITHER = PotionEffectTypes.key(ResourceKey.sponge("wither"));
+    public static final DefaultedRegistryReference<PotionEffectType> WITHER = PotionEffectTypes.key(ResourceKey.minecraft("wither"));
 
     // SORTFIELDS:OFF
 

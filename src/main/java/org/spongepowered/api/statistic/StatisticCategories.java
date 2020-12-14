@@ -38,23 +38,23 @@ public final class StatisticCategories {
 
     // SORTFIELDS:ON
 
-    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<BlockType>> BLOCKS_BROKEN = StatisticCategories.catalogKey(ResourceKey.sponge("blocks_broken"));
+    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<BlockType>> BLOCKS_BROKEN = StatisticCategories.catalogKey(ResourceKey.minecraft("blocks_broken"));
 
-    public static final DefaultedRegistryReference<StatisticCategory> CUSTOM = StatisticCategories.key(ResourceKey.sponge("custom"));
+    public static final DefaultedRegistryReference<StatisticCategory> CUSTOM = StatisticCategories.key(ResourceKey.minecraft("custom"));
 
-    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<EntityType<?>>> ENTITIES_KILLED = StatisticCategories.catalogKey(ResourceKey.sponge("entities_killed"));
+    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<EntityType<?>>> ENTITIES_KILLED = StatisticCategories.catalogKey(ResourceKey.minecraft("entities_killed"));
 
-    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<ItemType>> ITEMS_BROKEN = StatisticCategories.catalogKey(ResourceKey.sponge("items_broken"));
+    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<ItemType>> ITEMS_BROKEN = StatisticCategories.catalogKey(ResourceKey.minecraft("items_broken"));
 
-    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<ItemType>> ITEMS_CRAFTED = StatisticCategories.catalogKey(ResourceKey.sponge("items_crafted"));
+    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<ItemType>> ITEMS_CRAFTED = StatisticCategories.catalogKey(ResourceKey.minecraft("items_crafted"));
 
-    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<ItemType>> ITEMS_DROPPED = StatisticCategories.catalogKey(ResourceKey.sponge("items_dropped"));
+    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<ItemType>> ITEMS_DROPPED = StatisticCategories.catalogKey(ResourceKey.minecraft("items_dropped"));
 
-    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<ItemType>> ITEMS_PICKED_UP = StatisticCategories.catalogKey(ResourceKey.sponge("items_picked_up"));
+    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<ItemType>> ITEMS_PICKED_UP = StatisticCategories.catalogKey(ResourceKey.minecraft("items_picked_up"));
 
-    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<ItemType>> ITEMS_USED = StatisticCategories.catalogKey(ResourceKey.sponge("items_used"));
+    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<ItemType>> ITEMS_USED = StatisticCategories.catalogKey(ResourceKey.minecraft("items_used"));
 
-    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<EntityType<?>>> KILLED_BY_ENTITIES = StatisticCategories.catalogKey(ResourceKey.sponge("killed_by_entities"));
+    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<EntityType<?>>> KILLED_BY_ENTITIES = StatisticCategories.catalogKey(ResourceKey.minecraft("killed_by_entities"));
 
     // SORTFIELDS:OFF
 

@@ -51,19 +51,19 @@ public final class ChunkStates {
      * The chunk should not have any {@link Entity} instances or {@link BlockEntity}
      * instances and may have a valid {@link ProtoWorld} used for world generation.
      */
-    public static final DefaultedRegistryReference<ChunkState> BASE = ChunkStates.key(ResourceKey.sponge("base"));
+    public static final DefaultedRegistryReference<ChunkState> BASE = ChunkStates.key(ResourceKey.minecraft("base"));
 
     /**
      * A {@link ProtoChunk} that is being "carved out" for general terrain features
      * that require things like "caves" or "canyons".
      */
-    public static final DefaultedRegistryReference<ChunkState> CARVED = ChunkStates.key(ResourceKey.sponge("carved"));
+    public static final DefaultedRegistryReference<ChunkState> CARVED = ChunkStates.key(ResourceKey.minecraft("carved"));
 
     /**
      * A {@link ProtoChunk} state that is being populated by world generation,
      * usually provided by {@link BiomeType}s.
      */
-    public static final DefaultedRegistryReference<ChunkState> DECORATED = ChunkStates.key(ResourceKey.sponge("decorated"));
+    public static final DefaultedRegistryReference<ChunkState> DECORATED = ChunkStates.key(ResourceKey.minecraft("decorated"));
 
     /**
      * Identifies a {@link ProtoChunk} that is considered empty. The method
@@ -71,21 +71,21 @@ public final class ChunkStates {
      * chunk has nothing contained within it, but can be used as a dummy chunk
      * in some regards for world generation.
      */
-    public static final DefaultedRegistryReference<ChunkState> EMPTY = ChunkStates.key(ResourceKey.sponge("empty"));
+    public static final DefaultedRegistryReference<ChunkState> EMPTY = ChunkStates.key(ResourceKey.minecraft("empty"));
 
     /**
      * A {@link ProtoChunk} state that is being used for entity spawning.
      * Generally requires that the neighboring chunks are adequately populated,
      * and requires that this chunk has proper lighting, for mob placement logic.
      */
-    public static final DefaultedRegistryReference<ChunkState> ENTITIES_SPAWNED = ChunkStates.key(ResourceKey.sponge("entities_spawned"));
+    public static final DefaultedRegistryReference<ChunkState> ENTITIES_SPAWNED = ChunkStates.key(ResourceKey.minecraft("entities_spawned"));
 
     /**
      * A {@link ProtoChunk} state that is "cleaning" up remnant objects of a
      * chunk in process of world generation. Generally, height maps are being
      * calculated at this point as entity spawning can affect block placement.
      */
-    public static final DefaultedRegistryReference<ChunkState> FINALIZED = ChunkStates.key(ResourceKey.sponge("finalized"));
+    public static final DefaultedRegistryReference<ChunkState> FINALIZED = ChunkStates.key(ResourceKey.minecraft("finalized"));
 
     /**
      * A {@link ProtoChunk} that has completed world generation tasks and can be
@@ -93,13 +93,13 @@ public final class ChunkStates {
      * chunk deserialization prior to a {@link Chunk} being fully added to a
      * {@link World} instance.
      */
-    public static final DefaultedRegistryReference<ChunkState> GENERATED = ChunkStates.key(ResourceKey.sponge("generated"));
+    public static final DefaultedRegistryReference<ChunkState> GENERATED = ChunkStates.key(ResourceKey.minecraft("generated"));
 
     /**
      * A {@link ProtoChunk} state that is being "carved" with liquid cave
      * features, such as underwater ravines, underwater caves, etc.
      */
-    public static final DefaultedRegistryReference<ChunkState> LIQUID_CARVED = ChunkStates.key(ResourceKey.sponge("liquid_carved"));
+    public static final DefaultedRegistryReference<ChunkState> LIQUID_CARVED = ChunkStates.key(ResourceKey.minecraft("liquid_carved"));
 
     /**
      * A {@link ProtoChunk} state that has yet been processed with lighting in
@@ -107,7 +107,7 @@ public final class ChunkStates {
      * to last step in the world generation pipeline for a chunk to be marked
      * as ready for being added to a {@link World}.
      */
-    public static final DefaultedRegistryReference<ChunkState> LIT = ChunkStates.key(ResourceKey.sponge("lit"));
+    public static final DefaultedRegistryReference<ChunkState> LIT = ChunkStates.key(ResourceKey.minecraft("lit"));
 
     /**
      * State for a {@link ProtoChunk} marking it being used by a world, and not
@@ -115,7 +115,7 @@ public final class ChunkStates {
      * Should have an instance of {@link Chunk} providing this state only, as
      * other {@link ProtoChunk}s would assuredly be invalid with this state.
      */
-    public static final DefaultedRegistryReference<ChunkState> WORLD_READY = ChunkStates.key(ResourceKey.sponge("world_ready"));
+    public static final DefaultedRegistryReference<ChunkState> WORLD_READY = ChunkStates.key(ResourceKey.minecraft("world_ready"));
 
     // SORTFIELDS:OFF
 

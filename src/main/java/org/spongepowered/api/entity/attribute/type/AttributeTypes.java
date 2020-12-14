@@ -43,31 +43,31 @@ public final class AttributeTypes {
 
     // SORTFIELDS:ON
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ARMOR = AttributeTypes.rangedKey(ResourceKey.sponge("generic.armor"));
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ARMOR = AttributeTypes.rangedKey(ResourceKey.minecraft("generic.armor"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ARMOR_TOUGHNESS = AttributeTypes.rangedKey(ResourceKey.sponge("generic.armor_toughness"));
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ARMOR_TOUGHNESS = AttributeTypes.rangedKey(ResourceKey.minecraft("generic.armor_toughness"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ATTACK_DAMAGE = AttributeTypes.rangedKey(ResourceKey.sponge("generic.attack_damage"));
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ATTACK_DAMAGE = AttributeTypes.rangedKey(ResourceKey.minecraft("generic.attack_damage"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ATTACK_KNOCKBACK = AttributeTypes.rangedKey(ResourceKey.sponge("generic.attack_knockback"));
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ATTACK_KNOCKBACK = AttributeTypes.rangedKey(ResourceKey.minecraft("generic.attack_knockback"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ATTACK_SPEED = AttributeTypes.rangedKey(ResourceKey.sponge("generic.attack_speed"));
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ATTACK_SPEED = AttributeTypes.rangedKey(ResourceKey.minecraft("generic.attack_speed"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_FLYING_SPEED = AttributeTypes.rangedKey(ResourceKey.sponge("generic.flying_speed"));
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_FLYING_SPEED = AttributeTypes.rangedKey(ResourceKey.minecraft("generic.flying_speed"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_FOLLOW_RANGE = AttributeTypes.rangedKey(ResourceKey.sponge("generic.follow_range"));
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_FOLLOW_RANGE = AttributeTypes.rangedKey(ResourceKey.minecraft("generic.follow_range"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_KNOCKBACK_RESISTANCE = AttributeTypes.rangedKey(ResourceKey.sponge("generic.knockback_resistance"));
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_KNOCKBACK_RESISTANCE = AttributeTypes.rangedKey(ResourceKey.minecraft("generic.knockback_resistance"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_LUCK = AttributeTypes.rangedKey(ResourceKey.sponge("generic.luck"));
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_LUCK = AttributeTypes.rangedKey(ResourceKey.minecraft("generic.luck"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_MAX_HEALTH = AttributeTypes.rangedKey(ResourceKey.sponge("generic.max_health"));
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_MAX_HEALTH = AttributeTypes.rangedKey(ResourceKey.minecraft("generic.max_health"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_MOVEMENT_SPEED = AttributeTypes.rangedKey(ResourceKey.sponge("generic.movement_speed"));
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_MOVEMENT_SPEED = AttributeTypes.rangedKey(ResourceKey.minecraft("generic.movement_speed"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> HORSE_JUMP_STRENGTH = AttributeTypes.rangedKey(ResourceKey.sponge("horse.jump_strength"));
+    public static final DefaultedRegistryReference<RangedAttributeType> HORSE_JUMP_STRENGTH = AttributeTypes.rangedKey(ResourceKey.minecraft("horse.jump_strength"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> ZOMBIE_SPAWN_REINFORCEMENTS = AttributeTypes.rangedKey(ResourceKey.sponge("zombie.spawn_reinforcements"));
+    public static final DefaultedRegistryReference<RangedAttributeType> ZOMBIE_SPAWN_REINFORCEMENTS = AttributeTypes.rangedKey(ResourceKey.minecraft("zombie.spawn_reinforcements"));
 
     // SORTFIELDS:OFF
 

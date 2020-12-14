@@ -38,13 +38,13 @@ public final class DimensionTypes {
 
     // SORTFIELDS:ON
 
-    public static final RegistryReference<DimensionType> OVERWORLD = DimensionTypes.key(ResourceKey.sponge("overworld"));
+    public static final RegistryReference<DimensionType> OVERWORLD = DimensionTypes.key(ResourceKey.minecraft("overworld"));
 
-    public static final RegistryReference<DimensionType> OVERWORLD_CAVES = DimensionTypes.key(ResourceKey.sponge("overworld_caves"));
+    public static final RegistryReference<DimensionType> OVERWORLD_CAVES = DimensionTypes.key(ResourceKey.minecraft("overworld_caves"));
 
-    public static final RegistryReference<DimensionType> THE_END = DimensionTypes.key(ResourceKey.sponge("the_end"));
+    public static final RegistryReference<DimensionType> THE_END = DimensionTypes.key(ResourceKey.minecraft("the_end"));
 
-    public static final RegistryReference<DimensionType> THE_NETHER = DimensionTypes.key(ResourceKey.sponge("the_nether"));
+    public static final RegistryReference<DimensionType> THE_NETHER = DimensionTypes.key(ResourceKey.minecraft("the_nether"));
 
     // SORTFIELDS:OFF
 

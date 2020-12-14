@@ -46,17 +46,17 @@ public final class RecipeTypes {
 
     // SORTFIELDS:ON
 
-    public static final DefaultedRegistryReference<RecipeType<CraftingRecipe>> CRAFTING = RecipeTypes.key(ResourceKey.sponge("crafting"));
+    public static final DefaultedRegistryReference<RecipeType<CraftingRecipe>> CRAFTING = RecipeTypes.key(ResourceKey.minecraft("crafting"));
 
-    public static final DefaultedRegistryReference<RecipeType<CookingRecipe>> SMELTING = RecipeTypes.key(ResourceKey.sponge("smelting"));
+    public static final DefaultedRegistryReference<RecipeType<CookingRecipe>> SMELTING = RecipeTypes.key(ResourceKey.minecraft("smelting"));
 
-    public static final DefaultedRegistryReference<RecipeType<CookingRecipe>> BLASTING = RecipeTypes.key(ResourceKey.sponge("blasting"));
+    public static final DefaultedRegistryReference<RecipeType<CookingRecipe>> BLASTING = RecipeTypes.key(ResourceKey.minecraft("blasting"));
 
-    public static final DefaultedRegistryReference<RecipeType<CookingRecipe>> SMOKING = RecipeTypes.key(ResourceKey.sponge("smoking"));
+    public static final DefaultedRegistryReference<RecipeType<CookingRecipe>> SMOKING = RecipeTypes.key(ResourceKey.minecraft("smoking"));
 
-    public static final DefaultedRegistryReference<RecipeType<CookingRecipe>> CAMPFIRE_COOKING = RecipeTypes.key(ResourceKey.sponge("campfire_cooking"));
+    public static final DefaultedRegistryReference<RecipeType<CookingRecipe>> CAMPFIRE_COOKING = RecipeTypes.key(ResourceKey.minecraft("campfire_cooking"));
 
-    public static final DefaultedRegistryReference<RecipeType<StoneCutterRecipe>> STONECUTTING = RecipeTypes.key(ResourceKey.sponge("stonecutting"));
+    public static final DefaultedRegistryReference<RecipeType<StoneCutterRecipe>> STONECUTTING = RecipeTypes.key(ResourceKey.minecraft("stonecutting"));
 
     // SORTFIELDS:OFF
 

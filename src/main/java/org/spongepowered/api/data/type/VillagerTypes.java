@@ -40,19 +40,19 @@ public final class VillagerTypes {
 
     // SORTFIELDS:ON
 
-    public static final DefaultedRegistryReference<VillagerType> DESERT = VillagerTypes.key(ResourceKey.sponge("desert"));
+    public static final DefaultedRegistryReference<VillagerType> DESERT = VillagerTypes.key(ResourceKey.minecraft("desert"));
 
-    public static final DefaultedRegistryReference<VillagerType> JUNGLE = VillagerTypes.key(ResourceKey.sponge("jungle"));
+    public static final DefaultedRegistryReference<VillagerType> JUNGLE = VillagerTypes.key(ResourceKey.minecraft("jungle"));
 
-    public static final DefaultedRegistryReference<VillagerType> PLAINS = VillagerTypes.key(ResourceKey.sponge("plains"));
+    public static final DefaultedRegistryReference<VillagerType> PLAINS = VillagerTypes.key(ResourceKey.minecraft("plains"));
 
-    public static final DefaultedRegistryReference<VillagerType> SAVANNA = VillagerTypes.key(ResourceKey.sponge("savanna"));
+    public static final DefaultedRegistryReference<VillagerType> SAVANNA = VillagerTypes.key(ResourceKey.minecraft("savanna"));
 
-    public static final DefaultedRegistryReference<VillagerType> SNOW = VillagerTypes.key(ResourceKey.sponge("snow"));
+    public static final DefaultedRegistryReference<VillagerType> SNOW = VillagerTypes.key(ResourceKey.minecraft("snow"));
 
-    public static final DefaultedRegistryReference<VillagerType> SWAMP = VillagerTypes.key(ResourceKey.sponge("swamp"));
+    public static final DefaultedRegistryReference<VillagerType> SWAMP = VillagerTypes.key(ResourceKey.minecraft("swamp"));
 
-    public static final DefaultedRegistryReference<VillagerType> TAIGA = VillagerTypes.key(ResourceKey.sponge("taiga"));
+    public static final DefaultedRegistryReference<VillagerType> TAIGA = VillagerTypes.key(ResourceKey.minecraft("taiga"));
 
     // SORTFIELDS:OFF
 

@@ -40,15 +40,15 @@ public final class FluidTypes {
 
     // SORTFIELDS:ON
 
-    public static final DefaultedRegistryReference<FluidType> EMPTY = FluidTypes.key(ResourceKey.sponge("empty"));
+    public static final DefaultedRegistryReference<FluidType> EMPTY = FluidTypes.key(ResourceKey.minecraft("empty"));
 
-    public static final DefaultedRegistryReference<FluidType> FLOWING_LAVA = FluidTypes.key(ResourceKey.sponge("flowing_lava"));
+    public static final DefaultedRegistryReference<FluidType> FLOWING_LAVA = FluidTypes.key(ResourceKey.minecraft("flowing_lava"));
 
-    public static final DefaultedRegistryReference<FluidType> FLOWING_WATER = FluidTypes.key(ResourceKey.sponge("flowing_water"));
+    public static final DefaultedRegistryReference<FluidType> FLOWING_WATER = FluidTypes.key(ResourceKey.minecraft("flowing_water"));
 
-    public static final DefaultedRegistryReference<FluidType> LAVA = FluidTypes.key(ResourceKey.sponge("lava"));
+    public static final DefaultedRegistryReference<FluidType> LAVA = FluidTypes.key(ResourceKey.minecraft("lava"));
 
-    public static final DefaultedRegistryReference<FluidType> WATER = FluidTypes.key(ResourceKey.sponge("water"));
+    public static final DefaultedRegistryReference<FluidType> WATER = FluidTypes.key(ResourceKey.minecraft("water"));
 
     // SORTFIELDS:OFF
 

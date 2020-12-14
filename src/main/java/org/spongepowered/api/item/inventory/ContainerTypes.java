@@ -51,91 +51,91 @@ public final class ContainerTypes {
 
     // TODO add new inventories
 
-    public static final DefaultedRegistryReference<ContainerType> BLAST_FURNACE = ContainerTypes.key(ResourceKey.sponge("blast_furnace"));
+    public static final DefaultedRegistryReference<ContainerType> BLAST_FURNACE = ContainerTypes.key(ResourceKey.minecraft("blast_furnace"));
 
     /**
      * Size 5.
      */
-    public static final DefaultedRegistryReference<ContainerType> BREWING_STAND = ContainerTypes.key(ResourceKey.sponge("brewing_stand"));
+    public static final DefaultedRegistryReference<ContainerType> BREWING_STAND = ContainerTypes.key(ResourceKey.minecraft("brewing_stand"));
 
     /**
      * Size 3.
      */
-    public static final DefaultedRegistryReference<ContainerType> FURNACE = ContainerTypes.key(ResourceKey.sponge("furnace"));
+    public static final DefaultedRegistryReference<ContainerType> FURNACE = ContainerTypes.key(ResourceKey.minecraft("furnace"));
 
     /**
      * Size 9 (3x3 grid). (Dispenser)
      */
-    public static final DefaultedRegistryReference<ContainerType> GENERIC_3x3 = ContainerTypes.key(ResourceKey.sponge("generic_3x3"));
+    public static final DefaultedRegistryReference<ContainerType> GENERIC_3X3 = ContainerTypes.key(ResourceKey.minecraft("generic_3x3"));
 
-    public static final DefaultedRegistryReference<ContainerType> GENERIC_9x1 = ContainerTypes.key(ResourceKey.sponge("generic_9x1"));
+    public static final DefaultedRegistryReference<ContainerType> GENERIC_9X1 = ContainerTypes.key(ResourceKey.minecraft("generic_9x1"));
 
-    public static final DefaultedRegistryReference<ContainerType> GENERIC_9x2 = ContainerTypes.key(ResourceKey.sponge("generic_9x2"));
+    public static final DefaultedRegistryReference<ContainerType> GENERIC_9X2 = ContainerTypes.key(ResourceKey.minecraft("generic_9x2"));
 
     /**
      * Size 27 (3x9 grid)
      */
-    public static final DefaultedRegistryReference<ContainerType> GENERIC_9x3 = ContainerTypes.key(ResourceKey.sponge("generic_9x3"));
+    public static final DefaultedRegistryReference<ContainerType> GENERIC_9X3 = ContainerTypes.key(ResourceKey.minecraft("generic_9x3"));
 
-    public static final DefaultedRegistryReference<ContainerType> GENERIC_9x4 = ContainerTypes.key(ResourceKey.sponge("generic_9x4"));
+    public static final DefaultedRegistryReference<ContainerType> GENERIC_9X4 = ContainerTypes.key(ResourceKey.minecraft("generic_9x4"));
 
-    public static final DefaultedRegistryReference<ContainerType> GENERIC_9x5 = ContainerTypes.key(ResourceKey.sponge("generic_9x5"));
+    public static final DefaultedRegistryReference<ContainerType> GENERIC_9X5 = ContainerTypes.key(ResourceKey.minecraft("generic_9x5"));
 
     /**
      * Size 54 (6x9 grid)
      */
-    public static final DefaultedRegistryReference<ContainerType> GENERIC_9x6 = ContainerTypes.key(ResourceKey.sponge("generic_9x6"));
+    public static final DefaultedRegistryReference<ContainerType> GENERIC_9X6 = ContainerTypes.key(ResourceKey.minecraft("generic_9x6"));
 
     /**
      * Size 5 (1x5 grid).
      */
-    public static final DefaultedRegistryReference<ContainerType> HOPPER = ContainerTypes.key(ResourceKey.sponge("hopper"));
+    public static final DefaultedRegistryReference<ContainerType> HOPPER = ContainerTypes.key(ResourceKey.minecraft("hopper"));
 
-    public static final DefaultedRegistryReference<ContainerType> LECTERN = ContainerTypes.key(ResourceKey.sponge("lectern"));
+    public static final DefaultedRegistryReference<ContainerType> LECTERN = ContainerTypes.key(ResourceKey.minecraft("lectern"));
 
     /**
      * Size 27 (3x9 grid). Shulker boxes are not allowed in shulker boxes.
      */
-    public static final DefaultedRegistryReference<ContainerType> SHULKER_BOX = ContainerTypes.key(ResourceKey.sponge("shulker_box"));
+    public static final DefaultedRegistryReference<ContainerType> SHULKER_BOX = ContainerTypes.key(ResourceKey.minecraft("shulker_box"));
 
-    public static final DefaultedRegistryReference<ContainerType> SMOKER = ContainerTypes.key(ResourceKey.sponge("smoker"));
+    public static final DefaultedRegistryReference<ContainerType> SMOKER = ContainerTypes.key(ResourceKey.minecraft("smoker"));
 
     // Containers with internal Inventory.
 
     /**
      * Size 0. All slots present in the container only: 3.
      */
-    public static final DefaultedRegistryReference<ContainerType> ANVIL = ContainerTypes.key(ResourceKey.sponge("anvil"));
+    public static final DefaultedRegistryReference<ContainerType> ANVIL = ContainerTypes.key(ResourceKey.minecraft("anvil"));
 
     /**
      * Size 0. All slots present in the container only: 1.
      */
-    public static final DefaultedRegistryReference<ContainerType> BEACON = ContainerTypes.key(ResourceKey.sponge("beacon"));
+    public static final DefaultedRegistryReference<ContainerType> BEACON = ContainerTypes.key(ResourceKey.minecraft("beacon"));
 
-    public static final DefaultedRegistryReference<ContainerType> CARTOGRAPHY_TABLE = ContainerTypes.key(ResourceKey.sponge("cartography_table"));
+    public static final DefaultedRegistryReference<ContainerType> CARTOGRAPHY_TABLE = ContainerTypes.key(ResourceKey.minecraft("cartography_table"));
 
     /**
      * Size 0. All slots present in the container only: 10 (3x3+1).
      */
-    public static final DefaultedRegistryReference<ContainerType> CRAFTING = ContainerTypes.key(ResourceKey.sponge("crafting"));
+    public static final DefaultedRegistryReference<ContainerType> CRAFTING = ContainerTypes.key(ResourceKey.minecraft("crafting"));
 
     /**
      * Size 0. All slots present in the container only 2.
      */
-    public static final DefaultedRegistryReference<ContainerType> ENCHANTMENT = ContainerTypes.key(ResourceKey.sponge("enchantment"));
+    public static final DefaultedRegistryReference<ContainerType> ENCHANTMENT = ContainerTypes.key(ResourceKey.minecraft("enchantment"));
 
-    public static final DefaultedRegistryReference<ContainerType> GRINDSTONE = ContainerTypes.key(ResourceKey.sponge("grindstone"));
+    public static final DefaultedRegistryReference<ContainerType> GRINDSTONE = ContainerTypes.key(ResourceKey.minecraft("grindstone"));
 
-    public static final DefaultedRegistryReference<ContainerType> LOOM = ContainerTypes.key(ResourceKey.sponge("loom"));
+    public static final DefaultedRegistryReference<ContainerType> LOOM = ContainerTypes.key(ResourceKey.minecraft("loom"));
 
-    public static final DefaultedRegistryReference<ContainerType> STONECUTTER = ContainerTypes.key(ResourceKey.sponge("stonecutter"));
+    public static final DefaultedRegistryReference<ContainerType> STONECUTTER = ContainerTypes.key(ResourceKey.minecraft("stonecutter"));
 
     // Containers that cannot be opened on their own. Create an Entity to open the container instead.
 
     /**
      * Create a {@link Villager} Entity instead of using this ContainerType.
      */
-    public static final DefaultedRegistryReference<ContainerType> MERCHANT = ContainerTypes.key(ResourceKey.sponge("merchant"));
+    public static final DefaultedRegistryReference<ContainerType> MERCHANT = ContainerTypes.key(ResourceKey.minecraft("merchant"));
 
     // SORTFIELDS:OFF
 
