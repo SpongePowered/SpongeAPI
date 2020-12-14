@@ -615,7 +615,7 @@ public interface LocationBaseDataHolder {
      * @param key The Key to the value of data
      * @return True if the block supports the data
      */
-    default boolean supports(final Vector3i position, final DefaultedRegistryReference<? extends Key<?>> key) {
+    default boolean supports(final Vector3i position, final Supplier<? extends Key<?>> key) {
         return this.supports(position.getX(), position.getY(), position.getZ(), key.get());
     }
 
@@ -641,7 +641,7 @@ public interface LocationBaseDataHolder {
      * @param key The Key to the value of data
      * @return True if the block supports the data
      */
-    default boolean supports(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<?>> key) {
+    default boolean supports(final int x, final int y, final int z, final Supplier<? extends Key<?>> key) {
         return this.supports(x, y, z, key.get());
     }
 

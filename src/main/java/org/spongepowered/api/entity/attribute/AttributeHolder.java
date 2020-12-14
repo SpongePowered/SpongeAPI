@@ -26,9 +26,9 @@ package org.spongepowered.api.entity.attribute;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.attribute.type.AttributeType;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 
 import java.util.Optional;
+import java.util.function.Supplier;
 
 /**
  * Represents an {@link Entity} which can hold {@link Attribute}s.
@@ -40,7 +40,7 @@ public interface AttributeHolder {
      * @param type The attribute type.
      * @return An attribute, if present.
      */
-    default Optional<Attribute> getAttribute(final DefaultedRegistryReference<? extends AttributeType> type) {
+    default Optional<Attribute> getAttribute(final Supplier<? extends AttributeType> type) {
         return this.getAttribute(type.get());
     }
 

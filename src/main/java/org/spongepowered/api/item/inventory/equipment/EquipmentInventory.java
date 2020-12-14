@@ -29,9 +29,9 @@ import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 
 import java.util.Optional;
+import java.util.function.Supplier;
 
 /**
  * Equipment inventory for {@link Equipable}s that can carry equipment.
@@ -55,7 +55,7 @@ public interface EquipmentInventory extends Inventory {
      */
      InventoryTransactionResult.Poll poll(EquipmentType equipmentType);
 
-     default InventoryTransactionResult.Poll poll(final DefaultedRegistryReference<? extends EquipmentType> equipmentType) {
+     default InventoryTransactionResult.Poll poll(final Supplier<? extends EquipmentType> equipmentType) {
          return this.poll(equipmentType.get());
      }
 
@@ -70,7 +70,7 @@ public interface EquipmentInventory extends Inventory {
      */
     InventoryTransactionResult.Poll poll(EquipmentType equipmentType, int limit);
 
-    default InventoryTransactionResult.Poll poll(final DefaultedRegistryReference<? extends EquipmentType> equipmentType, final int limit) {
+    default InventoryTransactionResult.Poll poll(final Supplier<? extends EquipmentType> equipmentType, final int limit) {
         return this.poll(equipmentType.get(), limit);
     }
 
@@ -84,7 +84,7 @@ public interface EquipmentInventory extends Inventory {
      */
     Optional<ItemStack> peek(EquipmentType equipmentType);
 
-    default Optional<ItemStack> peek(final DefaultedRegistryReference<? extends EquipmentType> equipmentType) {
+    default Optional<ItemStack> peek(final Supplier<? extends EquipmentType> equipmentType) {
         return this.peek(equipmentType.get());
     }
 
@@ -98,7 +98,7 @@ public interface EquipmentInventory extends Inventory {
      */
     InventoryTransactionResult set(EquipmentType equipmentType, ItemStack stack);
 
-    default InventoryTransactionResult set(final DefaultedRegistryReference<? extends EquipmentType> equipmentType, final ItemStack stack) {
+    default InventoryTransactionResult set(final Supplier<? extends EquipmentType> equipmentType, final ItemStack stack) {
         return this.set(equipmentType.get(), stack);
     }
 
@@ -110,7 +110,7 @@ public interface EquipmentInventory extends Inventory {
      */
     Optional<Slot> getSlot(EquipmentType equipmentType);
 
-    default Optional<Slot> getSlot(final DefaultedRegistryReference<? extends EquipmentType> equipmentType) {
+    default Optional<Slot> getSlot(final Supplier<? extends EquipmentType> equipmentType) {
         return this.getSlot(equipmentType.get());
     }
 

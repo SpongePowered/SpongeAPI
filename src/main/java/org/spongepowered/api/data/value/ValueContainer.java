@@ -38,6 +38,7 @@ import java.util.OptionalDouble;
 import java.util.OptionalInt;
 import java.util.OptionalLong;
 import java.util.Set;
+import java.util.function.Supplier;
 
 /**
  * A value holder is a holder of a particular set of {@link Value}s. While
@@ -196,7 +197,7 @@ public interface ValueContainer {
      * @return The value
      * @throws NoSuchElementException If the value is not supported or present
      */
-    default <E> E require(final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
+    default <E> E require(final Supplier<? extends Key<? extends Value<E>>> key) {
         return this.require(key.get());
     }
 
@@ -229,7 +230,7 @@ public interface ValueContainer {
      * @param <E> The type of value
      * @return The value, or null if not set
      */
-    default <E> @Nullable E getOrNull(final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
+    default <E> @Nullable E getOrNull(final Supplier<? extends Key<? extends Value<E>>> key) {
         return this.getOrNull(key.get());
     }
 
@@ -257,7 +258,7 @@ public interface ValueContainer {
      * @param <E> The type of value
      * @return The value, or default if not set
      */
-    default <E> E getOrElse(final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, E defaultValue) {
+    default <E> E getOrElse(final Supplier<? extends Key<? extends Value<E>>> key, E defaultValue) {
         return this.getOrElse(key.get(), defaultValue);
     }
 
@@ -279,7 +280,7 @@ public interface ValueContainer {
      * @param <V> The type of value
      * @return The value, if available
      */
-    default <E, V extends Value<E>> Optional<V> getValue(final DefaultedRegistryReference<? extends Key<V>> key) {
+    default <E, V extends Value<E>> Optional<V> getValue(final Supplier<? extends Key<V>> key) {
         return this.getValue(key.get());
     }
 
@@ -296,7 +297,7 @@ public interface ValueContainer {
      * @return The value
      * @throws NoSuchElementException If the value is not supported or present
      */
-    default <E, V extends Value<E>> V requireValue(final DefaultedRegistryReference<? extends Key<V>> key) {
+    default <E, V extends Value<E>> V requireValue(final Supplier<? extends Key<V>> key) {
         return this.requireValue(key.get());
     }
 
@@ -334,7 +335,7 @@ public interface ValueContainer {
      * @param key The key to check
      * @return True if the key and value backed by the key is supported
      */
-    default boolean supports(final DefaultedRegistryReference<? extends Key<?>> key) {
+    default boolean supports(final Supplier<? extends Key<?>> key) {
         return this.supports(key.get());
     }
 

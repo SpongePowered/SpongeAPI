@@ -154,7 +154,7 @@ public interface StateMatcher<S extends State<S>> extends Predicate<S> {
          * @param stateProperty The state property
          * @return This builder, for chaining
          */
-        default Builder<S, T> supportsStateProperty(final DefaultedRegistryReference<? extends StateProperty<@NonNull ?>> stateProperty) {
+        default Builder<S, T> supportsStateProperty(final Supplier<? extends StateProperty<@NonNull ?>> stateProperty) {
             return this.supportsStateProperty(stateProperty.get());
         }
 
@@ -182,7 +182,7 @@ public interface StateMatcher<S extends State<S>> extends Predicate<S> {
          * @param <V> The value type
          * @return This builder, for chaining
          */
-        default <V extends Comparable<V>> Builder<S, T> stateProperty(final DefaultedRegistryReference<? extends StateProperty<V>> stateProperty, final V value) {
+        default <V extends Comparable<V>> Builder<S, T> stateProperty(final Supplier<? extends StateProperty<V>> stateProperty, final V value) {
             return this.stateProperty(stateProperty.get(), value);
         }
 

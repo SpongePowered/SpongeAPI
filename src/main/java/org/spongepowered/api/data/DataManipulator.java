@@ -457,11 +457,11 @@ public interface DataManipulator extends CopyableValueContainer {
          */
         <E> Mutable set(Key<? extends Value<E>> key, E value);
 
-        default <E, V extends Value<E>> Mutable set(final DefaultedRegistryReference<Key<V>> key, final E value) {
+        default <E, V extends Value<E>> Mutable set(final Supplier<Key<V>> key, final E value) {
             return this.set(key.get(), value);
         }
 
-        default <E, V extends Value<E>> Mutable set(final DefaultedRegistryReference<Key<V>> key, final Supplier<E> value) {
+        default <E, V extends Value<E>> Mutable set(final Supplier<Key<V>> key, final Supplier<E> value) {
             return this.set(Objects.requireNonNull(key, "Key supplier cannot be null").get(),
                 Objects.requireNonNull(value, "Value supplier cannot be null").get());
         }

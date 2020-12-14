@@ -30,7 +30,6 @@ import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Objects;
@@ -119,7 +118,7 @@ public interface KeyValueMatcher<V> extends DataSerializable {
      * @param <V> The value type
      * @return The key value matcher
      */
-    static <V> KeyValueMatcher<V> of(final DefaultedRegistryReference<? extends Key<? extends Value<V>>> key, final V value) {
+    static <V> KeyValueMatcher<V> of(final Supplier<? extends Key<? extends Value<V>>> key, final V value) {
         return KeyValueMatcher.of(key, value, Operator.EQUAL);
     }
 
@@ -147,7 +146,7 @@ public interface KeyValueMatcher<V> extends DataSerializable {
      * @param <V> The value type
      * @return The key value matcher
      */
-    static <V> KeyValueMatcher<V> of(final DefaultedRegistryReference<? extends Key<? extends Value<V>>> key, final V value, final Operator operator) {
+    static <V> KeyValueMatcher<V> of(final Supplier<? extends Key<? extends Value<V>>> key, final V value, final Operator operator) {
         return KeyValueMatcher.builder().key(key).value(value).operator(operator).build();
     }
 

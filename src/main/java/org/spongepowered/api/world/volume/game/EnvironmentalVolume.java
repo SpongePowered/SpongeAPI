@@ -24,19 +24,19 @@
  */
 package org.spongepowered.api.world.volume.game;
 
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.world.LightType;
 import org.spongepowered.api.world.LightTypes;
 import org.spongepowered.api.world.volume.biome.ReadableBiomeVolume;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Objects;
+import java.util.function.Supplier;
 
 public interface EnvironmentalVolume extends PrimitiveGameVolume, ReadableBiomeVolume {
 
     int getLight(LightType type, int x, int y, int z);
 
-    default int getLight(final DefaultedRegistryReference<? extends LightType> type, final int x, final int y, final int z) {
+    default int getLight(final Supplier<? extends LightType> type, final int x, final int y, final int z) {
         Objects.requireNonNull(type);
 
         return this.getLight(type.get(), x, y, z);
@@ -49,7 +49,7 @@ public interface EnvironmentalVolume extends PrimitiveGameVolume, ReadableBiomeV
         return this.getLight(type, position.getX(), position.getY(), position.getZ());
     }
 
-    default int getLight(final DefaultedRegistryReference<? extends LightType> type, final Vector3i position) {
+    default int getLight(final Supplier<? extends LightType> type, final Vector3i position) {
         Objects.requireNonNull(type);
         Objects.requireNonNull(position);
 

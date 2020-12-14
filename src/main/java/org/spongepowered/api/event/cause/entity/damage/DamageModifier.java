@@ -31,13 +31,13 @@ import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Objects;
 import java.util.Optional;
 import java.util.StringJoiner;
 import java.util.function.DoubleUnaryOperator;
+import java.util.function.Supplier;
 
 /**
  * Represents a modifier that will apply a function on a damage value to deal
@@ -105,7 +105,7 @@ public interface DamageModifier {
          * @param damageModifierType The damage modifier type
          * @return This builder, for chaining
          */
-        public Builder type(final DefaultedRegistryReference<? extends DamageModifierType> damageModifierType) {
+        public Builder type(final Supplier<? extends DamageModifierType> damageModifierType) {
             return this.type(damageModifierType.get());
         }
 

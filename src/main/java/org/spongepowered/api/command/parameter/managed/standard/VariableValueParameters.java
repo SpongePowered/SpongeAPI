@@ -636,8 +636,7 @@ public final class VariableValueParameters {
          * @param <T> The type that the target {@link Registry} holds
          * @return The {@link CatalogedTypeBuilder}
          */
-        <T> VariableValueParameters.CatalogedTypeBuilder<T> createRegistryEntryBuilder(
-                final Function<CommandContext, @Nullable RegistryHolder> holderProvider, final RegistryKey<? extends Registry<? extends T>> registryKey);
+        <T> VariableValueParameters.CatalogedTypeBuilder<T> createRegistryEntryBuilder(final Function<CommandContext, @Nullable RegistryHolder> holderProvider, final RegistryKey<? extends Registry<? extends T>> registryKey);
 
         /**
          * Creates a {@link CatalogedTypeBuilder} that retrieves objects from
@@ -654,8 +653,7 @@ public final class VariableValueParameters {
          * @param <T> The type that the target {@link Registry} holds
          * @return The {@link CatalogedTypeBuilder}
          */
-        <T> VariableValueParameters.CatalogedTypeBuilder<T> createRegistryEntryBuilder(
-                final Function<CommandContext, @Nullable ? extends Registry<? extends T>> registryProvider);
+        <T> VariableValueParameters.CatalogedTypeBuilder<T> createRegistryEntryBuilder(final Function<CommandContext, @Nullable ? extends Registry<? extends T>> registryProvider);
 
         /**
          * Creates a {@link CatalogedTypeBuilder} that retrieves objects from
@@ -665,8 +663,7 @@ public final class VariableValueParameters {
          * @param <T> The type that the target {@link Registry} holds
          * @return The {@link CatalogedTypeBuilder}
          */
-        <T> VariableValueParameters.CatalogedTypeBuilder<T> createRegistryEntryBuilder(
-                DefaultedRegistryReference<? extends Registry<? extends T>> registryReference);
+        <T> VariableValueParameters.CatalogedTypeBuilder<T> createRegistryEntryBuilder(DefaultedRegistryReference<? extends Registry<? extends T>> registryReference);
 
         /**
          * Creates the {@link LiteralBuilder} that will create objects

@@ -28,7 +28,6 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.weighted.WeightedTable;
 
@@ -36,6 +35,7 @@ import java.util.Collection;
 import java.util.Random;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * A simple generator that takes a {@link Random} and generates
@@ -82,7 +82,7 @@ public interface ItemStackGenerator extends Function<Random, ItemStack> {
          * @param itemType The base item type
          * @return This builder, for chaining
          */
-        default Builder baseItem(final DefaultedRegistryReference<? extends ItemType> itemType) {
+        default Builder baseItem(final Supplier<? extends ItemType> itemType) {
             return this.baseItem(itemType.get());
         }
 
@@ -125,7 +125,7 @@ public interface ItemStackGenerator extends Function<Random, ItemStack> {
          * @param <V> The type of the value
          * @return This builder, for chaining
          */
-        default <V> Builder add(final DefaultedRegistryReference<? extends Key<? extends Value<V>>> key, final V value) {
+        default <V> Builder add(final Supplier<? extends Key<? extends Value<V>>> key, final V value) {
             return this.add(key.get(), value);
         }
 

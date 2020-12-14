@@ -30,7 +30,6 @@ import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.DirectionRelativeDataHolder;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.fluid.FluidState;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.state.State;
 import org.spongepowered.api.state.StateMatcher;
 import org.spongepowered.api.util.mirror.Mirror;
@@ -38,6 +37,7 @@ import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.ServerLocation;
 
 import java.util.Objects;
+import java.util.function.Supplier;
 
 /**
  * Represents a particular "state" that can exist at a {@link ServerLocation} with
@@ -68,7 +68,7 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
      * @param type The block type
      * @return The builder
      */
-    static StateMatcher.Builder<BlockState, BlockType> matcher(final DefaultedRegistryReference<? extends BlockType> type) {
+    static StateMatcher.Builder<BlockState, BlockType> matcher(final Supplier<? extends BlockType> type) {
         return BlockState.matcher(type.get());
     }
 
@@ -131,7 +131,7 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
      * @param rotation The rotation
      * @return The rotated state if not this state
      */
-    default BlockState rotate(final DefaultedRegistryReference<? extends Rotation> rotation) {
+    default BlockState rotate(final Supplier<? extends Rotation> rotation) {
         return this.rotate(rotation.get());
     }
 
@@ -153,7 +153,7 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
      * @param mirror The mirror
      * @return The mirrored state if not this state
      */
-    default BlockState mirror(final DefaultedRegistryReference<? extends Mirror> mirror) {
+    default BlockState mirror(final Supplier<? extends Mirror> mirror) {
         return this.mirror(mirror.get());
     }
 
@@ -178,7 +178,7 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
          * @param blockType The block type
          * @return This builder, for chaining
          */
-        default Builder blockType(final DefaultedRegistryReference<? extends BlockType> blockType) {
+        default Builder blockType(final Supplier<? extends BlockType> blockType) {
             return this.blockType(blockType.get());
         }
 

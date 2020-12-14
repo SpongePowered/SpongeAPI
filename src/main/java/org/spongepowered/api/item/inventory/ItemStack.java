@@ -295,7 +295,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
          * @param itemType The type of item
          * @return This builder, for chaining
          */
-        default Builder itemType(final DefaultedRegistryReference<? extends ItemType> itemType) {
+        default Builder itemType(final Supplier<? extends ItemType> itemType) {
             return this.itemType(itemType.get());
         }
 

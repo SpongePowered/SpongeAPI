@@ -26,9 +26,9 @@ package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.item.inventory.equipment.EquipmentInventory;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 
 import java.util.Optional;
+import java.util.function.Supplier;
 
 /**
  * Represents the holder of a {@link EquipmentInventory}.
@@ -52,7 +52,7 @@ public interface Equipable {
      */
     boolean canEquip(EquipmentType type);
 
-    default boolean canEquip(final DefaultedRegistryReference<? extends EquipmentType> type) {
+    default boolean canEquip(final Supplier<? extends EquipmentType> type) {
         return this.canEquip(type.get());
     }
 
@@ -67,7 +67,7 @@ public interface Equipable {
      */
     boolean canEquip(EquipmentType type, ItemStack equipment);
 
-    default boolean canEquip(final DefaultedRegistryReference<? extends EquipmentType> type, final ItemStack equipment) {
+    default boolean canEquip(final Supplier<? extends EquipmentType> type, final ItemStack equipment) {
         return this.canEquip(type.get(), equipment);
     }
 
@@ -80,7 +80,7 @@ public interface Equipable {
      */
     Optional<ItemStack> getEquipped(EquipmentType type);
 
-    default Optional<ItemStack> getEquipped(final DefaultedRegistryReference<? extends EquipmentType> type) {
+    default Optional<ItemStack> getEquipped(final Supplier<? extends EquipmentType> type) {
         return this.getEquipped(type.get());
     }
 
@@ -97,7 +97,7 @@ public interface Equipable {
      */
     boolean equip(EquipmentType type, ItemStack equipment);
 
-    default boolean equip(final DefaultedRegistryReference<? extends EquipmentType> type, final ItemStack equipment) {
+    default boolean equip(final Supplier<? extends EquipmentType> type, final ItemStack equipment) {
         return this.equip(type.get(), equipment);
     }
 }
