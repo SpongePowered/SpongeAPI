@@ -35,7 +35,7 @@ import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.MinecraftDayTime;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.WorldBorder;
+import org.spongepowered.api.world.border.MutableWorldBorder;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.gamerule.GameRuleHolder;
@@ -480,9 +480,9 @@ public interface WorldProperties extends WeatherUniverse, Identifiable, GameRule
     void setGeneratorSettings(DataContainer generatorSettings);
 
     /**
-     * Gets the {@link WorldBorder}.
+     * Gets the {@link MutableWorldBorder}.
      *
      * @return The world border
      */
-    WorldBorder getWorldBorder();
+    MutableWorldBorder.Snapshot getWorldBorder();
 }

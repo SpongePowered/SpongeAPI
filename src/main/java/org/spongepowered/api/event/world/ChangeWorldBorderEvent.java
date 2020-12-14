@@ -29,7 +29,7 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.WorldBorder;
+import org.spongepowered.api.world.border.MutableWorldBorder;
 import org.spongepowered.api.world.server.ServerWorld;
 
 import java.util.Optional;
@@ -46,7 +46,7 @@ public interface ChangeWorldBorderEvent extends Event, Cancellable {
      *
      * @return The border that was previously in use, if there was one.
      */
-    Optional<WorldBorder> getPreviousBorder();
+    Optional<MutableWorldBorder> getPreviousBorder();
 
     /**
      * Gets the border that will be used as an {@link Optional}. For some
@@ -56,7 +56,7 @@ public interface ChangeWorldBorderEvent extends Event, Cancellable {
      *
      * @return The border that will be in use, if there is one.
      */
-    Optional<WorldBorder> getNewBorder();
+    Optional<MutableWorldBorder> getNewBorder();
 
     /**
      * An event that is fired when a world's border is changed.

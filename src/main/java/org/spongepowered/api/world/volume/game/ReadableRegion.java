@@ -29,7 +29,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.util.RandomProvider;
-import org.spongepowered.api.world.WorldBorder;
+import org.spongepowered.api.world.border.MutableWorldBorder;
 import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.volume.biome.StreamableBiomeVolume;
 import org.spongepowered.api.world.volume.block.StreamableBlockVolume;
@@ -51,7 +51,7 @@ public interface ReadableRegion<R extends ReadableRegion<R>> extends
 
     DimensionType getDimensionType();
 
-    WorldBorder getBorder();
+    MutableWorldBorder getBorder();
 
     boolean isInBorder(Entity entity);
 

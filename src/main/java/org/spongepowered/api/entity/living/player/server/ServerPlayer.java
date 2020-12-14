@@ -50,7 +50,7 @@ import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
-import org.spongepowered.api.world.WorldBorder;
+import org.spongepowered.api.world.border.MutableWorldBorder;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.plugin.PluginContainer;
 
@@ -229,21 +229,21 @@ public interface ServerPlayer extends Player, Subject {
     boolean respawn();
 
     /**
-     * Gets the {@link WorldBorder} for this player, if present. If no border is
+     * Gets the {@link MutableWorldBorder} for this player, if present. If no border is
      * set, an empty {@code Optional} is returned.
      *
      * @return The {@code WorldBorder} of this player as an {@code Optional}, if
      *     present
      */
-    Optional<WorldBorder> getWorldBorder();
+    Optional<MutableWorldBorder> getWorldBorder();
 
     /**
-     * Sets the {@link WorldBorder} instance for this player to the given world
+     * Sets the {@link MutableWorldBorder} instance for this player to the given world
      * border. If {@code null} is passed, the world border is unset.
      *
      * @param border The world border to be used, may be {@code null}
      */
-    void setWorldBorder(@Nullable WorldBorder border);
+    void setWorldBorder(@Nullable MutableWorldBorder border);
 
     /**
      * Gets the {@link CooldownTracker} for this player, allowing control
