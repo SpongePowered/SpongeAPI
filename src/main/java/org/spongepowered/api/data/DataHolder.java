@@ -160,7 +160,7 @@ public interface DataHolder extends ValueContainer {
 
         <K, V> DataTransactionResult offerAll(Key<? extends MapValue<K, V>> key, Map<? extends K, ? extends V> map);
 
-        default <K, V> DataTransactionResult offerAll(Supplier<? extends Key<? extends MapValue<K, V>>> key, Map<? extends K, ? extends V> map) {
+        default <K, V> DataTransactionResult offerAll(DefaultedRegistryReference<? extends Key<? extends MapValue<K, V>>> key, Map<? extends K, ? extends V> map) {
             return this.offerAll(key.get(), map);
         }
 
@@ -170,19 +170,19 @@ public interface DataHolder extends ValueContainer {
 
         <E> DataTransactionResult offerAll(Key<? extends CollectionValue<E, ?>> key, Collection<? extends E> elements);
 
-        default <E> DataTransactionResult offerAll(Supplier<? extends Key<? extends CollectionValue<E, ?>>> key, Collection<? extends E> elements) {
+        default <E> DataTransactionResult offerAll(DefaultedRegistryReference<? extends Key<? extends CollectionValue<E, ?>>> key, Collection<? extends E> elements) {
             return this.offerAll(key.get(), elements);
         }
 
         <E> DataTransactionResult removeSingle(Key<? extends CollectionValue<E, ?>> key, E element);
 
-        default <E> DataTransactionResult removeSingle(Supplier<? extends Key<? extends CollectionValue<E, ?>>> key, E element) {
+        default <E> DataTransactionResult removeSingle(DefaultedRegistryReference<? extends Key<? extends CollectionValue<E, ?>>> key, E element) {
             return this.removeSingle(key.get(), element);
         }
 
         <K> DataTransactionResult removeKey(Key<? extends MapValue<K, ?>> key, K mapKey);
 
-        default <K> DataTransactionResult removeKey(Supplier<? extends Key<? extends MapValue<K, ?>>> key, K mapKey) {
+        default <K> DataTransactionResult removeKey(DefaultedRegistryReference<? extends Key<? extends MapValue<K, ?>>> key, K mapKey) {
             return this.removeKey(key.get(), mapKey);
         }
 
@@ -190,7 +190,7 @@ public interface DataHolder extends ValueContainer {
 
         <E> DataTransactionResult removeAll(Key<? extends CollectionValue<E, ?>> key, Collection<? extends E> elements);
 
-        default <E> DataTransactionResult removeAll(Supplier<? extends Key<? extends CollectionValue<E, ?>>> key, Collection<? extends E> elements) {
+        default <E> DataTransactionResult removeAll(DefaultedRegistryReference<? extends Key<? extends CollectionValue<E, ?>>> key, Collection<? extends E> elements) {
             return this.removeAll(key.get(), elements);
         }
 
@@ -198,7 +198,7 @@ public interface DataHolder extends ValueContainer {
 
         <K, V> DataTransactionResult removeAll(Key<? extends MapValue<K, V>> key, Map<? extends K, ? extends V> map);
 
-        default <K, V> DataTransactionResult removeAll(Supplier<? extends Key<? extends MapValue<K, V>>> key, Map<? extends K, ? extends V> map) {
+        default <K, V> DataTransactionResult removeAll(DefaultedRegistryReference<? extends Key<? extends MapValue<K, V>>> key, Map<? extends K, ? extends V> map) {
             return this.removeAll(key.get(), map);
         }
 
@@ -232,7 +232,7 @@ public interface DataHolder extends ValueContainer {
          * @throws IllegalArgumentException If the result is a failure likely due to
          *     incompatibility
          */
-        default <E> DataTransactionResult tryOffer(Supplier<? extends Key<? extends Value<E>>> key, E value) {
+        default <E> DataTransactionResult tryOffer(DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, E value) {
             return this.tryOffer(key.get(), value);
         }
 
@@ -293,7 +293,7 @@ public interface DataHolder extends ValueContainer {
          * @param key The key of the data
          * @return The transaction result
          */
-        default DataTransactionResult remove(Supplier<? extends Key<?>> key) {
+        default DataTransactionResult remove(DefaultedRegistryReference<? extends Key<?>> key) {
             return this.remove(key.get());
         }
 
@@ -363,7 +363,7 @@ public interface DataHolder extends ValueContainer {
          * @param <E> The type of value
          * @return The newly created immutable value store
          */
-        default <E> Optional<I> transform(Supplier<? extends Key<? extends Value<E>>> key, Function<E, E> function) {
+        default <E> Optional<I> transform(DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, Function<E, E> function) {
             return this.transform(key.get(), function);
         }
 
@@ -389,7 +389,7 @@ public interface DataHolder extends ValueContainer {
          * @param <E> The type of value
          * @return The new immutable value store
          */
-        default <E> Optional<I> with(Supplier<? extends Key<? extends Value<E>>> key, E value) {
+        default <E> Optional<I> with(DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, E value) {
             return this.with(key.get(), value);
         }
 
@@ -433,7 +433,7 @@ public interface DataHolder extends ValueContainer {
          * @param key The key to remove
          * @return The new immutable value store
          */
-        default Optional<I> without(Supplier<? extends Key<?>> key) {
+        default Optional<I> without(DefaultedRegistryReference<? extends Key<?>> key) {
             return this.without(key.get());
         }
 

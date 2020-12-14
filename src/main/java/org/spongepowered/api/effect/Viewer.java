@@ -31,6 +31,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.effect.particle.ParticleEffect;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.effect.sound.music.MusicDisc;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.dimension.DimensionTypes;
@@ -38,7 +39,6 @@ import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Objects;
-import java.util.function.Supplier;
 
 /**
  * A Viewer is something that sees effects.
@@ -112,7 +112,7 @@ public interface Viewer extends Audience {
      * @param position The position
      * @param musicDiscType The music disc
      */
-    void playMusicDisc(Vector3i position, Supplier<? extends MusicDisc> musicDiscType);
+    void playMusicDisc(Vector3i position, DefaultedRegistryReference<? extends MusicDisc> musicDiscType);
 
     /**
      * Stops the {@link MusicDisc} that is playing at the given position.

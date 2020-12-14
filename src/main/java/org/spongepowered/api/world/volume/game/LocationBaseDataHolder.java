@@ -182,7 +182,7 @@ public interface LocationBaseDataHolder {
      * @param key The key to the data
      * @return The data, if available
      */
-    default OptionalDouble getDouble(final Vector3i position, final Supplier<? extends Key<? extends Value<Double>>> key) {
+    default OptionalDouble getDouble(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<Double>>> key) {
         return this.getDouble(position.getX(), position.getY(), position.getZ(), key.get());
     }
 
@@ -234,7 +234,7 @@ public interface LocationBaseDataHolder {
      * @param key The key to the data
      * @return The data, if available
      */
-    default OptionalLong getLong(final Vector3i position, final Supplier<? extends Key<? extends Value<Long>>> key) {
+    default OptionalLong getLong(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<Long>>> key) {
         return this.getLong(position.getX(), position.getY(), position.getZ(), key.get());
     }
 
@@ -296,7 +296,7 @@ public interface LocationBaseDataHolder {
      * @return The value
      * @throws NoSuchElementException If the value is not supported or present
      */
-    default <E> E require(final Vector3i position, final Supplier<? extends Key<? extends Value<E>>> key) {
+    default <E> E require(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
         return this.require(position.getX(), position.getY(), position.getZ(), key.get());
     }
 
@@ -338,7 +338,7 @@ public interface LocationBaseDataHolder {
      * @return The value
      * @throws NoSuchElementException If the value is not supported or present
      */
-    default <E> E require(final int x, final int y, final int z, final Supplier<? extends Key<? extends Value<E>>> key) {
+    default <E> E require(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
         final Optional<E> optional = this.get(x, y, z, key.get());
         if (optional.isPresent()) {
             return optional.get();
@@ -370,7 +370,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> @Nullable E getOrNull(final Vector3i position, final Supplier<? extends Key<? extends Value<E>>> key) {
+    default <E> @Nullable E getOrNull(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
         return this.get(position.getX(), position.getY(), position.getZ(), key.get()).orElse(null);
     }
 
@@ -402,7 +402,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> @Nullable E getOrNull(final int x, final int y, final int z, final Supplier<? extends Key<? extends Value<E>>> key) {
+    default <E> @Nullable E getOrNull(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
         return this.get(x, y, z, key.get()).orElse(null);
     }
 
@@ -432,7 +432,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> E getOrElse(final Vector3i position, final Supplier<? extends Key<? extends Value<E>>> key, final E defaultValue) {
+    default <E> E getOrElse(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final E defaultValue) {
         return this.get(position.getX(), position.getY(), position.getZ(), key.get()).orElse(Objects.requireNonNull(defaultValue));
     }
 
@@ -466,7 +466,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> E getOrElse(final int x, final int y, final int z, final Supplier<? extends Key<? extends Value<E>>> key, final E defaultValue) {
+    default <E> E getOrElse(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final E defaultValue) {
         return this.get(x, y, z, key.get()).orElse(Objects.requireNonNull(defaultValue));
     }
 
@@ -497,7 +497,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> E getOrElse(final Vector3i position, final Supplier<? extends Key<? extends Value<E>>> key, final Supplier<? extends E> defaultValue) {
+    default <E> E getOrElse(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final Supplier<? extends E> defaultValue) {
         return this.get(position.getX(), position.getY(), position.getZ(), key.get()).orElseGet(Objects.requireNonNull(defaultValue));
     }
 
@@ -531,7 +531,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> E getOrElse(final int x, final int y, final int z, final Supplier<? extends Key<? extends Value<E>>> key, final Supplier<? extends E> defaultValue) {
+    default <E> E getOrElse(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final Supplier<? extends E> defaultValue) {
         return this.get(x, y, z, key.get()).orElseGet(Objects.requireNonNull(defaultValue));
     }
 
@@ -591,7 +591,7 @@ public interface LocationBaseDataHolder {
      * @param <V> The type of value
      * @return The base value, if available
      */
-    default <E, V extends Value<E>> Optional<V> getValue(final int x, final int y, final int z, final Supplier<? extends Key<V>> key) {
+    default <E, V extends Value<E>> Optional<V> getValue(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<V>> key) {
         return this.getValue(x, y, z, key.get());
     }
 
@@ -615,7 +615,7 @@ public interface LocationBaseDataHolder {
      * @param key The Key to the value of data
      * @return True if the block supports the data
      */
-    default boolean supports(final Vector3i position, final Supplier<? extends Key<?>> key) {
+    default boolean supports(final Vector3i position, final DefaultedRegistryReference<? extends Key<?>> key) {
         return this.supports(position.getX(), position.getY(), position.getZ(), key.get());
     }
 
@@ -641,7 +641,7 @@ public interface LocationBaseDataHolder {
      * @param key The Key to the value of data
      * @return True if the block supports the data
      */
-    default boolean supports(final int x, final int y, final int z, final Supplier<? extends Key<?>> key) {
+    default boolean supports(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<?>> key) {
         return this.supports(x, y, z, key.get());
     }
 
@@ -744,7 +744,7 @@ public interface LocationBaseDataHolder {
          * @return The transaction result
          */
         default <E> DataTransactionResult transform(
-            final Vector3i position, final Supplier<? extends Key<? extends Value<E>>> key, final Function<E, E> function) {
+            final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final Function<E, E> function) {
             return this.transform(position.getX(), position.getY(), position.getZ(), key.get(), function);
         }
 
@@ -785,7 +785,7 @@ public interface LocationBaseDataHolder {
          * @param <E> The type of data
          * @return The transaction result
          */
-        default <E> DataTransactionResult transform(final int x, final int y, final int z, final Supplier<? extends Key<? extends Value<E>>> key, final Function<E, E> function) {
+        default <E> DataTransactionResult transform(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final Function<E, E> function) {
             if (this.supports(x, y, z, key)) {
                 final Optional<E> optional = this.get(x, y, z, key.get());
                 if (optional.isPresent()) {

@@ -26,11 +26,11 @@ package org.spongepowered.api.item;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataSerializable;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.List;
-import java.util.function.Supplier;
 
 /**
  * Represents a firework explosion.
@@ -193,7 +193,7 @@ public interface FireworkEffect extends DataSerializable {
          * @param shape The shape of the explosion
          * @return This builder, for chaining
          */
-        default Builder shape(Supplier<? extends FireworkShape> shape) {
+        default Builder shape(DefaultedRegistryReference<? extends FireworkShape> shape) {
             return this.shape(shape.get());
         }
 

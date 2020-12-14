@@ -26,11 +26,11 @@ package org.spongepowered.api.entity.attribute;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.UUID;
-import java.util.function.Supplier;
 
 /**
  * Represents a modifier to a value in a {@link Attribute} which is transformed
@@ -114,7 +114,7 @@ public interface AttributeModifier extends Identifiable {
          * @param operation The operation
          * @return This builder
          */
-        default Builder operation(Supplier<? extends AttributeOperation> operation) {
+        default Builder operation(DefaultedRegistryReference<? extends AttributeOperation> operation) {
             return this.operation(operation.get());
         }
 

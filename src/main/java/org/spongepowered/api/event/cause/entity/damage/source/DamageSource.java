@@ -29,10 +29,9 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.DamageTypes;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.difficulty.Difficulty;
-
-import java.util.function.Supplier;
 
 /**
  * Represents a {@link Cause} for damage on the {@link Entity} being
@@ -226,7 +225,7 @@ public interface DamageSource {
          * @param damageType The desired damage type
          * @return This builder
          */
-        default B type(Supplier<? extends DamageType> damageType) {
+        default B type(DefaultedRegistryReference<? extends DamageType> damageType) {
             return this.type(damageType.get());
         }
 

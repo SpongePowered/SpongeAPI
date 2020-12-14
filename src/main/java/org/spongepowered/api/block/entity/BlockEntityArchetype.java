@@ -130,7 +130,7 @@ public interface BlockEntityArchetype extends Archetype<BlockSnapshot, BlockEnti
          */
         Builder state(BlockState state);
 
-        default Builder blockEntity(Supplier<? extends BlockEntityType> type) {
+        default Builder blockEntity(DefaultedRegistryReference<? extends BlockEntityType> type) {
             return this.blockEntity(type.get());
         }
 

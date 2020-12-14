@@ -30,6 +30,7 @@ import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -39,8 +40,6 @@ import org.spongepowered.api.world.dimension.DimensionTypes;
 import org.spongepowered.api.world.gen.GeneratorModifierType;
 import org.spongepowered.api.world.gen.GeneratorModifierTypes;
 import org.spongepowered.api.world.storage.WorldProperties;
-
-import java.util.function.Supplier;
 
 /**
  * A representation of the settings which define a {@link WorldProperties} for creation.
@@ -243,7 +242,7 @@ public interface WorldArchetype extends CatalogType {
          * @param gameMode The gamemode
          * @return The builder, for chaining
          */
-        default Builder gameMode(Supplier<? extends GameMode> gameMode) {
+        default Builder gameMode(DefaultedRegistryReference<? extends GameMode> gameMode) {
             return this.gameMode(gameMode.get());
         }
 
@@ -263,7 +262,7 @@ public interface WorldArchetype extends CatalogType {
          * @param type The type
          * @return The builder, for chaining
          */
-        default Builder dimensionType(Supplier<? extends DimensionType> type) {
+        default Builder dimensionType(DefaultedRegistryReference<? extends DimensionType> type) {
             return this.dimensionType(type.get());
         }
 
@@ -283,7 +282,7 @@ public interface WorldArchetype extends CatalogType {
          * @param modifier The modifier
          * @return The builder, for chaining
          */
-        default Builder generatorModifierType(Supplier<? extends GeneratorModifierType> modifier) {
+        default Builder generatorModifierType(DefaultedRegistryReference<? extends GeneratorModifierType> modifier) {
             return this.generatorModifierType(modifier.get());
         }
 
@@ -302,7 +301,7 @@ public interface WorldArchetype extends CatalogType {
          * @param difficulty The difficulty
          * @return The builder, for chaining
          */
-        default Builder difficulty(Supplier<? extends Difficulty> difficulty) {
+        default Builder difficulty(DefaultedRegistryReference<? extends Difficulty> difficulty) {
             return this.difficulty(difficulty.get());
         }
 
@@ -364,7 +363,7 @@ public interface WorldArchetype extends CatalogType {
          * @param behavior The serialization behavior
          * @return This builder, for chaining
          */
-        default Builder serializationBehavior(Supplier<? extends SerializationBehavior> behavior) {
+        default Builder serializationBehavior(DefaultedRegistryReference<? extends SerializationBehavior> behavior) {
             return this.serializationBehavior(behavior.get());
         }
 

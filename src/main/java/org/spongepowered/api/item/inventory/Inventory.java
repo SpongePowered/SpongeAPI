@@ -37,6 +37,7 @@ import org.spongepowered.api.item.inventory.query.QueryType;
 import org.spongepowered.api.item.inventory.query.QueryTypes;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
 import org.spongepowered.api.item.inventory.type.ViewableInventory;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.List;
@@ -338,7 +339,7 @@ public interface Inventory extends ValueContainer {
      *
      * @return The queried inventory
      */
-    default <P> Inventory query(Supplier<QueryType.OneParam<P>> queryType, P param) {
+    default <P> Inventory query(DefaultedRegistryReference<QueryType.OneParam<P>> queryType, P param) {
         return this.query(queryType.get().of(param));
     }
 
@@ -351,7 +352,7 @@ public interface Inventory extends ValueContainer {
      *
      * @return The queried inventory
      */
-    default <P> Inventory query(Supplier<QueryType.OneParam<P>> queryType, Supplier<P> param) {
+    default <P> Inventory query(DefaultedRegistryReference<QueryType.OneParam<P>> queryType, Supplier<P> param) {
         return this.query(queryType.get().of(param.get()));
     }
 

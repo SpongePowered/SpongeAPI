@@ -33,8 +33,6 @@ import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
 
-import java.util.function.Supplier;
-
 /**
  * A representation on a single layer of a {@link Banner}'s pattern.
  */
@@ -139,7 +137,7 @@ public interface BannerPatternLayer extends DataSerializable {
          * @param color The color
          * @return This builder, for chaining
          */
-        default Builder color(Supplier<? extends DyeColor> color) {
+        default Builder color(DefaultedRegistryReference<? extends DyeColor> color) {
             return this.color(color.get());
         }
 

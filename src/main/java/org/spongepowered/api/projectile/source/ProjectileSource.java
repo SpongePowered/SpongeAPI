@@ -27,10 +27,10 @@ package org.spongepowered.api.projectile.source;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.projectile.Projectile;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Optional;
-import java.util.function.Supplier;
 
 /**
  * Represents a valid source of a projectile.
@@ -53,7 +53,7 @@ public interface ProjectileSource {
      * @param <T> The Type of Projectile
      * @return The projectile instance if it was launched, or absent
      */
-    default <T extends Projectile> Optional<T> launchProjectile(final Supplier<EntityType<T>> projectileType) {
+    default <T extends Projectile> Optional<T> launchProjectile(final DefaultedRegistryReference<EntityType<T>> projectileType) {
         return this.launchProjectile(projectileType.get());
     }
 
@@ -75,7 +75,7 @@ public interface ProjectileSource {
      * @param <T> The Type of Projectile
      * @return The projectile instance if it was launched, or absent
      */
-    default <T extends Projectile> Optional<T> launchProjectile(final Supplier<EntityType<T>> projectileType, final Vector3d velocity) {
+    default <T extends Projectile> Optional<T> launchProjectile(final DefaultedRegistryReference<EntityType<T>> projectileType, final Vector3d velocity) {
         return this.launchProjectile(projectileType.get(), velocity);
     }
 
@@ -97,7 +97,7 @@ public interface ProjectileSource {
      * @param <T> The Type of Projectile
      * @return the projectile if successfully launched, {@link Optional#empty()} otherwise
      */
-    default <T extends Projectile> Optional<T> launchProjectileTo(final Supplier<EntityType<T>> projectileType, final Entity target) {
+    default <T extends Projectile> Optional<T> launchProjectileTo(final DefaultedRegistryReference<EntityType<T>> projectileType, final Entity target) {
         return this.launchProjectileTo(projectileType.get(), target);
     }
 }

@@ -28,8 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.SerializableDataHolderBuilder;
 import org.spongepowered.api.item.ItemTypes;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 
 /**
  * Represents a stack of a particular {@link FluidType} and
@@ -95,7 +94,7 @@ public interface FluidStack extends SerializableDataHolder.Mutable {
          * @param fluidType The fluid type
          * @return This builder, for chaining
          */
-        default Builder fluid(Supplier<? extends FluidType> fluidType) {
+        default Builder fluid(DefaultedRegistryReference<? extends FluidType> fluidType) {
             return this.fluid(fluidType.get());
         }
 

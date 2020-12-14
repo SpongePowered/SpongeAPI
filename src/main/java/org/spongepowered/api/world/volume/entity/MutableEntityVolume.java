@@ -28,6 +28,7 @@ import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.world.volume.MutableVolume;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
 import org.spongepowered.math.vector.Vector3d;
@@ -36,7 +37,6 @@ import org.spongepowered.math.vector.Vector3i;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 public interface MutableEntityVolume<M extends MutableEntityVolume<M>> extends StreamableEntityVolume<M>, MutableVolume, MutableBlockVolume<M> {
 
@@ -76,7 +76,7 @@ public interface MutableEntityVolume<M extends MutableEntityVolume<M>> extends S
      *      valid to create
      * @throws IllegalStateException If a constructor cannot be found
      */
-    default <E extends Entity> E createEntity(Supplier<EntityType<E>> type, Vector3d position) throws IllegalArgumentException, IllegalStateException {
+    default <E extends Entity> E createEntity(DefaultedRegistryReference<EntityType<E>> type, Vector3d position) throws IllegalArgumentException, IllegalStateException {
         return this.createEntity(type.get(), position);
     }
 
@@ -119,7 +119,7 @@ public interface MutableEntityVolume<M extends MutableEntityVolume<M>> extends S
      *      valid to create
      * @throws IllegalStateException If a constructor cannot be found
      */
-    default <E extends Entity> E createEntity(Supplier<EntityType<E>> type, Vector3i position) throws IllegalArgumentException, IllegalStateException {
+    default <E extends Entity> E createEntity(DefaultedRegistryReference<EntityType<E>> type, Vector3i position) throws IllegalArgumentException, IllegalStateException {
         return this.createEntity(type.get(), position);
     }
 
@@ -161,7 +161,7 @@ public interface MutableEntityVolume<M extends MutableEntityVolume<M>> extends S
      *     valid to create
      * @throws IllegalStateException If a constructor cannot be found
      */
-    default <E extends Entity> E createEntityNaturally(Supplier<EntityType<E>> type, Vector3d position) throws IllegalArgumentException, IllegalStateException {
+    default <E extends Entity> E createEntityNaturally(DefaultedRegistryReference<EntityType<E>> type, Vector3d position) throws IllegalArgumentException, IllegalStateException {
         return this.createEntityNaturally(type.get(), position);
     }
 
@@ -206,7 +206,7 @@ public interface MutableEntityVolume<M extends MutableEntityVolume<M>> extends S
      *     valid to create
      * @throws IllegalStateException If a constructor cannot be found
      */
-    default <E extends Entity> E createEntityNaturally(Supplier<EntityType<E>> type, Vector3i position) throws IllegalArgumentException, IllegalStateException {
+    default <E extends Entity> E createEntityNaturally(DefaultedRegistryReference<EntityType<E>> type, Vector3i position) throws IllegalArgumentException, IllegalStateException {
         return this.createEntityNaturally(type.get(), position);
     }
 

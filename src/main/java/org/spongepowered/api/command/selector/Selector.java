@@ -32,6 +32,7 @@ import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.scoreboard.Team;
 import org.spongepowered.api.util.Range;
@@ -41,7 +42,6 @@ import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Collection;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 /**
  * Allows for the selection of {@link Entity entities} in a world based on given
@@ -115,7 +115,7 @@ public interface Selector {
          * @param selectorType The {@link SelectorType}
          * @return This builder, for chaining
          */
-        Builder applySelectorType(Supplier<SelectorType> selectorType);
+        Builder applySelectorType(DefaultedRegistryReference<? extends SelectorType> selectorType);
 
         /**
          * Applies the defaults associated with a given {@link SelectorType}
@@ -171,7 +171,7 @@ public interface Selector {
          * @param algorithm The {@link SelectorSortAlgorithm}
          * @return This builder, for chaining
          */
-        Builder setSortAlgorithm(Supplier<SelectorSortAlgorithm> algorithm);
+        Builder setSortAlgorithm(DefaultedRegistryReference<? extends SelectorSortAlgorithm> algorithm);
 
         /**
          * Sets the sorting algorithm to use when returning entities from the
@@ -241,7 +241,7 @@ public interface Selector {
          * @param inherit Whether subtypes will also be selected
          * @return This builder, for chaining
          */
-        Builder entityType(Supplier<EntityType<?>> type, boolean inherit);
+        Builder entityType(DefaultedRegistryReference<EntityType<?>> type, boolean inherit);
 
         /**
          * Adds an {@link EntityType} constraint to this selector, requiring
@@ -263,7 +263,7 @@ public interface Selector {
          * @param type The type
          * @return This builder, for chaining
          */
-        Builder notEntityType(Supplier<EntityType<?>> type);
+        Builder notEntityType(DefaultedRegistryReference<EntityType<?>> type);
 
         /**
          * Adds an {@link EntityType} constraint to this selector, requiring
@@ -292,7 +292,7 @@ public interface Selector {
          * @param mode The gamemode
          * @return This builder, for chaining
          */
-        Builder gameMode(Supplier<GameMode> mode);
+        Builder gameMode(DefaultedRegistryReference<? extends GameMode> mode);
 
         /**
          * Adds a {@link GameMode} constraint to the selector, requiring players
@@ -314,7 +314,7 @@ public interface Selector {
          * @param mode The gamemode
          * @return This builder, for chaining
          */
-        Builder notGameMode(Supplier<GameMode> mode);
+        Builder notGameMode(DefaultedRegistryReference<? extends GameMode> mode);
 
         /**
          * Adds a {@link GameMode} constraint to the selector, requiring that

@@ -29,11 +29,10 @@ import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-import java.util.Arrays;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 /**
  * A type of item.
@@ -72,7 +71,7 @@ public interface ItemType extends CatalogType, ComponentLike, DataHolder.Immutab
      * @return true if this type is any of the given item types
      */
     @SuppressWarnings("unchecked")
-    boolean isAnyOf(Supplier<ItemType>... types);
+    boolean isAnyOf(DefaultedRegistryReference<? extends ItemType>... types);
 
     /**
      * Returns true if this type is any of the given item types

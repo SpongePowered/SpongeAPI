@@ -29,9 +29,8 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
-
-import java.util.function.Supplier;
 
 public interface DisplayInfo {
 
@@ -112,7 +111,7 @@ public interface DisplayInfo {
          * @param advancementType The advancement type
          * @return This builder, for chaining
          */
-        default Builder type(Supplier<? extends AdvancementType> advancementType) {
+        default Builder type(DefaultedRegistryReference<? extends AdvancementType> advancementType) {
             return this.type(advancementType.get());
         }
 
@@ -148,7 +147,7 @@ public interface DisplayInfo {
          * @param itemType The item type
          * @return This builder, for chaining
          */
-        default Builder icon(Supplier<? extends ItemType> itemType) {
+        default Builder icon(DefaultedRegistryReference<? extends ItemType> itemType) {
             return this.icon(itemType.get());
         }
 

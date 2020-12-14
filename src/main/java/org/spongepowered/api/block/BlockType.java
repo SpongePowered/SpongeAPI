@@ -29,11 +29,11 @@ import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.state.StateContainer;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
-import java.util.function.Supplier;
 
 /**
  * Describes a base type of block.
@@ -84,7 +84,7 @@ public interface BlockType extends CatalogType, ComponentLike, StateContainer<Bl
      * @return true if this type is any of the given block types
      */
     @SuppressWarnings("unchecked")
-    boolean isAnyOf(Supplier<BlockType>... types);
+    boolean isAnyOf(DefaultedRegistryReference<? extends BlockType>... types);
 
     /**
      * Returns true if this type is any of the given block types
