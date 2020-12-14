@@ -25,15 +25,14 @@
 package org.spongepowered.api.effect.particle;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 /**
  * Represents a particle effect that can be send to the Minecraft client.
@@ -63,7 +62,7 @@ public interface ParticleEffect extends DataSerializable {
      * @param <V> The value type
      * @return The option value if present, otherwise {@link Optional#empty()}
      */
-    default <V> Optional<V> getOption(Supplier<? extends ParticleOption<V>> option) {
+    default <V> Optional<V> getOption(DefaultedRegistryReference<? extends ParticleOption<V>> option) {
         return this.getOption(option.get());
     }
 
@@ -84,7 +83,7 @@ public interface ParticleEffect extends DataSerializable {
      * @param <V> The value type
      * @return The option value if present, otherwise {@link Optional#empty()}
      */
-    default <V> Optional<V> getOptionOrDefault(Supplier<? extends ParticleOption<V>> option) {
+    default <V> Optional<V> getOptionOrDefault(DefaultedRegistryReference<? extends ParticleOption<V>> option) {
         return this.getOptionOrDefault(option.get());
     }
 
@@ -128,7 +127,7 @@ public interface ParticleEffect extends DataSerializable {
          * @param particleType The particle type
          * @return This builder for chaining
          */
-        default Builder type(Supplier<? extends ParticleType> particleType) {
+        default Builder type(DefaultedRegistryReference<? extends ParticleType> particleType) {
             return this.type(particleType.get());
         }
 

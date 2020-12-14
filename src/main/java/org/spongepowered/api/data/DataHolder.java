@@ -29,6 +29,7 @@ import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.data.value.MergeFunction;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.annotation.DoNotStore;
 
 import java.util.Collection;
@@ -87,7 +88,7 @@ public interface DataHolder extends ValueContainer {
          * @param <E> The type of value
          * @return The end resulting value
          */
-        default <E> DataTransactionResult transform(Supplier<? extends Key<? extends Value<E>>> key, Function<E, E> function) {
+        default <E> DataTransactionResult transform(DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, Function<E, E> function) {
             return this.transform(key.get(), function);
         }
 
@@ -115,7 +116,7 @@ public interface DataHolder extends ValueContainer {
          * @param <E> The type of value
          * @return The transaction result
          */
-        default <E> DataTransactionResult offer(Supplier<? extends Key<? extends Value<E>>> key, E value) {
+        default <E> DataTransactionResult offer(DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, E value) {
             return this.offer(key.get(), value);
         }
 
@@ -130,7 +131,7 @@ public interface DataHolder extends ValueContainer {
          * @param <E> The type of value
          * @return The transaction result
          */
-        default <E> DataTransactionResult offer(Supplier<? extends Key<? extends Value<E>>> key, Supplier<? extends E> value) {
+        default <E> DataTransactionResult offer(DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, Supplier<? extends E> value) {
             return this.offer(key.get(), value.get());
         }
 
@@ -147,13 +148,13 @@ public interface DataHolder extends ValueContainer {
 
         <E> DataTransactionResult offerSingle(Key<? extends CollectionValue<E, ?>> key, E element);
 
-        default <E> DataTransactionResult offerSingle(Supplier<? extends Key<? extends CollectionValue<E, ?>>> key, E element) {
+        default <E> DataTransactionResult offerSingle(DefaultedRegistryReference<? extends Key<? extends CollectionValue<E, ?>>> key, E element) {
             return this.offerSingle(key.get(), element);
         }
 
         <K, V> DataTransactionResult offerSingle(Key<? extends MapValue<K, V>> key, K valueKey, V value);
 
-        default <K, V> DataTransactionResult offerSingle(Supplier<? extends Key<? extends MapValue<K, V>>> key, K valueKey, V value) {
+        default <K, V> DataTransactionResult offerSingle(DefaultedRegistryReference<? extends Key<? extends MapValue<K, V>>> key, K valueKey, V value) {
             return this.offerSingle(key.get(), valueKey, value);
         }
 

@@ -27,6 +27,7 @@ package org.spongepowered.api.entity;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolderBuilder;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.world.LocatableSnapshot;
 import org.spongepowered.api.world.ServerLocation;
@@ -38,7 +39,6 @@ import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Optional;
 import java.util.UUID;
-import java.util.function.Supplier;
 
 /**
  * Represents a snapshot of an {@link Entity} and all of it's related data in
@@ -130,7 +130,7 @@ public interface EntitySnapshot extends LocatableSnapshot<EntitySnapshot> {
          * @param entityType The EntityType
          * @return This builder, for chaining
          */
-        default Builder type(Supplier<? extends EntityType<?>> entityType) {
+        default Builder type(DefaultedRegistryReference<? extends EntityType<?>> entityType) {
             return this.type(entityType.get());
         }
 

@@ -33,10 +33,10 @@ import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.item.recipe.RecipeType;
 import org.spongepowered.api.item.recipe.crafting.Ingredient;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.CatalogBuilder;
 
 import java.util.Optional;
-import java.util.function.Supplier;
 
 /**
  * A general interface for cooking-type/furnace recipes.
@@ -115,7 +115,7 @@ public interface CookingRecipe extends Recipe {
          *
          * @return This builder, for chaining
          */
-        default IngredientStep type(Supplier<RecipeType<CookingRecipe>> type) {
+        default IngredientStep type(DefaultedRegistryReference<RecipeType<CookingRecipe>> type) {
             return this.type(type.get());
         }
 
@@ -151,7 +151,7 @@ public interface CookingRecipe extends Recipe {
              *
              * @return This builder, for chaining
              */
-            default ResultStep ingredient(Supplier<ItemType> ingredient) {
+            default ResultStep ingredient(DefaultedRegistryReference<? extends ItemType> ingredient) {
                 return this.ingredient(ingredient.get());
             }
         }
@@ -174,7 +174,7 @@ public interface CookingRecipe extends Recipe {
              * @param result The output of this recipe
              * @return This builder, for chaining
              */
-            default EndStep result(Supplier<ItemType> result) {
+            default EndStep result(DefaultedRegistryReference<? extends ItemType> result) {
                 return this.result(result.get());
             }
 

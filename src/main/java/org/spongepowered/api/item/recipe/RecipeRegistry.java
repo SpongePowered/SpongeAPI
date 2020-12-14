@@ -28,13 +28,13 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.event.lifecycle.RegisterRegistryValueEvent;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.item.recipe.crafting.RecipeResult;
 import org.spongepowered.api.item.recipe.cooking.CookingRecipe;
+import org.spongepowered.api.item.recipe.crafting.RecipeResult;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.world.server.ServerWorld;
 
 import java.util.Collection;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 /**
  * A registry holds all registered recipes for a given game.
@@ -73,7 +73,7 @@ public interface RecipeRegistry {
      *
      * @return All recipes of given type
      */
-    default <T extends Recipe> Collection<T> getAllOfType(Supplier<? extends RecipeType<T>> supplier) {
+    default <T extends Recipe> Collection<T> getAllOfType(DefaultedRegistryReference<? extends RecipeType<T>> supplier) {
         return this.getAllOfType(supplier.get());
     }
 
@@ -94,7 +94,7 @@ public interface RecipeRegistry {
      *
      * @return All recipes resulting in given item.
      */
-    default <T extends Recipe> Collection<T> findByResult(Supplier<? extends RecipeType<T>> supplier, ItemStackSnapshot result) {
+    default <T extends Recipe> Collection<T> findByResult(DefaultedRegistryReference<? extends RecipeType<T>> supplier, ItemStackSnapshot result) {
         return this.findByResult(supplier.get(), result);
     }
 
@@ -129,7 +129,7 @@ public interface RecipeRegistry {
      *
      * @return The matching recipes.
      */
-    default <T extends Recipe> Optional<T> findMatchingRecipe(Supplier<? extends RecipeType<T>> supplier, Inventory inventory, ServerWorld world) {
+    default <T extends Recipe> Optional<T> findMatchingRecipe(DefaultedRegistryReference<? extends RecipeType<T>> supplier, Inventory inventory, ServerWorld world) {
         return this.findMatchingRecipe(supplier.get(), inventory, world);
     }
 
@@ -151,7 +151,7 @@ public interface RecipeRegistry {
      *
      * @return The matching recipe.
      */
-    default <T extends CookingRecipe> Optional<T> findCookingRecipe(Supplier<? extends RecipeType<T>> supplier, ItemStackSnapshot ingredient) {
+    default <T extends CookingRecipe> Optional<T> findCookingRecipe(DefaultedRegistryReference<? extends RecipeType<T>> supplier, ItemStackSnapshot ingredient) {
         return this.findCookingRecipe(supplier.get(), ingredient);
     }
 

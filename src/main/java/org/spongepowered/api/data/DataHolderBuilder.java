@@ -25,9 +25,8 @@
 package org.spongepowered.api.data;
 
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
-
-import java.util.function.Supplier;
 
 public interface DataHolderBuilder<H extends DataHolder, B extends DataHolderBuilder<H, B>> extends CopyableBuilder<H, B> {
 
@@ -100,7 +99,7 @@ public interface DataHolderBuilder<H extends DataHolder, B extends DataHolderBui
      * @param <V> The type of the value
      * @return This builder, for chaining
      */
-    default <V> B add(Supplier<? extends Key<? extends Value<V>>> key, V value) {
+    default <V> B add(DefaultedRegistryReference<? extends Key<? extends Value<V>>> key, V value) {
         return this.add(key.get(), value);
     }
 

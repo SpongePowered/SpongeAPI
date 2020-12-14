@@ -30,11 +30,11 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 /**
  * An Ingredient for a crafting recipe.
@@ -117,7 +117,7 @@ public interface Ingredient extends Predicate<ItemStack> {
      * @return The new ingredient
      */
     @SafeVarargs
-    static Ingredient of(@Nullable Supplier<ItemType>... itemTypes) {
+    static Ingredient of(@Nullable DefaultedRegistryReference<? extends ItemType>... itemTypes) {
         if (itemTypes == null || itemTypes.length == 0) {
             return Ingredient.empty();
         }
@@ -173,7 +173,7 @@ public interface Ingredient extends Predicate<ItemStack> {
          * @return This Builder, for chaining
          */
         @SuppressWarnings("unchecked")
-        Builder with(Supplier<ItemType>... types);
+        Builder with(DefaultedRegistryReference<? extends ItemType>... types);
 
         /**
          * Sets one ore more ItemStack for matching the ingredient.

@@ -32,11 +32,11 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.CatalogBuilder;
 
 import java.util.List;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 /**
  * A ShapelessCraftingRecipe is a CraftingRecipe that does not have shape and
@@ -75,7 +75,7 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
          * @return This builder, for chaining
          */
         @SuppressWarnings("unchecked")
-        ResultStep addIngredients(Supplier<ItemType>... ingredients);
+        ResultStep addIngredients(DefaultedRegistryReference<? extends ItemType>... ingredients);
 
         /**
          * Adds ingredients for this recipe.

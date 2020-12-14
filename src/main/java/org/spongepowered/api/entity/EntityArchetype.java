@@ -30,10 +30,9 @@ import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.persistence.Queries;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.world.Archetype;
 import org.spongepowered.api.world.schematic.Schematic;
-
-import java.util.function.Supplier;
 
 public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
 
@@ -51,7 +50,7 @@ public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
      * @param type Type of the entity
      * @return An archetype of the given entity type
      */
-    static EntityArchetype of(Supplier<? extends EntityType<?>> type) {
+    static EntityArchetype of(DefaultedRegistryReference<? extends EntityType<?>> type) {
         return EntityArchetype.builder().type(type).build();
     }
 
@@ -109,7 +108,7 @@ public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
          * @param type The type of entity type
          * @return This builder, for chaining
          */
-        default Builder type(Supplier<? extends EntityType<?>> type) {
+        default Builder type(DefaultedRegistryReference<? extends EntityType<?>> type) {
             return this.type(type.get());
         }
 

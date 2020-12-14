@@ -30,6 +30,7 @@ import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.type.BannerPatternShape;
 import org.spongepowered.api.data.type.DyeColor;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.function.Supplier;
@@ -47,7 +48,7 @@ public interface BannerPatternLayer extends DataSerializable {
      * @param color The color
      * @return The new pattern layer
      */
-    static BannerPatternLayer of(Supplier<? extends BannerPatternShape> shape, Supplier<? extends DyeColor> color) {
+    static BannerPatternLayer of(DefaultedRegistryReference<? extends BannerPatternShape> shape, DefaultedRegistryReference<? extends DyeColor> color) {
         return BannerPatternLayer.of(shape.get(), color.get());
     }
 
@@ -59,7 +60,7 @@ public interface BannerPatternLayer extends DataSerializable {
      * @param color The color
      * @return The new pattern layer
      */
-    static BannerPatternLayer of(Supplier<? extends BannerPatternShape> shape, DyeColor color) {
+    static BannerPatternLayer of(DefaultedRegistryReference<? extends BannerPatternShape> shape, DyeColor color) {
         return BannerPatternLayer.of(shape.get(), color);
     }
 
@@ -71,7 +72,7 @@ public interface BannerPatternLayer extends DataSerializable {
      * @param color The color
      * @return The new pattern layer
      */
-    static BannerPatternLayer of(BannerPatternShape shape, Supplier<? extends DyeColor> color) {
+    static BannerPatternLayer of(BannerPatternShape shape, DefaultedRegistryReference<? extends DyeColor> color) {
         return BannerPatternLayer.of(shape, color.get());
     }
 
@@ -120,7 +121,7 @@ public interface BannerPatternLayer extends DataSerializable {
          * @param shape The shape
          * @return This builder, for chaining
          */
-        default Builder pattern(Supplier<? extends BannerPatternShape> shape) {
+        default Builder pattern(DefaultedRegistryReference<? extends BannerPatternShape> shape) {
             return this.pattern(shape.get());
         }
 

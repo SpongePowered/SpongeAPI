@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.event;
 
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -315,7 +317,7 @@ public interface CauseStackManager {
          * @see EventContextKeys
          * @see CauseStackManager#addContext(EventContextKey, Object)
          */
-        default <T> StackFrame addContext(Supplier<? extends EventContextKey<T>> key, T value) {
+        default <T> StackFrame addContext(DefaultedRegistryReference<? extends EventContextKey<T>> key, T value) {
             return this.addContext(key.get(), value);
         }
 
@@ -329,7 +331,7 @@ public interface CauseStackManager {
          * @see EventContextKeys
          * @see CauseStackManager#addContext(EventContextKey, Object)
          */
-        default <T> StackFrame addContext(Supplier<? extends EventContextKey<T>> key, Supplier<? extends T> value) {
+        default <T> StackFrame addContext(DefaultedRegistryReference<? extends EventContextKey<T>> key, Supplier<? extends T> value) {
             return this.addContext(key.get(), value.get());
         }
 
@@ -353,7 +355,7 @@ public interface CauseStackManager {
          * @see EventContextKeys
          * @see CauseStackManager#removeContext(EventContextKey)
          */
-        default <T> Optional<T> removeContext(Supplier<? extends EventContextKey<T>> key) {
+        default <T> Optional<T> removeContext(DefaultedRegistryReference<? extends EventContextKey<T>> key) {
             return this.removeContext(key.get());
         }
 
