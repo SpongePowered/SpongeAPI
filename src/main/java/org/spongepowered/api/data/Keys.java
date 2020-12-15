@@ -1768,6 +1768,11 @@ public final class Keys {
     public static final DefaultedRegistryReference<Key<Value<String>>> LOCK_TOKEN = Keys.key(ResourceKey.sponge("lock_token"));
 
     /**
+     * A lodestone location, used with {@link ItemTypes#COMPASS}.
+     */
+    public static final DefaultedRegistryReference<Key<Value<ServerLocation>>> LODESTONE = Keys.key(ResourceKey.sponge("lodestone"));
+
+    /**
      * The displayed description ("lore") text of an {@link ItemStack}.
      *
      * <p>The lore text is usually displayed when the player hovers his cursor
