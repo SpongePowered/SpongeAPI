@@ -66,7 +66,6 @@ import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.ItemTier;
 import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.WireAttachmentType;
-import org.spongepowered.api.data.type.WoodType;
 import org.spongepowered.api.effect.particle.ParticleOption;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffectType;
@@ -301,8 +300,6 @@ public final class CatalogTypes {
     public static final Class<Weather> WEATHER = Weather.class;
 
     public static final Class<WireAttachmentType> WIRE_ATTACHMENT_TYPE = WireAttachmentType.class;
-
-    public static final Class<WoodType> WOOD_TYPE = WoodType.class;
 
     public static final Class<WorldArchetype> WORLD_ARCHETYPE = WorldArchetype.class;
 

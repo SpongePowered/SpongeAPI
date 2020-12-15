@@ -78,7 +78,6 @@ import org.spongepowered.api.data.type.ItemTier;
 import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.type.WireAttachmentType;
-import org.spongepowered.api.data.type.WoodType;
 import org.spongepowered.api.effect.particle.ParticleOption;
 import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffectType;
@@ -375,8 +374,6 @@ public final class Registries {
     public static final RegistryType<Weather> WEATHER = Registries.spongeKey("weather");
 
     public static final RegistryType<WireAttachmentType> WIRE_ATTACHMENT_TYPE = Registries.spongeKey("wire_attachment_type");
-
-    public static final RegistryType<WoodType> WOOD_TYPE = Registries.spongeKey("wood_type");
 
     public static final RegistryType<WorldArchetype> WORLD_ARCHETYPE = Registries.spongeKey("world_archetype");
 

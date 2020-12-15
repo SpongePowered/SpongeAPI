@@ -55,11 +55,6 @@ public final class WorldArchetypes {
      */
     public static final DefaultedRegistryReference<WorldArchetype> THE_NETHER = WorldArchetypes.key(ResourceKey.sponge("the_nether"));
 
-    /**
-     * Represents a typical Sponge void-style {@link World}.
-     */
-    public static final DefaultedRegistryReference<WorldArchetype> THE_VOID = WorldArchetypes.key(ResourceKey.sponge("the_void"));
-
     // SORTFIELDS:OFF
 
     // @formatter:on
