@@ -136,7 +136,6 @@ import org.spongepowered.api.world.chunk.ChunkState;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.gamerule.GameRule;
-import org.spongepowered.api.world.gen.GeneratorModifierType;
 import org.spongepowered.api.world.portal.PortalType;
 import org.spongepowered.api.world.schematic.PaletteType;
 import org.spongepowered.api.world.teleport.TeleportHelperFilter;
@@ -266,8 +265,6 @@ public final class Registries {
     public static final RegistryType<GameMode> GAME_MODE = Registries.spongeKey("game_mode");
 
     public static final RegistryType<GameRule<?>> GAME_RULE = Registries.spongeKey("game_rule");
-
-    public static final RegistryType<GeneratorModifierType> GENERATOR_MODIFIER_TYPE = Registries.spongeKey("generator_modifier_type");
 
     public static final RegistryType<GoalExecutorType> GOAL_EXECUTOR_TYPE = Registries.spongeKey("goal_executor_type");
 

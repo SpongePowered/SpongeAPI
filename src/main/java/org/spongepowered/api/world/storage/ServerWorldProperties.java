@@ -28,7 +28,6 @@ import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.key.KeyedValue;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.trader.WanderingTrader;
 import org.spongepowered.api.util.Identifiable;
@@ -37,7 +36,7 @@ import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.dimension.DimensionType;
-import org.spongepowered.api.world.gen.GeneratorModifierType;
+import org.spongepowered.api.world.gen.WorldGeneratorSettings;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.weather.MutableWeatherUniverse;
 
@@ -132,44 +131,10 @@ public interface ServerWorldProperties extends WorldProperties, Identifiable, Mu
     void setGenerateSpawnOnLoad(boolean state);
 
     /**
-     * Gets the {@link GeneratorModifierType}.
-     *
-     * @return The modifier
+     * Gets the {@link WorldGeneratorSettings}
+     * @return The world generation settings
      */
-    GeneratorModifierType getGeneratorModifierType();
-
-    /**
-     * Sets the {@link GeneratorModifierType}.
-     *
-     * @param modifier The generator modifier
-     */
-    default void setGeneratorModifierType(Supplier<? extends GeneratorModifierType> modifier) {
-        this.setGeneratorModifierType(modifier.get());
-    }
-
-    /**
-     * Sets the {@link GeneratorModifierType}.
-     *
-     * @param modifier The generator modifier
-     */
-    void setGeneratorModifierType(GeneratorModifierType modifier);
-
-    /**
-     * Gets the seed.
-     *
-     * @return The seed
-     */
-    long getSeed();
-
-    /**
-     * Sets the seed.
-     *
-     * <p>Warning: this may cause the edge of currently generated chunks to no
-     * longer align with newly generated chunks.</p>
-     *
-     * @param seed The new seed
-     */
-    void setSeed(long seed);
+    WorldGeneratorSettings getWorldGenerationSettings();
 
     /**
      * Sets the in-game time of day.
@@ -237,30 +202,6 @@ public interface ServerWorldProperties extends WorldProperties, Identifiable, Mu
      * @param state Whether commands are allowed
      */
     void setCommandsEnabled(boolean state);
-
-    /**
-     * Gets whether the bonus chest will generate.
-     *
-     * <p>
-     *     Only will generate at spawn and never afterwards.
-     * </p>
-     *
-     * @see <a href="https://minecraft.gamepedia.com/Chest#Bonus_chest">https://minecraft.gamepedia.com/Chest#Bonus_chest</a>
-     * @return Whether the bonus chest will generate
-     */
-    boolean doesGenerateBonusChest();
-
-    /**
-     * Sets whether the bonus chest will generate.
-     *
-     * <p>
-     *     Only will generate at spawn and never afterwards.
-     * </p>
-     *
-     * @see <a href="https://minecraft.gamepedia.com/Chest#Bonus_chest">https://minecraft.gamepedia.com/Chest#Bonus_chest</a>
-     * @param state Whether the bonus chest will generate
-     */
-    void setGenerateBonusChest(boolean state);
 
     /**
      * Sets the {@link Difficulty}.
@@ -385,20 +326,6 @@ public interface ServerWorldProperties extends WorldProperties, Identifiable, Mu
      * @param viewDistance The view distance
      */
     void setViewDistance(int viewDistance);
-
-    /**
-     * Gets the {@link DataContainer} that represents the settings used by the generator.
-     *
-     * @return The data
-     */
-    DataContainer getGeneratorSettings();
-
-    /**
-     * Sets the {@link DataContainer} that represents the settings to be used by the generator.
-     *
-     * @param generatorSettings The data
-     */
-    void setGeneratorSettings(DataContainer generatorSettings);
 
     /**
      * Gets the {@link WorldBorder}.

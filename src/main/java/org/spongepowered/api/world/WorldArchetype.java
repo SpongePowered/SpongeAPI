@@ -36,8 +36,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.dimension.DimensionTypes;
-import org.spongepowered.api.world.gen.GeneratorModifierType;
-import org.spongepowered.api.world.gen.GeneratorModifierTypes;
+import org.spongepowered.api.world.gen.WorldGeneratorSettings;
 import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.util.function.Supplier;
@@ -88,18 +87,11 @@ public interface WorldArchetype extends CatalogType {
     boolean doesGenerateSpawnOnLoad();
 
     /**
-     * Gets the seed.
-     * 
-     * @return The seed
+     * Gets the {@link WorldGeneratorSettings}.
+     *
+     @return The world generation settings
      */
-    long getSeed();
-
-    /**
-     * Gets if the seed will be randomized for each world generated.
-     * 
-     * @return If the seed is randomized
-     */
-    boolean isSeedRandomized();
+    WorldGeneratorSettings getWorldGenerationSettings();
 
     /**
      * Gets the {@link GameMode}.
@@ -116,22 +108,6 @@ public interface WorldArchetype extends CatalogType {
     DimensionType getDimensionType();
 
     /**
-     * Gets the {@link GeneratorModifierType}.
-     * 
-     * @return The generator modifier
-     */
-    GeneratorModifierType getGeneratorModifier();
-
-    /**
-     * Gets whether structures are enabled and will generate.
-     *
-     * <p>Examples include Villages, Temples, etc.</p>
-     *
-     * @return True if structures are enabled and will generate, false if not
-     */
-    boolean areStructuresEnabled();
-
-    /**
      * Gets whether hardcore mode is enabled.
      * 
      * @return True if hardcore mode is enabled, false if not
@@ -144,14 +120,6 @@ public interface WorldArchetype extends CatalogType {
      * @return True if commands are allowed, false if not
      */
     boolean areCommandsEnabled();
-
-    /**
-     * Gets whether the bonus chest will generate.
-     *
-     * @see <a href="https://minecraft.gamepedia.com/Chest#Bonus_chest">https://minecraft.gamepedia.com/Chest#Bonus_chest</a>
-     * @return True if bonus chest will generate, false if not.
-     */
-    boolean doesGenerateBonusChest();
 
     /**
      * Gets the difficulty.
@@ -222,19 +190,12 @@ public interface WorldArchetype extends CatalogType {
         Builder generateSpawnOnLoad(boolean state);
 
         /**
-         * Sets the seed. See {@link #randomSeed()} if a random seed is desired.
+         * Sets the {@link WorldGeneratorSettings}.
          *
-         * @param seed The seed
-         * @return The builder, for chaining
+         * @param worldGeneratorSettings The world generation settings
+         * @return This builder, for chaining
          */
-        Builder seed(long seed);
-
-        /**
-         * Sets the seed to be randomized for each world created.
-         * 
-         * @return The builder, for chaining
-         */
-        Builder randomSeed();
+        Builder worldGenerationSettings(final WorldGeneratorSettings worldGeneratorSettings);
 
         /**
          * Sets the default {@link GameMode}. If not specified this
@@ -277,26 +238,6 @@ public interface WorldArchetype extends CatalogType {
         Builder dimensionType(DimensionType type);
 
         /**
-         * Sets the generator modifier. If not specified this will default
-         * to {@link GeneratorModifierTypes#NONE}
-         *
-         * @param modifier The modifier
-         * @return The builder, for chaining
-         */
-        default Builder generatorModifierType(Supplier<? extends GeneratorModifierType> modifier) {
-            return this.generatorModifierType(modifier.get());
-        }
-
-        /**
-         * Sets the generator type. If not specified this will default
-         * to {@link GeneratorModifierTypes#NONE}
-         *
-         * @param modifier The modifier
-         * @return The builder, for chaining
-         */
-        Builder generatorModifierType(GeneratorModifierType modifier);
-
-        /**
          * Sets the difficulty.
          *
          * @param difficulty The difficulty
@@ -313,15 +254,6 @@ public interface WorldArchetype extends CatalogType {
          * @return The builder, for chaining
          */
         Builder difficulty(Difficulty difficulty);
-
-        /**
-         * Sets whether this should generate map features such as villages
-         * and strongholds. If not specified this will default to true.
-         *
-         * @param state Are map features enabled
-         * @return The builder, for chaining
-         */
-        Builder generateStructures(boolean state);
 
         /**
          * Sets whether hardcore mode is enabled. On servers this will cause
@@ -350,15 +282,6 @@ public interface WorldArchetype extends CatalogType {
         Builder commandsEnabled(boolean state);
 
         /**
-         * Sets whether the bonus chest is to be generated.
-         *
-         * @see <a href="https://minecraft.gamepedia.com/Chest#Bonus_chest">https://minecraft.gamepedia.com/Chest#Bonus_chest</a>
-         * @param state Whether bonus chest is enabled
-         * @return This builder, for chaining
-         */
-        Builder generateBonusChest(boolean state);
-
-        /**
          * Sets the {@link SerializationBehavior} that will be used when saving.
          *
          * @param behavior The serialization behavior
@@ -375,14 +298,6 @@ public interface WorldArchetype extends CatalogType {
          * @return This builder, for chaining
          */
         Builder serializationBehavior(SerializationBehavior behavior);
-
-        /**
-         * Sets the {@link DataContainer} that will be used for the generator settings.
-         *
-         * @param generatorSettings The data
-         * @return This builder, for chaining
-         */
-        Builder generatorSettings(DataContainer generatorSettings);
 
         /**
          * Fills this {@link Builder} for creating {@link WorldArchetype}s,
