@@ -43,11 +43,11 @@ public final class AttributeOperations {
 
     // SORTFIELDS:ON
 
-    public static final DefaultedRegistryReference<AttributeOperation> ADD_NUMBER = AttributeOperations.key(ResourceKey.sponge("add_number"));
+    public static final DefaultedRegistryReference<AttributeOperation> ADDITION = AttributeOperations.key(ResourceKey.sponge("addition"));
 
-    public static final DefaultedRegistryReference<AttributeOperation> ADD_PERCENTAGE = AttributeOperations.key(ResourceKey.sponge("add_percentage"));
+    public static final DefaultedRegistryReference<AttributeOperation> MULTIPLY_BASE = AttributeOperations.key(ResourceKey.sponge("multiply_base"));
 
-    public static final DefaultedRegistryReference<AttributeOperation> MULTIPLY_PERCENTAGE = AttributeOperations.key(ResourceKey.sponge("multiply_percentage"));
+    public static final DefaultedRegistryReference<AttributeOperation> MULTIPLY_TOTAL = AttributeOperations.key(ResourceKey.sponge("multiply_total"));
 
     // SORTFIELDS:OFF
 

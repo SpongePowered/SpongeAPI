@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.recipe.crafting.Ingredient;
@@ -37,7 +36,7 @@ import java.util.Optional;
  * {@link ItemTypes#DIAMOND_CHESTPLATE}.
  */
 @CatalogedBy(ArmorMaterials.class)
-public interface ArmorMaterial extends CatalogType {
+public interface ArmorMaterial {
 
     /**
      * Gets the {@link ItemType} that can be used to
