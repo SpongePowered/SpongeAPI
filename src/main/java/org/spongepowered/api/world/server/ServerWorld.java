@@ -40,8 +40,6 @@ import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.dimension.DimensionTypes;
 import org.spongepowered.api.world.explosion.Explosion;
-import org.spongepowered.api.world.storage.ServerWorldProperties;
-import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
 import org.spongepowered.api.world.volume.game.InteractableVolume;
 import org.spongepowered.api.world.weather.WeatherUniverse;

@@ -37,6 +37,7 @@ import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.dimension.DimensionTypes;
 import org.spongepowered.api.world.gen.WorldGeneratorSettings;
+import org.spongepowered.api.world.server.ServerWorldProperties;
 import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.util.function.Supplier;
@@ -302,12 +303,12 @@ public interface WorldArchetype extends CatalogType {
         /**
          * Fills this {@link Builder} for creating {@link WorldArchetype}s,
          * the builder is then seeded with the values from the given
-         * {@link WorldProperties} object.
+         * {@link ServerWorldProperties} object.
          *
          * @param properties The seed properties
          * @return This builder, for chaining
          */
-        Builder from(WorldProperties properties);
+        Builder from(ServerWorldProperties properties);
 
         /**
          * Builds the {@link WorldArchetype archetype}.

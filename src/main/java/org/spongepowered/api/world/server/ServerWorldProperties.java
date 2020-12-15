@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.storage;
+package org.spongepowered.api.world.server;
 
 import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.key.KeyedValue;
@@ -37,7 +37,7 @@ import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.gen.WorldGeneratorSettings;
-import org.spongepowered.api.world.server.ServerWorld;
+import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.MutableWeatherUniverse;
 
 import java.util.List;
@@ -134,7 +134,7 @@ public interface ServerWorldProperties extends WorldProperties, Identifiable, Mu
      * Gets the {@link WorldGeneratorSettings}
      * @return The world generation settings
      */
-    WorldGeneratorSettings getWorldGenerationSettings();
+    WorldGeneratorSettings getWorldGeneratorSettings();
 
     /**
      * Sets the in-game time of day.
