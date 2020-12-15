@@ -24,13 +24,12 @@
  */
 package org.spongepowered.api.entity.living.monster.boss.dragon.phase;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * An {@link DragonPhase} type.
  */
 @CatalogedBy(DragonPhaseTypes.class)
-public interface DragonPhaseType extends CatalogType {
+public interface DragonPhaseType {
 
 }

@@ -24,13 +24,12 @@
  */
 package org.spongepowered.api.util.rotation;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(Rotations.class)
-public interface Rotation extends CatalogType {
+public interface Rotation {
 
-    Rotation and(Rotation rotation);
+    Rotation and(final Rotation rotation);
 
     /**
      * Gets the the rotation in degrees always in clockwise order.

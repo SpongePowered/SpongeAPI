@@ -25,14 +25,13 @@
 package org.spongepowered.api.effect.potion;
 
 import net.kyori.adventure.text.ComponentLike;
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a possible type of {@link PotionEffect}.
  */
 @CatalogedBy(PotionEffectTypes.class)
-public interface PotionEffectType extends CatalogType, ComponentLike {
+public interface PotionEffectType extends ComponentLike {
 
     /**
      * Gets whether this potion effect is applied instantly or over time.

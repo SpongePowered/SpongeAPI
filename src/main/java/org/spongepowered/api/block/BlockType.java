@@ -25,7 +25,6 @@
 package org.spongepowered.api.block;
 
 import net.kyori.adventure.text.ComponentLike;
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.item.ItemType;
@@ -43,7 +42,7 @@ import java.util.function.Supplier;
  * via {@link BlockEntity}.</p>
  */
 @CatalogedBy(BlockTypes.class)
-public interface BlockType extends CatalogType, ComponentLike, StateContainer<BlockState>, DataHolder.Immutable<BlockType> {
+public interface BlockType extends ComponentLike, StateContainer<BlockState>, DataHolder.Immutable<BlockType> {
 
     /**
      * Return the {@link ItemType} that represents this block.
