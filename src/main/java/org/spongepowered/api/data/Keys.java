@@ -83,7 +83,7 @@ import org.spongepowered.api.data.type.SpellType;
 import org.spongepowered.api.data.type.SpellTypes;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
-import org.spongepowered.api.data.type.ToolType;
+import org.spongepowered.api.data.type.ItemTier;
 import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.type.WireAttachmentType;
@@ -2468,10 +2468,10 @@ public final class Keys {
     public static final DefaultedRegistryReference<Key<Value<Ticks>>> TICKS_REMAINING = Keys.key(ResourceKey.sponge("ticks_remaining"));
 
     /**
-     * The {@link ToolType} of an {@link ItemStack} tool.
+     * The {@link ItemTier} of an {@link ItemStack} tool.
      * Readonly
      */
-    public static final DefaultedRegistryReference<Key<Value<ToolType>>> TOOL_TYPE = Keys.key(ResourceKey.sponge("tool_type"));
+    public static final DefaultedRegistryReference<Key<Value<ItemTier>>> TOOL_TYPE = Keys.key(ResourceKey.sponge("tool_type"));
 
     /**
      * Whether a {@link CommandBlock} does track its output.

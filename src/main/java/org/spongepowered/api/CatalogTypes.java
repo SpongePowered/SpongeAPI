@@ -63,7 +63,7 @@ import org.spongepowered.api.data.type.RailDirection;
 import org.spongepowered.api.data.type.SkinPart;
 import org.spongepowered.api.data.type.SlabPortion;
 import org.spongepowered.api.data.type.StairShape;
-import org.spongepowered.api.data.type.ToolType;
+import org.spongepowered.api.data.type.ItemTier;
 import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.WireAttachmentType;
 import org.spongepowered.api.data.type.WoodType;
@@ -286,7 +286,7 @@ public final class CatalogTypes {
 
     public static final Class<TeleportHelperFilter> TELEPORT_HELPER_FILTER = TeleportHelperFilter.class;
 
-    public static final Class<ToolType> TOOL_TYPE = ToolType.class;
+    public static final Class<ItemTier> TOOL_TYPE = ItemTier.class;
 
     public static final Class<TransactionType> TRANSACTION_TYPE = TransactionType.class;
 

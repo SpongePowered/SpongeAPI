@@ -24,12 +24,11 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.item.recipe.crafting.Ingredient;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-@CatalogedBy(ToolTypes.class)
-public interface ToolType extends CatalogType {
+@CatalogedBy(ItemTiers.class)
+public interface ItemTier {
 
     /**
      * Gets the {@link Ingredient} needed to repair this tool.

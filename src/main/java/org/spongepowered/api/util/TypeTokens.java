@@ -66,7 +66,7 @@ import org.spongepowered.api.data.type.SlabPortion;
 import org.spongepowered.api.data.type.SpellType;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
-import org.spongepowered.api.data.type.ToolType;
+import org.spongepowered.api.data.type.ItemTier;
 import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.type.WireAttachmentType;
@@ -350,7 +350,7 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<StructureMode>> STRUCTURE_MODE_VALUE_TOKEN = new TypeToken<Value<StructureMode>>() {};
 
-    public static final TypeToken<Value<ToolType>> TOOL_TYPE_VALUE_TOKEN = new TypeToken<Value<ToolType>>() {};
+    public static final TypeToken<Value<ItemTier>> TOOL_TYPE_VALUE_TOKEN = new TypeToken<Value<ItemTier>>() {};
 
     public static final TypeToken<Value<TropicalFishShape>> TROPICAL_FISH_SHAPE_VALUE_TOKEN = new TypeToken<Value<TropicalFishShape>>() {};
 

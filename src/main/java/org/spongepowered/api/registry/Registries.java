@@ -74,7 +74,7 @@ import org.spongepowered.api.data.type.SlabPortion;
 import org.spongepowered.api.data.type.SpellType;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
-import org.spongepowered.api.data.type.ToolType;
+import org.spongepowered.api.data.type.ItemTier;
 import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.type.WireAttachmentType;
@@ -284,6 +284,8 @@ public final class Registries {
 
     public static final RegistryType<IntegerStateProperty> INTEGER_STATE_PROPERTY = Registries.spongeKey("integer_state_property");
 
+    public static final RegistryType<ItemTier> ITEM_TIER = Registries.spongeKey("item_tier");
+
     public static final RegistryType<Key<?>> KEY = Registries.spongeKey("key");
 
     public static final RegistryType<LightType> LIGHT_TYPE = Registries.spongeKey("light_type");
@@ -359,8 +361,6 @@ public final class Registries {
     public static final RegistryType<TaskPriority> TASK_PRIORITY = Registries.spongeKey("task_priority");
 
     public static final RegistryType<TeleportHelperFilter> TELEPORT_HELPER_FILTER = Registries.spongeKey("teleport_helper_filter");
-
-    public static final RegistryType<ToolType> TOOL_TYPE = Registries.spongeKey("tool_type");
 
     public static final RegistryType<TransactionType> TRANSACTION_TYPE = Registries.spongeKey("transaction_type");
 

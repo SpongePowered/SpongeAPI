@@ -33,34 +33,36 @@ import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
 
 /**
- * An enumeration of vanilla {@link ToolType}s.
+ * An enumeration of vanilla {@link ItemTier}s.
  */
 @SuppressWarnings("unused")
 @RegistryScopes(scopes = RegistryScope.GAME)
-public final class ToolTypes {
+public final class ItemTiers {
 
     // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final DefaultedRegistryReference<ToolType> DIAMOND = ToolTypes.key(ResourceKey.sponge("diamond"));
+    public static final DefaultedRegistryReference<ItemTier> DIAMOND = ItemTiers.key(ResourceKey.sponge("diamond"));
 
-    public static final DefaultedRegistryReference<ToolType> GOLD = ToolTypes.key(ResourceKey.sponge("gold"));
+    public static final DefaultedRegistryReference<ItemTier> GOLD = ItemTiers.key(ResourceKey.sponge("gold"));
 
-    public static final DefaultedRegistryReference<ToolType> IRON = ToolTypes.key(ResourceKey.sponge("iron"));
+    public static final DefaultedRegistryReference<ItemTier> IRON = ItemTiers.key(ResourceKey.sponge("iron"));
 
-    public static final DefaultedRegistryReference<ToolType> STONE = ToolTypes.key(ResourceKey.sponge("stone"));
+    public static final DefaultedRegistryReference<ItemTier> IRON = ItemTiers.key(ResourceKey.sponge("iron"));
 
-    public static final DefaultedRegistryReference<ToolType> WOOD = ToolTypes.key(ResourceKey.sponge("wood"));
+    public static final DefaultedRegistryReference<ItemTier> STONE = ItemTiers.key(ResourceKey.sponge("stone"));
+
+    public static final DefaultedRegistryReference<ItemTier> WOOD = ItemTiers.key(ResourceKey.sponge("wood"));
 
     // SORTFIELDS:OFF
 
     // @formatter:on
 
-    private ToolTypes() {
+    private ItemTiers() {
     }
 
-    private static DefaultedRegistryReference<ToolType> key(final ResourceKey location) {
-        return RegistryKey.of(Registries.TOOL_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+    private static DefaultedRegistryReference<ItemTier> key(final ResourceKey location) {
+        return RegistryKey.of(Registries.ITEM_TIER, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }
