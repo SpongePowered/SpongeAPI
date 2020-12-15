@@ -30,6 +30,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Creature;
 import org.spongepowered.api.entity.living.Humanoid;
+import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.animal.horse.Horse;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.registry.Registries;
@@ -48,9 +49,24 @@ public final class GoalTypes {
     // SORTFIELDS:ON
 
     /**
-     * {@link Goal} where {@link Creature}s avoid other {@link Agent}s based on a {@link Predicate}.
+     * {@link Goal} where {@link Living}s avoid other {@link Agent}s based on a {@link Predicate}.
      */
-    public static final DefaultedRegistryReference<GoalType> AVOID_ENTITY = GoalTypes.key(ResourceKey.sponge("avoid_entity"));
+    public static final DefaultedRegistryReference<GoalType> AVOID_LIVING = GoalTypes.key(ResourceKey.sponge("avoid_living"));
+
+    public static final DefaultedRegistryReference<GoalType> ATTACK_LIVING = GoalTypes.key(ResourceKey.sponge("attack_living"));
+
+    public static final DefaultedRegistryReference<GoalType> FIND_NEAREST_ATTACKABLE = GoalTypes.key(ResourceKey.sponge("find_nearest_attackable"));
+
+    public static final DefaultedRegistryReference<GoalType> LOOK_AT = GoalTypes.key(ResourceKey.sponge("look_at"));
+
+    public static final DefaultedRegistryReference<GoalType> LOOK_RANDOMLY = GoalTypes.key(ResourceKey.sponge("look_randomly"));
+
+    /**
+     * {@link Goal} where {@link Creature}s walk around.
+     */
+    public static final DefaultedRegistryReference<GoalType> RANDOM_WALKING = GoalTypes.key(ResourceKey.sponge("random_walking"));
+
+    public static final DefaultedRegistryReference<GoalType> RANGED_ATTACK_AGAINST_AGENT = GoalTypes.key(ResourceKey.sponge("ranged_attack_against_agent"));
 
     /**
      * {@link Goal} where {@link Horse}s run around while {@link Humanoid}s attempt to tame them.
@@ -60,17 +76,7 @@ public final class GoalTypes {
     /**
      * {@link Goal} where {@link Agent}s swim in liquids.
      */
-    public static final DefaultedRegistryReference<GoalType> SWIMMING = GoalTypes.key(ResourceKey.sponge("swimming"));
-
-    /**
-     * {@link Goal} where {@link Creature}s walk around.
-     */
-    public static final DefaultedRegistryReference<GoalType> WANDER = GoalTypes.key(ResourceKey.sponge("wander"));
-
-    /**
-     * {@link Goal} where {@link Agent}s will "watch" other {@link Entity}s.
-     */
-    public static final DefaultedRegistryReference<GoalType> WATCH_CLOSEST = GoalTypes.key(ResourceKey.sponge("watch_closest"));
+    public static final DefaultedRegistryReference<GoalType> SWIM = GoalTypes.key(ResourceKey.sponge("swim"));
 
     // SORTFIELDS:OFF
 

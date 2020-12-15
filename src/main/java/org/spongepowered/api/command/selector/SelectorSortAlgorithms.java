@@ -47,23 +47,23 @@ public final class SelectorSortAlgorithms {
     /**
      * An undefined sorting algorithm
      */
-    public static final DefaultedRegistryReference<SelectorSortAlgorithm> ARBITRARY = SelectorSortAlgorithms.key(ResourceKey.sponge("arbitrary"));
+    public static final DefaultedRegistryReference<SelectorSortAlgorithm> ORDER_ARBITRARY = SelectorSortAlgorithms.key(ResourceKey.sponge("order_arbitrary"));
 
     /**
      * Selects the {@link Entity entities} furthest away from the target
      * location first.
      */
-    public static final DefaultedRegistryReference<SelectorSortAlgorithm> FURTHEST = SelectorSortAlgorithms.key(ResourceKey.sponge("furthest"));
+    public static final DefaultedRegistryReference<SelectorSortAlgorithm> ORDER_FURTHEST = SelectorSortAlgorithms.key(ResourceKey.sponge("order_furthest"));
 
     /**
      * Selects the {@link Entity entities} nearest to the target location first.
      */
-    public static final DefaultedRegistryReference<SelectorSortAlgorithm> NEAREST = SelectorSortAlgorithms.key(ResourceKey.sponge("nearest"));
+    public static final DefaultedRegistryReference<SelectorSortAlgorithm> ORDER_NEAREST = SelectorSortAlgorithms.key(ResourceKey.sponge("order_nearest"));
 
     /**
      * Returns {@link Entity entities} in a random order
      */
-    public static final DefaultedRegistryReference<SelectorSortAlgorithm> RANDOM = SelectorSortAlgorithms.key(ResourceKey.sponge("random"));
+    public static final DefaultedRegistryReference<SelectorSortAlgorithm> ORDER_RANDOM = SelectorSortAlgorithms.key(ResourceKey.sponge("order_random"));
 
     // SORTFIELDS:OFF
 
