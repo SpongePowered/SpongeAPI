@@ -49,7 +49,7 @@ public final class ItemTiers {
 
     public static final DefaultedRegistryReference<ItemTier> IRON = ItemTiers.key(ResourceKey.sponge("iron"));
 
-    public static final DefaultedRegistryReference<ItemTier> IRON = ItemTiers.key(ResourceKey.sponge("iron"));
+    public static final DefaultedRegistryReference<ItemTier> NETHERITE = ItemTiers.key(ResourceKey.sponge("netherite"));
 
     public static final DefaultedRegistryReference<ItemTier> STONE = ItemTiers.key(ResourceKey.sponge("stone"));
 
