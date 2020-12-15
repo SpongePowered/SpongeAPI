@@ -24,15 +24,13 @@
  */
 package org.spongepowered.api.world.biome;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
-import org.spongepowered.api.world.World;
 
 /**
  * Represents a biome.
  */
 @CatalogedBy(BiomeTypes.class)
-public interface BiomeType extends CatalogType {
+public interface BiomeType {
 
     /**
      * Gets the temperature of this biome.
