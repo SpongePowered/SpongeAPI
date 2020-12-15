@@ -85,5 +85,7 @@ public interface WorldGeneratorSettings {
         Builder generateFeatures(boolean generateFeatures);
 
         Builder generateBonusChest(boolean generateBonusChest);
+
+        WorldGeneratorSettings build();
     }
 }
