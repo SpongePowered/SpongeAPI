@@ -31,7 +31,7 @@ import org.spongepowered.api.registry.RegistryReference;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
 
-@RegistryScopes(scopes = RegistryScope.GAME)
+@RegistryScopes(scopes = RegistryScope.ENGINE)
 public final class DimensionTypes {
 
     // @formatter:off
