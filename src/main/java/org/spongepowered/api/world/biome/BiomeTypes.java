@@ -36,7 +36,7 @@ import org.spongepowered.api.registry.RegistryScopes;
  * minecraft.
  */
 @SuppressWarnings("unused")
-@RegistryScopes(scopes = RegistryScope.GAME)
+@RegistryScopes(scopes = RegistryScope.WORLD)
 public final class BiomeTypes {
 
     // @formatter:off
