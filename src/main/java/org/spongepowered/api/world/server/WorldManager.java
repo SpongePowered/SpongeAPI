@@ -64,7 +64,7 @@ public interface WorldManager {
      *
      * @return The world properties
      */
-    default Optional<WorldProperties> getDefaultProperties() {
+    default Optional<ServerWorldProperties> getDefaultProperties() {
         return this.getProperties(this.getServer().getDefaultWorldKey());
     }
 
@@ -84,7 +84,7 @@ public interface WorldManager {
      * @param archetype The archetype for creation
      * @return The new world properties, if the creation was successful
      */
-    CompletableFuture<WorldProperties> createProperties(ResourceKey key, WorldArchetype archetype);
+    CompletableFuture<ServerWorldProperties> createProperties(ResourceKey key, WorldArchetype archetype);
 
     /**
      * Loads a {@link ServerWorld} specified by a {@link ResourceKey key}. If a world with
@@ -140,7 +140,7 @@ public interface WorldManager {
      * @param key The key
      * @return The world properties, if found
      */
-    Optional<WorldProperties> getProperties(ResourceKey key);
+    Optional<ServerWorldProperties> getProperties(ResourceKey key);
 
     /**
      * Gets the properties of all unloaded worlds.
@@ -150,7 +150,7 @@ public interface WorldManager {
      *
      * @return A collection of world properties
      */
-    Collection<WorldProperties> getUnloadedProperties();
+    Collection<ServerWorldProperties> getUnloadedProperties();
 
     /**
      * Gets the properties of all worlds, online and offline.
@@ -160,7 +160,7 @@ public interface WorldManager {
      *
      * @return A collection of world properties
      */
-    Collection<WorldProperties> getAllProperties();
+    Collection<ServerWorldProperties> getAllProperties();
 
     /**
      * Persists the given {@link WorldProperties} to the world storage for it,
@@ -191,7 +191,7 @@ public interface WorldManager {
      * @param copyKey The copied key for the new properties
      * @return The copied properties
      */
-    CompletableFuture<WorldProperties> copyWorld(ResourceKey key, ResourceKey copyKey);
+    CompletableFuture<ServerWorldProperties> copyWorld(ResourceKey key, ResourceKey copyKey);
 
     /**
      * Moves a {@link WorldProperties properties}.
@@ -211,7 +211,7 @@ public interface WorldManager {
      * @param movedKey The moved key
      * @return The moved properties
      */
-    CompletableFuture<WorldProperties> moveWorld(ResourceKey key, ResourceKey movedKey);
+    CompletableFuture<ServerWorldProperties> moveWorld(ResourceKey key, ResourceKey movedKey);
 
     /**
      * Deletes a {@link WorldProperties properties} by it's {@link ResourceKey key}.
