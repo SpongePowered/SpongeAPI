@@ -31,6 +31,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.BlockChangeFlags;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.volume.MutableVolume;
 
@@ -41,32 +42,32 @@ import java.util.function.Supplier;
 
 public final class VolumeCollectors {
 
-    public static <W extends World<W>> VolumeCollector<W, BlockState, Boolean> applyBlocksToWorld(final W world, final BlockChangeFlag flag) {
+    public static <W extends World<W, ?>> VolumeCollector<W, BlockState, Boolean> applyBlocksToWorld(final W world, final BlockChangeFlag flag) {
         Objects.requireNonNull(flag, "BlockChangeFlag cannot be null!");
         return VolumeCollectors.of(world, VolumePositionTranslators.identity(), VolumeApplicators.applyBlocks(flag));
     }
 
-    public static <W extends World<W>> VolumeCollector<W, BlockState, Boolean> applyBlocksToWorld(final W world) {
+    public static <W extends World<W, ?>> VolumeCollector<W, BlockState, Boolean> applyBlocksToWorld(final W world) {
         return VolumeCollectors.applyBlocksToWorld(world, BlockChangeFlags.ALL);
     }
 
-    public static <W extends World<W>> VolumeCollector<W, BlockEntity, Boolean> applyBlockEntityToWorld(final W world) {
+    public static <W extends World<W, ?>> VolumeCollector<W, BlockEntity, Boolean> applyBlockEntityToWorld(final W world) {
         return VolumeCollectors.of(world, VolumePositionTranslators.identity(), VolumeApplicators.applyBlockEntities());
     }
 
-    public static <W extends World<W>> VolumeCollector<W, Optional<? extends BlockEntity>, Boolean> applyBlockEntitiesOrRemove(final W world) {
+    public static <W extends World<W, ?>> VolumeCollector<W, Optional<? extends BlockEntity>, Boolean> applyBlockEntitiesOrRemove(final W world) {
         return VolumeCollectors.of(world, VolumePositionTranslators.identity(), VolumeApplicators.applyOrRemoveBlockEntities());
     }
 
-    public static <W extends World<W>> VolumeCollector<W, Entity, Boolean> applyEntitiesToWorld(final W world) {
+    public static <W extends World<W, ?>> VolumeCollector<W, Entity, Boolean> applyEntitiesToWorld(final W world) {
         return VolumeCollectors.of(world, VolumePositionTranslators.identity(), VolumeApplicators.applyEntities());
     }
 
-    public static <W extends World<W>> VolumeCollector<W, EntityArchetype, Optional<? extends Entity>> applyEntityArchetypesToWorld(final W world) {
+    public static <W extends World<W, ? extends ServerLocation>> VolumeCollector<W, EntityArchetype, Optional<? extends Entity>> applyEntityArchetypesToWorld(final W world) {
         return VolumeCollectors.of(world, VolumePositionTranslators.identity(), VolumeApplicators.applyEntityArchetype());
     }
 
-    public static <W extends World<W>> VolumeCollector<W, BlockEntityArchetype, Optional<? extends BlockEntity>> applyBlockEntityArchetypesToWorld(final W world) {
+    public static <W extends World<W, ? extends ServerLocation>> VolumeCollector<W, BlockEntityArchetype, Optional<? extends BlockEntity>> applyBlockEntityArchetypesToWorld(final W world) {
         return VolumeCollectors.of(world, VolumePositionTranslators.identity(), VolumeApplicators.applyBlockEntityArchetype());
     }
 

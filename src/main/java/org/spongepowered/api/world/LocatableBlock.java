@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.SerializableDataHolder;
@@ -66,7 +67,7 @@ public interface LocatableBlock extends SerializableDataHolder.Immutable<Locatab
          * @param location The location containing the block state and position
          * @return This builder, for chaining
          */
-        Builder location(Location<?> location);
+        Builder location(Location<@NonNull ?, @NonNull ?> location);
 
         /**
          * Sets the {@link Vector3i position} for this builder.
@@ -93,7 +94,7 @@ public interface LocatableBlock extends SerializableDataHolder.Immutable<Locatab
          * @param world The world
          * @return This builder, for chaining
          */
-        Builder world(World<?> world);
+        Builder world(World<@NonNull ?, @NonNull ?> world);
 
         @Override
         Builder reset();

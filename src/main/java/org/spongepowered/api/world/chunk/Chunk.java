@@ -47,7 +47,7 @@ public interface Chunk extends ProtoChunk<Chunk> {
      * @return The world
      */
     @Override
-    World<?> getWorld();
+    World<?, ?> getWorld();
 
     /**
      * Loads this chunk, and generates if specified and required.

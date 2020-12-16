@@ -40,7 +40,7 @@ public interface MutableBlockVolume<M extends MutableBlockVolume<M>> extends Str
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the volume
      */
-    default boolean setBlock(Vector3i position, BlockState block) {
+    default boolean setBlock(final Vector3i position, final BlockState block) {
         return this.setBlock(position.getX(), position.getY(), position.getZ(), block);
     }
 
@@ -57,7 +57,7 @@ public interface MutableBlockVolume<M extends MutableBlockVolume<M>> extends Str
      */
     boolean setBlock(int x, int y, int z, BlockState block);
 
-    default boolean removeBlock(Vector3i position) {
+    default boolean removeBlock(final Vector3i position) {
         return this.removeBlock(position.getX(), position.getY(), position.getZ());
     }
 

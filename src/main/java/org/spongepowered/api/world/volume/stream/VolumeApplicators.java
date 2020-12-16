@@ -31,6 +31,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.LocationCreator;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.volume.biome.MutableBiomeVolume;
 import org.spongepowered.api.world.volume.block.MutableBlockVolume;
@@ -90,8 +91,10 @@ public final class VolumeApplicators {
             .orElseGet(() -> volume.removeBlock(element.getPosition()));
     }
 
-    public static <M extends LocationCreator & MutableBlockEntityVolume<M>> VolumeApplicator<M, BlockEntityArchetype, Optional<? extends BlockEntity>> applyBlockEntityArchetype() {
-        return (volume, element) -> element.getType().apply(volume.getLocation(element.getPosition()));
+    public static <M extends LocationCreator<?, ? extends ServerLocation> & MutableBlockEntityVolume<M>> VolumeApplicator<M, BlockEntityArchetype,
+            Optional<?
+            extends BlockEntity>> applyBlockEntityArchetype() {
+        return (volume, element) -> element.getType().apply((ServerLocation) volume.getLocation(element.getPosition()));
     }
 
     public static <M extends MutableEntityVolume<M>> VolumeApplicator<M, Entity, Boolean> applyEntities() {
@@ -102,8 +105,9 @@ public final class VolumeApplicators {
         return (volume, element) -> volume.setBiome(element.getPosition(), element.getType());
     }
 
-    public static <M extends LocationCreator & MutableEntityVolume<M>> VolumeApplicator<M, EntityArchetype, Optional<? extends Entity>> applyEntityArchetype() {
-        return (volume, element) -> element.getType().apply(volume.getLocation(element.getPosition()));
+    public static <M extends LocationCreator<?, ? extends ServerLocation> & MutableEntityVolume<M>> VolumeApplicator<M, EntityArchetype, Optional<?
+            extends Entity>> applyEntityArchetype() {
+        return (volume, element) -> element.getType().apply((ServerLocation) volume.getLocation(element.getPosition()));
     }
 
     private VolumeApplicators() {}

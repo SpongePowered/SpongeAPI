@@ -54,7 +54,7 @@ import java.util.function.Predicate;
  * A loaded Minecraft world.
  */
 @DoNotStore
-public interface World<W extends World<W, L>, L extends Location<W>> extends ForwardingAudience,
+public interface World<W extends World<W, L>, L extends Location<W, L>> extends ForwardingAudience,
     ProtoWorld<W>,
     LocationCreator<W, L>,
     PhysicsAwareMutableBlockVolume<W>,

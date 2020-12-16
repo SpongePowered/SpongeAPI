@@ -33,12 +33,12 @@ import org.spongepowered.math.vector.Vector3i;
 public interface PhysicsAwareMutableBlockVolume<P extends PhysicsAwareMutableBlockVolume<P>> extends MutableBlockVolume<P> {
 
     @Override
-    default boolean setBlock(Vector3i position, BlockState block) {
+    default boolean setBlock(final Vector3i position, final BlockState block) {
         return this.setBlock(position.getX(), position.getY(), position.getZ(), block, BlockChangeFlags.ALL);
     }
 
     @Override
-    default boolean setBlock(int x, int y, int z, BlockState block) {
+    default boolean setBlock(final int x, final int y, final int z, final BlockState block) {
         return this.setBlock(x, y, z, block, BlockChangeFlags.ALL);
     }
 
@@ -52,7 +52,7 @@ public interface PhysicsAwareMutableBlockVolume<P extends PhysicsAwareMutableBlo
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the volume
      */
-    default boolean setBlock(Vector3i position, BlockState blockState, BlockChangeFlag flag) {
+    default boolean setBlock(final Vector3i position, final BlockState blockState, final BlockChangeFlag flag) {
         return this.setBlock(position.getX(), position.getY(), position.getZ(), blockState, flag);
     }
 

@@ -27,7 +27,7 @@ package org.spongepowered.api.world;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
-public interface LocationCreator<W extends World<W, L>, L extends Location<W>> {
+public interface LocationCreator<W extends World<W, L>, L extends Location<W, L>> {
 
     /**
      * Gets a location in this extent at the given position. Essentially, this
@@ -47,7 +47,7 @@ public interface LocationCreator<W extends World<W, L>, L extends Location<W>> {
      * @param z The Z position
      * @return The location in this extent
      */
-    default L getLocation(int x, int y, int z) {
+    default L getLocation(final int x, final int y, final int z) {
         return this.getLocation(new Vector3i(x, y, z));
     }
 
@@ -71,7 +71,7 @@ public interface LocationCreator<W extends World<W, L>, L extends Location<W>> {
      * @param z The Z position
      * @return The location in this extent
      */
-    default L getLocation(double x, double y, double z) {
+    default L getLocation(final double x, final double y, final double z) {
         return this.getLocation(new Vector3i(x, y, z));
     }
 
@@ -81,7 +81,7 @@ public interface LocationCreator<W extends World<W, L>, L extends Location<W>> {
      * @param position The position to get the locatable block
      * @return The locatable block
      */
-    default LocatableBlock getLocatableBlock(Vector3i position) {
+    default LocatableBlock getLocatableBlock(final Vector3i position) {
         return LocatableBlock.builder().location(this.getLocation(position)).build();
     }
 
@@ -93,7 +93,7 @@ public interface LocationCreator<W extends World<W, L>, L extends Location<W>> {
      * @param z The z position
      * @return The locatable block
      */
-    default LocatableBlock getLocatableBlock(int x, int y, int z) {
+    default LocatableBlock getLocatableBlock(final int x, final int y, final int z) {
         return LocatableBlock.builder().location(this.getLocation(x, y, z)).build();
     }
 
