@@ -58,21 +58,15 @@ public interface WorldManager {
     Collection<ServerWorld> getWorlds();
 
     /**
-     * Gets the default {@link WorldProperties} {@link ResourceKey key} the {@link WorldManager} creates and loads
-     * during the lifecycle
-     *
-     * @return The key
-     */
-    ResourceKey getDefaultPropertiesKey();
-
-    /**
      * Gets the default loaded {@link WorldProperties} or {@link Optional#empty()} if none has been loaded.
      *
      * <p>It is up to the implementation to determine when and if a default is loaded.</p>
      *
      * @return The world properties
      */
-    Optional<WorldProperties> getDefaultProperties();
+    default Optional<WorldProperties> getDefaultProperties() {
+        return this.getProperties(this.getServer().getDefaultWorldKey());
+    }
 
     /**
      * Creates a new {@link WorldProperties} from the given
@@ -200,24 +194,24 @@ public interface WorldManager {
     CompletableFuture<WorldProperties> copyWorld(ResourceKey key, ResourceKey copyKey);
 
     /**
-     * Renames a {@link WorldProperties properties}.
+     * Moves a {@link WorldProperties properties}.
      *
      * <p>If the world is loaded, the following will occur:</p>
      *
      * <ul>
      *     <li>World is saved</li>
      *     <li>World is unloaded</li>
-     *     <li>World is renamed, up to the implementation to determine how so</li>
+     *     <li>World is moved, up to the implementation to determine how so</li>
      * </ul>
      *
-     * <p>The default Minecraft worlds cannot be renamed. Additionally, it is left up to the
-     * implementation on exactly what is renamed.</p>
+     * <p>The default Minecraft worlds cannot be moved. Additionally, it is left up to the
+     * implementation on exactly what is moved.</p>
      *
      * @param key The key
-     * @param newValue The new value
-     * @return The renamed properties
+     * @param movedKey The moved key
+     * @return The moved properties
      */
-    CompletableFuture<WorldProperties> renameWorld(ResourceKey key, String newValue);
+    CompletableFuture<WorldProperties> moveWorld(ResourceKey key, ResourceKey movedKey);
 
     /**
      * Deletes a {@link WorldProperties properties} by it's {@link ResourceKey key}.
