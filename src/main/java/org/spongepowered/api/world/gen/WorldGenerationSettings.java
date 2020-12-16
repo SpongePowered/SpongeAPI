@@ -24,10 +24,12 @@
  */
 package org.spongepowered.api.world.gen;
 
+import org.spongepowered.api.world.server.ServerWorld;
+
 /**
- * Represents settings that apply to generation per world
+ * Represents settings that apply to the generation of a {@link ServerWorld world}.
  */
-public interface WorldGeneratorSettings {
+public interface WorldGenerationSettings {
 
     /**
      * Gets the seed

@@ -35,7 +35,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.dimension.DimensionTypes;
-import org.spongepowered.api.world.gen.WorldGeneratorSettings;
+import org.spongepowered.api.world.gen.WorldGenerationSettings;
 import org.spongepowered.api.world.server.ServerWorldProperties;
 import org.spongepowered.api.world.storage.WorldProperties;
 
@@ -87,11 +87,11 @@ public interface WorldArchetype extends CatalogType {
     boolean doesGenerateSpawnOnLoad();
 
     /**
-     * Gets the {@link WorldGeneratorSettings}.
+     * Gets the {@link WorldGenerationSettings}.
      *
      @return The world generation settings
      */
-    WorldGeneratorSettings getWorldGeneratorSettings();
+    WorldGenerationSettings getWorldGeneratorSettings();
 
     /**
      * Gets the {@link GameMode}.
@@ -183,12 +183,12 @@ public interface WorldArchetype extends CatalogType {
         Builder generateSpawnOnLoad(boolean state);
 
         /**
-         * Sets the {@link WorldGeneratorSettings}.
+         * Sets the {@link WorldGenerationSettings}.
          *
-         * @param worldGeneratorSettings The world generation settings
+         * @param worldGenerationSettings The world generation settings
          * @return This builder, for chaining
          */
-        Builder worldGenerationSettings(final WorldGeneratorSettings worldGeneratorSettings);
+        Builder worldGenerationSettings(final WorldGenerationSettings worldGenerationSettings);
 
         /**
          * Sets the default {@link GameMode}. If not specified this

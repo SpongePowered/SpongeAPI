@@ -36,8 +36,8 @@ import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.dimension.DimensionType;
-import org.spongepowered.api.world.gen.MutableWorldGeneratorSettings;
-import org.spongepowered.api.world.gen.WorldGeneratorSettings;
+import org.spongepowered.api.world.gen.MutableWorldGenerationSettings;
+import org.spongepowered.api.world.gen.WorldGenerationSettings;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.MutableWeatherUniverse;
 
@@ -132,10 +132,10 @@ public interface ServerWorldProperties extends WorldProperties, Identifiable, Mu
     void setGenerateSpawnOnLoad(boolean state);
 
     /**
-     * Gets the {@link WorldGeneratorSettings}
+     * Gets the {@link WorldGenerationSettings}
      * @return The world generation settings
      */
-    MutableWorldGeneratorSettings getWorldGeneratorSettings();
+    MutableWorldGenerationSettings getWorldGeneratorSettings();
 
     /**
      * Sets the in-game time of day.

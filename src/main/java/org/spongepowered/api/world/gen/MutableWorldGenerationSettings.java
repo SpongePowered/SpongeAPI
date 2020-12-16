@@ -27,7 +27,10 @@ package org.spongepowered.api.world.gen;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.ResettableBuilder;
 
-public interface MutableWorldGeneratorSettings extends WorldGeneratorSettings{
+/**
+ * A {@link WorldGenerationSettings} that can be modified.
+ */
+public interface MutableWorldGenerationSettings extends WorldGenerationSettings {
 
     static Builder of() {
         return Sponge.getGame().getBuilderProvider().provide(Builder.class);
@@ -54,7 +57,7 @@ public interface MutableWorldGeneratorSettings extends WorldGeneratorSettings{
      */
     void setGenerateBonusChest(boolean generateBonusChest);
 
-    interface Builder extends ResettableBuilder<WorldGeneratorSettings, Builder> {
+    interface Builder extends ResettableBuilder<WorldGenerationSettings, Builder> {
 
         Builder seed(long seed);
 
@@ -62,6 +65,6 @@ public interface MutableWorldGeneratorSettings extends WorldGeneratorSettings{
 
         Builder generateBonusChest(boolean generateBonusChest);
 
-        WorldGeneratorSettings build();
+        WorldGenerationSettings build();
     }
 }

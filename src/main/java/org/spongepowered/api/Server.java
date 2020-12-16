@@ -41,7 +41,7 @@ import org.spongepowered.api.user.UserManager;
 import org.spongepowered.api.util.locale.LocaleSource;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.difficulty.Difficulty;
-import org.spongepowered.api.world.gen.WorldGeneratorSettings;
+import org.spongepowered.api.world.gen.WorldGenerationSettings;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.server.WorldManager;
 import org.spongepowered.api.world.storage.ChunkLayout;
@@ -82,11 +82,11 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
     boolean isMultiWorldEnabled();
 
     /**
-     * Gets the {@link WorldGeneratorSettings world generator settings}.
+     * Gets the {@link WorldGenerationSettings world generator settings}.
      *
      * @return The world generator settings
      */
-    WorldGeneratorSettings getWorldGeneratorSettings();
+    WorldGenerationSettings getWorldGeneratorSettings();
 
     /**
      * Gets the max {@link ServerPlayer players} allowed to join.

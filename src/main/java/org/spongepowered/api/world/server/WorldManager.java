@@ -25,6 +25,7 @@
 package org.spongepowered.api.world.server;
 
 import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.Server;
 import org.spongepowered.api.world.WorldArchetype;
 import org.spongepowered.api.world.storage.WorldProperties;
 
@@ -33,6 +34,13 @@ import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public interface WorldManager {
+
+    /**
+     * Gets the {@link Server}.
+     *
+     * @return The server
+     */
+    Server getServer();
 
     /**
      * Gets a loaded {@link ServerWorld} by it's {@link ResourceKey key}.
