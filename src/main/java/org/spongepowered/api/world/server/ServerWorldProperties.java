@@ -135,7 +135,7 @@ public interface ServerWorldProperties extends WorldProperties, Identifiable, Mu
      * Gets the {@link WorldGenerationSettings}
      * @return The world generation settings
      */
-    MutableWorldGenerationSettings getWorldGeneratorSettings();
+    MutableWorldGenerationSettings getWorldGenerationSettings();
 
     /**
      * Sets the in-game time of day.
