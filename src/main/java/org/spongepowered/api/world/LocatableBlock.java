@@ -29,7 +29,6 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3i;
 
 public interface LocatableBlock extends SerializableDataHolder.Immutable<LocatableBlock>, Locatable {
@@ -67,7 +66,7 @@ public interface LocatableBlock extends SerializableDataHolder.Immutable<Locatab
          * @param location The location containing the block state and position
          * @return This builder, for chaining
          */
-        Builder location(ServerLocation location);
+        Builder location(Location<?> location);
 
         /**
          * Sets the {@link Vector3i position} for this builder.
@@ -88,13 +87,13 @@ public interface LocatableBlock extends SerializableDataHolder.Immutable<Locatab
         Builder position(int x, int y, int z);
 
         /**
-         * Sets the {@link ServerWorld} for this builder, used to get the {@link BlockState}
+         * Sets the {@link World} for this builder, used to get the {@link BlockState}
          * for a desired position.
          *
          * @param world The world
          * @return This builder, for chaining
          */
-        Builder world(ServerWorld world);
+        Builder world(World<?> world);
 
         @Override
         Builder reset();

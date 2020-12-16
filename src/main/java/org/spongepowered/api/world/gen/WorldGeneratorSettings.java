@@ -24,17 +24,10 @@
  */
 package org.spongepowered.api.world.gen;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
-
 /**
  * Represents settings that apply to generation per world
  */
 public interface WorldGeneratorSettings {
-
-    static Builder of() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
-    }
 
     /**
      * Gets the seed
@@ -44,13 +37,6 @@ public interface WorldGeneratorSettings {
     long getSeed();
 
     /**
-     * Sets the seed
-     *
-     * @param seed The seed
-     */
-    void setSeed(long seed);
-
-    /**
      * Gets if features will generate
      *
      * @return Whether features will generate
@@ -58,34 +44,9 @@ public interface WorldGeneratorSettings {
     boolean doFeaturesGenerate();
 
     /**
-     * Sets whether features will generate
-     *
-     * @param featuresGenerate Whether features will generate
-     */
-    void setFeaturesGenerate(boolean featuresGenerate);
-
-    /**
      * Gets if the bonus chest will generate
      *
      * @return Whether bonus chest will generate
      */
     boolean doesGenerateBonusChest();
-
-    /**
-     * Sets if the bonus chest will generate.
-     *
-     * @param generateBonusChest Whether features will generate
-     */
-    void setGenerateBonusChest(boolean generateBonusChest);
-
-    interface Builder extends ResettableBuilder<WorldGeneratorSettings, Builder> {
-
-        Builder seed(long seed);
-
-        Builder generateFeatures(boolean generateFeatures);
-
-        Builder generateBonusChest(boolean generateBonusChest);
-
-        WorldGeneratorSettings build();
-    }
 }

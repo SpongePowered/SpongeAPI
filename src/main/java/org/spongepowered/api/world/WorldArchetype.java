@@ -26,7 +26,6 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
@@ -92,7 +91,7 @@ public interface WorldArchetype extends CatalogType {
      *
      @return The world generation settings
      */
-    WorldGeneratorSettings getWorldGenerationSettings();
+    WorldGeneratorSettings getWorldGeneratorSettings();
 
     /**
      * Gets the {@link GameMode}.
@@ -142,13 +141,6 @@ public interface WorldArchetype extends CatalogType {
      * @return The serialization mode
      */
     SerializationBehavior getSerializationBehavior();
-
-    /**
-     * Gets a {@link DataContainer} that holds the settings used for the generator.
-     *
-     * @return The data
-     */
-    DataContainer getGeneratorSettings();
 
     /**
      * A builder to create {@link WorldArchetype}s.

@@ -27,14 +27,13 @@ package org.spongepowered.api.world.client;
 import org.spongepowered.api.Client;
 import org.spongepowered.api.entity.living.player.client.ClientPlayer;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.util.Collection;
 
 /**
  * Represents a {@link Client} view of a remote or local world.
  */
-public interface ClientWorld extends World<ClientWorld> {
+public interface ClientWorld extends World<ClientWorld, ClientLocation> {
 
     @Override
     Client getEngine();

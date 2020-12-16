@@ -32,8 +32,8 @@ import org.spongepowered.api.raid.Raid;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.world.ChunkRegenerateFlag;
 import org.spongepowered.api.world.ChunkRegenerateFlags;
-import org.spongepowered.api.world.LocationCreator;
 import org.spongepowered.api.world.SerializationBehavior;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.difficulty.Difficulty;
@@ -42,7 +42,7 @@ import org.spongepowered.api.world.dimension.DimensionTypes;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.storage.WorldStorage;
 import org.spongepowered.api.world.volume.game.InteractableVolume;
-import org.spongepowered.api.world.weather.WeatherUniverse;
+import org.spongepowered.api.world.weather.MutableWeatherUniverse;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.io.IOException;
@@ -51,7 +51,7 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface ServerWorld extends World<ServerWorld>, Identifiable, InteractableVolume, LocationCreator, WeatherUniverse {
+public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identifiable, InteractableVolume, MutableWeatherUniverse {
 
     @Override
     Server getEngine();

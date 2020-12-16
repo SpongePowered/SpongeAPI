@@ -34,8 +34,6 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.fluid.FluidTypes;
-import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.ScopedRegistryHolder;
 import org.spongepowered.api.service.context.ContextSource;
 import org.spongepowered.api.util.annotation.DoNotStore;
@@ -43,7 +41,7 @@ import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.volume.archetype.ArchetypeVolumeCreator;
 import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
-import org.spongepowered.api.world.weather.Weathers;
+import org.spongepowered.api.world.weather.WeatherUniverse;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
@@ -56,13 +54,14 @@ import java.util.function.Predicate;
  * A loaded Minecraft world.
  */
 @DoNotStore
-public interface World<W extends World<W>> extends ForwardingAudience,
+public interface World<W extends World<W, L>, L extends Location<W>> extends ForwardingAudience,
     ProtoWorld<W>,
-    LocationCreator,
+    LocationCreator<W, L>,
     PhysicsAwareMutableBlockVolume<W>,
     ContextSource,
     Viewer,
     ArchetypeVolumeCreator,
+    WeatherUniverse,
     ScopedRegistryHolder
 {
 
