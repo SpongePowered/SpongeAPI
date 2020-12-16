@@ -58,7 +58,7 @@ public interface WorldManager {
     Collection<ServerWorld> getWorlds();
 
     /**
-     * Gets the default loaded {@link WorldProperties} or {@link Optional#empty()} if none has been loaded.
+     * Gets the default loaded {@link ServerWorldProperties} or {@link Optional#empty()} if none has been loaded.
      *
      * <p>It is up to the implementation to determine when and if a default is loaded.</p>
      *
@@ -69,7 +69,7 @@ public interface WorldManager {
     }
 
     /**
-     * Creates a new {@link WorldProperties} from the given
+     * Creates a new {@link ServerWorldProperties} from the given
      * {@link WorldArchetype}. For the creation of the {@link WorldArchetype} please see {@link WorldArchetype.Builder}.
      *
      * <p>It is up to the implementation to define an {@link Optional#empty()} result.</p>
@@ -77,7 +77,7 @@ public interface WorldManager {
      * <p>The returned properties should be considered "virtual" as it will not exist on the disk nor will the manager consider it "offline data".
      *
      * To write it to the default storage container, use one of the following methods:
-     * <ul> <li>{@link #loadWorld(WorldProperties)}</li> <li>{@link #saveProperties(WorldProperties)}</li> </ul>
+     * <ul> <li>{@link #loadWorld(ServerWorldProperties)}</li> <li>{@link #saveProperties(ServerWorldProperties)}</li> </ul>
      * </p>
      *
      * @param key The key
@@ -107,7 +107,7 @@ public interface WorldManager {
      * @param properties The properties of the world to load
      * @return The world
      */
-    CompletableFuture<ServerWorld> loadWorld(WorldProperties properties);
+    CompletableFuture<ServerWorld> loadWorld(ServerWorldProperties properties);
 
     /**
      * Unloads the {@link ServerWorld} registered to the {@link ResourceKey key}.
@@ -132,7 +132,7 @@ public interface WorldManager {
     CompletableFuture<Boolean> unloadWorld(ServerWorld world);
 
     /**
-     * Gets the {@link WorldProperties} by it's {@link ResourceKey key}. If a world with the given
+     * Gets the {@link ServerWorldProperties} by it's {@link ResourceKey key}. If a world with the given
      * name is loaded then this is equivalent to calling {@link ServerWorld#getProperties()}.
      *
      * However, if no loaded world is found then an attempt will be made to match to a known unloaded world.
@@ -169,10 +169,10 @@ public interface WorldManager {
      * @param properties The world properties to save
      * @return True if the save was successful, can fail exceptionally
      */
-    CompletableFuture<Boolean> saveProperties(WorldProperties properties);
+    CompletableFuture<Boolean> saveProperties(ServerWorldProperties properties);
 
     /**
-     * Copies a {@link WorldProperties properties} under the provided {@link ResourceKey key}.
+     * Copies a {@link ServerWorldProperties properties} under the provided {@link ResourceKey key}.
      *
      * <p>If the world is already loaded then the following will occur:</p>
      *
@@ -184,7 +184,7 @@ public interface WorldManager {
      * </ul>
      *
      * <p>It is left up to the implementation on exactly what is copied. The properties returned will not
-     * represent a live world, it is recommended to call {@link WorldManager#loadWorld(WorldProperties)}
+     * represent a live world, it is recommended to call {@link WorldManager#loadWorld(ServerWorldProperties)}
      * if desired.</p>
      *
      * @param key The key
@@ -194,7 +194,7 @@ public interface WorldManager {
     CompletableFuture<ServerWorldProperties> copyWorld(ResourceKey key, ResourceKey copyKey);
 
     /**
-     * Moves a {@link WorldProperties properties}.
+     * Moves a {@link ServerWorldProperties properties}.
      *
      * <p>If the world is loaded, the following will occur:</p>
      *
@@ -214,7 +214,7 @@ public interface WorldManager {
     CompletableFuture<ServerWorldProperties> moveWorld(ResourceKey key, ResourceKey movedKey);
 
     /**
-     * Deletes a {@link WorldProperties properties} by it's {@link ResourceKey key}.
+     * Deletes a {@link ServerWorldProperties properties} by it's {@link ResourceKey key}.
      *
      * <p>If the world is loaded, the following will occur:</p>
      *
