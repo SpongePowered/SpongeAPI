@@ -116,6 +116,7 @@ import org.spongepowered.api.scoreboard.criteria.Criterion;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
 import org.spongepowered.api.service.ban.BanType;
+import org.spongepowered.api.service.economy.Currency;
 import org.spongepowered.api.service.economy.account.AccountDeletionResultType;
 import org.spongepowered.api.service.economy.transaction.TransactionType;
 import org.spongepowered.api.state.BooleanStateProperty;
@@ -228,6 +229,8 @@ public final class Registries {
     public static final RegistryType<ComparatorMode> COMPARATOR_MODE = Registries.spongeKey("comparator_mode");
 
     public static final RegistryType<Criterion> CRITERION = Registries.spongeKey("criterion");
+
+    public static final RegistryType<Currency> CURRENCY = Registries.spongeKey("currency");
 
     public static final RegistryType<DamageModifierType> DAMAGE_MODIFIER_TYPE = Registries.spongeKey("damage_modifier_type");
 
