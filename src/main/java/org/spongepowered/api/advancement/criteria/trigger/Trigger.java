@@ -26,20 +26,20 @@ package org.spongepowered.api.advancement.criteria.trigger;
 
 import com.google.gson.Gson;
 import io.leangen.geantyref.TypeToken;
-import org.spongepowered.api.config.ConfigManager;
-import org.spongepowered.configurate.ConfigurationOptions;
-import org.spongepowered.configurate.serialize.TypeSerializer;
-import org.spongepowered.configurate.serialize.TypeSerializerCollection;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
-import org.spongepowered.api.data.persistence.DataSerializable;
+import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
-import org.spongepowered.api.event.advancement.CriterionEvent;
 import org.spongepowered.api.event.Cause;
+import org.spongepowered.api.event.advancement.CriterionEvent;
 import org.spongepowered.api.scoreboard.criteria.Criterion;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.configurate.ConfigurationOptions;
+import org.spongepowered.configurate.serialize.TypeSerializer;
+import org.spongepowered.configurate.serialize.TypeSerializerCollection;
 
 import java.lang.reflect.Type;
 import java.util.function.Consumer;
@@ -100,7 +100,8 @@ public interface Trigger<C extends FilteredTriggerConfiguration> {
      *
      * @param <C> The configuration type
      */
-    interface Builder<C extends FilteredTriggerConfiguration> extends CopyableBuilder<Trigger<C>, Builder<C>> {
+    interface Builder<C extends FilteredTriggerConfiguration> extends org.spongepowered.api.util.Builder<Trigger<C>, Builder<C>>,
+            CopyableBuilder<Trigger<C>, Builder<C>> {
 
         /**
          * Sets the class for the {@link FilteredTriggerConfiguration} as

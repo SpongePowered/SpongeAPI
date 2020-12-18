@@ -25,27 +25,28 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.registry.RegistryKey;
-import org.spongepowered.api.registry.RegistryReference;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class MatterTypes {
 
     // @formatter:off
 
-    public static final RegistryReference<MatterType> GAS = MatterTypes.key(ResourceKey.sponge("gas"));
+    public static final DefaultedRegistryReference<MatterType> GAS = MatterTypes.key(ResourceKey.sponge("gas"));
 
-    public static final RegistryReference<MatterType> LIQUID = MatterTypes.key(ResourceKey.sponge("liquid"));
+    public static final DefaultedRegistryReference<MatterType> LIQUID = MatterTypes.key(ResourceKey.sponge("liquid"));
 
-    public static final RegistryReference<MatterType> SOLID = MatterTypes.key(ResourceKey.sponge("solid"));
+    public static final DefaultedRegistryReference<MatterType> SOLID = MatterTypes.key(ResourceKey.sponge("solid"));
 
     // @formatter:on
 
-    private static RegistryReference<MatterType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.MATTER_TYPE, location).asReference();
+    private static DefaultedRegistryReference<MatterType> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.MATTER_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 
     private MatterTypes() {

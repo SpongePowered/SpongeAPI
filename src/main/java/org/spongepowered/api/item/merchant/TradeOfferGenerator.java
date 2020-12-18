@@ -91,7 +91,7 @@ public interface TradeOfferGenerator extends BiFunction<Entity, Random, TradeOff
     /**
      * A simple builder to create a {@link TradeOfferGenerator}.
      */
-    interface Builder extends CopyableBuilder<TradeOfferGenerator, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<TradeOfferGenerator, Builder>, CopyableBuilder<TradeOfferGenerator, Builder> {
 
         /**
          * Sets the {@link ItemStackGenerator} for creating the primary item

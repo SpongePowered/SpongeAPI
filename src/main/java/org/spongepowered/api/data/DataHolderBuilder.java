@@ -25,11 +25,12 @@
 package org.spongepowered.api.data;
 
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.util.Builder;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.function.Supplier;
 
-public interface DataHolderBuilder<H extends DataHolder, B extends DataHolderBuilder<H, B>> extends CopyableBuilder<H, B> {
+public interface DataHolderBuilder<H extends DataHolder, B extends DataHolderBuilder<H, B>> extends Builder<H, B>, CopyableBuilder<H, B> {
 
     /**
      * Adds the given {@link Value} to the builder. The
@@ -114,13 +115,6 @@ public interface DataHolderBuilder<H extends DataHolder, B extends DataHolderBui
      */
     @Override
     B from(H holder);
-
-    /**
-     * Attempts to build a new {@link DataHolder} of type {@link H}.
-     *
-     * @return The new data holder
-     */
-    H build();
 
     @Override
     B reset();

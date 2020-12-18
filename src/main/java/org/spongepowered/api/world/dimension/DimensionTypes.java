@@ -25,11 +25,12 @@
 package org.spongepowered.api.world.dimension;
 
 import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.registry.RegistryKey;
-import org.spongepowered.api.registry.RegistryReference;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 
 @RegistryScopes(scopes = RegistryScope.ENGINE)
 public final class DimensionTypes {
@@ -38,20 +39,20 @@ public final class DimensionTypes {
 
     // SORTFIELDS:ON
 
-    public static final RegistryReference<DimensionType> OVERWORLD = DimensionTypes.key(ResourceKey.minecraft("overworld"));
+    public static final DefaultedRegistryReference<DimensionType> OVERWORLD = DimensionTypes.key(ResourceKey.minecraft("overworld"));
 
-    public static final RegistryReference<DimensionType> OVERWORLD_CAVES = DimensionTypes.key(ResourceKey.minecraft("overworld_caves"));
+    public static final DefaultedRegistryReference<DimensionType> OVERWORLD_CAVES = DimensionTypes.key(ResourceKey.minecraft("overworld_caves"));
 
-    public static final RegistryReference<DimensionType> THE_END = DimensionTypes.key(ResourceKey.minecraft("the_end"));
+    public static final DefaultedRegistryReference<DimensionType> THE_END = DimensionTypes.key(ResourceKey.minecraft("the_end"));
 
-    public static final RegistryReference<DimensionType> THE_NETHER = DimensionTypes.key(ResourceKey.minecraft("the_nether"));
+    public static final DefaultedRegistryReference<DimensionType> THE_NETHER = DimensionTypes.key(ResourceKey.minecraft("the_nether"));
 
     // SORTFIELDS:OFF
 
     // @formatter:on
 
-    private static RegistryReference<DimensionType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.DIMENSION_TYPE, location).asReference();
+    private static DefaultedRegistryReference<DimensionType> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.DIMENSION_TYPE, location).asDefaultedReference(() -> Sponge.getServer().registries());
     }
 
     private DimensionTypes() {

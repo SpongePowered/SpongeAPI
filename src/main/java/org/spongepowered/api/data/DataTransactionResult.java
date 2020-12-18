@@ -413,7 +413,7 @@ public final class DataTransactionResult {
      * use is for both implementations of {@link DataHolder}s, and various
      * {@link org.spongepowered.api.event.data.ChangeDataHolderEvent.ValueChange}s.
      */
-    public static final class Builder implements CopyableBuilder<DataTransactionResult, Builder> {
+    public static final class Builder implements org.spongepowered.api.util.Builder<DataTransactionResult, Builder>, CopyableBuilder<DataTransactionResult, Builder> {
 
         @MonotonicNonNull List<Value.Immutable<?>> rejected;
         @MonotonicNonNull List<Value.Immutable<?>> replaced;

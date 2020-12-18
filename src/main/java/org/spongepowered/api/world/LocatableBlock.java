@@ -50,7 +50,8 @@ public interface LocatableBlock extends SerializableDataHolder.Immutable<Locatab
      */
     BlockState getBlockState();
 
-    interface Builder extends CopyableBuilder<LocatableBlock, Builder>, DataBuilder<LocatableBlock> {
+    interface Builder extends org.spongepowered.api.util.Builder<LocatableBlock, Builder>, CopyableBuilder<LocatableBlock, Builder>,
+            DataBuilder<LocatableBlock> {
 
         /**
          * Sets the {@link BlockState} for this builder.

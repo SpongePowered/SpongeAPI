@@ -27,7 +27,6 @@ package org.spongepowered.api.effect.particle;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataSerializable;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.math.vector.Vector3d;
 
@@ -112,7 +111,8 @@ public interface ParticleEffect extends DataSerializable {
     /**
      * Represents a builder to create a {@link ParticleEffect}.
      */
-    interface Builder extends CopyableBuilder<ParticleEffect, Builder>, DataBuilder<ParticleEffect> {
+    interface Builder extends org.spongepowered.api.util.Builder<ParticleEffect, Builder>, CopyableBuilder<ParticleEffect, Builder>,
+            DataBuilder<ParticleEffect> {
 
         /**
          * Sets the particle type for the particle effect.

@@ -111,7 +111,8 @@ public interface Enchantment extends DataSerializable {
      * Represents a builder interface which can be used
      * to create a {@link Enchantment}.
      */
-    interface Builder extends CopyableBuilder<Enchantment, Builder>, DataBuilder<Enchantment> {
+    interface Builder extends org.spongepowered.api.util.Builder<Enchantment, Builder>, CopyableBuilder<Enchantment, Builder>,
+            DataBuilder<Enchantment> {
 
         /**
          * Sets the {@link EnchantmentType} for this enchantment.

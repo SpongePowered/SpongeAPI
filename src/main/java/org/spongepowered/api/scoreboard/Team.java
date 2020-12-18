@@ -309,7 +309,7 @@ public interface Team {
     /**
      * Represents a builder tp create {@link Team} instances.
      */
-    interface Builder extends CopyableBuilder<Team, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<Team, Builder>, CopyableBuilder<Team, Builder> {
 
         /**
          * Sets the name of the {@link Team}.

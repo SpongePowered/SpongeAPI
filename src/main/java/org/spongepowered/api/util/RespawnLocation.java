@@ -154,7 +154,8 @@ public final class RespawnLocation implements DataSerializable {
     /**
      * A helper class to build {@link RespawnLocation}s.
      */
-    public static final class Builder extends AbstractDataBuilder<RespawnLocation> implements CopyableBuilder<RespawnLocation, Builder> {
+    public static final class Builder extends AbstractDataBuilder<RespawnLocation> implements org.spongepowered.api.util.Builder<RespawnLocation,
+            Builder>, CopyableBuilder<RespawnLocation, Builder> {
 
         @Nullable ResourceKey world;
         @Nullable Vector3d position;

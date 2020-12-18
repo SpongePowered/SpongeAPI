@@ -223,7 +223,8 @@ public final class EventContext {
         return "Context[" + joiner.toString() + "]";
     }
 
-    public static final class Builder implements CopyableBuilder<EventContext, Builder> {
+    public static final class Builder implements org.spongepowered.api.util.Builder<EventContext, Builder>, CopyableBuilder<EventContext,
+        Builder> {
 
         private final Map<EventContextKey<?>, Object> entries = Maps.newHashMap();
 

@@ -128,7 +128,8 @@ public interface PotionEffect extends DataSerializable {
     /**
      * Represents a builder interface to create a {@link PotionEffect}.
      */
-    interface Builder extends CopyableBuilder<PotionEffect, Builder>, DataBuilder<PotionEffect> {
+    interface Builder extends org.spongepowered.api.util.Builder<PotionEffect, Builder>, CopyableBuilder<PotionEffect, Builder>,
+            DataBuilder<PotionEffect> {
 
         /**
          * Sets the {@link PotionEffectType} of the potion.

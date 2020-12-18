@@ -24,24 +24,7 @@
  */
 package org.spongepowered.api.util;
 
-import net.kyori.adventure.util.Buildable;
+public interface ResettableBuilder<T, B extends ResettableBuilder<T, B>> {
 
-/**
- * A common interface for all builder pattern types.
- *
- * @param <T> The type built by the builder
- * @param <B> The child builder type
- */
-public interface Builder<T, B extends Builder<T, B>> extends Buildable.Builder<T>, ResettableBuilder<T, B> {
-
-    /**
-     * Resets this builder to a "default" state such that there is no
-     * remaining data to set. This is to be the presumed "default"
-     * state.
-     *
-     * @return This builder, for chaining
-     */
-    default B reset() {
-        return (B) this;
-    }
+    B reset();
 }

@@ -271,7 +271,7 @@ public interface WorldBorder {
         this.setWarningTime(border.getWarningTime());
     }
 
-    interface Builder extends CopyableBuilder<WorldBorder, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<WorldBorder, Builder>, CopyableBuilder<WorldBorder, Builder> {
 
         /**
          * Copies the required data from the passed {@code WorldBorder}.

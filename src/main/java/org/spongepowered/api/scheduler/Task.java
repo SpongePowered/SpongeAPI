@@ -90,7 +90,7 @@ public interface Task {
     /**
      * Represents a builder to create a {@link Task}.
      */
-    interface Builder extends CopyableBuilder<Task, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<Task, Builder>, CopyableBuilder<Task, Builder> {
 
         /**
          * Sets the {@link Runnable} to run when this task executes.

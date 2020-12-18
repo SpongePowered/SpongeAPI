@@ -442,7 +442,7 @@ public final class Cause implements Iterable<Object> {
 
     }
 
-    public static final class Builder implements CopyableBuilder<Cause, Builder> {
+    public static final class Builder implements org.spongepowered.api.util.Builder<Cause, Builder>, CopyableBuilder<Cause, Builder> {
 
         final List<Object> causes = new ArrayList<>();
 

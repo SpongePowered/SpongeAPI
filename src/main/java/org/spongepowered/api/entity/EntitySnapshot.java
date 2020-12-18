@@ -32,6 +32,7 @@ import org.spongepowered.api.world.LocatableSnapshot;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.schematic.Schematic;
+import org.spongepowered.api.world.server.ServerWorldProperties;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
@@ -122,7 +123,7 @@ public interface EntitySnapshot extends LocatableSnapshot<EntitySnapshot> {
          * @param worldProperties The WorldProperties
          * @return This builder, for chaining
          */
-        Builder world(WorldProperties worldProperties);
+        Builder world(ServerWorldProperties worldProperties);
 
         /**
          * Sets the {@link EntityType} for this {@link EntitySnapshot}.

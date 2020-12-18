@@ -137,7 +137,7 @@ public interface AdvancementCriterion extends Nameable {
     /**
      * A base builder to create {@link AdvancementCriterion}s.
      */
-    interface BaseBuilder<T extends AdvancementCriterion, B extends BaseBuilder<T, B>> extends CopyableBuilder<T, B> {
+    interface BaseBuilder<T extends AdvancementCriterion, B extends BaseBuilder<T, B>> extends org.spongepowered.api.util.Builder<T, B>, CopyableBuilder<T, B> {
 
         /**
          * Sets the {@link FilteredTrigger}.

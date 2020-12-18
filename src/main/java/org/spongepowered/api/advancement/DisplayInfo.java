@@ -103,7 +103,7 @@ public interface DisplayInfo {
     /**
      * A builder to create {@link DisplayInfo}s.
      */
-    interface Builder extends CopyableBuilder<DisplayInfo, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<DisplayInfo, Builder>, CopyableBuilder<DisplayInfo, Builder> {
 
         /**
          * Sets the {@link AdvancementType}. Defaults

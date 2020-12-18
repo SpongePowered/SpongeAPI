@@ -93,7 +93,7 @@ public interface FireworkEffect extends DataSerializable {
      */
     FireworkShape getShape();
 
-    interface Builder extends CopyableBuilder<FireworkEffect, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<FireworkEffect, Builder>, CopyableBuilder<FireworkEffect, Builder> {
 
         /**
          * Sets whether the {@link FireworkEffect} is going to have a trail

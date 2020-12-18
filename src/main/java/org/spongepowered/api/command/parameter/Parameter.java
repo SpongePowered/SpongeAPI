@@ -56,9 +56,10 @@ import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.Builder;
+import org.spongepowered.api.util.Color;
 import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.server.ServerWorldProperties;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.configurate.util.Types;
 import org.spongepowered.math.vector.Vector3d;
@@ -718,7 +719,7 @@ public interface Parameter {
      *
      * @return A {@link Parameter.Value.Builder}
      */
-    static Parameter.Value.Builder<WorldProperties> worldProperties() {
+    static Parameter.Value.Builder<ServerWorldProperties> worldProperties() {
         return Parameter.worldProperties(true);
     }
 
@@ -731,11 +732,11 @@ public interface Parameter {
      *      {@link WorldProperties} that represent online worlds.
      * @return A {@link Parameter.Value.Builder}
      */
-    static Parameter.Value.Builder<WorldProperties> worldProperties(final boolean onlineOnly) {
+    static Parameter.Value.Builder<ServerWorldProperties> worldProperties(final boolean onlineOnly) {
         if (onlineOnly) {
-            return Parameter.builder(WorldProperties.class, CatalogedValueParameters.WORLD_PROPERTIES_ONLINE_ONLY);
+            return Parameter.builder(ServerWorldProperties.class, CatalogedValueParameters.WORLD_PROPERTIES_ONLINE_ONLY);
         }
-        return Parameter.builder(WorldProperties.class, CatalogedValueParameters.WORLD_PROPERTIES_ALL);
+        return Parameter.builder(ServerWorldProperties.class, CatalogedValueParameters.WORLD_PROPERTIES_ALL);
     }
 
     /**
@@ -1007,6 +1008,7 @@ public interface Parameter {
              * @return The built {@link Key}
              */
             <T> Key<T> build(@NonNull String key, @NonNull TypeToken<T> typeToken);
+
             /**
              * Creates a key with the provided key and value class it
              * represents.

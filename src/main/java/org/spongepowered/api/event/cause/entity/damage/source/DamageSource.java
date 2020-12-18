@@ -135,7 +135,8 @@ public interface DamageSource {
 
     interface Builder extends DamageSourceBuilder<DamageSource, Builder> { }
 
-    interface DamageSourceBuilder<T extends DamageSource, B extends DamageSourceBuilder<T, B>> extends CopyableBuilder<T, B> {
+    interface DamageSourceBuilder<T extends DamageSource, B extends DamageSourceBuilder<T, B>> extends org.spongepowered.api.util.Builder<T,
+            B>, CopyableBuilder<T, B> {
 
         /**
          * Sets this {@link DamageSource}'s damage to be considered "fire" damage.

@@ -57,7 +57,7 @@ public interface ItemStackGenerator extends Function<Random, ItemStack> {
      * to an {@link ItemStackGenerator}. Normally, most all biconsumers can be
      * created from {@link ItemStackBuilderPopulators}.
      */
-    interface Builder extends CopyableBuilder<ItemStackGenerator, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<ItemStackGenerator, Builder>, CopyableBuilder<ItemStackGenerator, Builder> {
 
         /**
          * Adds a new biconsumer in the current order.

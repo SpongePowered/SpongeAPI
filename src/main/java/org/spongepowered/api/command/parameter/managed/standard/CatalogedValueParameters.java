@@ -37,13 +37,14 @@ import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.server.ServerWorldProperties;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.math.vector.Vector2d;
 import org.spongepowered.math.vector.Vector3d;
@@ -426,7 +427,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link WorldProperties}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<WorldProperties>> WORLD_PROPERTIES_ALL = CatalogedValueParameters.key(ResourceKey.sponge("world_properties_all"));
+    public static final DefaultedRegistryReference<CatalogedValueParameter<ServerWorldProperties>> WORLD_PROPERTIES_ALL = CatalogedValueParameters.key(ResourceKey.sponge("world_properties_all"));
 
     /**
      * Expect an argument to represent the name of a {@link WorldProperties}
@@ -434,7 +435,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link WorldProperties}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<WorldProperties>> WORLD_PROPERTIES_ONLINE_ONLY = CatalogedValueParameters.key(ResourceKey.sponge("world_properties_online_only"));
+    public static final DefaultedRegistryReference<CatalogedValueParameter<ServerWorldProperties>> WORLD_PROPERTIES_ONLINE_ONLY = CatalogedValueParameters.key(ResourceKey.sponge("world_properties_online_only"));
 
     // SORTFIELDS:OFF
 

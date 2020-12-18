@@ -105,7 +105,8 @@ public interface BannerPatternLayer extends DataSerializable {
      */
     DyeColor getColor();
 
-    interface Builder extends CopyableBuilder<BannerPatternLayer, Builder>, DataBuilder<BannerPatternLayer> {
+    interface Builder extends org.spongepowered.api.util.Builder<BannerPatternLayer, Builder>, CopyableBuilder<BannerPatternLayer, Builder>,
+            DataBuilder<BannerPatternLayer> {
 
         /**
          * Sets the {@link BannerPatternShape} to be used.

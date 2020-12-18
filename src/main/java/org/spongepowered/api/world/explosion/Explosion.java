@@ -133,7 +133,7 @@ public interface Explosion extends Locatable {
     /**
      * A builder for {@link Explosion}.
      */
-    interface Builder extends CopyableBuilder<Explosion, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<Explosion, Builder>, CopyableBuilder<Explosion, Builder> {
 
         /**
          * Sets the location origin of the explosion.

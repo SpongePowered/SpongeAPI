@@ -26,6 +26,7 @@ package org.spongepowered.api.entity.ai.goal;
 
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.util.ResettableBuilder;
 
 /**
  * A utility to assist in building {@link Goal}s.
@@ -34,7 +35,8 @@ import org.spongepowered.api.util.CopyableBuilder;
  * @param <G> The type of goal
  * @param <B> The type of builder, self-referencing
  */
-public interface GoalBuilder<O extends Agent, G extends Goal<O>, B extends GoalBuilder<O, G, B>> extends CopyableBuilder<G, B> {
+public interface GoalBuilder<O extends Agent, G extends Goal<O>, B extends GoalBuilder<O, G, B>> extends CopyableBuilder<G, B>, ResettableBuilder<G
+        , B> {
 
     /**
      * Builds the {@link Goal}.

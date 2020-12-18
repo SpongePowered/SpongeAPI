@@ -88,7 +88,7 @@ public interface DamageModifier {
      * A builder that creates {@link DamageModifier}s, for use in both plugin and
      * implementation requirements.
      */
-    final class Builder implements CopyableBuilder<DamageModifier, Builder> {
+    final class Builder implements org.spongepowered.api.util.Builder<DamageModifier, Builder>, CopyableBuilder<DamageModifier, Builder> {
 
         @Nullable DamageModifierType type;
         @Nullable Cause cause;

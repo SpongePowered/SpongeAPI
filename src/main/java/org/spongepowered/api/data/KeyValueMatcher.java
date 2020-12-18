@@ -206,7 +206,8 @@ public interface KeyValueMatcher<V> extends DataSerializable {
      *
      * @param <V> The value type
      */
-    interface Builder<V> extends CopyableBuilder<KeyValueMatcher<V>, Builder<V>>, DataBuilder<KeyValueMatcher<V>> {
+    interface Builder<V> extends org.spongepowered.api.util.Builder<KeyValueMatcher<V>, Builder<V>>, CopyableBuilder<KeyValueMatcher<V>, Builder<V>>,
+            DataBuilder<KeyValueMatcher<V>> {
 
         /**
          * Sets the {@link Key}.

@@ -154,7 +154,7 @@ public interface TabListEntry {
      *
      * @see TabListEntry
      */
-    interface Builder extends CopyableBuilder<TabListEntry, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<TabListEntry, Builder>, CopyableBuilder<TabListEntry, Builder> {
 
         /**
          * Sets the {@link TabList} this entry is owned by.

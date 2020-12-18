@@ -162,7 +162,7 @@ public interface TradeOffer extends DataSerializable {
     /**
      * Represents a builder to generate immutable {@link TradeOffer}s.
      */
-    interface Builder extends CopyableBuilder<TradeOffer, Builder>, DataBuilder<TradeOffer> {
+    interface Builder extends org.spongepowered.api.util.Builder<TradeOffer, Builder>, CopyableBuilder<TradeOffer, Builder>, DataBuilder<TradeOffer> {
 
         /**
          * <p>Sets the first selling item of the trade offer to be

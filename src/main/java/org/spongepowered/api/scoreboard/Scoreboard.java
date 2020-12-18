@@ -241,7 +241,7 @@ public interface Scoreboard {
     /**
      * Represents a builder to create {@link Scoreboard} instances.
      */
-    interface Builder extends CopyableBuilder<Scoreboard, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<Scoreboard, Builder>, CopyableBuilder<Scoreboard, Builder> {
 
         /**
          * Sets the list of {@link Objective}s of the {@link Scoreboard}.

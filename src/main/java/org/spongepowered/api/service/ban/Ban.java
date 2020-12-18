@@ -151,7 +151,7 @@ public interface Ban {
     /**
      * Represents a builder that creates bans.
      */
-    interface Builder extends CopyableBuilder<Ban, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<Ban, Builder>, CopyableBuilder<Ban, Builder> {
 
         /**
          * Sets the profile to be banned.

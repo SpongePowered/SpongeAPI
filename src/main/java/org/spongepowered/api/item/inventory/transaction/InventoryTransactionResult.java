@@ -167,7 +167,8 @@ public interface InventoryTransactionResult {
         ItemStackSnapshot getPolledItem();
     }
 
-    interface Builder extends CopyableBuilder<InventoryTransactionResult, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<InventoryTransactionResult, Builder>, CopyableBuilder<InventoryTransactionResult,
+            Builder> {
 
         /**
          * Sets the {@link Type} of transaction result being built.

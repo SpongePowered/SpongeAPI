@@ -91,7 +91,7 @@ public interface Schematic extends ArchetypeVolume, LocationBaseDataHolder.Mutab
     /**
      * A builder for {@link Schematic}s.
      */
-    interface Builder extends CopyableBuilder<Schematic, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<Schematic, Builder>, CopyableBuilder<Schematic, Builder> {
 
         /**
          * Specifies an archetype volume for the world data of the schematic.
