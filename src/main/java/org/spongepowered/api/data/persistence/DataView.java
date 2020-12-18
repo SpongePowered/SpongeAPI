@@ -473,43 +473,6 @@ public interface DataView {
     Optional<List<DataView>> getViewList(DataQuery path);
 
     /**
-     * Gets the {@link DataSerializable} object by path, if available.
-     *
-     * <p>If a {@link DataSerializable} exists, but is not the proper class
-     * type, or there is no data at the path given, an absent is returned.</p>
-     *
-     * <p>It is important that the {@link DataManager} provided is
-     * the same one that has registered many of the
-     * {@link DataBuilder}s to ensure the {@link DataSerializable}
-     * requested can be returned.</p>
-     *
-     * @param <T> The type of {@link DataSerializable} object
-     * @param path The path of the value to get
-     * @param clazz The class of the {@link DataSerializable}
-     * @return The deserialized object, if available
-     */
-    <T extends DataSerializable> Optional<T> getSerializable(DataQuery path, Class<T> clazz);
-
-    /**
-     * Gets the {@link List} of {@link DataSerializable} by path, if available.
-     *
-     * <p>If a {@link List} exists, but the contents of the list are not
-     * considered {@link DataSerializable} or are not of the proper type of
-     * {@link DataSerializable}, an absent is returned.</p>
-     *
-     * <p>It is important that the {@link DataManager} provided is
-     * the same one that has registered many of the
-     * {@link DataBuilder}s to ensure the {@link DataSerializable}
-     * requested can be returned.</p>
-     *
-     * @param <T> The type of {@link DataSerializable} object
-     * @param path The path of the list value to get
-     * @param clazz The class of the {@link DataSerializable}
-     * @return The deserialized objects in a list, if available
-     */
-    <T extends DataSerializable> Optional<List<T>> getSerializableList(DataQuery path, Class<T> clazz);
-
-    /**
      * Gets the {@link Object} object by path, if available.
      *
      * <p>If a {@link Object} exists, but is not the proper class
