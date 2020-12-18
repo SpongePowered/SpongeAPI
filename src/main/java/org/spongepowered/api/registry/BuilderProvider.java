@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.registry;
 
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.Builder;
 
 public interface BuilderProvider {
 
@@ -37,5 +37,5 @@ public interface BuilderProvider {
      * @throws TypeNotFoundException If the type provided has not been registered
      * @return The builder, if available
      */
-    <T extends ResettableBuilder<?, ? super T>> T provide(Class<T> builderClass) throws TypeNotFoundException;
+    <T extends Builder<?, ? super T>> T provide(Class<T> builderClass) throws TypeNotFoundException;
 }

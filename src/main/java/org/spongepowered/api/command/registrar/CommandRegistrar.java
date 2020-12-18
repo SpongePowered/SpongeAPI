@@ -26,7 +26,6 @@ package org.spongepowered.api.command.registrar;
 
 import io.leangen.geantyref.TypeToken;
 import net.kyori.adventure.text.Component;
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.exception.CommandException;
@@ -75,7 +74,7 @@ import java.util.Optional;
  *
  * @param <T> The type of command interface this handles.
  */
-public interface CommandRegistrar<T> extends CatalogType {
+public interface CommandRegistrar<T> {
 
     /**
      * Gets the type of command that this registrar handles.

@@ -50,7 +50,6 @@
 
 package org.spongepowered.api.world.chunk;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.World;
 
@@ -63,7 +62,7 @@ import org.spongepowered.api.world.World;
  * </ul>
  */
 @CatalogedBy(ChunkStates.class)
-public interface ChunkState extends CatalogType {
+public interface ChunkState {
 
     /**
      * Checks whether this state is considered "after"

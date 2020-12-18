@@ -30,7 +30,7 @@ package org.spongepowered.api.util;
  * @param <T> The type built by the builder
  * @param <B> The child builder type
  */
-public interface ResettableBuilder<T, B extends ResettableBuilder<T, B>> {
+public interface Builder<T, B extends Builder<T, B>> {
 
     /**
      * Resets this builder to a "default" state such that there is no
@@ -41,4 +41,11 @@ public interface ResettableBuilder<T, B extends ResettableBuilder<T, B>> {
      */
     B reset();
 
+    /**
+     * Builds the {@link T value}.
+     *
+     * @return The built type
+     * @throws IllegalStateException If not all required options were specified, up to each specific implementation
+     */
+    T build() throws IllegalStateException;
 }

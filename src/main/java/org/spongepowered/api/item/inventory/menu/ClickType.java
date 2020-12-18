@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.item.inventory.menu;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -34,6 +33,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * @param <T> The handler for the click type
  */
 @CatalogedBy(ClickTypes.class)
-public interface ClickType<T> extends CatalogType {
+public interface ClickType<T> {
 
 }

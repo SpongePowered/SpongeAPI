@@ -24,14 +24,13 @@
  */
 package org.spongepowered.api.command.registrar.tree;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents the client-side behaviour of a command parameter.
  */
 @CatalogedBy(ClientCompletionKeys.class)
-public interface ClientCompletionKey<T extends CommandTreeNode<T>> extends CatalogType {
+public interface ClientCompletionKey<T extends CommandTreeNode<T>> {
 
     /**
      * Creates a {@link CommandTreeNode} that represents this

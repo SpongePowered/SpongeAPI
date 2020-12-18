@@ -25,7 +25,6 @@
 package org.spongepowered.api.advancement;
 
 import net.kyori.adventure.text.format.TextColor;
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -33,7 +32,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * also the appearance in the notifications.
  */
 @CatalogedBy(AdvancementTypes.class)
-public interface AdvancementType extends CatalogType {
+public interface AdvancementType {
 
     /**
      * Gets the {@link TextColor} of the advancement type.

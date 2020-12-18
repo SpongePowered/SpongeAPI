@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.entity.living.animal.Parrot;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -32,6 +31,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents the type of a {@link Parrot}.
  */
 @CatalogedBy(ParrotTypes.class)
-public interface ParrotType extends CatalogType {
+public interface ParrotType {
 
 }

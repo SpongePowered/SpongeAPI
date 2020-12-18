@@ -24,10 +24,9 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(PortionTypes.class)
-public interface PortionType extends CatalogType {
+public interface PortionType {
 
 }

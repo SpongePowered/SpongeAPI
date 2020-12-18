@@ -28,7 +28,6 @@ import io.leangen.geantyref.TypeToken;
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Server;
@@ -58,7 +57,7 @@ import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.util.Color;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.Builder;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.configurate.util.Types;
@@ -995,7 +994,7 @@ public interface Parameter {
         /**
          * A "builder" that allows for keys to be built.
          */
-        interface Builder extends ResettableBuilder<Key<?>, Builder> {
+        interface Builder extends org.spongepowered.api.util.Builder<Key<?>, Builder> {
 
             /**
              * Creates a key with the provided key and value class it
@@ -1125,7 +1124,7 @@ public interface Parameter {
         /**
          * Builds a {@link Parameter} from constituent components.
          */
-        interface Builder<T> extends ResettableBuilder<Value<T>, Builder<T>> {
+        interface Builder<T> extends org.spongepowered.api.util.Builder<Value<T>, Builder<T>> {
 
             /**
              * The key that the parameter will place parsed values into.
@@ -1376,7 +1375,7 @@ public interface Parameter {
          */
         Set<String> getAliases();
 
-        interface Builder extends ResettableBuilder<Subcommand, Builder> {
+        interface Builder extends org.spongepowered.api.util.Builder<Subcommand, Builder> {
 
             /**
              * Sets an alias for the subcommand. This can be executed more
@@ -1414,7 +1413,7 @@ public interface Parameter {
      * parameter that concatenates all parameters into a single
      * parameter to be executed one by one.
      */
-    interface SequenceBuilder extends ResettableBuilder<Parameter, SequenceBuilder> {
+    interface SequenceBuilder extends Builder<Parameter, SequenceBuilder> {
 
         /**
          * Sets that this sequence of parameters is optional, and will be
@@ -1483,7 +1482,7 @@ public interface Parameter {
      * parameter that concatenates all parameters into a single
      * parameter to be executed one by one.
      */
-    interface FirstOfBuilder extends ResettableBuilder<Parameter, FirstOfBuilder> {
+    interface FirstOfBuilder extends Builder<Parameter, FirstOfBuilder> {
 
         /**
          * Sets that this parameter is optional, and will be ignored if it isn't

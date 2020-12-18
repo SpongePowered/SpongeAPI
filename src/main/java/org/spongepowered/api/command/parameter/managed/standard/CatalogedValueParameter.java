@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.command.parameter.managed.standard;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.command.parameter.managed.ValueParameter;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -34,6 +33,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * @param <T> The type of value that the parameter will return.
  */
 @CatalogedBy(CatalogedValueParameters.class)
-public interface CatalogedValueParameter<T> extends ValueParameter<T>, CatalogType {
+public interface CatalogedValueParameter<T> extends ValueParameter<T> {
 
 }

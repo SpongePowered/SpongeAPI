@@ -24,9 +24,6 @@
  */
 package org.spongepowered.api.world.schematic;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.util.annotation.CatalogedBy;
-
 import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.stream.Stream;

@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.util;
 
-public interface CopyableBuilder<T, B extends ResettableBuilder<T, B>> extends ResettableBuilder<T, B> {
+public interface CopyableBuilder<T, B extends Builder<T, B>> extends Builder<T, B> {
 
     /**
      * Resets this builder to the values of the given built object.

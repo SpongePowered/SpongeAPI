@@ -25,13 +25,12 @@
 package org.spongepowered.api.data.type;
 
 import net.kyori.adventure.text.ComponentLike;
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a part of a player's skin.
  */
 @CatalogedBy(SkinParts.class)
-public interface SkinPart extends CatalogType, ComponentLike {
+public interface SkinPart extends ComponentLike {
 
 }

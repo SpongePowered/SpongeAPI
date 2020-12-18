@@ -24,10 +24,13 @@
  */
 package org.spongepowered.api.block.transaction;
 
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.Queries;
+import org.spongepowered.api.registry.RegistryTypes;
 
 public final class BlockTransactionReceipt implements DataSerializable {
 
@@ -35,9 +38,7 @@ public final class BlockTransactionReceipt implements DataSerializable {
     private final BlockSnapshot finalBlock;
     private final Operation operation;
 
-    public BlockTransactionReceipt(final BlockSnapshot originalBlock, final BlockSnapshot finalBlock,
-        final Operation operation
-    ) {
+    public BlockTransactionReceipt(final BlockSnapshot originalBlock, final BlockSnapshot finalBlock, final Operation operation) {
         this.originalBlock = originalBlock;
         this.finalBlock = finalBlock;
         this.operation = operation;
@@ -62,11 +63,13 @@ public final class BlockTransactionReceipt implements DataSerializable {
 
     @Override
     public DataContainer toContainer() {
+        final ResourceKey resourceKey = Sponge.getGame().registries().registry(RegistryTypes.OPERATION).valueKey(this.operation);
+
         return DataContainer.createNew()
             .set(Queries.CONTENT_VERSION, this.getContentVersion())
             .set(Queries.ORIGINAL, this.originalBlock.toContainer())
             .set(Queries.FINAL_REPLACEMENT, this.finalBlock.toContainer())
-            .set(Queries.BLOCK_OPERATION, this.operation.getKey().asString())
-            ;
+            .set(Queries.BLOCK_OPERATION, resourceKey)
+        ;
     }
 }

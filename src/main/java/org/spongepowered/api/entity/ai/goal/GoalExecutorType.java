@@ -24,9 +24,8 @@
  */
 package org.spongepowered.api.entity.ai.goal;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(GoalExecutorTypes.class)
-public interface GoalExecutorType extends CatalogType {
+public interface GoalExecutorType {
 }

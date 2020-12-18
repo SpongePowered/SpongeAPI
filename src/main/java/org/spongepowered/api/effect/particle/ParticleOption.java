@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.effect.particle;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -34,7 +33,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * @param <V> The type of the option value
  */
 @CatalogedBy(ParticleOptions.class)
-public interface ParticleOption<V> extends CatalogType {
+public interface ParticleOption<V> {
 
     /**
      * Gets the type of the value.

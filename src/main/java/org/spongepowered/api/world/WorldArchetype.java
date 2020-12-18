@@ -24,12 +24,10 @@
  */
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
-import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.difficulty.Difficulty;
@@ -45,7 +43,7 @@ import java.util.function.Supplier;
  * A representation of the settings which define a {@link WorldProperties} for creation.
  */
 @CatalogedBy(WorldArchetypes.class)
-public interface WorldArchetype extends CatalogType {
+public interface WorldArchetype {
 
     /**
      * Gets a new Builder instance for {@link WorldArchetype}.
@@ -145,7 +143,7 @@ public interface WorldArchetype extends CatalogType {
     /**
      * A builder to create {@link WorldArchetype}s.
      */
-    interface Builder extends CatalogBuilder<WorldArchetype, Builder>, CopyableBuilder<WorldArchetype, Builder> {
+    interface Builder extends CopyableBuilder<WorldArchetype, Builder>, org.spongepowered.api.util.Builder<WorldArchetype, Builder> {
 
         /**
          * Sets enabled status. Built worlds who are enabled but unloaded may

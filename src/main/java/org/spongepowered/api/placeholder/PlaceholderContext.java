@@ -28,7 +28,6 @@ import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -95,7 +94,7 @@ public interface PlaceholderContext {
     /**
      * A builder for {@link PlaceholderComponent} objects.
      */
-    interface Builder extends ResettableBuilder<PlaceholderContext, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<PlaceholderContext, Builder> {
 
         /**
          * Sets the {@link Object} to use as a source of information

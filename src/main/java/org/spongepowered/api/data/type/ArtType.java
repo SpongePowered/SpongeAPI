@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.entity.hanging.Painting;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -32,7 +31,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a piece of art to be displayed by {@link Painting}s.
  */
 @CatalogedBy(ArtTypes.class)
-public interface ArtType extends CatalogType {
+public interface ArtType {
 
     /**
      * Gets the height in blocks this art piece spans.

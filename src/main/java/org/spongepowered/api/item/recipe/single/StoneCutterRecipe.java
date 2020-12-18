@@ -35,7 +35,6 @@ import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.item.recipe.RecipeType;
 import org.spongepowered.api.item.recipe.crafting.Ingredient;
-import org.spongepowered.api.util.CatalogBuilder;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -55,7 +54,8 @@ public interface StoneCutterRecipe extends Recipe {
     /**
      * Builds a simple stonecutter recipe
      */
-    interface Builder extends CatalogBuilder<RecipeRegistration, StoneCutterRecipe.Builder> {
+    interface Builder extends
+            org.spongepowered.api.util.Builder<RecipeRegistration, Builder> {
 
         /**
          * Sets the ingredient and returns this builder.
@@ -121,7 +121,8 @@ public interface StoneCutterRecipe extends Recipe {
 
         }
 
-        interface EndStep extends StoneCutterRecipe.Builder, CatalogBuilder<RecipeRegistration, Builder> {
+        interface EndStep extends StoneCutterRecipe.Builder,
+                org.spongepowered.api.util.Builder<RecipeRegistration, Builder> {
 
             /**
              * Sets the group of the recipe.

@@ -31,7 +31,6 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -157,7 +156,7 @@ public interface Ingredient extends Predicate<ItemStack> {
     /**
      * Builder for {@link Ingredient}s.
      */
-    interface Builder extends ResettableBuilder<Ingredient, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<Ingredient, Builder> {
 
         /**
          * Sets one or more ItemTypes for matching the ingredient.

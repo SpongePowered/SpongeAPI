@@ -25,10 +25,8 @@
 package org.spongepowered.api.placeholder;
 
 import net.kyori.adventure.text.Component;
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.function.Function;
@@ -37,7 +35,7 @@ import java.util.function.Function;
  * Provides the logic of how to parse a placeholder token.
  */
 @CatalogedBy(PlaceholderParsers.class)
-public interface PlaceholderParser extends CatalogType {
+public interface PlaceholderParser {
 
     /**
      * Returns a {@link Builder} that allows for the creation of simple
@@ -64,7 +62,7 @@ public interface PlaceholderParser extends CatalogType {
     /**
      * A builder that creates {@link PlaceholderParser}
      */
-    interface Builder extends ResettableBuilder<PlaceholderParser, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<PlaceholderParser, Builder> {
 
         /**
          * The {@link ResourceKey} that represents this parser.
@@ -72,7 +70,7 @@ public interface PlaceholderParser extends CatalogType {
          * @param resourceKey The {@link ResourceKey}
          * @return This builder, for chaining
          */
-        PlaceholderParser.Builder key(ResourceKey resourceKey);
+        Builder key(ResourceKey resourceKey);
 
         /**
          * The function that converts a {@link PlaceholderContext} to {@link Component}
@@ -80,7 +78,7 @@ public interface PlaceholderParser extends CatalogType {
          * @param parser The function
          * @return This builder, for chaining
          */
-        PlaceholderParser.Builder parser(Function<PlaceholderContext, Component> parser);
+        Builder parser(Function<PlaceholderContext, Component> parser);
 
         /**
          * Builds a {@link PlaceholderParser}

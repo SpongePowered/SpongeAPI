@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.util.Cycleable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -33,6 +32,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a NotePitch which may be played by a {@link BlockTypes#NOTE_BLOCK}.
  */
 @CatalogedBy(NotePitches.class)
-public interface NotePitch extends CatalogType, Cycleable<NotePitch> {
+public interface NotePitch extends Cycleable<NotePitch> {
 
 }

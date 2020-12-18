@@ -24,10 +24,9 @@
  */
 package org.spongepowered.api.event.cause.entity;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(DismountTypes.class)
-public interface DismountType extends CatalogType {
+public interface DismountType {
 
 }

@@ -490,19 +490,6 @@ public final class Cause implements Iterable<Object> {
             return this;
         }
 
-        /**
-         * Constructs a new {@link Cause} with information added to the builder.
-         *
-         * @param ctx The context to build the cause with
-         * @return The built cause
-         */
-        public Cause build(final EventContext ctx) {
-            if (this.causes.isEmpty()) {
-                throw new IllegalStateException("Cannot create an empty Cause!");
-            }
-            return new Cause(ctx, this.causes);
-        }
-
         @Override
         public Builder from(final Cause value) {
             for (int i = 0; i < value.cause.length; i++) {
@@ -515,6 +502,27 @@ public final class Cause implements Iterable<Object> {
         public Builder reset() {
             this.causes.clear();
             return this;
+        }
+
+        @Override
+        public Cause build() {
+            if (this.causes.isEmpty()) {
+                throw new IllegalStateException("Cannot create an empty Cause!");
+            }
+            return new Cause(EventContext.empty(), this.causes);
+        }
+
+        /**
+         * Constructs a new {@link Cause} with information added to the builder.
+         *
+         * @param ctx The context to build the cause with
+         * @return The built cause
+         */
+        public Cause build(final EventContext ctx) {
+            if (this.causes.isEmpty()) {
+                throw new IllegalStateException("Cannot create an empty Cause!");
+            }
+            return new Cause(ctx, this.causes);
         }
     }
 

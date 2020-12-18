@@ -25,19 +25,19 @@
 package org.spongepowered.api.event.lifecycle;
 
 import org.spongepowered.api.registry.DuplicateRegistrationException;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.Builder;
 
 import java.util.function.Supplier;
 
 public interface RegisterBuilderEvent extends LifecycleEvent {
 
     /**
-     * Registers a new {@link ResettableBuilder builder}.
+     * Registers a new {@link Builder builder}.
      *
      * @param builderClass The builder type
      * @param supplier The supplier of the builder instance
      * @param <T> The type
      * @throws DuplicateRegistrationException If the type is already registered
      */
-    <T extends ResettableBuilder<?, ? super T>> void register(Class<T> builderClass, Supplier<? super T> supplier) throws DuplicateRegistrationException;
+    <T extends Builder<?, ? super T>> void register(Class<T> builderClass, Supplier<? super T> supplier) throws DuplicateRegistrationException;
 }

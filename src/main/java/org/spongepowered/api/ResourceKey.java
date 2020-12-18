@@ -29,16 +29,14 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.api.data.DataRegistration;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataTranslator;
-import org.spongepowered.api.registry.GameRegistry;
-import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.configurate.ConfigurationNode;
 import org.spongepowered.plugin.PluginContainer;
 
 /**
- * An object representation of a location or pointer to various resources, such
- * as {@link CatalogType}, that can be used to retrieve from various places such as
- * the {@link GameRegistry}. The key can be represented as a {@link String} by
- * {@link Object#toString()}. The key is built with two parts:
+ * An object representation of a location or pointer to resoutces.
+ * The key can be represented as a {@link String} by {@link Object#toString()}.
+ *
+ * The key is built with two parts:
  * <ol>
  *     <li>The Namespace</li>
  *     <li>The Value</li>
@@ -176,7 +174,7 @@ public interface ResourceKey extends Key {
     /**
      * A builder to create {@link ResourceKey}s.
      */
-    interface Builder extends ResettableBuilder<ResourceKey, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<ResourceKey, Builder> {
 
         /**
          * Sets the key's namespace.

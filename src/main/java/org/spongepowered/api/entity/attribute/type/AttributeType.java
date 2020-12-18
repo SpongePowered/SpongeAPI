@@ -24,17 +24,14 @@
  */
 package org.spongepowered.api.entity.attribute.type;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.entity.attribute.AttributeModifier;
 import org.spongepowered.api.util.annotation.CatalogedBy;
-
-import java.util.Optional;
 
 /**
  * Represents an attribute type that can apply effects or modify traits related to an entity.
  */
 @CatalogedBy(AttributeTypes.class)
-public interface AttributeType extends CatalogType {
+public interface AttributeType {
 
     /**
      * Gets the default value of this attribute type before any {@link AttributeModifier}s are applied.

@@ -27,7 +27,6 @@ package org.spongepowered.api.item.inventory;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.DataHolderBuilder;
 import org.spongepowered.api.data.Key;
@@ -350,13 +349,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
          * @param blockState The block state to use
          * @return This builder, for chaining
          */
-        default Builder fromBlockState(BlockState blockState) {
-            Objects.requireNonNull(blockState);
-            final BlockType blockType = blockState.getType();
-            this.itemType(blockType.getItem().orElseThrow(() -> new IllegalArgumentException("Missing valid ItemType for BlockType: " + blockType.getKey().toString())));
-            blockState.getValues().forEach(this::add);
-            return this;
-        }
+        Builder fromBlockState(final BlockState blockState);
 
         /**
          * Sets the data to recreate a {@link BlockState} in a held {@link ItemStack}
@@ -365,12 +358,9 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
          * @param blockState The block state to use
          * @return This builder, for chaining
          */
-        default Builder fromBlockState(Supplier<? extends BlockState> blockState) {
-            Objects.requireNonNull(blockState);
-            final BlockType blockType = blockState.get().getType();
-            this.itemType(blockType.getItem().orElseThrow(() -> new IllegalArgumentException("Missing valid ItemType for BlockType: " + blockType.getKey().toString())));
-            blockState.get().getValues().forEach(this::add);
-            return this;
+        default Builder fromBlockState(final Supplier<? extends BlockState> blockState) {
+            Objects.requireNonNull(blockState, "blockState");
+            return this.fromBlockState(blockState.get());
         }
 
         /**
@@ -389,7 +379,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
          * @param snapshot The snapshot
          * @return This builder, for chaining
          */
-        default Builder fromSnapshot(ItemStackSnapshot snapshot) {
+        default Builder fromSnapshot(final ItemStackSnapshot snapshot) {
             return this.fromItemStack(snapshot.createStack());
         }
 

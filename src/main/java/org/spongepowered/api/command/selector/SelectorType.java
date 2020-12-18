@@ -24,14 +24,13 @@
  */
 package org.spongepowered.api.command.selector;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a type of selector that Minecraft supplies.
  */
 @CatalogedBy(SelectorTypes.class)
-public interface SelectorType extends CatalogType {
+public interface SelectorType {
 
     /**
      * Gets the token that represents this selector type when used in commands.

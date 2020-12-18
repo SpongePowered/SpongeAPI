@@ -24,11 +24,10 @@
  */
 package org.spongepowered.api.entity.ai.goal;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(GoalTypes.class)
-public interface GoalType extends CatalogType {
+public interface GoalType {
 
     /**
      * Gets the {@link Goal} class that this type represents.

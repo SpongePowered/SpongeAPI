@@ -25,9 +25,7 @@
 package org.spongepowered.api.event;
 
 import io.leangen.geantyref.TypeToken;
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.lang.reflect.Type;
@@ -38,7 +36,7 @@ import java.lang.reflect.Type;
  * @param <T> The type of the value stored with this key
  */
 @CatalogedBy(EventContextKeys.class)
-public interface EventContextKey<T> extends CatalogType {
+public interface EventContextKey<T> {
 
     /**
      * Creates a builder to be used for creating a new {@link EventContextKey}.
@@ -76,7 +74,7 @@ public interface EventContextKey<T> extends CatalogType {
      */
     T cast(Object value);
 
-    interface Builder<T> extends CatalogBuilder<EventContextKey<T>, Builder<T>> {
+    interface Builder<T> extends org.spongepowered.api.util.Builder<EventContextKey<T>, Builder<T>> {
 
         <N> Builder<N> type(Class<N> allowedType);
 

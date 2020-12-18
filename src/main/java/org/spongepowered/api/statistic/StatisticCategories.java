@@ -24,37 +24,36 @@
  */
 package org.spongepowered.api.statistic;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryTypes;
 
 public final class StatisticCategories {
 
     // SORTFIELDS:ON
 
-    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<BlockType>> BLOCKS_BROKEN = StatisticCategories.catalogKey(ResourceKey.minecraft("blocks_broken"));
+    public static final DefaultedRegistryReference<StatisticCategory.Typed<BlockType>> BLOCKS_BROKEN = StatisticCategories.typedKey(ResourceKey.minecraft("blocks_broken"));
 
     public static final DefaultedRegistryReference<StatisticCategory> CUSTOM = StatisticCategories.key(ResourceKey.minecraft("custom"));
 
-    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<EntityType<?>>> ENTITIES_KILLED = StatisticCategories.catalogKey(ResourceKey.minecraft("entities_killed"));
+    public static final DefaultedRegistryReference<StatisticCategory.Typed<EntityType<?>>> ENTITIES_KILLED = StatisticCategories.typedKey(ResourceKey.minecraft("entities_killed"));
 
-    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<ItemType>> ITEMS_BROKEN = StatisticCategories.catalogKey(ResourceKey.minecraft("items_broken"));
+    public static final DefaultedRegistryReference<StatisticCategory.Typed<ItemType>> ITEMS_BROKEN = StatisticCategories.typedKey(ResourceKey.minecraft("items_broken"));
 
-    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<ItemType>> ITEMS_CRAFTED = StatisticCategories.catalogKey(ResourceKey.minecraft("items_crafted"));
+    public static final DefaultedRegistryReference<StatisticCategory.Typed<ItemType>> ITEMS_CRAFTED = StatisticCategories.typedKey(ResourceKey.minecraft("items_crafted"));
 
-    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<ItemType>> ITEMS_DROPPED = StatisticCategories.catalogKey(ResourceKey.minecraft("items_dropped"));
+    public static final DefaultedRegistryReference<StatisticCategory.Typed<ItemType>> ITEMS_DROPPED = StatisticCategories.typedKey(ResourceKey.minecraft("items_dropped"));
 
-    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<ItemType>> ITEMS_PICKED_UP = StatisticCategories.catalogKey(ResourceKey.minecraft("items_picked_up"));
+    public static final DefaultedRegistryReference<StatisticCategory.Typed<ItemType>> ITEMS_PICKED_UP = StatisticCategories.typedKey(ResourceKey.minecraft("items_picked_up"));
 
-    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<ItemType>> ITEMS_USED = StatisticCategories.catalogKey(ResourceKey.minecraft("items_used"));
+    public static final DefaultedRegistryReference<StatisticCategory.Typed<ItemType>> ITEMS_USED = StatisticCategories.typedKey(ResourceKey.minecraft("items_used"));
 
-    public static final DefaultedRegistryReference<StatisticCategory.ForCatalog<EntityType<?>>> KILLED_BY_ENTITIES = StatisticCategories.catalogKey(ResourceKey.minecraft("killed_by_entities"));
+    public static final DefaultedRegistryReference<StatisticCategory.Typed<EntityType<?>>> KILLED_BY_ENTITIES = StatisticCategories.typedKey(ResourceKey.minecraft("killed_by_entities"));
 
     // SORTFIELDS:OFF
 
@@ -65,7 +64,7 @@ public final class StatisticCategories {
         return RegistryKey.of(RegistryTypes.STATISTIC_CATEGORY, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 
-    private static <T extends CatalogType> DefaultedRegistryReference<StatisticCategory.ForCatalog<T>> catalogKey(final ResourceKey location) {
+    private static <T> DefaultedRegistryReference<StatisticCategory.Typed<T>> typedKey(final ResourceKey location) {
         return RegistryKey.of(RegistryTypes.STATISTIC_CATEGORY, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

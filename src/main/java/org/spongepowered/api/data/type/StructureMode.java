@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.entity.StructureBlock;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -32,6 +31,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a mode that a {@link StructureBlock} may be in.
  */
 @CatalogedBy(StructureModes.class)
-public interface StructureMode extends CatalogType {
+public interface StructureMode {
 
 }

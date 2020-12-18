@@ -25,7 +25,6 @@
 package org.spongepowered.api.world.volume.stream;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.volume.Volume;
 import org.spongepowered.math.vector.Vector3i;
@@ -176,7 +175,7 @@ public interface StreamOptions {
      */
     LoadingStyle loadingStyle();
 
-    interface Builder extends ResettableBuilder<StreamOptions, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<StreamOptions, Builder> {
 
         Builder setCarbonCopy(boolean copies);
 

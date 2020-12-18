@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.item.recipe;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.data.persistence.DataSerializable;
 
 /**
@@ -33,6 +32,6 @@ import org.spongepowered.api.data.persistence.DataSerializable;
  * <p>All registrations through the API will generate into the Vanilla
  * data pack system</p>
  */
-public interface RecipeRegistration extends CatalogType, DataSerializable {
+public interface RecipeRegistration extends DataSerializable {
 
 }

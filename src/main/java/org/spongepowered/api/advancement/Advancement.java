@@ -27,10 +27,8 @@ package org.spongepowered.api.advancement;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.ComponentLike;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
-import org.spongepowered.api.util.CatalogBuilder;
 
 import java.util.Collection;
 import java.util.List;
@@ -39,7 +37,7 @@ import java.util.Optional;
 /**
  * An advancement.
  */
-public interface Advancement extends ComponentLike, CatalogType {
+public interface Advancement extends ComponentLike {
 
     /**
      * Creates a new {@link Builder} to create {@link Advancement}s.
@@ -103,7 +101,7 @@ public interface Advancement extends ComponentLike, CatalogType {
     /**
      * A builder to create {@link Advancement}s.
      */
-    interface Builder extends CatalogBuilder<Advancement, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<Advancement, Builder> {
 
         /**
          * Sets the parent {@link Advancement}.

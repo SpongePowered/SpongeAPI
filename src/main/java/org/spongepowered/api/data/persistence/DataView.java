@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.persistence;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.registry.RegistryHolder;

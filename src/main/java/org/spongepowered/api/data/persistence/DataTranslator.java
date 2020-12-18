@@ -25,7 +25,6 @@
 package org.spongepowered.api.data.persistence;
 
 import io.leangen.geantyref.TypeToken;
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Map;
@@ -39,7 +38,7 @@ import java.util.Map;
  * @param <T> The type of object that this translator can handle
  */
 @CatalogedBy(DataTranslators.class)
-public interface DataTranslator<T> extends CatalogType {
+public interface DataTranslator<T> {
 
     /**
      * Gets the {@link TypeToken} of this translator.

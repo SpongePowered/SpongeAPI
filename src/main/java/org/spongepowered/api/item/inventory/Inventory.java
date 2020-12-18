@@ -37,8 +37,6 @@ import org.spongepowered.api.item.inventory.query.QueryType;
 import org.spongepowered.api.item.inventory.query.QueryTypes;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
 import org.spongepowered.api.item.inventory.type.ViewableInventory;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.List;
 import java.util.Optional;
@@ -51,14 +49,14 @@ import java.util.function.Supplier;
 public interface Inventory extends ValueContainer {
 
     /**
-     * Creates a new {@link Inventory.Builder} to build a basic {@link Inventory}.
+     * Creates a new {@link Builder} to build a basic {@link Inventory}.
      * <p>Inventories created by this builder cannot be opened.</p>
      * <p>If you want to show the inventory to a {@link Player} use {@link ViewableInventory#builder()}</p>
      *
      * @return The builder
      */
-    static Inventory.Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Inventory.Builder.class);
+    static Builder builder() {
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -465,7 +463,7 @@ public interface Inventory extends ValueContainer {
      * A builder for free-form Inventories.
      * <p>To build inventories that can be viewed by a player use {@link ViewableInventory.Builder}</p>
      */
-    interface Builder extends ResettableBuilder<Inventory, Inventory.Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<Inventory, Builder> {
 
         /**
          * Adds one or more slots.

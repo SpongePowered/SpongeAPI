@@ -27,7 +27,6 @@ package org.spongepowered.api.command.parameter.managed.standard;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.ComponentSerializer;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Server;
@@ -40,7 +39,7 @@ import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.RegistryKey;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.Builder;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -222,7 +221,7 @@ public final class VariableValueParameters {
      * A builder that creates a {@link ValueParameter} that attempts to get a
      * specific {@link CatalogType} by the supplied ID.
      */
-    public interface CatalogedTypeBuilder<T> extends ResettableBuilder<ValueParameter<T>, CatalogedTypeBuilder<T>> {
+    public interface CatalogedTypeBuilder<T> extends Builder<ValueParameter<T>, CatalogedTypeBuilder<T>> {
 
         /**
          * A {@link Function} that always provides the {@link Game} scoped
@@ -307,7 +306,7 @@ public final class VariableValueParameters {
      * the lifetime of the server be required, use the
      * {@link DynamicChoicesBuilder} instead.</p>
      */
-    public interface StaticChoicesBuilder<T> extends ResettableBuilder<ValueParameter<T>, StaticChoicesBuilder<T>> {
+    public interface StaticChoicesBuilder<T> extends Builder<ValueParameter<T>, StaticChoicesBuilder<T>> {
 
         /**
          * Adds a choice to the parameter, along with the object that would be
@@ -375,7 +374,7 @@ public final class VariableValueParameters {
      * argument against a dynamic set of choices and returns an appropriate object
      * based on the supplied argument.
      */
-    public interface DynamicChoicesBuilder<T> extends ResettableBuilder<ValueParameter<T>, DynamicChoicesBuilder<T>> {
+    public interface DynamicChoicesBuilder<T> extends Builder<ValueParameter<T>, DynamicChoicesBuilder<T>> {
 
         /**
          * Sets the parameter to get its choices from the supplied {@link Map},
@@ -431,7 +430,7 @@ public final class VariableValueParameters {
      * A builder that creates {@link ValueParameter}s that requires a specific
      * sequence of arguments.
      */
-    public interface LiteralBuilder<T> extends ResettableBuilder<ValueParameter<T>, LiteralBuilder<T>> {
+    public interface LiteralBuilder<T> extends Builder<ValueParameter<T>, LiteralBuilder<T>> {
 
         /**
          * Sets a {@link Supplier} that provides the sequence of strings that
@@ -490,7 +489,7 @@ public final class VariableValueParameters {
      * A builder that creates a parameter that serializes strings into
      * {@link Component}.
      */
-    public interface TextBuilder extends ResettableBuilder<ValueParameter<Component>, TextBuilder> {
+    public interface TextBuilder extends Builder<ValueParameter<Component>, TextBuilder> {
 
         /**
          * Sets the {@link ComponentSerializer} for use by the element.
@@ -542,7 +541,7 @@ public final class VariableValueParameters {
      *
      * @param <T> The {@link Number} type
      */
-    public interface NumberRangeBuilder<T extends Number> extends ResettableBuilder<ValueParameter<T>, NumberRangeBuilder<T>> {
+    public interface NumberRangeBuilder<T extends Number> extends Builder<ValueParameter<T>, NumberRangeBuilder<T>> {
 
         /**
          * Sets the minimum value that the parser will parse.

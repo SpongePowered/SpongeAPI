@@ -30,7 +30,6 @@ import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.configurate.ConfigurationOptions;
 import org.spongepowered.configurate.serialize.TypeSerializer;
 import org.spongepowered.configurate.serialize.TypeSerializerCollection;
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.data.persistence.DataSerializable;
@@ -53,7 +52,7 @@ import java.util.function.UnaryOperator;
  */
 @SuppressWarnings("unchecked")
 @CatalogedBy(Triggers.class)
-public interface Trigger<C extends FilteredTriggerConfiguration> extends CatalogType {
+public interface Trigger<C extends FilteredTriggerConfiguration> {
 
     /**
      * Creates a new {@link Builder} which can be used to create

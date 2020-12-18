@@ -28,6 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.criteria.trigger.FilteredTrigger;
 import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.util.Nameable;
 
 import java.util.Optional;
 
@@ -35,7 +36,7 @@ import java.util.Optional;
  * Represents a criterion that should be acquired
  * to unlock a {@link Advancement}.
  */
-public interface AdvancementCriterion {
+public interface AdvancementCriterion extends Nameable {
 
     /**
      * Gets a {@link AdvancementCriterion} which is empty, this means that
@@ -65,13 +66,6 @@ public interface AdvancementCriterion {
     static Builder builder() {
         return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
-
-    /**
-     * Gets the name of this criterion.
-     *
-     * @return The name
-     */
-    String getName();
 
     /**
      * Combines this {@link AdvancementCriterion} with the other criteria

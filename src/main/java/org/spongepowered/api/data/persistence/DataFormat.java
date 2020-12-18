@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.persistence;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.io.IOException;
@@ -36,7 +35,7 @@ import java.io.OutputStream;
  * a DataContainer to/from a stream of the specific format.
  */
 @CatalogedBy(DataFormats.class)
-public interface DataFormat extends CatalogType {
+public interface DataFormat {
 
     /**
      * Creates a new {@link DataContainer} from the contents of the given

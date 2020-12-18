@@ -33,7 +33,6 @@ import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.item.recipe.RecipeType;
 import org.spongepowered.api.item.recipe.crafting.Ingredient;
-import org.spongepowered.api.util.CatalogBuilder;
 
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -97,7 +96,7 @@ public interface CookingRecipe extends Recipe {
     /**
      * Builds a simple furnace recipe.
      */
-    interface Builder extends CatalogBuilder<RecipeRegistration, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<RecipeRegistration, Builder> {
 
         /**
          * Sets the type of recipe
@@ -199,7 +198,8 @@ public interface CookingRecipe extends Recipe {
             EndStep result(ItemStackSnapshot result);
         }
 
-        interface EndStep extends Builder, CatalogBuilder<RecipeRegistration, Builder> {
+        interface EndStep extends Builder,
+                org.spongepowered.api.util.Builder<RecipeRegistration, Builder> {
 
             /**
              * Sets the group of the recipe.

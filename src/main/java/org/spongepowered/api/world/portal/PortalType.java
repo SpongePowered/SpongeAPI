@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world.portal;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -36,7 +35,7 @@ import java.util.Optional;
  * A type of portal, used to move {@link Entity entities} one place to another.
  */
 @CatalogedBy(PortalTypes.class)
-public interface PortalType extends CatalogType {
+public interface PortalType {
 
     /**
      * Generates the portal at the {@link ServerLocation location}.

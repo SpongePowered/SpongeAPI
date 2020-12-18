@@ -28,7 +28,6 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.ComponentLike;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
 
 /**
  * A {@link ComponentLike} that can be used in {@link Component} building methods
@@ -60,7 +59,7 @@ public interface PlaceholderComponent extends ComponentLike {
      *
      * @return A {@link Builder}
      */
-    static PlaceholderComponent.Builder builder() {
+    static Builder builder() {
         return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
@@ -97,7 +96,7 @@ public interface PlaceholderComponent extends ComponentLike {
     /**
      * A builder for {@link PlaceholderComponent} objects.
      */
-    interface Builder extends ResettableBuilder<PlaceholderComponent, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<PlaceholderComponent, Builder> {
 
         /**
          * Sets the token that represents a {@link PlaceholderParser} for use

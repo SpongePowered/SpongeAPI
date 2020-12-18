@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.cause.entity.damage;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -40,6 +39,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * circumstances.
  */
 @CatalogedBy(DamageTypes.class)
-public interface DamageType extends CatalogType {
+public interface DamageType {
 
 }

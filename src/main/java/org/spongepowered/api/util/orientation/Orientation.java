@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.util.orientation;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -34,7 +33,7 @@ import java.util.Optional;
  * Represents an orientation in relative for an ItemFrame as an example.
  */
 @CatalogedBy(Orientations.class)
-public interface Orientation extends CatalogType {
+public interface Orientation {
 
     /**
      * Gets the {@link Orientation} with the provided degrees.

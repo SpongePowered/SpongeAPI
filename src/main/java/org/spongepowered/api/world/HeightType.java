@@ -24,13 +24,12 @@
  */
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.util.BlockReaderAwareMatcher;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(HeightTypes.class)
-public interface HeightType extends CatalogType {
+public interface HeightType {
 
     BlockReaderAwareMatcher<BlockState> getMatcher();
 

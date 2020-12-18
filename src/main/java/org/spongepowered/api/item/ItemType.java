@@ -25,7 +25,6 @@
 package org.spongepowered.api.item;
 
 import net.kyori.adventure.text.ComponentLike;
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -38,7 +37,7 @@ import java.util.function.Supplier;
  * A type of item.
  */
 @CatalogedBy(ItemTypes.class)
-public interface ItemType extends CatalogType, ComponentLike, DataHolder.Immutable<ItemType> {
+public interface ItemType extends ComponentLike, DataHolder.Immutable<ItemType> {
 
     /**
      * Gets the corresponding {@link BlockType} of this item if one exists.

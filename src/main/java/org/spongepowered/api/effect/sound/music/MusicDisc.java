@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.effect.sound.music;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.entity.Jukebox;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -34,7 +33,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * played by a {@link Jukebox}.
  */
 @CatalogedBy(MusicDiscs.class)
-public interface MusicDisc extends CatalogType {
+public interface MusicDisc {
 
     /**
      * Gets the {@link SoundType} that is used

@@ -25,10 +25,7 @@
 package org.spongepowered.api.world.gamerule;
 
 import io.leangen.geantyref.TypeToken;
-import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.NamedCatalogType;
-import org.spongepowered.api.util.NamedCatalogBuilder;
+import org.spongepowered.api.util.Nameable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.lang.reflect.Type;
@@ -39,7 +36,7 @@ import java.lang.reflect.Type;
  * @param <V> The type of the value
  */
 @CatalogedBy(GameRules.class)
-public interface GameRule<V> extends NamedCatalogType {
+public interface GameRule<V> extends Nameable {
 
     /**
      * Gets the value {@link TypeToken type}.
@@ -57,23 +54,16 @@ public interface GameRule<V> extends NamedCatalogType {
 
     // TODO: Command argument parser
 
-    interface Builder<V> extends NamedCatalogBuilder<GameRule<V>, Builder<V>> {
+    interface Builder<V> extends org.spongepowered.api.util.Builder<GameRule<V>, Builder<V>> {
 
         // TODO: Command argument parser
 
         /**
-         * Sets the name of the {@link CatalogType}. Defaults to the
-         * {@link ResourceKey#getValue() catalog key value}.
-         *
-         * <p>This name will be used when setting game rules through
-         * a command. If duplicate names are found between namespaces,
-         * the plain {@link #key(ResourceKey)} will need to be used
-         * instead.</p>
+         * Sets the name of the game rule.
          *
          * @param name The name
          * @return This builder for chaining
          */
-        @Override
         Builder<V> name(String name);
 
         /**
@@ -110,8 +100,7 @@ public interface GameRule<V> extends NamedCatalogType {
          * Builds the {@link GameRule}.
          *
          * @return The built game rule
-         * @throws IllegalStateException If not all required options were specified; {@link #key(ResourceKey)},
-         *                               {@link #valueType(TypeToken)}, {@link #defaultValue(Object)}.
+         * @throws IllegalStateException If not all required options were specified; {@link #valueType(TypeToken)}, {@link #defaultValue(Object)}.
          */
         @Override
         GameRule<V> build() throws IllegalStateException;

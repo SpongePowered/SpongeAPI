@@ -26,17 +26,14 @@ package org.spongepowered.api.effect.sound;
 
 import net.kyori.adventure.key.Keyed;
 import net.kyori.adventure.sound.Sound;
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a sound that can be heard on clients.
  */
 @CatalogedBy(SoundTypes.class)
-public interface SoundType extends CatalogType, Keyed, Sound.Type {
+public interface SoundType extends Keyed, Sound.Type {
 
     /**
      * Creates a new {@link Builder} for building SoundTypes.
@@ -47,15 +44,10 @@ public interface SoundType extends CatalogType, Keyed, Sound.Type {
         return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
-    @Override
-    default ResourceKey key() {
-        return CatalogType.super.key();
-    }
-
     /**
      * Builds a SoundType, primarily for sending custom sounds to the client.
      */
-    interface Builder extends CatalogBuilder<SoundType, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<SoundType, Builder> {
 
     }
 }

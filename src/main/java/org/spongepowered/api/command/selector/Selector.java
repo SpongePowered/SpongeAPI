@@ -35,7 +35,6 @@ import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.scoreboard.Team;
 import org.spongepowered.api.util.Range;
-import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.math.vector.Vector3d;
 
@@ -69,7 +68,7 @@ public interface Selector {
      *
      * @return The builder
      */
-    static Selector.Builder builder() {
+    static Builder builder() {
         return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
@@ -107,7 +106,7 @@ public interface Selector {
     /**
      * Creates a {@link Selector} based on the provided criteria.
      */
-    interface Builder extends ResettableBuilder<Selector, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<Selector, Builder> {
 
         /**
          * Applies the defaults associated with a given {@link SelectorType}

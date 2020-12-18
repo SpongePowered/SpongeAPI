@@ -31,7 +31,6 @@ import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.util.ResettableBuilder;
 
 import java.lang.reflect.Type;
 import java.util.Collection;
@@ -42,6 +41,13 @@ import java.util.function.Function;
 
 public interface DataStore {
 
+    /**
+     * Gets the {@link ResourceKey key}.
+     * 
+     * @return The key
+     */
+    ResourceKey getKey();
+    
     /**
      * Gets the supported {@link DataHolder} types.
      *
@@ -131,8 +137,9 @@ public interface DataStore {
      */
     @SafeVarargs
     @SuppressWarnings("unchecked")
-    static <T, V extends Value<T>> DataStore of(final Key<V> key, final DataQuery dataQuery, final TypeToken<? extends DataHolder> typeToken, final TypeToken<? extends DataHolder>... typeTokens) {
-        return DataStore.builder().pluginData(key.getKey()).holder(typeToken).holder(typeTokens).key(key, dataQuery).build();
+    static <T, V extends Value<T>> DataStore of(final ResourceKey key, final Key<V> dataKey, final DataQuery dataQuery,
+            final TypeToken<? extends DataHolder> typeToken, final TypeToken<? extends DataHolder>... typeTokens) {
+        return DataStore.builder().key(key).holder(typeToken).holder(typeTokens).key(dataKey, dataQuery).build();
     }
 
     /**
@@ -150,8 +157,9 @@ public interface DataStore {
      */
     @SafeVarargs
     @SuppressWarnings("unchecked")
-    static <T, V extends Value<T>> DataStore of(Key<V> key, DataQuery dataQuery, Class<?extends DataHolder> type, Class<? extends DataHolder>... types) {
-        return DataStore.builder().pluginData(key.getKey()).holder(type).holder(types).key(key, dataQuery).build();
+    static <T, V extends Value<T>> DataStore of(final ResourceKey key, final Key<V> dataKey, final DataQuery dataQuery,
+            final Class<?extends DataHolder> type, final Class<? extends DataHolder>... types) {
+        return DataStore.builder().key(key).holder(type).holder(types).key(dataKey, dataQuery).build();
     }
 
     /**
@@ -159,11 +167,11 @@ public interface DataStore {
      *
      * @return The dataStore builder.
      */
-    static DataStore.Builder builder() {
+    static Builder builder() {
         return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
-    interface Builder extends ResettableBuilder<DataStore, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<DataStore, Builder> {
 
         /**
          * Starts building a DataStore for plugin data.
@@ -173,19 +181,19 @@ public interface DataStore {
          *
          * @return this builder for chaining
          */
-        HolderStep pluginData(ResourceKey key);
+        HolderStep key(ResourceKey key);
 
         /**
          * Starts building a DataStore for raw data.
          * <p>Serializers and deserializers will operate on the root {@link DataView}
          * which includes all data from vanilla minecraft and more</p>
-         * <p>Consider using {@link #pluginData} instead.</p>
+         * <p>Consider using {@link #key(ResourceKey)} instead.</p>
          *
          * @return this builder for chaining
          */
         HolderStep vanillaData();
 
-        interface HolderStep extends ResettableBuilder<DataStore, Builder> {
+        interface HolderStep extends org.spongepowered.api.util.Builder<DataStore, Builder> {
             /**
              * Adds one or more allowed dataHolder types
              *
@@ -209,7 +217,7 @@ public interface DataStore {
             SerializersStep holder(Class<? extends DataHolder>... types);
         }
 
-        interface SerializersStep extends HolderStep, ResettableBuilder<DataStore, Builder>{
+        interface SerializersStep extends HolderStep, org.spongepowered.api.util.Builder<DataStore, Builder> {
             /**
              * Adds the default implemented serializers for the given key.
              * <p>
@@ -252,7 +260,7 @@ public interface DataStore {
             <T, V extends Value<T>> Builder.EndStep key(Key<V> key, BiConsumer<DataView, T> serializer, Function<DataView, Optional<T>> deserializer);
         }
 
-        interface EndStep extends SerializersStep, ResettableBuilder<DataStore, Builder>{
+        interface EndStep extends SerializersStep, org.spongepowered.api.util.Builder<DataStore, Builder> {
             /**
              * Builds a dataStore for given dataHolder type.
              *

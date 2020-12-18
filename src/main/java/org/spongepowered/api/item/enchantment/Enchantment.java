@@ -29,7 +29,6 @@ import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -51,7 +50,7 @@ public interface Enchantment extends DataSerializable {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Enchantment.Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -164,7 +163,7 @@ public interface Enchantment extends DataSerializable {
      * Represents a builder interface which can be used
      * to create a {@link Enchantment}.
      */
-    interface RandomListBuilder extends ResettableBuilder<List<Enchantment>, RandomListBuilder> {
+    interface RandomListBuilder extends org.spongepowered.api.util.Builder<List<Enchantment>, RandomListBuilder> {
 
         /**
          * Sets the random seed.

@@ -25,7 +25,6 @@
 package org.spongepowered.api.world.biome;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.CatalogBuilder;
 
 /**
  * A virtual biome is one which exists purely for generation and therefore
@@ -54,7 +53,7 @@ public interface VirtualBiomeType extends BiomeType {
     /**
      * A builder for {@link VirtualBiomeType}s.
      */
-    interface Builder extends CatalogBuilder<VirtualBiomeType, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<VirtualBiomeType, Builder> {
 
         /**
          * Sets the temperature of the virtual biome.
