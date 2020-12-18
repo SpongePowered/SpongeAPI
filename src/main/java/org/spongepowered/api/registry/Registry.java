@@ -47,6 +47,19 @@ public interface Registry<T> extends Iterable<RegistryEntry<T>> {
     ResourceKey key();
 
     /**
+     * Gets the {@link ResourceKey key} for a particular value.
+     *
+     * <p>Great care needs to be made in calling this method with any uncertainty as to
+     * if the key will exist. Should the value lack a key, a
+     * {@link IllegalStateException}</p> will be thrown. Therefore, it is advised to call
+     * {@link Registry#findValueKey(Object)} instead.</p>
+     *
+     * @param value The value
+     * @return The key
+     */
+    ResourceKey valueKey(T value);
+
+    /**
      * Gets the {@link ResourceKey key} for a particular value, if found.
      *
      * <p>The value must be registered within to be retrieved by key.</p>
@@ -54,7 +67,7 @@ public interface Registry<T> extends Iterable<RegistryEntry<T>> {
      * @param value The value
      * @return The key or {@link Optional#empty()}
      */
-    Optional<ResourceKey> findKey(T value);
+    Optional<ResourceKey> findValueKey(T value);
 
     /**
      * Gets the {@link RegistryEntry entry} for a particular {@link ResourceKey key}, if found.
