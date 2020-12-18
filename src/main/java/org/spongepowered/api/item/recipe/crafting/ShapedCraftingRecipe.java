@@ -31,6 +31,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
+import org.spongepowered.api.util.ResourceKeyedBuilder;
 
 import java.util.List;
 import java.util.Map;
@@ -101,7 +102,7 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
      * }
      * </pre>
      */
-    interface Builder extends org.spongepowered.api.util.Builder<RecipeRegistration, Builder> {
+    interface Builder extends ResourceKeyedBuilder<RecipeRegistration, Builder> {
 
         /**
          * Start building a new recipe based on the aisle pattern.

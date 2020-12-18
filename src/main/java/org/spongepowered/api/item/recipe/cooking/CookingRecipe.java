@@ -33,6 +33,7 @@ import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.item.recipe.RecipeType;
 import org.spongepowered.api.item.recipe.crafting.Ingredient;
+import org.spongepowered.api.util.ResourceKeyedBuilder;
 
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -96,7 +97,7 @@ public interface CookingRecipe extends Recipe {
     /**
      * Builds a simple furnace recipe.
      */
-    interface Builder extends org.spongepowered.api.util.Builder<RecipeRegistration, Builder> {
+    interface Builder extends ResourceKeyedBuilder<RecipeRegistration, Builder> {
 
         /**
          * Sets the type of recipe

@@ -32,6 +32,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
+import org.spongepowered.api.util.ResourceKeyedBuilder;
 
 import java.util.List;
 import java.util.function.Function;
@@ -55,7 +56,7 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
     /**
      * The Builder for {@link ShapelessCraftingRecipe}s.
      */
-    interface Builder extends org.spongepowered.api.util.Builder<RecipeRegistration, Builder> {
+    interface Builder extends ResourceKeyedBuilder<RecipeRegistration, Builder> {
 
         /**
          * Adds ingredients for this recipe.

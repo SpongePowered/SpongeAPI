@@ -97,6 +97,7 @@ import org.spongepowered.api.event.cause.entity.MovementType;
 import org.spongepowered.api.event.cause.entity.SpawnType;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
+import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.fluid.FluidType;
 import org.spongepowered.api.item.FireworkShape;
 import org.spongepowered.api.item.ItemType;
@@ -233,6 +234,8 @@ public final class RegistryTypes {
     public static final RegistryType<Currency> CURRENCY = RegistryTypes.spongeKey("currency");
 
     public static final RegistryType<DamageModifierType> DAMAGE_MODIFIER_TYPE = RegistryTypes.spongeKey("damage_modifier_type");
+
+    public static final RegistryType<DamageSource> DAMAGE_SOURCE = RegistryTypes.spongeKey("damage_source");
 
     public static final RegistryType<DamageType> DAMAGE_TYPE = RegistryTypes.spongeKey("damage_type");
 

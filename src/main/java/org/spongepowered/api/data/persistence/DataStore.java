@@ -161,6 +161,7 @@ public interface DataStore extends ResourceKeyed {
      *
      * @return The dataStore builder.
      */
+    @SuppressWarnings("unchecked")
     static Builder builder() {
         return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }

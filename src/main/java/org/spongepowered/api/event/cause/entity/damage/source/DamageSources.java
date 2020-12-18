@@ -24,12 +24,14 @@
  */
 package org.spongepowered.api.event.cause.entity.damage.source;
 
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.cause.entity.damage.DamageTypes;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.world.ServerLocation;
-
-import java.util.function.Supplier;
 
 /**
  * A static collection of various {@link DamageSource}s that remain static, or
@@ -45,31 +47,37 @@ import java.util.function.Supplier;
  */
 public final class DamageSources {
 
+    // @formatter:off
+
     // SORTFIELDS:ON
 
-    public static final Supplier<DamageSource> DROWNING = () -> DamageSource.builder().bypassesArmor().type(DamageTypes.DROWN.get()).build();
+    public static final DefaultedRegistryReference<DamageSource> DROWNING = DamageSources.key(ResourceKey.sponge("drowning"));
 
-    public static final Supplier<DamageSource> DRYOUT = () -> DamageSource.builder().type(DamageTypes.DRYOUT.get()).build();
+    public static final DefaultedRegistryReference<DamageSource> DRYOUT = DamageSources.key(ResourceKey.sponge("dryout"));
 
-    public static final Supplier<DamageSource> FALLING = () -> DamageSource.builder().type(DamageTypes.FALL.get()).build();
+    public static final DefaultedRegistryReference<DamageSource> FALLING = DamageSources.key(ResourceKey.sponge("falling"));
 
-    public static final Supplier<DamageSource> FIRE_TICK = () -> DamageSource.builder().bypassesArmor().type(DamageTypes.FIRE.get()).fire().build();
+    public static final DefaultedRegistryReference<DamageSource> FIRE_TICK = DamageSources.key(ResourceKey.sponge("fire_tick"));
 
-    public static final Supplier<DamageSource> GENERIC = () -> DamageSource.builder().bypassesArmor().type(DamageTypes.GENERIC.get()).build();
+    public static final DefaultedRegistryReference<DamageSource> GENERIC = DamageSources.key(ResourceKey.sponge("generic"));
 
-    public static final Supplier<DamageSource> MAGIC = () -> DamageSource.builder().bypassesArmor().magical().type(DamageTypes.MAGIC.get()).build();
+    public static final DefaultedRegistryReference<DamageSource> MAGIC = DamageSources.key(ResourceKey.sponge("magic"));
 
-    public static final Supplier<DamageSource> STARVATION = () -> DamageSource.builder().bypassesArmor().absolute().type(DamageTypes.HUNGER.get()).build();
+    public static final DefaultedRegistryReference<DamageSource> STARVATION = DamageSources.key(ResourceKey.sponge("starvation"));
 
-    public static final Supplier<DamageSource> VOID = () -> DamageSource.builder().bypassesArmor().creative().type(DamageTypes.VOID.get()).build();
+    public static final DefaultedRegistryReference<DamageSource> VOID = DamageSources.key(ResourceKey.sponge("void"));
 
-    public static final Supplier<DamageSource> WITHER = () -> DamageSource.builder().bypassesArmor().type(DamageTypes.MAGIC.get()).build();
+    public static final DefaultedRegistryReference<DamageSource> WITHER = DamageSources.key(ResourceKey.sponge("wither"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private DamageSources() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<DamageSource> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.DAMAGE_SOURCE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 
 }

@@ -28,6 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
+import org.spongepowered.api.util.ResourceKeyedBuilder;
 import org.spongepowered.api.world.server.ServerWorld;
 
 import java.util.List;
@@ -49,7 +50,7 @@ public interface SpecialCraftingRecipe extends CraftingRecipe {
         return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
-    interface Builder extends org.spongepowered.api.util.Builder<RecipeRegistration, Builder> {
+    interface Builder extends ResourceKeyedBuilder<RecipeRegistration, Builder> {
 
         /**
          * Sets the recipe matcher.
