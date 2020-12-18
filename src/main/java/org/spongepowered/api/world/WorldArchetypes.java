@@ -33,7 +33,7 @@ import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
 
 @SuppressWarnings("unused")
-@RegistryScopes(scopes = RegistryScope.GAME)
+@RegistryScopes(scopes = RegistryScope.ENGINE)
 public final class WorldArchetypes {
 
     // @formatter:off
