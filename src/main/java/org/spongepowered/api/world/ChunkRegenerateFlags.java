@@ -27,7 +27,7 @@ package org.spongepowered.api.world;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -78,6 +78,6 @@ public final class ChunkRegenerateFlags {
     }
 
     private static DefaultedRegistryReference<ChunkRegenerateFlag> key(final ResourceKey location) {
-        return RegistryKey.of(Registries.CHUNK_REGENERATE_FLAG, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.CHUNK_REGENERATE_FLAG, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

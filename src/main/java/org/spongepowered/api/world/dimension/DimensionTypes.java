@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.dimension;
 
 import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryReference;
 import org.spongepowered.api.registry.RegistryScope;
@@ -51,7 +51,7 @@ public final class DimensionTypes {
     // @formatter:on
 
     private static RegistryReference<DimensionType> key(final ResourceKey location) {
-        return RegistryKey.of(Registries.DIMENSION_TYPE, location).asReference();
+        return RegistryKey.of(RegistryTypes.DIMENSION_TYPE, location).asReference();
     }
 
     private DimensionTypes() {

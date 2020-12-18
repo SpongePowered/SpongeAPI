@@ -45,7 +45,7 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.projectile.source.ProjectileSource;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -287,6 +287,6 @@ public final class EventContextKeys {
     }
 
     private static <T> DefaultedRegistryReference<EventContextKey<T>> key(final ResourceKey location) {
-        return RegistryKey.of(Registries.EVENT_CONTEXT_KEY, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.EVENT_CONTEXT_KEY, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

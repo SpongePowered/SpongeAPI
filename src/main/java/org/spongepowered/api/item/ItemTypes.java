@@ -27,7 +27,7 @@ package org.spongepowered.api.item;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -2003,6 +2003,6 @@ public final class ItemTypes {
     }
 
     private static DefaultedRegistryReference<ItemType> key(final ResourceKey location) {
-        return RegistryKey.of(Registries.ITEM_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.ITEM_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

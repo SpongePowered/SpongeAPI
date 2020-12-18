@@ -30,7 +30,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -134,6 +134,6 @@ public final class DataTranslators {
     }
 
     private static <T> DefaultedRegistryReference<DataTranslator<T>> key(final ResourceKey location) {
-        return RegistryKey.of(Registries.DATA_TRANSLATOR, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.DATA_TRANSLATOR, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

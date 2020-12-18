@@ -27,7 +27,7 @@ package org.spongepowered.api.scoreboard.displayslot;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -100,6 +100,6 @@ public final class DisplaySlots {
     }
 
     private static DefaultedRegistryReference<DisplaySlot> key(final ResourceKey location) {
-        return RegistryKey.of(Registries.DISPLAY_SLOT, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.DISPLAY_SLOT, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

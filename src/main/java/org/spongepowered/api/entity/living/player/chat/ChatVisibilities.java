@@ -28,7 +28,7 @@ import net.kyori.adventure.audience.MessageType;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -67,6 +67,6 @@ public final class ChatVisibilities {
     }
 
     private static DefaultedRegistryReference<ChatVisibility> key(final ResourceKey location) {
-        return RegistryKey.of(Registries.CHAT_VISIBILITY, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.CHAT_VISIBILITY, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

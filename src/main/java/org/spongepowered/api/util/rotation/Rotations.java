@@ -27,7 +27,7 @@ package org.spongepowered.api.util.rotation;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -55,6 +55,6 @@ public final class Rotations {
     }
 
     private static DefaultedRegistryReference<Rotation> key(final ResourceKey location) {
-        return RegistryKey.of(Registries.ROTATION, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.ROTATION, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

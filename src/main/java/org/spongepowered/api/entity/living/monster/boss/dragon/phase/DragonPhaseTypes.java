@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.living.monster.boss.dragon.EnderDragon;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.explosive.fireball.DragonFireball;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -119,6 +119,6 @@ public final class DragonPhaseTypes {
     }
 
     private static DefaultedRegistryReference<DragonPhaseType> key(final ResourceKey location) {
-        return RegistryKey.of(Registries.DRAGON_PHASE_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.DRAGON_PHASE_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

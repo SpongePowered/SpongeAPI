@@ -213,7 +213,7 @@ import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.projectile.source.ProjectileSource;
 import org.spongepowered.api.raid.RaidWave;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -2652,7 +2652,7 @@ public final class Keys {
     // @formatter:on
 
     private static <T, V extends Value<T>> DefaultedRegistryReference<Key<V>> key(final ResourceKey location) {
-        return RegistryKey.of(Registries.KEY, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.KEY, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 
     private Keys() {

@@ -27,7 +27,7 @@ package org.spongepowered.api.advancement.criteria.trigger;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -125,6 +125,6 @@ public final class Triggers {
     }
 
     private static DefaultedRegistryReference<Trigger<?>> key(final ResourceKey location) {
-        return RegistryKey.of(Registries.TRIGGER, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.TRIGGER, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

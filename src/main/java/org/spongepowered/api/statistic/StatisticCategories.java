@@ -31,7 +31,7 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 
 public final class StatisticCategories {
@@ -62,10 +62,10 @@ public final class StatisticCategories {
     }
 
     private static DefaultedRegistryReference<StatisticCategory> key(final ResourceKey location) {
-        return RegistryKey.of(Registries.STATISTIC_CATEGORY, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.STATISTIC_CATEGORY, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 
     private static <T extends CatalogType> DefaultedRegistryReference<StatisticCategory.ForCatalog<T>> catalogKey(final ResourceKey location) {
-        return RegistryKey.of(Registries.STATISTIC_CATEGORY, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.STATISTIC_CATEGORY, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

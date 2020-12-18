@@ -36,7 +36,7 @@ import org.spongepowered.api.command.parameter.CommandContext;
 import org.spongepowered.api.command.parameter.Parameter;
 import org.spongepowered.api.command.parameter.managed.ValueParameter;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.RegistryKey;
@@ -645,7 +645,7 @@ public final class VariableValueParameters {
          * {@link CommandContext} to determine the appropriate
          * {@link RegistryHolder} to retrieve the {@link Registry} from.
          *
-         * <p>When using a {@link Registries standard registry}, it is
+         * <p>When using a {@link RegistryTypes standard registry}, it is
          * recommended that consumers use
          * {@link #createRegistryEntryBuilder(Function, RegistryKey)}
          * instead, providing the appropriate {@link RegistryHolder} instead.</p>

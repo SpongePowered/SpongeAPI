@@ -29,7 +29,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.hanging.ItemFrame;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -71,6 +71,6 @@ public final class Orientations {
     }
 
     private static DefaultedRegistryReference<Orientation> key(final ResourceKey location) {
-        return RegistryKey.of(Registries.ORIENTATION, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.ORIENTATION, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

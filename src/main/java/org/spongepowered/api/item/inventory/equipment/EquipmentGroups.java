@@ -27,7 +27,7 @@ package org.spongepowered.api.item.inventory.equipment;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -52,6 +52,6 @@ public final class EquipmentGroups {
     }
 
     private static DefaultedRegistryReference<EquipmentGroup> key(final ResourceKey location) {
-        return RegistryKey.of(Registries.EQUIPMENT_GROUP, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.EQUIPMENT_GROUP, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

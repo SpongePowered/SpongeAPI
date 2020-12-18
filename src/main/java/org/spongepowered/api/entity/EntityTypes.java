@@ -132,7 +132,7 @@ import org.spongepowered.api.entity.vehicle.minecart.carrier.ChestMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.carrier.HopperMinecart;
 import org.spongepowered.api.entity.weather.LightningBolt;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -374,6 +374,6 @@ public final class EntityTypes {
     }
 
     private static <T extends Entity> DefaultedRegistryReference<EntityType<T>> key(final ResourceKey location) {
-        return RegistryKey.of(Registries.ENTITY_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.ENTITY_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

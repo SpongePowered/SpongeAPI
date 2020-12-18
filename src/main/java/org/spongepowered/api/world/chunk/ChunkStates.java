@@ -29,7 +29,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -125,6 +125,6 @@ public final class ChunkStates {
     }
 
     private static DefaultedRegistryReference<ChunkState> key(final ResourceKey location) {
-        return RegistryKey.of(Registries.CHUNK_STATE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.CHUNK_STATE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

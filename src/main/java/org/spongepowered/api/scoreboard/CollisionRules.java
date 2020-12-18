@@ -27,7 +27,7 @@ package org.spongepowered.api.scoreboard;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -97,6 +97,6 @@ public final class CollisionRules {
     }
 
     private static DefaultedRegistryReference<CollisionRule> key(final ResourceKey location) {
-        return RegistryKey.of(Registries.COLLISION_RULE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.COLLISION_RULE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

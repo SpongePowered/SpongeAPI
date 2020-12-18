@@ -36,7 +36,7 @@ import org.spongepowered.api.entity.living.animal.Animal;
 import org.spongepowered.api.entity.living.trader.Trader;
 import org.spongepowered.api.entity.vehicle.minecart.SpawnerMinecart;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -165,6 +165,6 @@ public final class SpawnTypes {
     }
 
     private static DefaultedRegistryReference<SpawnType> key(final ResourceKey location) {
-        return RegistryKey.of(Registries.SPAWN_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.SPAWN_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

@@ -26,14 +26,13 @@ package org.spongepowered.api.entity.ai.goal;
 
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Creature;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.animal.horse.Horse;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -86,6 +85,6 @@ public final class GoalTypes {
     }
 
     private static DefaultedRegistryReference<GoalType> key(final ResourceKey location) {
-        return RegistryKey.of(Registries.GOAL_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.GOAL_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

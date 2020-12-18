@@ -27,7 +27,7 @@ package org.spongepowered.api.scheduler;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -62,6 +62,6 @@ public final class TaskPriorities {
     }
 
     private static DefaultedRegistryReference<TaskPriority> key(final ResourceKey location) {
-        return RegistryKey.of(Registries.TASK_PRIORITY, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.TASK_PRIORITY, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

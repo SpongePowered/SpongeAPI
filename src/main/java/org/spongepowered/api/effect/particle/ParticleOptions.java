@@ -30,7 +30,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registries;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -184,6 +184,6 @@ public final class ParticleOptions {
     }
 
     private static <T> DefaultedRegistryReference<ParticleOption<T>> key(final ResourceKey location) {
-        return RegistryKey.of(Registries.PARTICLE_OPTION, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.PARTICLE_OPTION, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }
