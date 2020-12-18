@@ -39,7 +39,9 @@ public interface Builder<T, B extends Builder<T, B>> {
      *
      * @return This builder, for chaining
      */
-    B reset();
+    default B reset() {
+        return (B) this;
+    }
 
     /**
      * Builds the {@link T value}.
