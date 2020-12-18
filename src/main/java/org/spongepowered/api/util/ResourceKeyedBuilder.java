@@ -24,24 +24,10 @@
  */
 package org.spongepowered.api.util;
 
-import net.kyori.adventure.util.Buildable;
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.ResourceKeyed;
 
-/**
- * A common interface for all builder pattern types.
- *
- * @param <T> The type built by the builder
- * @param <B> The child builder type
- */
-public interface Builder<T, B extends Builder<T, B>> extends Buildable.Builder<T> {
+public interface ResourceKeyedBuilder<T extends ResourceKeyed, B extends ResourceKeyedBuilder<T, B>> extends Builder<T, B> {
 
-    /**
-     * Resets this builder to a "default" state such that there is no
-     * remaining data to set. This is to be the presumed "default"
-     * state.
-     *
-     * @return This builder, for chaining
-     */
-    default B reset() {
-        return (B) this;
-    }
+    B key(ResourceKey key);
 }

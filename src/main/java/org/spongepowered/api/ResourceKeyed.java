@@ -22,26 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util;
+package org.spongepowered.api;
 
-import net.kyori.adventure.util.Buildable;
+import net.kyori.adventure.key.Key;
+import net.kyori.adventure.key.Keyed;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
-/**
- * A common interface for all builder pattern types.
- *
- * @param <T> The type built by the builder
- * @param <B> The child builder type
- */
-public interface Builder<T, B extends Builder<T, B>> extends Buildable.Builder<T> {
+public interface ResourceKeyed extends Keyed {
 
-    /**
-     * Resets this builder to a "default" state such that there is no
-     * remaining data to set. This is to be the presumed "default"
-     * state.
-     *
-     * @return This builder, for chaining
-     */
-    default B reset() {
-        return (B) this;
+    ResourceKey getKey();
+
+    @Override
+    @NonNull
+    default Key key() {
+        return this.getKey();
     }
 }

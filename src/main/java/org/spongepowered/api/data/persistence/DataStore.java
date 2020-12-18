@@ -26,11 +26,13 @@ package org.spongepowered.api.data.persistence;
 
 import io.leangen.geantyref.TypeToken;
 import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.util.ResourceKeyedBuilder;
 
 import java.lang.reflect.Type;
 import java.util.Collection;
@@ -39,14 +41,7 @@ import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
-public interface DataStore {
-
-    /**
-     * Gets the {@link ResourceKey key}.
-     * 
-     * @return The key
-     */
-    ResourceKey getKey();
+public interface DataStore extends ResourceKeyed {
     
     /**
      * Gets the supported {@link DataHolder} types.
@@ -171,17 +166,7 @@ public interface DataStore {
         return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
-    interface Builder extends org.spongepowered.api.util.Builder<DataStore, Builder> {
-
-        /**
-         * Starts building a DataStore for plugin data.
-         * <p>Serializers and Deserializers will operate on their own {@link DataView}.</p>
-         *
-         * @param key the key under which all data from this DataStore is registered
-         *
-         * @return this builder for chaining
-         */
-        HolderStep key(ResourceKey key);
+    interface Builder<B extends Builder<B>> extends ResourceKeyedBuilder<DataStore, B> {
 
         /**
          * Starts building a DataStore for raw data.
@@ -191,9 +176,9 @@ public interface DataStore {
          *
          * @return this builder for chaining
          */
-        HolderStep vanillaData();
+        B vanillaData();
 
-        interface HolderStep extends org.spongepowered.api.util.Builder<DataStore, Builder> {
+        interface HolderStep extends Builder<HolderStep> {
             /**
              * Adds one or more allowed dataHolder types
              *
@@ -217,7 +202,7 @@ public interface DataStore {
             SerializersStep holder(Class<? extends DataHolder>... types);
         }
 
-        interface SerializersStep extends HolderStep, org.spongepowered.api.util.Builder<DataStore, Builder> {
+        interface SerializersStep extends HolderStep {
             /**
              * Adds the default implemented serializers for the given key.
              * <p>
@@ -260,7 +245,7 @@ public interface DataStore {
             <T, V extends Value<T>> Builder.EndStep key(Key<V> key, BiConsumer<DataView, T> serializer, Function<DataView, Optional<T>> deserializer);
         }
 
-        interface EndStep extends SerializersStep, org.spongepowered.api.util.Builder<DataStore, Builder> {
+        interface EndStep extends SerializersStep {
             /**
              * Builds a dataStore for given dataHolder type.
              *

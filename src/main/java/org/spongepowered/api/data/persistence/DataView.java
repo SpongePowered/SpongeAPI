@@ -547,11 +547,7 @@ public interface DataView {
     <T> Optional<List<T>> getObjectList(DataQuery path, Class<T> objectClass);
 
     /**
-     * Gets the {@link CatalogType} object by path, if available.
-     *
-     * <p>If a {@link CatalogType} exists, but is not named properly, not
-     * existing in a registry, or simply an invalid value will return
-     * an empty value.</p>
+     * Gets the {@link T value} by path, if available.
      *
      * @param path The path of the value to get
      * @param registryType The class of the dummy type
@@ -559,14 +555,10 @@ public interface DataView {
      * @param <T> The type of dummy
      * @return The dummy type, if available
      */
-    <T> Optional<T> getRegistryType(DataQuery path, RegistryType<T> registryType, RegistryHolder holder);
+    <T> Optional<T> getRegistryValue(DataQuery path, RegistryType<T> registryType, RegistryHolder holder);
 
     /**
-     * Gets the {@link List} of {@link CatalogType}s by path, if available.
-     *
-     * <p>If a {@link List} exists, but contents of the list are not
-     * considered {@link CatalogType}s or are not of the proper type
-     * of {@link CatalogType}, an absent is returned.</p>
+     * Gets the {@link List} of {@link T values} by path, if available.
      *
      * @param path The path of the list value to get
      * @param registryType The type of registry to search
@@ -574,7 +566,7 @@ public interface DataView {
      * @param <T> The type of dummy type
      * @return The list of dummy types, if available
      */
-    <T> Optional<List<T>> getRegistryTypeList(DataQuery path, RegistryType<T> registryType, RegistryHolder holder);
+    <T> Optional<List<T>> getRegistryValueList(DataQuery path, RegistryType<T> registryType, RegistryHolder holder);
 
     /**
      * Copies this {@link DataView} and all of it's contents into a new
