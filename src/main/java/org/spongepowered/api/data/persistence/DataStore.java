@@ -32,7 +32,6 @@ import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.util.ResourceKeyedBuilder;
 
 import java.lang.reflect.Type;
 import java.util.Collection;
@@ -134,7 +133,7 @@ public interface DataStore extends ResourceKeyed {
     @SuppressWarnings("unchecked")
     static <T, V extends Value<T>> DataStore of(final ResourceKey key, final Key<V> dataKey, final DataQuery dataQuery,
             final TypeToken<? extends DataHolder> typeToken, final TypeToken<? extends DataHolder>... typeTokens) {
-        return DataStore.builder().key(key).holder(typeToken).holder(typeTokens).key(dataKey, dataQuery).build();
+        return DataStore.builder().pluginData(key).holder(typeToken).holder(typeTokens).key(dataKey, dataQuery).build();
     }
 
     /**
@@ -154,7 +153,7 @@ public interface DataStore extends ResourceKeyed {
     @SuppressWarnings("unchecked")
     static <T, V extends Value<T>> DataStore of(final ResourceKey key, final Key<V> dataKey, final DataQuery dataQuery,
             final Class<?extends DataHolder> type, final Class<? extends DataHolder>... types) {
-        return DataStore.builder().key(key).holder(type).holder(types).key(dataKey, dataQuery).build();
+        return DataStore.builder().pluginData(key).holder(type).holder(types).key(dataKey, dataQuery).build();
     }
 
     /**
@@ -166,13 +165,23 @@ public interface DataStore extends ResourceKeyed {
         return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
-    interface Builder<B extends Builder<B>> extends ResourceKeyedBuilder<DataStore, B> {
+    interface Builder<B extends Builder<B>> extends org.spongepowered.api.util.Builder<DataStore, B> {
+
+        /**
+         * Starts building a DataStore for plugin data.
+         * <p>Serializers and Deserializers will operate on their own {@link DataView}.</p>
+         *
+         * @param key the key under which all data from this DataStore is registered
+         *
+         * @return this builder for chaining
+         */
+        HolderStep pluginData(ResourceKey key);
 
         /**
          * Starts building a DataStore for raw data.
          * <p>Serializers and deserializers will operate on the root {@link DataView}
          * which includes all data from vanilla minecraft and more</p>
-         * <p>Consider using {@link #key(ResourceKey)} instead.</p>
+         * <p>Consider using {@link #pluginData(ResourceKey)} instead.</p>
          *
          * @return this builder for chaining
          */
