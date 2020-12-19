@@ -31,7 +31,6 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.KeyValueMatcher;
 import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.fluid.FluidType;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.List;
@@ -110,7 +109,8 @@ public interface StateMatcher<S extends State<S>> extends Predicate<S> {
     /**
      * A builder for {@link StateMatcher}s.
      */
-    interface Builder<S extends State<S>, T extends StateContainer<S>> extends CopyableBuilder<StateMatcher<S>, Builder<S, T>> {
+    interface Builder<S extends State<S>, T extends StateContainer<S>> extends org.spongepowered.api.util.Builder<StateMatcher<S>, Builder<S, T>>,
+            CopyableBuilder<StateMatcher<S>, Builder<S, T>> {
 
         /**
          * Sets the root {@link StateContainer} for the {@link StateMatcher}.

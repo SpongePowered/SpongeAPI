@@ -30,12 +30,11 @@ import org.spongepowered.api.advancement.criteria.trigger.Trigger;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.entity.BlockEntityType;
 import org.spongepowered.api.block.transaction.Operation;
+import org.spongepowered.api.command.parameter.managed.ValueParameter;
 import org.spongepowered.api.command.parameter.managed.clientcompletion.ClientCompletionType;
-import org.spongepowered.api.command.parameter.managed.standard.CatalogedValueParameter;
 import org.spongepowered.api.command.registrar.tree.ClientCompletionKey;
 import org.spongepowered.api.command.selector.SelectorSortAlgorithm;
 import org.spongepowered.api.command.selector.SelectorType;
-import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.persistence.DataFormat;
 import org.spongepowered.api.data.persistence.DataTranslator;
 import org.spongepowered.api.data.type.ArmorMaterial;
@@ -55,6 +54,7 @@ import org.spongepowered.api.data.type.HandType;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.InstrumentType;
+import org.spongepowered.api.data.type.ItemTier;
 import org.spongepowered.api.data.type.LlamaType;
 import org.spongepowered.api.data.type.MatterType;
 import org.spongepowered.api.data.type.MooshroomType;
@@ -74,7 +74,6 @@ import org.spongepowered.api.data.type.SlabPortion;
 import org.spongepowered.api.data.type.SpellType;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
-import org.spongepowered.api.data.type.ItemTier;
 import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.type.WireAttachmentType;
@@ -211,7 +210,7 @@ public final class RegistryTypes {
 
     public static final RegistryType<CatType> CAT_TYPE = RegistryTypes.spongeKey("cat_type");
 
-    public static final RegistryType<CatalogedValueParameter<?>> CATALOGED_VALUE_PARAMETER = RegistryTypes.spongeKey("cataloged_value_parameter");
+    public static final RegistryType<ValueParameter<?>> REGISTRY_KEYED_VALUE_PARAMETER = RegistryTypes.spongeKey("value_parameter");
 
     public static final RegistryType<ChatVisibility> CHAT_VISIBILITY = RegistryTypes.spongeKey("chat_visibility");
 
@@ -290,8 +289,6 @@ public final class RegistryTypes {
     public static final RegistryType<IntegerStateProperty> INTEGER_STATE_PROPERTY = RegistryTypes.spongeKey("integer_state_property");
 
     public static final RegistryType<ItemTier> ITEM_TIER = RegistryTypes.spongeKey("item_tier");
-
-    public static final RegistryType<Key<?>> KEY = RegistryTypes.spongeKey("key");
 
     public static final RegistryType<LightType> LIGHT_TYPE = RegistryTypes.spongeKey("light_type");
 

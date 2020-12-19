@@ -196,7 +196,7 @@ public abstract class AbstractDamageEntityEvent extends AbstractModifierEvent<Da
 
     @Override
     public boolean willCauseDeath() {
-        Optional<Double> health = this.getEntity().get(Keys.HEALTH.get());
+        Optional<Double> health = this.getEntity().get(Keys.HEALTH);
         return health.isPresent() && health.get() - this.getFinalDamage() <= 0;
     }
 

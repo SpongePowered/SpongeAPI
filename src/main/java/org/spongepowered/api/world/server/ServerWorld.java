@@ -34,6 +34,7 @@ import org.spongepowered.api.world.ChunkRegenerateFlag;
 import org.spongepowered.api.world.ChunkRegenerateFlags;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.ServerLocationCreator;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.difficulty.Difficulty;
@@ -51,7 +52,8 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identifiable, InteractableVolume, MutableWeatherUniverse {
+public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identifiable, InteractableVolume, MutableWeatherUniverse,
+        ServerLocationCreator {
 
     @Override
     Server getEngine();

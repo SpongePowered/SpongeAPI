@@ -25,7 +25,6 @@
 package org.spongepowered.api.placeholder;
 
 import net.kyori.adventure.text.Component;
-import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -63,14 +62,6 @@ public interface PlaceholderParser {
      * A builder that creates {@link PlaceholderParser}
      */
     interface Builder extends org.spongepowered.api.util.Builder<PlaceholderParser, Builder> {
-
-        /**
-         * The {@link ResourceKey} that represents this parser.
-         *
-         * @param resourceKey The {@link ResourceKey}
-         * @return This builder, for chaining
-         */
-        Builder key(ResourceKey resourceKey);
 
         /**
          * The function that converts a {@link PlaceholderContext} to {@link Component}

@@ -41,7 +41,7 @@ import org.spongepowered.api.command.parameter.managed.ValueCompleter;
 import org.spongepowered.api.command.parameter.managed.ValueParameter;
 import org.spongepowered.api.command.parameter.managed.ValueParser;
 import org.spongepowered.api.command.parameter.managed.ValueUsage;
-import org.spongepowered.api.command.parameter.managed.standard.CatalogedValueParameters;
+import org.spongepowered.api.command.parameter.managed.standard.ResourceKeyedValueParameters;
 import org.spongepowered.api.command.parameter.managed.standard.VariableValueParameters;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.Entity;
@@ -58,6 +58,7 @@ import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.util.Builder;
 import org.spongepowered.api.util.Color;
+import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorldProperties;
 import org.spongepowered.api.world.storage.WorldProperties;
@@ -318,77 +319,77 @@ public interface Parameter {
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#BIG_DECIMAL}.
+     * {@link ResourceKeyedValueParameters#BIG_DECIMAL}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<BigDecimal> bigDecimal() {
-        return Parameter.builder(BigDecimal.class, CatalogedValueParameters.BIG_DECIMAL);
+        return Parameter.builder(BigDecimal.class, ResourceKeyedValueParameters.BIG_DECIMAL);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#BIG_INTEGER}.
+     * {@link ResourceKeyedValueParameters#BIG_INTEGER}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<BigInteger> bigInteger() {
-        return Parameter.builder(BigInteger.class, CatalogedValueParameters.BIG_INTEGER);
+        return Parameter.builder(BigInteger.class, ResourceKeyedValueParameters.BIG_INTEGER);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#BLOCK_STATE}.
+     * {@link ResourceKeyedValueParameters#BLOCK_STATE}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<BlockState> blockState() {
-        return Parameter.builder(BlockState.class, CatalogedValueParameters.BLOCK_STATE);
+        return Parameter.builder(BlockState.class, ResourceKeyedValueParameters.BLOCK_STATE);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#BOOLEAN}.
+     * {@link ResourceKeyedValueParameters#BOOLEAN}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<Boolean> bool() {
-        return Parameter.builder(Boolean.class, CatalogedValueParameters.BOOLEAN);
+        return Parameter.builder(Boolean.class, ResourceKeyedValueParameters.BOOLEAN);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#COLOR}.
+     * {@link ResourceKeyedValueParameters#COLOR}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<Color> color() {
-        return Parameter.builder(Color.class, CatalogedValueParameters.COLOR);
+        return Parameter.builder(Color.class, ResourceKeyedValueParameters.COLOR);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#DATA_CONTAINER}.
+     * {@link ResourceKeyedValueParameters#DATA_CONTAINER}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<DataContainer> dataContainer() {
-        return Parameter.builder(DataContainer.class, CatalogedValueParameters.DATA_CONTAINER);
+        return Parameter.builder(DataContainer.class, ResourceKeyedValueParameters.DATA_CONTAINER);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#DATE_TIME}.
+     * {@link ResourceKeyedValueParameters#DATE_TIME}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<LocalDateTime> dateTime() {
-        return Parameter.builder(LocalDateTime.class, CatalogedValueParameters.DATE_TIME);
+        return Parameter.builder(LocalDateTime.class, ResourceKeyedValueParameters.DATE_TIME);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#DATE_TIME}, returning the current
+     * {@link ResourceKeyedValueParameters#DATE_TIME}, returning the current
      * {@link LocalDateTime}.
      *
      * @return A {@link Parameter.Value.Builder}
@@ -399,37 +400,37 @@ public interface Parameter {
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#DURATION}.
+     * {@link ResourceKeyedValueParameters#DURATION}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<Duration> duration() {
-        return Parameter.builder(Duration.class, CatalogedValueParameters.DURATION);
+        return Parameter.builder(Duration.class, ResourceKeyedValueParameters.DURATION);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#DOUBLE}.
+     * {@link ResourceKeyedValueParameters#DOUBLE}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<Double> doubleNumber() {
-        return Parameter.builder(Double.class, CatalogedValueParameters.DOUBLE);
+        return Parameter.builder(Double.class, ResourceKeyedValueParameters.DOUBLE);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#ENTITY}.
+     * {@link ResourceKeyedValueParameters#ENTITY}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<Entity> entity() {
-        return Parameter.builder(Entity.class, CatalogedValueParameters.ENTITY);
+        return Parameter.builder(Entity.class, ResourceKeyedValueParameters.ENTITY);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#ENTITY}, using the {@link Cause#root()}
+     * {@link ResourceKeyedValueParameters#ENTITY}, using the {@link Cause#root()}
      * as the default if they are an {@link Entity}
      *
      * @return A {@link Parameter.Value.Builder}
@@ -440,57 +441,57 @@ public interface Parameter {
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#ENTITY}
+     * {@link ResourceKeyedValueParameters#ENTITY}
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<Entity> entityOrTarget() {
-        return Parameter.entity().parser(CatalogedValueParameters.TARGET_ENTITY);
+        return Parameter.entity().parser(ResourceKeyedValueParameters.TARGET_ENTITY);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#TEXT_FORMATTING_CODE}.
+     * {@link ResourceKeyedValueParameters#TEXT_FORMATTING_CODE}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<Component> formattingCodeText() {
-        return Parameter.builder(Component.class, CatalogedValueParameters.TEXT_FORMATTING_CODE);
+        return Parameter.builder(Component.class, ResourceKeyedValueParameters.TEXT_FORMATTING_CODE);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#TEXT_FORMATTING_CODE_ALL}.
+     * {@link ResourceKeyedValueParameters#TEXT_FORMATTING_CODE_ALL}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<Component> formattingCodeTextOfRemainingElements() {
-        return Parameter.builder(Component.class, CatalogedValueParameters.TEXT_FORMATTING_CODE_ALL);
+        return Parameter.builder(Component.class, ResourceKeyedValueParameters.TEXT_FORMATTING_CODE_ALL);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#INTEGER}.
+     * {@link ResourceKeyedValueParameters#INTEGER}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<Integer> integerNumber() {
-        return Parameter.builder(Integer.class, CatalogedValueParameters.INTEGER);
+        return Parameter.builder(Integer.class, ResourceKeyedValueParameters.INTEGER);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#IP}.
+     * {@link ResourceKeyedValueParameters#IP}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<InetAddress> ip() {
-        return Parameter.builder(InetAddress.class, CatalogedValueParameters.IP);
+        return Parameter.builder(InetAddress.class, ResourceKeyedValueParameters.IP);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#IP}, defaulting to the source's
+     * {@link ResourceKeyedValueParameters#IP}, defaulting to the source's
      * {@link InetAddress}
      *
      * @return A {@link Parameter.Value.Builder}
@@ -502,37 +503,37 @@ public interface Parameter {
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#ITEM_STACK_SNAPSHOT}.
+     * {@link ResourceKeyedValueParameters#ITEM_STACK_SNAPSHOT}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<ItemStackSnapshot> itemStackSnapshot() {
-        return Parameter.builder(ItemStackSnapshot.class, CatalogedValueParameters.ITEM_STACK_SNAPSHOT);
+        return Parameter.builder(ItemStackSnapshot.class, ResourceKeyedValueParameters.ITEM_STACK_SNAPSHOT);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#TEXT_JSON}.
+     * {@link ResourceKeyedValueParameters#TEXT_JSON}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<Component> jsonText() {
-        return Parameter.builder(Component.class, CatalogedValueParameters.TEXT_JSON);
+        return Parameter.builder(Component.class, ResourceKeyedValueParameters.TEXT_JSON);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#TEXT_JSON_ALL}.
+     * {@link ResourceKeyedValueParameters#TEXT_JSON_ALL}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<Component> jsonTextOfRemainingElements() {
-        return Parameter.builder(Component.class, CatalogedValueParameters.TEXT_JSON_ALL);
+        return Parameter.builder(Component.class, ResourceKeyedValueParameters.TEXT_JSON_ALL);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#LOCATION_ONLINE_ONLY}.
+     * {@link ResourceKeyedValueParameters#LOCATION_ONLINE_ONLY}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
@@ -542,42 +543,42 @@ public interface Parameter {
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#LOCATION_ONLINE_ONLY} or
-     * {@link CatalogedValueParameters#LOCATION_ALL}.
+     * {@link ResourceKeyedValueParameters#LOCATION_ONLINE_ONLY} or
+     * {@link ResourceKeyedValueParameters#LOCATION_ALL}.
      *
      * @param onlineOnly If the location must point to a currently loaded world.
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<ServerLocation> location(final boolean onlineOnly) {
         if (onlineOnly) {
-            return Parameter.builder(ServerLocation.class, CatalogedValueParameters.LOCATION_ONLINE_ONLY);
+            return Parameter.builder(ServerLocation.class, ResourceKeyedValueParameters.LOCATION_ONLINE_ONLY);
         }
-        return Parameter.builder(ServerLocation.class, CatalogedValueParameters.LOCATION_ALL);
+        return Parameter.builder(ServerLocation.class, ResourceKeyedValueParameters.LOCATION_ALL);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#LONG}.
+     * {@link ResourceKeyedValueParameters#LONG}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<Long> longNumber() {
-        return Parameter.builder(Long.class, CatalogedValueParameters.LONG);
+        return Parameter.builder(Long.class, ResourceKeyedValueParameters.LONG);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#PLAYER}.
+     * {@link ResourceKeyedValueParameters#PLAYER}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<ServerPlayer> player() {
-        return Parameter.builder(ServerPlayer.class, CatalogedValueParameters.PLAYER);
+        return Parameter.builder(ServerPlayer.class, ResourceKeyedValueParameters.PLAYER);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#PLAYER}, defaulting to the
+     * {@link ResourceKeyedValueParameters#PLAYER}, defaulting to the
      * {@link Cause#root()} if it is a {@link Player}.
      *
      * @return A {@link Parameter.Value.Builder}
@@ -588,22 +589,22 @@ public interface Parameter {
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#PLAYER}, else the target
+     * {@link ResourceKeyedValueParameters#PLAYER}, else the target
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<ServerPlayer> playerOrTarget() {
-        return Parameter.player().parser(CatalogedValueParameters.TARGET_PLAYER);
+        return Parameter.player().parser(ResourceKeyedValueParameters.TARGET_PLAYER);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#PLUGIN}.
+     * {@link ResourceKeyedValueParameters#PLUGIN}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<PluginContainer> plugin() {
-        return Parameter.builder(PluginContainer.class, CatalogedValueParameters.PLUGIN);
+        return Parameter.builder(PluginContainer.class, ResourceKeyedValueParameters.PLUGIN);
     }
 
     /**
@@ -634,57 +635,57 @@ public interface Parameter {
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#REMAINING_JOINED_STRINGS}.
+     * {@link ResourceKeyedValueParameters#REMAINING_JOINED_STRINGS}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<String> remainingJoinedStrings() {
-        return Parameter.builder(String.class, CatalogedValueParameters.REMAINING_JOINED_STRINGS);
+        return Parameter.builder(String.class, ResourceKeyedValueParameters.REMAINING_JOINED_STRINGS);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#RESOURCE_KEY}.
+     * {@link ResourceKeyedValueParameters#RESOURCE_KEY}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<ResourceKey> resourceKey() {
-        return Parameter.builder(ResourceKey.class, CatalogedValueParameters.RESOURCE_KEY);
+        return Parameter.builder(ResourceKey.class, ResourceKeyedValueParameters.RESOURCE_KEY);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#STRING}.
+     * {@link ResourceKeyedValueParameters#STRING}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<String> string() {
-        return Parameter.builder(String.class, CatalogedValueParameters.STRING);
+        return Parameter.builder(String.class, ResourceKeyedValueParameters.STRING);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#URL}.
+     * {@link ResourceKeyedValueParameters#URL}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<URL> url() {
-        return Parameter.builder(URL.class, CatalogedValueParameters.URL);
+        return Parameter.builder(URL.class, ResourceKeyedValueParameters.URL);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#USER}.
+     * {@link ResourceKeyedValueParameters#USER}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<User> user() {
-        return Parameter.builder(User.class, CatalogedValueParameters.USER);
+        return Parameter.builder(User.class, ResourceKeyedValueParameters.USER);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#USER}, reutrning the source
+     * {@link ResourceKeyedValueParameters#USER}, reutrning the source
      * if necessary.
      *
      * @return A {@link Parameter.Value.Builder}
@@ -695,27 +696,27 @@ public interface Parameter {
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#UUID}.
+     * {@link ResourceKeyedValueParameters#UUID}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<UUID> uuid() {
-        return Parameter.builder(UUID.class, CatalogedValueParameters.UUID);
+        return Parameter.builder(UUID.class, ResourceKeyedValueParameters.UUID);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#VECTOR3D}.
+     * {@link ResourceKeyedValueParameters#VECTOR3D}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<Vector3d> vector3d() {
-        return Parameter.builder(Vector3d.class, CatalogedValueParameters.VECTOR3D);
+        return Parameter.builder(Vector3d.class, ResourceKeyedValueParameters.VECTOR3D);
     }
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#WORLD_PROPERTIES_ONLINE_ONLY}.
+     * {@link ResourceKeyedValueParameters#WORLD_PROPERTIES_ONLINE_ONLY}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
@@ -725,8 +726,8 @@ public interface Parameter {
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link CatalogedValueParameters#WORLD_PROPERTIES_ALL} or
-     * {@link CatalogedValueParameters#WORLD_PROPERTIES_ONLINE_ONLY}.
+     * {@link ResourceKeyedValueParameters#WORLD_PROPERTIES_ALL} or
+     * {@link ResourceKeyedValueParameters#WORLD_PROPERTIES_ONLINE_ONLY}.
      *
      * @param onlineOnly If the parameter should only select
      *      {@link WorldProperties} that represent online worlds.
@@ -734,9 +735,9 @@ public interface Parameter {
      */
     static Parameter.Value.Builder<ServerWorldProperties> worldProperties(final boolean onlineOnly) {
         if (onlineOnly) {
-            return Parameter.builder(ServerWorldProperties.class, CatalogedValueParameters.WORLD_PROPERTIES_ONLINE_ONLY);
+            return Parameter.builder(ServerWorldProperties.class, ResourceKeyedValueParameters.WORLD_PROPERTIES_ONLINE_ONLY);
         }
-        return Parameter.builder(ServerWorldProperties.class, CatalogedValueParameters.WORLD_PROPERTIES_ALL);
+        return Parameter.builder(ServerWorldProperties.class, ResourceKeyedValueParameters.WORLD_PROPERTIES_ALL);
     }
 
     /**
@@ -995,7 +996,7 @@ public interface Parameter {
         /**
          * A "builder" that allows for keys to be built.
          */
-        interface Builder extends org.spongepowered.api.util.Builder<Key<?>, Builder> {
+        interface Builder extends ResettableBuilder<Key<?>, Builder> {
 
             /**
              * Creates a key with the provided key and value class it
@@ -1243,7 +1244,7 @@ public interface Parameter {
              *     1 2 3 4
              * </pre>
              *
-             * <p>and you use {@link CatalogedValueParameters#INTEGER} without
+             * <p>and you use {@link ResourceKeyedValueParameters#INTEGER} without
              * setting this method, this parameter will parse the first element,
              * 1, and the remaining elements will be left for the next parameter
              * in the chain. If you call this method, the resulting

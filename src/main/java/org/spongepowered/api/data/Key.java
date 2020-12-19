@@ -89,6 +89,10 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
         return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
+    static <E, V extends Value<E>> Key<V> of(final PluginContainer plugin, final String value, final TypeToken<V> type) {
+        return Key.of(ResourceKey.of(Objects.requireNonNull(plugin, "plugin"), value), type);
+    }
+
     static <E, V extends Value<E>> Key<V> of(final ResourceKey resourceKey, final TypeToken<V> type) {
         return Key.builder().key(Objects.requireNonNull(resourceKey, "resourceKey")).type(Objects.requireNonNull(type, "type"))
                 .build();

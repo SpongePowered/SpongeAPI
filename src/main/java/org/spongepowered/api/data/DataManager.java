@@ -30,9 +30,7 @@ import org.spongepowered.api.data.persistence.DataContentUpdater;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataTranslator;
 import org.spongepowered.api.data.persistence.DataView;
-import org.spongepowered.plugin.PluginContainer;
 
-import java.util.Collection;
 import java.util.Optional;
 
 /**
@@ -158,16 +156,6 @@ public interface DataManager {
      * @return The data translator, if available
      */
     <T> Optional<DataTranslator<T>> getTranslator(Class<T> objectClass);
-
-    /**
-     * Gets all {@link Class}es of all {@link DataRegistration}s registered for
-     * the provided {@link PluginContainer}. The provided {@link Collection} is
-     * considered immutable and can not be modified.
-     *
-     * @param container The plugin container for registered classes
-     * @return The collection of all registered data manipulator classes
-     */
-    Collection<DataRegistration> getAllRegistrationsFor(PluginContainer container);
 
     /**
      * Creates a new {@link DataContainer} with a default

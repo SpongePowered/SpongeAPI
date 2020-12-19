@@ -124,13 +124,6 @@ public interface DataRegistration {
     Iterable<Key<?>> getKeys();
 
     /**
-     * Gets the owning {@link PluginContainer plugin}.
-     *
-     * @return The owning plugin container for this registration
-     */
-    PluginContainer getPlugin();
-
-    /**
      * Creates a DataRegistration for a single key with a DataStore for given data-holders.
      *
      * @param key the data key

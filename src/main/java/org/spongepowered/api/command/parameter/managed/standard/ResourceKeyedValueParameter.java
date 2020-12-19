@@ -24,15 +24,16 @@
  */
 package org.spongepowered.api.command.parameter.managed.standard;
 
+import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.command.parameter.managed.ValueParameter;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * A {@link ValueParameter} that can be cataloged.
+ * A {@link ValueParameter} that can be identified with a {@link ResourceKeyed key}.
  *
  * @param <T> The type of value that the parameter will return.
  */
-@CatalogedBy(CatalogedValueParameters.class)
-public interface CatalogedValueParameter<T> extends ValueParameter<T> {
+@CatalogedBy(ResourceKeyedValueParameters.class)
+public interface ResourceKeyedValueParameter<T> extends ValueParameter<T>, ResourceKeyed {
 
 }

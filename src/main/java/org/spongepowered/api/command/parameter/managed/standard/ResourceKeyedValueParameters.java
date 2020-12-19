@@ -63,11 +63,11 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Class containing common {@link CatalogedValueParameter parameters}.
+ * Class containing common {@link ResourceKeyedValueParameter parameters}.
  */
 @SuppressWarnings("unused")
 @RegistryScopes(scopes = RegistryScope.GAME)
-public final class CatalogedValueParameters {
+public final class ResourceKeyedValueParameters {
 
     // @formatter:off
 
@@ -78,28 +78,28 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link BigDecimal}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<BigDecimal>> BIG_DECIMAL = CatalogedValueParameters.key(ResourceKey.sponge("big_decimal"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<BigDecimal>> BIG_DECIMAL = ResourceKeyedValueParameters.key(ResourceKey.sponge("big_decimal"));
 
     /**
      * Require an argument to be a {@link BigInteger}.
      *
      * <p>Returns a {@link BigInteger}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<BigInteger>> BIG_INTEGER = CatalogedValueParameters.key(ResourceKey.sponge("big_integer"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<BigInteger>> BIG_INTEGER = ResourceKeyedValueParameters.key(ResourceKey.sponge("big_integer"));
 
     /**
      * Requires an argument to represent a {@link BlockState}
      *
      * <p>Returns a {@link BlockState}</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<BlockState>> BLOCK_STATE = CatalogedValueParameters.key(ResourceKey.sponge("block_state"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<BlockState>> BLOCK_STATE = ResourceKeyedValueParameters.key(ResourceKey.sponge("block_state"));
 
     /**
      * Require an argument to be a boolean.
      *
      * <p>Returns a {@link Boolean}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<Boolean>> BOOLEAN = CatalogedValueParameters.key(ResourceKey.sponge("boolean"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<Boolean>> BOOLEAN = ResourceKeyedValueParameters.key(ResourceKey.sponge("boolean"));
 
     /**
      * Require an argument to be a {@link Color}
@@ -116,7 +116,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link Color}</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<Color>> COLOR = CatalogedValueParameters.key(ResourceKey.sponge("color"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<Color>> COLOR = ResourceKeyedValueParameters.key(ResourceKey.sponge("color"));
 
     /**
      * Requires an argument to be a HOCON or JSON representation of a {@link DataContainer}.
@@ -126,7 +126,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link DataContainer}</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<DataContainer>> DATA_CONTAINER = CatalogedValueParameters.key(ResourceKey.sponge("data_container"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<DataContainer>> DATA_CONTAINER = ResourceKeyedValueParameters.key(ResourceKey.sponge("data_container"));
 
     /**
      * Expect an argument to be a date-time, in the form of a
@@ -137,14 +137,14 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link LocalDateTime}</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<LocalDateTime>> DATE_TIME = CatalogedValueParameters.key(ResourceKey.sponge("date_time"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<LocalDateTime>> DATE_TIME = ResourceKeyedValueParameters.key(ResourceKey.sponge("date_time"));
 
     /**
      * Require an argument to be an double-precision floating point number.
      *
      * <p>Returns a {@link Double}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<Double>> DOUBLE = CatalogedValueParameters.key(ResourceKey.sponge("double"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<Double>> DOUBLE = ResourceKeyedValueParameters.key(ResourceKey.sponge("double"));
 
     /**
      * Require an argument to be a duration.
@@ -162,7 +162,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link Duration}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<Duration>> DURATION = CatalogedValueParameters.key(ResourceKey.sponge("duration"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<Duration>> DURATION = ResourceKeyedValueParameters.key(ResourceKey.sponge("duration"));
 
     /**
      * Require an argument to select one {@link Entity}.
@@ -171,35 +171,35 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns an {@link Entity}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<Entity>> ENTITY = CatalogedValueParameters.key(ResourceKey.sponge("entity"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<Entity>> ENTITY = ResourceKeyedValueParameters.key(ResourceKey.sponge("entity"));
 
     /**
      * Expect an argument to represent a {@link GameProfile} of a user.
      *
      * <p>Returns a {@link GameProfile}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<GameProfile>> GAME_PROFILE = CatalogedValueParameters.key(ResourceKey.sponge("game_profile"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<GameProfile>> GAME_PROFILE = ResourceKeyedValueParameters.key(ResourceKey.sponge("game_profile"));
 
     /**
      * Require an argument to be an integer (base 10) number.
      *
      * <p>Returns an {@link Integer}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<Integer>> INTEGER = CatalogedValueParameters.key(ResourceKey.sponge("integer"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<Integer>> INTEGER = ResourceKeyedValueParameters.key(ResourceKey.sponge("integer"));
 
     /**
      * Require an argument to be an IP address.
      *
      * <p>Returns an {@link InetAddress}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<InetAddress>> IP = CatalogedValueParameters.key(ResourceKey.sponge("ip"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<InetAddress>> IP = ResourceKeyedValueParameters.key(ResourceKey.sponge("ip"));
 
     /**
      * Require an argument to represent an item.
      *
      * <p>Returns a {@link ItemStackSnapshot} with a quantity of 1.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<ItemStackSnapshot>> ITEM_STACK_SNAPSHOT = CatalogedValueParameters.key(ResourceKey.sponge("item_stack_snapshot"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<ItemStackSnapshot>> ITEM_STACK_SNAPSHOT = ResourceKeyedValueParameters.key(ResourceKey.sponge("item_stack_snapshot"));
 
     /**
      * Expect an argument to represent a {@link ServerLocation} which can
@@ -207,7 +207,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link ServerLocation}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<ServerLocation>> LOCATION_ALL = CatalogedValueParameters.key(ResourceKey.sponge("location_all"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<ServerLocation>> LOCATION_ALL = ResourceKeyedValueParameters.key(ResourceKey.sponge("location_all"));
 
     /**
      * Expect an argument to represent a {@link ServerLocation} that can only
@@ -215,14 +215,14 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link ServerLocation}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<ServerLocation>> LOCATION_ONLINE_ONLY = CatalogedValueParameters.key(ResourceKey.sponge("location_online_only"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<ServerLocation>> LOCATION_ONLINE_ONLY = ResourceKeyedValueParameters.key(ResourceKey.sponge("location_online_only"));
 
     /**
      * Require an argument to be a long (base 10).
      *
      * <p>Returns a {@link Long}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<Long>> LONG = CatalogedValueParameters.key(ResourceKey.sponge("long"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<Long>> LONG = ResourceKeyedValueParameters.key(ResourceKey.sponge("long"));
 
     /**
      * Require an argument to select many {@link Entity entities}.
@@ -233,7 +233,7 @@ public final class CatalogedValueParameters {
      *
      * @see #ENTITY
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<List<Entity>>> MANY_ENTITIES = CatalogedValueParameters.key(ResourceKey.sponge("many_entities"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<List<Entity>>> MANY_ENTITIES = ResourceKeyedValueParameters.key(ResourceKey.sponge("many_entities"));
 
     /**
      * Expect an argument to represent a {@link GameProfile} of a user.
@@ -243,7 +243,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link GameProfile}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<Collection<GameProfile>>> MANY_GAME_PROFILES = CatalogedValueParameters.key(ResourceKey.sponge("many_game_profiles"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<Collection<GameProfile>>> MANY_GAME_PROFILES = ResourceKeyedValueParameters.key(ResourceKey.sponge("many_game_profiles"));
 
     /**
      * Require an argument to select many {@link ServerPlayer players}.
@@ -254,14 +254,14 @@ public final class CatalogedValueParameters {
      *
      * @see #PLAYER
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<List<ServerPlayer>>> MANY_PLAYERS = CatalogedValueParameters.key(ResourceKey.sponge("many_players"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<List<ServerPlayer>>> MANY_PLAYERS = ResourceKeyedValueParameters.key(ResourceKey.sponge("many_players"));
 
     /**
      * Does not parse any arguments, returning nothing.
      *
      * <p>Returns nothing - no entry will be placed into any provided key.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<Void>> NONE = CatalogedValueParameters.key(ResourceKey.sponge("none"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<Void>> NONE = ResourceKeyedValueParameters.key(ResourceKey.sponge("none"));
 
     /**
      * Expect an argument to represent an online player.
@@ -270,14 +270,14 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link ServerPlayer}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<ServerPlayer>> PLAYER = CatalogedValueParameters.key(ResourceKey.sponge("player"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<ServerPlayer>> PLAYER = ResourceKeyedValueParameters.key(ResourceKey.sponge("player"));
 
     /**
      * Expect an argument to represent a {@link PluginContainer}'s id.
      *
      * <p>Returns a {@link PluginContainer}</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<PluginContainer>> PLUGIN = CatalogedValueParameters.key(ResourceKey.sponge("plugin"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<PluginContainer>> PLUGIN = ResourceKeyedValueParameters.key(ResourceKey.sponge("plugin"));
 
     /**
      * Require one or more strings, without any processing, which are combined
@@ -285,21 +285,21 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link String}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<String>> REMAINING_JOINED_STRINGS = CatalogedValueParameters.key(ResourceKey.sponge("remaining_joined_strings"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<String>> REMAINING_JOINED_STRINGS = ResourceKeyedValueParameters.key(ResourceKey.sponge("remaining_joined_strings"));
 
     /**
      * Require an argument to be a namespaced {@link ResourceKey}.
      *
      * <p>Returns a {@link ResourceKey}</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<ResourceKey>> RESOURCE_KEY = CatalogedValueParameters.key(ResourceKey.sponge("resource_key"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<ResourceKey>> RESOURCE_KEY = ResourceKeyedValueParameters.key(ResourceKey.sponge("resource_key"));
 
     /**
      * Require an argument to be a string.
      *
      * <p>Returns a {@link String}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<String>> STRING = CatalogedValueParameters.key(ResourceKey.sponge("string"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<String>> STRING = ResourceKeyedValueParameters.key(ResourceKey.sponge("string"));
 
     /**
      * Does not parse any arguments, but instead returns a
@@ -310,7 +310,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link ServerLocation}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<ServerLocation>> TARGET_BLOCK = CatalogedValueParameters.key(ResourceKey.sponge("target_block"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<ServerLocation>> TARGET_BLOCK = ResourceKeyedValueParameters.key(ResourceKey.sponge("target_block"));
 
     /**
      * Does not parse any arguments, but instead returns a {@link Entity} if the
@@ -321,7 +321,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link Entity}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<Entity>> TARGET_ENTITY = CatalogedValueParameters.key(ResourceKey.sponge("target_entity"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<Entity>> TARGET_ENTITY = ResourceKeyedValueParameters.key(ResourceKey.sponge("target_entity"));
 
     /**
      * Does not parse any arguments, but instead returns a {@link ServerPlayer}
@@ -332,7 +332,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link ServerPlayer}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<ServerPlayer>> TARGET_PLAYER = CatalogedValueParameters.key(ResourceKey.sponge("target_player"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<ServerPlayer>> TARGET_PLAYER = ResourceKeyedValueParameters.key(ResourceKey.sponge("target_player"));
 
     /**
      * Expects an argument to represent some {@link Component} serialised using formatting codes.
@@ -341,7 +341,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link Component}</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<Component>> TEXT_FORMATTING_CODE = CatalogedValueParameters.key(ResourceKey.sponge("text_formatting_code"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<Component>> TEXT_FORMATTING_CODE = ResourceKeyedValueParameters.key(ResourceKey.sponge("text_formatting_code"));
 
     /**
      * Expects an argument to represent some {@link Component} serialised using formatting codes.
@@ -350,7 +350,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link Component}</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<Component>> TEXT_FORMATTING_CODE_ALL = CatalogedValueParameters.key(ResourceKey.sponge("text_formatting_code_all"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<Component>> TEXT_FORMATTING_CODE_ALL = ResourceKeyedValueParameters.key(ResourceKey.sponge("text_formatting_code_all"));
 
     /**
      * Expects an argument to represent some {@link Component} serialised using Json.
@@ -359,7 +359,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link Component}</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<Component>> TEXT_JSON = CatalogedValueParameters.key(ResourceKey.sponge("text_json"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<Component>> TEXT_JSON = ResourceKeyedValueParameters.key(ResourceKey.sponge("text_json"));
 
     /**
      * Expects an argument to represent some {@link Component} serialised using Json.
@@ -368,14 +368,14 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link Component}</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<Component>> TEXT_JSON_ALL = CatalogedValueParameters.key(ResourceKey.sponge("text_json_all"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<Component>> TEXT_JSON_ALL = ResourceKeyedValueParameters.key(ResourceKey.sponge("text_json_all"));
 
     /**
      * Require an argument to be a URL.
      *
      * <p>Returns a {@link URL}</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<URL>> URL = CatalogedValueParameters.key(ResourceKey.sponge("url"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<URL>> URL = ResourceKeyedValueParameters.key(ResourceKey.sponge("url"));
 
     /**
      * Expect an argument to represent a player who has been online at some
@@ -385,14 +385,14 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link User}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<User>> USER = CatalogedValueParameters.key(ResourceKey.sponge("user"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<User>> USER = ResourceKeyedValueParameters.key(ResourceKey.sponge("user"));
 
     /**
      * Expect an argument to represent a {@link UUID}
      *
      * <p>Returns a {@link UUID}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<UUID>> UUID = CatalogedValueParameters.key(ResourceKey.sponge("uuid"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<UUID>> UUID = ResourceKeyedValueParameters.key(ResourceKey.sponge("uuid"));
 
     /**
      * Expect an argument to represent a {@link Vector2d}.
@@ -406,7 +406,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link Vector3d}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<Vector2d>> VECTOR2D = CatalogedValueParameters.key(ResourceKey.sponge("vector2d"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<Vector2d>> VECTOR2D = ResourceKeyedValueParameters.key(ResourceKey.sponge("vector2d"));
 
     /**
      * Expect an argument to represent a {@link Vector3d}.
@@ -419,7 +419,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link Vector3d}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<Vector3d>> VECTOR3D = CatalogedValueParameters.key(ResourceKey.sponge("vector3d"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<Vector3d>> VECTOR3D = ResourceKeyedValueParameters.key(ResourceKey.sponge("vector3d"));
 
     /**
      * Expect an argument to represent the name of any {@link WorldProperties}
@@ -427,7 +427,7 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link WorldProperties}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<ServerWorldProperties>> WORLD_PROPERTIES_ALL = CatalogedValueParameters.key(ResourceKey.sponge("world_properties_all"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<ServerWorldProperties>> WORLD_PROPERTIES_ALL = ResourceKeyedValueParameters.key(ResourceKey.sponge("world_properties_all"));
 
     /**
      * Expect an argument to represent the name of a {@link WorldProperties}
@@ -435,16 +435,16 @@ public final class CatalogedValueParameters {
      *
      * <p>Returns a {@link WorldProperties}.</p>
      */
-    public static final DefaultedRegistryReference<CatalogedValueParameter<ServerWorldProperties>> WORLD_PROPERTIES_ONLINE_ONLY = CatalogedValueParameters.key(ResourceKey.sponge("world_properties_online_only"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<ServerWorldProperties>> WORLD_PROPERTIES_ONLINE_ONLY = ResourceKeyedValueParameters.key(ResourceKey.sponge("world_properties_online_only"));
 
     // SORTFIELDS:OFF
 
     // @formatter:on
 
-    private CatalogedValueParameters() {
+    private ResourceKeyedValueParameters() {
     }
 
-    private static <T> DefaultedRegistryReference<CatalogedValueParameter<T>> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.CATALOGED_VALUE_PARAMETER, location).asDefaultedReference(() -> Sponge.getGame().registries());
+    private static <T> DefaultedRegistryReference<ResourceKeyedValueParameter<T>> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.REGISTRY_KEYED_VALUE_PARAMETER, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

@@ -110,19 +110,6 @@ public interface KeyValueMatcher<V> extends DataSerializable {
     }
 
     /**
-     * Creates a {@link KeyValueMatcher} from the given key and value. The
-     * default operator {@link Operator#EQUAL} will be used.
-     *
-     * @param key The key of which the value should be matched
-     * @param value The matcher value that key values will be matched against
-     * @param <V> The value type
-     * @return The key value matcher
-     */
-    static <V> KeyValueMatcher<V> of(final Supplier<? extends Key<? extends Value<V>>> key, final V value) {
-        return KeyValueMatcher.of(key, value, Operator.EQUAL);
-    }
-
-    /**
      * Creates a {@link KeyValueMatcher} from the
      * given key, value and operator.
      *
@@ -133,20 +120,6 @@ public interface KeyValueMatcher<V> extends DataSerializable {
      * @return The key value matcher
      */
     static <V> KeyValueMatcher<V> of(final Key<? extends Value<V>> key, final V value, final Operator operator) {
-        return KeyValueMatcher.builder().key(key).value(value).operator(operator).build();
-    }
-
-    /**
-     * Creates a {@link KeyValueMatcher} from the
-     * given key, value and operator.
-     *
-     * @param key The key of which the value should be matched
-     * @param value The matcher value that key values will be matched against
-     * @param operator The operator how the value should be matched
-     * @param <V> The value type
-     * @return The key value matcher
-     */
-    static <V> KeyValueMatcher<V> of(final Supplier<? extends Key<? extends Value<V>>> key, final V value, final Operator operator) {
         return KeyValueMatcher.builder().key(key).value(value).operator(operator).build();
     }
 

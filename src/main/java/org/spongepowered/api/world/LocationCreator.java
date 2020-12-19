@@ -74,27 +74,4 @@ public interface LocationCreator<W extends World<W, L>, L extends Location<W, L>
     default L getLocation(final double x, final double y, final double z) {
         return this.getLocation(new Vector3i(x, y, z));
     }
-
-    /**
-     * Gets a {@link LocatableBlock} for the desired {@link Vector3i} position.
-     *
-     * @param position The position to get the locatable block
-     * @return The locatable block
-     */
-    default LocatableBlock getLocatableBlock(final Vector3i position) {
-        return LocatableBlock.builder().location(this.getLocation(position)).build();
-    }
-
-    /**
-     * Gets a {@link LocatableBlock} for the desired {@code x, y, z} coordinates.
-     *
-     * @param x The x position
-     * @param y The y position
-     * @param z The z position
-     * @return The locatable block
-     */
-    default LocatableBlock getLocatableBlock(final int x, final int y, final int z) {
-        return LocatableBlock.builder().location(this.getLocation(x, y, z)).build();
-    }
-
 }
