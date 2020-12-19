@@ -22,14 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.volume.archetype.block.entity;
+package org.spongepowered.api.world.volume.archetype.entity;
 
-import org.spongepowered.api.world.volume.ImmutableVolume;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.EntityArchetype;
+import org.spongepowered.math.vector.Vector3d;
 
-public interface ImmutableBlockEntityArchetypeVolume extends UnmodifiableBlockEntityArchetypeVolume<ImmutableBlockEntityArchetypeVolume>, ImmutableVolume {
+import java.util.Objects;
 
-    @Override
-    default ImmutableBlockEntityArchetypeVolume asImmutableBlockEntityArchetypeVolume() {
-        return this;
+public interface EntityArchetypeEntry {
+
+    static EntityArchetypeEntry of(final EntityArchetype archetype, final Vector3d pos) {
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(
+            Objects.requireNonNull(archetype, "EntityArchetype cannot be null!"),
+            Objects.requireNonNull(pos, "Position cannot be null!")
+        );
     }
+
+    EntityArchetype getArchetype();
+
+    Vector3d getPosition();
+
+    interface Factory {
+
+        EntityArchetypeEntry of(EntityArchetype archetype, Vector3d position);
+
+    }
+
 }

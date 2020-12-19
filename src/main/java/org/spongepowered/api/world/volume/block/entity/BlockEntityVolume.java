@@ -25,8 +25,12 @@
 package org.spongepowered.api.world.volume.block.entity;
 
 import org.spongepowered.api.block.entity.BlockEntity;
+import org.spongepowered.api.world.volume.MutableVolume;
+import org.spongepowered.api.world.volume.UnmodifiableVolume;
 import org.spongepowered.api.world.volume.Volume;
-import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
+import org.spongepowered.api.world.volume.block.BlockVolume;
+import org.spongepowered.api.world.volume.stream.StreamOptions;
+import org.spongepowered.api.world.volume.stream.VolumeStream;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Collection;
@@ -35,7 +39,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public interface ReadableBlockEntityVolume extends ReadableBlockVolume, Volume {
+public interface BlockEntityVolume extends BlockVolume, Volume {
 
     /**
      * Return a collection of block entities contained within this volume,
@@ -62,7 +66,7 @@ public interface ReadableBlockEntityVolume extends ReadableBlockVolume, Volume {
      * @param filter The filter to apply to the returned entities
      * @return A collection of filtered entities
      */
-    default Collection<? extends BlockEntity> getBlockEntities(Predicate<? super BlockEntity> filter) {
+    default Collection<? extends BlockEntity> getBlockEntities(final Predicate<? super BlockEntity> filter) {
         Objects.requireNonNull(filter);
 
         return this.getBlockEntities().stream().filter(filter).collect(Collectors.toList());
@@ -74,7 +78,7 @@ public interface ReadableBlockEntityVolume extends ReadableBlockVolume, Volume {
      * @param position The position
      * @return The block entity, or {@link Optional#empty()}
      */
-    default Optional<? extends BlockEntity> getBlockEntity(Vector3i position) {
+    default Optional<? extends BlockEntity> getBlockEntity(final Vector3i position) {
         Objects.requireNonNull(position);
 
         return this.getBlockEntity(position.getX(), position.getY(), position.getZ());
@@ -90,4 +94,41 @@ public interface ReadableBlockEntityVolume extends ReadableBlockVolume, Volume {
      */
     Optional<? extends BlockEntity> getBlockEntity(int x, int y, int z);
 
+    interface Unmodifiable<U extends Unmodifiable<U>> extends BlockEntityVolume,
+        Streamable<U>,
+        UnmodifiableVolume, BlockVolume.Unmodifiable<U> {
+
+    }
+
+    interface Streamable<T extends Streamable<T>> extends BlockEntityVolume {
+
+        /**
+         * Gets a {@link VolumeStream}&lt;{@code B, }{@link BlockEntity}&gt;
+         * from this volume such that the {@code min} and {@code max} are contained
+         * within this volume.
+         *
+         * @param min The minimum coordinate set
+         * @param max The maximum coordinate set
+         * @param options The options to construct the stream
+         * @return The volume stream
+         */
+        VolumeStream<T, BlockEntity> getBlockEntityStream(Vector3i min, Vector3i max, StreamOptions options);
+
+    }
+
+    interface Mutable<M extends Mutable<M>> extends Streamable<M>, BlockVolume.Mutable<M>, MutableVolume {
+
+        default void addBlockEntity(final Vector3i pos, final BlockEntity blockEntity) {
+            this.addBlockEntity(pos.getX(), pos.getY(), pos.getZ(), blockEntity);
+        }
+
+        void addBlockEntity(int x, int y, int z, BlockEntity blockEntity);
+
+        default void removeBlockEntity(final Vector3i pos) {
+            this.removeBlockEntity(pos.getX(), pos.getY(), pos.getZ());
+        }
+
+        void removeBlockEntity(int x, int y, int z);
+
+    }
 }

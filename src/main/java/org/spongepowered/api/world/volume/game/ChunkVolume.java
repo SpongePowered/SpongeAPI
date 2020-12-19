@@ -29,14 +29,14 @@ import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.api.world.chunk.ProtoChunk;
-import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
+import org.spongepowered.api.world.volume.block.BlockVolume;
 import org.spongepowered.math.vector.Vector3i;
 
 /**
  * Presents a volume of {@link ProtoChunk}s that can exist
  * without a {@link ProtoWorld} volume.
  */
-public interface ChunkVolume extends ReadableBlockVolume {
+public interface ChunkVolume extends BlockVolume {
 
     /**
      * Gets the loaded chunk at the given chunk coordinate position. The position

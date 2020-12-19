@@ -31,20 +31,20 @@ import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.util.RandomProvider;
 import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.dimension.DimensionType;
-import org.spongepowered.api.world.volume.biome.StreamableBiomeVolume;
-import org.spongepowered.api.world.volume.block.StreamableBlockVolume;
-import org.spongepowered.api.world.volume.block.entity.StreamableBlockEntityVolume;
-import org.spongepowered.api.world.volume.entity.StreamableEntityVolume;
+import org.spongepowered.api.world.volume.biome.BiomeVolume;
+import org.spongepowered.api.world.volume.block.BlockVolume;
+import org.spongepowered.api.world.volume.block.entity.BlockEntityVolume;
+import org.spongepowered.api.world.volume.entity.EntityVolume;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Objects;
 
-public interface ReadableRegion<R extends ReadableRegion<R>> extends
+public interface Region<R extends Region<R>> extends
     EnvironmentalVolume,
-    StreamableBiomeVolume<R>,
-    StreamableBlockVolume<R>,
-    StreamableEntityVolume<R>,
-    StreamableBlockEntityVolume<R>,
+    BiomeVolume.Streamable<R>,
+    BlockVolume.Streamable<R>,
+    EntityVolume.Streamable<R>,
+    BlockEntityVolume.Streamable<R>,
     ChunkVolume,
     HeightAwareVolume,
     RandomProvider {

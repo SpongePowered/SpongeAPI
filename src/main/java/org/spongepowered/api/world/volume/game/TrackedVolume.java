@@ -27,13 +27,13 @@ package org.spongepowered.api.world.volume.game;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
+import org.spongepowered.api.world.volume.block.BlockVolume;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Optional;
 import java.util.UUID;
 
-public interface TrackedVolume extends ReadableBlockVolume, LocationBaseDataHolder.Mutable {
+public interface TrackedVolume extends BlockVolume, LocationBaseDataHolder.Mutable {
 
     /**
      * Gets the {@link UUID}, if available, of the user who created the

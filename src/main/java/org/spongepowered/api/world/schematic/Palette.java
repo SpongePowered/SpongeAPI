@@ -26,6 +26,7 @@ package org.spongepowered.api.world.schematic;
 
 import org.spongepowered.api.registry.RegistryHolder;
 
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalInt;
@@ -85,6 +86,8 @@ public interface Palette<T, R> {
      * @return All contained types
      */
     Stream<T> stream();
+
+    Stream<Map.Entry<T, Integer>> streamWithIds();
 
     Mutable<T, R> asMutable(RegistryHolder registry);
 

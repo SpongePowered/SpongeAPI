@@ -26,13 +26,13 @@ package org.spongepowered.api.world.volume.game;
 
 import org.spongepowered.api.world.LightType;
 import org.spongepowered.api.world.LightTypes;
-import org.spongepowered.api.world.volume.biome.ReadableBiomeVolume;
+import org.spongepowered.api.world.volume.biome.BiomeVolume;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Objects;
 import java.util.function.Supplier;
 
-public interface EnvironmentalVolume extends PrimitiveGameVolume, ReadableBiomeVolume {
+public interface EnvironmentalVolume extends PrimitiveGameVolume, BiomeVolume {
 
     int getLight(LightType type, int x, int y, int z);
 

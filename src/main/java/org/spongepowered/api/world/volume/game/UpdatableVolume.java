@@ -27,9 +27,9 @@ package org.spongepowered.api.world.volume.game;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.fluid.FluidType;
 import org.spongepowered.api.scheduler.ScheduledUpdateList;
-import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
+import org.spongepowered.api.world.volume.block.BlockVolume;
 
-public interface UpdatableVolume extends ReadableBlockVolume {
+public interface UpdatableVolume extends BlockVolume {
 
     ScheduledUpdateList<BlockType> getScheduledBlockUpdates();
 
