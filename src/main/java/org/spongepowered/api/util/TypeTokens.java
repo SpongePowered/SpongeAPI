@@ -28,6 +28,7 @@ import io.leangen.geantyref.TypeToken;
 import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.command.CommandCause;
@@ -108,6 +109,7 @@ import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.util.orientation.Orientation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.util.weighted.WeightedTable;
+import org.spongepowered.api.world.ServerLocation;
 import org.spongepowered.math.vector.Vector2i;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
@@ -267,9 +269,9 @@ public final class TypeTokens {
 
     public static final TypeToken<MapValue<Direction, List<FluidStackSnapshot>>> MAP_DIRECTION_FLUID_STACK_SNAPSHOT_VALUE_TOKEN = new TypeToken<MapValue<Direction, List<FluidStackSnapshot>>>() {};
 
-    public static final TypeToken<Map<UUID, RespawnLocation>> MAP_UUID_RESPAWN_LOCATION_TOKEN = new TypeToken<Map<UUID, RespawnLocation>>() {};
+    public static final TypeToken<Map<ResourceKey, RespawnLocation>> MAP_RESOURCE_KEY_RESPAWN_LOCATION_TOKEN = new TypeToken<Map<ResourceKey, RespawnLocation>>() {};
 
-    public static final TypeToken<MapValue<UUID, RespawnLocation>> MAP_UUID_RESPAWN_LOCATION_VALUE_TOKEN = new TypeToken<MapValue<UUID, RespawnLocation>>() {};
+    public static final TypeToken<MapValue<ResourceKey, RespawnLocation>> MAP_RESOURCE_KEY_RESPAWN_LOCATION_VALUE_TOKEN = new TypeToken<MapValue<ResourceKey, RespawnLocation>>() {};
 
     public static final TypeToken<Map<UUID, Vector3d>> MAP_UUID_VECTOR3D_TOKEN = new TypeToken<Map<UUID, Vector3d>>() {};
 
@@ -345,13 +347,15 @@ public final class TypeTokens {
 
     public static final TypeToken<MapValue<Statistic, Long>> MAP_STATISTIC_LONG_VALUE_TOKEN = new TypeToken<MapValue<Statistic, Long>>() {};
 
+    public static final TypeToken<Value<ServerLocation>> SERVER_LOCATION_VALUE_TOKEN = new TypeToken<Value<ServerLocation>>() {};
+
     public static final TypeToken<Value<String>> STRING_VALUE_TOKEN = new TypeToken<Value<String>>() {};
 
     public static final TypeToken<Value<StructureMode>> STRUCTURE_MODE_VALUE_TOKEN = new TypeToken<Value<StructureMode>>() {};
 
     public static final TypeToken<Value<Ticks>> TICKS_VALUE_TOKEN = new TypeToken<Value<Ticks>>() {};
 
-    public static final TypeToken<Value<ItemTier>> TOOL_TYPE_VALUE_TOKEN = new TypeToken<Value<ItemTier>>() {};
+    public static final TypeToken<Value<ItemTier>> ITEM_TIER_VALUE_TOKEN = new TypeToken<Value<ItemTier>>() {};
 
     public static final TypeToken<Value<TropicalFishShape>> TROPICAL_FISH_SHAPE_VALUE_TOKEN = new TypeToken<Value<TropicalFishShape>>() {};
 

@@ -280,7 +280,7 @@ public final class Keys {
      * e.g. The age of an {@link AreaEffectCloud}.
      * <p>Note that in vanilla this value is not persisted for most entities.</p>
      */
-    public static final Key<Value<Integer>> AGE = Keys.key(ResourceKey.sponge("age"));
+    public static final Key<Value<Integer>> AGE = Keys.key(ResourceKey.sponge("age"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The modifier to {@link Keys#VELOCITY} of a {@link Minecart} while airborne.
@@ -375,25 +375,25 @@ public final class Keys {
      * another vehicle.
      * Readonly
      */
-    public static final Key<Value<Entity>> BASE_VEHICLE = Keys.key(ResourceKey.sponge("base_vehicle"));
+    public static final Key<Value<Entity>> BASE_VEHICLE = Keys.key(ResourceKey.sponge("base_vehicle"), TypeTokens.ENTITY_VALUE_TOKEN);
 
     /**
      * The target entity of a {@link Guardian} beam.
      */
-    public static final Key<Value<Living>> BEAM_TARGET_ENTITY = Keys.key(ResourceKey.sponge("beam_target_entity"));
+    public static final Key<Value<Living>> BEAM_TARGET_ENTITY = Keys.key(ResourceKey.sponge("beam_target_entity"), TypeTokens.LIVING_VALUE_TOKEN);
 
     /**
      * The default temperature of a biome at a specific {@link ServerLocation}.
      * For the exact block temperature see {@link #BLOCK_TEMPERATURE}.
      * Readonly
      */
-    public static final Key<Value<Double>> BIOME_TEMPERATURE = Keys.key(ResourceKey.sponge("biome_temperature"));
+    public static final Key<Value<Double>> BIOME_TEMPERATURE = Keys.key(ResourceKey.sponge("biome_temperature"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The blast resistance of a {@link BlockState}.
      * Readonly
      */
-    public static final Key<Value<Double>> BLAST_RESISTANCE = Keys.key(ResourceKey.sponge("blast_resistance"));
+    public static final Key<Value<Double>> BLAST_RESISTANCE = Keys.key(ResourceKey.sponge("blast_resistance"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The amount of light that is emitted by the surrounding blocks at a block {@link ServerLocation}.
@@ -402,24 +402,24 @@ public final class Keys {
      * <p>For the skylight see {@link #SKY_LIGHT}.</p>
      * Readonly
      */
-    public static final Key<Value<Integer>> BLOCK_LIGHT = Keys.key(ResourceKey.sponge("block_light"));
+    public static final Key<Value<Integer>> BLOCK_LIGHT = Keys.key(ResourceKey.sponge("block_light"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The {@link BlockState} of a {@link BlockOccupiedMinecart} or {@link FallingBlock}.
      */
-    public static final Key<Value<BlockState>> BLOCK_STATE = Keys.key(ResourceKey.sponge("block_state"));
+    public static final Key<Value<BlockState>> BLOCK_STATE = Keys.key(ResourceKey.sponge("block_state"), TypeTokens.BLOCK_STATE_VALUE_TOKEN);
 
     /**
      * The temperature at a specific {@link ServerLocation}.
      * For the default biome temperature see {@link #BIOME_TEMPERATURE}.
      * Readonly
      */
-    public static final Key<Value<Double>> BLOCK_TEMPERATURE = Keys.key(ResourceKey.sponge("block_temperature"));
+    public static final Key<Value<Double>> BLOCK_TEMPERATURE = Keys.key(ResourceKey.sponge("block_temperature"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The type of the boat.
      */
-    public static final Key<Value<BoatType>> BOAT_TYPE = Keys.key(ResourceKey.sponge("boat_type"));
+    public static final Key<Value<BoatType>> BOAT_TYPE = Keys.key(ResourceKey.sponge("boat_type"), TypeTokens.BOAT_TYPE_VALUE_TOKEN);
 
     /**
      * The rotation of specific body parts of a {@link ArmorStand} or {@link Living}.
@@ -429,46 +429,46 @@ public final class Keys {
      * {@link #RIGHT_ARM_ROTATION}, {@link #LEFT_ARM_ROTATION},
      * {@link #RIGHT_LEG_ROTATION}, and {@link #LEFT_LEG_ROTATION}.</p>
      */
-    public static final Key<MapValue<BodyPart, Vector3d>> BODY_ROTATIONS = Keys.key(ResourceKey.sponge("body_rotations"));
+    public static final Key<MapValue<BodyPart, Vector3d>> BODY_ROTATIONS = Keys.key(ResourceKey.sponge("body_rotations"), TypeTokens.MAP_BODY_VECTOR3D_VALUE_TOKEN);
 
     /**
      * The {@link BossBar} displayed to the client by a {@link Boss}.
      * Readonly but mutable?
      */
-    public static final Key<Value<BossBar>> BOSS_BAR = Keys.key(ResourceKey.sponge("boss_bar"));
+    public static final Key<Value<BossBar>> BOSS_BAR = Keys.key(ResourceKey.sponge("boss_bar"), TypeTokens.BOSS_BAR_VALUE_TOKEN);
 
     /**
      * The {@link BlockType}s able to be broken by an {@link ItemStack}.
      */
-    public static final Key<SetValue<BlockType>> BREAKABLE_BLOCK_TYPES = Keys.key(ResourceKey.sponge("breakable_block_types"));
+    public static final Key<SetValue<BlockType>> BREAKABLE_BLOCK_TYPES = Keys.key(ResourceKey.sponge("breakable_block_types"), TypeTokens.SET_BLOCK_TYPE_VALUE_TOKEN);
 
     /**
      * The current breeder of an {@link Animal}, usually a {@link Player}s UUID.
      */
-    public static final Key<Value<UUID>> BREEDER = Keys.key(ResourceKey.sponge("breeder"));
+    public static final Key<Value<UUID>> BREEDER = Keys.key(ResourceKey.sponge("breeder"), TypeTokens.UUID_VALUE_TOKEN);
 
     /**
      * The ticks until an {@link Animal} can breed again. Also see {@link #CAN_BREED}.
      */
-    public static final Key<Value<Ticks>> BREEDING_COOLDOWN = Keys.key(ResourceKey.sponge("breeding_cooldown"));
+    public static final Key<Value<Ticks>> BREEDING_COOLDOWN = Keys.key(ResourceKey.sponge("breeding_cooldown"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The burntime of an {@link ItemStack} fuel in a furnace.
      * See {@link #FUEL} for the time
      * Readonly
      */
-    public static final Key<Value<Integer>> BURN_TIME = Keys.key(ResourceKey.sponge("burn_time"));
+    public static final Key<Value<Integer>> BURN_TIME = Keys.key(ResourceKey.sponge("burn_time"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * Whether an {@link Animal} can breed.
      * In Vanilla, animals can breed if their {@link Keys#BREEDING_COOLDOWN} is equal to 0.
      */
-    public static final Key<Value<Boolean>> CAN_BREED = Keys.key(ResourceKey.sponge("can_breed"));
+    public static final Key<Value<Boolean>> CAN_BREED = Keys.key(ResourceKey.sponge("can_breed"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link FallingBlock} can drop as an item.
      */
-    public static final Key<Value<Boolean>> CAN_DROP_AS_ITEM = Keys.key(ResourceKey.sponge("can_drop_as_item"));
+    public static final Key<Value<Boolean>> CAN_DROP_AS_ITEM = Keys.key(ResourceKey.sponge("can_drop_as_item"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Humanoid} can fly.
@@ -476,70 +476,70 @@ public final class Keys {
      * <p>For a {@link Player} this means they are able to toggle flight mode
      * by double-tapping the jump button.</p>
      */
-    public static final Key<Value<Boolean>> CAN_FLY = Keys.key(ResourceKey.sponge("can_fly"));
+    public static final Key<Value<Boolean>> CAN_FLY = Keys.key(ResourceKey.sponge("can_fly"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Living} entity may change blocks.
      * This mostly applies to {@link Enderman} or
      * {@link Creeper}s, but also to some projectiles like {@link FireballEntity}s or {@link WitherSkull}.
      */
-    public static final Key<Value<Boolean>> CAN_GRIEF = Keys.key(ResourceKey.sponge("can_grief"));
+    public static final Key<Value<Boolean>> CAN_GRIEF = Keys.key(ResourceKey.sponge("can_grief"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * The set of harvestable {@link BlockType}s with an {@link ItemStack}. {@link #EFFICIENCY}
      * Readonly
      */
-    public static final Key<SetValue<BlockType>> CAN_HARVEST = Keys.key(ResourceKey.sponge("can_harvest"));
+    public static final Key<SetValue<BlockType>> CAN_HARVEST = Keys.key(ResourceKey.sponge("can_harvest"), TypeTokens.SET_BLOCK_TYPE_VALUE_TOKEN);
 
     /**
      * Whether a {@link FallingBlock} will damage an {@link Entity} it lands on.
      */
-    public static final Key<Value<Boolean>> CAN_HURT_ENTITIES = Keys.key(ResourceKey.sponge("can_hurt_entities"));
+    public static final Key<Value<Boolean>> CAN_HURT_ENTITIES = Keys.key(ResourceKey.sponge("can_hurt_entities"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Raider} can join a raid.
      */
-    public static final Key<Value<Boolean>> CAN_JOIN_RAID = Keys.key(ResourceKey.sponge("can_join_raid"));
+    public static final Key<Value<Boolean>> CAN_JOIN_RAID = Keys.key(ResourceKey.sponge("can_join_raid"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Boat} can move on land.
      */
-    public static final Key<Value<Boolean>> CAN_MOVE_ON_LAND = Keys.key(ResourceKey.sponge("can_move_on_land"));
+    public static final Key<Value<Boolean>> CAN_MOVE_ON_LAND = Keys.key(ResourceKey.sponge("can_move_on_land"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link FallingBlock} will place itself upon landing.
      */
-    public static final Key<Value<Boolean>> CAN_PLACE_AS_BLOCK = Keys.key(ResourceKey.sponge("can_place_as_block"));
+    public static final Key<Value<Boolean>> CAN_PLACE_AS_BLOCK = Keys.key(ResourceKey.sponge("can_place_as_block"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * The current casting time of a {@link Spellcaster}.
      */
-    public static final Key<Value<Integer>> CASTING_TIME = Keys.key(ResourceKey.sponge("casting_time"));
+    public static final Key<Value<Integer>> CASTING_TIME = Keys.key(ResourceKey.sponge("casting_time"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The type of a {@link Cat}.
      */
-    public static final Key<Value<CatType>> CAT_TYPE = Keys.key(ResourceKey.sponge("cat_type"));
+    public static final Key<Value<CatType>> CAT_TYPE = Keys.key(ResourceKey.sponge("cat_type"), TypeTokens.CAT_TYPE_VALUE_TOKEN);
 
     /**
      * Whether a {@link ServerPlayer} can will see colours sent in messages.
      */
-    public static final Key<Value<Boolean>> CHAT_COLORS_ENABLED = Keys.key(ResourceKey.sponge("chat_colors_enabled"));
+    public static final Key<Value<Boolean>> CHAT_COLORS_ENABLED = Keys.key(ResourceKey.sponge("chat_colors_enabled"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * The types of chat a {@link ServerPlayer} can see.
      */
-    public static final Key<Value<ChatVisibility>> CHAT_VISIBILITY = Keys.key(ResourceKey.sponge("chat_visibility"));
+    public static final Key<Value<ChatVisibility>> CHAT_VISIBILITY = Keys.key(ResourceKey.sponge("chat_visibility"), TypeTokens.CHAT_VISIBILITY_VALUE_TOKEN);
 
     /**
      * The attachment of a {@link BlockTypes#CHEST} or {@link BlockTypes#TRAPPED_CHEST} {@link BlockState}.
      */
-    public static final Key<Value<ChestAttachmentType>> CHEST_ATTACHMENT_TYPE = Keys.key(ResourceKey.sponge("chest_attachment_type"));
+    public static final Key<Value<ChestAttachmentType>> CHEST_ATTACHMENT_TYPE = Keys.key(ResourceKey.sponge("chest_attachment_type"), TypeTokens.CHEST_ATTACHMENT_TYPE_VALUE_TOKEN);
 
     /**
      * The rotation of the {@link BodyParts#CHEST}.
      */
-    public static final Key<Value<Vector3d>> CHEST_ROTATION = Keys.key(ResourceKey.sponge("chest_rotation"));
+    public static final Key<Value<Vector3d>> CHEST_ROTATION = Keys.key(ResourceKey.sponge("chest_rotation"), TypeTokens.VECTOR_3D_VALUE_TOKEN);
 
     /**
      * The {@link Color} of an {@link ItemStack}
@@ -548,17 +548,17 @@ public final class Keys {
      * </p>
      * or an {@link AreaEffectCloud}.
      */
-    public static final Key<Value<Color>> COLOR = Keys.key(ResourceKey.sponge("color"));
+    public static final Key<Value<Color>> COLOR = Keys.key(ResourceKey.sponge("color"), TypeTokens.COLOR_VALUE_TOKEN);
 
     /**
      * A command stored in a {@link CommandBlock} or {@link CommandBlockMinecart}.
      */
-    public static final Key<Value<String>> COMMAND = Keys.key(ResourceKey.sponge("command"));
+    public static final Key<Value<String>> COMMAND = Keys.key(ResourceKey.sponge("command"), TypeTokens.STRING_VALUE_TOKEN);
 
     /**
      * The {@link ComparatorMode} of a {@link BlockTypes#COMPARATOR} {@link BlockState}.
      */
-    public static final Key<Value<ComparatorMode>> COMPARATOR_MODE = Keys.key(ResourceKey.sponge("comparator_mode"));
+    public static final Key<Value<ComparatorMode>> COMPARATOR_MODE = Keys.key(ResourceKey.sponge("comparator_mode"), TypeTokens.COMPARATOR_MODE_VALUE_TOKEN);
 
     /**
      * The connected directions of a {@link BlockState}.
@@ -566,31 +566,31 @@ public final class Keys {
      *     e.g. {@link BlockTypes#GLASS_PANE}, {@link BlockTypes#IRON_BARS}, {@link BlockTypes#CHEST},
      * </p>
      */
-    public static final Key<SetValue<Direction>> CONNECTED_DIRECTIONS = Keys.key(ResourceKey.sponge("connected_directions"));
+    public static final Key<SetValue<Direction>> CONNECTED_DIRECTIONS = Keys.key(ResourceKey.sponge("connected_directions"), TypeTokens.SET_DIRECTION_VALUE_TOKEN);
 
     /**
      * The container {@link ItemType} of an {@link ItemStack}.
      * e.g. {@link ItemTypes#BUCKET} for a {@link ItemTypes#WATER_BUCKET} stack.
      * Readonly
      */
-    public static final Key<Value<ItemType>> CONTAINER_ITEM = Keys.key(ResourceKey.sponge("container_item"));
+    public static final Key<Value<ItemType>> CONTAINER_ITEM = Keys.key(ResourceKey.sponge("container_item"), TypeTokens.ITEM_TYPE_VALUE_TOKEN);
 
     /**
      * The amount of ticks a {@link Hopper} has to wait before transferring the next item. (in Vanilla this is 8 ticks)
      * or
      * The amount of ticks a {@link EndGateway} has to wait for the next teleportation.
      */
-    public static final Key<Value<Ticks>> COOLDOWN = Keys.key(ResourceKey.sponge("cooldown"));
+    public static final Key<Value<Ticks>> COOLDOWN = Keys.key(ResourceKey.sponge("cooldown"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The creator, usually of an {@link Entity}. It is up to the implementation to define.
      */
-    public static final Key<Value<UUID>> CREATOR = Keys.key(ResourceKey.sponge("creator"));
+    public static final Key<Value<UUID>> CREATOR = Keys.key(ResourceKey.sponge("creator"), TypeTokens.UUID_VALUE_TOKEN);
 
     /**
      * The current {@link SpellType} a {@link Spellcaster} is casting.
      */
-    public static final Key<Value<SpellType>> CURRENT_SPELL = Keys.key(ResourceKey.sponge("current_spell"));
+    public static final Key<Value<SpellType>> CURRENT_SPELL = Keys.key(ResourceKey.sponge("current_spell"), TypeTokens.SPELL_TYPE_VALUE_TOKEN);
 
     /**
      * The damage dealt towards entities of a specific {@link EntityType} by a {@link DamagingProjectile}.
@@ -602,7 +602,7 @@ public final class Keys {
      * <p>Types not present in this mapping will be
      * dealt damage to according to {@link #ATTACK_DAMAGE}.</p>
      */
-    public static final Key<MapValue<EntityType<?>, Double>> CUSTOM_ATTACK_DAMAGE = Keys.key(ResourceKey.sponge("custom_attack_damage"));
+    public static final Key<MapValue<EntityType<?>, Double>> CUSTOM_ATTACK_DAMAGE = Keys.key(ResourceKey.sponge("custom_attack_damage"), TypeTokens.MAP_ENTITY_TYPE_DOUBLE_VALUE_TOKEN);
 
     /**
      * The resource pack model index of an {@link ItemStack}.
@@ -610,18 +610,18 @@ public final class Keys {
      * <p>Resource packs can use the same index in their files to replace the
      * item model of an ItemStack.</p>
      */
-    public static final Key<Value<Integer>> CUSTOM_MODEL_DATA = Keys.key(ResourceKey.sponge("custom_model_data"));
+    public static final Key<Value<Integer>> CUSTOM_MODEL_DATA = Keys.key(ResourceKey.sponge("custom_model_data"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The custom name of an {@link Entity}.
      */
-    public static final Key<Value<Component>> CUSTOM_NAME = Keys.key(ResourceKey.sponge("custom_name"));
+    public static final Key<Value<Component>> CUSTOM_NAME = Keys.key(ResourceKey.sponge("custom_name"), TypeTokens.COMPONENT_VALUE_TOKEN);
 
     /**
      * The damage absorbed by an armor {@link ItemStack}.
      * Readonly
      */
-    public static final Key<Value<Double>> DAMAGE_ABSORPTION = Keys.key(ResourceKey.sponge("damage_absorption"));
+    public static final Key<Value<Double>> DAMAGE_ABSORPTION = Keys.key(ResourceKey.sponge("damage_absorption"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * How much damage a {@link FallingBlock} deals to {@link Living} entities
@@ -629,34 +629,34 @@ public final class Keys {
      *
      * <p>This damage is capped by {@link #MAX_FALL_DAMAGE}.</p>
      */
-    public static final Key<Value<Double>> DAMAGE_PER_BLOCK = Keys.key(ResourceKey.sponge("damage_per_block"));
+    public static final Key<Value<Double>> DAMAGE_PER_BLOCK = Keys.key(ResourceKey.sponge("damage_per_block"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The distance at which a {@link BlockState} will decay.
      * This usually applies to leaves, for example {@link BlockTypes#OAK_LEAVES}.
      */
-    public static final Key<Value<Integer>> DECAY_DISTANCE = Keys.key(ResourceKey.sponge("decay_distance"));
+    public static final Key<Value<Integer>> DECAY_DISTANCE = Keys.key(ResourceKey.sponge("decay_distance"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The modifier to {@link Keys#VELOCITY} of a {@link Minecart} while derailed.
      */
-    public static final Key<Value<Vector3d>> DERAILED_VELOCITY_MODIFIER = Keys.key(ResourceKey.sponge("derailed_velocity_modifier"));
+    public static final Key<Value<Vector3d>> DERAILED_VELOCITY_MODIFIER = Keys.key(ResourceKey.sponge("derailed_velocity_modifier"), TypeTokens.VECTOR_3D_VALUE_TOKEN);
 
     /**
      * The despawn delay (in ticks) of a {@link Item}, {@link Endermite}, {@link Weather} {@link TraderLlama} or {@link EyeOfEnder}.
      */
-    public static final Key<Value<Ticks>> DESPAWN_DELAY = Keys.key(ResourceKey.sponge("despawn_delay"));
+    public static final Key<Value<Ticks>> DESPAWN_DELAY = Keys.key(ResourceKey.sponge("despawn_delay"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The detonator of a {@link PrimedTNT}.
      */
-    public static final Key<Value<Living>> DETONATOR = Keys.key(ResourceKey.sponge("detonator"));
+    public static final Key<Value<Living>> DETONATOR = Keys.key(ResourceKey.sponge("detonator"), TypeTokens.LIVING_VALUE_TOKEN);
 
     /**
      * The {@link Direction} a {@link BlockState}, {@link Hanging}, or {@link Shulker} is facing or the
      * heading of a {@link ShulkerBullet}.
      */
-    public static final Key<Value<Direction>> DIRECTION = Keys.key(ResourceKey.sponge("direction"));
+    public static final Key<Value<Direction>> DIRECTION = Keys.key(ResourceKey.sponge("direction"), TypeTokens.DIRECTION_VALUE_TOKEN);
 
     /**
      * The display name of an {@link Entity}, {@link ItemStack} or {@link BlockEntity}.
@@ -664,7 +664,7 @@ public final class Keys {
      * <p>On an {@link Entity}, this represents a combination of {@link Keys#CUSTOM_NAME} (if set), scoreboard info, and any click data. As such
      * this is readonly.</p>
      */
-    public static final Key<Value<Component>> DISPLAY_NAME = Keys.key(ResourceKey.sponge("display_name"));
+    public static final Key<Value<Component>> DISPLAY_NAME = Keys.key(ResourceKey.sponge("display_name"), TypeTokens.COMPONENT_VALUE_TOKEN);
 
     /**
      * The dominant {@link HandPreference} of an {@link Agent} entity.
@@ -672,46 +672,46 @@ public final class Keys {
      * <p><em>NOTE:</em> For {@link Player}s is this key read-only, the
      * {@link HandPreference} of a player can not be changed server-side.</p>
      */
-    public static final Key<Value<HandPreference>> DOMINANT_HAND = Keys.key(ResourceKey.sponge("dominant_hand"));
+    public static final Key<Value<HandPreference>> DOMINANT_HAND = Keys.key(ResourceKey.sponge("dominant_hand"), TypeTokens.HAND_PREFERENCE_VALUE_TOKEN);
 
     /**
      * The {@link DoorHinge} of a door {@link BlockState}.
      */
-    public static final Key<Value<DoorHinge>> DOOR_HINGE = Keys.key(ResourceKey.sponge("door_hinge"));
+    public static final Key<Value<DoorHinge>> DOOR_HINGE = Keys.key(ResourceKey.sponge("door_hinge"), TypeTokens.DOOR_HINGE_VALUE_TOKEN);
 
     /**
      * Whether exact teleport location should be used with a {@link EndGateway}.
      */
-    public static final Key<Value<Boolean>> DO_EXACT_TELEPORT = Keys.key(ResourceKey.sponge("do_exact_teleport"));
+    public static final Key<Value<Boolean>> DO_EXACT_TELEPORT = Keys.key(ResourceKey.sponge("do_exact_teleport"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * The remaining duration (in ticks) of an {@link AreaEffectCloud}.
      */
-    public static final Key<Value<Ticks>> DURATION = Keys.key(ResourceKey.sponge("duration"));
+    public static final Key<Value<Ticks>> DURATION = Keys.key(ResourceKey.sponge("duration"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The amount of ticks the duration of an {@link AreaEffectCloud}
      * is increased or reduced when it applies its effect.
      */
-    public static final Key<Value<Ticks>> DURATION_ON_USE = Keys.key(ResourceKey.sponge("duration_on_use"));
+    public static final Key<Value<Ticks>> DURATION_ON_USE = Keys.key(ResourceKey.sponge("duration_on_use"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The color of a dyeable {@link BlockState}, {@link ItemStack} or entity like {@link Cat}s.
      * or
      * The base {@link DyeColor} of a {@link Banner} or {@link TropicalFish}.
      */
-    public static final Key<Value<DyeColor>> DYE_COLOR = Keys.key(ResourceKey.sponge("dye_color"));
+    public static final Key<Value<DyeColor>> DYE_COLOR = Keys.key(ResourceKey.sponge("dye_color"), TypeTokens.DYE_COLOR_VALUE_TOKEN);
 
     /**
      * The time a {@link Panda} has been eating (in ticks)
      */
-    public static final Key<Value<Ticks>> EATING_TIME = Keys.key(ResourceKey.sponge("eating_time"));
+    public static final Key<Value<Ticks>> EATING_TIME = Keys.key(ResourceKey.sponge("eating_time"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The efficiency of an {@link ItemStack} tool. Affects mining speed of supported materials. {@link #CAN_HARVEST}
      * Readonly
      */
-    public static final Key<Value<Double>> EFFICIENCY = Keys.key(ResourceKey.sponge("efficiency"));
+    public static final Key<Value<Double>> EFFICIENCY = Keys.key(ResourceKey.sponge("efficiency"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The time (in ticks) until a {@link Chicken} lays an {@link ItemTypes#EGG}.
@@ -723,12 +723,12 @@ public final class Keys {
      *     calculation is ran again.
      * </p>
      */
-    public static final Key<Value<Ticks>> EGG_TIME = Keys.key(ResourceKey.sponge("egg_time"));
+    public static final Key<Value<Ticks>> EGG_TIME = Keys.key(ResourceKey.sponge("egg_time"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The age (in ticks) of an {@link EndGateway}
      */
-    public static final Key<Value<Ticks>> END_GATEWAY_AGE = Keys.key(ResourceKey.sponge("end_gateway_age"));
+    public static final Key<Value<Ticks>> END_GATEWAY_AGE = Keys.key(ResourceKey.sponge("end_gateway_age"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The {@link EquipmentType} that the target inventory supports. This usually applies to {@link EquipmentSlot}s.
@@ -736,7 +736,7 @@ public final class Keys {
      * The {@link EquipmentType} of an {@link ItemStack}
      * Readonly
      */
-    public static final Key<Value<EquipmentType>> EQUIPMENT_TYPE = Keys.key(ResourceKey.sponge("equipment_type"));
+    public static final Key<Value<EquipmentType>> EQUIPMENT_TYPE = Keys.key(ResourceKey.sponge("equipment_type"), TypeTokens.EQUIPMENT_TYPE_VALUE_TOKEN);
 
     /**
      * The current level of exhaustion of a {@link Humanoid}.
@@ -746,28 +746,28 @@ public final class Keys {
      * maximum. This type of effect occurs over time and can be modified by
      * movements and actions performed by the {@link Humanoid}.</p>
      */
-    public static final Key<Value<Double>> EXHAUSTION = Keys.key(ResourceKey.sponge("exhaustion"));
+    public static final Key<Value<Double>> EXHAUSTION = Keys.key(ResourceKey.sponge("exhaustion"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The amount of experience a {@link Player} has or an {@link ExperienceOrb} contains.
      */
-    public static final Key<Value<Integer>> EXPERIENCE = Keys.key(ResourceKey.sponge("experience"));
+    public static final Key<Value<Integer>> EXPERIENCE = Keys.key(ResourceKey.sponge("experience"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The total experience a {@link Player} requires to advance from his current level to the next one.
      * Readonly
      */
-    public static final Key<Value<Integer>> EXPERIENCE_FROM_START_OF_LEVEL = Keys.key(ResourceKey.sponge("experience_from_start_of_level"));
+    public static final Key<Value<Integer>> EXPERIENCE_FROM_START_OF_LEVEL = Keys.key(ResourceKey.sponge("experience_from_start_of_level"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The current level a {@link Player} has.
      */
-    public static final Key<Value<Integer>> EXPERIENCE_LEVEL = Keys.key(ResourceKey.sponge("experience_level"));
+    public static final Key<Value<Integer>> EXPERIENCE_LEVEL = Keys.key(ResourceKey.sponge("experience_level"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The amount of experience a {@link Player} has collected towards the next level.
      */
-    public static final Key<Value<Integer>> EXPERIENCE_SINCE_LEVEL = Keys.key(ResourceKey.sponge("experience_since_level"));
+    public static final Key<Value<Integer>> EXPERIENCE_SINCE_LEVEL = Keys.key(ResourceKey.sponge("experience_since_level"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The radius of the {@link Explosion} to be created by detonating an {@link Explosive}.
@@ -776,36 +776,36 @@ public final class Keys {
      * determined randomly at the time of the explosion or computed from the
      * context in which the {@link Explosive} explodes.</p>
      */
-    public static final Key<Value<Integer>> EXPLOSION_RADIUS = Keys.key(ResourceKey.sponge("explosion_radius"));
+    public static final Key<Value<Integer>> EXPLOSION_RADIUS = Keys.key(ResourceKey.sponge("explosion_radius"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The eye height of an {@link Entity}.
      * Readonly
      */
-    public static final Key<Value<Double>> EYE_HEIGHT = Keys.key(ResourceKey.sponge("eye_height"));
+    public static final Key<Value<Double>> EYE_HEIGHT = Keys.key(ResourceKey.sponge("eye_height"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The eye position of an {@link Entity}.
      * Readonly
      */
-    public static final Key<Value<Vector3d>> EYE_POSITION = Keys.key(ResourceKey.sponge("eye_position"));
+    public static final Key<Value<Vector3d>> EYE_POSITION = Keys.key(ResourceKey.sponge("eye_position"), TypeTokens.VECTOR_3D_VALUE_TOKEN);
 
     /**
      * The distance an {@link Entity} has fallen.
      */
-    public static final Key<Value<Double>> FALL_DISTANCE = Keys.key(ResourceKey.sponge("fall_distance"));
+    public static final Key<Value<Double>> FALL_DISTANCE = Keys.key(ResourceKey.sponge("fall_distance"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The amount of ticks a {@link FallingBlock} has been falling for.
      */
-    public static final Key<Value<Ticks>> FALL_TIME = Keys.key(ResourceKey.sponge("fall_time"));
+    public static final Key<Value<Ticks>> FALL_TIME = Keys.key(ResourceKey.sponge("fall_time"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The {@link FireworkEffect}s of a
      * {@link ItemTypes#FIREWORK_STAR}, {@link ItemTypes#FIREWORK_ROCKET} {@link ItemStack} or a
      * {@link FireworkRocket}.
      */
-    public static final Key<ListValue<FireworkEffect>> FIREWORK_EFFECTS = Keys.key(ResourceKey.sponge("firework_effects"));
+    public static final Key<ListValue<FireworkEffect>> FIREWORK_EFFECTS = Keys.key(ResourceKey.sponge("firework_effects"), TypeTokens.LIST_FIREWORK_EFFECT_VALUE_TOKEN);
 
     /**
      * The flight duration of a {@link FireworkRocket}
@@ -814,52 +814,52 @@ public final class Keys {
      * fly for roughly {@code modifier * 10 + (random number from 0 to 13)}
      * ticks in Vanilla Minecraft.</p>
      */
-    public static final Key<Value<Ticks>> FIREWORK_FLIGHT_MODIFIER = Keys.key(ResourceKey.sponge("firework_flight_modifier"));
+    public static final Key<Value<Ticks>> FIREWORK_FLIGHT_MODIFIER = Keys.key(ResourceKey.sponge("firework_flight_modifier"), TypeTokens.TICKS_VALUE_TOKEN);
 
-    public static final Key<Value<FireworkShape>> FIREWORK_SHAPE = Keys.key(ResourceKey.sponge("firework_shape"));
+    public static final Key<Value<FireworkShape>> FIREWORK_SHAPE = Keys.key(ResourceKey.sponge("firework_shape"), TypeTokens.FIREWORK_SHAPE_VALUE_TOKEN);
 
     /**
      * The delay in ticks until the {@link Entity} will be damaged by the fire.
      */
-    public static final Key<Value<Ticks>> FIRE_DAMAGE_DELAY = Keys.key(ResourceKey.sponge("fire_damage_delay"));
+    public static final Key<Value<Ticks>> FIRE_DAMAGE_DELAY = Keys.key(ResourceKey.sponge("fire_damage_delay"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The amount of ticks an {@link Entity} is still burning.
      */
-    public static final Key<Value<Ticks>> FIRE_TICKS = Keys.key(ResourceKey.sponge("fire_ticks"));
+    public static final Key<Value<Ticks>> FIRE_TICKS = Keys.key(ResourceKey.sponge("fire_ticks"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The time a {@link User} first joined on the Server.
      */
-    public static final Key<Value<Instant>> FIRST_DATE_JOINED = Keys.key(ResourceKey.sponge("first_date_joined"));
+    public static final Key<Value<Instant>> FIRST_DATE_JOINED = Keys.key(ResourceKey.sponge("first_date_joined"), TypeTokens.INSTANT_VALUE_TOKEN);
 
     /**
      * A {@link Fox fox's} first trusted {@link UUID}, usually a {@link Player}.
      */
-    public static final Key<Value<UUID>> FIRST_TRUSTED = Keys.key(ResourceKey.sponge("first_trusted"));
+    public static final Key<Value<UUID>> FIRST_TRUSTED = Keys.key(ResourceKey.sponge("first_trusted"), TypeTokens.UUID_VALUE_TOKEN);
 
     /**
      * The {@link FluidStackSnapshot} contained within an item container.
      * Item containers may include buckets and other mod added items.
      * See {@link #CONTAINER_ITEM}
      */
-    public static final Key<Value<FluidStackSnapshot>> FLUID_ITEM_STACK = Keys.key(ResourceKey.sponge("fluid_item_stack"));
+    public static final Key<Value<FluidStackSnapshot>> FLUID_ITEM_STACK = Keys.key(ResourceKey.sponge("fluid_item_stack"), TypeTokens.FLUID_STACK_SNAPSHOT_VALUE_TOKEN);
 
     /**
      * The fluid level of a liquid {@link BlockState}.
      */
-    public static final Key<Value<Integer>> FLUID_LEVEL = Keys.key(ResourceKey.sponge("fluid_level"));
+    public static final Key<Value<Integer>> FLUID_LEVEL = Keys.key(ResourceKey.sponge("fluid_level"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The directional tank information.
      * TODO dataholder? cauldron blockstate? modded?
      */
-    public static final Key<MapValue<Direction, List<FluidStackSnapshot>>> FLUID_TANK_CONTENTS = Keys.key(ResourceKey.sponge("fluid_tank_contents"));
+    public static final Key<MapValue<Direction, List<FluidStackSnapshot>>> FLUID_TANK_CONTENTS = Keys.key(ResourceKey.sponge("fluid_tank_contents"), TypeTokens.MAP_DIRECTION_FLUID_STACK_SNAPSHOT_VALUE_TOKEN);
 
     /**
      * The speed at which an {@link Player} flies.
      */
-    public static final Key<Value<Double>> FLYING_SPEED = Keys.key(ResourceKey.sponge("flying_speed"));
+    public static final Key<Value<Double>> FLYING_SPEED = Keys.key(ResourceKey.sponge("flying_speed"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The food level of a {@link Humanoid}.
@@ -868,12 +868,12 @@ public final class Keys {
      * hunger levels. If the food level is high enough, the humanoid may heal. If the food level is at 0,
      * the humanoid may starve.</p>
      */
-    public static final Key<Value<Integer>> FOOD_LEVEL = Keys.key(ResourceKey.sponge("food_level"));
+    public static final Key<Value<Integer>> FOOD_LEVEL = Keys.key(ResourceKey.sponge("food_level"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The type of a {@link Fox}.
      */
-    public static final Key<Value<FoxType>> FOX_TYPE = Keys.key(ResourceKey.sponge("fox_type"));
+    public static final Key<Value<FoxType>> FOX_TYPE = Keys.key(ResourceKey.sponge("fox_type"), TypeTokens.FOX_TYPE_VALUE_TOKEN);
 
     /**
      * Represents the {@link Key} for the amount of fuel left in a {@link BrewingStand} or {@link FurnaceBlockEntity} or {@link FurnaceMinecart}
@@ -883,17 +883,17 @@ public final class Keys {
      *
      * <p>See {@link #BURN_TIME} for the burn time added by a fuel {@link ItemStack} to a furnace</p>
      */
-    public static final Key<Value<Integer>> FUEL = Keys.key(ResourceKey.sponge("fuel"));
+    public static final Key<Value<Integer>> FUEL = Keys.key(ResourceKey.sponge("fuel"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The time (in ticks) a {@link FusedExplosive}'s fuse will burn before the explosion.
      */
-    public static final Key<Value<Ticks>> FUSE_DURATION = Keys.key(ResourceKey.sponge("fuse_duration"));
+    public static final Key<Value<Ticks>> FUSE_DURATION = Keys.key(ResourceKey.sponge("fuse_duration"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The {@link GameMode} a {@link Humanoid} has.
      */
-    public static final Key<Value<GameMode>> GAME_MODE = Keys.key(ResourceKey.sponge("game_mode"));
+    public static final Key<Value<GameMode>> GAME_MODE = Keys.key(ResourceKey.sponge("game_mode"), TypeTokens.GAME_MODE_VALUE_TOKEN);
 
     /**
      * The player represented by a {@link BlockTypes#PLAYER_HEAD} (and {@link BlockTypes#PLAYER_WALL_HEAD})
@@ -903,45 +903,45 @@ public final class Keys {
      * be resolved automatically for properties (including textures). You can obtain a game profile with
      * properties using {@link org.spongepowered.api.profile.GameProfileManager#getProfile}.</p>
      */
-    public static final Key<Value<GameProfile>> GAME_PROFILE = Keys.key(ResourceKey.sponge("game_profile"));
+    public static final Key<Value<GameProfile>> GAME_PROFILE = Keys.key(ResourceKey.sponge("game_profile"), TypeTokens.GAME_PROFILE_VALUE_TOKEN);
 
     /**
      * The generation of a {@link ItemTypes#WRITTEN_BOOK} {@link ItemStack}.
      * Depending on the book's generation it may be impossible to copy it.
      */
-    public static final Key<Value<Integer>> GENERATION = Keys.key(ResourceKey.sponge("generation"));
+    public static final Key<Value<Integer>> GENERATION = Keys.key(ResourceKey.sponge("generation"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The "growth stage" state of a {@link BlockState}.
      * e.g. {@link BlockTypes#CACTUS} or {@link BlockTypes#WHEAT} etc.
      */
-    public static final Key<Value<Integer>> GROWTH_STAGE = Keys.key(ResourceKey.sponge("growth_stage"));
+    public static final Key<Value<Integer>> GROWTH_STAGE = Keys.key(ResourceKey.sponge("growth_stage"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The hardness of a {@link BlockState}s {@link BlockType}.
      * Readonly
      */
-    public static final Key<Value<Double>> HARDNESS = Keys.key(ResourceKey.sponge("hardness"));
+    public static final Key<Value<Double>> HARDNESS = Keys.key(ResourceKey.sponge("hardness"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * Whether an {@link ArmorStand}'s arms are visible.
      */
-    public static final Key<Value<Boolean>> HAS_ARMS = Keys.key(ResourceKey.sponge("has_arms"));
+    public static final Key<Value<Boolean>> HAS_ARMS = Keys.key(ResourceKey.sponge("has_arms"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an {@link ArmorStand} has a visible base plate.
      */
-    public static final Key<Value<Boolean>> HAS_BASE_PLATE = Keys.key(ResourceKey.sponge("has_base_plate"));
+    public static final Key<Value<Boolean>> HAS_BASE_PLATE = Keys.key(ResourceKey.sponge("has_base_plate"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link PackHorse} has a chest.
      */
-    public static final Key<Value<Boolean>> HAS_CHEST = Keys.key(ResourceKey.sponge("has_chest"));
+    public static final Key<Value<Boolean>> HAS_CHEST = Keys.key(ResourceKey.sponge("has_chest"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      *Whether a {@link Turtle} currently has an egg.
      */
-    public static final Key<Value<Boolean>> HAS_EGG = Keys.key(ResourceKey.sponge("has_egg"));
+    public static final Key<Value<Boolean>> HAS_EGG = Keys.key(ResourceKey.sponge("has_egg"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Dolphin} has a fish.
@@ -950,7 +950,7 @@ public final class Keys {
      *     if they have been given a fish.
      * </p>
      */
-    public static final Key<Value<Boolean>> HAS_FISH = Keys.key(ResourceKey.sponge("has_fish"));
+    public static final Key<Value<Boolean>> HAS_FISH = Keys.key(ResourceKey.sponge("has_fish"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an {@link ArmorStand} is a "marker" stand.
@@ -959,44 +959,44 @@ public final class Keys {
      * impossible to see, and the armor stand can no longer be
      * interacted with.</p>
      */
-    public static final Key<Value<Boolean>> HAS_MARKER = Keys.key(ResourceKey.sponge("has_marker"));
+    public static final Key<Value<Boolean>> HAS_MARKER = Keys.key(ResourceKey.sponge("has_marker"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a giant mushroom {@link BlockState} has pores on the {@link Direction#DOWN} direction. See {@link #PORES}.
      */
-    public static final Key<Value<Boolean>> HAS_PORES_DOWN = Keys.key(ResourceKey.sponge("has_pores_down"));
+    public static final Key<Value<Boolean>> HAS_PORES_DOWN = Keys.key(ResourceKey.sponge("has_pores_down"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a giant mushroom {@link BlockState} has pores on the {@link Direction#EAST} direction. See {@link #PORES}.
      */
-    public static final Key<Value<Boolean>> HAS_PORES_EAST = Keys.key(ResourceKey.sponge("has_pores_east"));
+    public static final Key<Value<Boolean>> HAS_PORES_EAST = Keys.key(ResourceKey.sponge("has_pores_east"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a giant mushroom {@link BlockState} has pores on the {@link Direction#NORTH} direction. See {@link #PORES}.
      */
-    public static final Key<Value<Boolean>> HAS_PORES_NORTH = Keys.key(ResourceKey.sponge("has_pores_north"));
+    public static final Key<Value<Boolean>> HAS_PORES_NORTH = Keys.key(ResourceKey.sponge("has_pores_north"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a giant mushroom {@link BlockState} has pores on the {@link Direction#SOUTH} direction. See {@link #PORES}.
      */
-    public static final Key<Value<Boolean>> HAS_PORES_SOUTH = Keys.key(ResourceKey.sponge("has_pores_south"));
+    public static final Key<Value<Boolean>> HAS_PORES_SOUTH = Keys.key(ResourceKey.sponge("has_pores_south"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a giant mushroom {@link BlockState} has pores on the {@link Direction#UP} direction. See {@link #PORES}.
      */
-    public static final Key<Value<Boolean>> HAS_PORES_UP = Keys.key(ResourceKey.sponge("has_pores_up"));
+    public static final Key<Value<Boolean>> HAS_PORES_UP = Keys.key(ResourceKey.sponge("has_pores_up"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a giant mushroom {@link BlockState} has pores on the {@link Direction#WEST} direction. See {@link #PORES}.
      */
-    public static final Key<Value<Boolean>> HAS_PORES_WEST = Keys.key(ResourceKey.sponge("has_pores_west"));
+    public static final Key<Value<Boolean>> HAS_PORES_WEST = Keys.key(ResourceKey.sponge("has_pores_west"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a server player has viewed the credits.
      *
      * <p>The credits are displayed the first time a player returns to the overworld safely using an end portal.</p>
      */
-    public static final Key<Value<Boolean>> HAS_VIEWED_CREDITS = Keys.key(ResourceKey.sponge("has_viewed_credits"));
+    public static final Key<Value<Boolean>> HAS_VIEWED_CREDITS = Keys.key(ResourceKey.sponge("has_viewed_credits"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * The rotation of a {@link Living}'s or {@link ArmorStand}'s head.
@@ -1010,12 +1010,12 @@ public final class Keys {
      * {@link Entity#getRotation()} and Minecraft does not currently support
      * head roll so the z value will always be zero.</p>
      */
-    public static final Key<Value<Vector3d>> HEAD_ROTATION = Keys.key(ResourceKey.sponge("head_rotation"));
+    public static final Key<Value<Vector3d>> HEAD_ROTATION = Keys.key(ResourceKey.sponge("head_rotation"), TypeTokens.VECTOR_3D_VALUE_TOKEN);
 
     /**
      * The {@link EndCrystal} currently healing an {@link EnderDragon}.
      */
-    public static final Key<Value<EndCrystal>> HEALING_CRYSTAL = Keys.key(ResourceKey.sponge("healing_crystal"));
+    public static final Key<Value<EndCrystal>> HEALING_CRYSTAL = Keys.key(ResourceKey.sponge("healing_crystal"), TypeTokens.END_CRYSTAL_VALUE_TOKEN);
 
     /**
      * A {@link Living}'s or {@link EndCrystal}'s current health.
@@ -1027,13 +1027,13 @@ public final class Keys {
      * <p>Convention dictates that health does not fall below 0 but this
      * convention may be broken.</p>
      */
-    public static final Key<Value<Double>> HEALTH = Keys.key(ResourceKey.sponge("health"));
+    public static final Key<Value<Double>> HEALTH = Keys.key(ResourceKey.sponge("health"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * How much health a half-heart on a {@link Player}'s GUI will stand for.
      * TODO wrong javadocs @gabizou?
      */
-    public static final Key<Value<Double>> HEALTH_SCALE = Keys.key(ResourceKey.sponge("health_scale"));
+    public static final Key<Value<Double>> HEALTH_SCALE = Keys.key(ResourceKey.sponge("health_scale"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The height of the physical form of an {@link Entity}.
@@ -1042,89 +1042,89 @@ public final class Keys {
      * {@link Entity}.</p>
      * Readonly
      */
-    public static final Key<Value<Double>> HEIGHT = Keys.key(ResourceKey.sponge("height"));
+    public static final Key<Value<Double>> HEIGHT = Keys.key(ResourceKey.sponge("height"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The {@link ItemType} a {@link BlockState} represents.
      * Readonly
      */
-    public static final Key<Value<ItemType>> HELD_ITEM = Keys.key(ResourceKey.sponge("held_item"));
+    public static final Key<Value<ItemType>> HELD_ITEM = Keys.key(ResourceKey.sponge("held_item"), TypeTokens.ITEM_TYPE_VALUE_TOKEN);
 
     /**
      * The hidden {@link PandaGene gene} of a {@link Panda}.
      */
-    public static final Key<Value<PandaGene>> HIDDEN_GENE = Keys.key(ResourceKey.sponge("hidden_gene"));
+    public static final Key<Value<PandaGene>> HIDDEN_GENE = Keys.key(ResourceKey.sponge("hidden_gene"), TypeTokens.PANDA_GENE_VALUE_TOKEN);
 
     /**
      * Whether the attributes of an {@link ItemStack} are hidden.
      */
-    public static final Key<Value<Boolean>> HIDE_ATTRIBUTES = Keys.key(ResourceKey.sponge("hide_attributes"));
+    public static final Key<Value<Boolean>> HIDE_ATTRIBUTES = Keys.key(ResourceKey.sponge("hide_attributes"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether the {@link #BREAKABLE_BLOCK_TYPES} of an {@link ItemStack} are hidden.
      */
-    public static final Key<Value<Boolean>> HIDE_CAN_DESTROY = Keys.key(ResourceKey.sponge("hide_can_destroy"));
+    public static final Key<Value<Boolean>> HIDE_CAN_DESTROY = Keys.key(ResourceKey.sponge("hide_can_destroy"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether the {@link #PLACEABLE_BLOCK_TYPES} of an {@link ItemStack} are hidden.
      */
-    public static final Key<Value<Boolean>> HIDE_CAN_PLACE = Keys.key(ResourceKey.sponge("hide_can_place"));
+    public static final Key<Value<Boolean>> HIDE_CAN_PLACE = Keys.key(ResourceKey.sponge("hide_can_place"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether the {@link #APPLIED_ENCHANTMENTS} of an {@link ItemStack} are hidden.
      */
-    public static final Key<Value<Boolean>> HIDE_ENCHANTMENTS = Keys.key(ResourceKey.sponge("hide_enchantments"));
+    public static final Key<Value<Boolean>> HIDE_ENCHANTMENTS = Keys.key(ResourceKey.sponge("hide_enchantments"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether miscellaneous values of an {@link ItemStack} are hidden.
      * e.g. potion effects or shield pattern info
      */
-    public static final Key<Value<Boolean>> HIDE_MISCELLANEOUS = Keys.key(ResourceKey.sponge("hide_miscellaneous"));
+    public static final Key<Value<Boolean>> HIDE_MISCELLANEOUS = Keys.key(ResourceKey.sponge("hide_miscellaneous"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether {@link #IS_UNBREAKABLE} state of an {@link ItemStack} is hidden.
      */
-    public static final Key<Value<Boolean>> HIDE_UNBREAKABLE = Keys.key(ResourceKey.sponge("hide_unbreakable"));
+    public static final Key<Value<Boolean>> HIDE_UNBREAKABLE = Keys.key(ResourceKey.sponge("hide_unbreakable"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * The {@link Vector3i position} where a {@link Turtle} lays {@link BlockTypes#TURTLE_EGG eggs}.
      */
-    public static final Key<Value<Vector3i>> HOME_POSITION = Keys.key(ResourceKey.sponge("home_position"));
+    public static final Key<Value<Vector3i>> HOME_POSITION = Keys.key(ResourceKey.sponge("home_position"), TypeTokens.VECTOR_3I_VALUE_TOKEN);
 
     /**
      * The {@link HorseColor} of a {@link Horse}.
      */
-    public static final Key<Value<HorseColor>> HORSE_COLOR = Keys.key(ResourceKey.sponge("horse_color"));
+    public static final Key<Value<HorseColor>> HORSE_COLOR = Keys.key(ResourceKey.sponge("horse_color"), TypeTokens.HORSE_COLOR_VALUE_TOKEN);
 
     /**
      * The {@link HorseStyle} of a {@link Horse}.
      */
-    public static final Key<Value<HorseStyle>> HORSE_STYLE = Keys.key(ResourceKey.sponge("horse_style"));
+    public static final Key<Value<HorseStyle>> HORSE_STYLE = Keys.key(ResourceKey.sponge("horse_style"), TypeTokens.HORSE_STYLE_VALUE_TOKEN);
 
     /**
      * Whether an {@link Item} will not despawn for an infinite time.
      */
-    public static final Key<Value<Boolean>> INFINITE_DESPAWN_DELAY = Keys.key(ResourceKey.sponge("infinite_despawn_delay"));
+    public static final Key<Value<Boolean>> INFINITE_DESPAWN_DELAY = Keys.key(ResourceKey.sponge("infinite_despawn_delay"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an {@link Item} has an infinite pickup delay.
      */
-    public static final Key<Value<Boolean>> INFINITE_PICKUP_DELAY = Keys.key(ResourceKey.sponge("infinite_pickup_delay"));
+    public static final Key<Value<Boolean>> INFINITE_PICKUP_DELAY = Keys.key(ResourceKey.sponge("infinite_pickup_delay"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * The {@link InstrumentType} of a {@link BlockTypes#NOTE_BLOCK} {@link BlockState}.
      */
-    public static final Key<Value<InstrumentType>> INSTRUMENT_TYPE = Keys.key(ResourceKey.sponge("instrument_type"));
+    public static final Key<Value<InstrumentType>> INSTRUMENT_TYPE = Keys.key(ResourceKey.sponge("instrument_type"), TypeTokens.INSTRUMENT_TYPE_VALUE_TOKEN);
 
     /**
      * Whether a {@link BlockTypes#DAYLIGHT_DETECTOR} {@link BlockState} is inverted.
      */
-    public static final Key<Value<Boolean>> INVERTED = Keys.key(ResourceKey.sponge("inverted"));
+    public static final Key<Value<Boolean>> INVERTED = Keys.key(ResourceKey.sponge("inverted"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * The amount of ticks an {@link Entity} will remain invulnerable for.
      */
-    public static final Key<Value<Ticks>> INVULNERABILITY_TICKS = Keys.key(ResourceKey.sponge("invulnerability_ticks"));
+    public static final Key<Value<Ticks>> INVULNERABILITY_TICKS = Keys.key(ResourceKey.sponge("invulnerability_ticks"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * Whether an {@link Entity} is invulnerable.
@@ -1132,17 +1132,17 @@ public final class Keys {
      * <p>This does not protect from the void, players in creative mode,
      * and manual killing like the /kill command.</p>
      */
-    public static final Key<Value<Boolean>> INVULNERABLE = Keys.key(ResourceKey.sponge("invulnerable"));
+    public static final Key<Value<Boolean>> INVULNERABLE = Keys.key(ResourceKey.sponge("invulnerable"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a fence gate {@link BlockState} is in a wall.
      */
-    public static final Key<Value<Boolean>> IN_WALL = Keys.key(ResourceKey.sponge("in_wall"));
+    public static final Key<Value<Boolean>> IN_WALL = Keys.key(ResourceKey.sponge("in_wall"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an {@link Ageable} is considered an adult.
      */
-    public static final Key<Value<Boolean>> IS_ADULT = Keys.key(ResourceKey.sponge("is_adult"));
+    public static final Key<Value<Boolean>> IS_ADULT = Keys.key(ResourceKey.sponge("is_adult"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Blaze} is currently burning.
@@ -1150,145 +1150,145 @@ public final class Keys {
      * <p>Unlike {@link Keys#FIRE_TICKS}, the burning effect will not damage
      * the burning entity.</p>
      */
-    public static final Key<Value<Boolean>> IS_AFLAME = Keys.key(ResourceKey.sponge("is_aflame"));
+    public static final Key<Value<Boolean>> IS_AFLAME = Keys.key(ResourceKey.sponge("is_aflame"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an {@link Agent}s AI is enabled.
      */
-    public static final Key<Value<Boolean>> IS_AI_ENABLED = Keys.key(ResourceKey.sponge("is_ai_enabled"));
+    public static final Key<Value<Boolean>> IS_AI_ENABLED = Keys.key(ResourceKey.sponge("is_ai_enabled"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an entity is currently aggressive.
      * e.g. {@link Wolf wolves} or {@link ZombifiedPiglin}
      */
-    public static final Key<Value<Boolean>> IS_ANGRY = Keys.key(ResourceKey.sponge("is_angry"));
+    public static final Key<Value<Boolean>> IS_ANGRY = Keys.key(ResourceKey.sponge("is_angry"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link BlockState} is "attached" to another block.
      */
-    public static final Key<Value<Boolean>> IS_ATTACHED = Keys.key(ResourceKey.sponge("is_attached"));
+    public static final Key<Value<Boolean>> IS_ATTACHED = Keys.key(ResourceKey.sponge("is_attached"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an entity is begging for food.
      * e.g. {@link Cat cats} or tamed {@link Wolf wolves}
      */
-    public static final Key<Value<Boolean>> IS_BEGGING_FOR_FOOD = Keys.key(ResourceKey.sponge("is_begging_for_food"));
+    public static final Key<Value<Boolean>> IS_BEGGING_FOR_FOOD = Keys.key(ResourceKey.sponge("is_begging_for_food"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether {@link Raider}s are currently celebrating.
      */
-    public static final Key<Value<Boolean>> IS_CELEBRATING = Keys.key(ResourceKey.sponge("is_celebrating"));
+    public static final Key<Value<Boolean>> IS_CELEBRATING = Keys.key(ResourceKey.sponge("is_celebrating"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Creeper} is charged.
      */
-    public static final Key<Value<Boolean>> IS_CHARGED = Keys.key(ResourceKey.sponge("is_charged"));
+    public static final Key<Value<Boolean>> IS_CHARGED = Keys.key(ResourceKey.sponge("is_charged"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Pillager} is charging it's crossbow.
      */
-    public static final Key<Value<Boolean>> IS_CHARGING_CROSSBOW = Keys.key(ResourceKey.sponge("is_charging_crossbow"));
+    public static final Key<Value<Boolean>> IS_CHARGING_CROSSBOW = Keys.key(ResourceKey.sponge("is_charging_crossbow"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Spider} is currently climbing.
      */
-    public static final Key<Value<Boolean>> IS_CLIMBING = Keys.key(ResourceKey.sponge("is_climbing"));
+    public static final Key<Value<Boolean>> IS_CLIMBING = Keys.key(ResourceKey.sponge("is_climbing"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link BlockState} is connected to the {@link Direction#EAST}.
      * Also see {@link #CONNECTED_DIRECTIONS}.
      */
-    public static final Key<Value<Boolean>> IS_CONNECTED_EAST = Keys.key(ResourceKey.sponge("is_connected_east"));
+    public static final Key<Value<Boolean>> IS_CONNECTED_EAST = Keys.key(ResourceKey.sponge("is_connected_east"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link BlockState} is connected to the {@link Direction#NORTH}.
      * Also see {@link #CONNECTED_DIRECTIONS}.
      */
-    public static final Key<Value<Boolean>> IS_CONNECTED_NORTH = Keys.key(ResourceKey.sponge("is_connected_north"));
+    public static final Key<Value<Boolean>> IS_CONNECTED_NORTH = Keys.key(ResourceKey.sponge("is_connected_north"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link BlockState} is connected to the {@link Direction#SOUTH}.
      * Also see {@link #CONNECTED_DIRECTIONS}.
      */
-    public static final Key<Value<Boolean>> IS_CONNECTED_SOUTH = Keys.key(ResourceKey.sponge("is_connected_south"));
+    public static final Key<Value<Boolean>> IS_CONNECTED_SOUTH = Keys.key(ResourceKey.sponge("is_connected_south"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link BlockState} is connected to the {@link Direction#UP}.
      * Also see {@link #CONNECTED_DIRECTIONS}.
      */
-    public static final Key<Value<Boolean>> IS_CONNECTED_UP = Keys.key(ResourceKey.sponge("is_connected_up"));
+    public static final Key<Value<Boolean>> IS_CONNECTED_UP = Keys.key(ResourceKey.sponge("is_connected_up"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link BlockState} is connected to the {@link Direction#WEST}.
      * Also see {@link #CONNECTED_DIRECTIONS}.
      */
-    public static final Key<Value<Boolean>> IS_CONNECTED_WEST = Keys.key(ResourceKey.sponge("is_connected_west"));
+    public static final Key<Value<Boolean>> IS_CONNECTED_WEST = Keys.key(ResourceKey.sponge("is_connected_west"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an {@link Arrow} will cause a critical hit.
      */
-    public static final Key<Value<Boolean>> IS_CRITICAL_HIT = Keys.key(ResourceKey.sponge("is_critical_hit"));
+    public static final Key<Value<Boolean>> IS_CRITICAL_HIT = Keys.key(ResourceKey.sponge("is_critical_hit"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Fox} is currently crouching.
      */
-    public static final Key<Value<Boolean>> IS_CROUCHING = Keys.key(ResourceKey.sponge("is_crouching"));
+    public static final Key<Value<Boolean>> IS_CROUCHING = Keys.key(ResourceKey.sponge("is_crouching"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a custom name is visible on an {@link Entity}.
      */
-    public static final Key<Value<Boolean>> IS_CUSTOM_NAME_VISIBLE = Keys.key(ResourceKey.sponge("is_custom_name_visible"));
+    public static final Key<Value<Boolean>> IS_CUSTOM_NAME_VISIBLE = Keys.key(ResourceKey.sponge("is_custom_name_visible"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Fox} is currently defending.
      */
-    public static final Key<Value<Boolean>> IS_DEFENDING = Keys.key(ResourceKey.sponge("is_defending"));
+    public static final Key<Value<Boolean>> IS_DEFENDING = Keys.key(ResourceKey.sponge("is_defending"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link BlockState} is disarmed.
      * e.g. {@link BlockTypes#TRIPWIRE}s and {@link BlockTypes#TRIPWIRE_HOOK}s.
      */
-    public static final Key<Value<Boolean>> IS_DISARMED = Keys.key(ResourceKey.sponge("is_disarmed"));
+    public static final Key<Value<Boolean>> IS_DISARMED = Keys.key(ResourceKey.sponge("is_disarmed"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an entity is eating.
      * e.g. {@link Panda}
      */
-    public static final Key<Value<Boolean>> IS_EATING = Keys.key(ResourceKey.sponge("is_eating"));
+    public static final Key<Value<Boolean>> IS_EATING = Keys.key(ResourceKey.sponge("is_eating"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link WeatherEffect} like {@link LightningBolt} is harmful to other {@link Entity entities}.
      * Readonly
      */
-    public static final Key<Value<Boolean>> IS_EFFECT_ONLY = Keys.key(ResourceKey.sponge("is_effect_only"));
+    public static final Key<Value<Boolean>> IS_EFFECT_ONLY = Keys.key(ResourceKey.sponge("is_effect_only"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Player} is flying with an {@link ItemTypes#ELYTRA}.
      */
-    public static final Key<Value<Boolean>> IS_ELYTRA_FLYING = Keys.key(ResourceKey.sponge("is_elytra_flying"));
+    public static final Key<Value<Boolean>> IS_ELYTRA_FLYING = Keys.key(ResourceKey.sponge("is_elytra_flying"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a piston {@link BlockState} is currently extended.
      * TODO {@link Piston}?
      */
-    public static final Key<Value<Boolean>> IS_EXTENDED = Keys.key(ResourceKey.sponge("is_extended"));
+    public static final Key<Value<Boolean>> IS_EXTENDED = Keys.key(ResourceKey.sponge("is_extended"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Fox} is currently faceplanted.
      */
-    public static final Key<Value<Boolean>> IS_FACEPLANTED = Keys.key(ResourceKey.sponge("is_faceplanted"));
+    public static final Key<Value<Boolean>> IS_FACEPLANTED = Keys.key(ResourceKey.sponge("is_faceplanted"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link BlockState} is filled.
      * <p>e.g. {@link BlockTypes#END_PORTAL_FRAME}s.</p>
      */
-    public static final Key<Value<Boolean>> IS_FILLED = Keys.key(ResourceKey.sponge("is_filled"));
+    public static final Key<Value<Boolean>> IS_FILLED = Keys.key(ResourceKey.sponge("is_filled"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link BlockState} is flammable.
      * Readonly
      */
-    public static final Key<Value<Boolean>> IS_FLAMMABLE = Keys.key(ResourceKey.sponge("is_flammable"));
+    public static final Key<Value<Boolean>> IS_FLAMMABLE = Keys.key(ResourceKey.sponge("is_flammable"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an {@link Entity} is flying. TODO only player?
@@ -1298,7 +1298,7 @@ public final class Keys {
      * freely between flying and walking. To check whether a player may switch
      * his flying state, check {@link #CAN_FLY}.</p>
      */
-    public static final Key<Value<Boolean>> IS_FLYING = Keys.key(ResourceKey.sponge("is_flying"));
+    public static final Key<Value<Boolean>> IS_FLYING = Keys.key(ResourceKey.sponge("is_flying"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an entity is frightened.
@@ -1307,51 +1307,51 @@ public final class Keys {
      * of {@link PandaGenes#WORRIED} and are in a {@link ServerWorld world} whose {@link Weather} is currently a
      * {@link Weathers#THUNDER} are considered "frightened".</p>
      */
-    public static final Key<Value<Boolean>> IS_FRIGHTENED = Keys.key(ResourceKey.sponge("is_frightened"));
+    public static final Key<Value<Boolean>> IS_FRIGHTENED = Keys.key(ResourceKey.sponge("is_frightened"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether the block at the {@link ServerLocation} is a full block.
      */
-    public static final Key<Value<Boolean>> IS_FULL_BLOCK = Keys.key(ResourceKey.sponge("is_full_block"));
+    public static final Key<Value<Boolean>> IS_FULL_BLOCK = Keys.key(ResourceKey.sponge("is_full_block"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an {@link Entity} has a glowing outline.
      */
-    public static final Key<Value<Boolean>> IS_GLOWING = Keys.key(ResourceKey.sponge("is_glowing"));
+    public static final Key<Value<Boolean>> IS_GLOWING = Keys.key(ResourceKey.sponge("is_glowing"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether {@link Turtle} is proceeding to it's {@link Vector3i home position}.
      */
-    public static final Key<Value<Boolean>> IS_GOING_HOME = Keys.key(ResourceKey.sponge("is_going_home"));
+    public static final Key<Value<Boolean>> IS_GOING_HOME = Keys.key(ResourceKey.sponge("is_going_home"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether something is affected by gravity.
      * e.g. {@link Entity}s and {@link BlockState}s
      * Readonly(BlockState.class)
      */
-    public static final Key<Value<Boolean>> IS_GRAVITY_AFFECTED = Keys.key(ResourceKey.sponge("is_gravity_affected"));
+    public static final Key<Value<Boolean>> IS_GRAVITY_AFFECTED = Keys.key(ResourceKey.sponge("is_gravity_affected"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Cat} is hissing.
      */
-    public static final Key<Value<Boolean>> IS_HISSING = Keys.key(ResourceKey.sponge("is_hissing"));
+    public static final Key<Value<Boolean>> IS_HISSING = Keys.key(ResourceKey.sponge("is_hissing"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Ravager} is immobilized.
      * Readonly
      */
-    public static final Key<Value<Boolean>> IS_IMMOBILIZED = Keys.key(ResourceKey.sponge("is_immobilized"));
+    public static final Key<Value<Boolean>> IS_IMMOBILIZED = Keys.key(ResourceKey.sponge("is_immobilized"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link ServerLocation} is indirectly powered.
      * Readonly
      */
-    public static final Key<Value<Boolean>> IS_INDIRECTLY_POWERED = Keys.key(ResourceKey.sponge("is_indirectly_powered"));
+    public static final Key<Value<Boolean>> IS_INDIRECTLY_POWERED = Keys.key(ResourceKey.sponge("is_indirectly_powered"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Fox} is currently interested in something.
      */
-    public static final Key<Value<Boolean>> IS_INTERESTED = Keys.key(ResourceKey.sponge("is_interested"));
+    public static final Key<Value<Boolean>> IS_INTERESTED = Keys.key(ResourceKey.sponge("is_interested"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an {@link Entity} is currently invisible.
@@ -1359,13 +1359,13 @@ public final class Keys {
      * but not prevent any entity updates being sent to clients.
      * To fully "vanish" an {@link Entity}, use {@link #VANISH}.
      */
-    public static final Key<Value<Boolean>> IS_INVISIBLE = Keys.key(ResourceKey.sponge("is_invisible"));
+    public static final Key<Value<Boolean>> IS_INVISIBLE = Keys.key(ResourceKey.sponge("is_invisible"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Boat} is currently in {@link BlockTypes#WATER}.
      * Readonly
      */
-    public static final Key<Value<Boolean>> IS_IN_WATER = Keys.key(ResourceKey.sponge("is_in_water"));
+    public static final Key<Value<Boolean>> IS_IN_WATER = Keys.key(ResourceKey.sponge("is_in_water"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Vindicator} is exhibiting "johnny" behavior.
@@ -1373,24 +1373,24 @@ public final class Keys {
      * @see <a href="https://minecraft.gamepedia.com/Vindicator#Behavior">
      * The Minecraft Wiki for more information about "johnny" behavior</a>
      */
-    public static final Key<Value<Boolean>> IS_JOHNNY = Keys.key(ResourceKey.sponge("is_johnny"));
+    public static final Key<Value<Boolean>> IS_JOHNNY = Keys.key(ResourceKey.sponge("is_johnny"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Turtle} is currently digging to lay an egg.
      */
-    public static final Key<Value<Boolean>> IS_LAYING_EGG = Keys.key(ResourceKey.sponge("is_laying_egg"));
+    public static final Key<Value<Boolean>> IS_LAYING_EGG = Keys.key(ResourceKey.sponge("is_laying_egg"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Patroller} is the leader.
      */
-    public static final Key<Value<Boolean>> IS_LEADER = Keys.key(ResourceKey.sponge("is_leader"));
+    public static final Key<Value<Boolean>> IS_LEADER = Keys.key(ResourceKey.sponge("is_leader"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link BlockState} is lit.
      * e.g. {@link BlockTypes#FURNACE}, {@link BlockTypes#CAMPFIRE}
      * or {@link BlockTypes#REDSTONE_TORCH}.
      */
-    public static final Key<Value<Boolean>> IS_LIT = Keys.key(ResourceKey.sponge("is_lit"));
+    public static final Key<Value<Boolean>> IS_LIT = Keys.key(ResourceKey.sponge("is_lit"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Cat} is lying down.
@@ -1398,40 +1398,40 @@ public final class Keys {
      * <p>In vanilla, a cat lies down near its owner when the owner goes to
      * sleep.</p>
      */
-    public static final Key<Value<Boolean>> IS_LYING_DOWN = Keys.key(ResourceKey.sponge("is_lying_down"));
+    public static final Key<Value<Boolean>> IS_LYING_DOWN = Keys.key(ResourceKey.sponge("is_lying_down"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Panda} is lying on it's back.
      */
-    public static final Key<Value<Boolean>> IS_LYING_ON_BACK = Keys.key(ResourceKey.sponge("is_lying_on_back"));
+    public static final Key<Value<Boolean>> IS_LYING_ON_BACK = Keys.key(ResourceKey.sponge("is_lying_on_back"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a bed {@link BlockState} is occupied.
      * e.g. {@link BlockTypes#WHITE_BED}.
      */
-    public static final Key<Value<Boolean>> IS_OCCUPIED = Keys.key(ResourceKey.sponge("is_occupied"));
+    public static final Key<Value<Boolean>> IS_OCCUPIED = Keys.key(ResourceKey.sponge("is_occupied"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Minecart} is on it's rail
      * Readonly
      */
-    public static final Key<Value<Boolean>> IS_ON_RAIL = Keys.key(ResourceKey.sponge("is_on_rail"));
+    public static final Key<Value<Boolean>> IS_ON_RAIL = Keys.key(ResourceKey.sponge("is_on_rail"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a door/fencegate/trapdoor {@link BlockState} is open.
      */
-    public static final Key<Value<Boolean>> IS_OPEN = Keys.key(ResourceKey.sponge("is_open"));
+    public static final Key<Value<Boolean>> IS_OPEN = Keys.key(ResourceKey.sponge("is_open"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link BlockState} is passable (can be walked through).
      * Readonly
      */
-    public static final Key<Value<Boolean>> IS_PASSABLE = Keys.key(ResourceKey.sponge("is_passable"));
+    public static final Key<Value<Boolean>> IS_PASSABLE = Keys.key(ResourceKey.sponge("is_passable"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Patroller} is currently patrolling.
      */
-    public static final Key<Value<Boolean>> IS_PATROLLING = Keys.key(ResourceKey.sponge("is_patrolling"));
+    public static final Key<Value<Boolean>> IS_PATROLLING = Keys.key(ResourceKey.sponge("is_patrolling"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an {@link Entity} or leaves {@link BlockState} will
@@ -1441,23 +1441,23 @@ public final class Keys {
      * them. A persisting entity will not be removed due to no players being
      * near it.</p>
      */
-    public static final Key<Value<Boolean>> IS_PERSISTENT = Keys.key(ResourceKey.sponge("is_persistent"));
+    public static final Key<Value<Boolean>> IS_PERSISTENT = Keys.key(ResourceKey.sponge("is_persistent"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether players are prevented from placing
      * items from an equipment slot on an {@link ArmorStand}
      */
-    public static final Key<MapValue<EquipmentType, Boolean>> IS_PLACING_DISABLED = Keys.key(ResourceKey.sponge("is_placing_disabled"));
+    public static final Key<MapValue<EquipmentType, Boolean>> IS_PLACING_DISABLED = Keys.key(ResourceKey.sponge("is_placing_disabled"), TypeTokens.MAP_EQUIPMENT_TYPE_BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link IronGolem} has been created by a {@link Player}.
      */
-    public static final Key<Value<Boolean>> IS_PLAYER_CREATED = Keys.key(ResourceKey.sponge("is_player_created"));
+    public static final Key<Value<Boolean>> IS_PLAYER_CREATED = Keys.key(ResourceKey.sponge("is_player_created"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Fox} is currently pouncing.
      */
-    public static final Key<Value<Boolean>> IS_POUNCING = Keys.key(ResourceKey.sponge("is_pouncing"));
+    public static final Key<Value<Boolean>> IS_POUNCING = Keys.key(ResourceKey.sponge("is_pouncing"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link BlockState} is powered.
@@ -1468,71 +1468,71 @@ public final class Keys {
      * {@link BlockTypes#OAK_PRESSURE_PLATE}, and their stone
      * counterparts.</p>
      */
-    public static final Key<Value<Boolean>> IS_POWERED = Keys.key(ResourceKey.sponge("is_powered"));
+    public static final Key<Value<Boolean>> IS_POWERED = Keys.key(ResourceKey.sponge("is_powered"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link FusedExplosive} is currently primed.
      * Readonly
      */
-    public static final Key<Value<Boolean>> IS_PRIMED = Keys.key(ResourceKey.sponge("is_primed"));
+    public static final Key<Value<Boolean>> IS_PRIMED = Keys.key(ResourceKey.sponge("is_primed"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Cat} is purring.
      */
-    public static final Key<Value<Boolean>> IS_PURRING = Keys.key(ResourceKey.sponge("is_purring"));
+    public static final Key<Value<Boolean>> IS_PURRING = Keys.key(ResourceKey.sponge("is_purring"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Cat} is relaxed.
      *
      * <p>In vanilla, a cat relaxes before lying down.</p>
      */
-    public static final Key<Value<Boolean>> IS_RELAXED = Keys.key(ResourceKey.sponge("is_relaxed"));
+    public static final Key<Value<Boolean>> IS_RELAXED = Keys.key(ResourceKey.sponge("is_relaxed"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link BlockState} can be replaced by a player without breaking it first.
      * e.g. {@link BlockTypes#WATER}
      * Readonly
      */
-    public static final Key<Value<Boolean>> IS_REPLACEABLE = Keys.key(ResourceKey.sponge("is_replaceable"));
+    public static final Key<Value<Boolean>> IS_REPLACEABLE = Keys.key(ResourceKey.sponge("is_replaceable"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Ravager} is roaring.
      * Readonly
      */
-    public static final Key<Value<Boolean>> IS_ROARING = Keys.key(ResourceKey.sponge("is_roaring"));
+    public static final Key<Value<Boolean>> IS_ROARING = Keys.key(ResourceKey.sponge("is_roaring"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Panda} is rolling around.
      */
-    public static final Key<Value<Boolean>> IS_ROLLING_AROUND = Keys.key(ResourceKey.sponge("is_rolling_around"));
+    public static final Key<Value<Boolean>> IS_ROLLING_AROUND = Keys.key(ResourceKey.sponge("is_rolling_around"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an entity is saddled.
      * e.g. {@link Horse}s and {@link Pig}s
      */
-    public static final Key<Value<Boolean>> IS_SADDLED = Keys.key(ResourceKey.sponge("is_saddled"));
+    public static final Key<Value<Boolean>> IS_SADDLED = Keys.key(ResourceKey.sponge("is_saddled"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an {@link Enderman} is screaming.
      */
-    public static final Key<Value<Boolean>> IS_SCREAMING = Keys.key(ResourceKey.sponge("is_screaming"));
+    public static final Key<Value<Boolean>> IS_SCREAMING = Keys.key(ResourceKey.sponge("is_screaming"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Sheep} is sheared.
      */
-    public static final Key<Value<Boolean>> IS_SHEARED = Keys.key(ResourceKey.sponge("is_sheared"));
+    public static final Key<Value<Boolean>> IS_SHEARED = Keys.key(ResourceKey.sponge("is_sheared"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an {@link Entity} is silent.
      *
      * <p>A silent entity will not emit sounds or make noises.</p>
      */
-    public static final Key<Value<Boolean>> IS_SILENT = Keys.key(ResourceKey.sponge("is_silent"));
+    public static final Key<Value<Boolean>> IS_SILENT = Keys.key(ResourceKey.sponge("is_silent"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Wolf}, {@link Cat}, {@link Panda}, or {@link Fox} is sitting.
      */
-    public static final Key<Value<Boolean>> IS_SITTING = Keys.key(ResourceKey.sponge("is_sitting"));
+    public static final Key<Value<Boolean>> IS_SITTING = Keys.key(ResourceKey.sponge("is_sitting"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Bat}, {@link Fox} or {@link Player} is sleeping.
@@ -1542,19 +1542,19 @@ public final class Keys {
      * advance through the night by going to bed.</p>
      * Readonly(Player.class)
      */
-    public static final Key<Value<Boolean>> IS_SLEEPING = Keys.key(ResourceKey.sponge("is_sleeping"));
+    public static final Key<Value<Boolean>> IS_SLEEPING = Keys.key(ResourceKey.sponge("is_sleeping"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Player Player's} sleeping status is ignored when checking whether to
      * skip the night due to players sleeping. The time in a world will be
      * advanced to day if all players in it either are sleeping or are set to ignore.
      */
-    public static final Key<Value<Boolean>> IS_SLEEPING_IGNORED = Keys.key(ResourceKey.sponge("is_sleeping_ignored"));
+    public static final Key<Value<Boolean>> IS_SLEEPING_IGNORED = Keys.key(ResourceKey.sponge("is_sleeping_ignored"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an {@link ArmorStand} is small.
      */
-    public static final Key<Value<Boolean>> IS_SMALL = Keys.key(ResourceKey.sponge("is_small"));
+    public static final Key<Value<Boolean>> IS_SMALL = Keys.key(ResourceKey.sponge("is_small"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an {@link Entity} is sneaking.
@@ -1562,39 +1562,39 @@ public final class Keys {
      * <p>Sneaking entities generally move slower and do not make walking
      * sounds.</p>
      */
-    public static final Key<Value<Boolean>> IS_SNEAKING = Keys.key(ResourceKey.sponge("is_sneaking"));
+    public static final Key<Value<Boolean>> IS_SNEAKING = Keys.key(ResourceKey.sponge("is_sneaking"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Panda} is sneezing.
      */
-    public static final Key<Value<Boolean>> IS_SNEEZING = Keys.key(ResourceKey.sponge("is_sneezing"));
+    public static final Key<Value<Boolean>> IS_SNEEZING = Keys.key(ResourceKey.sponge("is_sneezing"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link BlockTypes#DIRT} {@link BlockState} is snowy.
      */
-    public static final Key<Value<Boolean>> IS_SNOWY = Keys.key(ResourceKey.sponge("is_snowy"));
+    public static final Key<Value<Boolean>> IS_SNOWY = Keys.key(ResourceKey.sponge("is_snowy"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link BlockState} is solid.
      * Readonly
      */
-    public static final Key<Value<Boolean>> IS_SOLID = Keys.key(ResourceKey.sponge("is_solid"));
+    public static final Key<Value<Boolean>> IS_SOLID = Keys.key(ResourceKey.sponge("is_solid"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an {@link Entity} is sprinting.
      */
-    public static final Key<Value<Boolean>> IS_SPRINTING = Keys.key(ResourceKey.sponge("is_sprinting"));
+    public static final Key<Value<Boolean>> IS_SPRINTING = Keys.key(ResourceKey.sponge("is_sprinting"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link PolarBear} is currently standing.
      */
-    public static final Key<Value<Boolean>> IS_STANDING = Keys.key(ResourceKey.sponge("is_standing"));
+    public static final Key<Value<Boolean>> IS_STANDING = Keys.key(ResourceKey.sponge("is_standing"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Ravager} is stunned.
      * Readonly
      */
-    public static final Key<Value<Boolean>> IS_STUNNED = Keys.key(ResourceKey.sponge("is_stunned"));
+    public static final Key<Value<Boolean>> IS_STUNNED = Keys.key(ResourceKey.sponge("is_stunned"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link BlockState} is a surrogate block for a block that was provided in an environment
@@ -1602,34 +1602,34 @@ public final class Keys {
      * If true this may indicate that the surrogate block functions differently than the original block.
      * Readonly
      */
-    public static final Key<Value<Boolean>> IS_SURROGATE_BLOCK = Keys.key(ResourceKey.sponge("is_surrogate_block"));
+    public static final Key<Value<Boolean>> IS_SURROGATE_BLOCK = Keys.key(ResourceKey.sponge("is_surrogate_block"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether players are prevented from taking
      * items from an equipment slot on an {@link ArmorStand}
      */
-    public static final Key<MapValue<EquipmentType, Boolean>> IS_TAKING_DISABLED = Keys.key(ResourceKey.sponge("is_taking_disabled"));
+    public static final Key<MapValue<EquipmentType, Boolean>> IS_TAKING_DISABLED = Keys.key(ResourceKey.sponge("is_taking_disabled"), TypeTokens.MAP_EQUIPMENT_TYPE_BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link TameableAnimal} is currently tamed
      */
-    public static final Key<Value<Boolean>> IS_TAMED = Keys.key(ResourceKey.sponge("is_tamed"));
+    public static final Key<Value<Boolean>> IS_TAMED = Keys.key(ResourceKey.sponge("is_tamed"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Trader} is currently trading with a {@link Player}.
      * Readonly
      */
-    public static final Key<Value<Boolean>> IS_TRADING = Keys.key(ResourceKey.sponge("is_trading"));
+    public static final Key<Value<Boolean>> IS_TRADING = Keys.key(ResourceKey.sponge("is_trading"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Turtle} is currently traveling.
      */
-    public static final Key<Value<Boolean>> IS_TRAVELING = Keys.key(ResourceKey.sponge("is_traveling"));
+    public static final Key<Value<Boolean>> IS_TRAVELING = Keys.key(ResourceKey.sponge("is_traveling"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an {@link Ocelot} is currently trusting of {@link Player}s.
      */
-    public static final Key<Value<Boolean>> IS_TRUSTING = Keys.key(ResourceKey.sponge("is_trusting"));
+    public static final Key<Value<Boolean>> IS_TRUSTING = Keys.key(ResourceKey.sponge("is_trusting"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an {@link ItemStack} or {@link BlockState} is unbreakable.
@@ -1638,35 +1638,35 @@ public final class Keys {
      * {@link #ITEM_DURABILITY} from changing.</p>
      * Readonly(BlockState.class)
      */
-    public static final Key<Value<Boolean>> IS_UNBREAKABLE = Keys.key(ResourceKey.sponge("is_unbreakable"));
+    public static final Key<Value<Boolean>> IS_UNBREAKABLE = Keys.key(ResourceKey.sponge("is_unbreakable"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link Panda} is unhappy.
      */
-    public static final Key<Value<Boolean>> IS_UNHAPPY = Keys.key(ResourceKey.sponge("is_unhappy"));
+    public static final Key<Value<Boolean>> IS_UNHAPPY = Keys.key(ResourceKey.sponge("is_unhappy"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whehter a {@link BlockState} is waterlogged.
      */
-    public static final Key<Value<Boolean>> IS_WATERLOGGED = Keys.key(ResourceKey.sponge("is_waterlogged"));
+    public static final Key<Value<Boolean>> IS_WATERLOGGED = Keys.key(ResourceKey.sponge("is_waterlogged"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an {@link Entity} like {@link Wolf} is wet.
      * Readonly(Entity.class) except Wolf
      */
-    public static final Key<Value<Boolean>> IS_WET = Keys.key(ResourceKey.sponge("is_wet"));
+    public static final Key<Value<Boolean>> IS_WET = Keys.key(ResourceKey.sponge("is_wet"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * The durability of an {@link ItemStack}. {@link #MAX_DURABILITY}
      */
-    public static final Key<Value<Integer>> ITEM_DURABILITY = Keys.key(ResourceKey.sponge("item_durability"));
+    public static final Key<Value<Integer>> ITEM_DURABILITY = Keys.key(ResourceKey.sponge("item_durability"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The {@link ItemStackSnapshot item} in an
      * {@link Item}, {@link ItemFrame}, {@link Jukebox}, {@link Lectern} or
      * {@link Potion}.
      */
-    public static final Key<Value<ItemStackSnapshot>> ITEM_STACK_SNAPSHOT = Keys.key(ResourceKey.sponge("item_stack_snapshot"));
+    public static final Key<Value<ItemStackSnapshot>> ITEM_STACK_SNAPSHOT = Keys.key(ResourceKey.sponge("item_stack_snapshot"), TypeTokens.ITEM_STACK_SNAPSHOT_VALUE_TOKEN);
 
     /**
      * The knockback strength applied by an {@link ArrowEntity}.
@@ -1674,43 +1674,43 @@ public final class Keys {
      * <p>For the knockback provided by hits with a weapon according to the
      * enchantment of the same name, see {@link #APPLIED_ENCHANTMENTS}.</p>
      */
-    public static final Key<Value<Double>> KNOCKBACK_STRENGTH = Keys.key(ResourceKey.sponge("knockback_strength"));
+    public static final Key<Value<Double>> KNOCKBACK_STRENGTH = Keys.key(ResourceKey.sponge("knockback_strength"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The known {@link PandaGene gene} of a {@link Panda}.
      */
-    public static final Key<Value<PandaGene>> KNOWN_GENE = Keys.key(ResourceKey.sponge("known_gene"));
+    public static final Key<Value<PandaGene>> KNOWN_GENE = Keys.key(ResourceKey.sponge("known_gene"), TypeTokens.PANDA_GENE_VALUE_TOKEN);
 
     /**
      * The last attacking {@link Entity} of a {@link Living}.
      */
-    public static final Key<Value<Entity>> LAST_ATTACKER = Keys.key(ResourceKey.sponge("last_attacker"));
+    public static final Key<Value<Entity>> LAST_ATTACKER = Keys.key(ResourceKey.sponge("last_attacker"), TypeTokens.ENTITY_VALUE_TOKEN);
 
     /**
      * The output yielded by the last command of a {@link CommandBlock} or {@link CommandBlockMinecart}.
      */
-    public static final Key<Value<Component>> LAST_COMMAND_OUTPUT = Keys.key(ResourceKey.sponge("last_command_output"));
+    public static final Key<Value<Component>> LAST_COMMAND_OUTPUT = Keys.key(ResourceKey.sponge("last_command_output"), TypeTokens.COMPONENT_VALUE_TOKEN);
 
     /**
      * The last damage a {@link Living} received.
      */
-    public static final Key<Value<Double>> LAST_DAMAGE_RECEIVED = Keys.key(ResourceKey.sponge("last_damage_received"));
+    public static final Key<Value<Double>> LAST_DAMAGE_RECEIVED = Keys.key(ResourceKey.sponge("last_damage_received"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The last time a {@link User} joined on the server.
      */
-    public static final Key<Value<Instant>> LAST_DATE_JOINED = Keys.key(ResourceKey.sponge("last_date_joined"));
+    public static final Key<Value<Instant>> LAST_DATE_JOINED = Keys.key(ResourceKey.sponge("last_date_joined"), TypeTokens.INSTANT_VALUE_TOKEN);
 
     /**
      * The last time a {@link User} has been playing on the server.
      */
-    public static final Key<Value<Instant>> LAST_DATE_PLAYED = Keys.key(ResourceKey.sponge("last_date_played"));
+    public static final Key<Value<Instant>> LAST_DATE_PLAYED = Keys.key(ResourceKey.sponge("last_date_played"), TypeTokens.INSTANT_VALUE_TOKEN);
 
     /**
      * The amount of layers a {@link BlockState} has.
      * e.g. {@link BlockTypes#SNOW}, {@link BlockTypes#CAKE}
      */
-    public static final Key<Value<Integer>> LAYER = Keys.key(ResourceKey.sponge("layer"));
+    public static final Key<Value<Integer>> LAYER = Keys.key(ResourceKey.sponge("layer"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The holder of a leashed {@link Agent}
@@ -1719,17 +1719,17 @@ public final class Keys {
      * a leashed {@link Entity} attached. If the leash is broken, the leash
      * hitch is removed.</p>
      */
-    public static final Key<Value<Entity>> LEASH_HOLDER = Keys.key(ResourceKey.sponge("leash_holder"));
+    public static final Key<Value<Entity>> LEASH_HOLDER = Keys.key(ResourceKey.sponge("leash_holder"), TypeTokens.ENTITY_VALUE_TOKEN);
 
     /**
      * The rotation of an {@link ArmorStand}'s left arm.
      */
-    public static final Key<Value<Vector3d>> LEFT_ARM_ROTATION = Keys.key(ResourceKey.sponge("left_arm_rotation"));
+    public static final Key<Value<Vector3d>> LEFT_ARM_ROTATION = Keys.key(ResourceKey.sponge("left_arm_rotation"), TypeTokens.VECTOR_3D_VALUE_TOKEN);
 
     /**
      * The rotation of an {@link ArmorStand}'s left leg.
      */
-    public static final Key<Value<Vector3d>> LEFT_LEG_ROTATION = Keys.key(ResourceKey.sponge("left_leg_rotation"));
+    public static final Key<Value<Vector3d>> LEFT_LEG_ROTATION = Keys.key(ResourceKey.sponge("left_leg_rotation"), TypeTokens.VECTOR_3D_VALUE_TOKEN);
 
     /**
      * The amount of ticks till a {@link Vex} starts
@@ -1741,33 +1741,33 @@ public final class Keys {
      * <p>If the Vex was summoned by a player, this value will be pegged at 0
      * and the Vex will not take any damage.</p>
      */
-    public static final Key<Value<Ticks>> LIFE_TICKS = Keys.key(ResourceKey.sponge("life_ticks"));
+    public static final Key<Value<Ticks>> LIFE_TICKS = Keys.key(ResourceKey.sponge("life_ticks"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The amount of light that emitted by a {@link BlockState}.
      * Readonly
      */
-    public static final Key<Value<Integer>> LIGHT_EMISSION = Keys.key(ResourceKey.sponge("light_emission"));
+    public static final Key<Value<Integer>> LIGHT_EMISSION = Keys.key(ResourceKey.sponge("light_emission"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * A {@link Llama}'s {@link LlamaType}.
      */
-    public static final Key<Value<LlamaType>> LLAMA_TYPE = Keys.key(ResourceKey.sponge("llama_type"));
+    public static final Key<Value<LlamaType>> LLAMA_TYPE = Keys.key(ResourceKey.sponge("llama_type"), TypeTokens.LLAMA_TYPE_VALUE_TOKEN);
 
     /**
      * A {@link ServerPlayer}'s client language.
      */
-    public static final Key<Value<Locale>> LOCALE = Keys.key(ResourceKey.sponge("locale"));
+    public static final Key<Value<Locale>> LOCALE = Keys.key(ResourceKey.sponge("locale"), TypeTokens.LOCALE_VALUE_TOKEN);
 
     /**
      * The token used to lock a {@link CarrierBlockEntity}. Or the token on an {@link ItemStack} to unlock it.
      */
-    public static final Key<Value<String>> LOCK_TOKEN = Keys.key(ResourceKey.sponge("lock_token"));
+    public static final Key<Value<String>> LOCK_TOKEN = Keys.key(ResourceKey.sponge("lock_token"), TypeTokens.STRING_VALUE_TOKEN);
 
     /**
      * A lodestone location, used with {@link ItemTypes#COMPASS}.
      */
-    public static final Key<Value<ServerLocation>> LODESTONE = Keys.key(ResourceKey.sponge("lodestone"));
+    public static final Key<Value<ServerLocation>> LODESTONE = Keys.key(ResourceKey.sponge("lodestone"), TypeTokens.SERVER_LOCATION_VALUE_TOKEN);
 
     /**
      * The displayed description ("lore") text of an {@link ItemStack}.
@@ -1776,57 +1776,57 @@ public final class Keys {
      * over the stack. For the contents of a book see {@link #PAGES}
      * instead.</p>
      */
-    public static final Key<ListValue<Component>> LORE = Keys.key(ResourceKey.sponge("lore"));
+    public static final Key<ListValue<Component>> LORE = Keys.key(ResourceKey.sponge("lore"), TypeTokens.LIST_COMPONENT_VALUE_TOKEN);
 
     /**
      * The matter state of a {@link BlockState}
      * Readonly
      */
-    public static final Key<Value<MatterType>> MATTER_TYPE = Keys.key(ResourceKey.sponge("matter_type"));
+    public static final Key<Value<MatterType>> MATTER_TYPE = Keys.key(ResourceKey.sponge("matter_type"), TypeTokens.MATTER_TYPE_VALUE_TOKEN);
 
     /**
      * The maximum air supply a {@link Living} may have.
      *
      * <p>For the current amount of air, check {@link #REMAINING_AIR}.</p>
      */
-    public static final Key<Value<Integer>> MAX_AIR = Keys.key(ResourceKey.sponge("max_air"));
+    public static final Key<Value<Integer>> MAX_AIR = Keys.key(ResourceKey.sponge("max_air"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The maximum amount of ticks a {@link FurnaceBlockEntity}
      * can burn with the currently used fuel item.
      */
-    public static final Key<Value<Ticks>> MAX_BURN_TIME = Keys.key(ResourceKey.sponge("max_burn_time"));
+    public static final Key<Value<Ticks>> MAX_BURN_TIME = Keys.key(ResourceKey.sponge("max_burn_time"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The total time the current {@link ItemStack} in a
      * {@link FurnaceBlockEntity} has to be cooked.
      */
-    public static final Key<Value<Ticks>> MAX_COOK_TIME = Keys.key(ResourceKey.sponge("max_cook_time"));
+    public static final Key<Value<Ticks>> MAX_COOK_TIME = Keys.key(ResourceKey.sponge("max_cook_time"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The maximum durability of an {@link ItemStack}. {@link #ITEM_DURABILITY}
      * Readonly
      */
-    public static final Key<Value<Integer>> MAX_DURABILITY = Keys.key(ResourceKey.sponge("max_durability"));
+    public static final Key<Value<Integer>> MAX_DURABILITY = Keys.key(ResourceKey.sponge("max_durability"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The maximum exhuastion of a {@link Humanoid}. Readonly.
      *
      * @see Keys#EXHAUSTION
      */
-    public static final Key<Value<Double>> MAX_EXHAUSTION = Keys.key(ResourceKey.sponge("max_exhaustion"));
+    public static final Key<Value<Double>> MAX_EXHAUSTION = Keys.key(ResourceKey.sponge("max_exhaustion"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The maximum damage a {@link FallingBlock} can deal.
      */
-    public static final Key<Value<Double>> MAX_FALL_DAMAGE = Keys.key(ResourceKey.sponge("max_fall_damage"));
+    public static final Key<Value<Double>> MAX_FALL_DAMAGE = Keys.key(ResourceKey.sponge("max_fall_damage"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The maximum food level of a {@link Humanoid}. Readonly.
      *
      * @see Keys#FOOD_LEVEL
      */
-    public static final Key<Value<Integer>> MAX_FOOD_LEVEL = Keys.key(ResourceKey.sponge("max_food_level"));
+    public static final Key<Value<Integer>> MAX_FOOD_LEVEL = Keys.key(ResourceKey.sponge("max_food_level"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The maximum health of a {@link Living}.
@@ -1835,64 +1835,64 @@ public final class Keys {
      * health points. The base health should be minded that it may be lower
      * than the total maximum health of the entity.</p>
      */
-    public static final Key<Value<Double>> MAX_HEALTH = Keys.key(ResourceKey.sponge("max_health"));
+    public static final Key<Value<Double>> MAX_HEALTH = Keys.key(ResourceKey.sponge("max_health"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The maximum number of entities around a {@link MobSpawner}.
      * A spawner will not spawn entities if there are more
      * entities around than this value permits.
      */
-    public static final Key<Value<Integer>> MAX_NEARBY_ENTITIES = Keys.key(ResourceKey.sponge("max_nearby_entities"));
+    public static final Key<Value<Integer>> MAX_NEARBY_ENTITIES = Keys.key(ResourceKey.sponge("max_nearby_entities"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The maximum saturation of a {@link Humanoid}. Readonly.
      *
      * @see Keys#SATURATION
      */
-    public static final Key<Value<Double>> MAX_SATURATION = Keys.key(ResourceKey.sponge("max_saturation"));
+    public static final Key<Value<Double>> MAX_SATURATION = Keys.key(ResourceKey.sponge("max_saturation"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The maximum amount of ticks between two
      * batches of entities spawned by a {@link MobSpawner}.
      */
-    public static final Key<Value<Ticks>> MAX_SPAWN_DELAY = Keys.key(ResourceKey.sponge("max_spawn_delay"));
+    public static final Key<Value<Ticks>> MAX_SPAWN_DELAY = Keys.key(ResourceKey.sponge("max_spawn_delay"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The max speed of a {@link Boat}. In vanilla, this is 0.4
      */
-    public static final Key<Value<Double>> MAX_SPEED = Keys.key(ResourceKey.sponge("max_speed"));
+    public static final Key<Value<Double>> MAX_SPEED = Keys.key(ResourceKey.sponge("max_speed"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The maximum stack size of slots in an inventory. For most vanilla inventories this is 64.
      * Readonly
      */
-    public static final Key<Value<Integer>> MAX_STACK_SIZE = Keys.key(ResourceKey.sponge("max_stack_size"));
+    public static final Key<Value<Integer>> MAX_STACK_SIZE = Keys.key(ResourceKey.sponge("max_stack_size"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The represented block's offset of a {@link MinecartLike}.
      */
-    public static final Key<Value<Integer>> MINECART_BLOCK_OFFSET = Keys.key(ResourceKey.sponge("minecart_block_offset"));
+    public static final Key<Value<Integer>> MINECART_BLOCK_OFFSET = Keys.key(ResourceKey.sponge("minecart_block_offset"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The minimum amount of ticks between two
      * batches of entities spawned by a {@link MobSpawner}.
      */
-    public static final Key<Value<Ticks>> MIN_SPAWN_DELAY = Keys.key(ResourceKey.sponge("min_spawn_delay"));
+    public static final Key<Value<Ticks>> MIN_SPAWN_DELAY = Keys.key(ResourceKey.sponge("min_spawn_delay"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The moisture value of a {@link BlockTypes#FARMLAND} {@link BlockState}.
      */
-    public static final Key<Value<Integer>> MOISTURE = Keys.key(ResourceKey.sponge("moisture"));
+    public static final Key<Value<Integer>> MOISTURE = Keys.key(ResourceKey.sponge("moisture"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The type of a {@link Mooshroom}.
      */
-    public static final Key<Value<MooshroomType>> MOOSHROOM_TYPE = Keys.key(ResourceKey.sponge("mooshroom_type"));
+    public static final Key<Value<MooshroomType>> MOOSHROOM_TYPE = Keys.key(ResourceKey.sponge("mooshroom_type"), TypeTokens.MOOSHROOM_TYPE_VALUE_TOKEN);
 
     /**
      * The type of {@link MusicDisc} an {@link ItemStack} holds.
      */
-    public static final Key<Value<MusicDisc>> MUSIC_DISC = Keys.key(ResourceKey.sponge("music_disc"));
+    public static final Key<Value<MusicDisc>> MUSIC_DISC = Keys.key(ResourceKey.sponge("music_disc"), TypeTokens.MUSIC_DISC_VALUE_TOKEN);
 
     /**
      * The next entity that will be spawned by a {@link MobSpawner}.
@@ -1901,33 +1901,33 @@ public final class Keys {
      * applied to the {@link #SPAWNABLE_ENTITIES} weighted collection. If this
      * value exists, it will override the random spawn with a definite one.</p>
      */
-    public static final Key<Value<WeightedSerializableObject<EntityArchetype>>> NEXT_ENTITY_TO_SPAWN = Keys.key(ResourceKey.sponge("next_entity_to_spawn"));
+    public static final Key<Value<WeightedSerializableObject<EntityArchetype>>> NEXT_ENTITY_TO_SPAWN = Keys.key(ResourceKey.sponge("next_entity_to_spawn"), TypeTokens.WEIGHTED_ENTITY_ARCHETYPE_VALUE_TOKEN);
 
     /**
      * The pitch of a {@link BlockTypes#NOTE_BLOCK} {@link BlockState}.
      */
-    public static final Key<Value<NotePitch>> NOTE_PITCH = Keys.key(ResourceKey.sponge("note_pitch"));
+    public static final Key<Value<NotePitch>> NOTE_PITCH = Keys.key(ResourceKey.sponge("note_pitch"), TypeTokens.NOTE_PITCH_VALUE_TOKEN);
 
     /**
      * The notifier, usually of an {@link Entity}. It is up to the implementation to define.
      */
-    public static final Key<Value<UUID>> NOTIFIER = Keys.key(ResourceKey.sponge("notifier"));
+    public static final Key<Value<UUID>> NOTIFIER = Keys.key(ResourceKey.sponge("notifier"), TypeTokens.UUID_VALUE_TOKEN);
 
     /**
      * The deceleration a {@link Boat} while it has {@link Keys#PASSENGERS}.
      */
-    public static final Key<Value<Double>> OCCUPIED_DECELERATION = Keys.key(ResourceKey.sponge("occupied_deceleration"));
+    public static final Key<Value<Double>> OCCUPIED_DECELERATION = Keys.key(ResourceKey.sponge("occupied_deceleration"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * Whether an {@link Entity} is currently considered to be on the ground.
      * Readonly
      */
-    public static final Key<Value<Boolean>> ON_GROUND = Keys.key(ResourceKey.sponge("on_ground"));
+    public static final Key<Value<Boolean>> ON_GROUND = Keys.key(ResourceKey.sponge("on_ground"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * The {@link Orientation} of an {@link ItemFrame}.
      */
-    public static final Key<Value<Orientation>> ORIENTATION = Keys.key(ResourceKey.sponge("orientation"));
+    public static final Key<Value<Orientation>> ORIENTATION = Keys.key(ResourceKey.sponge("orientation"), TypeTokens.ORIENTATION_VALUE_TOKEN);
 
     /**
      * The content of a {@link ItemTypes#WRITTEN_BOOK} {@link ItemStack}.
@@ -1935,12 +1935,12 @@ public final class Keys {
      * <p>Use {@link Keys#PLAIN_PAGES} if you wish to inspect the contents
      * of a {@link ItemTypes#WRITABLE_BOOK}.</p>
      */
-    public static final Key<ListValue<Component>> PAGES = Keys.key(ResourceKey.sponge("pages"));
+    public static final Key<ListValue<Component>> PAGES = Keys.key(ResourceKey.sponge("pages"), TypeTokens.LIST_COMPONENT_VALUE_TOKEN);
 
     /**
      * The {@link ParrotType type} of a {@link Parrot}.
      */
-    public static final Key<Value<ParrotType>> PARROT_TYPE = Keys.key(ResourceKey.sponge("parrot_type"));
+    public static final Key<Value<ParrotType>> PARROT_TYPE = Keys.key(ResourceKey.sponge("parrot_type"), TypeTokens.PARROT_TYPE_VALUE_TOKEN);
 
     /**
      * The particle type of an {@link AreaEffectCloud}.
@@ -1949,7 +1949,7 @@ public final class Keys {
      * effect for specific {@link ParticleType}s and not every
      * {@link ParticleType} will be applicable.</p>
      */
-    public static final Key<Value<ParticleEffect>> PARTICLE_EFFECT = Keys.key(ResourceKey.sponge("particle_effect"));
+    public static final Key<Value<ParticleEffect>> PARTICLE_EFFECT = Keys.key(ResourceKey.sponge("particle_effect"), TypeTokens.PARTICLE_EFFECT_VALUE_TOKEN);
 
     /**
      * The amount of ticks a {@link FurnaceBlockEntity} has
@@ -1958,7 +1958,7 @@ public final class Keys {
      * <p>Once this value reaches the {@link #MAX_COOK_TIME}, the
      * item will be finished cooking.</p>
      */
-    public static final Key<Value<Ticks>> PASSED_COOK_TIME = Keys.key(ResourceKey.sponge("passed_cook_time"));
+    public static final Key<Value<Ticks>> PASSED_COOK_TIME = Keys.key(ResourceKey.sponge("passed_cook_time"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The entities that act as passengers for an {@link Entity}.
@@ -1966,37 +1966,37 @@ public final class Keys {
      * <p>For example, a {@link Player} riding on a {@link Horse} or a
      * {@link Pig} would be considered its passenger.</p>
      */
-    public static final Key<ListValue<Entity>> PASSENGERS = Keys.key(ResourceKey.sponge("passengers"));
+    public static final Key<ListValue<Entity>> PASSENGERS = Keys.key(ResourceKey.sponge("passengers"), TypeTokens.LIST_ENTITY_VALUE_TOKEN);
 
     /**
      * A {@link TropicalFish}'s pattern color.
      */
-    public static final Key<Value<DyeColor>> PATTERN_COLOR = Keys.key(ResourceKey.sponge("pattern_color"));
+    public static final Key<Value<DyeColor>> PATTERN_COLOR = Keys.key(ResourceKey.sponge("pattern_color"), TypeTokens.DYE_COLOR_VALUE_TOKEN);
 
     /**
      * The {@link PhantomPhase phase} of a {@link Phantom}.
      */
-    public static final Key<Value<PhantomPhase>> PHANTOM_PHASE = Keys.key(ResourceKey.sponge("phantom_phase"));
+    public static final Key<Value<PhantomPhase>> PHANTOM_PHASE = Keys.key(ResourceKey.sponge("phantom_phase"), TypeTokens.PHANTOM_PHASE_VALUE_TOKEN);
 
     /**
      * The pickup delay (in ticks) of an {@link Item}.
      */
-    public static final Key<Value<Ticks>> PICKUP_DELAY = Keys.key(ResourceKey.sponge("pickup_delay"));
+    public static final Key<Value<Ticks>> PICKUP_DELAY = Keys.key(ResourceKey.sponge("pickup_delay"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The {@link PickupRule} of an {@link ArrowEntity}.
      */
-    public static final Key<Value<PickupRule>> PICKUP_RULE = Keys.key(ResourceKey.sponge("pickup_rule"));
+    public static final Key<Value<PickupRule>> PICKUP_RULE = Keys.key(ResourceKey.sponge("pickup_rule"), TypeTokens.PICKUP_RULE_VALUE_TOKEN);
 
     /**
      * The piston type of a piston {@link BlockState} TODO dataholder {@link Piston}.
      */
-    public static final Key<Value<PistonType>> PISTON_TYPE = Keys.key(ResourceKey.sponge("piston_type"));
+    public static final Key<Value<PistonType>> PISTON_TYPE = Keys.key(ResourceKey.sponge("piston_type"), TypeTokens.PISTON_TYPE_VALUE_TOKEN);
 
     /**
      * The block types an {@link ItemStack} may be placed on.
      */
-    public static final Key<SetValue<BlockType>> PLACEABLE_BLOCK_TYPES = Keys.key(ResourceKey.sponge("placeable_block_types"));
+    public static final Key<SetValue<BlockType>> PLACEABLE_BLOCK_TYPES = Keys.key(ResourceKey.sponge("placeable_block_types"), TypeTokens.SET_BLOCK_TYPE_VALUE_TOKEN);
 
     /**
      * The content of a {@link ItemTypes#WRITABLE_BOOK} {@link ItemStack}.
@@ -2004,43 +2004,43 @@ public final class Keys {
      * <p>Use {@link Keys#PAGES} if you wish to get the contents of a
      * {@link ItemTypes#WRITTEN_BOOK}</p>
      */
-    public static final Key<ListValue<String>> PLAIN_PAGES = Keys.key(ResourceKey.sponge("plain_pages"));
+    public static final Key<ListValue<String>> PLAIN_PAGES = Keys.key(ResourceKey.sponge("plain_pages"), TypeTokens.LIST_STRING_VALUE_TOKEN);
 
     /**
      * The plugin that created an {@link Inventory}
      */
-    public static final Key<Value<PluginContainer>> PLUGIN_CONTAINER = Keys.key(ResourceKey.sponge("plugin_container"));
+    public static final Key<Value<PluginContainer>> PLUGIN_CONTAINER = Keys.key(ResourceKey.sponge("plugin_container"), TypeTokens.PLUGIN_CONTAINER_VALUE_TOKEN);
 
     /**
      * The pore sides of a {@link BlockTypes#BROWN_MUSHROOM_BLOCK} or
      * {@link BlockTypes#RED_MUSHROOM_BLOCK} {@link BlockState}.
      * See {@link #HAS_PORES_UP}, {@link #HAS_PORES_DOWN}, {@link #HAS_PORES_NORTH}, {@link #HAS_PORES_EAST}, {@link #HAS_PORES_SOUTH}, {@link #HAS_PORES_WEST}.
      */
-    public static final Key<SetValue<Direction>> PORES = Keys.key(ResourceKey.sponge("pores"));
+    public static final Key<SetValue<Direction>> PORES = Keys.key(ResourceKey.sponge("pores"), TypeTokens.SET_DIRECTION_VALUE_TOKEN);
 
     /**
      * The {@link PortionType} of a {@link BlockState}.
      * e.g. {@link BlockTypes#OAK_DOOR}, {@link BlockTypes#ROSE_BUSH} or {@link BlockTypes#WHITE_BED}
      * For slabs use {@link #SLAB_PORTION} instead
      */
-    public static final Key<Value<PortionType>> PORTION_TYPE = Keys.key(ResourceKey.sponge("portion_type"));
+    public static final Key<Value<PortionType>> PORTION_TYPE = Keys.key(ResourceKey.sponge("portion_type"), TypeTokens.PORTION_TYPE_VALUE_TOKEN);
 
     /**
      * The potential max speed of a {@link Minecart}.
      */
-    public static final Key<Value<Double>> POTENTIAL_MAX_SPEED = Keys.key(ResourceKey.sponge("potential_max_speed"));
+    public static final Key<Value<Double>> POTENTIAL_MAX_SPEED = Keys.key(ResourceKey.sponge("potential_max_speed"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The potion effects that are present on an {@link Entity}
      * <p>or applied by an {@link AreaEffectCloud} or {@link ArrowEntity}</p>
      * <p>or stored on an {@link ItemStack}.</p>
      */
-    public static final Key<ListValue<PotionEffect>> POTION_EFFECTS = Keys.key(ResourceKey.sponge("potion_effects"));
+    public static final Key<ListValue<PotionEffect>> POTION_EFFECTS = Keys.key(ResourceKey.sponge("potion_effects"), TypeTokens.LIST_POTION_EFFECT_VALUE_TOKEN);
 
     /**
      * The potion type of an {@link ItemStack}.
      */
-    public static final Key<Value<PotionType>> POTION_TYPE = Keys.key(ResourceKey.sponge("potion_type"));
+    public static final Key<Value<PotionType>> POTION_TYPE = Keys.key(ResourceKey.sponge("potion_type"), TypeTokens.POTION_TYPE_VALUE_TOKEN);
 
     /**
      * The signal power of a {@link BlockState}.
@@ -2050,73 +2050,73 @@ public final class Keys {
      * {@link BlockTypes#DAYLIGHT_DETECTOR},
      * {@link BlockTypes#LIGHT_WEIGHTED_PRESSURE_PLATE} etc.</p>
      */
-    public static final Key<Value<Integer>> POWER = Keys.key(ResourceKey.sponge("power"));
+    public static final Key<Value<Integer>> POWER = Keys.key(ResourceKey.sponge("power"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * A {@link Beacon}'s primary effect.
      */
-    public static final Key<Value<PotionEffectType>> PRIMARY_POTION_EFFECT_TYPE = Keys.key(ResourceKey.sponge("primary_potion_effect_type"));
+    public static final Key<Value<PotionEffectType>> PRIMARY_POTION_EFFECT_TYPE = Keys.key(ResourceKey.sponge("primary_potion_effect_type"), TypeTokens.POTION_EFFECT_TYPE_VALUE_TOKEN);
 
     /**
      * The {@link Villager} or {@link ZombieVillager}'s {@link ProfessionType}.
      */
-    public static final Key<Value<ProfessionType>> PROFESSION_TYPE = Keys.key(ResourceKey.sponge("profession_type"));
+    public static final Key<Value<ProfessionType>> PROFESSION_TYPE = Keys.key(ResourceKey.sponge("profession_type"), TypeTokens.PROFESSION_VALUE_TOKEN);
 
     /**
      * The {@link Villager} or {@link ZombieVillager}'s {@link ProfessionType} level.
      */
-    public static final Key<Value<Integer>> PROFESSION_LEVEL = Keys.key(ResourceKey.sponge("profession_level"));
+    public static final Key<Value<Integer>> PROFESSION_LEVEL = Keys.key(ResourceKey.sponge("profession_level"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The type of a {@link Rabbit}.
      */
-    public static final Key<Value<RabbitType>> RABBIT_TYPE = Keys.key(ResourceKey.sponge("rabbit_type"));
+    public static final Key<Value<RabbitType>> RABBIT_TYPE = Keys.key(ResourceKey.sponge("rabbit_type"), TypeTokens.RABBIT_TYPE_VALUE_TOKEN);
 
     /**
      * The radius of an {@link AreaEffectCloud}.
      */
-    public static final Key<Value<Double>> RADIUS = Keys.key(ResourceKey.sponge("radius"));
+    public static final Key<Value<Double>> RADIUS = Keys.key(ResourceKey.sponge("radius"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The amount the radius of an
      * {@link AreaEffectCloud} grows or shrinks each time it applies its
      * effect.
      */
-    public static final Key<Value<Double>> RADIUS_ON_USE = Keys.key(ResourceKey.sponge("radius_on_use"));
+    public static final Key<Value<Double>> RADIUS_ON_USE = Keys.key(ResourceKey.sponge("radius_on_use"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The amount the radius of an
      * {@link AreaEffectCloud} grows or shrinks per tick.
      */
-    public static final Key<Value<Double>> RADIUS_PER_TICK = Keys.key(ResourceKey.sponge("radius_per_tick"));
+    public static final Key<Value<Double>> RADIUS_PER_TICK = Keys.key(ResourceKey.sponge("radius_per_tick"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The wave number of a raid a {@link Raider} is in.
      * Readonly but mutable
      */
-    public static final Key<Value<RaidWave>> RAID_WAVE = Keys.key(ResourceKey.sponge("raid_wave"));
+    public static final Key<Value<RaidWave>> RAID_WAVE = Keys.key(ResourceKey.sponge("raid_wave"), TypeTokens.RAID_WAVE_VALUE_TOKEN);
 
     /**
      * The {@link RailDirection} of a {@link BlockState}.
      */
-    public static final Key<Value<RailDirection>> RAIL_DIRECTION = Keys.key(ResourceKey.sponge("rail_direction"));
+    public static final Key<Value<RailDirection>> RAIL_DIRECTION = Keys.key(ResourceKey.sponge("rail_direction"), TypeTokens.RAIL_DIRECTION_VALUE_TOKEN);
 
     /**
      * The delay (in ticks) after which an
      * {@link AreaEffectCloud} will reapply its effect on a previously
      * affected {@link Entity}.
      */
-    public static final Key<Value<Ticks>> REAPPLICATION_DELAY = Keys.key(ResourceKey.sponge("reapplication_delay"));
+    public static final Key<Value<Ticks>> REAPPLICATION_DELAY = Keys.key(ResourceKey.sponge("reapplication_delay"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The redstone delay on a {@link BlockTypes#REPEATER} {@link BlockState}.
      */
-    public static final Key<Value<Integer>> REDSTONE_DELAY = Keys.key(ResourceKey.sponge("redstone_delay"));
+    public static final Key<Value<Integer>> REDSTONE_DELAY = Keys.key(ResourceKey.sponge("redstone_delay"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The amount of air a {@link Living} has left.
      */
-    public static final Key<Value<Integer>> REMAINING_AIR = Keys.key(ResourceKey.sponge("remaining_air"));
+    public static final Key<Value<Integer>> REMAINING_AIR = Keys.key(ResourceKey.sponge("remaining_air"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The remaining amount of ticks the current brewing
@@ -2124,58 +2124,58 @@ public final class Keys {
      *
      * <p>If nothing is being brewed, the remaining brew time will be 0.</p>
      */
-    public static final Key<Value<Ticks>> REMAINING_BREW_TIME = Keys.key(ResourceKey.sponge("remaining_brew_time"));
+    public static final Key<Value<Ticks>> REMAINING_BREW_TIME = Keys.key(ResourceKey.sponge("remaining_brew_time"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * Represents the {@link Key} for the remaining number of ticks to pass
      * before another attempt to spawn entities is made by a {@link MobSpawner}.
      */
-    public static final Key<Value<Ticks>> REMAINING_SPAWN_DELAY = Keys.key(ResourceKey.sponge("remaining_spawn_delay"));
+    public static final Key<Value<Ticks>> REMAINING_SPAWN_DELAY = Keys.key(ResourceKey.sponge("remaining_spawn_delay"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The amount of food a food {@link ItemStack} restores when eaten.
      * Readonly
      */
-    public static final Key<Value<Integer>> REPLENISHED_FOOD = Keys.key(ResourceKey.sponge("replenished_food"));
+    public static final Key<Value<Integer>> REPLENISHED_FOOD = Keys.key(ResourceKey.sponge("replenished_food"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The amount of saturation a food {@link ItemStack} provides when eaten.
      * Readonly
      */
-    public static final Key<Value<Double>> REPLENISHED_SATURATION = Keys.key(ResourceKey.sponge("replenished_saturation"));
+    public static final Key<Value<Double>> REPLENISHED_SATURATION = Keys.key(ResourceKey.sponge("replenished_saturation"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The {@link InstrumentType} of a {@link BlockState} when placed under a {@link BlockTypes#NOTE_BLOCK}.
      * Readonly
      */
-    public static final Key<Value<InstrumentType>> REPRESENTED_INSTRUMENT = Keys.key(ResourceKey.sponge("represented_instrument"));
+    public static final Key<Value<InstrumentType>> REPRESENTED_INSTRUMENT = Keys.key(ResourceKey.sponge("represented_instrument"), TypeTokens.INSTRUMENT_TYPE_VALUE_TOKEN);
 
     /**
      * How close a {@link Player} has to be around the {@link MobSpawner}
      * in order for it to attempt to spawn entities.
      */
-    public static final Key<Value<Double>> REQUIRED_PLAYER_RANGE = Keys.key(ResourceKey.sponge("required_player_range"));
+    public static final Key<Value<Double>> REQUIRED_PLAYER_RANGE = Keys.key(ResourceKey.sponge("required_player_range"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The spawn locations a {@link Player}
      * may have for various worlds based on {@link UUID} of the world.
      */
-    public static final Key<MapValue<ResourceKey, RespawnLocation>> RESPAWN_LOCATIONS = Keys.key(ResourceKey.sponge("respawn_locations"));
+    public static final Key<MapValue<ResourceKey, RespawnLocation>> RESPAWN_LOCATIONS = Keys.key(ResourceKey.sponge("respawn_locations"), TypeTokens.MAP_RESOURCE_KEY_RESPAWN_LOCATION_VALUE_TOKEN);
 
     /**
      * The rotation of an {@link ArmorStand}'s right arm.
      */
-    public static final Key<Value<Vector3d>> RIGHT_ARM_ROTATION = Keys.key(ResourceKey.sponge("right_arm_rotation"));
+    public static final Key<Value<Vector3d>> RIGHT_ARM_ROTATION = Keys.key(ResourceKey.sponge("right_arm_rotation"), TypeTokens.VECTOR_3D_VALUE_TOKEN);
 
     /**
      * The rotation of an {@link ArmorStand}'s right leg.
      */
-    public static final Key<Value<Vector3d>> RIGHT_LEG_ROTATION = Keys.key(ResourceKey.sponge("right_leg_rotation"));
+    public static final Key<Value<Vector3d>> RIGHT_LEG_ROTATION = Keys.key(ResourceKey.sponge("right_leg_rotation"), TypeTokens.VECTOR_3D_VALUE_TOKEN);
 
     /**
      * The time a {@link Ravager} is roaring.
      */
-    public static final Key<Value<Ticks>> ROARING_TIME = Keys.key(ResourceKey.sponge("roaring_time"));
+    public static final Key<Value<Ticks>> ROARING_TIME = Keys.key(ResourceKey.sponge("roaring_time"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The current saturation of a {@link Player}.
@@ -2186,14 +2186,14 @@ public final class Keys {
      * over time and can be modified by movements and actions performed by the
      * {@link Player}.</p>
      */
-    public static final Key<Value<Double>> SATURATION = Keys.key(ResourceKey.sponge("saturation"));
+    public static final Key<Value<Double>> SATURATION = Keys.key(ResourceKey.sponge("saturation"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The "scale" for the size of an {@link Entity}.
      *
      * <p>Together with {@link #BASE_SIZE} and {@link #HEIGHT} this defines the size of an {@link Entity}.</p>
      */
-    public static final Key<Value<Double>> SCALE = Keys.key(ResourceKey.sponge("scale"));
+    public static final Key<Value<Double>> SCALE = Keys.key(ResourceKey.sponge("scale"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The scoreboard tags applied to an {@link Entity}.
@@ -2201,46 +2201,46 @@ public final class Keys {
      * @see <a href="https://minecraft.gamepedia.com/Scoreboard#Tags">
      * https://minecraft.gamepedia.com/Scoreboard#Tags</a>
      */
-    public static final Key<SetValue<String>> SCOREBOARD_TAGS = Keys.key(ResourceKey.sponge("scoreboard_tags"));
+    public static final Key<SetValue<String>> SCOREBOARD_TAGS = Keys.key(ResourceKey.sponge("scoreboard_tags"), TypeTokens.SET_STRING_VALUE_TOKEN);
 
     /**
      * A {@link Beacon}'s secondary effect.
      */
-    public static final Key<Value<PotionEffectType>> SECONDARY_POTION_EFFECT_TYPE = Keys.key(ResourceKey.sponge("secondary_potion_effect_type"));
+    public static final Key<Value<PotionEffectType>> SECONDARY_POTION_EFFECT_TYPE = Keys.key(ResourceKey.sponge("secondary_potion_effect_type"), TypeTokens.POTION_EFFECT_TYPE_VALUE_TOKEN);
 
     /**
      * A {@link Fox fox's} second trusted {@link UUID}, usually a {@link Player}.
      */
-    public static final Key<Value<UUID>> SECOND_TRUSTED = Keys.key(ResourceKey.sponge("second_trusted"));
+    public static final Key<Value<UUID>> SECOND_TRUSTED = Keys.key(ResourceKey.sponge("second_trusted"), TypeTokens.UUID_VALUE_TOKEN);
 
     /**
      * The shooter of a {@link Projectile}.
      */
-    public static final Key<Value<ProjectileSource>> SHOOTER = Keys.key(ResourceKey.sponge("shooter"));
+    public static final Key<Value<ProjectileSource>> SHOOTER = Keys.key(ResourceKey.sponge("shooter"), TypeTokens.PROJECTILE_SOURCE_VALUE_TOKEN);
 
     /**
      * Whether a {@link EndCrystal} should show it's bottom bedrock platform.
      */
-    public static final Key<Value<Boolean>> SHOW_BOTTOM = Keys.key(ResourceKey.sponge("show_bottom"));
+    public static final Key<Value<Boolean>> SHOW_BOTTOM = Keys.key(ResourceKey.sponge("show_bottom"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * The lines displayed on a {@link Sign}.
      */
-    public static final Key<ListValue<Component>> SIGN_LINES = Keys.key(ResourceKey.sponge("sign_lines"));
+    public static final Key<ListValue<Component>> SIGN_LINES = Keys.key(ResourceKey.sponge("sign_lines"), TypeTokens.LIST_COMPONENT_VALUE_TOKEN);
 
     /**
      * The size of a {@link Slime}.
      * or
      * The size of a {@link Phantom}. In vanilla, this ranges between 0 and 64.
      */
-    public static final Key<Value<Integer>> SIZE = Keys.key(ResourceKey.sponge("size"));
+    public static final Key<Value<Integer>> SIZE = Keys.key(ResourceKey.sponge("size"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The parts of a {@link ServerPlayer} skin that should be displayed.
      *
      * <p>This is a read-only value, set by the client.</p>
      */
-    public static final Key<SetValue<SkinPart>> SKIN_PARTS = Keys.key(ResourceKey.sponge("skin_parts"));
+    public static final Key<SetValue<SkinPart>> SKIN_PARTS = Keys.key(ResourceKey.sponge("skin_parts"), TypeTokens.SET_SKIN_PARTS_VALUE_TOKEN);
 
     /**
      * The skin of a {@link Humanoid}.
@@ -2250,7 +2250,7 @@ public final class Keys {
      * customized skins are not possible.</p>
      * Readonly (Player)
      */
-    public static final Key<Value<ProfileProperty>> SKIN_PROFILE_PROPERTY = Keys.key(ResourceKey.sponge("skin_profile_property"));
+    public static final Key<Value<ProfileProperty>> SKIN_PROFILE_PROPERTY = Keys.key(ResourceKey.sponge("skin_profile_property"), TypeTokens.PROFILE_PROPERTY_VALUE_TOKEN);
 
     /**
      * The "moisture" state of a {@link Dolphin}.
@@ -2263,82 +2263,82 @@ public final class Keys {
      *     until death.
      * </p>
      */
-    public static final Key<Value<Integer>> SKIN_MOISTURE = Keys.key(ResourceKey.sponge("skin_moisture"));
+    public static final Key<Value<Integer>> SKIN_MOISTURE = Keys.key(ResourceKey.sponge("skin_moisture"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The skylight value at a {@link ServerLocation}.
      * For the blocklight see {@link #BLOCK_LIGHT}.
      * Readonly
      */
-    public static final Key<Value<Integer>> SKY_LIGHT = Keys.key(ResourceKey.sponge("sky_light"));
+    public static final Key<Value<Integer>> SKY_LIGHT = Keys.key(ResourceKey.sponge("sky_light"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The {@link SlabPortion} of a {@link BlockState}.
      */
-    public static final Key<Value<SlabPortion>> SLAB_PORTION = Keys.key(ResourceKey.sponge("slab_portion"));
+    public static final Key<Value<SlabPortion>> SLAB_PORTION = Keys.key(ResourceKey.sponge("slab_portion"), TypeTokens.SLAB_PORTION_VALUE_TOKEN);
 
     /**
      * The sleep timer of a {@link Player}.
      */
-    public static final Key<Value<Integer>> SLEEP_TIMER = Keys.key(ResourceKey.sponge("sleep_timer"));
+    public static final Key<Value<Integer>> SLEEP_TIMER = Keys.key(ResourceKey.sponge("sleep_timer"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The index of a {@link Slot} in an {@link Inventory}
      * Readonly
      */
-    public static final Key<Value<Integer>> SLOT_INDEX = Keys.key(ResourceKey.sponge("slot_index"));
+    public static final Key<Value<Integer>> SLOT_INDEX = Keys.key(ResourceKey.sponge("slot_index"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The position of a {@link Slot} within a {@link GridInventory}.
      * Readonly
      */
-    public static final Key<Value<Vector2i>> SLOT_POSITION = Keys.key(ResourceKey.sponge("slot_position"));
+    public static final Key<Value<Vector2i>> SLOT_POSITION = Keys.key(ResourceKey.sponge("slot_position"), TypeTokens.VECTOR_2I_VALUE_TOKEN);
 
     /**
      * The side of a particular {@link Slot}, for use in querying "sided inventories".
      * Readonly
      */
-    public static final Key<Value<Direction>> SLOT_SIDE = Keys.key(ResourceKey.sponge("slot_side"));
+    public static final Key<Value<Direction>> SLOT_SIDE = Keys.key(ResourceKey.sponge("slot_side"), TypeTokens.DIRECTION_VALUE_TOKEN);
 
     /**
      * Whether a {@link Minecart} slows down when it has no {@link Keys#PASSENGERS}.
      */
-    public static final Key<Value<Boolean>> SLOWS_UNOCCUPIED = Keys.key(ResourceKey.sponge("slows_unoccupied"));
+    public static final Key<Value<Boolean>> SLOWS_UNOCCUPIED = Keys.key(ResourceKey.sponge("slows_unoccupied"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * The time a {@link Panda} has been sneezing (in ticks)
      */
-    public static final Key<Value<Ticks>> SNEEZING_TIME = Keys.key(ResourceKey.sponge("sneezing_time"));
+    public static final Key<Value<Ticks>> SNEEZING_TIME = Keys.key(ResourceKey.sponge("sneezing_time"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The list of {@link EntityArchetype}s able to be spawned by a {@link MobSpawner}.
      */
-    public static final Key<WeightedCollectionValue<EntityArchetype>> SPAWNABLE_ENTITIES = Keys.key(ResourceKey.sponge("spawnable_entities"));
+    public static final Key<WeightedCollectionValue<EntityArchetype>> SPAWNABLE_ENTITIES = Keys.key(ResourceKey.sponge("spawnable_entities"), TypeTokens.WEIGHTED_ENTITY_ARCHETYPE_COLLECTION_VALUE_TOKEN);
 
     /**
      * How many entities a {@link MobSpawner} has spawned so far.
      */
-    public static final Key<Value<Integer>> SPAWN_COUNT = Keys.key(ResourceKey.sponge("spawn_count"));
+    public static final Key<Value<Integer>> SPAWN_COUNT = Keys.key(ResourceKey.sponge("spawn_count"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * How far away from the {@link MobSpawner} the entities spawned by it may appear.
      */
-    public static final Key<Value<Double>> SPAWN_RANGE = Keys.key(ResourceKey.sponge("spawn_range"));
+    public static final Key<Value<Double>> SPAWN_RANGE = Keys.key(ResourceKey.sponge("spawn_range"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The {@link Entity target} of the spectator camera of a {@link Player}.
      */
-    public static final Key<Value<Entity>> SPECTATOR_TARGET = Keys.key(ResourceKey.sponge("spectator_target"));
+    public static final Key<Value<Entity>> SPECTATOR_TARGET = Keys.key(ResourceKey.sponge("spectator_target"), TypeTokens.ENTITY_VALUE_TOKEN);
 
     /**
      * The {@link StairShape} of a {@link BlockState}.
      */
-    public static final Key<Value<StairShape>> STAIR_SHAPE = Keys.key(ResourceKey.sponge("stair_shape"));
+    public static final Key<Value<StairShape>> STAIR_SHAPE = Keys.key(ResourceKey.sponge("stair_shape"), TypeTokens.STAIR_SHAPE_VALUE_TOKEN);
 
     /**
      * The {@link Statistic}s of a {@link Player}.
      */
-    public static final Key<MapValue<Statistic, Long>> STATISTICS = Keys.key(ResourceKey.sponge("statistics"));
+    public static final Key<MapValue<Statistic, Long>> STATISTICS = Keys.key(ResourceKey.sponge("statistics"), TypeTokens.MAP_STATISTIC_LONG_VALUE_TOKEN);
 
     /**
      * The enchantments stored on an {@link ItemStack}.
@@ -2348,110 +2348,110 @@ public final class Keys {
      * affecting the item stack are retrieved via {@link #APPLIED_ENCHANTMENTS}
      * instead.</p>
      */
-    public static final Key<ListValue<Enchantment>> STORED_ENCHANTMENTS = Keys.key(ResourceKey.sponge("stored_enchantments"));
+    public static final Key<ListValue<Enchantment>> STORED_ENCHANTMENTS = Keys.key(ResourceKey.sponge("stored_enchantments"), TypeTokens.LIST_ENCHANTMENT_VALUE_TOKEN);
 
     /**
      * A {@link Llama}s carrying strength. The higher the strength,
      * the more items it can carry (effectively the size of inventory).
      */
-    public static final Key<Value<Integer>> STRENGTH = Keys.key(ResourceKey.sponge("strength"));
+    public static final Key<Value<Integer>> STRENGTH = Keys.key(ResourceKey.sponge("strength"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The author of a structure from a {@link StructureBlock}.
      */
-    public static final Key<Value<String>> STRUCTURE_AUTHOR = Keys.key(ResourceKey.sponge("structure_author"));
+    public static final Key<Value<String>> STRUCTURE_AUTHOR = Keys.key(ResourceKey.sponge("structure_author"), TypeTokens.STRING_VALUE_TOKEN);
 
     /**
      * Whether a {@link StructureBlock} should
      * ignore entities when saving a structure.
      */
-    public static final Key<Value<Boolean>> STRUCTURE_IGNORE_ENTITIES = Keys.key(ResourceKey.sponge("structure_ignore_entities"));
+    public static final Key<Value<Boolean>> STRUCTURE_IGNORE_ENTITIES = Keys.key(ResourceKey.sponge("structure_ignore_entities"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * The integrity of a {@link StructureBlock}.
      */
-    public static final Key<Value<Double>> STRUCTURE_INTEGRITY = Keys.key(ResourceKey.sponge("structure_integrity"));
+    public static final Key<Value<Double>> STRUCTURE_INTEGRITY = Keys.key(ResourceKey.sponge("structure_integrity"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The mode of a {@link StructureBlock}.
      */
-    public static final Key<Value<StructureMode>> STRUCTURE_MODE = Keys.key(ResourceKey.sponge("structure_mode"));
+    public static final Key<Value<StructureMode>> STRUCTURE_MODE = Keys.key(ResourceKey.sponge("structure_mode"), TypeTokens.STRUCTURE_MODE_VALUE_TOKEN);
 
     /**
      * The position of a {@link StructureBlock}.
      */
-    public static final Key<Value<Vector3i>> STRUCTURE_POSITION = Keys.key(ResourceKey.sponge("structure_position"));
+    public static final Key<Value<Vector3i>> STRUCTURE_POSITION = Keys.key(ResourceKey.sponge("structure_position"), TypeTokens.VECTOR_3I_VALUE_TOKEN);
 
     /**
      * Whether a {@link StructureBlock} is powered.
      */
-    public static final Key<Value<Boolean>> STRUCTURE_POWERED = Keys.key(ResourceKey.sponge("structure_powered"));
+    public static final Key<Value<Boolean>> STRUCTURE_POWERED = Keys.key(ResourceKey.sponge("structure_powered"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * The seed of a {@link StructureBlock}
      */
-    public static final Key<Value<Long>> STRUCTURE_SEED = Keys.key(ResourceKey.sponge("structure_seed"));
+    public static final Key<Value<Long>> STRUCTURE_SEED = Keys.key(ResourceKey.sponge("structure_seed"), TypeTokens.LONG_VALUE_TOKEN);
 
     /**
      * Whether a
      * {@link StructureBlock} should make all {@link BlockTypes#AIR},
      * {@link BlockTypes#CAVE_AIR}, {@link BlockTypes#STRUCTURE_VOID} visible.
      */
-    public static final Key<Value<Boolean>> STRUCTURE_SHOW_AIR = Keys.key(ResourceKey.sponge("structure_show_air"));
+    public static final Key<Value<Boolean>> STRUCTURE_SHOW_AIR = Keys.key(ResourceKey.sponge("structure_show_air"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether a {@link StructureBlock} shows the bounding box.
      */
-    public static final Key<Value<Boolean>> STRUCTURE_SHOW_BOUNDING_BOX = Keys.key(ResourceKey.sponge("structure_show_bounding_box"));
+    public static final Key<Value<Boolean>> STRUCTURE_SHOW_BOUNDING_BOX = Keys.key(ResourceKey.sponge("structure_show_bounding_box"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * The size of a {@link StructureBlock}s structure.
      */
-    public static final Key<Value<Vector3i>> STRUCTURE_SIZE = Keys.key(ResourceKey.sponge("structure_size"));
+    public static final Key<Value<Vector3i>> STRUCTURE_SIZE = Keys.key(ResourceKey.sponge("structure_size"), TypeTokens.VECTOR_3I_VALUE_TOKEN);
 
     /**
      * The amount of "stuck arrows" in a {@link Living}.
      */
-    public static final Key<Value<Integer>> STUCK_ARROWS = Keys.key(ResourceKey.sponge("stuck_arrows"));
+    public static final Key<Value<Integer>> STUCK_ARROWS = Keys.key(ResourceKey.sponge("stuck_arrows"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The time (in ticks) a {@link Ravager} is stunned.
      */
-    public static final Key<Value<Ticks>> STUNNED_TIME = Keys.key(ResourceKey.sponge("stunned_time"));
+    public static final Key<Value<Ticks>> STUNNED_TIME = Keys.key(ResourceKey.sponge("stunned_time"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The amount of successful executions of a command
      * stored in a {@link CommandBlock} or {@link CommandBlockMinecart}.
      */
-    public static final Key<Value<Integer>> SUCCESS_COUNT = Keys.key(ResourceKey.sponge("success_count"));
+    public static final Key<Value<Integer>> SUCCESS_COUNT = Keys.key(ResourceKey.sponge("success_count"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * Whether a {@link BlockState} is suspended.
      */
-    public static final Key<Value<Boolean>> SUSPENDED = Keys.key(ResourceKey.sponge("suspended"));
+    public static final Key<Value<Boolean>> SUSPENDED = Keys.key(ResourceKey.sponge("suspended"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * The swiftness of an {@link Entity} e.g. {@link Minecart}s.
      * <p>This is equivalent to the magnitude of the {@link #VELOCITY} vector</p>
      */
-    public static final Key<Value<Double>> SWIFTNESS = Keys.key(ResourceKey.sponge("swiftness"));
+    public static final Key<Value<Double>> SWIFTNESS = Keys.key(ResourceKey.sponge("swiftness"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * The tamer of a {@link TameableAnimal} or {@link HorseLike}.
      */
-    public static final Key<Value<UUID>> TAMER = Keys.key(ResourceKey.sponge("tamer"));
+    public static final Key<Value<UUID>> TAMER = Keys.key(ResourceKey.sponge("tamer"), TypeTokens.UUID_VALUE_TOKEN);
 
     /**
      * The targeted entity either by an {@link Agent} and it's
      * {@link GoalExecutorTypes#TARGET} selector or by a {@link FishingBobber} or {@link ShulkerBullet}.
      */
-    public static final Key<Value<Entity>> TARGET_ENTITY = Keys.key(ResourceKey.sponge("target_entity"));
+    public static final Key<Value<Entity>> TARGET_ENTITY = Keys.key(ResourceKey.sponge("target_entity"), TypeTokens.ENTITY_VALUE_TOKEN);
 
     /**
      * A target location.
      * e.g. An {@link EyeOfEnder} target or a {@link Player}'s compass.
      */
-    public static final Key<Value<Vector3d>> TARGET_LOCATION = Keys.key(ResourceKey.sponge("target_location"));
+    public static final Key<Value<Vector3d>> TARGET_LOCATION = Keys.key(ResourceKey.sponge("target_location"), TypeTokens.VECTOR_3D_VALUE_TOKEN);
 
     /**
      * A target block position.
@@ -2460,20 +2460,20 @@ public final class Keys {
      * the exit portal position of a {@link EndGateway} or
      * an {@link EndCrystal}'s beam target.
      */
-    public static final Key<Value<Vector3i>> TARGET_POSITION = Keys.key(ResourceKey.sponge("target_position"));
+    public static final Key<Value<Vector3i>> TARGET_POSITION = Keys.key(ResourceKey.sponge("target_position"), TypeTokens.VECTOR_3I_VALUE_TOKEN);
 
     /**
      * The remaining fuse time in ticks of a {@link FusedExplosive}.
      * This value may be set to an arbitrary value
      * if the explosive is not primed.
      */
-    public static final Key<Value<Ticks>> TICKS_REMAINING = Keys.key(ResourceKey.sponge("ticks_remaining"));
+    public static final Key<Value<Ticks>> TICKS_REMAINING = Keys.key(ResourceKey.sponge("ticks_remaining"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The {@link ItemTier} of an {@link ItemStack} tool.
      * Readonly
      */
-    public static final Key<Value<ItemTier>> TOOL_TYPE = Keys.key(ResourceKey.sponge("tool_type"));
+    public static final Key<Value<ItemTier>> TOOL_TYPE = Keys.key(ResourceKey.sponge("tool_type"), TypeTokens.ITEM_TIER_VALUE_TOKEN);
 
     /**
      * Whether a {@link CommandBlock} does track its output.
@@ -2481,12 +2481,12 @@ public final class Keys {
      * <p>If this is set, the output of the most recent execution can be
      * retrieved using {@link #LAST_COMMAND_OUTPUT}.</p>
      */
-    public static final Key<Value<Boolean>> TRACKS_OUTPUT = Keys.key(ResourceKey.sponge("tracks_output"));
+    public static final Key<Value<Boolean>> TRACKS_OUTPUT = Keys.key(ResourceKey.sponge("tracks_output"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Tge {@link TradeOffer}s offered by a {@link Trader}.
      */
-    public static final Key<ListValue<TradeOffer>> TRADE_OFFERS = Keys.key(ResourceKey.sponge("trade_offers"));
+    public static final Key<ListValue<TradeOffer>> TRADE_OFFERS = Keys.key(ResourceKey.sponge("trade_offers"), TypeTokens.LIST_TRADE_OFFER_VALUE_TOKEN);
 
     /**
      * Whether an {@link Entity} is transient.
@@ -2495,38 +2495,38 @@ public final class Keys {
      *   If the entity type says that it isn't transient then this key is readonly.
      *   If the entity type says that it is transient, then this key dictates the current state.
      */
-    public static final Key<Value<Boolean>> TRANSIENT = Keys.key(ResourceKey.sponge("transient"));
+    public static final Key<Value<Boolean>> TRANSIENT = Keys.key(ResourceKey.sponge("transient"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * A {@link TropicalFish}'s shape.
      */
-    public static final Key<Value<TropicalFishShape>> TROPICAL_FISH_SHAPE = Keys.key(ResourceKey.sponge("tropical_fish_shape"));
+    public static final Key<Value<TropicalFishShape>> TROPICAL_FISH_SHAPE = Keys.key(ResourceKey.sponge("tropical_fish_shape"), TypeTokens.TROPICAL_FISH_SHAPE_VALUE_TOKEN);
 
     /**
      * The time a {@link Panda} has been unhappy (in ticks)
      */
-    public static final Key<Value<Ticks>> UNHAPPY_TIME = Keys.key(ResourceKey.sponge("unhappy_time"));
+    public static final Key<Value<Ticks>> UNHAPPY_TIME = Keys.key(ResourceKey.sponge("unhappy_time"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The {@link UUID} of a custom inventory.
      */
-    public static final Key<Value<UUID>> UNIQUE_ID = Keys.key(ResourceKey.sponge("unique_id"));
+    public static final Key<Value<UUID>> UNIQUE_ID = Keys.key(ResourceKey.sponge("unique_id"), TypeTokens.UUID_VALUE_TOKEN);
 
     /**
      * The deceleration a {@link Boat} while it does not have {@link Keys#PASSENGERS}.
      */
-    public static final Key<Value<Double>> UNOCCUPIED_DECELERATION = Keys.key(ResourceKey.sponge("unoccupied_deceleration"));
+    public static final Key<Value<Double>> UNOCCUPIED_DECELERATION = Keys.key(ResourceKey.sponge("unoccupied_deceleration"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * Whether a {@link BlockTypes#TNT} {@link BlockState} is unstable.
      */
-    public static final Key<Value<Boolean>> UNSTABLE = Keys.key(ResourceKey.sponge("unstable"));
+    public static final Key<Value<Boolean>> UNSTABLE = Keys.key(ResourceKey.sponge("unstable"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether changes to {@link Keys#SKIN_PROFILE_PROPERTY} should
      * be reflected in an entitie's {@link GameProfile}.
      */
-    public static final Key<Value<Boolean>> UPDATE_GAME_PROFILE = Keys.key(ResourceKey.sponge("update_game_profile"));
+    public static final Key<Value<Boolean>> UPDATE_GAME_PROFILE = Keys.key(ResourceKey.sponge("update_game_profile"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an {@link Entity} is vanished.
@@ -2540,7 +2540,7 @@ public final class Keys {
      * {@link #PASSENGERS} will cause problems.</p>
      * <p>
      */
-    public static final Key<Value<Boolean>> VANISH = Keys.key(ResourceKey.sponge("vanish"));
+    public static final Key<Value<Boolean>> VANISH = Keys.key(ResourceKey.sponge("vanish"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an {@link Entity} ignores collision with other entities.
@@ -2548,7 +2548,7 @@ public final class Keys {
      * <p>This state will be ignored if the {@link Entity} is not also
      * vanished as per {@link #VANISH}.</p>
      */
-    public static final Key<Value<Boolean>> VANISH_IGNORES_COLLISION = Keys.key(ResourceKey.sponge("vanish_ignores_collision"));
+    public static final Key<Value<Boolean>> VANISH_IGNORES_COLLISION = Keys.key(ResourceKey.sponge("vanish_ignores_collision"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an {@link Entity} can be targeted for attack by another entity.
@@ -2558,7 +2558,7 @@ public final class Keys {
      * <p>This state will be ignored if the {@link Entity} is not also
      * vanished as per {@link #VANISH}.}.</p>
      */
-    public static final Key<Value<Boolean>> VANISH_PREVENTS_TARGETING = Keys.key(ResourceKey.sponge("vanish_prevents_targeting"));
+    public static final Key<Value<Boolean>> VANISH_PREVENTS_TARGETING = Keys.key(ResourceKey.sponge("vanish_prevents_targeting"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * The vehicle an {@link Entity} is riding.
@@ -2566,12 +2566,12 @@ public final class Keys {
      * <p>Vehicles may be nested as a vehicle might itself ride another entity.
      * To get the vehicle on bottom, use {@link Keys#BASE_VEHICLE}.</p>
      */
-    public static final Key<Value<Entity>> VEHICLE = Keys.key(ResourceKey.sponge("vehicle"));
+    public static final Key<Value<Entity>> VEHICLE = Keys.key(ResourceKey.sponge("vehicle"), TypeTokens.ENTITY_VALUE_TOKEN);
 
     /**
      * The velocity of an {@link Entity}.
      */
-    public static final Key<Value<Vector3d>> VELOCITY = Keys.key(ResourceKey.sponge("velocity"));
+    public static final Key<Value<Vector3d>> VELOCITY = Keys.key(ResourceKey.sponge("velocity"), TypeTokens.VECTOR_3D_VALUE_TOKEN);
 
     /**
      * The client view distance of a {@link ServerPlayer}. Read-only.
@@ -2579,68 +2579,68 @@ public final class Keys {
      * <p>This value represents the radius (around the player) in
      * unit chunks.</p>
      */
-    public static final Key<Value<Integer>> VIEW_DISTANCE = Keys.key(ResourceKey.sponge("view_distance"));
+    public static final Key<Value<Integer>> VIEW_DISTANCE = Keys.key(ResourceKey.sponge("view_distance"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * The type of a {@link Villager} or {@link ZombieVillager}.
      */
-    public static final Key<Value<VillagerType>> VILLAGER_TYPE = Keys.key(ResourceKey.sponge("villager_type"));
+    public static final Key<Value<VillagerType>> VILLAGER_TYPE = Keys.key(ResourceKey.sponge("villager_type"), TypeTokens.VILLAGER_TYPE_VALUE_TOKEN);
 
     /**
      * The duration in ticks after which an
      * {@link AreaEffectCloud} will begin to apply its effect to entities.
      */
-    public static final Key<Value<Ticks>> WAIT_TIME = Keys.key(ResourceKey.sponge("wait_time"));
+    public static final Key<Value<Ticks>> WAIT_TIME = Keys.key(ResourceKey.sponge("wait_time"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The base speed at which a {@link Player} or {@link Living} walks.
      */
-    public static final Key<Value<Double>> WALKING_SPEED = Keys.key(ResourceKey.sponge("walking_speed"));
+    public static final Key<Value<Double>> WALKING_SPEED = Keys.key(ResourceKey.sponge("walking_speed"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * Whether a thrown {@link EyeOfEnder} will shatter.
      */
-    public static final Key<Value<Boolean>> WILL_SHATTER = Keys.key(ResourceKey.sponge("will_shatter"));
+    public static final Key<Value<Boolean>> WILL_SHATTER = Keys.key(ResourceKey.sponge("will_shatter"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * The {@link WireAttachmentType}s of a {@link BlockTypes#REDSTONE_WIRE} {@link BlockState} for its neighboring blocks.
      */
-    public static final Key<MapValue<Direction, WireAttachmentType>> WIRE_ATTACHMENTS = Keys.key(ResourceKey.sponge("wire_attachments"));
+    public static final Key<MapValue<Direction, WireAttachmentType>> WIRE_ATTACHMENTS = Keys.key(ResourceKey.sponge("wire_attachments"), TypeTokens.MAP_DIRECTION_WIRE_ATTACHMENT_VALUE_TOKEN);
 
     /**
      * The {@link WireAttachmentType} of a {@link BlockTypes#REDSTONE_WIRE} {@link BlockState}
      * for its neighboring block to the {@link Direction#EAST}.
      */
-    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_EAST = Keys.key(ResourceKey.sponge("wire_attachment_east"));
+    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_EAST = Keys.key(ResourceKey.sponge("wire_attachment_east"), TypeTokens.WIRE_ATTACHMENT_TYPE_VALUE_TOKEN);
 
     /**
      * The {@link WireAttachmentType} of a {@link BlockTypes#REDSTONE_WIRE} {@link BlockState}
      * for its neighboring block to the {@link Direction#NORTH}.
      */
-    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_NORTH = Keys.key(ResourceKey.sponge("wire_attachment_north"));
+    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_NORTH = Keys.key(ResourceKey.sponge("wire_attachment_north"), TypeTokens.WIRE_ATTACHMENT_TYPE_VALUE_TOKEN);
 
     /**
      * The {@link WireAttachmentType} of a {@link BlockTypes#REDSTONE_WIRE} {@link BlockState}
      * for its neighboring block to the {@link Direction#SOUTH}.
      */
-    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_SOUTH = Keys.key(ResourceKey.sponge("wire_attachment_south"));
+    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_SOUTH = Keys.key(ResourceKey.sponge("wire_attachment_south"), TypeTokens.WIRE_ATTACHMENT_TYPE_VALUE_TOKEN);
 
     /**
      * The {@link WireAttachmentType} of a {@link BlockTypes#REDSTONE_WIRE} {@link BlockState}
      * for its neighboring block to the {@link Direction#WEST}.
      */
-    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_WEST = Keys.key(ResourceKey.sponge("wire_attachment_west"));
+    public static final Key<Value<WireAttachmentType>> WIRE_ATTACHMENT_WEST = Keys.key(ResourceKey.sponge("wire_attachment_west"), TypeTokens.WIRE_ATTACHMENT_TYPE_VALUE_TOKEN);
 
     /**
      * The entities targeted by the three {@link Wither} heads. In vanilla the wither only targets {@link Living}. {@code null} for no target entity.
      */
-    public static final Key<ListValue<Entity>> WITHER_TARGETS = Keys.key(ResourceKey.sponge("wither_targets"));
+    public static final Key<ListValue<Entity>> WITHER_TARGETS = Keys.key(ResourceKey.sponge("wither_targets"), TypeTokens.LIST_ENTITY_VALUE_TOKEN);
 
     /**
      * The {@link Sheep} who is being targeted by the {@link SpellTypes#WOLOLO}
      * spell being casted by an {@link Evoker}
      */
-    public static final Key<Value<Sheep>> WOLOLO_TARGET = Keys.key(ResourceKey.sponge("wololo_target"));
+    public static final Key<Value<Sheep>> WOLOLO_TARGET = Keys.key(ResourceKey.sponge("wololo_target"), TypeTokens.SHEEP_VALUE_TOKEN);
 
     // SORTFIELDS:OFF
 
