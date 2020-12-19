@@ -24,43 +24,23 @@
  */
 package org.spongepowered.api.world.volume.block;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.util.PositionOutOfBoundsException;
-import org.spongepowered.api.world.volume.MutableVolume;
+import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.registry.RegistryReference;
+import org.spongepowered.api.world.schematic.Palette;
 import org.spongepowered.math.vector.Vector3i;
 
-public interface MutableBlockVolume<M extends MutableBlockVolume<M>> extends StreamableBlockVolume<M>, MutableVolume {
+public interface BlockVolumeFactory {
 
-    /**
-     * Sets the block at the given position in the world.
-     *
-     * @param position The position
-     * @param block The block
-     * @return Whether the block change was successful
-     * @throws PositionOutOfBoundsException If the position is outside of the
-     *         bounds of the volume
-     */
-    default boolean setBlock(final Vector3i position, final BlockState block) {
-        return this.setBlock(position.getX(), position.getY(), position.getZ(), block);
-    }
+    BlockVolume.Mutable<@NonNull ?> empty(Palette<BlockState, BlockType> palette, RegistryReference<BlockType> defaultState, Vector3i min, Vector3i max);
 
-    /**
-     * Sets the block at the given position in the world.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param block The block
-     * @return Whether the block change was successful
-     * @throws PositionOutOfBoundsException If the position is outside of the
-     *         bounds of the volume
-     */
-    boolean setBlock(int x, int y, int z, BlockState block);
+    BlockVolume.Mutable<@NonNull ?> copyFromRange(BlockVolume.Streamable<@NonNull ?> existing, Vector3i newMin, Vector3i newMax);
 
-    default boolean removeBlock(final Vector3i position) {
-        return this.removeBlock(position.getX(), position.getY(), position.getZ());
-    }
+    BlockVolume.Mutable<@NonNull ?> copy(BlockVolume.Streamable<@NonNull ?> existing);
 
-    boolean removeBlock(int x, int y, int z);
+    BlockVolume.Immutable immutableOf(BlockVolume.Streamable<@NonNull ?> existing);
+
+    BlockVolume.Immutable immutableOf(BlockVolume.Streamable<@NonNull ?> existing, Vector3i newMin, Vector3i newMax);
 
 }

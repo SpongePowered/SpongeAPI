@@ -24,10 +24,13 @@
  */
 package org.spongepowered.api.world.volume.archetype;
 
-import org.spongepowered.api.world.volume.archetype.entity.MutableEntityArchetypeVolume;
-import org.spongepowered.api.world.volume.archetype.block.entity.MutableBlockEntityArchetypeVolume;
-import org.spongepowered.api.world.volume.block.MutableBlockVolume;
+import org.spongepowered.api.world.volume.archetype.block.entity.BlockEntityArchetypeVolume;
+import org.spongepowered.api.world.volume.archetype.entity.EntityArchetypeVolume;
+import org.spongepowered.api.world.volume.biome.BiomeVolume;
+import org.spongepowered.api.world.volume.block.BlockVolume;
 
-public interface ArchetypeVolume extends MutableBlockVolume<ArchetypeVolume>, MutableBlockEntityArchetypeVolume<ArchetypeVolume>,
-    MutableEntityArchetypeVolume<ArchetypeVolume> {
+public interface ArchetypeVolume extends BlockVolume.Mutable<ArchetypeVolume>,
+    BlockEntityArchetypeVolume.Mutable<ArchetypeVolume>,
+    EntityArchetypeVolume.Mutable<ArchetypeVolume>,
+    BiomeVolume.Mutable<ArchetypeVolume> {
 }

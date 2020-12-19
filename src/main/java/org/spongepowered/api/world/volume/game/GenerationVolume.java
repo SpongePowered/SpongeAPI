@@ -24,6 +24,29 @@
  */
 package org.spongepowered.api.world.volume.game;
 
-public interface GenerationVolume extends ReadableGenerationVolume, MutableGameVolume {
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.world.World;
+import org.spongepowered.math.vector.Vector3i;
 
+import java.util.function.Predicate;
+
+public interface GenerationVolume extends HeightAwareVolume {
+
+    default boolean hasBlockState(Vector3i pos) {
+        return this.hasBlockState(pos.getX(), pos.getY(), pos.getZ(), block -> true);
+    }
+
+    default boolean hasBlockState(Vector3i pos, Predicate<? super BlockState> predicate) {
+        return this.hasBlockState(pos.getX(), pos.getY(), pos.getZ(), predicate);
+    }
+
+    boolean hasBlockState(int x, int y, int z, Predicate<? super BlockState> predicate);
+
+    default int getMaximumHeight() {
+        return this instanceof World ? ((World) this).getBlockMax().getY() : 256;
+    }
+
+    interface Mutable extends GenerationVolume, MutableGameVolume {
+
+    }
 }

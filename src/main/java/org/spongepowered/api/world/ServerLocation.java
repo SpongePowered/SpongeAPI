@@ -43,7 +43,7 @@ import org.spongepowered.api.scheduler.ScheduledUpdate;
 import org.spongepowered.api.scheduler.TaskPriority;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.server.ServerWorld;
-import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
+import org.spongepowered.api.world.volume.entity.EntityVolume;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
@@ -181,7 +181,7 @@ public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDat
      * @throws IllegalArgumentException If the position or entity type is not
      *     valid to create
      * @throws IllegalStateException If a constructor cannot be found
-     * @see MutableEntityVolume#createEntity(EntityType, Vector3d)
+     * @see EntityVolume.Mutable#createEntity(EntityType, Vector3d)
      */
     <E extends Entity> E createEntity(EntityType<E> type);
 
@@ -197,7 +197,7 @@ public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDat
      *
      * <p>The requirements involve that all necessary setup of states and data
      * is already preformed on the entity retrieved from the various
-     * {@link MutableEntityVolume#createEntity(EntityType,Vector3d)} methods.
+     * {@link EntityVolume.Mutable#createEntity(EntityType,Vector3d)} methods.
      * Calling this will make the now-spawned entity able to be processed by
      * various systems.</p>
      *
@@ -206,7 +206,7 @@ public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDat
      *
      * @param entity The entity to spawn
      * @return True if successful, false if not
-     * @see MutableEntityVolume#spawnEntity(Entity)
+     * @see EntityVolume.Mutable#spawnEntity(Entity)
      */
     boolean spawnEntity(Entity entity);
 
@@ -218,7 +218,7 @@ public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDat
      *
      * @param entities The entities which spawned correctly, or empty if none
      * @return True if any of the entities were successfully spawned
-     * @see MutableEntityVolume#spawnEntities(Iterable)
+     * @see EntityVolume.Mutable#spawnEntities(Iterable)
      */
     Collection<Entity> spawnEntities(Iterable<? extends Entity> entities);
 

@@ -26,8 +26,8 @@ package org.spongepowered.api.world.volume.game;
 
 import org.spongepowered.api.Game;
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
-import org.spongepowered.api.world.volume.block.entity.ReadableBlockEntityVolume;
+import org.spongepowered.api.world.volume.block.BlockVolume;
+import org.spongepowered.api.world.volume.block.entity.BlockEntityVolume;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Objects;
@@ -37,7 +37,7 @@ import java.util.Objects;
  * without impunity, but no guarantees on the provider type of what this
  * primitive volume is based on.
  */
-public interface PrimitiveGameVolume extends ReadableBlockVolume, ReadableBlockEntityVolume, LocationBaseDataHolder {
+public interface PrimitiveGameVolume extends BlockVolume, BlockEntityVolume, LocationBaseDataHolder {
 
     default int getMaximumLight() {
         return 15;

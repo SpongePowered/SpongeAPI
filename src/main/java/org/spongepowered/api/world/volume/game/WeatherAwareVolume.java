@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.world.volume.game;
 
-import org.spongepowered.api.world.volume.block.ReadableBlockVolume;
+import org.spongepowered.api.world.volume.block.BlockVolume;
 import org.spongepowered.math.vector.Vector2i;
 import org.spongepowered.math.vector.Vector3i;
 
-public interface WeatherAwareVolume extends ReadableBlockVolume {
+public interface WeatherAwareVolume extends BlockVolume {
 
     /**
      * Returns the y level that precipitation ends falling in the given column.
