@@ -25,7 +25,6 @@
 package org.spongepowered.api.data;
 
 import io.leangen.geantyref.TypeToken;
-import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataQuery;
 import org.spongepowered.api.data.persistence.DataStore;
@@ -67,13 +66,6 @@ public interface DataRegistration {
     static Builder builder() {
         return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
-
-    /**
-     * Gets the {@link ResourceKey key}.
-     *
-     * @return The key
-     */
-    ResourceKey getKey();
 
     /**
      * Gets the {@link DataProvider} for the given {@link Key} to potentially
@@ -132,15 +124,14 @@ public interface DataRegistration {
     Iterable<Key<?>> getKeys();
 
     /**
-     * Gets the owning {@link PluginContainer}.
+     * Gets the owning {@link PluginContainer plugin}.
      *
      * @return The owning plugin container for this registration
      */
-    PluginContainer getPluginContainer();
+    PluginContainer getPlugin();
 
     /**
      * Creates a DataRegistration for a single key with a DataStore for given data-holders.
-     *
      *
      * @param key the data key
      * @param dataHolders the data-holders
@@ -150,11 +141,9 @@ public interface DataRegistration {
      * @return The built data registration
      */
     @SafeVarargs
-    static <T, V extends Value<T>> DataRegistration of(final ResourceKey key, final Key<V> dataKey, final Class<? extends DataHolder> dataHolder,
-            final Class<?
-            extends DataHolder>... dataHolders) {
-        final DataStore dataStore = DataStore.of(key, dataKey, DataQuery.of(key.getNamespace(), key.getValue()), dataHolder, dataHolders);
-        return DataRegistration.builder().key(key).dataKey(dataKey).store(dataStore).build();
+    static <T, V extends Value<T>> DataRegistration of(final Key<V> key, final Class<? extends DataHolder> dataHolder, final Class<? extends DataHolder>... dataHolders) {
+        final DataStore dataStore = DataStore.of(key, DataQuery.of(key.getKey().getNamespace(), key.getKey().getValue()), dataHolder, dataHolders);
+        return DataRegistration.builder().dataKey(key).store(dataStore).build();
     }
 
     /**
@@ -164,8 +153,6 @@ public interface DataRegistration {
      * re-using said builder.
      */
     interface Builder extends org.spongepowered.api.util.Builder<DataRegistration, Builder> {
-
-        Builder key(ResourceKey key);
 
         /**
          * Gives the builder a {@link DataStore} that will enable supporting

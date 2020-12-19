@@ -26,12 +26,12 @@ package org.spongepowered.api.data.persistence;
 
 import io.leangen.geantyref.TypeToken;
 import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.util.ResettableBuilder;
 
 import java.lang.reflect.Type;
 import java.util.Collection;
@@ -40,8 +40,8 @@ import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
-public interface DataStore extends ResourceKeyed {
-    
+public interface DataStore {
+
     /**
      * Gets the supported {@link DataHolder} types.
      *
@@ -131,9 +131,8 @@ public interface DataStore extends ResourceKeyed {
      */
     @SafeVarargs
     @SuppressWarnings("unchecked")
-    static <T, V extends Value<T>> DataStore of(final ResourceKey key, final Key<V> dataKey, final DataQuery dataQuery,
-            final TypeToken<? extends DataHolder> typeToken, final TypeToken<? extends DataHolder>... typeTokens) {
-        return DataStore.builder().pluginData(key).holder(typeToken).holder(typeTokens).key(dataKey, dataQuery).build();
+    static <T, V extends Value<T>> DataStore of(final Key<V> key, final DataQuery dataQuery, final TypeToken<? extends DataHolder> typeToken, final TypeToken<? extends DataHolder>... typeTokens) {
+        return DataStore.builder().pluginData(key.getKey()).holder(typeToken).holder(typeTokens).key(key, dataQuery).build();
     }
 
     /**
@@ -151,9 +150,8 @@ public interface DataStore extends ResourceKeyed {
      */
     @SafeVarargs
     @SuppressWarnings("unchecked")
-    static <T, V extends Value<T>> DataStore of(final ResourceKey key, final Key<V> dataKey, final DataQuery dataQuery,
-            final Class<?extends DataHolder> type, final Class<? extends DataHolder>... types) {
-        return DataStore.builder().pluginData(key).holder(type).holder(types).key(dataKey, dataQuery).build();
+    static <T, V extends Value<T>> DataStore of(Key<V> key, DataQuery dataQuery, Class<?extends DataHolder> type, Class<? extends DataHolder>... types) {
+        return DataStore.builder().pluginData(key.getKey()).holder(type).holder(types).key(key, dataQuery).build();
     }
 
     /**
@@ -161,12 +159,11 @@ public interface DataStore extends ResourceKeyed {
      *
      * @return The dataStore builder.
      */
-    @SuppressWarnings("unchecked")
-    static Builder builder() {
+    static DataStore.Builder builder() {
         return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
-    interface Builder<B extends Builder<B>> extends org.spongepowered.api.util.Builder<DataStore, B> {
+    interface Builder extends ResettableBuilder<DataStore, Builder> {
 
         /**
          * Starts building a DataStore for plugin data.
@@ -182,13 +179,13 @@ public interface DataStore extends ResourceKeyed {
          * Starts building a DataStore for raw data.
          * <p>Serializers and deserializers will operate on the root {@link DataView}
          * which includes all data from vanilla minecraft and more</p>
-         * <p>Consider using {@link #pluginData(ResourceKey)} instead.</p>
+         * <p>Consider using {@link #pluginData} instead.</p>
          *
          * @return this builder for chaining
          */
-        B vanillaData();
+        HolderStep vanillaData();
 
-        interface HolderStep extends Builder<HolderStep> {
+        interface HolderStep extends ResettableBuilder<DataStore, Builder> {
             /**
              * Adds one or more allowed dataHolder types
              *
@@ -212,7 +209,7 @@ public interface DataStore extends ResourceKeyed {
             SerializersStep holder(Class<? extends DataHolder>... types);
         }
 
-        interface SerializersStep extends HolderStep {
+        interface SerializersStep extends HolderStep, ResettableBuilder<DataStore, Builder>{
             /**
              * Adds the default implemented serializers for the given key.
              * <p>
@@ -255,7 +252,7 @@ public interface DataStore extends ResourceKeyed {
             <T, V extends Value<T>> Builder.EndStep key(Key<V> key, BiConsumer<DataView, T> serializer, Function<DataView, Optional<T>> deserializer);
         }
 
-        interface EndStep extends SerializersStep {
+        interface EndStep extends SerializersStep, ResettableBuilder<DataStore, Builder>{
             /**
              * Builds a dataStore for given dataHolder type.
              *

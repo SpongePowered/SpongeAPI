@@ -25,12 +25,14 @@
 package org.spongepowered.api.data.persistence;
 
 import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.RegistryType;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -473,6 +475,43 @@ public interface DataView {
     Optional<List<DataView>> getViewList(DataQuery path);
 
     /**
+     * Gets the {@link DataSerializable} object by path, if available.
+     *
+     * <p>If a {@link DataSerializable} exists, but is not the proper class
+     * type, or there is no data at the path given, an absent is returned.</p>
+     *
+     * <p>It is important that the {@link DataManager} provided is
+     * the same one that has registered many of the
+     * {@link DataBuilder}s to ensure the {@link DataSerializable}
+     * requested can be returned.</p>
+     *
+     * @param <T> The type of {@link DataSerializable} object
+     * @param path The path of the value to get
+     * @param clazz The class of the {@link DataSerializable}
+     * @return The deserialized object, if available
+     */
+    <T extends DataSerializable> Optional<T> getSerializable(DataQuery path, Class<T> clazz);
+
+    /**
+     * Gets the {@link List} of {@link DataSerializable} by path, if available.
+     *
+     * <p>If a {@link List} exists, but the contents of the list are not
+     * considered {@link DataSerializable} or are not of the proper type of
+     * {@link DataSerializable}, an absent is returned.</p>
+     *
+     * <p>It is important that the {@link DataManager} provided is
+     * the same one that has registered many of the
+     * {@link DataBuilder}s to ensure the {@link DataSerializable}
+     * requested can be returned.</p>
+     *
+     * @param <T> The type of {@link DataSerializable} object
+     * @param path The path of the list value to get
+     * @param clazz The class of the {@link DataSerializable}
+     * @return The deserialized objects in a list, if available
+     */
+    <T extends DataSerializable> Optional<List<T>> getSerializableList(DataQuery path, Class<T> clazz);
+
+    /**
      * Gets the {@link Object} object by path, if available.
      *
      * <p>If a {@link Object} exists, but is not the proper class
@@ -508,6 +547,32 @@ public interface DataView {
      * @return The deserialized objects in a list, if available
      */
     <T> Optional<List<T>> getObjectList(DataQuery path, Class<T> objectClass);
+
+    /**
+     * Gets the {@link T value} by path, if available, from the global registry.
+     *
+     * @param path The path of the value to get
+     * @param registryType The class of the dummy type
+     * @param <T> The type of dummy
+     * @return The dummy type, if available
+     */
+    default <T> Optional<T> getRegistryValue(final DataQuery path, final RegistryType<T> registryType) {
+        return this.getRegistryValue(Objects.requireNonNull(path, "path"), Objects.requireNonNull(registryType, "registryType"),
+                Sponge.getGame().registries());
+    }
+
+    /**
+     * Gets the {@link List} of {@link T values} by path, if available, from the global registry.
+     *
+     * @param path The path of the list value to get
+     * @param registryType The type of registry to search
+     * @param <T> The type of dummy type
+     * @return The list of dummy types, if available
+     */
+    default <T> Optional<List<T>> getRegistryValueList(final DataQuery path, final RegistryType<T> registryType) {
+        return this.getRegistryValueList(Objects.requireNonNull(path, "path"), Objects.requireNonNull(registryType, "registryType"),
+                Sponge.getGame().registries());
+    }
 
     /**
      * Gets the {@link T value} by path, if available.

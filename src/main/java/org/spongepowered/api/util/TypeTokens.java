@@ -349,6 +349,8 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<StructureMode>> STRUCTURE_MODE_VALUE_TOKEN = new TypeToken<Value<StructureMode>>() {};
 
+    public static final TypeToken<Value<Ticks>> TICKS_VALUE_TOKEN = new TypeToken<Value<Ticks>>() {};
+
     public static final TypeToken<Value<ItemTier>> TOOL_TYPE_VALUE_TOKEN = new TypeToken<Value<ItemTier>>() {};
 
     public static final TypeToken<Value<TropicalFishShape>> TROPICAL_FISH_SHAPE_VALUE_TOKEN = new TypeToken<Value<TropicalFishShape>>() {};
