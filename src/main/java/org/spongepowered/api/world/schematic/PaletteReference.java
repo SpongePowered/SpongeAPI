@@ -25,36 +25,38 @@
 package org.spongepowered.api.world.schematic;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.RegistryType;
-import org.spongepowered.api.util.ResettableBuilder;
-import org.spongepowered.api.util.annotation.CatalogedBy;
 
+import java.util.Objects;
 import java.util.Optional;
-import java.util.function.BiFunction;
 
-@CatalogedBy(PaletteTypes.class)
-public interface PaletteType<T, R> {
+public interface PaletteReference<T, R> {
 
-    @SuppressWarnings("unchecked")
-    static <E, ER> Builder<E, ER> builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+    RegistryType<R> registry();
+
+    String value();
+
+    default Optional<T> resolve(final RegistryHolder holder, final PaletteType<T, R> type) {
+        return type.getResolver().apply(this.value(), holder.registry(this.registry()));
     }
 
-    Palette<T, R> create(RegistryHolder holder, RegistryType<R> registryType);
+    static <T, R> PaletteReference<T, R> byString(final RegistryType<R> registryType, final String value) {
+        final String stringId = Objects.requireNonNull(value, "String cannot be null!");
+        if (stringId.isEmpty()) {
+            throw new IllegalArgumentException("String cannot be empty to refer to an object in a Palette");
+        }
+        return Sponge.getGame().getFactoryProvider().provide(PaletteReference.Factory.class)
+            .stringReference(
+                Objects.requireNonNull(registryType, "RegistryType cannot be null!"),
+                stringId
+            );
+    }
 
-    BiFunction<String, Registry<R>, Optional<T>> getResolver();
+    interface Factory {
 
-    BiFunction<Registry<R>, T, String> getStringifier();
+        <T, R> PaletteReference<T, R> stringReference(RegistryType<R> type, String value);
 
-    interface Builder<T, R> extends ResettableBuilder<PaletteType<T, R>, Builder<T, R>> {
-
-        Builder<T, R> resolver(BiFunction<String, Registry<R>, Optional<T>> resolver);
-
-        Builder<T, R> stringifier(BiFunction<Registry<R>, T, String> stringifier);
-
-        PaletteType<T, R> build() throws IllegalStateException;
     }
 
 }

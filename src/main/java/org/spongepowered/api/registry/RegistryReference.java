@@ -41,7 +41,7 @@ public interface RegistryReference<T> extends RegistryKey<T> {
      * <p>Great care needs to be made in calling this method with any uncertainty as to
      * if this reference will exist in the holder. Should this reference lack a value, a
      * {@link ValueNotFoundException}</p> will be thrown. Therefore, it is advised to call
-     * {@link RegistryReference#find(RegistryHolder)} instead.</p>
+     * {@link RegistryReference#find(RegistryHolder)} instead.
      *
      * <p>The contract leaves a large amount of flexibility in how this value is retrieved
      * from the holder. As there are no defined rules, an implementation may choose to only
@@ -61,7 +61,7 @@ public interface RegistryReference<T> extends RegistryKey<T> {
      * <p>Great care needs to be made in calling this method with any uncertainty as to
      * if this reference will exist in the holder or the alternatives. Should this reference
      * lack a value, a {@link ValueNotFoundException}</p> will be thrown. Therefore, it is advised
-     * to call {@link RegistryReference#find(RegistryHolder)} instead.</p>
+     * to call {@link RegistryReference#find(RegistryHolder)} instead.
      *
      * @param holder The holder
      * @param alternatives Alternatives holders to search

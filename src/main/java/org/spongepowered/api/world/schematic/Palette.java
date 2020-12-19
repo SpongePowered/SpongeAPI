@@ -24,26 +24,30 @@
  */
 package org.spongepowered.api.world.schematic;
 
+import org.spongepowered.api.registry.RegistryHolder;
+
+import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.stream.Stream;
 
 /**
  * Represents a mapping for types to a local identifier. Can be used for
- * mapping {@link CatalogType}s to {@code int} id's for storage purposes,
+ * mapping {@code Object}s to {@code int} id's for storage purposes,
  * or for converting stored information to a representable format back into
- * {@link CatalogType}s.
+ * {@link Object}s.
  *
  * @param <T> The type this palette will maintain
+ * @param <R> The type of registry used to build this palette
  */
-public interface Palette<T> {
+public interface Palette<T, R> {
 
     /**
      * Gets the type of this palette.
      *
      * @return The palette type
      */
-    PaletteType<T> getType();
+    PaletteType<T, R> getType();
 
     /**
      * Gets the highest identifier in this palette.
@@ -58,7 +62,13 @@ public interface Palette<T> {
      * @param id The identifier
      * @return The type, if found
      */
-    Optional<T> get(int id);
+    Optional<PaletteReference<T, R>> get(int id);
+
+    default Optional<T> get(final int id, final RegistryHolder holder) {
+        return this.get(id).flatMap(ref -> Objects.requireNonNull(holder,"RegistryHolder cannot be null")
+            .findRegistry(ref.registry())
+            .flatMap(reg -> this.getType().getResolver().apply(ref.value(), reg)));
+    }
 
     /**
      * Gets the identifier for the given {@code type T} if it exists within the
@@ -69,7 +79,6 @@ public interface Palette<T> {
      */
     OptionalInt get(T type);
 
-
     /**
      * Gets all {@code type T}s contained in this palette.
      *
@@ -77,11 +86,11 @@ public interface Palette<T> {
      */
     Stream<T> stream();
 
-    Mutable<T> asMutable();
+    Mutable<T, R> asMutable(RegistryHolder registry);
 
-    Immutable<T> asImmutable();
+    Immutable<T, R> asImmutable();
 
-    interface Mutable<M> extends Palette<M> {
+    interface Mutable<M, MR> extends Palette<M, MR> {
 
         /**
          * Gets the identifier for the given {@code type T} from the mapping. If the
@@ -104,15 +113,15 @@ public interface Palette<T> {
         boolean remove(M type);
 
         @Override
-        default Mutable<M> asMutable() {
+        default Mutable<M, MR> asMutable(final RegistryHolder registry) {
             return this;
         }
     }
 
-    interface Immutable<I> extends Palette<I> {
+    interface Immutable<I, IR> extends Palette<I, IR> {
 
         @Override
-        default Immutable<I> asImmutable() {
+        default Immutable<I, IR> asImmutable() {
             return this;
         }
     }

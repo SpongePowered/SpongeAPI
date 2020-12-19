@@ -312,7 +312,7 @@ public final class RegistryTypes {
 
     public static final RegistryType<Orientation> ORIENTATION = RegistryTypes.spongeKey("orientation");
 
-    public static final RegistryType<PaletteType<?>> PALETTE_TYPE = RegistryTypes.spongeKey("palette_type");
+    public static final RegistryType<PaletteType<?, ?>> PALETTE_TYPE = RegistryTypes.spongeKey("palette_type");
 
     public static final RegistryType<PandaGene> PANDA_GENE = RegistryTypes.spongeKey("panda_gene");
 
