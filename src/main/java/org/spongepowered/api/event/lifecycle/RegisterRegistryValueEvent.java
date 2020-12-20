@@ -42,8 +42,6 @@ public interface RegisterRegistryValueEvent extends LifecycleEvent {
     }
 
     interface EngineScoped<E extends Engine> extends RegisterRegistryValueEvent, GenericEvent<E> {
-
-        E getEngine();
     }
 
     interface WorldScoped extends RegisterRegistryValueEvent {
