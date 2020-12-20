@@ -155,7 +155,7 @@ public interface ChangeBlockEvent extends Event {
          * marked as "invalid" and will not apply post event.
          */
         default void invalidateAll() {
-            this.getTransactions().forEach(Transaction::invalidate);
+            this.getTransactions().forEach(BlockTransaction::invalidate);
         }
     }
 

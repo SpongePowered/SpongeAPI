@@ -35,6 +35,7 @@ import org.spongepowered.api.command.parameter.CommandContext;
 import org.spongepowered.api.command.parameter.Parameter;
 import org.spongepowered.api.command.parameter.managed.ValueParameter;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryHolder;
@@ -67,7 +68,7 @@ public final class VariableValueParameters {
      * @return The builder
      */
     public static <T> CatalogedTypeBuilder<T> registryEntryBuilder(
-            final Function<CommandContext, @Nullable RegistryHolder> holderProvider, final RegistryKey<? extends Registry<? extends T>> registryKey) {
+            final Function<CommandContext, @Nullable RegistryHolder> holderProvider, final RegistryType<T> registryKey) {
         return Sponge.getGame().getFactoryProvider().provide(Factory.class).createRegistryEntryBuilder(holderProvider, registryKey);
     }
 
@@ -96,7 +97,7 @@ public final class VariableValueParameters {
      * @return The builder
      */
     public static <T> CatalogedTypeBuilder<T> registryEntryBuilder(
-            final DefaultedRegistryReference<? extends Registry<? extends T>> defaultedRegistryReference) {
+            final RegistryType<T> defaultedRegistryReference) {
         return Sponge.getGame().getFactoryProvider().provide(Factory.class).createRegistryEntryBuilder(defaultedRegistryReference);
     }
 
@@ -626,16 +627,16 @@ public final class VariableValueParameters {
          * {@link CatalogedTypeBuilder#GLOBAL_HOLDER_PROVIDER} and
          * {@link CatalogedTypeBuilder#SERVER_HOLDER_PROVIDER}</p>
          *
+         * @param <T> The type that the target {@link Registry} holds
          * @param holderProvider A {@link Function} that provides a
          *      {@link RegistryHolder} based on the {@link CommandContext} up to
          *      this parameter.
          * @param registryKey The {@link RegistryKey} that represents the target
          *      {@link Registry} in the {@link RegistryHolder} provided via
          *      {@code holderProvider}.
-         * @param <T> The type that the target {@link Registry} holds
          * @return The {@link CatalogedTypeBuilder}
          */
-        <T> VariableValueParameters.CatalogedTypeBuilder<T> createRegistryEntryBuilder(final Function<CommandContext, @Nullable RegistryHolder> holderProvider, final RegistryKey<? extends Registry<? extends T>> registryKey);
+        <T> VariableValueParameters.CatalogedTypeBuilder<T> createRegistryEntryBuilder(final Function<CommandContext, @Nullable RegistryHolder> holderProvider, final RegistryType<T> registryKey);
 
         /**
          * Creates a {@link CatalogedTypeBuilder} that retrieves objects from
@@ -646,7 +647,7 @@ public final class VariableValueParameters {
          *
          * <p>When using a {@link RegistryTypes standard registry}, it is
          * recommended that consumers use
-         * {@link #createRegistryEntryBuilder(Function, RegistryKey)}
+         * {@link #createRegistryEntryBuilder(Function, RegistryType)}
          * instead, providing the appropriate {@link RegistryHolder} instead.</p>
          *
          * @param <T> The type that the target {@link Registry} holds
@@ -660,9 +661,10 @@ public final class VariableValueParameters {
          * object from the appropriate {@link Registry}.
          *
          * @param <T> The type that the target {@link Registry} holds
+         * @param registryReference
          * @return The {@link CatalogedTypeBuilder}
          */
-        <T> VariableValueParameters.CatalogedTypeBuilder<T> createRegistryEntryBuilder(DefaultedRegistryReference<? extends Registry<? extends T>> registryReference);
+        <T> VariableValueParameters.CatalogedTypeBuilder<T> createRegistryEntryBuilder(RegistryType<T> registryReference);
 
         /**
          * Creates the {@link LiteralBuilder} that will create objects

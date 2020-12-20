@@ -55,6 +55,7 @@ import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryType;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.util.Builder;
 import org.spongepowered.api.util.Color;
@@ -766,7 +767,7 @@ public interface Parameter {
     static <T> Parameter.Value.Builder<T> registryElement(
             final TypeToken<T> type,
             @NonNull final Function<CommandContext, RegistryHolder> holderProvider,
-            @NonNull final RegistryKey<? extends Registry<? extends T>> registryKey,
+            @NonNull final RegistryType<T> registryKey,
             @NonNull final String @NonNull... defaultNamespaces) {
         final VariableValueParameters.CatalogedTypeBuilder<? extends T> vvp =
                 VariableValueParameters.registryEntryBuilder(holderProvider, registryKey);
@@ -793,7 +794,7 @@ public interface Parameter {
      */
     static <T> Parameter.Value.Builder<T> registryElement(
             final TypeToken<T> type,
-            @NonNull final DefaultedRegistryReference<? extends Registry<? extends T>> registryReference,
+            @NonNull final RegistryType<T> registryReference,
             @NonNull final String @NonNull... defaultNamespaces) {
         final VariableValueParameters.CatalogedTypeBuilder<? extends T> vvp =
                 VariableValueParameters.registryEntryBuilder(registryReference);

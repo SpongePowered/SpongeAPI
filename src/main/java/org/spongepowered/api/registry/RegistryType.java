@@ -40,6 +40,10 @@ public interface RegistryType<T> {
 
     ResourceKey location();
 
+    default ResourceKey keyFor(final RegistryHolder holder, final T value) {
+        return Objects.requireNonNull(holder, "RegistryHolder cannot be null").registry(this).valueKey(Objects.requireNonNull(value, "Value cannot be null"));
+    }
+
     interface Factory {
 
         <T> RegistryType<T> create(final ResourceKey root, ResourceKey location);

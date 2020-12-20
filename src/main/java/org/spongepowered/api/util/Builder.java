@@ -41,6 +41,7 @@ public interface Builder<T, B extends Builder<T, B>> extends Buildable.Builder<T
      *
      * @return This builder, for chaining
      */
+    @SuppressWarnings("unchecked")
     default B reset() {
         return (B) this;
     }
