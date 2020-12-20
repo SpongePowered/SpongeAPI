@@ -36,7 +36,6 @@ import org.spongepowered.api.command.registrar.tree.ClientCompletionKey;
 import org.spongepowered.api.command.selector.SelectorSortAlgorithm;
 import org.spongepowered.api.command.selector.SelectorType;
 import org.spongepowered.api.data.persistence.DataFormat;
-import org.spongepowered.api.data.persistence.DataTranslator;
 import org.spongepowered.api.data.type.ArmorMaterial;
 import org.spongepowered.api.data.type.ArtType;
 import org.spongepowered.api.data.type.AttachmentSurface;
@@ -239,8 +238,6 @@ public final class RegistryTypes {
     public static final RegistryType<DamageType> DAMAGE_TYPE = RegistryTypes.spongeKey("damage_type");
 
     public static final RegistryType<DataFormat> DATA_FORMAT = RegistryTypes.spongeKey("data_format");
-
-    public static final RegistryType<DataTranslator<?>> DATA_TRANSLATOR = RegistryTypes.spongeKey("data_translator");
 
     public static final RegistryType<Difficulty> DIFFICULTY = RegistryTypes.spongeKey("difficulty");
 
