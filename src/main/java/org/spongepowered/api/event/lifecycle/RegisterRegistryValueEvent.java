@@ -27,35 +27,27 @@ package org.spongepowered.api.event.lifecycle;
 import org.spongepowered.api.Engine;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.event.GenericEvent;
-import org.spongepowered.api.registry.DuplicateRegistrationException;
-import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryType;
 
-public interface RegisterRegistryValueEvent<T> extends GenericEvent<T>, LifecycleEvent {
+public interface RegisterRegistryValueEvent extends LifecycleEvent {
 
-    RegistryKey<T> getRegistry();
+    <T> RegistryStep<T> registry(RegistryType<T> registryType);
 
-    RegisterRegistryValueEvent<T> register(ResourceKey key, T value) throws DuplicateRegistrationException;
+    interface RegistryStep<T> {
 
-    interface GameScoped<T> extends RegisterRegistryValueEvent<T> {
-
-        @Override
-        GameScoped<T> register(ResourceKey key, T value) throws DuplicateRegistrationException;
+        RegistryStep<T> register(ResourceKey key, T value);
     }
 
-    // TODO Multi-param generics for GenericEvent
-    interface EngineScoped<T> extends RegisterRegistryValueEvent<T> {
-
-        Engine getEngine();
-
-        @Override
-        EngineScoped<T> register(ResourceKey key, T value) throws DuplicateRegistrationException;
+    interface GameScoped extends RegisterRegistryValueEvent {
     }
 
-    interface WorldScoped<T> extends RegisterRegistryValueEvent<T> {
+    interface EngineScoped<E extends Engine> extends RegisterRegistryValueEvent, GenericEvent<E> {
+
+        E getEngine();
+    }
+
+    interface WorldScoped extends RegisterRegistryValueEvent {
 
         ResourceKey getWorldKey();
-
-        @Override
-        WorldScoped<T> register(ResourceKey key, T value) throws DuplicateRegistrationException;
     }
 }

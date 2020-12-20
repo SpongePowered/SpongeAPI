@@ -29,32 +29,31 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.event.GenericEvent;
 import org.spongepowered.api.registry.DuplicateRegistrationException;
 import org.spongepowered.api.registry.Registry;
-import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryType;
 
 import java.util.Map;
 import java.util.function.Supplier;
-import org.spongepowered.api.registry.RegistryType;
 
 public interface RegisterRegistryEvent extends LifecycleEvent {
 
     /**
      * Registers a new {@link Registry}.
      *
-     * @param type The key for the registry
+     * @param key The key for the registry
      * @param isDynamic If this registry will support additional registrations after the lifecycle
      * @throws DuplicateRegistrationException If the type is already registered
      */
-    <T> Registry<T> register(RegistryType<T> type, boolean isDynamic) throws DuplicateRegistrationException;
+    <T> RegistryType<T> register(ResourceKey key, boolean isDynamic) throws DuplicateRegistrationException;
 
     /**
      * Registers a new {@link Registry}.
      *
-     * @param type The key for the registry
+     * @param key The key for the registry
      * @param isDynamic If this registry will support additional registrations after the lifecycle
      * @param defaultValues The values to populate the registry with
      * @throws DuplicateRegistrationException If the type is already registered
      */
-    <T> Registry<T> register(RegistryType<T> type, boolean isDynamic, Supplier<Map<ResourceKey, T>> defaultValues) throws DuplicateRegistrationException;
+    <T> RegistryType<T> register(ResourceKey key, boolean isDynamic, Supplier<Map<ResourceKey, T>> defaultValues) throws DuplicateRegistrationException;
 
     interface GameScoped extends RegisterRegistryEvent {
     }
