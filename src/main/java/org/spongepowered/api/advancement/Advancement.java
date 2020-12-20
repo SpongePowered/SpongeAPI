@@ -27,7 +27,7 @@ package org.spongepowered.api.advancement;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.ComponentLike;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.ResourceKeyed;
+import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
@@ -39,7 +39,7 @@ import java.util.Optional;
 /**
  * An advancement.
  */
-public interface Advancement extends ComponentLike, ResourceKeyed {
+public interface Advancement extends ComponentLike, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create {@link Advancement}s.

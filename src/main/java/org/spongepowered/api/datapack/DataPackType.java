@@ -22,16 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.recipe;
+package org.spongepowered.api.datapack;
 
-import org.spongepowered.api.datapack.DataPackSerializable;
-import org.spongepowered.api.data.persistence.DataSerializable;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-/**
- * A registration of a {@link Recipe} by an API consumer.
- *
- * <p>All registrations through the API will generate into the Vanilla data pack system</p>
- */
-public interface RecipeRegistration extends DataPackSerializable, DataSerializable {
+@CatalogedBy(DataPackTypes.class)
+public interface DataPackType {
 
+    interface Factory {
+
+        DataPackType recipe();
+
+        DataPackType advancement();
+    }
 }
