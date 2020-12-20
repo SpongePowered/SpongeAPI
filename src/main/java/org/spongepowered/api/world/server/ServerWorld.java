@@ -26,10 +26,13 @@ package org.spongepowered.api.world.server;
 
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Server;
+import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.raid.Raid;
 import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.ChunkRegenerateFlag;
 import org.spongepowered.api.world.ChunkRegenerateFlags;
 import org.spongepowered.api.world.SerializationBehavior;
@@ -49,6 +52,7 @@ import org.spongepowered.math.vector.Vector3i;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -132,6 +136,91 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
      * @return The regenerated chunk, if available
      */
     Optional<Chunk> regenerateChunk(int cx, int cy, int cz, ChunkRegenerateFlag flag);
+
+    /**
+     * Gets a snapshot of this block at the current point in time.
+     *
+     * <p>A snapshot is disconnected from the {@link World} that it was taken
+     * from so changes to the original block do not affect the snapshot.</p>
+     *
+     * @param position The position of the block
+     * @return A snapshot
+     */
+    default BlockSnapshot createSnapshot(final Vector3i position) {
+        Objects.requireNonNull(position, "position");
+        return this.createSnapshot(position.getX(), position.getY(), position.getZ());
+    }
+
+    /**
+     * Gets a snapshot of this block at the current point in time.
+     *
+     * <p>A snapshot is disconnected from the {@link World} that it was taken
+     * from so changes to the original block do not affect the snapshot.</p>
+     *
+     * @param x The x position
+     * @param y The y position
+     * @param z The z position
+     * @return A snapshot
+     */
+    BlockSnapshot createSnapshot(int x, int y, int z);
+
+    /**
+     * Restores the given {@link BlockSnapshot} using the saved block position
+     * stored within the snapshot.
+     *
+     * <p>If forced, the state of the block will change its {@link BlockType} to
+     * match that of the snapshot then set the state. However, if force is set
+     * to false and the {@link BlockType}s does not match, false will be
+     * returned. If notifyNeighbors is true, neighboring blocks will be notified
+     * of changes at the restored block location triggering physic updates.</p>
+     *
+     * @param snapshot The snapshot
+     * @param force If true, forces block state to be set even if the
+     *        {@link BlockType} does not match the snapshot one.
+     * @param flag The various change flags controlling some interactions
+     * @return True if the restore was successful, false otherwise
+     */
+    boolean restoreSnapshot(BlockSnapshot snapshot, boolean force, BlockChangeFlag flag);
+
+    /**
+     * Restores the {@link BlockSnapshot} at the given position.
+     *
+     * <p>If forced, the state of the block will change its {@link BlockType} to
+     * match that of the snapshot then set the state. However, if force is set
+     * to false and the {@link BlockType block types} do not match, false will be
+     * returned. If notifyNeighbors is {@code true}, neighboring blocks will be notified
+     * of changes at the restored block location triggering physics updates.</p>
+     *
+     * @param position The position of the block
+     * @param snapshot The snapshot
+     * @param force If true, forces block state to be set even if the the block type does
+     *             not match the snapshot one.
+     * @param flag The various change flags controlling some interactions
+     * @return True if the restore was successful, false otherwise
+     */
+    default boolean restoreSnapshot(final Vector3i position, final BlockSnapshot snapshot, final boolean force, final BlockChangeFlag flag) {
+        return this.restoreSnapshot(position.getX(), position.getY(), position.getZ(), snapshot, force, flag);
+    }
+
+    /**
+     * Restores the {@link BlockSnapshot} at the given position.
+     *
+     * <p>If forced, the state of the block will change its {@link BlockType} to
+     * match that of the snapshot then set the state. However, if force is set
+     * to false and the {@link BlockType}s does not match, false will be
+     * returned. If notifyNeighbors is true, neighboring blocks will be notified
+     * of changes at the restored block location triggering physic updates.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param snapshot The snapshot
+     * @param force If true, forces block state to be set even if the
+     *        {@link BlockType} does not match the snapshot one.
+     * @param flag The various change flags controlling some interactions
+     * @return true if the restore was successful, false otherwise
+     */
+    boolean restoreSnapshot(int x, int y, int z, BlockSnapshot snapshot, boolean force, BlockChangeFlag flag);
 
     /**
      * Gets the {@link Path} pointing to the root of where the world's data
