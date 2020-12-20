@@ -43,6 +43,8 @@ public final class Triggers {
 
     // SORTFIELDS:ON
 
+    public static final DefaultedRegistryReference<Trigger<?>> BAD_OMEN = Triggers.key(ResourceKey.sponge("bad_omen"));
+
     public static final DefaultedRegistryReference<Trigger<?>> BEE_NEST_DESTROYED = Triggers.key(ResourceKey.sponge("bee_nest_destroyed"));
 
     public static final DefaultedRegistryReference<Trigger<?>> BRED_ANIMALS = Triggers.key(ResourceKey.sponge("bred_animals"));
@@ -73,6 +75,10 @@ public final class Triggers {
 
     public static final DefaultedRegistryReference<Trigger<?>> FISHING_ROD_HOOKED = Triggers.key(ResourceKey.sponge("fishing_rod_hooked"));
 
+    public static final DefaultedRegistryReference<Trigger<?>> GENERATE_LOOT = Triggers.key(ResourceKey.sponge("generate_loot"));
+
+    public static final DefaultedRegistryReference<Trigger<?>> HONEY_BLOCK_SIDE = Triggers.key(ResourceKey.sponge("honey_block_slide"));
+
     public static final DefaultedRegistryReference<Trigger<?>> HERO_OF_THE_VILLAGE = Triggers.key(ResourceKey.sponge("hero_of_the_village"));
 
     public static final DefaultedRegistryReference<Trigger<?>> IMPOSSIBLE = Triggers.key(ResourceKey.sponge("impossible"));
@@ -80,6 +86,10 @@ public final class Triggers {
     public static final DefaultedRegistryReference<Trigger<?>> INVENTORY_CHANGED = Triggers.key(ResourceKey.sponge("inventory_changed"));
 
     public static final DefaultedRegistryReference<Trigger<?>> ITEM_DURABILITY_CHANGED = Triggers.key(ResourceKey.sponge("item_durability_changed"));
+
+    public static final DefaultedRegistryReference<Trigger<?>> ITEM_PICKED_UP_BY_ENTITY = Triggers.key(ResourceKey.sponge("item_picked_up_by_entity"));
+
+    public static final DefaultedRegistryReference<Trigger<?>> ITEM_USED_ON_BLOCK = Triggers.key(ResourceKey.sponge("item_used_on_block"));
 
     public static final DefaultedRegistryReference<Trigger<?>> KILLED_BY_CROSSBOW = Triggers.key(ResourceKey.sponge("killed_by_crossbow"));
 
@@ -93,7 +103,11 @@ public final class Triggers {
 
     public static final DefaultedRegistryReference<Trigger<?>> PLAYER_HURT_ENTITY = Triggers.key(ResourceKey.sponge("player_hurt_entity"));
 
+    public static final DefaultedRegistryReference<Trigger<?>> PLAYER_INTERACTED_WITH_ENTITY = Triggers.key(ResourceKey.sponge("player_interacted_with_entity"));
+
     public static final DefaultedRegistryReference<Trigger<?>> PLAYER_KILLED_ENTITY = Triggers.key(ResourceKey.sponge("player_killed_entity"));
+
+    public static final DefaultedRegistryReference<Trigger<?>> RAID_WIN = Triggers.key(ResourceKey.sponge("raid_win"));
 
     public static final DefaultedRegistryReference<Trigger<?>> RECIPE_UNLOCKED = Triggers.key(ResourceKey.sponge("recipe_unlocked"));
 
@@ -106,6 +120,8 @@ public final class Triggers {
     public static final DefaultedRegistryReference<Trigger<?>> SUMMONED_ENTITY = Triggers.key(ResourceKey.sponge("summoned_entity"));
 
     public static final DefaultedRegistryReference<Trigger<?>> TAME_ANIMAL = Triggers.key(ResourceKey.sponge("tame_animal"));
+
+    public static final DefaultedRegistryReference<Trigger<?>> TARGET_BLOCK_HIT = Triggers.key(ResourceKey.sponge("target_block_hit"));
 
     public static final DefaultedRegistryReference<Trigger<?>> TICK = Triggers.key(ResourceKey.sponge("tick"));
 
