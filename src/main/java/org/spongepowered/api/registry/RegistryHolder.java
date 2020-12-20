@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.registry;
 
+import org.spongepowered.api.ResourceKey;
+
 import java.util.Optional;
 import java.util.stream.Stream;
-import org.spongepowered.api.ResourceKey;
 
 /**
  * A holder of {@link Registry registries}.
@@ -62,5 +63,5 @@ public interface RegistryHolder {
      * @param root The root to stream registries of
      * @return The stream
      */
-    <T> Stream<Registry<?>> stream(final ResourceKey root);
+    Stream<Registry<?>> stream(final ResourceKey root);
 }

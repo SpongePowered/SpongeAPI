@@ -44,7 +44,7 @@ public interface Registry<T> extends Iterable<RegistryEntry<T>> {
      *
      * @return The key
      */
-    ResourceKey key();
+    RegistryType<T> type();
 
     /**
      * Gets the {@link ResourceKey key} for a particular value.

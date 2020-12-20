@@ -32,10 +32,8 @@ import java.util.Objects;
 public interface RegistryType<T> {
 
     static <T> RegistryType<T> of(final ResourceKey root, final ResourceKey location) {
-        Objects.requireNonNull(root, "root");
-        Objects.requireNonNull(location, "location");
-
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(root, location);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(Objects.requireNonNull(root, "root"),
+                Objects.requireNonNull(location, "location"));
     }
 
     ResourceKey root();
