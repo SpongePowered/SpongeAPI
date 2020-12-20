@@ -27,9 +27,12 @@ package org.spongepowered.api.data.persistence;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataManager;
+import org.spongepowered.api.data.Key;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.RegistryType;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -309,15 +312,14 @@ public interface DataView {
     Optional<String> getString(DataQuery path);
 
     /**
-     * Gets the {@link ResourceKey} by path, if available.
-     *
-     * <p>If a {@link ResourceKey} does not exist, or the data residing at
-     * the path is not considered a valid key, an absent is returned.</p>
+     * Gets the {@link ResourceKey key} by path, if available.
      *
      * @param path The path of the value to get
      * @return The key, if available
      */
-    default Optional<ResourceKey> getKey(DataQuery path) {
+    default Optional<ResourceKey> getResourceKey(final DataQuery path) {
+        Objects.requireNonNull(path, "path");
+
         final Optional<String> value = this.getString(path);
         if (!value.isPresent()) {
             return Optional.empty();
@@ -328,6 +330,34 @@ public interface DataView {
         } catch (final Exception ignore) {
             return Optional.empty();
         }
+    }
+
+    /**
+     * Gets the {@link List} of {@link ResourceKey keys} by path, if available.
+     *
+     * @param path The path of the value to get
+     * @return The list of keys, if available
+     */
+    default Optional<List<ResourceKey>> getResourceKeyList(final DataQuery path) {
+        Objects.requireNonNull(path, "path");
+
+        final Optional<List<String>> strings = this.getStringList(path);
+        if (!strings.isPresent()) {
+            return Optional.empty();
+        }
+        List<ResourceKey> keys = new ArrayList<>();
+        for (final String s : strings.get()) {
+            try {
+                keys.add(ResourceKey.resolve(s));
+            } catch (final Exception ignore) {
+            }
+        }
+
+        if (keys.isEmpty()) {
+            return Optional.empty();
+        }
+
+        return Optional.of(keys);
     }
 
     /**
@@ -595,6 +625,24 @@ public interface DataView {
      * @return The list of dummy types, if available
      */
     <T> Optional<List<T>> getRegistryValueList(DataQuery path, RegistryType<T> registryType, RegistryHolder holder);
+
+    /**
+     * Gets the {@link Key key} by path, if available.
+     *
+     * @param path The path of the value to get
+     * @param <E> The element type
+     * @param <V> The value type
+     * @return The key, if available
+     */
+    <E, V extends Value<E>> Optional<Key<V>> getDataKey(DataQuery path);
+
+    /**
+     * Gets the {@link List} of {@link Key values} by path, if available.
+     *
+     * @param path The path of the value to get
+     * @return The list of keys, if available
+     */
+    Optional<List<Key<? extends Value<?>>>> getDataKeyList(DataQuery path);
 
     /**
      * Copies this {@link DataView} and all of it's contents into a new

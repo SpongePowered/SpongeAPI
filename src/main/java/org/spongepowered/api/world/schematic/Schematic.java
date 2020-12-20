@@ -26,11 +26,9 @@ package org.spongepowered.api.world.schematic;
 
 import com.google.common.collect.ListMultimap;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.volume.archetype.ArchetypeVolume;
 import org.spongepowered.api.world.volume.archetype.ArchetypeVolumeCreator;
 import org.spongepowered.api.world.volume.archetype.entity.ReadableEntityArchetypeVolume;
@@ -63,19 +61,19 @@ public interface Schematic extends ArchetypeVolume, LocationBaseDataHolder.Mutab
         return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
-    /**
-     * Gets the {@link Palette} used by this schematic for serialization.
-     *
-     * @return The block palette
-     */
-    Palette<BlockState> getBlockPalette();
-
-    /**
-     * Gets the {@link Palette Palette&lt;BiomeType&gt;} used by this schematic for serialization.
-     *
-     * @return The biome palette used for this schematic
-     */
-    Palette<BiomeType> getBiomePalette();
+//    /**
+//     * Gets the {@link Palette} used by this schematic for serialization.
+//     *
+//     * @return The block palette
+//     */
+//    Palette<BlockState> getBlockPalette();
+//
+//    /**
+//     * Gets the {@link Palette Palette&lt;BiomeType&gt;} used by this schematic for serialization.
+//     *
+//     * @return The biome palette used for this schematic
+//     */
+//    Palette<BiomeType> getBiomePalette();
 
     /**
      * Gets any additional metadata attached to this schematic.
@@ -118,41 +116,41 @@ public interface Schematic extends ArchetypeVolume, LocationBaseDataHolder.Mutab
 
         Builder volume(ArchetypeVolume volume);
 
-        /**
-         * Specifies a palette for the schematic to use for serialization. This
-         * overrides the {@link #blockPaletteType(PaletteType)} value.
-         *
-         * @param palette The palette to use for serialization
-         * @return This builder, for chaining
-         */
-        Builder blockPalette(Palette<BlockState> palette);
-
-        /**
-         * Specifies a palette for the schemtic to use for serialization. This
-         * overrides the {@link #biomePaletteType(PaletteType)} value.
-         *
-         * @param palette The palette to use for serialization
-         * @return This builder, for chaining
-         */
-        Builder biomePalette(Palette<BiomeType> palette);
-
-        /**
-         * Specifies the palette type to use if the {@link #getBlockPalette()} is not
-         * specified.
-         *
-         * @param type The palette type
-         * @return This builder, for chaining
-         */
-        Builder blockPaletteType(PaletteType<BlockState> type);
-
-        /**
-         * Specifies the palette type to use for biomes if the {@link #biomePalette(Palette)}
-         * is not specified.
-         *
-         * @param type The type of biome palette
-         * @return This builder, for chaining
-         */
-        Builder biomePaletteType(PaletteType<BiomeType> type);
+//        /**
+//         * Specifies a palette for the schematic to use for serialization. This
+//         * overrides the {@link #blockPaletteType(PaletteType)} value.
+//         *
+//         * @param palette The palette to use for serialization
+//         * @return This builder, for chaining
+//         */
+//        Builder blockPalette(Palette<BlockState> palette);
+//
+//        /**
+//         * Specifies a palette for the schemtic to use for serialization. This
+//         * overrides the {@link #biomePaletteType(PaletteType)} value.
+//         *
+//         * @param palette The palette to use for serialization
+//         * @return This builder, for chaining
+//         */
+//        Builder biomePalette(Palette<BiomeType> palette);
+//
+//        /**
+//         * Specifies the palette type to use if the {@link #getBlockPalette()} is not
+//         * specified.
+//         *
+//         * @param type The palette type
+//         * @return This builder, for chaining
+//         */
+//        Builder blockPaletteType(PaletteType<BlockState> type);
+//
+//        /**
+//         * Specifies the palette type to use for biomes if the {@link #biomePalette(Palette)}
+//         * is not specified.
+//         *
+//         * @param type The type of biome palette
+//         * @return This builder, for chaining
+//         */
+//        Builder biomePaletteType(PaletteType<BiomeType> type);
 
         Builder entity(EntityArchetype entityArchetype);
 

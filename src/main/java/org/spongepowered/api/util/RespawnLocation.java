@@ -230,7 +230,7 @@ public final class RespawnLocation implements DataSerializable {
 
         @Override
         protected Optional<RespawnLocation> buildContent(DataView container) throws InvalidDataException {
-            final ResourceKey worldKey = container.getKey(Queries.WORLD_KEY).get();
+            final ResourceKey worldKey = container.getResourceKey(Queries.WORLD_KEY).get();
             final double x = container.getDouble(Queries.POSITION_X).get();
             final double y = container.getDouble(Queries.POSITION_Y).get();
             final double z = container.getDouble(Queries.POSITION_Z).get();
