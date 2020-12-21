@@ -574,7 +574,7 @@ public interface Entity extends Identifiable, Locatable, DataHolder, Translatabl
     /**
      * Adds a tag for this entity.
      *
-     * @return Whether the tag has effectively been added
+     * @return Whether the tag is effectively in the set
      */
     boolean addTag(String tag);
 
