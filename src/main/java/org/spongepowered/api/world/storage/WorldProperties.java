@@ -227,16 +227,15 @@ public interface WorldProperties extends DataSerializable {
      *
      * @return The portal agent map of this world
      */
-    Map<String, String> getPortalAgents();
+    Map<PortalType, String> getPortalAgents();
 
     /**
-     * Set the destination world for a {@link PortalType}
-     * on this world.
+     * Get the destination world properties for a {@link PortalType},
+     * if known.
      *
      * @param portalType The type of the portal
-     * @return The name of the destination world
      */
-    String getPortalDestination(PortalType portalType);
+    Optional<WorldProperties> getPortalDestination(PortalType portalType);
 
     /**
      * Set the destination world for a {@link PortalType}
