@@ -40,77 +40,77 @@ public final class ClientCompletionKeys {
 
     // SORTFIELDS:ON
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> BLOCK_STATE = ClientCompletionKeys.key(ResourceKey.sponge("block_state"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> BLOCK_STATE = ClientCompletionKeys.key(ResourceKey.minecraft("block_state"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> BLOCK_PREDICATE = ClientCompletionKeys.key(ResourceKey.sponge("block_predicate"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> BLOCK_PREDICATE = ClientCompletionKeys.key(ResourceKey.minecraft("block_predicate"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> BOOL = ClientCompletionKeys.key(ResourceKey.sponge("bool"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> BOOL = ClientCompletionKeys.key(ResourceKey.minecraft("bool"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> COLOR = ClientCompletionKeys.key(ResourceKey.sponge("color"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> COLOR = ClientCompletionKeys.key(ResourceKey.minecraft("color"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> COMPONENT = ClientCompletionKeys.key(ResourceKey.sponge("component"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> COMPONENT = ClientCompletionKeys.key(ResourceKey.minecraft("component"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> DIMENSION = ClientCompletionKeys.key(ResourceKey.sponge("dimension"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> DIMENSION = ClientCompletionKeys.key(ResourceKey.minecraft("dimension"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> DOUBLE = ClientCompletionKeys.key(ResourceKey.sponge("double"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> DOUBLE = ClientCompletionKeys.key(ResourceKey.minecraft("double"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.EntitySelection>> ENTITY = ClientCompletionKeys.key(ResourceKey.sponge("entity"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.EntitySelection>> ENTITY = ClientCompletionKeys.key(ResourceKey.minecraft("entity"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> ENTITY_ANCHOR = ClientCompletionKeys.key(ResourceKey.sponge("entity_anchor"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> ENTITY_ANCHOR = ClientCompletionKeys.key(ResourceKey.minecraft("entity_anchor"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> ENTITY_SUMMON = ClientCompletionKeys.key(ResourceKey.sponge("entity_summon"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> ENTITY_SUMMON = ClientCompletionKeys.key(ResourceKey.minecraft("entity_summon"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> FLOAT = ClientCompletionKeys.key(ResourceKey.sponge("float"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> FLOAT = ClientCompletionKeys.key(ResourceKey.minecraft("float"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> FUNCTION = ClientCompletionKeys.key(ResourceKey.sponge("function"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> FUNCTION = ClientCompletionKeys.key(ResourceKey.minecraft("function"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> GAME_PROFILE = ClientCompletionKeys.key(ResourceKey.sponge("game_profile"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> GAME_PROFILE = ClientCompletionKeys.key(ResourceKey.minecraft("game_profile"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> INTEGER = ClientCompletionKeys.key(ResourceKey.sponge("integer"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> INTEGER = ClientCompletionKeys.key(ResourceKey.minecraft("integer"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> ITEM_ENCHANTMENT = ClientCompletionKeys.key(ResourceKey.sponge("item_enchantment"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> ITEM_ENCHANTMENT = ClientCompletionKeys.key(ResourceKey.minecraft("item_enchantment"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> ITEM_SLOT = ClientCompletionKeys.key(ResourceKey.sponge("item_slot"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> ITEM_SLOT = ClientCompletionKeys.key(ResourceKey.minecraft("item_slot"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> LONG = ClientCompletionKeys.key(ResourceKey.sponge("long"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> LONG = ClientCompletionKeys.key(ResourceKey.minecraft("long"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> MESSAGE = ClientCompletionKeys.key(ResourceKey.sponge("message"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> MESSAGE = ClientCompletionKeys.key(ResourceKey.minecraft("message"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> MOB_EFFECT = ClientCompletionKeys.key(ResourceKey.sponge("mob_effect"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> MOB_EFFECT = ClientCompletionKeys.key(ResourceKey.minecraft("mob_effect"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> NBT_COMPOUND_TAG = ClientCompletionKeys.key(ResourceKey.sponge("nbt_compound_tag"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> NBT_COMPOUND_TAG = ClientCompletionKeys.key(ResourceKey.minecraft("nbt_compound_tag"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> NBT_PATH = ClientCompletionKeys.key(ResourceKey.sponge("nbt_path"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> NBT_PATH = ClientCompletionKeys.key(ResourceKey.minecraft("nbt_path"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> NBT_TAG = ClientCompletionKeys.key(ResourceKey.sponge("nbt_tag"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> NBT_TAG = ClientCompletionKeys.key(ResourceKey.minecraft("nbt_tag"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> OBJECTIVE = ClientCompletionKeys.key(ResourceKey.sponge("objective"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> OBJECTIVE = ClientCompletionKeys.key(ResourceKey.minecraft("objective"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> OBJECTIVE_CRITERIA = ClientCompletionKeys.key(ResourceKey.sponge("objective_criteria"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> OBJECTIVE_CRITERIA = ClientCompletionKeys.key(ResourceKey.minecraft("objective_criteria"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> OPERATION = ClientCompletionKeys.key(ResourceKey.sponge("operation"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> OPERATION = ClientCompletionKeys.key(ResourceKey.minecraft("operation"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> PARTICLE = ClientCompletionKeys.key(ResourceKey.sponge("particle"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> PARTICLE = ClientCompletionKeys.key(ResourceKey.minecraft("particle"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> RESOURCE_LOCATION = ClientCompletionKeys.key(ResourceKey.sponge("resource_location"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> RESOURCE_LOCATION = ClientCompletionKeys.key(ResourceKey.minecraft("resource_location"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> ROTATION = ClientCompletionKeys.key(ResourceKey.sponge("rotation"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> ROTATION = ClientCompletionKeys.key(ResourceKey.minecraft("rotation"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Amount>> SCORE_HOLDER = ClientCompletionKeys.key(ResourceKey.sponge("score_holder"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Amount>> SCORE_HOLDER = ClientCompletionKeys.key(ResourceKey.minecraft("score_holder"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> SCOREBOARD_SLOT = ClientCompletionKeys.key(ResourceKey.sponge("scoreboard_slot"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> SCOREBOARD_SLOT = ClientCompletionKeys.key(ResourceKey.minecraft("scoreboard_slot"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.StringParser>> STRING = ClientCompletionKeys.key(ResourceKey.sponge("string"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.StringParser>> STRING = ClientCompletionKeys.key(ResourceKey.minecraft("string"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> SWIZZLE = ClientCompletionKeys.key(ResourceKey.sponge("swizzle"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> SWIZZLE = ClientCompletionKeys.key(ResourceKey.minecraft("swizzle"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> TEAM = ClientCompletionKeys.key(ResourceKey.sponge("team"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> TEAM = ClientCompletionKeys.key(ResourceKey.minecraft("team"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> TIME = ClientCompletionKeys.key(ResourceKey.sponge("time"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> TIME = ClientCompletionKeys.key(ResourceKey.minecraft("time"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> VEC2 = ClientCompletionKeys.key(ResourceKey.sponge("vec2"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> VEC2 = ClientCompletionKeys.key(ResourceKey.minecraft("vec2"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> VEC3 = ClientCompletionKeys.key(ResourceKey.sponge("vec3"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> VEC3 = ClientCompletionKeys.key(ResourceKey.minecraft("vec3"));
 
     // SORTFIELDS:OFF
 
