@@ -32,7 +32,7 @@ import org.spongepowered.api.block.entity.BlockEntityType;
 import org.spongepowered.api.block.transaction.Operation;
 import org.spongepowered.api.command.parameter.managed.ValueParameter;
 import org.spongepowered.api.command.parameter.managed.clientcompletion.ClientCompletionType;
-import org.spongepowered.api.command.parameter.managed.standard.ResourceKeyedValueParameter;
+import org.spongepowered.api.command.registrar.CommandRegistrar;
 import org.spongepowered.api.command.registrar.tree.ClientCompletionKey;
 import org.spongepowered.api.command.selector.SelectorSortAlgorithm;
 import org.spongepowered.api.command.selector.SelectorType;
@@ -225,6 +225,8 @@ public final class RegistryTypes {
     public static final RegistryType<ClientCompletionType> CLIENT_COMPLETION_TYPE = RegistryTypes.spongeKey("client_completion_type");
 
     public static final RegistryType<CollisionRule> COLLISION_RULE = RegistryTypes.spongeKey("collision_rule");
+
+    public static final RegistryType<CommandRegistrar<?>> COMMAND_REGISTRAR = RegistryTypes.spongeKey("command_registrar");
 
     public static final RegistryType<ComparatorMode> COMPARATOR_MODE = RegistryTypes.spongeKey("comparator_mode");
 
