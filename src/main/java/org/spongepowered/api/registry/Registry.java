@@ -140,13 +140,13 @@ public interface Registry<T> extends Iterable<RegistryEntry<T>> {
      * Gets a {@link Stream} of all {@link RegistryEntry entries} within.
      * @return The stream
      */
-    Stream<RegistryEntry<T>> stream();
+    Stream<RegistryEntry<T>> streamEntries();
 
     /**
      * Gets a {@link Stream} of all registry values within.
      * @return The stream
      */
-    Stream<T> streamValues();
+    Stream<T> stream();
 
     /**
      * Returns if this registry supports adding additional values.
