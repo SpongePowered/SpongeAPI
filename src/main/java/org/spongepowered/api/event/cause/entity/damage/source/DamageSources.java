@@ -24,13 +24,9 @@
  */
 package org.spongepowered.api.event.cause.entity.damage.source;
 
-import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryKey;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.world.ServerLocation;
 
 /**
@@ -51,33 +47,29 @@ public final class DamageSources {
 
     // SORTFIELDS:ON
 
-    public static final DefaultedRegistryReference<DamageSource> DROWNING = DamageSources.key(ResourceKey.sponge("drowning"));
+    public static final DamageSource DROWNING = Sponge.getGame().getFactoryProvider().provide(DamageSource.Factory.class).drowning();
 
-    public static final DefaultedRegistryReference<DamageSource> DRYOUT = DamageSources.key(ResourceKey.sponge("dryout"));
+    public static final DamageSource DRYOUT = Sponge.getGame().getFactoryProvider().provide(DamageSource.Factory.class).dryout();
 
-    public static final DefaultedRegistryReference<DamageSource> FALLING = DamageSources.key(ResourceKey.sponge("falling"));
+    public static final DamageSource FALLING = Sponge.getGame().getFactoryProvider().provide(DamageSource.Factory.class).falling();
 
-    public static final DefaultedRegistryReference<DamageSource> FIRE_TICK = DamageSources.key(ResourceKey.sponge("fire_tick"));
+    public static final DamageSource FIRE_TICK = Sponge.getGame().getFactoryProvider().provide(DamageSource.Factory.class).fireTick();
 
-    public static final DefaultedRegistryReference<DamageSource> GENERIC = DamageSources.key(ResourceKey.sponge("generic"));
+    public static final DamageSource GENERIC = Sponge.getGame().getFactoryProvider().provide(DamageSource.Factory.class).generic();
 
-    public static final DefaultedRegistryReference<DamageSource> MAGIC = DamageSources.key(ResourceKey.sponge("magic"));
+    public static final DamageSource MAGIC = Sponge.getGame().getFactoryProvider().provide(DamageSource.Factory.class).magic();
 
-    public static final DefaultedRegistryReference<DamageSource> STARVATION = DamageSources.key(ResourceKey.sponge("starvation"));
+    public static final DamageSource STARVATION = Sponge.getGame().getFactoryProvider().provide(DamageSource.Factory.class).starvation();
 
-    public static final DefaultedRegistryReference<DamageSource> VOID = DamageSources.key(ResourceKey.sponge("void"));
+    public static final DamageSource VOID = Sponge.getGame().getFactoryProvider().provide(DamageSource.Factory.class).voidSource();
 
-    public static final DefaultedRegistryReference<DamageSource> WITHER = DamageSources.key(ResourceKey.sponge("wither"));
+    public static final DamageSource WITHER = Sponge.getGame().getFactoryProvider().provide(DamageSource.Factory.class).wither();
 
     // SORTFIELDS:OFF
 
     // @formatter:on
 
     private DamageSources() {
-    }
-
-    private static DefaultedRegistryReference<DamageSource> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.DAMAGE_SOURCE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 
 }

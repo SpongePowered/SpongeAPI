@@ -250,6 +250,26 @@ public interface DamageSource {
          *     is not set
          */
         T build() throws IllegalStateException;
+    }
 
+    interface Factory {
+
+        DamageSource drowning();
+
+        DamageSource dryout();
+
+        DamageSource falling();
+
+        DamageSource fireTick();
+
+        DamageSource generic();
+
+        DamageSource magic();
+
+        DamageSource starvation();
+
+        DamageSource voidSource();
+
+        DamageSource wither();
     }
 }
