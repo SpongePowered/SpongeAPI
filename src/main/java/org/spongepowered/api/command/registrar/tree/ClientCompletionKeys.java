@@ -108,9 +108,9 @@ public final class ClientCompletionKeys {
 
     public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> TIME = ClientCompletionKeys.key(ResourceKey.sponge("time"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> VEC2 = ClientCompletionKeys.key(ResourceKey.sponge("VEC2"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> VEC2 = ClientCompletionKeys.key(ResourceKey.sponge("vec2"));
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> VEC3 = ClientCompletionKeys.key(ResourceKey.sponge("VEC3"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> VEC3 = ClientCompletionKeys.key(ResourceKey.sponge("vec3"));
 
     // SORTFIELDS:OFF
 
