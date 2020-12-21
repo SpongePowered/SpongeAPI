@@ -648,6 +648,13 @@ public final class Keys {
     public static final Key<Value<Ticks>> DESPAWN_DELAY = Keys.key(ResourceKey.sponge("despawn_delay"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
+     * The destroy speed of a {@link BlockState}s {@link BlockType}.
+     *
+     * <p>This value is read-only.</p>
+     */
+    public static final Key<Value<Double>> DESTROY_SPEED = Keys.key(ResourceKey.sponge("destroy_speed"), TypeTokens.DOUBLE_VALUE_TOKEN);
+
+    /**
      * The detonator of a {@link PrimedTNT}.
      */
     public static final Key<Value<Living>> DETONATOR = Keys.key(ResourceKey.sponge("detonator"), TypeTokens.LIVING_VALUE_TOKEN);
@@ -916,12 +923,6 @@ public final class Keys {
      * e.g. {@link BlockTypes#CACTUS} or {@link BlockTypes#WHEAT} etc.
      */
     public static final Key<Value<Integer>> GROWTH_STAGE = Keys.key(ResourceKey.sponge("growth_stage"), TypeTokens.INTEGER_VALUE_TOKEN);
-
-    /**
-     * The hardness of a {@link BlockState}s {@link BlockType}.
-     * Readonly
-     */
-    public static final Key<Value<Double>> HARDNESS = Keys.key(ResourceKey.sponge("hardness"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
      * Whether an {@link ArmorStand}'s arms are visible.
