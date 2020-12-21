@@ -43,55 +43,55 @@ public final class NotePitches {
 
     // SORTFIELDS:ON
 
-    public static final DefaultedRegistryReference<NotePitch> A1 = NotePitches.key(ResourceKey.sponge("A1"));
+    public static final DefaultedRegistryReference<NotePitch> A1 = NotePitches.key(ResourceKey.sponge("a1"));
 
-    public static final DefaultedRegistryReference<NotePitch> A2 = NotePitches.key(ResourceKey.sponge("A2"));
+    public static final DefaultedRegistryReference<NotePitch> A2 = NotePitches.key(ResourceKey.sponge("a2"));
 
-    public static final DefaultedRegistryReference<NotePitch> A_SHARP1 = NotePitches.key(ResourceKey.sponge("A_SHARP1"));
+    public static final DefaultedRegistryReference<NotePitch> A_SHARP1 = NotePitches.key(ResourceKey.sponge("a_sharp1"));
 
-    public static final DefaultedRegistryReference<NotePitch> A_SHARP2 = NotePitches.key(ResourceKey.sponge("A_SHARP2"));
+    public static final DefaultedRegistryReference<NotePitch> A_SHARP2 = NotePitches.key(ResourceKey.sponge("a_sharp2"));
 
-    public static final DefaultedRegistryReference<NotePitch> B1 = NotePitches.key(ResourceKey.sponge("B1"));
+    public static final DefaultedRegistryReference<NotePitch> B1 = NotePitches.key(ResourceKey.sponge("b1"));
 
-    public static final DefaultedRegistryReference<NotePitch> B2 = NotePitches.key(ResourceKey.sponge("B2"));
+    public static final DefaultedRegistryReference<NotePitch> B2 = NotePitches.key(ResourceKey.sponge("b2"));
 
-    public static final DefaultedRegistryReference<NotePitch> C1 = NotePitches.key(ResourceKey.sponge("C1"));
+    public static final DefaultedRegistryReference<NotePitch> C1 = NotePitches.key(ResourceKey.sponge("c1"));
 
-    public static final DefaultedRegistryReference<NotePitch> C2 = NotePitches.key(ResourceKey.sponge("C2"));
+    public static final DefaultedRegistryReference<NotePitch> C2 = NotePitches.key(ResourceKey.sponge("c2"));
 
-    public static final DefaultedRegistryReference<NotePitch> C_SHARP1 = NotePitches.key(ResourceKey.sponge("C_SHARP1"));
+    public static final DefaultedRegistryReference<NotePitch> C_SHARP1 = NotePitches.key(ResourceKey.sponge("c_sharp1"));
 
-    public static final DefaultedRegistryReference<NotePitch> C_SHARP2 = NotePitches.key(ResourceKey.sponge("C_SHARP2"));
+    public static final DefaultedRegistryReference<NotePitch> C_SHARP2 = NotePitches.key(ResourceKey.sponge("c_sharp2"));
 
-    public static final DefaultedRegistryReference<NotePitch> D1 = NotePitches.key(ResourceKey.sponge("D1"));
+    public static final DefaultedRegistryReference<NotePitch> D1 = NotePitches.key(ResourceKey.sponge("d1"));
 
-    public static final DefaultedRegistryReference<NotePitch> D2 = NotePitches.key(ResourceKey.sponge("D2"));
+    public static final DefaultedRegistryReference<NotePitch> D2 = NotePitches.key(ResourceKey.sponge("d2"));
 
-    public static final DefaultedRegistryReference<NotePitch> D_SHARP1 = NotePitches.key(ResourceKey.sponge("D_SHARP1"));
+    public static final DefaultedRegistryReference<NotePitch> D_SHARP1 = NotePitches.key(ResourceKey.sponge("d_sharp1"));
 
-    public static final DefaultedRegistryReference<NotePitch> D_SHARP2 = NotePitches.key(ResourceKey.sponge("D_SHARP2"));
+    public static final DefaultedRegistryReference<NotePitch> D_SHARP2 = NotePitches.key(ResourceKey.sponge("d_sharp2"));
 
-    public static final DefaultedRegistryReference<NotePitch> E1 = NotePitches.key(ResourceKey.sponge("E1"));
+    public static final DefaultedRegistryReference<NotePitch> E1 = NotePitches.key(ResourceKey.sponge("e1"));
 
-    public static final DefaultedRegistryReference<NotePitch> E2 = NotePitches.key(ResourceKey.sponge("E2"));
+    public static final DefaultedRegistryReference<NotePitch> E2 = NotePitches.key(ResourceKey.sponge("e2"));
 
-    public static final DefaultedRegistryReference<NotePitch> F1 = NotePitches.key(ResourceKey.sponge("F1"));
+    public static final DefaultedRegistryReference<NotePitch> F1 = NotePitches.key(ResourceKey.sponge("f1"));
 
-    public static final DefaultedRegistryReference<NotePitch> F2 = NotePitches.key(ResourceKey.sponge("F2"));
+    public static final DefaultedRegistryReference<NotePitch> F2 = NotePitches.key(ResourceKey.sponge("f2"));
 
-    public static final DefaultedRegistryReference<NotePitch> F_SHARP0 = NotePitches.key(ResourceKey.sponge("F_SHARP0"));
+    public static final DefaultedRegistryReference<NotePitch> F_SHARP0 = NotePitches.key(ResourceKey.sponge("f_sharp0"));
 
-    public static final DefaultedRegistryReference<NotePitch> F_SHARP1 = NotePitches.key(ResourceKey.sponge("F_SHARP1"));
+    public static final DefaultedRegistryReference<NotePitch> F_SHARP1 = NotePitches.key(ResourceKey.sponge("f_sharp1"));
 
-    public static final DefaultedRegistryReference<NotePitch> F_SHARP2 = NotePitches.key(ResourceKey.sponge("F_SHARP2"));
+    public static final DefaultedRegistryReference<NotePitch> F_SHARP2 = NotePitches.key(ResourceKey.sponge("f_sharp2"));
 
-    public static final DefaultedRegistryReference<NotePitch> G0 = NotePitches.key(ResourceKey.sponge("G0"));
+    public static final DefaultedRegistryReference<NotePitch> G0 = NotePitches.key(ResourceKey.sponge("g0"));
 
-    public static final DefaultedRegistryReference<NotePitch> G1 = NotePitches.key(ResourceKey.sponge("G1"));
+    public static final DefaultedRegistryReference<NotePitch> G1 = NotePitches.key(ResourceKey.sponge("g1"));
 
-    public static final DefaultedRegistryReference<NotePitch> G_SHARP0 = NotePitches.key(ResourceKey.sponge("G_SHARP0"));
+    public static final DefaultedRegistryReference<NotePitch> G_SHARP0 = NotePitches.key(ResourceKey.sponge("g_sharp0"));
 
-    public static final DefaultedRegistryReference<NotePitch> G_SHARP1 = NotePitches.key(ResourceKey.sponge("G_SHARP1"));
+    public static final DefaultedRegistryReference<NotePitch> G_SHARP1 = NotePitches.key(ResourceKey.sponge("g_sharp1"));
 
     // SORTFIELDS:OFF
 

@@ -54,6 +54,10 @@ import org.spongepowered.plugin.PluginContainer;
 public interface ResourceKey extends Key {
 
     /**
+     * The brigadier namespace.
+     */
+    String BRIGADIER_NAMESPACE = "brigadier";
+    /**
      * The minecraft namespace.
      */
     String MINECRAFT_NAMESPACE = "minecraft";
@@ -61,6 +65,17 @@ public interface ResourceKey extends Key {
      * The sponge namespace.
      */
     String SPONGE_NAMESPACE = "sponge";
+
+    /**
+     * Creates a resource key with a namespace of {@link #BRIGADIER_NAMESPACE brigadier}.
+     *
+     * @param value The value
+     * @return A new resource key
+     */
+    @NonNull
+    static ResourceKey brigadier(final String value) {
+        return ResourceKey.of(ResourceKey.BRIGADIER_NAMESPACE, value);
+    }
 
     /**
      * Creates a resource key with a namespace of {@link #MINECRAFT_NAMESPACE minecraft}.
