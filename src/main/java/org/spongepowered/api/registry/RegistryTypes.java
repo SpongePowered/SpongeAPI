@@ -186,6 +186,8 @@ public final class RegistryTypes {
 
     public static final RegistryType<VillagerType> VILLAGER_TYPE = RegistryTypes.minecraftKey("villager_type");
 
+    public static final RegistryType<ProfessionType> PROFESSION_TYPE = RegistryTypes.minecraftKey("villager_profession");
+
     // ----
 
     public static final RegistryType<AccountDeletionResultType> ACCOUNT_DELETION_RESULT_TYPE = RegistryTypes.spongeKey("account_deletion_result_type");
@@ -333,8 +335,6 @@ public final class RegistryTypes {
     public static final RegistryType<PortionType> PORTION_TYPE = RegistryTypes.spongeKey("portion_type");
 
     public static final RegistryType<PotionType> POTION_TYPE = RegistryTypes.spongeKey("potion_type");
-
-    public static final RegistryType<ProfessionType> PROFESSION_TYPE = RegistryTypes.spongeKey("profession_type");
 
     public static final RegistryType<RabbitType> RABBIT_TYPE = RegistryTypes.spongeKey("rabbit_type");
 

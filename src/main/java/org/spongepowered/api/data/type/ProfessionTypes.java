@@ -43,35 +43,35 @@ public final class ProfessionTypes {
 
     // SORTFIELDS:ON
 
-    public static final DefaultedRegistryReference<ProfessionType> ARMORER = ProfessionTypes.key(ResourceKey.sponge("armorer"));
+    public static final DefaultedRegistryReference<ProfessionType> ARMORER = ProfessionTypes.key(ResourceKey.minecraft("armorer"));
 
-    public static final DefaultedRegistryReference<ProfessionType> BUTCHER = ProfessionTypes.key(ResourceKey.sponge("butcher"));
+    public static final DefaultedRegistryReference<ProfessionType> BUTCHER = ProfessionTypes.key(ResourceKey.minecraft("butcher"));
 
-    public static final DefaultedRegistryReference<ProfessionType> CARTOGRAPHER = ProfessionTypes.key(ResourceKey.sponge("cartographer"));
+    public static final DefaultedRegistryReference<ProfessionType> CARTOGRAPHER = ProfessionTypes.key(ResourceKey.minecraft("cartographer"));
 
-    public static final DefaultedRegistryReference<ProfessionType> CLERIC = ProfessionTypes.key(ResourceKey.sponge("cleric"));
+    public static final DefaultedRegistryReference<ProfessionType> CLERIC = ProfessionTypes.key(ResourceKey.minecraft("cleric"));
 
-    public static final DefaultedRegistryReference<ProfessionType> FARMER = ProfessionTypes.key(ResourceKey.sponge("farmer"));
+    public static final DefaultedRegistryReference<ProfessionType> FARMER = ProfessionTypes.key(ResourceKey.minecraft("farmer"));
 
-    public static final DefaultedRegistryReference<ProfessionType> FISHERMAN = ProfessionTypes.key(ResourceKey.sponge("fisherman"));
+    public static final DefaultedRegistryReference<ProfessionType> FISHERMAN = ProfessionTypes.key(ResourceKey.minecraft("fisherman"));
 
-    public static final DefaultedRegistryReference<ProfessionType> FLETCHER = ProfessionTypes.key(ResourceKey.sponge("fletcher"));
+    public static final DefaultedRegistryReference<ProfessionType> FLETCHER = ProfessionTypes.key(ResourceKey.minecraft("fletcher"));
 
-    public static final DefaultedRegistryReference<ProfessionType> LEATHERWORKER = ProfessionTypes.key(ResourceKey.sponge("leatherworker"));
+    public static final DefaultedRegistryReference<ProfessionType> LEATHERWORKER = ProfessionTypes.key(ResourceKey.minecraft("leatherworker"));
 
-    public static final DefaultedRegistryReference<ProfessionType> LIBRARIAN = ProfessionTypes.key(ResourceKey.sponge("librarian"));
+    public static final DefaultedRegistryReference<ProfessionType> LIBRARIAN = ProfessionTypes.key(ResourceKey.minecraft("librarian"));
 
-    public static final DefaultedRegistryReference<ProfessionType> MASON = ProfessionTypes.key(ResourceKey.sponge("mason"));
+    public static final DefaultedRegistryReference<ProfessionType> MASON = ProfessionTypes.key(ResourceKey.minecraft("mason"));
 
-    public static final DefaultedRegistryReference<ProfessionType> NITWIT = ProfessionTypes.key(ResourceKey.sponge("nitwit"));
+    public static final DefaultedRegistryReference<ProfessionType> NITWIT = ProfessionTypes.key(ResourceKey.minecraft("nitwit"));
 
-    public static final DefaultedRegistryReference<ProfessionType> NONE = ProfessionTypes.key(ResourceKey.sponge("none"));
+    public static final DefaultedRegistryReference<ProfessionType> NONE = ProfessionTypes.key(ResourceKey.minecraft("none"));
 
-    public static final DefaultedRegistryReference<ProfessionType> SHEPHERD = ProfessionTypes.key(ResourceKey.sponge("shepherd"));
+    public static final DefaultedRegistryReference<ProfessionType> SHEPHERD = ProfessionTypes.key(ResourceKey.minecraft("shepherd"));
 
-    public static final DefaultedRegistryReference<ProfessionType> TOOLSMITH = ProfessionTypes.key(ResourceKey.sponge("toolsmith"));
+    public static final DefaultedRegistryReference<ProfessionType> TOOLSMITH = ProfessionTypes.key(ResourceKey.minecraft("toolsmith"));
 
-    public static final DefaultedRegistryReference<ProfessionType> WEAPONSMITH = ProfessionTypes.key(ResourceKey.sponge("weaponsmith"));
+    public static final DefaultedRegistryReference<ProfessionType> WEAPONSMITH = ProfessionTypes.key(ResourceKey.minecraft("weaponsmith"));
 
     // SORTFIELDS:OFF
 
