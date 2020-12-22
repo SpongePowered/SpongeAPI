@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.item.recipe;
 
+import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.entity.carrier.Campfire;
 import org.spongepowered.api.block.entity.carrier.furnace.BlastFurnace;
@@ -55,7 +56,7 @@ import java.util.Optional;
  * <p>{@link CookingRecipe} for recipes in {@link Furnace}, {@link BlastFurnace}, {@link Smoker} and {@link Campfire}</p>
  * <p>{@link StoneCutterRecipe} for recipes in a {@link BlockTypes#STONECUTTER} block</p>
  */
-public interface Recipe {
+public interface Recipe extends ResourceKeyed {
 
     /**
      * Checks if the given inventory fits the required constraints to make a valid recipe
