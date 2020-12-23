@@ -60,6 +60,9 @@ import java.util.Optional;
 
 public interface ServerPlayer extends Player, Subject {
 
+    @Override
+    ServerWorld getWorld();
+
     User getUser();
 
     /**
@@ -326,11 +329,6 @@ public interface ServerPlayer extends Player, Subject {
      */
     default Optional<Value.Mutable<Entity>> spectatorTarget() {
         return this.getValue(Keys.SPECTATOR_TARGET).map(Value::asMutable);
-    }
-
-    @Override
-    default ServerWorld getWorld() {
-        return this.getServerLocation().getWorld();
     }
 
     /**

@@ -60,8 +60,9 @@ import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.util.Builder;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.ResettableBuilder;
-import org.spongepowered.api.world.ServerLocation;
-import org.spongepowered.api.world.server.ServerWorldProperties;
+import org.spongepowered.api.world.server.ServerLocation;
+import org.spongepowered.api.world.server.ServerWorld;
+import org.spongepowered.api.world.server.storage.ServerWorldProperties;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.configurate.util.Types;
 import org.spongepowered.math.vector.Vector3d;
@@ -660,29 +661,12 @@ public interface Parameter {
     }
 
     /**
-     * Creates a builder that has the {@link ValueParameter} set to
-     * {@link ResourceKeyedValueParameters#WORLD_PROPERTIES_ONLINE_ONLY}.
+     * Creates a builder that has the {@link ValueParameter} set to {@link ResourceKeyedValueParameters#WORLD}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
-    static Parameter.Value.Builder<ServerWorldProperties> worldProperties() {
-        return Parameter.worldProperties(true);
-    }
-
-    /**
-     * Creates a builder that has the {@link ValueParameter} set to
-     * {@link ResourceKeyedValueParameters#WORLD_PROPERTIES_ALL} or
-     * {@link ResourceKeyedValueParameters#WORLD_PROPERTIES_ONLINE_ONLY}.
-     *
-     * @param onlineOnly If the parameter should only select
-     *      {@link WorldProperties} that represent online worlds.
-     * @return A {@link Parameter.Value.Builder}
-     */
-    static Parameter.Value.Builder<ServerWorldProperties> worldProperties(final boolean onlineOnly) {
-        if (onlineOnly) {
-            return Parameter.builder(ServerWorldProperties.class, ResourceKeyedValueParameters.WORLD_PROPERTIES_ONLINE_ONLY);
-        }
-        return Parameter.builder(ServerWorldProperties.class, ResourceKeyedValueParameters.WORLD_PROPERTIES_ALL);
+    static Parameter.Value.Builder<ServerWorld> world() {
+        return Parameter.builder(ServerWorld.class, ResourceKeyedValueParameters.WORLD);
     }
 
     /**

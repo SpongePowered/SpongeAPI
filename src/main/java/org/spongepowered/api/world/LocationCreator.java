@@ -29,6 +29,8 @@ import org.spongepowered.math.vector.Vector3i;
 
 public interface LocationCreator<W extends World<W, L>, L extends Location<W, L>> {
 
+    W getWorld();
+
     /**
      * Gets a location in this extent at the given position. Essentially, this
      * is a 3D pointer in the extent.

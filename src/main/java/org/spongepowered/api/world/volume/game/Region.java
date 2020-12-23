@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.util.RandomProvider;
 import org.spongepowered.api.world.WorldBorder;
-import org.spongepowered.api.world.dimension.DimensionType;
+import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.volume.biome.BiomeVolume;
 import org.spongepowered.api.world.volume.block.BlockVolume;
 import org.spongepowered.api.world.volume.block.entity.BlockEntityVolume;
@@ -49,7 +49,7 @@ public interface Region<R extends Region<R>> extends
     HeightAwareVolume,
     RandomProvider {
 
-    DimensionType getDimensionType();
+    WorldType getWorldType();
 
     WorldBorder getBorder();
 

@@ -49,11 +49,11 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
     EntityVolume.Mutable<P>, // Because this is mutable
     BlockEntityVolume.Mutable<P>, // Because this is mutable
     GenerationVolume.Mutable,
-        LocationBaseDataHolder.Mutable,
-        UpdatableVolume,
-        RandomProvider,
-        PhysicsAwareMutableBlockVolume<P>,
-        MutableGameVolume
+    LocationBaseDataHolder.Mutable,
+    UpdatableVolume,
+    RandomProvider,
+    PhysicsAwareMutableBlockVolume<P>,
+    MutableGameVolume
 {
 
     ProtoChunk<?> getChunk(int cx, int cy, int cz);

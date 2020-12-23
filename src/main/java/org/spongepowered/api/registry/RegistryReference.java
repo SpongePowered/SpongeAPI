@@ -24,6 +24,10 @@
  */
 package org.spongepowered.api.registry;
 
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.Sponge;
+
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -34,6 +38,11 @@ import java.util.Set;
  * @param <T> The type
  */
 public interface RegistryReference<T> extends RegistryKey<T> {
+
+    static <T> RegistryReference<T> referenced(final RegistryHolder holder, final RegistryType<T> registry, final T value) {
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).referenced(Objects.requireNonNull(holder, "holder"),
+                Objects.requireNonNull(registry, "registry"), Objects.requireNonNull(value, "value"));
+    }
 
     /**
      * Gets the value from the {@link RegistryHolder holder}.
@@ -83,5 +92,9 @@ public interface RegistryReference<T> extends RegistryKey<T> {
      */
     default Optional<T> find(final RegistryHolder holder) {
         return holder.findRegistry(this.registry()).flatMap(r -> r.findValue(this));
+    }
+
+    interface Factory {
+        <T> RegistryReference<T> referenced(RegistryHolder holder, RegistryType<T> registry, T value);
     }
 }

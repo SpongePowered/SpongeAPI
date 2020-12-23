@@ -77,6 +77,11 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends 
      */
     WorldProperties getProperties();
 
+    @SuppressWarnings("unchecked")
+    default W getWorld() {
+        return (W) this;
+    }
+
     /**
      * Gets if this world is currently loaded.
      *

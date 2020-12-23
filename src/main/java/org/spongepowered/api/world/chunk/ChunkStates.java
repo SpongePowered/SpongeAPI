@@ -35,7 +35,7 @@ import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.biome.Biome;
 
 @SuppressWarnings("unused")
 @RegistryScopes(scopes = RegistryScope.GAME)
@@ -61,7 +61,7 @@ public final class ChunkStates {
 
     /**
      * A {@link ProtoChunk} state that is being populated by world generation,
-     * usually provided by {@link BiomeType}s.
+     * usually provided by {@link Biome}s.
      */
     public static final DefaultedRegistryReference<ChunkState> DECORATED = ChunkStates.key(ResourceKey.minecraft("decorated"));
 

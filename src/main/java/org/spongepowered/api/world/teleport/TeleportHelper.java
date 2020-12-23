@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.teleport;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.server.ServerLocation;
 
 import java.util.Optional;
 

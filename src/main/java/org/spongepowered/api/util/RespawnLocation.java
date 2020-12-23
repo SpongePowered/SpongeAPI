@@ -34,7 +34,7 @@ import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.persistence.Queries;
-import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3d;
 
@@ -103,7 +103,7 @@ public final class RespawnLocation implements DataSerializable {
      * @return The position object, if available.
      */
     public Optional<ServerLocation> asLocation() {
-        Optional<ServerWorld> optWorld = Sponge.getServer().getWorldManager().getWorld(this.getWorldKey());
+        Optional<ServerWorld> optWorld = Sponge.getServer().getWorldManager().world(this.getWorldKey());
         return optWorld.map(world -> ServerLocation.of(world, this.getPosition()));
     }
 

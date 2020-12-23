@@ -43,8 +43,9 @@ import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.world.Locatable;
-import org.spongepowered.api.world.ServerLocation;
-import org.spongepowered.api.world.server.ServerWorldProperties;
+import org.spongepowered.api.world.server.ServerLocation;
+import org.spongepowered.api.world.server.ServerWorld;
+import org.spongepowered.api.world.server.storage.ServerWorldProperties;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.math.vector.Vector2d;
 import org.spongepowered.math.vector.Vector3d;
@@ -422,20 +423,11 @@ public final class ResourceKeyedValueParameters {
     public static final DefaultedRegistryReference<ResourceKeyedValueParameter<Vector3d>> VECTOR3D = ResourceKeyedValueParameters.key(ResourceKey.sponge("vector3d"));
 
     /**
-     * Expect an argument to represent the name of any {@link WorldProperties}
-     * known to the game.
+     * Expect an argument to represent the {@link ResourceKey key} of any {@link ServerWorld world} known to the game.
      *
      * <p>Returns a {@link WorldProperties}.</p>
      */
-    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<ServerWorldProperties>> WORLD_PROPERTIES_ALL = ResourceKeyedValueParameters.key(ResourceKey.sponge("world_properties_all"));
-
-    /**
-     * Expect an argument to represent the name of a {@link WorldProperties}
-     * that represents a currently online world.
-     *
-     * <p>Returns a {@link WorldProperties}.</p>
-     */
-    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<ServerWorldProperties>> WORLD_PROPERTIES_ONLINE_ONLY = ResourceKeyedValueParameters.key(ResourceKey.sponge("world_properties_online_only"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<ServerWorld>> WORLD = ResourceKeyedValueParameters.key(ResourceKey.sponge("world"));
 
     // SORTFIELDS:OFF
 

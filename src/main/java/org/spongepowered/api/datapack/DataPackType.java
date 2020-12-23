@@ -24,15 +24,38 @@
  */
 package org.spongepowered.api.datapack;
 
+import io.leangen.geantyref.TypeToken;
+import org.spongepowered.api.advancement.Advancement;
+import org.spongepowered.api.event.lifecycle.RegisterDataPackValueEvent;
+import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.world.WorldTypeTemplate;
+import org.spongepowered.api.world.server.WorldTemplate;
+import org.spongepowered.plugin.PluginContainer;
 
 @CatalogedBy(DataPackTypes.class)
-public interface DataPackType {
+public interface DataPackType<T> {
+
+    TypeToken<T> type();
+
+    /**
+     * Gets if resources created by this type will persist even if the {@link PluginContainer plugin}
+     * is no longer present (or no longer performs a registration in {@link RegisterDataPackValueEvent}
+     *
+     * <p>Consult your implementation vendor for more details on exactly what resources are kept.</p>
+     * 
+     * @return True if persistent, false if not
+     */
+    boolean persistent();
 
     interface Factory {
 
-        DataPackType recipe();
+        DataPackType<Advancement> advancement();
 
-        DataPackType advancement();
+        DataPackType<RecipeRegistration> recipe();
+
+        DataPackType<WorldTypeTemplate> worldType();
+
+        DataPackType<WorldTemplate> world();
     }
 }

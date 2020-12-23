@@ -31,10 +31,9 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.effect.particle.ParticleEffect;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.effect.sound.music.MusicDisc;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.dimension.DimensionType;
-import org.spongepowered.api.world.dimension.DimensionTypes;
+import org.spongepowered.api.world.WorldType;
+import org.spongepowered.api.world.WorldTypes;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
@@ -52,12 +51,12 @@ public interface Viewer extends Audience {
      * Sends the effect of being in a particular Vanilla world environment, such as the Nether,
      * as an effect to the viewer.
      *
-     * <p>For example, specifying {@link DimensionTypes#THE_NETHER} will create a red skybox and
+     * <p>For example, specifying {@link WorldTypes#THE_NETHER} will create a red skybox and
      * red hazy fog on the vanilla minecraft client</p>
      *
-     * @param dimensionType The dimension type
+     * @param worldType The world type
      */
-    void sendEnvironment(DimensionType dimensionType);
+    void sendWorldType(WorldType worldType);
 
     /**
      * Spawn a {@link ParticleEffect} at a given position.

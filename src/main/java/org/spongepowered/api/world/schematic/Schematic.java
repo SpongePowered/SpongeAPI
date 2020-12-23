@@ -30,7 +30,7 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.biome.Biome;
 import org.spongepowered.api.world.volume.archetype.ArchetypeVolume;
 import org.spongepowered.api.world.volume.archetype.ArchetypeVolumeCreator;
 import org.spongepowered.api.world.volume.archetype.entity.EntityArchetypeEntry;
@@ -74,7 +74,7 @@ public interface Schematic extends ArchetypeVolume, LocationBaseDataHolder.Mutab
      *
      * @return The biome palette used for this schematic
      */
-    Palette<BiomeType, BiomeType> getBiomePalette();
+    Palette<Biome, Biome> getBiomePalette();
 
     /**
      * Gets any additional metadata attached to this schematic.
@@ -127,7 +127,7 @@ public interface Schematic extends ArchetypeVolume, LocationBaseDataHolder.Mutab
          * @param palette The palette to use for serialization
          * @return This builder, for chaining
          */
-        Builder biomePalette(Palette<BiomeType, BiomeType> palette);
+        Builder biomePalette(Palette<Biome, Biome> palette);
 
         /**
          * Specifies the palette type to use if the {@link #getBlockPalette()} is not
@@ -145,7 +145,7 @@ public interface Schematic extends ArchetypeVolume, LocationBaseDataHolder.Mutab
          * @param type The type of biome palette
          * @return This builder, for chaining
          */
-        Builder biomePaletteType(PaletteType<BiomeType, BiomeType> type);
+        Builder biomePaletteType(PaletteType<Biome, Biome> type);
 
         Builder entity(EntityArchetype entityArchetype);
 

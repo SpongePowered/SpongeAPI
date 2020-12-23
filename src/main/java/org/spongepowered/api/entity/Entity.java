@@ -41,7 +41,7 @@ import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.Locatable;
-import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.schematic.Schematic;
 import org.spongepowered.api.world.server.ServerWorld;
@@ -225,7 +225,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      */
     default boolean transferToWorld(final ServerWorld world) {
         Objects.requireNonNull(world, "World cannot be null");
-        return this.transferToWorld(world, world.getProperties().getSpawnPosition().toDouble());
+        return this.transferToWorld(world, world.getProperties().spawnPosition().toDouble());
     }
 
     /**

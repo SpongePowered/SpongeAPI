@@ -27,12 +27,9 @@ package org.spongepowered.api.event.entity.living.player;
 import org.spongepowered.api.block.entity.Bed;
 import org.spongepowered.api.block.entity.EndPortal;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
-import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.entity.ChangeEntityWorldEvent;
-import org.spongepowered.api.world.ServerLocation;
-import org.spongepowered.api.world.dimension.DimensionTypes;
+import org.spongepowered.api.world.WorldTypes;
 import org.spongepowered.api.world.server.ServerWorld;
-import org.spongepowered.math.vector.Vector3d;
 
 /**
  * Called when a {@link ServerPlayer player} is undergoing a respawn.
@@ -41,7 +38,7 @@ import org.spongepowered.math.vector.Vector3d;
  *
  * <ul>
  *     <li>Death</li>
- *     <li>Returning from {@link DimensionTypes#THE_END} via an {@link EndPortal} (Vanilla Minecraft)</li>
+ *     <li>Returning from {@link WorldTypes#THE_END} via an {@link EndPortal} (Vanilla Minecraft)</li>
  * </ul>
  */
 public interface RespawnPlayerEvent extends ChangeEntityWorldEvent {

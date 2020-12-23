@@ -36,14 +36,14 @@ import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.ChunkRegenerateFlag;
 import org.spongepowered.api.world.ChunkRegenerateFlags;
 import org.spongepowered.api.world.SerializationBehavior;
-import org.spongepowered.api.world.ServerLocation;
-import org.spongepowered.api.world.ServerLocationCreator;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.difficulty.Difficulty;
-import org.spongepowered.api.world.dimension.DimensionType;
-import org.spongepowered.api.world.dimension.DimensionTypes;
+import org.spongepowered.api.world.WorldType;
+import org.spongepowered.api.world.WorldTypes;
 import org.spongepowered.api.world.explosion.Explosion;
+import org.spongepowered.api.world.generation.ChunkGenerator;
+import org.spongepowered.api.world.server.storage.ServerWorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
 import org.spongepowered.api.world.volume.game.InteractableVolume;
 import org.spongepowered.api.world.weather.MutableWeatherUniverse;
@@ -65,13 +65,15 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
     @Override
     ServerWorldProperties getProperties();
 
+    ChunkGenerator getGenerator();
+
+    WorldTemplate asTemplate();
+
     /**
      * @see ServerWorldProperties#getKey()
      * @return The key
      */
-    default ResourceKey getKey() {
-        return this.getProperties().getKey();
-    }
+    ResourceKey getKey();
 
     /**
      * @see ServerWorldProperties#getUniqueId()
@@ -84,7 +86,7 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
 
     @Override
     default Difficulty getDifficulty() {
-        return this.getProperties().getDifficulty();
+        return this.getProperties().difficulty();
     }
 
     @Override
@@ -99,7 +101,8 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
      * @param chunkPosition The chunk position to regenerate
      * @return The regenerated chunk, if available
      */
-    default Optional<Chunk> regenerateChunk(Vector3i chunkPosition) {
+    default Optional<Chunk> regenerateChunk(final Vector3i chunkPosition) {
+        Objects.requireNonNull(chunkPosition, "chunkPosition");
         return this.regenerateChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), ChunkRegenerateFlags.ALL.get());
     }
 
@@ -199,7 +202,9 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
      * @return True if the restore was successful, false otherwise
      */
     default boolean restoreSnapshot(final Vector3i position, final BlockSnapshot snapshot, final boolean force, final BlockChangeFlag flag) {
-        return this.restoreSnapshot(position.getX(), position.getY(), position.getZ(), snapshot, force, flag);
+        Objects.requireNonNull(position, "position");
+        return this.restoreSnapshot(position.getX(), position.getY(), position.getZ(), Objects.requireNonNull(snapshot, "snapshot"), force,
+                Objects.requireNonNull(flag, "flag"));
     }
 
     /**
@@ -275,7 +280,7 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
     /**
      * Gets all {@link Raid}s occuring in this {@link ServerWorld}.
      *
-     * <p>Please note by default, some {@link DimensionType}s such as {@link DimensionTypes#THE_NETHER}
+     * <p>Please note by default, some {@link WorldType}s such as {@link WorldTypes#THE_NETHER}
      * will not contain any Raids because the game prevents Raids from starting in the nether.</p>
      *
      * @return All the raids in this world.

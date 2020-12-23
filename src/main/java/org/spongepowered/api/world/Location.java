@@ -29,7 +29,8 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.util.Direction;
-import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.biome.Biome;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
@@ -266,7 +267,7 @@ public interface Location<W extends World<W, L>, L extends Location<W, L>> {
      *
      * @return The biome at this location
      */
-    BiomeType getBiome();
+    Biome getBiome();
 
     /**
      * Returns true if this location has a block at its

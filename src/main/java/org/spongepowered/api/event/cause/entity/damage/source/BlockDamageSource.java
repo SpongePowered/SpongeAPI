@@ -26,7 +26,7 @@ package org.spongepowered.api.event.cause.entity.damage.source;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.server.ServerLocation;
 
 public interface BlockDamageSource extends DamageSource {
 

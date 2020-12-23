@@ -130,11 +130,12 @@ import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.ChunkRegenerateFlag;
 import org.spongepowered.api.world.HeightType;
 import org.spongepowered.api.world.LightType;
-import org.spongepowered.api.world.WorldArchetype;
-import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.generation.Structure;
+import org.spongepowered.api.world.server.WorldTemplate;
+import org.spongepowered.api.world.biome.Biome;
 import org.spongepowered.api.world.chunk.ChunkState;
 import org.spongepowered.api.world.difficulty.Difficulty;
-import org.spongepowered.api.world.dimension.DimensionType;
+import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.gamerule.GameRule;
 import org.spongepowered.api.world.portal.PortalType;
 import org.spongepowered.api.world.schematic.PaletteType;
@@ -152,7 +153,7 @@ public final class RegistryTypes {
 
     public static final RegistryType<AttributeType> ATTRIBUTE_TYPE = RegistryTypes.minecraftKey("attribute");
 
-    public static final RegistryType<BiomeType> BIOME_TYPE = RegistryTypes.minecraftKey("worldgen/biome");
+    public static final RegistryType<Biome> BIOME = RegistryTypes.minecraftKey("worldgen/biome");
 
     public static final RegistryType<BlockType> BLOCK_TYPE = RegistryTypes.minecraftKey("block");
 
@@ -162,7 +163,7 @@ public final class RegistryTypes {
 
     public static final RegistryType<ContainerType> CONTAINER_TYPE = RegistryTypes.minecraftKey("menu");
 
-    public static final RegistryType<DimensionType> DIMENSION_TYPE = RegistryTypes.minecraftKey("dimension_type");
+    public static final RegistryType<WorldType> WORLD_TYPE = RegistryTypes.minecraftKey("dimension_type");
 
     public static final RegistryType<PotionEffectType> POTION_EFFECT_TYPE = RegistryTypes.minecraftKey("mob_effect");
 
@@ -183,6 +184,8 @@ public final class RegistryTypes {
     public static final RegistryType<Statistic> STATISTIC = RegistryTypes.minecraftKey("custom_stat");
 
     public static final RegistryType<StatisticCategory> STATISTIC_CATEGORY = RegistryTypes.minecraftKey("statistic_category");
+
+    public static final RegistryType<Structure> STRUCTURE = RegistryTypes.minecraftKey("worldgen/structure_feature");
 
     public static final RegistryType<VillagerType> VILLAGER_TYPE = RegistryTypes.minecraftKey("villager_type");
 
@@ -377,9 +380,7 @@ public final class RegistryTypes {
     public static final RegistryType<Weather> WEATHER = RegistryTypes.spongeKey("weather");
 
     public static final RegistryType<WireAttachmentType> WIRE_ATTACHMENT_TYPE = RegistryTypes.spongeKey("wire_attachment_type");
-
-    public static final RegistryType<WorldArchetype> WORLD_ARCHETYPE = RegistryTypes.spongeKey("world_archetype");
-
+    
     // @formatter:on
 
     private static <V> RegistryType<V> minecraftKey(final String key) {

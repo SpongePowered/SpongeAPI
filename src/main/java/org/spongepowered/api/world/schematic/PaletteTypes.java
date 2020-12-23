@@ -33,7 +33,7 @@ import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.biome.Biome;
 
 @SuppressWarnings("unused")
 @RegistryScopes(scopes = RegistryScope.GAME)
@@ -44,11 +44,11 @@ public final class PaletteTypes {
     // SORTFIELDS:ON
     /**
      * A type of {@link PaletteType} that refers to a localized mapping of
-     * {@link BiomeType biomes} for individualized usage. Traditionally the
+     * {@link Biome biomes} for individualized usage. Traditionally the
      * palette will generate {@code integer ids} in the order in which a
-     * {@link BiomeType biome} is registered via {@link Palette.Mutable#getOrAssign(Object)}
+     * {@link Biome biome} is registered via {@link Palette.Mutable#getOrAssign(Object)}
      */
-    public static final DefaultedRegistryReference<PaletteType<BiomeType, BiomeType>> BIOME_PALETTE = PaletteTypes.key(ResourceKey.sponge("biome_palette"));
+    public static final DefaultedRegistryReference<PaletteType<Biome, Biome>> BIOME_PALETTE = PaletteTypes.key(ResourceKey.sponge("biome_palette"));
 
     /**
      * A type of {@link PaletteType} that refers to a localized mapping of

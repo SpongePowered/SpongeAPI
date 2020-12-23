@@ -28,8 +28,9 @@ import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.parameter.managed.ValueParameter;
 import org.spongepowered.api.command.parameter.managed.standard.ResourceKeyedValueParameters;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
-import org.spongepowered.api.world.ServerLocation;
-import org.spongepowered.api.world.server.ServerWorldProperties;
+import org.spongepowered.api.world.server.ServerLocation;
+import org.spongepowered.api.world.server.ServerWorld;
+import org.spongepowered.api.world.server.storage.ServerWorldProperties;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.math.vector.Vector3d;
 
@@ -98,12 +99,11 @@ public final class CommonParameters {
 
     /**
      * A {@link Parameter.Value} that parses a world id and stores it as a
-     * {@link WorldProperties} under the key "world". The world in question
-     * may or may not be loaded.
+     * {@link ServerWorld} under the key "world".
      *
-     * @see ResourceKeyedValueParameters#WORLD_PROPERTIES_ALL
+     * @see ResourceKeyedValueParameters#WORLD
      */
-    public final static Parameter.Value<ServerWorldProperties> ALL_WORLD_PROPERTIES = Parameter.worldProperties(false).setKey("world").build();
+    public final static Parameter.Value<ServerWorld> WORLD = Parameter.world().setKey("world").build();
 
     /**
      * A {@link Parameter.Value} that parses a {@link Boolean} with the key name
@@ -128,25 +128,6 @@ public final class CommonParameters {
      * @see ResourceKeyedValueParameters#REMAINING_JOINED_STRINGS
      */
     public final static Parameter.Value<String> MESSAGE = Parameter.remainingJoinedStrings().setKey("message").build();
-
-    /**
-     * A {@link Parameter.Value} that parses a world id and stores it as a
-     * {@link WorldProperties} under the key "world". The world in question
-     * must be online.
-     *
-     * @see ResourceKeyedValueParameters#WORLD_PROPERTIES_ONLINE_ONLY
-     */
-    public final static Parameter.Value<ServerWorldProperties> ONLINE_WORLD_PROPERTIES_ONLY = Parameter.worldProperties().setKey("world").build();
-
-    /**
-     * A {@link Parameter.Value} that parses a world id and stores it as a
-     * {@link WorldProperties} under the key "world". The world in question
-     * must be online. The parameter is optional.
-     *
-     * @see ResourceKeyedValueParameters#WORLD_PROPERTIES_ONLINE_ONLY
-     */
-    public final static Parameter.Value<ServerWorldProperties> ONLINE_WORLD_PROPERTIES_ONLY_OPTIONAL =
-            Parameter.worldProperties().setKey("world").optional().build();
 
     /**
      * A {@link Parameter.Value} that parses a player name or selector and

@@ -34,7 +34,7 @@ import org.spongepowered.api.state.State;
 import org.spongepowered.api.state.StateMatcher;
 import org.spongepowered.api.util.mirror.Mirror;
 import org.spongepowered.api.util.rotation.Rotation;
-import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.server.ServerLocation;
 
 import java.util.Objects;
 import java.util.function.Supplier;

@@ -32,8 +32,10 @@ import org.spongepowered.api.data.persistence.DataTranslator;
 import org.spongepowered.configurate.ConfigurationNode;
 import org.spongepowered.plugin.PluginContainer;
 
+import java.util.Objects;
+
 /**
- * An object representation of a location or pointer to resoutces.
+ * An object representation of a location or pointer to resources.
  * The key can be represented as a {@link String} by {@link Object#toString()}.
  *
  * The key is built with two parts:
@@ -118,18 +120,18 @@ public interface ResourceKey extends Key {
      * @return A new resource key
      */
     static ResourceKey of(final String namespace, final String value) {
-        return ResourceKey.builder().namespace(namespace).value(value).build();
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(Objects.requireNonNull(namespace, "mamespace"), Objects.requireNonNull(value, "value"));
     }
 
     /**
      * Creates a resource key.
      *
-     * @param container The container
+     * @param plugin The plugin
      * @param value The value
      * @return A new resource key
      */
-    static ResourceKey of(final PluginContainer container, final String value) {
-        return ResourceKey.builder().namespace(container).value(value).build();
+    static ResourceKey of(final PluginContainer plugin, final String value) {
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(Objects.requireNonNull(plugin, "plugin"), Objects.requireNonNull(value, "value"));
     }
 
     /**
@@ -236,6 +238,10 @@ public interface ResourceKey extends Key {
      * A factory to generate {@link ResourceKey}s.
      */
     interface Factory {
+
+        ResourceKey of(String namespace, String value);
+
+        ResourceKey of(PluginContainer plugin, String value);
 
         /**
          * Resolves a resource key from a string, using

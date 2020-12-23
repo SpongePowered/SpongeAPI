@@ -25,7 +25,7 @@
 package org.spongepowered.api.projectile.source;
 
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.server.ServerLocation;
 
 /**
  * Represents a {@link ProjectileSource} that is a block. Examples are

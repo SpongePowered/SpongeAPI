@@ -25,8 +25,9 @@
 package org.spongepowered.api.event.lifecycle;
 
 import org.spongepowered.api.datapack.DataPackSerializable;
+import org.spongepowered.api.event.GenericEvent;
 
-public interface RegisterDataPackValueEvent extends LifecycleEvent {
+public interface RegisterDataPackValueEvent<T extends DataPackSerializable> extends LifecycleEvent, GenericEvent<T> {
 
-    RegisterDataPackValueEvent register(DataPackSerializable serializable);
+    RegisterDataPackValueEvent<T> register(T serializable);
 }

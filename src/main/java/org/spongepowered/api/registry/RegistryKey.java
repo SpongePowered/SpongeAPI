@@ -27,6 +27,7 @@ package org.spongepowered.api.registry;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 
+import java.util.Objects;
 import java.util.function.Supplier;
 
 /**
@@ -39,7 +40,8 @@ import java.util.function.Supplier;
 public interface RegistryKey<T> {
 
     static <T> RegistryKey<T> of(final RegistryType<T> registry, final ResourceKey location) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(registry, location);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(Objects.requireNonNull(registry, "registry"),
+                Objects.requireNonNull(location, "location"));
     }
 
     /**
@@ -73,6 +75,8 @@ public interface RegistryKey<T> {
 
     interface Factory {
 
-        <T> RegistryKey<T> create(final RegistryType<T> registry, final ResourceKey location);
+        <T> RegistryKey<T> of(RegistryType<T> registry, ResourceKey location);
+
+        <T> RegistryKey<T> referenced(RegistryHolder holder, RegistryType<T> registry, T value);
     }
 }

@@ -29,5 +29,6 @@ import org.spongepowered.api.data.persistence.DataSerializable;
 
 public interface DataPackSerializable extends ResourceKeyed, DataSerializable {
 
+    @SuppressWarnings("rawtypes")
     DataPackType type();
 }

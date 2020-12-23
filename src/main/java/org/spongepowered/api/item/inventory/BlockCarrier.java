@@ -26,7 +26,6 @@ package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Locatable;
-import org.spongepowered.api.world.ServerLocation;
 
 /**
  * Represents a Block that is a carrier of an Inventory

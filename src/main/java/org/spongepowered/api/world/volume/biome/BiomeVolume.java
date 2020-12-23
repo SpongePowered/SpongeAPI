@@ -25,7 +25,7 @@
 package org.spongepowered.api.world.volume.biome;
 
 import org.spongepowered.api.util.PositionOutOfBoundsException;
-import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.biome.Biome;
 import org.spongepowered.api.world.volume.ImmutableVolume;
 import org.spongepowered.api.world.volume.MutableVolume;
 import org.spongepowered.api.world.volume.UnmodifiableVolume;
@@ -34,6 +34,8 @@ import org.spongepowered.api.world.volume.block.BlockVolume;
 import org.spongepowered.api.world.volume.stream.StreamOptions;
 import org.spongepowered.api.world.volume.stream.VolumeStream;
 import org.spongepowered.math.vector.Vector3i;
+
+import java.util.Objects;
 
 public interface BiomeVolume extends Volume {
 
@@ -45,12 +47,13 @@ public interface BiomeVolume extends Volume {
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the volume
      */
-    default BiomeType getBiome(Vector3i position) {
+    default Biome getBiome(final Vector3i position) {
+        Objects.requireNonNull(position, "position");
         return this.getBiome(position.getX(), position.getY(), position.getZ());
     }
 
     /**
-     * Gets the {@link BiomeType} at the given location.
+     * Gets the {@link Biome} at the given location.
      *
      * @param x The X position
      * @param y The Y position
@@ -59,12 +62,12 @@ public interface BiomeVolume extends Volume {
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the volume
      */
-    BiomeType getBiome(int x, int y, int z);
+    Biome getBiome(int x, int y, int z);
 
     interface Streamable<B extends Streamable<B>> extends BiomeVolume {
 
         /**
-         * Gets a {@link VolumeStream}&lt;{@code B, }{@link BiomeType}&gt;
+         * Gets a {@link VolumeStream}&lt;{@code B, }{@link Biome}&gt;
          * from this volume such that the {@code min} and {@code max} are contained
          * within this volume.
          *
@@ -73,8 +76,7 @@ public interface BiomeVolume extends Volume {
          * @param options The options to construct the stream
          * @return The volume stream
          */
-        VolumeStream<B, BiomeType> getBiomeStream(Vector3i min, Vector3i max, StreamOptions options);
-
+        VolumeStream<B, Biome> getBiomeStream(Vector3i min, Vector3i max, StreamOptions options);
     }
 
     /**
@@ -90,7 +92,7 @@ public interface BiomeVolume extends Volume {
     interface Mutable<M extends Mutable<M>> extends Streamable<M>, MutableVolume {
 
         /**
-         * Sets the {@link BiomeType} at the given position in this volume.
+         * Sets the {@link Biome} at the given position in this volume.
          *
          * @param position The position
          * @param biome The biome type
@@ -98,12 +100,12 @@ public interface BiomeVolume extends Volume {
          * @throws PositionOutOfBoundsException If the position is outside of the
          *                                      bounds of the volume
          */
-        default boolean setBiome(Vector3i position, BiomeType biome) {
+        default boolean setBiome(Vector3i position, Biome biome) {
             return this.setBiome(position.getX(), position.getY(), position.getZ(), biome);
         }
 
         /**
-         * Sets the {@link BiomeType} at the given position in this volume.
+         * Sets the {@link Biome} at the given position in this volume.
          *
          * @param x The X position
          * @param y The Y position
@@ -113,7 +115,7 @@ public interface BiomeVolume extends Volume {
          * @throws PositionOutOfBoundsException If the position is outside of the
          *                                      bounds of the volume
          */
-        boolean setBiome(int x, int y, int z, BiomeType biome);
+        boolean setBiome(int x, int y, int z, Biome biome);
 
     }
 

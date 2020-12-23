@@ -24,11 +24,9 @@
  */
 package org.spongepowered.api.world.storage;
 
-import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.util.MinecraftDayTime;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.difficulty.Difficulty;
-import org.spongepowered.api.world.dimension.DimensionType;
 import org.spongepowered.api.world.gamerule.GameRuleHolder;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 import org.spongepowered.math.vector.Vector3i;
@@ -43,7 +41,7 @@ public interface WorldProperties extends WeatherUniverse, GameRuleHolder {
      *
      * @return The spawn position
      */
-    Vector3i getSpawnPosition();
+    Vector3i spawnPosition();
 
     /**
      * Sets the default spawn position.
@@ -57,40 +55,26 @@ public interface WorldProperties extends WeatherUniverse, GameRuleHolder {
      *
      * @return The total time
      */
-    MinecraftDayTime getGameTime();
+    MinecraftDayTime gameTime();
 
     /**
      * Gets the time of day.
      *
      * @return The time of day
      */
-    MinecraftDayTime getDayTime();
-
-    /**
-     * Gets the {@link DimensionType}.
-     *
-     * @return The dimension type
-     */
-    DimensionType getDimensionType();
-
-    /**
-     * Gets the default {@link GameMode}.
-     *
-     * @return The game mode
-     */
-    GameMode getGameMode();
+    MinecraftDayTime dayTime();
 
     /**
      * Gets if this is in hardcore mode.
      *
      * @return Is hardcore
      */
-    boolean isHardcore();
+    boolean hardcore();
 
     /**
      * Gets the {@link Difficulty}.
      *
      * @return The difficulty
      */
-    Difficulty getDifficulty();
+    Difficulty difficulty();
 }

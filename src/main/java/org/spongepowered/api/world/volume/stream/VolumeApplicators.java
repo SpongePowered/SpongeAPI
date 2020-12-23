@@ -31,8 +31,8 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.LocationCreator;
-import org.spongepowered.api.world.ServerLocation;
-import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.server.ServerLocation;
+import org.spongepowered.api.world.biome.Biome;
 import org.spongepowered.api.world.volume.archetype.block.entity.BlockEntityArchetypeVolume;
 import org.spongepowered.api.world.volume.archetype.entity.EntityArchetypeVolume;
 import org.spongepowered.api.world.volume.biome.BiomeVolume;
@@ -111,7 +111,7 @@ public final class VolumeApplicators {
         return (volume, element) -> volume.spawnEntity(element.getType());
     }
 
-    public static <M extends BiomeVolume.Mutable<M>> VolumeApplicator<M, BiomeType, Boolean> applyBiomes() {
+    public static <M extends BiomeVolume.Mutable<M>> VolumeApplicator<M, Biome, Boolean> applyBiomes() {
         return (volume, element) -> volume.setBiome(element.getPosition(), element.getType());
     }
 
