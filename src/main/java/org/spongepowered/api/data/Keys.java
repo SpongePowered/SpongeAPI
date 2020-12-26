@@ -1031,8 +1031,9 @@ public final class Keys {
     public static final Key<Value<Double>> HEALTH = Keys.key(ResourceKey.sponge("health"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
     /**
-     * How much health a half-heart on a {@link Player}'s GUI will stand for.
-     * TODO wrong javadocs @gabizou?
+     * The value a {@link ServerPlayer}s max-health (excluding absorption) in the GUI will scale to.
+     * <p>Two health is equal to one heart displayed.</p>
+     * <p>With scaling is disabled health automatically scales to {@link #MAX_HEALTH}</p>
      */
     public static final Key<Value<Double>> HEALTH_SCALE = Keys.key(ResourceKey.sponge("health_scale"), TypeTokens.DOUBLE_VALUE_TOKEN);
 
