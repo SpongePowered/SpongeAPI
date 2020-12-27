@@ -32,6 +32,7 @@ import org.spongepowered.api.world.volume.Volume;
 import org.spongepowered.math.imaginary.Quaterniond;
 import org.spongepowered.math.vector.Vector3i;
 
+import java.util.Objects;
 import java.util.function.Function;
 
 public final class VolumePositionTranslators {
@@ -65,6 +66,19 @@ public final class VolumePositionTranslators {
             final Vector3i v = q.rotate(element.getPosition().sub(center).toDouble()).toInt().add(center);
             return VolumeElement.of(element.getVolume(), elementRotation.apply(element.getType()), v);
         };
+    }
+
+    public static <W extends Volume, E> VolumePositionTranslator<W, E> relativeTo(final Vector3i newOrigin) {
+        return element -> VolumeElement.of(element.getVolume(), element.getType(), element.getPosition().add(newOrigin));
+    }
+
+    public static <W extends Volume, E> VolumePositionTranslator<W, E> offset(final Vector3i min) {
+        return element -> VolumeElement.of(element.getVolume(), element.getType(), element.getPosition().sub(min));
+    }
+
+    public static <W extends Volume, E> VolumePositionTranslator<W, E> position(final Function<Vector3i, Vector3i> func) {
+        Objects.requireNonNull(func, "Position function cannot be null!");
+        return element -> VolumeElement.of(element.getVolume(), element.getType(), func.apply(element.getPosition()));
     }
 
     public static <W extends Volume, E> VolumePositionTranslator<W, E> offsetPosition(final Vector3i origin,
