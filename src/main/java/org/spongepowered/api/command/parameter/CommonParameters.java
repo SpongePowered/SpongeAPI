@@ -166,17 +166,6 @@ public final class CommonParameters {
     public final static Parameter.Value<ServerPlayer> PLAYER_OPTIONAL = Parameter.player().optional().setKey("player").build();
 
     /**
-     * A {@link Parameter.Value} that parses a player name or selector and
-     * stores the results under the key "player". If no results are found but
-     * the root of the {@link CommandCause} is a {@link ServerPlayer}, that
-     * player is stored in the context instead.
-     *
-     * @see ResourceKeyedValueParameters#PLAYER
-     * @see Parameter#playerOrSource()
-     */
-    public final static Parameter.Value<ServerPlayer> PLAYER_OR_SOURCE = Parameter.playerOrSource().setKey("player").build();
-
-    /**
      * A {@link Parameter.Value} that parses a position and stores it as a
      * {@link Vector3d} under the key "position".
      *

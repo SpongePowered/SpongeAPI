@@ -390,17 +390,6 @@ public interface Parameter {
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link ResourceKeyedValueParameters#DATE_TIME}, returning the current
-     * {@link LocalDateTime}.
-     *
-     * @return A {@link Parameter.Value.Builder}
-     */
-    static Parameter.Value.Builder<LocalDateTime> dateTimeOrNow() {
-        return Parameter.dateTime().orDefault(cause -> LocalDateTime.now());
-    }
-
-    /**
-     * Creates a builder that has the {@link ValueParameter} set to
      * {@link ResourceKeyedValueParameters#DURATION}.
      *
      * @return A {@link Parameter.Value.Builder}
@@ -427,17 +416,6 @@ public interface Parameter {
      */
     static Parameter.Value.Builder<Entity> entity() {
         return Parameter.builder(Entity.class, ResourceKeyedValueParameters.ENTITY);
-    }
-
-    /**
-     * Creates a builder that has the {@link ValueParameter} set to
-     * {@link ResourceKeyedValueParameters#ENTITY}, using the {@link Cause#root()}
-     * as the default if they are an {@link Entity}
-     *
-     * @return A {@link Parameter.Value.Builder}
-     */
-    static Parameter.Value.Builder<Entity> entityOrSource() {
-        return Parameter.entity().orDefault(cause -> cause.getCause().root() instanceof Entity ? (Entity) cause.getCause().root() : null);
     }
 
     /**
@@ -488,18 +466,6 @@ public interface Parameter {
      */
     static Parameter.Value.Builder<InetAddress> ip() {
         return Parameter.builder(InetAddress.class, ResourceKeyedValueParameters.IP);
-    }
-
-    /**
-     * Creates a builder that has the {@link ValueParameter} set to
-     * {@link ResourceKeyedValueParameters#IP}, defaulting to the source's
-     * {@link InetAddress}
-     *
-     * @return A {@link Parameter.Value.Builder}
-     */
-    static Parameter.Value.Builder<InetAddress> ipOrSource() {
-        return Parameter.ip().orDefault(cause -> cause.getCause().root() instanceof RemoteConnection ?
-                ((RemoteConnection) cause.getCause().root()).getAddress().getAddress() : null);
     }
 
     /**
@@ -575,17 +541,6 @@ public interface Parameter {
      */
     static Parameter.Value.Builder<ServerPlayer> player() {
         return Parameter.builder(ServerPlayer.class, ResourceKeyedValueParameters.PLAYER);
-    }
-
-    /**
-     * Creates a builder that has the {@link ValueParameter} set to
-     * {@link ResourceKeyedValueParameters#PLAYER}, defaulting to the
-     * {@link Cause#root()} if it is a {@link Player}.
-     *
-     * @return A {@link Parameter.Value.Builder}
-     */
-    static Parameter.Value.Builder<ServerPlayer> playerOrSource() {
-        return Parameter.player().orDefault(cause -> cause.getCause().root() instanceof ServerPlayer ? (ServerPlayer) cause.getCause().root() : null);
     }
 
     /**
@@ -682,17 +637,6 @@ public interface Parameter {
      */
     static Parameter.Value.Builder<User> user() {
         return Parameter.builder(User.class, ResourceKeyedValueParameters.USER);
-    }
-
-    /**
-     * Creates a builder that has the {@link ValueParameter} set to
-     * {@link ResourceKeyedValueParameters#USER}, reutrning the source
-     * if necessary.
-     *
-     * @return A {@link Parameter.Value.Builder}
-     */
-    static Parameter.Value.Builder<User> userOrSource() {
-        return Parameter.user().orDefault(cause -> cause.getCause().root() instanceof User ? (User) cause.getCause().root() : null);
     }
 
     /**
@@ -1257,8 +1201,7 @@ public interface Parameter {
              *     continue</li>
              *     <li>A part of the argument string could not be parsed, in which
              *     case an exception will be raised. If this element is also marked
-             *     as {@link #optional()} or with one of the
-             *     {@link #orDefault(Object)} methods, then parsing will continue
+             *     as {@link #optional()}, then parsing will continue
              *     as if nothing has been parsed.</li>
              * </ul>
              *
@@ -1278,56 +1221,6 @@ public interface Parameter {
              * @return This builder, for chaining
              */
             Builder<T> optional();
-
-            /**
-             * Marks this parameter as optional, such that if an argument does not
-             * exist <em>or</em> cannot be parsed, an exception is not thrown, and
-             * the value provided is inserted into the context instead.
-             *
-             * @param defaultValue The default value if this parameter does not
-             *                     enter a value into the {@link CommandContext}
-             * @return This builder, for chaining
-             */
-            default Builder<T> orDefault(@NonNull final T defaultValue) {
-                return this.orDefault(cause -> defaultValue);
-            }
-
-            /**
-             * Marks this parameter as optional, such that if an argument does not
-             * exist <em>or</em> cannot be parsed, the supplier is executed instead.
-             * If this returns a value, it is inserted into the context under the
-             * parameter's key, otherwise, an {@link ArgumentParseException} is
-             * thrown.
-             *
-             * <p>If a default value is inserted into the context, the command
-             * parser will attempt to parse the argument this element couldn't
-             * parse using the next parser in the chain.</p>
-             *
-             * @param defaultValueSupplier A {@link Supplier} that returns an object
-             *                             to insert into the context if this
-             *                             parameter cannot parse the argument. If
-             *                             the supplier returns a null,
-             *                             the parameter will throw an exception, as
-             *                             if the parameter is not optional.
-             * @return This builder, for chaining
-             */
-            Builder<T> orDefault(Supplier<T> defaultValueSupplier);
-
-            /**
-             * Marks this parameter as optional, such that if an argument does not
-             * exist <em>or</em> cannot be parsed, the function is executed instead.
-             * If this returns a value, it is inserted into the context under the
-             * parameter's key, otherwise, an {@link ArgumentParseException} is
-             * thrown.
-             *
-             * @param defaultValueFunction A {@link Function} that returns an
-             *      object to insert into the context if this parameter cannot
-             *      parse the argument. If the supplier returns a null, the
-             *      parameter will throw an exception, as if the parameter is
-             *      not optional.
-             * @return This builder, for chaining
-             */
-            Builder<T> orDefault(Function<CommandCause, T> defaultValueFunction);
 
             /**
              * Marks this parameter as a <em>terminal</em> parameter. Any
