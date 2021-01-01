@@ -45,8 +45,7 @@ import java.util.Optional;
  * is available (see {@link #getCause()}. Some popular tasks that operate
  * on the {@link CommandCause} are also directly available on this context,
  * namely permission checks (via {@link SubjectProxy}) and sending a message to
- * the {@link CommandCause}'s {@link Audience} (via
- * {@link #sendMessage(Component)}).</p>
+ * the {@link CommandCause}'s {@link Audience} (via {@link #sendMessage}).</p>
  */
 public interface CommandContext extends SubjectProxy {
 
@@ -113,9 +112,7 @@ public interface CommandContext extends SubjectProxy {
      * @param parameter the {@link Parameter} associated with the argument
      * @return whether there are any values present
      */
-    default boolean hasAny(final Parameter.Value<?> parameter) {
-        return this.hasAny(parameter.getKey());
-    }
+    boolean hasAny(final Parameter.Value<?> parameter);
 
     /**
      * Returns whether this context has any value for the given argument key.
@@ -134,9 +131,7 @@ public interface CommandContext extends SubjectProxy {
      * @throws IllegalArgumentException if more than one value for the key was
      *                                  found
      */
-    default <T> Optional<T> getOne(final Parameter.Value<T> parameter) throws IllegalArgumentException {
-        return this.getOne(parameter.getKey());
-    }
+    <T> Optional<T> getOne(final Parameter.Value<T> parameter) throws IllegalArgumentException;
 
     /**
      * Gets the value for the given key if the key has only one value.
@@ -160,9 +155,7 @@ public interface CommandContext extends SubjectProxy {
      * @throws IllegalArgumentException if more than one value for the key was
      *                                  found
      */
-    default  <T> T requireOne(final Parameter.Value<T> parameter) throws NoSuchElementException, IllegalArgumentException {
-        return this.requireOne(parameter.getKey());
-    }
+    <T> T requireOne(final Parameter.Value<T> parameter) throws NoSuchElementException, IllegalArgumentException;
 
     /**
      * Gets the value for the given key if the key has only one value,
@@ -185,9 +178,7 @@ public interface CommandContext extends SubjectProxy {
      * @param <T> the expected type of the argument
      * @return the argument
      */
-    default <T> Collection<? extends T> getAll(final Parameter.Value<T> parameter) {
-        return this.getAll(parameter.getKey());
-    }
+    <T> Collection<? extends T> getAll(final Parameter.Value<T> parameter);
 
     /**
      * Gets all values for the given argument. May return an empty list if no
