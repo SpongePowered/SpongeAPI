@@ -1306,11 +1306,24 @@ public interface Parameter {
     }
 
     /**
+     * A parameter that consists of multiple parameters
+     */
+    interface Multi extends Parameter {
+
+        /**
+         * Returns the child parameters.
+         *
+         * @return the child parameters
+         */
+        List<Parameter> getChildParameters();
+    }
+
+    /**
      * Specifies a builder for creating a {@link Parameter} that returns a
      * parameter that concatenates all parameters into a single
      * parameter to be executed one by one.
      */
-    interface SequenceBuilder extends Builder<Parameter, SequenceBuilder> {
+    interface SequenceBuilder extends Builder<Multi, SequenceBuilder> {
 
         /**
          * Sets that this sequence of parameters is optional, and will be
@@ -1370,7 +1383,7 @@ public interface Parameter {
          *
          * @return The {@link Parameter}
          */
-        Parameter build();
+        Multi build();
 
     }
 
@@ -1379,7 +1392,7 @@ public interface Parameter {
      * parameter that concatenates all parameters into a single
      * parameter to be executed one by one.
      */
-    interface FirstOfBuilder extends Builder<Parameter, FirstOfBuilder> {
+    interface FirstOfBuilder extends Builder<Multi, FirstOfBuilder> {
 
         /**
          * Sets that this parameter is optional, and will be ignored if it isn't
@@ -1438,11 +1451,11 @@ public interface Parameter {
         }
 
         /**
-         * Creates a {@link Parameter} from the builder.
+         * Creates a {@link Multi} from the builder.
          *
-         * @return The {@link Parameter}
+         * @return The {@link Multi}
          */
-        Parameter build();
+        Multi build();
 
     }
 
