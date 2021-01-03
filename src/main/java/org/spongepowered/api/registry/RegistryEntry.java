@@ -46,4 +46,6 @@ public interface RegistryEntry<T> {
      * @return The value
      */
     T value();
+
+    RegistryReference<T> asReference();
 }
