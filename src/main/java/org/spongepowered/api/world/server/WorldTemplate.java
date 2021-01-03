@@ -91,6 +91,10 @@ public interface WorldTemplate extends ResourceKeyed, DataPackSerializable {
 
     Optional<Integer> viewDistance();
 
+    default Builder asBuilder() {
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class).from(this);
+    }
+
     interface Builder extends ResourceKeyedBuilder<WorldTemplate, Builder>, CopyableBuilder<WorldTemplate, Builder> {
 
         Builder displayName(@Nullable Component displayName);
