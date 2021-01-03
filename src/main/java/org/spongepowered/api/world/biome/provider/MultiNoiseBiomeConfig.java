@@ -35,6 +35,10 @@ import java.util.List;
 
 public interface MultiNoiseBiomeConfig extends BiomeProviderConfig {
 
+    static MultiNoiseBiomeConfig nether() {
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).nether();
+    }
+
     static Builder builder() {
         return Sponge.getGame().getBuilderProvider().provide(Builder.class).reset();
     }
@@ -68,5 +72,10 @@ public interface MultiNoiseBiomeConfig extends BiomeProviderConfig {
         Builder altitudeConfig(MultiNoiseConfig altitudeConfig);
 
         Builder weirdnessConfig(MultiNoiseConfig weirdnessConfig);
+    }
+
+    interface Factory {
+
+        MultiNoiseBiomeConfig nether();
     }
 }
