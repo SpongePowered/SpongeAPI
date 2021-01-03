@@ -24,10 +24,20 @@
  */
 package org.spongepowered.api.world.biome.provider.multinoise;
 
+import org.spongepowered.api.Sponge;
+
 import java.util.List;
 
 public interface MultiNoiseConfig {
 
+    static MultiNoiseConfig of(final int firstOctave, final List<Double> amplitudes) {
+        if (amplitudes.isEmpty()) {
+            throw new IllegalArgumentException("Amplitudes must not be empty!");
+        }
+
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(firstOctave, amplitudes);
+    }
+    
     int firstOctave();
 
     List<Double> amplitudes();
