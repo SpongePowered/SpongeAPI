@@ -27,22 +27,29 @@ package org.spongepowered.api.world.biome.provider.multinoise;
 import org.spongepowered.api.Sponge;
 
 import java.util.List;
+import java.util.Objects;
 
 public interface MultiNoiseConfig {
 
+    static MultiNoiseConfig nether() {
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).nether();
+    }
+
     static MultiNoiseConfig of(final int firstOctave, final List<Double> amplitudes) {
-        if (amplitudes.isEmpty()) {
-            throw new IllegalArgumentException("Amplitudes must not be empty!");
+        if (Objects.requireNonNull(amplitudes, "amplitudes").isEmpty()) {
+            throw new IllegalArgumentException("Amplitudes must have at least 1 value!");
         }
 
         return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(firstOctave, amplitudes);
     }
-    
+
     int firstOctave();
 
     List<Double> amplitudes();
 
     interface Factory {
+
+        MultiNoiseConfig nether();
 
         MultiNoiseConfig of(int firstOctave, List<Double> amplitudes);
     }
