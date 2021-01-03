@@ -79,6 +79,13 @@ public interface WorldManager {
     List<ResourceKey> worldKeys();
 
     /**
+     * Gets if a {@link ResourceKey key} exists as an actual world, offline or online.
+     * @param key The key
+     * @return True if existed, false if not
+     */
+    boolean worldExists(ResourceKey key);
+
+    /**
      * Gets a {@link ResourceKey key} by {@link UUID unique id}.
      *
      * @param uniqueId The unique id
@@ -129,6 +136,13 @@ public interface WorldManager {
      * @return Whether the operation was successful
      */
     CompletableFuture<Boolean> unloadWorld(ServerWorld world);
+
+    /**
+     * Gets if a {@link ResourceKey key} exists as a {@link WorldTemplate template}.
+     * @param key The key
+     * @return True if it exists, false if not
+     */
+    boolean templateExists(ResourceKey key);
 
     /**
      * Saves a {@link WorldTemplate template}.
