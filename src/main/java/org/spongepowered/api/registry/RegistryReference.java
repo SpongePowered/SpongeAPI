@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.registry;
 
-import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 
 import java.util.Objects;

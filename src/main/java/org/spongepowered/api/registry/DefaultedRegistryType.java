@@ -24,38 +24,11 @@
  */
 package org.spongepowered.api.registry;
 
-import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.Sponge;
+import java.util.Optional;
 
-import java.util.Objects;
-import java.util.function.Supplier;
+public interface DefaultedRegistryType<T> extends RegistryType<T> {
 
-public interface RegistryType<T> {
+    Registry<T> get();
 
-    static <T> RegistryType<T> of(final ResourceKey root, final ResourceKey location) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(Objects.requireNonNull(root, "root"),
-                Objects.requireNonNull(location, "location"));
-    }
-
-    ResourceKey root();
-
-    ResourceKey location();
-
-    default ResourceKey keyFor(final RegistryHolder holder, final T value) {
-        return Objects.requireNonNull(holder, "RegistryHolder cannot be null!").registry(this).valueKey(Objects.requireNonNull(value, "Value cannot be null!"));
-    }
-
-    /**
-     * Gets a utility {@link DefaultedRegistryType defaulted type} for easier querying of the intention of where the registry is contained.
-     *
-     * @param defaultHolder The default holder
-     * @param <V> The type
-     * @return The defaulted type
-     */
-    <V extends T> DefaultedRegistryType<V> asDefaultedType(Supplier<RegistryHolder> defaultHolder);
-
-    interface Factory {
-
-        <T> RegistryType<T> create(final ResourceKey root, ResourceKey location);
-    }
+    Optional<Registry<T>> find();
 }
