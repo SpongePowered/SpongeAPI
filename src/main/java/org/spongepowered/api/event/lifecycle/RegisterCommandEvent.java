@@ -60,6 +60,18 @@ public interface RegisterCommandEvent<C> extends GenericEvent<C>, LifecycleEvent
      *         registered for this command
      * @throws CommandFailedRegistrationException if registration failed
      */
-    CommandMapping register(PluginContainer container, C command, String alias, String... aliases) throws CommandFailedRegistrationException;
+    CommandMapping registerMapping(PluginContainer container, C command, String alias, String... aliases) throws CommandFailedRegistrationException;
 
+    /**
+     * Registers a command with the appropriate {@link CommandRegistrar}.
+     *
+     * @param container The {@link PluginContainer}
+     * @param command The command to register
+     * @param alias The first alias to register for this command
+     * @param aliases Any other aliases to register
+     * @return The {@link CommandMapping}, indicating which aliases have been
+     *         registered for this command
+     * @throws CommandFailedRegistrationException if registration failed
+     */
+    RegisterCommandEvent<C> register(PluginContainer container, C command, String alias, String... aliases) throws CommandFailedRegistrationException;
 }
