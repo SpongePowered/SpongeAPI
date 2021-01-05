@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.event.cause.entity;
 
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(DismountTypes.class)
-public interface DismountType {
+public interface DismountType extends DefaultedRegistryValue {
 
 }

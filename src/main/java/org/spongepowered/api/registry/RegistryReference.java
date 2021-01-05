@@ -94,6 +94,7 @@ public interface RegistryReference<T> extends RegistryKey<T> {
     }
 
     interface Factory {
+
         <T> RegistryReference<T> referenced(RegistryHolder holder, RegistryType<T> registry, T value);
     }
 }

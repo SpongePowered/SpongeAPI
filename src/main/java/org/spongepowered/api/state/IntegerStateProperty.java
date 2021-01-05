@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.state;
 
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.function.Predicate;
@@ -34,6 +35,6 @@ import java.util.function.Predicate;
  * {@link Predicate}
  */
 @CatalogedBy(IntegerStateProperties.class)
-public interface IntegerStateProperty extends StateProperty<Integer> {
+public interface IntegerStateProperty extends DefaultedRegistryValue, StateProperty<Integer> {
 
 }

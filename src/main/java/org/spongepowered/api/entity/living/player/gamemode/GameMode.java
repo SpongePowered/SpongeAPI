@@ -26,12 +26,13 @@ package org.spongepowered.api.entity.living.player.gamemode;
 
 import net.kyori.adventure.text.ComponentLike;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a game mode that a {@link Player} may have.
  */
 @CatalogedBy(GameModes.class)
-public interface GameMode extends ComponentLike {
+public interface GameMode extends DefaultedRegistryValue, ComponentLike {
 
 }

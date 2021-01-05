@@ -24,12 +24,13 @@
  */
 package org.spongepowered.api.item.inventory.equipment;
 
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a grouping of {@link EquipmentType equipment}.
  */
 @CatalogedBy(EquipmentGroups.class)
-public interface EquipmentGroup {
+public interface EquipmentGroup extends DefaultedRegistryValue {
 
 }

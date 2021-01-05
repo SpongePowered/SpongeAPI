@@ -26,6 +26,7 @@ package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -34,6 +35,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * preference.
  */
 @CatalogedBy(HandTypes.class)
-public interface HandType {
+public interface HandType extends DefaultedRegistryValue {
 
 }

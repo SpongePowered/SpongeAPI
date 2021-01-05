@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.world.generation;
 
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(Structures.class)
-public interface Structure {
+public interface Structure extends DefaultedRegistryValue {
 
 }

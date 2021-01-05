@@ -53,4 +53,6 @@ public interface DefaultedRegistryReference<T> extends RegistryReference<T>, Sup
     T get();
 
     Optional<T> find();
+
+    Supplier<RegistryHolder> defaultHolder();
 }

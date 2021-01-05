@@ -25,6 +25,7 @@
 package org.spongepowered.api.world.portal;
 
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.server.ServerLocation;
@@ -35,7 +36,7 @@ import java.util.Optional;
  * A type of portal, used to move {@link Entity entities} one place to another.
  */
 @CatalogedBy(PortalTypes.class)
-public interface PortalType {
+public interface PortalType extends DefaultedRegistryValue {
 
     /**
      * Generates the portal at the {@link ServerLocation location}.

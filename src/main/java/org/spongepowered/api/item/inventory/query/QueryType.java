@@ -25,18 +25,20 @@
 package org.spongepowered.api.item.inventory.query;
 
 import org.spongepowered.api.item.inventory.Inventory;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a possible type of operation for an {@link Inventory#query inventory query}.
  */
 @CatalogedBy(QueryTypes.class)
-public interface QueryType {
+public interface QueryType extends DefaultedRegistryValue {
 
     /**
      * A type of query that requires no parameters. It can directly be used as a query.
      */
     interface NoParam extends QueryType {
+
         Query toQuery();
     }
 

@@ -30,6 +30,7 @@ import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.state.StateContainer;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -46,6 +47,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * than how vanilla implementations handle them.</p>
  */
 @CatalogedBy(FluidTypes.class)
-public interface FluidType extends StateContainer<FluidState>, DataHolder.Immutable<FluidType> {
+public interface FluidType extends DefaultedRegistryValue, StateContainer<FluidState>, DataHolder.Immutable<FluidType> {
 
 }

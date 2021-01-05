@@ -76,7 +76,5 @@ public interface RegistryKey<T> {
     interface Factory {
 
         <T> RegistryKey<T> of(RegistryType<T> registry, ResourceKey location);
-
-        <T> RegistryKey<T> referenced(RegistryHolder holder, RegistryType<T> registry, T value);
     }
 }

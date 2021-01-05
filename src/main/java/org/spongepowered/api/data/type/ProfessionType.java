@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.entity.living.trader.Villager;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -32,6 +33,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * trade offers a trader may offer to a player.
  */
 @CatalogedBy(ProfessionTypes.class)
-public interface ProfessionType {
+public interface ProfessionType extends DefaultedRegistryValue {
 
 }

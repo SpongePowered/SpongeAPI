@@ -24,12 +24,13 @@
  */
 package org.spongepowered.api.entity.living.monster.boss.dragon.phase;
 
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * An {@link DragonPhase} type.
  */
 @CatalogedBy(DragonPhaseTypes.class)
-public interface DragonPhaseType {
+public interface DragonPhaseType extends DefaultedRegistryValue {
 
 }

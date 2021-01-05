@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(MatterTypes.class)
-public interface MatterType {
+public interface MatterType extends DefaultedRegistryValue {
 
 }

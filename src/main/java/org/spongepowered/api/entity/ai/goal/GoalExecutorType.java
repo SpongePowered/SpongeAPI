@@ -24,8 +24,9 @@
  */
 package org.spongepowered.api.entity.ai.goal;
 
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(GoalExecutorTypes.class)
-public interface GoalExecutorType {
+public interface GoalExecutorType extends DefaultedRegistryValue {
 }

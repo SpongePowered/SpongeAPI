@@ -28,6 +28,7 @@ import net.kyori.adventure.text.ComponentLike;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
@@ -37,7 +38,7 @@ import java.util.function.Supplier;
  * A type of item.
  */
 @CatalogedBy(ItemTypes.class)
-public interface ItemType extends ComponentLike, DataHolder.Immutable<ItemType> {
+public interface ItemType extends DefaultedRegistryValue, ComponentLike, DataHolder.Immutable<ItemType> {
 
     /**
      * Gets the corresponding {@link BlockType} of this item if one exists.

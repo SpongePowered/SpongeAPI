@@ -45,6 +45,10 @@ public interface RegistryType<T> {
         return Objects.requireNonNull(holder, "RegistryHolder cannot be null!").registry(this).valueKey(Objects.requireNonNull(value, "Value cannot be null!"));
     }
 
+    default RegistryReference<T> referenced(final ResourceKey key) {
+        return RegistryKey.of(this, Objects.requireNonNull(key, "key")).asReference();
+    }
+
     /**
      * Gets a utility {@link DefaultedRegistryType defaulted type} for easier querying of the intention of where the registry is contained.
      *

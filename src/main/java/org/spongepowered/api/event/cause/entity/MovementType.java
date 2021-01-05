@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.event.cause.entity;
 
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(MovementTypes.class)
-public interface MovementType {
+public interface MovementType extends DefaultedRegistryValue {
 
 }

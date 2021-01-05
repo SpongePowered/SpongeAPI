@@ -25,9 +25,11 @@
 package org.spongepowered.api.world.schematic;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.RegistryType;
+import org.spongepowered.api.util.Builder;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -35,7 +37,7 @@ import java.util.Optional;
 import java.util.function.BiFunction;
 
 @CatalogedBy(PaletteTypes.class)
-public interface PaletteType<T, R> {
+public interface PaletteType<T, R> extends DefaultedRegistryValue {
 
     @SuppressWarnings("unchecked")
     static <E, ER> Builder<E, ER> builder() {
@@ -48,13 +50,10 @@ public interface PaletteType<T, R> {
 
     BiFunction<Registry<R>, T, String> getStringifier();
 
-    interface Builder<T, R> extends ResettableBuilder<PaletteType<T, R>, Builder<T, R>> {
+    interface Builder<T, R> extends org.spongepowered.api.util.Builder<PaletteType<T, R>, Builder<T, R>> {
 
         Builder<T, R> resolver(BiFunction<String, Registry<R>, Optional<T>> resolver);
 
         Builder<T, R> stringifier(BiFunction<Registry<R>, T, String> stringifier);
-
-        PaletteType<T, R> build() throws IllegalStateException;
     }
-
 }

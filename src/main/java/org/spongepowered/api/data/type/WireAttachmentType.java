@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(WireAttachmentTypes.class)
-public interface WireAttachmentType {
+public interface WireAttachmentType extends DefaultedRegistryValue {
 
 }

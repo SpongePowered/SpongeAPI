@@ -25,12 +25,13 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.entity.projectile.arrow.ArrowEntity;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a pickup rule used by {@link ArrowEntity}s.
  */
 @CatalogedBy(PickupRules.class)
-public interface PickupRule {
+public interface PickupRule extends DefaultedRegistryValue {
 
 }

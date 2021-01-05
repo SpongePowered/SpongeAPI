@@ -25,12 +25,13 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.entity.living.animal.Rabbit;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a type of {@link Rabbit}.
  */
 @CatalogedBy(RabbitTypes.class)
-public interface RabbitType {
+public interface RabbitType extends DefaultedRegistryValue {
 
 }

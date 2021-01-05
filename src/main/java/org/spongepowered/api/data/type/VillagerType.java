@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(VillagerTypes.class)
-public interface VillagerType {
+public interface VillagerType extends DefaultedRegistryValue {
 
 }

@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.item.recipe;
 
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(RecipeTypes.class)
-public interface RecipeType<T extends Recipe> {
+public interface RecipeType<T extends Recipe> extends DefaultedRegistryValue {
 
 
 }

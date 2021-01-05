@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(RaidStatuses.class)
-public interface RaidStatus {
+public interface RaidStatus extends DefaultedRegistryValue {
 
 }

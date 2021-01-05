@@ -24,13 +24,14 @@
  */
 package org.spongepowered.api.service.economy.account;
 
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Indicates whether the deletion of an {@link Account} succeeded.
  */
 @CatalogedBy(AccountDeletionResultTypes.class)
-public interface AccountDeletionResultType {
+public interface AccountDeletionResultType extends DefaultedRegistryValue {
 
     /**
      * Returns whether this result type represents a successful deletion.

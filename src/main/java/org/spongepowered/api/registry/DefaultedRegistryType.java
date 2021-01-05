@@ -24,11 +24,21 @@
  */
 package org.spongepowered.api.registry;
 
+import org.spongepowered.api.ResourceKey;
+
+import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 public interface DefaultedRegistryType<T> extends RegistryType<T> {
 
     Registry<T> get();
 
     Optional<Registry<T>> find();
+
+    Supplier<RegistryHolder> defaultHolder();
+
+    default DefaultedRegistryReference<T> defaultReferenced(final ResourceKey key) {
+        return RegistryKey.of(this, Objects.requireNonNull(key, "key")).asDefaultedReference(this.defaultHolder());
+    }
 }

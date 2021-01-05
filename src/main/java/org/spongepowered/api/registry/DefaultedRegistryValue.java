@@ -22,21 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.util.rotation;
+package org.spongepowered.api.registry;
 
-import org.spongepowered.api.registry.DefaultedRegistryValue;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.ResourceKey;
 
-@CatalogedBy(Rotations.class)
-public interface Rotation extends DefaultedRegistryValue {
+import java.util.Objects;
+import java.util.Optional;
 
-    Rotation and(final Rotation rotation);
+/**
+ * A Utility marker that assists in getting a {@link ResourceKey} for values that generally can be
+ * within a {@link DefaultedRegistryType defaulted registry}.
+ */
+@SuppressWarnings("unchecked")
+public interface DefaultedRegistryValue {
 
-    /**
-     * Gets the the rotation in degrees always in clockwise order.
-     *
-     * @return The rotation in degrees
-     */
-    int getAngle();
+    default <T> ResourceKey key(final DefaultedRegistryType<T> type) {
+        return Objects.requireNonNull(type, "type").get().valueKey((T) this);
+    }
 
+    default <T> Optional<ResourceKey> findKey(final DefaultedRegistryType<T> type) {
+        return Objects.requireNonNull(type, "type").find().flatMap(r -> r.findValueKey((T) this));
+    }
+
+    default <T> DefaultedRegistryReference<T> asDefaultedReference(final DefaultedRegistryType<T> type) {
+        return RegistryKey.of(Objects.requireNonNull(type, "type"), this.key(type)).asDefaultedReference(type.defaultHolder());
+    }
 }

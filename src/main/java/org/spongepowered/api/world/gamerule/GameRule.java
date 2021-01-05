@@ -25,6 +25,7 @@
 package org.spongepowered.api.world.gamerule;
 
 import io.leangen.geantyref.TypeToken;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.Nameable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -36,7 +37,7 @@ import java.lang.reflect.Type;
  * @param <V> The type of the value
  */
 @CatalogedBy(GameRules.class)
-public interface GameRule<V> extends Nameable {
+public interface GameRule<V> extends DefaultedRegistryValue, Nameable {
 
     /**
      * Gets the value {@link TypeToken type}.

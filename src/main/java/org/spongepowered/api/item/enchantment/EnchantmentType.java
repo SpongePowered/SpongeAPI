@@ -27,13 +27,14 @@ package org.spongepowered.api.item.enchantment;
 import net.kyori.adventure.text.ComponentLike;
 import org.spongepowered.api.block.entity.EnchantmentTable;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a modifier on an item that has various effects.
  */
 @CatalogedBy(EnchantmentTypes.class)
-public interface EnchantmentType extends ComponentLike {
+public interface EnchantmentType extends DefaultedRegistryValue, ComponentLike {
 
     /**
      * Gets the weight of this enchantment type.

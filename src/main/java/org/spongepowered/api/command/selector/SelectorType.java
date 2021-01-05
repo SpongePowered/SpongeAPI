@@ -24,13 +24,14 @@
  */
 package org.spongepowered.api.command.selector;
 
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a type of selector that Minecraft supplies.
  */
 @CatalogedBy(SelectorTypes.class)
-public interface SelectorType {
+public interface SelectorType extends DefaultedRegistryValue {
 
     /**
      * Gets the token that represents this selector type when used in commands.

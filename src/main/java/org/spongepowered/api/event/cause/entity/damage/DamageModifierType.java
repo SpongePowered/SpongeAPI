@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.cause.entity.damage;
 
 import org.spongepowered.api.event.Cause;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -35,6 +36,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * {@link DamageModifier#getCause()}.
  */
 @CatalogedBy(DamageModifierTypes.class)
-public interface DamageModifierType {
+public interface DamageModifierType extends DefaultedRegistryValue {
 
 }

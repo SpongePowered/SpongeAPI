@@ -25,13 +25,14 @@
 package org.spongepowered.api.command.registrar.tree;
 
 import org.spongepowered.api.ResourceKeyed;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents the client-side behaviour of a command parameter.
  */
 @CatalogedBy(ClientCompletionKeys.class)
-public interface ClientCompletionKey<T extends CommandTreeNode<T>> extends ResourceKeyed {
+public interface ClientCompletionKey<T extends CommandTreeNode<T>> extends DefaultedRegistryValue, ResourceKeyed {
 
     /**
      * Creates a {@link CommandTreeNode} that represents this

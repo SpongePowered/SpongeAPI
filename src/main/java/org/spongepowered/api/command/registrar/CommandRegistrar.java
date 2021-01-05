@@ -35,6 +35,7 @@ import org.spongepowered.api.command.manager.CommandMapping;
 import org.spongepowered.api.command.registrar.tree.CommandTreeNode;
 import org.spongepowered.api.event.EventContextKeys;
 import org.spongepowered.api.event.lifecycle.RegisterRegistryValueEvent;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.plugin.PluginContainer;
 
 import java.util.List;
@@ -74,7 +75,7 @@ import java.util.Optional;
  *
  * @param <T> The type of command interface this handles.
  */
-public interface CommandRegistrar<T> {
+public interface CommandRegistrar<T> extends DefaultedRegistryValue {
 
     /**
      * Gets the type of command that this registrar handles.

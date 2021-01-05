@@ -25,10 +25,11 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(BoatTypes.class)
-public interface BoatType {
+public interface BoatType extends DefaultedRegistryValue {
 
     BlockType getRepresentedBlock();
 }

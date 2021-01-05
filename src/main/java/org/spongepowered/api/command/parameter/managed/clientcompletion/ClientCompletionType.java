@@ -25,6 +25,7 @@
 package org.spongepowered.api.command.parameter.managed.clientcompletion;
 
 import org.spongepowered.api.command.parameter.managed.ValueParser;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -32,5 +33,5 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * {@link ValueParser} when completed by the client.
  */
 @CatalogedBy(ClientCompletionTypes.class)
-public interface ClientCompletionType {
+public interface ClientCompletionType extends DefaultedRegistryValue {
 }

@@ -24,12 +24,13 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents the type of cat a cat is.
  */
 @CatalogedBy(CatTypes.class)
-public interface CatType {
+public interface CatType extends DefaultedRegistryValue {
 
 }

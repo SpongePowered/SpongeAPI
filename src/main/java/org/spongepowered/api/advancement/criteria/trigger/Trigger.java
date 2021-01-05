@@ -35,6 +35,7 @@ import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.event.advancement.CriterionEvent;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.scoreboard.criteria.Criterion;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.Nameable;
@@ -55,7 +56,7 @@ import java.util.function.UnaryOperator;
  */
 @SuppressWarnings("unchecked")
 @CatalogedBy(Triggers.class)
-public interface Trigger<C extends FilteredTriggerConfiguration> extends ResourceKeyed, Nameable {
+public interface Trigger<C extends FilteredTriggerConfiguration> extends DefaultedRegistryValue, ResourceKeyed, Nameable {
 
     /**
      * Creates a new {@link Builder} which can be used to create

@@ -25,13 +25,14 @@
 package org.spongepowered.api.entity.attribute.type;
 
 import org.spongepowered.api.entity.attribute.AttributeModifier;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents an attribute type that can apply effects or modify traits related to an entity.
  */
 @CatalogedBy(AttributeTypes.class)
-public interface AttributeType {
+public interface AttributeType extends DefaultedRegistryValue {
 
     /**
      * Gets the default value of this attribute type before any {@link AttributeModifier}s are applied.

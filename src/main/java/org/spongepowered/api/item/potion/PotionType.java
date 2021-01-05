@@ -25,6 +25,7 @@
 package org.spongepowered.api.item.potion;
 
 import org.spongepowered.api.effect.potion.PotionEffect;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.List;
@@ -33,7 +34,7 @@ import java.util.List;
  * Represents a type of potion with specific {@link PotionEffect}s.
  */
 @CatalogedBy(PotionTypes.class)
-public interface PotionType {
+public interface PotionType extends DefaultedRegistryValue {
 
     List<PotionEffect> getEffects();
 }

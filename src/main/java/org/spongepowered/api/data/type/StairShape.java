@@ -24,12 +24,13 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a stair shape.
  */
 @CatalogedBy(StairShapes.class)
-public interface StairShape {
+public interface StairShape extends DefaultedRegistryValue {
 
 }
