@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.block.entity.carrier;
 
+import org.spongepowered.api.block.entity.NameableBlockEntity;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.effect.potion.PotionEffectType;
@@ -37,7 +38,7 @@ import java.util.Optional;
  * Depending on the completed levels of the beacon, the effects may be applied
  * at a further range or shorter range.</p>
  */
-public interface Beacon extends NameableCarrierBlockEntity {
+public interface Beacon extends NameableBlockEntity {
 
     /**
      * Gets the number of completed levels of valid beacon structure blocks
