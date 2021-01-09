@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.item.inventory.crafting;
 
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.type.GridInventory;
 import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
 import org.spongepowered.api.world.server.ServerWorld;
@@ -34,7 +35,7 @@ import java.util.Optional;
  * A CraftingGridInventory represents the inventory of something that can craft
  * items. This is excluding the Result slot.
  */
-public interface CraftingGridInventory extends GridInventory {
+public interface CraftingGridInventory extends Inventory {
     /**
      * Retrieves the recipe formed by this CraftingGridInventory, if any.
      *
@@ -42,4 +43,11 @@ public interface CraftingGridInventory extends GridInventory {
      * @return The recipe or {@link Optional#empty()} if no recipe is formed
      */
     Optional<CraftingRecipe> getRecipe(ServerWorld world);
+
+    /**
+     * Returns this inventory as a grid.
+     *
+     * @return the grid inventory
+     */
+    GridInventory asGrid();
 }
