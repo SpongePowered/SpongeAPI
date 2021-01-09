@@ -29,6 +29,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.recipe.cooking.CookingRecipe;
 import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
 import org.spongepowered.api.item.recipe.single.StoneCutterRecipe;
+import org.spongepowered.api.item.recipe.smithing.SmithingRecipe;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
@@ -57,6 +58,8 @@ public final class RecipeTypes {
     public static final DefaultedRegistryReference<RecipeType<CookingRecipe>> CAMPFIRE_COOKING = RecipeTypes.key(ResourceKey.minecraft("campfire_cooking"));
 
     public static final DefaultedRegistryReference<RecipeType<StoneCutterRecipe>> STONECUTTING = RecipeTypes.key(ResourceKey.minecraft("stonecutting"));
+
+    public static final DefaultedRegistryReference<RecipeType<SmithingRecipe>> SMITHING = RecipeTypes.key(ResourceKey.minecraft("smithing"));
 
     // SORTFIELDS:OFF
 
