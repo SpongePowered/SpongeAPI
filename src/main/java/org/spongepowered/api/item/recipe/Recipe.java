@@ -42,6 +42,7 @@ import org.spongepowered.api.item.recipe.crafting.ShapelessCraftingRecipe;
 import org.spongepowered.api.item.recipe.crafting.SpecialCraftingRecipe;
 import org.spongepowered.api.item.recipe.single.StoneCutterRecipe;
 import org.spongepowered.api.item.recipe.cooking.CookingRecipe;
+import org.spongepowered.api.item.recipe.smithing.SmithingRecipe;
 import org.spongepowered.api.world.server.ServerWorld;
 
 import java.util.List;
@@ -55,6 +56,7 @@ import java.util.Optional;
  * <p>{@link SpecialCraftingRecipe} for recipes with complex ingredients and result in a {@link CraftingInventory}</p>
  * <p>{@link CookingRecipe} for recipes in {@link Furnace}, {@link BlastFurnace}, {@link Smoker} and {@link Campfire}</p>
  * <p>{@link StoneCutterRecipe} for recipes in a {@link BlockTypes#STONECUTTER} block</p>
+ * <p>{@link SmithingRecipe} for recipes in a {@link BlockTypes#SMITHING_TABLE} block</p>
  */
 public interface Recipe extends ResourceKeyed {
 

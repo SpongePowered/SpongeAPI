@@ -191,6 +191,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<ProfessionType> PROFESSION_TYPE = RegistryTypes.minecraftKeyInGame("villager_profession");
 
+    public static final DefaultedRegistryType<PotionType> POTION_TYPE = RegistryTypes.minecraftKeyInGame("potion");
+
     // ----
 
     public static final DefaultedRegistryType<AccountDeletionResultType> ACCOUNT_DELETION_RESULT_TYPE = RegistryTypes.spongeKeyInGame("account_deletion_result_type");
@@ -332,8 +334,6 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<PortalType> PORTAL_TYPE = RegistryTypes.spongeKeyInGame("portal_type");
 
     public static final DefaultedRegistryType<PortionType> PORTION_TYPE = RegistryTypes.spongeKeyInGame("portion_type");
-
-    public static final DefaultedRegistryType<PotionType> POTION_TYPE = RegistryTypes.spongeKeyInGame("potion_type");
 
     public static final DefaultedRegistryType<RabbitType> RABBIT_TYPE = RegistryTypes.spongeKeyInGame("rabbit_type");
 
