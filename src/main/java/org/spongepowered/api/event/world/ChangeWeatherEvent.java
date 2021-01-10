@@ -22,30 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.weather;
+package org.spongepowered.api.event.world;
 
-import org.spongepowered.api.data.persistence.DataSerializable;
+import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.Ticks;
+import org.spongepowered.api.world.weather.Weather;
+import org.spongepowered.api.world.weather.WeatherType;
+import org.spongepowered.api.world.weather.WeatherUniverse;
 
-public interface Weather extends DataSerializable {
+/**
+ * Called when a {@link Weather} change occurs
+ */
+public interface ChangeWeatherEvent extends Event, Cancellable {
 
-    /**
-     * Gets the {@link WeatherType type}.
-     * @return The type
-     */
-    WeatherType type();
+    WeatherUniverse universe();
 
-    /**
-     * Gets the remaining {@link Ticks} of this weather.
-     *
-     * @return The remaining duration
-     */
-    Ticks remainingDuration();
+    Weather originalWeather();
 
-    /**
-     * Gets the number of {@link Ticks} that the weather has ran for.
-     *
-     * @return The running duration
-     */
-    Ticks runningDuration();
+    Weather newWeather();
+
+    void setWeather(WeatherType type);
+
+    void setWeather(WeatherType type, Ticks duration);
 }

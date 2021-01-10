@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.Engine;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.util.RandomProvider;
-import org.spongepowered.api.world.chunk.ProtoChunk;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.volume.biome.BiomeVolume;
 import org.spongepowered.api.world.volume.block.BlockVolume;
@@ -56,7 +56,12 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
     MutableGameVolume
 {
 
-    ProtoChunk<?> getChunk(int cx, int cy, int cz);
+    /**
+     * Gets the {@link Engine} that simulates this world.
+     *
+     * @return The engine
+     */
+    Engine getEngine();
 
     /**
      * Gets the seed of this world.
@@ -73,19 +78,17 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
     Difficulty getDifficulty();
 
     @Override
-    default boolean setBlock(Vector3i position, BlockState state, BlockChangeFlag flag) {
+    default boolean setBlock(final Vector3i position, final BlockState state, final BlockChangeFlag flag) {
         Objects.requireNonNull(position, "position");
-        Objects.requireNonNull(state, "state");
-        Objects.requireNonNull(flag, "flag");
 
-        return this.setBlock(position.getX(), position.getY(), position.getZ(), state, flag);
+        return this.setBlock(position.getX(), position.getY(), position.getZ(), Objects.requireNonNull(state, "state"), Objects.requireNonNull(flag, "flag"));
     }
 
     @Override
     boolean setBlock(int x, int y, int z, BlockState state, BlockChangeFlag flag);
 
     @Override
-    default boolean removeBlock(Vector3i position) {
+    default boolean removeBlock(final Vector3i position) {
         Objects.requireNonNull(position, "position");
 
         return this.removeBlock(position.getX(), position.getY(), position.getZ());

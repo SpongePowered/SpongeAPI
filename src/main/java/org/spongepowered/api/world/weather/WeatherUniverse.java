@@ -32,25 +32,30 @@ import org.spongepowered.api.util.Ticks;
 public interface WeatherUniverse {
 
     /**
-     * Gets the current {@link Weather} in this volume.
+     * Gets the current {@link Weather} taking place in this volume.
      *
      * @return The current weather.
      */
-    Weather getWeather();
+    Weather weather();
 
-    /**
-     * Gets the remaining {@link Ticks} before the current {@link Weather}
-     * changes.
-     *
-     * @return The remaining {@link Ticks} before the weather changes
-     */
-    Ticks getRemainingWeatherDuration();
+    interface Mutable extends WeatherUniverse {
 
-    /**
-     * Gets the number of {@link Ticks} that the current {@link Weather}
-     * has been running for.
-     *
-     * @return The running weather tick duration
-     */
-    Ticks getRunningWeatherDuration();
+        /**
+         * Sets the {@link Weather} of this universe with a random duration.
+         *
+         * @param type The type of weather
+         */
+        void setWeather(WeatherType type);
+
+        /**
+         * Sets the {@link WeatherType} of the world with the specified {@link Ticks}
+         * duration.
+         *
+         * @param type The weather that should be switched to
+         * @param ticks The specified tick duration
+         * @return The weather
+         */
+        void setWeather(WeatherType type, Ticks ticks);
+    }
+
 }

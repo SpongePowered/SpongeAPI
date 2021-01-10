@@ -44,8 +44,8 @@ public interface Volume {
      * @param position The position to check
      * @return Whether or not the position has a block in this volume
      */
-    default boolean containsBlock(Vector3i position) {
-        Objects.requireNonNull(position);
+    default boolean containsBlock(final Vector3i position) {
+        Objects.requireNonNull(position, "position");
 
         return this.containsBlock(position.getX(), position.getY(), position.getZ());
     }
@@ -62,10 +62,10 @@ public interface Volume {
      */
     boolean containsBlock(int x, int y, int z);
 
-    default boolean isAreaAvailable(Vector3i vector3i) {
-        Objects.requireNonNull(vector3i);
+    default boolean isAreaAvailable(final Vector3i position) {
+        Objects.requireNonNull(position, "position");
 
-        return this.isAreaAvailable(vector3i.getX(), vector3i.getY(), vector3i.getZ());
+        return this.isAreaAvailable(position.getX(), position.getY(), position.getZ());
     }
 
     boolean isAreaAvailable(int x, int y, int z);

@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.generation;
+package org.spongepowered.api.world.generation.structure;
 
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;

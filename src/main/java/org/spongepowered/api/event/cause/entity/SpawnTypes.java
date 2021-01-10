@@ -42,7 +42,7 @@ import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
-import org.spongepowered.api.world.weather.Weather;
+import org.spongepowered.api.world.weather.WeatherType;
 import org.spongepowered.plugin.PluginContainer;
 
 @SuppressWarnings("unused")
@@ -147,7 +147,7 @@ public final class SpawnTypes {
     public static final DefaultedRegistryReference<SpawnType> TNT_IGNITE = SpawnTypes.key(ResourceKey.sponge("tnt_ignite"));
 
     /**
-     * When an entity is spawned from the current {@link Weather}
+     * When an entity is spawned from the current {@link WeatherType}
      * state of a {@link World}.
      */
     public static final DefaultedRegistryReference<SpawnType> WEATHER = SpawnTypes.key(ResourceKey.sponge("weather"));

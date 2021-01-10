@@ -28,7 +28,6 @@ import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.key.KeyedValue;
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
@@ -40,17 +39,16 @@ import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.difficulty.Difficulty;
-import org.spongepowered.api.world.generation.MutableWorldGenerationConfig;
 import org.spongepowered.api.world.generation.config.WorldGenerationConfig;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.storage.WorldProperties;
-import org.spongepowered.api.world.weather.MutableWeatherUniverse;
+import org.spongepowered.api.world.weather.WeatherUniverse;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface ServerWorldProperties extends WorldProperties, Identifiable, MutableWeatherUniverse, ResourceKeyed {
+public interface ServerWorldProperties extends WorldProperties, Identifiable, ResourceKeyed, WeatherUniverse.Mutable {
 
     /**
      * Gets the {@link ServerWorld} that correlates to this properties, if available.
@@ -156,7 +154,7 @@ public interface ServerWorldProperties extends WorldProperties, Identifiable, Mu
      * Gets the {@link WorldGenerationConfig}
      * @return The world generation settings
      */
-    MutableWorldGenerationConfig worldGenerationSettings();
+    WorldGenerationConfig.Mutable worldGenerationConfig();
 
     /**
      * Sets the in-game time of day.

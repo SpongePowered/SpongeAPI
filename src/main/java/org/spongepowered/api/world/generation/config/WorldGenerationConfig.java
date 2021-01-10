@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.world.generation.config;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.server.ServerWorld;
 
 /**
@@ -51,4 +53,43 @@ public interface WorldGenerationConfig {
      * @return Whether bonus chest will generate
      */
     boolean generateBonusChest();
+
+    interface Mutable extends WorldGenerationConfig {
+
+        static Builder builder() {
+            return Sponge.getGame().getBuilderProvider().provide(Builder.class).reset();
+        }
+
+        /**
+         * Sets the seed
+         *
+         * @param seed The seed
+         */
+        void seed(long seed);
+
+        /**
+         * Sets whether features will generate
+         *
+         * @param generateFeatures Whether features will generate
+         */
+        void generateFeatures(boolean generateFeatures);
+
+        /**
+         * Sets if the bonus chest will generate.
+         *
+         * @param generateBonusChest Whether bonus chest will generate
+         */
+        void generateBonusChest(boolean generateBonusChest);
+
+        interface Builder extends org.spongepowered.api.util.Builder<WorldGenerationConfig.Mutable, Builder>, CopyableBuilder<WorldGenerationConfig, Builder> {
+
+            Builder seed(long seed);
+
+            Builder generateFeatures(boolean generateFeatures);
+
+            Builder generateBonusChest(boolean generateBonusChest);
+
+            WorldGenerationConfig.Mutable build();
+        }
+    }
 }

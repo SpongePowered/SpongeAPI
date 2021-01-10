@@ -224,8 +224,8 @@ import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.server.ServerWorld;
-import org.spongepowered.api.world.weather.Weather;
-import org.spongepowered.api.world.weather.Weathers;
+import org.spongepowered.api.world.weather.WeatherType;
+import org.spongepowered.api.world.weather.WeatherTypes;
 import org.spongepowered.math.vector.Vector2i;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
@@ -643,7 +643,7 @@ public final class Keys {
     public static final Key<Value<Vector3d>> DERAILED_VELOCITY_MODIFIER = Keys.key(ResourceKey.sponge("derailed_velocity_modifier"), TypeTokens.VECTOR_3D_VALUE_TOKEN);
 
     /**
-     * The despawn delay (in ticks) of a {@link Item}, {@link Endermite}, {@link Weather} {@link TraderLlama} or {@link EyeOfEnder}.
+     * The despawn delay (in ticks) of a {@link Item}, {@link Endermite}, {@link WeatherType} {@link TraderLlama} or {@link EyeOfEnder}.
      */
     public static final Key<Value<Ticks>> DESPAWN_DELAY = Keys.key(ResourceKey.sponge("despawn_delay"), TypeTokens.TICKS_VALUE_TOKEN);
 
@@ -1306,8 +1306,8 @@ public final class Keys {
      * Whether an entity is frightened.
      *
      * <p>In vanilla, {@link Panda}s that have a {@link Panda#knownGene()}
-     * of {@link PandaGenes#WORRIED} and are in a {@link ServerWorld world} whose {@link Weather} is currently a
-     * {@link Weathers#THUNDER} are considered "frightened".</p>
+     * of {@link PandaGenes#WORRIED} and are in a {@link ServerWorld world} whose {@link WeatherType} is currently a
+     * {@link WeatherTypes#THUNDER} are considered "frightened".</p>
      */
     public static final Key<Value<Boolean>> IS_FRIGHTENED = Keys.key(ResourceKey.sponge("is_frightened"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 

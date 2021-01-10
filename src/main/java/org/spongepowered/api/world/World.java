@@ -26,9 +26,7 @@ package org.spongepowered.api.world;
 
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.audience.ForwardingAudience;
-import org.spongepowered.api.Engine;
 import org.spongepowered.api.Server;
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
@@ -52,23 +50,8 @@ import java.util.function.Predicate;
  * A loaded Minecraft world.
  */
 @DoNotStore
-public interface World<W extends World<W, L>, L extends Location<W, L>> extends ForwardingAudience,
-    ProtoWorld<W>,
-    LocationCreator<W, L>,
-    PhysicsAwareMutableBlockVolume<W>,
-    ContextSource,
-    Viewer,
-    ArchetypeVolumeCreator,
-    WeatherUniverse,
-    ScopedRegistryHolder
-{
-
-    /**
-     * Gets the {@link Engine} that simulates this world.
-     *
-     * @return The engine
-     */
-    Engine getEngine();
+public interface World<W extends World<W, L>, L extends Location<W, L>> extends ForwardingAudience, ProtoWorld<W>, LocationCreator<W, L>,
+        PhysicsAwareMutableBlockVolume<W>, ContextSource, Viewer, ArchetypeVolumeCreator, WeatherUniverse, ScopedRegistryHolder {
 
     /**
      * Gets the {@link WorldProperties properties}.
@@ -105,19 +88,25 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends 
     }
 
     default Optional<? extends Player> getClosestPlayer(final Vector3i position, final double distance) {
+        Objects.requireNonNull(position, "position");
         return this.getClosestPlayer(position.getX(), position.getY(), position.getZ(), distance, player -> true);
     }
 
     default Optional<? extends Player> getClosestPlayer(final Vector3i position, final double distance, final Predicate<? super Player> predicate) {
+        Objects.requireNonNull(position, "position");
+        Objects.requireNonNull(predicate, "predicate");
         return this.getClosestPlayer(position.getX(), position.getY(), position.getZ(), distance, predicate);
     }
 
     default Optional<? extends Player> getClosestPlayer(final Entity entity, final double distance) {
+        Objects.requireNonNull(entity, "entity");
         final Vector3d position = entity.getLocation().getPosition();
         return this.getClosestPlayer(position.getFloorX(), position.getFloorY(), position.getFloorZ(), distance, player -> true);
     }
 
     default Optional<? extends Player> getClosestPlayer(final Entity entity, final double distance, final Predicate<? super Player> predicate) {
+        Objects.requireNonNull(entity, "entity");
+        Objects.requireNonNull(predicate, "predicate");
         final Vector3d position = entity.getLocation().getPosition();
         return this.getClosestPlayer(position.getFloorX(), position.getFloorY(), position.getFloorZ(), distance, predicate);
     }
@@ -136,18 +125,14 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends 
      * check for these cases prior to attmepting to modify the chunk.
      *
      * <p>Note that this is still different from {@link #getChunk(Vector3i)}
-     * due to the relative block position dictated by {@link Server#getChunkLayout()},
-     * which can vary depending on implementation and other mods installed.</p>
+     * due to it being a relative block position which can vary depending on
+     * implementation and other mods installed.</p>
      *
      * @param blockPosition The block position to be transformed for relative chunk position
      * @return The available chunk at that position
      */
     @Override
-    default Chunk getChunkAtBlock(final Vector3i blockPosition) {
-        Objects.requireNonNull(blockPosition);
-        final Vector3i chunkPos = Sponge.getServer().getChunkLayout().forceToChunk(blockPosition);
-        return this.getChunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
-    }
+    Chunk getChunkAtBlock(final Vector3i blockPosition);
 
     /**
      * {@inheritDoc}
@@ -179,8 +164,8 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends 
      * @return The available chunk at that position
      */
     @Override
-    default Chunk getChunk(Vector3i chunkPos) {
-        Objects.requireNonNull(chunkPos);
+    default Chunk getChunk(final Vector3i chunkPos) {
+        Objects.requireNonNull(chunkPos, "chunkPos");
         return this.getChunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
     }
 
@@ -207,8 +192,8 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends 
      * @param shouldGenerate True to generate a new chunk
      * @return The loaded or generated chunk, if already generated
      */
-    default Optional<Chunk> loadChunk(Vector3i chunkPosition, boolean shouldGenerate) {
-        Objects.requireNonNull(chunkPosition);
+    default Optional<Chunk> loadChunk(final Vector3i chunkPosition, final boolean shouldGenerate) {
+        Objects.requireNonNull(chunkPosition, "chunkPosition");
         return this.loadChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), shouldGenerate);
     }
 

@@ -25,17 +25,19 @@
 package org.spongepowered.api.world.generation;
 
 import org.spongepowered.api.Server;
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.world.ProtoWorld;
+import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3i;
+
+import java.util.Objects;
 
 /**
  * A generating region of {@link PrimitiveChunk}s that are in the
@@ -50,6 +52,18 @@ import org.spongepowered.math.vector.Vector3i;
  * by the {@link Server} or {@link World}(s).
  */
 public interface GenerationRegion extends ProtoWorld<GenerationRegion> {
+
+    ServerWorld getWorld();
+
+    @Override
+    default Server getEngine() {
+        return this.getWorld().getEngine();
+    }
+
+    @Override
+    default Difficulty getDifficulty() {
+        return this.getWorld().getDifficulty();
+    }
 
     Vector3i getCenterChunkPos();
 
@@ -66,23 +80,22 @@ public interface GenerationRegion extends ProtoWorld<GenerationRegion> {
     }
 
     @Override
-    default PrimitiveChunk getChunkAtBlock(Vector3i position) {
+    default PrimitiveChunk getChunkAtBlock(final Vector3i position) {
+        Objects.requireNonNull(position, "position");
         return this.getChunkAtBlock(position.getX(), position.getY(), position.getZ());
     }
 
     @Override
-    default PrimitiveChunk getChunkAtBlock(int x, int y, int z) {
-        return this.getChunk(Sponge.getServer().getChunkLayout().toChunk(x, y, z)
-                .orElseThrow(() -> new IllegalArgumentException(String.format("Cannot convert (%s, %s, %s) to chunk coordinates.", x, y, z))));
+    default PrimitiveChunk getChunkAtBlock(final int x, final int y, final int z) {
+        return this.getChunk(this.getEngine().getChunkLayout().toChunk(x, y, z).orElseThrow(() -> new IllegalArgumentException(String.format("Cannot convert (%s, %s, %s) to chunk coordinates.", x, y, z))));
     }
 
     @Override
-    default PrimitiveChunk getChunk(Vector3i chunkPosition) {
+    default PrimitiveChunk getChunk(final Vector3i chunkPosition) {
+        Objects.requireNonNull(chunkPosition, "chunkPosition");
         return this.getChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ());
     }
 
     @Override
     PrimitiveChunk getChunk(int cx, int cy, int cz);
-
-    ServerWorld getWorld();
 }

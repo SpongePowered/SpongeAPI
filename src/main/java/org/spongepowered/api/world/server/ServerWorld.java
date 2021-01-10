@@ -38,7 +38,6 @@ import org.spongepowered.api.world.ChunkRegenerateFlags;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
-import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.WorldTypes;
 import org.spongepowered.api.world.explosion.Explosion;
@@ -46,7 +45,7 @@ import org.spongepowered.api.world.generation.ChunkGenerator;
 import org.spongepowered.api.world.server.storage.ServerWorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
 import org.spongepowered.api.world.volume.game.InteractableVolume;
-import org.spongepowered.api.world.weather.MutableWeatherUniverse;
+import org.spongepowered.api.world.weather.WeatherUniverse;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.io.IOException;
@@ -56,8 +55,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identifiable, InteractableVolume, MutableWeatherUniverse,
-        ServerLocationCreator {
+public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identifiable, InteractableVolume,
+        ServerLocationCreator, WeatherUniverse.Mutable {
 
     @Override
     Server getEngine();
@@ -85,12 +84,7 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
     }
 
     @Override
-    default Difficulty getDifficulty() {
-        return this.getProperties().difficulty();
-    }
-
-    @Override
-    default Chunk getChunkAtBlock(int bx, int by, int bz) {
+    default Chunk getChunkAtBlock(final int bx, final int by, final int bz) {
         final Vector3i chunkPos = this.getEngine().getChunkLayout().forceToChunk(bx, by, bz);
         return this.getChunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
     }
@@ -114,7 +108,7 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
      * @param cz The chunk z coordinate
      * @return The regenerated chunk, if available
      */
-    default Optional<Chunk> regenerateChunk(int cx, int cy, int cz) {
+    default Optional<Chunk> regenerateChunk(final int cx, final int cy, final int cz) {
         return this.regenerateChunk(cx, cy, cz, ChunkRegenerateFlags.ALL.get());
     }
 
@@ -126,7 +120,8 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
      * @return The regenerated chunk, if available
      */
     default Optional<Chunk> regenerateChunk(final Vector3i chunkPosition, final ChunkRegenerateFlag flag) {
-        return this.regenerateChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), flag);
+        Objects.requireNonNull(chunkPosition, "chunkPosition");
+        return this.regenerateChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), Objects.requireNonNull(flag, "flag"));
     }
 
     /**
@@ -203,8 +198,7 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
      */
     default boolean restoreSnapshot(final Vector3i position, final BlockSnapshot snapshot, final boolean force, final BlockChangeFlag flag) {
         Objects.requireNonNull(position, "position");
-        return this.restoreSnapshot(position.getX(), position.getY(), position.getZ(), Objects.requireNonNull(snapshot, "snapshot"), force,
-                Objects.requireNonNull(flag, "flag"));
+        return this.restoreSnapshot(position.getX(), position.getY(), position.getZ(), Objects.requireNonNull(snapshot, "snapshot"), force, Objects.requireNonNull(flag, "flag"));
     }
 
     /**

@@ -25,7 +25,6 @@
 package org.spongepowered.api.world.volume.game;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.server.ServerLocation;
@@ -99,9 +98,7 @@ public interface ChunkVolume extends BlockVolume {
      * @param bz The z coordinate
      * @return The chunk, if available
      */
-    default ProtoChunk<@NonNull ?> getChunkAtBlock(final int bx, final int by, final int bz) {
-        return this.getChunk(Sponge.getServer().getChunkLayout().forceToChunk(bx, by, bz));
-    }
+    ProtoChunk<@NonNull ?> getChunkAtBlock(final int bx, final int by, final int bz);
 
     boolean isChunkLoaded(int x, int y, int z, boolean allowEmpty);
 

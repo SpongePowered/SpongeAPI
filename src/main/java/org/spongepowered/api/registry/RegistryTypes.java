@@ -129,7 +129,7 @@ import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.ChunkRegenerateFlag;
 import org.spongepowered.api.world.HeightType;
 import org.spongepowered.api.world.LightType;
-import org.spongepowered.api.world.generation.Structure;
+import org.spongepowered.api.world.generation.structure.Structure;
 import org.spongepowered.api.world.biome.Biome;
 import org.spongepowered.api.world.chunk.ChunkState;
 import org.spongepowered.api.world.difficulty.Difficulty;
@@ -138,7 +138,7 @@ import org.spongepowered.api.world.gamerule.GameRule;
 import org.spongepowered.api.world.portal.PortalType;
 import org.spongepowered.api.world.schematic.PaletteType;
 import org.spongepowered.api.world.teleport.TeleportHelperFilter;
-import org.spongepowered.api.world.weather.Weather;
+import org.spongepowered.api.world.weather.WeatherType;
 
 import java.util.Objects;
 
@@ -373,7 +373,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<Visibility> VISIBILITY = RegistryTypes.spongeKeyInGame("visibility");
 
-    public static final DefaultedRegistryType<Weather> WEATHER = RegistryTypes.spongeKeyInGame("weather");
+    public static final DefaultedRegistryType<WeatherType> WEATHER_TYPE = RegistryTypes.spongeKeyInGame("weather_type");
 
     public static final DefaultedRegistryType<WireAttachmentType> WIRE_ATTACHMENT_TYPE = RegistryTypes.spongeKeyInGame("wire_attachment_type");
     

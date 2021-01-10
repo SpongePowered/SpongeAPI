@@ -24,23 +24,36 @@
  */
 package org.spongepowered.api.world.weather;
 
-import org.spongepowered.api.util.Ticks;
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-public interface MutableWeatherUniverse {
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
+public final class WeatherTypes {
 
-    /**
-     * Sets the {@link Weather} of the volume with a random duration.
-     *
-     * @param weather The weather that should be switched to
-     */
-    void setWeather(Weather weather);
+    // @formatter:off
 
-    /**
-     * Sets the {@link Weather} of the world with the specified {@link Ticks}
-     * duration.
-     *
-     * @param weather The weather that should be switched to
-     * @param ticks The specified tick duration
-     */
-    void setWeather(Weather weather, Ticks ticks);
+    // SORTFIELDS:ON
+
+    public static final DefaultedRegistryReference<WeatherType> CLEAR = WeatherTypes.key(ResourceKey.sponge("clear"));
+
+    public static final DefaultedRegistryReference<WeatherType> RAIN = WeatherTypes.key(ResourceKey.sponge("rain"));
+
+    public static final DefaultedRegistryReference<WeatherType> THUNDER = WeatherTypes.key(ResourceKey.sponge("thunder"));
+
+    // SORTFIELDS:OFF
+
+    // @formatter:on
+
+    private WeatherTypes() {
+    }
+
+    private static DefaultedRegistryReference<WeatherType> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.WEATHER_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

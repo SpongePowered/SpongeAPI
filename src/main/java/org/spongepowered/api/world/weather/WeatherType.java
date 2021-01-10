@@ -22,12 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.generation;
+package org.spongepowered.api.world.weather;
 
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-@CatalogedBy(Structures.class)
-public interface Structure extends DefaultedRegistryValue {
+/**
+ * Represents a type of weather.
+ */
+@CatalogedBy(WeatherTypes.class)
+public interface WeatherType extends DefaultedRegistryValue {
 
 }

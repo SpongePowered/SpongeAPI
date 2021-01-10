@@ -26,9 +26,8 @@ package org.spongepowered.api.world.generation.config.structure;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.registry.RegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.world.generation.Structure;
+import org.spongepowered.api.world.generation.structure.Structure;
 
 import java.util.Map;
 import java.util.Optional;

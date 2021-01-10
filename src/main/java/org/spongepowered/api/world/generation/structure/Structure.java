@@ -22,41 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.weather;
+package org.spongepowered.api.world.generation.structure;
 
-import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.registry.RegistryKey;
-import org.spongepowered.api.registry.RegistryScope;
-import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-/**
- * All possible {@link Weather}s in vanilla minecraft.
- */
-@SuppressWarnings("unused")
-@RegistryScopes(scopes = RegistryScope.GAME)
-public final class Weathers {
+@CatalogedBy(Structures.class)
+public interface Structure extends DefaultedRegistryValue {
 
-    // @formatter:off
-
-    // SORTFIELDS:ON
-
-    public static final DefaultedRegistryReference<Weather> CLEAR = Weathers.key(ResourceKey.sponge("clear"));
-
-    public static final DefaultedRegistryReference<Weather> RAIN = Weathers.key(ResourceKey.sponge("rain"));
-
-    public static final DefaultedRegistryReference<Weather> THUNDER = Weathers.key(ResourceKey.sponge("thunder"));
-
-    // SORTFIELDS:OFF
-
-    // @formatter:on
-
-    private Weathers() {
-    }
-
-    private static DefaultedRegistryReference<Weather> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.WEATHER, location).asDefaultedReference(() -> Sponge.getGame().registries());
-    }
 }
