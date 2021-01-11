@@ -27,6 +27,7 @@ package org.spongepowered.api.item.recipe.cooking;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.Recipe;
@@ -36,6 +37,7 @@ import org.spongepowered.api.item.recipe.crafting.Ingredient;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
 
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
@@ -197,6 +199,16 @@ public interface CookingRecipe extends Recipe {
              * @return This builder, for chaining
              */
             EndStep result(ItemStackSnapshot result);
+
+            /**
+             * Sets the result function and an exemplary result.
+             *
+             * @param resultFunction The result function
+             * @param exemplaryResult The exemplary result stack
+             *
+             * @return The builder
+             */
+            EndStep result(final Function<Inventory, ItemStack> resultFunction, final org.spongepowered.api.item.inventory.ItemStack exemplaryResult);
         }
 
         interface EndStep extends Builder,
