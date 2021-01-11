@@ -81,20 +81,6 @@ public interface ServerWorldProperties extends WorldProperties, Identifiable, Re
     boolean initialized();
 
     /**
-     * Gets whether this is enabled.
-     *
-     * @return Enabled
-     */
-    boolean enabled();
-
-    /**
-     * Sets whether this is enabled.
-     *
-     * @param enabled enabled
-     */
-    void setEnabled(boolean enabled);
-
-    /**
      * Gets whether this world will load when the server starts up.
      *
      * @return Load on startup

@@ -78,8 +78,6 @@ public interface WorldTemplate extends ResourceKeyed, DataPackSerializable {
 
     Optional<SerializationBehavior> serializationBehavior();
 
-    boolean enabled();
-
     boolean loadOnStartup();
 
     boolean performsSpawnLogic();
@@ -113,8 +111,6 @@ public interface WorldTemplate extends ResourceKeyed, DataPackSerializable {
         Builder difficulty(RegistryReference<Difficulty> difficulty);
 
         Builder serializationBehavior(@Nullable SerializationBehavior behavior);
-
-        Builder enabled(boolean enabled);
 
         Builder loadOnStartup(boolean loadOnStartup);
 
