@@ -152,14 +152,14 @@ public interface WorldManager {
      * @param template The template
      * @return Whether the operation was successful
      */
-    boolean saveTemplate(WorldTemplate template);
+    CompletableFuture<Boolean> saveTemplate(WorldTemplate template);
 
     /**
      * Gets a {@link WorldTemplate template} by a {@link ResourceKey key}.
      * @param key The key
      * @return The template or {@link Optional#empty()} if not found
      */
-    Optional<WorldTemplate> loadTemplate(ResourceKey key);
+    CompletableFuture<Optional<WorldTemplate>> loadTemplate(ResourceKey key);
 
     /**
      * Copies world data under the provided {@link ResourceKey key} to a provided key.
