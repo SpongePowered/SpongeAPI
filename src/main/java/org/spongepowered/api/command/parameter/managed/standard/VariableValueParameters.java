@@ -35,6 +35,7 @@ import org.spongepowered.api.command.parameter.CommandContext;
 import org.spongepowered.api.command.parameter.Parameter;
 import org.spongepowered.api.command.parameter.managed.ValueParameter;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.Registry;
@@ -96,9 +97,8 @@ public final class VariableValueParameters {
      * @param <T> The type in the {@link Registry}
      * @return The builder
      */
-    public static <T> CatalogedTypeBuilder<T> registryEntryBuilder(
-            final RegistryType<T> defaultedRegistryReference) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createRegistryEntryBuilder(defaultedRegistryReference);
+    public static <T> CatalogedTypeBuilder<T> registryEntryBuilder(final DefaultedRegistryType<T> type) {
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createRegistryEntryBuilder(type);
     }
 
     /**
@@ -664,7 +664,7 @@ public final class VariableValueParameters {
          * @param registryReference
          * @return The {@link CatalogedTypeBuilder}
          */
-        <T> VariableValueParameters.CatalogedTypeBuilder<T> createRegistryEntryBuilder(RegistryType<T> registryReference);
+        <T> VariableValueParameters.CatalogedTypeBuilder<T> createRegistryEntryBuilder(DefaultedRegistryType<T> type);
 
         /**
          * Creates the {@link LiteralBuilder} that will create objects

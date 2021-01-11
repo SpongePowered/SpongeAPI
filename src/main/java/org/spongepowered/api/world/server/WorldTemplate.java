@@ -38,6 +38,7 @@ import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.generation.ChunkGenerator;
 import org.spongepowered.api.world.generation.config.WorldGenerationConfig;
+import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Optional;
 
@@ -45,6 +46,10 @@ public interface WorldTemplate extends ResourceKeyed, DataPackSerializable {
 
     static WorldTemplate overworld() {
         return Sponge.getGame().getFactoryProvider().provide(Factory.class).overworld();
+    }
+
+    static WorldTemplate overworldCaves() {
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).overworldCaves();
     }
 
     static WorldTemplate theNether() {
@@ -71,7 +76,7 @@ public interface WorldTemplate extends ResourceKeyed, DataPackSerializable {
 
     Optional<RegistryReference<Difficulty>> difficulty();
 
-    SerializationBehavior serializationBehavior();
+    Optional<SerializationBehavior> serializationBehavior();
 
     boolean enabled();
 
@@ -86,6 +91,8 @@ public interface WorldTemplate extends ResourceKeyed, DataPackSerializable {
     boolean pvp();
 
     Optional<Integer> viewDistance();
+
+    Optional<Vector3i> spawnPosition();
 
     default Builder asBuilder() {
         return Sponge.getGame().getBuilderProvider().provide(Builder.class).from(this);
@@ -105,7 +112,7 @@ public interface WorldTemplate extends ResourceKeyed, DataPackSerializable {
 
         Builder difficulty(RegistryReference<Difficulty> difficulty);
 
-        Builder serializationBehavior(SerializationBehavior behavior);
+        Builder serializationBehavior(@Nullable SerializationBehavior behavior);
 
         Builder enabled(boolean enabled);
 
@@ -120,11 +127,15 @@ public interface WorldTemplate extends ResourceKeyed, DataPackSerializable {
         Builder pvp(boolean pvp);
 
         Builder viewDistance(@Nullable Integer distance);
+
+        Builder spawnPosition(@Nullable Vector3i position);
     }
 
     interface Factory {
 
         WorldTemplate overworld();
+
+        WorldTemplate overworldCaves();
 
         WorldTemplate theNether();
 

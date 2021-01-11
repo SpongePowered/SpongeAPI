@@ -52,6 +52,7 @@ import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.RegistryKey;
@@ -722,10 +723,10 @@ public interface Parameter {
      */
     static <T> Parameter.Value.Builder<T> registryElement(
             final TypeToken<T> type,
-            @NonNull final RegistryType<T> registryReference,
+            @NonNull final DefaultedRegistryType<T> registryType,
             @NonNull final String @NonNull... defaultNamespaces) {
         final VariableValueParameters.CatalogedTypeBuilder<? extends T> vvp =
-                VariableValueParameters.registryEntryBuilder(registryReference);
+                VariableValueParameters.registryEntryBuilder(registryType);
         for (final String namespace : defaultNamespaces) {
             vvp.defaultNamespace(namespace);
         }
