@@ -26,6 +26,8 @@ package org.spongepowered.api.world.server;
 
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Server;
+import org.spongepowered.api.world.server.storage.ServerWorldProperties;
+import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.util.Collection;
 import java.util.List;
@@ -145,6 +147,13 @@ public interface WorldManager {
     boolean templateExists(ResourceKey key);
 
     /**
+     * Gets a {@link WorldTemplate template} by a {@link ResourceKey key}.
+     * @param key The key
+     * @return The template or {@link Optional#empty()} if not found
+     */
+    CompletableFuture<Optional<WorldTemplate>> loadTemplate(ResourceKey key);
+
+    /**
      * Saves a {@link WorldTemplate template}.
      *
      * <p>It is left up to the implementation on how exactly templates are saved, if at all.</p>
@@ -155,11 +164,22 @@ public interface WorldManager {
     CompletableFuture<Boolean> saveTemplate(WorldTemplate template);
 
     /**
-     * Gets a {@link WorldTemplate template} by a {@link ResourceKey key}.
+     * Loads an offline {@link ServerWorldProperties properties}.
+     *
+     * <p>It is left up to the implementation on what conditions cause a failure of loading properties.</p>
+     *
      * @param key The key
-     * @return The template or {@link Optional#empty()} if not found
+     * @return The properties
      */
-    CompletableFuture<Optional<WorldTemplate>> loadTemplate(ResourceKey key);
+    CompletableFuture<Optional<ServerWorldProperties>> loadProperties(ResourceKey key);
+
+    /**
+     * Saves a {@link ServerWorldProperties properties}.
+     *
+     * @param properties The properties
+     * @return True if successful, false if not
+     */
+    CompletableFuture<Boolean> saveProperties(ServerWorldProperties properties);
 
     /**
      * Copies world data under the provided {@link ResourceKey key} to a provided key.
