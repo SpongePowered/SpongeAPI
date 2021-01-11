@@ -75,13 +75,9 @@ public interface WorldTemplate extends ResourceKeyed, DataPackSerializable {
 
     boolean enabled();
 
-    boolean keepLoaded();
-
     boolean loadOnStartup();
 
-    boolean keepSpawnLoaded();
-
-    boolean generateSpawnOnLoad();
+    boolean performsSpawnLogic();
 
     boolean hardcore();
 
@@ -113,13 +109,9 @@ public interface WorldTemplate extends ResourceKeyed, DataPackSerializable {
 
         Builder enabled(boolean enabled);
 
-        Builder keepLoaded(boolean keepLoaded);
-
         Builder loadOnStartup(boolean loadOnStartup);
 
-        Builder keepSpawnLoaded(boolean keepSpawnLoaded);
-
-        Builder generateSpawnOnLoad(boolean generateSpawnOnLoad);
+        Builder performsSpawnLogic(boolean performsSpawnLogic);
 
         Builder hardcore(boolean hardcore);
 
@@ -127,7 +119,7 @@ public interface WorldTemplate extends ResourceKeyed, DataPackSerializable {
 
         Builder pvp(boolean pvp);
 
-        Builder viewDistance(int distance);
+        Builder viewDistance(@Nullable Integer distance);
     }
 
     interface Factory {

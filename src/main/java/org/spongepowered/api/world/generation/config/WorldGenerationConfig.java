@@ -65,21 +65,24 @@ public interface WorldGenerationConfig {
          *
          * @param seed The seed
          */
-        void seed(long seed);
+        void setSeed(long seed);
 
         /**
          * Sets whether features will generate
          *
          * @param generateFeatures Whether features will generate
          */
-        void generateFeatures(boolean generateFeatures);
+        void setGenerateFeatures(boolean generateFeatures);
 
         /**
          * Sets if the bonus chest will generate.
          *
+         * <p>It is up to the implementation on how this setting is handled. For Vanilla Minecraft, this setting has no effect
+         * if first-time generation has already occurred.</p>
+         *
          * @param generateBonusChest Whether bonus chest will generate
          */
-        void generateBonusChest(boolean generateBonusChest);
+        void setGenerateBonusChest(boolean generateBonusChest);
 
         interface Builder extends org.spongepowered.api.util.Builder<WorldGenerationConfig.Mutable, Builder>, CopyableBuilder<WorldGenerationConfig, Builder> {
 

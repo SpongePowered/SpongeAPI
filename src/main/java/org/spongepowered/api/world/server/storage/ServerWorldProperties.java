@@ -30,14 +30,12 @@ import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
-import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.entity.living.trader.WanderingTrader;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.MinecraftDayTime;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.WorldType;
-import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.generation.config.WorldGenerationConfig;
 import org.spongepowered.api.world.server.ServerWorld;
@@ -97,18 +95,6 @@ public interface ServerWorldProperties extends WorldProperties, Identifiable, Re
     void setEnabled(boolean enabled);
 
     /**
-     * Gets whether the world will stay loaded if no {@link ServerPlayer players} are within it.
-     * @return keep loaded
-     */
-    boolean keepLoaded();
-
-    /**
-     * Sets whether the world will stay loaded if no {@link ServerPlayer players} are within it.
-     * @param keepLoaded keep loaded
-     */
-    void setKeepLoaded(boolean keepLoaded);
-
-    /**
      * Gets whether this world will load when the server starts up.
      *
      * @return Load on startup
@@ -123,32 +109,32 @@ public interface ServerWorldProperties extends WorldProperties, Identifiable, Re
     void setLoadOnStartup(boolean loadOnStartup);
 
     /**
-     * Gets whether spawn {@link Chunk chunks} remain loaded when no {@link ServerPlayer players} observing them.
+     * Gets whether logic surrounding a {@link org.spongepowered.math.vector.Vector3i spawn position} is performed.
      *
-     * @return Keep spawn loaded
+     * <p>It is up to the implementation on how this setting is handled. For Vanilla Minecraft, the following occurs:
+     *     <u1>
+     *         <li>If the world is new, a spawn point is calculated</li>
+     *         <li>The chunks around the spawn point within a radius are kept loaded in memory</li>
+     *     </u1>
+     * </p>
+     *
+     * @return performs spawn logic
      */
-    boolean keepSpawnLoaded();
+    boolean performsSpawnLogic();
 
     /**
-     * Sets whether the spawn {@link Chunk chunks} should remain loaded when no {@link ServerPlayer players} are observing them.
+     * Sets whether logic surrounding a {@link org.spongepowered.math.vector.Vector3i spawn position} is performed.
      *
-     * @param keepSpawnLoaded Keep spawn loaded
-     */
-    void setKeepSpawnLoaded(boolean keepSpawnLoaded);
-
-    /**
-     * Gets whether spawn {@link Chunk chunks} will generate on load.
+     * <p>It is up to the implementation on how this setting is handled. For Vanilla Minecraft, the following occurs:
+     *     <u1>
+     *         <li>If the world is new, a spawn point is calculated</li>
+     *         <li>The chunks around the spawn point within a radius are kept loaded in memory</li>
+     *     </u1>
+     * </p>
      *
-     * @return Generate spawn on load
+     * @param performsSpawnLogic Performs spawn logic
      */
-    boolean generateSpawnOnLoad();
-
-    /**
-     * Sets whether the spawn {@link Chunk chunks} will generate on load.
-     *
-     * @param generateSpawnOnLoad generate spawn on load
-     */
-    void setGenerateSpawnOnLoad(boolean generateSpawnOnLoad);
+    void setPerformsSpawnLogic(boolean performsSpawnLogic);
 
     /**
      * Gets the {@link WorldGenerationConfig}
@@ -339,7 +325,7 @@ public interface ServerWorldProperties extends WorldProperties, Identifiable, Re
      *
      * @param viewDistance The view distance
      */
-    void setViewDistance(int viewDistance);
+    void setViewDistance(@Nullable Integer viewDistance);
 
     /**
      * Gets the {@link WorldBorder}.

@@ -86,9 +86,7 @@ public interface Registry<T> extends Iterable<RegistryEntry<T>> {
      * @return The entry or {@link Optional#empty()}
      */
     default <V extends T> Optional<RegistryEntry<V>> findEntry(final RegistryKey<T> key) {
-        Objects.requireNonNull(key, "key");
-
-        return this.findEntry(key.location());
+        return this.findEntry(Objects.requireNonNull(key, "key").location());
     }
 
     /**
@@ -106,9 +104,7 @@ public interface Registry<T> extends Iterable<RegistryEntry<T>> {
      * @return The value or {@link Optional#empty()}
      */
     default <V extends T> Optional<V> findValue(final RegistryKey<T> key) {
-        Objects.requireNonNull(key, "key");
-
-        return this.findValue(key.location());
+        return this.findValue(Objects.requireNonNull(key, "key").location());
     }
 
     /**
@@ -131,9 +127,7 @@ public interface Registry<T> extends Iterable<RegistryEntry<T>> {
      * @return The value
      */
     default <V extends T> V value(final RegistryKey<T> key) {
-        Objects.requireNonNull(key, "key");
-
-        return this.value(key.location());
+        return this.value(Objects.requireNonNull(key, "key").location());
     }
 
     /**
