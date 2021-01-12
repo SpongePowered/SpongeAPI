@@ -82,11 +82,11 @@ public interface WorldTemplate extends ResourceKeyed, DataPackSerializable {
 
     boolean performsSpawnLogic();
 
-    boolean hardcore();
+    Optional<Boolean> hardcore();
 
-    boolean commands();
+    Optional<Boolean> commands();
 
-    boolean pvp();
+    Optional<Boolean> pvp();
 
     Optional<Integer> viewDistance();
 
@@ -116,11 +116,11 @@ public interface WorldTemplate extends ResourceKeyed, DataPackSerializable {
 
         Builder performsSpawnLogic(boolean performsSpawnLogic);
 
-        Builder hardcore(boolean hardcore);
+        Builder hardcore(@Nullable Boolean hardcore);
 
-        Builder commands(boolean commands);
+        Builder commands(@Nullable Boolean commands);
 
-        Builder pvp(boolean pvp);
+        Builder pvp(@Nullable Boolean pvp);
 
         Builder viewDistance(@Nullable Integer distance);
 

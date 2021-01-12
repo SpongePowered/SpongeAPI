@@ -47,7 +47,7 @@ public interface LayeredBiomeConfig extends BiomeProviderConfig {
 
         Builder addBiome(RegistryReference<Biome> biome);
 
-        Builder biomes(List<RegistryReference<Biome>> biomes);
+        Builder addBiomes(List<RegistryReference<Biome>> biomes);
 
         Builder removeBiome(RegistryReference<Biome> biome);
 

@@ -61,7 +61,7 @@ public interface MultiNoiseBiomeConfig extends BiomeProviderConfig {
 
         Builder addBiome(AttributedBiome biome);
 
-        Builder biomes(List<AttributedBiome> biomes);
+        Builder addBiomes(List<AttributedBiome> biomes);
 
         Builder removeBiome(RegistryReference<Biome> biome);
 

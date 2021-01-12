@@ -22,23 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world;
-
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.world.server.storage.ServerWorldProperties;
-import org.spongepowered.api.world.storage.WorldProperties;
-
-/**
- * An event for when a {@link WorldProperties} has been created. Often paired with a
- * {@link LoadWorldEvent} but that is not guaranteed.
- */
-public interface ConstructWorldPropertiesEvent extends Event {
-
-    /**
-     * Gets the properties of the newly created world.
-     * 
-     * @return The properties
-     */
-    ServerWorldProperties getWorldProperties();
-
-}
+@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
+package org.spongepowered.api.world.generation.structure;
