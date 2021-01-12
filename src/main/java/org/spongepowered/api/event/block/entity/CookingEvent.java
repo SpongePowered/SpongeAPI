@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.event.block.entity;
 
-import org.spongepowered.api.block.entity.carrier.furnace.FurnaceBlockEntity;
+import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.item.inventory.AffectItemStackEvent;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -33,61 +33,65 @@ import org.spongepowered.api.item.recipe.cooking.CookingRecipe;
 import java.util.List;
 import java.util.Optional;
 
-public interface SmeltEvent extends Event {
+/**
+ * Events for cooking items in a {@link org.spongepowered.api.block.entity.carrier.furnace.FurnaceBlockEntity}
+ * or {@link org.spongepowered.api.block.entity.carrier.Campfire}.
+ */
+public interface CookingEvent extends Event {
 
     /**
-     * Gets the {@link FurnaceBlockEntity furnace}.
+     * Gets the {@link BlockEntity} used for cooking.
      *
      * @return The furnace
      */
-    FurnaceBlockEntity getFurnace();
+    BlockEntity getBlockEntity();
 
     /**
      * Gets the fuel represented as an {@link ItemStackSnapshot}.
      *
      * @return The ingredient
      */
-    ItemStackSnapshot getFuel();
+    Optional<ItemStackSnapshot> getFuel();
 
     /**
      * Gets the recipe currently active.
-     * <p>Always {@link Optional#empty()} for {@link SmeltEvent.Interrupt}</p>
+     * <p>Always {@link Optional#empty()} for {@link CookingEvent.Interrupt}</p>
      *
      * @return The recipe
      */
     Optional<CookingRecipe> getRecipe();
 
     /**
-     * The first tick of an item smelting.
-     * Note that actually no stacks are affected when starting to smelt.
+     * The first tick of an item cooking.
+     * Note that actually no stacks are affected when starting to cook.
      */
-    interface Start extends SmeltEvent, AffectItemStackEvent {}
+    interface Start extends CookingEvent, AffectItemStackEvent {}
 
     /**
      * Fires whenever fuel is consumed to refill the current burn time.
      * Canceling this event prevents fuel from being consumed in a furnace In the current burn time to 0.
      */
-    interface ConsumeFuel extends SmeltEvent, AffectItemStackEvent {}
+    interface ConsumeFuel extends CookingEvent, AffectItemStackEvent {}
 
     /**
-     * The smelting timer ticking up or down.
+     * The cooking timer ticking up or down.
      * Note that actually no stacks are affected when ticking.
      */
-    interface Tick extends SmeltEvent, AffectItemStackEvent {}
+    interface Tick extends CookingEvent, AffectItemStackEvent {}
 
     /**
-     * Fires when the smelting is interrupted causing the current smelting time to reset to 0.
+     * Fires when the cooking is interrupted causing the current cooking time to reset to 0.
      */
-    interface Interrupt extends SmeltEvent {
+    interface Interrupt extends CookingEvent {
     }
 
-    interface Finish extends SmeltEvent {
+    interface Finish extends CookingEvent {
         /**
-         * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the result of the smelt.
+         * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the result of the cooking.
          * Always exactly one item.
          *
-         * @return The smelt items
+         * @return The cooked items
          */
-        List<ItemStackSnapshot> getSmeltedItems();
+        List<ItemStackSnapshot> getCookedItems();
     }
 }
