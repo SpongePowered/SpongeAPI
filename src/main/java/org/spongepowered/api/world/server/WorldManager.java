@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 public interface WorldManager {
 
@@ -72,13 +73,27 @@ public interface WorldManager {
     Collection<ServerWorld> worlds();
 
     /**
-     * Gets all of the {@link ResourceKey keys} of both online and offline {@link ServerWorld worlds}.
+     * Gets the {@link ResourceKey keys} of both online and offline {@link ServerWorld worlds}.
      *
      * <p>It is up to the implementation to determine how offline keys are provided to the developer.</p>
      *
      * @return The keys
      */
     List<ResourceKey> worldKeys();
+
+    /**
+     * Gets the {@link ResourceKey keys} of offline {@link ServerWorld worlds}.
+     *
+     * <p>It is up to the implementation to determine how offline keys are provided to the developer.</p>
+     *
+     * @return The keys
+     */
+    default List<ResourceKey> offlineWorldKeys() {
+        return this.worldKeys()
+            .stream()
+            .filter(v -> !this.world(v).isPresent())
+            .collect(Collectors.toList());
+    }
 
     /**
      * Gets if a {@link ResourceKey key} exists as an actual world, offline or online.
