@@ -65,13 +65,6 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
     WorldManager getWorldManager();
 
     /**
-     * Gets the {@link ResourceKey key} the default world will have.
-     *
-     * @return The key
-     */
-    ResourceKey getDefaultWorldKey();
-
-    /**
      * Gets if multiple {@link ServerWorld worlds} will be loaded by the server.
      *
      * <p>If false, no calls to loading worlds via the {@link WorldManager world manager} or otherwise will
