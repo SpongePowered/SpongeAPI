@@ -502,27 +502,12 @@ public interface Parameter {
 
     /**
      * Creates a builder that has the {@link ValueParameter} set to
-     * {@link ResourceKeyedValueParameters#LOCATION_ONLINE_ONLY}.
+     * {@link ResourceKeyedValueParameters#LOCATION}.
      *
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<ServerLocation> location() {
-        return Parameter.location(true);
-    }
-
-    /**
-     * Creates a builder that has the {@link ValueParameter} set to
-     * {@link ResourceKeyedValueParameters#LOCATION_ONLINE_ONLY} or
-     * {@link ResourceKeyedValueParameters#LOCATION_ALL}.
-     *
-     * @param onlineOnly If the location must point to a currently loaded world.
-     * @return A {@link Parameter.Value.Builder}
-     */
-    static Parameter.Value.Builder<ServerLocation> location(final boolean onlineOnly) {
-        if (onlineOnly) {
-            return Parameter.builder(ServerLocation.class, ResourceKeyedValueParameters.LOCATION_ONLINE_ONLY);
-        }
-        return Parameter.builder(ServerLocation.class, ResourceKeyedValueParameters.LOCATION_ALL);
+        return Parameter.builder(ServerLocation.class, ResourceKeyedValueParameters.LOCATION);
     }
 
     /**

@@ -203,20 +203,11 @@ public final class ResourceKeyedValueParameters {
     public static final DefaultedRegistryReference<ResourceKeyedValueParameter<ItemStackSnapshot>> ITEM_STACK_SNAPSHOT = ResourceKeyedValueParameters.key(ResourceKey.sponge("item_stack_snapshot"));
 
     /**
-     * Expect an argument to represent a {@link ServerLocation} which can
-     * point to a location to any known world, loaded or unloaded.
+     * Expect an argument to represent a {@link ServerLocation}.
      *
      * <p>Returns a {@link ServerLocation}.</p>
      */
-    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<ServerLocation>> LOCATION_ALL = ResourceKeyedValueParameters.key(ResourceKey.sponge("location_all"));
-
-    /**
-     * Expect an argument to represent a {@link ServerLocation} that can only
-     * target a currently loaded world.
-     *
-     * <p>Returns a {@link ServerLocation}.</p>
-     */
-    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<ServerLocation>> LOCATION_ONLINE_ONLY = ResourceKeyedValueParameters.key(ResourceKey.sponge("location_online_only"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<ServerLocation>> LOCATION = ResourceKeyedValueParameters.key(ResourceKey.sponge("location"));
 
     /**
      * Require an argument to be a long (base 10).
