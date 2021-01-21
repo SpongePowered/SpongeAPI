@@ -51,9 +51,13 @@ public final class ClientCompletionTypes {
     public static final DefaultedRegistryReference<ClientCompletionType> DECIMAL_NUMBER = ClientCompletionTypes.key(ResourceKey.sponge("decimal_number"));
 
     /**
-     * Indicates to the client that the {@link ValueParser} will parse Json.
+     * Indicates to the client that the {@link ValueParser} will parse SNBT
+     * (the string format for NBT).
+     *
+     * <p>This format somewhat resembles <em>JSON</em>, but supports unquoted
+     * keys, and can unambiguously distinguish every NBT tag type.</p>
      */
-    public static final DefaultedRegistryReference<ClientCompletionType> JSON = ClientCompletionTypes.key(ResourceKey.sponge("json"));
+    public static final DefaultedRegistryReference<ClientCompletionType> SNBT = ClientCompletionTypes.key(ResourceKey.sponge("snbt"));
 
     /**
      * Hides this element from the client - useful for if the
