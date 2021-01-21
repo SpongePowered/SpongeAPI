@@ -41,6 +41,12 @@ public interface CommandTreeNode<T extends CommandTreeNode<T>> {
     /**
      * Creates a root node for the tree.
      *
+     * <p>The return value is in an 'intermediate' state, where it must have
+     * additional information supplied to become a useful part of the
+     * command tree. The node should be at least one of {@link #executable()}
+     * or {@link #child(String, Argument) taking an argument}, and may have
+     * other attributes applied.</p>
+     *
      * @return The root node.
      */
     static CommandTreeNode<Root> root() {
@@ -49,6 +55,12 @@ public interface CommandTreeNode<T extends CommandTreeNode<T>> {
 
     /**
      * Creates a node that uses its key as a literal.
+     *
+     * <p>The return value is in an 'intermediate' state, where it must have
+     * additional information supplied to become a useful part of the
+     * command tree. The node should be at least one of {@link #executable()}
+     * or {@link #child(String, Argument) taking an argument}, and may have
+     * other attributes applied.</p>
      *
      * @return The literal.
      */
@@ -67,6 +79,7 @@ public interface CommandTreeNode<T extends CommandTreeNode<T>> {
      * @param key The name of the child node
      * @param childNode The child node
      * @return This, for chaining.
+     * @see ClientCompletionKeys for keys that will create tree node types
      */
     T child(final String key, final CommandTreeNode.Argument<?> childNode);
 

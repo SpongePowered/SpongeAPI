@@ -57,12 +57,12 @@ import java.util.function.Predicate;
  * of abstraction, such as argument parsers and simple child command handling,
  * removing the need for boilerplate code. Such {@link Parameterized} commands
  * should register themselves during the {@link RegisterCommandEvent
- * RegisterCommandEvent<Command.Parameterized>} event.</p>
+ * RegisterCommandEvent&lt;Command.Parameterized>} event.</p>
  *
  * <p>Plugins that do not want to use the {@link Builder} or any third-party
  * command system should implement the {@link Raw} sub-interface instead. Such
  * {@link Raw} commands should  register themselves during the
- * {@link RegisterCommandEvent RegisterCommandEvent<Command.Parameterized>}
+ * {@link RegisterCommandEvent RegisterCommandEvent&lt;Command.Raw>}
  * event.</p>
  *
  * <p>Plugins <strong>must not</strong> implement the {@link Parameterized}

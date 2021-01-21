@@ -30,6 +30,9 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents the client-side behaviour of a command parameter.
+ *
+ * <p>Completion keys are used to create argument branches of a
+ * {@link CommandTreeNode command tree}.</p>
  */
 @CatalogedBy(ClientCompletionKeys.class)
 public interface ClientCompletionKey<T extends CommandTreeNode<T>> extends DefaultedRegistryValue, ResourceKeyed {

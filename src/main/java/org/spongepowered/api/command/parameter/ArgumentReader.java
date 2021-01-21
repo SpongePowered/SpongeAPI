@@ -336,7 +336,7 @@ public interface ArgumentReader {
          *
          * <p>When using this in your parser, you should set
          * {@link ValueParser#getClientCompletionType()} to
-         * {@link ClientCompletionTypes#JSON} to tell the client that
+         * {@link ClientCompletionTypes#SNBT} to tell the client that
          * the client completion should be a JSON string.</p>
          *
          * @return The string
@@ -349,7 +349,7 @@ public interface ArgumentReader {
          *
          * <p>When using this in your parser, you should set
          * {@link ValueParser#getClientCompletionType()} to
-         * {@link ClientCompletionTypes#JSON} to tell the client that
+         * {@link ClientCompletionTypes#SNBT} to tell the client that
          * the client completion should be a JSON string.</p>
          *
          * @return A {@link JsonObject}
