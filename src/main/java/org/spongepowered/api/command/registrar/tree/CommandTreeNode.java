@@ -29,7 +29,10 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.Command;
 import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.registrar.CommandRegistrar;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 
+import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 /**
@@ -82,6 +85,56 @@ public interface CommandTreeNode<T extends CommandTreeNode<T>> {
      * @see ClientCompletionKeys for keys that will create tree node types
      */
     T child(final String key, final CommandTreeNode.Argument<?> childNode);
+
+    /**
+     * Creates a child of this node with the given key that accepts a
+     * non-literal argument.
+     *
+     * <p>The builder returned by this method is the same builder as that
+     * invoked on. The child builder is provided in the {@code childNode}
+     * node.</p>
+     *
+     * <p>This variant will create a new node based on the provided key and
+     * allow for processing before adding the node as a child</p>
+     *
+     * @param key The name of the child node
+     * @param type the type of argument to use in the child node
+     * @param processor A callback that will receive the created child node
+     * @return This, for chaining.
+     * @see ClientCompletionKeys for keys that will create tree node types
+     */
+    default <C extends CommandTreeNode.Argument<C>> T child(
+        final String key,
+        final DefaultedRegistryReference<ClientCompletionKey<C>> type,
+        final Consumer<C> processor
+    ) {
+        return this.child(key, Objects.requireNonNull(type, "type").get(), processor);
+    }
+
+    /**
+     * Creates a child of this node with the given key that accepts a
+     * non-literal argument.
+     *
+     * <p>The builder returned by this method is the same builder as that
+     * invoked on. The child builder is provided in the {@code childNode}
+     * node.</p>
+     *
+     * <p>This variant will create a new node based on the provided key and
+     * allow for processing before adding the node as a child</p>
+     *
+     * @param key The name of the child node
+     * @param type the type of argument to use in the child node
+     * @param processor A callback that will receive the created child node
+     * @return This, for chaining.
+     * @see ClientCompletionKeys for keys that will create tree node types
+     */
+    default <C extends CommandTreeNode.Argument<C>> T child(final String key, final ClientCompletionKey<C> type, final Consumer<C> processor) {
+        Objects.requireNonNull(type, "type");
+        Objects.requireNonNull(processor, "processor");
+        final C child = type.createNode();
+        processor.accept(child);
+        return this.child(key, child);
+    }
 
     /**
      * Declares that this element will redirect processing to the given node
