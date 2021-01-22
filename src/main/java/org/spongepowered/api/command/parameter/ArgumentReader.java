@@ -30,6 +30,7 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.command.exception.ArgumentParseException;
 import org.spongepowered.api.command.parameter.managed.ValueParser;
 import org.spongepowered.api.command.parameter.managed.clientcompletion.ClientCompletionTypes;
+import org.spongepowered.api.data.persistence.DataContainer;
 
 /**
  * An {@link ArgumentReader} allows for sequential reading of an input
@@ -332,31 +333,31 @@ public interface ArgumentReader {
         boolean parseBoolean() throws ArgumentParseException;
 
         /**
-         * Parses a Json string, returning that string.
+         * Parses a SNBT string, returning that string.
          *
          * <p>When using this in your parser, you should set
          * {@link ValueParser#getClientCompletionType()} to
          * {@link ClientCompletionTypes#SNBT} to tell the client that
-         * the client completion should be a JSON string.</p>
+         * the client completion should be a SNBT string.</p>
          *
          * @return The string
-         * @throws ArgumentParseException if a Json string could not be read
+         * @throws ArgumentParseException if a SNBT string could not be read
          */
-        String parseJson() throws ArgumentParseException;
+        String parseNBTString() throws ArgumentParseException;
 
         /**
-         * Parses a {@link JsonObject}, else throws an exception.
+         * Parses a {@link DataContainer}, from a SNBT string, else throws an exception.
          *
          * <p>When using this in your parser, you should set
          * {@link ValueParser#getClientCompletionType()} to
          * {@link ClientCompletionTypes#SNBT} to tell the client that
-         * the client completion should be a JSON string.</p>
+         * the client completion should be a string in Mojang's SNBT format.</p>
          *
          * @return A {@link JsonObject}
          * @throws ArgumentParseException if a {@link JsonObject} could not be
          *     read
          */
-        JsonObject parseJsonObject() throws ArgumentParseException;
+        DataContainer parseDataContainer() throws ArgumentParseException;
 
         /**
          * Returns a immutable copy of the {@link ArgumentReader}. This can be
