@@ -216,15 +216,6 @@ public final class Sponge {
     }
 
     /**
-     * Gets the {@link CommandManager} for registering and executing commands.
-     *
-     * @return The {@link CommandManager} instance.
-     */
-    public static CommandManager getCommandManager() {
-        return Sponge.getGame().getCommandManager();
-    }
-
-    /**
      * Gets the {@link SqlManager} for grabbing sql data sources.
      *
      * @return The {@link SqlManager} instance.

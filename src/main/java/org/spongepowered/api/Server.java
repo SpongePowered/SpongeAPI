@@ -28,10 +28,12 @@ import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.audience.ForwardingAudience;
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.block.entity.CommandBlock;
+import org.spongepowered.api.command.manager.CommandManager;
 import org.spongepowered.api.entity.living.Hostile;
 import org.spongepowered.api.entity.living.animal.Animal;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
+import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
 import org.spongepowered.api.network.ServerSideConnection;
 import org.spongepowered.api.profile.GameProfileManager;
 import org.spongepowered.api.resourcepack.ResourcePack;
@@ -359,5 +361,15 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      * @return The service manager
      */
     ServiceProvider.ServerScoped getServiceProvider();
+
+    /**
+     * Gets the {@link CommandManager} for executing and inspecting commands.
+     *
+     * <p>Commands must be registered by listening to the
+     * {@link RegisterCommandEvent} instead.</p>
+     *
+     * @return The {@link CommandManager} instance.
+     */
+    CommandManager getCommandManager();
 
 }

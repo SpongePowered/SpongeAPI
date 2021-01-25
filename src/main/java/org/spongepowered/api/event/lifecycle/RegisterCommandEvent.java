@@ -45,6 +45,9 @@ import org.spongepowered.plugin.PluginContainer;
  * types to be registered as commands. These types will be provided by these
  * other plugins.</p>
  *
+ * <p>This event will be called whenever the game re-initializes commands, and
+ * does not guarantee that any specific engine is running.</p>
+ *
  * @param <C> The type of command that is being registered.
  */
 public interface RegisterCommandEvent<C> extends GenericEvent<C>, LifecycleEvent {
@@ -62,6 +65,19 @@ public interface RegisterCommandEvent<C> extends GenericEvent<C>, LifecycleEvent
      * @throws CommandFailedRegistrationException if registration failed
      */
     Result<C> register(PluginContainer container, C command, String alias, String... aliases) throws CommandFailedRegistrationException;
+
+    /**
+     * Get the active command registrar for a project.
+     *
+     * <p>This allows for registering additional commands between game
+     * registration cycles.</p>
+     *
+     * <p><strong>Caution:</strong> commands registered outside of this event
+     * will not be visible to data packs, and may not be shown to clients.</p>
+     *
+     * @return the command registrar
+     */
+    CommandRegistrar<C> registrar();
 
     /**
      * The {@link Result} of a command registration, allowing for the chaining

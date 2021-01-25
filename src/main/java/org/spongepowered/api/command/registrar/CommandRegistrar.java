@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.command.registrar;
 
-import io.leangen.geantyref.TypeToken;
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.CommandResult;
@@ -35,7 +34,6 @@ import org.spongepowered.api.command.manager.CommandMapping;
 import org.spongepowered.api.command.registrar.tree.CommandTreeNode;
 import org.spongepowered.api.event.EventContextKeys;
 import org.spongepowered.api.event.lifecycle.RegisterRegistryValueEvent;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.plugin.PluginContainer;
 
 import java.util.List;
@@ -48,7 +46,7 @@ import java.util.Optional;
  *
  * <p>This interface defines a way to register commands. This registration
  * method <strong>must</strong> call
- * {@link CommandManager#registerAlias(CommandRegistrar, PluginContainer,
+ * {@link CommandManager.Mutable#registerAlias(CommandRegistrar, PluginContainer,
  * CommandTreeNode.Root, String, String...)} to indicate that they wish to take
  * control of certain aliases. Beyond this call, the {@link CommandRegistrar}
  * will only need to retain the link between the {@link CommandMapping} and its
@@ -66,8 +64,8 @@ import java.util.Optional;
  * in order to be successfully registered and receive their commands:</p>
  *
  * <ul>
- *     <li>The registrar <strong>must</strong> be registered during the
- *     {@link RegisterRegistryValueEvent} for {@link CommandRegistrar}s; and</li>
+ *     <li>The registrar <strong>must</strong> have its type registered during the
+ *     {@link RegisterRegistryValueEvent} for {@link CommandRegistrarType}s; and</li>
  *     <li>Commands registered through the registrar must be synced back
  *     to the {@link CommandManager}, otherwise such commands will not
  *     be passed back to this registrar.</li>
@@ -75,14 +73,14 @@ import java.util.Optional;
  *
  * @param <T> The type of command interface this handles.
  */
-public interface CommandRegistrar<T> extends DefaultedRegistryValue {
+public interface CommandRegistrar<T> {
 
     /**
-     * Gets the type of command that this registrar handles.
+     * Get the type defining this command registrar.
      *
-     * @return The type of command this registrar handles.
+     * @return the type
      */
-    TypeToken<T> handledType();
+    CommandRegistrarType<T> type();
 
     /**
      * Registers a command.
@@ -159,18 +157,5 @@ public interface CommandRegistrar<T> extends DefaultedRegistryValue {
      * @return true of the command can execute the command
      */
     boolean canExecute(CommandCause cause, CommandMapping mapping);
-
-    /**
-     * Called when the {@link CommandManager} is clearing all of the
-     * {@link CommandMapping}s it holds, and requires this registrar to remove
-     * all such mappings.
-     *
-     * <p>This will occur when the environment is capable of running multiple
-     * servers in succession, such as the vanilla client.</p>
-     *
-     * <p>You <strong>must</strong> act upon this signal when retrieved, but
-     * you also most ensure the call is legitimate. </p>
-     */
-    void reset();
 
 }

@@ -34,6 +34,7 @@ import org.spongepowered.api.block.transaction.Operation;
 import org.spongepowered.api.command.parameter.managed.ValueParameter;
 import org.spongepowered.api.command.parameter.managed.clientcompletion.ClientCompletionType;
 import org.spongepowered.api.command.registrar.CommandRegistrar;
+import org.spongepowered.api.command.registrar.CommandRegistrarType;
 import org.spongepowered.api.command.registrar.tree.ClientCompletionKey;
 import org.spongepowered.api.command.selector.SelectorSortAlgorithm;
 import org.spongepowered.api.command.selector.SelectorType;
@@ -233,7 +234,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<CollisionRule> COLLISION_RULE = RegistryTypes.spongeKeyInGame("collision_rule");
 
-    public static final DefaultedRegistryType<CommandRegistrar<?>> COMMAND_REGISTRAR = RegistryTypes.spongeKeyInGame("command_registrar");
+    public static final DefaultedRegistryType<CommandRegistrarType<?>> COMMAND_REGISTRAR_TYPE = RegistryTypes.spongeKeyInGame("command_registrar_type");
 
     public static final DefaultedRegistryType<ComparatorMode> COMPARATOR_MODE = RegistryTypes.spongeKeyInGame("comparator_mode");
 
