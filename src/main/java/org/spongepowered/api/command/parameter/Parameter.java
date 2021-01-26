@@ -100,7 +100,7 @@ import java.util.function.Supplier;
  *     <li>{@link Subcommand}s can be placed anywhere in a parameter
  *     chain where a {@link Parameter} can be added, if successfully parsed,
  *     any containing {@link Command} would take precedence and its
- *     {@link Command#process(CommandCause, String)} method will be called instead
+ *     {@link Command#process(CommandCause, ArgumentReader.Mutable)} method will be called instead
  *     of any parent.</li>
  * </ul>
  *

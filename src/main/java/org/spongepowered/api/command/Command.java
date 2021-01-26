@@ -30,6 +30,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.exception.ArgumentParseException;
 import org.spongepowered.api.command.exception.CommandException;
+import org.spongepowered.api.command.parameter.ArgumentReader;
 import org.spongepowered.api.command.parameter.CommandContext;
 import org.spongepowered.api.command.parameter.Parameter;
 import org.spongepowered.api.command.parameter.managed.Flag;
@@ -95,7 +96,7 @@ public interface Command {
      * @return The result of a command being processed
      * @throws CommandException Thrown on a command error
      */
-    CommandResult process(CommandCause cause, String arguments) throws CommandException;
+    CommandResult process(CommandCause cause, ArgumentReader.Mutable arguments) throws CommandException;
 
     /**
      * Gets a list of suggestions based on input.
@@ -108,7 +109,7 @@ public interface Command {
      * @return A list of suggestions
      * @throws CommandException Thrown if there was a parsing error
      */
-    List<String> getSuggestions(CommandCause cause, String arguments) throws CommandException;
+    List<String> getSuggestions(CommandCause cause, ArgumentReader.Mutable arguments) throws CommandException;
 
     /**
      * Test whether this command can probably be executed given this
@@ -273,7 +274,7 @@ public interface Command {
          * @param arguments The argument {@link String}
          * @return The {@link CommandContext}
          */
-        CommandContext parseArguments(CommandCause cause, String arguments) throws ArgumentParseException;
+        CommandContext parseArguments(CommandCause cause, ArgumentReader.Mutable arguments) throws ArgumentParseException;
 
         /**
          * Gets the {@link CommandExecutor} for this command, if one exists.
@@ -286,7 +287,7 @@ public interface Command {
          * Processes the command by parsing the arguments, then
          * executing command based on these arguments.
          *
-         * <p>By default, this will call {@link #parseArguments(CommandCause, String)}
+         * <p>By default, this will call {@link #parseArguments(CommandCause, ArgumentReader.Mutable)}
          * and pass the resulting {@link CommandContext} to
          * {@link CommandExecutor#execute(CommandContext)}, if this command has
          * an executor. If it does not, this will throw a
@@ -298,7 +299,7 @@ public interface Command {
          * @throws CommandException Thrown on a command error
          */
         @Override
-        default CommandResult process(final CommandCause cause, final String arguments) throws CommandException {
+        default CommandResult process(final CommandCause cause, final ArgumentReader.Mutable arguments) throws CommandException {
             if (this.getExecutor().isPresent()) {
                 return this.getExecutor().get().execute(this.parseArguments(cause, arguments));
             }
