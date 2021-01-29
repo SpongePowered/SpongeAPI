@@ -332,6 +332,13 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
     double getTicksPerSecond();
 
     /**
+     * Gets the current average milliseconds per tick.
+     *
+     * @return The current average tick time.
+     */
+    double getAverageTickTime();
+
+    /**
      * Gets the target ticks per second for this server.
      *
      * <p>This is dependent on the implementation.</p>
