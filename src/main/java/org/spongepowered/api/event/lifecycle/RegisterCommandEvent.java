@@ -67,19 +67,6 @@ public interface RegisterCommandEvent<C> extends GenericEvent<C>, LifecycleEvent
     Result<C> register(PluginContainer container, C command, String alias, String... aliases) throws CommandFailedRegistrationException;
 
     /**
-     * Get the active command registrar for a project.
-     *
-     * <p>This allows for registering additional commands between game
-     * registration cycles.</p>
-     *
-     * <p><strong>Caution:</strong> commands registered outside of this event
-     * will not be visible to data packs, and may not be shown to clients.</p>
-     *
-     * @return the command registrar
-     */
-    CommandRegistrar<C> registrar();
-
-    /**
      * The {@link Result} of a command registration, allowing for the chaining
      * of other command registrations, or the retrival of the
      * {@link CommandMapping} generated from the registration that returned this

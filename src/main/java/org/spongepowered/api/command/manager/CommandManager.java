@@ -24,12 +24,14 @@
  */
 package org.spongepowered.api.command.manager;
 
+import io.leangen.geantyref.TypeToken;
 import net.kyori.adventure.audience.Audience;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.exception.CommandException;
 import org.spongepowered.api.command.registrar.CommandRegistrar;
 import org.spongepowered.api.command.registrar.tree.CommandTreeNode;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
+import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.plugin.PluginContainer;
@@ -47,6 +49,42 @@ import java.util.Set;
  */
 @DoNotStore
 public interface CommandManager {
+
+    /**
+     * Get a registrar that will register commands of {@code type} to the active
+     * command manager.
+     *
+     * <p>This allows for out-of-band command registrations between calls to
+     * {@link RegisterCommandEvent}, though where possible that event should be
+     * preferred.</p>
+     *
+     * <p>When commands are registered outside of events, changes will not be
+     * automatically reflected in client command views. To update any applicable
+     * clients, see {@link #updateCommandTreeForPlayer(ServerPlayer)}.</p>
+     *
+     * @param type the registrar type
+     * @param <T> registrar type
+     * @return a registrar, if any is known for {@code type}
+     */
+    <T> Optional<CommandRegistrar<T>> registrar(final Class<T> type);
+
+    /**
+     * Get a registrar that will register commands of {@code type} to the active
+     * command manager.
+     *
+     * <p>This allows for out-of-band command registrations between calls to
+     * {@link RegisterCommandEvent}, though where possible that event should be
+     * preferred.</p>
+     *
+     * <p>When commands are registered outside of events, changes will not be
+     * automatically reflected in client command views. To update any applicable
+     * clients, see {@link #updateCommandTreeForPlayer(ServerPlayer)}.</p>
+     *
+     * @param type the registrar type
+     * @param <T> registrar type
+     * @return a registrar, if any is known for {@code type}
+     */
+    <T> Optional<CommandRegistrar<T>> registrar(final TypeToken<T> type);
 
     /**
      * Executes a command based on the provided arguments.
@@ -161,7 +199,7 @@ public interface CommandManager {
      * to be registered.
      *
      * <p>This view exists for access through {@link CommandRegistrar}s. To
-     * register commands, see the {@link org.spongepowered.api.event.lifecycle.RegisterCommandEvent}.</p>
+     * register commands, see the {@link RegisterCommandEvent}.</p>
      */
     interface Mutable extends CommandManager {
 
