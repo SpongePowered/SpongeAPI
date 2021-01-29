@@ -22,27 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command.registrar.tree;
+package org.spongepowered.api.command.registrar;
 
-import org.spongepowered.api.ResourceKeyed;
+import io.leangen.geantyref.TypeToken;
+import org.spongepowered.api.command.manager.CommandManager;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
-import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents the client-side behaviour of a command parameter.
+ * A type of {@link CommandRegistrar}.
  *
- * <p>Completion keys are used to create argument branches of a
- * {@link CommandTreeNode command tree}.</p>
+ * <p>Each type is used to re-create registrars when the game chooses to reload
+ * commands.</p>
+ *
+ * @param <T> the handled command type
  */
-@CatalogedBy(ClientCompletionKeys.class)
-public interface ClientCompletionKey<T extends CommandTreeNode<T>> extends DefaultedRegistryValue, ResourceKeyed {
+public interface CommandRegistrarType<T> extends DefaultedRegistryValue {
 
     /**
-     * Creates a {@link CommandTreeNode} that represents this
-     * {@link ClientCompletionKey}
+     * Gets the type of command that this registrar handles.
      *
-     * @return The new {@link CommandTreeNode}
+     * @return The type of command this registrar handles.
      */
-    T createNode();
+    TypeToken<T> handledType();
 
+    /**
+     * Create a new registrar of this type.
+     *
+     * @return the newly created registrar
+     */
+    CommandRegistrar<T> create(final CommandManager.Mutable manager);
 }

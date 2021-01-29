@@ -45,6 +45,9 @@ import org.spongepowered.plugin.PluginContainer;
  * types to be registered as commands. These types will be provided by these
  * other plugins.</p>
  *
+ * <p>This event will be called whenever the game re-initializes commands, and
+ * does not guarantee that any specific engine is running.</p>
+ *
  * @param <C> The type of command that is being registered.
  */
 public interface RegisterCommandEvent<C> extends GenericEvent<C>, LifecycleEvent {

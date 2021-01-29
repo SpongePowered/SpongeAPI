@@ -201,13 +201,6 @@ public interface Game extends ScopedRegistryHolder {
     MetricsConfigManager getMetricsConfigManager();
 
     /**
-     * Gets the {@link CommandManager} for registering and executing commands.
-     *
-     * @return The {@link CommandManager} instance.
-     */
-    CommandManager getCommandManager();
-
-    /**
      * Gets the {@link SqlManager} for grabbing sql data sources.
      *
      * @return The {@link SqlManager} instance.

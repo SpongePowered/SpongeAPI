@@ -31,6 +31,10 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 /**
  * Indications to the client as to how to display the associated
  * {@link ValueParser} when completed by the client.
+ *
+ * <p>These completion types represent general 'classes' of completions that the
+ * client can understand, generally applicable across a variety of
+ * types</p>
  */
 @CatalogedBy(ClientCompletionTypes.class)
 public interface ClientCompletionType extends DefaultedRegistryValue {

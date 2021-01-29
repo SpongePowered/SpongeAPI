@@ -45,12 +45,10 @@ import org.spongepowered.api.command.parameter.managed.standard.ResourceKeyedVal
 import org.spongepowered.api.command.parameter.managed.standard.VariableValueParameters;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.Registry;
@@ -63,8 +61,6 @@ import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
-import org.spongepowered.api.world.server.storage.ServerWorldProperties;
-import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.configurate.util.Types;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.plugin.PluginContainer;
@@ -104,7 +100,7 @@ import java.util.function.Supplier;
  *     <li>{@link Subcommand}s can be placed anywhere in a parameter
  *     chain where a {@link Parameter} can be added, if successfully parsed,
  *     any containing {@link Command} would take precedence and its
- *     {@link Command#process(CommandCause, String)} method will be called instead
+ *     {@link Command#process(CommandCause, ArgumentReader.Mutable)} method will be called instead
  *     of any parent.</li>
  * </ul>
  *
@@ -668,14 +664,14 @@ public interface Parameter {
      * or {@link VariableValueParameters.CatalogedTypeBuilder#SERVER_HOLDER_PROVIDER}
      * may be used.</p>
      *
-     * @param type The {@link CatalogType} class to check for choices
+     * @param type The registry value type to check for choices
      * @param holderProvider A {@link Function} that provides the appropriate
      *      {@link RegistryHolder} to get the appropriate {@link Registry}
      * @param registryKey The {@link RegistryKey} that represents the target
      *      {@link Registry}
      * @param defaultNamespaces The default namespaces that will be used with the
      *  provided value if the supplied argument is un-namespaced
-     * @param <T> The type of {@link CatalogType}
+     * @param <T> The type of registry value
      * @return A {@link Parameter.Value.Builder}
      */
     static <T> Parameter.Value.Builder<T> registryElement(
@@ -698,12 +694,12 @@ public interface Parameter {
      * <p>See {@link VariableValueParameters.CatalogedTypeBuilder
      * #defaultNamespace(String)} for how default namespaces work.</p>
      *
-     * @param type The {@link CatalogType} class to check for choices
-     * @param registryReference The {@link DefaultedRegistryReference} to use
+     * @param type The registry value type to check for choices
+     * @param registryType The {@link DefaultedRegistryType} to use
      *          when retrieving objects
      * @param defaultNamespaces The default namespaces that will be used with the
      *  provided value if the supplied argument is un-namespaced
-     * @param <T> The type of {@link CatalogType}
+     * @param <T> The type of registyr value
      * @return A {@link Parameter.Value.Builder}
      */
     static <T> Parameter.Value.Builder<T> registryElement(
