@@ -3,9 +3,6 @@ rootProject.name = "SpongeAPI"
 pluginManagement {
     repositories {
         maven("https://repo-new.spongepowered.org/repository/maven-public")
-        mavenCentral()
-        gradlePluginPortal()
-        maven("https://repo.spongepowered.org/maven")
     }
     resolutionStrategy {
         eachPlugin {

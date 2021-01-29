@@ -80,7 +80,7 @@ dependencies {
     }
 
     // Plugin spi, includes plugin-meta
-    api("org.spongepowered:plugin-spi:0.1.3-SNAPSHOT")
+    api("org.spongepowered:plugin-spi:0.1.4-SNAPSHOT")
 
     // Configurate
     api(platform("org.spongepowered:configurate-bom:4.0.0"))
@@ -179,13 +179,9 @@ tasks {
     }
 
     withType(JavaCompile::class).configureEach {
-        options.compilerArgumentProviders += CommandLineArgumentProvider {
-            // Use the --release option when available to ensure we only use Java 8 classes
-            if (JavaVersion.current().isJava10Compatible) {
-                listOf("--release", "8")
-            } else {
-                listOf()
-            }
+        // Use the --release option when available to ensure we only use Java 8 classes
+        if (JavaVersion.current().isJava10Compatible) {
+            options.release.set(8)
         }
     }
 
