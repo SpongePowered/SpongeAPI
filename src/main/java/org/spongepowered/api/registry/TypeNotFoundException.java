@@ -26,6 +26,8 @@ package org.spongepowered.api.registry;
 
 public final class TypeNotFoundException extends RuntimeException {
 
+    private static final long serialVersionUID = 7032005516854864359L;
+
     public TypeNotFoundException(final String message) {
         super(message);
     }

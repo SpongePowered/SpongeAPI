@@ -26,6 +26,8 @@ package org.spongepowered.api.registry;
 
 public final class ValueNotFoundException extends RuntimeException {
 
+    private static final long serialVersionUID = 4280180788653863725L;
+
     public ValueNotFoundException(final String message) {
         super(message);
     }
