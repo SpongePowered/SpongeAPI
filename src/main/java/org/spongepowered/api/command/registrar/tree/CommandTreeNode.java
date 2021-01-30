@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.command.registrar.tree;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.Command;
@@ -84,7 +85,7 @@ public interface CommandTreeNode<T extends CommandTreeNode<T>> {
      * @return This, for chaining.
      * @see ClientCompletionKeys for keys that will create tree node types
      */
-    T child(final String key, final CommandTreeNode.Argument<?> childNode);
+    T child(final String key, final CommandTreeNode.Argument<@NonNull ?> childNode);
 
     /**
      * Creates a child of this node with the given key that accepts a
@@ -97,6 +98,7 @@ public interface CommandTreeNode<T extends CommandTreeNode<T>> {
      * <p>This variant will create a new node based on the provided key and
      * allow for processing before adding the node as a child</p>
      *
+     * @param <C> The type of {@link CommandTreeNode.Argument} to be created
      * @param key The name of the child node
      * @param type the type of argument to use in the child node
      * @param processor A callback that will receive the created child node
@@ -122,6 +124,7 @@ public interface CommandTreeNode<T extends CommandTreeNode<T>> {
      * <p>This variant will create a new node based on the provided key and
      * allow for processing before adding the node as a child</p>
      *
+     * @param <C> The type of {@link CommandTreeNode.Argument} to be created
      * @param key The name of the child node
      * @param type the type of argument to use in the child node
      * @param processor A callback that will receive the created child node
@@ -147,7 +150,7 @@ public interface CommandTreeNode<T extends CommandTreeNode<T>> {
      * @param redirectTarget The node to redirect to
      * @return This, for chaining
      */
-    T redirect(CommandTreeNode<?> redirectTarget);
+    T redirect(CommandTreeNode<@NonNull ?> redirectTarget);
 
     /**
      * Declares that this element can only be parsed by those with the given
@@ -156,7 +159,7 @@ public interface CommandTreeNode<T extends CommandTreeNode<T>> {
      * @param requirement The requirement
      * @return This, for chaining
      */
-    T requires(Predicate<CommandCause> requirement);
+    T requires(@Nullable Predicate<CommandCause> requirement);
 
     /**
      * Declares that the node this {@link CommandTreeNode} represents is

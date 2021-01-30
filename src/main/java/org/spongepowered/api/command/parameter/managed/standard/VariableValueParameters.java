@@ -59,7 +59,7 @@ public final class VariableValueParameters {
 
     /**
      * Creates a builder that can build a {@link ValueParameter} that returns
-     * an appropriate value via a {@link RegistryHolder} from an argument.
+     * an appropriate {@link Registry registry} entry from an argument.
      *
      * @param holderProvider The provider for a {@link RegistryHolder} to
      *          retrieve the selected {@link Registry} from
@@ -75,7 +75,7 @@ public final class VariableValueParameters {
 
     /**
      * Creates a builder that can build a {@link ValueParameter} that returns
-     * an appropriate value via a {@link RegistryHolder} from an argument.
+     * an appropriate {@link Registry registry} entry from an argument.
      *
      * @param registryProvider A {@link Function} that retrieves an appropriate
      *      {@link Registry} to get objects from
@@ -221,7 +221,7 @@ public final class VariableValueParameters {
 
     /**
      * A builder that creates a {@link ValueParameter} that attempts to get a
-     * specific value from a {@link RegistryHolder} by the supplied ID.
+     * specific {@link Registry registry} entry by the supplied ID.
      */
     public interface RegistryEntryBuilder<T> extends Builder<ValueParameter<T>, RegistryEntryBuilder<T>> {
 
@@ -245,7 +245,7 @@ public final class VariableValueParameters {
 
         /**
          * Adds a prefix that could be prepended to the input argument if it
-         * initially does not match any of the chosen values. Any
+         * initially does not match any of the chosen {@link RegistryKey}s. Any
          * prefixes that are prepended will include the ":" identifier, this
          * should not be part of the supplied prefix in this method.
          *
@@ -652,6 +652,7 @@ public final class VariableValueParameters {
          * instead, providing the appropriate {@link RegistryHolder} instead.</p>
          *
          * @param <T> The type that the target {@link Registry} holds
+         * @param registryProvider The {@link Registry} to get the values from
          * @return The {@link RegistryEntryBuilder}
          */
         <T> RegistryEntryBuilder<T> createRegistryEntryBuilder(final Function<CommandContext, @Nullable ? extends Registry<? extends T>> registryProvider);
