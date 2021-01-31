@@ -45,6 +45,8 @@ public interface NoiseConfig {
         return Sponge.getGame().getBuilderProvider().provide(Builder.class).reset();
     }
 
+    int minY();
+
     int height();
 
     SamplingConfig samplingConfig();
@@ -68,6 +70,8 @@ public interface NoiseConfig {
     boolean amplified();
 
     interface Builder extends org.spongepowered.api.util.Builder<NoiseConfig, Builder>, CopyableBuilder<NoiseConfig, Builder> {
+
+        Builder minY(int minY);
 
         Builder height(int height);
 

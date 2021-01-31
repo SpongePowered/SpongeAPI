@@ -47,8 +47,6 @@ public final class GameModes {
 
     public static final DefaultedRegistryReference<GameMode> CREATIVE = GameModes.key(ResourceKey.sponge("creative"));
 
-    public static final DefaultedRegistryReference<GameMode> NOT_SET = GameModes.key(ResourceKey.sponge("not_set"));
-
     public static final DefaultedRegistryReference<GameMode> SPECTATOR = GameModes.key(ResourceKey.sponge("spectator"));
 
     public static final DefaultedRegistryReference<GameMode> SURVIVAL = GameModes.key(ResourceKey.sponge("survival"));
