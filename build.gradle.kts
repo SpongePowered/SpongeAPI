@@ -8,17 +8,8 @@ plugins {
 }
 
 repositories {
-    maven {
-        name = "New Sponge Maven Repo"
-        setUrl("https://repo-new.spongepowered.org/repository/maven-public/")
-    }
-    maven {
-        name = "Old Sponge Maven Repo"
-        setUrl("https://repo.spongepowered.org/maven")
-    }
-    maven {
-        name = "Sonatype Snapshots"
-        setUrl("https://oss.sonatype.org/content/repositories/snapshots/")
+    maven("https://repo.spongepowered.org/repository/maven-public/") {
+        name = "sponge"
     }
 }
 
