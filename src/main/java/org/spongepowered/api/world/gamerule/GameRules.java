@@ -225,6 +225,14 @@ public final class GameRules {
     public static final DefaultedRegistryReference<GameRule<Boolean>> FORGIVE_DEAD_PLAYERS = GameRules.key(ResourceKey.sponge("forgive_dead_players"));
 
     /**
+     * Whether entities should take freeze damage.
+     *
+     * <p>This is a boolean game rule, with a default value of
+     * {@code true}.</p>
+     */
+    public static final DefaultedRegistryReference<GameRule<Boolean>> FREEZE_DAMAGE = GameRules.key(ResourceKey.sponge("freeze_damage"));
+
+    /**
      * Whether {@link Player}s should keep items in their inventory
      * after death.
      *
@@ -307,6 +315,13 @@ public final class GameRules {
      * <p>This is a boolean game rule, with a default value of {@code true}.</p>
      */
     public static final DefaultedRegistryReference<GameRule<Boolean>> NATURAL_REGENERATION = GameRules.key(ResourceKey.sponge("natural_regeneration"));
+
+    /**
+     * What percentage of players must sleep to skip the night.
+     *
+     * <p>This is a numerical game rule, with a default value of {@code 100}.</p>
+     */
+    public static final DefaultedRegistryReference<GameRule<Integer>> PLAYERS_SLEEPING_PERCENTAGE = GameRules.key(ResourceKey.sponge("players_sleeping_percentage"));
 
     /**
      * How often a random block tick occurs (such as plant growth,

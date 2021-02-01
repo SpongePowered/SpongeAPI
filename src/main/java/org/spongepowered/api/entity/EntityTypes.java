@@ -34,6 +34,7 @@ import org.spongepowered.api.entity.hanging.Painting;
 import org.spongepowered.api.entity.living.ArmorStand;
 import org.spongepowered.api.entity.living.Bat;
 import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.animal.Axolotl;
 import org.spongepowered.api.entity.living.animal.Bee;
 import org.spongepowered.api.entity.living.animal.Cat;
 import org.spongepowered.api.entity.living.animal.Chicken;
@@ -57,6 +58,7 @@ import org.spongepowered.api.entity.living.animal.horse.ZombieHorse;
 import org.spongepowered.api.entity.living.animal.horse.llama.Llama;
 import org.spongepowered.api.entity.living.animal.horse.llama.TraderLlama;
 import org.spongepowered.api.entity.living.aquatic.Dolphin;
+import org.spongepowered.api.entity.living.aquatic.GlowSquid;
 import org.spongepowered.api.entity.living.aquatic.Squid;
 import org.spongepowered.api.entity.living.aquatic.fish.Pufferfish;
 import org.spongepowered.api.entity.living.aquatic.fish.school.Cod;
@@ -154,6 +156,8 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<Arrow>> ARROW = EntityTypes.key(ResourceKey.minecraft("arrow"));
 
+    public static final DefaultedRegistryReference<EntityType<Axolotl>> AXOLOTL = EntityTypes.key(ResourceKey.minecraft("axolotl"));
+
     public static final DefaultedRegistryReference<EntityType<Bat>> BAT = EntityTypes.key(ResourceKey.minecraft("bat"));
 
     public static final DefaultedRegistryReference<EntityType<Bee>> BEE = EntityTypes.key(ResourceKey.minecraft("bee"));
@@ -225,6 +229,10 @@ public final class EntityTypes {
     public static final DefaultedRegistryReference<EntityType<Ghast>> GHAST = EntityTypes.key(ResourceKey.minecraft("ghast"));
 
     public static final DefaultedRegistryReference<EntityType<Giant>> GIANT = EntityTypes.key(ResourceKey.minecraft("giant"));
+
+    public static final DefaultedRegistryReference<EntityType<ItemFrame>> GLOW_ITEM_FRAME = EntityTypes.key(ResourceKey.minecraft("glow_item_frame"));
+
+    public static final DefaultedRegistryReference<EntityType<GlowSquid>> GLOW_SQUID = EntityTypes.key(ResourceKey.minecraft("glow_squid"));
 
     public static final DefaultedRegistryReference<EntityType<Guardian>> GUARDIAN = EntityTypes.key(ResourceKey.minecraft("guardian"));
 

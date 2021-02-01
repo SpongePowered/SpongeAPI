@@ -79,6 +79,10 @@ public final class ParticleTypes {
 
     public static final DefaultedRegistryReference<ParticleType> DRAGON_BREATH = ParticleTypes.key(ResourceKey.minecraft("dragon_breath"));
 
+    public static final DefaultedRegistryReference<ParticleType> DRIPPING_DRIPSTONE_LAVA = ParticleTypes.key(ResourceKey.minecraft("dripping_dripstone_lava"));
+
+    public static final DefaultedRegistryReference<ParticleType> DRIPPING_DRIPSTONE_WATER = ParticleTypes.key(ResourceKey.minecraft("dripping_dripstone_water"));
+
     public static final DefaultedRegistryReference<ParticleType> DRIPPING_HONEY = ParticleTypes.key(ResourceKey.minecraft("dripping_honey"));
 
     public static final DefaultedRegistryReference<ParticleType> DRIPPING_LAVA = ParticleTypes.key(ResourceKey.minecraft("dripping_lava"));
@@ -88,6 +92,8 @@ public final class ParticleTypes {
     public static final DefaultedRegistryReference<ParticleType> DRIPPING_WATER = ParticleTypes.key(ResourceKey.minecraft("dripping_water"));
 
     public static final DefaultedRegistryReference<ParticleType> DUST = ParticleTypes.key(ResourceKey.minecraft("dust"));
+
+    public static final DefaultedRegistryReference<ParticleType> DUST_COLOR_TRANSITION = ParticleTypes.key(ResourceKey.minecraft("dust_color_transition"));
 
     public static final DefaultedRegistryReference<ParticleType> EFFECT = ParticleTypes.key(ResourceKey.minecraft("effect"));
 
@@ -104,6 +110,10 @@ public final class ParticleTypes {
     public static final DefaultedRegistryReference<ParticleType> EXPLOSION = ParticleTypes.key(ResourceKey.minecraft("explosion"));
 
     public static final DefaultedRegistryReference<ParticleType> EXPLOSION_EMITTER = ParticleTypes.key(ResourceKey.minecraft("explosion_emitter"));
+
+    public static final DefaultedRegistryReference<ParticleType> FALLING_DRIPSTONE_LAVA = ParticleTypes.key(ResourceKey.minecraft("falling_dripstone_lava"));
+
+    public static final DefaultedRegistryReference<ParticleType> FALLING_DRIPSTONE_WATER = ParticleTypes.key(ResourceKey.minecraft("falling_dripstone_water"));
 
     public static final DefaultedRegistryReference<ParticleType> FALLING_DUST = ParticleTypes.key(ResourceKey.minecraft("falling_dust"));
 
@@ -124,6 +134,10 @@ public final class ParticleTypes {
     public static final DefaultedRegistryReference<ParticleType> FLAME = ParticleTypes.key(ResourceKey.minecraft("flame"));
 
     public static final DefaultedRegistryReference<ParticleType> FLASH = ParticleTypes.key(ResourceKey.minecraft("flash"));
+
+    public static final DefaultedRegistryReference<ParticleType> GLOW = ParticleTypes.key(ResourceKey.minecraft("glow"));
+
+    public static final DefaultedRegistryReference<ParticleType> GLOW_SQUID_INK = ParticleTypes.key(ResourceKey.minecraft("glow_squid_ink"));
 
     public static final DefaultedRegistryReference<ParticleType> HAPPY_VILLAGER = ParticleTypes.key(ResourceKey.minecraft("happy_villager"));
 
@@ -161,9 +175,13 @@ public final class ParticleTypes {
 
     public static final DefaultedRegistryReference<ParticleType> REVERSE_PORTAL = ParticleTypes.key(ResourceKey.minecraft("reverse_portal"));
 
+    public static final DefaultedRegistryReference<ParticleType> SMALL_FLAME = ParticleTypes.key(ResourceKey.minecraft("small_flame"));
+
     public static final DefaultedRegistryReference<ParticleType> SMOKE = ParticleTypes.key(ResourceKey.minecraft("smoke"));
 
     public static final DefaultedRegistryReference<ParticleType> SNEEZE = ParticleTypes.key(ResourceKey.minecraft("sneeze"));
+
+    public static final DefaultedRegistryReference<ParticleType> SNOWFLAKE = ParticleTypes.key(ResourceKey.minecraft("snowflake"));
 
     public static final DefaultedRegistryReference<ParticleType> SOUL = ParticleTypes.key(ResourceKey.minecraft("soul"));
 
@@ -180,6 +198,8 @@ public final class ParticleTypes {
     public static final DefaultedRegistryReference<ParticleType> TOTEM_OF_UNDYING = ParticleTypes.key(ResourceKey.minecraft("totem_of_undying"));
 
     public static final DefaultedRegistryReference<ParticleType> UNDERWATER = ParticleTypes.key(ResourceKey.minecraft("underwater"));
+
+    public static final DefaultedRegistryReference<ParticleType> VIBRATION = ParticleTypes.key(ResourceKey.minecraft("vibration"));
 
     public static final DefaultedRegistryReference<ParticleType> WARPED_SPORE = ParticleTypes.key(ResourceKey.minecraft("warped_spore"));
 
