@@ -54,7 +54,7 @@ public interface ServerLocationCreator extends LocationCreator<ServerWorld, Serv
      * @return The locatable block
      */
     default LocatableBlock getLocatableBlock(final int x, final int y, final int z) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(this.getWorld(), x, y, z);
+        return Sponge.game().getFactoryProvider().provide(Factory.class).of(this.world(), x, y, z);
     }
 
     interface Factory {

@@ -64,7 +64,7 @@ public interface DataRegistration {
      * @return The new builder instance
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -135,7 +135,7 @@ public interface DataRegistration {
      */
     @SafeVarargs
     static <T, V extends Value<T>> DataRegistration of(final Key<V> key, final Class<? extends DataHolder> dataHolder, final Class<? extends DataHolder>... dataHolders) {
-        final DataStore dataStore = DataStore.of(key, DataQuery.of(key.getKey().getNamespace(), key.getKey().getValue()), dataHolder, dataHolders);
+        final DataStore dataStore = DataStore.of(key, DataQuery.of(key.getKey().namespace(), key.getKey().value()), dataHolder, dataHolders);
         return DataRegistration.builder().dataKey(key).store(dataStore).build();
     }
 

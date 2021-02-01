@@ -42,7 +42,7 @@ import java.util.Optional;
 public interface CarrierBlockEntity extends BlockEntity, BlockCarrier {
 
     @Override
-    BlockEntityInventory<CarrierBlockEntity> getInventory();
+    BlockEntityInventory<CarrierBlockEntity> inventory();
 
     /**
      * {@link Keys#LOCK_TOKEN}

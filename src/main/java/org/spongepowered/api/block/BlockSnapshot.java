@@ -55,7 +55,7 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
     Supplier<BlockSnapshot> NONE = BlockSnapshot::empty;
 
     static BlockSnapshot empty() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class).empty();
+        return Sponge.game().getBuilderProvider().provide(Builder.class).empty();
     }
 
     /**
@@ -64,7 +64,7 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().getBuilderProvider().provide(Builder.class);
     }
 
     /**

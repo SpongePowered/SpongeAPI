@@ -160,7 +160,7 @@ public interface DataStore {
      * @return The dataStore builder.
      */
     static DataStore.Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().getBuilderProvider().provide(Builder.class);
     }
 
     interface Builder extends ResettableBuilder<DataStore, Builder> {

@@ -31,7 +31,6 @@ import org.spongepowered.api.data.value.MergeFunction;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.annotation.eventgen.TransformWith;
 import org.spongepowered.api.world.World;
 
@@ -62,7 +61,7 @@ public interface DataManipulator extends CopyableValueContainer {
      * @return The immutable data manipulator view
      */
     static Immutable immutableOf(final Iterable<? extends Value<?>> values) {
-        return Sponge.getGame().getFactoryProvider().provide(Immutable.Factory.class).of(values);
+        return Sponge.game().getFactoryProvider().provide(Immutable.Factory.class).of(values);
     }
 
     /**
@@ -76,7 +75,7 @@ public interface DataManipulator extends CopyableValueContainer {
      * @return The immutable manipulator
      */
     static Immutable immutableOf(final ValueContainer valueContainer) {
-        return Sponge.getGame().getFactoryProvider().provide(Immutable.Factory.class).of(valueContainer);
+        return Sponge.game().getFactoryProvider().provide(Immutable.Factory.class).of(valueContainer);
     }
 
     /**
@@ -85,7 +84,7 @@ public interface DataManipulator extends CopyableValueContainer {
      * @return The empty immutable data manipulator
      */
     static Immutable immutableOf() {
-        return Sponge.getGame().getFactoryProvider().provide(Immutable.Factory.class).of();
+        return Sponge.game().getFactoryProvider().provide(Immutable.Factory.class).of();
     }
 
     /**
@@ -95,7 +94,7 @@ public interface DataManipulator extends CopyableValueContainer {
      * @return A new empty manipulator
      */
     static Mutable mutableOf() {
-        return Sponge.getGame().getFactoryProvider().provide(Mutable.Factory.class).of();
+        return Sponge.game().getFactoryProvider().provide(Mutable.Factory.class).of();
     }
 
     /**
@@ -108,7 +107,7 @@ public interface DataManipulator extends CopyableValueContainer {
      * @return The mutable manipulator containing all values
      */
     static Mutable mutableOf(final Iterable<? extends Value<?>> values) {
-        return Sponge.getGame().getFactoryProvider().provide(Mutable.Factory.class).of(values);
+        return Sponge.game().getFactoryProvider().provide(Mutable.Factory.class).of(values);
     }
 
     /**
@@ -122,7 +121,7 @@ public interface DataManipulator extends CopyableValueContainer {
      * @return The mutable manipulator containing all values
      */
     static Mutable mutableOf(final ValueContainer valueContainer) {
-        return Sponge.getGame().getFactoryProvider().provide(Mutable.Factory.class).of(valueContainer);
+        return Sponge.game().getFactoryProvider().provide(Mutable.Factory.class).of(valueContainer);
     }
 
     @TransformWith

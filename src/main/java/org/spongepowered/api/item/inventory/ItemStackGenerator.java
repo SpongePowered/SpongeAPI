@@ -49,7 +49,7 @@ public interface ItemStackGenerator extends Function<Random, ItemStack> {
      * @return The builder to create an itemstack generator
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().getBuilderProvider().provide(Builder.class);
     }
 
     /**

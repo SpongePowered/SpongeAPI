@@ -109,7 +109,7 @@ public interface ResourceKey extends Key {
      * @return The new builder instance
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -120,7 +120,7 @@ public interface ResourceKey extends Key {
      * @return A new resource key
      */
     static ResourceKey of(final String namespace, final String value) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(Objects.requireNonNull(namespace, "mamespace"), Objects.requireNonNull(value, "value"));
+        return Sponge.game().getFactoryProvider().provide(Factory.class).of(Objects.requireNonNull(namespace, "mamespace"), Objects.requireNonNull(value, "value"));
     }
 
     /**
@@ -131,7 +131,7 @@ public interface ResourceKey extends Key {
      * @return A new resource key
      */
     static ResourceKey of(final PluginContainer plugin, final String value) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(Objects.requireNonNull(plugin, "plugin"), Objects.requireNonNull(value, "value"));
+        return Sponge.game().getFactoryProvider().provide(Factory.class).of(Objects.requireNonNull(plugin, "plugin"), Objects.requireNonNull(value, "value"));
     }
 
     /**
@@ -144,25 +144,7 @@ public interface ResourceKey extends Key {
      * @return A new resource key
      */
     static ResourceKey resolve(final String formatted) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).resolve(formatted);
-    }
-
-    /**
-     * Gets the namespace.
-     *
-     * @return The namespace
-     */
-    default String getNamespace() {
-        return this.namespace();
-    }
-
-    /**
-     * Gets the value.
-     *
-     * @return The value
-     */
-    default String getValue() {
-        return this.value();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).resolve(formatted);
     }
 
     /**

@@ -35,7 +35,7 @@ import java.util.Optional;
 public interface StructureGenerationConfig {
 
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class).reset();
+        return Sponge.game().getBuilderProvider().provide(Builder.class).reset();
     }
 
     Optional<SpacedStructureConfig> stronghold();

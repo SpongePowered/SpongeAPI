@@ -57,6 +57,6 @@ public final class SlabPortions {
     }
 
     private static DefaultedRegistryReference<SlabPortion> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.SLAB_PORTION, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.SLAB_PORTION, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

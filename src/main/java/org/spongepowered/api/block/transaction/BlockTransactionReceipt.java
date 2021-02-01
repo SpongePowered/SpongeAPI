@@ -63,7 +63,7 @@ public final class BlockTransactionReceipt implements DataSerializable {
 
     @Override
     public DataContainer toContainer() {
-        final ResourceKey resourceKey = Sponge.getGame().registries().registry(RegistryTypes.OPERATION).valueKey(this.operation);
+        final ResourceKey resourceKey = Sponge.game().registries().registry(RegistryTypes.OPERATION).valueKey(this.operation);
 
         return DataContainer.createNew()
             .set(Queries.CONTENT_VERSION, this.getContentVersion())

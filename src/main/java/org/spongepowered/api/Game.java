@@ -80,7 +80,7 @@ public interface Game extends ScopedRegistryHolder {
      * @return The server
      * @throws IllegalStateException If the Server isn't currently available
      */
-    Server getServer();
+    Server server();
 
     /**
      * Gets the {@link SystemSubject}. Depending on the implementation, this
@@ -131,7 +131,7 @@ public interface Game extends ScopedRegistryHolder {
      *
      * @return The game registry
      */
-    GameRegistry getRegistry();
+    GameRegistry registry();
 
     /**
      * Retrieves the {@link BuilderProvider}.

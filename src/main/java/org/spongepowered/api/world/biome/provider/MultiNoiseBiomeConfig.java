@@ -36,11 +36,11 @@ import java.util.List;
 public interface MultiNoiseBiomeConfig extends BiomeProviderConfig {
 
     static MultiNoiseBiomeConfig nether() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).nether();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).nether();
     }
 
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class).reset();
+        return Sponge.game().getBuilderProvider().provide(Builder.class).reset();
     }
 
     long seed();

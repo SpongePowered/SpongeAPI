@@ -30,7 +30,7 @@ import org.spongepowered.api.block.BlockState;
 public interface LayerConfig {
 
     static LayerConfig of(final int height, final BlockState block) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(height, block);
+        return Sponge.game().getFactoryProvider().provide(Factory.class).of(height, block);
     }
 
     int height();

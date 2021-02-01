@@ -225,7 +225,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      */
     default boolean transferToWorld(final ServerWorld world) {
         Objects.requireNonNull(world, "World cannot be null");
-        return this.transferToWorld(world, world.getProperties().spawnPosition().toDouble());
+        return this.transferToWorld(world, world.properties().spawnPosition().toDouble());
     }
 
     /**
@@ -299,7 +299,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
         if (distance <= 0) {
             throw new IllegalArgumentException("Distance must be greater than 0!");
         }
-        return this.getWorld().getNearbyEntities(this.getLocation().getPosition(), distance);
+        return this.world().getNearbyEntities(this.getLocation().getPosition(), distance);
     }
 
     /**
@@ -312,7 +312,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      */
     default Collection<? extends Entity> getNearbyEntities(final double distance, final Predicate<? super Entity> predicate) {
         Objects.requireNonNull(predicate, "Predicate cannot be null");
-        return this.getWorld().getEntities(this.getBoundingBox().get().expand(distance, distance, distance), predicate);
+        return this.world().getEntities(this.getBoundingBox().get().expand(distance, distance, distance), predicate);
     }
 
     /**

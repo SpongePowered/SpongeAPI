@@ -50,7 +50,7 @@ public interface Enchantment extends DataSerializable {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -59,7 +59,7 @@ public interface Enchantment extends DataSerializable {
      * @return The new random list builder
      */
     static RandomListBuilder randomListBuilder() {
-        return Sponge.getGame().getBuilderProvider().provide(RandomListBuilder.class);
+        return Sponge.game().getBuilderProvider().provide(RandomListBuilder.class);
     }
 
     /**

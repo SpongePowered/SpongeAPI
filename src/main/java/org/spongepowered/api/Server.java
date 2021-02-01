@@ -110,7 +110,7 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      *
      * @return The message of the day
      */
-    Component getMOTD();
+    Component motd();
 
     /**
      * Gets the {@link ResourcePack pack} sent to clients when they join.

@@ -58,10 +58,11 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends 
      *
      * @return The properties
      */
-    WorldProperties getProperties();
+    WorldProperties properties();
 
+    @Override
     @SuppressWarnings("unchecked")
-    default W getWorld() {
+    default W world() {
         return (W) this;
     }
 

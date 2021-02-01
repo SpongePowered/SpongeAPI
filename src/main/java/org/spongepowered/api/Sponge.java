@@ -26,7 +26,6 @@ package org.spongepowered.api;
 
 import com.google.inject.Inject;
 import org.spongepowered.api.asset.AssetManager;
-import org.spongepowered.api.command.manager.CommandManager;
 import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.event.EventManager;
@@ -53,7 +52,7 @@ public final class Sponge {
      *
      * @return The game instance
      */
-    public static Game getGame() {
+    public static Game game() {
         if (Sponge.game == null) {
             throw new IllegalStateException("Sponge has not been initialized!");
         }
@@ -67,7 +66,7 @@ public final class Sponge {
      * @return The current implementation
      */
     public static Platform getPlatform() {
-        return Sponge.getGame().getPlatform();
+        return Sponge.game().getPlatform();
     }
 
     /**
@@ -75,8 +74,8 @@ public final class Sponge {
      *
      * @return The game registry instance
      */
-    public static GameRegistry getRegistry() {
-        return Sponge.getGame().getRegistry();
+    public static GameRegistry registry() {
+        return Sponge.game().registry();
     }
 
     /**
@@ -85,7 +84,7 @@ public final class Sponge {
      * @return The data manager instance
      */
     public static DataManager getDataManager() {
-        return Sponge.getGame().getDataManager();
+        return Sponge.game().getDataManager();
     }
 
     /**
@@ -94,7 +93,7 @@ public final class Sponge {
      * @return The plugin manager instance
      */
     public static PluginManager getPluginManager() {
-        return Sponge.getGame().getPluginManager();
+        return Sponge.game().getPluginManager();
     }
 
     /**
@@ -103,7 +102,7 @@ public final class Sponge {
      * @return The event manager instance
      */
     public static EventManager getEventManager() {
-        return Sponge.getGame().getEventManager();
+        return Sponge.game().getEventManager();
     }
 
     /**
@@ -112,7 +111,7 @@ public final class Sponge {
      * @return The asset manager instance
      */
     public static AssetManager getAssetManager() {
-        return Sponge.getGame().getAssetManager();
+        return Sponge.game().getAssetManager();
     }
 
     /**
@@ -122,7 +121,7 @@ public final class Sponge {
      * @return The configuration manager
      */
     public static ConfigManager getConfigManager() {
-        return Sponge.getGame().getConfigManager();
+        return Sponge.game().getConfigManager();
     }
 
     /**
@@ -131,7 +130,7 @@ public final class Sponge {
      * @return The channel registry
      */
     public static ChannelRegistry getChannelRegistry() {
-        return Sponge.getGame().getChannelRegistry();
+        return Sponge.game().getChannelRegistry();
     }
 
     /**
@@ -142,22 +141,22 @@ public final class Sponge {
      * @return True if the server instance is available
      */
     public static boolean isServerAvailable() {
-        return Sponge.getGame().isServerAvailable();
+        return Sponge.game().isServerAvailable();
     }
 
     /**
      * Gets the {@link Server} instance from the {@link Game} instance.
      *
      * <p>Note: During various {@link LifecycleEvent events}, a {@link Server} instance
-     * may <strong>NOT</strong> be available. Calling {@link Game#getServer()} during one
+     * may <strong>NOT</strong> be available. Calling {@link Game#server()} during one
      * will throw an exception. To double check, call {@link #isServerAvailable()}</p>
      *
-     * @see Game#getServer()
+     * @see Game#server()
      * @see Game#isServerAvailable()
      * @return The server instance
      */
     public static Server getServer() {
-        return Sponge.getGame().getServer();
+        return Sponge.game().server();
     }
 
     /**
@@ -168,7 +167,7 @@ public final class Sponge {
      * @return True if the client instance is available
      */
     public static boolean isClientAvailable() {
-        return Sponge.getGame().isClientAvailable();
+        return Sponge.game().isClientAvailable();
     }
 
     /**
@@ -182,7 +181,7 @@ public final class Sponge {
      * @return The client instance
      */
     public static Client getClient() {
-        return Sponge.getGame().getClient();
+        return Sponge.game().getClient();
     }
 
     /**
@@ -192,7 +191,7 @@ public final class Sponge {
      * @return The system subject
      */
     public static SystemSubject getSystemSubject() {
-        return Sponge.getGame().getSystemSubject();
+        return Sponge.game().getSystemSubject();
     }
 
     /**
@@ -203,7 +202,7 @@ public final class Sponge {
      * @return The {@link MetricsConfigManager} instance
      */
     public static MetricsConfigManager getMetricsConfigManager() {
-        return Sponge.getGame().getMetricsConfigManager();
+        return Sponge.game().getMetricsConfigManager();
     }
 
     /**
@@ -212,7 +211,7 @@ public final class Sponge {
      * @return The async scheduler
      */
     public static Scheduler getAsyncScheduler() {
-        return Sponge.getGame().getAsyncScheduler();
+        return Sponge.game().getAsyncScheduler();
     }
 
     /**
@@ -221,7 +220,7 @@ public final class Sponge {
      * @return The {@link SqlManager} instance.
      */
     public static SqlManager getSqlManager() {
-        return Sponge.getGame().getSqlManager();
+        return Sponge.game().getSqlManager();
     }
 
     /**
@@ -234,6 +233,6 @@ public final class Sponge {
      * @return The service provider.
      */
     public static ServiceProvider.GameScoped getServiceProvider() {
-        return Sponge.getGame().getServiceProvider();
+        return Sponge.game().getServiceProvider();
     }
 }

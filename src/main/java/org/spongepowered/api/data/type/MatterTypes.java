@@ -46,7 +46,7 @@ public final class MatterTypes {
     // @formatter:on
 
     private static DefaultedRegistryReference<MatterType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.MATTER_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.MATTER_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 
     private MatterTypes() {

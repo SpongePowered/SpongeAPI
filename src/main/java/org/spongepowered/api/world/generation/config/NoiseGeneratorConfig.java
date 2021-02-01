@@ -33,31 +33,31 @@ import org.spongepowered.api.world.generation.config.structure.StructureGenerati
 public interface NoiseGeneratorConfig extends ChunkGeneratorConfig {
 
     static NoiseGeneratorConfig amplified() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).amplified();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).amplified();
     }
 
     static NoiseGeneratorConfig overworld() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).overworld();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).overworld();
     }
 
     static NoiseGeneratorConfig nether() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).nether();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).nether();
     }
 
     static NoiseGeneratorConfig end() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).end();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).end();
     }
 
     static NoiseGeneratorConfig caves() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).caves();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).caves();
     }
 
     static NoiseGeneratorConfig floatingIslands() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).floatingIslands();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).floatingIslands();
     }
 
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class).reset();
+        return Sponge.game().getBuilderProvider().provide(Builder.class).reset();
     }
 
     NoiseConfig noiseConfig();

@@ -46,7 +46,7 @@ public interface FireworkEffect extends DataSerializable {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().getBuilderProvider().provide(Builder.class);
     }
 
 

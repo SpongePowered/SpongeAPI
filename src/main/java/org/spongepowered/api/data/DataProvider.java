@@ -43,7 +43,7 @@ public interface DataProvider<V extends Value<E>, E> {
      * @return The builder
      */
     static <H extends DataHolder.Mutable, V extends Value<E>, E> MutableDataProviderBuilder<H, V, E> mutableBuilder() {
-        return Sponge.getGame().getBuilderProvider().provide(MutableDataProviderBuilder.class);
+        return Sponge.game().getBuilderProvider().provide(MutableDataProviderBuilder.class);
     }
 
     /**
@@ -52,7 +52,7 @@ public interface DataProvider<V extends Value<E>, E> {
      * @return The builder
      */
     static <H extends DataHolder, V extends Value<E>, E> ImmutableDataProviderBuilder<H, V, E> immutableBuilder() {
-        return Sponge.getGame().getBuilderProvider().provide(ImmutableDataProviderBuilder.class);
+        return Sponge.game().getBuilderProvider().provide(ImmutableDataProviderBuilder.class);
     }
 
     /**

@@ -45,7 +45,7 @@ public interface ItemStackSnapshot extends HoverEventSource<HoverEvent.ShowItem>
      * @return The empty item stack snapshot
      */
     static ItemStackSnapshot empty() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).empty();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).empty();
     }
 
     /**

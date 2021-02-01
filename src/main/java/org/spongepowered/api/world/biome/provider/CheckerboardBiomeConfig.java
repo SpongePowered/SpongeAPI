@@ -34,7 +34,7 @@ import java.util.List;
 public interface CheckerboardBiomeConfig extends BiomeProviderConfig {
 
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class).reset();
+        return Sponge.game().getBuilderProvider().provide(Builder.class).reset();
     }
 
     int scale();

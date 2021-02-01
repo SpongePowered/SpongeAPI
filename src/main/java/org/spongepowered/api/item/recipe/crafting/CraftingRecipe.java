@@ -57,7 +57,7 @@ public interface CraftingRecipe extends Recipe {
      * @return The builder.
      */
     static ShapedCraftingRecipe.Builder shapedBuilder() {
-        return Sponge.getGame().getBuilderProvider().provide(ShapedCraftingRecipe.Builder.class);
+        return Sponge.game().getBuilderProvider().provide(ShapedCraftingRecipe.Builder.class);
     }
 
     /**
@@ -66,7 +66,7 @@ public interface CraftingRecipe extends Recipe {
      * @return The builder.
      */
     static ShapelessCraftingRecipe.Builder shapelessBuilder() {
-        return Sponge.getGame().getBuilderProvider().provide(ShapelessCraftingRecipe.Builder.class);
+        return Sponge.game().getBuilderProvider().provide(ShapelessCraftingRecipe.Builder.class);
     }
 
     /**
@@ -75,7 +75,7 @@ public interface CraftingRecipe extends Recipe {
      * @return The builder.
      */
     static SpecialCraftingRecipe.Builder specialBuilder() {
-        return Sponge.getGame().getBuilderProvider().provide(SpecialCraftingRecipe.Builder.class);
+        return Sponge.game().getBuilderProvider().provide(SpecialCraftingRecipe.Builder.class);
     }
 
 }

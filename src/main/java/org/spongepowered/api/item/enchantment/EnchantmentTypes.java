@@ -287,6 +287,6 @@ public final class EnchantmentTypes {
     }
 
     private static DefaultedRegistryReference<EnchantmentType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.ENCHANTMENT_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.ENCHANTMENT_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

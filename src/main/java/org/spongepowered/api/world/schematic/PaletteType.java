@@ -29,8 +29,6 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.RegistryType;
-import org.spongepowered.api.util.Builder;
-import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
@@ -41,7 +39,7 @@ public interface PaletteType<T, R> extends DefaultedRegistryValue {
 
     @SuppressWarnings("unchecked")
     static <E, ER> Builder<E, ER> builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().getBuilderProvider().provide(Builder.class);
     }
 
     Palette<T, R> create(RegistryHolder holder, RegistryType<R> registryType);

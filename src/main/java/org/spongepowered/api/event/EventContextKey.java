@@ -25,7 +25,6 @@
 package org.spongepowered.api.event;
 
 import io.leangen.geantyref.TypeToken;
-import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
@@ -48,7 +47,7 @@ public interface EventContextKey<T> extends ResourceKeyed {
      */
     @SuppressWarnings("unchecked")
     static Builder<?> builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().getBuilderProvider().provide(Builder.class);
     }
 
     /**

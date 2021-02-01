@@ -41,7 +41,7 @@ public interface Raid {
      *
      * @return The world
      */
-    ServerWorld getWorld();
+    ServerWorld world();
 
     /**
      * Gets the {@link BossBar} being displayed to clients of this raid.

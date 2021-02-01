@@ -32,7 +32,7 @@ import org.spongepowered.api.world.biome.Biome;
 public interface EndStyleBiomeConfig extends BiomeProviderConfig {
 
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class).reset();
+        return Sponge.game().getBuilderProvider().provide(Builder.class).reset();
     }
 
     long seed();

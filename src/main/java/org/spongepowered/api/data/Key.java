@@ -86,7 +86,7 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
      */
     @SuppressWarnings("unchecked")
     static Builder<?, ?> builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().getBuilderProvider().provide(Builder.class);
     }
 
     static <E, V extends Value<E>> Key<V> of(final PluginContainer plugin, final String value, final TypeToken<V> type) {

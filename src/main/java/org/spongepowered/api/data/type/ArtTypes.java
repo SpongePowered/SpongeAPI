@@ -103,6 +103,6 @@ public final class ArtTypes {
     }
 
     private static DefaultedRegistryReference<ArtType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.ART_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.ART_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

@@ -46,7 +46,7 @@ public interface PaletteReference<T, R> {
         if (stringId.isEmpty()) {
             throw new IllegalArgumentException("String cannot be empty to refer to an object in a Palette");
         }
-        return Sponge.getGame().getFactoryProvider().provide(PaletteReference.Factory.class)
+        return Sponge.game().getFactoryProvider().provide(PaletteReference.Factory.class)
             .stringReference(
                 Objects.requireNonNull(registryType, "RegistryType cannot be null!"),
                 stringId

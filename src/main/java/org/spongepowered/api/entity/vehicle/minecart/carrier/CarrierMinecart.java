@@ -35,6 +35,6 @@ import org.spongepowered.api.item.inventory.type.CarriedInventory;
 public interface CarrierMinecart<M extends CarrierMinecart<M>> extends BlockOccupiedMinecart, Carrier {
 
     @Override
-    CarriedInventory<M> getInventory();
+    CarriedInventory<M> inventory();
 
 }

@@ -40,7 +40,7 @@ public final class Locales {
      * @return The locale
      */
     public static Locale of(String locale) {
-        return Sponge.getGame().getLocale(locale);
+        return Sponge.game().getLocale(locale);
     }
 
     public static final Locale AF_ZA = new Locale("af", "ZA");

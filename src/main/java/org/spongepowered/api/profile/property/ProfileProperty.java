@@ -73,7 +73,7 @@ public interface ProfileProperty extends DataSerializable {
      * @return The new property
      */
     static ProfileProperty of(final String name, final String value, final @Nullable String signature) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(name, value, signature);
+        return Sponge.game().getFactoryProvider().provide(Factory.class).of(name, value, signature);
     }
 
     /**

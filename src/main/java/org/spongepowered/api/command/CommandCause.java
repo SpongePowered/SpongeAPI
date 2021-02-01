@@ -115,7 +115,7 @@ public interface CommandCause extends SubjectProxy {
      * @return The {@link CommandCause}
      */
     static CommandCause create() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).create();
     }
 
     /**

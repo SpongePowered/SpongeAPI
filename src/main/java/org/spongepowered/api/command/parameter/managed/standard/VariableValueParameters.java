@@ -70,7 +70,7 @@ public final class VariableValueParameters {
      */
     public static <T> CatalogedTypeBuilder<T> registryEntryBuilder(
             final Function<CommandContext, @Nullable RegistryHolder> holderProvider, final RegistryType<T> registryKey) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createRegistryEntryBuilder(holderProvider, registryKey);
+        return Sponge.game().getFactoryProvider().provide(Factory.class).createRegistryEntryBuilder(holderProvider, registryKey);
     }
 
     /**
@@ -84,7 +84,7 @@ public final class VariableValueParameters {
      */
     public static <T> CatalogedTypeBuilder<T> registryEntryBuilder(
             final Function<CommandContext, @Nullable ? extends Registry<? extends T>> registryProvider) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createRegistryEntryBuilder(registryProvider);
+        return Sponge.game().getFactoryProvider().provide(Factory.class).createRegistryEntryBuilder(registryProvider);
     }
 
     /**
@@ -98,7 +98,7 @@ public final class VariableValueParameters {
      * @return The builder
      */
     public static <T> CatalogedTypeBuilder<T> registryEntryBuilder(final DefaultedRegistryType<T> type) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createRegistryEntryBuilder(type);
+        return Sponge.game().getFactoryProvider().provide(Factory.class).createRegistryEntryBuilder(type);
     }
 
     /**
@@ -114,7 +114,7 @@ public final class VariableValueParameters {
      * @return The builder
      */
     public static <T> StaticChoicesBuilder<T> staticChoicesBuilder(final Class<T> returnType) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createStaticChoicesBuilder(returnType);
+        return Sponge.game().getFactoryProvider().provide(Factory.class).createStaticChoicesBuilder(returnType);
     }
 
     /**
@@ -130,7 +130,7 @@ public final class VariableValueParameters {
      * @return The builder
      */
     public static <T> DynamicChoicesBuilder<T> dynamicChoicesBuilder(final Class<T> returnType) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createDynamicChoicesBuilder(returnType);
+        return Sponge.game().getFactoryProvider().provide(Factory.class).createDynamicChoicesBuilder(returnType);
     }
 
     /**
@@ -143,7 +143,7 @@ public final class VariableValueParameters {
      * @return The builder
      */
     public static <T> LiteralBuilder<T> literalBuilder(final Class<T> returnType) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createLiteralBuilder(returnType);
+        return Sponge.game().getFactoryProvider().provide(Factory.class).createLiteralBuilder(returnType);
     }
 
     /**
@@ -152,7 +152,7 @@ public final class VariableValueParameters {
      * @return The new builder
      */
     public static TextBuilder textBuilder() {
-        return Sponge.getGame().getBuilderProvider().provide(TextBuilder.class);
+        return Sponge.game().getBuilderProvider().provide(TextBuilder.class);
     }
 
     /**
@@ -164,7 +164,7 @@ public final class VariableValueParameters {
      * @return The appropriate {@link ValueParameter}
      */
     public static <T extends Enum<T>> ValueParameter<T> enumChoices(final Class<T> enumClass) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createEnumParameter(enumClass);
+        return Sponge.game().getFactoryProvider().provide(Factory.class).createEnumParameter(enumClass);
     }
 
     /**
@@ -174,7 +174,7 @@ public final class VariableValueParameters {
      * @return The {@link NumberRangeBuilder}
      */
     public static NumberRangeBuilder<Double> doubleRange() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createDoubleNumberRangeBuilder();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).createDoubleNumberRangeBuilder();
     }
 
     /**
@@ -184,7 +184,7 @@ public final class VariableValueParameters {
      * @return The {@link NumberRangeBuilder}
      */
     public static NumberRangeBuilder<Float> floatRange() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createFloatNumberRangeBuilder();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).createFloatNumberRangeBuilder();
     }
 
     /**
@@ -194,7 +194,7 @@ public final class VariableValueParameters {
      * @return The {@link NumberRangeBuilder}
      */
     public static NumberRangeBuilder<Integer> integerRange() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createIntegerNumberRangeBuilder();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).createIntegerNumberRangeBuilder();
     }
 
     /**
@@ -204,7 +204,7 @@ public final class VariableValueParameters {
      * @return The {@link NumberRangeBuilder}
      */
     public static NumberRangeBuilder<Long> longRange() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createLongNumberRangeBuilder();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).createLongNumberRangeBuilder();
     }
 
     /**
@@ -214,7 +214,7 @@ public final class VariableValueParameters {
      * @return The {@link ValueParameter}
      */
     public static ValueParameter<String> validatedString(final Pattern pattern) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class)
+        return Sponge.game().getFactoryProvider().provide(Factory.class)
                 .createValidatedStringParameter(pattern);
     }
 
@@ -228,7 +228,7 @@ public final class VariableValueParameters {
          * A {@link Function} that always provides the {@link Game} scoped
          * {@link RegistryHolder}.
          */
-        Function<CommandContext, @Nullable RegistryHolder> GLOBAL_HOLDER_PROVIDER = in -> Sponge.getGame().registries();
+        Function<CommandContext, @Nullable RegistryHolder> GLOBAL_HOLDER_PROVIDER = in -> Sponge.game().registries();
 
         /**
          * A {@link Function} that always provides the {@link Server} scoped
@@ -236,7 +236,7 @@ public final class VariableValueParameters {
          */
         Function<CommandContext, @Nullable RegistryHolder> SERVER_HOLDER_PROVIDER = in -> {
             try {
-                return Sponge.getGame().getServer().registries();
+                return Sponge.game().server().registries();
             } catch (final IllegalStateException ignored) {
                 return null;
             }

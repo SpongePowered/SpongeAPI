@@ -66,35 +66,35 @@ import java.util.function.BiFunction;
 public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDataHolder.Mutable, Location<ServerWorld, ServerLocation> {
 
     static ServerLocation of(final ServerWorld world, final double x, final double y, final double z) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(world, new Vector3d(x, y, z));
+        return Sponge.game().getFactoryProvider().provide(Factory.class).create(world, new Vector3d(x, y, z));
     }
 
     static ServerLocation of(final ResourceKey worldKey, final double x, final double y, final double z) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(worldKey, new Vector3d(x, y, z));
+        return Sponge.game().getFactoryProvider().provide(Factory.class).create(worldKey, new Vector3d(x, y, z));
     }
 
     static ServerLocation of(final ServerWorld world, final Vector3d position) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(world, position);
+        return Sponge.game().getFactoryProvider().provide(Factory.class).create(world, position);
     }
 
     static ServerLocation of(final ResourceKey worldKey, final Vector3d position) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(worldKey, position);
+        return Sponge.game().getFactoryProvider().provide(Factory.class).create(worldKey, position);
     }
 
     static ServerLocation of(final ServerWorld world, final int x, final int y, final int z) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(world, new Vector3i(x, y, z));
+        return Sponge.game().getFactoryProvider().provide(Factory.class).create(world, new Vector3i(x, y, z));
     }
 
     static ServerLocation of(final ResourceKey worldKey, final int x, final int y, final int z) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(worldKey, new Vector3i(x, y, z));
+        return Sponge.game().getFactoryProvider().provide(Factory.class).create(worldKey, new Vector3i(x, y, z));
     }
 
     static ServerLocation of(final ServerWorld world, final Vector3i position) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(world, position);
+        return Sponge.game().getFactoryProvider().provide(Factory.class).create(world, position);
     }
 
     static ServerLocation of(final ResourceKey worldKey, final Vector3i position) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(worldKey, position);
+        return Sponge.game().getFactoryProvider().provide(Factory.class).create(worldKey, position);
     }
 
     /**

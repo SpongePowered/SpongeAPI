@@ -48,11 +48,11 @@ import org.spongepowered.math.vector.Vector3i;
 public interface BlockVolume extends Volume {
 
     static BlockVolume.Mutable<@NonNull ?> empty(final Vector3i min, final Vector3i max) {
-        return BlockVolume.empty(PaletteTypes.BLOCK_STATE_PALETTE.get().create(Sponge.getGame().registries(), RegistryTypes.BLOCK_TYPE), BlockTypes.AIR, min, max);
+        return BlockVolume.empty(PaletteTypes.BLOCK_STATE_PALETTE.get().create(Sponge.game().registries(), RegistryTypes.BLOCK_TYPE), BlockTypes.AIR, min, max);
     }
 
     static BlockVolume.Mutable<@NonNull ?> empty(final Palette<BlockState, BlockType> palette, final RegistryReference<BlockType> defaultState, final Vector3i min, final Vector3i max) {
-        return Sponge.getGame().getFactoryProvider().provide(BlockVolumeFactory.class).empty(palette, defaultState, min, max);
+        return Sponge.game().getFactoryProvider().provide(BlockVolumeFactory.class).empty(palette, defaultState, min, max);
     }
 
     BlockState getBlock(int x, int y, int z);

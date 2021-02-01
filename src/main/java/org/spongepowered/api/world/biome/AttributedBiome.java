@@ -32,7 +32,7 @@ import java.util.Objects;
 public interface AttributedBiome {
 
     static AttributedBiome of(final RegistryReference<Biome> biome, final BiomeAttributes attributes) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(Objects.requireNonNull(biome, "biome"), Objects.requireNonNull(attributes, "attributes"));
+        return Sponge.game().getFactoryProvider().provide(Factory.class).of(Objects.requireNonNull(biome, "biome"), Objects.requireNonNull(attributes, "attributes"));
     }
 
     RegistryReference<Biome> biome();

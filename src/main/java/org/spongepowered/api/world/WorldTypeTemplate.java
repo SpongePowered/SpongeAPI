@@ -30,7 +30,6 @@ import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.MinecraftDayTime;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
-import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.biome.BiomeSampler;
 
 import java.util.Optional;
@@ -38,23 +37,23 @@ import java.util.Optional;
 public interface WorldTypeTemplate extends DataPackSerializable {
 
     static WorldTypeTemplate overworld() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).overworld();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).overworld();
     }
 
     static WorldTypeTemplate overworldCaves() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).overworldCaves();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).overworldCaves();
     }
 
     static WorldTypeTemplate theNether() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).theNether();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).theNether();
     }
 
     static WorldTypeTemplate theEnd() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).theEnd();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).theEnd();
     }
 
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class).reset();
+        return Sponge.game().getBuilderProvider().provide(Builder.class).reset();
     }
 
     WorldTypeEffect effect();

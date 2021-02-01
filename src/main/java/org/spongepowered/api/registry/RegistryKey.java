@@ -40,7 +40,7 @@ import java.util.function.Supplier;
 public interface RegistryKey<T> {
 
     static <T> RegistryKey<T> of(final RegistryType<T> registry, final ResourceKey location) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(Objects.requireNonNull(registry, "registry"),
+        return Sponge.game().getFactoryProvider().provide(Factory.class).of(Objects.requireNonNull(registry, "registry"),
                 Objects.requireNonNull(location, "location"));
     }
 

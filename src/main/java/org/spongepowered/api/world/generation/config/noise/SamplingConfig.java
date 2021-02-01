@@ -29,7 +29,7 @@ import org.spongepowered.api.Sponge;
 public interface SamplingConfig {
 
     static SamplingConfig of(final double xzScale, final double xzFactor, final double yScale, final double yFactor) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(xzScale, xzFactor, yScale, yFactor);
+        return Sponge.game().getFactoryProvider().provide(Factory.class).of(xzScale, xzFactor, yScale, yFactor);
     }
 
     double xzScale();

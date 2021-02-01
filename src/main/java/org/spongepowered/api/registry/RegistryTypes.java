@@ -33,7 +33,6 @@ import org.spongepowered.api.block.entity.BlockEntityType;
 import org.spongepowered.api.block.transaction.Operation;
 import org.spongepowered.api.command.parameter.managed.ValueParameter;
 import org.spongepowered.api.command.parameter.managed.clientcompletion.ClientCompletionType;
-import org.spongepowered.api.command.registrar.CommandRegistrar;
 import org.spongepowered.api.command.registrar.CommandRegistrarType;
 import org.spongepowered.api.command.registrar.tree.ClientCompletionKey;
 import org.spongepowered.api.command.selector.SelectorSortAlgorithm;
@@ -385,7 +384,7 @@ public final class RegistryTypes {
     }
 
     private static <V> DefaultedRegistryType<V> minecraftKeyInGame(final String key) {
-        return RegistryType.of(RegistryRoots.MINECRAFT, ResourceKey.minecraft(Objects.requireNonNull(key, "key"))).asDefaultedType(() -> Sponge.getGame().registries());
+        return RegistryType.of(RegistryRoots.MINECRAFT, ResourceKey.minecraft(Objects.requireNonNull(key, "key"))).asDefaultedType(() -> Sponge.game().registries());
     }
 
     private static <V> DefaultedRegistryType<V> minecraftKeyInServer(final String key) {
@@ -393,6 +392,6 @@ public final class RegistryTypes {
     }
 
     private static <V> DefaultedRegistryType<V> spongeKeyInGame(final String key) {
-        return RegistryType.of(RegistryRoots.SPONGE, ResourceKey.sponge(Objects.requireNonNull(key, "key"))).asDefaultedType(() -> Sponge.getGame().registries());
+        return RegistryType.of(RegistryRoots.SPONGE, ResourceKey.sponge(Objects.requireNonNull(key, "key"))).asDefaultedType(() -> Sponge.game().registries());
     }
 }

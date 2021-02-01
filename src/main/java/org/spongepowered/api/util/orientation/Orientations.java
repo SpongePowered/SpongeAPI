@@ -71,6 +71,6 @@ public final class Orientations {
     }
 
     private static DefaultedRegistryReference<Orientation> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.ORIENTATION, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.ORIENTATION, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

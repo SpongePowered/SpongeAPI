@@ -61,7 +61,7 @@ import java.util.Optional;
 public interface ServerPlayer extends Player, Subject {
 
     @Override
-    ServerWorld getWorld();
+    ServerWorld world();
 
     User getUser();
 

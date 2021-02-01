@@ -45,23 +45,23 @@ import java.util.Optional;
 public interface WorldTemplate extends ResourceKeyed, DataPackSerializable {
 
     static WorldTemplate overworld() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).overworld();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).overworld();
     }
 
     static WorldTemplate overworldCaves() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).overworldCaves();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).overworldCaves();
     }
 
     static WorldTemplate theNether() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).theNether();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).theNether();
     }
 
     static WorldTemplate theEnd() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).theEnd();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).theEnd();
     }
 
     static WorldTemplate.Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class).reset();
+        return Sponge.game().getBuilderProvider().provide(Builder.class).reset();
     }
 
     Optional<Component> displayName();
@@ -93,7 +93,7 @@ public interface WorldTemplate extends ResourceKeyed, DataPackSerializable {
     Optional<Vector3i> spawnPosition();
 
     default Builder asBuilder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class).from(this);
+        return Sponge.game().getBuilderProvider().provide(Builder.class).from(this);
     }
 
     interface Builder extends ResourceKeyedBuilder<WorldTemplate, Builder>, CopyableBuilder<WorldTemplate, Builder> {

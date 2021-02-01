@@ -115,6 +115,6 @@ public final class PotionEffectTypes {
     }
 
     private static DefaultedRegistryReference<PotionEffectType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.POTION_EFFECT_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.POTION_EFFECT_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

@@ -62,7 +62,7 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
     Server getEngine();
 
     @Override
-    ServerWorldProperties getProperties();
+    ServerWorldProperties properties();
 
     ChunkGenerator getGenerator();
 
@@ -80,7 +80,7 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
      */
     @Override
     default UUID getUniqueId() {
-        return this.getProperties().getUniqueId();
+        return this.properties().getUniqueId();
     }
 
     @Override

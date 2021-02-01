@@ -45,7 +45,7 @@ public interface AdvancementCriterion extends Nameable {
      * @return The empty advancement criterion
      */
     static AdvancementCriterion empty() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).empty();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).empty();
     }
 
     /**
@@ -55,7 +55,7 @@ public interface AdvancementCriterion extends Nameable {
      * @return The dummy advancement criterion
      */
     static AdvancementCriterion dummy() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).dummy();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).dummy();
     }
 
     /**
@@ -64,7 +64,7 @@ public interface AdvancementCriterion extends Nameable {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().getBuilderProvider().provide(Builder.class);
     }
 
     /**

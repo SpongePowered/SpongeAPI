@@ -44,7 +44,7 @@ public interface Orientation extends DefaultedRegistryValue {
      *      <tt>Optional.empty()</tt> if not found
      */
     static Optional<Orientation> fromDegrees(int degrees) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).fromDegrees(degrees);
+        return Sponge.game().getFactoryProvider().provide(Factory.class).fromDegrees(degrees);
     }
 
     /**

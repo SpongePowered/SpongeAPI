@@ -39,7 +39,7 @@ public interface ClientWorld extends World<ClientWorld, ClientLocation> {
     Client getEngine();
 
     @Override
-    ClientWorldProperties getProperties();
+    ClientWorldProperties properties();
 
     @Override
     Collection<? extends ClientPlayer> getPlayers();

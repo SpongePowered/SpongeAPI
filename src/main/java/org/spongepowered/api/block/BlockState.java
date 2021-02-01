@@ -54,12 +54,12 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
      * @return The builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().getBuilderProvider().provide(Builder.class);
     }
 
     static BlockState fromString(final String id) {
         Objects.requireNonNull(id);
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class).fromString(id).build();
+        return Sponge.game().getBuilderProvider().provide(Builder.class).fromString(id).build();
     }
 
     /**

@@ -77,7 +77,7 @@ public interface RayTrace<T extends Locatable> {
      * @return The ray trace builder.
      */
     static RayTrace<LocatableBlock> block() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).blockRayTrace();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).blockRayTrace();
     }
 
     /**
@@ -86,7 +86,7 @@ public interface RayTrace<T extends Locatable> {
      * @return The ray trace builder.
      */
     static RayTrace<Entity> entity() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).entityRayTrace();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).entityRayTrace();
     }
 
     /**
@@ -97,7 +97,7 @@ public interface RayTrace<T extends Locatable> {
      * @return The predicate
      */
     static Predicate<LocatableBlock> onlyAir() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).onlyAir();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).onlyAir();
     }
 
     /**
@@ -107,7 +107,7 @@ public interface RayTrace<T extends Locatable> {
      * @return The predicate
      */
     static Predicate<LocatableBlock> nonAir() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).notAir();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).notAir();
     }
 
     /**

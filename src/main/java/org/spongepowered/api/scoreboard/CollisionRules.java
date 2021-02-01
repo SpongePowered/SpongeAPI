@@ -97,6 +97,6 @@ public final class CollisionRules {
     }
 
     private static DefaultedRegistryReference<CollisionRule> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.COLLISION_RULE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.COLLISION_RULE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

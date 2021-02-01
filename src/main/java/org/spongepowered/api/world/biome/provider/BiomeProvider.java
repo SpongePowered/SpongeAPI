@@ -36,35 +36,35 @@ import java.util.Set;
 public interface BiomeProvider extends BiomeFinder {
 
     static <T extends LayeredBiomeConfig> ConfigurableBiomeProvider<T> layered(final T config) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).layered(config);
+        return Sponge.game().getFactoryProvider().provide(Factory.class).layered(config);
     }
 
     static ConfigurableBiomeProvider<LayeredBiomeConfig> overworld() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).overworld();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).overworld();
     }
 
     static <T extends MultiNoiseBiomeConfig> ConfigurableBiomeProvider<T> multiNoise(final T config) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).multiNoise(config);
+        return Sponge.game().getFactoryProvider().provide(Factory.class).multiNoise(config);
     }
 
     static ConfigurableBiomeProvider<MultiNoiseBiomeConfig> nether() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).nether();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).nether();
     }
 
     static <T extends EndStyleBiomeConfig> ConfigurableBiomeProvider<T> endStyle(final T config) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).endStyle(config);
+        return Sponge.game().getFactoryProvider().provide(Factory.class).endStyle(config);
     }
 
     static ConfigurableBiomeProvider<EndStyleBiomeConfig> end() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).end();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).end();
     }
 
     static <T extends CheckerboardBiomeConfig> ConfigurableBiomeProvider<T> checkerboard(final T config) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).checkerboard(config);
+        return Sponge.game().getFactoryProvider().provide(Factory.class).checkerboard(config);
     }
 
     static BiomeProvider fixed(final RegistryReference<Biome> biome) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).fixed(Objects.requireNonNull(biome, "biome"));
+        return Sponge.game().getFactoryProvider().provide(Factory.class).fixed(Objects.requireNonNull(biome, "biome"));
     }
 
     List<Biome> choices();

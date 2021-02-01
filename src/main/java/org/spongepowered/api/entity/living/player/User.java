@@ -130,7 +130,7 @@ public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject
     Vector3d getRotation();
 
     @Override
-    UserInventory getInventory();
+    UserInventory inventory();
 
     /**
      * Gets the {@link Inventory} available for this Player's shared {@link EnderChest}

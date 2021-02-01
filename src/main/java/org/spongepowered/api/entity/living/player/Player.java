@@ -44,15 +44,15 @@ public interface Player extends Humanoid, Identified, LocaleSource, Viewer, Carr
      *
      * @return The user's profile
      */
-    GameProfile getProfile();
+    GameProfile profile();
 
     @Override
     default GameProfile identity() {
-        return this.getProfile();
+        return this.profile();
     }
 
     @Override
-    PlayerInventory getInventory();
+    PlayerInventory inventory();
 
     /**
      * Gets the {@link Inventory} available for this Player's shared {@link EnderChest}

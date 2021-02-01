@@ -30,19 +30,19 @@ import org.spongepowered.api.util.CopyableBuilder;
 public interface NoiseConfig {
 
     static NoiseConfig overworld() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).overworld();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).overworld();
     }
 
     static NoiseConfig nether() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).nether();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).nether();
     }
 
     static NoiseConfig end() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).end();
+        return Sponge.game().getFactoryProvider().provide(Factory.class).end();
     }
 
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class).reset();
+        return Sponge.game().getBuilderProvider().provide(Builder.class).reset();
     }
 
     int height();

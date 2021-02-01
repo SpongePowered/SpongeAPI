@@ -32,11 +32,11 @@ public final class BiomeSamplers {
 
     // SORTFIELDS:ON
 
-    public static final BiomeSampler COLUMN_FUZZED = Sponge.getGame().getFactoryProvider().provide(BiomeSampler.Factory.class).columnFuzzed();
+    public static final BiomeSampler COLUMN_FUZZED = Sponge.game().getFactoryProvider().provide(BiomeSampler.Factory.class).columnFuzzed();
 
-    public static final BiomeSampler FUZZY = Sponge.getGame().getFactoryProvider().provide(BiomeSampler.Factory.class).fuzzy();
+    public static final BiomeSampler FUZZY = Sponge.game().getFactoryProvider().provide(BiomeSampler.Factory.class).fuzzy();
 
-    public static final BiomeSampler DEFAULT = Sponge.getGame().getFactoryProvider().provide(BiomeSampler.Factory.class).defaultFinder();
+    public static final BiomeSampler DEFAULT = Sponge.game().getFactoryProvider().provide(BiomeSampler.Factory.class).defaultFinder();
 
     // SORTFIELDS:OFF
 

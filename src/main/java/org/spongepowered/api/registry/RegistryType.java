@@ -33,7 +33,7 @@ import java.util.function.Supplier;
 public interface RegistryType<T> {
 
     static <T> RegistryType<T> of(final ResourceKey root, final ResourceKey location) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(Objects.requireNonNull(root, "root"),
+        return Sponge.game().getFactoryProvider().provide(Factory.class).create(Objects.requireNonNull(root, "root"),
                 Objects.requireNonNull(location, "location"));
     }
 

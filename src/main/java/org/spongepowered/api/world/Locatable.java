@@ -38,7 +38,7 @@ public interface Locatable {
      *
      * @return The World
      */
-    World<?, ?> getWorld();
+    World<?, ?> world();
 
     /**
      * Gets the location of the source.

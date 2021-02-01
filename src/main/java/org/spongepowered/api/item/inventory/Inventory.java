@@ -56,7 +56,7 @@ public interface Inventory extends ValueContainer {
      * @return The builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().getBuilderProvider().provide(Builder.class);
     }
 
     /**

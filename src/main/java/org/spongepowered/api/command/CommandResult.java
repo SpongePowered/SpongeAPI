@@ -41,7 +41,7 @@ public interface CommandResult {
      * @return The {@link Builder}
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().getBuilderProvider().provide(Builder.class);
     }
 
     /**

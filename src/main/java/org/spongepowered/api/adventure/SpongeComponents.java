@@ -47,7 +47,7 @@ public final class SpongeComponents {
      * @return The created click event instance
      */
     public static ClickEvent executeCallback(final Consumer<CommandCause> callback) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).callbackClickEvent(callback);
+        return Sponge.game().getFactoryProvider().provide(Factory.class).callbackClickEvent(callback);
     }
 
     public interface Factory {
