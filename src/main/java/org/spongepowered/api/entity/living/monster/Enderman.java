@@ -32,7 +32,7 @@ import org.spongepowered.api.item.inventory.Carrier;
 /**
  * Represents an Enderman.
  */
-public interface Enderman extends Monster, Carrier {
+public interface Enderman extends Monster {
 
     /**
      * {@link Keys#IS_SCREAMING}.
