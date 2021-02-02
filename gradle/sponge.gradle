@@ -17,10 +17,9 @@ sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
 repositories {
-    mavenCentral()
     maven {
         name = 'sponge'
-        url = 'https://repo.spongepowered.org/maven'
+        url = 'https://repo.spongepowered.org/maven/'
     }
 }
 
@@ -86,7 +85,7 @@ javadoc {
             'http://www.slf4j.org/apidocs/',
             'https://google.github.io/guava/releases/21.0/api/docs/',
             'https://google.github.io/guice/api-docs/4.1/javadoc/',
-	    'https://configurate.aoeu.xyz/3.7.2/apidocs/',
+            'https://configurate.aoeu.xyz/3.7.2/apidocs/',
             'https://flow.github.io/math/',
             'https://flow.github.io/noise/',
             'http://asm.ow2.org/asm50/javadoc/user/',

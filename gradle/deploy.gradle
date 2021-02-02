@@ -14,8 +14,8 @@ uploadArchives {
     repositories {
         mavenDeployer {
             // This is set by the build server when deploying to the repo
-            if (project.hasProperty('spongeRepo')) {
-                repository(url: project.spongeRepo) {
+            if (project.hasProperty('spongeSnapshotRepo') && project.hasProperty('spongeReleaseRepo')) {
+                repository(url: project.version.endsWith("SNAPSHOT") ? project.spongeSnapshotRepo : project.spongeReleaseRepo) {
                     if (project.hasProperty('spongeUsername') && project.hasProperty('spongePassword')) {
                         authentication(userName: project.spongeUsername, password: project.spongePassword)
                     }
