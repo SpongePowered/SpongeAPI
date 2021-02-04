@@ -58,7 +58,7 @@ public final class DisplaySlots {
     /**
      * Displays scores for the objective on the side of the screen in-game.
      */
-    public static final DefaultedRegistryReference<DisplaySlot> SIDEBAR_TEAM_NO_COLOR = DisplaySlots.key(ResourceKey.sponge("sidebar_team_no_color"));
+    public static final DefaultedRegistryReference<DisplaySlot> SIDEBAR = DisplaySlots.key(ResourceKey.sponge("sidebar"));
 
     public static final DefaultedRegistryReference<DisplaySlot> SIDEBAR_TEAM_AQUA = DisplaySlots.key(ResourceKey.sponge("sidebar_team_aqua"));
 
