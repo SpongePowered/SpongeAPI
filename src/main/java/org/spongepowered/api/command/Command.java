@@ -396,6 +396,36 @@ public interface Command {
         Builder flag(Flag flag);
 
         /**
+         * Adds multiple {@link Flag flags} to this command.
+         *
+         * @see #flag(Flag) for more information about flags.
+         *
+         * @param flags The flags
+         * @return This builder, for chaining
+         */
+        default Builder flags(final Flag... flags) {
+            for (final Flag flag : flags) {
+                this.flag(flag);
+            }
+            return this;
+        }
+
+        /**
+         * Adds multiple {@link Flag flags} to this command.
+         *
+         * @see #flag(Flag) for more information about flags.
+         *
+         * @param flags The flags
+         * @return This builder, for chaining
+         */
+        default Builder flags(final Iterable<Flag> flags) {
+            for (final Flag flag : flags) {
+                this.flag(flag);
+            }
+            return this;
+        }
+
+        /**
          * Adds a parameter for use when parsing arguments. When executing a
          * command, they will be executed in the order they are added to this
          * builder.
