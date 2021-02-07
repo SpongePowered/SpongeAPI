@@ -34,7 +34,6 @@ import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.volume.biome.BiomeVolume;
 import org.spongepowered.api.world.volume.block.BlockVolume;
 import org.spongepowered.api.world.volume.block.entity.BlockEntityVolume;
-import org.spongepowered.api.world.volume.entity.EntityVolume;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Objects;
@@ -43,7 +42,6 @@ public interface Region<R extends Region<R>> extends
     EnvironmentalVolume,
     BiomeVolume.Streamable<R>,
     BlockVolume.Streamable<R>,
-    EntityVolume.Streamable<R>,
     BlockEntityVolume.Streamable<R>,
     ChunkVolume,
     HeightAwareVolume,
