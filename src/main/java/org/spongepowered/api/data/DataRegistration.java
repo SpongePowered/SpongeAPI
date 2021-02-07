@@ -135,7 +135,7 @@ public interface DataRegistration {
      */
     @SafeVarargs
     static <T, V extends Value<T>> DataRegistration of(final Key<V> key, final Class<? extends DataHolder> dataHolder, final Class<? extends DataHolder>... dataHolders) {
-        final DataStore dataStore = DataStore.of(key, DataQuery.of(key.getKey().getNamespace(), key.getKey().getValue()), dataHolder, dataHolders);
+        final DataStore dataStore = DataStore.of(key, DataQuery.of(key.getKey().getValue()), dataHolder, dataHolders);
         return DataRegistration.builder().dataKey(key).store(dataStore).build();
     }
 

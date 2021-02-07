@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataContentUpdater;
@@ -127,12 +128,12 @@ public interface DataManager {
     /**
      * Registers a legacy {@code id} that is used by a previous version of
      * {@link DataRegistration} from a plugin such that the custom data can
-     * be retained, while not being lost.
+     * be read by a plugin-data datastore.
      *
      * @param legacyId The legacy id
-     * @param registration The registration object successfully created
+     * @param dataStoreKey The dataStore key set in {@link org.spongepowered.api.data.persistence.DataStore.Builder.HolderStep#pluginData(ResourceKey)}
      */
-    void registerLegacyManipulatorIds(String legacyId, DataRegistration registration);
+    void registerLegacyManipulatorIds(String legacyId, ResourceKey dataStoreKey);
 
     /**
      * Attempts to retrieve the builder for the given
