@@ -150,7 +150,7 @@ public interface DataStore {
      */
     @SafeVarargs
     @SuppressWarnings("unchecked")
-    static <T, V extends Value<T>> DataStore of(Key<V> key, DataQuery dataQuery, Class<?extends DataHolder> type, Class<? extends DataHolder>... types) {
+    static <T, V extends Value<T>> DataStore of(final Key<V> key, final DataQuery dataQuery, final Class<?extends DataHolder> type, final Class<? extends DataHolder>... types) {
         return DataStore.builder().pluginData(key.getKey()).holder(type).holder(types).key(key, dataQuery).build();
     }
 
@@ -176,6 +176,17 @@ public interface DataStore {
         HolderStep pluginData(ResourceKey key);
 
         /**
+         * Starts building a DataStore for plugin data.
+         * <p>Serializers and Deserializers will operate on their own {@link DataView}.</p>
+         *
+         * @param key the key under which all data from this DataStore is registered
+         * @param version the content-version of your data.
+         *
+         * @return this builder for chaining
+         */
+        UpdaterStep pluginData(ResourceKey key, int version);
+
+        /**
          * Starts building a DataStore for raw data.
          * <p>Serializers and deserializers will operate on the root {@link DataView}
          * which includes all data from vanilla minecraft and more</p>
@@ -184,6 +195,18 @@ public interface DataStore {
          * @return this builder for chaining
          */
         HolderStep vanillaData();
+
+        interface UpdaterStep extends ResettableBuilder<DataStore, Builder> {
+
+            /**
+             * Adds one or more content updaters
+             *
+             * @param updater the content updaters
+             *
+             * @return this builder for chaining
+             */
+            HolderStep updater(DataContentUpdater... updater);
+        }
 
         interface HolderStep extends ResettableBuilder<DataStore, Builder> {
             /**
@@ -210,12 +233,21 @@ public interface DataStore {
         }
 
         interface SerializersStep extends HolderStep, ResettableBuilder<DataStore, Builder>{
+
+            /**
+             * Adds one or more keys using the default implemented serializers for the given key.
+             * <p>The {@link Key#getKey()} resource-key} value will be used as DataQuery</p>
+             *
+             * @param key The data key
+             * @param moreKeys more data keys
+             *
+             * @return this builder for chaining
+             */
+            @SuppressWarnings("unchecked")
+            Builder.EndStep keys(final Key<?> key, final Key<?>... moreKeys);
+
             /**
              * Adds the default implemented serializers for the given key.
-             * <p>
-             *     Note that default deserializers do not support {@link Collection}, {@link Map} or Array types!
-             *     Use {@link #key(Key, BiConsumer, Function)} for these.
-             * </p>
              *
              * @param key The data key
              * @param dataQueries The dataQuery to serialize this key under
@@ -223,15 +255,14 @@ public interface DataStore {
              * @return this builder for chaining
              */
             default <T, V extends Value<T>> Builder.EndStep key(final Key<V> key, final String... dataQueries) {
+                if (dataQueries.length == 0) {
+                    throw new IllegalArgumentException("dataQueries cannot be empty");
+                }
                 return this.key(key, DataQuery.of(dataQueries));
             }
 
             /**
              * Adds the default implemented serializers for the given key.
-             * <p>
-             *     Note that default deserializers do not support {@link Collection}, {@link Map} or Array types!
-             *     Use {@link #key(Key, BiConsumer, Function)} for these.
-             * </p>
              *
              * @param key The data key
              * @param dataQuery The dataQuery to serialize this key under
@@ -252,7 +283,8 @@ public interface DataStore {
             <T, V extends Value<T>> Builder.EndStep key(Key<V> key, BiConsumer<DataView, T> serializer, Function<DataView, Optional<T>> deserializer);
         }
 
-        interface EndStep extends SerializersStep, ResettableBuilder<DataStore, Builder>{
+        interface EndStep extends SerializersStep, ResettableBuilder<DataStore, Builder> {
+
             /**
              * Builds a dataStore for given dataHolder type.
              *
