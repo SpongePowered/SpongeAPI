@@ -22,14 +22,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.lifecycle;
+package org.spongepowered.api.matcher;
 
-import org.spongepowered.api.datapack.DataPackSerializable;
-import org.spongepowered.api.event.GenericEvent;
-import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
+import org.hamcrest.TypeSafeDiagnosingMatcher;
 
-@NoFactoryMethod
-public interface RegisterDataPackValueEvent<T extends DataPackSerializable> extends LifecycleEvent, GenericEvent<T> {
+import java.util.Optional;
 
-    RegisterDataPackValueEvent<T> register(T serializable);
+final class OptionalValueIs<V> extends TypeSafeDiagnosingMatcher<Optional<V>> {
+
+    private final Matcher<? super V> elementMatcher;
+
+    OptionalValueIs(final Matcher<? super V> elementMatcher) {
+        this.elementMatcher = elementMatcher;
+    }
+
+    @Override
+    protected boolean matchesSafely(final Optional<V> item, final Description mismatchDescription) {
+        if (!item.isPresent()) {
+            mismatchDescription.appendText("was not present");
+            return false;
+        }
+
+        if (!this.elementMatcher.matches(item.get())) {
+            mismatchDescription.appendText("was present but ");
+            this.elementMatcher.describeMismatch(item.get(), mismatchDescription);
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public void describeTo(final Description description) {
+        description.appendText("a present Optional with value ")
+            .appendDescriptionOf(this.elementMatcher);
+    }
+
 }

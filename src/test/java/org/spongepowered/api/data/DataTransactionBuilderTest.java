@@ -24,20 +24,20 @@
  */
 package org.spongepowered.api.data;
 
-import static org.junit.Assert.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.spongepowered.api.data.DataTransactionResult.Type;
 
-public class DataTransactionBuilderTest {
+class DataTransactionBuilderTest {
 
     @Test
-    public void testCorrectTypeWhenAbsorbingResult() {
-        assertEquals(Type.UNDEFINED, this.absorbedType(Type.UNDEFINED, Type.UNDEFINED));
-        assertEquals(Type.SUCCESS, this.absorbedType(Type.SUCCESS, Type.UNDEFINED));
-        assertEquals(Type.FAILURE, this.absorbedType(Type.FAILURE, Type.SUCCESS));
-        assertEquals(Type.ERROR, this.absorbedType(Type.FAILURE, Type.ERROR));
-        assertEquals(Type.CANCELLED, this.absorbedType(Type.FAILURE, Type.CANCELLED));
+    void testCorrectTypeWhenAbsorbingResult() {
+        Assertions.assertEquals(Type.UNDEFINED, this.absorbedType(Type.UNDEFINED, Type.UNDEFINED));
+        Assertions.assertEquals(Type.SUCCESS, this.absorbedType(Type.SUCCESS, Type.UNDEFINED));
+        Assertions.assertEquals(Type.FAILURE, this.absorbedType(Type.FAILURE, Type.SUCCESS));
+        Assertions.assertEquals(Type.ERROR, this.absorbedType(Type.FAILURE, Type.ERROR));
+        Assertions.assertEquals(Type.CANCELLED, this.absorbedType(Type.FAILURE, Type.CANCELLED));
     }
     
     private Type absorbedType(Type builderType, Type resultType) {

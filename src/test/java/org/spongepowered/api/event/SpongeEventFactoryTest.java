@@ -24,16 +24,16 @@
  */
 package org.spongepowered.api.event;
 
-import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.withSettings;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
 import io.leangen.geantyref.GenericTypeReflector;
 import io.leangen.geantyref.TypeToken;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.junit.runners.Parameterized;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mockito;
 import org.mockito.stubbing.Answer;
 import org.spongepowered.api.data.DataHolder;
@@ -49,6 +49,7 @@ import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.configurate.util.Types;
+import org.spongepowered.configurate.util.UnmodifiableCollections;
 import org.spongepowered.math.vector.Vector3d;
 
 import java.lang.reflect.Array;
@@ -59,24 +60,33 @@ import java.net.InetSocketAddress;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Stream;
 
-//@RunWith(Parameterized.class)
-public class SpongeEventFactoryTest {
+class SpongeEventFactoryTest {
 
-    private static final Set<Class<?>> excludedEvents = ImmutableSet.of(DamageEntityEvent.class,
-            GoalEvent.class, GoalEvent.Add.class, GoalEvent.Remove.class, AttackEntityEvent.class);
+    /**
+     * Events with types that aren't able to be mocked for one reason or another.
+     */
+    private static final Set<Class<?>> EXCLUDED_EVENTS = UnmodifiableCollections.toSet(
+        DamageEntityEvent.class,
+        GoalEvent.class,
+        GoalEvent.Add.class,
+        GoalEvent.Remove.class,
+        AttackEntityEvent.class
+    );
 
-    private static final Set<String> excludedMethods = ImmutableSet.of("entitySnapshots");
+    private static final Set<String> EXCLUDED_METHODS = UnmodifiableCollections.toSet("entitySnapshots");
 
     // We need to keep a reference to any mocked World passed into a Location,
     // to ensure that it is not GC'd for the duration of a test. This list
-    private static List<World> worlds = new ArrayList<>();
+    private static List<World<?, ?>> worlds = new ArrayList<>();
 
     private static final Answer<Object> EVENT_MOCKING_ANSWER = (invoc -> {
         // We use the original mock type to try to get more information about
@@ -93,39 +103,34 @@ public class SpongeEventFactoryTest {
         return SpongeEventFactoryTest.mockParam(returnType);
     });
 
-    @Parameterized.Parameters(name = "{0}")
-    public static List<Object[]> getMethods() {
-        ImmutableList.Builder<Object[]> methods = ImmutableList.builder();
-        for (Method method : SpongeEventFactory.class.getMethods()) {
-            if (method.getName().startsWith("create") && Modifier.isStatic(method.getModifiers())
-                    && !SpongeEventFactoryTest.excludedEvents.contains(method.getReturnType())) {
-                methods.add(new Object[]{method.getReturnType().getName(), method});
-            }
-        }
-        return methods.build();
+    static Stream<Object[]> eventMethods() {
+        return Arrays.stream(SpongeEventFactory.class.getMethods())
+            .filter(method -> method.getName().startsWith("create") && Modifier.isStatic(method.getModifiers())
+                && !SpongeEventFactoryTest.EXCLUDED_EVENTS.contains(method.getReturnType()))
+            .map(method -> new Object[] { method.getReturnType().getName(), method});
     }
 
-    @Parameterized.Parameter
-    public String event;
-    @Parameterized.Parameter(1)
-    public Method method;
-
-//    @Test
-    public void testCreate() {
+    @DisplayName("Creating events")
+    @MethodSource("eventMethods")
+    @ParameterizedTest(name = "Creating {0}")
+    void testCreate(final String event, final Method method) {
         try {
             // We only care about keeping extends around for the duration
             // of this particular event.
             SpongeEventFactoryTest.worlds.clear();
 
-            Type[] paramTypes = this.method.getGenericParameterTypes();
+            Type[] paramTypes = method.getGenericParameterTypes();
             Object[] params = new Object[paramTypes.length];
             for (int i = 0; i < paramTypes.length; i++) {
                 params[i] = SpongeEventFactoryTest.mockParam(paramTypes[i]);
             }
-            Object testEvent = this.method.invoke(null, params);
+            Object testEvent = method.invoke(null, params);
             for (Method eventMethod : testEvent.getClass().getMethods()) {
 
-                if (SpongeEventFactoryTest.excludedMethods.contains(eventMethod.getName())) {
+                if (SpongeEventFactoryTest.EXCLUDED_METHODS.contains(eventMethod.getName())) {
+                    continue;
+                }
+                if (eventMethod.isDefault()) { // no need to test methods with known implementations
                     continue;
                 }
 
@@ -137,7 +142,7 @@ public class SpongeEventFactoryTest {
                     }
 
                     if (eventMethod.getReturnType() != void.class) {
-                        assertNotNull("The return type of " + eventMethod + " was null!", eventMethod.invoke(testEvent, params));
+                        Assertions.assertNotNull(eventMethod.invoke(testEvent, params), "The return type of " + eventMethod + " was null!");
                     }
 
                 } catch (Exception e) {
@@ -148,14 +153,14 @@ public class SpongeEventFactoryTest {
                                     + " class dynamically creates concrete classes at "
                                     + "runtime. However, as this means that errors may only become known at runtime, this test ensures that problems "
                                     + "are caught during development.)\n\n"
-                                    + "The failure of this test is in regards to invocation of a method of the '" + this.method.getReturnType().getName()
+                                    + "The failure of this test is in regards to invocation of a method of the '" + method.getReturnType().getName()
                                     + "' event.\n\n"
                                     + "Reasons for failure include:\n"
                                     + "(1) The called method does not conform to format that the class generator expects for getters or setters,"
                                     + "and is not implemented by the abstract class used as the superclass of the generated event."
                                     + "See the wrapped exception for more details.\n"
                                     + "\tSolution: Modify the method name and/or signature to follow the expected getter/sett er semantics,"
-                                    + "or annotate the event with @ImplementedBy to indicate the abstract class used as the superclass."
+                                    + "or annotate the event with @ImplementedBy to indicate the abstract class used as the superclass.\n"
                                     + "(2) A bug in the class generator was found\n"
                                     + "\tSolution: Look into event-impl-gen.\n",
                             e);
@@ -163,24 +168,23 @@ public class SpongeEventFactoryTest {
             }
         } catch (Exception e) {
             throw new RuntimeException(
-                    "Runtime creation of the '" + this.method.getReturnType().getName() + "' event failed\n\n"
+                    "Runtime creation of the '" + method.getReturnType().getName() + "' event failed\n\n"
                             + "(To avoid the need to create numerous boilerplate concrete classes for Sponge's many event "
                             + "interfaces, the " + SpongeEventFactory.class.getSimpleName()
                             + " class dynamically creates concrete classes at "
                             + "runtime. However, as this means that errors may only become known at runtime, this test ensures that problems "
                             + "are caught during development.)\n\n"
-                            + "The failure of this test is in regards to creation of the '" + this.method.getReturnType().getName()
+                            + "The failure of this test is in regards to creation of the '" + method.getReturnType().getName()
                             + "' event.\n\n"
                             + "Reasons for failure include:\n"
                             + "(1) The event was changed and there are new, removed, or modified properties (most likely)\n"
-                            + "\tSolution: Make appropriate changes to " + SpongeEventFactory.class.getName() + "." + this.method.getName()
+                            + "\tSolution: Make appropriate changes to " + SpongeEventFactory.class.getName() + "." + method.getName()
                             + "(). "
                             + "See the wrapped exception for more details.\n"
                             + "(2) A bug in the class generator was found\n"
                             + "\tSolution: Look into event-impl-gen.\n"
-                            + "(3) A method that does not follow getter/setter semantics (getProp(), isBool(), setProp()) "
-                            + "was added (i.e. blockList())\n"
-                            + "\tSolution: Revisit " + this.method.getReturnType().getName() + " and its supertypes. If the method in question "
+                            + "(3) A method that does not follow getter/setter semantics (prop(), setProp()) was added\n"
+                            + "\tSolution: Revisit " + method.getReturnType().getName() + " and its supertypes. If the method in question "
                             + "must exist, then the event factory is capable of accepting a base class to build the "
                             + "runtime concrete class upon (i.e. " + AbstractEvent.class.getName()
                             + " is the supertype of all generated event classes).\n", e);
@@ -190,7 +194,8 @@ public class SpongeEventFactoryTest {
     @SuppressWarnings({"unchecked", "rawtypes"})
     @Nullable
     public static Object mockParam(final Type paramType) {
-        if (paramType == Class.class) {
+        final Class<?> erasedType = GenericTypeReflector.erase(paramType);
+        if (erasedType == Class.class) {
             return PEBKACException.class;
         } else if (paramType == byte.class || paramType == Byte.class) {
             return (byte) 0;
@@ -217,12 +222,12 @@ public class SpongeEventFactoryTest {
             return array;
         } else if (paramType == String.class) {
             return "Cupcakes";
-        } else if (paramType == Optional.class) {
+        } else if (erasedType == Optional.class) {
             return Optional.empty();
         } else if (paramType == OptionalInt.class) {
             return OptionalInt.empty();
         } else if (GenericTypeReflector.isSuperType(Enum.class, paramType)) {
-            return GenericTypeReflector.erase(paramType).getEnumConstants()[0];
+            return erasedType.getEnumConstants()[0];
         } else if (GenericTypeReflector.isSuperType(ServerLocation.class, paramType)) {
             ServerWorld world = (ServerWorld) SpongeEventFactoryTest.mockParam(ServerWorld.class);
             // Make sure we keep a reference to the World,
@@ -249,7 +254,7 @@ public class SpongeEventFactoryTest {
             return Duration.ZERO;
         } else if (paramType == Instant.class) {
             return Instant.now();
-        } else if (paramType == TypeToken.class) {
+        } else if (erasedType == TypeToken.class) {
             return TypeToken.get(Object.class);
         } else if (paramType == Color.class) {
             return Color.BLACK;

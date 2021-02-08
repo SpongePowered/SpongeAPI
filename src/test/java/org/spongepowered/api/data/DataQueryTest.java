@@ -24,23 +24,25 @@
  */
 package org.spongepowered.api.data;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.Matchers.not;
 
 import com.google.common.collect.ImmutableList;
-import org.junit.Test;
+import org.hamcrest.MatcherAssert;
+import org.junit.jupiter.api.Test;
 import org.spongepowered.api.data.persistence.DataQuery;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataQueryTest {
+class DataQueryTest {
 
     /**
      * Method: of()
      */
     @Test
-    public void testOf() {
+    void testOf() {
         DataQuery.of();
         DataQuery.of("derp");
     }
@@ -49,110 +51,110 @@ public class DataQueryTest {
      * Method: of(char separator, String path)
      */
     @Test
-    public void testOfForSeparatorPath() {
+    void testOfForSeparatorPath() {
         DataQuery first = DataQuery.of('.', "this.test.equals");
         DataQuery second = DataQuery.of(',', "this,test,equals");
         DataQuery complex = DataQuery.of('\u8482', "this\u8482test\u8482equals");
         DataQuery test = DataQuery.of("this", "test", "equals");
-        assertThat(first.equals(test), is(true));
-        assertThat(first.equals(second), is(true));
-        assertThat(first.equals(complex), is(true));
-        assertThat(second.equals(complex), is(true));
-        assertThat(second.equals(first), is(true));
-        assertThat(second.equals(test), is(true));
+        MatcherAssert.assertThat(first, is(equalTo(test)));
+        MatcherAssert.assertThat(first, is(equalTo(second)));
+        MatcherAssert.assertThat(first, is(equalTo(complex)));
+        MatcherAssert.assertThat(second, is(equalTo(complex)));
+        MatcherAssert.assertThat(second, is(equalTo(first)));
+        MatcherAssert.assertThat(second, is(equalTo(test)));
     }
 
     /**
      * Method: of(String... parts)
      */
     @Test
-    public void testOfParts() {
+    void testOfParts() {
         DataQuery first = DataQuery.of("this", "parts", "equal");
         DataQuery second = DataQuery.of('.', "this.parts.equal");
-        assertThat(first.equals(second), is(true));
-        assertThat(second.equals(first), is(true));
+        MatcherAssert.assertThat(first, is(equalTo(second)));
+        MatcherAssert.assertThat(second, is(equalTo(first)));
     }
 
     /**
      * Method: parts()
      */
     @Test
-    public void testGetParts() {
+    void testGetParts() {
         final DataQuery query = DataQuery.of("this", "parts", "test");
         final List<String> parts = new ArrayList<>();
         parts.add("this");
         parts.add("parts");
         parts.add("test");
-        assertThat(query.parts().equals(parts), is(true));
+        MatcherAssert.assertThat(query.parts(), is(equalTo(parts)));
     }
 
     /**
      * Method: then(DataQuery that)
      */
     @Test
-    public void testThen() {
+    void testThen() {
         final DataQuery query = DataQuery.of("this", "testing");
         final DataQuery other = DataQuery.of("this");
         final DataQuery test = other.then(DataQuery.of("testing"));
-        assertThat(query.equals(test), is(true));
-        assertThat(test.equals(query), is(true));
+        MatcherAssert.assertThat(query, is(equalTo(test)));
+        MatcherAssert.assertThat(test, is(equalTo(query)));
     }
 
     /**
      * Method: queryParts()
      */
     @Test
-    public void testGetQueryParts() {
+    void testGetQueryParts() {
         final DataQuery full = DataQuery.of("this", "test", "query");
         final DataQuery part1 = DataQuery.of("this");
         final DataQuery part2 = DataQuery.of("test");
         final DataQuery part3 = DataQuery.of("query");
         final List<DataQuery> parts = full.queryParts();
         final List<DataQuery> built = ImmutableList.of(part1, part2, part3);
-        assertThat(parts.equals(built), is(true));
-        assertThat(built.equals(parts), is(true));
-        assertThat(built.containsAll(parts), is(true));
-        assertThat(parts.containsAll(built), is(true));
+        MatcherAssert.assertThat(parts, equalTo(built));
+        MatcherAssert.assertThat(built, equalTo(parts));
+        MatcherAssert.assertThat(built.containsAll(parts), is(true));
+        MatcherAssert.assertThat(parts.containsAll(built), is(true));
     }
 
     /**
      * Method: pop()
      */
     @Test
-    public void testPop() {
+    void testPop() {
         DataQuery prePopped = DataQuery.of("this", "test", "query");
         DataQuery expected = DataQuery.of("this", "test");
-        assertThat(prePopped.pop().equals(expected), is(true));
+        MatcherAssert.assertThat(prePopped.pop(), equalTo(expected));
         DataQuery empty = DataQuery.of();
         DataQuery emptyPopped = empty.pop();
-        assertThat(emptyPopped.equals(empty), is(true));
+        MatcherAssert.assertThat(emptyPopped, equalTo(empty));
 
         DataQuery single = DataQuery.of("single");
-        assertThat(single.pop().equals(empty), is(true));
+        MatcherAssert.assertThat(single.pop(), equalTo(empty));
     }
 
     /**
      * Method: last()
      */
     @Test
-    public void testLast() {
+    void testLast() {
         final DataQuery full = DataQuery.of("first", "test");
         final DataQuery lastExpected = DataQuery.of("test");
-        assertThat(full.last().equals(lastExpected), is(true));
-        assertThat(lastExpected.equals(full.last()), is(true));
+        MatcherAssert.assertThat(full.last(), equalTo(lastExpected));
+        MatcherAssert.assertThat(lastExpected, equalTo(full.last()));
     }
 
     /**
      * Method: equals(Object obj)
      */
     @Test
-    public void testEquals() {
+    void testEquals() {
         DataQuery query1 = DataQuery.of("test");
         DataQuery query2 = DataQuery.of("test");
         DataQuery nonEqual = DataQuery.of("nope");
-        assertThat(query1.equals(query1), is(true));
-        assertThat(query1.equals(query2), is(true));
-        assertThat(query1.equals(nonEqual), is(false));
+        MatcherAssert.assertThat(query1, equalTo(query1));
+        MatcherAssert.assertThat(query1, equalTo(query2));
+        MatcherAssert.assertThat(query1, is(not(nonEqual)));
     }
 
 }

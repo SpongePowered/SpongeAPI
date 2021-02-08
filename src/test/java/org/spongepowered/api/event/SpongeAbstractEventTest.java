@@ -26,32 +26,32 @@ package org.spongepowered.api.event;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
 
-import org.junit.Test;
+import org.hamcrest.MatcherAssert;
+import org.junit.jupiter.api.Test;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 
-public class SpongeAbstractEventTest {
+class SpongeAbstractEventTest {
 
 //    @Test
-    public void testChangeBlockEvent_filter() {
+    void testChangeBlockEvent_filter() {
 
     }
 
     @Test
-    public void testValueChangeEvent() {
+    void testValueChangeEvent() {
         DataTransactionResult original = DataTransactionResult.failNoData();
         DataTransactionResult modified = DataTransactionResult.successNoData();
 
         ChangeDataHolderEvent.ValueChange event = SpongeEventFactory.createChangeDataHolderEventValueChange(
             Cause.of(EventContext.empty(), "none"), original, this.mockParam(DataHolder.Mutable.class));
 
-        assertThat(event.originalChanges(), is(equalTo(original)));
+        MatcherAssert.assertThat(event.originalChanges(), is(equalTo(original)));
 
         event.proposeChanges(modified);
-        assertThat(event.endResult(), is(equalTo(modified)));
+        MatcherAssert.assertThat(event.endResult(), is(equalTo(modified)));
     }
 
     @SuppressWarnings("unchecked")

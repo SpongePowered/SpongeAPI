@@ -22,14 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.lifecycle;
+package org.spongepowered.api.matcher;
 
-import org.spongepowered.api.datapack.DataPackSerializable;
-import org.spongepowered.api.event.GenericEvent;
-import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
+import org.hamcrest.Matcher;
+import org.hamcrest.Matchers;
 
-@NoFactoryMethod
-public interface RegisterDataPackValueEvent<T extends DataPackSerializable> extends LifecycleEvent, GenericEvent<T> {
+import java.util.Objects;
+import java.util.Optional;
 
-    RegisterDataPackValueEvent<T> register(T serializable);
+public final class SpongeMatchers {
+
+    private static final OptionalIsPresent<Object> OPTIONAL_IS_PRESENT = new OptionalIsPresent<>();
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public static <V> Matcher<Optional<V>> present() {
+        return (Matcher) SpongeMatchers.OPTIONAL_IS_PRESENT;
+    }
+
+    public static <V> Matcher<Optional<V>> valueIs(final Matcher<? super V> valueMatcher) {
+        Objects.requireNonNull(valueMatcher, "valueMatcher");
+        return new OptionalValueIs<>(valueMatcher);
+    }
+
+    public static <V> Matcher<Optional<V>> valueIs(final V value) {
+        Objects.requireNonNull(value, "value");
+        return new OptionalValueIs<>(Matchers.equalTo(value));
+    }
+
+    private SpongeMatchers() {
+    }
+
 }

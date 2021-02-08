@@ -22,14 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.lifecycle;
+package org.spongepowered.api.matcher;
 
-import org.spongepowered.api.datapack.DataPackSerializable;
-import org.spongepowered.api.event.GenericEvent;
-import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
+import org.hamcrest.Description;
+import org.hamcrest.TypeSafeMatcher;
 
-@NoFactoryMethod
-public interface RegisterDataPackValueEvent<T extends DataPackSerializable> extends LifecycleEvent, GenericEvent<T> {
+import java.util.Optional;
 
-    RegisterDataPackValueEvent<T> register(T serializable);
+final class OptionalIsPresent<V> extends TypeSafeMatcher<Optional<V>> {
+
+    @Override
+    protected boolean matchesSafely(final Optional<V> item) {
+        return item.isPresent();
+    }
+
+    @Override
+    public void describeTo(final Description description) {
+        description.appendText("a present optional");
+    }
+
+    @Override
+    protected void describeMismatchSafely(final Optional<V> item, final Description mismatchDescription) {
+        mismatchDescription.appendText("was not present");
+    }
 }

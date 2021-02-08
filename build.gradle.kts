@@ -102,9 +102,12 @@ dependencies {
     // Math library
     api("org.spongepowered:math:2.0.0-SNAPSHOT")
 
-    testImplementation("junit:junit:4.13.1")
+    testImplementation(platform("org.junit:junit-bom:5.7.1"))
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testImplementation("org.junit.jupiter:junit-jupiter-params")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
     testImplementation("org.hamcrest:hamcrest:2.2")
-    testImplementation("org.mockito:mockito-core:3.6.28")
+    testImplementation("org.mockito:mockito-core:3.7.7")
 }
 val spongeSnapshotRepo: String? by project
 val spongeReleaseRepo: String? by project
@@ -176,6 +179,10 @@ tasks {
         if (JavaVersion.current().isJava10Compatible) {
             options.release.set(8)
         }
+    }
+
+    test {
+        useJUnitPlatform()
     }
 
 //

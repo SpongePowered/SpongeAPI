@@ -24,235 +24,230 @@
  */
 package org.spongepowered.api.util;
 
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
 public class CoerceTest {
 
     @Test
-    public void testAsCharacter() {
+    void testAsCharacter() {
         String character = "myChar";
         Optional<Character> optional = Coerce.asChar(character);
-        assertTrue(optional.isPresent());
-        assertTrue(optional.get() == 'm');
+        Assertions.assertTrue(optional.isPresent());
+        Assertions.assertEquals('m', (char) optional.get());
 
         char myChar = 'm';
         Optional<Character> optional1 = Coerce.asChar(myChar);
-        assertTrue(optional1.isPresent());
-        assertTrue(optional1.get() == 'm');
+        Assertions.assertTrue(optional1.isPresent());
+        Assertions.assertEquals('m', (char) optional1.get());
 
         int myInt = 1;
         Optional<Character> optional2 = Coerce.asChar(myInt);
-        assertTrue(optional2.isPresent());
-        assertTrue(optional2.get() == '1');
+        Assertions.assertTrue(optional2.isPresent());
+        Assertions.assertEquals('1', (char) optional2.get());
 
         Optional<Character> nullOptional = Coerce.asChar(null);
-        assertTrue(!nullOptional.isPresent());
+        Assertions.assertFalse(nullOptional.isPresent());
     }
 
     @Test
-    public void testAsBoolean() throws Exception {
+    void testAsBoolean() {
         Object myBool = Boolean.TRUE;
         Optional<Boolean> optional = Coerce.asBoolean(myBool);
-        assertTrue(optional.isPresent());
-        assertTrue(optional.get());
+        Assertions.assertTrue(optional.isPresent());
+        Assertions.assertTrue(optional.get());
 
         Optional<Boolean> nullBoolean = Coerce.asBoolean(null);
-        assertTrue(!nullBoolean.isPresent());
+        Assertions.assertFalse(nullBoolean.isPresent());
 
         Optional<Boolean> invalidBoolean = Coerce.asBoolean("foo");
-        assertTrue(!invalidBoolean.isPresent());
+        Assertions.assertFalse(invalidBoolean.isPresent());
     }
 
     @Test
-    public void testAsByte() {
+    void testAsByte() {
         String character = "1";
         Optional<Byte> optional = Coerce.asByte(character);
-        assertTrue(optional.isPresent());
-        assertTrue(optional.get() == 1);
+        Assertions.assertTrue(optional.isPresent());
+        Assertions.assertEquals(1, (byte) optional.get());
 
         char myChar = '1';
         Optional<Byte> optional1 = Coerce.asByte(myChar);
-        assertTrue(optional1.isPresent());
-        assertTrue(optional1.get() == 1);
+        Assertions.assertTrue(optional1.isPresent());
+        Assertions.assertEquals(1, (byte) optional1.get());
 
         String invalidString = "foo";
         Optional<Byte> invalidOptional = Coerce.asByte(invalidString);
-        assertTrue(!invalidOptional.isPresent());
+        Assertions.assertFalse(invalidOptional.isPresent());
 
         int myInt = 1;
         Optional<Byte> optional2 = Coerce.asByte(myInt);
-        assertTrue(optional2.isPresent());
-        assertTrue(optional2.get() == 1);
+        Assertions.assertTrue(optional2.isPresent());
+        Assertions.assertEquals(1, (byte) optional2.get());
 
 
 
         Optional<Byte> nullOptional = Coerce.asByte(null);
-        assertTrue(!nullOptional.isPresent());
+        Assertions.assertFalse(nullOptional.isPresent());
     }
 
     @Test
-    public void testAsShort() {
+    void testAsShort() {
         String character = "1";
         Optional<Short> optional = Coerce.asShort(character);
-        assertTrue(optional.isPresent());
-        assertTrue(optional.get() == 1);
+        Assertions.assertTrue(optional.isPresent());
+        Assertions.assertEquals(1, (short) optional.get());
 
         char myChar = '1';
         Optional<Short> optional1 = Coerce.asShort(myChar);
-        assertTrue(optional1.isPresent());
-        assertTrue(optional1.get() == 1);
+        Assertions.assertTrue(optional1.isPresent());
+        Assertions.assertEquals(1, (short) optional1.get());
 
         String invalidString = "foo";
         Optional<Short> invalidOptional = Coerce.asShort(invalidString);
-        assertTrue(!invalidOptional.isPresent());
+        Assertions.assertFalse(invalidOptional.isPresent());
 
         int myInt = 1;
         Optional<Short> optional2 = Coerce.asShort(myInt);
-        assertTrue(optional2.isPresent());
-        assertTrue(optional2.get() == 1);
-
-
+        Assertions.assertTrue(optional2.isPresent());
+        Assertions.assertEquals(1, (short) optional2.get());
 
         Optional<Short> nullOptional = Coerce.asShort(null);
-        assertTrue(!nullOptional.isPresent());
+        Assertions.assertFalse(nullOptional.isPresent());
     }
 
     @Test
-    public void testAsLong() {
+    void testAsLong() {
         String character = "1";
         Optional<Long> optional = Coerce.asLong(character);
-        assertTrue(optional.isPresent());
-        assertTrue(optional.get() == 1);
+        Assertions.assertTrue(optional.isPresent());
+        Assertions.assertEquals(1, (long) optional.get());
 
         char myChar = '1';
         Optional<Long> optional1 = Coerce.asLong(myChar);
-        assertTrue(optional1.isPresent());
-        assertTrue(optional1.get() == 1);
+        Assertions.assertTrue(optional1.isPresent());
+        Assertions.assertEquals(1, (long) optional1.get());
 
         String invalidString = "foo";
         Optional<Long> invalidOptional = Coerce.asLong(invalidString);
-        assertTrue(!invalidOptional.isPresent());
+        Assertions.assertFalse(invalidOptional.isPresent());
 
         int myInt = 1;
         Optional<Long> optional2 = Coerce.asLong(myInt);
-        assertTrue(optional2.isPresent());
-        assertTrue(optional2.get() == 1);
+        Assertions.assertTrue(optional2.isPresent());
+        Assertions.assertEquals(1, (long) optional2.get());
 
 
 
         Optional<Long> nullOptional = Coerce.asLong(null);
-        assertTrue(!nullOptional.isPresent());
+        Assertions.assertFalse(nullOptional.isPresent());
     }
 
     @Test
-    public void testAsFloat() {
+    void testAsFloat() {
         String character = "1";
         Optional<Float> optional = Coerce.asFloat(character);
-        assertTrue(optional.isPresent());
-        assertTrue(optional.get() == 1);
+        Assertions.assertTrue(optional.isPresent());
+        Assertions.assertEquals(1, optional.get(), 0.0);
 
         char myChar = '1';
         Optional<Float> optional1 = Coerce.asFloat(myChar);
-        assertTrue(optional1.isPresent());
-        assertTrue(optional1.get() == 1);
+        Assertions.assertTrue(optional1.isPresent());
+        Assertions.assertEquals(1, optional1.get(), 0.0);
 
         String invalidString = "foo";
         Optional<Float> invalidOptional = Coerce.asFloat(invalidString);
-        assertTrue(!invalidOptional.isPresent());
+        Assertions.assertFalse(invalidOptional.isPresent());
 
         int myInt = 1;
         Optional<Float> optional2 = Coerce.asFloat(myInt);
-        assertTrue(optional2.isPresent());
-        assertTrue(optional2.get() == 1);
-
-
+        Assertions.assertTrue(optional2.isPresent());
+        Assertions.assertEquals(1, optional2.get(), 0.0);
 
         Optional<Float> nullOptional = Coerce.asFloat(null);
-        assertTrue(!nullOptional.isPresent());
+        Assertions.assertFalse(nullOptional.isPresent());
     }
 
     @Test
-    public void testAsDouble() {
+    void testAsDouble() {
         String character = "1";
         Optional<Double> optional = Coerce.asDouble(character);
-        assertTrue(optional.isPresent());
-        assertTrue(optional.get() == 1);
+        Assertions.assertTrue(optional.isPresent());
+        Assertions.assertEquals(1, optional.get(), 0.0);
 
         char myChar = '1';
         Optional<Double> optional1 = Coerce.asDouble(myChar);
-        assertTrue(optional1.isPresent());
-        assertTrue(optional1.get() == 1);
+        Assertions.assertTrue(optional1.isPresent());
+        Assertions.assertEquals(1, optional1.get(), 0.0);
 
         String invalidString = "foo";
         Optional<Double> invalidOptional = Coerce.asDouble(invalidString);
-        assertTrue(!invalidOptional.isPresent());
+        Assertions.assertFalse(invalidOptional.isPresent());
 
         int myInt = 1;
         Optional<Double> optional2 = Coerce.asDouble(myInt);
-        assertTrue(optional2.isPresent());
-        assertTrue(optional2.get() == 1);
+        Assertions.assertTrue(optional2.isPresent());
+        Assertions.assertEquals(1, optional2.get(), 0.0);
 
 
 
         Optional<Double> nullOptional = Coerce.asDouble(null);
-        assertTrue(!nullOptional.isPresent());
+        Assertions.assertFalse(nullOptional.isPresent());
     }
 
     @Test
-    public void testAsInteger() {
+    void testAsInteger() {
         String character = "1";
         Optional<Integer> optional = Coerce.asInteger(character);
-        assertTrue(optional.isPresent());
-        assertTrue(optional.get() == 1);
+        Assertions.assertTrue(optional.isPresent());
+        Assertions.assertEquals(1, (int) optional.get());
 
         char myChar = '1';
         Optional<Integer> optional1 = Coerce.asInteger(myChar);
-        assertTrue(optional1.isPresent());
-        assertTrue(optional1.get() == 1);
+        Assertions.assertTrue(optional1.isPresent());
+        Assertions.assertEquals(1, (int) optional1.get());
 
         String invalidString = "foo";
         Optional<Integer> invalidOptional = Coerce.asInteger(invalidString);
-        assertTrue(!invalidOptional.isPresent());
+        Assertions.assertFalse(invalidOptional.isPresent());
 
         int myInt = 1;
         Optional<Integer> optional2 = Coerce.asInteger(myInt);
-        assertTrue(optional2.isPresent());
-        assertTrue(optional2.get() == 1);
+        Assertions.assertTrue(optional2.isPresent());
+        Assertions.assertEquals(1, (int) optional2.get());
 
 
 
         Optional<Integer> nullOptional = Coerce.asInteger(null);
-        assertTrue(!nullOptional.isPresent());
+        Assertions.assertFalse(nullOptional.isPresent());
     }
 
     @Test
-    public void testAsString() {
+    void testAsString() {
         String character = "1";
         Optional<String> optional = Coerce.asString(character);
-        assertTrue(optional.isPresent());
-        assertTrue(optional.get().equals("1"));
+        Assertions.assertTrue(optional.isPresent());
+        Assertions.assertEquals("1", optional.get());
 
         char myChar = '1';
         Optional<String> optional1 = Coerce.asString(myChar);
-        assertTrue(optional1.isPresent());
-        assertTrue(optional1.get().equals("1"));
+        Assertions.assertTrue(optional1.isPresent());
+        Assertions.assertEquals("1", optional1.get());
 
         String invalidString = "foo";
         Optional<String> message = Coerce.asString(invalidString);
-        assertTrue(message.isPresent());
-        assertTrue(message.get().equals("foo"));
+        Assertions.assertTrue(message.isPresent());
+        Assertions.assertEquals("foo", message.get());
 
         int myInt = 1;
         Optional<String> optional2 = Coerce.asString(myInt);
-        assertTrue(optional2.isPresent());
-        assertTrue(optional2.get().equals("1"));
+        Assertions.assertTrue(optional2.isPresent());
+        Assertions.assertEquals("1", optional2.get());
 
 
         Optional<String> nullOptional = Coerce.asString(null);
-        assertTrue(!nullOptional.isPresent());
+        Assertions.assertFalse(nullOptional.isPresent());
     }
 }

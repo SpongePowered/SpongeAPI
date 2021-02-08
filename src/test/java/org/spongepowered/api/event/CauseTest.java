@@ -24,97 +24,101 @@
  */
 package org.spongepowered.api.event;
 
+import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.emptyString;
+import static org.hamcrest.Matchers.equalToObject;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
 
 import com.google.common.collect.ImmutableList;
-import org.junit.Test;
+import org.hamcrest.MatcherAssert;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.spongepowered.api.matcher.SpongeMatchers;
 
 import java.util.List;
 import java.util.Optional;
 
-public class CauseTest {
+class CauseTest {
 
     @Test
-    public void testPopulatedCause() {
+    void testPopulatedCause() {
         Cause.builder().append("foo").build(EventContext.empty());
     }
 
-    @Test(expected = NullPointerException.class)
-    public void testNullCause() {
-        Cause.builder().append(null);
+    @Test
+    void testNullCause() {
+        Assertions.assertThrows(NullPointerException.class, () -> Cause.builder().append(null));
     }
 
     @Test
-    public void testWithCause() {
+    void testWithCause() {
         final Cause old = Cause.of(EventContext.empty(), "foo");
         final Cause newCause = old.with("bar");
-        assertThat(old, not(newCause));
+        MatcherAssert.assertThat(old, is(not(newCause)));
         List<?> list = newCause.all();
-        assertThat(list.contains("foo"), is(true));
-        assertThat(list.contains("bar"), is(true));
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void testWithNullCause() {
-        final Cause old = Cause.of(EventContext.empty(), "foo");
-        old.with((Object) null);
+        MatcherAssert.assertThat(list, containsInAnyOrder("foo", "bar"));
     }
 
     @Test
-    public void testToString() {
+    void testWithNullCause() {
+        final Cause old = Cause.of(EventContext.empty(), "foo");
+        Assertions.assertThrows(NullPointerException.class, () -> old.with((Object) null));
+    }
+
+    @Test
+    void testToString() {
         final Cause cause = Cause.builder().append("foo").append("bar").append(1).append(2).build(EventContext.empty());
         final String causeString = cause.toString();
-        assertThat(causeString.isEmpty(), is(false));
+        MatcherAssert.assertThat(causeString, not(emptyString()));
     }
 
     @Test
-    public void testBefore() {
+    void testBefore() {
         final Cause cause = Cause.builder().append("foo").append(1).append(2).build(EventContext.empty());
         final Optional<?> optional = cause.before(Integer.class);
-        assertThat(optional.isPresent(), is(true));
-        assertThat(optional.get(), is("foo"));
+        MatcherAssert.assertThat(optional, is(SpongeMatchers.present()));
+        MatcherAssert.assertThat(optional, SpongeMatchers.valueIs(equalToObject("foo")));
     }
 
     @Test
-    public void testAfter() {
+    void testAfter() {
         final Cause cause = Cause.builder().append("foo").append(1).append(2).build(EventContext.empty());
         final Optional<?> optional = cause.after(Integer.class);
-        assertThat(optional.isPresent(), is(true));
-        assertThat(optional.get(), is(2));
+        MatcherAssert.assertThat(optional, is(SpongeMatchers.present()));
+        MatcherAssert.assertThat(optional, SpongeMatchers.valueIs(equalToObject(2)));
     }
 
     @Test
-    public void testNoneAfter() {
+    void testNoneAfter() {
         final Cause cause = Cause.builder().append("foo").append(1).build(EventContext.empty());
         final Optional<?> optional = cause.after(Integer.class);
-        assertThat(optional.isPresent(), is(false));
+        MatcherAssert.assertThat(optional, is(not(SpongeMatchers.present())));
     }
 
     @Test
-    public void testNoneBefore() {
+    void testNoneBefore() {
         final Cause cause = Cause.builder().append("foo").append(1).build(EventContext.empty());
         final Optional<?> optional = cause.before(String.class);
-        assertThat(optional.isPresent(), is(false));
+        MatcherAssert.assertThat(optional, is(not(SpongeMatchers.present())));
     }
 
     @Test
-    public void testNoneOf() {
+    void testNoneOf() {
         final Cause cause = Cause.builder().append("foo").append(1).append(2).append(3).build(EventContext.empty());
-        assertThat(cause.noneOf(Integer.class), hasSize(1));
-        assertThat(cause.noneOf(Integer.class).get(0), is("foo"));
+        MatcherAssert.assertThat(cause.noneOf(Integer.class), hasSize(1));
+        MatcherAssert.assertThat(cause.noneOf(Integer.class).get(0), is("foo"));
     }
 
     @Test
-    public void testListedArray() {
+    void testListedArray() {
         final List<String> fooList = ImmutableList.of("foo", "bar", "baz", "floof");
         final Cause cause = Cause.builder().append("foo").append("bar").append("baz").append("floof").build(EventContext.empty());
         final List<String> stringList = cause.allOf(String.class);
-        assertThat(stringList.isEmpty(), is(false));
-        assertThat(stringList.equals(fooList), is(true));
+        MatcherAssert.assertThat(stringList, is(not(empty())));
+        MatcherAssert.assertThat(stringList, is(fooList));
     }
-
 
 }

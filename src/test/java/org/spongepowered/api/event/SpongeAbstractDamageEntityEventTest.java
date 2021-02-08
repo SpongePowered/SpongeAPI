@@ -25,12 +25,14 @@
 package org.spongepowered.api.event;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.aMapWithSize;
 import static org.hamcrest.Matchers.closeTo;
-import static org.junit.Assert.assertThat;
 
 import com.google.common.collect.Lists;
+import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.entity.damage.DamageFunction;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
@@ -40,47 +42,47 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.DoubleUnaryOperator;
 
-public class SpongeAbstractDamageEntityEventTest {
+class SpongeAbstractDamageEntityEventTest {
 
     private static final double ERROR = 0.03;
 
     @Test
-    public void testParams() {
+    void testParams() {
         Entity targetEntity = this.mockParam(Entity.class);
         int originalDamage = 5;
 
         DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.of(EventContext.empty(),"none"),
             targetEntity, Lists.newArrayList(), originalDamage);
 
-        assertThat(event.originalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
-        assertThat(event.originalFinalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.originalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.originalFinalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
 
-        assertThat(event.finalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
-        assertThat(event.baseDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.finalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.baseDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
     }
 
     @Test
-    public void testSetBaseDamage() {
+    void testSetBaseDamage() {
         Entity targetEntity = this.mockParam(Entity.class);
         int originalDamage = 5;
 
         DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.of(EventContext.empty(),"none"),
             targetEntity, Lists.newArrayList(), originalDamage);
 
-        assertThat(event.originalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
-        assertThat(event.originalFinalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.originalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.originalFinalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
 
         event.setBaseDamage(20);
 
-        assertThat(event.baseDamage(), is(closeTo(20, SpongeAbstractDamageEntityEventTest.ERROR)));
-        assertThat(event.finalDamage(), is(closeTo(20, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.baseDamage(), is(closeTo(20, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.finalDamage(), is(closeTo(20, SpongeAbstractDamageEntityEventTest.ERROR)));
 
-        assertThat(event.originalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
-        assertThat(event.originalFinalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.originalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.originalFinalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
     }
 
     @Test
-    public void testUseModifiers() {
+    void testUseModifiers() {
         Entity targetEntity = this.mockParam(Entity.class);
 
         final int originalDamage = 1;
@@ -99,28 +101,28 @@ public class SpongeAbstractDamageEntityEventTest {
             targetEntity, originalFunctions, originalDamage);
 
         final List<DamageFunction> originalFunctions1 = event.originalFunctions();
-        assertThat(originalFunctions1, is(Matchers.equalTo(originalFunctions)));
+        MatcherAssert.assertThat(originalFunctions1, is(Matchers.equalTo(originalFunctions)));
 
-        assertThat(event.originalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
-        assertThat(event.originalFinalDamage(), is(closeTo(originalFinalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.originalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.originalFinalDamage(), is(closeTo(originalFinalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
 
         Map<DamageModifier, Double> originalDamages = event.originalDamages();
 
-        assertThat(originalDamages.size(), is(originalFunctions.size()));
+        MatcherAssert.assertThat(originalDamages, is(aMapWithSize(originalFunctions.size())));
 
-        assertThat(originalDamages.get(firstModifer), is(closeTo(firstModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
-        assertThat(originalDamages.get(secondModifier), is(closeTo(secondModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(originalDamages.get(firstModifer), is(closeTo(firstModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(originalDamages.get(secondModifier), is(closeTo(secondModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
 
-        assertThat(event.originalModifierDamage(firstModifer), is(closeTo(firstModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
-        assertThat(event.originalModifierDamage(secondModifier), is(closeTo(secondModifierDamage,
+        MatcherAssert.assertThat(event.originalModifierDamage(firstModifer), is(closeTo(firstModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.originalModifierDamage(secondModifier), is(closeTo(secondModifierDamage,
             SpongeAbstractDamageEntityEventTest.ERROR
         )));
 
-        assertThat(event.originalFunctions(), is(Matchers.equalTo(originalFunctions)));
+        MatcherAssert.assertThat(event.originalFunctions(), is(Matchers.equalTo(originalFunctions)));
     }
 
     @Test
-    public void testSetModifiers() {
+    void testSetModifiers() {
         Entity targetEntity = this.mockParam(Entity.class);
 
         final int originalDamage = 1;
@@ -143,32 +145,32 @@ public class SpongeAbstractDamageEntityEventTest {
         DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.of(EventContext.empty(),"none"),
             targetEntity, originalFunctions, originalDamage);
 
-        assertThat(event.originalFunctions(), is(Matchers.equalTo(originalFunctions)));
+        MatcherAssert.assertThat(event.originalFunctions(), is(Matchers.equalTo(originalFunctions)));
 
         DoubleUnaryOperator newFunction = p -> p;
 
         event.setDamage(firstModifer, newFunction);
 
-        assertThat(event.damage(firstModifer), is(closeTo(firstChangedDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
-        assertThat(event.damage(secondModifier), is(closeTo(secondChangedDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.damage(firstModifer), is(closeTo(firstChangedDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.damage(secondModifier), is(closeTo(secondChangedDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
 
-        assertThat(event.originalModifierDamage(firstModifer), is(closeTo(firstModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
-        assertThat(event.originalModifierDamage(secondModifier), is(closeTo(secondModifierDamage,
+        MatcherAssert.assertThat(event.originalModifierDamage(firstModifer), is(closeTo(firstModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.originalModifierDamage(secondModifier), is(closeTo(secondModifierDamage,
             SpongeAbstractDamageEntityEventTest.ERROR
         )));
 
-        assertThat(event.originalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
-        assertThat(event.originalFinalDamage(), is(closeTo(originalFinalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
-        assertThat(event.finalDamage(), is(closeTo(modifiedFinalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.originalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.originalFinalDamage(), is(closeTo(originalFinalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.finalDamage(), is(closeTo(modifiedFinalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
 
-        assertThat(event.originalFunctions(), is(Matchers.equalTo(originalFunctions)));
+        MatcherAssert.assertThat(event.originalFunctions(), is(Matchers.equalTo(originalFunctions)));
 
-        assertThat(event.modifiers(),
+        MatcherAssert.assertThat(event.modifiers(),
             is(Matchers.equalTo(Lists.newArrayList(DamageFunction.of(firstModifer, newFunction), originalFunctions.get(1)))));
     }
 
     @Test
-    public void testAddModifier() {
+    void testAddModifier() {
         Entity targetEntity = this.mockParam(Entity.class);
 
         final int originalDamage = 1;
@@ -196,32 +198,32 @@ public class SpongeAbstractDamageEntityEventTest {
         DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.of(EventContext.empty(),"none"), targetEntity, originalFunctions
             , originalDamage);
 
-        assertThat(event.originalFunctions(), is(Matchers.equalTo(originalFunctions)));
+        MatcherAssert.assertThat(event.originalFunctions(), is(Matchers.equalTo(originalFunctions)));
 
-        assertThat(event.isModifierApplicable(thirdModifier), is(false));
+        MatcherAssert.assertThat(event.isModifierApplicable(thirdModifier), is(false));
 
         event.setDamage(thirdModifier, thirdFunction);
 
-        assertThat(event.damage(firstModifer), is(closeTo(firstModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
-        assertThat(event.damage(secondModifier), is(closeTo(secondModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
-        assertThat(event.damage(thirdModifier), is(closeTo(thirdDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.damage(firstModifer), is(closeTo(firstModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.damage(secondModifier), is(closeTo(secondModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.damage(thirdModifier), is(closeTo(thirdDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
 
-        assertThat(event.originalModifierDamage(firstModifer), is(closeTo(firstModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
-        assertThat(event.originalModifierDamage(secondModifier), is(closeTo(secondModifierDamage,
+        MatcherAssert.assertThat(event.originalModifierDamage(firstModifer), is(closeTo(firstModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.originalModifierDamage(secondModifier), is(closeTo(secondModifierDamage,
             SpongeAbstractDamageEntityEventTest.ERROR
         )));
 
-        assertThat(event.originalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
-        assertThat(event.originalFinalDamage(), is(closeTo(originalFinalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
-        assertThat(event.finalDamage(), is(closeTo(modifiedFinalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.originalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.originalFinalDamage(), is(closeTo(originalFinalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
+        MatcherAssert.assertThat(event.finalDamage(), is(closeTo(modifiedFinalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
 
-        assertThat(event.originalFunctions(), is(Matchers.equalTo(originalFunctions)));
+        MatcherAssert.assertThat(event.originalFunctions(), is(Matchers.equalTo(originalFunctions)));
 
-        assertThat(event.modifiers(), is(Matchers.equalTo(newFunctions)));
+        MatcherAssert.assertThat(event.modifiers(), is(Matchers.equalTo(newFunctions)));
     }
 
     @Test
-    public void testModifiersApplicable() {
+    void testModifiersApplicable() {
         Entity targetEntity = this.mockParam(Entity.class);
 
         DamageModifier firstModifer = this.mockParam(DamageModifier.class);
@@ -233,21 +235,21 @@ public class SpongeAbstractDamageEntityEventTest {
         DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.of(EventContext.empty(), "none"), targetEntity,
             originalFunctions, 0);
 
-        assertThat(event.isModifierApplicable(firstModifer), is(true));
-        assertThat(event.isModifierApplicable(secondModifier), is(true));
-        assertThat(event.isModifierApplicable(this.mockParam(DamageModifier.class)), is(false));
+        MatcherAssert.assertThat(event.isModifierApplicable(firstModifer), is(true));
+        MatcherAssert.assertThat(event.isModifierApplicable(secondModifier), is(true));
+        MatcherAssert.assertThat(event.isModifierApplicable(this.mockParam(DamageModifier.class)), is(false));
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testNotApplicableModifer() {
+    @Test
+    void testNotApplicableModifer() {
         DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.of(EventContext.empty(), "none"), this.mockParam(Entity.class),
             Lists.newArrayList(), 0);
 
         DamageModifier modifier = this.mockParam(DamageModifier.class);
 
-        assertThat(event.isModifierApplicable(modifier), is(false));
+        MatcherAssert.assertThat(event.isModifierApplicable(modifier), is(false));
 
-        event.originalModifierDamage(modifier);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> event.originalModifierDamage(modifier));
     }
 
     @SuppressWarnings("unchecked")
