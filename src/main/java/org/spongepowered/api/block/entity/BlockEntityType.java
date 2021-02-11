@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.block.entity;
 
-import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -45,6 +45,6 @@ public interface BlockEntityType extends DefaultedRegistryValue {
      * @param block The block to test
      * @return True if valid, false if not
      */
-    boolean isValidBlock(BlockType block);
+    boolean isValidBlock(BlockState block);
 }
 
