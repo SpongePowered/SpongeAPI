@@ -72,6 +72,10 @@ public interface NoiseGeneratorConfig extends ChunkGeneratorConfig {
 
     int seaLevel();
 
+    boolean aquifers();
+
+    boolean noiseCaves();
+
     interface Builder extends org.spongepowered.api.util.Builder<NoiseGeneratorConfig, Builder>, CopyableBuilder<NoiseGeneratorConfig, Builder> {
 
         Builder structureConfig(StructureGenerationConfig config);
@@ -87,6 +91,10 @@ public interface NoiseGeneratorConfig extends ChunkGeneratorConfig {
         Builder bedrockFloorY(int y);
 
         Builder seaLevel(int y);
+
+        Builder aquifers(boolean enableAquifers);
+
+        Builder noiseCaves(boolean enableNoiseCaves);
     }
 
     interface Factory {
