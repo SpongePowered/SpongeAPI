@@ -127,6 +127,10 @@ dependencies {
     // Math library
     api("org.spongepowered:math:2.0.0")
 
+    // Observability
+    api("io.prometheus:simpleclient:0.10.0")
+    api("io.opentracing:opentracing-api:0.33.0")
+
     testImplementation(platform("org.junit:junit-bom:5.7.1"))
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testImplementation("org.junit.jupiter:junit-jupiter-params")
