@@ -24,27 +24,19 @@
  */
 package org.spongepowered.api.event.world.chunk;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.math.vector.Vector3i;
 
-import java.util.Optional;
-import java.util.UUID;
-
-/**
- * Called when a {@link Chunk} is performing a save.
- */
-public interface SaveChunkEvent extends Event {
+public interface ChunkEvent extends Event {
 
     /**
-     * Gets the {@link UUID} of the {@link World} that the {@link Chunk} resides
-     * in, if known.
+     * Gets the {@link ResourceKey} of the {@link World} that the {@link Chunk} resides in.
      */
-    default Optional<UUID> getChunkWorldUUID() {
-        return Optional.empty();
-    }
+    ResourceKey getChunkWorld();
 
     /**
      * Gets the position of the {@link Chunk}.
@@ -54,10 +46,45 @@ public interface SaveChunkEvent extends Event {
     Vector3i getChunkPosition();
 
     /**
-     * Called before the {@link Chunk} is saved. Cancelling this will prevent any of
-     * the chunk's data being written to it's storage container.
+     * Called when a {@link Chunk} was unloaded.
      */
-    interface Pre extends SaveChunkEvent, Cancellable {
+    interface Unload extends ChunkEvent {
+
+    }
+
+    /**
+     * Called when a {@link Chunk} is performing a save.
+     */
+    interface Save extends ChunkEvent {
+
+        /**
+         * Called before the {@link Chunk} is saved. Cancelling this will prevent any of
+         * the chunk's data being written to it's storage container.
+         */
+        interface Pre extends Save, Cancellable {
+
+            /**
+             * Gets the {@link Chunk} being changed.
+             *
+             * @return The Chunk
+             */
+            Chunk getTargetChunk();
+
+        }
+
+        /**
+         * Called after the {@link Chunk} is saved. Guaranteed to exist in the chunk's
+         * storage container.
+         *
+         * Depending on the implementation, this event may be called off-thread.
+         */
+        interface Post extends Save {}
+    }
+
+    /**
+     * Called when a {@link Chunk} is done loading.
+     */
+    interface Load extends ChunkEvent, Save.Pre {
 
         /**
          * Gets the {@link Chunk} being changed.
@@ -65,14 +92,5 @@ public interface SaveChunkEvent extends Event {
          * @return The Chunk
          */
         Chunk getTargetChunk();
-
     }
-
-    /**
-     * Called after the {@link Chunk} is saved. Guaranteed to exist in the chunk's
-     * storage container.
-     *
-     * Depending on the implementation, this event may be called off-thread.
-     */
-    interface Post extends SaveChunkEvent {}
 }
