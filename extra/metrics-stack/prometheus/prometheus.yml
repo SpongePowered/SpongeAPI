@@ -1,0 +1,12 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'cvp'
+scrape_configs:
+  - job_name: 'static_hosts'
+    static_configs:
+      - targets:
+        - '127.0.0.1:9090'
+        - '127.0.0.1:9100'
+        - '127.0.0.1:9000'

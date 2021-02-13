@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+
+  # Web UI at http://localhost:3000
+  grafana:
+    image: grafana/grafana:7.3.7
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=changeme
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - './grafana/datasources.yml:/etc/grafana/provisioning/datasources/prometheus.yaml'
+    network_mode: host
+
+  node-exporter:
+    image: prom/node-exporter:v1.1.0
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - '--path.rootfs=/host'
+      - '--collector.filesystem.ignored-mount-points="^(/rootfs|/host|)/(sys|proc|dev|host|etc)($$|/)"'
+      - '--collector.filesystem.ignored-fs-types="^(sys|proc|auto|cgroup|devpts|ns|au|fuse\.lxc|mqueue)(fs|)$$"'
+    network_mode: host
+
+  # Web UI at http://localhost:9090
+  prometheus:
+    image: prom/prometheus:v2.24.1
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+      - '--web.external-url=http://localhost:9090'
+    volumes:
+      - prometheus_data:/prometheus
+      - './prometheus/prometheus.yml:/etc/prometheus/prometheus.yml'
+    network_mode: host
+
+  # Web UI at http://localhost:16686
+  jaeger:
+    image: jaegertracing/all-in-one:1.21
+    network_mode: host
+
+volumes:
+  prometheus_data:
+  grafana_data:
