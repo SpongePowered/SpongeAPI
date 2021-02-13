@@ -27,8 +27,11 @@ package org.spongepowered.api.service;
 import org.spongepowered.api.Engine;
 import org.spongepowered.api.service.ban.BanService;
 import org.spongepowered.api.service.economy.EconomyService;
+import org.spongepowered.api.service.healthcheck.HealthCheckService;
+import org.spongepowered.api.service.metrics.MetricsService;
 import org.spongepowered.api.service.pagination.PaginationService;
 import org.spongepowered.api.service.permission.PermissionService;
+import org.spongepowered.api.service.tracing.TracingService;
 import org.spongepowered.api.service.whitelist.WhitelistService;
 
 import java.util.Optional;
@@ -68,6 +71,13 @@ public interface ServiceProvider {
          */
         PaginationService paginationService();
 
+        /**
+         * Retrieves the {@link TracingService}.
+         *
+         * @return The {@link TracingService}
+         */
+        TracingService tracingService();
+
     }
 
     /**
@@ -104,6 +114,19 @@ public interface ServiceProvider {
          */
         WhitelistService whitelistService();
 
+        /**
+         * Retrieves the {@link HealthCheckService}.
+         *
+         * @return The {@link HealthCheckService}
+         */
+        HealthCheckService healthCheckService();
+
+        /**
+         * Retrieves the {@link MetricsService}.
+         *
+         * @return The {@link MetricsService}
+         */
+        MetricsService metricsService();
     }
 
 
