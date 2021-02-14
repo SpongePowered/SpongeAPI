@@ -32,15 +32,15 @@ import java.util.function.ToDoubleFunction;
 import static java.util.Collections.singletonList;
 
 public final class SimplePullGauge<T> extends PullGauge<T> {
-    private final ToDoubleFunction<T> f;
+    private final ToDoubleFunction<T> sampler;
 
-    public SimplePullGauge(String name, String unit, String help, ToDoubleFunction<T> f) {
+    public SimplePullGauge(String name, String unit, String help, ToDoubleFunction<T> sampler) {
         super(name, unit, help);
-        this.f = f;
+        this.sampler = sampler;
     }
 
     @Override
     protected List<Sample> makeSamples(T subject) {
-        return singletonList(sample(f.applyAsDouble(subject)));
+        return singletonList(sample(sampler.applyAsDouble(subject)));
     }
 }

@@ -82,16 +82,16 @@ public abstract class PullGauge<T> {
         return bundle(samples);
     }
 
-    public static <T> Builder<T> build(String name, ToDoubleFunction<T> f) {
-        return new Builder<>("", "", (unit, help) -> new SimplePullGauge<>(name, unit, help, f));
+    public static <T> Builder<T> build(String name, ToDoubleFunction<T> sampler) {
+        return new Builder<>("", "", (unit, help) -> new SimplePullGauge<>(name, unit, help, sampler));
     }
 
-    public static <T> Builder<T> build(String name, LabeledPullGauge.Sampler<T> f) {
-        return new Builder<>("", "", (unit, help) -> new LabeledPullGauge<>(name, unit, help, v -> singletonList(f.apply(v))));
+    public static <T> Builder<T> build(String name, LabeledPullGauge.Sampler<T> sampler) {
+        return new Builder<>("", "", (unit, help) -> new LabeledPullGauge<>(name, unit, help, v -> singletonList(sampler.apply(v))));
     }
 
-    public static <T> Builder<T> build(String name, LabeledPullGauge.MultiSampler<T> f) {
-        return new Builder<>("", "", (unit, help) -> new LabeledPullGauge<>(name, unit, help, f));
+    public static <T> Builder<T> build(String name, LabeledPullGauge.MultiSampler<T> sampler) {
+        return new Builder<>("", "", (unit, help) -> new LabeledPullGauge<>(name, unit, help, sampler));
     }
 
     public static final class Builder<T> {

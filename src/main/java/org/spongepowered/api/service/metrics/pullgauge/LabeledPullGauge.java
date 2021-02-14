@@ -32,16 +32,16 @@ import java.util.List;
 import java.util.function.Function;
 
 public final class LabeledPullGauge<T> extends PullGauge<T> {
-    private final MultiSampler<T> f;
+    private final MultiSampler<T> sampler;
 
-    public LabeledPullGauge(String name, String unit, String help, MultiSampler<T> f) {
+    public LabeledPullGauge(String name, String unit, String help, MultiSampler<T> sampler) {
         super(name, unit, help);
-        this.f = f;
+        this.sampler = sampler;
     }
 
     @Override
     protected List<Sample> makeSamples(T subject) {
-        final List<LabeledValue> values = f.apply(subject);
+        final List<LabeledValue> values = sampler.apply(subject);
         List<Sample> samples = new ArrayList<>(values.size());
         for (LabeledValue labeledValue : values) {
             final Iterable<Label> labels = labeledValue.getLabels();
