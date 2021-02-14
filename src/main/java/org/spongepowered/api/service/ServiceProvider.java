@@ -31,7 +31,6 @@ import org.spongepowered.api.service.healthcheck.HealthCheckService;
 import org.spongepowered.api.service.metrics.MetricsService;
 import org.spongepowered.api.service.pagination.PaginationService;
 import org.spongepowered.api.service.permission.PermissionService;
-import org.spongepowered.api.service.tracing.TracingService;
 import org.spongepowered.api.service.whitelist.WhitelistService;
 
 import java.util.Optional;
@@ -70,13 +69,6 @@ public interface ServiceProvider {
          * @return The {@link PaginationService}
          */
         PaginationService paginationService();
-
-        /**
-         * Retrieves the {@link TracingService}.
-         *
-         * @return The {@link TracingService}
-         */
-        TracingService tracingService();
 
     }
 
