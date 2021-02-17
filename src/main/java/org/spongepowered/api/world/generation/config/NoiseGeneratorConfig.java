@@ -76,6 +76,8 @@ public interface NoiseGeneratorConfig extends ChunkGeneratorConfig {
 
     boolean noiseCaves();
 
+    boolean grimstone();
+
     interface Builder extends org.spongepowered.api.util.Builder<NoiseGeneratorConfig, Builder>, CopyableBuilder<NoiseGeneratorConfig, Builder> {
 
         Builder structureConfig(StructureGenerationConfig config);
@@ -95,6 +97,8 @@ public interface NoiseGeneratorConfig extends ChunkGeneratorConfig {
         Builder aquifers(boolean enableAquifers);
 
         Builder noiseCaves(boolean enableNoiseCaves);
+
+        Builder grimstone(boolean enableGrimstone);
     }
 
     interface Factory {
