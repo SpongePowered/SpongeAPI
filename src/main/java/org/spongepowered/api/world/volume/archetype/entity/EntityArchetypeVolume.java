@@ -53,6 +53,8 @@ public interface EntityArchetypeVolume extends Volume {
 
     Collection<EntityArchetype> entityArchetypes();
 
+    Collection<EntityArchetypeEntry> entityArchetypesByPosition();
+
     Collection<EntityArchetype> entityArchetypes(Predicate<EntityArchetype> filter);
 
     interface Streamable<B extends Streamable<B>> extends EntityArchetypeVolume {

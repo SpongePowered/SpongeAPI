@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world.volume.stream;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.block.entity.BlockEntityArchetype;
@@ -99,7 +100,6 @@ public final class VolumeApplicators {
         return (volume, element) -> element.type().apply((ServerLocation) volume.location(element.position()));
     }
 
-    @SuppressWarnings("ConstantConditions")
     public static <M extends BlockEntityArchetypeVolume.Mutable<M>> VolumeApplicator<M, BlockEntityArchetype, Boolean> applyBlockEntityArchetypes() {
         return (volume, element) -> {
             volume.addBlockEntity(element.position(), element.type());
@@ -115,7 +115,8 @@ public final class VolumeApplicators {
         return (volume, element) -> volume.setBiome(element.position(), element.type());
     }
 
-    public static <M extends LocationCreator<?, ? extends ServerLocation> & EntityVolume.Mutable<M>> VolumeApplicator<M, EntityArchetype, Optional<?
+    @SuppressWarnings("RedundantCast")
+    public static <M extends LocationCreator<@NonNull ?, ? extends ServerLocation> & EntityVolume.Mutable<M>> VolumeApplicator<M, EntityArchetype, Optional<?
             extends Entity>> applyEntityArchetype() {
         return (volume, element) -> element.type().apply((ServerLocation) volume.location(element.position()));
     }
