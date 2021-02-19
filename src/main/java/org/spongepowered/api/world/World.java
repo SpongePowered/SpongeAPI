@@ -50,8 +50,16 @@ import java.util.function.Predicate;
  * A loaded Minecraft world.
  */
 @DoNotStore
-public interface World<W extends World<W, L>, L extends Location<W, L>> extends ForwardingAudience, ProtoWorld<W>, LocationCreator<W, L>,
-        PhysicsAwareMutableBlockVolume<W>, ContextSource, Viewer, ArchetypeVolumeCreator, WeatherUniverse, ScopedRegistryHolder {
+public interface World<W extends World<W, L>, L extends Location<W, L>> extends
+    ForwardingAudience,
+    ProtoWorld<W>,
+    LocationCreator<W, L>,
+    PhysicsAwareMutableBlockVolume<W>,
+    ContextSource,
+    Viewer,
+    ArchetypeVolumeCreator,
+    WeatherUniverse,
+    ScopedRegistryHolder {
 
     /**
      * Gets the {@link WorldProperties properties}.

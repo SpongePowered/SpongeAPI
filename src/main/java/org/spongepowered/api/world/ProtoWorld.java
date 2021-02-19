@@ -44,10 +44,10 @@ import java.util.Objects;
 
 public interface ProtoWorld<P extends ProtoWorld<P>> extends
     Region<P>,
-    BiomeVolume.Mutable<P>, // Because this is mutable
-    BlockVolume.Mutable<P>, // Because this is mutable
-    EntityVolume.Mutable<P>, // Because this is mutable
-    BlockEntityVolume.Mutable<P>, // Because this is mutable
+    BiomeVolume.Modifiable<P>, // Because this is mutable
+    BlockVolume.Modifiable<P>, // Because this is mutable
+    EntityVolume.Modifiable<P>, // Because this is mutable
+    BlockEntityVolume.Modifiable<P>, // Because this is mutable
     GenerationVolume.Mutable,
     LocationBaseDataHolder.Mutable,
     UpdatableVolume,

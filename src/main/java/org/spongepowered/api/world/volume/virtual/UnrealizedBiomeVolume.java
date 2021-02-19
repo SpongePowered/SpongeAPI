@@ -22,25 +22,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.volume.block;
+package org.spongepowered.api.world.volume.virtual;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.registry.RegistryReference;
-import org.spongepowered.api.world.schematic.Palette;
-import org.spongepowered.math.vector.Vector3i;
+import org.spongepowered.api.world.biome.Biome;
+import org.spongepowered.api.world.volume.biome.BiomeVolume;
 
-public interface BlockVolumeFactory {
+public interface UnrealizedBiomeVolume<B extends BiomeVolume> extends Virtualized<Biome, B> {
 
-    BlockVolume.Mutable empty(Palette<BlockState, BlockType> palette, RegistryReference<BlockType> defaultState, Vector3i min, Vector3i max);
+    interface Streamable<B extends Streamable<B, BU>, BU extends BiomeVolume.Streamable<BU>>
+        extends UnrealizedBiomeVolume<BU>,
+        Virtualized.Streamable<Biome, B, BU>
+    {
 
-    BlockVolume.Mutable copyFromRange(BlockVolume.Streamable<@NonNull ?> existing, Vector3i newMin, Vector3i newMax);
+    }
 
-    BlockVolume.Mutable copy(BlockVolume.Streamable<@NonNull ?> existing);
+    interface Unmodifiable<U extends Unmodifiable<U, BU>, BU extends BiomeVolume.Unmodifiable<BU>>
+        extends UnrealizedBiomeVolume<BU>,
+        Streamable<U, BU>,
+        Virtualized.Unmodifiable<Biome, U, BU> {
 
-    BlockVolume.Immutable immutableOf(BlockVolume.Streamable<@NonNull ?> existing);
+    }
 
-    BlockVolume.Immutable immutableOf(BlockVolume.Streamable<@NonNull ?> existing, Vector3i newMin, Vector3i newMax);
+    interface Modifiable<B extends Modifiable<B, MB>, MB extends BiomeVolume.Modifiable<MB>>
+    extends UnrealizedBiomeVolume<MB>,
+        Streamable<B, MB>,
+        Virtualized.Mutable<Biome, B, MB> {
+
+    }
+
+    interface Mutable extends Modifiable<Mutable, BiomeVolume.Mutable> {
+
+    }
+
+    interface Immutable extends Unmodifiable<Immutable, BiomeVolume.Immutable> {
+
+    }
+
 
 }

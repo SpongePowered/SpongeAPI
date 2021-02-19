@@ -30,7 +30,7 @@ import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.BlockChangeFlags;
 import org.spongepowered.math.vector.Vector3i;
 
-public interface PhysicsAwareMutableBlockVolume<P extends PhysicsAwareMutableBlockVolume<P>> extends BlockVolume.Mutable<P> {
+public interface PhysicsAwareMutableBlockVolume<P extends PhysicsAwareMutableBlockVolume<P>> extends BlockVolume.Modifiable<P> {
 
     /**
      * {@inheritDoc}

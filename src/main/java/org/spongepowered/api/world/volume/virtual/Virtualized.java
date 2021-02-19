@@ -22,22 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.volume.biome;
+package org.spongepowered.api.world.volume.virtual;
 
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
 import org.spongepowered.api.world.biome.Biome;
 import org.spongepowered.api.world.volume.ImmutableVolume;
 import org.spongepowered.api.world.volume.MutableVolume;
 import org.spongepowered.api.world.volume.UnmodifiableVolume;
 import org.spongepowered.api.world.volume.Volume;
+import org.spongepowered.api.world.volume.biome.BiomeVolume;
 import org.spongepowered.api.world.volume.block.BlockVolume;
 import org.spongepowered.api.world.volume.stream.StreamOptions;
 import org.spongepowered.api.world.volume.stream.VolumeStream;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Objects;
+import java.util.Optional;
 
-public interface BiomeVolume extends Volume {
+public interface Virtualized<T, R extends Volume> extends Volume {
+
+    R realize(Registry<T> registry);
 
     /**
      * Gets an object representing the biome at the given position.
@@ -47,9 +53,9 @@ public interface BiomeVolume extends Volume {
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the volume
      */
-    default Biome biome(final Vector3i position) {
+    default ResourceKey at(final Vector3i position) {
         Objects.requireNonNull(position, "position");
-        return this.biome(position.x(), position.y(), position.z());
+        return this.at(position.x(), position.y(), position.z());
     }
 
     /**
@@ -62,9 +68,17 @@ public interface BiomeVolume extends Volume {
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the volume
      */
-    Biome biome(int x, int y, int z);
+    ResourceKey at(int x, int y, int z);
 
-    interface Streamable<B extends Streamable<B>> extends BiomeVolume {
+    default Optional<T> at(Vector3i position, Registry<T> registry) {
+        return registry.findValue(this.at(position));
+    }
+
+    default Optional<T> at(final int x, final int y, final int z, Registry<T> registry) {
+        return registry.findValue(this.at(x, y, z));
+    }
+
+    interface Streamable<T, B extends Streamable<T, B, S>, S extends Volume> extends Virtualized<T, S> {
 
         /**
          * Gets a {@link VolumeStream}&lt;{@code B, }{@link Biome}&gt;
@@ -76,7 +90,7 @@ public interface BiomeVolume extends Volume {
          * @param options The options to construct the stream
          * @return The volume stream
          */
-        VolumeStream<B, Biome> biomeStream(Vector3i min, Vector3i max, StreamOptions options);
+        VolumeStream<B, ResourceKey> elementStream(Vector3i min, Vector3i max, StreamOptions options);
     }
 
     /**
@@ -85,23 +99,27 @@ public interface BiomeVolume extends Volume {
      * this volume returned will not be. This is useful if needing to simply
      * scan blocks or use {@link java.util.stream.Stream}s to perform various operations.
      */
-    interface Unmodifiable<U extends Unmodifiable<U>> extends BiomeVolume, Streamable<U>, UnmodifiableVolume {
+    interface Unmodifiable<T, U extends Unmodifiable<T, U, RU>, RU extends Volume> extends Virtualized<T, RU>,
+        Streamable<T, U, RU>,
+        UnmodifiableVolume {
 
     }
 
-    interface Modifiable<M extends Modifiable<M>> extends Streamable<M>, MutableVolume {
+    interface Mutable<T, M extends Mutable<T, M, MU>, MU extends Volume> extends Streamable<T, M, MU>, MutableVolume {
 
         /**
          * Sets the {@link Biome} at the given position in this volume.
          *
          * @param position The position
-         * @param biome The biome type
-         * @return Whether the biome change was successful
+         * @param element The element type
+         * @return Whether the element change was successful
          * @throws PositionOutOfBoundsException If the position is outside of the
          *                                      bounds of the volume
          */
-        default boolean setBiome(Vector3i position, Biome biome) {
-            return this.setBiome(position.x(), position.y(), position.z(), biome);
+        default boolean set(Vector3i position, Registry<T> registry, T element) {
+            return registry.findValueKey(element)
+                .map(resource -> this.set(position.x(), position.y(), position.z(), resource))
+                .orElse(false);
         }
 
         /**
@@ -110,20 +128,20 @@ public interface BiomeVolume extends Volume {
          * @param x The X position
          * @param y The Y position
          * @param z The Z position
-         * @param biome The biome type
+         * @param resourceKey The resource key
          * @return Whether the biome change was successful
          * @throws PositionOutOfBoundsException If the position is outside of the
          *                                      bounds of the volume
          */
-        boolean setBiome(int x, int y, int z, Biome biome);
+        boolean set(
+            int x, int y, int z,
+            ResourceKey resourceKey
+        );
 
     }
 
-    interface Mutable extends Modifiable<Mutable> {
+    interface Immutable extends BiomeVolume.Unmodifiable<BiomeVolume.Immutable>, ImmutableVolume {
 
     }
 
-    interface Immutable extends Unmodifiable<Immutable>, ImmutableVolume {
-
-    }
 }

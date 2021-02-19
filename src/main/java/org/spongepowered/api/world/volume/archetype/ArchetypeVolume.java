@@ -47,15 +47,24 @@ import org.spongepowered.math.vector.Vector3i;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-public interface ArchetypeVolume extends BlockVolume.Mutable<ArchetypeVolume>,
-    BlockEntityArchetypeVolume.Mutable<ArchetypeVolume>,
-    EntityArchetypeVolume.Mutable<ArchetypeVolume>,
-    BiomeVolume.Mutable<ArchetypeVolume> {
+public interface ArchetypeVolume extends BlockVolume.Modifiable<ArchetypeVolume>,
+    BlockEntityArchetypeVolume.Modifiable<ArchetypeVolume>,
+    EntityArchetypeVolume.Modifiable<ArchetypeVolume>,
+    BiomeVolume.Modifiable<ArchetypeVolume> {
 
-    Registry<BlockType> blockStateRegistry();
-
-    Registry<Biome> biomeRegistry();
-
+    /**
+     * Attempts to apply all of the contents of this
+     * {@link ArchetypeVolume volume} onto the target {@link ServerWorld world}
+     * with a relative {@code placement}. This default implementation can be
+     * used as a guide for utilizing
+     * {@link org.spongepowered.api.world.volume.stream.VolumeStream VolumeStreams}
+     * and their companion types.
+     *
+     * @param target The target world
+     * @param placement The target origin, where the diff of relative position
+     *      compared to this volume's min position as the offset
+     * @param spawnContext The context value used for processing spawn entities.
+     */
     default void applyToWorld(final ServerWorld target, final Vector3i placement, final Supplier<SpawnType> spawnContext) {
         Objects.requireNonNull(target, "Target world cannot be null");
         Objects.requireNonNull(placement, "Target position cannot be null");
@@ -64,14 +73,10 @@ public interface ArchetypeVolume extends BlockVolume.Mutable<ArchetypeVolume>,
                 .apply(VolumeCollectors.of(
                     target,
                     VolumePositionTranslators.relativeTo(placement),
-                    VolumeApplicators.applyBlocks(BlockChangeFlags.ALL)
+                    VolumeApplicators.applyBlocks(BlockChangeFlags.DEFAULT_PLACEMENT)
                 ));
 
             this.biomeStream(this.blockMin(), this.blockMax(), StreamOptions.lazily())
-                // It's common that we'll have to be translating back and forth between ResourceKeys because a Biome
-                // is reloadable between worlds (one biome instance can be limited to that world)
-                .map((v, b, x, y, z) -> this.biomeRegistry().valueKey(b.get()))
-                .map((v, key, x, y, z) -> target.registries().registry(RegistryTypes.BIOME).<Biome>value(key.get()))
                 .apply(VolumeCollectors.of(
                     target,
                     VolumePositionTranslators.relativeTo(placement),
