@@ -116,7 +116,7 @@ public interface BlockEntityVolume extends BlockVolume, Volume {
 
     }
 
-    interface Mutable<M extends Mutable<M>> extends Streamable<M>, BlockVolume.Mutable<M>, MutableVolume {
+    interface Modifiable<M extends Modifiable<M>> extends Streamable<M>, BlockVolume.Modifiable<M>, MutableVolume {
 
         default void addBlockEntity(final Vector3i pos, final BlockEntity blockEntity) {
             this.addBlockEntity(pos.x(), pos.y(), pos.z(), blockEntity);
@@ -129,6 +129,10 @@ public interface BlockEntityVolume extends BlockVolume, Volume {
         }
 
         void removeBlockEntity(int x, int y, int z);
+    }
+
+    interface Mutable extends Modifiable<Mutable> {
+
 
     }
 }

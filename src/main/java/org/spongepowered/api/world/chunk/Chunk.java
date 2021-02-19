@@ -40,7 +40,7 @@ import java.util.Optional;
  * <p>In Minecraft, the chunk is 16 by 16 blocks on the X and Z axes. The height
  * of each chunk varies between worlds.</p>
  */
-public interface Chunk extends ProtoChunk<Chunk>, EntityVolume.Mutable<Chunk> {
+public interface Chunk extends ProtoChunk<Chunk>, EntityVolume.Modifiable<Chunk> {
 
     /**
      * Gets the world the chunk is in.

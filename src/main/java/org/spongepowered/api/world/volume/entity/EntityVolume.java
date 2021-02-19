@@ -25,6 +25,7 @@
 package org.spongepowered.api.world.volume.entity;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
@@ -37,6 +38,7 @@ import org.spongepowered.api.world.volume.MutableVolume;
 import org.spongepowered.api.world.volume.UnmodifiableVolume;
 import org.spongepowered.api.world.volume.Volume;
 import org.spongepowered.api.world.volume.block.BlockVolume;
+import org.spongepowered.api.world.volume.block.BlockVolumeFactory;
 import org.spongepowered.api.world.volume.stream.StreamOptions;
 import org.spongepowered.api.world.volume.stream.VolumeStream;
 import org.spongepowered.math.vector.Vector3d;
@@ -156,7 +158,7 @@ public interface EntityVolume extends Volume {
 
     }
 
-    interface Mutable<M extends Mutable<M>> extends Streamable<M>, MutableVolume, BlockVolume.Mutable<M> {
+    interface Modifiable<M extends Modifiable<M>> extends Streamable<M>, MutableVolume, BlockVolume.Modifiable<M> {
 
         /**
          * Create an entity instance at the given position.
@@ -385,6 +387,20 @@ public interface EntityVolume extends Volume {
          * @return The entities which spawned correctly, or empty if none
          */
         Collection<Entity> spawnEntities(Iterable<? extends Entity> entities);
+
+    }
+
+    interface Mutable extends Modifiable<Mutable> {
+
+        static EntityVolume.Mutable empty(Vector3i min, Vector3i max) {
+            return Sponge.game().factoryProvider().provide(EntityVolumeFactory.class).empty(min, max);
+        }
+
+    }
+
+    interface EntityVolumeFactory {
+
+        EntityVolume.Mutable empty(Vector3i min, Vector3i max);
 
     }
 

@@ -94,7 +94,7 @@ public interface EntityArchetypeVolume extends Volume {
 
     }
 
-    interface Mutable<M extends Mutable<M>> extends Streamable<M>, MutableVolume {
+    interface Modifiable<M extends Modifiable<M>> extends Streamable<M>, MutableVolume {
 
         default void addEntity(final EntityArchetype archetype, final Vector3d position) {
             this.addEntity(EntityArchetypeEntry.of(
@@ -104,6 +104,10 @@ public interface EntityArchetypeVolume extends Volume {
         }
 
         void addEntity(EntityArchetypeEntry entry);
+
+    }
+
+    interface Mutable extends Modifiable<Mutable> {
 
     }
 
