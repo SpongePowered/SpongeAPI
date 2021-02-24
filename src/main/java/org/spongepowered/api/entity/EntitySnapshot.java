@@ -27,6 +27,7 @@ package org.spongepowered.api.entity;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolderBuilder;
+import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.world.LocatableSnapshot;
 import org.spongepowered.api.world.server.ServerLocation;
@@ -112,7 +113,7 @@ public interface EntitySnapshot extends LocatableSnapshot<EntitySnapshot> {
      * An {@link org.spongepowered.api.data.DataHolderBuilder.Immutable} for building {@link EntitySnapshot}s. The
      * requirements
      */
-    interface Builder extends DataHolderBuilder.Immutable<EntitySnapshot, Builder> {
+    interface Builder extends DataHolderBuilder.Immutable<EntitySnapshot, Builder>, DataBuilder<EntitySnapshot> {
 
         /**
          * Sets the {@link WorldProperties} for this {@link EntitySnapshot}.
