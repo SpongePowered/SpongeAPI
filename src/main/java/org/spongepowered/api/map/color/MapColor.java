@@ -27,6 +27,7 @@ package org.spongepowered.api.map.color;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.map.MapCanvas;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.ResettableBuilder;

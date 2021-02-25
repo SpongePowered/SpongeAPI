@@ -453,6 +453,8 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<WireAttachmentType>> WIRE_ATTACHMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<WireAttachmentType>>() {};
 
+    public static final TypeToken<Value<ResourceKey>> RESOURCE_KEY_VALUE_TOKEN = new TypeToken<Value<ResourceKey>>() {};
+
     // @formatter:on
 
     // SORTFIELDS:OFF
