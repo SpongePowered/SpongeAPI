@@ -24,26 +24,39 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link AttachmentSurface}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class AttachmentSurfaces {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<AttachmentSurface> CEILING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AttachmentSurface.class, "ceiling");
+    public static final DefaultedRegistryReference<AttachmentSurface> CEILING = AttachmentSurfaces.key(ResourceKey.sponge("ceiling"));
 
-    public static final Supplier<AttachmentSurface> FLOOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AttachmentSurface.class, "floor");
+    public static final DefaultedRegistryReference<AttachmentSurface> FLOOR = AttachmentSurfaces.key(ResourceKey.sponge("floor"));
 
-    public static final Supplier<AttachmentSurface> WALL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AttachmentSurface.class, "wall");
+    public static final DefaultedRegistryReference<AttachmentSurface> WALL = AttachmentSurfaces.key(ResourceKey.sponge("wall"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private AttachmentSurfaces() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<AttachmentSurface> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.ATTACHMENT_SURFACE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

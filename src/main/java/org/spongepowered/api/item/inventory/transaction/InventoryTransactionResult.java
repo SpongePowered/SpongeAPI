@@ -44,7 +44,7 @@ public interface InventoryTransactionResult {
      * @return A new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -167,7 +167,8 @@ public interface InventoryTransactionResult {
         ItemStackSnapshot getPolledItem();
     }
 
-    interface Builder extends CopyableBuilder<InventoryTransactionResult, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<InventoryTransactionResult, Builder>, CopyableBuilder<InventoryTransactionResult,
+            Builder> {
 
         /**
          * Sets the {@link Type} of transaction result being built.

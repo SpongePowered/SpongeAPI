@@ -25,7 +25,6 @@
 package org.spongepowered.api.util.annotation;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
-import org.spongepowered.api.CatalogType;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

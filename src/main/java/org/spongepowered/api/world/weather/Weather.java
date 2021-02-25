@@ -24,13 +24,28 @@
  */
 package org.spongepowered.api.world.weather;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.data.persistence.DataSerializable;
+import org.spongepowered.api.util.Ticks;
 
-/**
- * Represents a type of weather.
- */
-@CatalogedBy(Weathers.class)
-public interface Weather extends CatalogType {
+public interface Weather extends DataSerializable {
 
+    /**
+     * Gets the {@link WeatherType type}.
+     * @return The type
+     */
+    WeatherType type();
+
+    /**
+     * Gets the remaining {@link Ticks} of this weather.
+     *
+     * @return The remaining duration
+     */
+    Ticks remainingDuration();
+
+    /**
+     * Gets the number of {@link Ticks} that the weather has ran for.
+     *
+     * @return The running duration
+     */
+    Ticks runningDuration();
 }

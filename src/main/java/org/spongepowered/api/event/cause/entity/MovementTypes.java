@@ -24,35 +24,46 @@
  */
 package org.spongepowered.api.event.cause.entity;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class MovementTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<MovementType> CHORUS_FRUIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "chorus_fruit");
+    public static final DefaultedRegistryReference<MovementType> CHORUS_FRUIT = MovementTypes.key(ResourceKey.sponge("chorus_fruit"));
 
-    public static final Supplier<MovementType> COMMAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "command");
+    public static final DefaultedRegistryReference<MovementType> COMMAND = MovementTypes.key(ResourceKey.sponge("command"));
 
-    public static final Supplier<MovementType> END_GATEWAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "end_gateway");
+    public static final DefaultedRegistryReference<MovementType> END_GATEWAY = MovementTypes.key(ResourceKey.sponge("end_gateway"));
 
-    public static final Supplier<MovementType> ENDER_PEARL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "ender_pearl");
+    public static final DefaultedRegistryReference<MovementType> ENDER_PEARL = MovementTypes.key(ResourceKey.sponge("ender_pearl"));
 
-    public static final Supplier<MovementType> ENTITY_TELEPORT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "entity_teleport");
+    public static final DefaultedRegistryReference<MovementType> ENTITY_TELEPORT = MovementTypes.key(ResourceKey.sponge("entity_teleport"));
 
-    public static final Supplier<MovementType> NATURAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "natural");
+    public static final DefaultedRegistryReference<MovementType> NATURAL = MovementTypes.key(ResourceKey.sponge("natural"));
 
-    public static final Supplier<MovementType> PLUGIN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "plugin");
+    public static final DefaultedRegistryReference<MovementType> PLUGIN = MovementTypes.key(ResourceKey.sponge("plugin"));
 
-    public static final Supplier<MovementType> PORTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MovementType.class, "portal");
+    public static final DefaultedRegistryReference<MovementType> PORTAL = MovementTypes.key(ResourceKey.sponge("portal"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private MovementTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<MovementType> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.MOVEMENT_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

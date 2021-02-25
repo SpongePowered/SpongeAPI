@@ -28,9 +28,9 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.ai.goal.Goal;
 import org.spongepowered.api.entity.ai.goal.GoalBuilder;
-import org.spongepowered.api.entity.living.animal.horse.HorseEntity;
+import org.spongepowered.api.entity.living.animal.horse.HorseLike;
 
-public interface RunAroundLikeCrazyGoal extends Goal<HorseEntity> {
+public interface RunAroundLikeCrazyGoal extends Goal<HorseLike> {
 
     /**
      * Creates a new {@link Builder} to build a new
@@ -39,7 +39,7 @@ public interface RunAroundLikeCrazyGoal extends Goal<HorseEntity> {
      * @return A new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -59,7 +59,7 @@ public interface RunAroundLikeCrazyGoal extends Goal<HorseEntity> {
      */
     RunAroundLikeCrazyGoal setSpeed(double speed);
 
-    interface Builder extends GoalBuilder<HorseEntity, RunAroundLikeCrazyGoal, Builder> {
+    interface Builder extends GoalBuilder<HorseLike, RunAroundLikeCrazyGoal, Builder> {
 
         Builder speed(double speed);
 

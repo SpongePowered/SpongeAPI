@@ -24,14 +24,14 @@
  */
 package org.spongepowered.api.service.ban;
 
-import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents the possible types of bans.
  */
 @CatalogedBy(BanTypes.class)
-public interface BanType extends CatalogType {
+public interface BanType extends DefaultedRegistryValue {
 
     /**
      * Gets the {@link Ban} class that this type represents.

@@ -31,10 +31,10 @@ import org.spongepowered.api.data.DirectionRelativeDataHolder;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.state.State;
+import org.spongepowered.api.state.StateMatcher;
 import org.spongepowered.api.util.mirror.Mirror;
 import org.spongepowered.api.util.rotation.Rotation;
-import org.spongepowered.api.state.StateMatcher;
-import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.server.ServerLocation;
 
 import java.util.Objects;
 import java.util.function.Supplier;
@@ -54,12 +54,12 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
      * @return The builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     static BlockState fromString(final String id) {
         Objects.requireNonNull(id);
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class).fromString(id).build();
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class).fromString(id).build();
     }
 
     /**
@@ -131,7 +131,7 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
      * @param rotation The rotation
      * @return The rotated state if not this state
      */
-    default BlockState rotate(final Supplier<Rotation> rotation) {
+    default BlockState rotate(final Supplier<? extends Rotation> rotation) {
         return this.rotate(rotation.get());
     }
 
@@ -153,7 +153,7 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
      * @param mirror The mirror
      * @return The mirrored state if not this state
      */
-    default BlockState mirror(final Supplier<Mirror> mirror) {
+    default BlockState mirror(final Supplier<? extends Mirror> mirror) {
         return this.mirror(mirror.get());
     }
 

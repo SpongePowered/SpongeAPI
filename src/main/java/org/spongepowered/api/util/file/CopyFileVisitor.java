@@ -69,7 +69,7 @@ public final class CopyFileVisitor extends SimpleFileVisitor<Path> {
     }
 
     private void copy(Path sourcePath) throws IOException {
-        copy(sourcePath, this.target.resolve(this.source.relativize(sourcePath)));
+        this.copy(sourcePath, this.target.resolve(this.source.relativize(sourcePath)));
     }
 
     @Override
@@ -81,9 +81,9 @@ public final class CopyFileVisitor extends SimpleFileVisitor<Path> {
 
         if (this.source == null) {
             this.source = dir;
-            copy(dir, this.target);
+            this.copy(dir, this.target);
         } else {
-            copy(dir);
+            this.copy(dir);
         }
 
         return FileVisitResult.CONTINUE;
@@ -91,7 +91,7 @@ public final class CopyFileVisitor extends SimpleFileVisitor<Path> {
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-        copy(file);
+        this.copy(file);
         return FileVisitResult.CONTINUE;
     }
 

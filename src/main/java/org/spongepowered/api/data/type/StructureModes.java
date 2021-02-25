@@ -24,14 +24,22 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link StructureMode}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class StructureModes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
@@ -39,7 +47,7 @@ public final class StructureModes {
      * Corner mode allows for an easier and automatic size calculation while
      * saving or loading structures.
      */
-    public static final Supplier<StructureMode> CORNER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StructureMode.class, "corner");
+    public static final DefaultedRegistryReference<StructureMode> CORNER = StructureModes.key(ResourceKey.sponge("corner"));
 
     /**
      * Data mode can only be used during natural generation.
@@ -52,22 +60,27 @@ public final class StructureModes {
      * <p>This mode is the default mode when a structure block is first
      * placed.</p>
      */
-    public static final Supplier<StructureMode> DATA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StructureMode.class, "data");
+    public static final DefaultedRegistryReference<StructureMode> DATA = StructureModes.key(ResourceKey.sponge("data"));
 
     /**
      * Load mode allows a player to load and rotate saved structure files.
      */
-    public static final Supplier<StructureMode> LOAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StructureMode.class, "load");
+    public static final DefaultedRegistryReference<StructureMode> LOAD = StructureModes.key(ResourceKey.sponge("load"));
 
     /**
      * Save mode allows a player to highlight a structure in the world and
      * save it to a file.
      */
-    public static final Supplier<StructureMode> SAVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StructureMode.class, "save");
+    public static final DefaultedRegistryReference<StructureMode> SAVE = StructureModes.key(ResourceKey.sponge("save"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private StructureModes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<StructureMode> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.STRUCTURE_MODE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

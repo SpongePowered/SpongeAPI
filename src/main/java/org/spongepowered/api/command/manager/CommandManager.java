@@ -24,13 +24,16 @@
  */
 package org.spongepowered.api.command.manager;
 
+import io.leangen.geantyref.TypeToken;
 import net.kyori.adventure.audience.Audience;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.exception.CommandException;
 import org.spongepowered.api.command.registrar.CommandRegistrar;
 import org.spongepowered.api.command.registrar.tree.CommandTreeNode;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
+import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
 import org.spongepowered.api.service.permission.Subject;
+import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.plugin.PluginContainer;
 
 import java.util.Collection;
@@ -39,9 +42,49 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
- * Registers and dispatches commands
+ * Registers and dispatches commands.
+ *
+ * <p>The command manager may be replaced at any point during the game lifecycle
+ * when the client chooses to reload registries.</p>
  */
+@DoNotStore
 public interface CommandManager {
+
+    /**
+     * Get a registrar that will register commands of {@code type} to the active
+     * command manager.
+     *
+     * <p>This allows for out-of-band command registrations between calls to
+     * {@link RegisterCommandEvent}, though where possible that event should be
+     * preferred.</p>
+     *
+     * <p>When commands are registered outside of events, changes will not be
+     * automatically reflected in client command views. To update any applicable
+     * clients, see {@link #updateCommandTreeForPlayer(ServerPlayer)}.</p>
+     *
+     * @param type the registrar type
+     * @param <T> registrar type
+     * @return a registrar, if any is known for {@code type}
+     */
+    <T> Optional<CommandRegistrar<T>> registrar(final Class<T> type);
+
+    /**
+     * Get a registrar that will register commands of {@code type} to the active
+     * command manager.
+     *
+     * <p>This allows for out-of-band command registrations between calls to
+     * {@link RegisterCommandEvent}, though where possible that event should be
+     * preferred.</p>
+     *
+     * <p>When commands are registered outside of events, changes will not be
+     * automatically reflected in client command views. To update any applicable
+     * clients, see {@link #updateCommandTreeForPlayer(ServerPlayer)}.</p>
+     *
+     * @param type the registrar type
+     * @param <T> registrar type
+     * @return a registrar, if any is known for {@code type}
+     */
+    <T> Optional<CommandRegistrar<T>> registrar(final TypeToken<T> type);
 
     /**
      * Executes a command based on the provided arguments.
@@ -121,45 +164,6 @@ public interface CommandManager {
     Set<String> getKnownAliases();
 
     /**
-     * Registers a set of command aliases with this manager.
-     * This method should only be used by plugins that implement their own
-     * command framework, as described in the description of the
-     * {@link CommandRegistrar} class.
-     *
-     * <p>When registering a command, any aliases provided are prefixed with
-     * the plugin's ID, followed by a colon to provide command namespacing in
-     * addition to the unnamespaced aliases. As an example, if a plugin with
-     * ID {@code foo} tries to register the command {@code bar}, the command
-     * manager will attempt to register the commands {@code /bar} and
-     * {@code /foo:bar}.</p>
-     *
-     * <p>Command aliases may not contain whitespace.</p>
-     *
-     * <p>If you wish to inspect the aliases that were registered, you may
-     * inspect the returned {@link CommandMapping} for the registered aliases.
-     * </p>
-     *
-     * @param registrar The {@link CommandRegistrar} that is requesting the
-     *                  aliases
-     * @param container The {@link PluginContainer} to register the command for
-     * @param commandTree The {@link CommandTreeNode} that represents this command
-     *                    structure.
-     * @param primaryAlias The first command alias to register
-     * @param secondaryAliases Secondary aliases to register, if any
-     * @return The {@link CommandMapping} containing the command mapping
-     *         information.
-     * @throws CommandFailedRegistrationException thrown if the command could not be
-     *                                     registered.
-     */
-    CommandMapping registerAlias(
-            CommandRegistrar<?> registrar,
-            PluginContainer container,
-            CommandTreeNode.Root commandTree,
-            String primaryAlias,
-            String... secondaryAliases)
-            throws CommandFailedRegistrationException;
-
-    /**
      * Gets a {@link Collection} of {@link PluginContainer}s with commands
      * registered.
      *
@@ -177,18 +181,6 @@ public interface CommandManager {
     Optional<CommandMapping> getCommandMapping(final String alias);
 
     /**
-     * Returns whether this command manager is currently in the process of
-     * resetting itself and, as such, all {@link CommandRegistrar}s should
-     * clear their mappings.
-     *
-     * <p>{@link CommandRegistrar}s should check this when
-     * {@link CommandRegistrar#reset()} has been called.</p>
-     *
-     * @return true if the registrars have been asked to reset.
-     */
-    boolean isResetting();
-
-    /**
      * Asks the server to send an updated client completion command tree to
      * the specified {@link ServerPlayer}.
      *
@@ -201,5 +193,55 @@ public interface CommandManager {
      * @param player The {@link ServerPlayer} to send the command tree to.
      */
     void updateCommandTreeForPlayer(final ServerPlayer player);
+
+    /**
+     * A mutable view of the command manager, allowing additional commands
+     * to be registered.
+     *
+     * <p>This view exists for access through {@link CommandRegistrar}s. To
+     * register commands, see the {@link RegisterCommandEvent}.</p>
+     */
+    interface Mutable extends CommandManager {
+
+        /**
+         * Registers a set of command aliases with this manager.
+         * This method should only be used by plugins that implement their own
+         * command framework, as described in the description of the
+         * {@link CommandRegistrar} class.
+         *
+         * <p>When registering a command, any aliases provided are prefixed with
+         * the plugin's ID, followed by a colon to provide command namespacing in
+         * addition to the unnamespaced aliases. As an example, if a plugin with
+         * ID {@code foo} tries to register the command {@code bar}, the command
+         * manager will attempt to register the commands {@code /bar} and
+         * {@code /foo:bar}.</p>
+         *
+         * <p>Command aliases may not contain whitespace.</p>
+         *
+         * <p>If you wish to inspect the aliases that were registered, you may
+         * inspect the returned {@link CommandMapping} for the registered aliases.
+         * </p>
+         *
+         * @param registrar The {@link CommandRegistrar} that is requesting the
+         *                  aliases
+         * @param container The {@link PluginContainer} to register the command for
+         * @param commandTree The {@link CommandTreeNode} that represents this command
+         *                    structure.
+         * @param primaryAlias The first command alias to register
+         * @param secondaryAliases Secondary aliases to register, if any
+         * @return The {@link CommandMapping} containing the command mapping
+         *         information.
+         * @throws CommandFailedRegistrationException thrown if the command could not be
+         *                                     registered.
+         */
+        CommandMapping registerAlias(
+                CommandRegistrar<?> registrar,
+                PluginContainer container,
+                CommandTreeNode.Root commandTree,
+                String primaryAlias,
+                String... secondaryAliases)
+                throws CommandFailedRegistrationException;
+
+    }
 
 }

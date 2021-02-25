@@ -25,8 +25,12 @@
 package org.spongepowered.api.util;
 
 import io.leangen.geantyref.TypeToken;
+import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.text.Component;
+import org.checkerframework.checker.nullness.qual.NonNull;
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.command.CommandCause;
@@ -44,11 +48,12 @@ import org.spongepowered.api.data.type.DoorHinge;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.type.FoxType;
 import org.spongepowered.api.data.type.HandPreference;
+import org.spongepowered.api.data.type.HandType;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.InstrumentType;
 import org.spongepowered.api.data.type.LlamaType;
-import org.spongepowered.api.data.type.MatterState;
+import org.spongepowered.api.data.type.MatterType;
 import org.spongepowered.api.data.type.MooshroomType;
 import org.spongepowered.api.data.type.NotePitch;
 import org.spongepowered.api.data.type.PandaGene;
@@ -60,15 +65,15 @@ import org.spongepowered.api.data.type.PortionType;
 import org.spongepowered.api.data.type.ProfessionType;
 import org.spongepowered.api.data.type.RabbitType;
 import org.spongepowered.api.data.type.RailDirection;
+import org.spongepowered.api.data.type.SkinPart;
 import org.spongepowered.api.data.type.SlabPortion;
 import org.spongepowered.api.data.type.SpellType;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
-import org.spongepowered.api.data.type.ToolType;
+import org.spongepowered.api.data.type.ItemTier;
 import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.type.WireAttachmentType;
-import org.spongepowered.api.data.type.WoodType;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.data.value.SetValue;
@@ -85,10 +90,18 @@ import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.attribute.AttributeOperation;
 import org.spongepowered.api.entity.attribute.type.AttributeType;
-import org.spongepowered.api.entity.explosive.EnderCrystal;
+import org.spongepowered.api.entity.explosive.EndCrystal;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.animal.Sheep;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.User;
+import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
+import org.spongepowered.api.event.cause.entity.DismountType;
+import org.spongepowered.api.event.cause.entity.MovementType;
+import org.spongepowered.api.event.cause.entity.SpawnType;
+import org.spongepowered.api.event.cause.entity.damage.DamageType;
+import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.fluid.FluidStackSnapshot;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.FireworkShape;
@@ -105,15 +118,14 @@ import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.projectile.source.ProjectileSource;
 import org.spongepowered.api.raid.RaidWave;
+import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.util.orientation.Orientation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.util.weighted.WeightedTable;
 import org.spongepowered.api.world.LocatableBlock;
-import org.spongepowered.api.world.ServerLocation;
-import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
-import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.math.vector.Vector2i;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
@@ -121,17 +133,18 @@ import org.spongepowered.plugin.PluginContainer;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.function.Consumer;
 
-@SuppressWarnings({"unused", "UnstableApiUsage"})
+@SuppressWarnings({"unused"})
 public final class TypeTokens {
 
     // SORTFIELDS:ON
-    // @formatter:off
 
+    // @formatter:off
     public static final TypeToken<Value<ArmorMaterial>> ARMOR_MATERIAL_VALUE_TOKEN = new TypeToken<Value<ArmorMaterial>>() {};
 
     public static final TypeToken<Value<AttributeOperation>> ATTRIBUTE_OPERATION_VALUE_TOKEN = new TypeToken<Value<AttributeOperation>>() {};
@@ -150,7 +163,11 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<AttachmentSurface>> ATTACHMENT_SURFACE_VALUE_TOKEN = new TypeToken<Value<AttachmentSurface>>() {};
 
+    public static final TypeToken<Audience> AUDIENCE_TOKEN = new TypeToken<Audience>() {};
+
     public static final TypeToken<Value<Axis>> AXIS_VALUE_TOKEN = new TypeToken<Value<Axis>>() {};
+
+    public static final TypeToken<BlockSnapshot> BLOCK_SNAPSHOT_TOKEN = new TypeToken<BlockSnapshot>() {};
 
     public static final TypeToken<Value<BlockState>> BLOCK_STATE_VALUE_TOKEN = new TypeToken<Value<BlockState>>() {};
 
@@ -161,6 +178,8 @@ public final class TypeTokens {
     public static final TypeToken<Value<BossBar>> BOSS_BAR_VALUE_TOKEN = new TypeToken<Value<BossBar>>() {};
 
     public static final TypeToken<Value<CatType>> CAT_TYPE_VALUE_TOKEN = new TypeToken<Value<CatType>>() {};
+
+    public static final TypeToken<Value<ChatVisibility>> CHAT_VISIBILITY_VALUE_TOKEN = new TypeToken<Value<ChatVisibility>>() {};
 
     public static final TypeToken<Value<ChestAttachmentType>> CHEST_ATTACHMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<ChestAttachmentType>>() {};
 
@@ -174,7 +193,13 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<Component>> COMPONENT_VALUE_TOKEN = new TypeToken<Value<Component>>() {};
 
+    public static final TypeToken<DamageSource> DAMAGE_SOURCE_TOKEN = new TypeToken<DamageSource>() {};
+
+    public static final TypeToken<DamageType> DAMAGE_TYPE_TOKEN = new TypeToken<DamageType>() {};
+
     public static final TypeToken<Value<Direction>> DIRECTION_VALUE_TOKEN = new TypeToken<Value<Direction>>() {};
+
+    public static final TypeToken<DismountType> DISMOUNT_TYPE_TOKEN = new TypeToken<DismountType>() {};
 
     public static final TypeToken<Value<DoorHinge>> DOOR_HINGE_VALUE_TOKEN = new TypeToken<Value<DoorHinge>>() {};
 
@@ -182,9 +207,13 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<DyeColor>> DYE_COLOR_VALUE_TOKEN = new TypeToken<Value<DyeColor>>() {};
 
-    public static final TypeToken<Value<EnderCrystal>> ENDER_CRYSTAL_VALUE_TOKEN = new TypeToken<Value<EnderCrystal>>() {};
+    public static final TypeToken<Value<EndCrystal>> END_CRYSTAL_VALUE_TOKEN = new TypeToken<Value<EndCrystal>>() {};
+
+    public static final TypeToken<Entity> ENTITY_TOKEN = new TypeToken<Entity>() {};
 
     public static final TypeToken<Value<EntitySnapshot>> ENTITY_SNAPSHOT_VALUE_TOKEN = new TypeToken<Value<EntitySnapshot>>() {};
+
+    public static final TypeToken<EntityType<@NonNull ?>> ENTITY_TYPE_TOKEN = new TypeToken<EntityType<?>>() {};
 
     public static final TypeToken<Value<Entity>> ENTITY_VALUE_TOKEN = new TypeToken<Value<Entity>>() {};
 
@@ -204,9 +233,13 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<GameMode>> GAME_MODE_VALUE_TOKEN = new TypeToken<Value<GameMode>>() {};
 
+    public static final TypeToken<GameProfile> GAME_PROFILE_TOKEN = new TypeToken<GameProfile>() {};
+
     public static final TypeToken<Value<GameProfile>> GAME_PROFILE_VALUE_TOKEN = new TypeToken<Value<GameProfile>>() {};
 
     public static final TypeToken<Value<HandPreference>> HAND_PREFERENCE_VALUE_TOKEN = new TypeToken<Value<HandPreference>>() {};
+
+    public static final TypeToken<HandType> HAND_TYPE_TOKEN = new TypeToken<HandType>() {};
 
     public static final TypeToken<Value<HorseColor>> HORSE_COLOR_VALUE_TOKEN = new TypeToken<Value<HorseColor>>() {};
 
@@ -219,6 +252,8 @@ public final class TypeTokens {
     public static final TypeToken<Value<Integer>> INTEGER_VALUE_TOKEN = new TypeToken<Value<Integer>>() {};
 
     public static final TypeToken<Value<ItemType>> ITEM_TYPE_VALUE_TOKEN = new TypeToken<Value<ItemType>>() {};
+
+    public static final TypeToken<ItemStackSnapshot> ITEM_STACK_SNAPSHOT_TOKEN = new TypeToken<ItemStackSnapshot>() {};
 
     public static final TypeToken<Value<ItemStackSnapshot>> ITEM_STACK_SNAPSHOT_VALUE_TOKEN = new TypeToken<Value<ItemStackSnapshot>>() {};
 
@@ -258,9 +293,15 @@ public final class TypeTokens {
 
     public static final TypeToken<ListValue<TradeOffer>> LIST_TRADE_OFFER_VALUE_TOKEN = new TypeToken<ListValue<TradeOffer>>() {};
 
+    public static final TypeToken<Living> LIVING_TOKEN = new TypeToken<Living>() {};
+
     public static final TypeToken<Value<Living>> LIVING_VALUE_TOKEN = new TypeToken<Value<Living>>() {};
 
     public static final TypeToken<Value<LlamaType>> LLAMA_TYPE_VALUE_TOKEN = new TypeToken<Value<LlamaType>>() {};
+
+    public static final TypeToken<Value<Locale>> LOCALE_VALUE_TOKEN = new TypeToken<Value<Locale>>() {};
+
+    public static final TypeToken<LocatableBlock> LOCATABLE_BLOCK_TOKEN = new TypeToken<LocatableBlock>() {};
 
     public static final TypeToken<Value<Long>> LONG_VALUE_TOKEN = new TypeToken<Value<Long>>() {};
 
@@ -274,17 +315,23 @@ public final class TypeTokens {
 
     public static final TypeToken<MapValue<Direction, List<FluidStackSnapshot>>> MAP_DIRECTION_FLUID_STACK_SNAPSHOT_VALUE_TOKEN = new TypeToken<MapValue<Direction, List<FluidStackSnapshot>>>() {};
 
-    public static final TypeToken<Map<UUID, RespawnLocation>> MAP_UUID_RESPAWN_LOCATION_TOKEN = new TypeToken<Map<UUID, RespawnLocation>>() {};
+    public static final TypeToken<Map<ResourceKey, RespawnLocation>> MAP_RESOURCE_KEY_RESPAWN_LOCATION_TOKEN = new TypeToken<Map<ResourceKey, RespawnLocation>>() {};
 
-    public static final TypeToken<MapValue<UUID, RespawnLocation>> MAP_UUID_RESPAWN_LOCATION_VALUE_TOKEN = new TypeToken<MapValue<UUID, RespawnLocation>>() {};
+    public static final TypeToken<MapValue<ResourceKey, RespawnLocation>> MAP_RESOURCE_KEY_RESPAWN_LOCATION_VALUE_TOKEN = new TypeToken<MapValue<ResourceKey, RespawnLocation>>() {};
+
+    public static final TypeToken<Map<Statistic, Long>> MAP_STATISTIC_LONG_TOKEN = new TypeToken<Map<Statistic, Long>>() {};
+
+    public static final TypeToken<MapValue<Statistic, Long>> MAP_STATISTIC_LONG_VALUE_TOKEN = new TypeToken<MapValue<Statistic, Long>>() {};
 
     public static final TypeToken<Map<UUID, Vector3d>> MAP_UUID_VECTOR3D_TOKEN = new TypeToken<Map<UUID, Vector3d>>() {};
 
     public static final TypeToken<MapValue<UUID, Vector3d>> MAP_UUID_VECTOR3D_VALUE_TOKEN = new TypeToken<MapValue<UUID, Vector3d>>() {};
 
-    public static final TypeToken<Value<MatterState>> MATTER_STATE_VALUE_TOKEN = new TypeToken<Value<MatterState>>() {};
+    public static final TypeToken<Value<MatterType>> MATTER_TYPE_VALUE_TOKEN = new TypeToken<Value<MatterType>>() {};
 
     public static final TypeToken<Value<MooshroomType>> MOOSHROOM_TYPE_VALUE_TOKEN = new TypeToken<Value<MooshroomType>>() {};
+
+    public static final TypeToken<MovementType> MOVEMENT_TYPE_TOKEN = new TypeToken<MovementType>() {};
 
     public static final TypeToken<Value<MusicDisc>> MUSIC_DISC_VALUE_TOKEN = new TypeToken<Value<MusicDisc>>() {};
 
@@ -306,6 +353,10 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<PistonType>> PISTON_TYPE_VALUE_TOKEN = new TypeToken<Value<PistonType>>() {};
 
+    public static final TypeToken<Player> PLAYER_TOKEN = new TypeToken<Player>() {};
+
+    public static final TypeToken<PluginContainer> PLUGIN_CONTAINER_TOKEN = new TypeToken<PluginContainer>() {};
+
     public static final TypeToken<Value<PluginContainer>> PLUGIN_CONTAINER_VALUE_TOKEN = new TypeToken<Value<PluginContainer>>() {};
 
     public static final TypeToken<Value<PortionType>> PORTION_TYPE_VALUE_TOKEN = new TypeToken<Value<PortionType>>() {};
@@ -318,6 +369,8 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<ProfileProperty>> PROFILE_PROPERTY_VALUE_TOKEN = new TypeToken<Value<ProfileProperty>>() {};
 
+    public static final TypeToken<ProjectileSource> PROJECTILE_SOURCE_TOKEN = new TypeToken<ProjectileSource>() {};
+
     public static final TypeToken<Value<ProjectileSource>> PROJECTILE_SOURCE_VALUE_TOKEN = new TypeToken<Value<ProjectileSource>>() {};
 
     public static final TypeToken<Value<RabbitType>> RABBIT_TYPE_VALUE_TOKEN = new TypeToken<Value<RabbitType>>() {};
@@ -325,6 +378,10 @@ public final class TypeTokens {
     public static final TypeToken<Value<RaidWave>> RAID_WAVE_VALUE_TOKEN = new TypeToken<Value<RaidWave>>() {};
 
     public static final TypeToken<Value<RailDirection>> RAIL_DIRECTION_VALUE_TOKEN = new TypeToken<Value<RailDirection>>() {};
+
+    public static final TypeToken<ServerLocation> SERVER_LOCATION_TOKEN = new TypeToken<ServerLocation>() {};
+
+    public static final TypeToken<ServerWorld> SERVER_WORLD_TOKEN = new TypeToken<ServerWorld>() {};
 
     public static final TypeToken<Set<BlockType>> SET_BLOCK_TYPE_TOKEN = new TypeToken<Set<BlockType>>() {};
 
@@ -334,6 +391,8 @@ public final class TypeTokens {
 
     public static final TypeToken<SetValue<Direction>> SET_DIRECTION_VALUE_TOKEN = new TypeToken<SetValue<Direction>>() {};
 
+    public static final TypeToken<SetValue<SkinPart>> SET_SKIN_PARTS_VALUE_TOKEN = new TypeToken<SetValue<SkinPart>>() {};
+
     public static final TypeToken<Set<String>> SET_STRING_TOKEN = new TypeToken<Set<String>>() {};
 
     public static final TypeToken<SetValue<String>> SET_STRING_VALUE_TOKEN = new TypeToken<SetValue<String>>() {};
@@ -342,25 +401,35 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<SlabPortion>> SLAB_PORTION_VALUE_TOKEN = new TypeToken<Value<SlabPortion>>() {};
 
+    public static final TypeToken<SpawnType> SPAWN_TYPE_TOKEN = new TypeToken<SpawnType>() {};
+
     public static final TypeToken<Value<SpellType>> SPELL_TYPE_VALUE_TOKEN = new TypeToken<Value<SpellType>>() {};
 
     public static final TypeToken<Value<StairShape>> STAIR_SHAPE_VALUE_TOKEN = new TypeToken<Value<StairShape>>() {};
 
-    public static final TypeToken<Map<Statistic, Long>> MAP_STATISTIC_LONG_TOKEN = new TypeToken<Map<Statistic, Long>>() {};
+    public static final TypeToken<Subject> SUBJECT_TOKEN = new TypeToken<Subject>() {};
 
-    public static final TypeToken<MapValue<Statistic, Long>> MAP_STATISTIC_LONG_VALUE_TOKEN = new TypeToken<MapValue<Statistic, Long>>() {};
+    public static final TypeToken<Value<ServerLocation>> SERVER_LOCATION_VALUE_TOKEN = new TypeToken<Value<ServerLocation>>() {};
+
+    public static final TypeToken<String> STRING_TOKEN = new TypeToken<String>() {};
 
     public static final TypeToken<Value<String>> STRING_VALUE_TOKEN = new TypeToken<Value<String>>() {};
 
     public static final TypeToken<Value<StructureMode>> STRUCTURE_MODE_VALUE_TOKEN = new TypeToken<Value<StructureMode>>() {};
 
-    public static final TypeToken<Value<ToolType>> TOOL_TYPE_VALUE_TOKEN = new TypeToken<Value<ToolType>>() {};
+    public static final TypeToken<Value<Ticks>> TICKS_VALUE_TOKEN = new TypeToken<Value<Ticks>>() {};
+
+    public static final TypeToken<Value<ItemTier>> ITEM_TIER_VALUE_TOKEN = new TypeToken<Value<ItemTier>>() {};
 
     public static final TypeToken<Value<TropicalFishShape>> TROPICAL_FISH_SHAPE_VALUE_TOKEN = new TypeToken<Value<TropicalFishShape>>() {};
+
+    public static final TypeToken<User> USER_TOKEN = new TypeToken<User>() {};
 
     public static final TypeToken<Value<UUID>> UUID_VALUE_TOKEN = new TypeToken<Value<UUID>>() {};
 
     public static final TypeToken<Value<Vector2i>> VECTOR_2I_VALUE_TOKEN = new TypeToken<Value<Vector2i>>() {};
+
+    public static final TypeToken<Vector3d> VECTOR_3D_TOKEN = new TypeToken<Vector3d>() {};
 
     public static final TypeToken<Value<Vector3d>> VECTOR_3D_VALUE_TOKEN = new TypeToken<Value<Vector3d>>() {};
 
@@ -384,9 +453,8 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<WireAttachmentType>> WIRE_ATTACHMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<WireAttachmentType>>() {};
 
-    public static final TypeToken<Value<WoodType>> WOOD_TYPE_VALUE_TOKEN = new TypeToken<Value<WoodType>>() {};
-
     // @formatter:on
+
     // SORTFIELDS:OFF
 
     // Suppress default constructor to ensure non-instantiability.

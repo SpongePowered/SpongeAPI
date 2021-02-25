@@ -47,7 +47,7 @@ public interface Ban {
      * @return A new ban builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -57,7 +57,7 @@ public interface Ban {
      * @return The created ban
      */
     static Ban of(GameProfile profile) {
-        return builder().type(BanTypes.PROFILE).profile(profile).build();
+        return Ban.builder().type(BanTypes.PROFILE).profile(profile).build();
     }
 
     /**
@@ -68,7 +68,7 @@ public interface Ban {
      * @return The created ban
      */
     static Ban of(GameProfile profile, Component reason) {
-        return builder().type(BanTypes.PROFILE).profile(profile).reason(reason).build();
+        return Ban.builder().type(BanTypes.PROFILE).profile(profile).reason(reason).build();
     }
 
     /**
@@ -137,7 +137,7 @@ public interface Ban {
     /**
      * Represents a ban made on an IP.
      */
-    interface Ip extends Ban {
+    interface IP extends Ban {
 
         /**
          * Gets the address this ban applies to.
@@ -151,7 +151,7 @@ public interface Ban {
     /**
      * Represents a builder that creates bans.
      */
-    interface Builder extends CopyableBuilder<Ban, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<Ban, Builder>, CopyableBuilder<Ban, Builder> {
 
         /**
          * Sets the profile to be banned.

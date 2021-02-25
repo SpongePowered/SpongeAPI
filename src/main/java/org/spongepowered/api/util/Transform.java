@@ -35,15 +35,15 @@ import org.spongepowered.math.vector.Vector3d;
 public interface Transform {
 
     static Transform of(Vector3d position) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(position, Vector3d.ZERO, Vector3d.ONE);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(position, Vector3d.ZERO, Vector3d.ONE);
     }
 
     static Transform of(Vector3d position, Vector3d rotation) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(position, rotation, Vector3d.ONE);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(position, rotation, Vector3d.ONE);
     }
 
     static Transform of(Vector3d position, Vector3d rotation, Vector3d scale) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).create(position, rotation, scale);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(position, rotation, scale);
     }
 
     /**

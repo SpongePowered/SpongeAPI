@@ -24,24 +24,37 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link DoorHinge}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class DoorHinges {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<DoorHinge> LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DoorHinge.class, "left");
+    public static final DefaultedRegistryReference<DoorHinge> LEFT = DoorHinges.key(ResourceKey.sponge("left"));
 
-    public static final Supplier<DoorHinge> RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DoorHinge.class, "right");
+    public static final DefaultedRegistryReference<DoorHinge> RIGHT = DoorHinges.key(ResourceKey.sponge("right"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private DoorHinges() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<DoorHinge> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.DOOR_HINGE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

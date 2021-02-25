@@ -25,6 +25,7 @@
 package org.spongepowered.api.command.parameter.managed;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 
 /**
  * Combines the {@link ValueParser}, {@link ValueCompleter} and
@@ -37,7 +38,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
  * @see org.spongepowered.api.command.parameter.managed.ValueParser
  * @see org.spongepowered.api.command.parameter.managed.ValueUsage
  */
-public interface ValueParameter<T> extends ValueCompleter, ValueParser<T>, ValueUsage {
+public interface ValueParameter<T> extends DefaultedRegistryValue, ValueCompleter, ValueParser<T>, ValueUsage {
 
     @Override
     default String getUsage(@NonNull final String key) {

@@ -25,69 +25,107 @@
 package org.spongepowered.api.world.server;
 
 import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.world.WorldArchetype;
+import org.spongepowered.api.Server;
+import org.spongepowered.api.world.server.storage.ServerWorldProperties;
 import org.spongepowered.api.world.storage.WorldProperties;
 
-import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 public interface WorldManager {
 
     /**
-     * Gets a loaded {@link ServerWorld} by it's {@link ResourceKey key}.
+     * Gets the {@link Server}.
+     *
+     * @return The server
+     */
+    Server server();
+
+    /**
+     * Gets a {@link ServerWorld world} by a {@link ResourceKey key}.
      *
      * @param key The key
      * @return The world, if found
      */
-    Optional<ServerWorld> getWorld(ResourceKey key);
+    Optional<ServerWorld> world(ResourceKey key);
 
     /**
-     * Gets all currently loaded {@link ServerWorld}s.
+     * Gets the {@link ServerWorld default world}.
      *
-     * @return A collection of loaded worlds
+     * <p>If the default world isn't loaded, an {@link IllegalStateException} will be thrown as this means the manager
+     * is not loaded yet.</p>
+     *
+     * <p>It is up to the implementation to define what the default world actually is.</p>
+     *
+     * @return The default world
      */
-    Collection<ServerWorld> getWorlds();
+    ServerWorld defaultWorld();
 
     /**
-     * Gets the default {@link WorldProperties} {@link ResourceKey key} the {@link WorldManager} creates and loads
-     * during the lifecycle
+     * Gets all currently loaded {@link ServerWorld worlds}.
      *
-     * @return The key
+     * @return The worlds
      */
-    ResourceKey getDefaultPropertiesKey();
+    Collection<ServerWorld> worlds();
 
     /**
-     * Gets the default loaded {@link WorldProperties} or {@link Optional#empty()} if none has been loaded.
+     * Gets the {@link ResourceKey keys} of both online and offline {@link ServerWorld worlds}.
      *
-     * <p>It is up to the implementation to determine when and if a default is loaded.</p>
+     * <p>It is up to the implementation to determine how offline keys are provided to the developer.</p>
      *
-     * @return The world properties
+     * @return The keys
      */
-    Optional<WorldProperties> getDefaultProperties();
+    List<ResourceKey> worldKeys();
 
     /**
-     * Creates a new {@link WorldProperties} from the given
-     * {@link WorldArchetype}. For the creation of the {@link WorldArchetype} please see {@link WorldArchetype.Builder}.
+     * Gets the {@link ResourceKey keys} of offline {@link ServerWorld worlds}.
      *
-     * <p>It is up to the implementation to define an {@link Optional#empty()} result.</p>
+     * <p>It is up to the implementation to determine how offline keys are provided to the developer.</p>
      *
-     * <p>The returned properties should be considered "virtual" as it will not exist on the disk nor will the manager consider it "offline data".
-     *
-     * To write it to the default storage container, use one of the following methods:
-     * <ul> <li>{@link #loadWorld(WorldProperties)}</li> <li>{@link #saveProperties(WorldProperties)}</li> </ul>
-     * </p>
-     *
+     * @return The keys
+     */
+    default List<ResourceKey> offlineWorldKeys() {
+        return this.worldKeys()
+            .stream()
+            .filter(v -> !this.world(v).isPresent())
+            .collect(Collectors.toList());
+    }
+
+    /**
+     * Gets if a {@link ResourceKey key} exists as an actual world, offline or online.
      * @param key The key
-     * @param archetype The archetype for creation
-     * @return The new world properties, if the creation was successful
+     * @return True if existed, false if not
      */
-    CompletableFuture<WorldProperties> createProperties(ResourceKey key, WorldArchetype archetype);
+    boolean worldExists(ResourceKey key);
 
     /**
-     * Loads a {@link ServerWorld} specified by a {@link ResourceKey key}. If a world with
-     * the given name is already loaded then it is returned instead.
+     * Gets a {@link ResourceKey key} by {@link UUID unique id}.
+     *
+     * @param uniqueId The unique id
+     * @return The key or {@link Optional#empty()} if not found
+     */
+    @Deprecated
+    Optional<ResourceKey> worldKey(UUID uniqueId);
+
+    /**
+     * Loads a {@link ServerWorld world} from a {@link WorldTemplate template}.
+     *
+     * <p>If a world is already loaded by the {@link ResourceKey key} of the template,
+     * the world will be returned instead.</p>
+     *
+     * @param template The template
+     * @return The world
+     */
+    CompletableFuture<ServerWorld> loadWorld(WorldTemplate template);
+
+    /**
+     * Loads a {@link ServerWorld world} by a {@link ResourceKey key}.
+     *
+     * <p>If a world with the given name is already loaded then it is returned instead.</p>
      *
      * @param key The key
      * @return The world
@@ -95,24 +133,10 @@ public interface WorldManager {
     CompletableFuture<ServerWorld> loadWorld(ResourceKey key);
 
     /**
-     * Loads a {@link ServerWorld} from the default storage container.
+     * Unloads a {@link ServerWorld world} by a {@link ResourceKey key}.
      *
-     * <p>If the world associated with the given properties is already loaded then it is returned instead.</p>
-     *
-     * <p>If the given properties already has data within the default storage container it will be loaded instead.</p>
-     *
-     * <p>If none of the above, the properties will be wrote to the default storage container as a result of the load</p>
-     *
-     * @param properties The properties of the world to load
-     * @return The world
-     */
-    CompletableFuture<ServerWorld> loadWorld(WorldProperties properties);
-
-    /**
-     * Unloads the {@link ServerWorld} registered to the {@link ResourceKey key}.
-     *
-     * <p>The conditions for how and when a world may be unloaded are left up to the
-     * implementation to define.</p>
+     * <p>The default Minecraft world cannot be unloaded. Additional conditions for how and when a world may
+     * be unloaded are left up to the implementation to define.</p>
      *
      * @param key The key to unload
      * @return Whether the operation was successful
@@ -120,10 +144,10 @@ public interface WorldManager {
     CompletableFuture<Boolean> unloadWorld(ResourceKey key);
 
     /**
-     * Unloads a {@link ServerWorld}.
+     * Unloads a {@link ServerWorld world}.
      *
-     * <p>The conditions for how and when a world may be unloaded are left up to the
-     * implementation to define.</p>
+     * <p>The default Minecraft world cannot be unloaded. Additional conditions for how and when a world may
+     * be unloaded are left up to the implementation to define.</p>
      *
      * @param world The world to unload
      * @return Whether the operation was successful
@@ -131,79 +155,99 @@ public interface WorldManager {
     CompletableFuture<Boolean> unloadWorld(ServerWorld world);
 
     /**
-     * Gets the {@link WorldProperties} by it's {@link ResourceKey key}. If a world with the given
-     * name is loaded then this is equivalent to calling {@link ServerWorld#getProperties()}.
+     * Gets if a {@link ResourceKey key} exists as a {@link WorldTemplate template}.
+     * @param key The key
+     * @return True if it exists, false if not
+     */
+    boolean templateExists(ResourceKey key);
+
+    /**
+     * Gets a {@link WorldTemplate template} by a {@link ResourceKey key}.
+     * @param key The key
+     * @return The template or {@link Optional#empty()} if not found
+     */
+    CompletableFuture<Optional<WorldTemplate>> loadTemplate(ResourceKey key);
+
+    /**
+     * Saves a {@link WorldTemplate template}.
      *
-     * However, if no loaded world is found then an attempt will be made to match to a known unloaded world.
+     * <p>It is left up to the implementation on how exactly templates are saved, if at all.</p>
+     *
+     * @param template The template
+     * @return Whether the operation was successful
+     */
+    CompletableFuture<Boolean> saveTemplate(WorldTemplate template);
+
+    /**
+     * Loads an offline {@link ServerWorldProperties properties}.
+     *
+     * <p>It is left up to the implementation on what conditions cause a failure of loading properties.</p>
      *
      * @param key The key
-     * @return The world properties, if found
+     * @return The properties
      */
-    Optional<WorldProperties> getProperties(ResourceKey key);
+    CompletableFuture<Optional<ServerWorldProperties>> loadProperties(ResourceKey key);
 
     /**
-     * Gets the properties of all unloaded worlds.
+     * Saves a {@link ServerWorldProperties properties}.
      *
-     * <p>It is left up to the implementation to determine it's offline worlds and no contract is enforced
-     * that states that they must returns all unloaded worlds that actually exist.</p>
-     *
-     * @return A collection of world properties
+     * @param properties The properties
+     * @return True if successful, false if not
      */
-    Collection<WorldProperties> getUnloadedProperties();
+    CompletableFuture<Boolean> saveProperties(ServerWorldProperties properties);
 
     /**
-     * Gets the properties of all worlds, online and offline.
+     * Copies world data under the provided {@link ResourceKey key} to a provided key.
      *
-     * <p>It is left up to the implementation to determine it's offline worlds and no contract is enforced
-     * that states that they must returns all unloaded worlds that actually exist.</p>
-     *
-     * @return A collection of world properties
-     */
-    Collection<WorldProperties> getAllProperties();
-
-    /**
-     * Persists the given {@link WorldProperties} to the world storage for it,
-     * updating any modified values.
-     *
-     * @param properties The world properties to save
-     * @return True if the save was successful, can fail exceptionally
-     */
-    CompletableFuture<Boolean> saveProperties(WorldProperties properties);
-
-    /**
-     * Creates a world copy asynchronously using the new name given and returns
-     * the new world properties if the copy was possible.
-     *
-     * <p>If the world is already loaded then the following will occur:</p>
+     * <p>If the world is loaded, the following will occur:</p>
      *
      * <ul>
-     * <li>World is saved.</li>
-     * <li>World saving is disabled.</li>
-     * <li>World is copied. </li>
-     * <li>World saving is enabled.</li>
+     *     <li>World is saved</li>
+     *     <li>World saving is disabled</li>
+     *     <li>World is copied</li>
+     *     <li>World saving is enabled</li>
      * </ul>
      *
-     * @param key The key
-     * @param copyValue The copied value for the new properties
-     * @return The world properties
-     */
-    CompletableFuture<WorldProperties> copyWorld(ResourceKey key, String copyValue);
-
-    /**
-     * Renames a {@link WorldProperties}.
-     *
-     * <p>If the properties represents an online world, an attempt will be made to unload it. Once unloaded and if
-     * the attempt is successful, an attempt will be made to load it. It is left up to the implementation to determine
-     * the conditions for a rename to be successful.</p>
+     * <p>It is left up to the implementation on exactly what is copied.</p>
      *
      * @param key The key
-     * @param newValue The new value
-     * @return The world properties
+     * @param copyKey The copied key for the new properties
+     * @return The copied properties
      */
-    CompletableFuture<WorldProperties> renameWorld(ResourceKey key, String newValue);
+    CompletableFuture<Boolean> copyWorld(ResourceKey key, ResourceKey copyKey);
 
     /**
-     * Deletes the {@link WorldProperties} by it's {@link ResourceKey key}.
+     * Moves world data under the provided {@link ResourceKey key} to another key.
+     *
+     * <p>If the world is loaded, the following will occur:</p>
+     *
+     * <ul>
+     *     <li>World is saved</li>
+     *     <li>World is unloaded</li>
+     *     <li>World is moved</li>
+     * </ul>
+     *
+     * <p>The default Minecraft world cannot be moved. Additionally, it is left up to the
+     * implementation on exactly what is moved.</p>
+     *
+     * @param key The key
+     * @param moveKey The move key
+     * @return True if the move was successful
+     */
+    CompletableFuture<Boolean> moveWorld(ResourceKey key, ResourceKey moveKey);
+
+    /**
+     * Deletes world data under the provided {@link ResourceKey key}.
+     *
+     * <p>If the world is loaded, the following will occur:</p>
+     *
+     * <u1>
+     *     <li>World is unloaded</li>
+     *     <li>World is deleted</li>
+     * </u1>
+     *
+     * <p>The default Minecraft world cannot be deleted. Additionally, it is left up to the
+     * implementation on exactly what is deleted.</p>
      *
      * @param key The key
      * @return True if the deletion was successful.

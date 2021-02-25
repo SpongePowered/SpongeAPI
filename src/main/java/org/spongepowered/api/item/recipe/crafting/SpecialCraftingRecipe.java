@@ -24,13 +24,11 @@
  */
 package org.spongepowered.api.item.recipe.crafting;
 
-import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
-import org.spongepowered.api.util.CatalogBuilder;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.ResourceKeyedBuilder;
 import org.spongepowered.api.world.server.ServerWorld;
 
 import java.util.List;
@@ -44,15 +42,15 @@ import java.util.function.Function;
 public interface SpecialCraftingRecipe extends CraftingRecipe {
 
     /**
-     * Creates a new {@link SpecialCraftingRecipe.Builder} to build a {@link SpecialCraftingRecipe}.
+     * Creates a new {@link Builder} to build a {@link SpecialCraftingRecipe}.
      *
      * @return The new builder
      */
-    static SpecialCraftingRecipe.Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(SpecialCraftingRecipe.Builder.class);
+    static Builder builder() {
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
-    interface Builder extends ResettableBuilder<RecipeRegistration, SpecialCraftingRecipe.Builder> {
+    interface Builder extends ResourceKeyedBuilder<RecipeRegistration, Builder> {
 
         /**
          * Sets the recipe matcher.
@@ -61,13 +59,13 @@ public interface SpecialCraftingRecipe extends CraftingRecipe {
          *
          * @return This builder, for chaining
          */
-        SpecialCraftingRecipe.Builder.ResultStep matching(BiPredicate<CraftingGridInventory, ServerWorld> biPredicate);
+        Builder.ResultStep matching(BiPredicate<CraftingGridInventory, ServerWorld> biPredicate);
 
         /**
          * In this Step set the result of the Recipe.
          * <p>Optionally configure the remaining items.</p>
          */
-        interface ResultStep extends SpecialCraftingRecipe.Builder {
+        interface ResultStep extends Builder {
 
             /**
              * Sets the remainingItems function. The function must return a list of the same size as the input CraftingGridInventory.
@@ -97,17 +95,13 @@ public interface SpecialCraftingRecipe extends CraftingRecipe {
             EndStep result(ItemStack result);
         }
 
-        interface EndStep extends SpecialCraftingRecipe.Builder, CatalogBuilder<RecipeRegistration, SpecialCraftingRecipe.Builder> {
-
-            @Override
-            EndStep key(ResourceKey key);
+        interface EndStep extends Builder, org.spongepowered.api.util.Builder<RecipeRegistration, Builder> {
 
             /**
              * Builds the {@link SpecialCraftingRecipe}.
              *
              * @return The built special crafting recipe
              * @throws IllegalStateException If not all the recipe builder steps are completed
-             *                               or the {@link #key(ResourceKey)} isn't set.
              */
             @Override
             RecipeRegistration build() throws IllegalStateException;

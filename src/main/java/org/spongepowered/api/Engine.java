@@ -25,12 +25,13 @@
 package org.spongepowered.api;
 
 import org.spongepowered.api.event.CauseStackManager;
+import org.spongepowered.api.registry.ScopedRegistryHolder;
 import org.spongepowered.api.scheduler.Scheduler;
 
 /**
  * Shared functionality between {@link Client} and {@link Server} engines.
  */
-public interface Engine {
+public interface Engine extends ScopedRegistryHolder {
 
     /**
      * Gets the {@link Game} that launched this engine;

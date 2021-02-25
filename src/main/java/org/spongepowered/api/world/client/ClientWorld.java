@@ -33,11 +33,14 @@ import java.util.Collection;
 /**
  * Represents a {@link Client} view of a remote or local world.
  */
-public interface ClientWorld extends World<ClientWorld> {
+public interface ClientWorld extends World<ClientWorld, ClientLocation> {
 
     @Override
     Client getEngine();
-    
+
+    @Override
+    ClientWorldProperties getProperties();
+
     @Override
     Collection<? extends ClientPlayer> getPlayers();
 }

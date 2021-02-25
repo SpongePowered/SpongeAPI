@@ -24,18 +24,19 @@
  */
 package org.spongepowered.api.effect.sound;
 
+import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.ResourceKey;
+import org.checkerframework.checker.nullness.qual.NonNull;
+import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.CatalogBuilder;
+import org.spongepowered.api.util.ResourceKeyedBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a sound that can be heard on clients.
  */
 @CatalogedBy(SoundTypes.class)
-public interface SoundType extends CatalogType, Sound.Type {
+public interface SoundType extends ResourceKeyed, Sound.Type {
 
     /**
      * Creates a new {@link Builder} for building SoundTypes.
@@ -43,18 +44,19 @@ public interface SoundType extends CatalogType, Sound.Type {
      * @return A new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
+    // TODO Why Adventure..
     @Override
-    default ResourceKey key() {
-        return CatalogType.super.key();
+    default @NonNull Key key() {
+        return this.getKey();
     }
 
     /**
      * Builds a SoundType, primarily for sending custom sounds to the client.
      */
-    interface Builder extends CatalogBuilder<SoundType, Builder> {
+    interface Builder extends ResourceKeyedBuilder<SoundType, Builder> {
 
     }
 }

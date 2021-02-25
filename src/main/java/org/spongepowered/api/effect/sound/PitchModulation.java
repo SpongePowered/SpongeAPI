@@ -61,21 +61,21 @@ public final class PitchModulation {
     public static final double F2 = 1.88;
     public static final double FSHARP2 = 2;
 
-    public static final double GFLAT0 = FSHARP0;
-    public static final double AFLAT0 = GSHARP0;
-    public static final double BFLAT0 = ASHARP0;
-    public static final double CFLAT0 = B0;
-    public static final double DFLAT1 = CSHARP1;
-    public static final double EFLAT1 = DSHARP1;
-    public static final double FFLAT1 = E1;
-    public static final double GFLAT1 = FSHARP1;
-    public static final double AFLAT1 = GSHARP1;
-    public static final double BFLAT1 = ASHARP1;
-    public static final double CFLAT1 = B1;
-    public static final double DFLAT2 = CSHARP2;
-    public static final double EFLAT2 = DSHARP2;
-    public static final double FFLAT2 = E2;
-    public static final double GFLAT2 = FSHARP2;
+    public static final double GFLAT0 = PitchModulation.FSHARP0;
+    public static final double AFLAT0 = PitchModulation.GSHARP0;
+    public static final double BFLAT0 = PitchModulation.ASHARP0;
+    public static final double CFLAT0 = PitchModulation.B0;
+    public static final double DFLAT1 = PitchModulation.CSHARP1;
+    public static final double EFLAT1 = PitchModulation.DSHARP1;
+    public static final double FFLAT1 = PitchModulation.E1;
+    public static final double GFLAT1 = PitchModulation.FSHARP1;
+    public static final double AFLAT1 = PitchModulation.GSHARP1;
+    public static final double BFLAT1 = PitchModulation.ASHARP1;
+    public static final double CFLAT1 = PitchModulation.B1;
+    public static final double DFLAT2 = PitchModulation.CSHARP2;
+    public static final double EFLAT2 = PitchModulation.DSHARP2;
+    public static final double FFLAT2 = PitchModulation.E2;
+    public static final double GFLAT2 = PitchModulation.FSHARP2;
 
     private PitchModulation() {
     }

@@ -31,20 +31,22 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.LocationCreator;
-import org.spongepowered.api.world.biome.BiomeType;
-import org.spongepowered.api.world.volume.archetype.block.entity.MutableBlockEntityArchetypeVolume;
-import org.spongepowered.api.world.volume.biome.MutableBiomeVolume;
-import org.spongepowered.api.world.volume.block.MutableBlockVolume;
+import org.spongepowered.api.world.server.ServerLocation;
+import org.spongepowered.api.world.biome.Biome;
+import org.spongepowered.api.world.volume.archetype.block.entity.BlockEntityArchetypeVolume;
+import org.spongepowered.api.world.volume.archetype.entity.EntityArchetypeVolume;
+import org.spongepowered.api.world.volume.biome.BiomeVolume;
+import org.spongepowered.api.world.volume.block.BlockVolume;
 import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
-import org.spongepowered.api.world.volume.block.entity.MutableBlockEntityVolume;
-import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
+import org.spongepowered.api.world.volume.block.entity.BlockEntityVolume;
+import org.spongepowered.api.world.volume.entity.EntityVolume;
 
 import java.util.Objects;
 import java.util.Optional;
 
 public final class VolumeApplicators {
 
-    public static <M extends MutableBlockVolume<M>> VolumeApplicator<M, BlockState, Boolean> applyBlocks() {
+    public static <M extends BlockVolume.Mutable<M>> VolumeApplicator<M, BlockState, Boolean> applyBlocks() {
         return ((volume, element) -> volume.setBlock(element.getPosition(), element.getType()));
     }
 
@@ -53,7 +55,7 @@ public final class VolumeApplicators {
         return ((volume, element) -> volume.setBlock(element.getPosition(), element.getType(), flag));
     }
 
-    public static <M extends MutableBlockEntityVolume<M>> VolumeApplicator<M, BlockEntity, Boolean> applyBlockEntities() {
+    public static <M extends BlockEntityVolume.Mutable<M>> VolumeApplicator<M, BlockEntity, Boolean> applyBlockEntities() {
         return (volume, element) -> {
             if (volume.setBlock(element.getPosition(), element.getType().getBlock())) {
                 volume.addBlockEntity(element.getPosition(), element.getType());
@@ -63,20 +65,66 @@ public final class VolumeApplicators {
         };
     }
 
-    public static <M extends LocationCreator & MutableBlockEntityVolume<M>> VolumeApplicator<M, BlockEntityArchetype, Optional<? extends BlockEntity>> applyBlockEntityArchetype() {
-        return (volume, element) -> element.getType().apply(volume.getLocation(element.getPosition()));
+    public static <M extends BlockEntityVolume.Mutable<M>> VolumeApplicator<M, Optional<? extends BlockEntity>, Boolean> applyOrRemoveBlockEntities() {
+        return (volume, element) -> {
+            final Optional<? extends BlockEntity> blockEntityOpt = element.getType();
+            if (blockEntityOpt.isPresent()) {
+                final BlockEntity blockEntity = blockEntityOpt.get();
+                if (volume.setBlock(element.getPosition(), blockEntity.getBlock())) {
+                    volume.addBlockEntity(element.getPosition(), blockEntity);
+                    return true;
+                }
+                return false;
+            } else {
+                return volume.removeBlock(element.getPosition());
+            }
+        };
     }
 
-    public static <M extends MutableEntityVolume<M>> VolumeApplicator<M, Entity, Boolean> applyEntities() {
+    public static <M extends BlockVolume.Mutable<M>> VolumeApplicator<M, Optional<BlockState>, Boolean> applyOrRemoveBlockState() {
+        return (volume, element) -> element.getType()
+            .map(blockState -> volume.setBlock(element.getPosition(), blockState))
+            .orElseGet(() -> volume.removeBlock(element.getPosition()));
+    }
+
+    public static <M extends PhysicsAwareMutableBlockVolume<M>> VolumeApplicator<M, Optional<BlockState>, Boolean> applyOrRemoveBlockState(final BlockChangeFlag flag) {
+        return (volume, element) -> element.getType()
+            .map(blockState -> volume.setBlock(element.getPosition(), blockState, flag))
+            .orElseGet(() -> volume.removeBlock(element.getPosition()));
+    }
+
+    public static <M extends LocationCreator<?, ? extends ServerLocation> & BlockEntityVolume.Mutable<M>> VolumeApplicator<M, BlockEntityArchetype,
+            Optional<?
+            extends BlockEntity>> applyBlockEntityArchetype() {
+        return (volume, element) -> element.getType().apply((ServerLocation) volume.getLocation(element.getPosition()));
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    public static <M extends BlockEntityArchetypeVolume.Mutable<M>> VolumeApplicator<M, BlockEntityArchetype, Boolean> applyBlockEntityArchetypes() {
+        return (volume, element) -> {
+            volume.addBlockEntity(element.getPosition(), element.getType());
+            return true;
+        };
+    }
+
+    public static <M extends EntityVolume.Mutable<M>> VolumeApplicator<M, Entity, Boolean> applyEntities() {
         return (volume, element) -> volume.spawnEntity(element.getType());
     }
 
-    public static <M extends MutableBiomeVolume<M>> VolumeApplicator<M, BiomeType, Boolean> applyBiomes() {
+    public static <M extends BiomeVolume.Mutable<M>> VolumeApplicator<M, Biome, Boolean> applyBiomes() {
         return (volume, element) -> volume.setBiome(element.getPosition(), element.getType());
     }
 
-    public static <M extends LocationCreator & MutableEntityVolume<M>> VolumeApplicator<M, EntityArchetype, Optional<? extends Entity>> applyEntityArchetype() {
-        return (volume, element) -> element.getType().apply(volume.getLocation(element.getPosition()));
+    public static <M extends LocationCreator<?, ? extends ServerLocation> & EntityVolume.Mutable<M>> VolumeApplicator<M, EntityArchetype, Optional<?
+            extends Entity>> applyEntityArchetype() {
+        return (volume, element) -> element.getType().apply((ServerLocation) volume.getLocation(element.getPosition()));
+    }
+
+    public static <M extends EntityArchetypeVolume.Mutable<M>> VolumeApplicator<M, EntityArchetype, Boolean> applyEntityArchetypes() {
+        return (volume, element) -> {
+            volume.addEntity(element.getType(), element.getPosition().toDouble());
+            return true;
+        };
     }
 
     private VolumeApplicators() {}

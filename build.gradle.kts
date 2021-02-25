@@ -1,30 +1,22 @@
 plugins {
     `java-library`
     `maven-publish`
-    id("org.spongepowered.event-impl-gen") version "5.7.0"
+    id("org.spongepowered.event-impl-gen") version "7.0.0-SNAPSHOT"
     idea
     eclipse
     id("org.cadixdev.licenser")
 }
 
 repositories {
-    maven {
-        name = "New Sponge Maven Repo"
-        setUrl("https://repo-new.spongepowered.org/repository/maven-public/")
-    }
-    maven {
-        name = "Old Sponge Maven Repo"
-        setUrl("https://repo.spongepowered.org/maven")
-    }
-    maven {
-        name = "Sonatype Snapshots"
-        setUrl("https://oss.sonatype.org/content/repositories/snapshots/")
+    maven("https://repo.spongepowered.org/repository/maven-public/") {
+        name = "sponge"
     }
 }
 
 base {
     archivesBaseName = "spongeapi"
 }
+
 val ap by sourceSets.registering {
     compileClasspath += sourceSets.main.get().compileClasspath + sourceSets.main.get().output
 }
@@ -43,19 +35,20 @@ dependencies {
     api("com.google.code.gson:gson:2.8.0")
 
     // Adventure
-    api("net.kyori:adventure-api:4.1.1") {
+    api(platform("net.kyori:adventure-bom:4.4.0"))
+    api("net.kyori:adventure-api") {
         exclude(group = "org.checkerframework", module = "checker-qual")
     }
-    api("net.kyori:adventure-text-serializer-gson:4.1.1") {
+    api("net.kyori:adventure-text-serializer-gson") {
         exclude(group = "org.checkerframework", module = "checker-qual")
         exclude(group = "com.google.code.gson", module = "gson")
         exclude(group = "net.kyori", module = "adventure-api")
     }
-    api("net.kyori:adventure-text-serializer-legacy:4.1.1") {
+    api("net.kyori:adventure-text-serializer-legacy") {
         exclude(group = "org.checkerframework", module = "checker-qual")
         exclude(group = "net.kyori", module = "adventure-api")
     }
-    api("net.kyori:adventure-text-serializer-plain:4.1.1") {
+    api("net.kyori:adventure-text-serializer-plain") {
         exclude(group = "org.checkerframework", module = "checker-qual")
         exclude(group = "net.kyori", module = "adventure-api")
     }
@@ -78,7 +71,7 @@ dependencies {
     }
 
     // Plugin spi, includes plugin-meta
-    api("org.spongepowered:plugin-spi:0.1.3-SNAPSHOT")
+    api("org.spongepowered:plugin-spi:0.1.4-SNAPSHOT")
 
     // Configurate
     api(platform("org.spongepowered:configurate-bom:4.0.0"))
@@ -107,14 +100,16 @@ dependencies {
     api("org.spongepowered:math:2.0.0-SNAPSHOT")
     api("org.spongepowered:noise:2.0.0-SNAPSHOT")
 
-    testImplementation("junit:junit:4.12")
-    testImplementation("org.hamcrest:hamcrest-library:1.3")
-    testImplementation("org.mockito:mockito-core:2.8.47")
+    testImplementation("junit:junit:4.13.1")
+    testImplementation("org.hamcrest:hamcrest:2.2")
+    testImplementation("org.mockito:mockito-core:3.6.28")
 }
 val spongeSnapshotRepo: String? by project
 val spongeReleaseRepo: String? by project
 tasks {
     genEventImpl {
+        sourceCompatibility = "1.8"
+
         outputFactory = "org.spongepowered.api.event.SpongeEventFactory"
         include("org/spongepowered/api/event/*/**/*")
         exclude("org/spongepowered/api/event/action/InteractEvent.java")
@@ -122,20 +117,13 @@ tasks {
         exclude("org/spongepowered/api/event/entity/AffectEntityEvent.java")
         exclude("org/spongepowered/api/event/filter/")
         exclude("org/spongepowered/api/event/impl/")
-        exclude("org/spongepowered/api/event/item/inventory/AffectItemStackEvent.java")
-        exclude("org/spongepowered/api/event/item/inventory/AffectSlotEvent.java")
-        exclude("org/spongepowered/api/event/lifecycle/EngineLifecycleEvent.java")
-        exclude("org/spongepowered/api/event/lifecycle/LifecycleEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/ProvideServiceEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/RegisterBuilderEvent.java")
-        exclude("org/spongepowered/api/event/lifecycle/RegisterCatalogEvent.java")
-        exclude("org/spongepowered/api/event/lifecycle/RegisterCatalogRegistryEvent.java")
+        exclude("org/spongepowered/api/event/lifecycle/RegisterRegistryEvent.java")
+        exclude("org/spongepowered/api/event/lifecycle/RegisterRegistryValueEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/RegisterCommandEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/RegisterFactoryEvent.java")
         exclude("org/spongepowered/api/event/lifecycle/RegisterWorldEvent.java")
-        exclude("org/spongepowered/api/event/lifecycle/StartingEngineEvent.java")
-        exclude("org/spongepowered/api/event/lifecycle/StartedEngineEvent.java")
-        exclude("org/spongepowered/api/event/lifecycle/StoppingEngineEvent.java")
         inclusiveAnnotations = setOf("org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod")
         exclusiveAnnotations = setOf("org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod")
     }
@@ -163,6 +151,7 @@ tasks {
     javadoc {
         options {
             encoding = "UTF-8"
+            source = "1.8"
             charset("UTF-8")
             isFailOnError = false
             (this as? StandardJavadocDocletOptions)?.apply {
@@ -177,6 +166,13 @@ tasks {
                 )
                 addStringOption("-quiet")
             }
+        }
+    }
+
+    withType(JavaCompile::class).configureEach {
+        // Use the --release option when available to ensure we only use Java 8 classes
+        if (JavaVersion.current().isJava10Compatible) {
+            options.release.set(8)
         }
     }
 

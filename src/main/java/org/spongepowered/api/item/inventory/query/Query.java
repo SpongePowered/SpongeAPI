@@ -26,7 +26,6 @@ package org.spongepowered.api.item.inventory.query;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.Inventory;
-import org.spongepowered.api.util.ResettableBuilder;
 
 /**
  * An inventory query. See {@link QueryTypes} for possible types of queries.
@@ -38,8 +37,8 @@ public interface Query {
      *
      * @return The query builder
      */
-    static Query.Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Query.Builder.class);
+    static Builder builder() {
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -50,7 +49,7 @@ public interface Query {
      * @return The new query
      */
     static Query orQueries(Query... queries) {
-        return builder().or(queries).build();
+        return Query.builder().or(queries).build();
     }
 
     /**
@@ -61,7 +60,7 @@ public interface Query {
      * @return The new query
      */
     static Query andQueries(Query... queries) {
-        return builder().and(queries).build();
+        return Query.builder().and(queries).build();
     }
 
     /**
@@ -73,7 +72,7 @@ public interface Query {
      */
     Inventory execute(Inventory inventory);
 
-    interface Builder extends ResettableBuilder<Query, Query.Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<Query, Builder> {
 
         /**
          * Builds a new query matching any of the queries.

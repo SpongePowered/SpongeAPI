@@ -27,18 +27,28 @@ package org.spongepowered.api;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.audience.ForwardingAudience;
 import net.kyori.adventure.text.Component;
+import org.spongepowered.api.block.entity.CommandBlock;
+import org.spongepowered.api.command.manager.CommandManager;
+import org.spongepowered.api.entity.living.Hostile;
+import org.spongepowered.api.entity.living.animal.Animal;
+import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
+import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
+import org.spongepowered.api.network.ServerSideConnection;
 import org.spongepowered.api.map.MapStorage;
 import org.spongepowered.api.profile.GameProfileManager;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.service.ServiceProvider;
-import org.spongepowered.api.util.locale.LocaleSource;
 import org.spongepowered.api.user.UserManager;
-import org.spongepowered.api.world.ServerLocation;
-import org.spongepowered.api.world.teleport.TeleportHelper;
+import org.spongepowered.api.util.locale.LocaleSource;
+import org.spongepowered.api.world.server.ServerLocation;
+import org.spongepowered.api.world.difficulty.Difficulty;
+import org.spongepowered.api.world.generation.config.WorldGenerationConfig;
+import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.server.WorldManager;
 import org.spongepowered.api.world.storage.ChunkLayout;
+import org.spongepowered.api.world.teleport.TeleportHelper;
 
 import java.net.InetSocketAddress;
 import java.util.Collection;
@@ -56,6 +66,135 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      * @return The world manager
      */
     WorldManager getWorldManager();
+
+    /**
+     * Gets if multiple {@link ServerWorld worlds} will be loaded by the server.
+     *
+     * <p>If false, no calls to loading worlds via the {@link WorldManager world manager} or otherwise will
+     * load a world</p>
+     *
+     * @return True if enabled, false if not
+     */
+    boolean isMultiWorldEnabled();
+
+    /**
+     * Gets the {@link WorldGenerationConfig}.
+     *
+     * @return The world generator config
+     */
+    WorldGenerationConfig getWorldGenerationConfig();
+
+    /**
+     * Gets the max {@link ServerPlayer players} allowed to join.
+     *
+     * @return The max players
+     */
+    int getMaxPlayers();
+
+    /**
+     * Gets if the whitelist is currently enforced.
+     *
+     * @return True if enabled, false if not
+     */
+    boolean isWhitelistEnabled();
+
+    /**
+     * Gets if incoming {@link ServerSideConnection connections} are authenticated against Mojang's servers.
+     *
+     * @return True if enabled, false if not
+     */
+    boolean isOnlineModeEnabled();
+
+    /**
+     * Gets the "message of the day" presented to clients who have this server saved as a connection profile
+     * in the multiplayer menu
+     *
+     * @return The message of the day
+     */
+    Component getMOTD();
+
+    /**
+     * Gets the {@link ResourcePack pack} sent to clients when they join.
+     *
+     * @return The resource pack
+     */
+    Optional<ResourcePack> getResourcePack();
+
+    /**
+     * Gets the player idle timeout, in minutes.
+     *
+     * <p>A value of {@code 0} means the timeout is disabled</p>
+     *
+     * @return The player idle timeout
+     */
+    int getPlayerIdleTimeout();
+
+    /**
+     * Gets if hardcode mode has been enabled.
+     *
+     * @return True if enabled, false if not
+     */
+    boolean isHardcoreModeEnabled();
+
+    /**
+     * Gets the {@link Difficulty}.
+     *
+     * @return The difficulty
+     */
+    Difficulty getDifficulty();
+
+    /**
+     * Gets the {@link GameMode}.
+     *
+     * @return The gamemode
+     */
+    GameMode getGameMode();
+
+    /**
+     * Gets if {@link ServerPlayer players} will have their {@link GameMode game mode} set to the default.
+     *
+     * {@link Server#getGameMode()}
+     *
+     * @return True if enforced, false if not
+     */
+    boolean isGameModeEnforced();
+
+    /**
+     * Gets if pvp is enabled.
+     *
+     * @return True if enabled, false if not
+     */
+    boolean isPVPEnabled();
+
+    /**
+     * Gets if {@link CommandBlock command blocks} will run commands.
+     *
+     * @return True if enabled, false if not
+     */
+    boolean areCommandBlocksEnabled();
+
+    /**
+     * Gets if {@link Hostile monsters} will naturally spawn.
+     *
+     * @return True if enabled, false if not
+     */
+    boolean isMonsterSpawnsEnabled();
+
+    /**
+     * Gets if {@link Animal animals} will naturally spawn.
+     *
+     * @return True if enabled, false if not
+     */
+    boolean isAnimalSpawnsEnabled();
+
+    /**
+     * Gets whether this server is dedicated to being a global server, or
+     * whether this server is local to a game client where a {@link Client}
+     * instance may be available.
+     *
+     * @return True if this is a dedicated server without a game client
+     */
+    boolean isDedicatedServer();
 
     /**
      * Gets the {@link UserManager}.
@@ -77,13 +216,6 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      * @return A {@link Collection} of online players
      */
     Collection<ServerPlayer> getOnlinePlayers();
-
-    /**
-     * Gets the max players allowed on this server.
-     *
-     * @return Maximum number of connected players
-     */
-    int getMaxPlayers();
 
     /**
      * Gets a {@link ServerPlayer} by their UUID.
@@ -163,36 +295,11 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
     Optional<InetSocketAddress> getBoundAddress();
 
     /**
-     * Tests if the server has a whitelist enabled.
-     *
-     * @return True if enabled, false if not
-     */
-    boolean hasWhitelist();
-
-    /**
      * Sets whether the server is utilizing a whitelist.
      *
      * @param enabled True to enable the whitelist, false to disable
      */
     void setHasWhitelist(boolean enabled);
-
-    /**
-     * Tests if this server is set to online mode.
-     *
-     * <b>Online mode authenticates users against Minecraft's servers, false
-     * performs no validity checks.</b>
-     *
-     * @return True if enabled, false if not
-     */
-    boolean getOnlineMode();
-
-    /**
-     * Gets the default message that is displayed in the server list of the
-     * client.
-     *
-     * @return The server's default description (MOTD)
-     */
-    Component getMotd();
 
     /**
      * Shuts down the server, and kicks all players with the default kick
@@ -226,6 +333,13 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
     double getTicksPerSecond();
 
     /**
+     * Gets the current average milliseconds per tick.
+     *
+     * @return The current average tick time.
+     */
+    double getAverageTickTime();
+
+    /**
      * Gets the target ticks per second for this server.
      *
      * <p>This is dependent on the implementation.</p>
@@ -235,23 +349,6 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
     int getTargetTicksPerSecond();
 
     /**
-     * Gets the default resource pack. The default resource pack is sent to
-     * players when they join the server.
-     *
-     * @return The default resource pack
-     */
-    Optional<ResourcePack> getDefaultResourcePack();
-
-    /**
-     * Gets the player idle timeout, in minutes.
-     *
-     * <p>A return value of {@code 0} disables the player idle timeout.</p>
-     *
-     * @return The player idle timeout
-     */
-    int getPlayerIdleTimeout();
-
-    /**
      * Sets the player idle timeout, in minutes.
      *
      * <p>A value of {@code 0} disables the player idle timeout.</p>
@@ -259,15 +356,6 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      * @param timeout The player idle timeout
      */
     void setPlayerIdleTimeout(int timeout);
-
-    /**
-     * Gets whether this server is dedicated to being a global server, or
-     * whether this server is local to a game client where a {@link Client}
-     * instance may be available.
-     *
-     * @return True if this is a dedicated server without a game client
-     */
-    boolean isDedicatedServer();
 
     /**
      * Gets the {@link ServiceProvider.ServerScoped}, used to provide Sponge
@@ -281,6 +369,16 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      * @return The service manager
      */
     ServiceProvider.ServerScoped getServiceProvider();
+
+    /**
+     * Gets the {@link CommandManager} for executing and inspecting commands.
+     *
+     * <p>Commands must be registered by listening to the
+     * {@link RegisterCommandEvent} instead.</p>
+     *
+     * @return The {@link CommandManager} instance.
+     */
+    CommandManager getCommandManager();
 
     /**
      * Gets the map storage for this server

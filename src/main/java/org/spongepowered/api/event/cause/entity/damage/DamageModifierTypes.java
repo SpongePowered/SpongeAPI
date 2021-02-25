@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.cause.entity.damage;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectType;
@@ -35,12 +36,19 @@ import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.enchantment.EnchantmentType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.difficulty.Difficulty;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class DamageModifierTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
@@ -49,13 +57,13 @@ public final class DamageModifierTypes {
      * the {@link PotionEffectTypes#ABSORPTION} level on the
      * {@link Entity}.
      */
-    public static final Supplier<DamageModifierType> ABSORPTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "absorption");
+    public static final DefaultedRegistryReference<DamageModifierType> ABSORPTION = DamageModifierTypes.key(ResourceKey.sponge("absorption"));
 
     /**
      * Represents a {@link DamageModifier} that will reduce damage based on
      * the armor {@link ItemStack}s.
      */
-    public static final Supplier<DamageModifierType> ARMOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "armor");
+    public static final DefaultedRegistryReference<DamageModifierType> ARMOR = DamageModifierTypes.key(ResourceKey.sponge("armor"));
 
     /**
      * Represents a {@link DamageModifier} that will reduce damage based on
@@ -69,20 +77,20 @@ public final class DamageModifierTypes {
      * of this type in a single event due to the variety of possibilities in
      * customization of armor handling.</p>
      */
-    public static final Supplier<DamageModifierType> ARMOR_ENCHANTMENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "armor_enchantment");
+    public static final DefaultedRegistryReference<DamageModifierType> ARMOR_ENCHANTMENT = DamageModifierTypes.key(ResourceKey.sponge("armor_enchantment"));
 
     /**
      * Represents the {@link DamageModifier} that will reduce damage from a
      * {@link Player} if their attack cooldown has not been completed yet.
      */
-    public static final Supplier<DamageModifierType> ATTACK_COOLDOWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "attack_cooldown");
+    public static final DefaultedRegistryReference<DamageModifierType> ATTACK_COOLDOWN = DamageModifierTypes.key(ResourceKey.sponge("attack_cooldown"));
 
     /**
      * Represents the {@link DamageModifier} that will modify damage output
      * based on the fact that the attacking source is critically hitting the
      * target.
      */
-    public static final Supplier<DamageModifierType> CRITICAL_HIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "critical_hit");
+    public static final DefaultedRegistryReference<DamageModifierType> CRITICAL_HIT = DamageModifierTypes.key(ResourceKey.sponge("critical_hit"));
 
     /**
      * Represents a {@link DamageModifier} that will reduce damage based on
@@ -93,13 +101,13 @@ public final class DamageModifierTypes {
      * a {@link PotionEffect} including the amplifier and duration, signifying
      * that the {@link PotionEffectType} is modifying the incoming damage.</p>
      */
-    public static final Supplier<DamageModifierType> DEFENSIVE_POTION_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "defensive_potion_effect");
+    public static final DefaultedRegistryReference<DamageModifierType> DEFENSIVE_POTION_EFFECT = DamageModifierTypes.key(ResourceKey.sponge("defensive_potion_effect"));
 
     /**
      * Represents a {@link DamageModifier} that enhances damage based on the
      * current {@link Difficulty} of the {@link World}.
      */
-    public static final Supplier<DamageModifierType> DIFFICULTY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "difficulty");
+    public static final DefaultedRegistryReference<DamageModifierType> DIFFICULTY = DamageModifierTypes.key(ResourceKey.sponge("difficulty"));
 
     /**
      * Represents the {@link DamageModifier} that will modify damage from
@@ -110,13 +118,13 @@ public final class DamageModifierTypes {
      * that the {@link EnchantmentType} of the {@link ItemStack} is modifying the
      * incoming/outgoing damage.</p>
      */
-    public static final Supplier<DamageModifierType> HARD_HAT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "hard_hat");
+    public static final DefaultedRegistryReference<DamageModifierType> HARD_HAT = DamageModifierTypes.key(ResourceKey.sponge("hard_hat"));
 
     /**
      * Represents a {@link DamageModifier} that will modify damage based on
      * magic.
      */
-    public static final Supplier<DamageModifierType> MAGIC = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "magic");
+    public static final DefaultedRegistryReference<DamageModifierType> MAGIC = DamageModifierTypes.key(ResourceKey.sponge("magic"));
 
     /**
      * Represents a {@link DamageModifier} that will reduce outgoing damage
@@ -126,25 +134,25 @@ public final class DamageModifierTypes {
      * a {@link PotionEffect} including the amplifier and duration, signifying
      * that the {@link PotionEffectType} is reducing the outgoing damage.</p>
      */
-    public static final Supplier<DamageModifierType> NEGATIVE_POTION_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "negative_potion_effect");
+    public static final DefaultedRegistryReference<DamageModifierType> NEGATIVE_POTION_EFFECT = DamageModifierTypes.key(ResourceKey.sponge("negative_potion_effect"));
 
     /**
      * Represents the {@link DamageModifier} that will increase damage from
      * a {@link PotionEffect} affecting the attacker.
      */
-    public static final Supplier<DamageModifierType> OFFENSIVE_POTION_EFFECT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "offensive_potion_effect");
+    public static final DefaultedRegistryReference<DamageModifierType> OFFENSIVE_POTION_EFFECT = DamageModifierTypes.key(ResourceKey.sponge("offensive_potion_effect"));
 
     /**
      * Represents a {@link DamageModifier} that will reduce damage due to
      * using a shield.
      */
-    public static final Supplier<DamageModifierType> SHIELD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "shield");
+    public static final DefaultedRegistryReference<DamageModifierType> SHIELD = DamageModifierTypes.key(ResourceKey.sponge("shield"));
 
     /**
      * Represents a {@link DamageModifier} that is applied for a sweeping
      * attack.
      */
-    public static final Supplier<DamageModifierType> SWEEPING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "sweeping");
+    public static final DefaultedRegistryReference<DamageModifierType> SWEEPING = DamageModifierTypes.key(ResourceKey.sponge("sweeping"));
 
     /**
      * Represents the {@link DamageModifier} that will modify damage from
@@ -155,13 +163,16 @@ public final class DamageModifierTypes {
      * that the {@link EnchantmentType} of the {@link ItemStack} is modifying the
      * incoming/outgoing damage.</p>
      */
-    public static final Supplier<DamageModifierType> WEAPON_ENCHANTMENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DamageModifierType.class, "weapon_enchantment");
+    public static final DefaultedRegistryReference<DamageModifierType> WEAPON_ENCHANTMENT = DamageModifierTypes.key(ResourceKey.sponge("weapon_enchantment"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private DamageModifierTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<DamageModifierType> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.DAMAGE_MODIFIER_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.util.mirror;
 
-import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(Mirrors.class)
-public interface Mirror extends CatalogType {
+public interface Mirror extends DefaultedRegistryValue {
 
 }

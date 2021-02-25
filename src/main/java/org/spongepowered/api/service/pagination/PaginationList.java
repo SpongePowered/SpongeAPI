@@ -154,7 +154,7 @@ public interface PaginationList {
     /**
      * Builds a paginated output for an iterable of {@link Component}s.
      */
-    interface Builder extends CopyableBuilder<PaginationList, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<PaginationList, Builder>, CopyableBuilder<PaginationList, Builder> {
 
         /**
          * Sets the contents of this output as an iterable.

@@ -30,7 +30,6 @@ import org.spongepowered.api.command.Command;
 import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.parameter.CommandContext;
 import org.spongepowered.api.command.parameter.Parameter;
-import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -67,8 +66,8 @@ public interface Flag {
      *
      * @return A {@link Builder}
      */
-    static Flag.Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Flag.Builder.class);
+    static Builder builder() {
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -131,7 +130,7 @@ public interface Flag {
     /**
      * A builder for creating {@link Flag}s.
      */
-    interface Builder extends ResettableBuilder<Flag, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<Flag, Builder> {
 
         /**
          * Specifies an alias for this flag. The alias must not start with a

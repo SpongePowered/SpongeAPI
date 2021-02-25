@@ -30,7 +30,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -48,7 +48,7 @@ public interface Ingredient extends Predicate<ItemStack> {
      * An empty ingredient.
      */
     static Ingredient empty() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).empty();
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).empty();
     }
 
     @Override
@@ -68,7 +68,7 @@ public interface Ingredient extends Predicate<ItemStack> {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -79,9 +79,9 @@ public interface Ingredient extends Predicate<ItemStack> {
      */
     static Ingredient of(@Nullable ItemType... itemTypes) {
         if (itemTypes == null || itemTypes.length == 0) {
-            return empty();
+            return Ingredient.empty();
         }
-        return builder().with(itemTypes).build();
+        return Ingredient.builder().with(itemTypes).build();
     }
 
     /**
@@ -92,9 +92,9 @@ public interface Ingredient extends Predicate<ItemStack> {
      */
     static Ingredient of(@Nullable ItemStack... items) {
         if (items == null || items.length == 0) {
-            return empty();
+            return Ingredient.empty();
         }
-        return builder().with(items).build();
+        return Ingredient.builder().with(items).build();
     }
 
     /**
@@ -105,9 +105,9 @@ public interface Ingredient extends Predicate<ItemStack> {
      */
     static Ingredient of(@Nullable ItemStackSnapshot... items) {
         if (items == null) {
-            return empty();
+            return Ingredient.empty();
         }
-        return builder().with(items).build();
+        return Ingredient.builder().with(items).build();
     }
 
     /**
@@ -117,11 +117,11 @@ public interface Ingredient extends Predicate<ItemStack> {
      * @return The new ingredient
      */
     @SafeVarargs
-    static Ingredient of(@Nullable Supplier<ItemType>... itemTypes) {
+    static Ingredient of(@Nullable DefaultedRegistryReference<? extends ItemType>... itemTypes) {
         if (itemTypes == null || itemTypes.length == 0) {
-            return empty();
+            return Ingredient.empty();
         }
-        return builder().with(itemTypes).build();
+        return Ingredient.builder().with(itemTypes).build();
     }
 
     /**
@@ -138,7 +138,7 @@ public interface Ingredient extends Predicate<ItemStack> {
         if (exemplaryStacks.length == 0) {
             throw new IllegalArgumentException("At least exemplary stack is required");
         }
-        return builder().with(key, predicate, exemplaryStacks).build();
+        return Ingredient.builder().with(key, predicate, exemplaryStacks).build();
     }
 
     /**
@@ -150,13 +150,13 @@ public interface Ingredient extends Predicate<ItemStack> {
      * @return The new ingredient
      */
     static Ingredient of(ResourceKey key) {
-        return builder().with(key).build();
+        return Ingredient.builder().with(key).build();
     }
 
     /**
      * Builder for {@link Ingredient}s.
      */
-    interface Builder extends ResettableBuilder<Ingredient, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<Ingredient, Builder> {
 
         /**
          * Sets one or more ItemTypes for matching the ingredient.
@@ -173,7 +173,7 @@ public interface Ingredient extends Predicate<ItemStack> {
          * @return This Builder, for chaining
          */
         @SuppressWarnings("unchecked")
-        Builder with(Supplier<ItemType>... types);
+        Builder with(Supplier<? extends ItemType>... types);
 
         /**
          * Sets one ore more ItemStack for matching the ingredient.

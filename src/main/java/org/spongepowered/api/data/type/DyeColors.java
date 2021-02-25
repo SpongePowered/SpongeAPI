@@ -24,52 +24,65 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link DyeColor}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class DyeColors {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<DyeColor> BLACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "black");
+    public static final DefaultedRegistryReference<DyeColor> BLACK = DyeColors.key(ResourceKey.sponge("black"));
 
-    public static final Supplier<DyeColor> BLUE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "blue");
+    public static final DefaultedRegistryReference<DyeColor> BLUE = DyeColors.key(ResourceKey.sponge("blue"));
 
-    public static final Supplier<DyeColor> BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "brown");
+    public static final DefaultedRegistryReference<DyeColor> BROWN = DyeColors.key(ResourceKey.sponge("brown"));
 
-    public static final Supplier<DyeColor> CYAN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "cyan");
+    public static final DefaultedRegistryReference<DyeColor> CYAN = DyeColors.key(ResourceKey.sponge("cyan"));
 
-    public static final Supplier<DyeColor> GRAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "gray");
+    public static final DefaultedRegistryReference<DyeColor> GRAY = DyeColors.key(ResourceKey.sponge("gray"));
 
-    public static final Supplier<DyeColor> GREEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "green");
+    public static final DefaultedRegistryReference<DyeColor> GREEN = DyeColors.key(ResourceKey.sponge("green"));
 
-    public static final Supplier<DyeColor> LIGHT_BLUE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "light_blue");
+    public static final DefaultedRegistryReference<DyeColor> LIGHT_BLUE = DyeColors.key(ResourceKey.sponge("light_blue"));
 
-    public static final Supplier<DyeColor> LIGHT_GRAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "light_gray");
+    public static final DefaultedRegistryReference<DyeColor> LIGHT_GRAY = DyeColors.key(ResourceKey.sponge("light_gray"));
 
-    public static final Supplier<DyeColor> LIME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "lime");
+    public static final DefaultedRegistryReference<DyeColor> LIME = DyeColors.key(ResourceKey.sponge("lime"));
 
-    public static final Supplier<DyeColor> MAGENTA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "magenta");
+    public static final DefaultedRegistryReference<DyeColor> MAGENTA = DyeColors.key(ResourceKey.sponge("magenta"));
 
-    public static final Supplier<DyeColor> ORANGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "orange");
+    public static final DefaultedRegistryReference<DyeColor> ORANGE = DyeColors.key(ResourceKey.sponge("orange"));
 
-    public static final Supplier<DyeColor> PINK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "pink");
+    public static final DefaultedRegistryReference<DyeColor> PINK = DyeColors.key(ResourceKey.sponge("pink"));
 
-    public static final Supplier<DyeColor> PURPLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "purple");
+    public static final DefaultedRegistryReference<DyeColor> PURPLE = DyeColors.key(ResourceKey.sponge("purple"));
 
-    public static final Supplier<DyeColor> RED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "red");
+    public static final DefaultedRegistryReference<DyeColor> RED = DyeColors.key(ResourceKey.sponge("red"));
 
-    public static final Supplier<DyeColor> WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "white");
+    public static final DefaultedRegistryReference<DyeColor> WHITE = DyeColors.key(ResourceKey.sponge("white"));
 
-    public static final Supplier<DyeColor> YELLOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DyeColor.class, "yellow");
+    public static final DefaultedRegistryReference<DyeColor> YELLOW = DyeColors.key(ResourceKey.sponge("yellow"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private DyeColors() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<DyeColor> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.DYE_COLOR, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

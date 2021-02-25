@@ -43,7 +43,7 @@ public interface DataProvider<V extends Value<E>, E> {
      * @return The builder
      */
     static <H extends DataHolder.Mutable, V extends Value<E>, E> MutableDataProviderBuilder<H, V, E> mutableBuilder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(MutableDataProviderBuilder.class);
+        return Sponge.getGame().getBuilderProvider().provide(MutableDataProviderBuilder.class);
     }
 
     /**
@@ -52,7 +52,7 @@ public interface DataProvider<V extends Value<E>, E> {
      * @return The builder
      */
     static <H extends DataHolder, V extends Value<E>, E> ImmutableDataProviderBuilder<H, V, E> immutableBuilder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(ImmutableDataProviderBuilder.class);
+        return Sponge.getGame().getBuilderProvider().provide(ImmutableDataProviderBuilder.class);
     }
 
     /**
@@ -125,7 +125,7 @@ public interface DataProvider<V extends Value<E>, E> {
     boolean isSupported(DataHolder dataHolder);
 
     default boolean isSupported(final TypeToken<? extends DataHolder> dataHolder) {
-        return isSupported(dataHolder.getType());
+        return this.isSupported(dataHolder.getType());
     }
 
     boolean isSupported(Type dataHolder);

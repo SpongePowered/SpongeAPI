@@ -24,21 +24,34 @@
  */
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class LightTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<LightType> BLOCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(LightType.class, "block");
+    public static final DefaultedRegistryReference<LightType> BLOCK = LightTypes.key(ResourceKey.sponge("block"));
 
-    public static final Supplier<LightType> SKY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(LightType.class, "sky");
+    public static final DefaultedRegistryReference<LightType> SKY = LightTypes.key(ResourceKey.sponge("sky"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private LightTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<LightType> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.LIGHT_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

@@ -78,10 +78,7 @@ public interface AdvancementProgress extends Progressable {
      * @param criterion The criterion
      * @return The criterion progress
      */
-    default CriterionProgress require(AdvancementCriterion criterion) {
-        return get(criterion).orElseThrow(() -> new IllegalStateException("The criterion " + criterion.getName()
-            + " isn't present on the advancement '" + getAdvancement().getKey().toString() + "'."));
-    }
+    CriterionProgress require(AdvancementCriterion criterion);
 
     /**
      * Gets the {@link ScoreCriterionProgress} for the
@@ -90,9 +87,6 @@ public interface AdvancementProgress extends Progressable {
      * @param criterion The score criterion
      * @return The score criterion progress
      */
-    default ScoreCriterionProgress require(ScoreAdvancementCriterion criterion) {
-        return get(criterion).orElseThrow(() -> new IllegalStateException("The score criterion " + criterion.getName()
-            + " isn't present on the advancement '" + getAdvancement().getKey().toString() + "'."));
-    }
+    ScoreCriterionProgress require(ScoreAdvancementCriterion criterion);
 
 }

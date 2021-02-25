@@ -24,11 +24,19 @@
  */
 package org.spongepowered.api.world.teleport;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class TeleportHelperFilters {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
@@ -36,7 +44,7 @@ public final class TeleportHelperFilters {
      * Designed to be combined with other filters, this filter determines if a
      * block is in the config blacklist and returns the appropriate result.
      */
-    public static final Supplier<TeleportHelperFilter> CONFIG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TeleportHelperFilter.class, "config");
+    public static final DefaultedRegistryReference<TeleportHelperFilter> CONFIG = TeleportHelperFilters.key(ResourceKey.sponge("config"));
 
     /**
      * The default behavior for safe teleportation.
@@ -53,7 +61,7 @@ public final class TeleportHelperFilters {
      *     floor or body (see {@link #CONFIG}).</li>
      * </ul>
      */
-    public static final Supplier<TeleportHelperFilter> DEFAULT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TeleportHelperFilter.class, "default");
+    public static final DefaultedRegistryReference<TeleportHelperFilter> DEFAULT = TeleportHelperFilters.key(ResourceKey.sponge("default"));
 
     /**
      * The flying safe teleportation behavior.
@@ -67,25 +75,28 @@ public final class TeleportHelperFilters {
      *     <li>That floor blocks are not cacti (and thus, hurt).</li>
      * </ul>
      */
-    public static final Supplier<TeleportHelperFilter> FLYING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TeleportHelperFilter.class, "flying");
+    public static final DefaultedRegistryReference<TeleportHelperFilter> FLYING = TeleportHelperFilters.key(ResourceKey.sponge("flying"));
 
     /**
      * This filter is the same as the {@link #DEFAULT} kernel, except that
      * portals are not valid targets.
      */
-    public static final Supplier<TeleportHelperFilter> NO_PORTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TeleportHelperFilter.class, "no_portal");
+    public static final DefaultedRegistryReference<TeleportHelperFilter> NO_PORTAL = TeleportHelperFilters.key(ResourceKey.sponge("no_portal"));
 
     /**
      * This filter is the same as the {@link #DEFAULT} kernel, except that
      * only targets that can see the sky are considered.
      */
-    public static final Supplier<TeleportHelperFilter> SURFACE_ONLY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(TeleportHelperFilter.class, "surface_only");
+    public static final DefaultedRegistryReference<TeleportHelperFilter> SURFACE_ONLY = TeleportHelperFilters.key(ResourceKey.sponge("surface_only"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private TeleportHelperFilters() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<TeleportHelperFilter> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.TELEPORT_HELPER_FILTER, location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

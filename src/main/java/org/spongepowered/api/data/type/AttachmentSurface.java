@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a block surface.
  */
 @CatalogedBy(AttachmentSurfaces.class)
-public interface AttachmentSurface extends CatalogType {
+public interface AttachmentSurface extends DefaultedRegistryValue {
 
 }

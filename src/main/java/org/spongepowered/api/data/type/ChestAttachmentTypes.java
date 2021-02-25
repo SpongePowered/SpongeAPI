@@ -24,26 +24,39 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link ChestAttachmentType}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class ChestAttachmentTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<ChestAttachmentType> LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChestAttachmentType.class, "left");
+    public static final DefaultedRegistryReference<ChestAttachmentType> LEFT = ChestAttachmentTypes.key(ResourceKey.sponge("left"));
 
-    public static final Supplier<ChestAttachmentType> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChestAttachmentType.class, "none");
+    public static final DefaultedRegistryReference<ChestAttachmentType> NONE = ChestAttachmentTypes.key(ResourceKey.sponge("none"));
 
-    public static final Supplier<ChestAttachmentType> RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChestAttachmentType.class, "right");
+    public static final DefaultedRegistryReference<ChestAttachmentType> RIGHT = ChestAttachmentTypes.key(ResourceKey.sponge("right"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private ChestAttachmentTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<ChestAttachmentType> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.CHEST_ATTACHMENT_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

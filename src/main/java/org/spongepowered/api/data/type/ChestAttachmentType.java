@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -34,6 +34,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * chests into a double chests.
  */
 @CatalogedBy(ChestAttachmentTypes.class)
-public interface ChestAttachmentType extends CatalogType {
+public interface ChestAttachmentType extends DefaultedRegistryValue {
 
 }

@@ -29,7 +29,7 @@ import org.spongepowered.api.world.volume.Volume;
 import java.util.function.Supplier;
 
 @FunctionalInterface
-public interface VolumeMapper<V extends Volume, T> {
+public interface VolumeMapper<V extends Volume, T, Out> {
 
-    T map(V volume, Supplier<T> value, int x, int y, int z);
+    Out map(V volume, Supplier<T> value, int x, int y, int z);
 }

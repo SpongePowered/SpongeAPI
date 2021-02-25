@@ -24,14 +24,22 @@
  */
 package org.spongepowered.api.command.selector;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * All {@link SelectorType}s available in Minecraft.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class SelectorTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
@@ -40,40 +48,44 @@ public final class SelectorTypes {
      *
      * <p>Equivalent to {@code @e}.</p>
      */
-    public static final Supplier<SelectorType> ALL_ENTITIES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "all_entities");
+    public static final DefaultedRegistryReference<SelectorType> ALL_ENTITIES = SelectorTypes.key(ResourceKey.sponge("all_entities"));
 
     /**
      * Selects all players.
      *
      * <p>Equivalent to {@code @a}.</p>
      */
-    public static final Supplier<SelectorType> ALL_PLAYERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "all_players");
+    public static final DefaultedRegistryReference<SelectorType> ALL_PLAYERS = SelectorTypes.key(ResourceKey.sponge("all_players"));
 
     /**
      * Selects the nearest player.
      *
      * <p>Equivalent to {@code @p}.</p>
      */
-    public static final Supplier<SelectorType> NEAREST_PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "nearest_player");
+    public static final DefaultedRegistryReference<SelectorType> NEAREST_PLAYER = SelectorTypes.key(ResourceKey.sponge("nearest_player"));
 
     /**
      * Selects the nearest player.
      *
      * <p>Equivalent to {@code @r}.</p>
      */
-    public static final Supplier<SelectorType> RANDOM_PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "random_player");
+    public static final DefaultedRegistryReference<SelectorType> RANDOM_PLAYER = SelectorTypes.key(ResourceKey.sponge("random_player"));
 
     /**
      * Selects the context of the selector, if the context is an entity.
      *
      * <p>Equivalent to {@code @s}.</p>
      */
-    public static final Supplier<SelectorType> SOURCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SelectorType.class, "source");
+    public static final DefaultedRegistryReference<SelectorType> SOURCE = SelectorTypes.key(ResourceKey.sponge("source"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private SelectorTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class");
     }
 
+    private static DefaultedRegistryReference<SelectorType> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.SELECTOR_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

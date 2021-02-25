@@ -25,6 +25,7 @@
 package org.spongepowered.api.world;
 
 import org.spongepowered.api.data.SerializableDataHolder;
+import org.spongepowered.api.world.server.ServerLocation;
 
 import java.util.Optional;
 

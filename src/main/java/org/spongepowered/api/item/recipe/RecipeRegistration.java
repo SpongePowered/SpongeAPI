@@ -24,13 +24,14 @@
  */
 package org.spongepowered.api.item.recipe;
 
-import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.data.persistence.DataSerializable;
 
 /**
- * A Sponge plugin recipe registration use {@link org.spongepowered.api.event.lifecycle.RegisterCatalogEvent<RecipeRegistration>} to register the recipe.
- * <p>Recipes are registered as a data-pack.</p>
+ * A registration of a {@link Recipe} by an API consumer.
+ *
+ * <p>All registrations through the API will generate into the Vanilla data pack system</p>
  */
-public interface RecipeRegistration extends CatalogType, DataSerializable {
+public interface RecipeRegistration extends DataPackSerializable, DataSerializable {
 
 }

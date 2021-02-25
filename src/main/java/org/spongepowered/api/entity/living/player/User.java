@@ -37,11 +37,10 @@ import org.spongepowered.api.item.inventory.entity.UserInventory;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.util.annotation.DoNotStore;
-import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Optional;
-import java.util.UUID;
 
 /**
  * A User is the data usually associated with a Player that is persisted

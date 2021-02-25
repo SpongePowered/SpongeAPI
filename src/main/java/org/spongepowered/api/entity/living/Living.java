@@ -45,7 +45,7 @@ import java.util.Optional;
  * under water, custom names, be meaningfully added to teams, hold {@link Attribute}s, and become
  * invisible.</p>
  */
-public interface Living extends AttributeHolder, Entity, EntityProjectileSource, TeamMember {
+public interface Living extends AttributeHolder, Entity, TeamMember {
 
     /**
      * {@link Keys#ABSORPTION}

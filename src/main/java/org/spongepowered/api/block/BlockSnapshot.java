@@ -27,16 +27,15 @@ package org.spongepowered.api.block;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.block.entity.BlockEntityArchetype;
-import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.SerializableDataHolderBuilder;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.LocatableSnapshot;
-import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.schematic.Schematic;
-import org.spongepowered.api.world.storage.WorldProperties;
+import org.spongepowered.api.world.server.storage.ServerWorldProperties;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Optional;
@@ -56,7 +55,7 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
     Supplier<BlockSnapshot> NONE = BlockSnapshot::empty;
 
     static BlockSnapshot empty() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class).empty();
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class).empty();
     }
 
     /**
@@ -65,7 +64,7 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -151,7 +150,7 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
     interface Builder extends SerializableDataHolderBuilder.Immutable<BlockSnapshot, Builder> {
 
         /**
-         * Sets the {@link WorldProperties} for this {@link BlockSnapshot}.
+         * Sets the {@link ServerWorldProperties} for this {@link BlockSnapshot}.
          *
          * <p>
          *     This is used to grab the {@link UUID} of the World for this snapshot.
@@ -160,7 +159,7 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
          * @param worldProperties The WorldProperties
          * @return This builder, for chaining
          */
-        Builder world(WorldProperties worldProperties);
+        Builder world(ServerWorldProperties worldProperties);
 
         /**
          * Sets the {@link BlockState} for this {@link BlockSnapshot}.

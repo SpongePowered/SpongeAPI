@@ -48,7 +48,7 @@ public interface PotionEffect extends DataSerializable {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -62,7 +62,7 @@ public interface PotionEffect extends DataSerializable {
      * @return The potion effect
      */
     static PotionEffect of(PotionEffectType type, int amplifier, int duration) {
-        return builder().potionType(type).amplifier(amplifier).duration(duration).build();
+        return PotionEffect.builder().potionType(type).amplifier(amplifier).duration(duration).build();
     }
 
     /**
@@ -76,7 +76,7 @@ public interface PotionEffect extends DataSerializable {
      * @return The potion effect
      */
     static PotionEffect of(Supplier<? extends PotionEffectType> type, int amplifier, int duration) {
-        return builder().potionType(type).amplifier(amplifier).duration(duration).build();
+        return PotionEffect.builder().potionType(type).amplifier(amplifier).duration(duration).build();
     }
 
     /**
@@ -128,7 +128,8 @@ public interface PotionEffect extends DataSerializable {
     /**
      * Represents a builder interface to create a {@link PotionEffect}.
      */
-    interface Builder extends CopyableBuilder<PotionEffect, Builder>, DataBuilder<PotionEffect> {
+    interface Builder extends org.spongepowered.api.util.Builder<PotionEffect, Builder>, CopyableBuilder<PotionEffect, Builder>,
+            DataBuilder<PotionEffect> {
 
         /**
          * Sets the {@link PotionEffectType} of the potion.
@@ -145,7 +146,7 @@ public interface PotionEffect extends DataSerializable {
          * @return This builder, for chaining
          */
         default Builder potionType(Supplier<? extends PotionEffectType> potionEffectType) {
-            return potionType(potionEffectType.get());
+            return this.potionType(potionEffectType.get());
         }
 
         /**

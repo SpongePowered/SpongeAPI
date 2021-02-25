@@ -24,14 +24,22 @@
  */
 package org.spongepowered.api.scoreboard.displayslot;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * Display slot names which display an objective in a particular place in-game.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class DisplaySlots {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
@@ -39,56 +47,59 @@ public final class DisplaySlots {
      * Displays a player's score for the objective underneath their nametag
      * in-game, when a player is closer than 10 blocks.
      */
-    public static final Supplier<DisplaySlot> BELOW_NAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "below_name");
+    public static final DefaultedRegistryReference<DisplaySlot> BELOW_NAME = DisplaySlots.key(ResourceKey.sponge("below_name"));
 
     /**
      * Displays scores for the objective next to players' names in the
      * player list (accessed by holding TAB).
      */
-    public static final Supplier<DisplaySlot> LIST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "list");
+    public static final DefaultedRegistryReference<DisplaySlot> LIST = DisplaySlots.key(ResourceKey.sponge("list"));
 
     /**
      * Displays scores for the objective on the side of the screen in-game.
      */
-    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_NO_COLOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "sidebar_team_no_color");
+    public static final DefaultedRegistryReference<DisplaySlot> SIDEBAR_TEAM_NO_COLOR = DisplaySlots.key(ResourceKey.sponge("sidebar_team_no_color"));
 
-    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_AQUA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "sidebar_team_aqua");
+    public static final DefaultedRegistryReference<DisplaySlot> SIDEBAR_TEAM_AQUA = DisplaySlots.key(ResourceKey.sponge("sidebar_team_aqua"));
 
-    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_BLACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "sidebar_team_black");
+    public static final DefaultedRegistryReference<DisplaySlot> SIDEBAR_TEAM_BLACK = DisplaySlots.key(ResourceKey.sponge("sidebar_team_black"));
 
-    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_BLUE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "sidebar_team_blue");
+    public static final DefaultedRegistryReference<DisplaySlot> SIDEBAR_TEAM_BLUE = DisplaySlots.key(ResourceKey.sponge("sidebar_team_blue"));
 
-    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_DARK_AQUA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "sidebar_team_dark_aqua");
+    public static final DefaultedRegistryReference<DisplaySlot> SIDEBAR_TEAM_DARK_AQUA = DisplaySlots.key(ResourceKey.sponge("sidebar_team_dark_aqua"));
 
-    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_DARK_BLUE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "sidebar_team_dark_blue");
+    public static final DefaultedRegistryReference<DisplaySlot> SIDEBAR_TEAM_DARK_BLUE = DisplaySlots.key(ResourceKey.sponge("sidebar_team_dark_blue"));
 
-    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_DARK_GRAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "sidebar_team_dark_gray");
+    public static final DefaultedRegistryReference<DisplaySlot> SIDEBAR_TEAM_DARK_GRAY = DisplaySlots.key(ResourceKey.sponge("sidebar_team_dark_gray"));
 
-    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_DARK_GREEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "sidebar_team_dark_green");
+    public static final DefaultedRegistryReference<DisplaySlot> SIDEBAR_TEAM_DARK_GREEN = DisplaySlots.key(ResourceKey.sponge("sidebar_team_dark_green"));
 
-    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_DARK_PURPLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "sidebar_team_dark_purple");
+    public static final DefaultedRegistryReference<DisplaySlot> SIDEBAR_TEAM_DARK_PURPLE = DisplaySlots.key(ResourceKey.sponge("sidebar_team_dark_purple"));
 
-    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_DARK_RED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "sidebar_team_dark_red");
+    public static final DefaultedRegistryReference<DisplaySlot> SIDEBAR_TEAM_DARK_RED = DisplaySlots.key(ResourceKey.sponge("sidebar_team_dark_red"));
 
-    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_GOLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "sidebar_team_gold");
+    public static final DefaultedRegistryReference<DisplaySlot> SIDEBAR_TEAM_GOLD = DisplaySlots.key(ResourceKey.sponge("sidebar_team_gold"));
 
-    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_GRAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "sidebar_team_gray");
+    public static final DefaultedRegistryReference<DisplaySlot> SIDEBAR_TEAM_GRAY = DisplaySlots.key(ResourceKey.sponge("sidebar_team_gray"));
 
-    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_GREEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "sidebar_team_green");
+    public static final DefaultedRegistryReference<DisplaySlot> SIDEBAR_TEAM_GREEN = DisplaySlots.key(ResourceKey.sponge("sidebar_team_green"));
 
-    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_LIGHT_PURPLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "sidebar_team_light_purple");
+    public static final DefaultedRegistryReference<DisplaySlot> SIDEBAR_TEAM_LIGHT_PURPLE = DisplaySlots.key(ResourceKey.sponge("sidebar_team_light_purple"));
 
-    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_RED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "sidebar_team_red");
+    public static final DefaultedRegistryReference<DisplaySlot> SIDEBAR_TEAM_RED = DisplaySlots.key(ResourceKey.sponge("sidebar_team_red"));
 
-    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_WHITE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "sidebar_team_white");
+    public static final DefaultedRegistryReference<DisplaySlot> SIDEBAR_TEAM_WHITE = DisplaySlots.key(ResourceKey.sponge("sidebar_team_white"));
 
-    public static final Supplier<DisplaySlot> SIDEBAR_TEAM_YELLOW = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DisplaySlot.class, "sidebar_team_yellow");
+    public static final DefaultedRegistryReference<DisplaySlot> SIDEBAR_TEAM_YELLOW = DisplaySlots.key(ResourceKey.sponge("sidebar_team_yellow"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private DisplaySlots() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<DisplaySlot> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.DISPLAY_SLOT, location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

@@ -36,6 +36,17 @@ import org.spongepowered.api.Sponge;
 public interface Range<T extends Number> {
 
     /**
+     * Builds a {@link Range} based on floats.
+     *
+     * @param min The minimum, or {@code null} for no minimum
+     * @param max The maximum, or {@code null} for no maximum
+     * @return The range.
+     */
+    static Range<Float> floatRange(@Nullable final Float min, @Nullable final Float max) {
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).floatRange(min, max);
+    }
+
+    /**
      * Builds a {@link Range} based on integers.
      *
      * @param min The minimum, or {@code null} for no minimum
@@ -44,7 +55,7 @@ public interface Range<T extends Number> {
      * @throws IllegalArgumentException if min is smaller than max
      */
     static Range<Integer> intRange(@Nullable final Integer min, @Nullable final Integer max) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).intRange(min, max);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).intRange(min, max);
     }
 
     /**
@@ -55,7 +66,7 @@ public interface Range<T extends Number> {
      * @return The range.
      */
     static Range<Double> doubleRange(@Nullable final Double min, @Nullable final Double max) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).doubleRange(min, max);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).doubleRange(min, max);
     }
 
     /**
@@ -76,6 +87,15 @@ public interface Range<T extends Number> {
      * Generates specific implementations of the {@link Range} interface.
      */
     interface Factory {
+
+        /**
+         * Builds a {@link Range} based on floats.
+         *
+         * @param min The minimum, or {@code null} for no minimum
+         * @param max The maximum, or {@code null} for no maximum
+         * @return The range.
+         */
+        Range<Float> floatRange(@Nullable Float min, @Nullable Float max);
 
         /**
          * Builds a {@link Range} based on integers.

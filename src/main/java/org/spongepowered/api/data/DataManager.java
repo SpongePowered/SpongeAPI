@@ -24,15 +24,14 @@
  */
 package org.spongepowered.api.data;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataContentUpdater;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataTranslator;
 import org.spongepowered.api.data.persistence.DataView;
-import org.spongepowered.plugin.PluginContainer;
 
-import java.util.Collection;
 import java.util.Optional;
 
 /**
@@ -129,12 +128,12 @@ public interface DataManager {
     /**
      * Registers a legacy {@code id} that is used by a previous version of
      * {@link DataRegistration} from a plugin such that the custom data can
-     * be retained, while not being lost.
+     * be read by a plugin-data datastore.
      *
      * @param legacyId The legacy id
-     * @param registration The registration object successfully created
+     * @param dataStoreKey The dataStore key set in {@link org.spongepowered.api.data.persistence.DataStore.Builder.HolderStep#pluginData(ResourceKey)}
      */
-    void registerLegacyManipulatorIds(String legacyId, DataRegistration registration);
+    void registerLegacyManipulatorIds(String legacyId, ResourceKey dataStoreKey);
 
     /**
      * Attempts to retrieve the builder for the given
@@ -158,16 +157,6 @@ public interface DataManager {
      * @return The data translator, if available
      */
     <T> Optional<DataTranslator<T>> getTranslator(Class<T> objectClass);
-
-    /**
-     * Gets all {@link Class}es of all {@link DataRegistration}s registered for
-     * the provided {@link PluginContainer}. The provided {@link Collection} is
-     * considered immutable and can not be modified.
-     *
-     * @param container The plugin container for registered classes
-     * @return The collection of all registered data manipulator classes
-     */
-    Collection<DataRegistration> getAllRegistrationsFor(PluginContainer container);
 
     /**
      * Creates a new {@link DataContainer} with a default

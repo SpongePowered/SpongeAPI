@@ -24,171 +24,182 @@
  */
 package org.spongepowered.api.state;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * Represents all possible {@link IntegerStateProperty}s that are known to exist in
  * vanilla minecraft.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class IntegerStateProperties {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<IntegerStateProperty> ACACIA_LEAVES_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "acacia_leaves_distance");
+    public static final DefaultedRegistryReference<IntegerStateProperty> ACACIA_LEAVES_DISTANCE = IntegerStateProperties.key(ResourceKey.sponge("acacia_leaves_distance"));
 
-    public static final Supplier<IntegerStateProperty> ACACIA_SAPLING_STAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "acacia_sapling_stage");
+    public static final DefaultedRegistryReference<IntegerStateProperty> ACACIA_SAPLING_STAGE = IntegerStateProperties.key(ResourceKey.sponge("acacia_sapling_stage"));
 
-    public static final Supplier<IntegerStateProperty> ACACIA_SIGN_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "acacia_sign_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> ACACIA_SIGN_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("acacia_sign_rotation"));
 
-    public static final Supplier<IntegerStateProperty> BAMBOO_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "bamboo_age");
+    public static final DefaultedRegistryReference<IntegerStateProperty> BAMBOO_AGE = IntegerStateProperties.key(ResourceKey.sponge("bamboo_age"));
 
-    public static final Supplier<IntegerStateProperty> BAMBOO_STAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "bamboo_stage");
+    public static final DefaultedRegistryReference<IntegerStateProperty> BAMBOO_STAGE = IntegerStateProperties.key(ResourceKey.sponge("bamboo_stage"));
 
-    public static final Supplier<IntegerStateProperty> BEETROOTS_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "beetroots_age");
+    public static final DefaultedRegistryReference<IntegerStateProperty> BEETROOTS_AGE = IntegerStateProperties.key(ResourceKey.sponge("beetroots_age"));
 
-    public static final Supplier<IntegerStateProperty> BIRCH_LEAVES_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "birch_leaves_distance");
+    public static final DefaultedRegistryReference<IntegerStateProperty> BIRCH_LEAVES_DISTANCE = IntegerStateProperties.key(ResourceKey.sponge("birch_leaves_distance"));
 
-    public static final Supplier<IntegerStateProperty> BIRCH_SAPLING_STAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "birch_sapling_stage");
+    public static final DefaultedRegistryReference<IntegerStateProperty> BIRCH_SAPLING_STAGE = IntegerStateProperties.key(ResourceKey.sponge("birch_sapling_stage"));
 
-    public static final Supplier<IntegerStateProperty> BIRCH_SIGN_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "birch_sign_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> BIRCH_SIGN_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("birch_sign_rotation"));
 
-    public static final Supplier<IntegerStateProperty> BLACK_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "black_banner_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> BLACK_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("black_banner_rotation"));
 
-    public static final Supplier<IntegerStateProperty> BLUE_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "blue_banner_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> BLUE_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("blue_banner_rotation"));
 
-    public static final Supplier<IntegerStateProperty> BROWN_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "brown_banner_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> BROWN_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("brown_banner_rotation"));
 
-    public static final Supplier<IntegerStateProperty> CACTUS_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "cactus_age");
+    public static final DefaultedRegistryReference<IntegerStateProperty> CACTUS_AGE = IntegerStateProperties.key(ResourceKey.sponge("cactus_age"));
 
-    public static final Supplier<IntegerStateProperty> CAKE_BITES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "cake_bites");
+    public static final DefaultedRegistryReference<IntegerStateProperty> CAKE_BITES = IntegerStateProperties.key(ResourceKey.sponge("cake_bites"));
 
-    public static final Supplier<IntegerStateProperty> CARROTS_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "carrots_age");
+    public static final DefaultedRegistryReference<IntegerStateProperty> CARROTS_AGE = IntegerStateProperties.key(ResourceKey.sponge("carrots_age"));
 
-    public static final Supplier<IntegerStateProperty> CAULDRON_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "cauldron_level");
+    public static final DefaultedRegistryReference<IntegerStateProperty> CAULDRON_LEVEL = IntegerStateProperties.key(ResourceKey.sponge("cauldron_level"));
 
-    public static final Supplier<IntegerStateProperty> CHORUS_FLOWER_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "chorus_flower_age");
+    public static final DefaultedRegistryReference<IntegerStateProperty> CHORUS_FLOWER_AGE = IntegerStateProperties.key(ResourceKey.sponge("chorus_flower_age"));
 
-    public static final Supplier<IntegerStateProperty> COCOA_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "cocoa_age");
+    public static final DefaultedRegistryReference<IntegerStateProperty> COCOA_AGE = IntegerStateProperties.key(ResourceKey.sponge("cocoa_age"));
 
-    public static final Supplier<IntegerStateProperty> COMPOSTER_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "composter_level");
+    public static final DefaultedRegistryReference<IntegerStateProperty> COMPOSTER_LEVEL = IntegerStateProperties.key(ResourceKey.sponge("composter_level"));
 
-    public static final Supplier<IntegerStateProperty> CREEPER_HEAD_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "creeper_head_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> CREEPER_HEAD_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("creeper_head_rotation"));
 
-    public static final Supplier<IntegerStateProperty> CYAN_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "cyan_banner_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> CYAN_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("cyan_banner_rotation"));
 
-    public static final Supplier<IntegerStateProperty> DARK_OAK_LEAVES_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "dark_oak_leaves_distance");
+    public static final DefaultedRegistryReference<IntegerStateProperty> DARK_OAK_LEAVES_DISTANCE = IntegerStateProperties.key(ResourceKey.sponge("dark_oak_leaves_distance"));
 
-    public static final Supplier<IntegerStateProperty> DARK_OAK_SAPLING_STAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "dark_oak_sapling_stage");
+    public static final DefaultedRegistryReference<IntegerStateProperty> DARK_OAK_SAPLING_STAGE = IntegerStateProperties.key(ResourceKey.sponge("dark_oak_sapling_stage"));
 
-    public static final Supplier<IntegerStateProperty> DARK_OAK_SIGN_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "dark_oak_sign_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> DARK_OAK_SIGN_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("dark_oak_sign_rotation"));
 
-    public static final Supplier<IntegerStateProperty> DAYLIGHT_DETECTOR_POWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "daylight_detector_power");
+    public static final DefaultedRegistryReference<IntegerStateProperty> DAYLIGHT_DETECTOR_POWER = IntegerStateProperties.key(ResourceKey.sponge("daylight_detector_power"));
 
-    public static final Supplier<IntegerStateProperty> DRAGON_HEAD_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "dragon_head_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> DRAGON_HEAD_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("dragon_head_rotation"));
 
-    public static final Supplier<IntegerStateProperty> FARMLAND_MOISTURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "farmland_moisture");
+    public static final DefaultedRegistryReference<IntegerStateProperty> FARMLAND_MOISTURE = IntegerStateProperties.key(ResourceKey.sponge("farmland_moisture"));
 
-    public static final Supplier<IntegerStateProperty> FIRE_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "fire_age");
+    public static final DefaultedRegistryReference<IntegerStateProperty> FIRE_AGE = IntegerStateProperties.key(ResourceKey.sponge("fire_age"));
 
-    public static final Supplier<IntegerStateProperty> FROSTED_ICE_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "frosted_ice_age");
+    public static final DefaultedRegistryReference<IntegerStateProperty> FROSTED_ICE_AGE = IntegerStateProperties.key(ResourceKey.sponge("frosted_ice_age"));
 
-    public static final Supplier<IntegerStateProperty> GRAY_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "gray_banner_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> GRAY_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("gray_banner_rotation"));
 
-    public static final Supplier<IntegerStateProperty> GREEN_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "green_banner_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> GREEN_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("green_banner_rotation"));
 
-    public static final Supplier<IntegerStateProperty> HEAVY_WEIGHTED_PRESSURE_PLATE_POWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "heavy_weighted_pressure_plate_power");
+    public static final DefaultedRegistryReference<IntegerStateProperty> HEAVY_WEIGHTED_PRESSURE_PLATE_POWER = IntegerStateProperties.key(ResourceKey.sponge("heavy_weighted_pressure_plate_power"));
 
-    public static final Supplier<IntegerStateProperty> JUNGLE_LEAVES_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "jungle_leaves_distance");
+    public static final DefaultedRegistryReference<IntegerStateProperty> JUNGLE_LEAVES_DISTANCE = IntegerStateProperties.key(ResourceKey.sponge("jungle_leaves_distance"));
 
-    public static final Supplier<IntegerStateProperty> JUNGLE_SAPLING_STAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "jungle_sapling_stage");
+    public static final DefaultedRegistryReference<IntegerStateProperty> JUNGLE_SAPLING_STAGE = IntegerStateProperties.key(ResourceKey.sponge("jungle_sapling_stage"));
 
-    public static final Supplier<IntegerStateProperty> JUNGLE_SIGN_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "jungle_sign_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> JUNGLE_SIGN_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("jungle_sign_rotation"));
 
-    public static final Supplier<IntegerStateProperty> KELP_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "kelp_age");
+    public static final DefaultedRegistryReference<IntegerStateProperty> KELP_AGE = IntegerStateProperties.key(ResourceKey.sponge("kelp_age"));
 
-    public static final Supplier<IntegerStateProperty> LAVA_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "lava_level");
+    public static final DefaultedRegistryReference<IntegerStateProperty> LAVA_LEVEL = IntegerStateProperties.key(ResourceKey.sponge("lava_level"));
 
-    public static final Supplier<IntegerStateProperty> LIGHT_BLUE_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "light_blue_banner_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> LIGHT_BLUE_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("light_blue_banner_rotation"));
 
-    public static final Supplier<IntegerStateProperty> LIGHT_GRAY_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "light_gray_banner_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> LIGHT_GRAY_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("light_gray_banner_rotation"));
 
-    public static final Supplier<IntegerStateProperty> LIGHT_WEIGHTED_PRESSURE_PLATE_POWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "light_weighted_pressure_plate_power");
+    public static final DefaultedRegistryReference<IntegerStateProperty> LIGHT_WEIGHTED_PRESSURE_PLATE_POWER = IntegerStateProperties.key(ResourceKey.sponge("light_weighted_pressure_plate_power"));
 
-    public static final Supplier<IntegerStateProperty> LIME_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "lime_banner_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> LIME_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("lime_banner_rotation"));
 
-    public static final Supplier<IntegerStateProperty> MAGENTA_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "magenta_banner_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> MAGENTA_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("magenta_banner_rotation"));
 
-    public static final Supplier<IntegerStateProperty> MELON_STEM_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "melon_stem_age");
+    public static final DefaultedRegistryReference<IntegerStateProperty> MELON_STEM_AGE = IntegerStateProperties.key(ResourceKey.sponge("melon_stem_age"));
 
-    public static final Supplier<IntegerStateProperty> NETHER_WART_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "nether_wart_age");
+    public static final DefaultedRegistryReference<IntegerStateProperty> NETHER_WART_AGE = IntegerStateProperties.key(ResourceKey.sponge("nether_wart_age"));
 
-    public static final Supplier<IntegerStateProperty> NOTE_BLOCK_NOTE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "note_block_note");
+    public static final DefaultedRegistryReference<IntegerStateProperty> NOTE_BLOCK_NOTE = IntegerStateProperties.key(ResourceKey.sponge("note_block_note"));
 
-    public static final Supplier<IntegerStateProperty> OAK_LEAVES_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "oak_leaves_distance");
+    public static final DefaultedRegistryReference<IntegerStateProperty> OAK_LEAVES_DISTANCE = IntegerStateProperties.key(ResourceKey.sponge("oak_leaves_distance"));
 
-    public static final Supplier<IntegerStateProperty> OAK_SAPLING_STAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "oak_sapling_stage");
+    public static final DefaultedRegistryReference<IntegerStateProperty> OAK_SAPLING_STAGE = IntegerStateProperties.key(ResourceKey.sponge("oak_sapling_stage"));
 
-    public static final Supplier<IntegerStateProperty> OAK_SIGN_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "oak_sign_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> OAK_SIGN_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("oak_sign_rotation"));
 
-    public static final Supplier<IntegerStateProperty> ORANGE_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "orange_banner_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> ORANGE_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("orange_banner_rotation"));
 
-    public static final Supplier<IntegerStateProperty> PINK_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "pink_banner_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> PINK_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("pink_banner_rotation"));
 
-    public static final Supplier<IntegerStateProperty> PLAYER_HEAD_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "player_head_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> PLAYER_HEAD_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("player_head_rotation"));
 
-    public static final Supplier<IntegerStateProperty> POTATOES_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "potatoes_age");
+    public static final DefaultedRegistryReference<IntegerStateProperty> POTATOES_AGE = IntegerStateProperties.key(ResourceKey.sponge("potatoes_age"));
 
-    public static final Supplier<IntegerStateProperty> PUMPKIN_STEM_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "pumpkin_stem_age");
+    public static final DefaultedRegistryReference<IntegerStateProperty> PUMPKIN_STEM_AGE = IntegerStateProperties.key(ResourceKey.sponge("pumpkin_stem_age"));
 
-    public static final Supplier<IntegerStateProperty> PURPLE_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "purple_banner_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> PURPLE_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("purple_banner_rotation"));
 
-    public static final Supplier<IntegerStateProperty> REDSTONE_WIRE_POWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "redstone_wire_power");
+    public static final DefaultedRegistryReference<IntegerStateProperty> REDSTONE_WIRE_POWER = IntegerStateProperties.key(ResourceKey.sponge("redstone_wire_power"));
 
-    public static final Supplier<IntegerStateProperty> RED_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "red_banner_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> RED_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("red_banner_rotation"));
 
-    public static final Supplier<IntegerStateProperty> REPEATER_DELAY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "repeater_delay");
+    public static final DefaultedRegistryReference<IntegerStateProperty> REPEATER_DELAY = IntegerStateProperties.key(ResourceKey.sponge("repeater_delay"));
 
-    public static final Supplier<IntegerStateProperty> SCAFFOLDING_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "scaffolding_distance");
+    public static final DefaultedRegistryReference<IntegerStateProperty> SCAFFOLDING_DISTANCE = IntegerStateProperties.key(ResourceKey.sponge("scaffolding_distance"));
 
-    public static final Supplier<IntegerStateProperty> SEA_PICKLE_PICKLES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "sea_pickle_pickles");
+    public static final DefaultedRegistryReference<IntegerStateProperty> SEA_PICKLE_PICKLES = IntegerStateProperties.key(ResourceKey.sponge("sea_pickle_pickles"));
 
-    public static final Supplier<IntegerStateProperty> SKELETON_SKULL_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "skeleton_skull_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> SKELETON_SKULL_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("skeleton_skull_rotation"));
 
-    public static final Supplier<IntegerStateProperty> SNOW_LAYERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "snow_layers");
+    public static final DefaultedRegistryReference<IntegerStateProperty> SNOW_LAYERS = IntegerStateProperties.key(ResourceKey.sponge("snow_layers"));
 
-    public static final Supplier<IntegerStateProperty> SPRUCE_LEAVES_DISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "spruce_leaves_distance");
+    public static final DefaultedRegistryReference<IntegerStateProperty> SPRUCE_LEAVES_DISTANCE = IntegerStateProperties.key(ResourceKey.sponge("spruce_leaves_distance"));
 
-    public static final Supplier<IntegerStateProperty> SPRUCE_SAPLING_STAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "spruce_sapling_stage");
+    public static final DefaultedRegistryReference<IntegerStateProperty> SPRUCE_SAPLING_STAGE = IntegerStateProperties.key(ResourceKey.sponge("spruce_sapling_stage"));
 
-    public static final Supplier<IntegerStateProperty> SPRUCE_SIGN_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "spruce_sign_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> SPRUCE_SIGN_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("spruce_sign_rotation"));
 
-    public static final Supplier<IntegerStateProperty> SUGAR_CANE_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "sugar_cane_age");
+    public static final DefaultedRegistryReference<IntegerStateProperty> SUGAR_CANE_AGE = IntegerStateProperties.key(ResourceKey.sponge("sugar_cane_age"));
 
-    public static final Supplier<IntegerStateProperty> SWEET_BERRY_BUSH_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "sweet_berry_bush_age");
+    public static final DefaultedRegistryReference<IntegerStateProperty> SWEET_BERRY_BUSH_AGE = IntegerStateProperties.key(ResourceKey.sponge("sweet_berry_bush_age"));
 
-    public static final Supplier<IntegerStateProperty> TURTLE_EGG_EGGS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "turtle_egg_eggs");
+    public static final DefaultedRegistryReference<IntegerStateProperty> TURTLE_EGG_EGGS = IntegerStateProperties.key(ResourceKey.sponge("turtle_egg_eggs"));
 
-    public static final Supplier<IntegerStateProperty> TURTLE_EGG_HATCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "turtle_egg_hatch");
+    public static final DefaultedRegistryReference<IntegerStateProperty> TURTLE_EGG_HATCH = IntegerStateProperties.key(ResourceKey.sponge("turtle_egg_hatch"));
 
-    public static final Supplier<IntegerStateProperty> WATER_LEVEL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "water_level");
+    public static final DefaultedRegistryReference<IntegerStateProperty> WATER_LEVEL = IntegerStateProperties.key(ResourceKey.sponge("water_level"));
 
-    public static final Supplier<IntegerStateProperty> WHEAT_AGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "wheat_age");
+    public static final DefaultedRegistryReference<IntegerStateProperty> WHEAT_AGE = IntegerStateProperties.key(ResourceKey.sponge("wheat_age"));
 
-    public static final Supplier<IntegerStateProperty> WHITE_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "white_banner_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> WHITE_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("white_banner_rotation"));
 
-    public static final Supplier<IntegerStateProperty> WITHER_SKELETON_SKULL_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "wither_skeleton_skull_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> WITHER_SKELETON_SKULL_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("wither_skeleton_skull_rotation"));
 
-    public static final Supplier<IntegerStateProperty> YELLOW_BANNER_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "yellow_banner_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> YELLOW_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("yellow_banner_rotation"));
 
-    public static final Supplier<IntegerStateProperty> ZOMBIE_HEAD_ROTATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(IntegerStateProperty.class, "zombie_head_rotation");
+    public static final DefaultedRegistryReference<IntegerStateProperty> ZOMBIE_HEAD_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("zombie_head_rotation"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private IntegerStateProperties() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<IntegerStateProperty> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.INTEGER_STATE_PROPERTY, location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

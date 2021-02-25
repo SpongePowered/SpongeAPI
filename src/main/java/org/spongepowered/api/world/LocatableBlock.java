@@ -29,6 +29,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3i;
 
@@ -40,7 +41,7 @@ public interface LocatableBlock extends SerializableDataHolder.Immutable<Locatab
      * @return A new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -50,7 +51,8 @@ public interface LocatableBlock extends SerializableDataHolder.Immutable<Locatab
      */
     BlockState getBlockState();
 
-    interface Builder extends CopyableBuilder<LocatableBlock, Builder>, DataBuilder<LocatableBlock> {
+    interface Builder extends org.spongepowered.api.util.Builder<LocatableBlock, Builder>, CopyableBuilder<LocatableBlock, Builder>,
+            DataBuilder<LocatableBlock> {
 
         /**
          * Sets the {@link BlockState} for this builder.
@@ -88,7 +90,7 @@ public interface LocatableBlock extends SerializableDataHolder.Immutable<Locatab
         Builder position(int x, int y, int z);
 
         /**
-         * Sets the {@link ServerWorld} for this builder, used to get the {@link BlockState}
+         * Sets the {@link ServerWorld world} for this builder, used to get the {@link BlockState}
          * for a desired position.
          *
          * @param world The world

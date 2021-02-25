@@ -25,12 +25,12 @@
 package org.spongepowered.api.command.parameter;
 
 import org.spongepowered.api.command.CommandCause;
-import org.spongepowered.api.command.parameter.CommandContext;
-import org.spongepowered.api.command.parameter.Parameter;
 import org.spongepowered.api.command.parameter.managed.ValueParameter;
-import org.spongepowered.api.command.parameter.managed.standard.CatalogedValueParameters;
+import org.spongepowered.api.command.parameter.managed.standard.ResourceKeyedValueParameters;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
-import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.server.ServerLocation;
+import org.spongepowered.api.world.server.ServerWorld;
+import org.spongepowered.api.world.server.storage.ServerWorldProperties;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.math.vector.Vector3d;
 
@@ -99,18 +99,17 @@ public final class CommonParameters {
 
     /**
      * A {@link Parameter.Value} that parses a world id and stores it as a
-     * {@link WorldProperties} under the key "world". The world in question
-     * may or may not be loaded.
+     * {@link ServerWorld} under the key "world".
      *
-     * @see CatalogedValueParameters#WORLD_PROPERTIES_ALL
+     * @see ResourceKeyedValueParameters#WORLD
      */
-    public final static Parameter.Value<WorldProperties> ALL_WORLD_PROPERTIES = Parameter.worldProperties(false).setKey("world").build();
+    public final static Parameter.Value<ServerWorld> WORLD = Parameter.world().setKey("world").build();
 
     /**
      * A {@link Parameter.Value} that parses a {@link Boolean} with the key name
      * "true/false".
      *
-     * @see CatalogedValueParameters#BOOLEAN
+     * @see ResourceKeyedValueParameters#BOOLEAN
      */
     public final static Parameter.Value<Boolean> BOOLEAN = Parameter.bool().setKey("true/false").build();
 
@@ -118,7 +117,7 @@ public final class CommonParameters {
      * A {@link Parameter.Value} that parses a world and a position and stores
      * it as a {@link ServerLocation} under the key "location".
      *
-     * @see CatalogedValueParameters#LOCATION_ONLINE_ONLY
+     * @see ResourceKeyedValueParameters#LOCATION_ONLINE_ONLY
      */
     public final static Parameter.Value<ServerLocation> LOCATION_ONLINE_ONLY = Parameter.location().setKey("location").build();
 
@@ -126,33 +125,15 @@ public final class CommonParameters {
      * A {@link Parameter.Value} that parses the remainder of the string under
      * the key "message".
      *
-     * @see CatalogedValueParameters#REMAINING_JOINED_STRINGS
+     * @see ResourceKeyedValueParameters#REMAINING_JOINED_STRINGS
      */
     public final static Parameter.Value<String> MESSAGE = Parameter.remainingJoinedStrings().setKey("message").build();
-
-    /**
-     * A {@link Parameter.Value} that parses a world id and stores it as a
-     * {@link WorldProperties} under the key "world". The world in question
-     * must be online.
-     *
-     * @see CatalogedValueParameters#WORLD_PROPERTIES_ONLINE_ONLY
-     */
-    public final static Parameter.Value<WorldProperties> ONLINE_WORLD_PROPERTIES_ONLY = Parameter.worldProperties().setKey("world").build();
-
-    /**
-     * A {@link Parameter.Value} that parses a world id and stores it as a
-     * {@link WorldProperties} under the key "world". The world in question
-     * must be online. The parameter is optional.
-     *
-     * @see CatalogedValueParameters#WORLD_PROPERTIES_ONLINE_ONLY
-     */
-    public final static Parameter.Value<WorldProperties> ONLINE_WORLD_PROPERTIES_ONLY_OPTIONAL = Parameter.worldProperties().setKey("world").optional().build();
 
     /**
      * A {@link Parameter.Value} that parses a player name or selector and
      * stores the results under the key "player".
      *
-     * @see CatalogedValueParameters#PLAYER
+     * @see ResourceKeyedValueParameters#PLAYER
      */
     public final static Parameter.Value<ServerPlayer> PLAYER = Parameter.player().setKey("player").build();
 
@@ -161,26 +142,15 @@ public final class CommonParameters {
      * stores the results under the key "player" if the input is valid.
      * Otherwise, this parameter is skipped.
      *
-     * @see CatalogedValueParameters#PLAYER
+     * @see ResourceKeyedValueParameters#PLAYER
      */
     public final static Parameter.Value<ServerPlayer> PLAYER_OPTIONAL = Parameter.player().optional().setKey("player").build();
-
-    /**
-     * A {@link Parameter.Value} that parses a player name or selector and
-     * stores the results under the key "player". If no results are found but
-     * the root of the {@link CommandCause} is a {@link ServerPlayer}, that
-     * player is stored in the context instead.
-     *
-     * @see CatalogedValueParameters#PLAYER
-     * @see Parameter#playerOrSource()
-     */
-    public final static Parameter.Value<ServerPlayer> PLAYER_OR_SOURCE = Parameter.playerOrSource().setKey("player").build();
 
     /**
      * A {@link Parameter.Value} that parses a position and stores it as a
      * {@link Vector3d} under the key "position".
      *
-     * @see CatalogedValueParameters#VECTOR3D
+     * @see ResourceKeyedValueParameters#VECTOR3D
      */
     public final static Parameter.Value<Vector3d> POSITION = Parameter.vector3d().setKey("position").build();
 

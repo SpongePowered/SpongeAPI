@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.util;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.type.DyeColor;
 

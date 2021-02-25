@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.world;
 
-import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.volume.game.EnvironmentalVolume;
 
 @CatalogedBy(LightTypes.class)
-public interface LightType extends CatalogType {
+public interface LightType extends DefaultedRegistryValue {
 
     /**
      * Gets the default light value for this light type. Useful

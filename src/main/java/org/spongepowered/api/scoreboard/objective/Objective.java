@@ -51,7 +51,7 @@ public interface Objective {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -172,7 +172,7 @@ public interface Objective {
     /**
      * Represents a builder to create {@link Objective} instances.
      */
-    interface Builder extends CopyableBuilder<Objective, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<Objective, Builder>, CopyableBuilder<Objective, Builder> {
 
         /**
          * Sets the name of the {@link Objective}.

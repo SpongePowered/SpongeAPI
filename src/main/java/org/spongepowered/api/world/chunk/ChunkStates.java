@@ -24,16 +24,24 @@
  */
 package org.spongepowered.api.world.chunk;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.biome.Biome;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class ChunkStates {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
@@ -43,19 +51,19 @@ public final class ChunkStates {
      * The chunk should not have any {@link Entity} instances or {@link BlockEntity}
      * instances and may have a valid {@link ProtoWorld} used for world generation.
      */
-    public static final Supplier<ChunkState> BASE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkState.class, "base");
+    public static final DefaultedRegistryReference<ChunkState> BASE = ChunkStates.key(ResourceKey.minecraft("base"));
 
     /**
      * A {@link ProtoChunk} that is being "carved out" for general terrain features
      * that require things like "caves" or "canyons".
      */
-    public static final Supplier<ChunkState> CARVED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkState.class, "carved");
+    public static final DefaultedRegistryReference<ChunkState> CARVED = ChunkStates.key(ResourceKey.minecraft("carved"));
 
     /**
      * A {@link ProtoChunk} state that is being populated by world generation,
-     * usually provided by {@link BiomeType}s.
+     * usually provided by {@link Biome}s.
      */
-    public static final Supplier<ChunkState> DECORATED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkState.class, "decorated");
+    public static final DefaultedRegistryReference<ChunkState> DECORATED = ChunkStates.key(ResourceKey.minecraft("decorated"));
 
     /**
      * Identifies a {@link ProtoChunk} that is considered empty. The method
@@ -63,21 +71,21 @@ public final class ChunkStates {
      * chunk has nothing contained within it, but can be used as a dummy chunk
      * in some regards for world generation.
      */
-    public static final Supplier<ChunkState> EMPTY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkState.class, "empty");
+    public static final DefaultedRegistryReference<ChunkState> EMPTY = ChunkStates.key(ResourceKey.minecraft("empty"));
 
     /**
      * A {@link ProtoChunk} state that is being used for entity spawning.
      * Generally requires that the neighboring chunks are adequately populated,
      * and requires that this chunk has proper lighting, for mob placement logic.
      */
-    public static final Supplier<ChunkState> ENTITIES_SPAWNED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkState.class, "entities_spawned");
+    public static final DefaultedRegistryReference<ChunkState> ENTITIES_SPAWNED = ChunkStates.key(ResourceKey.minecraft("entities_spawned"));
 
     /**
      * A {@link ProtoChunk} state that is "cleaning" up remnant objects of a
      * chunk in process of world generation. Generally, height maps are being
      * calculated at this point as entity spawning can affect block placement.
      */
-    public static final Supplier<ChunkState> FINALIZED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkState.class, "finalized");
+    public static final DefaultedRegistryReference<ChunkState> FINALIZED = ChunkStates.key(ResourceKey.minecraft("finalized"));
 
     /**
      * A {@link ProtoChunk} that has completed world generation tasks and can be
@@ -85,13 +93,13 @@ public final class ChunkStates {
      * chunk deserialization prior to a {@link Chunk} being fully added to a
      * {@link World} instance.
      */
-    public static final Supplier<ChunkState> GENERATED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkState.class, "generated");
+    public static final DefaultedRegistryReference<ChunkState> GENERATED = ChunkStates.key(ResourceKey.minecraft("generated"));
 
     /**
      * A {@link ProtoChunk} state that is being "carved" with liquid cave
      * features, such as underwater ravines, underwater caves, etc.
      */
-    public static final Supplier<ChunkState> LIQUID_CARVED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkState.class, "liquid_carved");
+    public static final DefaultedRegistryReference<ChunkState> LIQUID_CARVED = ChunkStates.key(ResourceKey.minecraft("liquid_carved"));
 
     /**
      * A {@link ProtoChunk} state that has yet been processed with lighting in
@@ -99,7 +107,7 @@ public final class ChunkStates {
      * to last step in the world generation pipeline for a chunk to be marked
      * as ready for being added to a {@link World}.
      */
-    public static final Supplier<ChunkState> LIT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkState.class, "lit");
+    public static final DefaultedRegistryReference<ChunkState> LIT = ChunkStates.key(ResourceKey.minecraft("lit"));
 
     /**
      * State for a {@link ProtoChunk} marking it being used by a world, and not
@@ -107,11 +115,16 @@ public final class ChunkStates {
      * Should have an instance of {@link Chunk} providing this state only, as
      * other {@link ProtoChunk}s would assuredly be invalid with this state.
      */
-    public static final Supplier<ChunkState> WORLD_READY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ChunkState.class, "world_ready");
+    public static final DefaultedRegistryReference<ChunkState> WORLD_READY = ChunkStates.key(ResourceKey.minecraft("world_ready"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private ChunkStates() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<ChunkState> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.CHUNK_STATE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

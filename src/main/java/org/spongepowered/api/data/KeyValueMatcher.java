@@ -34,7 +34,6 @@ import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Objects;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 /**
  * Represents a matcher for {@link Key} values.
@@ -106,20 +105,7 @@ public interface KeyValueMatcher<V> extends DataSerializable {
      * @return The key value matcher
      */
     static <V> KeyValueMatcher<V> of(final Key<? extends Value<V>> key, final V value) {
-        return of(key, value, Operator.EQUAL);
-    }
-
-    /**
-     * Creates a {@link KeyValueMatcher} from the given key and value. The
-     * default operator {@link Operator#EQUAL} will be used.
-     *
-     * @param key The key of which the value should be matched
-     * @param value The matcher value that key values will be matched against
-     * @param <V> The value type
-     * @return The key value matcher
-     */
-    static <V> KeyValueMatcher<V> of(final Supplier<? extends Key<? extends Value<V>>> key, final V value) {
-        return of(key, value, Operator.EQUAL);
+        return KeyValueMatcher.of(key, value, Operator.EQUAL);
     }
 
     /**
@@ -133,21 +119,7 @@ public interface KeyValueMatcher<V> extends DataSerializable {
      * @return The key value matcher
      */
     static <V> KeyValueMatcher<V> of(final Key<? extends Value<V>> key, final V value, final Operator operator) {
-        return builder().key(key).value(value).operator(operator).build();
-    }
-
-    /**
-     * Creates a {@link KeyValueMatcher} from the
-     * given key, value and operator.
-     *
-     * @param key The key of which the value should be matched
-     * @param value The matcher value that key values will be matched against
-     * @param operator The operator how the value should be matched
-     * @param <V> The value type
-     * @return The key value matcher
-     */
-    static <V> KeyValueMatcher<V> of(final Supplier<? extends Key<? extends Value<V>>> key, final V value, final Operator operator) {
-        return builder().key(key).value(value).operator(operator).build();
+        return KeyValueMatcher.builder().key(key).value(value).operator(operator).build();
     }
 
     /**
@@ -156,7 +128,7 @@ public interface KeyValueMatcher<V> extends DataSerializable {
      * @return The builder
      */
     static Builder<?> builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -206,7 +178,8 @@ public interface KeyValueMatcher<V> extends DataSerializable {
      *
      * @param <V> The value type
      */
-    interface Builder<V> extends CopyableBuilder<KeyValueMatcher<V>, Builder<V>>, DataBuilder<KeyValueMatcher<V>> {
+    interface Builder<V> extends org.spongepowered.api.util.Builder<KeyValueMatcher<V>, Builder<V>>, CopyableBuilder<KeyValueMatcher<V>, Builder<V>>,
+            DataBuilder<KeyValueMatcher<V>> {
 
         /**
          * Sets the {@link Key}.
@@ -216,17 +189,6 @@ public interface KeyValueMatcher<V> extends DataSerializable {
          * @return This builder, for chaining
          */
         <NV> Builder<NV> key(Key<? extends Value<NV>> key);
-
-        /**
-         * Sets the {@link Key}.
-         *
-         * @param key The key
-         * @param <NV> The key value type
-         * @return This builder, for chaining
-         */
-        default <NV> Builder<NV> key(Supplier<? extends Key<? extends Value<NV>>> key) {
-            return this.key(key.get());
-        }
 
         /**
          * Sets the {@link Operator}.

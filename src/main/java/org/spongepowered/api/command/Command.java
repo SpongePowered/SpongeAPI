@@ -30,6 +30,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.exception.ArgumentParseException;
 import org.spongepowered.api.command.exception.CommandException;
+import org.spongepowered.api.command.parameter.ArgumentReader;
 import org.spongepowered.api.command.parameter.CommandContext;
 import org.spongepowered.api.command.parameter.Parameter;
 import org.spongepowered.api.command.parameter.managed.Flag;
@@ -39,7 +40,6 @@ import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.event.EventContext;
 import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Arrays;
 import java.util.List;
@@ -54,16 +54,16 @@ import java.util.function.Predicate;
  *
  * <p><strong>Most</strong> plugins are highly recommended (but not obligated)
  * to use {@link Command#builder()} to create commands. The
- * {@link Command.Builder} allows plugins to take advantage of a higher level
+ * {@link Builder} allows plugins to take advantage of a higher level
  * of abstraction, such as argument parsers and simple child command handling,
  * removing the need for boilerplate code. Such {@link Parameterized} commands
  * should register themselves during the {@link RegisterCommandEvent
- * RegisterCommandEvent<Command.Parameterized>} event.</p>
+ * RegisterCommandEvent&lt;Command.Parameterized>} event.</p>
  *
  * <p>Plugins that do not want to use the {@link Builder} or any third-party
  * command system should implement the {@link Raw} sub-interface instead. Such
  * {@link Raw} commands should  register themselves during the
- * {@link RegisterCommandEvent RegisterCommandEvent<Command.Parameterized>}
+ * {@link RegisterCommandEvent RegisterCommandEvent&lt;Command.Raw>}
  * event.</p>
  *
  * <p>Plugins <strong>must not</strong> implement the {@link Parameterized}
@@ -82,7 +82,7 @@ public interface Command {
      * @return The {@link Builder}
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -96,7 +96,7 @@ public interface Command {
      * @return The result of a command being processed
      * @throws CommandException Thrown on a command error
      */
-    CommandResult process(CommandCause cause, String arguments) throws CommandException;
+    CommandResult process(CommandCause cause, ArgumentReader.Mutable arguments) throws CommandException;
 
     /**
      * Gets a list of suggestions based on input.
@@ -109,7 +109,7 @@ public interface Command {
      * @return A list of suggestions
      * @throws CommandException Thrown if there was a parsing error
      */
-    List<String> getSuggestions(CommandCause cause, String arguments) throws CommandException;
+    List<String> getSuggestions(CommandCause cause, ArgumentReader.Mutable arguments) throws CommandException;
 
     /**
      * Test whether this command can probably be executed given this
@@ -238,11 +238,11 @@ public interface Command {
          * <p>A direct subcommand is one that is specified directly after the
          * literal the invokes this command, e.g. on the command {@code /foo},
          * {@code bar} is a direct subcommand if it was specified in
-         * {@link Command.Parameterized.Builder#child(Parameterized, String...)}
-         * or {@link Command.Parameterized.Builder#children(Map)} with the alias
+         * {@link Builder#child(Parameterized, String...)}
+         * or {@link Builder#children(Map)} with the alias
          * {@code bar}. This will not contain any subcommands that were
          * registered via
-         * {@link Command.Parameterized.Builder#parameter(Parameter)}</p>
+         * {@link Builder#parameter(Parameter)}</p>
          *
          * @return A copy of the collection of subcommands.
          */
@@ -250,7 +250,7 @@ public interface Command {
 
         /**
          * Gets whether
-         * {@link Command.Parameterized.Builder#setTerminal(boolean)} was
+         * {@link Builder#setTerminal(boolean)} was
          * explicitly set to {@code true}, such that this command will
          * execute without any arguments, regardless of the command's
          * {@link #parameters() parameters} or
@@ -274,7 +274,7 @@ public interface Command {
          * @param arguments The argument {@link String}
          * @return The {@link CommandContext}
          */
-        CommandContext parseArguments(CommandCause cause, String arguments) throws ArgumentParseException;
+        CommandContext parseArguments(CommandCause cause, ArgumentReader.Mutable arguments) throws ArgumentParseException;
 
         /**
          * Gets the {@link CommandExecutor} for this command, if one exists.
@@ -287,7 +287,7 @@ public interface Command {
          * Processes the command by parsing the arguments, then
          * executing command based on these arguments.
          *
-         * <p>By default, this will call {@link #parseArguments(CommandCause, String)}
+         * <p>By default, this will call {@link #parseArguments(CommandCause, ArgumentReader.Mutable)}
          * and pass the resulting {@link CommandContext} to
          * {@link CommandExecutor#execute(CommandContext)}, if this command has
          * an executor. If it does not, this will throw a
@@ -299,7 +299,7 @@ public interface Command {
          * @throws CommandException Thrown on a command error
          */
         @Override
-        default CommandResult process(final CommandCause cause, final String arguments) throws CommandException {
+        default CommandResult process(final CommandCause cause, final ArgumentReader.Mutable arguments) throws CommandException {
             if (this.getExecutor().isPresent()) {
                 return this.getExecutor().get().execute(this.parseArguments(cause, arguments));
             }
@@ -315,7 +315,7 @@ public interface Command {
      * <p>When creating a command, ensure that a {@link CommandExecutor}
      * <strong>and/or</strong> a child command is specified.</p>
      */
-    interface Builder extends ResettableBuilder<Parameterized, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<Parameterized, Builder> {
 
         /**
          * Adds a {@link Command.Parameterized} as a top-level child to this
@@ -394,6 +394,36 @@ public interface Command {
          * @return Ths builder, for chaining
          */
         Builder flag(Flag flag);
+
+        /**
+         * Adds multiple {@link Flag flags} to this command.
+         *
+         * @see #flag(Flag) for more information about flags.
+         *
+         * @param flags The flags
+         * @return This builder, for chaining
+         */
+        default Builder flags(final Flag... flags) {
+            for (final Flag flag : flags) {
+                this.flag(flag);
+            }
+            return this;
+        }
+
+        /**
+         * Adds multiple {@link Flag flags} to this command.
+         *
+         * @see #flag(Flag) for more information about flags.
+         *
+         * @param flags The flags
+         * @return This builder, for chaining
+         */
+        default Builder flags(final Iterable<Flag> flags) {
+            for (final Flag flag : flags) {
+                this.flag(flag);
+            }
+            return this;
+        }
 
         /**
          * Adds a parameter for use when parsing arguments. When executing a

@@ -24,24 +24,37 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link HandPreference}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class HandPreferences {
 
-    // SORTFIELDS: ON
+    // @formatter:off
 
-    public static final Supplier<HandPreference> LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HandPreference.class, "left");
+    // SORTFIELDS:ON
 
-    public static final Supplier<HandPreference> RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HandPreference.class, "right");
+    public static final DefaultedRegistryReference<HandPreference> LEFT = HandPreferences.key(ResourceKey.sponge("left"));
 
-    // SORTFIELDS: OFF
+    public static final DefaultedRegistryReference<HandPreference> RIGHT = HandPreferences.key(ResourceKey.sponge("right"));
+
+    // SORTFIELDS:OFF
+
+    // @formatter:on
 
     private HandPreferences() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<HandPreference> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.HAND_PREFERENCE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

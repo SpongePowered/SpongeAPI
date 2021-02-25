@@ -38,6 +38,7 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.enchantment.EnchantmentType;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.util.weighted.WeightedTable;
@@ -137,7 +138,7 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an item stack builder
      */
     public static BiConsumer<ItemStack.Builder, Random> items(ItemType itemType, ItemType... itemTypes) {
-        return items(ImmutableList.<ItemType>builder().add(itemType).addAll(Arrays.asList(itemTypes)).build());
+        return ItemStackBuilderPopulators.items(ImmutableList.<ItemType>builder().add(itemType).addAll(Arrays.asList(itemTypes)).build());
     }
 
     /**
@@ -262,7 +263,7 @@ public final class ItemStackBuilderPopulators {
         for (E element : elementPool) {
             elementTable.add(Objects.requireNonNull(element, "Element cannot be null!"), 1);
         }
-        return listValues(key, elementTable);
+        return ItemStackBuilderPopulators.listValues(key, elementTable);
     }
 
     /**
@@ -283,7 +284,7 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static <E> BiConsumer<ItemStack.Builder, Random> listValues(Key<? extends ListValue.Mutable<E>> key, List<E> elementPool) {
-        return listValues(key, elementPool, baseWithRandomAddition(1, elementPool.size() - 1));
+        return ItemStackBuilderPopulators.listValues(key, elementPool, baseWithRandomAddition(1, elementPool.size() - 1));
     }
 
     /**
@@ -303,7 +304,7 @@ public final class ItemStackBuilderPopulators {
     public static <E> BiConsumer<ItemStack.Builder, Random> listValues(Key<? extends ListValue.Mutable<E>> key, WeightedTable<E> weightedTable) {
         Objects.requireNonNull(weightedTable, "Weighted table cannot be null!");
         Objects.requireNonNull(key, "Key cannot be null!");
-        return setValue(key, random -> ImmutableList.copyOf(weightedTable.get(random)));
+        return ItemStackBuilderPopulators.setValue(key, random -> ImmutableList.copyOf(weightedTable.get(random)));
 
     }
 
@@ -379,7 +380,7 @@ public final class ItemStackBuilderPopulators {
     public static <E> BiConsumer<ItemStack.Builder, Random> setValues(Key<? extends SetValue.Mutable<E>> key, Set<E> elementPool) {
         Objects.requireNonNull(key, "Key cannot be null!");
         Objects.requireNonNull(elementPool, "ElementPool cannot be null!");
-        return setValues(key, elementPool, baseWithRandomAddition(1, elementPool.size() - 1));
+        return ItemStackBuilderPopulators.setValues(key, elementPool, baseWithRandomAddition(1, elementPool.size() - 1));
     }
 
     /**
@@ -406,7 +407,7 @@ public final class ItemStackBuilderPopulators {
         for (E element : elementPool) {
             elementTable.add(element, 1);
         }
-        return setValues(key, elementTable);
+        return ItemStackBuilderPopulators.setValues(key, elementTable);
     }
 
     /**
@@ -426,7 +427,7 @@ public final class ItemStackBuilderPopulators {
         if (weightedTable.isEmpty()) {
             throw new IllegalArgumentException("WeightedTable cannot be empty!");
         }
-        return setValue(key, random -> ImmutableSet.copyOf(weightedTable.get(random)));
+        return ItemStackBuilderPopulators.setValue(key, random -> ImmutableSet.copyOf(weightedTable.get(random)));
     }
 
     /*Note : This is used internally only, no validation is performed.*/
@@ -500,7 +501,7 @@ public final class ItemStackBuilderPopulators {
         final WeightedTable<Value.Immutable<?>> table = new WeightedTable<>();
         table.setRolls(rolls);
         copied.forEach(manipulator1 -> table.add(manipulator1, 1));
-        return values(table);
+        return ItemStackBuilderPopulators.values(table);
     }
 
     /**
@@ -526,7 +527,7 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static BiConsumer<ItemStack.Builder, Random> enchantment(EnchantmentType enchantmentType) {
-        return enchantment(fixed(1), enchantmentType);
+        return ItemStackBuilderPopulators.enchantment(fixed(1), enchantmentType);
     }
 
     /**
@@ -541,7 +542,7 @@ public final class ItemStackBuilderPopulators {
     public static BiConsumer<ItemStack.Builder, Random> enchantment(VariableAmount level, EnchantmentType enchantmentType) {
         Objects.requireNonNull(level, "VariableAmount cannot be null!");
         Objects.requireNonNull(enchantmentType, "EnchantmentType cannot be null!");
-        return enchantments(fixed(1), ImmutableList.of(new Tuple<>(enchantmentType, level)));
+        return ItemStackBuilderPopulators.enchantments(fixed(1), ImmutableList.of(new Tuple<>(enchantmentType, level)));
     }
 
     /**
@@ -554,7 +555,7 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static BiConsumer<ItemStack.Builder, Random> enchantmentsWithVanillaLevelVariance(Collection<EnchantmentType> enchantmentTypes) {
-        return enchantmentsWithVanillaLevelVariance(fixed(1), ImmutableList.copyOf(enchantmentTypes));
+        return ItemStackBuilderPopulators.enchantmentsWithVanillaLevelVariance(fixed(1), ImmutableList.copyOf(enchantmentTypes));
     }
 
     /**
@@ -569,7 +570,7 @@ public final class ItemStackBuilderPopulators {
      */
     public static BiConsumer<ItemStack.Builder, Random> enchantmentsWithVanillaLevelVariance(VariableAmount amount, EnchantmentType enchantmentType,
             EnchantmentType... enchantmentTypes) {
-        return enchantmentsWithVanillaLevelVariance(amount,
+        return ItemStackBuilderPopulators.enchantmentsWithVanillaLevelVariance(amount,
                 ImmutableList.<EnchantmentType>builder().add(enchantmentType).addAll(Arrays.asList(enchantmentTypes)).build());
     }
 
@@ -594,7 +595,7 @@ public final class ItemStackBuilderPopulators {
                     return new Tuple<>(enchantment, baseWithRandomAddition(minimum, maximum - minimum));
                 })
                 .collect(Collectors.toList());
-        return enchantments(amount, list);
+        return ItemStackBuilderPopulators.enchantments(amount, list);
     }
 
     /**
@@ -616,7 +617,7 @@ public final class ItemStackBuilderPopulators {
             suppliers.add(random ->
                 Enchantment.builder().type(enchantment.getFirst()).level(enchantment.getSecond().getFlooredAmount(random)).build(), 1);
         }
-        return listValueSuppliers(Keys.APPLIED_ENCHANTMENTS, suppliers);
+        return ItemStackBuilderPopulators.listValueSuppliers(Keys.APPLIED_ENCHANTMENTS, suppliers);
     }
 
     // Suppress default constructor to ensure non-instantiability.

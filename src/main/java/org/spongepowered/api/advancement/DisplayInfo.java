@@ -41,7 +41,7 @@ public interface DisplayInfo {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -103,7 +103,7 @@ public interface DisplayInfo {
     /**
      * A builder to create {@link DisplayInfo}s.
      */
-    interface Builder extends CopyableBuilder<DisplayInfo, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<DisplayInfo, Builder>, CopyableBuilder<DisplayInfo, Builder> {
 
         /**
          * Sets the {@link AdvancementType}. Defaults
@@ -149,7 +149,7 @@ public interface DisplayInfo {
          * @return This builder, for chaining
          */
         default Builder icon(Supplier<? extends ItemType> itemType) {
-            return icon(itemType.get());
+            return this.icon(itemType.get());
         }
 
         /**

@@ -24,24 +24,37 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link MooshroomType}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class MooshroomTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<MooshroomType> BROWN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MooshroomType.class, "brown");
+    public static final DefaultedRegistryReference<MooshroomType> BROWN = MooshroomTypes.key(ResourceKey.sponge("brown"));
 
-    public static final Supplier<MooshroomType> RED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MooshroomType.class, "red");
+    public static final DefaultedRegistryReference<MooshroomType> RED = MooshroomTypes.key(ResourceKey.sponge("red"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private MooshroomTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<MooshroomType> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.MOOSHROOM_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

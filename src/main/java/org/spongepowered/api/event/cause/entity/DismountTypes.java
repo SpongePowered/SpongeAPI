@@ -24,25 +24,36 @@
  */
 package org.spongepowered.api.event.cause.entity;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class DismountTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<DismountType> DEATH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DismountType.class, "death");
+    public static final DefaultedRegistryReference<DismountType> DEATH = DismountTypes.key(ResourceKey.sponge("death"));
 
-    public static final Supplier<DismountType> DERAIL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DismountType.class, "derail");
+    public static final DefaultedRegistryReference<DismountType> DERAIL = DismountTypes.key(ResourceKey.sponge("derail"));
 
-    public static final Supplier<DismountType> PLAYER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(DismountType.class, "player");
+    public static final DefaultedRegistryReference<DismountType> PLAYER = DismountTypes.key(ResourceKey.sponge("player"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private DismountTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<DismountType> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.DISMOUNT_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

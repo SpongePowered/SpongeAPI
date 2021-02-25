@@ -32,6 +32,7 @@ import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
+import org.spongepowered.api.projectile.source.EntityProjectileSource;
 import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.RandomProvider;
@@ -40,7 +41,7 @@ import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.Locatable;
-import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.schematic.Schematic;
 import org.spongepowered.api.world.server.ServerWorld;
@@ -73,7 +74,8 @@ import java.util.function.UnaryOperator;
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
 @DoNotStore
-public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEntity>, Locatable, SerializableDataHolder.Mutable, RandomProvider {
+public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEntity>, Locatable, EntityProjectileSource,
+        SerializableDataHolder.Mutable, RandomProvider {
 
     /**
      * Gets the {@link EntityType}.
@@ -223,7 +225,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      */
     default boolean transferToWorld(final ServerWorld world) {
         Objects.requireNonNull(world, "World cannot be null");
-        return this.transferToWorld(world, world.getProperties().getSpawnPosition().toDouble());
+        return this.transferToWorld(world, world.getProperties().spawnPosition().toDouble());
     }
 
     /**
@@ -438,7 +440,5 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
     }
 
     @Override
-    default HoverEvent<HoverEvent.ShowEntity> asHoverEvent(final UnaryOperator<HoverEvent.ShowEntity> op) {
-        return HoverEvent.showEntity(op.apply(HoverEvent.ShowEntity.of(this.getType().getKey(), this.getUniqueId(), this.displayName().get())));
-    }
+    HoverEvent<HoverEvent.ShowEntity> asHoverEvent(final UnaryOperator<HoverEvent.ShowEntity> op);
 }

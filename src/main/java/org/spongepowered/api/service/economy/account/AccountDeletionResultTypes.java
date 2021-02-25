@@ -24,45 +24,42 @@
  */
 package org.spongepowered.api.service.economy.account;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * Common {@link AccountDeletionResultType}s.
  */
-public class AccountDeletionResultTypes {
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
+public final class AccountDeletionResultTypes {
+
+    // @formatter:off
+
     // SORTFIELDS:ON
 
-    /**
-     * Represents an account deletion where the account does not exist.
-     */
-    public static final Supplier<AccountDeletionResultType> ABSENT =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResultType.class, "absent");
+    public static final DefaultedRegistryReference<AccountDeletionResultType> ABSENT = AccountDeletionResultTypes.key(ResourceKey.sponge("absent"));
 
-    /**
-     * Represents an account deletion where the deletion failed.
-     */
-    public static final Supplier<AccountDeletionResultType> FAILED =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResultType.class, "failed");
+    public static final DefaultedRegistryReference<AccountDeletionResultType> FAILED = AccountDeletionResultTypes.key(ResourceKey.sponge("failed"));
 
-    /**
-     * Represents an account deletion where the deletion was successful.
-     */
-    public static final Supplier<AccountDeletionResultType> SUCCESS =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResultType.class, "success");
+    public static final DefaultedRegistryReference<AccountDeletionResultType> SUCCESS = AccountDeletionResultTypes.key(ResourceKey.sponge("success"));
 
-    /**
-     * Represents an account deletion where the account could not be deleted.
-     */
-    public static final Supplier<AccountDeletionResultType> UNDELETABLE =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(AccountDeletionResultType.class, "undeletable");
+    public static final DefaultedRegistryReference<AccountDeletionResultType> UNDELETABLE = AccountDeletionResultTypes.key(ResourceKey.sponge("undeletable"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private AccountDeletionResultTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<AccountDeletionResultType> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.ACCOUNT_DELETION_RESULT_TYPE, location).asDefaultedReference(() -> Sponge
+                .getGame().registries());
+    }
 }

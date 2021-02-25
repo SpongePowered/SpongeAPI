@@ -70,10 +70,16 @@ public interface VolumeStream<V extends Volume, T> {
         return this.filter((volume, element, x, y, z) -> predicate.test(VolumeElement.of(volume, element, new Vector3i(x, y, z))));
     }
 
-    VolumeStream<V, T> map(VolumeMapper<V, T> mapper);
+    <Out> VolumeStream<V, Out> map(VolumeMapper<V, T, Out> mapper);
 
-    default VolumeStream<V, T> map(final Function<VolumeElement<V, T>, ? extends T> mapper) {
+    default <Out> VolumeStream<V, Out> map(final Function<VolumeElement<V, T>, ? extends Out> mapper) {
         return this.map(((volume, value, x, y, z) -> mapper.apply(VolumeElement.of(volume, value, new Vector3i(x, y, z)))));
+    }
+
+    VolumeStream<V, Optional<? extends T>> flatMap(VolumeFlatMapper<V, T> mapper);
+
+    default VolumeStream<V, Optional<? extends T>> flatMap(final Function<VolumeElement<V, T>, Optional<? extends T>> mapper) {
+        return this.flatMap((volume, value, x, y, z) -> mapper.apply(VolumeElement.of(volume, value, new Vector3i(x, y,z))));
     }
 
     long count();
@@ -86,7 +92,7 @@ public interface VolumeStream<V extends Volume, T> {
 
     boolean noneMatch(VolumePredicate<V, ? super T> predicate);
 
-    default boolean noneMatch(Predicate<VolumeElement<V, ? super T>> predicate) {
+    default boolean noneMatch(final Predicate<VolumeElement<V, ? super T>> predicate) {
         return this.noneMatch((volume, element, x, y, z) -> predicate.test(VolumeElement.of(volume, element, new Vector3i(x, y, z))));
     }
 

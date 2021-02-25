@@ -47,7 +47,7 @@ public interface Task {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -90,7 +90,7 @@ public interface Task {
     /**
      * Represents a builder to create a {@link Task}.
      */
-    interface Builder extends CopyableBuilder<Task, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<Task, Builder>, CopyableBuilder<Task, Builder> {
 
         /**
          * Sets the {@link Runnable} to run when this task executes.

@@ -27,15 +27,17 @@ package org.spongepowered.api.item.recipe.cooking;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.item.recipe.RecipeType;
 import org.spongepowered.api.item.recipe.crafting.Ingredient;
-import org.spongepowered.api.util.CatalogBuilder;
+import org.spongepowered.api.util.ResourceKeyedBuilder;
 
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
@@ -49,7 +51,7 @@ public interface CookingRecipe extends Recipe {
      * @return A {@link CookingRecipe} builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -97,7 +99,7 @@ public interface CookingRecipe extends Recipe {
     /**
      * Builds a simple furnace recipe.
      */
-    interface Builder extends CatalogBuilder<RecipeRegistration, Builder> {
+    interface Builder extends ResourceKeyedBuilder<RecipeRegistration, Builder> {
 
         /**
          * Sets the type of recipe
@@ -151,7 +153,7 @@ public interface CookingRecipe extends Recipe {
              *
              * @return This builder, for chaining
              */
-            default ResultStep ingredient(Supplier<ItemType> ingredient) {
+            default ResultStep ingredient(Supplier<? extends ItemType> ingredient) {
                 return this.ingredient(ingredient.get());
             }
         }
@@ -174,7 +176,7 @@ public interface CookingRecipe extends Recipe {
              * @param result The output of this recipe
              * @return This builder, for chaining
              */
-            default EndStep result(Supplier<ItemType> result) {
+            default EndStep result(Supplier<? extends ItemType> result) {
                 return this.result(result.get());
             }
 
@@ -197,9 +199,20 @@ public interface CookingRecipe extends Recipe {
              * @return This builder, for chaining
              */
             EndStep result(ItemStackSnapshot result);
+
+            /**
+             * Sets the result function and an exemplary result.
+             *
+             * @param resultFunction The result function
+             * @param exemplaryResult The exemplary result stack
+             *
+             * @return The builder
+             */
+            EndStep result(final Function<Inventory, ItemStack> resultFunction, final org.spongepowered.api.item.inventory.ItemStack exemplaryResult);
         }
 
-        interface EndStep extends Builder, CatalogBuilder<RecipeRegistration, Builder> {
+        interface EndStep extends Builder,
+                org.spongepowered.api.util.Builder<RecipeRegistration, Builder> {
 
             /**
              * Sets the group of the recipe.

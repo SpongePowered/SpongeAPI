@@ -24,26 +24,39 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link SlabPortion}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class SlabPortions {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<SlabPortion> BOTTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SlabPortion.class, "bottom");
+    public static final DefaultedRegistryReference<SlabPortion> BOTTOM = SlabPortions.key(ResourceKey.sponge("bottom"));
 
-    public static final Supplier<SlabPortion> DOUBLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SlabPortion.class, "double");
+    public static final DefaultedRegistryReference<SlabPortion> DOUBLE = SlabPortions.key(ResourceKey.sponge("double"));
 
-    public static final Supplier<SlabPortion> TOP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(SlabPortion.class, "top");
+    public static final DefaultedRegistryReference<SlabPortion> TOP = SlabPortions.key(ResourceKey.sponge("top"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private SlabPortions() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<SlabPortion> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.SLAB_PORTION, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

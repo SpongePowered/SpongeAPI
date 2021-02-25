@@ -119,7 +119,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
         if (weight < 0) {
             throw new IllegalArgumentException("Weight cannot be negative!");
         }
-        return add(new WeightedObject<>(object, weight));
+        return this.add(new WeightedObject<>(object, weight));
     }
 
     @Override
@@ -127,7 +127,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
         boolean flag = false;
         for (TableEntry<T> e : c) {
             if (e != null) {
-                add(e);
+                this.add(e);
                 flag = true;
             }
         }
@@ -174,7 +174,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
      */
     public boolean containsAllObjects(Collection<?> c) {
         for (Object e : c) {
-            if (!contains(e)) {
+            if (!this.contains(e)) {
                 return false;
             }
         }

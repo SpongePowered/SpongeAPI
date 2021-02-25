@@ -24,32 +24,44 @@
  */
 package org.spongepowered.api.placeholder;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * Contains Sponge provided {@link PlaceholderParser}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class PlaceholderParsers {
 
-    // SORTFIELDS: ON
+    // @formatter:off
+
+    // SORTFIELDS:ON
 
     /**
      * A parser that returns the associated source's current world, if
      * applicable, else the default world.
      */
-    static Supplier<PlaceholderParser> CURRENT_WORLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PlaceholderParser.class, "current_world");
+    public static final DefaultedRegistryReference<PlaceholderParser> CURRENT_WORLD = PlaceholderParsers.key(ResourceKey.sponge("current_world"));
 
     /**
      * A parser that returns the associated source's name.
      */
-    static Supplier<PlaceholderParser> NAME = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PlaceholderParser.class, "name");
+    public static final DefaultedRegistryReference<PlaceholderParser> NAME = PlaceholderParsers.key(ResourceKey.sponge("name"));
 
-    // SORTFIELDS: OFF
+    // SORTFIELDS:OFF
+
+    // @formatter:on
 
     private PlaceholderParsers() {
-        throw new AssertionError("This should not be instantiated.");
     }
 
+    private static DefaultedRegistryReference<PlaceholderParser> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.PLACEHOLDER_PARSER, location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

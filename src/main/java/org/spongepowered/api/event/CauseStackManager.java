@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.event;
 
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -144,7 +146,7 @@ public interface CauseStackManager {
      * @return The cause stack manager, for chaining
      * @see EventContextKeys
      */
-    default <T> CauseStackManager addContext(Supplier<? extends EventContextKey<T>> key, T value) {
+    default <T> CauseStackManager addContext(Supplier<EventContextKey<T>> key, T value) {
         return this.addContext(key.get(), value);
     }
 
@@ -157,7 +159,7 @@ public interface CauseStackManager {
      * @return The cause stack manager, for chaining
      * @see EventContextKeys
      */
-    default <T> CauseStackManager addContext(Supplier<? extends EventContextKey<T>> key, Supplier<? extends T> value) {
+    default <T> CauseStackManager addContext(Supplier<EventContextKey<T>> key, Supplier<? extends T> value) {
         return this.addContext(key.get(), value.get());
     }
 
@@ -177,7 +179,7 @@ public interface CauseStackManager {
      * @param <T> The type of the value stored with the event context key
      * @return The context object, if present
      */
-    default <T> Optional<T> getContext(Supplier<? extends EventContextKey<T>> key) {
+    default <T> Optional<T> getContext(Supplier<EventContextKey<T>> key) {
         return this.getContext(key.get());
     }
 
@@ -210,7 +212,7 @@ public interface CauseStackManager {
      * @param <T> The type of the value stored with the event context key
      * @return The context object, if present
      */
-    default <T> T requireContext(Supplier<? extends EventContextKey<T>> key) {
+    default <T> T requireContext(Supplier<EventContextKey<T>> key) {
         final Optional<T> optional = this.getContext(key.get());
         if (optional.isPresent()) {
             return optional.get();
@@ -236,7 +238,7 @@ public interface CauseStackManager {
      * @return The existing context value, if it was present
      * @see EventContextKeys
      */
-    default <T> Optional<T> removeContext(Supplier<? extends EventContextKey<T>> key) {
+    default <T> Optional<T> removeContext(Supplier<EventContextKey<T>> key) {
         return this.removeContext(key.get());
     }
 
@@ -315,7 +317,7 @@ public interface CauseStackManager {
          * @see EventContextKeys
          * @see CauseStackManager#addContext(EventContextKey, Object)
          */
-        default <T> StackFrame addContext(Supplier<? extends EventContextKey<T>> key, T value) {
+        default <T> StackFrame addContext(Supplier<EventContextKey<T>> key, T value) {
             return this.addContext(key.get(), value);
         }
 
@@ -329,7 +331,7 @@ public interface CauseStackManager {
          * @see EventContextKeys
          * @see CauseStackManager#addContext(EventContextKey, Object)
          */
-        default <T> StackFrame addContext(Supplier<? extends EventContextKey<T>> key, Supplier<? extends T> value) {
+        default <T> StackFrame addContext(Supplier<EventContextKey<T>> key, Supplier<? extends T> value) {
             return this.addContext(key.get(), value.get());
         }
 
@@ -353,7 +355,7 @@ public interface CauseStackManager {
          * @see EventContextKeys
          * @see CauseStackManager#removeContext(EventContextKey)
          */
-        default <T> Optional<T> removeContext(Supplier<? extends EventContextKey<T>> key) {
+        default <T> Optional<T> removeContext(Supplier<EventContextKey<T>> key) {
             return this.removeContext(key.get());
         }
 

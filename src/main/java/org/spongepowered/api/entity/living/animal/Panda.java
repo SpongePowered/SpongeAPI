@@ -26,12 +26,8 @@ package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.PandaGene;
-import org.spongepowered.api.data.type.PandaGenes;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.Ticks;
-import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.weather.Weather;
-import org.spongepowered.api.world.weather.Weathers;
 
 /**
  * Represents a Panda.

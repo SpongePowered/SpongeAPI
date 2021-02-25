@@ -61,7 +61,7 @@ public class ChanceTable<T> extends RandomObjectTable<T> {
         if (this.entries.isEmpty()) {
             return results;
         }
-        int rolls = getRolls().getFlooredAmount(rand);
+        int rolls = this.getRolls().getFlooredAmount(rand);
         for (int i = 0; i < rolls; i++) {
             for (Iterator<TableEntry<T>> it = this.entries.iterator(); it.hasNext();) {
                 TableEntry<T> next = it.next();
@@ -86,7 +86,7 @@ public class ChanceTable<T> extends RandomObjectTable<T> {
             return false;
         }
         ChanceTable<?> c = (ChanceTable<?>) o;
-        if (getRolls() != c.getRolls()) {
+        if (this.getRolls() != c.getRolls()) {
             return false;
         }
         if (this.entries.size() != c.entries.size()) {
@@ -103,7 +103,7 @@ public class ChanceTable<T> extends RandomObjectTable<T> {
     @Override
     public int hashCode() {
         int r = 1;
-        r = r * 37 + getRolls().hashCode();
+        r = r * 37 + this.getRolls().hashCode();
         for (TableEntry<T> entry : this.entries) {
             r = r * 37 + entry.hashCode();
         }
@@ -113,7 +113,7 @@ public class ChanceTable<T> extends RandomObjectTable<T> {
     @Override
     public String toString() {
         StringBuilder r = new StringBuilder();
-        r.append("ChanceTable (rolls=").append(getRolls());
+        r.append("ChanceTable (rolls=").append(this.getRolls());
         r.append(",entries=").append(this.entries.size()).append(") {\n");
         for (TableEntry<T> entry : this.entries) {
             r.append("\t").append(entry.toString()).append("\n");

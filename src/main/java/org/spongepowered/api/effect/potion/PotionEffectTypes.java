@@ -24,86 +24,97 @@
  */
 package org.spongepowered.api.effect.potion;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of all possible {@link PotionEffectType}s in vanilla Minecraft.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class PotionEffectTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<PotionEffectType> ABSORPTION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "absorption");
+    public static final DefaultedRegistryReference<PotionEffectType> ABSORPTION = PotionEffectTypes.key(ResourceKey.minecraft("absorption"));
 
-    public static final Supplier<PotionEffectType> BAD_OMEN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "bad_omen");
+    public static final DefaultedRegistryReference<PotionEffectType> BAD_OMEN = PotionEffectTypes.key(ResourceKey.minecraft("bad_omen"));
 
-    public static final Supplier<PotionEffectType> BLINDNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "blindness");
+    public static final DefaultedRegistryReference<PotionEffectType> BLINDNESS = PotionEffectTypes.key(ResourceKey.minecraft("blindness"));
 
-    public static final Supplier<PotionEffectType> CONDUIT_POWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "conduit_power");
+    public static final DefaultedRegistryReference<PotionEffectType> CONDUIT_POWER = PotionEffectTypes.key(ResourceKey.minecraft("conduit_power"));
 
-    public static final Supplier<PotionEffectType> DOLPHINS_GRACE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "dolphins_grace");
+    public static final DefaultedRegistryReference<PotionEffectType> DOLPHINS_GRACE = PotionEffectTypes.key(ResourceKey.minecraft("dolphins_grace"));
 
-    public static final Supplier<PotionEffectType> FIRE_RESISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "fire_resistance");
+    public static final DefaultedRegistryReference<PotionEffectType> FIRE_RESISTANCE = PotionEffectTypes.key(ResourceKey.minecraft("fire_resistance"));
 
-    public static final Supplier<PotionEffectType> GLOWING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "glowing");
+    public static final DefaultedRegistryReference<PotionEffectType> GLOWING = PotionEffectTypes.key(ResourceKey.minecraft("glowing"));
 
-    public static final Supplier<PotionEffectType> HASTE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "haste");
+    public static final DefaultedRegistryReference<PotionEffectType> HASTE = PotionEffectTypes.key(ResourceKey.minecraft("haste"));
 
-    public static final Supplier<PotionEffectType> HEALTH_BOOST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "health_boost");
+    public static final DefaultedRegistryReference<PotionEffectType> HEALTH_BOOST = PotionEffectTypes.key(ResourceKey.minecraft("health_boost"));
 
-    public static final Supplier<PotionEffectType> HERO_OF_THE_VILLAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "hero_of_the_village");
+    public static final DefaultedRegistryReference<PotionEffectType> HERO_OF_THE_VILLAGE = PotionEffectTypes.key(ResourceKey.minecraft("hero_of_the_village"));
 
-    public static final Supplier<PotionEffectType> HUNGER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "hunger");
+    public static final DefaultedRegistryReference<PotionEffectType> HUNGER = PotionEffectTypes.key(ResourceKey.minecraft("hunger"));
 
-    public static final Supplier<PotionEffectType> INSTANT_DAMAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "instant_damage");
+    public static final DefaultedRegistryReference<PotionEffectType> INSTANT_DAMAGE = PotionEffectTypes.key(ResourceKey.minecraft("instant_damage"));
 
-    public static final Supplier<PotionEffectType> INSTANT_HEALTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "instant_health");
+    public static final DefaultedRegistryReference<PotionEffectType> INSTANT_HEALTH = PotionEffectTypes.key(ResourceKey.minecraft("instant_health"));
 
-    public static final Supplier<PotionEffectType> INVISIBILITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "invisibility");
+    public static final DefaultedRegistryReference<PotionEffectType> INVISIBILITY = PotionEffectTypes.key(ResourceKey.minecraft("invisibility"));
 
-    public static final Supplier<PotionEffectType> JUMP_BOOST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "jump_boost");
+    public static final DefaultedRegistryReference<PotionEffectType> JUMP_BOOST = PotionEffectTypes.key(ResourceKey.minecraft("jump_boost"));
 
-    public static final Supplier<PotionEffectType> LEVITATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "levitation");
+    public static final DefaultedRegistryReference<PotionEffectType> LEVITATION = PotionEffectTypes.key(ResourceKey.minecraft("levitation"));
 
-    public static final Supplier<PotionEffectType> LUCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "luck");
+    public static final DefaultedRegistryReference<PotionEffectType> LUCK = PotionEffectTypes.key(ResourceKey.minecraft("luck"));
 
-    public static final Supplier<PotionEffectType> MINING_FATIGUE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "mining_fatigue");
+    public static final DefaultedRegistryReference<PotionEffectType> MINING_FATIGUE = PotionEffectTypes.key(ResourceKey.minecraft("mining_fatigue"));
 
-    public static final Supplier<PotionEffectType> NAUSEA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "nausea");
+    public static final DefaultedRegistryReference<PotionEffectType> NAUSEA = PotionEffectTypes.key(ResourceKey.minecraft("nausea"));
 
-    public static final Supplier<PotionEffectType> NIGHT_VISION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "night_vision");
+    public static final DefaultedRegistryReference<PotionEffectType> NIGHT_VISION = PotionEffectTypes.key(ResourceKey.minecraft("night_vision"));
 
-    public static final Supplier<PotionEffectType> POISON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "poison");
+    public static final DefaultedRegistryReference<PotionEffectType> POISON = PotionEffectTypes.key(ResourceKey.minecraft("poison"));
 
-    public static final Supplier<PotionEffectType> REGENERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "regeneration");
+    public static final DefaultedRegistryReference<PotionEffectType> REGENERATION = PotionEffectTypes.key(ResourceKey.minecraft("regeneration"));
 
-    public static final Supplier<PotionEffectType> RESISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "resistance");
+    public static final DefaultedRegistryReference<PotionEffectType> RESISTANCE = PotionEffectTypes.key(ResourceKey.minecraft("resistance"));
 
-    public static final Supplier<PotionEffectType> SATURATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "saturation");
+    public static final DefaultedRegistryReference<PotionEffectType> SATURATION = PotionEffectTypes.key(ResourceKey.minecraft("saturation"));
 
-    public static final Supplier<PotionEffectType> SLOWNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "slowness");
+    public static final DefaultedRegistryReference<PotionEffectType> SLOWNESS = PotionEffectTypes.key(ResourceKey.minecraft("slowness"));
 
-    public static final Supplier<PotionEffectType> SLOW_FALLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "slow_falling");
+    public static final DefaultedRegistryReference<PotionEffectType> SLOW_FALLING = PotionEffectTypes.key(ResourceKey.minecraft("slow_falling"));
 
-    public static final Supplier<PotionEffectType> SPEED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "speed");
+    public static final DefaultedRegistryReference<PotionEffectType> SPEED = PotionEffectTypes.key(ResourceKey.minecraft("speed"));
 
-    public static final Supplier<PotionEffectType> STRENGTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "strength");
+    public static final DefaultedRegistryReference<PotionEffectType> STRENGTH = PotionEffectTypes.key(ResourceKey.minecraft("strength"));
 
-    public static final Supplier<PotionEffectType> UNLUCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "unluck");
+    public static final DefaultedRegistryReference<PotionEffectType> UNLUCK = PotionEffectTypes.key(ResourceKey.minecraft("unluck"));
 
-    public static final Supplier<PotionEffectType> WATER_BREATHING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "water_breathing");
+    public static final DefaultedRegistryReference<PotionEffectType> WATER_BREATHING = PotionEffectTypes.key(ResourceKey.minecraft("water_breathing"));
 
-    public static final Supplier<PotionEffectType> WEAKNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "weakness");
+    public static final DefaultedRegistryReference<PotionEffectType> WEAKNESS = PotionEffectTypes.key(ResourceKey.minecraft("weakness"));
 
-    public static final Supplier<PotionEffectType> WITHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionEffectType.class, "wither");
+    public static final DefaultedRegistryReference<PotionEffectType> WITHER = PotionEffectTypes.key(ResourceKey.minecraft("wither"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private PotionEffectTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<PotionEffectType> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.POTION_EFFECT_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

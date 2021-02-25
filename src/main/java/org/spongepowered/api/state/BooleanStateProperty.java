@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.state;
 
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -32,6 +33,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * <code>false</code>.
  */
 @CatalogedBy(BooleanStateProperties.class)
-public interface BooleanStateProperty extends StateProperty<Boolean> {
+public interface BooleanStateProperty extends DefaultedRegistryValue, StateProperty<Boolean> {
 
 }

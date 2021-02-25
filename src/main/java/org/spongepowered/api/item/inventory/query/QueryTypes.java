@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.item.inventory.query;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.KeyValueMatcher;
@@ -35,32 +36,39 @@ import org.spongepowered.api.item.inventory.entity.PrimaryPlayerInventory;
 import org.spongepowered.api.item.inventory.query.QueryType.NoParam;
 import org.spongepowered.api.item.inventory.query.QueryType.OneParam;
 import org.spongepowered.api.item.inventory.query.QueryType.TwoParam;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.math.vector.Vector2i;
 
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 
-@SuppressWarnings({"unused", "WeakerAccess"})
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class QueryTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
     /**
      * Tests based on the class of the inventory.
      */
-    public static final Supplier<OneParam<Class<? extends Inventory>>> INVENTORY_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(QueryType.class, "inventory_type");
+    public static final DefaultedRegistryReference<OneParam<Class<? extends Inventory>>> INVENTORY_TYPE = QueryTypes.oneParamKey(ResourceKey.sponge("inventory_type"));
 
     /**
      * Allows a custom condition for the items contained within an item stack.
      */
-    public static final Supplier<OneParam<Predicate<ItemStack>>> ITEM_STACK_CUSTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(QueryType.class, "item_stack_custom");
+    public static final DefaultedRegistryReference<OneParam<Predicate<ItemStack>>> ITEM_STACK_CUSTOM = QueryTypes.oneParamKey(ResourceKey.sponge("item_stack_custom"));
 
     /**
      * Tests for an exact match of the item stack contained in each slot.
      *
      * <p>Generally uses {@link ItemStack}'s <code>#equals</code> method.</p>
      */
-    public static final Supplier<OneParam<ItemStack>> ITEM_STACK_EXACT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(QueryType.class, "item_stack_exact");
+    public static final DefaultedRegistryReference<OneParam<ItemStack>> ITEM_STACK_EXACT = QueryTypes.oneParamKey(ResourceKey.sponge("item_stack_exact"));
 
     /**
      * Tests for an exact match of the item stack contained in each slot, with
@@ -69,48 +77,59 @@ public final class QueryTypes {
      *
      * @see ItemStack#equalTo(ItemStack)
      */
-    public static final Supplier<OneParam<ItemStack>> ITEM_STACK_IGNORE_QUANTITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(QueryType.class, "item_stack_ignore_quantity");
+    public static final DefaultedRegistryReference<OneParam<ItemStack>> ITEM_STACK_IGNORE_QUANTITY = QueryTypes.oneParamKey(ResourceKey.sponge("item_stack_ignore_quantity"));
 
     /**
      * Tests for a match of the type of item contained in each slot.
      *
      * @see ItemStack#getType()
      */
-    public static final Supplier<OneParam<ItemType>> ITEM_TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(QueryType.class, "item_type");
+    public static final DefaultedRegistryReference<OneParam<ItemType>> ITEM_TYPE = QueryTypes.oneParamKey(ResourceKey.sponge("item_type"));
 
     /**
      * Tests based on an inventory property present on the target inventory.
      *
      * @see Inventory#get(Inventory, Key)
      */
-    public static final Supplier<OneParam<KeyValueMatcher<?>>> KEY_VALUE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(QueryType.class, "key_value");
+    public static final DefaultedRegistryReference<OneParam<KeyValueMatcher<?>>> KEY_VALUE = QueryTypes.oneParamKey(ResourceKey.sponge("key_value"));
 
     /**
      * Tests based on the class of the inventory.
      */
-    public static final Supplier<OneParam<Class<?>>> TYPE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(QueryType.class, "type");
+    public static final DefaultedRegistryReference<OneParam<Class<?>>> TYPE = QueryTypes.oneParamKey(ResourceKey.sponge("type"));
 
     /**
      * Query for a modified order of slots in a player inventory.
      * Ordering the {@link Hotbar} before the {@link PrimaryPlayerInventory}
      */
-    public static final Supplier<NoParam> PLAYER_PRIMARY_HOTBAR_FIRST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(QueryType.class, "player_primary_hotbar_first");
+    public static final DefaultedRegistryReference<NoParam> PLAYER_PRIMARY_HOTBAR_FIRST = QueryTypes.noParamKey(ResourceKey.sponge("player_primary_hotbar_first"));
 
     /**
      * Query for a reverse order of slots.
      */
-    public static final Supplier<NoParam> REVERSE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(QueryType.class, "reverse");
+    public static final DefaultedRegistryReference<NoParam> REVERSE = QueryTypes.noParamKey(ResourceKey.sponge("reverse"));
 
     /**
      * A grid query. Only works on grids. The first value is the offset the second value is the grid size.
      */
-    public static final Supplier<TwoParam<Vector2i, Vector2i>> GRID = Sponge.getRegistry().getCatalogRegistry().provideSupplier(QueryType.class, "grid");
+    public static final DefaultedRegistryReference<TwoParam<Vector2i, Vector2i>> GRID = QueryTypes.twoParamKey(ResourceKey.sponge("grid"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private QueryTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<QueryType.NoParam> noParamKey(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.QUERY_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
+
+    private static <T1> DefaultedRegistryReference<QueryType.OneParam<T1>> oneParamKey(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.QUERY_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
+
+    private static <T1, T2> DefaultedRegistryReference<QueryType.TwoParam<T1, T2>> twoParamKey(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.QUERY_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

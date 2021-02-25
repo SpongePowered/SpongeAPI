@@ -25,13 +25,11 @@
 package org.spongepowered.api.data;
 
 import io.leangen.geantyref.TypeToken;
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataQuery;
 import org.spongepowered.api.data.persistence.DataStore;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
-import org.spongepowered.api.util.CatalogBuilder;
 import org.spongepowered.plugin.PluginContainer;
 
 import java.util.Collection;
@@ -56,7 +54,7 @@ import java.util.Optional;
  * the duration that that holder exists. The value would not persist between
  * reloads, restarts, etc.</p>
  */
-public interface DataRegistration extends CatalogType {
+public interface DataRegistration {
 
     /**
      * Creates a new {@link Builder} to build a {@link DataRegistration}.
@@ -65,9 +63,8 @@ public interface DataRegistration extends CatalogType {
      *
      * @return The new builder instance
      */
-    @SuppressWarnings("unchecked")
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -127,26 +124,19 @@ public interface DataRegistration extends CatalogType {
     Iterable<Key<?>> getKeys();
 
     /**
-     * Gets the owning {@link PluginContainer}.
-     *
-     * @return The owning plugin container for this registration
-     */
-    PluginContainer getPluginContainer();
-
-    /**
      * Creates a DataRegistration for a single key with a DataStore for given data-holders.
-     *
      *
      * @param key the data key
      * @param dataHolders the data-holders
-     * @param <T> the keys value type
+     * @param <T> the value's type
+     * @param <V> the value type
      *
      * @return The built data registration
      */
     @SafeVarargs
-    static <T> DataRegistration of(Key<Value<T>> key, Class<? extends DataHolder> dataHolder, Class<? extends DataHolder>... dataHolders) {
-        final DataStore dataStore = DataStore.of(key, DataQuery.of(key.getKey().getNamespace(), key.getKey().getValue()), dataHolder, dataHolders);
-        return DataRegistration.builder().dataKey(key).store(dataStore).key(key.getKey()).build();
+    static <T, V extends Value<T>> DataRegistration of(final Key<V> key, final Class<? extends DataHolder> dataHolder, final Class<? extends DataHolder>... dataHolders) {
+        final DataStore dataStore = DataStore.of(key, DataQuery.of(key.getKey().getValue()), dataHolder, dataHolders);
+        return DataRegistration.builder().dataKey(key).store(dataStore).build();
     }
 
     /**
@@ -155,7 +145,7 @@ public interface DataRegistration extends CatalogType {
      * {@link DataRegistration#builder()} and calling {@link #reset()} when
      * re-using said builder.
      */
-    interface Builder extends CatalogBuilder<DataRegistration, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<DataRegistration, Builder> {
 
         /**
          * Gives the builder a {@link DataStore} that will enable supporting

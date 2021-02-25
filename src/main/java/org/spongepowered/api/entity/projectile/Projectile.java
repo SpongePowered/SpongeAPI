@@ -29,6 +29,8 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.projectile.source.ProjectileSource;
 
+import java.util.Optional;
+
 /**
  * Represents entities that act as projectiles and can fly in the air.
  * For example, Arrows.
@@ -39,7 +41,7 @@ public interface Projectile extends Entity {
      * {@link Keys#SHOOTER}
      * @return The shooter
      */
-    default Value.Mutable<ProjectileSource> shooter() {
-        return this.requireValue(Keys.SHOOTER).asMutable();
+    default Optional<Value.Mutable<ProjectileSource>> shooter() {
+        return this.getValue(Keys.SHOOTER).map(Value::asMutable);
     }
 }

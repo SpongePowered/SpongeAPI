@@ -24,9 +24,13 @@
  */
 package org.spongepowered.api.scoreboard;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link CollisionRule}s.
@@ -55,7 +59,11 @@ import java.util.function.Supplier;
  * Different teams - {@link #PUSH_OTHER_TEAMS} - {@link #PUSH_OTHER_TEAMS} - Yes</p>
  *
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class CollisionRules {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
@@ -64,28 +72,31 @@ public final class CollisionRules {
      *
      * <p>This is the default value.</p>
      */
-    public static final Supplier<CollisionRule> ALWAYS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CollisionRule.class, "always");
+    public static final DefaultedRegistryReference<CollisionRule> ALWAYS = CollisionRules.key(ResourceKey.sponge("always"));
 
     /**
      * Members will never collide.
      */
-    public static final Supplier<CollisionRule> NEVER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CollisionRule.class, "never");
+    public static final DefaultedRegistryReference<CollisionRule> NEVER = CollisionRules.key(ResourceKey.sponge("never"));
 
     /**
      * Members will only push members on opposing teams.
      */
-    public static final Supplier<CollisionRule> PUSH_OTHER_TEAMS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CollisionRule.class, "push_other_teams");
+    public static final DefaultedRegistryReference<CollisionRule> PUSH_OTHER_TEAMS = CollisionRules.key(ResourceKey.sponge("push_other_teams"));
 
     /**
      * Members will only push other members on their team and mobs.
      */
-    public static final Supplier<CollisionRule> PUSH_OWN_TEAM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(CollisionRule.class, "push_own_team");
+    public static final DefaultedRegistryReference<CollisionRule> PUSH_OWN_TEAM = CollisionRules.key(ResourceKey.sponge("push_own_team"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private CollisionRules() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<CollisionRule> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.COLLISION_RULE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

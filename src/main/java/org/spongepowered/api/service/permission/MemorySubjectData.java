@@ -136,7 +136,7 @@ public class MemorySubjectData implements SubjectData {
                 }
             }
         }
-        onUpdate();
+        this.onUpdate();
         return CompletableFuture.completedFuture(true);
     }
 
@@ -145,7 +145,7 @@ public class MemorySubjectData implements SubjectData {
         boolean wasEmpty = this.permissions.isEmpty();
         this.permissions.clear();
         if (!wasEmpty) {
-            onUpdate();
+            this.onUpdate();
         }
         return CompletableFuture.completedFuture(!wasEmpty);
     }
@@ -154,7 +154,7 @@ public class MemorySubjectData implements SubjectData {
     public CompletableFuture<Boolean> clearPermissions(Set<Context> context) {
         boolean ret = this.permissions.remove(Objects.requireNonNull(context, "context")) != null;
         if (ret) {
-            onUpdate();
+            this.onUpdate();
         }
         return CompletableFuture.completedFuture(ret);
     }
@@ -185,8 +185,8 @@ public class MemorySubjectData implements SubjectData {
                     .add(parent)
                     .build();
 
-            if (updateCollection(this.parents, contexts, oldParents, newParents)) {
-                onUpdate();
+            if (this.updateCollection(this.parents, contexts, oldParents, newParents)) {
+                this.onUpdate();
                 return CompletableFuture.completedFuture(true);
             }
         }
@@ -214,8 +214,8 @@ public class MemorySubjectData implements SubjectData {
             List<SubjectReference> newParents = new ArrayList<>(oldParents);
             newParents.remove(parent);
 
-            if (updateCollection(this.parents, contexts, oldParents, ImmutableList.copyOf(newParents))) {
-                onUpdate();
+            if (this.updateCollection(this.parents, contexts, oldParents, ImmutableList.copyOf(newParents))) {
+                this.onUpdate();
                 return CompletableFuture.completedFuture(true);
             }
         }
@@ -226,7 +226,7 @@ public class MemorySubjectData implements SubjectData {
         boolean wasEmpty = this.parents.isEmpty();
         this.parents.clear();
         if (!wasEmpty) {
-            onUpdate();
+            this.onUpdate();
         }
         return CompletableFuture.completedFuture(!wasEmpty);
     }
@@ -235,7 +235,7 @@ public class MemorySubjectData implements SubjectData {
     public CompletableFuture<Boolean> clearParents(Set<Context> contexts) {
         boolean ret = this.parents.remove(Objects.requireNonNull(contexts, "contexts")) != null;
         if (ret) {
-            onUpdate();
+            this.onUpdate();
         }
         return CompletableFuture.completedFuture(ret);
     }
@@ -263,7 +263,7 @@ public class MemorySubjectData implements SubjectData {
             }
 
             if ((origMap = this.options.putIfAbsent(ImmutableSet.copyOf(contexts), ImmutableMap.of(key.toLowerCase(), value))) == null) {
-                onUpdate();
+                this.onUpdate();
                 return CompletableFuture.completedFuture(true);
             }
         }
@@ -280,7 +280,7 @@ public class MemorySubjectData implements SubjectData {
             }
             newMap = ImmutableMap.copyOf(newMap);
         } while (!this.options.replace(contexts, origMap, newMap));
-        onUpdate();
+        this.onUpdate();
         return CompletableFuture.completedFuture(true);
     }
 
@@ -289,7 +289,7 @@ public class MemorySubjectData implements SubjectData {
         boolean wasEmpty = this.options.isEmpty();
         this.options.clear();
         if (!wasEmpty) {
-            onUpdate();
+            this.onUpdate();
         }
         return CompletableFuture.completedFuture(!wasEmpty);
     }
@@ -298,7 +298,7 @@ public class MemorySubjectData implements SubjectData {
     public CompletableFuture<Boolean> clearOptions(Set<Context> contexts) {
         boolean ret = this.options.remove(Objects.requireNonNull(contexts, "contexts")) != null;
         if (ret) {
-            onUpdate();
+            this.onUpdate();
         }
         return CompletableFuture.completedFuture(ret);
     }

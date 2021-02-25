@@ -26,12 +26,13 @@ package org.spongepowered.api.data;
 
 import io.leangen.geantyref.TypeToken;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.Builder;
 
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-public interface ImmutableDataProviderBuilder<H extends DataHolder, V extends Value<E>, E> extends ResettableBuilder<DataProvider<Value<E>, E>, ImmutableDataProviderBuilder<H, V, E>> {
+public interface ImmutableDataProviderBuilder<H extends DataHolder, V extends Value<E>, E> extends
+        Builder<DataProvider<? extends Value<E>, E>, ImmutableDataProviderBuilder<H, V, E>> {
 
     <NV extends Value<NE>, NE> ImmutableDataProviderBuilder<H, NV, NE> key(Key<NV> key);
     <NH extends H> ImmutableDataProviderBuilder<NH, V, E> dataHolder(TypeToken<NH> holder);
@@ -43,6 +44,4 @@ public interface ImmutableDataProviderBuilder<H extends DataHolder, V extends Va
     ImmutableDataProviderBuilder<H, V, E> supports(final Function<H, Boolean> supports);
 
     DataProvider<? extends Value<E>, E> build();
-
-
 }

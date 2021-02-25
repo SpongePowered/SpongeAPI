@@ -24,36 +24,36 @@
  */
 package org.spongepowered.api.world.schematic;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.CatalogBuilder;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.Registry;
+import org.spongepowered.api.registry.RegistryHolder;
+import org.spongepowered.api.registry.RegistryType;
+import org.spongepowered.api.util.Builder;
+import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
-import java.util.function.Function;
+import java.util.function.BiFunction;
 
 @CatalogedBy(PaletteTypes.class)
-public interface PaletteType<T> extends CatalogType {
+public interface PaletteType<T, R> extends DefaultedRegistryValue {
 
     @SuppressWarnings("unchecked")
-    static <E> Builder<E> builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+    static <E, ER> Builder<E, ER> builder() {
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
-    Palette<T> create();
+    Palette<T, R> create(RegistryHolder holder, RegistryType<R> registryType);
 
-    Function<T, String> getEncoder();
+    BiFunction<String, Registry<R>, Optional<T>> getResolver();
 
-    Function<String, Optional<T>> getDecoder();
+    BiFunction<Registry<R>, T, String> getStringifier();
 
-    interface Builder<T> extends CatalogBuilder<PaletteType<T>, Builder<T>> {
+    interface Builder<T, R> extends org.spongepowered.api.util.Builder<PaletteType<T, R>, Builder<T, R>> {
 
-        Builder<T> encoder(Function<T, String> encoder);
+        Builder<T, R> resolver(BiFunction<String, Registry<R>, Optional<T>> resolver);
 
-        Builder<T> decoder(Function<String, Optional<T>> decoder);
-
-        @Override
-        PaletteType<T> build() throws IllegalStateException;
+        Builder<T, R> stringifier(BiFunction<Registry<R>, T, String> stringifier);
     }
-
 }

@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.item;
 
-import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a possible shape for a firework explosion.
  */
 @CatalogedBy(FireworkShapes.class)
-public interface FireworkShape extends CatalogType {
+public interface FireworkShape extends DefaultedRegistryValue {
 
 }

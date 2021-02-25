@@ -24,14 +24,14 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents the type of panda a panda is.
  */
 @CatalogedBy(PandaGenes.class)
-public interface PandaGene extends CatalogType {
+public interface PandaGene extends DefaultedRegistryValue {
 
     boolean isRecessive();
 }

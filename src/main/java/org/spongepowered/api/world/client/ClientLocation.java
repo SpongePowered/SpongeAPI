@@ -24,5 +24,7 @@
  */
 package org.spongepowered.api.world.client;
 
-public interface ClientLocation {
+import org.spongepowered.api.world.Location;
+
+public interface ClientLocation extends Location<ClientWorld, ClientLocation> {
 }

@@ -56,9 +56,8 @@ public interface WeightedCollectionValue<E> extends CollectionValue<TableEntry<E
      * @param <E> The element type
      * @return The constructed mutable value
      */
-    static <E> WeightedCollectionValue.Mutable<E> mutableOf(
-            Supplier<? extends Key<? extends WeightedCollectionValue<E>>> key, WeightedTable<E> element) {
-        return mutableOf(key.get(), element);
+    static <E> WeightedCollectionValue.Mutable<E> mutableOf(Supplier<? extends Key<? extends WeightedCollectionValue<E>>> key, WeightedTable<E> element) {
+        return WeightedCollectionValue.mutableOf(key.get(), element);
     }
 
     /**
@@ -83,9 +82,8 @@ public interface WeightedCollectionValue<E> extends CollectionValue<TableEntry<E
      * @param <E> The element type
      * @return The constructed immutable value
      */
-    static <E> WeightedCollectionValue.Immutable<E> immutableOf(
-            Supplier<? extends Key<? extends WeightedCollectionValue<E>>> key, WeightedTable<E> element) {
-        return immutableOf(key.get(), element);
+    static <E> WeightedCollectionValue.Immutable<E> immutableOf(Supplier<? extends Key<? extends WeightedCollectionValue<E>>> key, WeightedTable<E> element) {
+        return WeightedCollectionValue.immutableOf(key.get(), element);
     }
 
     @Override

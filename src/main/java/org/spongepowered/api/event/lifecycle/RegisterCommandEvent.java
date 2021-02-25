@@ -45,6 +45,9 @@ import org.spongepowered.plugin.PluginContainer;
  * types to be registered as commands. These types will be provided by these
  * other plugins.</p>
  *
+ * <p>This event will be called whenever the game re-initializes commands, and
+ * does not guarantee that any specific engine is running.</p>
+ *
  * @param <C> The type of command that is being registered.
  */
 public interface RegisterCommandEvent<C> extends GenericEvent<C>, LifecycleEvent {
@@ -56,10 +59,42 @@ public interface RegisterCommandEvent<C> extends GenericEvent<C>, LifecycleEvent
      * @param command The command to register
      * @param alias The first alias to register for this command
      * @param aliases Any other aliases to register
-     * @return The {@link CommandMapping}, indicating which aliases have been
-     *         registered for this command
+     * @return The {@link Result}, which contains the {@link CommandMapping} for
+     *      this registration, while also allowing for chaining of other command
+     *      registrations.
      * @throws CommandFailedRegistrationException if registration failed
      */
-    CommandMapping register(PluginContainer container, C command, String alias, String... aliases) throws CommandFailedRegistrationException;
+    Result<C> register(PluginContainer container, C command, String alias, String... aliases) throws CommandFailedRegistrationException;
+
+    /**
+     * The {@link Result} of a command registration, allowing for the chaining
+     * of other command registrations, or the retrival of the
+     * {@link CommandMapping} generated from the registration that returned this
+     * result.
+     */
+    interface Result<C> {
+
+        /**
+         * Registers a command with the appropriate {@link CommandRegistrar}.
+         *
+         * @param container The {@link PluginContainer}
+         * @param command The command to register
+         * @param alias The first alias to register for this command
+         * @param aliases Any other aliases to register
+         * @return The {@link Result}, which contains the {@link CommandMapping} for
+         *      this registration, while also allowing for chaining of other command
+         *      registrations.
+         * @throws CommandFailedRegistrationException if registration failed
+         */
+        Result<C> register(PluginContainer container, C command, String alias, String... aliases) throws CommandFailedRegistrationException;
+
+        /**
+         * The {@link CommandMapping} generated for the previous registration.
+         *
+         * @return The {@link CommandMapping}
+         */
+        CommandMapping mapping();
+
+    }
 
 }

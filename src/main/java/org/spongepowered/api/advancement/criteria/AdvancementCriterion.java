@@ -28,6 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.criteria.trigger.FilteredTrigger;
 import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.util.Nameable;
 
 import java.util.Optional;
 
@@ -35,7 +36,7 @@ import java.util.Optional;
  * Represents a criterion that should be acquired
  * to unlock a {@link Advancement}.
  */
-public interface AdvancementCriterion {
+public interface AdvancementCriterion extends Nameable {
 
     /**
      * Gets a {@link AdvancementCriterion} which is empty, this means that
@@ -44,7 +45,7 @@ public interface AdvancementCriterion {
      * @return The empty advancement criterion
      */
     static AdvancementCriterion empty() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).empty();
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).empty();
     }
 
     /**
@@ -54,7 +55,7 @@ public interface AdvancementCriterion {
      * @return The dummy advancement criterion
      */
     static AdvancementCriterion dummy() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).dummy();
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).dummy();
     }
 
     /**
@@ -63,15 +64,8 @@ public interface AdvancementCriterion {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
-
-    /**
-     * Gets the name of this criterion.
-     *
-     * @return The name
-     */
-    String getName();
 
     /**
      * Combines this {@link AdvancementCriterion} with the other criteria
@@ -143,7 +137,7 @@ public interface AdvancementCriterion {
     /**
      * A base builder to create {@link AdvancementCriterion}s.
      */
-    interface BaseBuilder<T extends AdvancementCriterion, B extends BaseBuilder<T, B>> extends CopyableBuilder<T, B> {
+    interface BaseBuilder<T extends AdvancementCriterion, B extends BaseBuilder<T, B>> extends org.spongepowered.api.util.Builder<T, B>, CopyableBuilder<T, B> {
 
         /**
          * Sets the {@link FilteredTrigger}.

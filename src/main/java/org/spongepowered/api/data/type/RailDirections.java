@@ -24,40 +24,53 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link RailDirection}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class RailDirections {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<RailDirection> ASCENDING_EAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RailDirection.class, "ascending_east");
+    public static final DefaultedRegistryReference<RailDirection> ASCENDING_EAST = RailDirections.key(ResourceKey.sponge("ascending_east"));
 
-    public static final Supplier<RailDirection> ASCENDING_NORTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RailDirection.class, "ascending_north");
+    public static final DefaultedRegistryReference<RailDirection> ASCENDING_NORTH = RailDirections.key(ResourceKey.sponge("ascending_north"));
 
-    public static final Supplier<RailDirection> ASCENDING_SOUTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RailDirection.class, "ascending_south");
+    public static final DefaultedRegistryReference<RailDirection> ASCENDING_SOUTH = RailDirections.key(ResourceKey.sponge("ascending_south"));
 
-    public static final Supplier<RailDirection> ASCENDING_WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RailDirection.class, "ascending_west");
+    public static final DefaultedRegistryReference<RailDirection> ASCENDING_WEST = RailDirections.key(ResourceKey.sponge("ascending_west"));
 
-    public static final Supplier<RailDirection> EAST_WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RailDirection.class, "east_west");
+    public static final DefaultedRegistryReference<RailDirection> EAST_WEST = RailDirections.key(ResourceKey.sponge("east_west"));
 
-    public static final Supplier<RailDirection> NORTH_EAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RailDirection.class, "north_east");
+    public static final DefaultedRegistryReference<RailDirection> NORTH_EAST = RailDirections.key(ResourceKey.sponge("north_east"));
 
-    public static final Supplier<RailDirection> NORTH_SOUTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RailDirection.class, "north_south");
+    public static final DefaultedRegistryReference<RailDirection> NORTH_SOUTH = RailDirections.key(ResourceKey.sponge("north_south"));
 
-    public static final Supplier<RailDirection> NORTH_WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RailDirection.class, "north_west");
+    public static final DefaultedRegistryReference<RailDirection> NORTH_WEST = RailDirections.key(ResourceKey.sponge("north_west"));
 
-    public static final Supplier<RailDirection> SOUTH_EAST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RailDirection.class, "south_east");
+    public static final DefaultedRegistryReference<RailDirection> SOUTH_EAST = RailDirections.key(ResourceKey.sponge("south_east"));
 
-    public static final Supplier<RailDirection> SOUTH_WEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(RailDirection.class, "south_west");
+    public static final DefaultedRegistryReference<RailDirection> SOUTH_WEST = RailDirections.key(ResourceKey.sponge("south_west"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private RailDirections() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<RailDirection> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.RAIL_DIRECTION, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

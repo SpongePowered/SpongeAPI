@@ -28,6 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.volume.entity.EntityVolume;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Optional;
@@ -39,7 +40,7 @@ import java.util.Optional;
  * of each chunk varies between worlds.</p>
  */
 @DoNotStore
-public interface Chunk extends ProtoChunk<Chunk> {
+public interface Chunk extends ProtoChunk<Chunk>, EntityVolume.Mutable<Chunk> {
 
     /**
      * Gets the world the chunk is in.
@@ -47,7 +48,7 @@ public interface Chunk extends ProtoChunk<Chunk> {
      * @return The world
      */
     @Override
-    World<?> getWorld();
+    World<?, ?> getWorld();
 
     /**
      * Loads this chunk, and generates if specified and required.

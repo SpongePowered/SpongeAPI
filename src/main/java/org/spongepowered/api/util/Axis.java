@@ -57,13 +57,13 @@ public enum Axis implements Cycleable<Axis> {
         double z = Math.abs(vector.getZ());
         if (x < y) {
             if (z < y) {
-                return Y;
+                return Axis.Y;
             }
-            return Z;
+            return Axis.Z;
         } else if (x < z) {
-            return Z;
+            return Axis.Z;
         } else {
-            return X;
+            return Axis.X;
         }
     }
 
@@ -92,7 +92,7 @@ public enum Axis implements Cycleable<Axis> {
             case Z:
                 return this.direction.getZ();
             default:
-                throw new IllegalStateException("Not capable of handling the " + name() + " axis!");
+                throw new IllegalStateException("Not capable of handling the " + this.name() + " axis!");
         }
     }
 
@@ -103,7 +103,7 @@ public enum Axis implements Cycleable<Axis> {
      * @return The direction of the component
      */
     public AxisDirection getDirection(final Vector3d vector3d) {
-        final double component = getComponent(vector3d);
+        final double component = this.getComponent(vector3d);
         if (component > 0) {
             return AxisDirection.PLUS;
         } else if (component == 0) {
@@ -135,11 +135,11 @@ public enum Axis implements Cycleable<Axis> {
     @Override
     public Axis cycleNext() {
         if (this == Axis.X) {
-            return Y;
+            return Axis.Y;
         }
         if (this == Axis.Y) {
-            return Z;
+            return Axis.Z;
         }
-        return X;
+        return Axis.X;
     }
 }

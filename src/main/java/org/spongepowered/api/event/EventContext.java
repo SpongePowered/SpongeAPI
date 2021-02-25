@@ -54,7 +54,7 @@ public final class EventContext {
      * @return The empty context
      */
     public static EventContext empty() {
-        return EMPTY_CONTEXT;
+        return EventContext.EMPTY_CONTEXT;
     }
 
     /**
@@ -107,7 +107,7 @@ public final class EventContext {
      * @return The context value, if found
      */
     @SuppressWarnings("unchecked")
-    public <T> Optional<T> get(Supplier<? extends EventContextKey<T>> key) {
+    public <T> Optional<T> get(Supplier<EventContextKey<T>> key) {
         Objects.requireNonNull(key, "EventContextKey cannot be null");
         return Optional.ofNullable((T) this.entries.get(key.get()));
     }
@@ -123,7 +123,7 @@ public final class EventContext {
      * @return The context value, if found
      */
     public <T> T require(EventContextKey<T> key) {
-        final Optional<T> optional = get(key);
+        final Optional<T> optional = this.get(key);
         if (optional.isPresent()) {
             return optional.get();
         }
@@ -140,8 +140,8 @@ public final class EventContext {
      * @param <T> The type of the value stored with the key
      * @return The context value, if found
      */
-    public <T> T require(Supplier<? extends EventContextKey<T>> key) {
-        final Optional<T> optional = get(key);
+    public <T> T require(Supplier<EventContextKey<T>> key) {
+        final Optional<T> optional = this.get(key);
         if (optional.isPresent()) {
             return optional.get();
         }
@@ -223,7 +223,8 @@ public final class EventContext {
         return "Context[" + joiner.toString() + "]";
     }
 
-    public static final class Builder implements CopyableBuilder<EventContext, Builder> {
+    public static final class Builder implements org.spongepowered.api.util.Builder<EventContext, Builder>, CopyableBuilder<EventContext,
+        Builder> {
 
         private final Map<EventContextKey<?>, Object> entries = Maps.newHashMap();
 
@@ -257,7 +258,7 @@ public final class EventContext {
          * @param value The value
          * @return This builder, for chaining
          */
-        public <T> Builder add(Supplier<? extends EventContextKey<T>> key, T value) {
+        public <T> Builder add(Supplier<EventContextKey<T>> key, T value) {
             Objects.requireNonNull(value, "Context object cannot be null");
             final EventContextKey<T> suppliedKey = key.get();
             Objects.requireNonNull(suppliedKey, "Supplied key cannot be null!");

@@ -26,21 +26,23 @@ package org.spongepowered.api.world.server;
 
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Server;
+import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.raid.Raid;
 import org.spongepowered.api.util.Identifiable;
+import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.ChunkRegenerateFlag;
 import org.spongepowered.api.world.ChunkRegenerateFlags;
-import org.spongepowered.api.world.LocationCreator;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
-import org.spongepowered.api.world.difficulty.Difficulty;
-import org.spongepowered.api.world.dimension.DimensionType;
-import org.spongepowered.api.world.dimension.DimensionTypes;
+import org.spongepowered.api.world.WorldType;
+import org.spongepowered.api.world.WorldTypes;
 import org.spongepowered.api.world.explosion.Explosion;
-import org.spongepowered.api.world.storage.WorldProperties;
+import org.spongepowered.api.world.generation.ChunkGenerator;
+import org.spongepowered.api.world.server.storage.ServerWorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;
 import org.spongepowered.api.world.volume.game.InteractableVolume;
 import org.spongepowered.api.world.weather.WeatherUniverse;
@@ -49,31 +51,31 @@ import org.spongepowered.math.vector.Vector3i;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface ServerWorld extends World<ServerWorld>, Identifiable, InteractableVolume, LocationCreator, WeatherUniverse {
+public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identifiable, InteractableVolume,
+        ServerLocationCreator, WeatherUniverse.Mutable {
 
     @Override
     Server getEngine();
 
-    /**
-     * Gets the properties for this world.
-     *
-     * @return The properties
-     */
-    WorldProperties getProperties();
+    @Override
+    ServerWorldProperties getProperties();
+
+    ChunkGenerator getGenerator();
+
+    WorldTemplate asTemplate();
 
     /**
-     * @see WorldProperties#getKey()
+     * @see ServerWorldProperties#getKey()
      * @return The key
      */
-    default ResourceKey getKey() {
-        return this.getProperties().getKey();
-    }
+    ResourceKey getKey();
 
     /**
-     * @see WorldProperties#getUniqueId()
+     * @see ServerWorldProperties#getUniqueId()
      * @return The unique id
      */
     @Override
@@ -82,12 +84,7 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
     }
 
     @Override
-    default Difficulty getDifficulty() {
-        return this.getProperties().getDifficulty();
-    }
-
-    @Override
-    default Chunk getChunkAtBlock(int bx, int by, int bz) {
+    default Chunk getChunkAtBlock(final int bx, final int by, final int bz) {
         final Vector3i chunkPos = this.getEngine().getChunkLayout().forceToChunk(bx, by, bz);
         return this.getChunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
     }
@@ -98,8 +95,9 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
      * @param chunkPosition The chunk position to regenerate
      * @return The regenerated chunk, if available
      */
-    default Optional<Chunk> regenerateChunk(Vector3i chunkPosition) {
-        return regenerateChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), ChunkRegenerateFlags.ALL);
+    default Optional<Chunk> regenerateChunk(final Vector3i chunkPosition) {
+        Objects.requireNonNull(chunkPosition, "chunkPosition");
+        return this.regenerateChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), ChunkRegenerateFlags.ALL.get());
     }
 
     /**
@@ -110,8 +108,8 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
      * @param cz The chunk z coordinate
      * @return The regenerated chunk, if available
      */
-    default Optional<Chunk> regenerateChunk(int cx, int cy, int cz) {
-        return regenerateChunk(cx, cy, cz, ChunkRegenerateFlags.ALL);
+    default Optional<Chunk> regenerateChunk(final int cx, final int cy, final int cz) {
+        return this.regenerateChunk(cx, cy, cz, ChunkRegenerateFlags.ALL.get());
     }
 
     /**
@@ -121,8 +119,9 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
      * @param flag The chunk regenerate flag to use
      * @return The regenerated chunk, if available
      */
-    default Optional<Chunk> regenerateChunk(Vector3i chunkPosition, ChunkRegenerateFlag flag) {
-        return regenerateChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), flag);
+    default Optional<Chunk> regenerateChunk(final Vector3i chunkPosition, final ChunkRegenerateFlag flag) {
+        Objects.requireNonNull(chunkPosition, "chunkPosition");
+        return this.regenerateChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), Objects.requireNonNull(flag, "flag"));
     }
 
     /**
@@ -135,6 +134,92 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
      * @return The regenerated chunk, if available
      */
     Optional<Chunk> regenerateChunk(int cx, int cy, int cz, ChunkRegenerateFlag flag);
+
+    /**
+     * Gets a snapshot of this block at the current point in time.
+     *
+     * <p>A snapshot is disconnected from the {@link World} that it was taken
+     * from so changes to the original block do not affect the snapshot.</p>
+     *
+     * @param position The position of the block
+     * @return A snapshot
+     */
+    default BlockSnapshot createSnapshot(final Vector3i position) {
+        Objects.requireNonNull(position, "position");
+        return this.createSnapshot(position.getX(), position.getY(), position.getZ());
+    }
+
+    /**
+     * Gets a snapshot of this block at the current point in time.
+     *
+     * <p>A snapshot is disconnected from the {@link World} that it was taken
+     * from so changes to the original block do not affect the snapshot.</p>
+     *
+     * @param x The x position
+     * @param y The y position
+     * @param z The z position
+     * @return A snapshot
+     */
+    BlockSnapshot createSnapshot(int x, int y, int z);
+
+    /**
+     * Restores the given {@link BlockSnapshot} using the saved block position
+     * stored within the snapshot.
+     *
+     * <p>If forced, the state of the block will change its {@link BlockType} to
+     * match that of the snapshot then set the state. However, if force is set
+     * to false and the {@link BlockType}s does not match, false will be
+     * returned. If notifyNeighbors is true, neighboring blocks will be notified
+     * of changes at the restored block location triggering physic updates.</p>
+     *
+     * @param snapshot The snapshot
+     * @param force If true, forces block state to be set even if the
+     *        {@link BlockType} does not match the snapshot one.
+     * @param flag The various change flags controlling some interactions
+     * @return True if the restore was successful, false otherwise
+     */
+    boolean restoreSnapshot(BlockSnapshot snapshot, boolean force, BlockChangeFlag flag);
+
+    /**
+     * Restores the {@link BlockSnapshot} at the given position.
+     *
+     * <p>If forced, the state of the block will change its {@link BlockType} to
+     * match that of the snapshot then set the state. However, if force is set
+     * to false and the {@link BlockType block types} do not match, false will be
+     * returned. If notifyNeighbors is {@code true}, neighboring blocks will be notified
+     * of changes at the restored block location triggering physics updates.</p>
+     *
+     * @param position The position of the block
+     * @param snapshot The snapshot
+     * @param force If true, forces block state to be set even if the the block type does
+     *             not match the snapshot one.
+     * @param flag The various change flags controlling some interactions
+     * @return True if the restore was successful, false otherwise
+     */
+    default boolean restoreSnapshot(final Vector3i position, final BlockSnapshot snapshot, final boolean force, final BlockChangeFlag flag) {
+        Objects.requireNonNull(position, "position");
+        return this.restoreSnapshot(position.getX(), position.getY(), position.getZ(), Objects.requireNonNull(snapshot, "snapshot"), force, Objects.requireNonNull(flag, "flag"));
+    }
+
+    /**
+     * Restores the {@link BlockSnapshot} at the given position.
+     *
+     * <p>If forced, the state of the block will change its {@link BlockType} to
+     * match that of the snapshot then set the state. However, if force is set
+     * to false and the {@link BlockType}s does not match, false will be
+     * returned. If notifyNeighbors is true, neighboring blocks will be notified
+     * of changes at the restored block location triggering physic updates.</p>
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param snapshot The snapshot
+     * @param force If true, forces block state to be set even if the
+     *        {@link BlockType} does not match the snapshot one.
+     * @param flag The various change flags controlling some interactions
+     * @return true if the restore was successful, false otherwise
+     */
+    boolean restoreSnapshot(int x, int y, int z, BlockSnapshot snapshot, boolean force, BlockChangeFlag flag);
 
     /**
      * Gets the {@link Path} pointing to the root of where the world's data
@@ -189,7 +274,7 @@ public interface ServerWorld extends World<ServerWorld>, Identifiable, Interacta
     /**
      * Gets all {@link Raid}s occuring in this {@link ServerWorld}.
      *
-     * <p>Please note by default, some {@link DimensionType}s such as {@link DimensionTypes#THE_NETHER}
+     * <p>Please note by default, some {@link WorldType}s such as {@link WorldTypes#THE_NETHER}
      * will not contain any Raids because the game prevents Raids from starting in the nether.</p>
      *
      * @return All the raids in this world.

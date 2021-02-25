@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.recipe.crafting.Ingredient;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
@@ -37,7 +37,7 @@ import java.util.Optional;
  * {@link ItemTypes#DIAMOND_CHESTPLATE}.
  */
 @CatalogedBy(ArmorMaterials.class)
-public interface ArmorMaterial extends CatalogType {
+public interface ArmorMaterial extends DefaultedRegistryValue {
 
     /**
      * Gets the {@link ItemType} that can be used to

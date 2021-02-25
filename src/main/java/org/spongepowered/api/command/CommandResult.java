@@ -27,7 +27,6 @@ package org.spongepowered.api.command;
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Optional;
 
@@ -42,7 +41,7 @@ public interface CommandResult {
      * @return The {@link Builder}
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -71,7 +70,7 @@ public interface CommandResult {
      * @return The {@link CommandResult}
      */
     static CommandResult error(final Component errorMessage) {
-        return builder().error(errorMessage).build();
+        return CommandResult.builder().error(errorMessage).build();
     }
 
     /**
@@ -98,7 +97,7 @@ public interface CommandResult {
     /**
      * Builds {@link CommandResult}s.
      */
-    interface Builder extends ResettableBuilder<CommandResult, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<CommandResult, Builder> {
 
         /**
          * Sets an integer value that indicates the states of the

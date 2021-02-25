@@ -24,14 +24,18 @@
  */
 package org.spongepowered.api.command.registrar.tree;
 
-import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.ResourceKeyed;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents the client-side behaviour of a command parameter.
+ *
+ * <p>Completion keys are used to create argument branches of a
+ * {@link CommandTreeNode command tree}.</p>
  */
 @CatalogedBy(ClientCompletionKeys.class)
-public interface ClientCompletionKey<T extends CommandTreeNode<T>> extends CatalogType {
+public interface ClientCompletionKey<T extends CommandTreeNode<T>> extends DefaultedRegistryValue, ResourceKeyed {
 
     /**
      * Creates a {@link CommandTreeNode} that represents this

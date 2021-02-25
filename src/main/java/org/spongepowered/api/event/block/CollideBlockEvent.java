@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.action.CollideEvent;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
-import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.server.ServerLocation;
 
 /**
  * Fired when an {@link Entity} collides with a {@link BlockSnapshot}.

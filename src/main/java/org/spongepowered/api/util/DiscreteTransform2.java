@@ -76,7 +76,7 @@ public class DiscreteTransform2 {
      * @return The transformed vector
      */
     public Vector2i transform(Vector2i vector) {
-        return transform(vector.getX(), vector.getY());
+        return this.transform(vector.getX(), vector.getY());
     }
 
     /**
@@ -88,7 +88,7 @@ public class DiscreteTransform2 {
      * @return The transformed vector
      */
     public Vector2i transform(int x, int y) {
-        return new Vector2i(transformX(x, y), transformY(x, y));
+        return new Vector2i(this.transformX(x, y), this.transformY(x, y));
     }
 
     /**
@@ -99,7 +99,7 @@ public class DiscreteTransform2 {
      * @return The transformed x coordinate
      */
     public int transformX(Vector2i vector) {
-        return transformX(vector.getX(), vector.getY());
+        return this.transformX(vector.getX(), vector.getY());
     }
 
     /**
@@ -122,7 +122,7 @@ public class DiscreteTransform2 {
      * @return The transformed y coordinate
      */
     public int transformY(Vector2i vector) {
-        return transformY(vector.getX(), vector.getY());
+        return this.transformY(vector.getX(), vector.getY());
     }
 
     /**
@@ -177,7 +177,7 @@ public class DiscreteTransform2 {
      * @return The translated transform as a copy
      */
     public DiscreteTransform2 withTranslation(Vector2i vector) {
-        return withTranslation(vector.getX(), vector.getY());
+        return this.withTranslation(vector.getX(), vector.getY());
     }
 
     /**
@@ -199,7 +199,7 @@ public class DiscreteTransform2 {
      * @return The scaled transform as a copy
      */
     public DiscreteTransform2 withScale(int a) {
-        return withScale(a, a);
+        return this.withScale(a, a);
     }
 
     /**
@@ -210,7 +210,7 @@ public class DiscreteTransform2 {
      * @return The scaled transform as a copy
      */
     public DiscreteTransform2 withScale(Vector2i vector) {
-        return withScale(vector.getX(), vector.getY());
+        return this.withScale(vector.getX(), vector.getY());
     }
 
     /**
@@ -303,7 +303,7 @@ public class DiscreteTransform2 {
      * @return The added transforms as a copy
      */
     public DiscreteTransform2 withTransformation(DiscreteTransform2 transform) {
-        return new DiscreteTransform2(transform.getMatrix().mul(getMatrix()));
+        return new DiscreteTransform2(transform.getMatrix().mul(this.getMatrix()));
     }
 
     /**
@@ -328,7 +328,7 @@ public class DiscreteTransform2 {
      * @return The new translation transform
      */
     public static DiscreteTransform2 fromTranslation(Vector2i vector) {
-        return fromTranslation(vector.getX(), vector.getY());
+        return DiscreteTransform2.fromTranslation(vector.getX(), vector.getY());
     }
 
     /**
@@ -350,7 +350,7 @@ public class DiscreteTransform2 {
      * @return The new scale transform
      */
     public static DiscreteTransform2 fromScale(int a) {
-        return fromScale(a, a);
+        return DiscreteTransform2.fromScale(a, a);
     }
 
     /**
@@ -361,7 +361,7 @@ public class DiscreteTransform2 {
      * @return The new scale transform
      */
     public static DiscreteTransform2 fromScale(Vector2i vector) {
-        return fromScale(vector.getX(), vector.getY());
+        return DiscreteTransform2.fromScale(vector.getX(), vector.getY());
     }
 
     /**
@@ -470,9 +470,9 @@ public class DiscreteTransform2 {
         }
         final Vector2i center = size.sub(1, 1).div(2);
         if (mul180) {
-            return fromRotation(quarterTurns, center, xEven, yEven);
+            return DiscreteTransform2.fromRotation(quarterTurns, center, xEven, yEven);
         }
-        return fromRotation(quarterTurns, center, xEven);
+        return DiscreteTransform2.fromRotation(quarterTurns, center, xEven);
     }
 
 }

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.state;
 
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -32,6 +33,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * may not be exposed in the API.
  */
 @CatalogedBy(EnumStateProperties.class)
-public interface EnumStateProperty<E extends Enum<E>> extends StateProperty<E> {
+public interface EnumStateProperty<E extends Enum<E>> extends DefaultedRegistryValue, StateProperty<E> {
 
 }

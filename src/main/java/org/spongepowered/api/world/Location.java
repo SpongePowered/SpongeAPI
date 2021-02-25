@@ -29,13 +29,14 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.util.Direction;
-import org.spongepowered.api.world.biome.BiomeType;
+import org.spongepowered.api.world.biome.Biome;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Optional;
 
-public interface Location<W extends World<W>> {
+public interface Location<W extends World<W, L>, L extends Location<W, L>> {
 
     /**
      * Gets the underlying world. Throws a {@link IllegalStateException}
@@ -161,7 +162,7 @@ public interface Location<W extends World<W>> {
      * @param world The new world
      * @return A new instance
      */
-    Location<W> withWorld(W world);
+    L withWorld(W world);
 
     /**
      * Create a new instance with a new position.
@@ -169,7 +170,7 @@ public interface Location<W extends World<W>> {
      * @param position The new position
      * @return A new instance
      */
-    Location<W> withPosition(Vector3d position);
+    L withPosition(Vector3d position);
 
     /**
      * Create a new instance with a new block position.
@@ -177,7 +178,7 @@ public interface Location<W extends World<W>> {
      * @param position The new position
      * @return A new instance
      */
-    Location<W> withBlockPosition(Vector3i position);
+    L withBlockPosition(Vector3i position);
 
     /**
      * Subtract another Vector3d to the position on this instance, returning
@@ -186,7 +187,7 @@ public interface Location<W extends World<W>> {
      * @param v The vector to subtract
      * @return A new instance
      */
-    Location<W> sub(Vector3d v);
+    L sub(Vector3d v);
 
     /**
      * Subtract another Vector3i to the position on this instance, returning
@@ -195,7 +196,7 @@ public interface Location<W extends World<W>> {
      * @param v The vector to subtract
      * @return A new instance
      */
-    Location<W> sub(Vector3i v);
+    L sub(Vector3i v);
 
     /**
      * Subtract vector components to the position on this instance, returning a
@@ -206,7 +207,7 @@ public interface Location<W extends World<W>> {
      * @param z The z component
      * @return A new instance
      */
-    Location<W> sub(double x, double y, double z);
+    L sub(double x, double y, double z);
 
     /**
      * Add another Vector3d to the position on this instance, returning a new
@@ -215,7 +216,7 @@ public interface Location<W extends World<W>> {
      * @param v The vector to add
      * @return A new instance
      */
-    Location<W> add(Vector3d v);
+    L add(Vector3d v);
 
     /**
      * Add another Vector3i to the position on this instance, returning a new
@@ -224,7 +225,7 @@ public interface Location<W extends World<W>> {
      * @param v The vector to add
      * @return A new instance
      */
-    Location<W> add(Vector3i v);
+    L add(Vector3i v);
 
     /**
      * Add vector components to the position on this instance, returning a new
@@ -235,7 +236,7 @@ public interface Location<W extends World<W>> {
      * @param z The z component
      * @return A new instance
      */
-    Location<W> add(double x, double y, double z);
+    L add(double x, double y, double z);
 
     /**
      * Gets the location next to this one in the given direction.
@@ -244,7 +245,7 @@ public interface Location<W extends World<W>> {
      * @param direction The direction to move in
      * @return The location in that direction
      */
-    Location<W> relativeTo(Direction direction);
+    L relativeTo(Direction direction);
 
     /**
      * Gets the location next to this one in the given direction.
@@ -259,14 +260,14 @@ public interface Location<W extends World<W>> {
      * @throws IllegalArgumentException If the direction is a
      * {@link Direction.Division#SECONDARY_ORDINAL}
      */
-    Location<W> relativeToBlock(Direction direction);
+    L relativeToBlock(Direction direction);
 
     /**
      * Gets the block at this location.
      *
      * @return The biome at this location
      */
-    BiomeType getBiome();
+    Biome getBiome();
 
     /**
      * Returns true if this location has a block at its
@@ -289,7 +290,7 @@ public interface Location<W extends World<W>> {
      * @return The block type
      */
     default BlockType getBlockType() {
-        return getBlock().getType();
+        return this.getBlock().getType();
     }
 
     /**

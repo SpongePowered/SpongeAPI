@@ -52,7 +52,7 @@ public interface ChannelExceptionHandler<C extends EngineConnection> {
      * @return The channel exception handler
      */
     static ChannelExceptionHandler<EngineConnection> logEverything() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).logEverything();
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).logEverything();
     }
 
     /**

@@ -56,7 +56,7 @@ public class SlotTransaction extends Transaction<ItemStackSnapshot> {
      * @param stack The stack
      */
     public void setCustom(ItemStack stack) {
-        setCustom(Objects.requireNonNull(stack, "ItemStack was null").createSnapshot());
+        this.setCustom(Objects.requireNonNull(stack, "ItemStack was null").createSnapshot());
     }
 
     /**
@@ -72,10 +72,10 @@ public class SlotTransaction extends Transaction<ItemStackSnapshot> {
     public String toString() {
         return com.google.common.base.MoreObjects.toStringHelper(this)
                 .add("slot", this.slot)
-                .add("original", getOriginal())
-                .add("default", getDefault())
-                .add("custom", getCustom())
-                .add("valid", isValid())
+                .add("original", this.getOriginal())
+                .add("default", this.getDefault())
+                .add("custom", this.getCustom())
+                .add("valid", this.isValid())
                 .toString();
     }
     

@@ -27,7 +27,7 @@ package org.spongepowered.api.entity.living.animal.horse;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 
-public interface PackHorse extends HorseEntity {
+public interface PackHorse extends HorseLike {
 
     /**
      * {@link Keys#HAS_CHEST}

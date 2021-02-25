@@ -34,7 +34,7 @@ import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.persistence.Queries;
-import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3d;
 
@@ -103,8 +103,8 @@ public final class RespawnLocation implements DataSerializable {
      * @return The position object, if available.
      */
     public Optional<ServerLocation> asLocation() {
-        Optional<ServerWorld> optWorld = Sponge.getServer().getWorldManager().getWorld(this.getWorldKey());
-        return optWorld.map(world -> ServerLocation.of(world, getPosition()));
+        Optional<ServerWorld> optWorld = Sponge.getServer().getWorldManager().world(this.getWorldKey());
+        return optWorld.map(world -> ServerLocation.of(world, this.getPosition()));
     }
 
     @Override
@@ -115,11 +115,11 @@ public final class RespawnLocation implements DataSerializable {
     @Override
     public DataContainer toContainer() {
         return DataContainer.createNew()
-                .set(Queries.CONTENT_VERSION, getContentVersion())
-                .set(Queries.POSITION_X, getPosition().getX())
-                .set(Queries.POSITION_Y, getPosition().getY())
-                .set(Queries.POSITION_Z, getPosition().getZ())
-                .set(Queries.FORCED_SPAWN, isForced())
+                .set(Queries.CONTENT_VERSION, this.getContentVersion())
+                .set(Queries.POSITION_X, this.getPosition().getX())
+                .set(Queries.POSITION_Y, this.getPosition().getY())
+                .set(Queries.POSITION_Z, this.getPosition().getZ())
+                .set(Queries.FORCED_SPAWN, this.isForced())
                 .set(Queries.WORLD_KEY, this.getWorldKey().getFormatted());
     }
 
@@ -154,7 +154,8 @@ public final class RespawnLocation implements DataSerializable {
     /**
      * A helper class to build {@link RespawnLocation}s.
      */
-    public static final class Builder extends AbstractDataBuilder<RespawnLocation> implements CopyableBuilder<RespawnLocation, Builder> {
+    public static final class Builder extends AbstractDataBuilder<RespawnLocation> implements org.spongepowered.api.util.Builder<RespawnLocation,
+            Builder>, CopyableBuilder<RespawnLocation, Builder> {
 
         @Nullable ResourceKey world;
         @Nullable Vector3d position;
@@ -175,7 +176,7 @@ public final class RespawnLocation implements DataSerializable {
          * @return This builder, for chaining
          */
         public Builder world(final ServerWorld world) {
-            return world(Objects.requireNonNull(world).getKey());
+            return this.world(Objects.requireNonNull(world).getKey());
         }
 
         /**
@@ -229,7 +230,7 @@ public final class RespawnLocation implements DataSerializable {
 
         @Override
         protected Optional<RespawnLocation> buildContent(DataView container) throws InvalidDataException {
-            final ResourceKey worldKey = container.getKey(Queries.WORLD_KEY).get();
+            final ResourceKey worldKey = container.getResourceKey(Queries.WORLD_KEY).get();
             final double x = container.getDouble(Queries.POSITION_X).get();
             final double y = container.getDouble(Queries.POSITION_Y).get();
             final double z = container.getDouble(Queries.POSITION_Z).get();

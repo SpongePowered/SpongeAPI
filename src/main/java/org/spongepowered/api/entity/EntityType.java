@@ -25,15 +25,15 @@
 package org.spongepowered.api.entity;
 
 import net.kyori.adventure.text.ComponentLike;
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Describes a type of entity.
  */
 @CatalogedBy(EntityTypes.class)
-public interface EntityType<A extends Entity> extends CatalogType, ComponentLike {
+public interface EntityType<A extends Entity> extends DefaultedRegistryValue, ComponentLike {
 
     /**
      * If true {@link Entity entities} of this type will not be saved to disk.

@@ -27,42 +27,49 @@ package org.spongepowered.api.command.parameter.managed.clientcompletion;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.parameter.managed.ValueParser;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * Supported {@link ClientCompletionTypes}.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class ClientCompletionTypes {
 
-    // SORTFIELDS: ON
+    // @formatter:off
+
+    // SORTFIELDS:ON
 
     /**
      * Indicates to the client that the {@link ValueParser} will parse a
      * decimal number.
      */
-    public static final Supplier<ClientCompletionType> DECIMAL_NUMBER =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionType.class, "decimal_number");
+    public static final DefaultedRegistryReference<ClientCompletionType> DECIMAL_NUMBER = ClientCompletionTypes.key(ResourceKey.sponge("decimal_number"));
 
     /**
-     * Indicates to the client that the {@link ValueParser} will parse Json.
+     * Indicates to the client that the {@link ValueParser} will parse SNBT
+     * (the string format for NBT).
+     *
+     * <p>This format somewhat resembles <em>JSON</em>, but supports unquoted
+     * keys, and can unambiguously distinguish every NBT tag type.</p>
      */
-    public static final Supplier<ClientCompletionType> JSON =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionType.class, "json");
+    public static final DefaultedRegistryReference<ClientCompletionType> SNBT = ClientCompletionTypes.key(ResourceKey.sponge("snbt"));
 
     /**
      * Hides this element from the client - useful for if the
      * {@link ValueParser} does not parse any part of the string.
      */
-    public static final Supplier<ClientCompletionType> NONE =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionType.class, "none");
+    public static final DefaultedRegistryReference<ClientCompletionType> NONE = ClientCompletionTypes.key(ResourceKey.sponge("none"));
 
     /**
      * Indicates to the client that the {@link ValueParser} is a
      * {@link ResourceKey}.
      */
-    public static final Supplier<ClientCompletionType> RESOURCE_KEY =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionType.class, "resource_key");
+    public static final DefaultedRegistryReference<ClientCompletionType> RESOURCE_KEY = ClientCompletionTypes.key(ResourceKey.sponge("resource_key"));
 
     /**
      * Indicates to the client that the {@link ValueParser} is a standard
@@ -70,20 +77,22 @@ public final class ClientCompletionTypes {
      *
      * <p>This is the default behaviour for any custom {@link ValueParser}.</p>
      */
-    public static final Supplier<ClientCompletionType> STRING =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionType.class, "string");
+    public static final DefaultedRegistryReference<ClientCompletionType> STRING = ClientCompletionTypes.key(ResourceKey.sponge("string"));
 
     /**
      * Indicates to the client that the {@link ValueParser} accepts a whole
      * number.
      */
-    public static final Supplier<ClientCompletionType> WHOLE_NUMBER =
-            Sponge.getRegistry().getCatalogRegistry().provideSupplier(ClientCompletionType.class, "whole_number");
+    public static final DefaultedRegistryReference<ClientCompletionType> WHOLE_NUMBER = ClientCompletionTypes.key(ResourceKey.sponge("whole_number"));
 
-    // SORTFIELDS: OFF
+    // SORTFIELDS:OFF
+
+    // @formatter:on
 
     private ClientCompletionTypes() {
-        throw new IllegalStateException("This should not be callable");
     }
 
+    private static DefaultedRegistryReference<ClientCompletionType> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.CLIENT_COMPLETION_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

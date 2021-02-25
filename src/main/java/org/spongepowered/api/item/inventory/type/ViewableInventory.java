@@ -34,7 +34,6 @@ import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.menu.InventoryMenu;
-import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.math.vector.Vector2i;
 
 import java.util.List;
@@ -83,13 +82,13 @@ public interface ViewableInventory extends Inventory {
      * @return The builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
      * A builder for inventories conforming to a ContainerType
      */
-    interface Builder extends ResettableBuilder<Inventory, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<Inventory, Builder> {
 
         /**
          * Specifies the type of inventory you want to build.
@@ -107,7 +106,7 @@ public interface ViewableInventory extends Inventory {
          * @param supplier The ContainerType supplier
          * @return The building step.
          */
-        default BuildingStep type(Supplier<ContainerType> supplier) {
+        default BuildingStep type(Supplier<? extends ContainerType> supplier) {
             return this.type(supplier.get());
         }
 

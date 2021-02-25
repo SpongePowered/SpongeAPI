@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.world.teleport;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.Tristate;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.World;
@@ -37,7 +37,7 @@ import org.spongepowered.math.vector.Vector3i;
  * location is a suitable candidate for teleporting to safely.
  */
 @CatalogedBy(TeleportHelperFilters.class)
-public interface TeleportHelperFilter extends CatalogType {
+public interface TeleportHelperFilter extends DefaultedRegistryValue {
 
     /**
      * Tests whether the location in question is valid, regardless of whether

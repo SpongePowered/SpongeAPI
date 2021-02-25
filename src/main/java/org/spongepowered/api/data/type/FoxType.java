@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a type of fox a fox is.
  */
 @CatalogedBy(FoxTypes.class)
-public interface FoxType extends CatalogType {
+public interface FoxType extends DefaultedRegistryValue {
 
 }

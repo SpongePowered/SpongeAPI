@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.entity.living.animal.horse.Horse;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -34,6 +34,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * horse. The style can be inherited to new born child horses.</p>
  */
 @CatalogedBy(HorseStyles.class)
-public interface HorseStyle extends CatalogType {
+public interface HorseStyle extends DefaultedRegistryValue {
 
 }

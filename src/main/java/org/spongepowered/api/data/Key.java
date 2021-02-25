@@ -26,13 +26,14 @@ package org.spongepowered.api.data;
 
 import io.leangen.geantyref.TypeToken;
 import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.event.EventListener;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
-import org.spongepowered.api.util.CatalogBuilder;
+import org.spongepowered.api.event.lifecycle.RegisterRegistryValueEvent;
+import org.spongepowered.api.util.ResourceKeyedBuilder;
 import org.spongepowered.api.util.TypeTokens;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.plugin.PluginContainer;
@@ -43,6 +44,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.BiPredicate;
 
 /**
@@ -64,7 +66,7 @@ import java.util.function.BiPredicate;
  * @param <V> The type of {@link Value}
  */
 @CatalogedBy(Keys.class)
-public interface Key<V extends Value<?>> extends CatalogType {
+public interface Key<V extends Value<?>> extends ResourceKeyed {
 
     /**
      * Creates a {@link Key.Builder} which allows creation of a {@link Key}
@@ -75,7 +77,7 @@ public interface Key<V extends Value<?>> extends CatalogType {
      * persisted, a {@link DataRegistration} is required.
      *
      * <p>Registration of a custom created {@link Key} is required through
-     * {@link org.spongepowered.api.event.lifecycle.RegisterCatalogEvent}. The
+     * {@link RegisterRegistryValueEvent}. The
      * registration of a {@link DataRegistration} is done separately.
      * </p>
      *
@@ -84,7 +86,16 @@ public interface Key<V extends Value<?>> extends CatalogType {
      */
     @SuppressWarnings("unchecked")
     static Builder<?, ?> builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+    }
+
+    static <E, V extends Value<E>> Key<V> of(final PluginContainer plugin, final String value, final TypeToken<V> type) {
+        return Key.of(ResourceKey.of(Objects.requireNonNull(plugin, "plugin"), value), type);
+    }
+
+    static <E, V extends Value<E>> Key<V> of(final ResourceKey resourceKey, final TypeToken<V> type) {
+        return Key.builder().key(Objects.requireNonNull(resourceKey, "resourceKey")).type(Objects.requireNonNull(type, "type"))
+                .build();
     }
 
     /**
@@ -136,11 +147,7 @@ public interface Key<V extends Value<?>> extends CatalogType {
      */
     <E extends DataHolder> void registerEvent(PluginContainer plugin, Class<E> holderFilter, EventListener<ChangeDataHolderEvent.ValueChange> listener);
 
-    static <E, V extends Value<E>> Key<V> of(PluginContainer plugin, String name, TypeToken<V> type) {
-        return Key.builder().key(ResourceKey.of(plugin, name)).type(type).build();
-    }
-
-    interface Builder<E, V extends Value<E>> extends CatalogBuilder<Key<V>, Builder<E, V>> {
+    interface Builder<E, V extends Value<E>> extends ResourceKeyedBuilder<Key<V>, Builder<E, V>> {
 
         /**
          * Starter method for the builder, to be used immediately after
@@ -159,7 +166,6 @@ public interface Key<V extends Value<?>> extends CatalogType {
          * @return This builder, generified
          */
         <T, B extends Value<T>> Builder<T, B> type(TypeToken<B> token);
-
 
         /**
          * Starter method for the builder, to be used immediately after
@@ -200,15 +206,12 @@ public interface Key<V extends Value<?>> extends CatalogType {
          */
         Builder<E, V> includesTester(BiPredicate<? super E, ? super E> predicate);
 
-        @Override
-        Builder<E, V> key(ResourceKey key);
-
         /**
          * Builds the {@link Key}.
          *
          * @return The built key
          * @throws IllegalStateException If not all required options were specified;
-         *                               {@link #key(ResourceKey)} and {@link #type(TypeToken)}.
+         *                               {@link #type(TypeToken)}.
          */
         @Override
         Key<V> build();

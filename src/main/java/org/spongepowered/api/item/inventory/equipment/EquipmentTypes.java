@@ -24,30 +24,45 @@
  */
 package org.spongepowered.api.item.inventory.equipment;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * All built-in equipment types.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class EquipmentTypes {
 
-    public static final Supplier<EquipmentType> FEET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "feet");
+    // @formatter:off
 
-    public static final Supplier<EquipmentType> CHEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "chest");
+    // SORTFIELDS:ON
 
-    public static final Supplier<EquipmentType> HEAD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "head");
+    public static final DefaultedRegistryReference<EquipmentType> FEET = EquipmentTypes.key(ResourceKey.sponge("feet"));
 
-    public static final Supplier<EquipmentType> LEGS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "legs");
+    public static final DefaultedRegistryReference<EquipmentType> CHEST = EquipmentTypes.key(ResourceKey.sponge("chest"));
 
-    public static final Supplier<EquipmentType> MAIN_HAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "main_hand");
+    public static final DefaultedRegistryReference<EquipmentType> HEAD = EquipmentTypes.key(ResourceKey.sponge("head"));
 
-    public static final Supplier<EquipmentType> OFF_HAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentType.class, "off_hand");
+    public static final DefaultedRegistryReference<EquipmentType> LEGS = EquipmentTypes.key(ResourceKey.sponge("legs"));
 
-    // Suppress default constructor to ensure non-instantiability.
+    public static final DefaultedRegistryReference<EquipmentType> MAIN_HAND = EquipmentTypes.key(ResourceKey.sponge("main_hand"));
+
+    public static final DefaultedRegistryReference<EquipmentType> OFF_HAND = EquipmentTypes.key(ResourceKey.sponge("off_hand"));
+
+    // SORTFIELDS:OFF
+
+    // @formatter:on
+
     private EquipmentTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<EquipmentType> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.EQUIPMENT_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

@@ -24,14 +24,22 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link HandType}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class HandTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
@@ -39,16 +47,21 @@ public final class HandTypes {
      * The hand used for main interactions such as using tools, and placing
      * blocks.
      */
-    public static final Supplier<HandType> MAIN_HAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HandType.class, "main_hand");
+    public static final DefaultedRegistryReference<HandType> MAIN_HAND = HandTypes.key(ResourceKey.sponge("main_hand"));
 
     /**
      * The hand used for secondary actions, such as a shield.
      */
-    public static final Supplier<HandType> OFF_HAND = Sponge.getRegistry().getCatalogRegistry().provideSupplier(HandType.class, "off_hand");
+    public static final DefaultedRegistryReference<HandType> OFF_HAND = HandTypes.key(ResourceKey.sponge("off_hand"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private HandTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<HandType> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.HAND_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

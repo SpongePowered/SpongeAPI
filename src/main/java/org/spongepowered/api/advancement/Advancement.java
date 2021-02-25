@@ -27,14 +27,10 @@ package org.spongepowered.api.advancement;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.ComponentLike;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.NamedCatalogType;
+import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
-import org.spongepowered.api.util.CatalogBuilder;
-import org.spongepowered.api.util.NamedCatalogBuilder;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.ResourceKeyedBuilder;
 
 import java.util.Collection;
 import java.util.List;
@@ -43,7 +39,7 @@ import java.util.Optional;
 /**
  * An advancement.
  */
-public interface Advancement extends ComponentLike, CatalogType {
+public interface Advancement extends ComponentLike, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create {@link Advancement}s.
@@ -51,7 +47,7 @@ public interface Advancement extends ComponentLike, CatalogType {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -107,7 +103,7 @@ public interface Advancement extends ComponentLike, CatalogType {
     /**
      * A builder to create {@link Advancement}s.
      */
-    interface Builder extends CatalogBuilder<Advancement, Builder> {
+    interface Builder extends ResourceKeyedBuilder<Advancement, Builder> {
 
         /**
          * Sets the parent {@link Advancement}.

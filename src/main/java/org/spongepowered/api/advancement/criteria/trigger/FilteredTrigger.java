@@ -41,7 +41,7 @@ public interface FilteredTrigger<C extends FilteredTriggerConfiguration> {
      * @return The builder
      */
     static Builder<?> builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -63,7 +63,8 @@ public interface FilteredTrigger<C extends FilteredTriggerConfiguration> {
      *
      * @param <C> The trigger type
      */
-    interface Builder<C extends FilteredTriggerConfiguration> extends CopyableBuilder<FilteredTrigger<C>, Builder<C>> {
+    interface Builder<C extends FilteredTriggerConfiguration> extends org.spongepowered.api.util.Builder<FilteredTrigger<C>, Builder<C>>,
+            CopyableBuilder<FilteredTrigger<C>, Builder<C>> {
 
         /**
          * Sets the {@link Trigger}.
@@ -88,7 +89,6 @@ public interface FilteredTrigger<C extends FilteredTriggerConfiguration> {
          * @return The trigger
          */
         FilteredTrigger<C> build();
-
     }
 
 }

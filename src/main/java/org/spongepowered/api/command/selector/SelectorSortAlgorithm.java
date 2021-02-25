@@ -24,12 +24,14 @@
  */
 package org.spongepowered.api.command.selector;
 
-import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Defines an algorithm used when a selector sorts the selected entities, which
  * will have a significant effect when limits are imposed on the selector.
  */
-public interface SelectorSortAlgorithm extends CatalogType {
+@CatalogedBy(SelectorSortAlgorithms.class)
+public interface SelectorSortAlgorithm extends DefaultedRegistryValue {
 
 }

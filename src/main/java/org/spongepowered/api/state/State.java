@@ -27,7 +27,6 @@ package org.spongepowered.api.state;
 import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.SerializableDataHolderBuilder;
-import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.Cycleable;
 

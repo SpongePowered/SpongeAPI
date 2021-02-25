@@ -41,7 +41,7 @@ public interface ScoreCriterionProgress extends CriterionProgress {
      * @return The goal value
      */
     default int getGoal() {
-        return getCriterion().getGoal();
+        return this.getCriterion().getGoal();
     }
 
     /**

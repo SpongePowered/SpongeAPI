@@ -33,7 +33,7 @@ import org.spongepowered.api.util.mirror.Mirror;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.LocatableBlock;
-import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.schematic.Schematic;
 
 import java.util.function.Supplier;
@@ -110,7 +110,7 @@ public interface BlockEntity extends SerializableDataHolder.Mutable, Locatable {
      * @param rotation The rotation
      * @return The rotated state if not this state
      */
-    default BlockEntity rotate(final Supplier<Rotation> rotation) {
+    default BlockEntity rotate(final Supplier<? extends Rotation> rotation) {
         return this.rotate(rotation.get());
     }
 
@@ -128,7 +128,7 @@ public interface BlockEntity extends SerializableDataHolder.Mutable, Locatable {
      * @param mirror The mirror
      * @return The mirrored BlockEntity
      */
-    default BlockEntity mirror(final Supplier<Mirror> mirror) {
+    default BlockEntity mirror(final Supplier<? extends Mirror> mirror) {
         return this.mirror(mirror.get());
     }
 

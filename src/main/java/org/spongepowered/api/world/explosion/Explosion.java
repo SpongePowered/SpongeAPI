@@ -29,7 +29,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.Locatable;
-import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.World;
 
 import java.util.Optional;
@@ -45,7 +45,7 @@ public interface Explosion extends Locatable {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -133,7 +133,7 @@ public interface Explosion extends Locatable {
     /**
      * A builder for {@link Explosion}.
      */
-    interface Builder extends CopyableBuilder<Explosion, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<Explosion, Builder>, CopyableBuilder<Explosion, Builder> {
 
         /**
          * Sets the location origin of the explosion.

@@ -25,7 +25,7 @@
 package org.spongepowered.api.service.economy;
 
 import net.kyori.adventure.text.Component;
-import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 
 import java.math.BigDecimal;
 
@@ -33,20 +33,17 @@ import java.math.BigDecimal;
  * Represents a form of currency. At least one type of currency is always
  * supported.
  *
- * <p>Unlike other {@link CatalogType}s, Currency has no predefined
+ * <p>Unlike other registry-like values, Currency has no predefined
  * values. Unless a plugin has specific knowledge of a particular currency
  * provided by an economy plugin, {@link EconomyService#getDefaultCurrency()}
  * should usually be used.</p>
  *
  * <p>Depending on the provider of the {@link EconomyService}, more currencies may be available.</p>
  */
-public interface Currency extends CatalogType {
+public interface Currency extends DefaultedRegistryValue {
 
     /**
      * The currency's display name, in singular form. Ex: Dollar.
-     *
-     * <p>This should be preferred over {@link CatalogType#getKey()}
-     * for display purposes.</p>
      *
      * @return displayName of the currency singular
      */

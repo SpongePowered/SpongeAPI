@@ -46,7 +46,7 @@ public interface FireworkEffect extends DataSerializable {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
 
@@ -93,7 +93,7 @@ public interface FireworkEffect extends DataSerializable {
      */
     FireworkShape getShape();
 
-    interface Builder extends CopyableBuilder<FireworkEffect, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<FireworkEffect, Builder>, CopyableBuilder<FireworkEffect, Builder> {
 
         /**
          * Sets whether the {@link FireworkEffect} is going to have a trail

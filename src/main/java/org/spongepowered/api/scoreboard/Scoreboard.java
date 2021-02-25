@@ -28,6 +28,7 @@ import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.scoreboard.criteria.Criterion;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlot;
 import org.spongepowered.api.scoreboard.objective.Objective;
@@ -53,7 +54,7 @@ public interface Scoreboard {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -105,7 +106,7 @@ public interface Scoreboard {
      * @throws IllegalStateException if the specified {@link Objective} does not exist
      *                               on this scoreboard
      */
-    default void updateDisplaySlot(@Nullable Objective objective, Supplier<? extends DisplaySlot> displaySlot) throws IllegalStateException {
+    default void updateDisplaySlot(@Nullable Objective objective, DefaultedRegistryReference<? extends DisplaySlot> displaySlot) throws IllegalStateException {
         this.updateDisplaySlot(objective, displaySlot.get());
     }
 
@@ -240,7 +241,7 @@ public interface Scoreboard {
     /**
      * Represents a builder to create {@link Scoreboard} instances.
      */
-    interface Builder extends CopyableBuilder<Scoreboard, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<Scoreboard, Builder>, CopyableBuilder<Scoreboard, Builder> {
 
         /**
          * Sets the list of {@link Objective}s of the {@link Scoreboard}.

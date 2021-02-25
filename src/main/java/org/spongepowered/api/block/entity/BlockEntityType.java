@@ -24,15 +24,15 @@
  */
 package org.spongepowered.api.block.entity;
 
-import org.spongepowered.api.CatalogType;
-import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Describes a type of block entity.
  */
 @CatalogedBy(BlockEntityTypes.class)
-public interface BlockEntityType extends CatalogType {
+public interface BlockEntityType extends DefaultedRegistryValue {
 
     /**
      * Determines if the provided block is considered valid by the {@link BlockEntity}.
@@ -45,6 +45,6 @@ public interface BlockEntityType extends CatalogType {
      * @param block The block to test
      * @return True if valid, false if not
      */
-    boolean isValidBlock(BlockType block);
+    boolean isValidBlock(BlockState block);
 }
 

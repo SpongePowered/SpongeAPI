@@ -24,15 +24,15 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.effect.sound.SoundType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a type of instrument.
  */
 @CatalogedBy(InstrumentTypes.class)
-public interface InstrumentType extends CatalogType {
+public interface InstrumentType extends DefaultedRegistryValue {
 
     /**
      * Gets the {@link SoundType} that is used by

@@ -24,24 +24,15 @@
  */
 package org.spongepowered.api.entity.attribute.type;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.entity.attribute.AttributeModifier;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
-
-import java.util.Optional;
 
 /**
  * Represents an attribute type that can apply effects or modify traits related to an entity.
  */
 @CatalogedBy(AttributeTypes.class)
-public interface AttributeType extends CatalogType {
-
-    /**
-     * Gets the parent attribute type of this attribute type.
-     *
-     * @return The parent type if present.
-     */
-    Optional<AttributeType> getParent();
+public interface AttributeType extends DefaultedRegistryValue {
 
     /**
      * Gets the default value of this attribute type before any {@link AttributeModifier}s are applied.

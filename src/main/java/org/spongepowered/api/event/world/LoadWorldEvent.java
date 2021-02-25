@@ -25,11 +25,10 @@
 package org.spongepowered.api.event.world;
 
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.server.ServerWorld;
 
 /**
- * Base event for when a {@link World} is loaded.
+ * Event for when a {@link ServerWorld world} is loaded.
  */
 public interface LoadWorldEvent extends Event {
 
@@ -39,4 +38,11 @@ public interface LoadWorldEvent extends Event {
      * @return The world
      */
     ServerWorld getWorld();
+
+    /**
+     * Gets if the {@link ServerWorld world} has loaded before.
+     *
+     * @return True if loaded before, false if not
+     */
+    boolean hasLoadedBefore();
 }

@@ -25,7 +25,7 @@
 package org.spongepowered.api.scoreboard;
 
 import net.kyori.adventure.text.ComponentLike;
-import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -35,6 +35,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * a {@link Team} collide with other entities.</p>
  */
 @CatalogedBy(CollisionRules.class)
-public interface CollisionRule extends CatalogType, ComponentLike {
+public interface CollisionRule extends DefaultedRegistryValue, ComponentLike {
 
 }

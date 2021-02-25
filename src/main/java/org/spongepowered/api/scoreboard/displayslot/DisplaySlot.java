@@ -26,7 +26,7 @@ package org.spongepowered.api.scoreboard.displayslot;
 
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.scoreboard.Team;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -36,7 +36,7 @@ import java.util.Optional;
  * Represents an area to display an objective.
  */
 @CatalogedBy(DisplaySlots.class)
-public interface DisplaySlot extends CatalogType {
+public interface DisplaySlot extends DefaultedRegistryValue {
 
     /**
      * Gets the display slot for the specified team color. Returns

@@ -24,18 +24,34 @@
  */
 package org.spongepowered.api.item.inventory.equipment;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class EquipmentGroups {
 
-    public static final Supplier<EquipmentGroup> HELD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentGroup.class, "held");
+    // @formatter:off
 
-    public static final Supplier<EquipmentGroup> WORN = Sponge.getRegistry().getCatalogRegistry().provideSupplier(EquipmentGroup.class, "worn");
+    // SORTFIELDS:ON
 
-    // Suppress default constructor to ensure non-instantiability.
+    public static final DefaultedRegistryReference<EquipmentGroup> HELD = EquipmentGroups.key(ResourceKey.sponge("held"));
+
+    public static final DefaultedRegistryReference<EquipmentGroup> WORN = EquipmentGroups.key(ResourceKey.sponge("worn"));
+
+    // SORTFIELDS:OFF
+
+    // @formatter:on
+
     private EquipmentGroups() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<EquipmentGroup> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.EQUIPMENT_GROUP, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

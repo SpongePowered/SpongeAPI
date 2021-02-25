@@ -38,6 +38,6 @@ public interface BanIpEvent extends Event, Cancellable {
      *
      * @return The ban
      */
-    Ban.Ip getBan();
+    Ban.IP getBan();
 
 }

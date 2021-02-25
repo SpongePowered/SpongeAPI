@@ -24,40 +24,44 @@
  */
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.Engine;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.util.RandomProvider;
-import org.spongepowered.api.world.chunk.ProtoChunk;
 import org.spongepowered.api.world.difficulty.Difficulty;
-import org.spongepowered.api.world.volume.biome.MutableBiomeVolume;
-import org.spongepowered.api.world.volume.block.MutableBlockVolume;
+import org.spongepowered.api.world.volume.biome.BiomeVolume;
+import org.spongepowered.api.world.volume.block.BlockVolume;
 import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
-import org.spongepowered.api.world.volume.block.entity.MutableBlockEntityVolume;
-import org.spongepowered.api.world.volume.block.entity.StreamableBlockEntityVolume;
-import org.spongepowered.api.world.volume.entity.MutableEntityVolume;
+import org.spongepowered.api.world.volume.block.entity.BlockEntityVolume;
+import org.spongepowered.api.world.volume.entity.EntityVolume;
 import org.spongepowered.api.world.volume.game.GenerationVolume;
 import org.spongepowered.api.world.volume.game.LocationBaseDataHolder;
 import org.spongepowered.api.world.volume.game.MutableGameVolume;
-import org.spongepowered.api.world.volume.game.ReadableRegion;
+import org.spongepowered.api.world.volume.game.Region;
 import org.spongepowered.api.world.volume.game.UpdatableVolume;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Objects;
 
 public interface ProtoWorld<P extends ProtoWorld<P>> extends
-        ReadableRegion<P>,
-        MutableBiomeVolume<P>, // Because this is mutable
-        MutableBlockVolume<P>, // Because this is mutable
-        MutableEntityVolume<P>, // Because this is mutable
-        MutableBlockEntityVolume<P>, // Because this is mutable
-        GenerationVolume,
-        LocationBaseDataHolder.Mutable,
-        UpdatableVolume,
-        RandomProvider,
-        PhysicsAwareMutableBlockVolume<P>,
-        MutableGameVolume
+    Region<P>,
+    BiomeVolume.Mutable<P>, // Because this is mutable
+    BlockVolume.Mutable<P>, // Because this is mutable
+    EntityVolume.Mutable<P>, // Because this is mutable
+    BlockEntityVolume.Mutable<P>, // Because this is mutable
+    GenerationVolume.Mutable,
+    LocationBaseDataHolder.Mutable,
+    UpdatableVolume,
+    RandomProvider,
+    PhysicsAwareMutableBlockVolume<P>,
+    MutableGameVolume
 {
 
-    ProtoChunk<?> getChunk(int cx, int cy, int cz);
+    /**
+     * Gets the {@link Engine} that simulates this world.
+     *
+     * @return The engine
+     */
+    Engine getEngine();
 
     /**
      * Gets the seed of this world.
@@ -74,20 +78,19 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
     Difficulty getDifficulty();
 
     @Override
-    default boolean setBlock(Vector3i position, BlockState state, BlockChangeFlag flag) {
-        Objects.requireNonNull(position);
-        Objects.requireNonNull(state);
-        Objects.requireNonNull(flag);
+    default boolean setBlock(final Vector3i position, final BlockState state, final BlockChangeFlag flag) {
+        Objects.requireNonNull(position, "position");
 
-        return this.setBlock(position.getX(), position.getY(), position.getZ(), state, flag);
+        return this.setBlock(position.getX(), position.getY(), position.getZ(), Objects.requireNonNull(state, "state"), Objects.requireNonNull(flag, "flag"));
     }
 
     @Override
     boolean setBlock(int x, int y, int z, BlockState state, BlockChangeFlag flag);
 
     @Override
-    default boolean removeBlock(Vector3i position) {
-        Objects.requireNonNull(position);
+    default boolean removeBlock(final Vector3i position) {
+        Objects.requireNonNull(position, "position");
+
         return this.removeBlock(position.getX(), position.getY(), position.getZ());
     }
 

@@ -25,15 +25,13 @@
 package org.spongepowered.api.world.difficulty;
 
 import net.kyori.adventure.text.ComponentLike;
-import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a possible difficulty setting.
- *
- * @see Difficulties
  */
 @CatalogedBy(Difficulties.class)
-public interface Difficulty extends CatalogType, ComponentLike {
+public interface Difficulty extends DefaultedRegistryValue, ComponentLike {
 
 }

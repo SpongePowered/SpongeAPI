@@ -24,15 +24,22 @@
  */
 package org.spongepowered.api.advancement;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of all the available {@link AdvancementType}s in Minecraft.
  */
 @SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class AdvancementTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
@@ -42,7 +49,7 @@ public final class AdvancementTypes {
      * @see <a href="https://minecraft.gamepedia.com/File:ChallengeComplete.png">
      *     the Minecraft Wiki for an example of this advancement type</a>
      */
-    public static final Supplier<AdvancementType> CHALLENGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AdvancementType.class, "challenge");
+    public static final DefaultedRegistryReference<AdvancementType> CHALLENGE = AdvancementTypes.key(ResourceKey.sponge("challenge"));
 
     /**
      * Represents the goal reached advancement type.
@@ -50,7 +57,7 @@ public final class AdvancementTypes {
      * @see <a href="https://minecraft.gamepedia.com/File:GoalReached.png">
      *     the Minecraft Wiki for an example of this advancement type</a>
      */
-    public static final Supplier<AdvancementType> GOAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AdvancementType.class, "goal");
+    public static final DefaultedRegistryReference<AdvancementType> GOAL = AdvancementTypes.key(ResourceKey.sponge("goal"));
 
     /**
      * Represents the advancement made advancement type.
@@ -58,13 +65,16 @@ public final class AdvancementTypes {
      * @see <a href="https://minecraft.gamepedia.com/File:AdvancementMade.png">
      *     the Minecraft Wiki for an example of this advancement type</a>
      */
-    public static final Supplier<AdvancementType> TASK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AdvancementType.class, "task");
+    public static final DefaultedRegistryReference<AdvancementType> TASK = AdvancementTypes.key(ResourceKey.sponge("task"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private AdvancementTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<AdvancementType> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.ADVANCEMENT_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

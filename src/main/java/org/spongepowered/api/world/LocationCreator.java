@@ -27,7 +27,9 @@ package org.spongepowered.api.world;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
-public interface LocationCreator {
+public interface LocationCreator<W extends World<W, L>, L extends Location<W, L>> {
+
+    W getWorld();
 
     /**
      * Gets a location in this extent at the given position. Essentially, this
@@ -36,7 +38,7 @@ public interface LocationCreator {
      * @param position The position
      * @return The location in this extent
      */
-    ServerLocation getLocation(Vector3i position);
+    L getLocation(Vector3i position);
 
     /**
      * Gets a location in this extent at the given position. Essentially, this
@@ -47,7 +49,7 @@ public interface LocationCreator {
      * @param z The Z position
      * @return The location in this extent
      */
-    default ServerLocation getLocation(int x, int y, int z) {
+    default L getLocation(final int x, final int y, final int z) {
         return this.getLocation(new Vector3i(x, y, z));
     }
 
@@ -59,7 +61,7 @@ public interface LocationCreator {
      * @param position The position
      * @return The location in this extent
      */
-    ServerLocation getLocation(Vector3d position);
+    L getLocation(Vector3d position);
 
     /**
      * Gets a location in this extent at the given position. Essentially, this
@@ -71,30 +73,7 @@ public interface LocationCreator {
      * @param z The Z position
      * @return The location in this extent
      */
-    default ServerLocation getLocation(double x, double y, double z) {
+    default L getLocation(final double x, final double y, final double z) {
         return this.getLocation(new Vector3i(x, y, z));
     }
-
-    /**
-     * Gets a {@link LocatableBlock} for the desired {@link Vector3i} position.
-     *
-     * @param position The position to get the locatable block
-     * @return The locatable block
-     */
-    default LocatableBlock getLocatableBlock(Vector3i position) {
-        return LocatableBlock.builder().location(this.getLocation(position)).build();
-    }
-
-    /**
-     * Gets a {@link LocatableBlock} for the desired {@code x, y, z} coordinates.
-     *
-     * @param x The x position
-     * @param y The y position
-     * @param z The z position
-     * @return The locatable block
-     */
-    default LocatableBlock getLocatableBlock(int x, int y, int z) {
-        return LocatableBlock.builder().location(this.getLocation(x, y, z)).build();
-    }
-
 }

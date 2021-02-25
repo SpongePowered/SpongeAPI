@@ -31,7 +31,7 @@ import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.LocatableBlock;
-import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3d;
 
@@ -77,7 +77,7 @@ public interface RayTrace<T extends Locatable> {
      * @return The ray trace builder.
      */
     static RayTrace<LocatableBlock> block() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).blockRayTrace();
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).blockRayTrace();
     }
 
     /**
@@ -86,7 +86,7 @@ public interface RayTrace<T extends Locatable> {
      * @return The ray trace builder.
      */
     static RayTrace<Entity> entity() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).entityRayTrace();
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).entityRayTrace();
     }
 
     /**
@@ -97,7 +97,7 @@ public interface RayTrace<T extends Locatable> {
      * @return The predicate
      */
     static Predicate<LocatableBlock> onlyAir() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).onlyAir();
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).onlyAir();
     }
 
     /**
@@ -107,7 +107,7 @@ public interface RayTrace<T extends Locatable> {
      * @return The predicate
      */
     static Predicate<LocatableBlock> nonAir() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).notAir();
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).notAir();
     }
 
     /**

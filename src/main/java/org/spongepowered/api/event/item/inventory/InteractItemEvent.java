@@ -24,7 +24,11 @@
  */
 package org.spongepowered.api.event.item.inventory;
 
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.action.InteractEvent;
+import org.spongepowered.api.event.block.InteractBlockEvent;
+import org.spongepowered.api.event.entity.InteractEntityEvent;
+import org.spongepowered.api.event.entity.living.AnimateHandEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
@@ -43,7 +47,22 @@ public interface InteractItemEvent extends InteractEvent {
      */
     ItemStackSnapshot getItemStack();
 
-    interface Primary extends InteractItemEvent {}
+    /**
+     * Called when a player swings its hand in the air.
+     *
+     * <p>For block interactions use {@link InteractBlockEvent.Primary} and
+     * for entity interactions use {@link InteractEntityEvent.Primary} instead.</p>
+     *
+     * <p>To cancel the animation use {@link AnimateHandEvent} instead.</p>
+     */
+    interface Primary extends InteractItemEvent {
 
-    interface Secondary extends InteractItemEvent {}
+    }
+
+    /**
+     * Called when a player interacts with an item in hand.
+     *
+     * <p>Vanilla minecraft does not call an event when interacting with an empty hand in air.</p>
+     */
+    interface Secondary extends InteractItemEvent, Cancellable {}
 }

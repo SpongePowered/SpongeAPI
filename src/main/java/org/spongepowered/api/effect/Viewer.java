@@ -32,8 +32,8 @@ import org.spongepowered.api.effect.particle.ParticleEffect;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.effect.sound.music.MusicDisc;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.dimension.DimensionType;
-import org.spongepowered.api.world.dimension.DimensionTypes;
+import org.spongepowered.api.world.WorldType;
+import org.spongepowered.api.world.WorldTypes;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
@@ -51,12 +51,12 @@ public interface Viewer extends Audience {
      * Sends the effect of being in a particular Vanilla world environment, such as the Nether,
      * as an effect to the viewer.
      *
-     * <p>For example, specifying {@link DimensionTypes#THE_NETHER} will create a red skybox and
+     * <p>For example, specifying {@link WorldTypes#THE_NETHER} will create a red skybox and
      * red hazy fog on the vanilla minecraft client</p>
      *
-     * @param dimensionType The dimension type
+     * @param worldType The world type
      */
-    void sendEnvironment(DimensionType dimensionType);
+    void sendWorldType(WorldType worldType);
 
     /**
      * Spawn a {@link ParticleEffect} at a given position.
@@ -66,8 +66,8 @@ public interface Viewer extends Audience {
      * @param particleEffect The particle effect to spawn
      * @param position The position at which to spawn the particle effect
      */
-    default void spawnParticles(ParticleEffect particleEffect, Vector3d position) {
-        this.spawnParticles(particleEffect, position, Integer.MAX_VALUE);
+    default void spawnParticles(final ParticleEffect particleEffect, final Vector3d position) {
+        this.spawnParticles(Objects.requireNonNull(particleEffect, "particleEffect"), Objects.requireNonNull(position, "position"), Integer.MAX_VALUE);
     }
 
     /**
@@ -104,17 +104,6 @@ public interface Viewer extends Audience {
     void playMusicDisc(Vector3i position, MusicDisc musicDiscType);
 
     /**
-     * Plays the given {@link MusicDisc} at the given position. The benefit of playing
-     * {@link MusicDisc} instead of a {@link SoundType} allows you to stop them through
-     * the {@link #stopMusicDisc(Vector3i)}. Playing a new {@link MusicDisc} at the same
-     * position will cancel the currently playing one.
-     *
-     * @param position The position
-     * @param musicDiscType The music disc
-     */
-    void playMusicDisc(Vector3i position, Supplier<? extends MusicDisc> musicDiscType);
-
-    /**
      * Stops the {@link MusicDisc} that is playing at the given position.
      *
      * @param position The position
@@ -129,9 +118,9 @@ public interface Viewer extends Audience {
      * @param vec The position
      * @param state The block state
      */
-    default void sendBlockChange(Vector3i vec, BlockState state) {
-        Objects.requireNonNull(vec, "vec");
-        this.sendBlockChange(vec.getX(), vec.getY(), vec.getZ(), state);
+    default void sendBlockChange(final Vector3i position, final BlockState state) {
+        Objects.requireNonNull(position, "position");
+        this.sendBlockChange(position.getX(), position.getY(), position.getZ(), Objects.requireNonNull(state, "state"));
     }
 
     /**
@@ -153,11 +142,11 @@ public interface Viewer extends Audience {
      * <p>This is useful for resetting what the client sees
      * after sending a {@link #sendBlockChange block change}.</p>
      *
-     * @param vec The position
+     * @param position The position
      */
-    default void resetBlockChange(Vector3i vec) {
-        Objects.requireNonNull(vec, "vec");
-        this.resetBlockChange(vec.getX(), vec.getY(), vec.getZ());
+    default void resetBlockChange(final Vector3i position) {
+        Objects.requireNonNull(position, "position");
+        this.resetBlockChange(position.getX(), position.getY(), position.getZ());
     }
 
     /**

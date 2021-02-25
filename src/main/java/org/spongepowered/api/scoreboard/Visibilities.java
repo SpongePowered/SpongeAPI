@@ -24,15 +24,23 @@
  */
 package org.spongepowered.api.scoreboard;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * Visibility names which cause nametags or death messages to be displayed
  * differently to players on a team.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class Visibilities {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
@@ -41,32 +49,35 @@ public final class Visibilities {
      *
      * <p>This is the default value.</p>
      */
-    public static final Supplier<Visibility> ALWAYS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Visibility.class, "always");
+    public static final DefaultedRegistryReference<Visibility> ALWAYS = Visibilities.key(ResourceKey.sponge("always"));
 
     /**
      * Death messages or nametags for members of other teams will not be
      * visible, but death messages or nametags for members of the same team
      * will be visible.
      */
-    public static final Supplier<Visibility> HIDE_FOR_OTHER_TEAMS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Visibility.class, "hide_for_other_teams");
+    public static final DefaultedRegistryReference<Visibility> HIDE_FOR_OTHER_TEAMS = Visibilities.key(ResourceKey.sponge("hide_for_other_teams"));
 
     /**
      * Death messages or nametags for members of other teams will be
      * visible, but death messages or nametags for members of the same team
      * will not be visible.
      */
-    public static final Supplier<Visibility> HIDE_FOR_OWN_TEAM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Visibility.class, "hide_for_own_team");
+    public static final DefaultedRegistryReference<Visibility> HIDE_FOR_OWN_TEAM = Visibilities.key(ResourceKey.sponge("hide_for_own_team"));
 
     /**
      * Death messages or nametags are never visible.
      */
-    public static final Supplier<Visibility> NEVER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Visibility.class, "never");
+    public static final DefaultedRegistryReference<Visibility> NEVER = Visibilities.key(ResourceKey.sponge("never"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private Visibilities() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<Visibility> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.VISIBILITY, location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

@@ -26,12 +26,12 @@ package org.spongepowered.api.scheduler;
 
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.fluid.FluidType;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.time.Duration;
 import java.time.temporal.TemporalUnit;
 import java.util.Collection;
-import java.util.function.Supplier;
 
 /**
  * A tick based priority scheduled list targeting speicifc types of
@@ -51,7 +51,7 @@ public interface ScheduledUpdateList<T> {
      * @return The scheduled update
      */
     default ScheduledUpdate<T> schedule(Vector3i pos, T target, int delay, TemporalUnit temporalUnit) {
-        return schedule(pos.getX(), pos.getY(), pos.getZ(), target, delay, temporalUnit, TaskPriorities.NORMAL);
+        return this.schedule(pos.getX(), pos.getY(), pos.getZ(), target, delay, temporalUnit, TaskPriorities.NORMAL.get());
     }
 
     /**
@@ -62,7 +62,7 @@ public interface ScheduledUpdateList<T> {
      * @return The scheduled update
      */
     default ScheduledUpdate<T> schedule(Vector3i pos, T target, Duration delay) {
-        return schedule(pos.getX(), pos.getY(), pos.getZ(), target, delay, TaskPriorities.NORMAL);
+        return this.schedule(pos.getX(), pos.getY(), pos.getZ(), target, delay, TaskPriorities.NORMAL);
     }
 
     /**
@@ -76,7 +76,7 @@ public interface ScheduledUpdateList<T> {
      * @return The scheduled update
      */
     default ScheduledUpdate<T> schedule(int x, int y, int z, T target, int delay, TemporalUnit temporalUnit) {
-        return schedule(x, y, z, target, delay, temporalUnit, TaskPriorities.NORMAL);
+        return this.schedule(x, y, z, target, delay, temporalUnit, TaskPriorities.NORMAL.get());
     }
 
     /**
@@ -89,7 +89,7 @@ public interface ScheduledUpdateList<T> {
      * @return The scheduled update
      */
     default ScheduledUpdate<T> schedule(int x, int y, int z, T target, Duration delay) {
-        return schedule(x, y, z, target, delay, TaskPriorities.NORMAL);
+        return this.schedule(x, y, z, target, delay, TaskPriorities.NORMAL);
     }
 
     /**
@@ -102,7 +102,7 @@ public interface ScheduledUpdateList<T> {
      * @return The scheduled update
      */
     default ScheduledUpdate<T> schedule(Vector3i pos, T target, int delay, TemporalUnit temporalUnit, TaskPriority priority) {
-        return schedule(pos.getX(), pos.getY(), pos.getZ(), target, Duration.of(delay, temporalUnit), priority);
+        return this.schedule(pos.getX(), pos.getY(), pos.getZ(), target, Duration.of(delay, temporalUnit), priority);
     }
 
     /**
@@ -114,8 +114,8 @@ public interface ScheduledUpdateList<T> {
      * @param priority The priority of the scheduled update
      * @return The scheduled update
      */
-    default ScheduledUpdate<T> schedule(Vector3i pos, T target, int delay, TemporalUnit temporalUnit, Supplier<? extends TaskPriority> priority) {
-        return schedule(pos.getX(), pos.getY(), pos.getZ(), target, Duration.of(delay, temporalUnit), priority.get());
+    default ScheduledUpdate<T> schedule(Vector3i pos, T target, int delay, TemporalUnit temporalUnit, DefaultedRegistryReference<? extends TaskPriority> priority) {
+        return this.schedule(pos.getX(), pos.getY(), pos.getZ(), target, Duration.of(delay, temporalUnit), priority.get());
     }
 
     /**
@@ -127,7 +127,7 @@ public interface ScheduledUpdateList<T> {
      * @return The scheduled update
      */
     default ScheduledUpdate<T> schedule(Vector3i pos, T target, Duration delay, TaskPriority priority) {
-        return schedule(pos.getX(), pos.getY(), pos.getZ(), target, delay, priority);
+        return this.schedule(pos.getX(), pos.getY(), pos.getZ(), target, delay, priority);
     }
 
     /**
@@ -138,8 +138,8 @@ public interface ScheduledUpdateList<T> {
      * @param priority The priority of the scheduled update
      * @return The scheduled update
      */
-    default ScheduledUpdate<T> schedule(Vector3i pos, T target, Duration delay, Supplier<? extends TaskPriority> priority) {
-        return schedule(pos.getX(), pos.getY(), pos.getZ(), target, delay, priority.get());
+    default ScheduledUpdate<T> schedule(Vector3i pos, T target, Duration delay, DefaultedRegistryReference<? extends TaskPriority> priority) {
+        return this.schedule(pos.getX(), pos.getY(), pos.getZ(), target, delay, priority.get());
     }
 
     /**
@@ -154,7 +154,7 @@ public interface ScheduledUpdateList<T> {
      * @return The scheduled update
      */
     default ScheduledUpdate<T> schedule(int x, int y, int z, T target, int delay, TemporalUnit temporalUnit, TaskPriority priority) {
-        return schedule(x, y, z, target, Duration.of(delay, temporalUnit), priority);
+        return this.schedule(x, y, z, target, Duration.of(delay, temporalUnit), priority);
     }
 
     /**
@@ -168,8 +168,8 @@ public interface ScheduledUpdateList<T> {
      * @param priority The priority of the scheduled update
      * @return The scheduled update
      */
-    default ScheduledUpdate<T> schedule(int x, int y, int z, T target, int delay, TemporalUnit temporalUnit, Supplier<? extends TaskPriority> priority) {
-        return schedule(x, y, z, target, Duration.of(delay, temporalUnit), priority.get());
+    default ScheduledUpdate<T> schedule(int x, int y, int z, T target, int delay, TemporalUnit temporalUnit, DefaultedRegistryReference<? extends TaskPriority> priority) {
+        return this.schedule(x, y, z, target, Duration.of(delay, temporalUnit), priority.get());
     }
 
     /**
@@ -194,8 +194,8 @@ public interface ScheduledUpdateList<T> {
      * @param priority The priority of the scheduled update
      * @return The scheduled update
      */
-    default ScheduledUpdate<T> schedule(int x, int y, int z, T target, Duration delay, Supplier<? extends TaskPriority> priority) {
-        return schedule(x, y, z, target, delay, priority.get());
+    default ScheduledUpdate<T> schedule(int x, int y, int z, T target, Duration delay, DefaultedRegistryReference<? extends TaskPriority> priority) {
+        return this.schedule(x, y, z, target, delay, priority.get());
     }
 
     /**
@@ -206,7 +206,7 @@ public interface ScheduledUpdateList<T> {
      * @return True if there's an update scheduled
      */
     default boolean isScheduled(Vector3i pos, T target) {
-        return isScheduled(pos.getX(), pos.getY(), pos.getZ(), target);
+        return this.isScheduled(pos.getX(), pos.getY(), pos.getZ(), target);
     }
 
     /**
@@ -225,7 +225,7 @@ public interface ScheduledUpdateList<T> {
      * @return The collection of scheduled updates at the desired position
      */
     default Collection<? extends ScheduledUpdate<T>> getScheduledAt(Vector3i pos) {
-        return getScheduledAt(pos.getX(), pos.getY(), pos.getZ());
+        return this.getScheduledAt(pos.getX(), pos.getY(), pos.getZ());
     }
 
     /**

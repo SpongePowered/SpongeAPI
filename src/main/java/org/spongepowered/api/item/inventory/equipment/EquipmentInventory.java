@@ -56,7 +56,7 @@ public interface EquipmentInventory extends Inventory {
      InventoryTransactionResult.Poll poll(EquipmentType equipmentType);
 
      default InventoryTransactionResult.Poll poll(final Supplier<? extends EquipmentType> equipmentType) {
-         return poll(equipmentType.get());
+         return this.poll(equipmentType.get());
      }
 
     /**
@@ -71,7 +71,7 @@ public interface EquipmentInventory extends Inventory {
     InventoryTransactionResult.Poll poll(EquipmentType equipmentType, int limit);
 
     default InventoryTransactionResult.Poll poll(final Supplier<? extends EquipmentType> equipmentType, final int limit) {
-        return poll(equipmentType.get(), limit);
+        return this.poll(equipmentType.get(), limit);
     }
 
     /**
@@ -85,7 +85,7 @@ public interface EquipmentInventory extends Inventory {
     Optional<ItemStack> peek(EquipmentType equipmentType);
 
     default Optional<ItemStack> peek(final Supplier<? extends EquipmentType> equipmentType) {
-        return peek(equipmentType.get());
+        return this.peek(equipmentType.get());
     }
 
     /**
@@ -99,7 +99,7 @@ public interface EquipmentInventory extends Inventory {
     InventoryTransactionResult set(EquipmentType equipmentType, ItemStack stack);
 
     default InventoryTransactionResult set(final Supplier<? extends EquipmentType> equipmentType, final ItemStack stack) {
-        return set(equipmentType.get(), stack);
+        return this.set(equipmentType.get(), stack);
     }
 
     /**
@@ -111,7 +111,7 @@ public interface EquipmentInventory extends Inventory {
     Optional<Slot> getSlot(EquipmentType equipmentType);
 
     default Optional<Slot> getSlot(final Supplier<? extends EquipmentType> equipmentType) {
-        return getSlot(equipmentType.get());
+        return this.getSlot(equipmentType.get());
     }
 
 }

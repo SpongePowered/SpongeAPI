@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.util.orientation;
 
-import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
@@ -34,7 +34,7 @@ import java.util.Optional;
  * Represents an orientation in relative for an ItemFrame as an example.
  */
 @CatalogedBy(Orientations.class)
-public interface Orientation extends CatalogType {
+public interface Orientation extends DefaultedRegistryValue {
 
     /**
      * Gets the {@link Orientation} with the provided degrees.
@@ -44,7 +44,7 @@ public interface Orientation extends CatalogType {
      *      <tt>Optional.empty()</tt> if not found
      */
     static Optional<Orientation> fromDegrees(int degrees) {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).fromDegrees(degrees);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).fromDegrees(degrees);
     }
 
     /**

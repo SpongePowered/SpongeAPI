@@ -46,7 +46,7 @@ public interface TabListEntry {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -154,7 +154,7 @@ public interface TabListEntry {
      *
      * @see TabListEntry
      */
-    interface Builder extends CopyableBuilder<TabListEntry, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<TabListEntry, Builder>, CopyableBuilder<TabListEntry, Builder> {
 
         /**
          * Sets the {@link TabList} this entry is owned by.

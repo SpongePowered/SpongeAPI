@@ -52,7 +52,7 @@ public interface DamageSource {
      * @return A new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -135,7 +135,8 @@ public interface DamageSource {
 
     interface Builder extends DamageSourceBuilder<DamageSource, Builder> { }
 
-    interface DamageSourceBuilder<T extends DamageSource, B extends DamageSourceBuilder<T, B>> extends CopyableBuilder<T, B> {
+    interface DamageSourceBuilder<T extends DamageSource, B extends DamageSourceBuilder<T, B>> extends org.spongepowered.api.util.Builder<T,
+            B>, CopyableBuilder<T, B> {
 
         /**
          * Sets this {@link DamageSource}'s damage to be considered "fire" damage.
@@ -249,6 +250,26 @@ public interface DamageSource {
          *     is not set
          */
         T build() throws IllegalStateException;
+    }
 
+    interface Factory {
+
+        DamageSource drowning();
+
+        DamageSource dryout();
+
+        DamageSource falling();
+
+        DamageSource fireTick();
+
+        DamageSource generic();
+
+        DamageSource magic();
+
+        DamageSource starvation();
+
+        DamageSource voidSource();
+
+        DamageSource wither();
     }
 }

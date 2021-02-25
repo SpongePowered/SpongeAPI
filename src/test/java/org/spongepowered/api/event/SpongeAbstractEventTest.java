@@ -27,36 +27,17 @@ package org.spongepowered.api.event;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.when;
 
-import com.google.common.collect.Lists;
 import org.junit.Test;
-import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
-import org.spongepowered.api.data.Transaction;
-import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
-import org.spongepowered.api.world.ServerLocation;
-import org.spongepowered.api.world.server.ServerWorld;
-import org.spongepowered.math.vector.Vector3d;
-
-import java.util.Optional;
 
 public class SpongeAbstractEventTest {
 
 //    @Test
     public void testChangeBlockEvent_filter() {
-        Transaction<BlockSnapshot> transaction = new Transaction<>(mockParam(BlockSnapshot.class), mockParam(BlockSnapshot.class));
 
-        when(transaction.getOriginal().getLocation()).thenReturn(Optional.of(
-            ServerLocation.of(mockParam(ServerWorld.class), Vector3d.ZERO)));
-
-        ChangeBlockEvent.Break event = SpongeEventFactory.createChangeBlockEventBreak(
-            Cause.of(EventContext.empty(), "none"), Lists.newArrayList(transaction));
-        event.filter(location -> false);
-
-        assertThat(transaction.isValid(), is(false));
     }
 
     @Test
@@ -65,7 +46,7 @@ public class SpongeAbstractEventTest {
         DataTransactionResult modified = DataTransactionResult.successNoData();
 
         ChangeDataHolderEvent.ValueChange event = SpongeEventFactory.createChangeDataHolderEventValueChange(
-            Cause.of(EventContext.empty(), "none"), original, mockParam(DataHolder.Mutable.class));
+            Cause.of(EventContext.empty(), "none"), original, this.mockParam(DataHolder.Mutable.class));
 
         assertThat(event.getOriginalChanges(), is(equalTo(original)));
 

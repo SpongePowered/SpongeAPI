@@ -26,14 +26,14 @@ package org.spongepowered.api.entity.living.player.chat;
 
 import net.kyori.adventure.audience.MessageType;
 import net.kyori.adventure.text.ComponentLike;
-import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a visibility mode for a client's chat.
  */
 @CatalogedBy(ChatVisibilities.class)
-public interface ChatVisibility extends CatalogType, ComponentLike {
+public interface ChatVisibility extends DefaultedRegistryValue, ComponentLike {
 
     /**
      * Tests whether the given chat type will be visible to a player's chat.

@@ -25,8 +25,8 @@
 package org.spongepowered.api.effect.particle;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.math.vector.Vector3d;
 
@@ -45,7 +45,7 @@ public interface ParticleEffect extends DataSerializable {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -111,7 +111,8 @@ public interface ParticleEffect extends DataSerializable {
     /**
      * Represents a builder to create a {@link ParticleEffect}.
      */
-    interface Builder extends CopyableBuilder<ParticleEffect, Builder>, DataBuilder<ParticleEffect> {
+    interface Builder extends org.spongepowered.api.util.Builder<ParticleEffect, Builder>, CopyableBuilder<ParticleEffect, Builder>,
+            DataBuilder<ParticleEffect> {
 
         /**
          * Sets the particle type for the particle effect.
@@ -151,7 +152,7 @@ public interface ParticleEffect extends DataSerializable {
          * @return This builder for chaining
          * @throws IllegalArgumentException If the specified value isn't valid
          */
-        default <V> Builder option(Supplier<? extends ParticleOption<V>> option, V value) throws IllegalArgumentException {
+        default <V> Builder option(final Supplier<? extends ParticleOption<V>> option, V value) throws IllegalArgumentException {
             return this.option(option.get(), value);
         }
 

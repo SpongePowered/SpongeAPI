@@ -24,32 +24,45 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link BoatType}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class BoatTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<BoatType> ACACIA = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BoatType.class, "acacia");
+    public static final DefaultedRegistryReference<BoatType> ACACIA = BoatTypes.key(ResourceKey.sponge("acacia"));
 
-    public static final Supplier<BoatType> BIRCH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BoatType.class, "birch");
+    public static final DefaultedRegistryReference<BoatType> BIRCH = BoatTypes.key(ResourceKey.sponge("birch"));
 
-    public static final Supplier<BoatType> DARK_OAK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BoatType.class, "dark_oak");
+    public static final DefaultedRegistryReference<BoatType> DARK_OAK = BoatTypes.key(ResourceKey.sponge("dark_oak"));
 
-    public static final Supplier<BoatType> JUNGLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BoatType.class, "jungle");
+    public static final DefaultedRegistryReference<BoatType> JUNGLE = BoatTypes.key(ResourceKey.sponge("jungle"));
 
-    public static final Supplier<BoatType> OAK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BoatType.class, "oak");
+    public static final DefaultedRegistryReference<BoatType> OAK = BoatTypes.key(ResourceKey.sponge("oak"));
 
-    public static final Supplier<BoatType> SPRUCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BoatType.class, "spruce");
+    public static final DefaultedRegistryReference<BoatType> SPRUCE = BoatTypes.key(ResourceKey.sponge("spruce"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private BoatTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<BoatType> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.BOAT_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

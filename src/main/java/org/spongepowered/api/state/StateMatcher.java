@@ -51,7 +51,7 @@ public interface StateMatcher<S extends State<S>> extends Predicate<S> {
      * @return The builder
      */
     static Builder<BlockState, BlockType> blockStateMatcherBuilder() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(StateMatcher.Factory.class).blockStateMatcherBuilder();
+        return Sponge.getGame().getFactoryProvider().provide(StateMatcher.Factory.class).blockStateMatcherBuilder();
     }
 
     /**
@@ -60,7 +60,7 @@ public interface StateMatcher<S extends State<S>> extends Predicate<S> {
      * @return The builder
      */
     static Builder<FluidState, FluidType> fluidStateMatcherBuilder() {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(StateMatcher.Factory.class).fluidStateMatcherBuilder();
+        return Sponge.getGame().getFactoryProvider().provide(StateMatcher.Factory.class).fluidStateMatcherBuilder();
     }
 
     /**
@@ -109,7 +109,8 @@ public interface StateMatcher<S extends State<S>> extends Predicate<S> {
     /**
      * A builder for {@link StateMatcher}s.
      */
-    interface Builder<S extends State<S>, T extends StateContainer<S>> extends CopyableBuilder<StateMatcher<S>, Builder<S, T>> {
+    interface Builder<S extends State<S>, T extends StateContainer<S>> extends org.spongepowered.api.util.Builder<StateMatcher<S>, Builder<S, T>>,
+            CopyableBuilder<StateMatcher<S>, Builder<S, T>> {
 
         /**
          * Sets the root {@link StateContainer} for the {@link StateMatcher}.

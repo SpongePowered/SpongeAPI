@@ -26,12 +26,12 @@ package org.spongepowered.api.item.merchant;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackGenerator;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.weighted.VariableAmount;
 
-import java.util.List;
 import java.util.Random;
 import java.util.function.BiFunction;
 
@@ -39,6 +39,29 @@ import java.util.function.BiFunction;
  * Represents a generator to create {@link TradeOffer}s with a bit of
  * randomization based on {@link ItemStackGenerator}s for populating
  * {@link ItemStack}s and finally generating a {@link TradeOffer}.
+ * <p>
+ * <p>
+ * <strong>Can be directly implemented as a lambda as follows:</strong>
+ * <p><pre>
+ * final TradeOfferGenerator generator = (merchant, random) -> TradeOffer.builder()
+ *   .firstBuyingItem(ItemStack.of(ItemTypes.EMERALD, 64))
+ *   .sellingItem(ItemStack.builder()
+ *       .itemType(ItemTypes.DIAMOND_SWORD)
+ *       .quantity(1)
+ *       .add(Keys.APPLIED_ENCHANTMENTS, List.of(Enchantment.of(EnchantmentTypes.SHARPNESS, 1000)))
+ *       .build()
+ *   )
+ *   .merchantExperienceGranted(5)
+ *   .priceGrowthMultiplier(1.3f)
+ *   .maxUses(20)
+ *   .build()
+ * );
+ * </pre>
+ * The by-product of a direct implementation is that you would be needing to
+ * build out functions accepting the {@link Random random} instance to add
+ * dynamism to your generated {@link TradeOffer TradeOffers}. As such, a handy
+ * builder has been provided with {@link TradeOfferGenerator#builder()} and the
+ * related methods exposed in {@link ItemStackGenerator}.
  *
  * <p>The primary use of this, and why the {@link Random} must be provided as
  * part of the {@link BiFunction} signature is that during multiple world
@@ -51,7 +74,7 @@ import java.util.function.BiFunction;
  * what the {@link ItemStack} can be customized as.</p>
  */
 @FunctionalInterface
-public interface TradeOfferGenerator extends BiFunction<Random, Merchant, TradeOffer>, TradeOfferListMutator {
+public interface TradeOfferGenerator extends BiFunction<Entity, Random, TradeOffer> {
 
     /**
      * Gets a new {@link Builder} to create a new {@link TradeOfferGenerator}.
@@ -59,18 +82,16 @@ public interface TradeOfferGenerator extends BiFunction<Random, Merchant, TradeO
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     @Override
-    default void accept(Merchant owner, List<TradeOffer> tradeOffers, Random random) {
-        tradeOffers.add(apply(random, owner));
-    }
+    TradeOffer apply(Entity entity, Random random);
 
     /**
      * A simple builder to create a {@link TradeOfferGenerator}.
      */
-    interface Builder extends CopyableBuilder<TradeOfferGenerator, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<TradeOfferGenerator, Builder>, CopyableBuilder<TradeOfferGenerator, Builder> {
 
         /**
          * Sets the {@link ItemStackGenerator} for creating the primary item
@@ -80,7 +101,7 @@ public interface TradeOfferGenerator extends BiFunction<Random, Merchant, TradeO
          *     itemstack
          * @return This builder, for chaining
          */
-        Builder setPrimaryItemGenerator(ItemStackGenerator generator);
+        Builder firstBuyingItemGenerator(ItemStackGenerator generator);
 
         /**
          * Sets the second {@link ItemStackGenerator} for creating the secondary
@@ -90,7 +111,7 @@ public interface TradeOfferGenerator extends BiFunction<Random, Merchant, TradeO
          *      second purchased itemstack
          * @return This builder, for chaining
          */
-        Builder setSecondItemGenerator(@Nullable ItemStackGenerator generator);
+        Builder secondBuyingItemGenerator(@Nullable ItemStackGenerator generator);
 
         /**
          * Sets the buying {@link ItemStackGenerator} for creating the selling
@@ -100,7 +121,7 @@ public interface TradeOfferGenerator extends BiFunction<Random, Merchant, TradeO
          *      item
          * @return This builder, for chaining
          */
-        Builder setSellingGenerator(ItemStackGenerator sellingGenerator);
+        Builder sellingItemGenerator(ItemStackGenerator sellingGenerator);
 
         /**
          * Sets the chance when {@link Random#nextDouble()} is called where
@@ -112,6 +133,8 @@ public interface TradeOfferGenerator extends BiFunction<Random, Merchant, TradeO
          * @return This builder, for chaining
          */
         Builder experienceChance(double experienceChance);
+
+        Builder grantedExperience(VariableAmount amount);
 
         /**
          * Sets the {@link VariableAmount} of starting uses for the generated

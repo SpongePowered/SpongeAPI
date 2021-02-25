@@ -24,26 +24,39 @@
  */
 package org.spongepowered.api.entity.attribute;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of {@link AttributeOperation}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class AttributeOperations {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<AttributeOperation> ADD_NUMBER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AttributeOperation.class, "add_number");
+    public static final DefaultedRegistryReference<AttributeOperation> ADDITION = AttributeOperations.key(ResourceKey.sponge("addition"));
 
-    public static final Supplier<AttributeOperation> ADD_PERCENTAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AttributeOperation.class, "add_percentage");
+    public static final DefaultedRegistryReference<AttributeOperation> MULTIPLY_BASE = AttributeOperations.key(ResourceKey.sponge("multiply_base"));
 
-    public static final Supplier<AttributeOperation> MULTIPLY_PERCENTAGE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(AttributeOperation.class, "multiply_percentage");
+    public static final DefaultedRegistryReference<AttributeOperation> MULTIPLY_TOTAL = AttributeOperations.key(ResourceKey.sponge("multiply_total"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private AttributeOperations() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<AttributeOperation> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.ATTRIBUTE_OPERATION, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

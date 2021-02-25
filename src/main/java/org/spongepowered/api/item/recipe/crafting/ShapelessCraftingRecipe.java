@@ -32,8 +32,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
-import org.spongepowered.api.util.CatalogBuilder;
-import org.spongepowered.api.util.ResettableBuilder;
+import org.spongepowered.api.util.ResourceKeyedBuilder;
 
 import java.util.List;
 import java.util.function.Function;
@@ -51,13 +50,13 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
      * The Builder for {@link ShapelessCraftingRecipe}s.
      */
-    interface Builder extends CatalogBuilder<RecipeRegistration, Builder> {
+    interface Builder extends ResourceKeyedBuilder<RecipeRegistration, Builder> {
 
         /**
          * Adds ingredients for this recipe.
@@ -76,7 +75,7 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
          * @return This builder, for chaining
          */
         @SuppressWarnings("unchecked")
-        ResultStep addIngredients(Supplier<ItemType>... ingredients);
+        ResultStep addIngredients(Supplier<? extends ItemType>... ingredients);
 
         /**
          * Adds ingredients for this recipe.
@@ -137,7 +136,8 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
         /**
          * In this Step set the group of the Recipe and/or build it.
          */
-        interface EndStep extends Builder, CatalogBuilder<RecipeRegistration, Builder> {
+        interface EndStep extends Builder,
+                org.spongepowered.api.util.Builder<RecipeRegistration, Builder> {
 
             /**
              * Sets the group of the recipe.

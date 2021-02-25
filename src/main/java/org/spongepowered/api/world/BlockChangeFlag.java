@@ -44,6 +44,14 @@ public interface BlockChangeFlag {
 
     /**
      * Gets whether this flag defines that a block change should
+     * update clients to perform a rendering update
+     *
+     * @return True if this is set to update clients
+     */
+    boolean notifyClients();
+
+    /**
+     * Gets whether this flag defines that a block change should
      * perform block physics checks or not. If not, no checks
      * are performed.
      *
@@ -93,6 +101,16 @@ public interface BlockChangeFlag {
      * @return The relative flag with the desired update neighbors
      */
     BlockChangeFlag withUpdateNeighbors(boolean updateNeighbors);
+
+    /**
+     * Gets the equivalent {@link BlockChangeFlag} of this flag
+     * with all other flags while having the desired {@code updateClients}
+     * as defined by the parameter.
+     *
+     * @param updateClients Whether to update clients
+     * @return The relative flag with the desired update clients
+     */
+    BlockChangeFlag withNotifyClients(boolean updateClients);
 
     /**
      * Gets the equivalent {@link BlockChangeFlag} of this flag
@@ -168,7 +186,7 @@ public interface BlockChangeFlag {
      */
     BlockChangeFlag andNotFlag(BlockChangeFlag flag);
 
-    public interface Factory {
+    interface Factory {
 
         BlockChangeFlag empty();
 

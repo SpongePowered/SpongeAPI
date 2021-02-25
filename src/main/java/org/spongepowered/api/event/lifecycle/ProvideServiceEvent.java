@@ -58,6 +58,9 @@ public interface ProvideServiceEvent<T> extends GenericEvent<T>, LifecycleEvent 
      */
     void suggest(Supplier<T> serviceFactory);
 
+    interface GameScoped<T> extends ProvideServiceEvent<T> {
+    }
+
     /**
      * Supplies a service that is scoped to the given {@link Engine}.
      *
@@ -80,7 +83,5 @@ public interface ProvideServiceEvent<T> extends GenericEvent<T>, LifecycleEvent 
          * @return The engine.
          */
         Engine getEngine();
-
     }
-
 }

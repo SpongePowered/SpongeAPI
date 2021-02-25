@@ -24,100 +24,113 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link BannerPatternShape}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class BannerPatternShapes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<BannerPatternShape> BASE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "base");
+    public static final DefaultedRegistryReference<BannerPatternShape> BASE = BannerPatternShapes.key(ResourceKey.sponge("base"));
 
-    public static final Supplier<BannerPatternShape> BORDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "border");
+    public static final DefaultedRegistryReference<BannerPatternShape> BORDER = BannerPatternShapes.key(ResourceKey.sponge("border"));
 
-    public static final Supplier<BannerPatternShape> BRICKS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "bricks");
+    public static final DefaultedRegistryReference<BannerPatternShape> BRICKS = BannerPatternShapes.key(ResourceKey.sponge("bricks"));
 
-    public static final Supplier<BannerPatternShape> CIRCLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "circle");
+    public static final DefaultedRegistryReference<BannerPatternShape> CIRCLE = BannerPatternShapes.key(ResourceKey.sponge("circle"));
 
-    public static final Supplier<BannerPatternShape> CREEPER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "creeper");
+    public static final DefaultedRegistryReference<BannerPatternShape> CREEPER = BannerPatternShapes.key(ResourceKey.sponge("creeper"));
 
-    public static final Supplier<BannerPatternShape> CROSS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "cross");
+    public static final DefaultedRegistryReference<BannerPatternShape> CROSS = BannerPatternShapes.key(ResourceKey.sponge("cross"));
 
-    public static final Supplier<BannerPatternShape> CURLY_BORDER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "curly_border");
+    public static final DefaultedRegistryReference<BannerPatternShape> CURLY_BORDER = BannerPatternShapes.key(ResourceKey.sponge("curly_border"));
 
-    public static final Supplier<BannerPatternShape> DIAGONAL_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "diagonal_left");
+    public static final DefaultedRegistryReference<BannerPatternShape> DIAGONAL_LEFT = BannerPatternShapes.key(ResourceKey.sponge("diagonal_left"));
 
-    public static final Supplier<BannerPatternShape> DIAGONAL_UP_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "diagonal_up_left");
+    public static final DefaultedRegistryReference<BannerPatternShape> DIAGONAL_UP_LEFT = BannerPatternShapes.key(ResourceKey.sponge("diagonal_up_left"));
 
-    public static final Supplier<BannerPatternShape> DIAGONAL_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "diagonal_right");
+    public static final DefaultedRegistryReference<BannerPatternShape> DIAGONAL_RIGHT = BannerPatternShapes.key(ResourceKey.sponge("diagonal_right"));
 
-    public static final Supplier<BannerPatternShape> DIAGONAL_UP_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "diagonal_up_right");
+    public static final DefaultedRegistryReference<BannerPatternShape> DIAGONAL_UP_RIGHT = BannerPatternShapes.key(ResourceKey.sponge("diagonal_up_right"));
 
-    public static final Supplier<BannerPatternShape> FLOWER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "flower");
+    public static final DefaultedRegistryReference<BannerPatternShape> FLOWER = BannerPatternShapes.key(ResourceKey.sponge("flower"));
 
-    public static final Supplier<BannerPatternShape> GLOBE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "globe");
+    public static final DefaultedRegistryReference<BannerPatternShape> GLOBE = BannerPatternShapes.key(ResourceKey.sponge("globe"));
 
-    public static final Supplier<BannerPatternShape> GRADIENT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "gradient");
+    public static final DefaultedRegistryReference<BannerPatternShape> GRADIENT = BannerPatternShapes.key(ResourceKey.sponge("gradient"));
 
-    public static final Supplier<BannerPatternShape> GRADIENT_UP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "gradient_up");
+    public static final DefaultedRegistryReference<BannerPatternShape> GRADIENT_UP = BannerPatternShapes.key(ResourceKey.sponge("gradient_up"));
 
-    public static final Supplier<BannerPatternShape> HALF_HORIZONTAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "half_horizontal");
+    public static final DefaultedRegistryReference<BannerPatternShape> HALF_HORIZONTAL = BannerPatternShapes.key(ResourceKey.sponge("half_horizontal"));
 
-    public static final Supplier<BannerPatternShape> HALF_HORIZONTAL_BOTTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "half_horizontal_bottom");
+    public static final DefaultedRegistryReference<BannerPatternShape> HALF_HORIZONTAL_BOTTOM = BannerPatternShapes.key(ResourceKey.sponge("half_horizontal_bottom"));
 
-    public static final Supplier<BannerPatternShape> HALF_VERTICAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "half_vertical");
+    public static final DefaultedRegistryReference<BannerPatternShape> HALF_VERTICAL = BannerPatternShapes.key(ResourceKey.sponge("half_vertical"));
 
-    public static final Supplier<BannerPatternShape> HALF_VERTICAL_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "half_vertical_right");
+    public static final DefaultedRegistryReference<BannerPatternShape> HALF_VERTICAL_RIGHT = BannerPatternShapes.key(ResourceKey.sponge("half_vertical_right"));
 
-    public static final Supplier<BannerPatternShape> MOJANG = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "mojang");
+    public static final DefaultedRegistryReference<BannerPatternShape> MOJANG = BannerPatternShapes.key(ResourceKey.sponge("mojang"));
 
-    public static final Supplier<BannerPatternShape> RHOMBUS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "rhombus");
+    public static final DefaultedRegistryReference<BannerPatternShape> RHOMBUS = BannerPatternShapes.key(ResourceKey.sponge("rhombus"));
 
-    public static final Supplier<BannerPatternShape> SKULL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "skull");
+    public static final DefaultedRegistryReference<BannerPatternShape> SKULL = BannerPatternShapes.key(ResourceKey.sponge("skull"));
 
-    public static final Supplier<BannerPatternShape> SQUARE_BOTTOM_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "square_bottom_left");
+    public static final DefaultedRegistryReference<BannerPatternShape> SQUARE_BOTTOM_LEFT = BannerPatternShapes.key(ResourceKey.sponge("square_bottom_left"));
 
-    public static final Supplier<BannerPatternShape> SQUARE_BOTTOM_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "square_bottom_right");
+    public static final DefaultedRegistryReference<BannerPatternShape> SQUARE_BOTTOM_RIGHT = BannerPatternShapes.key(ResourceKey.sponge("square_bottom_right"));
 
-    public static final Supplier<BannerPatternShape> SQUARE_TOP_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "square_top_left");
+    public static final DefaultedRegistryReference<BannerPatternShape> SQUARE_TOP_LEFT = BannerPatternShapes.key(ResourceKey.sponge("square_top_left"));
 
-    public static final Supplier<BannerPatternShape> SQUARE_TOP_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "square_top_right");
+    public static final DefaultedRegistryReference<BannerPatternShape> SQUARE_TOP_RIGHT = BannerPatternShapes.key(ResourceKey.sponge("square_top_right"));
 
-    public static final Supplier<BannerPatternShape> STRAIGHT_CROSS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "straight_cross");
+    public static final DefaultedRegistryReference<BannerPatternShape> STRAIGHT_CROSS = BannerPatternShapes.key(ResourceKey.sponge("straight_cross"));
 
-    public static final Supplier<BannerPatternShape> STRIPE_BOTTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "stripe_bottom");
+    public static final DefaultedRegistryReference<BannerPatternShape> STRIPE_BOTTOM = BannerPatternShapes.key(ResourceKey.sponge("stripe_bottom"));
 
-    public static final Supplier<BannerPatternShape> STRIPE_CENTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "stripe_center");
+    public static final DefaultedRegistryReference<BannerPatternShape> STRIPE_CENTER = BannerPatternShapes.key(ResourceKey.sponge("stripe_center"));
 
-    public static final Supplier<BannerPatternShape> STRIPE_DOWNLEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "stripe_downleft");
+    public static final DefaultedRegistryReference<BannerPatternShape> STRIPE_DOWNLEFT = BannerPatternShapes.key(ResourceKey.sponge("stripe_downleft"));
 
-    public static final Supplier<BannerPatternShape> STRIPE_DOWNRIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "stripe_downright");
+    public static final DefaultedRegistryReference<BannerPatternShape> STRIPE_DOWNRIGHT = BannerPatternShapes.key(ResourceKey.sponge("stripe_downright"));
 
-    public static final Supplier<BannerPatternShape> STRIPE_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "stripe_left");
+    public static final DefaultedRegistryReference<BannerPatternShape> STRIPE_LEFT = BannerPatternShapes.key(ResourceKey.sponge("stripe_left"));
 
-    public static final Supplier<BannerPatternShape> STRIPE_MIDDLE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "stripe_middle");
+    public static final DefaultedRegistryReference<BannerPatternShape> STRIPE_MIDDLE = BannerPatternShapes.key(ResourceKey.sponge("stripe_middle"));
 
-    public static final Supplier<BannerPatternShape> STRIPE_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "stripe_right");
+    public static final DefaultedRegistryReference<BannerPatternShape> STRIPE_RIGHT = BannerPatternShapes.key(ResourceKey.sponge("stripe_right"));
 
-    public static final Supplier<BannerPatternShape> SMALL_STRIPES = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "small_stripes");
+    public static final DefaultedRegistryReference<BannerPatternShape> SMALL_STRIPES = BannerPatternShapes.key(ResourceKey.sponge("small_stripes"));
 
-    public static final Supplier<BannerPatternShape> STRIPE_TOP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "stripe_top");
+    public static final DefaultedRegistryReference<BannerPatternShape> STRIPE_TOP = BannerPatternShapes.key(ResourceKey.sponge("stripe_top"));
 
-    public static final Supplier<BannerPatternShape> TRIANGLES_BOTTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "triangles_bottom");
+    public static final DefaultedRegistryReference<BannerPatternShape> TRIANGLES_BOTTOM = BannerPatternShapes.key(ResourceKey.sponge("triangles_bottom"));
 
-    public static final Supplier<BannerPatternShape> TRIANGLES_TOP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "triangles_top");
+    public static final DefaultedRegistryReference<BannerPatternShape> TRIANGLES_TOP = BannerPatternShapes.key(ResourceKey.sponge("triangles_top"));
 
-    public static final Supplier<BannerPatternShape> TRIANGLE_BOTTOM = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "triangle_bottom");
+    public static final DefaultedRegistryReference<BannerPatternShape> TRIANGLE_BOTTOM = BannerPatternShapes.key(ResourceKey.sponge("triangle_bottom"));
 
-    public static final Supplier<BannerPatternShape> TRIANGLE_TOP = Sponge.getRegistry().getCatalogRegistry().provideSupplier(BannerPatternShape.class, "triangle_top");
+    public static final DefaultedRegistryReference<BannerPatternShape> TRIANGLE_TOP = BannerPatternShapes.key(ResourceKey.sponge("triangle_top"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private BannerPatternShapes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<BannerPatternShape> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.BANNER_PATTERN_SHAPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

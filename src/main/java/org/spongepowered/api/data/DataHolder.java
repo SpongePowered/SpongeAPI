@@ -29,6 +29,7 @@ import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.data.value.MergeFunction;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.annotation.DoNotStore;
 
 import java.util.Collection;
@@ -117,6 +118,21 @@ public interface DataHolder extends ValueContainer {
          */
         default <E> DataTransactionResult offer(Supplier<? extends Key<? extends Value<E>>> key, E value) {
             return this.offer(key.get(), value);
+        }
+
+        /**
+         * Offers the given {@code value} as defined by the provided {@link Key}
+         * such that a {@link DataTransactionResult} is returned for any
+         * successful, rejected, and replaced {@link Value}s from this
+         * {@link Mutable}.
+         *
+         * @param key The key to the value to set
+         * @param value The value to set
+         * @param <E> The type of value
+         * @return The transaction result
+         */
+        default <E> DataTransactionResult offer(Supplier<? extends Key<? extends Value<E>>> key, Supplier<? extends E> value) {
+            return this.offer(key.get(), value.get());
         }
 
         /**

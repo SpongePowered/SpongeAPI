@@ -26,10 +26,10 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.data.SerializableDataHolder;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Optional;
-import java.util.UUID;
 
 /**
  * A type of {@link org.spongepowered.api.data.DataHolder.Immutable} that may be linked to a particular

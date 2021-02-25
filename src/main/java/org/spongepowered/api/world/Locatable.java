@@ -25,20 +25,27 @@
 package org.spongepowered.api.world;
 
 import org.spongepowered.api.Server;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.math.vector.Vector3i;
 
 /**
  * Represents anything with a location.
  */
-@FunctionalInterface
 public interface Locatable {
+
+    /**
+     * Gets the {@link World}.
+     *
+     * @return The World
+     */
+    World<?, ?> getWorld();
 
     /**
      * Gets the location of the source.
      *
      * @return The location
      */
-    Location<?> getLocation();
+    Location<?, ?> getLocation();
 
     /**
      * Gets the location of the source as a {@link ServerLocation}.
@@ -51,21 +58,12 @@ public interface Locatable {
      * @return The location
      */
     default ServerLocation getServerLocation() {
-        final Location<?> location = this.getLocation();
+        final Location<?, ?> location = this.getLocation();
         if (!(location instanceof ServerLocation)) {
             throw new RuntimeException("Attempt made to query for a server sided location on the client!");
         }
 
         return (ServerLocation) location;
-    }
-
-    /**
-     * Gets the world that this source resides in.
-     *
-     * @return The World
-     */
-    default World<?> getWorld() {
-        return this.getLocation().getWorld();
     }
 
     default Vector3i getBlockPosition() {

@@ -48,6 +48,10 @@ public interface Cat extends TameableAnimal, Sittable {
 
     /**
      * {@link Keys#IS_LYING_DOWN}
+     *
+     * <p>In vanilla, a cat lies down near its owner when the owner goes to
+     * sleep.</p>
+     *
      * @return Whether this cat is lying down
      */
     default Value.Mutable<Boolean> lyingDown() {
@@ -57,7 +61,7 @@ public interface Cat extends TameableAnimal, Sittable {
     /**
      * {@link Keys#IS_RELAXED}
      *
-     * <p>In vanilla, a cat is relaxed if it's a cool cat or a scaredey cat.</p>
+     * <p>In vanilla, a cat relaxes before lying down.</p>
      *
      * @return Whether this cat is relaxed
      */

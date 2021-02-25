@@ -24,20 +24,35 @@
  */
 package org.spongepowered.api.util.mirror;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class Mirrors {
 
-    // sortfields:off
-    public static final Supplier<Mirror> NONE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Mirror.class, "none");
+    // @formatter:off
 
-    public static final Supplier<Mirror> LEFT_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Mirror.class, "left_right");
+    // SORTFIELDS:ON
 
-    public static final Supplier<Mirror> FRONT_BACK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Mirror.class, "front_back");
-    // sortfields:on
+    public static final DefaultedRegistryReference<Mirror> NONE = Mirrors.key(ResourceKey.sponge("none"));
+    public static final DefaultedRegistryReference<Mirror> LEFT_RIGHT = Mirrors.key(ResourceKey.sponge("left_right"));
 
-    private Mirrors() {}
+    public static final DefaultedRegistryReference<Mirror> FRONT_BACK = Mirrors.key(ResourceKey.sponge("front_back"));
 
+    // SORTFIELDS:OFF
+
+    // @formatter:on
+
+    private Mirrors() {
+    }
+
+    private static DefaultedRegistryReference<Mirror> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.MIRROR, location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

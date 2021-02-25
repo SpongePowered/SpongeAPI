@@ -24,19 +24,34 @@
  */
 package org.spongepowered.api.world.portal;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
-import java.util.function.Supplier;
-
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class PortalTypes {
 
-    public static final Supplier<PortalType> NETHER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PortalType.class, "nether");
+    // @formatter:off
 
-    public static final Supplier<PortalType> END = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PortalType.class, "end");
+    // SORTFIELDS:ON
 
-    // Suppress default constructor to ensure non-instantiability.
+    public static final DefaultedRegistryReference<PortalType> NETHER = PortalTypes.key(ResourceKey.sponge("nether"));
+
+    public static final DefaultedRegistryReference<PortalType> END = PortalTypes.key(ResourceKey.sponge("end"));
+
+    // SORTFIELDS:OFF
+
+    // @formatter:on
+
     private PortalTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<PortalType> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.PORTAL_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

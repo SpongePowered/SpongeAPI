@@ -27,7 +27,6 @@ package org.spongepowered.api.item.inventory;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.DataHolderBuilder;
 import org.spongepowered.api.data.Key;
@@ -40,6 +39,7 @@ import org.spongepowered.api.entity.attribute.type.AttributeType;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 
 import java.util.Collection;
 import java.util.Map;
@@ -65,7 +65,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -77,7 +77,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      * @return The new item stack
      */
     static ItemStack of(Supplier<? extends ItemType> itemType, int quantity) {
-        return of(itemType.get(), quantity);
+        return ItemStack.of(itemType.get(), quantity);
     }
 
     /**
@@ -89,7 +89,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      * @return The new item stack
      */
     static ItemStack of(ItemType itemType, int quantity) {
-        return builder().itemType(itemType).quantity(quantity).build();
+        return ItemStack.builder().itemType(itemType).quantity(quantity).build();
     }
 
     /**
@@ -99,7 +99,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      * @return The new item stack
      */
     static ItemStack of(Supplier<? extends ItemType> itemType) {
-        return of(itemType.get());
+        return ItemStack.of(itemType.get());
     }
 
     /**
@@ -109,7 +109,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      * @return The new item stack
      */
     static ItemStack of(ItemType itemType) {
-        return of(itemType, 1);
+        return ItemStack.of(itemType, 1);
     }
 
     /**
@@ -118,7 +118,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      * @return The empty ItemStack
      */
     static ItemStack empty() {
-        return builder().itemType(ItemTypes.AIR).build();
+        return ItemStack.builder().itemType(ItemTypes.AIR).build();
     }
 
     /**
@@ -196,7 +196,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      *
      * @return A collection of {@link AttributeModifier}s.
      */
-    default Collection<AttributeModifier> getAttributeModifiers(Supplier<? extends AttributeType> attributeType, Supplier<? extends EquipmentType> equipmentType) {
+    default Collection<AttributeModifier> getAttributeModifiers(Supplier<? extends AttributeType> attributeType, DefaultedRegistryReference<? extends EquipmentType> equipmentType) {
         return this.getAttributeModifiers(attributeType.get(), equipmentType.get());
     }
 
@@ -209,7 +209,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      *
      * @return A collection of {@link AttributeModifier}s.
      */
-    default Collection<AttributeModifier> getAttributeModifiers(AttributeType attributeType, Supplier<? extends EquipmentType> equipmentType) {
+    default Collection<AttributeModifier> getAttributeModifiers(AttributeType attributeType, DefaultedRegistryReference<? extends EquipmentType> equipmentType) {
         return this.getAttributeModifiers(attributeType, equipmentType.get());
     }
 
@@ -253,7 +253,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      * @param modifier The attribute modifier.
      * @param equipmentType The equipment type this modifier will apply under.
      */
-    default void addAttributeModifier(AttributeType attributeType, AttributeModifier modifier, Supplier<? extends EquipmentType> equipmentType) {
+    default void addAttributeModifier(AttributeType attributeType, AttributeModifier modifier, DefaultedRegistryReference<? extends EquipmentType> equipmentType) {
         this.addAttributeModifier(attributeType, modifier, equipmentType.get());
     }
 
@@ -263,7 +263,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      * @param modifier The attribute modifier.
      * @param equipmentType The equipment type this modifier will apply under.
      */
-    default void addAttributeModifier(Supplier<? extends AttributeType> attributeType, AttributeModifier modifier, Supplier<? extends EquipmentType> equipmentType) {
+    default void addAttributeModifier(Supplier<? extends AttributeType> attributeType, AttributeModifier modifier, DefaultedRegistryReference<? extends EquipmentType> equipmentType) {
         this.addAttributeModifier(attributeType.get(), modifier, equipmentType.get());
     }
 
@@ -294,8 +294,8 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
          * @param itemType The type of item
          * @return This builder, for chaining
          */
-        default Builder itemType(Supplier<? extends ItemType> itemType) {
-            return itemType(itemType.get());
+        default Builder itemType(final Supplier<? extends ItemType> itemType) {
+            return this.itemType(itemType.get());
         }
 
         ItemType getCurrentItem();
@@ -327,7 +327,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
          * {@link AttributeModifier} will apply to.
          * @return This builder, for chaining
          */
-        default Builder attributeModifier(Supplier<? extends AttributeType> attributeType, AttributeModifier modifier, Supplier<? extends EquipmentType> equipmentType) {
+        default Builder attributeModifier(Supplier<? extends AttributeType> attributeType, AttributeModifier modifier, DefaultedRegistryReference<? extends EquipmentType> equipmentType) {
             return this.attributeModifier(attributeType.get(), modifier, equipmentType.get());
         }
 
@@ -349,13 +349,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
          * @param blockState The block state to use
          * @return This builder, for chaining
          */
-        default Builder fromBlockState(BlockState blockState) {
-            Objects.requireNonNull(blockState);
-            final BlockType blockType = blockState.getType();
-            itemType(blockType.getItem().orElseThrow(() -> new IllegalArgumentException("Missing valid ItemType for BlockType: " + blockType.getKey().toString())));
-            blockState.getValues().forEach(this::add);
-            return this;
-        }
+        Builder fromBlockState(final BlockState blockState);
 
         /**
          * Sets the data to recreate a {@link BlockState} in a held {@link ItemStack}
@@ -364,12 +358,9 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
          * @param blockState The block state to use
          * @return This builder, for chaining
          */
-        default Builder fromBlockState(Supplier<? extends BlockState> blockState) {
-            Objects.requireNonNull(blockState);
-            final BlockType blockType = blockState.get().getType();
-            itemType(blockType.getItem().orElseThrow(() -> new IllegalArgumentException("Missing valid ItemType for BlockType: " + blockType.getKey().toString())));
-            blockState.get().getValues().forEach(this::add);
-            return this;
+        default Builder fromBlockState(final Supplier<? extends BlockState> blockState) {
+            Objects.requireNonNull(blockState, "blockState");
+            return this.fromBlockState(blockState.get());
         }
 
         /**
@@ -388,8 +379,8 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
          * @param snapshot The snapshot
          * @return This builder, for chaining
          */
-        default Builder fromSnapshot(ItemStackSnapshot snapshot) {
-            return fromItemStack(snapshot.createStack());
+        default Builder fromSnapshot(final ItemStackSnapshot snapshot) {
+            return this.fromItemStack(snapshot.createStack());
         }
 
         /**

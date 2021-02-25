@@ -24,30 +24,43 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of vanilla {@link StairShape}s.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class StairShapes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<StairShape> INNER_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StairShape.class, "inner_left");
+    public static final DefaultedRegistryReference<StairShape> INNER_LEFT = StairShapes.key(ResourceKey.sponge("inner_left"));
 
-    public static final Supplier<StairShape> INNER_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StairShape.class, "inner_right");
+    public static final DefaultedRegistryReference<StairShape> INNER_RIGHT = StairShapes.key(ResourceKey.sponge("inner_right"));
 
-    public static final Supplier<StairShape> OUTER_LEFT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StairShape.class, "outer_left");
+    public static final DefaultedRegistryReference<StairShape> OUTER_LEFT = StairShapes.key(ResourceKey.sponge("outer_left"));
 
-    public static final Supplier<StairShape> OUTER_RIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StairShape.class, "outer_right");
+    public static final DefaultedRegistryReference<StairShape> OUTER_RIGHT = StairShapes.key(ResourceKey.sponge("outer_right"));
 
-    public static final Supplier<StairShape> STRAIGHT = Sponge.getRegistry().getCatalogRegistry().provideSupplier(StairShape.class, "straight");
+    public static final DefaultedRegistryReference<StairShape> STRAIGHT = StairShapes.key(ResourceKey.sponge("straight"));
 
     // SORTFIELDS:OFF
 
+    // @formatter:on
+
     private StairShapes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    private static DefaultedRegistryReference<StairShape> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.STAIR_SHAPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
     }
 }

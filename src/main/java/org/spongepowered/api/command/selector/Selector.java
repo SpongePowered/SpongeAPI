@@ -35,8 +35,7 @@ import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.scoreboard.Team;
 import org.spongepowered.api.util.Range;
-import org.spongepowered.api.util.ResettableBuilder;
-import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Collection;
@@ -58,7 +57,7 @@ public interface Selector {
      * @throws IllegalArgumentException if the string could not be parsed.
      */
     static Selector parse(final String string) throws IllegalArgumentException {
-        return Sponge.getRegistry().getFactoryRegistry().provideFactory(Factory.class).parse(string);
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).parse(string);
     }
 
     /**
@@ -69,8 +68,8 @@ public interface Selector {
      *
      * @return The builder
      */
-    static Selector.Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+    static Builder builder() {
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -107,7 +106,7 @@ public interface Selector {
     /**
      * Creates a {@link Selector} based on the provided criteria.
      */
-    interface Builder extends ResettableBuilder<Selector, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<Selector, Builder> {
 
         /**
          * Applies the defaults associated with a given {@link SelectorType}
@@ -115,7 +114,7 @@ public interface Selector {
          * @param selectorType The {@link SelectorType}
          * @return This builder, for chaining
          */
-        Builder applySelectorType(Supplier<SelectorType> selectorType);
+        Builder applySelectorType(Supplier<? extends SelectorType> selectorType);
 
         /**
          * Applies the defaults associated with a given {@link SelectorType}
@@ -171,7 +170,7 @@ public interface Selector {
          * @param algorithm The {@link SelectorSortAlgorithm}
          * @return This builder, for chaining
          */
-        Builder setSortAlgorithm(Supplier<SelectorSortAlgorithm> algorithm);
+        Builder setSortAlgorithm(Supplier<? extends SelectorSortAlgorithm> algorithm);
 
         /**
          * Sets the sorting algorithm to use when returning entities from the
@@ -292,7 +291,7 @@ public interface Selector {
          * @param mode The gamemode
          * @return This builder, for chaining
          */
-        Builder gameMode(Supplier<GameMode> mode);
+        Builder gameMode(Supplier<? extends GameMode> mode);
 
         /**
          * Adds a {@link GameMode} constraint to the selector, requiring players
@@ -314,7 +313,7 @@ public interface Selector {
          * @param mode The gamemode
          * @return This builder, for chaining
          */
-        Builder notGameMode(Supplier<GameMode> mode);
+        Builder notGameMode(Supplier<? extends GameMode> mode);
 
         /**
          * Adds a {@link GameMode} constraint to the selector, requiring that

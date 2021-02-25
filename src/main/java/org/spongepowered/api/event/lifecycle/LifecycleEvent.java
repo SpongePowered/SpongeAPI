@@ -26,11 +26,14 @@ package org.spongepowered.api.event.lifecycle;
 
 import org.spongepowered.api.Game;
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
 
 /**
  * An event called during the lifetime (start to stop) of a
  * {@link Game}.
+ *
  */
+@NoFactoryMethod // intermediate event, will not be called directly
 public interface LifecycleEvent extends Event {
 
     Game getGame();

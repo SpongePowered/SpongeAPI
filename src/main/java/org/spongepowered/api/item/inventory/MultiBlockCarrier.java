@@ -25,7 +25,7 @@
 package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.util.Direction;
-import org.spongepowered.api.world.ServerLocation;
+import org.spongepowered.api.world.server.ServerLocation;
 
 import java.util.List;
 import java.util.Optional;

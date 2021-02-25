@@ -27,7 +27,6 @@ package org.spongepowered.api.entity.attribute;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Identifiable;
-import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.UUID;
 import java.util.function.Supplier;
@@ -46,7 +45,7 @@ public interface AttributeModifier extends Identifiable {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**
@@ -75,7 +74,7 @@ public interface AttributeModifier extends Identifiable {
      *
      * @see AttributeModifier
      */
-    interface Builder extends ResettableBuilder<AttributeModifier, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<AttributeModifier, Builder> {
 
         /**
          * Sets the id of this attribute modifier.

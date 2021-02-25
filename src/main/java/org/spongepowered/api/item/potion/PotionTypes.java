@@ -24,108 +24,119 @@
  */
 package org.spongepowered.api.item.potion;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * An enumeration of all possible {@link PotionType}s in vanilla Minecraft.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class PotionTypes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<PotionType> AWKWARD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "awkward");
+    public static final DefaultedRegistryReference<PotionType> AWKWARD = PotionTypes.key(ResourceKey.sponge("awkward"));
 
-    public static final Supplier<PotionType> EMPTY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "empty");
+    public static final DefaultedRegistryReference<PotionType> EMPTY = PotionTypes.key(ResourceKey.sponge("empty"));
 
-    public static final Supplier<PotionType> FIRE_RESISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "fire_resistance");
+    public static final DefaultedRegistryReference<PotionType> FIRE_RESISTANCE = PotionTypes.key(ResourceKey.sponge("fire_resistance"));
 
-    public static final Supplier<PotionType> HARMING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "harming");
+    public static final DefaultedRegistryReference<PotionType> HARMING = PotionTypes.key(ResourceKey.sponge("harming"));
 
-    public static final Supplier<PotionType> HEALING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "healing");
+    public static final DefaultedRegistryReference<PotionType> HEALING = PotionTypes.key(ResourceKey.sponge("healing"));
 
-    public static final Supplier<PotionType> INVISIBILITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "invisibility");
+    public static final DefaultedRegistryReference<PotionType> INVISIBILITY = PotionTypes.key(ResourceKey.sponge("invisibility"));
 
-    public static final Supplier<PotionType> LEAPING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "leaping");
+    public static final DefaultedRegistryReference<PotionType> LEAPING = PotionTypes.key(ResourceKey.sponge("leaping"));
 
-    public static final Supplier<PotionType> LONG_FIRE_RESISTANCE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "long_fire_resistance");
+    public static final DefaultedRegistryReference<PotionType> LONG_FIRE_RESISTANCE = PotionTypes.key(ResourceKey.sponge("long_fire_resistance"));
 
-    public static final Supplier<PotionType> LONG_INVISIBILITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "long_invisibility");
+    public static final DefaultedRegistryReference<PotionType> LONG_INVISIBILITY = PotionTypes.key(ResourceKey.sponge("long_invisibility"));
 
-    public static final Supplier<PotionType> LONG_LEAPING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "long_leaping");
+    public static final DefaultedRegistryReference<PotionType> LONG_LEAPING = PotionTypes.key(ResourceKey.sponge("long_leaping"));
 
-    public static final Supplier<PotionType> LONG_NIGHT_VISION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "long_night_vision");
+    public static final DefaultedRegistryReference<PotionType> LONG_NIGHT_VISION = PotionTypes.key(ResourceKey.sponge("long_night_vision"));
 
-    public static final Supplier<PotionType> LONG_POISON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "long_poison");
+    public static final DefaultedRegistryReference<PotionType> LONG_POISON = PotionTypes.key(ResourceKey.sponge("long_poison"));
 
-    public static final Supplier<PotionType> LONG_REGENERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "long_regeneration");
+    public static final DefaultedRegistryReference<PotionType> LONG_REGENERATION = PotionTypes.key(ResourceKey.sponge("long_regeneration"));
 
-    public static final Supplier<PotionType> LONG_SLOWNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "long_slowness");
+    public static final DefaultedRegistryReference<PotionType> LONG_SLOW_FALLING = PotionTypes.key(ResourceKey.sponge("long_slow_falling"));
 
-    public static final Supplier<PotionType> LONG_SLOW_FALLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "long_slow_falling");
+    public static final DefaultedRegistryReference<PotionType> LONG_SLOWNESS = PotionTypes.key(ResourceKey.sponge("long_slowness"));
 
-    public static final Supplier<PotionType> LONG_STRENGTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "long_strength");
+    public static final DefaultedRegistryReference<PotionType> LONG_STRENGTH = PotionTypes.key(ResourceKey.sponge("long_strength"));
 
-    public static final Supplier<PotionType> LONG_SWIFTNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "long_swiftness");
+    public static final DefaultedRegistryReference<PotionType> LONG_SWIFTNESS = PotionTypes.key(ResourceKey.sponge("long_swiftness"));
 
-    public static final Supplier<PotionType> LONG_TURTLE_MASTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "long_turtle_master");
+    public static final DefaultedRegistryReference<PotionType> LONG_TURTLE_MASTER = PotionTypes.key(ResourceKey.sponge("long_turtle_master"));
 
-    public static final Supplier<PotionType> LONG_WATER_BREATHING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "long_water_breathing");
+    public static final DefaultedRegistryReference<PotionType> LONG_WATER_BREATHING = PotionTypes.key(ResourceKey.sponge("long_water_breathing"));
 
-    public static final Supplier<PotionType> LONG_WEAKNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "long_weakness");
+    public static final DefaultedRegistryReference<PotionType> LONG_WEAKNESS = PotionTypes.key(ResourceKey.sponge("long_weakness"));
 
-    public static final Supplier<PotionType> LUCK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "luck");
+    public static final DefaultedRegistryReference<PotionType> LUCK = PotionTypes.key(ResourceKey.sponge("luck"));
 
-    public static final Supplier<PotionType> MUNDANE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "mundane");
+    public static final DefaultedRegistryReference<PotionType> MUNDANE = PotionTypes.key(ResourceKey.sponge("mundane"));
 
-    public static final Supplier<PotionType> NIGHT_VISION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "night_vision");
+    public static final DefaultedRegistryReference<PotionType> NIGHT_VISION = PotionTypes.key(ResourceKey.sponge("night_vision"));
 
-    public static final Supplier<PotionType> POISON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "poison");
+    public static final DefaultedRegistryReference<PotionType> POISON = PotionTypes.key(ResourceKey.sponge("poison"));
 
-    public static final Supplier<PotionType> REGENERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "regeneration");
+    public static final DefaultedRegistryReference<PotionType> REGENERATION = PotionTypes.key(ResourceKey.sponge("regeneration"));
 
-    public static final Supplier<PotionType> SLOWNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "slowness");
+    public static final DefaultedRegistryReference<PotionType> SLOW_FALLING = PotionTypes.key(ResourceKey.sponge("slow_falling"));
 
-    public static final Supplier<PotionType> SLOW_FALLING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "slow_falling");
+    public static final DefaultedRegistryReference<PotionType> SLOWNESS = PotionTypes.key(ResourceKey.sponge("slowness"));
 
-    public static final Supplier<PotionType> STRENGTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "strength");
+    public static final DefaultedRegistryReference<PotionType> STRENGTH = PotionTypes.key(ResourceKey.sponge("strength"));
 
-    public static final Supplier<PotionType> STRONG_HARMING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "strong_harming");
+    public static final DefaultedRegistryReference<PotionType> STRONG_HARMING = PotionTypes.key(ResourceKey.sponge("strong_harming"));
 
-    public static final Supplier<PotionType> STRONG_HEALING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "strong_healing");
+    public static final DefaultedRegistryReference<PotionType> STRONG_HEALING = PotionTypes.key(ResourceKey.sponge("strong_healing"));
 
-    public static final Supplier<PotionType> STRONG_LEAPING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "strong_leaping");
+    public static final DefaultedRegistryReference<PotionType> STRONG_LEAPING = PotionTypes.key(ResourceKey.sponge("strong_leaping"));
 
-    public static final Supplier<PotionType> STRONG_POISON = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "strong_poison");
+    public static final DefaultedRegistryReference<PotionType> STRONG_POISON = PotionTypes.key(ResourceKey.sponge("strong_poison"));
 
-    public static final Supplier<PotionType> STRONG_REGENERATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "strong_regeneration");
+    public static final DefaultedRegistryReference<PotionType> STRONG_REGENERATION = PotionTypes.key(ResourceKey.sponge("strong_regeneration"));
 
-    public static final Supplier<PotionType> STRONG_SLOWNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "strong_slowness");
+    public static final DefaultedRegistryReference<PotionType> STRONG_SLOWNESS = PotionTypes.key(ResourceKey.sponge("strong_slowness"));
 
-    public static final Supplier<PotionType> STRONG_STRENGTH = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "strong_strength");
+    public static final DefaultedRegistryReference<PotionType> STRONG_STRENGTH = PotionTypes.key(ResourceKey.sponge("strong_strength"));
 
-    public static final Supplier<PotionType> STRONG_SWIFTNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "strong_swiftness");
+    public static final DefaultedRegistryReference<PotionType> STRONG_SWIFTNESS = PotionTypes.key(ResourceKey.sponge("strong_swiftness"));
 
-    public static final Supplier<PotionType> STRONG_TURTLE_MASTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "strong_turtle_master");
+    public static final DefaultedRegistryReference<PotionType> STRONG_TURTLE_MASTER = PotionTypes.key(ResourceKey.sponge("strong_turtle_master"));
 
-    public static final Supplier<PotionType> SWIFTNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "swiftness");
+    public static final DefaultedRegistryReference<PotionType> SWIFTNESS = PotionTypes.key(ResourceKey.sponge("swiftness"));
 
-    public static final Supplier<PotionType> THICK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "thick");
+    public static final DefaultedRegistryReference<PotionType> THICK = PotionTypes.key(ResourceKey.sponge("thick"));
 
-    public static final Supplier<PotionType> TURTLE_MASTER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "turtle_master");
+    public static final DefaultedRegistryReference<PotionType> TURTLE_MASTER = PotionTypes.key(ResourceKey.sponge("turtle_master"));
 
-    public static final Supplier<PotionType> WATER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "water");
+    public static final DefaultedRegistryReference<PotionType> WATER = PotionTypes.key(ResourceKey.sponge("water"));
 
-    public static final Supplier<PotionType> WATER_BREATHING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "water_breathing");
+    public static final DefaultedRegistryReference<PotionType> WATER_BREATHING = PotionTypes.key(ResourceKey.sponge("water_breathing"));
 
-    public static final Supplier<PotionType> WEAKNESS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(PotionType.class, "weakness");
+    public static final DefaultedRegistryReference<PotionType> WEAKNESS = PotionTypes.key(ResourceKey.sponge("weakness"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private PotionTypes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<PotionType> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.POTION_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

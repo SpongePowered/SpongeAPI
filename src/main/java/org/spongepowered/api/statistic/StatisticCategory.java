@@ -25,13 +25,13 @@
 package org.spongepowered.api.statistic;
 
 import io.leangen.geantyref.TypeToken;
-import org.spongepowered.api.CatalogType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Collection;
 
 @CatalogedBy(StatisticCategories.class)
-public interface StatisticCategory extends CatalogType {
+public interface StatisticCategory {
 
     /**
      * Gets all the {@link Statistic}s that are listed
@@ -43,29 +43,29 @@ public interface StatisticCategory extends CatalogType {
 
     /**
      * Represents a {@link StatisticCategory} that owns
-     * {@link Statistic}s for all the {@link CatalogType}s
+     * {@link Statistic}s for all the {@link T values}
      * of a specific type.
      *
-     * @param <T> The catalog type
+     * @param <T> The type
      */
-    interface ForCatalog<T extends CatalogType> extends StatisticCategory {
+    interface Typed<T> extends StatisticCategory {
 
         @Override
         Collection<Statistic.TypeInstance<T>> getStatistics();
 
         /**
-         * Gets the {@link CatalogType} type.
+         * Gets the {@link T value}.
          *
-         * @return The catalog type
+         * @return The value type
          */
         TypeToken<T> getType();
 
         /**
-         * Gets the {@link Statistic.TypeInstance} for the given {@link CatalogType}.
+         * Gets the {@link Statistic.TypeInstance} for the given {@link T value}.
          *
-         * @param catalogType The catalog type
-         * @return The catalog statistic
+         * @param value The value
+         * @return The instance
          */
-        Statistic.TypeInstance<T> getStatistic(T catalogType);
+        Statistic.TypeInstance<T> getStatistic(T value);
     }
 }

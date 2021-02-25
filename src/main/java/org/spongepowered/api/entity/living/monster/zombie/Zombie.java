@@ -29,6 +29,6 @@ import org.spongepowered.api.entity.living.Ageable;
 /**
  * Represents a Zombie.
  */
-public interface Zombie extends ZombieEntity, Ageable {
+public interface Zombie extends ZombieLike, Ageable {
 
 }

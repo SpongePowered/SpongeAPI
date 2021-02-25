@@ -24,32 +24,43 @@
  */
 package org.spongepowered.api.entity.living.player.gamemode;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-
-import java.util.function.Supplier;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 
 /**
  * A list of the game modes that Minecraft provides in vanilla.
  */
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class GameModes {
+
+    // @formatter:off
 
     // SORTFIELDS:ON
 
-    public static final Supplier<GameMode> ADVENTURE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameMode.class, "adventure");
+    public static final DefaultedRegistryReference<GameMode> ADVENTURE = GameModes.key(ResourceKey.sponge("adventure"));
 
-    public static final Supplier<GameMode> CREATIVE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameMode.class, "creative");
+    public static final DefaultedRegistryReference<GameMode> CREATIVE = GameModes.key(ResourceKey.sponge("creative"));
 
-    public static final Supplier<GameMode> NOT_SET = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameMode.class, "not_set");
+    public static final DefaultedRegistryReference<GameMode> NOT_SET = GameModes.key(ResourceKey.sponge("not_set"));
 
-    public static final Supplier<GameMode> SPECTATOR = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameMode.class, "spectator");
+    public static final DefaultedRegistryReference<GameMode> SPECTATOR = GameModes.key(ResourceKey.sponge("spectator"));
 
-    public static final Supplier<GameMode> SURVIVAL = Sponge.getRegistry().getCatalogRegistry().provideSupplier(GameMode.class, "survival");
+    public static final DefaultedRegistryReference<GameMode> SURVIVAL = GameModes.key(ResourceKey.sponge("survival"));
 
     // SORTFIELDS:OFF
 
-    // Suppress default constructor to ensure non-instantiability.
+    // @formatter:on
+
     private GameModes() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
+    private static DefaultedRegistryReference<GameMode> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.GAME_MODE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+    }
 }

@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.state;
 
-import org.spongepowered.api.NamedCatalogType;
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.util.Nameable;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -74,7 +74,7 @@ import java.util.function.Predicate;
  * <p>As stated above, a {@link StateContainer} may not always have one or more
  * {@link StateProperty}s. An example of such a block is {@link BlockTypes#BOOKSHELF}.</p>
  */
-public interface StateProperty<T extends Comparable<T>> extends NamedCatalogType {
+public interface StateProperty<T extends Comparable<T>> extends Nameable {
 
     /**
      * Gets all possible values for a specific {@link StateProperty}. The
