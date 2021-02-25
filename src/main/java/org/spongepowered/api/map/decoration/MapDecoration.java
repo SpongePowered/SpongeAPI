@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.map.decoration;
 
-import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Keys;
@@ -64,7 +63,7 @@ public interface MapDecoration extends DataSerializable {
      * @return A {@link Builder}
      */
     static Builder builder() {
-        return Sponge.getRegistry().getBuilderRegistry().provideBuilder(Builder.class);
+        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
     }
 
     /**

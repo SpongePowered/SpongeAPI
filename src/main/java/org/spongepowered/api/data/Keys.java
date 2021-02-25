@@ -1789,14 +1789,14 @@ public final class Keys {
      * This contains the colors displayed on a map.
      *
      */
-    public static final Key<Value<MapCanvas>> MAP_CANVAS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_canvas");
+    public static final Key<Value<MapCanvas>> MAP_CANVAS = Keys.key(ResourceKey.sponge("map_canvas"), TypeTokens.MAP_CANVAS_VALUE_TOKEN);
 
     /**
      * Represents the {@link Key} for the Set of {@link MapDecoration}s
      * for a {@link MapInfo}.
      *
      */
-    public static final Key<SetValue<MapDecoration>> MAP_DECORATIONS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_decorations");
+    public static final Key<SetValue<MapDecoration>> MAP_DECORATIONS = Keys.key(ResourceKey.sponge("map_decorations"), TypeTokens.MAP_DECORATIONS_VALUE_TOKEN);
 
     /**
      * Represents the {@link Key} for the {@link MapInfo}
@@ -1804,14 +1804,14 @@ public final class Keys {
      *
      * <b>Can be null if the ItemStack was made by a plugin and hasn't been offered a MapInfo yet.</b>
      */
-    public static final Key<Value<MapInfo>> MAP_INFO = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_info");
+    public static final Key<Value<MapInfo>> MAP_INFO = Keys.key(ResourceKey.sponge("map_info"), TypeTokens.MAP_INFO_VALUE_TOKEN);
 
     /**
      * Represents the {@link Key} for the centre x and z of where a
      * {@link MapInfo} represents.
      * This will be automatically centralised correctly.
      */
-    public static final Key<Value<Vector2i>> MAP_LOCATION = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_location");
+    public static final Key<Value<Vector2i>> MAP_LOCATION = Keys.key(ResourceKey.sponge("map_location"), TypeTokens.VECTOR_2I_VALUE_TOKEN);
 
     /**
      * Represents the {@link Key} for whether a map updates from players
@@ -1821,32 +1821,32 @@ public final class Keys {
      * custom static map.
      * See <a href="https://minecraft.gamepedia.com/Map#Locking">Minecraft Wiki - Map Locking</a>
      */
-    public static final Key<Value<Boolean>> MAP_LOCKED = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_locked");
+    public static final Key<Value<Boolean>> MAP_LOCKED = Keys.key(ResourceKey.sponge("map_locked"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Represents the {@link Key} for the scale of a map
      * for a {@link MapInfo}.
      * @see <a href="https://minecraft.gamepedia.com/Map#Zoom_details">Minecraft Wiki - Zoom Details</a>
      */
-    public static final Key<Value<Integer>> MAP_SCALE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_scale");
+    public static final Key<Value<Integer>> MAP_SCALE = Keys.key(ResourceKey.sponge("map_scale"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * Represents the {@link Key} for whether a {@link MapInfo}
      * tracks player positions.
      */
-    public static final Key<Value<Boolean>> MAP_TRACKS_PLAYERS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_tracks_players");
+    public static final Key<Value<Boolean>> MAP_TRACKS_PLAYERS = Keys.key(ResourceKey.sponge("map_tracks_players"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Represents the {@link Key} for whether a {@link MapInfo} can track
      * a player from anywhere in the world.
      */
-    public static final Key<Value<Boolean>> MAP_UNLIMITED_TRACKING = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_unlimited_tracking");
+    public static final Key<Value<Boolean>> MAP_UNLIMITED_TRACKING = Keys.key(ResourceKey.sponge("map_unlimited_tracking"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Represents the {@link Key} for the {@link ResourceKey} of a {@link ServerWorld}.
      * {@link MapInfo}
      */
-    public static final Key<Value<ResourceKey>> MAP_WORLD = Sponge.getRegistry().getCatalogRegistry().provideSupplier(Key.class, "map_world");
+    public static final Key<Value<ResourceKey>> MAP_WORLD = Keys.key(ResourceKey.sponge("map_world"), TypeTokens.RESOURCE_KEY_VALUE_TOKEN);
 
     /**
      * The matter state of a {@link BlockState}

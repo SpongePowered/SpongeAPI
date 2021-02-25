@@ -159,8 +159,6 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<MapInfo>> MAP_INFO_VALUE_TOKEN = new TypeToken<Value<MapInfo>>() {private static final long serialVersionUID = -1;};
 
-    public static final TypeToken<Value<World>> WORLD_VALUE_TOKEN = new TypeToken<Value<World>>() {private static final long serialVersionUID = -1;};
-
     public static final TypeToken<Value<AttachmentSurface>> ATTACHMENT_SURFACE_VALUE_TOKEN = new TypeToken<Value<AttachmentSurface>>() {};
 
     public static final TypeToken<Audience> AUDIENCE_TOKEN = new TypeToken<Audience>() {};
@@ -452,6 +450,8 @@ public final class TypeTokens {
     public static final TypeToken<MapValue<Direction, WireAttachmentType>> MAP_DIRECTION_WIRE_ATTACHMENT_VALUE_TOKEN = new TypeToken<MapValue<Direction, WireAttachmentType>>() {};
 
     public static final TypeToken<Value<WireAttachmentType>> WIRE_ATTACHMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<WireAttachmentType>>() {};
+
+    public static final TypeToken<Value<ResourceKey>> RESOURCE_KEY_VALUE_TOKEN = new TypeToken<Value<ResourceKey>>() {};
 
     // @formatter:on
 

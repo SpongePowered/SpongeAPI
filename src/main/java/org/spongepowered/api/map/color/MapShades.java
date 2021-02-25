@@ -24,7 +24,12 @@
  */
 package org.spongepowered.api.map.color;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.map.decoration.MapDecorationType;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryTypes;
 
 import java.util.function.Supplier;
 
@@ -35,17 +40,21 @@ public final class MapShades {
 
 	// SORTFIELDS:ON
 
-	public static final Supplier<MapShade> DARKER = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapShade.class, "darker");
+	public static final DefaultedRegistryReference<MapShade> DARKER = MapShades.key(ResourceKey.sponge("darker"));
 
-	public static final Supplier<MapShade> DARK = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapShade.class, "dark");
+	public static final DefaultedRegistryReference<MapShade> DARK = MapShades.key(ResourceKey.sponge("dark"));
 
-	public static final Supplier<MapShade> BASE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapShade.class, "base");
+	public static final DefaultedRegistryReference<MapShade> BASE = MapShades.key(ResourceKey.sponge("base"));
 
-	public static final Supplier<MapShade> DARKEST = Sponge.getRegistry().getCatalogRegistry().provideSupplier(MapShade.class, "darkest");
+	public static final DefaultedRegistryReference<MapShade> DARKEST = MapShades.key(ResourceKey.sponge("darkest"));
 
 	// SORTFIELDS:OFF
 
 	private MapShades() {
 		throw new AssertionError("You should not be attempting to instantiate this class.");
+	}
+
+	private static DefaultedRegistryReference<MapShade> key(final ResourceKey location) {
+		return RegistryKey.of(RegistryTypes.MAP_SHADE, location).asDefaultedReference(() -> Sponge.getGame().registries());
 	}
 }
