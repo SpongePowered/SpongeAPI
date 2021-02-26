@@ -1811,7 +1811,7 @@ public final class Keys {
      * {@link MapInfo} represents.
      * This will be automatically centralised correctly.
      */
-    public static final Key<Value<Vector2i>> MAP_LOCATION = Keys.key(ResourceKey.sponge("MAP_LOCATION"), TypeTokens.VECTOR_2I_VALUE_TOKEN);
+    public static final Key<Value<Vector2i>> MAP_LOCATION = Keys.key(ResourceKey.sponge("map_location"), TypeTokens.VECTOR_2I_VALUE_TOKEN);
 
     /**
      * Represents the {@link Key} for whether a map updates from players
@@ -1821,14 +1821,14 @@ public final class Keys {
      * custom static map.
      * See <a href="https://minecraft.gamepedia.com/Map#Locking">Minecraft Wiki - Map Locking</a>
      */
-    public static final Key<Value<Boolean>> MAP_LOCKED = Keys.key(ResourceKey.sponge("MAP_LOCKED"), TypeTokens.BOOLEAN_VALUE_TOKEN);
+    public static final Key<Value<Boolean>> MAP_LOCKED = Keys.key(ResourceKey.sponge("map_locked"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Represents the {@link Key} for the scale of a map
      * for a {@link MapInfo}.
      * @see <a href="https://minecraft.gamepedia.com/Map#Zoom_details">Minecraft Wiki - Zoom Details</a>
      */
-    public static final Key<Value<Integer>> MAP_SCALE = Keys.key(ResourceKey.sponge("MAP_SCALE"), TypeTokens.INTEGER_VALUE_TOKEN);
+    public static final Key<Value<Integer>> MAP_SCALE = Keys.key(ResourceKey.sponge("map_scale"), TypeTokens.INTEGER_VALUE_TOKEN);
 
     /**
      * Represents the {@link Key} for whether a {@link MapInfo}
