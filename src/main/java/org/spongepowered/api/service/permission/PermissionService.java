@@ -171,7 +171,7 @@ public interface PermissionService {
     default Optional<? extends SubjectData> getRoleTemplate(final PluginContainer plugin, final String roleTemplate) {
         Objects.requireNonNull(plugin, "plugin");
 
-        return this.getCollection(SUBJECTS_ROLE_TEMPLATE).flatMap(coll ->
+        return this.getCollection(PermissionService.SUBJECTS_ROLE_TEMPLATE).flatMap(coll ->
                 coll.getSubject(plugin.getMetadata().getId() + ":"
                         + Objects.requireNonNull(roleTemplate, "roleTemplate")))
                 .map(Subject::getTransientSubjectData);
@@ -186,7 +186,7 @@ public interface PermissionService {
      * @return An immutable set of mappings from plugin to subject data holder.
      */
     default Set<Map.Entry<PluginContainer, ? extends SubjectData>> getRoleTemplates(final String roleTemplate) {
-        final Optional<? extends SubjectCollection> coll = this.getCollection(SUBJECTS_ROLE_TEMPLATE);
+        final Optional<? extends SubjectCollection> coll = this.getCollection(PermissionService.SUBJECTS_ROLE_TEMPLATE);
         if (!coll.isPresent()) {
             return Collections.emptySet();
         }

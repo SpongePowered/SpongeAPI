@@ -94,7 +94,7 @@ public final class NodeTree {
      * @return The new node tree
      */
     public static NodeTree ofTristates(final Map<String, Tristate> values) {
-        return ofTristates(values, Tristate.UNDEFINED);
+        return NodeTree.ofTristates(values, Tristate.UNDEFINED);
     }
 
     /**
@@ -194,6 +194,7 @@ public final class NodeTree {
      */
     public NodeTree withValue(final String node, final Tristate value) {
         final String[] parts = NodeTree.NODE_SPLIT.split(node.toLowerCase(), -1);
+        final Node newRoot = new Node(new HashMap<>(this.rootNode.children));
         Node newPtr = newRoot;
         Node currentPtr = this.rootNode;
 

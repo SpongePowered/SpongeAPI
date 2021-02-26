@@ -25,10 +25,12 @@
 package org.spongepowered.api.service.permission;
 
 import org.spongepowered.api.event.Cause;
+import org.spongepowered.api.service.context.Context;
 import org.spongepowered.api.util.Tristate;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Enables an object to act as a proxy to a Subject, delegating all calls through
@@ -55,7 +57,7 @@ public interface SubjectProxy extends Subject {
 
     @Override
     default Optional<?> getAssociatedObject() {
-        return this.getSubject().getAssociatedObject();
+        return this.subject().getAssociatedObject();
     }
 
     @Override
@@ -74,8 +76,18 @@ public interface SubjectProxy extends Subject {
     }
 
     @Override
+    default Tristate permissionValue(String permission, Set<Context> contexts) {
+        return this.subject().permissionValue(permission, contexts);
+    }
+
+    @Override
     default Tristate permissionValue(final String permission, final Cause causes) {
         return this.subject().permissionValue(permission, causes);
+    }
+
+    @Override
+    default boolean isChildOf(SubjectReference parent, Set<Context> contexts) {
+        return this.subject().isChildOf(parent, contexts);
     }
 
     @Override
@@ -89,6 +101,11 @@ public interface SubjectProxy extends Subject {
     }
 
     @Override
+    default List<? extends SubjectReference> parents(Set<Context> contexts) {
+        return this.subject().parents(contexts);
+    }
+
+    @Override
     default List<? extends SubjectReference> parents(final Cause causes) {
         return this.subject().parents(causes);
     }
@@ -98,6 +115,10 @@ public interface SubjectProxy extends Subject {
         return this.subject().parents();
     }
 
+    @Override
+    default Optional<String> option(String key, Set<Context> contexts) {
+        return this.subject().option(key, contexts);
+    }
 
     @Override
     default Optional<String> option(final String key, final Cause cause) {
@@ -112,6 +133,11 @@ public interface SubjectProxy extends Subject {
     @Override
     default String identifier() {
         return this.subject().identifier();
+    }
+
+    @Override
+    default boolean hasPermission(final String permission, final Set<Context> contexts) {
+        return this.subject().hasPermission(permission, contexts);
     }
 
     @Override
