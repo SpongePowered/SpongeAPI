@@ -1846,7 +1846,7 @@ public final class Keys {
      * Represents the {@link Key} for the {@link ResourceKey} of a {@link ServerWorld}.
      * {@link MapInfo}
      */
-    public static final Key<Value<ResourceKey>> MAP_WORLD = Keys.key(ResourceKey.sponge("map_world"), TypeTokens.WORLD_VALUE_TOKEN);
+    public static final Key<Value<ResourceKey>> MAP_WORLD = Keys.key(ResourceKey.sponge("map_world"), TypeTokens.RESOURCE_KEY_VALUE_TOKEN);
 
     /**
      * The matter state of a {@link BlockState}

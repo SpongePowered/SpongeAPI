@@ -185,6 +185,8 @@ public final class TypeTokens {
 
     public static final TypeToken<Value<Color>> COLOR_VALUE_TOKEN = new TypeToken<Value<Color>>() {};
 
+    public static final TypeToken<Map<EquipmentType, Boolean>> MAP_EQUIPMENT_TYPE_BOOLEAN_TOKEN = new TypeToken<Map<EquipmentType, Boolean>>() {private static final long serialVersionUID = -1;};
+
     public static final TypeToken<Consumer<CommandCause>> COMMAND_CAUSE_CONSUMER = new TypeToken<Consumer<CommandCause>>() {};
 
     public static final TypeToken<Value<ComparatorMode>> COMPARATOR_MODE_VALUE_TOKEN = new TypeToken<Value<ComparatorMode>>() {};
@@ -302,8 +304,6 @@ public final class TypeTokens {
     public static final TypeToken<LocatableBlock> LOCATABLE_BLOCK_TOKEN = new TypeToken<LocatableBlock>() {};
 
     public static final TypeToken<Value<Long>> LONG_VALUE_TOKEN = new TypeToken<Value<Long>>() {};
-
-    public static final TypeToken<Map<EquipmentType, Boolean>> MAP_EQUIPMENT_TYPE_BOOLEAN_TOKEN = new TypeToken<Map<EquipmentType, Boolean>>() {};
 
     public static final TypeToken<MapValue<EquipmentType, Boolean>> MAP_EQUIPMENT_TYPE_BOOLEAN_VALUE_TOKEN = new TypeToken<MapValue<EquipmentType, Boolean>>() {};
 
