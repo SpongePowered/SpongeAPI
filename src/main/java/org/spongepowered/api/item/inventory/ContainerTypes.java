@@ -34,29 +34,43 @@ import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
 
 /**
- * An enumeration of all possible {@link ContainerType}s in vanilla minecraft.
+ * An enumeration of all possible {@link ContainerType}s in vanilla Minecraft.
  */
 @SuppressWarnings("unused")
 @RegistryScopes(scopes = RegistryScope.GAME)
-public final class ContainerTypes {
+to
 
     // @formatter:off
+    // Containers with internal Inventory.
+    /**
+     * Size 0. All slots present in the container only: 3.
+     */
+    public static final DefaultedRegistryReference<ContainerType> ANVIL = ContainerTypes.key(ResourceKey.minecraft("anvil"));
 
-    // SORTFIELDS:ON
+    /**
+     * Size 0. All slots present in the container only: 1.
+     */
+    public static final DefaultedRegistryReference<ContainerType> BEACON = ContainerTypes.key(ResourceKey.minecraft("beacon"));
 
     // Containers backed by an inventory.
-
-    // TODO check container creation in 1.14 code especially merchant/horse
-
-
-    // TODO add new inventories
-
     public static final DefaultedRegistryReference<ContainerType> BLAST_FURNACE = ContainerTypes.key(ResourceKey.minecraft("blast_furnace"));
 
     /**
      * Size 5.
      */
     public static final DefaultedRegistryReference<ContainerType> BREWING_STAND = ContainerTypes.key(ResourceKey.minecraft("brewing_stand"));
+
+    public static final DefaultedRegistryReference<ContainerType> CARTOGRAPHY_TABLE = ContainerTypes.key(ResourceKey.minecraft("cartography_table"));
+
+    /**
+     * Size 0. All slots present in the container only: 10 (3x3+1).
+     */
+    public static final DefaultedRegistryReference<ContainerType> CRAFTING = ContainerTypes.key(ResourceKey.minecraft("crafting"));
+
+    /**
+     * Size 0. All slots present in the container only 2.
+     */
+    public static final DefaultedRegistryReference<ContainerType> ENCHANTMENT = ContainerTypes.key(ResourceKey.minecraft("enchantment"));
 
     /**
      * Size 3.
@@ -86,6 +100,8 @@ public final class ContainerTypes {
      */
     public static final DefaultedRegistryReference<ContainerType> GENERIC_9X6 = ContainerTypes.key(ResourceKey.minecraft("generic_9x6"));
 
+    public static final DefaultedRegistryReference<ContainerType> GRINDSTONE = ContainerTypes.key(ResourceKey.minecraft("grindstone"));
+
     /**
      * Size 5 (1x5 grid).
      */
@@ -93,54 +109,26 @@ public final class ContainerTypes {
 
     public static final DefaultedRegistryReference<ContainerType> LECTERN = ContainerTypes.key(ResourceKey.minecraft("lectern"));
 
-    /**
-     * Size 27 (3x9 grid). Shulker boxes are not allowed in shulker boxes.
-     */
-    public static final DefaultedRegistryReference<ContainerType> SHULKER_BOX = ContainerTypes.key(ResourceKey.minecraft("shulker_box"));
-
-    public static final DefaultedRegistryReference<ContainerType> SMOKER = ContainerTypes.key(ResourceKey.minecraft("smoker"));
-
-    // Containers with internal Inventory.
-
-    /**
-     * Size 0. All slots present in the container only: 3.
-     */
-    public static final DefaultedRegistryReference<ContainerType> ANVIL = ContainerTypes.key(ResourceKey.minecraft("anvil"));
-
-    /**
-     * Size 0. All slots present in the container only: 1.
-     */
-    public static final DefaultedRegistryReference<ContainerType> BEACON = ContainerTypes.key(ResourceKey.minecraft("beacon"));
-
-    public static final DefaultedRegistryReference<ContainerType> CARTOGRAPHY_TABLE = ContainerTypes.key(ResourceKey.minecraft("cartography_table"));
-
-    /**
-     * Size 0. All slots present in the container only: 10 (3x3+1).
-     */
-    public static final DefaultedRegistryReference<ContainerType> CRAFTING = ContainerTypes.key(ResourceKey.minecraft("crafting"));
-
-    /**
-     * Size 0. All slots present in the container only 2.
-     */
-    public static final DefaultedRegistryReference<ContainerType> ENCHANTMENT = ContainerTypes.key(ResourceKey.minecraft("enchantment"));
-
-    public static final DefaultedRegistryReference<ContainerType> GRINDSTONE = ContainerTypes.key(ResourceKey.minecraft("grindstone"));
-
     public static final DefaultedRegistryReference<ContainerType> LOOM = ContainerTypes.key(ResourceKey.minecraft("loom"));
 
-    public static final DefaultedRegistryReference<ContainerType> STONECUTTER = ContainerTypes.key(ResourceKey.minecraft("stonecutter"));
-
     // Containers that cannot be opened on their own. Create an Entity to open the container instead.
-
     /**
      * Create a {@link Villager} Entity instead of using this ContainerType.
      */
     public static final DefaultedRegistryReference<ContainerType> MERCHANT = ContainerTypes.key(ResourceKey.minecraft("merchant"));
 
-    // SORTFIELDS:OFF
+    /**
+     * Size 27 (3x9 grid). Shulker boxes are not allowed in shulker boxes.
+     */
+    public static final DefaultedRegistryReference<ContainerType> SHULKER_BOX = ContainerTypes.key(ResourceKey.minecraft("shulker_box"));
+
+    public static final DefaultedRegistryReference<ContainerType> SMITHING = ContainerTypes.key(ResourceKey.minecraft("smithing"));
+
+    public static final DefaultedRegistryReference<ContainerType> SMOKER = ContainerTypes.key(ResourceKey.minecraft("smoker"));
+
+    public static final DefaultedRegistryReference<ContainerType> STONECUTTER = ContainerTypes.key(ResourceKey.minecraft("stonecutter"));
 
     // @formatter:on
-
     private ContainerTypes() {
     }
 

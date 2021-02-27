@@ -27,22 +27,19 @@ package org.spongepowered.api.item;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 
 /**
- * An enumeration of all possible {@link ItemType}s in vanilla minecraft.
+ * An enumeration of all possible {@link ItemType}s in vanilla Minecraft.
  */
 @SuppressWarnings("unused")
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class ItemTypes {
 
     // @formatter:off
-
-    // SORTFIELDS:ON
-
     public static final DefaultedRegistryReference<ItemType> ACACIA_BOAT = ItemTypes.key(ResourceKey.minecraft("acacia_boat"));
 
     public static final DefaultedRegistryReference<ItemType> ACACIA_BUTTON = ItemTypes.key(ResourceKey.minecraft("acacia_button"));
@@ -107,6 +104,12 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> AXOLOTL_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("axolotl_spawn_egg"));
 
+    public static final DefaultedRegistryReference<ItemType> AZALEA = ItemTypes.key(ResourceKey.minecraft("azalea"));
+
+    public static final DefaultedRegistryReference<ItemType> AZALEA_LEAVES = ItemTypes.key(ResourceKey.minecraft("azalea_leaves"));
+
+    public static final DefaultedRegistryReference<ItemType> AZALEA_LEAVES_FLOWERS = ItemTypes.key(ResourceKey.minecraft("azalea_leaves_flowers"));
+
     public static final DefaultedRegistryReference<ItemType> AZURE_BLUET = ItemTypes.key(ResourceKey.minecraft("azure_bluet"));
 
     public static final DefaultedRegistryReference<ItemType> BAKED_POTATO = ItemTypes.key(ResourceKey.minecraft("baked_potato"));
@@ -140,6 +143,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> BEETROOT_SOUP = ItemTypes.key(ResourceKey.minecraft("beetroot_soup"));
 
     public static final DefaultedRegistryReference<ItemType> BELL = ItemTypes.key(ResourceKey.minecraft("bell"));
+
+    public static final DefaultedRegistryReference<ItemType> BIG_DRIPLEAF = ItemTypes.key(ResourceKey.minecraft("big_dripleaf"));
 
     public static final DefaultedRegistryReference<ItemType> BIRCH_BOAT = ItemTypes.key(ResourceKey.minecraft("birch_boat"));
 
@@ -367,6 +372,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> CHIPPED_ANVIL = ItemTypes.key(ResourceKey.minecraft("chipped_anvil"));
 
+    public static final DefaultedRegistryReference<ItemType> CHISELED_DEEPSLATE = ItemTypes.key(ResourceKey.minecraft("chiseled_deepslate"));
+
     public static final DefaultedRegistryReference<ItemType> CHISELED_NETHER_BRICKS = ItemTypes.key(ResourceKey.minecraft("chiseled_nether_bricks"));
 
     public static final DefaultedRegistryReference<ItemType> CHISELED_POLISHED_BLACKSTONE = ItemTypes.key(ResourceKey.minecraft("chiseled_polished_blackstone"));
@@ -398,6 +405,14 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> COAL_ORE = ItemTypes.key(ResourceKey.minecraft("coal_ore"));
 
     public static final DefaultedRegistryReference<ItemType> COARSE_DIRT = ItemTypes.key(ResourceKey.minecraft("coarse_dirt"));
+
+    public static final DefaultedRegistryReference<ItemType> COBBLED_DEEPSLATE = ItemTypes.key(ResourceKey.minecraft("cobbled_deepslate"));
+
+    public static final DefaultedRegistryReference<ItemType> COBBLED_DEEPSLATE_SLAB = ItemTypes.key(ResourceKey.minecraft("cobbled_deepslate_slab"));
+
+    public static final DefaultedRegistryReference<ItemType> COBBLED_DEEPSLATE_STAIRS = ItemTypes.key(ResourceKey.minecraft("cobbled_deepslate_stairs"));
+
+    public static final DefaultedRegistryReference<ItemType> COBBLED_DEEPSLATE_WALL = ItemTypes.key(ResourceKey.minecraft("cobbled_deepslate_wall"));
 
     public static final DefaultedRegistryReference<ItemType> COBBLESTONE = ItemTypes.key(ResourceKey.minecraft("cobblestone"));
 
@@ -619,6 +634,34 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> DEBUG_STICK = ItemTypes.key(ResourceKey.minecraft("debug_stick"));
 
+    public static final DefaultedRegistryReference<ItemType> DEEPSLATE = ItemTypes.key(ResourceKey.minecraft("deepslate"));
+
+    public static final DefaultedRegistryReference<ItemType> DEEPSLATE_BRICK_SLAB = ItemTypes.key(ResourceKey.minecraft("deepslate_brick_slab"));
+
+    public static final DefaultedRegistryReference<ItemType> DEEPSLATE_BRICK_STAIRS = ItemTypes.key(ResourceKey.minecraft("deepslate_brick_stairs"));
+
+    public static final DefaultedRegistryReference<ItemType> DEEPSLATE_BRICK_WALL = ItemTypes.key(ResourceKey.minecraft("deepslate_brick_wall"));
+
+    public static final DefaultedRegistryReference<ItemType> DEEPSLATE_BRICKS = ItemTypes.key(ResourceKey.minecraft("deepslate_bricks"));
+
+    public static final DefaultedRegistryReference<ItemType> DEEPSLATE_DIAMOND_ORE = ItemTypes.key(ResourceKey.minecraft("deepslate_diamond_ore"));
+
+    public static final DefaultedRegistryReference<ItemType> DEEPSLATE_GOLD_ORE = ItemTypes.key(ResourceKey.minecraft("deepslate_gold_ore"));
+
+    public static final DefaultedRegistryReference<ItemType> DEEPSLATE_IRON_ORE = ItemTypes.key(ResourceKey.minecraft("deepslate_iron_ore"));
+
+    public static final DefaultedRegistryReference<ItemType> DEEPSLATE_LAPIS_ORE = ItemTypes.key(ResourceKey.minecraft("deepslate_lapis_ore"));
+
+    public static final DefaultedRegistryReference<ItemType> DEEPSLATE_REDSTONE_ORE = ItemTypes.key(ResourceKey.minecraft("deepslate_redstone_ore"));
+
+    public static final DefaultedRegistryReference<ItemType> DEEPSLATE_TILE_SLAB = ItemTypes.key(ResourceKey.minecraft("deepslate_tile_slab"));
+
+    public static final DefaultedRegistryReference<ItemType> DEEPSLATE_TILE_STAIRS = ItemTypes.key(ResourceKey.minecraft("deepslate_tile_stairs"));
+
+    public static final DefaultedRegistryReference<ItemType> DEEPSLATE_TILE_WALL = ItemTypes.key(ResourceKey.minecraft("deepslate_tile_wall"));
+
+    public static final DefaultedRegistryReference<ItemType> DEEPSLATE_TILES = ItemTypes.key(ResourceKey.minecraft("deepslate_tiles"));
+
     public static final DefaultedRegistryReference<ItemType> DETECTOR_RAIL = ItemTypes.key(ResourceKey.minecraft("detector_rail"));
 
     public static final DefaultedRegistryReference<ItemType> DIAMOND = ItemTypes.key(ResourceKey.minecraft("diamond"));
@@ -729,6 +772,14 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> EXPERIENCE_BOTTLE = ItemTypes.key(ResourceKey.minecraft("experience_bottle"));
 
+    public static final DefaultedRegistryReference<ItemType> EXPOSED_COPPER = ItemTypes.key(ResourceKey.minecraft("exposed_copper"));
+
+    public static final DefaultedRegistryReference<ItemType> EXPOSED_CUT_COPPER = ItemTypes.key(ResourceKey.minecraft("exposed_cut_copper"));
+
+    public static final DefaultedRegistryReference<ItemType> EXPOSED_CUT_COPPER_SLAB = ItemTypes.key(ResourceKey.minecraft("exposed_cut_copper_slab"));
+
+    public static final DefaultedRegistryReference<ItemType> EXPOSED_CUT_COPPER_STAIRS = ItemTypes.key(ResourceKey.minecraft("exposed_cut_copper_stairs"));
+
     public static final DefaultedRegistryReference<ItemType> FARMLAND = ItemTypes.key(ResourceKey.minecraft("farmland"));
 
     public static final DefaultedRegistryReference<ItemType> FEATHER = ItemTypes.key(ResourceKey.minecraft("feather"));
@@ -763,6 +814,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> FLOWER_POT = ItemTypes.key(ResourceKey.minecraft("flower_pot"));
 
+    public static final DefaultedRegistryReference<ItemType> FLOWERING_AZALEA = ItemTypes.key(ResourceKey.minecraft("flowering_azalea"));
+
     public static final DefaultedRegistryReference<ItemType> FOX_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("fox_spawn_egg"));
 
     public static final DefaultedRegistryReference<ItemType> FURNACE = ItemTypes.key(ResourceKey.minecraft("furnace"));
@@ -784,6 +837,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> GLISTERING_MELON_SLICE = ItemTypes.key(ResourceKey.minecraft("glistering_melon_slice"));
 
     public static final DefaultedRegistryReference<ItemType> GLOBE_BANNER_PATTERN = ItemTypes.key(ResourceKey.minecraft("globe_banner_pattern"));
+
+    public static final DefaultedRegistryReference<ItemType> GLOW_BERRIES = ItemTypes.key(ResourceKey.minecraft("glow_berries"));
 
     public static final DefaultedRegistryReference<ItemType> GLOW_INK_SAC = ItemTypes.key(ResourceKey.minecraft("glow_ink_sac"));
 
@@ -900,6 +955,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> GUARDIAN_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("guardian_spawn_egg"));
 
     public static final DefaultedRegistryReference<ItemType> GUNPOWDER = ItemTypes.key(ResourceKey.minecraft("gunpowder"));
+
+    public static final DefaultedRegistryReference<ItemType> HANGING_ROOTS = ItemTypes.key(ResourceKey.minecraft("hanging_roots"));
 
     public static final DefaultedRegistryReference<ItemType> HAY_BLOCK = ItemTypes.key(ResourceKey.minecraft("hay_block"));
 
@@ -1111,14 +1168,6 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> LIGHT_WEIGHTED_PRESSURE_PLATE = ItemTypes.key(ResourceKey.minecraft("light_weighted_pressure_plate"));
 
-    public static final DefaultedRegistryReference<ItemType> LIGHTLY_WEATHERED_COPPER_BLOCK = ItemTypes.key(ResourceKey.minecraft("lightly_weathered_copper_block"));
-
-    public static final DefaultedRegistryReference<ItemType> LIGHTLY_WEATHERED_CUT_COPPER = ItemTypes.key(ResourceKey.minecraft("lightly_weathered_cut_copper"));
-
-    public static final DefaultedRegistryReference<ItemType> LIGHTLY_WEATHERED_CUT_COPPER_SLAB = ItemTypes.key(ResourceKey.minecraft("lightly_weathered_cut_copper_slab"));
-
-    public static final DefaultedRegistryReference<ItemType> LIGHTLY_WEATHERED_CUT_COPPER_STAIRS = ItemTypes.key(ResourceKey.minecraft("lightly_weathered_cut_copper_stairs"));
-
     public static final DefaultedRegistryReference<ItemType> LIGHTNING_ROD = ItemTypes.key(ResourceKey.minecraft("lightning_rod"));
 
     public static final DefaultedRegistryReference<ItemType> LILAC = ItemTypes.key(ResourceKey.minecraft("lilac"));
@@ -1210,6 +1259,10 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> MOJANG_BANNER_PATTERN = ItemTypes.key(ResourceKey.minecraft("mojang_banner_pattern"));
 
     public static final DefaultedRegistryReference<ItemType> MOOSHROOM_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("mooshroom_spawn_egg"));
+
+    public static final DefaultedRegistryReference<ItemType> MOSS_BLOCK = ItemTypes.key(ResourceKey.minecraft("moss_block"));
+
+    public static final DefaultedRegistryReference<ItemType> MOSS_CARPET = ItemTypes.key(ResourceKey.minecraft("moss_carpet"));
 
     public static final DefaultedRegistryReference<ItemType> MOSSY_COBBLESTONE = ItemTypes.key(ResourceKey.minecraft("mossy_cobblestone"));
 
@@ -1385,6 +1438,14 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> OXEYE_DAISY = ItemTypes.key(ResourceKey.minecraft("oxeye_daisy"));
 
+    public static final DefaultedRegistryReference<ItemType> OXIDIZED_COPPER = ItemTypes.key(ResourceKey.minecraft("oxidized_copper"));
+
+    public static final DefaultedRegistryReference<ItemType> OXIDIZED_CUT_COPPER = ItemTypes.key(ResourceKey.minecraft("oxidized_cut_copper"));
+
+    public static final DefaultedRegistryReference<ItemType> OXIDIZED_CUT_COPPER_SLAB = ItemTypes.key(ResourceKey.minecraft("oxidized_cut_copper_slab"));
+
+    public static final DefaultedRegistryReference<ItemType> OXIDIZED_CUT_COPPER_STAIRS = ItemTypes.key(ResourceKey.minecraft("oxidized_cut_copper_stairs"));
+
     public static final DefaultedRegistryReference<ItemType> PACKED_ICE = ItemTypes.key(ResourceKey.minecraft("packed_ice"));
 
     public static final DefaultedRegistryReference<ItemType> PAINTING = ItemTypes.key(ResourceKey.minecraft("painting"));
@@ -1480,6 +1541,14 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> POLISHED_BLACKSTONE_STAIRS = ItemTypes.key(ResourceKey.minecraft("polished_blackstone_stairs"));
 
     public static final DefaultedRegistryReference<ItemType> POLISHED_BLACKSTONE_WALL = ItemTypes.key(ResourceKey.minecraft("polished_blackstone_wall"));
+
+    public static final DefaultedRegistryReference<ItemType> POLISHED_DEEPSLATE = ItemTypes.key(ResourceKey.minecraft("polished_deepslate"));
+
+    public static final DefaultedRegistryReference<ItemType> POLISHED_DEEPSLATE_SLAB = ItemTypes.key(ResourceKey.minecraft("polished_deepslate_slab"));
+
+    public static final DefaultedRegistryReference<ItemType> POLISHED_DEEPSLATE_STAIRS = ItemTypes.key(ResourceKey.minecraft("polished_deepslate_stairs"));
+
+    public static final DefaultedRegistryReference<ItemType> POLISHED_DEEPSLATE_WALL = ItemTypes.key(ResourceKey.minecraft("polished_deepslate_wall"));
 
     public static final DefaultedRegistryReference<ItemType> POLISHED_DIORITE = ItemTypes.key(ResourceKey.minecraft("polished_diorite"));
 
@@ -1663,6 +1732,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> RESPAWN_ANCHOR = ItemTypes.key(ResourceKey.minecraft("respawn_anchor"));
 
+    public static final DefaultedRegistryReference<ItemType> ROOTED_DIRT = ItemTypes.key(ResourceKey.minecraft("rooted_dirt"));
+
     public static final DefaultedRegistryReference<ItemType> ROSE_BUSH = ItemTypes.key(ResourceKey.minecraft("rose_bush"));
 
     public static final DefaultedRegistryReference<ItemType> ROTTEN_FLESH = ItemTypes.key(ResourceKey.minecraft("rotten_flesh"));
@@ -1697,14 +1768,6 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> SEAGRASS = ItemTypes.key(ResourceKey.minecraft("seagrass"));
 
-    public static final DefaultedRegistryReference<ItemType> SEMI_WEATHERED_COPPER_BLOCK = ItemTypes.key(ResourceKey.minecraft("semi_weathered_copper_block"));
-
-    public static final DefaultedRegistryReference<ItemType> SEMI_WEATHERED_CUT_COPPER = ItemTypes.key(ResourceKey.minecraft("semi_weathered_cut_copper"));
-
-    public static final DefaultedRegistryReference<ItemType> SEMI_WEATHERED_CUT_COPPER_SLAB = ItemTypes.key(ResourceKey.minecraft("semi_weathered_cut_copper_slab"));
-
-    public static final DefaultedRegistryReference<ItemType> SEMI_WEATHERED_CUT_COPPER_STAIRS = ItemTypes.key(ResourceKey.minecraft("semi_weathered_cut_copper_stairs"));
-
     public static final DefaultedRegistryReference<ItemType> SHEARS = ItemTypes.key(ResourceKey.minecraft("shears"));
 
     public static final DefaultedRegistryReference<ItemType> SHEEP_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("sheep_spawn_egg"));
@@ -1737,9 +1800,13 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> SMALL_AMETHYST_BUD = ItemTypes.key(ResourceKey.minecraft("small_amethyst_bud"));
 
+    public static final DefaultedRegistryReference<ItemType> SMALL_DRIPLEAF = ItemTypes.key(ResourceKey.minecraft("small_dripleaf"));
+
     public static final DefaultedRegistryReference<ItemType> SMITHING_TABLE = ItemTypes.key(ResourceKey.minecraft("smithing_table"));
 
     public static final DefaultedRegistryReference<ItemType> SMOKER = ItemTypes.key(ResourceKey.minecraft("smoker"));
+
+    public static final DefaultedRegistryReference<ItemType> SMOOTH_BASALT = ItemTypes.key(ResourceKey.minecraft("smooth_basalt"));
 
     public static final DefaultedRegistryReference<ItemType> SMOOTH_QUARTZ = ItemTypes.key(ResourceKey.minecraft("smooth_quartz"));
 
@@ -1790,6 +1857,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> SPLASH_POTION = ItemTypes.key(ResourceKey.minecraft("splash_potion"));
 
     public static final DefaultedRegistryReference<ItemType> SPONGE = ItemTypes.key(ResourceKey.minecraft("sponge"));
+
+    public static final DefaultedRegistryReference<ItemType> SPORE_BLOSSOM = ItemTypes.key(ResourceKey.minecraft("spore_blossom"));
 
     public static final DefaultedRegistryReference<ItemType> SPRUCE_BOAT = ItemTypes.key(ResourceKey.minecraft("spruce_boat"));
 
@@ -2005,7 +2074,7 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> WATER_BUCKET = ItemTypes.key(ResourceKey.minecraft("water_bucket"));
 
-    public static final DefaultedRegistryReference<ItemType> WAXED_COPPER = ItemTypes.key(ResourceKey.minecraft("waxed_copper"));
+    public static final DefaultedRegistryReference<ItemType> WAXED_COPPER_BLOCK = ItemTypes.key(ResourceKey.minecraft("waxed_copper_block"));
 
     public static final DefaultedRegistryReference<ItemType> WAXED_CUT_COPPER = ItemTypes.key(ResourceKey.minecraft("waxed_cut_copper"));
 
@@ -2013,23 +2082,23 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> WAXED_CUT_COPPER_STAIRS = ItemTypes.key(ResourceKey.minecraft("waxed_cut_copper_stairs"));
 
-    public static final DefaultedRegistryReference<ItemType> WAXED_LIGHTLY_WEATHERED_COPPER = ItemTypes.key(ResourceKey.minecraft("waxed_lightly_weathered_copper"));
+    public static final DefaultedRegistryReference<ItemType> WAXED_EXPOSED_COPPER = ItemTypes.key(ResourceKey.minecraft("waxed_exposed_copper"));
 
-    public static final DefaultedRegistryReference<ItemType> WAXED_LIGHTLY_WEATHERED_CUT_COPPER = ItemTypes.key(ResourceKey.minecraft("waxed_lightly_weathered_cut_copper"));
+    public static final DefaultedRegistryReference<ItemType> WAXED_EXPOSED_CUT_COPPER = ItemTypes.key(ResourceKey.minecraft("waxed_exposed_cut_copper"));
 
-    public static final DefaultedRegistryReference<ItemType> WAXED_LIGHTLY_WEATHERED_CUT_COPPER_SLAB = ItemTypes.key(ResourceKey.minecraft("waxed_lightly_weathered_cut_copper_slab"));
+    public static final DefaultedRegistryReference<ItemType> WAXED_EXPOSED_CUT_COPPER_SLAB = ItemTypes.key(ResourceKey.minecraft("waxed_exposed_cut_copper_slab"));
 
-    public static final DefaultedRegistryReference<ItemType> WAXED_LIGHTLY_WEATHERED_CUT_COPPER_STAIRS = ItemTypes.key(ResourceKey.minecraft("waxed_lightly_weathered_cut_copper_stairs"));
+    public static final DefaultedRegistryReference<ItemType> WAXED_EXPOSED_CUT_COPPER_STAIRS = ItemTypes.key(ResourceKey.minecraft("waxed_exposed_cut_copper_stairs"));
 
-    public static final DefaultedRegistryReference<ItemType> WAXED_SEMI_WEATHERED_COPPER = ItemTypes.key(ResourceKey.minecraft("waxed_semi_weathered_copper"));
+    public static final DefaultedRegistryReference<ItemType> WAXED_WEATHERED_COPPER = ItemTypes.key(ResourceKey.minecraft("waxed_weathered_copper"));
 
-    public static final DefaultedRegistryReference<ItemType> WAXED_SEMI_WEATHERED_CUT_COPPER = ItemTypes.key(ResourceKey.minecraft("waxed_semi_weathered_cut_copper"));
+    public static final DefaultedRegistryReference<ItemType> WAXED_WEATHERED_CUT_COPPER = ItemTypes.key(ResourceKey.minecraft("waxed_weathered_cut_copper"));
 
-    public static final DefaultedRegistryReference<ItemType> WAXED_SEMI_WEATHERED_CUT_COPPER_SLAB = ItemTypes.key(ResourceKey.minecraft("waxed_semi_weathered_cut_copper_slab"));
+    public static final DefaultedRegistryReference<ItemType> WAXED_WEATHERED_CUT_COPPER_SLAB = ItemTypes.key(ResourceKey.minecraft("waxed_weathered_cut_copper_slab"));
 
-    public static final DefaultedRegistryReference<ItemType> WAXED_SEMI_WEATHERED_CUT_COPPER_STAIRS = ItemTypes.key(ResourceKey.minecraft("waxed_semi_weathered_cut_copper_stairs"));
+    public static final DefaultedRegistryReference<ItemType> WAXED_WEATHERED_CUT_COPPER_STAIRS = ItemTypes.key(ResourceKey.minecraft("waxed_weathered_cut_copper_stairs"));
 
-    public static final DefaultedRegistryReference<ItemType> WEATHERED_COPPER_BLOCK = ItemTypes.key(ResourceKey.minecraft("weathered_copper_block"));
+    public static final DefaultedRegistryReference<ItemType> WEATHERED_COPPER = ItemTypes.key(ResourceKey.minecraft("weathered_copper"));
 
     public static final DefaultedRegistryReference<ItemType> WEATHERED_CUT_COPPER = ItemTypes.key(ResourceKey.minecraft("weathered_cut_copper"));
 
@@ -2135,10 +2204,7 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> ZOMBIFIED_PIGLIN_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("zombified_piglin_spawn_egg"));
 
-    // SORTFIELDS:OFF
-
     // @formatter:on
-
     private ItemTypes() {
     }
 

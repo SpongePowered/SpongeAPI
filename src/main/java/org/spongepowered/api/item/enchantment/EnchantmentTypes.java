@@ -42,9 +42,6 @@ import org.spongepowered.api.registry.RegistryScopes;
 public final class EnchantmentTypes {
 
     // @formatter:off
-
-    // SORTFIELDS:ON
-
     /**
      * Increases regular underwater mining speed.
      *
@@ -278,11 +275,7 @@ public final class EnchantmentTypes {
      */
     public static final DefaultedRegistryReference<EnchantmentType> VANISHING_CURSE = EnchantmentTypes.key(ResourceKey.minecraft("vanishing_curse"));
 
-
-    // SORTFIELDS:OFF
-
     // @formatter:on
-
     private EnchantmentTypes() {
     }
 

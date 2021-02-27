@@ -27,22 +27,19 @@ package org.spongepowered.api.block.entity;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 
 /**
- * An enumeration of all {@link BlockEntityType}s in vanilla Minecraft.
+ * An enumeration of all possible {@link BlockEntityType}s in vanilla Minecraft.
  */
 @SuppressWarnings("unused")
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class BlockEntityTypes {
 
     // @formatter:off
-
-    // SORTFIELDS:ON
-
     public static final DefaultedRegistryReference<BlockEntityType> BANNER = BlockEntityTypes.key(ResourceKey.minecraft("banner"));
 
     public static final DefaultedRegistryReference<BlockEntityType> BARREL = BlockEntityTypes.key(ResourceKey.minecraft("barrel"));
@@ -75,13 +72,13 @@ public final class BlockEntityTypes {
 
     public static final DefaultedRegistryReference<BlockEntityType> DROPPER = BlockEntityTypes.key(ResourceKey.minecraft("dropper"));
 
-    public static final DefaultedRegistryReference<BlockEntityType> ENCHANTMENT_TABLE = BlockEntityTypes.key(ResourceKey.minecraft("enchantment_table"));
-
-    public static final DefaultedRegistryReference<BlockEntityType> ENDER_CHEST = BlockEntityTypes.key(ResourceKey.minecraft("ender_chest"));
+    public static final DefaultedRegistryReference<BlockEntityType> ENCHANTING_TABLE = BlockEntityTypes.key(ResourceKey.minecraft("enchanting_table"));
 
     public static final DefaultedRegistryReference<BlockEntityType> END_GATEWAY = BlockEntityTypes.key(ResourceKey.minecraft("end_gateway"));
 
     public static final DefaultedRegistryReference<BlockEntityType> END_PORTAL = BlockEntityTypes.key(ResourceKey.minecraft("end_portal"));
+
+    public static final DefaultedRegistryReference<BlockEntityType> ENDER_CHEST = BlockEntityTypes.key(ResourceKey.minecraft("ender_chest"));
 
     public static final DefaultedRegistryReference<BlockEntityType> FURNACE = BlockEntityTypes.key(ResourceKey.minecraft("furnace"));
 
@@ -97,6 +94,8 @@ public final class BlockEntityTypes {
 
     public static final DefaultedRegistryReference<BlockEntityType> PISTON = BlockEntityTypes.key(ResourceKey.minecraft("piston"));
 
+    public static final DefaultedRegistryReference<BlockEntityType> SCULK_SENSOR = BlockEntityTypes.key(ResourceKey.minecraft("sculk_sensor"));
+
     public static final DefaultedRegistryReference<BlockEntityType> SHULKER_BOX = BlockEntityTypes.key(ResourceKey.minecraft("shulker_box"));
 
     public static final DefaultedRegistryReference<BlockEntityType> SIGN = BlockEntityTypes.key(ResourceKey.minecraft("sign"));
@@ -105,14 +104,11 @@ public final class BlockEntityTypes {
 
     public static final DefaultedRegistryReference<BlockEntityType> SMOKER = BlockEntityTypes.key(ResourceKey.minecraft("smoker"));
 
-    public static final DefaultedRegistryReference<BlockEntityType> STRUCTURE = BlockEntityTypes.key(ResourceKey.minecraft("structure"));
+    public static final DefaultedRegistryReference<BlockEntityType> STRUCTURE_BLOCK = BlockEntityTypes.key(ResourceKey.minecraft("structure_block"));
 
     public static final DefaultedRegistryReference<BlockEntityType> TRAPPED_CHEST = BlockEntityTypes.key(ResourceKey.minecraft("trapped_chest"));
 
-    // SORTFIELDS:OFF
-
     // @formatter:on
-
     private BlockEntityTypes() {
     }
 

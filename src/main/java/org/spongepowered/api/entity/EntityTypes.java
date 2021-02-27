@@ -33,7 +33,6 @@ import org.spongepowered.api.entity.hanging.LeashKnot;
 import org.spongepowered.api.entity.hanging.Painting;
 import org.spongepowered.api.entity.living.ArmorStand;
 import org.spongepowered.api.entity.living.Bat;
-import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.living.animal.Axolotl;
 import org.spongepowered.api.entity.living.animal.Bee;
 import org.spongepowered.api.entity.living.animal.Cat;
@@ -147,9 +146,6 @@ import org.spongepowered.api.registry.RegistryScopes;
 public final class EntityTypes {
 
     // @formatter:off
-
-    // SORTFIELDS:ON
-
     public static final DefaultedRegistryReference<EntityType<AreaEffectCloud>> AREA_EFFECT_CLOUD = EntityTypes.key(ResourceKey.minecraft("area_effect_cloud"));
 
     public static final DefaultedRegistryReference<EntityType<ArmorStand>> ARMOR_STAND = EntityTypes.key(ResourceKey.minecraft("armor_stand"));
@@ -194,15 +190,15 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<ElderGuardian>> ELDER_GUARDIAN = EntityTypes.key(ResourceKey.minecraft("elder_guardian"));
 
-    public static final DefaultedRegistryReference<EntityType<EndCrystal>> END_CRYSTAL = EntityTypes.key(ResourceKey.minecraft("end_crystal"));
+    public static final DefaultedRegistryReference<EntityType<Enderman>> ENDERMAN = EntityTypes.key(ResourceKey.minecraft("enderman"));
+
+    public static final DefaultedRegistryReference<EntityType<Endermite>> ENDERMITE = EntityTypes.key(ResourceKey.minecraft("endermite"));
 
     public static final DefaultedRegistryReference<EntityType<EnderDragon>> ENDER_DRAGON = EntityTypes.key(ResourceKey.minecraft("ender_dragon"));
 
     public static final DefaultedRegistryReference<EntityType<EnderPearl>> ENDER_PEARL = EntityTypes.key(ResourceKey.minecraft("ender_pearl"));
 
-    public static final DefaultedRegistryReference<EntityType<Enderman>> ENDERMAN = EntityTypes.key(ResourceKey.minecraft("enderman"));
-
-    public static final DefaultedRegistryReference<EntityType<Endermite>> ENDERMITE = EntityTypes.key(ResourceKey.minecraft("endermite"));
+    public static final DefaultedRegistryReference<EntityType<EndCrystal>> END_CRYSTAL = EntityTypes.key(ResourceKey.minecraft("end_crystal"));
 
     public static final DefaultedRegistryReference<EntityType<Evoker>> EVOKER = EntityTypes.key(ResourceKey.minecraft("evoker"));
 
@@ -316,9 +312,9 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<SmallFireball>> SMALL_FIREBALL = EntityTypes.key(ResourceKey.minecraft("small_fireball"));
 
-    public static final DefaultedRegistryReference<EntityType<SnowGolem>> SNOW_GOLEM = EntityTypes.key(ResourceKey.minecraft("snow_golem"));
-
     public static final DefaultedRegistryReference<EntityType<Snowball>> SNOWBALL = EntityTypes.key(ResourceKey.minecraft("snowball"));
+
+    public static final DefaultedRegistryReference<EntityType<SnowGolem>> SNOW_GOLEM = EntityTypes.key(ResourceKey.minecraft("snow_golem"));
 
     public static final DefaultedRegistryReference<EntityType<SpawnerMinecart>> SPAWNER_MINECART = EntityTypes.key(ResourceKey.minecraft("spawner_minecart"));
 
@@ -372,12 +368,7 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<ZombifiedPiglin>> ZOMBIFIED_PIGLIN = EntityTypes.key(ResourceKey.minecraft("zombified_piglin"));
 
-    // SORTFIELDS:OFF
-
     // @formatter:on
-
-    public static final DefaultedRegistryReference<EntityType<Human>> HUMAN = EntityTypes.key(ResourceKey.sponge("human"));
-
     private EntityTypes() {
     }
 

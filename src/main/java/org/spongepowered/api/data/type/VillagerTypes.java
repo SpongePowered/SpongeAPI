@@ -27,19 +27,19 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 
+/**
+ * An enumeration of all possible {@link VillagerType}s in vanilla Minecraft.
+ */
 @SuppressWarnings("unused")
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class VillagerTypes {
 
     // @formatter:off
-
-    // SORTFIELDS:ON
-
     public static final DefaultedRegistryReference<VillagerType> DESERT = VillagerTypes.key(ResourceKey.minecraft("desert"));
 
     public static final DefaultedRegistryReference<VillagerType> JUNGLE = VillagerTypes.key(ResourceKey.minecraft("jungle"));
@@ -54,10 +54,7 @@ public final class VillagerTypes {
 
     public static final DefaultedRegistryReference<VillagerType> TAIGA = VillagerTypes.key(ResourceKey.minecraft("taiga"));
 
-    // SORTFIELDS:OFF
-
     // @formatter:on
-
     private VillagerTypes() {
     }
 

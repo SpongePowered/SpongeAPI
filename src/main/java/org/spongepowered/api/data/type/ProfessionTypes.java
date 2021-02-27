@@ -27,22 +27,19 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 
 /**
- * An enumeration of vanilla {@link ProfessionType}s.
+ * An enumeration of all possible {@link ProfessionType}s in vanilla Minecraft.
  */
 @SuppressWarnings("unused")
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class ProfessionTypes {
 
     // @formatter:off
-
-    // SORTFIELDS:ON
-
     public static final DefaultedRegistryReference<ProfessionType> ARMORER = ProfessionTypes.key(ResourceKey.minecraft("armorer"));
 
     public static final DefaultedRegistryReference<ProfessionType> BUTCHER = ProfessionTypes.key(ResourceKey.minecraft("butcher"));
@@ -73,10 +70,7 @@ public final class ProfessionTypes {
 
     public static final DefaultedRegistryReference<ProfessionType> WEAPONSMITH = ProfessionTypes.key(ResourceKey.minecraft("weaponsmith"));
 
-    // SORTFIELDS:OFF
-
     // @formatter:on
-
     private ProfessionTypes() {
     }
 

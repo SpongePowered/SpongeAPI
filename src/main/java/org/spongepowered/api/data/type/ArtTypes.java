@@ -27,22 +27,19 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 
 /**
- * An enumeration of vanilla {@link ArtType}s.
+ * An enumeration of all possible {@link ArtType}s in vanilla Minecraft.
  */
 @SuppressWarnings("unused")
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class ArtTypes {
 
     // @formatter:off
-
-    // SORTFIELDS:ON
-
     public static final DefaultedRegistryReference<ArtType> ALBAN = ArtTypes.key(ResourceKey.minecraft("alban"));
 
     public static final DefaultedRegistryReference<ArtType> AZTEC = ArtTypes.key(ResourceKey.minecraft("aztec"));
@@ -95,10 +92,7 @@ public final class ArtTypes {
 
     public static final DefaultedRegistryReference<ArtType> WITHER = ArtTypes.key(ResourceKey.minecraft("wither"));
 
-    // SORTFIELDS:OFF
-
     // @formatter:on
-
     private ArtTypes() {
     }
 
