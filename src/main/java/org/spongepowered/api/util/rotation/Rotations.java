@@ -45,7 +45,7 @@ public final class Rotations {
 
     public static final DefaultedRegistryReference<Rotation> CLOCKWISE_180 = Rotations.key(ResourceKey.sponge("clockwise_180"));
 
-    public static final DefaultedRegistryReference<Rotation> COUNTER_CLOCKWISE_90 = Rotations.key(ResourceKey.sponge("counter_clockwise_90"));
+    public static final DefaultedRegistryReference<Rotation> COUNTERCLOCKWISE_90 = Rotations.key(ResourceKey.sponge("counterclockwise_90"));
 
     // SORTFIELDS:OFF
 
