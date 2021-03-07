@@ -29,6 +29,8 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.map.MapCanvas;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.Color;
 
@@ -38,6 +40,7 @@ import org.spongepowered.api.util.Color;
  * <p>The {@link Color colors} that these represent can be retrieved via the
  * {@link MapColorType#getColor()} method.</p>
  */
+@RegistryScopes(scopes = RegistryScope.GAME)
 public final class MapColorTypes {
 
     // SORTFIELDS:ON

@@ -28,12 +28,15 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.registry.RegistryTypes;
 
 /**
  * A pseudo-enum of supported orientations of a {@link org.spongepowered.api.map.decoration.MapDecoration}
  * The {@link #NORTH} orientation is the upwards orientation on a map.
  */
+@RegistryScopes(scopes = RegistryScope.GAME)
 public class MapDecorationOrientations {
 
 	// SORTFIELDS:ON
