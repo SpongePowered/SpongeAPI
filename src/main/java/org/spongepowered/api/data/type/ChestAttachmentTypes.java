@@ -45,7 +45,7 @@ public final class ChestAttachmentTypes {
 
     public static final DefaultedRegistryReference<ChestAttachmentType> LEFT = ChestAttachmentTypes.key(ResourceKey.sponge("left"));
 
-    public static final DefaultedRegistryReference<ChestAttachmentType> NONE = ChestAttachmentTypes.key(ResourceKey.sponge("none"));
+    public static final DefaultedRegistryReference<ChestAttachmentType> SINGLE = ChestAttachmentTypes.key(ResourceKey.sponge("single"));
 
     public static final DefaultedRegistryReference<ChestAttachmentType> RIGHT = ChestAttachmentTypes.key(ResourceKey.sponge("right"));
 
