@@ -58,6 +58,11 @@ public class ResolveOperations {
      * resource pack-provided translations. Those translations are already
      * resolved clientside, so the information is not loaded on the server.</p>
      *
+     * <p>In normal message sending to players and consoles, custom translations
+     * are automatically resolved. This resolution operation is primarily
+     * intended for performing analysis of components
+     * before (or without) sending.</p>
+     *
      * @see GlobalTranslator to register translations
      */
     public static final DefaultedRegistryReference<ResolveOperation> CUSTOM_TRANSLATIONS = ResolveOperations.key(ResourceKey.sponge("custom_translations"));

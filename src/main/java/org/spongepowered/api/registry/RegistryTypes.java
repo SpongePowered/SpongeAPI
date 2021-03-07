@@ -242,8 +242,6 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<ComparatorMode> COMPARATOR_MODE = RegistryTypes.spongeKeyInGame("comparator_mode");
 
-    public static final DefaultedRegistryType<ResolveOperation> RESOLVE_OPERATION = RegistryTypes.spongeKeyInGame("resolve_operation");
-
     public static final DefaultedRegistryType<Criterion> CRITERION = RegistryTypes.spongeKeyInGame("criterion");
 
     public static final DefaultedRegistryType<Currency> CURRENCY = RegistryTypes.spongeKeyInGame("currency");
@@ -347,6 +345,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<RaidStatus> RAID_STATUS = RegistryTypes.spongeKeyInGame("raid_status");
 
     public static final DefaultedRegistryType<RailDirection> RAIL_DIRECTION = RegistryTypes.spongeKeyInGame("rail_direction");
+
+    public static final DefaultedRegistryType<ResolveOperation> RESOLVE_OPERATION = RegistryTypes.spongeKeyInGame("resolve_operation");
 
     public static final DefaultedRegistryType<Rotation> ROTATION = RegistryTypes.spongeKeyInGame("rotation");
 
