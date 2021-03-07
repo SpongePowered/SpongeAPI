@@ -31,6 +31,8 @@ import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kyori.adventure.text.serializer.plain.PlainComponentSerializer;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandCause;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
 
 import java.util.function.Consumer;
 
@@ -51,6 +53,48 @@ public final class SpongeComponents {
      */
     public static ClickEvent executeCallback(final Consumer<CommandCause> callback) {
         return Sponge.getGame().getFactoryProvider().provide(Factory.class).callbackClickEvent(callback);
+    }
+
+    /**
+     * Render a component for viewer-specific context.
+     *
+     * @param component the component to render
+     * @param senderContext the context to render in
+     * @param viewer the viewer to render for
+     * @param resolver the first resolver
+     * @param otherResolvers any other resolvers to apply
+     * @return the rendered component
+     */
+    @SafeVarargs
+    public static Component resolve(
+        final Component component,
+        final CommandCause senderContext,
+        final Entity viewer,
+        final DefaultedRegistryReference<ResolveOperation> resolver,
+        final DefaultedRegistryReference<ResolveOperation>... otherResolvers
+    ) {
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).render(component, senderContext, viewer, resolver, otherResolvers);
+    }
+
+    /**
+     * Render a component for sender-specific context.
+     *
+     * <p>Viewer-specific information will not be available</p>
+     *
+     * @param component the component to render
+     * @param senderContext the context to render in
+     * @param resolver the first resolver
+     * @param otherResolvers any other resolvers to apply
+     * @return the rendered component
+     */
+    @SafeVarargs
+    public static Component resolve(
+        final Component component,
+        final CommandCause senderContext,
+        final DefaultedRegistryReference<ResolveOperation> resolver,
+        final DefaultedRegistryReference<ResolveOperation>... otherResolvers
+    ) {
+        return Sponge.getGame().getFactoryProvider().provide(Factory.class).render(component, senderContext, resolver, otherResolvers);
     }
 
     /**
@@ -139,6 +183,23 @@ public final class SpongeComponents {
         GsonComponentSerializer gsonSerializer();
 
         PlainComponentSerializer plainSerializer();
+
+        @SuppressWarnings("unchecked")
+        Component render(
+            final Component component,
+            final CommandCause senderContext,
+            final Entity viewer,
+            final DefaultedRegistryReference<ResolveOperation> resolver,
+            final DefaultedRegistryReference<ResolveOperation>... otherResolvers
+        );
+
+        @SuppressWarnings("unchecked")
+        Component render(
+            final Component component,
+            final CommandCause senderContext,
+            final DefaultedRegistryReference<ResolveOperation> resolver,
+            final DefaultedRegistryReference<ResolveOperation>... otherResolvers
+        );
 
     }
 }
