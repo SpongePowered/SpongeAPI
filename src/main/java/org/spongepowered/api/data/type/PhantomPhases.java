@@ -40,9 +40,9 @@ public final class PhantomPhases {
 
     // SORTFIELDS:ON
 
-    public static final DefaultedRegistryReference<PhantomPhase> CIRCLING = PhantomPhases.key(ResourceKey.sponge("circling"));
+    public static final DefaultedRegistryReference<PhantomPhase> CIRCLE = PhantomPhases.key(ResourceKey.sponge("circle"));
 
-    public static final DefaultedRegistryReference<PhantomPhase> SWOOPING = PhantomPhases.key(ResourceKey.sponge("swooping"));
+    public static final DefaultedRegistryReference<PhantomPhase> SWOOP = PhantomPhases.key(ResourceKey.sponge("swoop"));
 
     // SORTFIELDS:OFF
 
