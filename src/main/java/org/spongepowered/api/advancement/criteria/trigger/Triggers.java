@@ -43,7 +43,7 @@ public final class Triggers {
 
     // SORTFIELDS:ON
 
-    public static final DefaultedRegistryReference<Trigger<?>> BAD_OMEN = Triggers.key(ResourceKey.minecraft("bad_omen"));
+    public static final DefaultedRegistryReference<Trigger<?>> BAD_OMEN = Triggers.key(ResourceKey.minecraft("voluntary_exile"));
 
     public static final DefaultedRegistryReference<Trigger<?>> BEE_NEST_DESTROYED = Triggers.key(ResourceKey.minecraft("bee_nest_destroyed"));
 
@@ -75,11 +75,9 @@ public final class Triggers {
 
     public static final DefaultedRegistryReference<Trigger<?>> FISHING_ROD_HOOKED = Triggers.key(ResourceKey.minecraft("fishing_rod_hooked"));
 
-    public static final DefaultedRegistryReference<Trigger<?>> GENERATE_LOOT = Triggers.key(ResourceKey.minecraft("generate_loot"));
+    public static final DefaultedRegistryReference<Trigger<?>> GENERATE_LOOT = Triggers.key(ResourceKey.minecraft("player_generates_container_loot"));
 
-    public static final DefaultedRegistryReference<Trigger<?>> HONEY_BLOCK_SIDE = Triggers.key(ResourceKey.minecraft("honey_block_slide"));
-
-    public static final DefaultedRegistryReference<Trigger<?>> HERO_OF_THE_VILLAGE = Triggers.key(ResourceKey.minecraft("hero_of_the_village"));
+    public static final DefaultedRegistryReference<Trigger<?>> HONEY_BLOCK_SIDE = Triggers.key(ResourceKey.minecraft("slide_down_block"));
 
     public static final DefaultedRegistryReference<Trigger<?>> IMPOSSIBLE = Triggers.key(ResourceKey.minecraft("impossible"));
 
@@ -87,7 +85,7 @@ public final class Triggers {
 
     public static final DefaultedRegistryReference<Trigger<?>> ITEM_DURABILITY_CHANGED = Triggers.key(ResourceKey.minecraft("item_durability_changed"));
 
-    public static final DefaultedRegistryReference<Trigger<?>> ITEM_PICKED_UP_BY_ENTITY = Triggers.key(ResourceKey.minecraft("item_picked_up_by_entity"));
+    public static final DefaultedRegistryReference<Trigger<?>> ITEM_PICKED_UP_BY_ENTITY = Triggers.key(ResourceKey.minecraft("thrown_item_picked_up_by_entity"));
 
     public static final DefaultedRegistryReference<Trigger<?>> ITEM_USED_ON_BLOCK = Triggers.key(ResourceKey.minecraft("item_used_on_block"));
 
@@ -107,7 +105,7 @@ public final class Triggers {
 
     public static final DefaultedRegistryReference<Trigger<?>> PLAYER_KILLED_ENTITY = Triggers.key(ResourceKey.minecraft("player_killed_entity"));
 
-    public static final DefaultedRegistryReference<Trigger<?>> RAID_WIN = Triggers.key(ResourceKey.minecraft("raid_win"));
+    public static final DefaultedRegistryReference<Trigger<?>> RAID_WIN = Triggers.key(ResourceKey.minecraft("hero_of_the_village"));
 
     public static final DefaultedRegistryReference<Trigger<?>> RECIPE_UNLOCKED = Triggers.key(ResourceKey.minecraft("recipe_unlocked"));
 
@@ -115,13 +113,11 @@ public final class Triggers {
 
     public static final DefaultedRegistryReference<Trigger<?>> SLEPT_IN_BED = Triggers.key(ResourceKey.minecraft("slept_in_bed"));
 
-    public static final DefaultedRegistryReference<Trigger<?>> SLIDE_DOWN_BLOCK = Triggers.key(ResourceKey.minecraft("slide_down_block"));
-
     public static final DefaultedRegistryReference<Trigger<?>> SUMMONED_ENTITY = Triggers.key(ResourceKey.minecraft("summoned_entity"));
 
     public static final DefaultedRegistryReference<Trigger<?>> TAME_ANIMAL = Triggers.key(ResourceKey.minecraft("tame_animal"));
 
-    public static final DefaultedRegistryReference<Trigger<?>> TARGET_BLOCK_HIT = Triggers.key(ResourceKey.minecraft("target_block_hit"));
+    public static final DefaultedRegistryReference<Trigger<?>> TARGET_BLOCK_HIT = Triggers.key(ResourceKey.minecraft("target_hit"));
 
     public static final DefaultedRegistryReference<Trigger<?>> TICK = Triggers.key(ResourceKey.minecraft("tick"));
 
@@ -130,8 +126,6 @@ public final class Triggers {
     public static final DefaultedRegistryReference<Trigger<?>> USED_TOTEM = Triggers.key(ResourceKey.minecraft("used_totem"));
 
     public static final DefaultedRegistryReference<Trigger<?>> VILLAGER_TRADE = Triggers.key(ResourceKey.minecraft("villager_trade"));
-
-    public static final DefaultedRegistryReference<Trigger<?>> VOLUNTARY_EXILE = Triggers.key(ResourceKey.minecraft("voluntary_exile"));
 
     // SORTFIELDS:OFF
 
