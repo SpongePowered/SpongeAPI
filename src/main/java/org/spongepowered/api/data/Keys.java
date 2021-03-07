@@ -208,6 +208,9 @@ import org.spongepowered.api.item.inventory.slot.EquipmentSlot;
 import org.spongepowered.api.item.inventory.type.GridInventory;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.item.potion.PotionType;
+import org.spongepowered.api.map.MapCanvas;
+import org.spongepowered.api.map.MapInfo;
+import org.spongepowered.api.map.decoration.MapDecoration;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.projectile.source.ProjectileSource;
@@ -1779,6 +1782,71 @@ public final class Keys {
      * instead.</p>
      */
     public static final Key<ListValue<Component>> LORE = Keys.key(ResourceKey.sponge("lore"), TypeTokens.LIST_COMPONENT_VALUE_TOKEN);
+
+    /**
+     * Represents the {@link Key} for the {@link MapCanvas} of a map
+     * for a {@link MapInfo}.
+     * This contains the colors displayed on a map.
+     *
+     */
+    public static final Key<Value<MapCanvas>> MAP_CANVAS = Keys.key(ResourceKey.sponge("map_canvas"), TypeTokens.MAP_CANVAS_VALUE_TOKEN);
+
+    /**
+     * Represents the {@link Key} for the Set of {@link MapDecoration}s
+     * for a {@link MapInfo}.
+     *
+     */
+    public static final Key<SetValue<MapDecoration>> MAP_DECORATIONS = Keys.key(ResourceKey.sponge("map_decorations"), TypeTokens.MAP_DECORATIONS_VALUE_TOKEN);
+
+    /**
+     * Represents the {@link Key} for the {@link MapInfo}
+     * of an {@link ItemStack} of type {@link ItemTypes#FILLED_MAP}.
+     *
+     * <b>Can be null if the ItemStack was made by a plugin and hasn't been offered a MapInfo yet.</b>
+     */
+    public static final Key<Value<MapInfo>> MAP_INFO = Keys.key(ResourceKey.sponge("map_info"), TypeTokens.MAP_INFO_VALUE_TOKEN);
+
+    /**
+     * Represents the {@link Key} for the centre x and z of where a
+     * {@link MapInfo} represents.
+     * This will be automatically centralised correctly.
+     */
+    public static final Key<Value<Vector2i>> MAP_LOCATION = Keys.key(ResourceKey.sponge("map_location"), TypeTokens.VECTOR_2I_VALUE_TOKEN);
+
+    /**
+     * Represents the {@link Key} for whether a map updates from players
+     * for a {@link MapInfo}.
+     * By default this is false.
+     * Can be used in combination with {@link Keys#MAP_CANVAS} to create
+     * custom static map.
+     * See <a href="https://minecraft.gamepedia.com/Map#Locking">Minecraft Wiki - Map Locking</a>
+     */
+    public static final Key<Value<Boolean>> MAP_LOCKED = Keys.key(ResourceKey.sponge("map_locked"), TypeTokens.BOOLEAN_VALUE_TOKEN);
+
+    /**
+     * Represents the {@link Key} for the scale of a map
+     * for a {@link MapInfo}.
+     * @see <a href="https://minecraft.gamepedia.com/Map#Zoom_details">Minecraft Wiki - Zoom Details</a>
+     */
+    public static final Key<Value<Integer>> MAP_SCALE = Keys.key(ResourceKey.sponge("map_scale"), TypeTokens.INTEGER_VALUE_TOKEN);
+
+    /**
+     * Represents the {@link Key} for whether a {@link MapInfo}
+     * tracks player positions.
+     */
+    public static final Key<Value<Boolean>> MAP_TRACKS_PLAYERS = Keys.key(ResourceKey.sponge("map_tracks_players"), TypeTokens.BOOLEAN_VALUE_TOKEN);
+
+    /**
+     * Represents the {@link Key} for whether a {@link MapInfo} can track
+     * a player from anywhere in the world.
+     */
+    public static final Key<Value<Boolean>> MAP_UNLIMITED_TRACKING = Keys.key(ResourceKey.sponge("map_unlimited_tracking"), TypeTokens.BOOLEAN_VALUE_TOKEN);
+
+    /**
+     * Represents the {@link Key} for the {@link ResourceKey} of a {@link ServerWorld}.
+     * {@link MapInfo}
+     */
+    public static final Key<Value<ResourceKey>> MAP_WORLD = Keys.key(ResourceKey.sponge("map_world"), TypeTokens.RESOURCE_KEY_VALUE_TOKEN);
 
     /**
      * The matter state of a {@link BlockState}
