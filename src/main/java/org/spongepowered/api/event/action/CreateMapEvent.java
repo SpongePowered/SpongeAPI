@@ -22,57 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.world.chunk;
+package org.spongepowered.api.event.action;
 
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.chunk.Chunk;
-import org.spongepowered.math.vector.Vector3i;
-
-import java.util.Optional;
-import java.util.UUID;
+import org.spongepowered.api.map.MapInfo;
 
 /**
- * Called when a {@link Chunk} is performing a save.
+ * Called when a new map is registered.
+ * Can be caused by players or a plugin.
  */
-public interface SaveChunkEvent extends Event {
-
-    /**
-     * Gets the {@link UUID} of the {@link World} that the {@link Chunk} resides
-     * in, if known.
-     */
-    default Optional<UUID> getChunkWorldUUID() {
-        return Optional.empty();
-    }
-
-    /**
-     * Gets the position of the {@link Chunk}.
-     *
-     * @return the position
-     */
-    Vector3i getChunkPosition();
-
-    /**
-     * Called before the {@link Chunk} is saved. Cancelling this will prevent any of
-     * the chunk's data being written to it's storage container.
-     */
-    interface Pre extends SaveChunkEvent, Cancellable {
-
-        /**
-         * Gets the {@link Chunk} being changed.
-         *
-         * @return The Chunk
-         */
-        Chunk getTargetChunk();
-
-    }
-
-    /**
-     * Called after the {@link Chunk} is saved. Guaranteed to exist in the chunk's
-     * storage container.
-     *
-     * Depending on the implementation, this event may be called off-thread.
-     */
-    interface Post extends SaveChunkEvent {}
+public interface CreateMapEvent extends Event, Cancellable {
+	/**
+	 * Gets the {@link org.spongepowered.api.map.MapInfo} for this map
+	 * @return MapInfoData Map data
+	 */
+	MapInfo getMapInfo();
 }

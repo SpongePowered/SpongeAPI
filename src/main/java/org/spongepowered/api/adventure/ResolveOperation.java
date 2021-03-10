@@ -22,36 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.adventure;
 
-import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.registry.RegistryKey;
-import org.spongepowered.api.registry.RegistryScope;
-import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-@SuppressWarnings("unused")
-@RegistryScopes(scopes = RegistryScope.GAME)
-public final class PhantomPhases {
+/**
+ * A type of rendering operation that can be performed on a component.
+ */
+@CatalogedBy(ResolveOperations.class)
+public interface ResolveOperation {
 
-    // @formatter:off
-
-    // SORTFIELDS:ON
-
-    public static final DefaultedRegistryReference<PhantomPhase> CIRCLE = PhantomPhases.key(ResourceKey.sponge("circle"));
-
-    public static final DefaultedRegistryReference<PhantomPhase> SWOOP = PhantomPhases.key(ResourceKey.sponge("swoop"));
-
-    // SORTFIELDS:OFF
-
-    // @formatter:on
-
-    private PhantomPhases() {
-    }
-
-    private static DefaultedRegistryReference<PhantomPhase> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.PHANTOM_PHASE, location).asDefaultedReference(() -> Sponge.getGame().registries());
-    }
 }

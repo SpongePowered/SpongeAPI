@@ -22,36 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.map.decoration.orientation;
 
-import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.registry.RegistryKey;
-import org.spongepowered.api.registry.RegistryScope;
-import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-@SuppressWarnings("unused")
-@RegistryScopes(scopes = RegistryScope.GAME)
-public final class PhantomPhases {
+/**
+ * Represents an orientation that a {@link org.spongepowered.api.map.decoration.MapDecoration} can be
+ * pointing in on a {@link org.spongepowered.api.map.MapInfo}.
+ */
+@CatalogedBy(MapDecorationOrientations.class)
+public interface MapDecorationOrientation extends DefaultedRegistryValue {
 
-    // @formatter:off
-
-    // SORTFIELDS:ON
-
-    public static final DefaultedRegistryReference<PhantomPhase> CIRCLE = PhantomPhases.key(ResourceKey.sponge("circle"));
-
-    public static final DefaultedRegistryReference<PhantomPhase> SWOOP = PhantomPhases.key(ResourceKey.sponge("swoop"));
-
-    // SORTFIELDS:OFF
-
-    // @formatter:on
-
-    private PhantomPhases() {
-    }
-
-    private static DefaultedRegistryReference<PhantomPhase> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.PHANTOM_PHASE, location).asDefaultedReference(() -> Sponge.getGame().registries());
-    }
 }

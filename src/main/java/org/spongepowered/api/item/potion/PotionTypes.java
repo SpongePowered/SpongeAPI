@@ -43,91 +43,91 @@ public final class PotionTypes {
 
     // SORTFIELDS:ON
 
-    public static final DefaultedRegistryReference<PotionType> AWKWARD = PotionTypes.key(ResourceKey.sponge("awkward"));
+    public static final DefaultedRegistryReference<PotionType> AWKWARD = PotionTypes.key(ResourceKey.minecraft("awkward"));
 
-    public static final DefaultedRegistryReference<PotionType> EMPTY = PotionTypes.key(ResourceKey.sponge("empty"));
+    public static final DefaultedRegistryReference<PotionType> EMPTY = PotionTypes.key(ResourceKey.minecraft("empty"));
 
-    public static final DefaultedRegistryReference<PotionType> FIRE_RESISTANCE = PotionTypes.key(ResourceKey.sponge("fire_resistance"));
+    public static final DefaultedRegistryReference<PotionType> FIRE_RESISTANCE = PotionTypes.key(ResourceKey.minecraft("fire_resistance"));
 
-    public static final DefaultedRegistryReference<PotionType> HARMING = PotionTypes.key(ResourceKey.sponge("harming"));
+    public static final DefaultedRegistryReference<PotionType> HARMING = PotionTypes.key(ResourceKey.minecraft("harming"));
 
-    public static final DefaultedRegistryReference<PotionType> HEALING = PotionTypes.key(ResourceKey.sponge("healing"));
+    public static final DefaultedRegistryReference<PotionType> HEALING = PotionTypes.key(ResourceKey.minecraft("healing"));
 
-    public static final DefaultedRegistryReference<PotionType> INVISIBILITY = PotionTypes.key(ResourceKey.sponge("invisibility"));
+    public static final DefaultedRegistryReference<PotionType> INVISIBILITY = PotionTypes.key(ResourceKey.minecraft("invisibility"));
 
-    public static final DefaultedRegistryReference<PotionType> LEAPING = PotionTypes.key(ResourceKey.sponge("leaping"));
+    public static final DefaultedRegistryReference<PotionType> LEAPING = PotionTypes.key(ResourceKey.minecraft("leaping"));
 
-    public static final DefaultedRegistryReference<PotionType> LONG_FIRE_RESISTANCE = PotionTypes.key(ResourceKey.sponge("long_fire_resistance"));
+    public static final DefaultedRegistryReference<PotionType> LONG_FIRE_RESISTANCE = PotionTypes.key(ResourceKey.minecraft("long_fire_resistance"));
 
-    public static final DefaultedRegistryReference<PotionType> LONG_INVISIBILITY = PotionTypes.key(ResourceKey.sponge("long_invisibility"));
+    public static final DefaultedRegistryReference<PotionType> LONG_INVISIBILITY = PotionTypes.key(ResourceKey.minecraft("long_invisibility"));
 
-    public static final DefaultedRegistryReference<PotionType> LONG_LEAPING = PotionTypes.key(ResourceKey.sponge("long_leaping"));
+    public static final DefaultedRegistryReference<PotionType> LONG_LEAPING = PotionTypes.key(ResourceKey.minecraft("long_leaping"));
 
-    public static final DefaultedRegistryReference<PotionType> LONG_NIGHT_VISION = PotionTypes.key(ResourceKey.sponge("long_night_vision"));
+    public static final DefaultedRegistryReference<PotionType> LONG_NIGHT_VISION = PotionTypes.key(ResourceKey.minecraft("long_night_vision"));
 
-    public static final DefaultedRegistryReference<PotionType> LONG_POISON = PotionTypes.key(ResourceKey.sponge("long_poison"));
+    public static final DefaultedRegistryReference<PotionType> LONG_POISON = PotionTypes.key(ResourceKey.minecraft("long_poison"));
 
-    public static final DefaultedRegistryReference<PotionType> LONG_REGENERATION = PotionTypes.key(ResourceKey.sponge("long_regeneration"));
+    public static final DefaultedRegistryReference<PotionType> LONG_REGENERATION = PotionTypes.key(ResourceKey.minecraft("long_regeneration"));
 
-    public static final DefaultedRegistryReference<PotionType> LONG_SLOW_FALLING = PotionTypes.key(ResourceKey.sponge("long_slow_falling"));
+    public static final DefaultedRegistryReference<PotionType> LONG_SLOW_FALLING = PotionTypes.key(ResourceKey.minecraft("long_slow_falling"));
 
-    public static final DefaultedRegistryReference<PotionType> LONG_SLOWNESS = PotionTypes.key(ResourceKey.sponge("long_slowness"));
+    public static final DefaultedRegistryReference<PotionType> LONG_SLOWNESS = PotionTypes.key(ResourceKey.minecraft("long_slowness"));
 
-    public static final DefaultedRegistryReference<PotionType> LONG_STRENGTH = PotionTypes.key(ResourceKey.sponge("long_strength"));
+    public static final DefaultedRegistryReference<PotionType> LONG_STRENGTH = PotionTypes.key(ResourceKey.minecraft("long_strength"));
 
-    public static final DefaultedRegistryReference<PotionType> LONG_SWIFTNESS = PotionTypes.key(ResourceKey.sponge("long_swiftness"));
+    public static final DefaultedRegistryReference<PotionType> LONG_SWIFTNESS = PotionTypes.key(ResourceKey.minecraft("long_swiftness"));
 
-    public static final DefaultedRegistryReference<PotionType> LONG_TURTLE_MASTER = PotionTypes.key(ResourceKey.sponge("long_turtle_master"));
+    public static final DefaultedRegistryReference<PotionType> LONG_TURTLE_MASTER = PotionTypes.key(ResourceKey.minecraft("long_turtle_master"));
 
-    public static final DefaultedRegistryReference<PotionType> LONG_WATER_BREATHING = PotionTypes.key(ResourceKey.sponge("long_water_breathing"));
+    public static final DefaultedRegistryReference<PotionType> LONG_WATER_BREATHING = PotionTypes.key(ResourceKey.minecraft("long_water_breathing"));
 
-    public static final DefaultedRegistryReference<PotionType> LONG_WEAKNESS = PotionTypes.key(ResourceKey.sponge("long_weakness"));
+    public static final DefaultedRegistryReference<PotionType> LONG_WEAKNESS = PotionTypes.key(ResourceKey.minecraft("long_weakness"));
 
-    public static final DefaultedRegistryReference<PotionType> LUCK = PotionTypes.key(ResourceKey.sponge("luck"));
+    public static final DefaultedRegistryReference<PotionType> LUCK = PotionTypes.key(ResourceKey.minecraft("luck"));
 
-    public static final DefaultedRegistryReference<PotionType> MUNDANE = PotionTypes.key(ResourceKey.sponge("mundane"));
+    public static final DefaultedRegistryReference<PotionType> MUNDANE = PotionTypes.key(ResourceKey.minecraft("mundane"));
 
-    public static final DefaultedRegistryReference<PotionType> NIGHT_VISION = PotionTypes.key(ResourceKey.sponge("night_vision"));
+    public static final DefaultedRegistryReference<PotionType> NIGHT_VISION = PotionTypes.key(ResourceKey.minecraft("night_vision"));
 
-    public static final DefaultedRegistryReference<PotionType> POISON = PotionTypes.key(ResourceKey.sponge("poison"));
+    public static final DefaultedRegistryReference<PotionType> POISON = PotionTypes.key(ResourceKey.minecraft("poison"));
 
-    public static final DefaultedRegistryReference<PotionType> REGENERATION = PotionTypes.key(ResourceKey.sponge("regeneration"));
+    public static final DefaultedRegistryReference<PotionType> REGENERATION = PotionTypes.key(ResourceKey.minecraft("regeneration"));
 
-    public static final DefaultedRegistryReference<PotionType> SLOW_FALLING = PotionTypes.key(ResourceKey.sponge("slow_falling"));
+    public static final DefaultedRegistryReference<PotionType> SLOW_FALLING = PotionTypes.key(ResourceKey.minecraft("slow_falling"));
 
-    public static final DefaultedRegistryReference<PotionType> SLOWNESS = PotionTypes.key(ResourceKey.sponge("slowness"));
+    public static final DefaultedRegistryReference<PotionType> SLOWNESS = PotionTypes.key(ResourceKey.minecraft("slowness"));
 
-    public static final DefaultedRegistryReference<PotionType> STRENGTH = PotionTypes.key(ResourceKey.sponge("strength"));
+    public static final DefaultedRegistryReference<PotionType> STRENGTH = PotionTypes.key(ResourceKey.minecraft("strength"));
 
-    public static final DefaultedRegistryReference<PotionType> STRONG_HARMING = PotionTypes.key(ResourceKey.sponge("strong_harming"));
+    public static final DefaultedRegistryReference<PotionType> STRONG_HARMING = PotionTypes.key(ResourceKey.minecraft("strong_harming"));
 
-    public static final DefaultedRegistryReference<PotionType> STRONG_HEALING = PotionTypes.key(ResourceKey.sponge("strong_healing"));
+    public static final DefaultedRegistryReference<PotionType> STRONG_HEALING = PotionTypes.key(ResourceKey.minecraft("strong_healing"));
 
-    public static final DefaultedRegistryReference<PotionType> STRONG_LEAPING = PotionTypes.key(ResourceKey.sponge("strong_leaping"));
+    public static final DefaultedRegistryReference<PotionType> STRONG_LEAPING = PotionTypes.key(ResourceKey.minecraft("strong_leaping"));
 
-    public static final DefaultedRegistryReference<PotionType> STRONG_POISON = PotionTypes.key(ResourceKey.sponge("strong_poison"));
+    public static final DefaultedRegistryReference<PotionType> STRONG_POISON = PotionTypes.key(ResourceKey.minecraft("strong_poison"));
 
-    public static final DefaultedRegistryReference<PotionType> STRONG_REGENERATION = PotionTypes.key(ResourceKey.sponge("strong_regeneration"));
+    public static final DefaultedRegistryReference<PotionType> STRONG_REGENERATION = PotionTypes.key(ResourceKey.minecraft("strong_regeneration"));
 
-    public static final DefaultedRegistryReference<PotionType> STRONG_SLOWNESS = PotionTypes.key(ResourceKey.sponge("strong_slowness"));
+    public static final DefaultedRegistryReference<PotionType> STRONG_SLOWNESS = PotionTypes.key(ResourceKey.minecraft("strong_slowness"));
 
-    public static final DefaultedRegistryReference<PotionType> STRONG_STRENGTH = PotionTypes.key(ResourceKey.sponge("strong_strength"));
+    public static final DefaultedRegistryReference<PotionType> STRONG_STRENGTH = PotionTypes.key(ResourceKey.minecraft("strong_strength"));
 
-    public static final DefaultedRegistryReference<PotionType> STRONG_SWIFTNESS = PotionTypes.key(ResourceKey.sponge("strong_swiftness"));
+    public static final DefaultedRegistryReference<PotionType> STRONG_SWIFTNESS = PotionTypes.key(ResourceKey.minecraft("strong_swiftness"));
 
-    public static final DefaultedRegistryReference<PotionType> STRONG_TURTLE_MASTER = PotionTypes.key(ResourceKey.sponge("strong_turtle_master"));
+    public static final DefaultedRegistryReference<PotionType> STRONG_TURTLE_MASTER = PotionTypes.key(ResourceKey.minecraft("strong_turtle_master"));
 
-    public static final DefaultedRegistryReference<PotionType> SWIFTNESS = PotionTypes.key(ResourceKey.sponge("swiftness"));
+    public static final DefaultedRegistryReference<PotionType> SWIFTNESS = PotionTypes.key(ResourceKey.minecraft("swiftness"));
 
-    public static final DefaultedRegistryReference<PotionType> THICK = PotionTypes.key(ResourceKey.sponge("thick"));
+    public static final DefaultedRegistryReference<PotionType> THICK = PotionTypes.key(ResourceKey.minecraft("thick"));
 
-    public static final DefaultedRegistryReference<PotionType> TURTLE_MASTER = PotionTypes.key(ResourceKey.sponge("turtle_master"));
+    public static final DefaultedRegistryReference<PotionType> TURTLE_MASTER = PotionTypes.key(ResourceKey.minecraft("turtle_master"));
 
-    public static final DefaultedRegistryReference<PotionType> WATER = PotionTypes.key(ResourceKey.sponge("water"));
+    public static final DefaultedRegistryReference<PotionType> WATER = PotionTypes.key(ResourceKey.minecraft("water"));
 
-    public static final DefaultedRegistryReference<PotionType> WATER_BREATHING = PotionTypes.key(ResourceKey.sponge("water_breathing"));
+    public static final DefaultedRegistryReference<PotionType> WATER_BREATHING = PotionTypes.key(ResourceKey.minecraft("water_breathing"));
 
-    public static final DefaultedRegistryReference<PotionType> WEAKNESS = PotionTypes.key(ResourceKey.sponge("weakness"));
+    public static final DefaultedRegistryReference<PotionType> WEAKNESS = PotionTypes.key(ResourceKey.minecraft("weakness"));
 
     // SORTFIELDS:OFF
 

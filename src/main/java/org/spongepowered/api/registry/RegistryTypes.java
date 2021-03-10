@@ -28,12 +28,12 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.AdvancementType;
 import org.spongepowered.api.advancement.criteria.trigger.Trigger;
+import org.spongepowered.api.adventure.ResolveOperation;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.entity.BlockEntityType;
 import org.spongepowered.api.block.transaction.Operation;
 import org.spongepowered.api.command.parameter.managed.ValueParameter;
 import org.spongepowered.api.command.parameter.managed.clientcompletion.ClientCompletionType;
-import org.spongepowered.api.command.registrar.CommandRegistrar;
 import org.spongepowered.api.command.registrar.CommandRegistrarType;
 import org.spongepowered.api.command.registrar.tree.ClientCompletionKey;
 import org.spongepowered.api.command.selector.SelectorSortAlgorithm;
@@ -108,6 +108,10 @@ import org.spongepowered.api.item.inventory.menu.ClickType;
 import org.spongepowered.api.item.inventory.query.QueryType;
 import org.spongepowered.api.item.potion.PotionType;
 import org.spongepowered.api.item.recipe.RecipeType;
+import org.spongepowered.api.map.color.MapColorType;
+import org.spongepowered.api.map.color.MapShade;
+import org.spongepowered.api.map.decoration.MapDecorationType;
+import org.spongepowered.api.map.decoration.orientation.MapDecorationOrientation;
 import org.spongepowered.api.placeholder.PlaceholderParser;
 import org.spongepowered.api.scheduler.TaskPriority;
 import org.spongepowered.api.scoreboard.CollisionRule;
@@ -342,6 +346,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<RailDirection> RAIL_DIRECTION = RegistryTypes.spongeKeyInGame("rail_direction");
 
+    public static final DefaultedRegistryType<ResolveOperation> RESOLVE_OPERATION = RegistryTypes.spongeKeyInGame("resolve_operation");
+
     public static final DefaultedRegistryType<Rotation> ROTATION = RegistryTypes.spongeKeyInGame("rotation");
 
     public static final DefaultedRegistryType<SelectorSortAlgorithm> SELECTOR_SORT_ALGORITHM = RegistryTypes.spongeKeyInGame("selector_sort_algorithm");
@@ -377,7 +383,15 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<WeatherType> WEATHER_TYPE = RegistryTypes.spongeKeyInGame("weather_type");
 
     public static final DefaultedRegistryType<WireAttachmentType> WIRE_ATTACHMENT_TYPE = RegistryTypes.spongeKeyInGame("wire_attachment_type");
-    
+
+    public static final DefaultedRegistryType<MapColorType> MAP_COLOR_TYPE = RegistryTypes.spongeKeyInGame("map_color_type");
+
+    public static final DefaultedRegistryType<MapDecorationOrientation> MAP_DECORATION_ORIENTATION = RegistryTypes.spongeKeyInGame("map_decoration_orientation");
+
+    public static final DefaultedRegistryType<MapDecorationType> MAP_DECORATION_TYPE = RegistryTypes.spongeKeyInGame("map_decoration_type");
+
+    public static final DefaultedRegistryType<MapShade> MAP_SHADE = RegistryTypes.spongeKeyInGame("map_shade");
+
     // @formatter:on
 
     private static <V> RegistryType<V> minecraftKey(final String key) {

@@ -22,41 +22,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.map.color;
 
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.map.decoration.MapDecorationType;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
+
+import java.util.function.Supplier;
 
 /**
- * An enumeration of vanilla {@link ChestAttachmentType}s.
+ * A pseudo-enum of supported {@link MapShade}s for a {@link MapColor}.
  */
-@SuppressWarnings("unused")
 @RegistryScopes(scopes = RegistryScope.GAME)
-public final class ChestAttachmentTypes {
+public final class MapShades {
 
-    // @formatter:off
+	// SORTFIELDS:ON
 
-    // SORTFIELDS:ON
+	public static final DefaultedRegistryReference<MapShade> DARKER = MapShades.key(ResourceKey.sponge("darker"));
 
-    public static final DefaultedRegistryReference<ChestAttachmentType> LEFT = ChestAttachmentTypes.key(ResourceKey.sponge("left"));
+	public static final DefaultedRegistryReference<MapShade> DARK = MapShades.key(ResourceKey.sponge("dark"));
 
-    public static final DefaultedRegistryReference<ChestAttachmentType> SINGLE = ChestAttachmentTypes.key(ResourceKey.sponge("single"));
+	public static final DefaultedRegistryReference<MapShade> BASE = MapShades.key(ResourceKey.sponge("base"));
 
-    public static final DefaultedRegistryReference<ChestAttachmentType> RIGHT = ChestAttachmentTypes.key(ResourceKey.sponge("right"));
+	public static final DefaultedRegistryReference<MapShade> DARKEST = MapShades.key(ResourceKey.sponge("darkest"));
 
-    // SORTFIELDS:OFF
+	// SORTFIELDS:OFF
 
-    // @formatter:on
+	private MapShades() {
+		throw new AssertionError("You should not be attempting to instantiate this class.");
+	}
 
-    private ChestAttachmentTypes() {
-    }
-
-    private static DefaultedRegistryReference<ChestAttachmentType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.CHEST_ATTACHMENT_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
-    }
+	private static DefaultedRegistryReference<MapShade> key(final ResourceKey location) {
+		return RegistryKey.of(RegistryTypes.MAP_SHADE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+	}
 }

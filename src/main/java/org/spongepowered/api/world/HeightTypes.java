@@ -40,8 +40,6 @@ public final class HeightTypes {
 
     // SORTFIELDS:ON
 
-    public static final DefaultedRegistryReference<HeightType> LIGHT_BLOCKING = HeightTypes.key(ResourceKey.sponge("light_blocking"));
-
     public static final DefaultedRegistryReference<HeightType> MOTION_BLOCKING = HeightTypes.key(ResourceKey.sponge("motion_blocking"));
 
     public static final DefaultedRegistryReference<HeightType> MOTION_BLOCKING_NO_LEAVES = HeightTypes.key(ResourceKey.sponge("motion_blocking_no_leaves"));

@@ -39,10 +39,12 @@ public final class BlockChangeFlags {
 
     // SORTFIELDS:ON
 
+    public static final BlockChangeFlag DEFAULT_PLACEMENT = Sponge.getGame().getFactoryProvider().provide(BlockChangeFlag.Factory.class).empty().withUpdateNeighbors(true);
+
     /**
      * All the available flags are applied through the AND operator.
      */
-    public static final BlockChangeFlag ALL = Sponge.getGame().getFactoryProvider().provide(BlockChangeFlag.Factory.class).empty().inverse();
+    public static final BlockChangeFlag ALL = Sponge.getGame().getFactoryProvider().provide(BlockChangeFlag.Factory.class).empty().withUpdateNeighbors(true);
 
     /**
      * A flag that defines whether a block change should notify
@@ -71,7 +73,7 @@ public final class BlockChangeFlags {
     /**
      * No flags are set, triggers nothing.
      */
-    public static final BlockChangeFlag NONE = Sponge.getGame().getFactoryProvider().provide(BlockChangeFlag.Factory.class).empty();
+    public static final BlockChangeFlag NONE = Sponge.getGame().getFactoryProvider().provide(BlockChangeFlag.Factory.class).none();
 
     /**
      * A flag that defines whether to update observer blocks, different

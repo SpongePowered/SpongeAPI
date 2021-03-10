@@ -22,36 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.map.decoration;
 
-import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.registry.RegistryKey;
-import org.spongepowered.api.registry.RegistryScope;
-import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.data.type.DyeColor;
 
-@SuppressWarnings("unused")
-@RegistryScopes(scopes = RegistryScope.GAME)
-public final class PhantomPhases {
-
-    // @formatter:off
-
-    // SORTFIELDS:ON
-
-    public static final DefaultedRegistryReference<PhantomPhase> CIRCLE = PhantomPhases.key(ResourceKey.sponge("circle"));
-
-    public static final DefaultedRegistryReference<PhantomPhase> SWOOP = PhantomPhases.key(ResourceKey.sponge("swoop"));
-
-    // SORTFIELDS:OFF
-
-    // @formatter:on
-
-    private PhantomPhases() {
-    }
-
-    private static DefaultedRegistryReference<PhantomPhase> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.PHANTOM_PHASE, location).asDefaultedReference(() -> Sponge.getGame().registries());
-    }
+/**
+ * An extension of {@link MapDecorationType} that represents a banner, and provides
+ * the {@link org.spongepowered.api.data.type.DyeColor} of the banner it
+ * represents.
+ *
+ * Not all {@link MapDecorationType MapDecorationTypes} are {@link MapDecorationBannerType}.
+ */
+public interface MapDecorationBannerType extends MapDecorationType {
+	/**
+	 * Gets the corresponding {@link DyeColor} that this banner decoration type is.
+	 * @return The {@link DyeColor} that this banner decoration type is.
+	 */
+	DyeColor bannerColor();
 }

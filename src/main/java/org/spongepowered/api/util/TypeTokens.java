@@ -111,6 +111,9 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.item.potion.PotionType;
+import org.spongepowered.api.map.MapCanvas;
+import org.spongepowered.api.map.MapInfo;
+import org.spongepowered.api.map.decoration.MapDecoration;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.projectile.source.ProjectileSource;
@@ -149,6 +152,12 @@ public final class TypeTokens {
     public static final TypeToken<Value<AttributeType>> ATTRIBUTE_TYPE_VALUE_TOKEN = new TypeToken<Value<AttributeType>>() {};
 
     public static final TypeToken<Value<ArtType>> ART_TYPE_VALUE_TOKEN = new TypeToken<Value<ArtType>>() {};
+
+    public static final TypeToken<Value<MapCanvas>> MAP_CANVAS_VALUE_TOKEN = new TypeToken<Value<MapCanvas>>() {};
+
+    public static final TypeToken<SetValue<MapDecoration>> MAP_DECORATIONS_VALUE_TOKEN = new TypeToken<SetValue<MapDecoration>>() {};
+
+    public static final TypeToken<Value<MapInfo>> MAP_INFO_VALUE_TOKEN = new TypeToken<Value<MapInfo>>() {};
 
     public static final TypeToken<Value<AttachmentSurface>> ATTACHMENT_SURFACE_VALUE_TOKEN = new TypeToken<Value<AttachmentSurface>>() {};
 
@@ -441,6 +450,8 @@ public final class TypeTokens {
     public static final TypeToken<MapValue<Direction, WireAttachmentType>> MAP_DIRECTION_WIRE_ATTACHMENT_VALUE_TOKEN = new TypeToken<MapValue<Direction, WireAttachmentType>>() {};
 
     public static final TypeToken<Value<WireAttachmentType>> WIRE_ATTACHMENT_TYPE_VALUE_TOKEN = new TypeToken<Value<WireAttachmentType>>() {};
+
+    public static final TypeToken<Value<ResourceKey>> RESOURCE_KEY_VALUE_TOKEN = new TypeToken<Value<ResourceKey>>() {};
 
     // @formatter:on
 

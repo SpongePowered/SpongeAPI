@@ -25,7 +25,6 @@
 package org.spongepowered.api.world;
 
 import org.spongepowered.api.block.BlockTypes;
-import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * A flag of sorts that determines whether a block change will perform various
@@ -68,7 +67,7 @@ public interface BlockChangeFlag {
      *
      * @return True if this is set to update observers.
      */
-    boolean notifyObservers();
+    boolean updateNeighboringShapes();
 
     /**
      * Gets whether this flag will queue lighting updates, different
@@ -124,7 +123,7 @@ public interface BlockChangeFlag {
 
     /**
      * Gets the equivalent {@link BlockChangeFlag} of this flag with all
-     * other flags while having the desired {@code notifyObservers}
+     * other flags while having the desired {@code updateNeighboringShapes}
      * as defined by the parameter.
      *
      * @param notifyObservers Whether to update observer blocks
@@ -154,10 +153,10 @@ public interface BlockChangeFlag {
      * {@code flag}, such that only if both flags have the same
      * {@code true} flags set will persist.
      *
-     * <p>For example, if this flag has {@link #notifyObservers()}
-     * and the incoming flag has {@link #notifyObservers()} returning
+     * <p>For example, if this flag has {@link #updateNeighboringShapes()}
+     * and the incoming flag has {@link #updateNeighboringShapes()} returning
      * {@code true}, the resulting flag will have
-     * {@link #notifyObservers()} return {@code true} as well. The
+     * {@link #updateNeighboringShapes()} return {@code true} as well. The
      * inverse is also true. If either has differing flags for any
      * of the above methods, the resulting flag will have a
      * {@code false} value.</p>
@@ -173,10 +172,10 @@ public interface BlockChangeFlag {
      * {@code flag}, such that only if both flags have the same
      * {@code true} flags set will persist.
      *
-     * <p>For example, if this flag has {@link #notifyObservers()}
-     * and the incoming flag has {@link #notifyObservers()} returning
+     * <p>For example, if this flag has {@link #updateNeighboringShapes()}
+     * and the incoming flag has {@link #updateNeighboringShapes()} returning
      * {@code true}, the resulting flag will have
-     * {@link #notifyObservers()} return {@code true} as well. The
+     * {@link #updateNeighboringShapes()} return {@code true} as well. The
      * inverse is also true. If either has differing flags for any
      * of the above methods, the resulting flag will have a
      * {@code false} value.</p>
@@ -188,7 +187,35 @@ public interface BlockChangeFlag {
 
     interface Factory {
 
+        /**
+         * Provides the defaulted flag.
+         * <ul>
+         *   <li>{@link BlockChangeFlag#updateNeighbors()} is {@code false}</li>
+         *   <li>{@link BlockChangeFlag#notifyClients()} is {@code true}</li>
+         *   <li>{@link BlockChangeFlag#updateNeighboringShapes()} is {@code true}</li>
+         *   <li>{@link BlockChangeFlag#updateLighting()} is {@code true}</li>
+         *   <li>{@link BlockChangeFlag#performBlockPhysics()} is {@code true}</li>
+         *   <li>{@link BlockChangeFlag#notifyPathfinding()} is {@code true}</li>
+         * </ul>
+         * @return The defaulted flag
+         */
         BlockChangeFlag empty();
+
+        /**
+         * Provides a {@link BlockChangeFlag} where all flags are {@code false}, except the
+         * context of client notifications for visual updates.
+         *
+         * <ul>
+         *   <li>{@link BlockChangeFlag#updateNeighbors()} is {@code false}</li>
+         *   <li>{@link BlockChangeFlag#notifyClients()} is {@code true}</li>
+         *   <li>{@link BlockChangeFlag#updateNeighboringShapes()} is {@code false}</li>
+         *   <li>{@link BlockChangeFlag#updateLighting()} is {@code true}</li>
+         *   <li>{@link BlockChangeFlag#performBlockPhysics()} is {@code false}</li>
+         *   <li>{@link BlockChangeFlag#notifyPathfinding()} is {@code false}</li>
+         * </ul>
+         * @return The all false change flag
+         */
+        BlockChangeFlag none();
 
     }
 

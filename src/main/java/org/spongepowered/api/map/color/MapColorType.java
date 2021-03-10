@@ -22,36 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.map.color;
 
-import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.registry.RegistryKey;
-import org.spongepowered.api.registry.RegistryScope;
-import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.map.MapCanvas;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.util.Color;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-@SuppressWarnings("unused")
-@RegistryScopes(scopes = RegistryScope.GAME)
-public final class PhantomPhases {
+/**
+ * Represents a color that can be used when drawing on a {@link MapCanvas}.
+ */
+@CatalogedBy(MapColorTypes.class)
+public interface MapColorType extends DefaultedRegistryValue {
 
-    // @formatter:off
-
-    // SORTFIELDS:ON
-
-    public static final DefaultedRegistryReference<PhantomPhase> CIRCLE = PhantomPhases.key(ResourceKey.sponge("circle"));
-
-    public static final DefaultedRegistryReference<PhantomPhase> SWOOP = PhantomPhases.key(ResourceKey.sponge("swoop"));
-
-    // SORTFIELDS:OFF
-
-    // @formatter:on
-
-    private PhantomPhases() {
-    }
-
-    private static DefaultedRegistryReference<PhantomPhase> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.PHANTOM_PHASE, location).asDefaultedReference(() -> Sponge.getGame().registries());
-    }
+    /**
+     * Gets the {@link Color} that this type represents.
+     *
+     * @return The {@link Color}
+     */
+    Color getColor();
 }

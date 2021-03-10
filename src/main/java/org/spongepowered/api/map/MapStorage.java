@@ -22,36 +22,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.map;
 
-import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.registry.RegistryKey;
-import org.spongepowered.api.registry.RegistryScope;
-import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.map.MapInfo;
 
-@SuppressWarnings("unused")
-@RegistryScopes(scopes = RegistryScope.GAME)
-public final class PhantomPhases {
+import java.util.Collection;
+import java.util.Optional;
+import java.util.UUID;
 
-    // @formatter:off
+/**
+ * Represents the storage manager for the maps of the {@link org.spongepowered.api.Server}
+ *
+ * This allows you to get {@link MapInfo}s and create them.
+ */
+public interface MapStorage {
 
-    // SORTFIELDS:ON
+	/**
+	 * Get all {@link MapInfo}s that exist
+	 * on this server.
+	 * @return Set of MapInfos
+	 */
+	Collection<MapInfo> getAllMapInfos();
 
-    public static final DefaultedRegistryReference<PhantomPhase> CIRCLE = PhantomPhases.key(ResourceKey.sponge("circle"));
+	/**
+	 * Gets a MapInfo by its UUID.
+	 * @param uuid UUID of map to get
+	 * @return The map with given uuid, or empty if it doesn't exist.
+	 */
+	Optional<MapInfo> getMapInfo(final UUID uuid);
 
-    public static final DefaultedRegistryReference<PhantomPhase> SWOOP = PhantomPhases.key(ResourceKey.sponge("swoop"));
-
-    // SORTFIELDS:OFF
-
-    // @formatter:on
-
-    private PhantomPhases() {
-    }
-
-    private static DefaultedRegistryReference<PhantomPhase> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.PHANTOM_PHASE, location).asDefaultedReference(() -> Sponge.getGame().registries());
-    }
+	/**
+	 * Creates a new {@link MapInfo}.
+	 *
+	 * <p>The MapInfo will not be successfully created if
+	 * the fired {@link org.spongepowered.api.event.action.CreateMapEvent} is cancelled.
+	 * This can happen due to either a plugin cancelling it, or
+	 * running out of room for maps.
+	 * (Max amount of maps is {@value java.lang.Integer#MAX_VALUE})</p>
+	 *
+	 * @return {@link MapInfo} the new MapInfo if available
+	 */
+	Optional<MapInfo> createNewMapInfo();
 }

@@ -75,7 +75,7 @@ public final class BlockEntityTypes {
 
     public static final DefaultedRegistryReference<BlockEntityType> DROPPER = BlockEntityTypes.key(ResourceKey.minecraft("dropper"));
 
-    public static final DefaultedRegistryReference<BlockEntityType> ENCHANTMENT_TABLE = BlockEntityTypes.key(ResourceKey.minecraft("enchantment_table"));
+    public static final DefaultedRegistryReference<BlockEntityType> ENCHANTING_TABLE = BlockEntityTypes.key(ResourceKey.minecraft("enchanting_table"));
 
     public static final DefaultedRegistryReference<BlockEntityType> ENDER_CHEST = BlockEntityTypes.key(ResourceKey.minecraft("ender_chest"));
 
@@ -105,7 +105,7 @@ public final class BlockEntityTypes {
 
     public static final DefaultedRegistryReference<BlockEntityType> SMOKER = BlockEntityTypes.key(ResourceKey.minecraft("smoker"));
 
-    public static final DefaultedRegistryReference<BlockEntityType> STRUCTURE = BlockEntityTypes.key(ResourceKey.minecraft("structure"));
+    public static final DefaultedRegistryReference<BlockEntityType> STRUCTURE_BLOCK = BlockEntityTypes.key(ResourceKey.minecraft("structure_block"));
 
     public static final DefaultedRegistryReference<BlockEntityType> TRAPPED_CHEST = BlockEntityTypes.key(ResourceKey.minecraft("trapped_chest"));
 
