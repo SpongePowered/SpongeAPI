@@ -73,7 +73,7 @@ public final class Structures {
 
     public static final DefaultedRegistryReference<Structure> VILLAGE = Structures.key(ResourceKey.minecraft("village"));
 
-    public static final DefaultedRegistryReference<Structure> WOODLAND_MANSION = Structures.key(ResourceKey.minecraft("mansion"));
+    public static final DefaultedRegistryReference<Structure> MANSION = Structures.key(ResourceKey.minecraft("mansion"));
 
     // SORTFIELDS:OFF
 
