@@ -44,27 +44,23 @@ import org.spongepowered.api.registry.RegistryScopes;
 public final class RecipeTypes {
 
     // @formatter:off
-
     // SORTFIELDS:ON
+    public static final DefaultedRegistryReference<RecipeType<CookingRecipe>> BLASTING = RecipeTypes.key(ResourceKey.minecraft("blasting"));
+
+    public static final DefaultedRegistryReference<RecipeType<CookingRecipe>> CAMPFIRE_COOKING = RecipeTypes.key(ResourceKey.minecraft("campfire_cooking"));
 
     public static final DefaultedRegistryReference<RecipeType<CraftingRecipe>> CRAFTING = RecipeTypes.key(ResourceKey.minecraft("crafting"));
 
     public static final DefaultedRegistryReference<RecipeType<CookingRecipe>> SMELTING = RecipeTypes.key(ResourceKey.minecraft("smelting"));
 
-    public static final DefaultedRegistryReference<RecipeType<CookingRecipe>> BLASTING = RecipeTypes.key(ResourceKey.minecraft("blasting"));
+    public static final DefaultedRegistryReference<RecipeType<SmithingRecipe>> SMITHING = RecipeTypes.key(ResourceKey.minecraft("smithing"));
 
     public static final DefaultedRegistryReference<RecipeType<CookingRecipe>> SMOKING = RecipeTypes.key(ResourceKey.minecraft("smoking"));
 
-    public static final DefaultedRegistryReference<RecipeType<CookingRecipe>> CAMPFIRE_COOKING = RecipeTypes.key(ResourceKey.minecraft("campfire_cooking"));
-
     public static final DefaultedRegistryReference<RecipeType<StoneCutterRecipe>> STONECUTTING = RecipeTypes.key(ResourceKey.minecraft("stonecutting"));
 
-    public static final DefaultedRegistryReference<RecipeType<SmithingRecipe>> SMITHING = RecipeTypes.key(ResourceKey.minecraft("smithing"));
-
     // SORTFIELDS:OFF
-
     // @formatter:on
-
     private RecipeTypes() {
     }
 
