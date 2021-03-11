@@ -44,14 +44,14 @@ public interface AdvancementEvent extends Event {
      *
      * @return The player
      */
-    ServerPlayer getPlayer();
+    ServerPlayer player();
 
     /**
      * Gets the {@link Advancement} that is being targeted.
      *
      * @return The advancement
      */
-    Advancement getAdvancement();
+    Advancement advancement();
 
     /**
      * Is called when a {@link Advancement} is granted/unlocked.
@@ -68,7 +68,7 @@ public interface AdvancementEvent extends Event {
          *
          * @return The time instant
          */
-        Instant getTime();
+        Instant time();
     }
 
     /**

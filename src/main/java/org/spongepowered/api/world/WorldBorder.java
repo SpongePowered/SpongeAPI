@@ -49,18 +49,18 @@ public interface WorldBorder {
      * @return The builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
      * Gets the diameter the world border is expanding or contracting to.
      *
-     * <p>This will return the same value as {@link #getDiameter} unless
-     * {@link #getTimeRemaining} is greater than 0.</p>
+     * <p>This will return the same value as {@link #diameter} unless
+     * {@link #timeRemaining} is greater than 0.</p>
      *
      * @return The diameter being changed to
      */
-    double getNewDiameter();
+    double newDiameter();
 
     /**
      * Gets the diameter of the world border.
@@ -70,7 +70,7 @@ public interface WorldBorder {
      *
      * @return The diameter
      */
-    double getDiameter();
+    double diameter();
 
     /**
      * Sets the diameter of the world border.
@@ -146,7 +146,7 @@ public interface WorldBorder {
      *
      * @return The time remaining
      */
-    Duration getTimeRemaining();
+    Duration timeRemaining();
 
     /**
      * Sets the center of the world border.
@@ -165,7 +165,7 @@ public interface WorldBorder {
      *
      * @return The center
      */
-    Vector3d getCenter();
+    Vector3d center();
 
     /**
      * Gets the time when a contracting world border will warn a player for whom
@@ -176,7 +176,7 @@ public interface WorldBorder {
      *
      * @return The warning time
      */
-    Duration getWarningTime();
+    Duration warningTime();
 
     /**
      * Sets the time when a contracting world border will warn a player for whom
@@ -212,7 +212,7 @@ public interface WorldBorder {
      *
      * @return The distance
      */
-    double getWarningDistance();
+    double warningDistance();
 
     /**
      * Sets the distance when a contracting world border will warn a player for
@@ -231,7 +231,7 @@ public interface WorldBorder {
      *
      * @return The distance
      */
-    double getDamageThreshold();
+    double damageThreshold();
 
     /**
      * Sets the distance a player may be be outside the world border before
@@ -247,7 +247,7 @@ public interface WorldBorder {
      *
      * @return The damage amount
      */
-    double getDamageAmount();
+    double damageAmount();
 
     /**
      * Sets the damage done to a player per block per tick when outside the
@@ -263,12 +263,12 @@ public interface WorldBorder {
      * @param border The border whose properties are to be copied
      */
     default void copyPropertiesFrom(WorldBorder border) {
-        this.setCenter(border.getCenter().getX(), border.getCenter().getZ());
-        this.setDamageAmount(border.getDamageAmount());
-        this.setDamageThreshold(border.getDamageThreshold());
-        this.setDiameter(border.getDiameter(), border.getNewDiameter(), border.getTimeRemaining());
-        this.setWarningDistance(border.getWarningDistance());
-        this.setWarningTime(border.getWarningTime());
+        this.setCenter(border.center().getX(), border.center().getZ());
+        this.setDamageAmount(border.damageAmount());
+        this.setDamageThreshold(border.damageThreshold());
+        this.setDiameter(border.diameter(), border.newDiameter(), border.timeRemaining());
+        this.setWarningDistance(border.warningDistance());
+        this.setWarningTime(border.warningTime());
     }
 
     interface Builder extends org.spongepowered.api.util.Builder<WorldBorder, Builder>, CopyableBuilder<WorldBorder, Builder> {

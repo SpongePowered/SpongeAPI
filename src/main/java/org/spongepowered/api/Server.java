@@ -65,7 +65,7 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      *
      * @return The world manager
      */
-    WorldManager getWorldManager();
+    WorldManager worldManager();
 
     /**
      * Gets if multiple {@link ServerWorld worlds} will be loaded by the server.
@@ -82,14 +82,14 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      *
      * @return The world generator config
      */
-    WorldGenerationConfig getWorldGenerationConfig();
+    WorldGenerationConfig worldGenerationConfig();
 
     /**
      * Gets the max {@link ServerPlayer players} allowed to join.
      *
      * @return The max players
      */
-    int getMaxPlayers();
+    int maxPlayers();
 
     /**
      * Gets if the whitelist is currently enforced.
@@ -111,14 +111,14 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      *
      * @return The message of the day
      */
-    Component getMOTD();
+    Component motd();
 
     /**
      * Gets the {@link ResourcePack pack} sent to clients when they join.
      *
      * @return The resource pack
      */
-    Optional<ResourcePack> getResourcePack();
+    Optional<ResourcePack> resourcePack();
 
     /**
      * Gets the player idle timeout, in minutes.
@@ -127,7 +127,7 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      *
      * @return The player idle timeout
      */
-    int getPlayerIdleTimeout();
+    int playerIdleTimeout();
 
     /**
      * Gets if hardcode mode has been enabled.
@@ -141,19 +141,19 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      *
      * @return The difficulty
      */
-    Difficulty getDifficulty();
+    Difficulty difficulty();
 
     /**
      * Gets the {@link GameMode}.
      *
      * @return The gamemode
      */
-    GameMode getGameMode();
+    GameMode gameMode();
 
     /**
      * Gets if {@link ServerPlayer players} will have their {@link GameMode game mode} set to the default.
      *
-     * {@link Server#getGameMode()}
+     * {@link Server#gameMode()}
      *
      * @return True if enforced, false if not
      */
@@ -201,21 +201,21 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      *
      * @return The user manager
      */
-    UserManager getUserManager();
+    UserManager userManager();
 
     /**
      * Gets the {@link TeleportHelper}, used to find safe {@link ServerLocation}s.
      *
      * @return The teleport helper
      */
-    TeleportHelper getTeleportHelper();
+    TeleportHelper teleportHelper();
 
     /**
      * Gets the {@link ServerPlayer}s currently online.
      *
      * @return A {@link Collection} of online players
      */
-    Collection<ServerPlayer> getOnlinePlayers();
+    Collection<ServerPlayer> onlinePlayers();
 
     /**
      * Gets a {@link ServerPlayer} by their UUID.
@@ -223,7 +223,7 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      * @param uniqueId The UUID to get the player from
      * @return The {@link ServerPlayer} or empty if not found
      */
-    Optional<ServerPlayer> getPlayer(UUID uniqueId);
+    Optional<ServerPlayer> player(UUID uniqueId);
 
     /**
      * Gets a {@link ServerPlayer} by their name.
@@ -236,7 +236,7 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      * @param name The name to get the player from
      * @return The {@link ServerPlayer} or empty if not found
      */
-    Optional<ServerPlayer> getPlayer(String name);
+    Optional<ServerPlayer> player(String name);
 
     /**
      * Gets the 'server' scoreboard. In Vanilla, this is the scoreboard of
@@ -251,7 +251,7 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      *
      * @return the server scoreboard, if available.
      */
-    Optional<? extends Scoreboard> getServerScoreboard();
+    Optional<? extends Scoreboard> serverScoreboard();
 
     /**
      * Returns information about the chunk layout used by this server
@@ -259,7 +259,7 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      *
      * @return The chunk layout used by the implementation
      */
-    ChunkLayout getChunkLayout();
+    ChunkLayout chunkLayout();
 
     /**
      * Gets the time, in ticks, since this server began running for the current
@@ -270,14 +270,14 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      *
      * @return The number of ticks since this server started running
      */
-    int getRunningTimeTicks();
+    int runningTimeTicks();
 
     /**
      * Gets the message channel that server-wide messages are sent through.
      *
      * @return The server-wide broadcast channel
      */
-    Audience getBroadcastAudience();
+    Audience broadcastAudience();
 
     /**
      * Sets the channel that server-wide messages should be sent through.
@@ -292,7 +292,7 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      *
      * @return The address or Optional.empty() if not found
      */
-    Optional<InetSocketAddress> getBoundAddress();
+    Optional<InetSocketAddress> boundAddress();
 
     /**
      * Sets whether the server is utilizing a whitelist.
@@ -322,7 +322,7 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      *
      * @return This server's game profile manager
      */
-    GameProfileManager getGameProfileManager();
+    GameProfileManager gameProfileManager();
 
     /**
      * Gets the current ticks per second. A tick represents one cycle of the
@@ -330,14 +330,14 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      *
      * @return The current ticks per second
      */
-    double getTicksPerSecond();
+    double ticksPerSecond();
 
     /**
      * Gets the current average milliseconds per tick.
      *
      * @return The current average tick time.
      */
-    double getAverageTickTime();
+    double averageTickTime();
 
     /**
      * Gets the target ticks per second for this server.
@@ -346,7 +346,7 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      *
      * @return The target tick per second rate.
      */
-    int getTargetTicksPerSecond();
+    int targetTicksPerSecond();
 
     /**
      * Sets the player idle timeout, in minutes.
@@ -368,7 +368,7 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      *
      * @return The service manager
      */
-    ServiceProvider.ServerScoped getServiceProvider();
+    ServiceProvider.ServerScoped serviceProvider();
 
     /**
      * Gets the {@link CommandManager} for executing and inspecting commands.
@@ -378,7 +378,7 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      *
      * @return The {@link CommandManager} instance.
      */
-    CommandManager getCommandManager();
+    CommandManager commandManager();
 
     /**
      * Gets the map storage for this server
@@ -388,5 +388,5 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      *
      * @return MapStorage
      */
-    MapStorage getMapStorage();
+    MapStorage mapStorage();
 }

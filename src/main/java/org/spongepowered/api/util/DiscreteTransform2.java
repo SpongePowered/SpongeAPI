@@ -65,7 +65,7 @@ public class DiscreteTransform2 {
      *
      * @return The matrix for this transform
      */
-    public Matrix3d getMatrix() {
+    public Matrix3d matrix() {
         return this.matrix;
     }
 
@@ -303,7 +303,7 @@ public class DiscreteTransform2 {
      * @return The added transforms as a copy
      */
     public DiscreteTransform2 withTransformation(DiscreteTransform2 transform) {
-        return new DiscreteTransform2(transform.getMatrix().mul(this.getMatrix()));
+        return new DiscreteTransform2(transform.matrix().mul(this.matrix()));
     }
 
     /**

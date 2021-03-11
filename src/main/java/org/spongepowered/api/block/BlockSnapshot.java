@@ -55,7 +55,7 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
     Supplier<BlockSnapshot> NONE = BlockSnapshot::empty;
 
     static BlockSnapshot empty() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class).empty();
+        return Sponge.game().builderProvider().provide(Builder.class).empty();
     }
 
     /**
@@ -64,7 +64,7 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -72,7 +72,7 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
      *
      * @return The BlockState
      */
-    BlockState getState();
+    BlockState state();
 
     /**
      * Creates a copy of the {@link BlockSnapshot} with the provided
@@ -126,7 +126,7 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
      *
      * @return The {@link UUID} if available
      */
-    Optional<UUID> getCreator();
+    Optional<UUID> creator();
 
     /**
      * Gets the {@link UUID}, if available, of the user who last notified this
@@ -134,7 +134,7 @@ public interface BlockSnapshot extends LocatableSnapshot<BlockSnapshot> {
      *
      * @return The {@link UUID} if available
      */
-    Optional<UUID> getNotifier();
+    Optional<UUID> notifier();
 
     /**
      * Creates a new {@link BlockEntityArchetype} for use with {@link Schematic}s

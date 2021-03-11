@@ -40,5 +40,5 @@ public interface MapColorType extends DefaultedRegistryValue {
      *
      * @return The {@link Color}
      */
-    Color getColor();
+    Color color();
 }

@@ -45,7 +45,7 @@ public interface AttributeModifier extends Identifiable {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -53,21 +53,21 @@ public interface AttributeModifier extends Identifiable {
      *
      * @return The name
      */
-    String getName();
+    String name();
 
     /**
      * Gets this modifier's operation.
      *
      * @return The operation
      */
-    AttributeOperation getOperation();
+    AttributeOperation operation();
 
     /**
      * Gets the amount this attribute will be modified by.
      *
      * @return The amount
      */
-    double getAmount();
+    double amount();
 
     /**
      * Represents a builder class to create {@link AttributeModifier}s.

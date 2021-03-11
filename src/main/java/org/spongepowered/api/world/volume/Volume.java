@@ -30,16 +30,16 @@ import java.util.Objects;
 
 public interface Volume {
 
-    Vector3i getBlockMin();
+    Vector3i blockMin();
 
-    Vector3i getBlockMax();
+    Vector3i blockMax();
 
-    Vector3i getBlockSize();
+    Vector3i blockSize();
 
     /**
      * Returns true if the block volume contains a block at the specified
-     * position. This is defined as <code>{{@link #getBlockMin()} &lt;= position &lt;=
-     * {@link #getBlockMax()}</code>
+     * position. This is defined as <code>{{@link #blockMin()} &lt;= position &lt;=
+     * {@link #blockMax()}</code>
      *
      * @param position The position to check
      * @return Whether or not the position has a block in this volume
@@ -52,8 +52,8 @@ public interface Volume {
 
     /**
      * Returns true if the block volume contains a block at the specified
-     * position. This is defined as <code>{{@link #getBlockMin()} &lt;= (x, y, z)
-     * &gt;= {@link #getBlockMax()}</code>
+     * position. This is defined as <code>{{@link #blockMin()} &lt;= (x, y, z)
+     * &gt;= {@link #blockMax()}</code>
      *
      * @param x The X coordinate to check
      * @param y The Y coordinate to check

@@ -42,14 +42,14 @@ public interface MapStorage {
 	 * on this server.
 	 * @return Set of MapInfos
 	 */
-	Collection<MapInfo> getAllMapInfos();
+	Collection<MapInfo> allMapInfos();
 
 	/**
 	 * Gets a MapInfo by its UUID.
 	 * @param uuid UUID of map to get
 	 * @return The map with given uuid, or empty if it doesn't exist.
 	 */
-	Optional<MapInfo> getMapInfo(final UUID uuid);
+	Optional<MapInfo> mapInfo(final UUID uuid);
 
 	/**
 	 * Creates a new {@link MapInfo}.

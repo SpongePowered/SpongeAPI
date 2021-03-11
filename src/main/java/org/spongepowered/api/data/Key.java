@@ -86,7 +86,7 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
      */
     @SuppressWarnings("unchecked")
     static Builder<?, ?> builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     static <E, V extends Value<E>> Key<V> of(final PluginContainer plugin, final String value, final TypeToken<V> type) {
@@ -103,7 +103,7 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
      *
      * @return The value generic type
      */
-    Type getValueType();
+    Type valueType();
 
     /**
      * Gets the type of the element of the {@link Value} this {@link Key}
@@ -114,7 +114,7 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
      *
      * @return The element generic type
      */
-    Type getElementType();
+    Type elementType();
 
     /**
      * Gets the {@link Comparator} to
@@ -122,7 +122,7 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
      *
      * @return The value comparator
      */
-    Comparator<?> getElementComparator();
+    Comparator<?> elementComparator();
 
     /**
      * Gets the includes tester {@link BiPredicate}. This predicate should
@@ -135,7 +135,7 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
      * @see KeyValueMatcher.Operator#INCLUDES
      * @see KeyValueMatcher.Operator#EXCLUDES
      */
-    BiPredicate<?, ?> getElementIncludesTester();
+    BiPredicate<?, ?> elementIncludesTester();
 
     /**
      * Register an event listener which listens to the value the key accesses

@@ -38,14 +38,14 @@ public interface Locatable {
      *
      * @return The World
      */
-    World<?, ?> getWorld();
+    World<?, ?> world();
 
     /**
      * Gets the location of the source.
      *
      * @return The location
      */
-    Location<?, ?> getLocation();
+    Location<?, ?> location();
 
     /**
      * Gets the location of the source as a {@link ServerLocation}.
@@ -57,8 +57,8 @@ public interface Locatable {
      *
      * @return The location
      */
-    default ServerLocation getServerLocation() {
-        final Location<?, ?> location = this.getLocation();
+    default ServerLocation serverLocation() {
+        final Location<?, ?> location = this.location();
         if (!(location instanceof ServerLocation)) {
             throw new RuntimeException("Attempt made to query for a server sided location on the client!");
         }
@@ -66,7 +66,7 @@ public interface Locatable {
         return (ServerLocation) location;
     }
 
-    default Vector3i getBlockPosition() {
-        return this.getLocation().getBlockPosition();
+    default Vector3i blockPosition() {
+        return this.location().blockPosition();
     }
 }

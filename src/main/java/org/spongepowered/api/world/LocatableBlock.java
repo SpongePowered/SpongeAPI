@@ -41,7 +41,7 @@ public interface LocatableBlock extends SerializableDataHolder.Immutable<Locatab
      * @return A new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -49,7 +49,7 @@ public interface LocatableBlock extends SerializableDataHolder.Immutable<Locatab
      *
      * @return The block state
      */
-    BlockState getBlockState();
+    BlockState blockState();
 
     interface Builder extends org.spongepowered.api.util.Builder<LocatableBlock, Builder>, CopyableBuilder<LocatableBlock, Builder>,
             DataBuilder<LocatableBlock> {

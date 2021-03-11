@@ -92,7 +92,7 @@ public interface MapValue<K, V> extends Value<Map<K, V>> {
     }
 
     @Override
-    Key<? extends MapValue<K, V>> getKey();
+    Key<? extends MapValue<K, V>> key();
 
     /**
      * Gets the size of this map.

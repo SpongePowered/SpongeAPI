@@ -38,5 +38,5 @@ public interface EquipmentType extends DefaultedRegistryValue {
      *
      * @return The group
      */
-    EquipmentGroup getGroup();
+    EquipmentGroup group();
 }

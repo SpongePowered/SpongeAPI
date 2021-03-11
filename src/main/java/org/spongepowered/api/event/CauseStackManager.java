@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.event;
 
-import org.spongepowered.api.registry.DefaultedRegistryReference;
-
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -51,7 +49,7 @@ public interface CauseStackManager {
      * 
      * @return A cause of the current stack.
      */
-    Cause getCurrentCause();
+    Cause currentCause();
 
     /**
      * Gets an {@link EventContext} object on the current contextual
@@ -59,7 +57,7 @@ public interface CauseStackManager {
      * 
      * @return The current event context
      */
-    EventContext getCurrentContext();
+    EventContext currentContext();
 
     /**
      * Pushes an object to the current cause stack which will associate it with
@@ -170,7 +168,7 @@ public interface CauseStackManager {
      * @param <T> The type of the value stored with the event context key
      * @return The context object, if present
      */
-    <T> Optional<T> getContext(EventContextKey<T> key);
+    <T> Optional<T> context(EventContextKey<T> key);
 
     /**
      * Gets the context value with the given key.
@@ -179,8 +177,8 @@ public interface CauseStackManager {
      * @param <T> The type of the value stored with the event context key
      * @return The context object, if present
      */
-    default <T> Optional<T> getContext(Supplier<EventContextKey<T>> key) {
-        return this.getContext(key.get());
+    default <T> Optional<T> context(Supplier<EventContextKey<T>> key) {
+        return this.context(key.get());
     }
 
     /**
@@ -194,7 +192,7 @@ public interface CauseStackManager {
      * @return The context object, if present
      */
     default <T> T requireContext(EventContextKey<T> key) {
-        final Optional<T> optional = this.getContext(key);
+        final Optional<T> optional = this.context(key);
         if (optional.isPresent()) {
             return optional.get();
         }
@@ -213,7 +211,7 @@ public interface CauseStackManager {
      * @return The context object, if present
      */
     default <T> T requireContext(Supplier<EventContextKey<T>> key) {
-        final Optional<T> optional = this.getContext(key.get());
+        final Optional<T> optional = this.context(key.get());
         if (optional.isPresent()) {
             return optional.get();
         }
@@ -248,18 +246,18 @@ public interface CauseStackManager {
          * Gets the current {@link Cause} object from the current cause stack.
          *
          * @return A cause of the current stack.
-         * @see CauseStackManager#getCurrentCause()
+         * @see CauseStackManager#currentCause()
          */
-        Cause getCurrentCause();
+        Cause currentCause();
 
         /**
          * Gets an {@link EventContext} object on the current contextual
          * information.
          *
          * @return The current event context
-         * @see CauseStackManager#getCurrentContext()
+         * @see CauseStackManager#currentContext()
          */
-        EventContext getCurrentContext();
+        EventContext currentContext();
 
         /**
          * Pushes an object to the current cause stack which will associate

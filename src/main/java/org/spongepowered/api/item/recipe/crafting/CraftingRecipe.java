@@ -41,7 +41,7 @@ import java.util.Optional;
 public interface CraftingRecipe extends Recipe {
 
     @Override
-    RecipeType<? extends CraftingRecipe> getType();
+    RecipeType<? extends CraftingRecipe> type();
 
     /**
      * The group this CraftingRecipe belongs to or {@link Optional#empty()} if not defined.
@@ -49,7 +49,7 @@ public interface CraftingRecipe extends Recipe {
      *
      * @return The group this Recipe belongs to.
      */
-    Optional<String> getGroup();
+    Optional<String> group();
 
     /**
      * Provides a builder for a {@link ShapedCraftingRecipe}.
@@ -57,7 +57,7 @@ public interface CraftingRecipe extends Recipe {
      * @return The builder.
      */
     static ShapedCraftingRecipe.Builder shapedBuilder() {
-        return Sponge.getGame().getBuilderProvider().provide(ShapedCraftingRecipe.Builder.class);
+        return Sponge.game().builderProvider().provide(ShapedCraftingRecipe.Builder.class);
     }
 
     /**
@@ -66,7 +66,7 @@ public interface CraftingRecipe extends Recipe {
      * @return The builder.
      */
     static ShapelessCraftingRecipe.Builder shapelessBuilder() {
-        return Sponge.getGame().getBuilderProvider().provide(ShapelessCraftingRecipe.Builder.class);
+        return Sponge.game().builderProvider().provide(ShapelessCraftingRecipe.Builder.class);
     }
 
     /**
@@ -75,7 +75,7 @@ public interface CraftingRecipe extends Recipe {
      * @return The builder.
      */
     static SpecialCraftingRecipe.Builder specialBuilder() {
-        return Sponge.getGame().getBuilderProvider().provide(SpecialCraftingRecipe.Builder.class);
+        return Sponge.game().builderProvider().provide(SpecialCraftingRecipe.Builder.class);
     }
 
 }

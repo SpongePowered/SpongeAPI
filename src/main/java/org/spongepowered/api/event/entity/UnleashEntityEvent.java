@@ -38,5 +38,5 @@ public interface UnleashEntityEvent extends Event, Cancellable {
      *
      * @return The entity
      */
-    Entity getEntity();
+    Entity entity();
 }

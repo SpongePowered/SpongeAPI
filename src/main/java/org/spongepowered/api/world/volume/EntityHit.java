@@ -60,7 +60,7 @@ public class EntityHit {
      *
      * @return The intersected entity
      */
-    public Entity getEntity() {
+    public Entity entity() {
         return this.entity;
     }
 
@@ -69,7 +69,7 @@ public class EntityHit {
      *
      * @return The point of intersection
      */
-    public Vector3d getIntersection() {
+    public Vector3d intersection() {
         return this.intersection;
     }
 
@@ -78,7 +78,7 @@ public class EntityHit {
      *
      * @return The normal of intersection
      */
-    public Vector3d getNormal() {
+    public Vector3d normal() {
         return this.normal;
     }
 
@@ -87,7 +87,7 @@ public class EntityHit {
      *
      * @return The distance from the start to the intersection
      */
-    public double getDistance() {
+    public double distance() {
         return this.distance;
     }
 

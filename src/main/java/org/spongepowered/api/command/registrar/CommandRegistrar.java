@@ -57,7 +57,7 @@ import java.util.Optional;
  *
  * <p>For command that wishes to investigate the command string that was
  * executed, they may investigate the context in
- * {@link CommandCause#getCause()}, looking for the
+ * {@link CommandCause#cause()}, looking for the
  * {@link EventContextKeys#COMMAND} context key.</p>
  *
  * <p>Command frameworks are free to choose how they parse commands. However,

@@ -42,7 +42,7 @@ public interface BlockReaderAwareMatcher<T> {
 
     static BlockReaderAwareMatcher<BlockState> forBlock(BlockType type) {
         Objects.requireNonNull(type, "BlockType cannot be null");
-        return (state, volume, position) -> state != null && state.getType() == type;
+        return (state, volume, position) -> state != null && state.type() == type;
     }
 
     boolean test(@Nullable T value, PrimitiveGameVolume volume, Vector3i position);

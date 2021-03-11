@@ -32,6 +32,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 @CatalogedBy(HeightTypes.class)
 public interface HeightType extends DefaultedRegistryValue {
 
-    BlockReaderAwareMatcher<BlockState> getMatcher();
+    BlockReaderAwareMatcher<BlockState> matcher();
 
 }

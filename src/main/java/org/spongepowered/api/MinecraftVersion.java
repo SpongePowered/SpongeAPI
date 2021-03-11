@@ -45,7 +45,7 @@ public interface MinecraftVersion extends Comparable<MinecraftVersion> {
      *
      * @return The version name
      */
-    String getName();
+    String name();
 
     /**
      * Returns whether this version is an older version that doesn't support
@@ -69,5 +69,5 @@ public interface MinecraftVersion extends Comparable<MinecraftVersion> {
      *
      * @return The data version
      */
-    OptionalInt getDataVersion();
+    OptionalInt dataVersion();
 }

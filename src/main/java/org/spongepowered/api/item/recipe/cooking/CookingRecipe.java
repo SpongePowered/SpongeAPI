@@ -51,7 +51,7 @@ public interface CookingRecipe extends Recipe {
      * @return A {@link CookingRecipe} builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -59,7 +59,7 @@ public interface CookingRecipe extends Recipe {
      *
      * @return The {@link Ingredient} for this {@link CookingRecipe}.
      */
-    Ingredient getIngredient();
+    Ingredient ingredient();
 
     /**
      * Checks if the given {@link ItemStackSnapshot} fits the required
@@ -80,21 +80,21 @@ public interface CookingRecipe extends Recipe {
      *         if the recipe is not valid according to
      *         {@link #isValid(ItemStackSnapshot)}.
      */
-    Optional<CookingResult> getResult(ItemStackSnapshot ingredient);
+    Optional<CookingResult> result(ItemStackSnapshot ingredient);
 
     /**
      * Returns the cooking time in ticks.
      *
      * @return The cooking time in ticks.
      */
-    int getCookingTime();
+    int cookingTime();
 
     /**
      * Returns the experience of this recipe.
      *
      * @return The experience of this recipe.
      */
-    float getExperience();
+    float experience();
 
     /**
      * Builds a simple furnace recipe.

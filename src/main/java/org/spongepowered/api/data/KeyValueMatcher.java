@@ -128,7 +128,7 @@ public interface KeyValueMatcher<V> extends DataSerializable {
      * @return The builder
      */
     static Builder<?> builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -137,14 +137,14 @@ public interface KeyValueMatcher<V> extends DataSerializable {
      *
      * @return The key
      */
-    Key<? extends Value<V>> getKey();
+    Key<? extends Value<V>> key();
 
     /**
      * Gets the operator of the matcher.
      *
      * @return The operator
      */
-    Operator getOperator();
+    Operator operator();
 
     /**
      * Gets the value of the query. A empty optional represents
@@ -152,7 +152,7 @@ public interface KeyValueMatcher<V> extends DataSerializable {
      *
      * @return The value
      */
-    Optional<V> getValue();
+    Optional<V> value();
 
     /**
      * Checks whether the value of the {@link ValueContainer} is matched by this matcher.
@@ -162,7 +162,7 @@ public interface KeyValueMatcher<V> extends DataSerializable {
      */
     default boolean matchesContainer(final ValueContainer valueContainer) {
         Objects.requireNonNull(valueContainer, "valueContainer");
-        return this.matches(valueContainer.get(this.getKey()).orElse(null));
+        return this.matches(valueContainer.get(this.key()).orElse(null));
     }
 
     /**

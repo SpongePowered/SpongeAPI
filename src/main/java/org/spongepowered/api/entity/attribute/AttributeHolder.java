@@ -40,8 +40,8 @@ public interface AttributeHolder {
      * @param type The attribute type.
      * @return An attribute, if present.
      */
-    default Optional<Attribute> getAttribute(final Supplier<? extends AttributeType> type) {
-        return this.getAttribute(type.get());
+    default Optional<Attribute> attribute(final Supplier<? extends AttributeType> type) {
+        return this.attribute(type.get());
     }
 
     /**
@@ -49,5 +49,5 @@ public interface AttributeHolder {
      * @param type The attribute type.
      * @return An attribute, if present.
      */
-    Optional<Attribute> getAttribute(final AttributeType type);
+    Optional<Attribute> attribute(final AttributeType type);
 }

@@ -24,14 +24,11 @@
  */
 package org.spongepowered.api.command.parameter;
 
-import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.parameter.managed.ValueParameter;
 import org.spongepowered.api.command.parameter.managed.standard.ResourceKeyedValueParameters;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
-import org.spongepowered.api.world.server.storage.ServerWorldProperties;
-import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.math.vector.Vector3d;
 
 /**
@@ -103,7 +100,7 @@ public final class CommonParameters {
      *
      * @see ResourceKeyedValueParameters#WORLD
      */
-    public final static Parameter.Value<ServerWorld> WORLD = Parameter.world().setKey("world").build();
+    public final static Parameter.Value<ServerWorld> WORLD = Parameter.world().key("world").build();
 
     /**
      * A {@link Parameter.Value} that parses a {@link Boolean} with the key name
@@ -111,7 +108,7 @@ public final class CommonParameters {
      *
      * @see ResourceKeyedValueParameters#BOOLEAN
      */
-    public final static Parameter.Value<Boolean> BOOLEAN = Parameter.bool().setKey("true/false").build();
+    public final static Parameter.Value<Boolean> BOOLEAN = Parameter.bool().key("true/false").build();
 
     /**
      * A {@link Parameter.Value} that parses a world and a position and stores
@@ -119,7 +116,7 @@ public final class CommonParameters {
      *
      * @see ResourceKeyedValueParameters#LOCATION_ONLINE_ONLY
      */
-    public final static Parameter.Value<ServerLocation> LOCATION_ONLINE_ONLY = Parameter.location().setKey("location").build();
+    public final static Parameter.Value<ServerLocation> LOCATION_ONLINE_ONLY = Parameter.location().key("location").build();
 
     /**
      * A {@link Parameter.Value} that parses the remainder of the string under
@@ -127,7 +124,7 @@ public final class CommonParameters {
      *
      * @see ResourceKeyedValueParameters#REMAINING_JOINED_STRINGS
      */
-    public final static Parameter.Value<String> MESSAGE = Parameter.remainingJoinedStrings().setKey("message").build();
+    public final static Parameter.Value<String> MESSAGE = Parameter.remainingJoinedStrings().key("message").build();
 
     /**
      * A {@link Parameter.Value} that parses a player name or selector and
@@ -135,7 +132,7 @@ public final class CommonParameters {
      *
      * @see ResourceKeyedValueParameters#PLAYER
      */
-    public final static Parameter.Value<ServerPlayer> PLAYER = Parameter.player().setKey("player").build();
+    public final static Parameter.Value<ServerPlayer> PLAYER = Parameter.player().key("player").build();
 
     /**
      * A {@link Parameter.Value} that parses a player name or selector and
@@ -144,7 +141,7 @@ public final class CommonParameters {
      *
      * @see ResourceKeyedValueParameters#PLAYER
      */
-    public final static Parameter.Value<ServerPlayer> PLAYER_OPTIONAL = Parameter.player().optional().setKey("player").build();
+    public final static Parameter.Value<ServerPlayer> PLAYER_OPTIONAL = Parameter.player().optional().key("player").build();
 
     /**
      * A {@link Parameter.Value} that parses a position and stores it as a
@@ -152,7 +149,7 @@ public final class CommonParameters {
      *
      * @see ResourceKeyedValueParameters#VECTOR3D
      */
-    public final static Parameter.Value<Vector3d> POSITION = Parameter.vector3d().setKey("position").build();
+    public final static Parameter.Value<Vector3d> POSITION = Parameter.vector3d().key("position").build();
 
     // SORTFIELDS:OFF
 

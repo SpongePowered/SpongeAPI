@@ -44,13 +44,7 @@ public interface SoundType extends ResourceKeyed, Sound.Type {
      * @return A new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
-    }
-
-    // TODO Why Adventure..
-    @Override
-    default @NonNull Key key() {
-        return this.getKey();
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**

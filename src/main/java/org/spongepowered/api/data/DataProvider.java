@@ -43,7 +43,7 @@ public interface DataProvider<V extends Value<E>, E> {
      * @return The builder
      */
     static <H extends DataHolder.Mutable, V extends Value<E>, E> MutableDataProviderBuilder<H, V, E> mutableBuilder() {
-        return Sponge.getGame().getBuilderProvider().provide(MutableDataProviderBuilder.class);
+        return Sponge.game().builderProvider().provide(MutableDataProviderBuilder.class);
     }
 
     /**
@@ -52,7 +52,7 @@ public interface DataProvider<V extends Value<E>, E> {
      * @return The builder
      */
     static <H extends DataHolder, V extends Value<E>, E> ImmutableDataProviderBuilder<H, V, E> immutableBuilder() {
-        return Sponge.getGame().getBuilderProvider().provide(ImmutableDataProviderBuilder.class);
+        return Sponge.game().builderProvider().provide(ImmutableDataProviderBuilder.class);
     }
 
     /**
@@ -60,7 +60,7 @@ public interface DataProvider<V extends Value<E>, E> {
      *
      * @return The key
      */
-    Key<V> getKey();
+    Key<V> key();
 
     /**
      * Gets whether this provider will allow asynchronous access for retrieving
@@ -112,8 +112,8 @@ public interface DataProvider<V extends Value<E>, E> {
      * @param dataHolder The data holder to get the constructed value from
      * @return The value
      */
-    default Optional<V> getValue(DataHolder dataHolder) {
-        return this.get(dataHolder).map(element -> Value.genericMutableOf(this.getKey(), element));
+    default Optional<V> value(DataHolder dataHolder) {
+        return this.get(dataHolder).map(element -> Value.genericMutableOf(this.key(), element));
     }
 
     /**

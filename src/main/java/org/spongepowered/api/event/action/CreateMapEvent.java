@@ -37,5 +37,5 @@ public interface CreateMapEvent extends Event, Cancellable {
 	 * Gets the {@link org.spongepowered.api.map.MapInfo} for this map
 	 * @return MapInfoData Map data
 	 */
-	MapInfo getMapInfo();
+	MapInfo mapInfo();
 }

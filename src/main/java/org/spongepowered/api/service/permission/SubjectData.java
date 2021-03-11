@@ -67,13 +67,13 @@ public interface SubjectData {
      *
      * @return The subject which holds this data
      */
-    Subject getSubject();
+    Subject subject();
 
     /**
      * Return if this SubjectData is transient.
      *
      * @return If this SubjectData is transient
-     * @see Subject#getTransientSubjectData()
+     * @see Subject#transientSubjectData()
      */
     boolean isTransient();
 
@@ -83,7 +83,7 @@ public interface SubjectData {
      * @return An immutable copy of the mappings between contexts and lists of
      *         permissions containing every permission registered
      */
-    Map<Set<Context>, Map<String, Boolean>> getAllPermissions();
+    Map<Set<Context>, Map<String, Boolean>> allPermissions();
 
     /**
      * Returns the list of permissions set for the given context.
@@ -94,7 +94,7 @@ public interface SubjectData {
      * @param contexts The particular context combination to check
      * @return Any permissions set
      */
-    Map<String, Boolean> getPermissions(Set<Context> contexts);
+    Map<String, Boolean> permissions(Set<Context> contexts);
 
     /**
      * Sets a permission to a given value.
@@ -139,7 +139,7 @@ public interface SubjectData {
      *
      * @return All registered parents and the context they are registered in
      */
-    Map<Set<Context>, List<SubjectReference>> getAllParents();
+    Map<Set<Context>, List<SubjectReference>> allParents();
 
     /**
      * Return all registered parent subjects for a given context.
@@ -151,7 +151,7 @@ public interface SubjectData {
      * @param contexts The context to check
      * @return names of parents valid in the given context
      */
-    List<SubjectReference> getParents(Set<Context> contexts);
+    List<SubjectReference> parents(Set<Context> contexts);
 
     /**
      * Adds a parent in a particular context combination.
@@ -200,7 +200,7 @@ public interface SubjectData {
      *
      * @return An immutable snapshot of all options data
      */
-    Map<Set<Context>, Map<String, String>> getAllOptions();
+    Map<Set<Context>, Map<String, String>> allOptions();
 
     /**
      * Gets options for a specific context combination.
@@ -208,7 +208,7 @@ public interface SubjectData {
      * @param contexts The context combination to get options for
      * @return All available options, returning an empty map if none are present
      */
-    Map<String, String> getOptions(Set<Context> contexts);
+    Map<String, String> options(Set<Context> contexts);
 
     /**
      * Sets a specific option to a value.

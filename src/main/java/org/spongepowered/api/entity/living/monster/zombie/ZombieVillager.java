@@ -37,7 +37,7 @@ public interface ZombieVillager extends ZombieLike {
      * @return The villager type
      * @see org.spongepowered.api.data.type.VillagerTypes
      */
-    default Value.Mutable<VillagerType> type() {
+    default Value.Mutable<VillagerType> villagerType() {
         return this.requireValue(Keys.VILLAGER_TYPE).asMutable();
     }
 

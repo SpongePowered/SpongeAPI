@@ -41,6 +41,6 @@ public interface ParticleOption<V> extends DefaultedRegistryValue {
      *
      * @return The value type
      */
-    Class<? extends V> getValueType();
+    Class<? extends V> valueType();
 
 }

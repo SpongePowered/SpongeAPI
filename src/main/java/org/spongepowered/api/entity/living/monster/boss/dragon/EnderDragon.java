@@ -58,5 +58,5 @@ public interface EnderDragon extends ComplexLiving<EnderDragonPart>, Boss, Monst
      *
      * @return The phase manager
      */
-    DragonPhaseManager getPhaseManager();
+    DragonPhaseManager phaseManager();
 }

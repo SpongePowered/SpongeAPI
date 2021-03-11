@@ -1052,6 +1052,6 @@ public final class BooleanStateProperties {
     }
 
     private static DefaultedRegistryReference<BooleanStateProperty> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.BOOLEAN_STATE_PROPERTY, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.BOOLEAN_STATE_PROPERTY, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

@@ -35,7 +35,7 @@ public abstract class AbstractChangeEntityEquipmentEvent extends AbstractEvent i
     @UseField protected Transaction<ItemStackSnapshot> transaction;
 
     @Override
-    public Transaction<ItemStackSnapshot> getTransaction() {
+    public Transaction<ItemStackSnapshot> transaction() {
         return this.transaction;
     }
 }

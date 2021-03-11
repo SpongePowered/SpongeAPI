@@ -356,7 +356,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> @Nullable E getOrNull(final Vector3i position, final Key<? extends Value<E>> key) {
+    default <E> @Nullable E orNull(final Vector3i position, final Key<? extends Value<E>> key) {
         return this.get(position.getX(), position.getY(), position.getZ(), key).orElse(null);
     }
 
@@ -370,7 +370,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> @Nullable E getOrNull(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
+    default <E> @Nullable E orNull(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
         return this.get(position.getX(), position.getY(), position.getZ(), key.get()).orElse(null);
     }
 
@@ -386,7 +386,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> @Nullable E getOrNull(final int x, final int y, final int z, final Key<? extends Value<E>> key) {
+    default <E> @Nullable E orNull(final int x, final int y, final int z, final Key<? extends Value<E>> key) {
         return this.get(x, y, z, key).orElse(null);
     }
 
@@ -402,7 +402,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> @Nullable E getOrNull(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
+    default <E> @Nullable E orNull(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
         return this.get(x, y, z, key.get()).orElse(null);
     }
 
@@ -417,7 +417,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> E getOrElse(final Vector3i position, final Key<? extends Value<E>> key, final E defaultValue) {
+    default <E> E orElse(final Vector3i position, final Key<? extends Value<E>> key, final E defaultValue) {
         return this.get(position.getX(), position.getY(), position.getZ(), key).orElse(Objects.requireNonNull(defaultValue));
     }
 
@@ -432,7 +432,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> E getOrElse(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final E defaultValue) {
+    default <E> E orElse(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final E defaultValue) {
         return this.get(position.getX(), position.getY(), position.getZ(), key.get()).orElse(Objects.requireNonNull(defaultValue));
     }
 
@@ -449,7 +449,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> E getOrElse(final int x, final int y, final int z, final Key<? extends Value<E>> key, final E defaultValue) {
+    default <E> E orElse(final int x, final int y, final int z, final Key<? extends Value<E>> key, final E defaultValue) {
         return this.get(x, y, z, key).orElse(Objects.requireNonNull(defaultValue));
     }
 
@@ -466,7 +466,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> E getOrElse(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final E defaultValue) {
+    default <E> E orElse(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final E defaultValue) {
         return this.get(x, y, z, key.get()).orElse(Objects.requireNonNull(defaultValue));
     }
 
@@ -482,7 +482,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> E getOrElse(final Vector3i position, final Key<? extends Value<E>> key, final Supplier<? extends E> defaultValue) {
+    default <E> E orElse(final Vector3i position, final Key<? extends Value<E>> key, final Supplier<? extends E> defaultValue) {
         return this.get(position.getX(), position.getY(), position.getZ(), key).orElseGet(Objects.requireNonNull(defaultValue));
     }
 
@@ -497,7 +497,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> E getOrElse(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final Supplier<? extends E> defaultValue) {
+    default <E> E orElse(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final Supplier<? extends E> defaultValue) {
         return this.get(position.getX(), position.getY(), position.getZ(), key.get()).orElseGet(Objects.requireNonNull(defaultValue));
     }
 
@@ -514,7 +514,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> E getOrElse(final int x, final int y, final int z, final Key<? extends Value<E>> key, final Supplier<E> defaultValue) {
+    default <E> E orElse(final int x, final int y, final int z, final Key<? extends Value<E>> key, final Supplier<E> defaultValue) {
         return this.get(x, y, z, key).orElseGet(Objects.requireNonNull(defaultValue));
     }
 
@@ -531,7 +531,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> E getOrElse(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final Supplier<? extends E> defaultValue) {
+    default <E> E orElse(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final Supplier<? extends E> defaultValue) {
         return this.get(x, y, z, key.get()).orElseGet(Objects.requireNonNull(defaultValue));
     }
 
@@ -654,7 +654,7 @@ public interface LocationBaseDataHolder {
      * @return True if the block supports the data
      */
     default boolean supports(final Vector3i position, final Value<?> value) {
-        return this.supports(position.getX(), position.getY(), position.getZ(), value.getKey());
+        return this.supports(position.getX(), position.getY(), position.getZ(), value.key());
     }
 
     /**
@@ -668,7 +668,7 @@ public interface LocationBaseDataHolder {
      * @return True if the block supports the data
      */
     default boolean supports(final int x, final int y, final int z, final Value<?> value) {
-        return this.supports(x, y, z, value.getKey());
+        return this.supports(x, y, z, value.key());
     }
 
     /**
@@ -678,8 +678,8 @@ public interface LocationBaseDataHolder {
      * @param position The position of the block
      * @return The immutable set of values for the block
      */
-    default Set<Key<?>> getKeys(final Vector3i position) {
-        return this.getKeys(position.getX(), position.getY(), position.getZ());
+    default Set<Key<?>> keys(final Vector3i position) {
+        return this.keys(position.getX(), position.getY(), position.getZ());
     }
 
     /**
@@ -691,7 +691,7 @@ public interface LocationBaseDataHolder {
      * @param z The Z position
      * @return The immutable set of values for the block
      */
-    Set<Key<?>> getKeys(int x, int y, int z);
+    Set<Key<?>> keys(int x, int y, int z);
 
     /**
      * Gets an {@link ImmutableSet} of {@link org.spongepowered.api.data.value.Value.Immutable}s for the block at
@@ -883,7 +883,7 @@ public interface LocationBaseDataHolder {
          * @return The transaction result
          */
         default <E> DataTransactionResult offer(final Vector3i position, final Value<E> value) {
-            return this.offer(position.getX(), position.getY(), position.getZ(), value.getKey(), value.get());
+            return this.offer(position.getX(), position.getY(), position.getZ(), value.key(), value.get());
         }
 
         /**
@@ -901,7 +901,7 @@ public interface LocationBaseDataHolder {
          * @return The transaction result
          */
         default <E> DataTransactionResult offer(final int x, final int y, final int z, final Value<E> value) {
-            return this.offer(x, y, z, value.getKey(), value.get());
+            return this.offer(x, y, z, value.key(), value.get());
         }
 
         /**

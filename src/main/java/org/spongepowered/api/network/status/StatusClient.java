@@ -40,14 +40,14 @@ public interface StatusClient {
      *
      * @return The address of the client
      */
-    InetSocketAddress getAddress();
+    InetSocketAddress address();
 
     /**
      * Gets the game version of the client.
      *
      * @return The version of the client
      */
-    MinecraftVersion getVersion();
+    MinecraftVersion version();
 
     /**
      * Gets the address the player is connecting to.
@@ -56,6 +56,6 @@ public interface StatusClient {
      *         {@link Optional#empty()} if not available (for example because
      *         of {@link MinecraftVersion#isLegacy()}).
      */
-    Optional<InetSocketAddress> getVirtualHost();
+    Optional<InetSocketAddress> virtualHost();
 
 }

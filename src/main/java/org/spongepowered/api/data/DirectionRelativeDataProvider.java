@@ -38,8 +38,8 @@ public interface DirectionRelativeDataProvider<V extends Value<E>, E> extends Da
     }
 
     @Override
-    default Optional<V> getValue(DataHolder dataHolder) {
-        return this.getValue(dataHolder, Direction.NONE);
+    default Optional<V> value(DataHolder dataHolder) {
+        return this.value(dataHolder, Direction.NONE);
     }
 
     @Override
@@ -76,8 +76,8 @@ public interface DirectionRelativeDataProvider<V extends Value<E>, E> extends Da
      * @param direction The related relative direction to the data provider
      * @return The value
      */
-    default Optional<V> getValue(DataHolder dataHolder, Direction direction) {
-        return this.get(dataHolder, direction).map(element -> Value.genericMutableOf(this.getKey(), element));
+    default Optional<V> value(DataHolder dataHolder, Direction direction) {
+        return this.get(dataHolder, direction).map(element -> Value.genericMutableOf(this.key(), element));
     }
 
     /**

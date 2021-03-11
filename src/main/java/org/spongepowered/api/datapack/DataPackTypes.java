@@ -32,13 +32,13 @@ import org.spongepowered.api.world.server.WorldTemplate;
 
 public final class DataPackTypes {
 
-    public static final DataPackType<Advancement> ADVANCEMENT = Sponge.getGame().getFactoryProvider().provide(DataPackType.Factory.class).advancement();
+    public static final DataPackType<Advancement> ADVANCEMENT = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).advancement();
 
-    public static final DataPackType<RecipeRegistration> RECIPE = Sponge.getGame().getFactoryProvider().provide(DataPackType.Factory.class).recipe();
+    public static final DataPackType<RecipeRegistration> RECIPE = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).recipe();
 
-    public static final DataPackType<WorldTypeTemplate> WORLD_TYPE = Sponge.getGame().getFactoryProvider().provide(DataPackType.Factory.class).worldType();
+    public static final DataPackType<WorldTypeTemplate> WORLD_TYPE = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).worldType();
 
-    public static final DataPackType<WorldTemplate> WORLD = Sponge.getGame().getFactoryProvider().provide(DataPackType.Factory.class).world();
+    public static final DataPackType<WorldTemplate> WORLD = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).world();
 
     private DataPackTypes() {
     }

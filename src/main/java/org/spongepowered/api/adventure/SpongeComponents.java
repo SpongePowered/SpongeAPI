@@ -177,7 +177,7 @@ public final class SpongeComponents {
     }
 
     private static Factory factory() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class);
+        return Sponge.game().factoryProvider().provide(Factory.class);
     }
 
     public interface Factory {

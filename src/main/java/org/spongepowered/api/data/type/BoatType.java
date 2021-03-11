@@ -31,5 +31,5 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 @CatalogedBy(BoatTypes.class)
 public interface BoatType extends DefaultedRegistryValue {
 
-    BlockType getRepresentedBlock();
+    BlockType representedBlock();
 }

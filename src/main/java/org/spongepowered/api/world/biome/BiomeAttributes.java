@@ -29,7 +29,7 @@ import org.spongepowered.api.Sponge;
 public interface BiomeAttributes {
 
     static BiomeAttributes of(final float temperature, final float humidity, final float altitude, final float weirdness, final float offset) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(temperature, humidity, altitude, weirdness, offset);
+        return Sponge.game().factoryProvider().provide(Factory.class).of(temperature, humidity, altitude, weirdness, offset);
     }
 
     /**

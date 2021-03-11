@@ -41,14 +41,14 @@ public interface Raid {
      *
      * @return The world
      */
-    ServerWorld getWorld();
+    ServerWorld world();
 
     /**
      * Gets the {@link BossBar} being displayed to clients of this raid.
      *
      * @return The boss bar
      */
-    BossBar getBossBar();
+    BossBar bossBar();
 
     /**
      * Sets the {@link BossBar} being displayed to clients of this raid.
@@ -62,21 +62,21 @@ public interface Raid {
      *
      * @return The raid status
      */
-    RaidStatus getStatus();
+    RaidStatus status();
 
     /**
      * Gets the current {@link RaidWave} of this raid.
      *
      * @return The current wave or {@link Optional#empty()} if no waves are currently running
      */
-    Optional<RaidWave> getCurrentWave();
+    Optional<RaidWave> currentWave();
 
     /**
      * Gets all of the {@link RaidWave waves} that have occurred or are occurring in this raid.
      *
      * @return The waves
      */
-    List<RaidWave> getWaves();
+    List<RaidWave> waves();
 
     /**
      * Gets the amount of {@link RaidWave waves} this raid plans to execute.
@@ -91,7 +91,7 @@ public interface Raid {
      *     Keep in mind that wave amount will be affected by waves added by plugins
      * @return The total wave amount
      */
-    int getTotalWaveAmount();
+    int totalWaveAmount();
 
     /**
      * Gets the health of this raid. Health is calculated by the sum of all of the {@link Raider Raider's}
@@ -99,5 +99,5 @@ public interface Raid {
      *
      * @return The health
      */
-    double getHealth();
+    double health();
 }

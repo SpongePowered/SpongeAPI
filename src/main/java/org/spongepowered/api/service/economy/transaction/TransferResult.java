@@ -36,11 +36,11 @@ public interface TransferResult extends TransactionResult {
     /**
      * Gets the {@link Account} that an amount of a {@link Currency} is being transferred to.
      *
-     * <p>{@link #getAccount()} can be used to get the {@link Account} that the currency
+     * <p>{@link #account()} can be used to get the {@link Account} that the currency
      * is being transferred from.</p>
      *
      * @return The {@link Account}
      */
-    Account getAccountTo();
+    Account accountTo();
 
 }

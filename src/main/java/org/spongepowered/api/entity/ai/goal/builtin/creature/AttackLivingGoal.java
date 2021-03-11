@@ -40,7 +40,7 @@ public interface AttackLivingGoal extends Goal<Creature> {
      * @return A new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -49,7 +49,7 @@ public interface AttackLivingGoal extends Goal<Creature> {
      *
      * @return The movement speed modifier when targeting an entity
      */
-    double getSpeed();
+    double speed();
 
     /**
      * Sets the movement speed modifier when the parent {@link Creature}

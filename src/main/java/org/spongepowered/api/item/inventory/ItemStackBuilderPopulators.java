@@ -38,7 +38,6 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.enchantment.EnchantmentType;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.Tuple;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.util.weighted.WeightedTable;
@@ -165,7 +164,7 @@ public final class ItemStackBuilderPopulators {
      */
     public static BiConsumer<ItemStack.Builder, Random> quantity(VariableAmount amount) {
         Objects.requireNonNull(amount, "VariableAmount cannot be null!");
-        return (builder, random) -> builder.quantity(amount.getFlooredAmount(random));
+        return (builder, random) -> builder.quantity(amount.flooredAmount(random));
     }
 
     /**
@@ -182,7 +181,7 @@ public final class ItemStackBuilderPopulators {
      */
     public static BiConsumer<ItemStack.Builder, Random> quantity(Supplier<VariableAmount> supplier) {
         Objects.requireNonNull(supplier, "Supplier cannot be null!");
-        return (builder, random) -> builder.quantity(supplier.get().getFlooredAmount(random));
+        return (builder, random) -> builder.quantity(supplier.get().flooredAmount(random));
     }
 
     /**
@@ -590,8 +589,8 @@ public final class ItemStackBuilderPopulators {
         List<Tuple<EnchantmentType, VariableAmount>> list = itemEnchantmentTypes.stream()
                 .map(enchantment -> {
                     Objects.requireNonNull(enchantment, "EnchantmentType cannot be null!");
-                    final int minimum = enchantment.getMinimumLevel();
-                    final int maximum = enchantment.getMaximumLevel();
+                    final int minimum = enchantment.minimumLevel();
+                    final int maximum = enchantment.maximumLevel();
                     return new Tuple<>(enchantment, baseWithRandomAddition(minimum, maximum - minimum));
                 })
                 .collect(Collectors.toList());
@@ -615,7 +614,7 @@ public final class ItemStackBuilderPopulators {
         final WeightedTable<Function<Random, Enchantment>> suppliers = new WeightedTable<>(amount);
         for (Tuple<EnchantmentType, VariableAmount> enchantment : enchantments) {
             suppliers.add(random ->
-                Enchantment.builder().type(enchantment.getFirst()).level(enchantment.getSecond().getFlooredAmount(random)).build(), 1);
+                Enchantment.builder().type(enchantment.first()).level(enchantment.second().flooredAmount(random)).build(), 1);
         }
         return ItemStackBuilderPopulators.listValueSuppliers(Keys.APPLIED_ENCHANTMENTS, suppliers);
     }

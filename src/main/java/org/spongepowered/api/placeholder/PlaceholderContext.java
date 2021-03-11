@@ -46,7 +46,7 @@ public interface PlaceholderContext {
      * @return The builder.
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -81,7 +81,7 @@ public interface PlaceholderContext {
      *
      * @return The associated {@link Object}, if any.
      */
-    Optional<Object> getAssociatedObject();
+    Optional<Object> associatedObject();
 
     /**
      * The variable string passed to this token to provide contextual
@@ -89,7 +89,7 @@ public interface PlaceholderContext {
      *
      * @return The argument, if any
      */
-    Optional<String> getArgumentString();
+    Optional<String> argumentString();
 
     /**
      * A builder for {@link PlaceholderComponent} objects.
@@ -103,11 +103,11 @@ public interface PlaceholderContext {
          * @param player The player to associate this text with.
          * @return This, for chaining
          *
-         * @see #getAssociatedObject()
+         * @see #associatedObject()
          */
-        default Builder setAssociatedObject(final Player player) {
-            final UUID uuid = player.getUniqueId();
-            return this.setAssociatedObject(() -> Sponge.getServer().getPlayer(uuid).orElse(null));
+        default Builder associatedObject(final Player player) {
+            final UUID uuid = player.uniqueId();
+            return this.associatedObject(() -> Sponge.server().player(uuid).orElse(null));
         }
 
         /**
@@ -118,19 +118,19 @@ public interface PlaceholderContext {
          * <p>If you are intending to keep the associated
          * {@link PlaceholderComponent} for any period of time and that you wish to
          * associate a game object with the placeholder, use
-         * {@link #setAssociatedObject(Supplier)} instead, supplying a function
+         * {@link #associatedObject(Supplier)} instead, supplying a function
          * that can recreate the object if necessary.</p>
          *
          * <p>If supplying a {@link Player}, use
-         * {@link #setAssociatedObject(Player)}, which will handle creating the
+         * {@link #associatedObject(Player)}, which will handle creating the
          * correct supplier for you.</p>
          *
          * @param object The {@link Object} to associate this text with.
          * @return This, for chaining
          *
-         * @see #getAssociatedObject()
+         * @see #associatedObject()
          */
-        Builder setAssociatedObject(@Nullable Object object);
+        Builder associatedObject(@Nullable Object object);
 
         /**
          * Sets the {@link Object} to use as a source of information
@@ -139,9 +139,9 @@ public interface PlaceholderContext {
          * @param supplier A {@link Supplier} that provides the {@link Object}
          * @return This, for chaining
          *
-         * @see #getAssociatedObject()
+         * @see #associatedObject()
          */
-        Builder setAssociatedObject(@Nullable Supplier<Object> supplier);
+        Builder associatedObject(@Nullable Supplier<Object> supplier);
 
         /**
          * Sets a string that represents variables for the supplied token.
@@ -152,9 +152,9 @@ public interface PlaceholderContext {
          *      the default argument string
          * @return This, for chaining
          *
-         * @see #getArgumentString()
+         * @see #argumentString()
          */
-        Builder setArgumentString(@Nullable String string);
+        Builder argumentString(@Nullable String string);
 
         /**
          * Builds and returns the placeholder.

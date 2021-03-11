@@ -43,7 +43,7 @@ public @interface AssetId {
      * The path to the {@link Asset} in the asset folder of the plugin.
      *
      * @return The path to the asset
-     * @see AssetManager#getAsset(String)
+     * @see AssetManager#asset(String)
      */
     String value();
 

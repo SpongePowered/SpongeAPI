@@ -38,6 +38,6 @@ public interface EconomyTransactionEvent extends Event {
      *
      * @return The {@link TransactionResult}
      */
-    TransactionResult getTransactionResult();
+    TransactionResult transactionResult();
 
 }

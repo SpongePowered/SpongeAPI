@@ -70,7 +70,7 @@ public interface ProvideServiceEvent<T> extends GenericEvent<T>, LifecycleEvent 
      * <p>It is up to the provider to determine which engine a service is to be
      * supplied for. Services that are engine scoped may not support all
      * engines. Plugins can check to see what {@link Engine} the service will
-     * be provided for via the {@link #getEngine()} method, and can choose to
+     * be provided for via the {@link #engine()} method, and can choose to
      * forgo providing a service based on this information.</p>
      *
      * @param <T> The service to provide.
@@ -82,6 +82,6 @@ public interface ProvideServiceEvent<T> extends GenericEvent<T>, LifecycleEvent 
          *
          * @return The engine.
          */
-        Engine getEngine();
+        Engine engine();
     }
 }

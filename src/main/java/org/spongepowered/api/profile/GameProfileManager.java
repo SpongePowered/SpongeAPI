@@ -41,7 +41,7 @@ public interface GameProfileManager extends GameProfileProvider {
      *
      * @return The cache
      */
-    GameProfileCache getCache();
+    GameProfileCache cache();
 
     /**
      * Gets a {@link GameProfileProvider} which bypasses the

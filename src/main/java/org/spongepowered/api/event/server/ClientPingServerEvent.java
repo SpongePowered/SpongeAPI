@@ -52,14 +52,14 @@ public interface ClientPingServerEvent extends Event, Cancellable {
      *
      * @return The client of the status request
      */
-    StatusClient getClient();
+    StatusClient client();
 
     /**
      * Gets the response that is about to be sent to the client.
      *
      * @return The response to the status request
      */
-    Response getResponse();
+    Response response();
 
     /**
      * Represents a mutable response to a status request.
@@ -74,14 +74,14 @@ public interface ClientPingServerEvent extends Event, Cancellable {
         void setDescription(Component description);
 
         @Override
-        Optional<Players> getPlayers();
+        Optional<Players> players();
 
         /**
          * Sets whether the player count and the list of players on this server
          * is hidden and doesn't get sent to the client. This will restore
-         * {@link #getPlayers()} if the players were previously hidden.
+         * {@link #players()} if the players were previously hidden.
          *
-         * <p>Use {@link #getPlayers()}.{@link Optional#isPresent() isPresent()} to
+         * <p>Use {@link #players()}.{@link Optional#isPresent() isPresent()} to
          * check if the players are already hidden.</p>
          *
          * <p>In Vanilla, this will display {@code ???} instead of the player
@@ -126,7 +126,7 @@ public interface ClientPingServerEvent extends Event, Cancellable {
              * @return A mutable list of online players
              */
             @Override
-            List<GameProfile> getProfiles();
+            List<GameProfile> profiles();
         }
     }
 

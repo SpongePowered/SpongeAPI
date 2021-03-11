@@ -45,7 +45,7 @@ public interface CriterionEvent extends AdvancementEvent {
      *
      * @return The criterion
      */
-    AdvancementCriterion getCriterion();
+    AdvancementCriterion criterion();
 
     /**
      * Is called when a {@link AdvancementCriterion} is granted/unlocked.
@@ -62,7 +62,7 @@ public interface CriterionEvent extends AdvancementEvent {
          *
          * @return The time instant
          */
-        Instant getTime();
+        Instant time();
     }
 
     /**
@@ -77,7 +77,7 @@ public interface CriterionEvent extends AdvancementEvent {
     interface Score extends CriterionEvent {
 
         @Override
-        ScoreAdvancementCriterion getCriterion();
+        ScoreAdvancementCriterion criterion();
 
         /**
          * Is called when the score of a {@link ScoreAdvancementCriterion}
@@ -90,14 +90,14 @@ public interface CriterionEvent extends AdvancementEvent {
              *
              * @return The previous score
              */
-            int getPreviousScore();
+            int previousScore();
 
             /**
              * Gets the new score.
              *
              * @return The new score
              */
-            int getNewScore();
+            int newScore();
         }
 
         /**
@@ -127,14 +127,14 @@ public interface CriterionEvent extends AdvancementEvent {
          *
          * @return The trigger
          */
-        FilteredTrigger<C> getTrigger();
+        FilteredTrigger<C> trigger();
 
         /**
          * Gets the result of the trigger event.
          *
          * @return The result
          */
-        boolean getResult();
+        boolean result();
 
         /**
          * Sets the result of the trigger event.

@@ -38,12 +38,12 @@ public interface ServerPlayerConnection extends PlayerConnection, ServerSideConn
      * @return The associated player
      */
     @Override
-    ServerPlayer getPlayer();
+    ServerPlayer player();
 
     /**
      * Gets the connection latency. This is constantly calculated by the server.
      *
      * @return The latency
      */
-    int getLatency();
+    int latency();
 }

@@ -51,7 +51,7 @@ public interface CooldownTracker {
      * @return The cooldown remaining for this item type in ticks, if not
      *     on cooldown
      */
-    OptionalInt getCooldown(ItemType type);
+    OptionalInt cooldown(ItemType type);
 
     /**
      * Sets the cooldown for the specified {@link ItemType} for the
@@ -84,6 +84,6 @@ public interface CooldownTracker {
      * @param type The item type to get the cooldown fraction remaining
      * @return The fraction of cooldown remaining for the specified item type
      */
-    OptionalDouble getFractionRemaining(ItemType type);
+    OptionalDouble fractionRemaining(ItemType type);
 
 }

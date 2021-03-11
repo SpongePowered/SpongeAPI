@@ -41,18 +41,18 @@ public interface Platform {
      *
      * @return The current type
      */
-    Type getType();
+    Type type();
 
     /**
      * Retrieves the current {@link Type} the platform is executing on.
      *
      * <p>A Minecraft instance will have a client and server thread. If the
      * server is executing, this will return {@linkplain Type#SERVER} but
-     * {@link Platform#getType()} would return {@linkplain Type#CLIENT}.</p>
+     * {@link Platform#type()} would return {@linkplain Type#CLIENT}.</p>
      *
      * @return The execution type
      */
-    Type getExecutionType();
+    Type executionType();
 
     /**
      * Returns the {@link PluginContainer} for the specified platform
@@ -61,14 +61,14 @@ public interface Platform {
      * @param component The platform component
      * @return The plugin container for the component
      */
-    PluginContainer getContainer(Component component);
+    PluginContainer container(Component component);
 
     /**
      * Gets the current Minecraft version of this platform.
      *
      * @return The Minecraft version
      */
-    MinecraftVersion getMinecraftVersion();
+    MinecraftVersion minecraftVersion();
 
     /**
      * Returns this platform instance, as a key-value map.

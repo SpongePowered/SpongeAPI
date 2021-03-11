@@ -42,14 +42,14 @@ public interface SetAITargetEvent extends Event, Cancellable {
      *
      * @return The agent
      */
-    Agent getAgent();
+    Agent agent();
 
     /**
      * Gets the {@link Agent}s new target {@link Entity}.
      *
      * @return The target
      */
-    Optional<Entity> getTarget();
+    Optional<Entity> target();
 
     /**
      * Sets the {@link Agent}s new target {@link Entity}.

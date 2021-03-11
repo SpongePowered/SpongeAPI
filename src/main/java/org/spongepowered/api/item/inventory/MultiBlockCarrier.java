@@ -41,7 +41,7 @@ public interface MultiBlockCarrier extends BlockCarrier {
      *
      * @return The Locations of the Blocks
      */
-    List<ServerLocation> getLocations();
+    List<ServerLocation> locations();
 
     /**
      * Returns the Inventory at given location if owned by this Carrier.
@@ -49,7 +49,7 @@ public interface MultiBlockCarrier extends BlockCarrier {
      * @param at The location
      * @return The inventory at given location
      */
-    Optional<Inventory> getInventory(ServerLocation at);
+    Optional<Inventory> inventory(ServerLocation at);
 
     /**
      * Returns the Inventory at given location if owned by this Carrier and
@@ -62,6 +62,6 @@ public interface MultiBlockCarrier extends BlockCarrier {
      * @param from The Direction
      * @return The inventory at the location when accessed from given direction
      */
-    Optional<Inventory> getInventory(ServerLocation at, Direction from);
+    Optional<Inventory> inventory(ServerLocation at, Direction from);
 
 }

@@ -38,7 +38,7 @@ public class CommandPermissionException extends CommandException {
      *
      * @param message The message
      */
-    public CommandPermissionException(Component message) {
+    public CommandPermissionException(final Component message) {
         super(message);
     }
 
@@ -48,7 +48,7 @@ public class CommandPermissionException extends CommandException {
      * @param message the message
      * @param cause the cause
      */
-    public CommandPermissionException(Component message, Throwable cause) {
+    public CommandPermissionException(final Component message, final Throwable cause) {
         super(message, cause);
     }
 }

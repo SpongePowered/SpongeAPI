@@ -46,7 +46,7 @@ public interface Inventory2D extends Inventory {
      * @return matching stacks, as per the semantics of {@link Inventory#poll()}
      */
     default InventoryTransactionResult.Poll poll(Vector2i pos) {
-        return this.getSlot(pos).map(Inventory::poll).orElse(InventoryTransactionResult.builder().type(InventoryTransactionResult.Type.NO_SLOT).poll(ItemStackSnapshot.empty()).build());
+        return this.slot(pos).map(Inventory::poll).orElse(InventoryTransactionResult.builder().type(InventoryTransactionResult.Type.NO_SLOT).poll(ItemStackSnapshot.empty()).build());
     }
 
     /**
@@ -58,7 +58,7 @@ public interface Inventory2D extends Inventory {
      * @return matching stacks, as per the semantics of {@link Inventory#poll()}
      */
     default InventoryTransactionResult.Poll poll(Vector2i pos, int limit) {
-        return this.getSlot(pos).map(slot -> slot.poll(limit)).orElse(InventoryTransactionResult.builder().type(InventoryTransactionResult.Type.NO_SLOT).poll(ItemStackSnapshot.empty()).build());
+        return this.slot(pos).map(slot -> slot.poll(limit)).orElse(InventoryTransactionResult.builder().type(InventoryTransactionResult.Type.NO_SLOT).poll(ItemStackSnapshot.empty()).build());
     }
 
     /**
@@ -70,7 +70,7 @@ public interface Inventory2D extends Inventory {
      * @return matching stacks, as per the semantics of {@link Inventory#peek()}
      */
     default Optional<ItemStack> peek(Vector2i pos) {
-        return this.getSlot(pos).map(Inventory::peek);
+        return this.slot(pos).map(Inventory::peek);
     }
 
     /**
@@ -82,7 +82,7 @@ public interface Inventory2D extends Inventory {
      * @return matching stacks, as per the semantics of {@link Inventory#set}
      */
     default InventoryTransactionResult set(Vector2i pos, ItemStack stack) {
-        return this.getSlot(pos).map(slot -> slot.set(stack)).orElse(InventoryTransactionResult.failNoTransactions());
+        return this.slot(pos).map(slot -> slot.set(stack)).orElse(InventoryTransactionResult.failNoTransactions());
     }
 
     /**
@@ -92,6 +92,6 @@ public interface Inventory2D extends Inventory {
      * @return slot at the specified position, or {@link Optional#empty()} if
      *      no matching slot
      */
-    Optional<Slot> getSlot(Vector2i pos);
+    Optional<Slot> slot(Vector2i pos);
 
 }

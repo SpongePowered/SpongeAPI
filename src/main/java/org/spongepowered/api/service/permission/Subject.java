@@ -77,7 +77,7 @@ import java.util.Set;
  *
  * <p>Additionally, all methods are expected to account for the defaults
  * defined in the {@link SubjectCollection} containing this subject, as well
- * as the defaults set globally in {@link PermissionService#getDefaults()}.</p>
+ * as the defaults set globally in {@link PermissionService#defaults()}.</p>
  *
  * <p>Use a {@link SubjectCollection} to create instances.</p>
  *
@@ -90,7 +90,7 @@ public interface Subject extends Contextual {
      *
      * @return The appropriate collection
      */
-    SubjectCollection getContainingCollection();
+    SubjectCollection containingCollection();
 
     /**
      * Gets a SubjectReference representing this subject.
@@ -119,11 +119,11 @@ public interface Subject extends Contextual {
      * between sessions.</p>
      *
      * <p>For subjects which are not persisted, the same store will be returned
-     * by {@link #getTransientSubjectData()}.</p>
+     * by {@link #transientSubjectData()}.</p>
      *
      * @return The primary data backing for this Subject
      */
-    SubjectData getSubjectData();
+    SubjectData subjectData();
 
     /**
      * Returns the transient data backing for this Subject.
@@ -132,18 +132,18 @@ public interface Subject extends Contextual {
      * subject's session, and is not persisted.</p>
      *
      * <p>For subjects which are not persisted, the same store will be returned
-     * by {@link #getSubjectData()}.</p>
+     * by {@link #subjectData()}.</p>
      *
      * @return The transient data backing for this Subject
      */
-    SubjectData getTransientSubjectData();
+    SubjectData transientSubjectData();
 
     /**
      * Test whether the subject is permitted to perform an action corresponding
      * to the given permission string.
      *
      * <p>This must return the same boolean equivalent as
-     * {@link #getPermissionValue(Set, String)}.</p>
+     * {@link #permissionValue(Set, String)}.</p>
      *
      * @param contexts The set of contexts that represents the subject's current
      *     environment
@@ -151,7 +151,7 @@ public interface Subject extends Contextual {
      * @return True if permission is granted
      */
     default boolean hasPermission(final Set<Context> contexts, final String permission) {
-        return this.getPermissionValue(contexts, permission).asBoolean();
+        return this.permissionValue(contexts, permission).asBoolean();
     }
 
     /**
@@ -159,13 +159,13 @@ public interface Subject extends Contextual {
      * given permission string.
      *
      * <p>This must return the same value as {@link #hasPermission(Set, String)}
-     * using {@link #getActiveContexts()}.</p>
+     * using {@link #activeContexts()}.</p>
      *
      * @param permission The permission string
      * @return True if permission is granted
      */
     default boolean hasPermission(final String permission) {
-        return this.hasPermission(this.getActiveContexts(), permission);
+        return this.hasPermission(this.activeContexts(), permission);
     }
 
     /**
@@ -177,7 +177,7 @@ public interface Subject extends Contextual {
      *
      * <p>Additionally, the defaults defined the {@link SubjectCollection}
      * that holds this subject, as well as defaults defined in
-     * {@link PermissionService#getDefaults()} should be considered for this
+     * {@link PermissionService#defaults()} should be considered for this
      * lookup.</p>
      *
      * <p>This method is likely to be called frequently, so it is desirable
@@ -187,7 +187,7 @@ public interface Subject extends Contextual {
      * @param permission The permission to check
      * @return The tristate result of the check
      */
-    Tristate getPermissionValue(Set<Context> contexts, String permission);
+    Tristate permissionValue(Set<Context> contexts, String permission);
 
     /**
      * Check if this subject is a child of the given parent in the subject's
@@ -195,13 +195,13 @@ public interface Subject extends Contextual {
      *
      * <p>This must return the same value as
      * {@link #isChildOf(Set, SubjectReference)} using
-     * {@link #getActiveContexts()}.</p>
+     * {@link #activeContexts()}.</p>
      *
      * @param parent The parent to check for inheritance
      * @return Whether this is a child of the given parent
      */
     default boolean isChildOf(final SubjectReference parent) {
-        return this.isChildOf(this.getActiveContexts(), parent);
+        return this.isChildOf(this.activeContexts(), parent);
     }
 
     /**
@@ -213,7 +213,7 @@ public interface Subject extends Contextual {
      *
      * <p>Additionally, the defaults defined the {@link SubjectCollection}
      * that holds this subject, as well as defaults defined in
-     * {@link PermissionService#getDefaults()} should be considered for this
+     * {@link PermissionService#defaults()} should be considered for this
      * lookup.</p>
      *
      * @param contexts The context combination to check in
@@ -229,13 +229,13 @@ public interface Subject extends Contextual {
      * <p>This must include inherited values if the permissions
      * service supports inheritance.</p>
      *
-     * <p>It must also must return the same value as {@link #getParents(Set)}
-     * using {@link #getActiveContexts()}.</p>
+     * <p>It must also must return the same value as {@link #parents(Set)}
+     * using {@link #activeContexts()}.</p>
      *
      * @return An immutable list of parents
      */
-    default List<SubjectReference> getParents() {
-        return this.getParents(this.getActiveContexts());
+    default List<SubjectReference> parents() {
+        return this.parents(this.activeContexts());
     }
 
     /**
@@ -247,7 +247,7 @@ public interface Subject extends Contextual {
      * @param contexts The context combination to check in
      * @return An immutable list of parents
      */
-    List<SubjectReference> getParents(Set<Context> contexts);
+    List<SubjectReference> parents(Set<Context> contexts);
 
     /**
      * Gets the value of a given option in the given context.
@@ -257,25 +257,25 @@ public interface Subject extends Contextual {
      *
      * <p>Additionally, the default options defined by the
      * {@link SubjectCollection} that holds this subject, as well as defaults
-     * defined in {@link PermissionService#getDefaults()} should be considered
+     * defined in {@link PermissionService#defaults()} should be considered
      * for this lookup.
      *
      * @param contexts The contexts to get the options from
      * @param key The key to get an option by. Case-insensitive.
      * @return The value of the option, if any is present
      */
-    Optional<String> getOption(Set<Context> contexts, String key);
+    Optional<String> option(Set<Context> contexts, String key);
 
     /**
      * Gets the value of a given option in the subject's current context.
      *
-     * <p>This must return the same value as {@link #getOption(Set, String)}
-     * using {@link #getActiveContexts()}.</p>
+     * <p>This must return the same value as {@link #option(Set, String)}
+     * using {@link #activeContexts()}.</p>
      *
      * @param key The key to get an option by. Case-insensitive.
      * @return The value of the option, if any is present
      */
-    default Optional<String> getOption(final String key) {
-        return this.getOption(this.getActiveContexts(), key);
+    default Optional<String> option(final String key) {
+        return this.option(this.activeContexts(), key);
     }
 }

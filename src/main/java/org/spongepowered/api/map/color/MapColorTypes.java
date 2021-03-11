@@ -38,7 +38,7 @@ import org.spongepowered.api.util.Color;
  * A pseudo-enum of supported elements on a {@link MapCanvas}.
  *
  * <p>The {@link Color colors} that these represent can be retrieved via the
- * {@link MapColorType#getColor()} method.</p>
+ * {@link MapColorType#color()} method.</p>
  */
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class MapColorTypes {
@@ -170,6 +170,6 @@ public final class MapColorTypes {
     }
 
     private static DefaultedRegistryReference<MapColorType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.MAP_COLOR_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.MAP_COLOR_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

@@ -38,7 +38,7 @@ import java.util.function.Predicate;
  * one or more {@link Direction}s. There is a way to mark an "update" as being 
  * "invalid" or "cancelled": {@link #filterDirections(Predicate)} will apply a
  * {@link Predicate} such that if the predicate returns <code>false</code>, the
- * {@link Direction} will be removed from the {@link #getNeighbors()} map.
+ * {@link Direction} will be removed from the {@link #neighbors()} map.
  */
 public interface NotifyNeighborBlockEvent extends Event, Cancellable {
 
@@ -49,7 +49,7 @@ public interface NotifyNeighborBlockEvent extends Event, Cancellable {
      *
      * @return The original directions map
      */
-    Map<Direction, BlockState> getOriginalNeighbors();
+    Map<Direction, BlockState> originalNeighbors();
 
     /**
      * Gets an immutable {@link Map} of {@link Direction} to
@@ -60,13 +60,13 @@ public interface NotifyNeighborBlockEvent extends Event, Cancellable {
      *
      * @return The map
      */
-    Map<Direction, BlockState> getNeighbors();
+    Map<Direction, BlockState> neighbors();
 
     /**
      * Filters out {@link Direction}s of the {@link BlockState}s to be
      * marked as "valid" after this event. If the
      * {@link Predicate#test(Object)} returns <code>false</code>, the
-     * {@link BlockState} is removed from {@link #getNeighbors()} map.
+     * {@link BlockState} is removed from {@link #neighbors()} map.
      *
      * @param predicate The predicate to use for filtering.
      */

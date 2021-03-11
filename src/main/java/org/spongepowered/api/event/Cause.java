@@ -157,7 +157,7 @@ public final class Cause implements Iterable<Object> {
      *
      * @return The event context
      */
-    public EventContext getContext() {
+    public EventContext context() {
         return this.context;
     }
 

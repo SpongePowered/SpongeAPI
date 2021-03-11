@@ -35,7 +35,7 @@ import java.util.Optional;
  * A type of {@link org.spongepowered.api.data.DataHolder.Immutable} that may be linked to a particular
  * {@link ServerLocation}. Being that a {@link LocatableSnapshot} may be built
  * by an {@link org.spongepowered.api.data.DataHolderBuilder.Immutable}, the {@link ServerLocation} may be
- * <code>null</code> such that {@link #getLocation()} returns
+ * <code>null</code> such that {@link #location()} returns
  * {@link Optional#empty()}.
  *
  * @param <T> The type of location snapshot for self referencing
@@ -47,14 +47,14 @@ public interface LocatableSnapshot<T extends LocatableSnapshot<T>> extends Seria
      *
      * @return The key
      */
-    ResourceKey getWorld();
+    ResourceKey world();
 
     /**
      * Gets the saved block position.
      *
      * @return The saved block position
      */
-    Vector3i getPosition();
+    Vector3i position();
 
     /**
      * Gets the {@link ServerLocation} of the snapshot at which it may have been
@@ -64,7 +64,7 @@ public interface LocatableSnapshot<T extends LocatableSnapshot<T>> extends Seria
      *
      * @return The location of where the snapshot was taken, if available
      */
-    Optional<ServerLocation> getLocation();
+    Optional<ServerLocation> location();
 
     /**
      * Creates a copy of the snapshot with the provided

@@ -37,18 +37,18 @@ public interface ChangeSignEvent extends Event, Cancellable {
      *
      * @return The sign
      */
-    Sign getSign();
+    Sign sign();
 
     /**
      * Gets the original {@link ListValue} before event changes.
      * @return The immutable SignData
      */
-    ListValue.Immutable<Component> getOriginalText();
+    ListValue.Immutable<Component> originalText();
 
     /**
      * Gets the {@link ListValue} to be applied to the {@link Sign} after event resolution.
      * @return The SignData
      */
-    ListValue.Mutable<Component> getText();
+    ListValue.Mutable<Component> text();
 
 }

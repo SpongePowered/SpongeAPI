@@ -36,14 +36,14 @@ public interface ChunkEvent extends Event {
     /**
      * Gets the {@link ResourceKey} of the {@link World} that the {@link Chunk} resides in.
      */
-    ResourceKey getChunkWorld();
+    ResourceKey chunkWorld();
 
     /**
      * Gets the position of the {@link Chunk}.
      *
      * @return the position
      */
-    Vector3i getChunkPosition();
+    Vector3i chunkPosition();
 
     /**
      * Called when a {@link Chunk} was unloaded.
@@ -68,7 +68,7 @@ public interface ChunkEvent extends Event {
              *
              * @return The Chunk
              */
-            Chunk getTargetChunk();
+            Chunk targetChunk();
 
         }
 
@@ -91,6 +91,6 @@ public interface ChunkEvent extends Event {
          *
          * @return The Chunk
          */
-        Chunk getTargetChunk();
+        Chunk targetChunk();
     }
 }

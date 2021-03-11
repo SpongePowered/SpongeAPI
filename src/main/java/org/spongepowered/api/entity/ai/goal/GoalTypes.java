@@ -85,6 +85,6 @@ public final class GoalTypes {
     }
 
     private static DefaultedRegistryReference<GoalType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.GOAL_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.GOAL_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

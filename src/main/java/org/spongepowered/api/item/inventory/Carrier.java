@@ -36,6 +36,6 @@ public interface Carrier {
      *
      * @return The inventory this Carrier is holding
      */
-    CarriedInventory<? extends Carrier> getInventory();
+    CarriedInventory<? extends Carrier> inventory();
 
 }

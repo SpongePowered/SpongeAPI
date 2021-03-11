@@ -33,7 +33,7 @@ public interface RemoteConnection {
      *
      * @return The address
      */
-    InetSocketAddress getAddress();
+    InetSocketAddress address();
 
     /**
      * Gets the host name the connection is connecting to the server with.
@@ -44,7 +44,7 @@ public interface RemoteConnection {
      *
      * @return The host name
      */
-    InetSocketAddress getVirtualHost();
+    InetSocketAddress virtualHost();
 
     /**
      * Closes the connection.

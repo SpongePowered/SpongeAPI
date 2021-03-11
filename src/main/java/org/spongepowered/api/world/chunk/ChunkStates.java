@@ -125,6 +125,6 @@ public final class ChunkStates {
     }
 
     private static DefaultedRegistryReference<ChunkState> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.CHUNK_STATE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.CHUNK_STATE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

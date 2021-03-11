@@ -37,6 +37,6 @@ public interface Rotation extends DefaultedRegistryValue {
      *
      * @return The rotation in degrees
      */
-    int getAngle();
+    int angle();
 
 }

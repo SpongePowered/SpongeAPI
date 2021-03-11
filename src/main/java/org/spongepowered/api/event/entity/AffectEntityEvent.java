@@ -65,7 +65,7 @@ public interface AffectEntityEvent extends Event, Cancellable {
      * @throws IllegalStateException If the method is called after the pre order
      */
     @PropertySettings(requiredParameter = false, generateMethods = false)
-    List<EntitySnapshot> getEntitySnapshots() throws IllegalStateException;
+    List<EntitySnapshot> entitySnapshots() throws IllegalStateException;
 
     /**
      * Gets the {@link List} who will be affected after event
@@ -73,25 +73,25 @@ public interface AffectEntityEvent extends Event, Cancellable {
      *
      * @return The List
      */
-    List<Entity> getEntities();
+    List<Entity> entities();
 
     /**
      * Filters out {@link ServerLocation}'s from
-     * {@link AffectEntityEvent#getEntities()} to be affected by this event.
+     * {@link AffectEntityEvent#entities()} to be affected by this event.
      *
      * <p>Locations for which the predicate returns <code>false</code> will
-     * be removed from {@link #getEntities()}.</p>
+     * be removed from {@link #entities()}.</p>
      *
      * @param predicate The predicate to use for filtering
-     * @return The entities removed from {@link #getEntities()}
+     * @return The entities removed from {@link #entities()}
      */
     default List<Entity> filterEntityLocations(Predicate<ServerLocation> predicate) {
         List<Entity> removedEntities = new ArrayList<>();
 
-        Iterator<Entity> i = this.getEntities().iterator();
+        Iterator<Entity> i = this.entities().iterator();
         while (i.hasNext()) {
             Entity entity = i.next();
-            if (!entity.getLocation().onServer().map(predicate::test).orElse(false)) {
+            if (!entity.location().onServer().map(predicate::test).orElse(false)) {
                 i.remove();
                 removedEntities.add(entity);
             }
@@ -100,19 +100,19 @@ public interface AffectEntityEvent extends Event, Cancellable {
     }
 
     /**
-     * Filters out {@link Entity}'s from {@link AffectEntityEvent#getEntities()}
+     * Filters out {@link Entity}'s from {@link AffectEntityEvent#entities()}
      * to be affected by this event.
      *
      * <p>Entities for which the predicate returns <code>false</code> will
-     * be removed from {@link #getEntities()}.</p>
+     * be removed from {@link #entities()}.</p>
      *
      * @param predicate The predicate to use for filtering
-     * @return The entities removed from {@link #getEntities()}
+     * @return The entities removed from {@link #entities()}
      */
     default List<? extends Entity> filterEntities(Predicate<Entity> predicate) {
         List<Entity> removedEntities = new ArrayList<>();
 
-        Iterator<Entity> i = this.getEntities().iterator();
+        Iterator<Entity> i = this.entities().iterator();
         while (i.hasNext()) {
             Entity entity = i.next();
             if (!predicate.test(entity)) {

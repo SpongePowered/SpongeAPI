@@ -54,7 +54,7 @@ public interface ServiceProvider {
      * @param <T> The type of service
      * @return The registration, if one exists
      */
-    <T> Optional<ServiceRegistration<T>> getRegistration(Class<T> serviceClass);
+    <T> Optional<ServiceRegistration<T>> registration(Class<T> serviceClass);
 
     /**
      * Provides services that are scoped to a {@link GameScoped} instance.

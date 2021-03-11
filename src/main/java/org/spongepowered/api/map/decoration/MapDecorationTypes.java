@@ -94,6 +94,6 @@ public final class MapDecorationTypes {
     // SORTFIELDS:OFF
 
     private static DefaultedRegistryReference<MapDecorationType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.MAP_DECORATION_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.MAP_DECORATION_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

@@ -66,35 +66,35 @@ import java.util.function.BiFunction;
 public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDataHolder.Mutable, Location<ServerWorld, ServerLocation> {
 
     static ServerLocation of(final ServerWorld world, final double x, final double y, final double z) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(world, new Vector3d(x, y, z));
+        return Sponge.game().factoryProvider().provide(Factory.class).create(world, new Vector3d(x, y, z));
     }
 
     static ServerLocation of(final ResourceKey worldKey, final double x, final double y, final double z) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(worldKey, new Vector3d(x, y, z));
+        return Sponge.game().factoryProvider().provide(Factory.class).create(worldKey, new Vector3d(x, y, z));
     }
 
     static ServerLocation of(final ServerWorld world, final Vector3d position) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(world, position);
+        return Sponge.game().factoryProvider().provide(Factory.class).create(world, position);
     }
 
     static ServerLocation of(final ResourceKey worldKey, final Vector3d position) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(worldKey, position);
+        return Sponge.game().factoryProvider().provide(Factory.class).create(worldKey, position);
     }
 
     static ServerLocation of(final ServerWorld world, final int x, final int y, final int z) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(world, new Vector3i(x, y, z));
+        return Sponge.game().factoryProvider().provide(Factory.class).create(world, new Vector3i(x, y, z));
     }
 
     static ServerLocation of(final ResourceKey worldKey, final int x, final int y, final int z) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(worldKey, new Vector3i(x, y, z));
+        return Sponge.game().factoryProvider().provide(Factory.class).create(worldKey, new Vector3i(x, y, z));
     }
 
     static ServerLocation of(final ServerWorld world, final Vector3i position) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(world, position);
+        return Sponge.game().factoryProvider().provide(Factory.class).create(world, position);
     }
 
     static ServerLocation of(final ResourceKey worldKey, final Vector3i position) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(worldKey, position);
+        return Sponge.game().factoryProvider().provide(Factory.class).create(worldKey, position);
     }
 
     /**
@@ -102,7 +102,7 @@ public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDat
      *
      * @return The world unique id
      */
-    ResourceKey getWorldKey();
+    ResourceKey worldKey();
 
     /**
      * Gets a {@link LocatableBlock}.
@@ -229,7 +229,7 @@ public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDat
      * Gets the highest {@link ServerLocation} at this location.
      *
      * @return The highest location at this location
-     * @see World#getHighestPositionAt(Vector3i)
+     * @see World#highestPositionAt(Vector3i)
      */
     ServerLocation asHighestLocation();
 
@@ -248,7 +248,7 @@ public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDat
      *
      * @return A list of scheduled block updates on this location
      */
-    Collection<? extends ScheduledUpdate<BlockType>> getScheduledBlockUpdates();
+    Collection<? extends ScheduledUpdate<BlockType>> scheduledBlockUpdates();
 
     /**
      * Adds a new {@link ScheduledUpdate} for the block at this location.
@@ -291,7 +291,7 @@ public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDat
      *
      * @return A list of scheduled fluid updates on this location
      */
-    Collection<? extends ScheduledUpdate<FluidType>> getScheduledFluidUpdates();
+    Collection<? extends ScheduledUpdate<FluidType>> scheduledFluidUpdates();
 
     /**
      * Adds a new {@link ScheduledUpdate} for the fluid at this location.

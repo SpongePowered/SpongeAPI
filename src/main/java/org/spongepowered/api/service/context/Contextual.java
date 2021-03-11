@@ -42,16 +42,16 @@ public interface Contextual {
      * contextuals should be unique.</p>
      *
      * <p>Not guaranteed to be human-readable. Use
-     * {@link #getFriendlyIdentifier()} for a more readable alternative.</p>
+     * {@link #friendlyIdentifier()} for a more readable alternative.</p>
      *
      * @return The identifier for this subject
      */
-    String getIdentifier();
+    String identifier();
 
     /**
      * Returns the friendly identifier associated with this Contextual.
      *
-     * <p>Unlike {@link #getIdentifier()}, this value is not guaranteed to be
+     * <p>Unlike {@link #identifier()}, this value is not guaranteed to be
      * unique.</p>
      *
      * <p>If the friendly identifier is equal to the normal identifier,
@@ -62,7 +62,7 @@ public interface Contextual {
      *
      * @return The friendly identifier for this contextual
      */
-    default Optional<String> getFriendlyIdentifier() {
+    default Optional<String> friendlyIdentifier() {
         return Optional.empty();
     }
 
@@ -77,5 +77,5 @@ public interface Contextual {
      *
      * @return An immutable set of active contexts
      */
-    Set<Context> getActiveContexts();
+    Set<Context> activeContexts();
 }

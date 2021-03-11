@@ -53,7 +53,7 @@ public interface TransactionalPacketDispatcher extends PacketDispatcher {
      * @throws IllegalArgumentException If the given packet type isn't registered in this channel binding
      */
     default <R extends Packet> CompletableFuture<R> sendTo(final ServerPlayer player, final RequestPacket<R> packet) {
-        return this.sendTo(player.getConnection(), packet);
+        return this.sendTo(player.connection(), packet);
     }
 
     /**
@@ -89,7 +89,7 @@ public interface TransactionalPacketDispatcher extends PacketDispatcher {
      * @return The completable future to handle the response packet and exceptions
      */
     default <R extends Packet> CompletableFuture<R> sendToServer(final RequestPacket<R> packet) {
-        final EngineConnection connection = Sponge.getClient().getConnection()
+        final EngineConnection connection = Sponge.client().connection()
                 .orElseThrow(() -> new IllegalStateException("The client is currently not connected to a server."));
         return this.sendTo(connection, packet);
     }

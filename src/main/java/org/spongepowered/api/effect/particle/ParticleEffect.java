@@ -45,7 +45,7 @@ public interface ParticleEffect extends DataSerializable {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -53,7 +53,7 @@ public interface ParticleEffect extends DataSerializable {
      *
      * @return The particle type
      */
-    ParticleType getType();
+    ParticleType type();
 
     /**
      * Gets the value for the specified {@link ParticleOption}.
@@ -62,8 +62,8 @@ public interface ParticleEffect extends DataSerializable {
      * @param <V> The value type
      * @return The option value if present, otherwise {@link Optional#empty()}
      */
-    default <V> Optional<V> getOption(Supplier<? extends ParticleOption<V>> option) {
-        return this.getOption(option.get());
+    default <V> Optional<V> option(Supplier<? extends ParticleOption<V>> option) {
+        return this.option(option.get());
     }
 
     /**
@@ -73,7 +73,7 @@ public interface ParticleEffect extends DataSerializable {
      * @param <V> The value type
      * @return The option value if present, otherwise {@link Optional#empty()}
      */
-    <V> Optional<V> getOption(ParticleOption<V> option);
+    <V> Optional<V> option(ParticleOption<V> option);
 
     /**
      * Gets the value for the specified {@link ParticleOption} or
@@ -83,8 +83,8 @@ public interface ParticleEffect extends DataSerializable {
      * @param <V> The value type
      * @return The option value if present, otherwise {@link Optional#empty()}
      */
-    default <V> Optional<V> getOptionOrDefault(Supplier<? extends ParticleOption<V>> option) {
-        return this.getOptionOrDefault(option.get());
+    default <V> Optional<V> optionOrDefault(Supplier<? extends ParticleOption<V>> option) {
+        return this.optionOrDefault(option.get());
     }
 
     /**
@@ -95,9 +95,9 @@ public interface ParticleEffect extends DataSerializable {
      * @param <V> The value type
      * @return The option value if present, otherwise {@link Optional#empty()}
      */
-    default <V> Optional<V> getOptionOrDefault(ParticleOption<V> option) {
-        final Optional<V> value = this.getOption(option);
-        return value.isPresent() ? value : this.getType().getDefaultOption(option);
+    default <V> Optional<V> optionOrDefault(ParticleOption<V> option) {
+        final Optional<V> value = this.option(option);
+        return value.isPresent() ? value : this.type().defaultOption(option);
     }
 
     /**
@@ -106,7 +106,7 @@ public interface ParticleEffect extends DataSerializable {
      *
      * @return The default options
      */
-    Map<ParticleOption<?>, Object> getOptions();
+    Map<ParticleOption<?>, Object> options();
 
     /**
      * Represents a builder to create a {@link ParticleEffect}.

@@ -44,7 +44,7 @@ public class CommandNotFoundException extends CommandException {
      * @param message The message
      * @param command The command that was queried for
      */
-    public CommandNotFoundException(Component message, String command) {
+    public CommandNotFoundException(final Component message, final String command) {
         super(message);
         this.command = Objects.requireNonNull(command, "command");
     }
@@ -54,7 +54,7 @@ public class CommandNotFoundException extends CommandException {
      *
      * @return The command
      */
-    public String getCommand() {
+    public String command() {
         return this.command;
     }
 }

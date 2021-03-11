@@ -48,14 +48,14 @@ public interface Palette<T, R> {
      *
      * @return The palette type
      */
-    PaletteType<T, R> getType();
+    PaletteType<T, R> type();
 
     /**
      * Gets the highest identifier in this palette.
      *
      * @return The highest id
      */
-    int getHighestId();
+    int highestId();
 
     /**
      * Gets the {@code type} represented by the given identifier from the mapping.
@@ -68,7 +68,7 @@ public interface Palette<T, R> {
     default Optional<T> get(final int id, final RegistryHolder holder) {
         return this.get(id).flatMap(ref -> Objects.requireNonNull(holder,"RegistryHolder cannot be null")
             .findRegistry(ref.registry())
-            .flatMap(reg -> this.getType().getResolver().apply(ref.value(), reg)));
+            .flatMap(reg -> this.type().resolver().apply(ref.value(), reg)));
     }
 
     /**
@@ -103,7 +103,7 @@ public interface Palette<T, R> {
          * @param type The type
          * @return The identifier
          */
-        int getOrAssign(M type);
+        int orAssign(M type);
 
         /**
          * Removes the given {@code type T} from the mapping.

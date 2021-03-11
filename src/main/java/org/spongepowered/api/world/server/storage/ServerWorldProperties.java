@@ -51,8 +51,8 @@ public interface ServerWorldProperties extends WorldProperties, Identifiable, Re
     /**
      * Gets the {@link ServerWorld} that correlates to this properties, if available.
      *
-     * <p>The rules are that the world must be loaded and it's {@link ServerWorld#getKey()} matches
-     * this properties' {@link #getKey()}. Lastly, the properties of that world and this properties
+     * <p>The rules are that the world must be loaded and it's {@link ServerWorld#key()} matches
+     * this properties' {@link #key()}. Lastly, the properties of that world and this properties
      * must be reference equal.</p>
      *
      * @return The world or {@link Optional#empty()} otherwise

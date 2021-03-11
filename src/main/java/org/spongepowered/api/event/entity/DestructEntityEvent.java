@@ -45,11 +45,11 @@ public interface DestructEntityEvent extends MessageChannelEvent, MessageCancell
      *
      * @return The entity
      */
-    Entity getEntity();
+    Entity entity();
 
     /**
      * A derivative of {@link DestructEntityEvent} where the removal of the
-     * {@link Living}, the {@link DestructEntityEvent#getEntity()},
+     * {@link Living}, the {@link DestructEntityEvent#entity()},
      * is due to it losing its health.
      *
      * <p>Note that cancelling this event will have the implication that the
@@ -62,7 +62,7 @@ public interface DestructEntityEvent extends MessageChannelEvent, MessageCancell
     interface Death extends DestructEntityEvent, Cancellable {
 
         @Override
-        Living getEntity();
+        Living entity();
 
         /**
          * Applies the {@link GameRules#KEEP_INVENTORY} gamerule to this
@@ -82,7 +82,7 @@ public interface DestructEntityEvent extends MessageChannelEvent, MessageCancell
          *
          * @return Whether the inventory is kept after death.
          */
-        boolean getKeepInventory();
+        boolean keepInventory();
 
     }
 }

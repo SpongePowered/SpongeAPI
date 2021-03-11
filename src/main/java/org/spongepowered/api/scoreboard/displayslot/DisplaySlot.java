@@ -52,5 +52,5 @@ public interface DisplaySlot extends DefaultedRegistryValue {
      *
      * @return The team color or {@link Optional#empty()} if not set
      */
-    Optional<NamedTextColor> getTeamColor();
+    Optional<NamedTextColor> teamColor();
 }

@@ -170,8 +170,8 @@ public class UnmodifiableWeightedTable<T> extends WeightedTable<T> {
     }
 
     @Override
-    public VariableAmount getRolls() {
-        return this.table.getRolls();
+    public VariableAmount rolls() {
+        return this.table.rolls();
     }
 
     @Override
@@ -205,8 +205,8 @@ public class UnmodifiableWeightedTable<T> extends WeightedTable<T> {
     }
 
     @Override
-    public List<TableEntry<T>> getEntries() {
-        return this.table.getEntries();
+    public List<TableEntry<T>> entries() {
+        return this.table.entries();
     }
 
     @Override

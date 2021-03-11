@@ -47,7 +47,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
     /**
      * Creates a new {@link RandomObjectTable} with the provided number of rolls.
      *
-     * @see RandomObjectTable#getRolls()
+     * @see RandomObjectTable#rolls()
      * @param rolls the rolls
      */
     public RandomObjectTable(int rolls) {
@@ -60,7 +60,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
     /**
      * Creates a new {@link RandomObjectTable} with the provided number of rolls.
      *
-     * @see RandomObjectTable#getRolls()
+     * @see RandomObjectTable#rolls()
      * @param rolls the rolls
      */
     public RandomObjectTable(VariableAmount rolls) {
@@ -73,7 +73,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
      * 
      * @return The number of rolls
      */
-    public VariableAmount getRolls() {
+    public VariableAmount rolls() {
         return this.rolls;
     }
 
@@ -101,7 +101,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
     @Override
     public boolean add(TableEntry<T> entry) {
         Objects.requireNonNull(entry);
-        if (entry.getWeight() < 0) {
+        if (entry.weight() < 0) {
             throw new IllegalArgumentException("Weight cannot be negative!");
         }
         return this.entries.add(entry);
@@ -235,7 +235,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
 
     /**
      * Performs a number of rolls according to the number of rolls defined by
-     * {@link #getRolls()} and returns items from the table for each roll.
+     * {@link #rolls()} and returns items from the table for each roll.
      * 
      * @param rand The random object to use
      * @return The returned items, may be empty but not null
@@ -249,7 +249,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
      * 
      * @return The raw entries
      */
-    public List<TableEntry<T>> getEntries() {
+    public List<TableEntry<T>> entries() {
         return ImmutableList.copyOf(this.entries);
     }
 

@@ -38,5 +38,5 @@ public interface KickPlayerEvent extends MessageEvent, Cancellable {
      *
      * @return The player
      */
-    ServerPlayer getPlayer();
+    ServerPlayer player();
 }

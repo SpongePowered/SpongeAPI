@@ -68,7 +68,7 @@ public class DataRegistrationNotFoundException extends DataException {
      *
      * @return The registration query, if present
      */
-    public Optional<String> getRegistrationQuery() {
+    public Optional<String> registrationQuery() {
         return Optional.ofNullable(this.registrationQuery);
     }
 

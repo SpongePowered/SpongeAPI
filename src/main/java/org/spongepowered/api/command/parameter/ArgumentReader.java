@@ -49,52 +49,52 @@ public interface ArgumentReader {
      *
      * @return The input {@link String}
      */
-    String getInput();
+    String input();
 
     /**
      * Get the number of characters that have not yet been read.
      *
      * @return The length of the remaining string
      */
-    int getRemainingLength();
+    int remainingLength();
 
     /**
      * Gets the length of the input string.
      *
      * @return The length of the input string
      */
-    int getTotalLength();
+    int totalLength();
 
     /**
      * Gets the location of the cursor.
      *
      * <p>If zero, the cursor has not yet read a character. If equal to
-     * {@link #getTotalLength()}, this cursor is at the end of the string,
+     * {@link #totalLength()}, this cursor is at the end of the string,
      * and {@link #canRead()} will be {@code false}</p>
      *
      * @return The location of the cursor
      */
-    int getCursor();
+    int cursor();
 
     /**
-     * Gets the substring that has been read.
+     * Gets the substring that has already been parsed.
      *
-     * @return The substring that has been read.
+     * @return The substring that has been parsed.
      */
-    String getRead();
+    String parsed();
 
     /**
      * Gets the substring that has yet to be read.
      *
      * @return The substring that has yet to be read.
      */
-    String getRemaining();
+    String remaining();
 
     /**
      * Gets whether this reader has <strong>not</strong> finished reading the
      * input string.
      *
-     * <p>This is equivalent to {@link #getRemainingLength()} &gt; 0</p>
+     * <p>This is equivalent to {@link #remainingLength()} &gt; 0</p>
      *
      * @return {@code true} if there are further characters to read.
      */
@@ -131,7 +131,7 @@ public interface ArgumentReader {
          *
          * @return A {@link Mutable} version of this reader
          */
-        ArgumentReader.Mutable getMutable();
+        ArgumentReader.Mutable mutable();
     }
 
     /**
@@ -160,7 +160,7 @@ public interface ArgumentReader {
          * <p>Numbers may begin with "-" to indicate a negative number</p>
          *
          * <p>When using this in your parser, you should set
-         * {@link ValueParser#getClientCompletionType()} to
+         * {@link ValueParser#clientCompletionType()} to
          * {@link ClientCompletionTypes#WHOLE_NUMBER} to tell the client that
          * the client completion should be an integer.</p>
          *
@@ -179,7 +179,7 @@ public interface ArgumentReader {
          * period (".") may be present in the string.</p>
          *
          * <p>When using this in your parser, you should set
-         * {@link ValueParser#getClientCompletionType()} to
+         * {@link ValueParser#clientCompletionType()} to
          * {@link ClientCompletionTypes#DECIMAL_NUMBER} to tell the client that
          * the client completion should be a floating point number.</p>
          *
@@ -198,7 +198,7 @@ public interface ArgumentReader {
          * period (".") may be present in the string.</p>
          *
          * <p>When using this in your parser, you should set
-         * {@link ValueParser#getClientCompletionType()} to
+         * {@link ValueParser#clientCompletionType()} to
          * {@link ClientCompletionTypes#DECIMAL_NUMBER} to tell the client that
          * the client completion should be a floating point number.</p>
          *
@@ -219,7 +219,7 @@ public interface ArgumentReader {
          * {@link #parseResourceKey(String)}</p>
          *
          * <p>When using this in your parser, you should set
-         * {@link ValueParser#getClientCompletionType()} to
+         * {@link ValueParser#clientCompletionType()} to
          * {@link ClientCompletionTypes#RESOURCE_KEY} to tell the client that
          * the client completion should be a {@link ResourceKey}, so that your
          * users will not be told to put their argument in quotation marks.</p>
@@ -237,7 +237,7 @@ public interface ArgumentReader {
          * will be used as the namespace.</p>
          *
          * <p>When using this in your parser, you should set
-         * {@link ValueParser#getClientCompletionType()} to
+         * {@link ValueParser#clientCompletionType()} to
          * {@link ClientCompletionTypes#RESOURCE_KEY} to tell the client that
          * the client completion should be a {@link ResourceKey}, so that your
          * users will not be told to put their argument in quotation marks.</p>
@@ -336,7 +336,7 @@ public interface ArgumentReader {
          * Parses a SNBT string, returning that string.
          *
          * <p>When using this in your parser, you should set
-         * {@link ValueParser#getClientCompletionType()} to
+         * {@link ValueParser#clientCompletionType()} to
          * {@link ClientCompletionTypes#SNBT} to tell the client that
          * the client completion should be a SNBT string.</p>
          *
@@ -349,7 +349,7 @@ public interface ArgumentReader {
          * Parses a {@link DataContainer}, from a SNBT string, else throws an exception.
          *
          * <p>When using this in your parser, you should set
-         * {@link ValueParser#getClientCompletionType()} to
+         * {@link ValueParser#clientCompletionType()} to
          * {@link ClientCompletionTypes#SNBT} to tell the client that
          * the client completion should be a string in Mojang's SNBT format.</p>
          *
@@ -366,15 +366,15 @@ public interface ArgumentReader {
          *
          * @return An {@link Immutable}
          */
-        ArgumentReader.Immutable getImmutable();
+        ArgumentReader.Immutable immutable();
 
         /**
          * Attempts to reset the state of this {@link Mutable} to the state that
          * the provided {@link ArgumentReader} is in. This is generally used
-         * with {@link #getImmutable()}.
+         * with {@link #immutable()}.
          *
          * <p>If the provided {@code state} does not have the same
-         * {@link #getInput()}, this will throw a
+         * {@link #input()}, this will throw a
          * {@link IllegalArgumentException}</p>
          *
          * @param state The state to restore this to

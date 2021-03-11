@@ -39,5 +39,5 @@ public interface DyeColor extends DefaultedRegistryValue {
      *
      * @return The color as a {@link Color}
      */
-    Color getColor();
+    Color color();
 }

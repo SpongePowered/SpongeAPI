@@ -60,7 +60,7 @@ public interface InventoryMenu {
      *
      * @return the current inventory
      */
-    ViewableInventory getInventory();
+    ViewableInventory inventory();
 
     /**
      * Sets a new inventory. If the ContainerType does not change the inventory will be swapped out silently.

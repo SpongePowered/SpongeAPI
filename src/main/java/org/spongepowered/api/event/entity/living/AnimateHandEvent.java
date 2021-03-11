@@ -43,12 +43,12 @@ public interface AnimateHandEvent extends Event, Cancellable {
      *
      * @return The humanoid
      */
-    Humanoid getHumanoid();
+    Humanoid humanoid();
 
     /**
      * Gets the {@link HandType} used for animation.
      *
      * @return The hand type
      */
-    HandType getHandType();
+    HandType handType();
 }

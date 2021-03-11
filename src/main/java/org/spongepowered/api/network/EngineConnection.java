@@ -36,7 +36,7 @@ public interface EngineConnection extends RemoteConnection {
      *
      * @return The side
      */
-    EngineConnectionSide<? extends EngineConnection> getSide();
+    EngineConnectionSide<? extends EngineConnection> side();
 
     /**
      * Closes the connection, showing the default disconnect reason.

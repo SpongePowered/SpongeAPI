@@ -62,7 +62,7 @@ public final class BlockTransaction extends Transaction<BlockSnapshot> {
         this.operation = operation;
     }
 
-    public Operation getOperation() {
+    public Operation operation() {
         return this.operation;
     }
 
@@ -81,10 +81,10 @@ public final class BlockTransaction extends Transaction<BlockSnapshot> {
             return false;
         }
         final BlockTransaction other = (BlockTransaction) obj;
-        return Objects.equals(this.getOriginal(), other.getOriginal())
-            && Objects.equals(this.getDefault(), other.getDefault())
+        return Objects.equals(this.original(), other.original())
+            && Objects.equals(this.defaultReplacement(), other.defaultReplacement())
             && Objects.equals(this.isValid(), other.isValid())
-            && Objects.equals(this.getCustom(), other.getCustom())
+            && Objects.equals(this.custom(), other.custom())
             && Objects.equals(this.operation, other.operation);
     }
 
@@ -92,15 +92,15 @@ public final class BlockTransaction extends Transaction<BlockSnapshot> {
     public String toString() {
         return new StringJoiner(", ", BlockTransaction.class.getSimpleName() + "[", "]")
             .add("operation=" + this.operation)
-            .add("original=" + this.getOriginal())
-            .add("default=" + this.getDefault())
-            .add("custom=" + this.getCustom())
+            .add("original=" + this.original())
+            .add("default=" + this.defaultReplacement())
+            .add("custom=" + this.custom())
             .add("valid=" + this.isValid())
             .toString();
     }
 
     @Override
-    public int getContentVersion() {
+    public int contentVersion() {
         return 1;
     }
 

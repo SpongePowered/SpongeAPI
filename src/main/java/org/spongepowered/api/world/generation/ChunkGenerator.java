@@ -35,27 +35,27 @@ import java.util.Objects;
 public interface ChunkGenerator {
 
     static <T extends FlatGeneratorConfig> ConfigurableChunkGenerator<T> flat(final T config) {
-        return Sponge.getGame().getFactoryProvider().provide(ChunkGenerator.Factory.class).flat(Objects.requireNonNull(config, "config"));
+        return Sponge.game().factoryProvider().provide(ChunkGenerator.Factory.class).flat(Objects.requireNonNull(config, "config"));
     }
 
     static <T extends NoiseGeneratorConfig> ConfigurableChunkGenerator<T> noise(final BiomeProvider provider, final T config) {
-        return Sponge.getGame().getFactoryProvider().provide(ChunkGenerator.Factory.class).noise(Objects.requireNonNull(provider, "provider"), Objects.requireNonNull(config, "config"));
+        return Sponge.game().factoryProvider().provide(ChunkGenerator.Factory.class).noise(Objects.requireNonNull(provider, "provider"), Objects.requireNonNull(config, "config"));
     }
 
     static <T extends NoiseGeneratorConfig> ConfigurableChunkGenerator<T> noise(final BiomeProvider provider, final long seed, final T config) {
-        return Sponge.getGame().getFactoryProvider().provide(ChunkGenerator.Factory.class).noise(Objects.requireNonNull(provider, "provider"), seed, Objects.requireNonNull(config, "config"));
+        return Sponge.game().factoryProvider().provide(ChunkGenerator.Factory.class).noise(Objects.requireNonNull(provider, "provider"), seed, Objects.requireNonNull(config, "config"));
     }
 
     static ConfigurableChunkGenerator<NoiseGeneratorConfig> overworld() {
-        return Sponge.getGame().getFactoryProvider().provide(ChunkGenerator.Factory.class).overworld();
+        return Sponge.game().factoryProvider().provide(ChunkGenerator.Factory.class).overworld();
     }
 
     static ConfigurableChunkGenerator<NoiseGeneratorConfig> theNether() {
-        return Sponge.getGame().getFactoryProvider().provide(ChunkGenerator.Factory.class).theNether();
+        return Sponge.game().factoryProvider().provide(ChunkGenerator.Factory.class).theNether();
     }
 
     static ConfigurableChunkGenerator<NoiseGeneratorConfig> theEnd() {
-        return Sponge.getGame().getFactoryProvider().provide(ChunkGenerator.Factory.class).theEnd();
+        return Sponge.game().factoryProvider().provide(ChunkGenerator.Factory.class).theEnd();
     }
 
     BiomeProvider biomeProvider();

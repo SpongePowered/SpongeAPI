@@ -84,7 +84,7 @@ public interface SetValue<E> extends CollectionValue<E, Set<E>> {
     }
 
     @Override
-    Key<? extends SetValue<E>> getKey();
+    Key<? extends SetValue<E>> key();
 
     @Override
     SetValue.Mutable<E> asMutable();

@@ -39,13 +39,13 @@ public interface RayTraceResult<T extends Locatable> {
      *
      * @return The object
      */
-    T getSelectedObject();
+    T selectedObject();
 
     /**
      * The position where the ray intersects the selected object.
      *
      * @return The position
      */
-    Vector3d getHitPosition();
+    Vector3d hitPosition();
 
 }

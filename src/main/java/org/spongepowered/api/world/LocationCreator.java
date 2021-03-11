@@ -29,7 +29,7 @@ import org.spongepowered.math.vector.Vector3i;
 
 public interface LocationCreator<W extends World<W, L>, L extends Location<W, L>> {
 
-    W getWorld();
+    W world();
 
     /**
      * Gets a location in this extent at the given position. Essentially, this
@@ -38,7 +38,7 @@ public interface LocationCreator<W extends World<W, L>, L extends Location<W, L>
      * @param position The position
      * @return The location in this extent
      */
-    L getLocation(Vector3i position);
+    L location(Vector3i position);
 
     /**
      * Gets a location in this extent at the given position. Essentially, this
@@ -49,8 +49,8 @@ public interface LocationCreator<W extends World<W, L>, L extends Location<W, L>
      * @param z The Z position
      * @return The location in this extent
      */
-    default L getLocation(final int x, final int y, final int z) {
-        return this.getLocation(new Vector3i(x, y, z));
+    default L location(final int x, final int y, final int z) {
+        return this.location(new Vector3i(x, y, z));
     }
 
     /**
@@ -61,7 +61,7 @@ public interface LocationCreator<W extends World<W, L>, L extends Location<W, L>
      * @param position The position
      * @return The location in this extent
      */
-    L getLocation(Vector3d position);
+    L location(Vector3d position);
 
     /**
      * Gets a location in this extent at the given position. Essentially, this
@@ -73,7 +73,7 @@ public interface LocationCreator<W extends World<W, L>, L extends Location<W, L>
      * @param z The Z position
      * @return The location in this extent
      */
-    default L getLocation(final double x, final double y, final double z) {
-        return this.getLocation(new Vector3i(x, y, z));
+    default L location(final double x, final double y, final double z) {
+        return this.location(new Vector3i(x, y, z));
     }
 }

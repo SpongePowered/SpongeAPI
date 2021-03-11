@@ -39,7 +39,7 @@ import java.util.Set;
 public interface RegistryReference<T> extends RegistryKey<T> {
 
     static <T> RegistryReference<T> referenced(final RegistryHolder holder, final RegistryType<T> registry, final T value) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).referenced(Objects.requireNonNull(holder, "holder"),
+        return Sponge.game().factoryProvider().provide(Factory.class).referenced(Objects.requireNonNull(holder, "holder"),
                 Objects.requireNonNull(registry, "registry"), Objects.requireNonNull(value, "value"));
     }
 

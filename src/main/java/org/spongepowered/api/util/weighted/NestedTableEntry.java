@@ -76,7 +76,7 @@ public class NestedTableEntry<T> extends TableEntry<T> {
     @Override
     public int hashCode() {
         int r = 1;
-        final long w = Double.doubleToLongBits(this.getWeight());
+        final long w = Double.doubleToLongBits(this.weight());
         r = r * 37 + (int) (w ^ (w >>> 32));
         r = r * 37 + this.table.hashCode();
         return r;

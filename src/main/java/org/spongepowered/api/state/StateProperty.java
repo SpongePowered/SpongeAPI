@@ -67,9 +67,9 @@ import java.util.function.Predicate;
  * </ul>
  * 
  * <p>To determine the current value of a {@link StateProperty}, you would call
- * {@link State#getStateProperty(StateProperty)}. To determine all possible
+ * {@link State#stateProperty(StateProperty)}. To determine all possible
  * values of a {@link StateProperty}, you would call
- * {@link State#getStateProperties()}.</p>
+ * {@link State#stateProperties()}.</p>
  *
  * <p>As stated above, a {@link StateContainer} may not always have one or more
  * {@link StateProperty}s. An example of such a block is {@link BlockTypes#BOOKSHELF}.</p>
@@ -83,14 +83,14 @@ public interface StateProperty<T extends Comparable<T>> extends Nameable {
      *
      * @return All possible values
      */
-    Collection<T> getPossibleValues();
+    Collection<T> possibleValues();
 
     /**
      * Gets the class type of the {@link StateProperty}'s values.
      *
      * @return The value class
      */
-    Class<T> getValueClass();
+    Class<T> valueClass();
 
     /**
      * Gets the {@link Predicate} used to determine valid values for this.
@@ -100,7 +100,7 @@ public interface StateProperty<T extends Comparable<T>> extends Nameable {
      * 
      * @return The predicate
      */
-    Predicate<T> getPredicate();
+    Predicate<T> predicate();
 
     /**
      * Attempts to parse the provided value as a value dictated possible by

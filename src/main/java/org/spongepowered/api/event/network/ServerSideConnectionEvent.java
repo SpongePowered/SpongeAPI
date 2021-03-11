@@ -38,7 +38,6 @@ import org.spongepowered.api.network.channel.Channel;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.ban.BanService;
 import org.spongepowered.api.service.whitelist.WhitelistService;
-import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3d;
@@ -68,15 +67,15 @@ public interface ServerSideConnectionEvent extends Event {
      *
      * @return The server side connection
      */
-    ServerSideConnection getConnection();
+    ServerSideConnection connection();
 
     /**
      * Gets the {@link GameProfile} of the client attempting to connect.
      *
      * @return The client's profile
      */
-    default GameProfile getProfile() {
-        return this.getConnection().getProfile();
+    default GameProfile profile() {
+        return this.connection().profile();
     }
 
     /**
@@ -137,21 +136,21 @@ public interface ServerSideConnectionEvent extends Event {
          *
          * @return The user
          */
-        User getUser();
+        User user();
 
         /**
          * Gets the previous {@link ServerLocation location} the {@link ServerPlayer player} would have logged in at.
          *
          * @return The location
          */
-        ServerLocation getFromLocation();
+        ServerLocation fromLocation();
 
         /**
          * Gets the {@link ServerLocation location} the {@link ServerPlayer player} will log in at.
          *
          * @return The location
          */
-        ServerLocation getToLocation();
+        ServerLocation toLocation();
 
         /**
          * Sets the {@link ServerLocation location} the {@link ServerPlayer player} will log in at.
@@ -165,14 +164,14 @@ public interface ServerSideConnectionEvent extends Event {
          *
          * @return The rotation
          */
-        Vector3d getFromRotation();
+        Vector3d fromRotation();
 
         /**
          * Gets the {@link Vector3d rotation} the {@link ServerPlayer player} will log in to.
          *
          * @return The rotation
          */
-        Vector3d getToRotation();
+        Vector3d toRotation();
 
         /**
          * Sets the {@link Vector3d rotation} the {@link ServerPlayer player} will log in to.
@@ -196,7 +195,7 @@ public interface ServerSideConnectionEvent extends Event {
          *
          * @return The player
          */
-        ServerPlayer getPlayer();
+        ServerPlayer player();
     }
 
     /**
@@ -209,7 +208,7 @@ public interface ServerSideConnectionEvent extends Event {
          *
          * @return The player
          */
-        ServerPlayer getPlayer();
+        ServerPlayer player();
     }
 
 }

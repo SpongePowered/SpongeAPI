@@ -60,7 +60,7 @@ public interface PlaceholderComponent extends ComponentLike {
      * @return A {@link Builder}
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -69,14 +69,14 @@ public interface PlaceholderComponent extends ComponentLike {
      *
      * @return The {@link PlaceholderContext}
      */
-    PlaceholderContext getContext();
+    PlaceholderContext context();
 
     /**
      * Gets the {@link PlaceholderParser} that handles this placeholder.
      *
      * @return The {@link PlaceholderParser}
      */
-    PlaceholderParser getParser();
+    PlaceholderParser parser();
 
     /**
      * Creates a {@link Component} from the supplied {@link PlaceholderParser}
@@ -90,7 +90,7 @@ public interface PlaceholderComponent extends ComponentLike {
      */
     @Override
     default @NonNull Component asComponent() {
-        return this.getParser().parse(this.getContext());
+        return this.parser().parse(this.context());
     }
 
     /**
@@ -105,7 +105,7 @@ public interface PlaceholderComponent extends ComponentLike {
          * @param parser The {@link PlaceholderParser} to use
          * @return This, for chaining
          */
-        Builder setParser(PlaceholderParser parser);
+        Builder parser(PlaceholderParser parser);
 
         /**
          * Sets the {@link PlaceholderContext} that will be provided to the
@@ -115,7 +115,7 @@ public interface PlaceholderComponent extends ComponentLike {
          * @param context The {@link PlaceholderContext} to use.
          * @return This, for chaining
          */
-        Builder setContext(PlaceholderContext context);
+        Builder context(PlaceholderContext context);
 
         /**
          * Builds and returns the placeholder.

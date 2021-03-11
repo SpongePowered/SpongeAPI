@@ -38,7 +38,7 @@ public interface GameRuleHolder {
      * @param <V> The value type
      * @return The value
      */
-    <V> V getGameRule(GameRule<V> gameRule);
+    <V> V gameRule(GameRule<V> gameRule);
 
     /**
      * Sets the value for the specified {@link GameRule}.
@@ -54,5 +54,5 @@ public interface GameRuleHolder {
      *
      * @return The game rules
      */
-    Map<GameRule<?>, ?> getGameRules();
+    Map<GameRule<?>, ?> gameRules();
 }

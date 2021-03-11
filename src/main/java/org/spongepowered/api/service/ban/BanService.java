@@ -39,7 +39,7 @@ import java.util.concurrent.CompletableFuture;
  * service API (e.g. writing them to a database). In essence, expired bans
  * should be treated the same as user-removed bans.
  *
- * <p>For example, {@link #getBans()} would not include any expired bans,
+ * <p>For example, {@link #bans()} would not include any expired bans,
  * and {@link #hasBan(Ban)} would return <code>false</code>.</p>
  */
 public interface BanService {
@@ -49,21 +49,21 @@ public interface BanService {
      *
      * @return All registered bans
      */
-    CompletableFuture<Collection<? extends Ban>> getBans();
+    CompletableFuture<Collection<? extends Ban>> bans();
 
     /**
      * Gets all {@link GameProfile} bans registered.
      *
      * @return All registered {@link GameProfile} bans
      */
-    CompletableFuture<Collection<Ban.Profile>> getProfileBans();
+    CompletableFuture<Collection<Ban.Profile>> profileBans();
 
     /**
      * Gets all IP bans registered.
      *
      * @return All registered IP bans
      */
-    CompletableFuture<Collection<Ban.IP>> getIpBans();
+    CompletableFuture<Collection<Ban.IP>> ipBans();
 
     /**
      * Gets the ban for the given {@link GameProfile}, if available.
@@ -71,7 +71,7 @@ public interface BanService {
      * @param profile The profile
      * @return The ban, if available
      */
-    CompletableFuture<Optional<Ban.Profile>> getBanFor(GameProfile profile);
+    CompletableFuture<Optional<Ban.Profile>> banFor(GameProfile profile);
 
     /**
      * Gets the ban for the given address, if available.
@@ -79,7 +79,7 @@ public interface BanService {
      * @param address The address.
      * @return All registered IP bans
      */
-    CompletableFuture<Optional<Ban.IP>> getBanFor(InetAddress address);
+    CompletableFuture<Optional<Ban.IP>> banFor(InetAddress address);
 
     /**
      * Checks if a {@link GameProfile} has a ban.

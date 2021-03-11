@@ -48,7 +48,7 @@ public interface BlockEntityArchetypeVolume extends BlockVolume {
      * @param z The Z position
      * @return The block entity, if found
      */
-    Optional<BlockEntityArchetype> getBlockEntityArchetype(int x, int y, int z);
+    Optional<BlockEntityArchetype> blockEntityArchetype(int x, int y, int z);
 
     /**
      * Gets the {@link BlockEntityArchetype} for the block entity carrying block
@@ -57,8 +57,8 @@ public interface BlockEntityArchetypeVolume extends BlockVolume {
      * @param position The position
      * @return The block entity, if found
      */
-    default Optional<BlockEntityArchetype> getBlockEntityArchetype(final Vector3i position) {
-        return this.getBlockEntityArchetype(position.getX(), position.getY(), position.getZ());
+    default Optional<BlockEntityArchetype> blockEntityArchetype(final Vector3i position) {
+        return this.blockEntityArchetype(position.getX(), position.getY(), position.getZ());
     }
 
     /**
@@ -67,7 +67,7 @@ public interface BlockEntityArchetypeVolume extends BlockVolume {
      *
      * @return The block entity map
      */
-    Map<Vector3i, BlockEntityArchetype> getBlockEntityArchetypes();
+    Map<Vector3i, BlockEntityArchetype> blockEntityArchetypes();
 
     interface Streamable<B extends Streamable<B>> extends BlockEntityArchetypeVolume {
 
@@ -81,7 +81,7 @@ public interface BlockEntityArchetypeVolume extends BlockVolume {
          * @param options The options to construct the stream
          * @return The volume stream
          */
-        VolumeStream<B, BlockEntityArchetype> getBlockEntityArchetypeStream(Vector3i min, Vector3i max, StreamOptions options);
+        VolumeStream<B, BlockEntityArchetype> blockEntityArchetypeStream(Vector3i min, Vector3i max, StreamOptions options);
 
     }
 

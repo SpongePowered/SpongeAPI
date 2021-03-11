@@ -43,56 +43,56 @@ public interface AdventureRegistry {
      *
      * @return The registry
      */
-    OfType<TextDecoration> getDecorations();
+    OfType<TextDecoration> decorations();
 
     /**
      * Gets the registry of {@link NamedTextColor}s.
      *
      * @return The registry
      */
-    OfType<NamedTextColor> getNamedColors();
+    OfType<NamedTextColor> namedColors();
 
     /**
      * Gets the registry of {@link ClickEvent.Action}s.
      *
      * @return The registry
      */
-    OfType<ClickEvent.Action> getClickEventActions();
+    OfType<ClickEvent.Action> clickEventActions();
 
     /**
      * Gets the registry of {@link HoverEvent.Action}s.
      *
      * @return The registry
      */
-    OfType<HoverEvent.Action<?>> getHoverEventActions();
+    OfType<HoverEvent.Action<?>> hoverEventActions();
 
     /**
      * Gets the registry of {@link BossBar.Color}s.
      *
      * @return The registry
      */
-    OfType<BossBar.Color> getBossBarColors();
+    OfType<BossBar.Color> bossBarColors();
 
     /**
      * Gets the registry of {@link BossBar.Overlay}s.
      *
      * @return The registry
      */
-    OfType<BossBar.Overlay> getBossBarOverlays();
+    OfType<BossBar.Overlay> bossBarOverlays();
 
     /**
      * Gets the registry of {@link BossBar.Flag}s.
      *
      * @return The registry
      */
-    OfType<BossBar.Flag> getBossBarFlags();
+    OfType<BossBar.Flag> bossBarFlags();
 
     /**
      * Gets the registry of {@link Sound.Source}s.
      *
      * @return The registry
      */
-    OfType<Sound.Source> getSoundSources();
+    OfType<Sound.Source> soundSources();
 
     /**
      * A registry for an Adventure type.
@@ -106,7 +106,7 @@ public interface AdventureRegistry {
          * @param value the value
          * @return the key
          */
-        String getKey(final T value);
+        String key(final T value);
 
         /**
          * Gets a value by its key.
@@ -114,7 +114,7 @@ public interface AdventureRegistry {
          * @param key the key
          * @return the value
          */
-        Optional<T> getValue(final String key);
+        Optional<T> value(final String key);
 
         /**
          * Gets the keys.

@@ -42,13 +42,13 @@ public interface ModifierFunction<M> {
      *
      * @return The modifier
      */
-    M getModifier();
+    M modifier();
 
     /**
      * Gets the double unary operator used by this function.
      *
      * @return The unary operator
      */
-    DoubleUnaryOperator getFunction();
+    DoubleUnaryOperator function();
 
 }

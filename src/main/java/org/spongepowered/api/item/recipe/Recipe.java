@@ -74,22 +74,22 @@ public interface Recipe extends ResourceKeyed {
      * The result of this recipe. This method should only be called if
      * {@link #isValid(Inventory, ServerWorld)} returns {@code true}.
      *
-     * <p>This method is preferred over the {@link CraftingRecipe#getExemplaryResult()} method,
+     * <p>This method is preferred over the {@link CraftingRecipe#exemplaryResult()} method,
      * as it may customize the result further depending on the context.</p>
      *
      * @param inventory The input inventory
      *
      * @return The result of this recipe
      */
-    ItemStackSnapshot getResult(Inventory inventory);
+    ItemStackSnapshot result(Inventory inventory);
 
     /**
      * A general result of this recipe. This result may be customized depending on the context.
-     * See {@link #getResult(Inventory)}
+     * See {@link #result(Inventory)}
      *
      * @return The exemplary result of this recipe
      */
-    ItemStackSnapshot getExemplaryResult();
+    ItemStackSnapshot exemplaryResult();
 
     /**
      * The remaining items result of this recipe.
@@ -103,7 +103,7 @@ public interface Recipe extends ResourceKeyed {
      * @return The list of items to be added to the inventory of the player
      *         when the recipe has been fulfilled (possibly empty)
      */
-    List<ItemStackSnapshot> getRemainingItems(Inventory inventory);
+    List<ItemStackSnapshot> remainingItems(Inventory inventory);
 
     /**
      * Returns the {@link RecipeResult} for the given inventory and world.
@@ -118,9 +118,9 @@ public interface Recipe extends ResourceKeyed {
      *     {@link #isValid(Inventory, ServerWorld)}, or
      *     {@link Optional#empty()} if not
      */
-    default Optional<RecipeResult> getResult(Inventory inventory, ServerWorld world) {
+    default Optional<RecipeResult> result(Inventory inventory, ServerWorld world) {
         if (this.isValid(inventory, world)) {
-            return Optional.of(new RecipeResult(this.getResult(inventory), this.getRemainingItems(inventory)));
+            return Optional.of(new RecipeResult(this.result(inventory), this.remainingItems(inventory)));
         }
         return Optional.empty();
     }
@@ -130,7 +130,7 @@ public interface Recipe extends ResourceKeyed {
      *
      * @return An unmodifiable list of the ingredients.
      */
-    List<Ingredient> getIngredients();
+    List<Ingredient> ingredients();
 
     /**
      * Returns true if the recipe is dynamic.
@@ -145,6 +145,6 @@ public interface Recipe extends ResourceKeyed {
      *
      * @return The recipe type.
      */
-    RecipeType<? extends Recipe> getType();
+    RecipeType<? extends Recipe> type();
 
 }

@@ -120,7 +120,7 @@ public interface RawPlayDataChannel {
      * @param payload A consumer to write the data to
      */
     default void sendToAllPlayers(final Consumer<ChannelBuf> payload) {
-        Sponge.getServer().getOnlinePlayers().forEach(player -> this.sendTo(player, payload));
+        Sponge.server().onlinePlayers().forEach(player -> this.sendTo(player, payload));
     }
 
     /**
@@ -134,7 +134,7 @@ public interface RawPlayDataChannel {
      * @param payload A consumer to write the data to
      */
     default void sendToAllPlayersIn(final ServerWorld world, final Consumer<ChannelBuf> payload) {
-        world.getPlayers().forEach(player -> this.sendTo(player, payload));
+        world.players().forEach(player -> this.sendTo(player, payload));
     }
 
     /**
@@ -145,7 +145,7 @@ public interface RawPlayDataChannel {
      * @param payload A consumer to write the data to
      */
     default CompletableFuture<Void> sendTo(final ServerPlayer player, final Consumer<ChannelBuf> payload) {
-        return this.sendTo(player.getConnection(), payload);
+        return this.sendTo(player.connection(), payload);
     }
 
     /**
@@ -156,7 +156,7 @@ public interface RawPlayDataChannel {
      * @param payload A consumer to write the data to
      */
     default CompletableFuture<Void> sendToServer(final Consumer<ChannelBuf> payload) {
-        final EngineConnection connection = Sponge.getClient().getConnection()
+        final EngineConnection connection = Sponge.client().connection()
                 .orElseThrow(() -> new IllegalStateException("The client is currently not connected to a server."));
         return this.sendTo(connection, payload);
     }

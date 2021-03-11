@@ -44,14 +44,14 @@ public interface GameRule<V> extends DefaultedRegistryValue, Nameable {
      *
      * @return The value type
      */
-    Type getValueType();
+    Type valueType();
 
     /**
      * Gets the default value.
      *
      * @return The default value
      */
-    V getDefaultValue();
+    V defaultValue();
 
     // TODO: Command argument parser
 

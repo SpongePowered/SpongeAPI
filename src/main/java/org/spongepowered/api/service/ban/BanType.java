@@ -38,6 +38,6 @@ public interface BanType extends DefaultedRegistryValue {
      *
      * @return The ban class
      */
-    Class<? extends Ban> getBanClass();
+    Class<? extends Ban> banClass();
 
 }

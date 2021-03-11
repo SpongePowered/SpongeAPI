@@ -41,14 +41,14 @@ public interface CraftingInventory extends Inventory {
      *
      * @return The crafting matrix
      */
-    CraftingGridInventory getCraftingGrid();
+    CraftingGridInventory craftingGrid();
 
     /**
      * Gets the result slot of this CraftingInventory.
      *
      * @return The result slot
      */
-    CraftingOutput getResult();
+    CraftingOutput result();
 
     /**
      * Retrieves the recipe formed by this CraftingInventory, if any.
@@ -56,8 +56,8 @@ public interface CraftingInventory extends Inventory {
      * @param world The world where the item would be crafted in
      * @return The recipe or {@link Optional#empty()} if no recipe is formed
      */
-    default Optional<CraftingRecipe> getRecipe(ServerWorld world) {
-        return this.getCraftingGrid().getRecipe(world);
+    default Optional<CraftingRecipe> recipe(ServerWorld world) {
+        return this.craftingGrid().recipe(world);
     }
 
 }

@@ -48,7 +48,7 @@ public interface PaginationList {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getServiceProvider().paginationService().builder();
+        return Sponge.serviceProvider().paginationService().builder();
     }
 
     /**
@@ -56,14 +56,14 @@ public interface PaginationList {
      *
      * @return The contents of this pagination list
      */
-    Iterable<Component> getContents();
+    Iterable<Component> contents();
 
     /**
      * Gets the title text to be used in the title bar of this pagination.
      *
      * @return The title text
      */
-    Optional<Component> getTitle();
+    Optional<Component> title();
 
     /**
      * Gets the header to be displayed for this output on all pages after the
@@ -74,7 +74,7 @@ public interface PaginationList {
      *
      * @return The header to be displayed
      */
-    Optional<Component> getHeader();
+    Optional<Component> header();
 
     /**
      * Gets the footer to be displayed for this output on all pages after the
@@ -82,14 +82,14 @@ public interface PaginationList {
      *
      * @return The footer
      */
-    Optional<Component> getFooter();
+    Optional<Component> footer();
 
     /**
      * Gets the padding character to be used when centering headers and footers.
      *
      * @return The padding character
      */
-    Component getPadding();
+    Component padding();
 
     /**
      * Gets the maximum amount of lines that will be sent per page.
@@ -99,7 +99,7 @@ public interface PaginationList {
      *
      * @return The maximum amount of lines that will be sent per page
      */
-    int getLinesPerPage();
+    int linesPerPage();
 
     /**
      * Sends the first page of the constructed pagination list

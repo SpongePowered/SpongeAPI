@@ -45,7 +45,7 @@ public interface ResourcePack {
      *         downloaded from the URI
      */
     static ResourcePack fromUri(URI uri) throws FileNotFoundException {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).fromUri(uri);
+        return Sponge.game().factoryProvider().provide(Factory.class).fromUri(uri);
     }
 
     /**
@@ -56,7 +56,7 @@ public interface ResourcePack {
      * @return A ResourcePack with the specified URI
      */
     static ResourcePack fromUriUnchecked(URI uri) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).fromUriUnchecked(uri);
+        return Sponge.game().factoryProvider().provide(Factory.class).fromUriUnchecked(uri);
     }
 
     /**
@@ -64,7 +64,7 @@ public interface ResourcePack {
      *
      * @return The URI associated with this resource pack.
      */
-    URI getUri();
+    URI uri();
 
     /**
      * Gets the name of this resource pack. This is the filename of the pack
@@ -75,14 +75,14 @@ public interface ResourcePack {
      * @return The name of this resource pack. This is the filename of the pack
      *         .zip, with all non-word characters removed
      */
-    String getName();
+    String name();
 
     /**
      * Gets the ID of this resource pack.
      *
      * @return the ID of this resource pack
      */
-    String getId();
+    String id();
 
     /**
      * If this resource pack was initialized through
@@ -93,7 +93,7 @@ public interface ResourcePack {
      *
      * @return The hash of this pack, if present
      */
-    Optional<String> getHash();
+    Optional<String> hash();
 
     interface Factory {
 

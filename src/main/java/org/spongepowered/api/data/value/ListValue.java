@@ -84,7 +84,7 @@ public interface ListValue<E> extends CollectionValue<E, List<E>> {
     }
 
     @Override
-    Key<? extends ListValue<E>> getKey();
+    Key<? extends ListValue<E>> key();
 
     /**
      * Gets the desired element at the desired index.

@@ -37,14 +37,14 @@ public interface Biome {
      *
      * @return The temperature
      */
-    double getTemperature();
+    double temperature();
 
     /**
      * Gets the humidity of this biome.
      *
      * @return The humidity
      */
-    double getHumidity();
+    double humidity();
 
 
 }

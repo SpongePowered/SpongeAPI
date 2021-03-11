@@ -42,14 +42,14 @@ public interface PlayerChatEvent extends Event, Cancellable {
      *
      * @return The original router to send to
      */
-    PlayerChatRouter getOriginalChatRouter();
+    PlayerChatRouter originalChatRouter();
 
     /**
      * Gets the current router that this message will be sent to.
      *
      * @return The router the message in this event will be sent to
      */
-    Optional<PlayerChatRouter> getChatRouter();
+    Optional<PlayerChatRouter> chatRouter();
 
     /**
      * Sets the router for this message to go to.
@@ -69,14 +69,14 @@ public interface PlayerChatEvent extends Event, Cancellable {
      *
      * @return The original chat message
      */
-    Component getOriginalMessage();
+    Component originalMessage();
 
     /**
      * Gets the chat message.
      *
      * @return The chat message
      */
-    Component getMessage();
+    Component message();
 
     /**
      * Sets the chat message.

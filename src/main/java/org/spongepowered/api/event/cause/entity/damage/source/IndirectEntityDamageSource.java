@@ -36,16 +36,16 @@ public interface IndirectEntityDamageSource extends EntityDamageSource {
      * @return A new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
-     * Gets the {@link Entity} that is indirectly using the {@link #getSource()}
+     * Gets the {@link Entity} that is indirectly using the {@link #source()}
      * to cause damage.
      *
      * @return The indirect source
      */
-    Entity getIndirectSource();
+    Entity indirectSource();
 
     interface Builder extends AbstractBuilder<IndirectEntityDamageSource, Builder> {
 

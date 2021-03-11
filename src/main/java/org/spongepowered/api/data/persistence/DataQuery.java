@@ -139,7 +139,7 @@ public final class DataQuery implements Iterable<String> {
      *
      * @return The parts of this query
      */
-    public List<String> getParts() {
+    public List<String> parts() {
         return this.parts;
     }
 
@@ -182,10 +182,10 @@ public final class DataQuery implements Iterable<String> {
      *
      * @return The constructed queries
      */
-    public List<DataQuery> getQueryParts() {
+    public List<DataQuery> queryParts() {
         if (this.queryParts == null) {
             final ImmutableList.Builder<DataQuery> builder = ImmutableList.builder();
-            for (final String part : this.getParts()) {
+            for (final String part : this.parts()) {
                 builder.add(new DataQuery(part));
             }
             this.queryParts = builder.build();

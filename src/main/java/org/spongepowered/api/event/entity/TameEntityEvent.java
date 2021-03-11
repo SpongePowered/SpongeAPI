@@ -38,5 +38,5 @@ public interface TameEntityEvent extends Event, Cancellable {
      *
      * @return The entity
      */
-    Entity getEntity();
+    Entity entity();
 }

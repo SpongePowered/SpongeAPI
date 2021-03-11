@@ -45,7 +45,7 @@ public interface Explosion extends Locatable {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -53,14 +53,14 @@ public interface Explosion extends Locatable {
      *
      * @return The source explosive or null if there is no source
      */
-    Optional<Explosive> getSourceExplosive();
+    Optional<Explosive> sourceExplosive();
 
     /**
      * Gets the radius of the explosion.
      *
      * @return The radius
      */
-    float getRadius();
+    float radius();
 
     /**
      * Gets whether the affected blocks have a chance to catch on fire.
@@ -95,7 +95,7 @@ public interface Explosion extends Locatable {
      *
      * @return The resolution of the explosion.
      */
-    default int getResolution() {
+    default int resolution() {
         return 16;
     }
 
@@ -112,7 +112,7 @@ public interface Explosion extends Locatable {
      *
      * @return The potential randomness of the form of the explosion.
      */
-    default float getRandomness() {
+    default float randomness() {
         return 1;
     }
 
@@ -126,7 +126,7 @@ public interface Explosion extends Locatable {
      *
      * @return The multiple by which the knockback of entities will be changed
      */
-    default double getKnockback() {
+    default double knockback() {
         return 1;
     }
 

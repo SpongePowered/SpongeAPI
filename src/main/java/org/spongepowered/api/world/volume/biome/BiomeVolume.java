@@ -47,9 +47,9 @@ public interface BiomeVolume extends Volume {
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the volume
      */
-    default Biome getBiome(final Vector3i position) {
+    default Biome biome(final Vector3i position) {
         Objects.requireNonNull(position, "position");
-        return this.getBiome(position.getX(), position.getY(), position.getZ());
+        return this.biome(position.getX(), position.getY(), position.getZ());
     }
 
     /**
@@ -62,7 +62,7 @@ public interface BiomeVolume extends Volume {
      * @throws PositionOutOfBoundsException If the position is outside of the
      *         bounds of the volume
      */
-    Biome getBiome(int x, int y, int z);
+    Biome biome(int x, int y, int z);
 
     interface Streamable<B extends Streamable<B>> extends BiomeVolume {
 
@@ -76,7 +76,7 @@ public interface BiomeVolume extends Volume {
          * @param options The options to construct the stream
          * @return The volume stream
          */
-        VolumeStream<B, Biome> getBiomeStream(Vector3i min, Vector3i max, StreamOptions options);
+        VolumeStream<B, Biome> biomeStream(Vector3i min, Vector3i max, StreamOptions options);
     }
 
     /**

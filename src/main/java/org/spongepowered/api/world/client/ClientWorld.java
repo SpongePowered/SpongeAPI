@@ -36,11 +36,11 @@ import java.util.Collection;
 public interface ClientWorld extends World<ClientWorld, ClientLocation> {
 
     @Override
-    Client getEngine();
+    Client engine();
 
     @Override
-    ClientWorldProperties getProperties();
+    ClientWorldProperties properties();
 
     @Override
-    Collection<? extends ClientPlayer> getPlayers();
+    Collection<? extends ClientPlayer> players();
 }

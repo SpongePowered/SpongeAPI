@@ -74,7 +74,7 @@ public class DataQueryTest {
     }
 
     /**
-     * Method: getParts()
+     * Method: parts()
      */
     @Test
     public void testGetParts() {
@@ -83,7 +83,7 @@ public class DataQueryTest {
         parts.add("this");
         parts.add("parts");
         parts.add("test");
-        assertThat(query.getParts().equals(parts), is(true));
+        assertThat(query.parts().equals(parts), is(true));
     }
 
     /**
@@ -99,7 +99,7 @@ public class DataQueryTest {
     }
 
     /**
-     * Method: getQueryParts()
+     * Method: queryParts()
      */
     @Test
     public void testGetQueryParts() {
@@ -107,7 +107,7 @@ public class DataQueryTest {
         final DataQuery part1 = DataQuery.of("this");
         final DataQuery part2 = DataQuery.of("test");
         final DataQuery part3 = DataQuery.of("query");
-        final List<DataQuery> parts = full.getQueryParts();
+        final List<DataQuery> parts = full.queryParts();
         final List<DataQuery> built = ImmutableList.of(part1, part2, part3);
         assertThat(parts.equals(built), is(true));
         assertThat(built.equals(parts), is(true));

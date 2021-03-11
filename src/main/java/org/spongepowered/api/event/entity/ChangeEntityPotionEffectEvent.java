@@ -41,21 +41,21 @@ public interface ChangeEntityPotionEffectEvent extends Event, Cancellable {
      *
      * @return The entity
      */
-    Entity getEntity();
+    Entity entity();
 
     /**
      * Gets a copy of all current effects applied on the entity.
      *
      * @return A copy of the potion effects
      */
-    List<PotionEffect> getCurrentEffects();
+    List<PotionEffect> currentEffects();
 
     /**
      * Gets the potion effect involved in this event.
      *
      * @return The potion effect involved in this event
      */
-    PotionEffect getPotionEffect();
+    PotionEffect potionEffect();
 
     /**
      * An event where the {@link PotionEffect} is being added.
@@ -67,7 +67,7 @@ public interface ChangeEntityPotionEffectEvent extends Event, Cancellable {
          *
          * @return The original potion effect involved in this event
          */
-        PotionEffect getOriginalPotionEffect();
+        PotionEffect originalPotionEffect();
         
         /**
          * Sets the potion effect to be used in this event.

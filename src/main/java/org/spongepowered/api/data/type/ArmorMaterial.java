@@ -45,6 +45,6 @@ public interface ArmorMaterial extends DefaultedRegistryValue {
      *
      * @return The item type considered to be used for repairing
      */
-    Optional<Ingredient> getRepairIngredient();
+    Optional<Ingredient> repairIngredient();
 
 }

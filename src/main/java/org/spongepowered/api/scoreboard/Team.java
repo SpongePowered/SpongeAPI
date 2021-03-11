@@ -45,7 +45,7 @@ import java.util.function.Supplier;
  * <p>Examples of this include players, whose names gain the prefix and suffix
  * of the team they are on.</p>
  *
- * <p>With the exception of {@link #getNameTagVisibility()} (which is handled client-side),
+ * <p>With the exception of {@link #nameTagVisibility()} (which is handled client-side),
  * all of the team options require players to have the same team object (and by
  * extension, the same scoreboard).
  *
@@ -65,7 +65,7 @@ public interface Team {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -73,14 +73,14 @@ public interface Team {
      *
      * @return The name of this team
      */
-    String getName();
+    String name();
 
     /**
      * Gets the name displayed to users for this team.
      *
      * @return The display name for this team
      */
-    Component getDisplayName();
+    Component displayName();
 
     /**
      * Sets the name displayed to users for this team.
@@ -100,7 +100,7 @@ public interface Team {
      *
      * @return The team color
      */
-    NamedTextColor getColor();
+    NamedTextColor color();
 
     /**
      * Sets the color of this team.
@@ -118,7 +118,7 @@ public interface Team {
      *
      * @return The prefix for this team
      */
-    Component getPrefix();
+    Component prefix();
 
     /**
      * Sets the prefix prepended to the display name of users on this team.
@@ -134,7 +134,7 @@ public interface Team {
      *
      * @return The team's current suffix
      */
-    Component getSuffix();
+    Component suffix();
 
     /**
      * Sets the suffix appended to the display name of users on this team.
@@ -183,7 +183,7 @@ public interface Team {
      *
      * @return The {@link Visibility} for this team's nametags
      */
-    Visibility getNameTagVisibility();
+    Visibility nameTagVisibility();
 
     /**
      * Sets the {@link Visibility} which controls to who nametags
@@ -209,7 +209,7 @@ public interface Team {
      *
      * @return The {@link Visibility} for this team's death Texts
      */
-    Visibility getDeathMessageVisibility();
+    Visibility deathMessageVisibility();
 
     /**
      * Sets the {@link Visibility} which controls who death Texts
@@ -234,7 +234,7 @@ public interface Team {
      *
      * @return The {@link CollisionRule} for entities on this team
      */
-    CollisionRule getCollisionRule();
+    CollisionRule collisionRule();
 
     /**
      * Sets the {@link CollisionRule} for entities on this team.
@@ -257,14 +257,14 @@ public interface Team {
      *
      * @return the {@link Component}s for this team's members
      */
-    Set<Component> getMembers();
+    Set<Component> members();
 
     /**
      * Adds the specified {@link Component} to this team.
      *
      * <p>While any {@link Component} may be added, the {@link Component} to use should
      * normally be obtained by calling
-     * {@link TeamMember#getTeamRepresentation()} on a {@link TeamMember}, such
+     * {@link TeamMember#teamRepresentation()} on a {@link TeamMember}, such
      * as a {@link Player}.</p>
      *
      * @param member the {@link Component} to add
@@ -275,7 +275,7 @@ public interface Team {
      * Removes the specified {@link Component} from this team.
      *
      * <p>While any {@link Component} may be removed, the {@link Component}
-     * to use should normally be obtained by calling {@link TeamMember#getTeamRepresentation()}
+     * to use should normally be obtained by calling {@link TeamMember#teamRepresentation()}
      * on a {@link TeamMember}, such as a {@link Player}.</p>
      *
      * @param member The {@link Component} to remove
@@ -292,7 +292,7 @@ public interface Team {
      *
      * @return The scoreboard this team is registered on, if available.
      */
-    Optional<Scoreboard> getScoreboard();
+    Optional<Scoreboard> scoreboard();
 
     /**
      * Unregisters this team from its {@link Scoreboard}, if present.

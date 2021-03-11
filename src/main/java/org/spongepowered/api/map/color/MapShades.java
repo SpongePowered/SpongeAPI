@@ -58,6 +58,6 @@ public final class MapShades {
 	}
 
 	private static DefaultedRegistryReference<MapShade> key(final ResourceKey location) {
-		return RegistryKey.of(RegistryTypes.MAP_SHADE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+		return RegistryKey.of(RegistryTypes.MAP_SHADE, location).asDefaultedReference(() -> Sponge.game().registries());
 	}
 }

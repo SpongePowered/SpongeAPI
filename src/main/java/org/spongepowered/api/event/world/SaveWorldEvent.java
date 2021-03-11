@@ -41,7 +41,7 @@ public interface SaveWorldEvent extends Event, Cancellable {
      *
      * @return The world
      */
-    ServerWorld getWorld();
+    ServerWorld world();
 
     interface Pre extends SaveWorldEvent {}
 

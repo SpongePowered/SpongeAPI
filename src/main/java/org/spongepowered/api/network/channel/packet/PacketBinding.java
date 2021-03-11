@@ -37,12 +37,12 @@ public interface PacketBinding<P extends Packet> {
      *
      * @return The opcode
      */
-    int getOpcode();
+    int opcode();
 
     /**
      * Gets the type of the {@link Packet}.
      *
      * @return The packet type
      */
-    Class<P> getPacketType();
+    Class<P> packetType();
 }

@@ -46,21 +46,21 @@ public interface ResourcePackStatusEvent extends Event {
      *
      * @return The player
      */
-    ServerPlayer getPlayer();
+    ServerPlayer player();
 
     /**
      * Gets the pack that this status corresponds to.
      *
      * @return The pack that this status corresponds to.
      */
-    ResourcePack getPack();
+    ResourcePack pack();
 
     /**
      * Gets the status of the sent pack.
      *
      * @return The status of the sent pack.
      */
-    ResourcePackStatus getStatus();
+    ResourcePackStatus status();
 
     /**
      * The different possible responses the client can have.

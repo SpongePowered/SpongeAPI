@@ -911,7 +911,7 @@ public final class Keys {
      *
      * <p>The offered game profile will be set exactly, unlike in vanilla where the game profile will
      * be resolved automatically for properties (including textures). You can obtain a game profile with
-     * properties using {@link org.spongepowered.api.profile.GameProfileManager#getProfile}.</p>
+     * properties using {@link org.spongepowered.api.profile.GameProfileManager#profile}.</p>
      */
     public static final Key<Value<GameProfile>> GAME_PROFILE = Keys.key(ResourceKey.sponge("game_profile"), TypeTokens.GAME_PROFILE_VALUE_TOKEN);
 
@@ -1011,7 +1011,7 @@ public final class Keys {
      * }</li></ul>
      *
      * <p>Note that the pitch will be the same x value returned by
-     * {@link Entity#getRotation()} and Minecraft does not currently support
+     * {@link Entity#rotation ()} and Minecraft does not currently support
      * head roll so the z value will always be zero.</p>
      */
     public static final Key<Value<Vector3d>> HEAD_ROTATION = Keys.key(ResourceKey.sponge("head_rotation"), TypeTokens.VECTOR_3D_VALUE_TOKEN);

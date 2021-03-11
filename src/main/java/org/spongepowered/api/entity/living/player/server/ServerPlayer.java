@@ -61,9 +61,9 @@ import java.util.Optional;
 public interface ServerPlayer extends Player, Subject {
 
     @Override
-    ServerWorld getWorld();
+    ServerWorld world();
 
-    User getUser();
+    User user();
 
     /**
      * Returns whether this player is online or not.
@@ -81,7 +81,7 @@ public interface ServerPlayer extends Player, Subject {
      * @return Whether this player is viewing an inventory or not
      */
     default boolean isViewingInventory() {
-        return this.getOpenInventory().isPresent();
+        return this.openInventory().isPresent();
     }
 
     /**
@@ -91,7 +91,7 @@ public interface ServerPlayer extends Player, Subject {
      * @return An inventory if this player is viewing one, otherwise
      * {@link Optional#empty()}
      */
-    Optional<Container> getOpenInventory();
+    Optional<Container> openInventory();
 
     /**
      * Opens the given Inventory for the player to view.
@@ -179,7 +179,7 @@ public interface ServerPlayer extends Player, Subject {
      *
      * @return The connection
      */
-    ServerPlayerConnection getConnection();
+    ServerPlayerConnection connection();
 
     /**
      * Sends a given {@link ResourcePack} to this player.
@@ -193,7 +193,7 @@ public interface ServerPlayer extends Player, Subject {
      *
      * @return This player's TabList
      */
-    TabList getTabList();
+    TabList tabList();
 
     /**
      * Kicks the player, showing the default kick reason (the translation key
@@ -213,7 +213,7 @@ public interface ServerPlayer extends Player, Subject {
      *
      * @return The scoreboard displayed to the player
      */
-    Scoreboard getScoreboard();
+    Scoreboard scoreboard();
 
     /**
      * Sets the {@link Scoreboard} displayed to the player.
@@ -238,7 +238,7 @@ public interface ServerPlayer extends Player, Subject {
      * @return The {@code WorldBorder} of this player as an {@code Optional}, if
      *     present
      */
-    Optional<WorldBorder> getWorldBorder();
+    Optional<WorldBorder> worldBorder();
 
     /**
      * Sets the {@link WorldBorder} instance for this player to the given world
@@ -254,7 +254,7 @@ public interface ServerPlayer extends Player, Subject {
      *
      * @return This player's cooldown tracker
      */
-    CooldownTracker getCooldownTracker();
+    CooldownTracker cooldownTracker();
 
     /**
      * Gets the {@link AdvancementProgress} for the
@@ -263,7 +263,7 @@ public interface ServerPlayer extends Player, Subject {
      * @param advancement The advancement
      * @return The advancement progress
      */
-    AdvancementProgress getProgress(Advancement advancement);
+    AdvancementProgress progress(Advancement advancement);
 
     /**
      * Gets all the {@link AdvancementTree}s that this
@@ -271,7 +271,7 @@ public interface ServerPlayer extends Player, Subject {
      *
      * @return The advancement trees
      */
-    Collection<AdvancementTree> getUnlockedAdvancementTrees();
+    Collection<AdvancementTree> unlockedAdvancementTrees();
 
     /**
      * {@link Keys#FIRST_DATE_JOINED}
@@ -336,7 +336,7 @@ public interface ServerPlayer extends Player, Subject {
      *
      * @return The chat router
      */
-    PlayerChatRouter getChatRouter();
+    PlayerChatRouter chatRouter();
 
     /**
      * Sets the chat router.

@@ -43,7 +43,7 @@ public interface HarvestEntityEvent extends Event, Cancellable {
      *
      * @return The entity
      */
-    Entity getEntity();
+    Entity entity();
 
     /**
      * An event where the target is a {@link Player}. Usually this will
@@ -53,7 +53,7 @@ public interface HarvestEntityEvent extends Event, Cancellable {
     interface TargetPlayer extends HarvestEntityEvent, ChangeEntityExperienceEvent {
 
         @Override
-        ServerPlayer getEntity();
+        ServerPlayer entity();
 
         /**
          * Gets whether the player keeps their inventory on death.
@@ -88,7 +88,7 @@ public interface HarvestEntityEvent extends Event, Cancellable {
          *
          * @return The new level after death
          */
-        int getLevel();
+        int level();
 
         /**
          * Sets the new level the player will have after death.

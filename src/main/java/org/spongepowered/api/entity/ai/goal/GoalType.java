@@ -35,5 +35,5 @@ public interface GoalType extends DefaultedRegistryValue {
      *
      * @return The goal class
      */
-    Class<? extends Goal<?>> getGoalClass();
+    Class<? extends Goal<?>> goalClass();
 }

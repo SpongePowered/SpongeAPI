@@ -47,7 +47,7 @@ public interface Task {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -55,14 +55,14 @@ public interface Task {
      *
      * @return The name of the task
      */
-    String getName();
+    String name();
 
     /**
      * Returns the plugin that constructed this task.
      *
      * @return The plugin that constructed the task
      */
-    PluginContainer getOwner();
+    PluginContainer owner();
 
     /**
      * Gets the delay that the task was scheduled to run after. A delay of 0
@@ -70,7 +70,7 @@ public interface Task {
      *
      * @return The delay (offset) duration
      */
-    Duration getDelay();
+    Duration delay();
 
     /**
      * Gets the interval for repeating tasks. An interval of 0 represents that
@@ -78,14 +78,14 @@ public interface Task {
      *
      * @return The interval (period) duration
      */
-    Duration getInterval();
+    Duration interval();
 
     /**
      * Gets the {@link Consumer}&gt;{@link Task}&lt; that this task is running.
      *
      * @return The consumer
      */
-    Consumer<ScheduledTask> getConsumer();
+    Consumer<ScheduledTask> consumer();
 
     /**
      * Represents a builder to create a {@link Task}.

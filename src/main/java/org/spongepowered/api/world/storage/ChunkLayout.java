@@ -45,7 +45,7 @@ public interface ChunkLayout {
      *
      * @return The size of chunks
      */
-    Vector3i getChunkSize();
+    Vector3i chunkSize();
 
     /**
      * Returns the maximum coordinates for chunks for each axis. The axes are
@@ -54,7 +54,7 @@ public interface ChunkLayout {
      *
      * @return The maximum coordinates of chunks
      */
-    Vector3i getSpaceMax();
+    Vector3i spaceMax();
 
     /**
      * Returns the minimum coordinates for chunks for each axis. The axes are
@@ -63,15 +63,15 @@ public interface ChunkLayout {
      *
      * @return The minimum coordinates of chunks
      */
-    Vector3i getSpaceMin();
+    Vector3i spaceMin();
 
     /**
      * Gets the total size of the chunk space, which is equivalent to
-     * {@link #getSpaceMax()} - {@link #getSpaceMin()} + 1.
+     * {@link #spaceMax()} - {@link #spaceMin()} + 1.
      *
      * @return The total size of the chunk space
      */
-    Vector3i getSpaceSize();
+    Vector3i spaceSize();
 
     /**
      * Returns the origin of the chunk coordinate space. Normally
@@ -79,7 +79,7 @@ public interface ChunkLayout {
      *
      * @return The origin of the chunk coordinate space
      */
-    Vector3i getSpaceOrigin();
+    Vector3i spaceOrigin();
 
     /**
      * Returns true if the coordinates are valid chunk coordinates. False if
@@ -103,9 +103,9 @@ public interface ChunkLayout {
      * @return Whether or not the coordinates are valid for chunks
      */
     default boolean isValidChunk(int x, int y, int z) {
-        return x >= this.getSpaceMin().getX() && x <= this.getSpaceMax().getX()
-            && y >= this.getSpaceMin().getY() && y <= this.getSpaceMax().getY()
-            && z >= this.getSpaceMin().getZ() && z <= this.getSpaceMax().getZ();
+        return x >= this.spaceMin().getX() && x <= this.spaceMax().getX()
+            && y >= this.spaceMin().getY() && y <= this.spaceMax().getY()
+            && z >= this.spaceMin().getZ() && z <= this.spaceMax().getZ();
     }
 
     /**

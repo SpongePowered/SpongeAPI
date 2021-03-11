@@ -41,7 +41,7 @@ public interface Statistic {
      *
      * @return Objective criterion
      */
-    Optional<Criterion> getCriterion();
+    Optional<Criterion> criterion();
 
     /**
      * Returns the {@link NumberFormat} used to format the value of this
@@ -49,7 +49,7 @@ public interface Statistic {
      *
      * @return Statistic's number format
      */
-    NumberFormat getFormat();
+    NumberFormat format();
 
     /**
      * Represents a {@link Statistic} instance of a {@link StatisticCategory.Typed}.
@@ -63,6 +63,6 @@ public interface Statistic {
          *
          * @return The catalog type
          */
-        T getType();
+        T type();
     }
 }

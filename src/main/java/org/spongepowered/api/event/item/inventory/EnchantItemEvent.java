@@ -39,14 +39,14 @@ public interface EnchantItemEvent extends InteractContainerEvent {
      *
      * @return the seed
      */
-    int getSeed();
+    int seed();
 
     /**
      * The enchantment option. 1, 2 or 3
      *
      * @return The enchantment option
      */
-    int getOption();
+    int option();
 
     /**
      * Triggers when the enchantment costs for an item are calculated.
@@ -58,28 +58,28 @@ public interface EnchantItemEvent extends InteractContainerEvent {
          *
          * @return the enchantment power
          */
-        int getPower();
+        int power();
 
         /**
          * The itemstack to enchant.
          *
          * @return the itemstack to enchant.
          */
-        ItemStackSnapshot getItem();
+        ItemStackSnapshot item();
 
         /**
          * Returns the original level requirement
          *
          * @return the original level requirement
          */
-        int getOriginalLevelRequirement();
+        int originalLevelRequirement();
 
         /**
          * Returns the level requirement
          *
          * @return the level requirement
          */
-        int getLevelRequirement();
+        int levelRequirement();
 
         /**
          * Sets the new level requirement
@@ -104,7 +104,7 @@ public interface EnchantItemEvent extends InteractContainerEvent {
          *
          * @return the itemstack to enchant.
          */
-        ItemStackSnapshot getItem();
+        ItemStackSnapshot item();
 
         /**
          * The final level requirement from {@link CalculateLevelRequirement}.
@@ -112,7 +112,7 @@ public interface EnchantItemEvent extends InteractContainerEvent {
          *
          * @return the level requirement for the option
          */
-        int getLevelRequirement();
+        int levelRequirement();
 
         /**
          * Returns the original list of enchantments to apply to the item.
@@ -120,7 +120,7 @@ public interface EnchantItemEvent extends InteractContainerEvent {
          *
          * @return the list of enchantments
          */
-        List<Enchantment> getOriginalEnchantments();
+        List<Enchantment> originalEnchantments();
 
         /**
          * Returns the list of enchantments to apply to the item.
@@ -128,7 +128,7 @@ public interface EnchantItemEvent extends InteractContainerEvent {
          *
          * @return the list of enchantments
          */
-        List<Enchantment> getEnchantments();
+        List<Enchantment> enchantments();
 
         /**
          * Sets the list of enchantments to apply to the item.
@@ -152,7 +152,7 @@ public interface EnchantItemEvent extends InteractContainerEvent {
          *
          * @return the slot if the enchanted item.
          */
-        Slot getEnchantingSlot();
+        Slot enchantingSlot();
 
     }
 

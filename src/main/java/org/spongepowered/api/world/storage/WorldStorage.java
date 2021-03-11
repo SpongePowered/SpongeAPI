@@ -49,7 +49,7 @@ public interface WorldStorage {
      *
      * @return An iterator of generated chunks
      */
-    ChunkDataStream getGeneratedChunks();
+    ChunkDataStream generatedChunks();
 
     /**
      * Checks if the given chunk coordinates represented by {@link Vector3i}
@@ -86,7 +86,7 @@ public interface WorldStorage {
      * @param chunkCoords The chunk coordinates
      * @return The data container representing the chunk data, if available
      */
-    CompletableFuture<Optional<DataContainer>> getChunkData(Vector3i chunkCoords);
+    CompletableFuture<Optional<DataContainer>> chunkData(Vector3i chunkCoords);
 
     /**
      * Gets the {@link WorldProperties} of this storage. In the vanilla storage
@@ -94,6 +94,6 @@ public interface WorldStorage {
      *
      * @return The world properties
      */
-    WorldProperties getWorldProperties();
+    WorldProperties worldProperties();
 
 }

@@ -73,6 +73,6 @@ public interface TransactionalPacketRegistry extends PacketRegistry {
      * @param <R> The type of the response packet
      * @return The transactional packet binding, if found
      */
-    <P extends RequestPacket<R>, R extends Packet> Optional<TransactionalPacketBinding<P, R>> getTransactionalBinding(
+    <P extends RequestPacket<R>, R extends Packet> Optional<TransactionalPacketBinding<P, R>> transactionalBinding(
             Class<P> requestPacketType);
 }

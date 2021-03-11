@@ -59,34 +59,34 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
         ServerLocationCreator, WeatherUniverse.Mutable {
 
     @Override
-    Server getEngine();
+    Server engine();
 
     @Override
-    ServerWorldProperties getProperties();
+    ServerWorldProperties properties();
 
-    ChunkGenerator getGenerator();
+    ChunkGenerator generator();
 
     WorldTemplate asTemplate();
 
     /**
-     * @see ServerWorldProperties#getKey()
+     * @see ServerWorldProperties#key()
      * @return The key
      */
-    ResourceKey getKey();
+    ResourceKey key();
 
     /**
-     * @see ServerWorldProperties#getUniqueId()
+     * @see ServerWorldProperties#uniqueId()
      * @return The unique id
      */
     @Override
-    default UUID getUniqueId() {
-        return this.getProperties().getUniqueId();
+    default UUID uniqueId() {
+        return this.properties().uniqueId();
     }
 
     @Override
-    default Chunk getChunkAtBlock(final int bx, final int by, final int bz) {
-        final Vector3i chunkPos = this.getEngine().getChunkLayout().forceToChunk(bx, by, bz);
-        return this.getChunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
+    default Chunk chunkAtBlock(final int bx, final int by, final int bz) {
+        final Vector3i chunkPos = this.engine().chunkLayout().forceToChunk(bx, by, bz);
+        return this.chunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
     }
 
     /**
@@ -227,14 +227,14 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
      *
      * @return The path
      */
-    Path getDirectory();
+    Path directory();
 
     /**
      * Gets the associated {@link WorldStorage} persisting this world.
      *
      * @return The associated world storage
      */
-    WorldStorage getWorldStorage();
+    WorldStorage worldStorage();
 
     /**
      * Instructs the world to save all data.
@@ -262,14 +262,14 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
     void triggerExplosion(Explosion explosion);
 
     @Override
-    Collection<ServerPlayer> getPlayers();
+    Collection<ServerPlayer> players();
 
     /**
      * Gets all the {@link Entity entities} currently loaded in this world.
      *
      * @return The entities
      */
-    Collection<? extends Entity> getEntities();
+    Collection<? extends Entity> entities();
 
     /**
      * Gets all {@link Raid}s occuring in this {@link ServerWorld}.
@@ -279,7 +279,7 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
      *
      * @return All the raids in this world.
      */
-    Collection<Raid> getRaids();
+    Collection<Raid> raids();
 
     /**
      * Gets the {@link Raid} occurring at a position in the world.
@@ -287,5 +287,5 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
      * @param blockPosition The location of the Raid.
      * @return The raid at that location, if present
      */
-    Optional<Raid> getRaidAt(Vector3i blockPosition);
+    Optional<Raid> raidAt(Vector3i blockPosition);
 }

@@ -78,6 +78,6 @@ public class MapDecorationOrientations {
 	private MapDecorationOrientations() { throw new AssertionError("You should not be attempting to instantiate this class."); }
 
 	private static DefaultedRegistryReference<MapDecorationOrientation> key(final ResourceKey location) {
-		return RegistryKey.of(RegistryTypes.MAP_DECORATION_ORIENTATION, location).asDefaultedReference(() -> Sponge.getGame().registries());
+		return RegistryKey.of(RegistryTypes.MAP_DECORATION_ORIENTATION, location).asDefaultedReference(() -> Sponge.game().registries());
 	}
 }

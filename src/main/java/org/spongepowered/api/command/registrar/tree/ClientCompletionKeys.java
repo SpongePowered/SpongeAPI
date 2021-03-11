@@ -120,6 +120,6 @@ public final class ClientCompletionKeys {
     }
 
     private static <T extends CommandTreeNode<T>> DefaultedRegistryReference<ClientCompletionKey<T>> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.CLIENT_COMPLETION_KEY, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.CLIENT_COMPLETION_KEY, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

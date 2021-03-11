@@ -43,14 +43,14 @@ public interface TabList {
      *
      * @return The associated player
      */
-    ServerPlayer getPlayer();
+    ServerPlayer player();
 
     /**
      * Gets this list's header.
      *
      * @return The current header
      */
-    Optional<Component> getHeader();
+    Optional<Component> header();
 
     /**
      * Sets this list's header.
@@ -68,7 +68,7 @@ public interface TabList {
      *
      * @return The current footer
      */
-    Optional<Component> getFooter();
+    Optional<Component> footer();
 
     /**
      * Sets this list's footer.
@@ -104,7 +104,7 @@ public interface TabList {
      *
      * @return The entries on the list
      */
-    Collection<TabListEntry> getEntries();
+    Collection<TabListEntry> entries();
 
     /**
      * Gets a {@link TabListEntry} matching the specified unique id.
@@ -112,7 +112,7 @@ public interface TabList {
      * @param uniqueId The unique id to search for
      * @return The entry if present, otherwise {@link Optional#empty()}
      */
-    Optional<TabListEntry> getEntry(UUID uniqueId);
+    Optional<TabListEntry> entry(UUID uniqueId);
 
     /**
      * Adds an entry to the list.

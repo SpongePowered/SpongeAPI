@@ -40,19 +40,19 @@ public interface Portal {
      *
      * @return The type
      */
-    PortalType getType();
+    PortalType type();
 
     /**
      * The {@link ServerLocation location} this portal is at.
      *
      * @return The origin
      */
-    ServerLocation getOrigin();
+    ServerLocation origin();
 
     /**
      * The {@link ServerLocation location} this portal goes to.
      *
      * @return The destination or {@link Optional#empty()} if unknown
      */
-    Optional<ServerLocation> getDestination();
+    Optional<ServerLocation> destination();
 }

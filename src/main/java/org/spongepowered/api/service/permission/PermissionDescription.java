@@ -116,7 +116,7 @@ public interface PermissionDescription {
      *
      * @return The permission id
      */
-    String getId();
+    String id();
 
     /**
      * Gets a short description of the linked permission.
@@ -130,7 +130,7 @@ public interface PermissionDescription {
      *
      * @return A short description of the linked permission
      */
-    Optional<Component> getDescription();
+    Optional<Component> description();
 
     /**
      * Gets the owning plugin the permission belongs to.
@@ -140,7 +140,7 @@ public interface PermissionDescription {
      *
      * @return The owning plugin the permission belongs to
      */
-    Optional<PluginContainer> getOwner();
+    Optional<PluginContainer> owner();
 
     /**
      * Gets all subjects that have this permission set in the given collection.
@@ -149,13 +149,13 @@ public interface PermissionDescription {
      * assigned, use {@link PermissionService#SUBJECTS_ROLE_TEMPLATE}.
      *
      * <p>This method is equivalent to calling
-     * {@link SubjectCollection#getAllWithPermission(String)} for the given
-     * collection, using {@link #getId()} as the permission.</p>
+     * {@link SubjectCollection#allWithPermission(String)} for the given
+     * collection, using {@link #id()} as the permission.</p>
      *
      * @param collectionIdentifier The subject collection to query
      * @return A reference to any subject known to have this permission
      *         set, and the value this permission is set to
-     * @see SubjectCollection#getAllWithPermission(String)
+     * @see SubjectCollection#allWithPermission(String)
      */
     CompletableFuture<Map<SubjectReference, Boolean>> findAssignedSubjects(String collectionIdentifier);
 
@@ -167,17 +167,17 @@ public interface PermissionDescription {
      * assigned, use {@link PermissionService#SUBJECTS_ROLE_TEMPLATE}.</p>
      *
      * <p>This method is equivalent to calling
-     * {@link SubjectCollection#getLoadedWithPermission(String)} for the given
-     * collection, using {@link #getId()} as the permission.</p>
+     * {@link SubjectCollection#loadedWithPermission(String)} for the given
+     * collection, using {@link #id()} as the permission.</p>
      *
      * <p>This method will return an empty map if the given collection is not
      * loaded or does not exist.</p>
      *
      * @param collectionIdentifier The subject collection to query
      * @return An immutable map of subjects that have this permission set
-     * @see SubjectCollection#getLoadedWithPermission(String)
+     * @see SubjectCollection#loadedWithPermission(String)
      */
-    Map<Subject, Boolean> getAssignedSubjects(String collectionIdentifier);
+    Map<Subject, Boolean> assignedSubjects(String collectionIdentifier);
 
     /**
      * A builder for permission descriptions.
@@ -187,7 +187,7 @@ public interface PermissionDescription {
         /**
          * Sets the permission id for the description this builder creates.
          *
-         * <p>See {@link PermissionDescription#getId()} for format
+         * <p>See {@link PermissionDescription#id()} for format
          * specifications.</p>
          *
          * @param permissionId The permission id

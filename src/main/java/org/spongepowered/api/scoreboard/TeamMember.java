@@ -51,6 +51,6 @@ public interface TeamMember {
      *
      * @return an {@link Component} representing this team member
      */
-    Component getTeamRepresentation();
+    Component teamRepresentation();
 
 }

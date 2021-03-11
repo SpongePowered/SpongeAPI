@@ -42,14 +42,14 @@ public interface CraftItemEvent extends ChangeInventoryEvent {
      *
      * @return The crafting inventory
      */
-    CraftingInventory getCraftingInventory();
+    CraftingInventory craftingInventory();
 
     /**
      * Returns the {@link Recipe} used for crafting
      *
      * @return The recipe
      */
-    Optional<CraftingRecipe> getRecipe();
+    Optional<CraftingRecipe> recipe();
 
     /**
      * This event is fired before the item is taken out of the
@@ -63,7 +63,7 @@ public interface CraftItemEvent extends ChangeInventoryEvent {
          *
          * @return The output SlotTransaction
          */
-        SlotTransaction getPreview();
+        SlotTransaction preview();
     }
 
     /**
@@ -76,7 +76,7 @@ public interface CraftItemEvent extends ChangeInventoryEvent {
          *
          * @return The crafting transaction
          */
-        ItemStackSnapshot getCrafted();
+        ItemStackSnapshot crafted();
 
         /**
          * Returns the crafting output Slot.
@@ -84,6 +84,6 @@ public interface CraftItemEvent extends ChangeInventoryEvent {
          * @return The crafting output Slot
          */
         @Override
-        Optional<Slot> getSlot();
+        Optional<Slot> slot();
     }
 }

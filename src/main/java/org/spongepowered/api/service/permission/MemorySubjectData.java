@@ -77,7 +77,7 @@ public class MemorySubjectData implements SubjectData {
     }
 
     @Override
-    public Subject getSubject() {
+    public Subject subject() {
         return this.subject;
     }
 
@@ -87,7 +87,7 @@ public class MemorySubjectData implements SubjectData {
     }
 
     @Override
-    public Map<Set<Context>, Map<String, Boolean>> getAllPermissions() {
+    public Map<Set<Context>, Map<String, Boolean>> allPermissions() {
         ImmutableMap.Builder<Set<Context>, Map<String, Boolean>> ret = ImmutableMap.builder();
         for (Map.Entry<Set<Context>, NodeTree> ent : this.permissions.entrySet()) {
             ret.put(ent.getKey(), ent.getValue().asMap());
@@ -103,13 +103,13 @@ public class MemorySubjectData implements SubjectData {
      * @param contexts The contexts to get a node tree for
      * @return The node tree
      */
-    public NodeTree getNodeTree(Set<Context> contexts) {
+    public NodeTree nodeTree(Set<Context> contexts) {
         NodeTree perms = this.permissions.get(Objects.requireNonNull(contexts, "contexts"));
         return perms == null ? NodeTree.of(ImmutableMap.of()) : perms;
     }
 
     @Override
-    public Map<String, Boolean> getPermissions(Set<Context> contexts) {
+    public Map<String, Boolean> permissions(Set<Context> contexts) {
         NodeTree perms = this.permissions.get(Objects.requireNonNull(contexts, "contexts"));
         return perms == null ? ImmutableMap.of() : perms.asMap();
     }
@@ -160,12 +160,12 @@ public class MemorySubjectData implements SubjectData {
     }
 
     @Override
-    public Map<Set<Context>, List<SubjectReference>> getAllParents() {
+    public Map<Set<Context>, List<SubjectReference>> allParents() {
         return ImmutableMap.copyOf(this.parents);
     }
 
     @Override
-    public List<SubjectReference> getParents(Set<Context> contexts) {
+    public List<SubjectReference> parents(Set<Context> contexts) {
         return this.parents.getOrDefault(Objects.requireNonNull(contexts, "contexts"), ImmutableList.of());
     }
 
@@ -241,12 +241,12 @@ public class MemorySubjectData implements SubjectData {
     }
 
     @Override
-    public Map<Set<Context>, Map<String, String>> getAllOptions() {
+    public Map<Set<Context>, Map<String, String>> allOptions() {
         return ImmutableMap.copyOf(this.options);
     }
 
     @Override
-    public Map<String, String> getOptions(Set<Context> contexts) {
+    public Map<String, String> options(Set<Context> contexts) {
         return this.options.getOrDefault(Objects.requireNonNull(contexts, "contexts"), ImmutableMap.of());
     }
 

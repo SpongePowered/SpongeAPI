@@ -31,8 +31,8 @@ public abstract class AbstractGoalEvent extends AbstractEvent implements GoalEve
 
     @Override
     public void init() {
-        if (this.getGoal().getOwner() != this.getAgent()) {
-            throw new IllegalArgumentException(String.format("The target entity '%s' is not the owner of the goal '%s'!", this.getAgent(), this.getGoal()));
+        if (this.goal().owner() != this.agent()) {
+            throw new IllegalArgumentException(String.format("The target entity '%s' is not the owner of the goal '%s'!", this.agent(), this.goal()));
         }
     }
 }

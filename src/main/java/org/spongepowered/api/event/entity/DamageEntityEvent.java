@@ -76,7 +76,7 @@ import java.util.function.DoubleUnaryOperator;
  * a {@link DamageSource} has various "states" such as:
  * {@link DamageSource#isAbsolute()}, or {@link DamageSource#isBypassingArmor()}.
  * Quite simply, the {@link DamageSource} will always be the "first" element
- * within a {@link Cause} that can be retrieved from {@link #getCause()}.</p>
+ * within a {@link Cause} that can be retrieved from {@link #cause()}.</p>
  *
  * <p>Next, any additional "aides" in attacking the {@link Entity} will
  * be included in order of "priority of relation" to "attacking" the entity. In
@@ -109,7 +109,7 @@ import java.util.function.DoubleUnaryOperator;
  *
  * <p>Note that due to the mechanics of the game, {@link DamageModifier}s
  * are always ordered in the order of which they apply their modifier onto
- * the "base" damage. The implementation for {@link #getFinalDamage()} can be
+ * the "base" damage. The implementation for {@link #finalDamage()} can be
  * exemplified like so:</p>
  *
  * <blockquote><pre>{@code double damage = this.baseDamage;<br />for
@@ -135,7 +135,7 @@ import java.util.function.DoubleUnaryOperator;
  *
  * <p>Note that this event is intended for processing incoming damage to
  * an {@link Entity} prior to any {@link DamageModifier}s associated with
- * the {@link #getEntity()}. The {@link DamageEntityEvent} is used
+ * the {@link #entity()}. The {@link DamageEntityEvent} is used
  * to process the various {@link DamageModifier}s of which originate or are
  * associated with the targeted {@link Entity}.</p>
  */
@@ -147,7 +147,7 @@ public interface DamageEntityEvent extends Event, Cancellable {
      *
      * @return The entity
      */
-    Entity getEntity();
+    Entity entity();
 
     /**
      * Gets the original "raw" amount of damage to deal to the targeted
@@ -155,18 +155,18 @@ public interface DamageEntityEvent extends Event, Cancellable {
      *
      * @return The original "raw" damage
      */
-    double getOriginalDamage();
+    double originalDamage();
 
     /**
      * Gets the original "final" amount of damage after all original
-     * {@link DamageModifier}s are applied to {@link #getOriginalDamage()}.
+     * {@link DamageModifier}s are applied to {@link #originalDamage()}.
      * The "final" damage is considered the amount of health being lost by
      * the {@link Entity}, if health is tracked.
      *
      * @return The final amount of damage to originally deal
      */
     @PropertySettings(requiredParameter = false, generateMethods = false)
-    double getOriginalFinalDamage();
+    double originalFinalDamage();
 
     /**
      * Gets an {@link ImmutableMap} of all original {@link DamageModifier}s
@@ -176,18 +176,18 @@ public interface DamageEntityEvent extends Event, Cancellable {
      * @return An immutable map of the original modified damages
      */
     @PropertySettings(requiredParameter = false, generateMethods = false)
-    Map<DamageModifier, Double> getOriginalDamages();
+    Map<DamageModifier, Double> originalDamages();
 
     /**
      * Gets the original damage for the provided {@link DamageModifier}. If
      * the provided {@link DamageModifier} was not included in
-     * {@link #getOriginalDamages()}, an {@link IllegalArgumentException} is
+     * {@link #originalDamages()}, an {@link IllegalArgumentException} is
      * thrown.
      *
      * @param damageModifier The original damage modifier
      * @return The original damage change
      */
-    double getOriginalModifierDamage(DamageModifier damageModifier);
+    double originalModifierDamage(DamageModifier damageModifier);
 
     /**
      * Gets the original {@link List} of {@link DamageModifier} to
@@ -195,7 +195,7 @@ public interface DamageEntityEvent extends Event, Cancellable {
      *
      * @return The list of damage modifier functions
      */
-    List<DamageFunction> getOriginalFunctions();
+    List<DamageFunction> originalFunctions();
 
     /**
      * Gets the "base" damage to deal to the targeted {@link Entity}. The
@@ -205,7 +205,7 @@ public interface DamageEntityEvent extends Event, Cancellable {
      * @return The base damage
      */
     @PropertySettings(requiredParameter = false, generateMethods = false)
-    double getBaseDamage();
+    double baseDamage();
 
     /**
      * Sets the "base" damage to deal to the targeted {@link Entity}. The
@@ -219,14 +219,14 @@ public interface DamageEntityEvent extends Event, Cancellable {
     /**
      * Gets the final damage that will be passed into the proceeding
      * {@link DamageEntityEvent}. The final damage is the end result of the
-     * {@link #getBaseDamage()} being applied in {@link DoubleUnaryOperator#applyAsDouble(double)}
+     * {@link #baseDamage()} being applied in {@link DoubleUnaryOperator#applyAsDouble(double)}
      * available from all the {@link Tuple}s of {@link DamageModifier} to
-     * {@link DamageFunction} in {@link #getOriginalFunctions()}.
+     * {@link DamageFunction} in {@link #originalFunctions()}.
      *
      * @return The final damage to deal
      */
     @PropertySettings(requiredParameter = false, generateMethods = false)
-    double getFinalDamage();
+    double finalDamage();
 
     /**
      * Checks whether the provided {@link DamageModifier} is applicable to the
@@ -245,7 +245,7 @@ public interface DamageEntityEvent extends Event, Cancellable {
      * @param damageModifier The damage modifier to get the damage for
      * @return The modifier
      */
-    double getDamage(DamageModifier damageModifier);
+    double damage(DamageModifier damageModifier);
 
     /**
      * Sets the provided {@link DamageFunction} to be used for the given
@@ -254,7 +254,7 @@ public interface DamageEntityEvent extends Event, Cancellable {
      * the existing function. If there is no {@link Tuple} for the
      * {@link DamageModifier}, a new one is created and added to the end
      * of the list of {@link DoubleUnaryOperator}s to be applied to the
-     * {@link #getBaseDamage()}.
+     * {@link #baseDamage()}.
      *
      * <p>If needing to create a custom {@link DamageModifier} is required,
      * usage of the {@link Builder} is recommended.</p>
@@ -298,12 +298,12 @@ public interface DamageEntityEvent extends Event, Cancellable {
      * @return A list of damage modifiers to functions
      */
     @PropertySettings(requiredParameter = false, generateMethods = false)
-    List<DamageFunction> getModifiers();
+    List<DamageFunction> modifiers();
 
     /**
      * Returns whether or not this event will cause the entity to die if the
      * event is not cancelled. Only supported for living entities, returns false
-     * if {@link #getEntity()} is not a living entity.
+     * if {@link #entity()} is not a living entity.
      *
      * @return Whether the entity will die
      */

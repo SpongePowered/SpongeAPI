@@ -43,6 +43,6 @@ public interface CarriedInventory<C extends Carrier> extends Inventory {
      *
      * @return This inventory's carrier
      */
-    Optional<C> getCarrier();
+    Optional<C> carrier();
 
 }

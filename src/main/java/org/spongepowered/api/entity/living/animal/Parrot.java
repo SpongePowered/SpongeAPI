@@ -38,7 +38,7 @@ public interface Parrot extends TameableAnimal, Sittable {
      * @return The type of parrot
      * @see org.spongepowered.api.data.type.ParrotTypes
      */
-    default Value.Mutable<ParrotType> type() {
+    default Value.Mutable<ParrotType> parrotType() {
         return this.requireValue(Keys.PARROT_TYPE).asMutable();
     }
 

@@ -45,7 +45,7 @@ public interface ItemStackSnapshot extends HoverEventSource<HoverEvent.ShowItem>
      * @return The empty item stack snapshot
      */
     static ItemStackSnapshot empty() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).empty();
+        return Sponge.game().factoryProvider().provide(Factory.class).empty();
     }
 
     /**
@@ -54,7 +54,7 @@ public interface ItemStackSnapshot extends HoverEventSource<HoverEvent.ShowItem>
      *
      * @return The item type
      */
-    ItemType getType();
+    ItemType type();
 
     /**
      * Gets the quantity of items in this the {@link ItemStack} this
@@ -62,10 +62,10 @@ public interface ItemStackSnapshot extends HoverEventSource<HoverEvent.ShowItem>
      *
      * @return The current stack size
      */
-    int getQuantity();
+    int quantity();
 
     /**
-     * Returns true if {@link #getQuantity()} is zero and therefore this
+     * Returns true if {@link #quantity()} is zero and therefore this
      * ItemStackSnapshot is empty.
      *
      * @return True if this ItemStackSnapshot is empty

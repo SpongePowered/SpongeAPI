@@ -35,15 +35,15 @@ import org.spongepowered.math.vector.Vector3d;
 public interface Transform {
 
     static Transform of(Vector3d position) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(position, Vector3d.ZERO, Vector3d.ONE);
+        return Sponge.game().factoryProvider().provide(Factory.class).create(position, Vector3d.ZERO, Vector3d.ONE);
     }
 
     static Transform of(Vector3d position, Vector3d rotation) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(position, rotation, Vector3d.ONE);
+        return Sponge.game().factoryProvider().provide(Factory.class).create(position, rotation, Vector3d.ONE);
     }
 
     static Transform of(Vector3d position, Vector3d rotation, Vector3d scale) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(position, rotation, scale);
+        return Sponge.game().factoryProvider().provide(Factory.class).create(position, rotation, scale);
     }
 
     /**
@@ -51,7 +51,7 @@ public interface Transform {
      *
      * @return The coordinates
      */
-    Vector3d getPosition();
+    Vector3d position();
 
     /**
      * Creates a copy of this transform while setting the position of the new
@@ -74,7 +74,7 @@ public interface Transform {
      *
      * @return The rotation vector
      */
-    Vector3d getRotation();
+    Vector3d rotation();
 
     /**
      * Creates a copy of this transform and sets the rotation as a quaternion.
@@ -110,35 +110,35 @@ public interface Transform {
      *
      * @return The rotation
      */
-    Quaterniond getRotationAsQuaternion();
+    Quaterniond rotationAsQuaternion();
 
     /**
      * Gets the pitch component of this transform rotation.
      *
      * @return The pitch
      */
-    double getPitch();
+    double pitch();
 
     /**
      * Gets the yaw component of this transform rotation.
      *
      * @return The yaw
      */
-    double getYaw();
+    double yaw();
 
     /**
      * Gets the roll component of this transform rotation.
      *
      * @return The roll
      */
-    double getRoll();
+    double roll();
 
     /**
      * Gets the scale of the transform for each axis.
      *
      * @return The scale
      */
-    Vector3d getScale();
+    Vector3d scale();
 
     /**
      * Creates a copy of this transform and sets the scale for each axis.

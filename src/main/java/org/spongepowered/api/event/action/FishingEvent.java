@@ -48,7 +48,7 @@ public interface FishingEvent extends Event {
      *
      * @return The fish hook
      */
-    FishingBobber getFishHook();
+    FishingBobber fishHook();
 
     /**
      * An event where the {@link FishingBobber} is cast.
@@ -73,7 +73,7 @@ public interface FishingEvent extends Event {
          *
          * @return The entity
          */
-        Entity getEntity();
+        Entity entity();
     }
 
     /**
@@ -96,7 +96,7 @@ public interface FishingEvent extends Event {
          *
          * @return The transactions
          */
-        List<Transaction<ItemStackSnapshot>> getTransactions();
+        List<Transaction<ItemStackSnapshot>> transactions();
 
     }
 }

@@ -38,15 +38,15 @@ public interface VolumeElement<V extends Volume, T> {
 
     static <W extends Volume, T> VolumeElement<W, T> of(final Supplier<W> volume, final Supplier<? extends T> type, final Vector3i position) {
         return new VolumeElement<W, T>() {
-            public W getVolume() {
+            public W volume() {
                 return volume.get();
             }
 
-            public Vector3i getPosition() {
+            public Vector3i position() {
                 return position;
             }
 
-            public T getType() {
+            public T type() {
                 return type.get();
             }
 
@@ -68,9 +68,9 @@ public interface VolumeElement<V extends Volume, T> {
                     return false;
                 }
                 final VolumeElement<@NonNull ?, ?> that = (VolumeElement<@NonNull ?, ?>) o;
-                return volume.get().equals(that.getVolume()) &&
-                    type.get().equals(that.getType()) &&
-                    position.equals(that.getPosition());
+                return volume.get().equals(that.volume()) &&
+                    type.get().equals(that.type()) &&
+                    position.equals(that.position());
             }
 
             @Override
@@ -101,10 +101,10 @@ public interface VolumeElement<V extends Volume, T> {
      *
      * @return
      */
-    V getVolume();
+    V volume();
 
-    Vector3i getPosition();
+    Vector3i position();
 
-    T getType();
+    T type();
 
 }

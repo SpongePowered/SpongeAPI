@@ -62,6 +62,6 @@ public final class PlaceholderParsers {
     }
 
     private static DefaultedRegistryReference<PlaceholderParser> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.PLACEHOLDER_PARSER, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.PLACEHOLDER_PARSER, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

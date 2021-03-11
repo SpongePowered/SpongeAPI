@@ -56,7 +56,7 @@ public interface EconomyService extends ContextualService<Account> {
      *
      * @see Currency
      */
-    Currency getDefaultCurrency();
+    Currency defaultCurrency();
 
     /**
      * Returns whether a {@link UniqueAccount} exists with the specified
@@ -92,7 +92,7 @@ public interface EconomyService extends ContextualService<Account> {
      * @param uuid The {@link UUID} of the account to get.
      * @return The {@link UniqueAccount}, if available.
      */
-    Optional<UniqueAccount> getOrCreateAccount(UUID uuid);
+    Optional<UniqueAccount> orCreateAccount(UUID uuid);
 
     /**
      * Gets the {@link VirtualAccount} with the specified identifier.
@@ -108,7 +108,7 @@ public interface EconomyService extends ContextualService<Account> {
      * @param identifier The identifier of the account to get.
      * @return The {@link Account}, if available.
      */
-    Optional<Account> getOrCreateAccount(String identifier);
+    Optional<Account> orCreateAccount(String identifier);
 
     /**
      * Gets a {@link Stream} of all available {@link UniqueAccount}s.
@@ -122,7 +122,7 @@ public interface EconomyService extends ContextualService<Account> {
      *
      * @return A Collection of all {@link UniqueAccount}s.
      */
-    Collection<UniqueAccount> getUniqueAccounts();
+    Collection<UniqueAccount> uniqueAccounts();
 
     /**
      * Gets a {@link Stream} of all available {@link VirtualAccount}s.
@@ -136,7 +136,7 @@ public interface EconomyService extends ContextualService<Account> {
      *
      * @return A Collection of all {@link VirtualAccount}s.
      */
-    Collection<VirtualAccount> getVirtualAccounts();
+    Collection<VirtualAccount> virtualAccounts();
 
     /**
      * Deletes the account for the user with the specified {@link UUID}.

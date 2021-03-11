@@ -39,7 +39,7 @@ public class InvocationCommandException extends CommandException {
      * @param message The detail message
      * @param cause The cause
      */
-    public InvocationCommandException(Component message, Throwable cause) {
+    public InvocationCommandException(final Component message, final Throwable cause) {
         super(message, cause);
     }
 

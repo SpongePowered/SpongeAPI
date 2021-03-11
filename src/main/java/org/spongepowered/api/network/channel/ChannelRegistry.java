@@ -54,12 +54,12 @@ public interface ChannelRegistry {
      * @return A new or existing channel binding
      * @throws IllegalStateException if the existing channel is not of the given type
      */
-    <C extends Channel> C getOfType(ResourceKey channelKey, Class<C> channelType);
+    <C extends Channel> C ofType(ResourceKey channelKey, Class<C> channelType);
 
     /**
      * Gets an immutable collection of all the channels that are registered.
      *
      * @return The channels
      */
-    Collection<Channel> getChannels();
+    Collection<Channel> channels();
 }

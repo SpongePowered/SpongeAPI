@@ -46,7 +46,7 @@ public interface TabListEntry {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -54,21 +54,21 @@ public interface TabListEntry {
      *
      * @return The tab list that owns this entry
      */
-    TabList getList();
+    TabList list();
 
     /**
      * Gets the {@link GameProfile} associated with this entry.
      *
      * @return The profile associated with this entry
      */
-    GameProfile getProfile();
+    GameProfile profile();
 
     /**
      * Gets this entry's display name.
      *
      * @return This entry's display name
      */
-    Optional<Component> getDisplayName();
+    Optional<Component> displayName();
 
     /**
      * Sets this entry's display name.
@@ -83,7 +83,7 @@ public interface TabListEntry {
      *
      * @return The latency for this entry
      */
-    int getLatency();
+    int latency();
 
     /**
      * Sets the latency for this entry.
@@ -135,7 +135,7 @@ public interface TabListEntry {
      *
      * @return The gamemode this entry is in
      */
-    GameMode getGameMode();
+    GameMode gameMode();
 
     /**
      * Sets this entry's gamemode.

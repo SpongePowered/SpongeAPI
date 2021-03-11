@@ -54,30 +54,30 @@ public abstract class AbstractAttackEntityEvent extends AbstractModifierEvent<Da
     }
 
     @Override
-    public final double getOriginalModifierDamage(final DamageModifier damageModifier) {
+    public final double originalModifierDamage(final DamageModifier damageModifier) {
         Objects.requireNonNull(damageModifier, "Damage modifier cannot be null!");
         for (final Tuple<DamageModifier, Double> tuple : this.originalModifiers) {
-            if (tuple.getFirst().equals(damageModifier)) {
-                return tuple.getSecond();
+            if (tuple.first().equals(damageModifier)) {
+                return tuple.second();
             }
         }
         throw new IllegalArgumentException("The provided damage modifier is not applicable: " + damageModifier.toString());
     }
 
     @Override
-    public final double getOriginalFinalDamage() {
+    public final double originalFinalDamage() {
         return this.originalFinalAmount;
     }
 
     @Override
-    public final Map<DamageModifier, Double> getOriginalDamages() {
+    public final Map<DamageModifier, Double> originalDamages() {
 
         return this.originalModifierMap;
     }
 
     @Override
-    public final double getFinalOutputDamage() {
-        return this.getFinalAmount(this.baseDamage);
+    public final double finalOutputDamage() {
+        return this.finalAmount(this.baseDamage);
     }
 
     @Override
@@ -86,7 +86,7 @@ public abstract class AbstractAttackEntityEvent extends AbstractModifierEvent<Da
     }
 
     @Override
-    public final double getOutputDamage(final DamageModifier damageModifier) {
+    public final double outputDamage(final DamageModifier damageModifier) {
         if (!this.modifiers.containsKey(Objects.requireNonNull(damageModifier, "Damage Modifier cannot be null!"))) {
             throw new IllegalArgumentException("The provided damage modifier is not applicable: " + damageModifier.toString());
         }
@@ -101,7 +101,7 @@ public abstract class AbstractAttackEntityEvent extends AbstractModifierEvent<Da
         boolean addAtEnd = true;
         for (final Iterator<DamageFunction> iterator = this.modifierFunctions.iterator(); iterator.hasNext(); ) {
             final ModifierFunction<DamageModifier> tuple = iterator.next();
-            if (tuple.getModifier().equals(damageModifier)) {
+            if (tuple.modifier().equals(damageModifier)) {
                 iterator.remove();
                 addAtEnd = false;
                 break;
@@ -123,10 +123,10 @@ public abstract class AbstractAttackEntityEvent extends AbstractModifierEvent<Da
         int indexToAddBefore = -1;
         int index = 0;
         for (final ModifierFunction<DamageModifier> tuple : this.modifierFunctions) {
-            if (tuple.getModifier().equals(damageModifier)) {
+            if (tuple.modifier().equals(damageModifier)) {
                 throw new IllegalArgumentException("Cannot add a duplicate modifier");
             }
-            if (before.contains(tuple.getModifier().getType())) {
+            if (before.contains(tuple.modifier().type())) {
                 indexToAddBefore = index;
             }
             index++;
@@ -147,10 +147,10 @@ public abstract class AbstractAttackEntityEvent extends AbstractModifierEvent<Da
         int indexToAddAfter = -1;
         int index = 0;
         for (final ModifierFunction<DamageModifier> tuple : this.modifierFunctions) {
-            if (tuple.getModifier().equals(damageModifier)) {
+            if (tuple.modifier().equals(damageModifier)) {
                 throw new IllegalArgumentException("Cannot add a duplicate modifier");
             }
-            if (after.contains(tuple.getModifier().getType())) {
+            if (after.contains(tuple.modifier().type())) {
                 indexToAddAfter = index;
             }
             index++;
@@ -165,7 +165,7 @@ public abstract class AbstractAttackEntityEvent extends AbstractModifierEvent<Da
     }
 
     @Override
-    public double getBaseOutputDamage() {
+    public double baseOutputDamage() {
         return this.baseDamage;
     }
 
@@ -181,13 +181,13 @@ public abstract class AbstractAttackEntityEvent extends AbstractModifierEvent<Da
     }
 
     @Override
-    public List<DamageFunction> getModifiers() {
+    public List<DamageFunction> modifiers() {
         final ImmutableList.Builder<DamageFunction> builder = ImmutableList.builder();
         for (final ModifierFunction<DamageModifier> entry : this.modifierFunctions) {
             if (entry instanceof DamageFunction) {
                 builder.add((DamageFunction) entry);
             } else {
-                builder.add(new DamageFunction(entry.getModifier(), entry.getFunction()));
+                builder.add(new DamageFunction(entry.modifier(), entry.function()));
             }
         }
         return builder.build();

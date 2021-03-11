@@ -34,12 +34,12 @@ public interface RangedAttributeType extends AttributeType {
      *
      * @return The minimum value an attribute could hold.
      */
-    double getMinimumValue();
+    double minimumValue();
 
     /**
      * Gets the maximum value an attribute of this type can hold.
      *
      * @return The maximum value an attribute could hold.
      */
-    double getMaximumValue();
+    double maximumValue();
 }

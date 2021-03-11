@@ -25,7 +25,6 @@
 package org.spongepowered.api.map.decoration;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.persistence.DataSerializable;
@@ -64,7 +63,7 @@ public interface MapDecoration extends DataSerializable {
      * @return A {@link Builder}
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -88,7 +87,7 @@ public interface MapDecoration extends DataSerializable {
      *
      * @return The {@link MapDecorationType}
      */
-    MapDecorationType getType();
+    MapDecorationType type();
 
     /**
      * Gets the position on a {@link MapInfo} that this decoration will be
@@ -96,7 +95,7 @@ public interface MapDecoration extends DataSerializable {
      *
      * @return Vector2i Co-ordinate position in world
      */
-    Vector2i getPosition();
+    Vector2i position();
 
     /**
      * Sets the position of where the MapDecoration is on Maps,
@@ -121,7 +120,7 @@ public interface MapDecoration extends DataSerializable {
      * Gets the {@link MapDecorationOrientation} the Map Decoration is pointing in
      * @return MapDecorationOrientation
      */
-    MapDecorationOrientation getRotation();
+    MapDecorationOrientation rotation();
 
     /**
      * Gets whether this {@link MapDecoration} is persistent

@@ -44,7 +44,7 @@ public interface PlaceholderParser extends DefaultedRegistryValue {
      * @return The {@link Builder}
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**

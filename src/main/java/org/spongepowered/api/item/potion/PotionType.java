@@ -36,5 +36,5 @@ import java.util.List;
 @CatalogedBy(PotionTypes.class)
 public interface PotionType extends DefaultedRegistryValue {
 
-    List<PotionEffect> getEffects();
+    List<PotionEffect> effects();
 }

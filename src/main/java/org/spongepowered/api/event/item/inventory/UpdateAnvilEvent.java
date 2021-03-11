@@ -43,41 +43,41 @@ public interface UpdateAnvilEvent extends Event, Cancellable {
      *
      * @return The inventory
      */
-    Inventory getInventory();
+    Inventory inventory();
 
     /**
      * Returns the new item name.
      *
      * @return The new item name
      */
-    String getItemName();
+    String itemName();
 
     /**
      * Returns the left input item.
      *
      * @return The left input item
      */
-    ItemStackSnapshot getLeft();
+    ItemStackSnapshot left();
 
     /**
      * Returns the right input item.
      *
      * @return The right input item
      */
-    ItemStackSnapshot getRight();
+    ItemStackSnapshot right();
 
     /**
      * Returns the transaction for the resulting item.
      *
      * @return The transaction for the resulting item.
      */
-    Transaction<ItemStackSnapshot> getResult();
+    Transaction<ItemStackSnapshot> result();
 
     /**
      * Returns the transaction for the repair costs.
      *
      * @return The transaction for the repair costs.
      */
-    Transaction<AnvilCost> getCosts();
+    Transaction<AnvilCost> costs();
 
 }

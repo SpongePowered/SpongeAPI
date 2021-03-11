@@ -42,8 +42,8 @@ public interface TrackedVolume extends BlockVolume, LocationBaseDataHolder.Mutab
      * @param pos The position to be checked
      * @return The {@link UUID} if one exists
      */
-    default Optional<UUID> getCreator(final Vector3i pos) {
-        return this.getCreator(pos.getX(), pos.getY(), pos.getZ());
+    default Optional<UUID> creator(final Vector3i pos) {
+        return this.creator(pos.getX(), pos.getY(), pos.getZ());
     }
 
     /**
@@ -55,7 +55,7 @@ public interface TrackedVolume extends BlockVolume, LocationBaseDataHolder.Mutab
      * @param z The z coordinate
      * @return The {@link UUID} if one exists
      */
-    default Optional<UUID> getCreator(final int x, final int y, final int z) {
+    default Optional<UUID> creator(final int x, final int y, final int z) {
         return this.get(x, y, z, Keys.CREATOR);
     }
 
@@ -66,8 +66,8 @@ public interface TrackedVolume extends BlockVolume, LocationBaseDataHolder.Mutab
      * @param pos The position to be checked
      * @return The {@link UUID} if one exists
      */
-    default Optional<UUID> getNotifier(final Vector3i pos) {
-        return this.getNotifier(pos.getX(), pos.getY(), pos.getZ());
+    default Optional<UUID> notifier(final Vector3i pos) {
+        return this.notifier(pos.getX(), pos.getY(), pos.getZ());
     }
 
     /**
@@ -79,7 +79,7 @@ public interface TrackedVolume extends BlockVolume, LocationBaseDataHolder.Mutab
      * @param z The z coordinate
      * @return The {@link UUID} if available
      */
-    default Optional<UUID> getNotifier(final int x, final int y, final int z) {
+    default Optional<UUID> notifier(final int x, final int y, final int z) {
         return this.get(x, y, z, Keys.NOTIFIER);
     }
 

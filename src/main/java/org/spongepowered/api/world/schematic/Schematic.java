@@ -59,7 +59,7 @@ public interface Schematic extends ArchetypeVolume, LocationBaseDataHolder.Mutab
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -67,21 +67,21 @@ public interface Schematic extends ArchetypeVolume, LocationBaseDataHolder.Mutab
      *
      * @return The block palette
      */
-    Palette<BlockState, BlockType> getBlockPalette();
+    Palette<BlockState, BlockType> blockPalette();
 
     /**
      * Gets the {@link Palette Palette&lt;BiomeType&gt;} used by this schematic for serialization.
      *
      * @return The biome palette used for this schematic
      */
-    Palette<Biome, Biome> getBiomePalette();
+    Palette<Biome, Biome> biomePalette();
 
     /**
      * Gets any additional metadata attached to this schematic.
      * 
      * @return The additional metadata
      */
-    DataView getMetadata();
+    DataView metadata();
 
     /**
      * A builder for {@link Schematic}s.
@@ -130,7 +130,7 @@ public interface Schematic extends ArchetypeVolume, LocationBaseDataHolder.Mutab
         Builder biomePalette(Palette<Biome, Biome> palette);
 
         /**
-         * Specifies the palette type to use if the {@link #getBlockPalette()} is not
+         * Specifies the palette type to use if the {@link #blockPalette()} is not
          * specified.
          *
          * @param type The palette type

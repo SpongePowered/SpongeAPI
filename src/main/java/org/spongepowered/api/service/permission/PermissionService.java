@@ -85,9 +85,9 @@ public interface PermissionService extends ContextualService<Subject> {
     /**
      * The standard identifier for the collection which stores default subjects.
      *
-     * <p>By convention, the {@link #getDefaults()} subject is stored in this
+     * <p>By convention, the {@link #defaults()} subject is stored in this
      * collection under the name "default", and each {@link SubjectCollection}s
-     * {@link SubjectCollection#getDefaults()} subject is stored in this
+     * {@link SubjectCollection#defaults()} subject is stored in this
      * collection with the same identifier as the parent collection.</p>
      */
     String SUBJECTS_DEFAULT = "defaults";
@@ -117,7 +117,7 @@ public interface PermissionService extends ContextualService<Subject> {
      *
      * @return A subject collection for users
      */
-    SubjectCollection getUserSubjects();
+    SubjectCollection userSubjects();
 
     /**
      * Returns the subject collection which holds groups.
@@ -127,7 +127,7 @@ public interface PermissionService extends ContextualService<Subject> {
      *
      * @return A subject collection for groups
      */
-    SubjectCollection getGroupSubjects();
+    SubjectCollection groupSubjects();
 
     /**
      * Gets the subject holding data that is applied by default to all
@@ -142,7 +142,7 @@ public interface PermissionService extends ContextualService<Subject> {
      * permissions already set or modified.</p>
      *
      * <p>It is also recommended to use
-     * {@link Subject#getTransientSubjectData()} where possible to avoid
+     * {@link Subject#transientSubjectData()} where possible to avoid
      * persisting unnecessary data.</p>
      *
      * <p>Assigning default permissions should be used sparingly, and by
@@ -151,7 +151,7 @@ public interface PermissionService extends ContextualService<Subject> {
      *
      * @return The subject holding defaults for all other subjects.
      */
-    Subject getDefaults();
+    Subject defaults();
 
     /**
      * Returns a predicate which determines whether or not a given identifier
@@ -162,7 +162,7 @@ public interface PermissionService extends ContextualService<Subject> {
      *
      * @return The predicate
      */
-    Predicate<String> getIdentifierValidityPredicate();
+    Predicate<String> identifierValidityPredicate();
 
     /**
      * Loads and returns a subject collection with the given identifier.
@@ -198,7 +198,7 @@ public interface PermissionService extends ContextualService<Subject> {
      * @param identifier The identifier
      * @return A subject collection for the given identifier
      */
-    Optional<SubjectCollection> getCollection(String identifier);
+    Optional<SubjectCollection> collection(String identifier);
 
     /**
      * Returns whether a subject collection with the given identifier currently
@@ -215,7 +215,7 @@ public interface PermissionService extends ContextualService<Subject> {
      *
      * @return The loaded collections for this service
      */
-    Map<String, SubjectCollection> getLoadedCollections();
+    Map<String, SubjectCollection> loadedCollections();
 
     /**
      * Returns a set of the subject collection identifiers known to this
@@ -223,7 +223,7 @@ public interface PermissionService extends ContextualService<Subject> {
      *
      * @return A set of collection identifiers
      */
-    CompletableFuture<Set<String>> getAllIdentifiers();
+    CompletableFuture<Set<String>> allIdentifiers();
 
     /**
      * Creates a new subject reference to represent the expressed subject.
@@ -266,7 +266,7 @@ public interface PermissionService extends ContextualService<Subject> {
      * @return The description for the given permission or
      *         {@link Optional#empty()}
      */
-    Optional<PermissionDescription> getDescription(String permission);
+    Optional<PermissionDescription> description(String permission);
 
     /**
      * Gets a immutable collection containing all registered or generated
@@ -279,6 +279,6 @@ public interface PermissionService extends ContextualService<Subject> {
      * @return An immutable collection contain all registered or generated
      *         descriptions
      */
-    Collection<PermissionDescription> getDescriptions();
+    Collection<PermissionDescription> descriptions();
 
 }

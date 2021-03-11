@@ -56,7 +56,7 @@ public interface Inventory extends ValueContainer {
      * @return The builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -230,7 +230,7 @@ public interface Inventory extends ValueContainer {
      * @param index The slot index
      * @return slot at the specified position, or {@link Optional#empty()} if no matching slot
      */
-    Optional<Slot> getSlot(int index);
+    Optional<Slot> slot(int index);
 
     /**
      * Clears this inventory if it is clearable.
@@ -246,7 +246,7 @@ public interface Inventory extends ValueContainer {
 
     /**
      * Returns the total quantity of <em>items</em> in this inventory.
-     * <p>This equivalent to summing {@link ItemStack#getQuantity()} for all slots.</p>
+     * <p>This equivalent to summing {@link ItemStack#quantity()} for all slots.</p>
      *
      * @return the total quantity of items in this inventory
      */

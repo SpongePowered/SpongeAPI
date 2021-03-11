@@ -46,7 +46,7 @@ public final class PaletteTypes {
      * A type of {@link PaletteType} that refers to a localized mapping of
      * {@link Biome biomes} for individualized usage. Traditionally the
      * palette will generate {@code integer ids} in the order in which a
-     * {@link Biome biome} is registered via {@link Palette.Mutable#getOrAssign(Object)}
+     * {@link Biome biome} is registered via {@link Palette.Mutable#orAssign (Object)}
      */
     public static final DefaultedRegistryReference<PaletteType<Biome, Biome>> BIOME_PALETTE = PaletteTypes.key(ResourceKey.sponge("biome_palette"));
 
@@ -54,7 +54,7 @@ public final class PaletteTypes {
      * A type of {@link PaletteType} that refers to a localized mapping of
      * {@link BlockState block states} for individualized usage. Traditionally the
      * palette will generate {@code integer ids} in the order in which a
-     * {@link BlockState biome} is registered via {@link Palette.Mutable#getOrAssign(Object)}
+     * {@link BlockState biome} is registered via {@link Palette.Mutable#orAssign (Object)}
      */
     public static final DefaultedRegistryReference<PaletteType<BlockState, BlockType>> BLOCK_STATE_PALETTE = PaletteTypes.key(ResourceKey.sponge("block_state_palette"));
 
@@ -66,6 +66,6 @@ public final class PaletteTypes {
     }
 
     private static <T, R> DefaultedRegistryReference<PaletteType<T, R>> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.PALETTE_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.PALETTE_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

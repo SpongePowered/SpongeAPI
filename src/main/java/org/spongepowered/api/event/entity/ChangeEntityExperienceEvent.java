@@ -38,21 +38,21 @@ public interface ChangeEntityExperienceEvent extends Event, Cancellable {
      *
      * @return The entity
      */
-    Entity getEntity();
+    Entity entity();
 
     /**
      * Gets the original experience unmodified by event changes.
      *
      * @return The experience
      */
-    int getOriginalExperience();
+    int originalExperience();
 
     /**
      * Gets the experience after an event has been processed.
      *
      * @return The experience to receive
      */
-    int getExperience();
+    int experience();
 
     /**
      * Sets the amount of experience after an event has been processed.

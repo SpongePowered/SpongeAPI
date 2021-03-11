@@ -29,7 +29,6 @@ import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.data.value.MergeFunction;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.annotation.DoNotStore;
 
 import java.util.Collection;
@@ -250,7 +249,7 @@ public interface DataHolder extends ValueContainer {
          *     incompatibility
          */
         default <E> DataTransactionResult tryOffer(Value<E> value) throws IllegalArgumentException {
-            final DataTransactionResult result = this.offer(value.getKey(), value.get());
+            final DataTransactionResult result = this.offer(value.key(), value.get());
             if (!result.isSuccessful()) {
                 throw new IllegalArgumentException("Failed offer transaction!");
             }
@@ -260,7 +259,7 @@ public interface DataHolder extends ValueContainer {
         /**
          * Attempts to remove the provided {@link Value}. All values that were
          * successfully removed will be provided in
-         * {@link DataTransactionResult#getReplacedData()}. If the data can not be
+         * {@link DataTransactionResult#replacedData()}. If the data can not be
          * removed, the result will be an expected
          * {@link DataTransactionResult.Type#FAILURE}.
          *
@@ -268,13 +267,13 @@ public interface DataHolder extends ValueContainer {
          * @return The transaction result
          */
         default DataTransactionResult remove(Value<?> value) {
-            return this.remove(value.getKey());
+            return this.remove(value.key());
         }
 
         /**
          * Attempts to remove the data associated with the provided {@link Key}.
          * All values that were successfully removed will be provided in
-         * {@link DataTransactionResult#getReplacedData()}. If the data can not be
+         * {@link DataTransactionResult#replacedData()}. If the data can not be
          * removed, the result will be an expected
          * {@link DataTransactionResult.Type#FAILURE}.
          *
@@ -286,7 +285,7 @@ public interface DataHolder extends ValueContainer {
         /**
          * Attempts to remove the data associated with the provided {@link Key}.
          * All values that were successfully removed will be provided in
-         * {@link DataTransactionResult#getReplacedData()}. If the data can not be
+         * {@link DataTransactionResult#replacedData()}. If the data can not be
          * removed, the result will be an expected
          * {@link DataTransactionResult.Type#FAILURE}.
          *
@@ -299,8 +298,8 @@ public interface DataHolder extends ValueContainer {
 
         /**
          * Attempts to "revert" a {@link DataTransactionResult} such that any
-         * of the {@link DataTransactionResult#getReplacedData()} are offered
-         * back, and any {@link DataTransactionResult#getSuccessfulData()} are
+         * of the {@link DataTransactionResult#replacedData()} are offered
+         * back, and any {@link DataTransactionResult#successfulData()} are
          * removed if they were not the same types as any exising in the
          * replaced values.
          *
@@ -412,7 +411,7 @@ public interface DataHolder extends ValueContainer {
          * @return The new immutable value store
          */
         default Optional<I> without(Value<?> value) {
-            return this.without(value.getKey());
+            return this.without(value.key());
         }
 
         /**

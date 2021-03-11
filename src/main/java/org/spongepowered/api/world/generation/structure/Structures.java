@@ -83,6 +83,6 @@ public final class Structures {
     }
 
     private static DefaultedRegistryReference<Structure> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.STRUCTURE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.STRUCTURE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

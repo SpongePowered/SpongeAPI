@@ -51,7 +51,7 @@ public enum Axis implements Cycleable<Axis> {
      * @param vector The vector to convert to a axis
      * @return The closest axis.
      */
-    public static Axis getClosest(final Vector3d vector) {
+    public static Axis closest(final Vector3d vector) {
         double x = Math.abs(vector.getX());
         double y = Math.abs(vector.getY());
         double z = Math.abs(vector.getZ());
@@ -83,7 +83,7 @@ public enum Axis implements Cycleable<Axis> {
      * @param vector3d The vector
      * @return The value of the component
      */
-    public double getComponent(final Vector3d vector3d) {
+    public double component(final Vector3d vector3d) {
         switch (this) {
             case X:
                 return this.direction.getX();
@@ -102,8 +102,8 @@ public enum Axis implements Cycleable<Axis> {
      * @param vector3d The vector
      * @return The direction of the component
      */
-    public AxisDirection getDirection(final Vector3d vector3d) {
-        final double component = this.getComponent(vector3d);
+    public AxisDirection direction(final Vector3d vector3d) {
+        final double component = this.component(vector3d);
         if (component > 0) {
             return AxisDirection.PLUS;
         } else if (component == 0) {
@@ -129,7 +129,7 @@ public enum Axis implements Cycleable<Axis> {
      * @return the Vector3d
      */
     public Vector3d toVector3dWithDirection(final AxisDirection axisDirection) {
-        return this.direction.mul(axisDirection.getSignum());
+        return this.direction.mul(axisDirection.signum());
     }
 
     @Override

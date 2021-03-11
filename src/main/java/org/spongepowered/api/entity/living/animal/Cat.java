@@ -42,7 +42,7 @@ public interface Cat extends TameableAnimal, Sittable {
      * @return The type of cat
      * @see org.spongepowered.api.data.type.CatTypes
      */
-    default Value.Mutable<CatType> type() {
+    default Value.Mutable<CatType> catType() {
         return this.requireValue(Keys.CAT_TYPE).asMutable();
     }
 

@@ -50,21 +50,21 @@ public interface PlaySoundEvent extends Event, Cancellable {
      *
      * @return the location of the sound being played
      */
-    ServerLocation getLocation();
+    ServerLocation location();
 
     /**
      * Gets the {@link SoundType} for the sound being played.
      *
      * @return The {@link SoundType}
      */
-    SoundType getSoundType();
+    SoundType soundType();
 
     /**
      * Gets the {@link Sound.Source} for the sound being played.
      *
      *  @return The {@link Sound.Source}
      */
-    Sound.Source getSoundSource();
+    Sound.Source soundSource();
 
     /**
      * Gets the volume of the sound being played.
@@ -72,14 +72,14 @@ public interface PlaySoundEvent extends Event, Cancellable {
      * @return A float that represents the relative volume. This value may be
      *         positive value.
      */
-    float getVolume();
+    float volume();
 
     /**
      * Gets the pitch of the sound being played
      *
      * @return A float that represents the pitch.
      */
-    float getPitch();
+    float pitch();
 
     /**
      * Fired when a sound is broadcasted to all {@link ServerPlayer player's} on the {@link Server}.
@@ -104,14 +104,14 @@ public interface PlaySoundEvent extends Event, Cancellable {
          *
          * @return The jukebox tile
          */
-        Jukebox getJukebox();
+        Jukebox jukebox();
 
         /**
          * Gets the {@link MusicDisc} associated with this event.
          *
          * @return The record type
          */
-        MusicDisc getRecordType();
+        MusicDisc recordType();
 
         /**
          * Fired when a record starts playing.
@@ -136,7 +136,7 @@ public interface PlaySoundEvent extends Event, Cancellable {
          *
          * @return The player, if applicable.
          */
-        Optional<ServerPlayer> getPlayer();
+        Optional<ServerPlayer> player();
 
     }
 
@@ -151,7 +151,7 @@ public interface PlaySoundEvent extends Event, Cancellable {
          *
          * @return The {@link InstrumentType}
          */
-        InstrumentType getInstrument();
+        InstrumentType instrument();
 
         /**
          * The pitch of the played
@@ -159,7 +159,7 @@ public interface PlaySoundEvent extends Event, Cancellable {
          *
          * @return The {@link NotePitch}
          */
-        NotePitch getNotePitch();
+        NotePitch notePitch();
 
     }
 

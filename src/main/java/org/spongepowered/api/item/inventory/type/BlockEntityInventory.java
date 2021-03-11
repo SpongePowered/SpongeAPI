@@ -58,6 +58,6 @@ public interface BlockEntityInventory<T extends BlockEntity & Carrier>
      *
      * @return This inventory's carrier
      */
-    Optional<T> getBlockEntity();
+    Optional<T> blockEntity();
 
 }

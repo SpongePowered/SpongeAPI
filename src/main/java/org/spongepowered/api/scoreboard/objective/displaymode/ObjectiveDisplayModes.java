@@ -70,6 +70,6 @@ public final class ObjectiveDisplayModes {
     }
 
     private static DefaultedRegistryReference<ObjectiveDisplayMode> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.OBJECTIVE_DISPLAY_MODE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.OBJECTIVE_DISPLAY_MODE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

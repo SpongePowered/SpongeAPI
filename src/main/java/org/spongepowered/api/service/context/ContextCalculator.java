@@ -53,7 +53,7 @@ import java.util.function.Function;
  *     <li>Context lookups should <i>not query active contexts</i>: doing so is
  *     likely to result in a stack overflow, or thread deadlock. Care should be
  *     taken to avoid (indirect) calls to
- *     {@link Contextual#getActiveContexts()}.</li>
+ *     {@link Contextual#activeContexts()}.</li>
  * </ul>
  *
  * <p>Calculators should be registered with the corresponding

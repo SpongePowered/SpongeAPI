@@ -36,14 +36,14 @@ public interface TreeLayoutElement {
      *
      * @return The advancement
      */
-    Advancement getAdvancement();
+    Advancement advancement();
 
     /**
      * Gets the position of the {@link Advancement}.
      *
      * @return The position
      */
-    Vector2d getPosition();
+    Vector2d position();
 
     /**
      * Sets the position of the {@link Advancement}.

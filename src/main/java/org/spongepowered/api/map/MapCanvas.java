@@ -49,7 +49,7 @@ public interface MapCanvas extends DataSerializable {
      * @return A {@link Builder} to generate a new canvas.
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -71,7 +71,7 @@ public interface MapCanvas extends DataSerializable {
      * @throws IllegalArgumentException if either of the requested
      *      co-ordinates are out of bounds.
      */
-    MapColor getColor(final int x, final int y) throws IllegalArgumentException;
+    MapColor color(final int x, final int y) throws IllegalArgumentException;
 
     /**
      * Generates an {@link Image} from this {@link MapCanvas}.

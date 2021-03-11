@@ -41,7 +41,7 @@ public interface Fox extends Animal {
      * @return The type of fox
      * @see org.spongepowered.api.data.type.FoxTypes
      */
-    default Value.Mutable<FoxType> type() {
+    default Value.Mutable<FoxType> foxType() {
         return this.requireValue(Keys.FOX_TYPE).asMutable();
     }
 

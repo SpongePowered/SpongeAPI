@@ -36,5 +36,5 @@ public interface ContextSource {
      *
      * @return A given context
      */
-    Context getContext();
+    Context context();
 }

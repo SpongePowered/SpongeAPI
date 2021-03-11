@@ -48,10 +48,10 @@ public class SpongeAbstractEventTest {
         ChangeDataHolderEvent.ValueChange event = SpongeEventFactory.createChangeDataHolderEventValueChange(
             Cause.of(EventContext.empty(), "none"), original, this.mockParam(DataHolder.Mutable.class));
 
-        assertThat(event.getOriginalChanges(), is(equalTo(original)));
+        assertThat(event.originalChanges(), is(equalTo(original)));
 
         event.proposeChanges(modified);
-        assertThat(event.getEndResult(), is(equalTo(modified)));
+        assertThat(event.endResult(), is(equalTo(modified)));
     }
 
     @SuppressWarnings("unchecked")

@@ -161,7 +161,7 @@ public interface CommandManager {
      *
      * @return The known aliases
      */
-    Set<String> getKnownAliases();
+    Set<String> knownAliases();
 
     /**
      * Gets a {@link Collection} of {@link PluginContainer}s with commands
@@ -169,7 +169,7 @@ public interface CommandManager {
      *
      * @return A {@link Collection} of {@link PluginContainer}s.
      */
-    Collection<PluginContainer> getPlugins();
+    Collection<PluginContainer> plugins();
 
     /**
      * Gets the {@link CommandMapping} associated with the requested alias,
@@ -178,7 +178,7 @@ public interface CommandManager {
      * @param alias The alias to get the mapping for
      * @return The {@link CommandMapping}, if any
      */
-    Optional<CommandMapping> getCommandMapping(final String alias);
+    Optional<CommandMapping> commandMapping(final String alias);
 
     /**
      * Asks the server to send an updated client completion command tree to

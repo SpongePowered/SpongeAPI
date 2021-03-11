@@ -39,8 +39,8 @@ import java.util.function.Supplier;
  *
  * <p>The contract of enchantments is that their level will always be between
  * {@link Short#MIN_VALUE} and {@link Short#MAX_VALUE}, but it is not guaranteed
- * they will work properly outside of {@link EnchantmentType#getMinimumLevel()}
- * and {@link EnchantmentType#getMaximumLevel()}.</p>
+ * they will work properly outside of {@link EnchantmentType#minimumLevel()}
+ * and {@link EnchantmentType#maximumLevel()}.</p>
  */
 public interface Enchantment extends DataSerializable {
 
@@ -50,7 +50,7 @@ public interface Enchantment extends DataSerializable {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -59,7 +59,7 @@ public interface Enchantment extends DataSerializable {
      * @return The new random list builder
      */
     static RandomListBuilder randomListBuilder() {
-        return Sponge.getGame().getBuilderProvider().provide(RandomListBuilder.class);
+        return Sponge.game().builderProvider().provide(RandomListBuilder.class);
     }
 
     /**
@@ -98,14 +98,14 @@ public interface Enchantment extends DataSerializable {
      *
      * @return The enchantment type of this enchantment
      */
-    EnchantmentType getType();
+    EnchantmentType type();
 
     /**
      * Gets the level of this enchantment.
      *
      * @return The level of this enchantment
      */
-    int getLevel();
+    int level();
 
     /**
      * Represents a builder interface which can be used
@@ -138,8 +138,8 @@ public interface Enchantment extends DataSerializable {
          * <p>This level must be between {@link Short#MIN_VALUE} and
          * {@link Short#MAX_VALUE}, but there is no guarantee all levels will
          * work properly without error. It is recommended for reliable results
-         * you stay between {@link EnchantmentType#getMinimumLevel()} and
-         * {@link EnchantmentType#getMaximumLevel()}, or at least larger
+         * you stay between {@link EnchantmentType#minimumLevel()} and
+         * {@link EnchantmentType#maximumLevel()}, or at least larger
          * than <code>0</code> and less than {@link Short#MAX_VALUE}.</p>
          *
          * @param level The desired level

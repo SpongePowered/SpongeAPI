@@ -47,9 +47,9 @@ public interface Region<R extends Region<R>> extends
     HeightAwareVolume,
     RandomProvider {
 
-    WorldType getWorldType();
+    WorldType worldType();
 
-    WorldBorder getBorder();
+    WorldBorder border();
 
     boolean isInBorder(Entity entity);
 
@@ -67,14 +67,14 @@ public interface Region<R extends Region<R>> extends
 
     boolean containsAnyLiquids(AABB aabb);
 
-    int getSkylightSubtracted();
+    int skylightSubtracted();
 
     /**
      * Gets the sea level of the world.
      *
      * @return The sea level
      */
-    int getSeaLevel();
+    int seaLevel();
 
     boolean isCollisionBoxesEmpty(@Nullable Entity entity, AABB aabb);
 
@@ -85,7 +85,7 @@ public interface Region<R extends Region<R>> extends
     }
 
     default boolean isBlockLoaded(int x, int y, int z, boolean allowEmpty) {
-        final Vector3i chunkPos = Sponge.getServer().getChunkLayout().forceToChunk(x, y, z);
+        final Vector3i chunkPos = Sponge.server().chunkLayout().forceToChunk(x, y, z);
         return this.isChunkLoaded(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ(), allowEmpty);
     }
 

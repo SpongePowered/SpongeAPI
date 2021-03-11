@@ -40,13 +40,13 @@ public interface BanUserEvent extends Event {
      *
      * @return The user
      */
-    User getUser();
+    User user();
 
     /**
      * Gets the ban involved in this event.
      *
      * @return The ban
      */
-    Ban.Profile getBan();
+    Ban.Profile ban();
 
 }

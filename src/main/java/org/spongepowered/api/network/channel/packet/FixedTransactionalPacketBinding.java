@@ -37,5 +37,5 @@ public interface FixedTransactionalPacketBinding<P extends RequestPacket<R>, R e
      *
      * @return The response packet type
      */
-    Class<R> getResponsePacketType();
+    Class<R> responsePacketType();
 }

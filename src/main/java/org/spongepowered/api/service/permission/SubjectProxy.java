@@ -32,7 +32,7 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
- * Enables an object to act as a proxy to a Subject, delegating all calls threw
+ * Enables an object to act as a proxy to a Subject, delegating all calls through
  * to the actual Subject.
  */
 public interface SubjectProxy extends Subject {
@@ -42,91 +42,91 @@ public interface SubjectProxy extends Subject {
      *
      * @return The {@link Subject}
      */
-    Subject getSubject();
+    Subject subject();
 
     @Override
-    default SubjectCollection getContainingCollection() {
-        return this.getSubject().getContainingCollection();
+    default SubjectCollection containingCollection() {
+        return this.subject().containingCollection();
     }
 
     @Override
     default SubjectReference asSubjectReference() {
-        return this.getSubject().asSubjectReference();
+        return this.subject().asSubjectReference();
     }
 
     @Override
     default boolean isSubjectDataPersisted() {
-        return this.getSubject().isSubjectDataPersisted();
+        return this.subject().isSubjectDataPersisted();
     }
 
     @Override
-    default SubjectData getSubjectData() {
-        return this.getSubject().getSubjectData();
+    default SubjectData subjectData() {
+        return this.subject().subjectData();
     }
 
     @Override
-    default SubjectData getTransientSubjectData() {
-        return this.getSubject().getTransientSubjectData();
+    default SubjectData transientSubjectData() {
+        return this.subject().transientSubjectData();
     }
 
     @Override
-    default Tristate getPermissionValue(final Set<Context> contexts, final String permission) {
-        return this.getSubject().getPermissionValue(contexts, permission);
+    default Tristate permissionValue(final Set<Context> contexts, final String permission) {
+        return this.subject().permissionValue(contexts, permission);
     }
 
     @Override
     default boolean isChildOf(final Set<Context> contexts, final SubjectReference parent) {
-        return this.getSubject().isChildOf(contexts, parent);
+        return this.subject().isChildOf(contexts, parent);
     }
 
     @Override
-    default List<SubjectReference> getParents(final Set<Context> contexts) {
-        return this.getSubject().getParents();
+    default List<SubjectReference> parents(final Set<Context> contexts) {
+        return this.subject().parents();
     }
 
     @Override
-    default Optional<String> getOption(final Set<Context> contexts, final String key) {
-        return this.getSubject().getOption(contexts, key);
+    default Optional<String> option(final Set<Context> contexts, final String key) {
+        return this.subject().option(contexts, key);
     }
 
     @Override
-    default String getIdentifier() {
-        return this.getSubject().getIdentifier();
+    default String identifier() {
+        return this.subject().identifier();
     }
 
     @Override
-    default Set<Context> getActiveContexts() {
-        return this.getSubject().getActiveContexts();
+    default Set<Context> activeContexts() {
+        return this.subject().activeContexts();
     }
 
     @Override
     default boolean hasPermission(final Set<Context> contexts, final String permission) {
-        return this.getSubject().hasPermission(contexts, permission);
+        return this.subject().hasPermission(contexts, permission);
     }
 
     @Override
     default boolean hasPermission(final String permission) {
-        return this.getSubject().hasPermission(permission);
+        return this.subject().hasPermission(permission);
     }
 
     @Override
     default boolean isChildOf(final SubjectReference parent) {
-        return this.getSubject().isChildOf(parent);
+        return this.subject().isChildOf(parent);
     }
 
     @Override
-    default List<SubjectReference> getParents() {
-        return this.getSubject().getParents();
+    default List<SubjectReference> parents() {
+        return this.subject().parents();
     }
 
     @Override
-    default Optional<String> getOption(final String key) {
-        return this.getSubject().getOption(key);
+    default Optional<String> option(final String key) {
+        return this.subject().option(key);
     }
 
     @Override
-    default Optional<String> getFriendlyIdentifier() {
-        return this.getSubject().getFriendlyIdentifier();
+    default Optional<String> friendlyIdentifier() {
+        return this.subject().friendlyIdentifier();
     }
 
 }

@@ -40,14 +40,14 @@ public interface TransferInventoryEvent extends Event {
      *
      * @return The source {@link Inventory}
      */
-    Inventory getSourceInventory();
+    Inventory sourceInventory();
 
     /**
      * Gets the target {@link Inventory} of this {@link Event}.
      *
      * @return The target {@link Inventory}
      */
-    Inventory getTargetInventory();
+    Inventory targetInventory();
 
     /**
      * Fired before an {@link Inventory} attempts to transfer any items.
@@ -66,21 +66,21 @@ public interface TransferInventoryEvent extends Event {
          *
          * @return The item getting transferred
          */
-        ItemStackSnapshot getTransferredItem();
+        ItemStackSnapshot transferredItem();
 
         /**
          * Returns the source slot of this item transfer.
          *
          * @return The source slot of this item transfer
          */
-        Slot getSourceSlot();
+        Slot sourceSlot();
 
         /**
          * Returns the target slot of this item transfer.
          *
          * @return The target slot of this item transfer
          */
-        Slot getTargetSlot();
+        Slot targetSlot();
     }
 
 }

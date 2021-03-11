@@ -68,8 +68,8 @@ public interface TeleportHelper {
      *         location if it is deemed safe. If no safe location can be found,
      *         {@link Optional#empty()} will be returned.
      */
-    default Optional<ServerLocation> getSafeLocation(ServerLocation location) {
-        return this.getSafeLocation(location, TeleportHelper.DEFAULT_HEIGHT, TeleportHelper.DEFAULT_WIDTH,
+    default Optional<ServerLocation> findSafeLocation(final ServerLocation location) {
+        return this.findSafeLocation(location, TeleportHelper.DEFAULT_HEIGHT, TeleportHelper.DEFAULT_WIDTH,
             TeleportHelper.DEFAULT_FLOOR_CHECK_DISTANCE, TeleportHelperFilters.DEFAULT.get());
     }
 
@@ -95,8 +95,8 @@ public interface TeleportHelper {
      *         location if it is deemed safe. If no safe location can be found,
      *         {@link Optional#empty()} will be returned
      */
-    default Optional<ServerLocation> getSafeLocation(ServerLocation location, int height, int width) {
-        return this.getSafeLocation(location, height, width,
+    default Optional<ServerLocation> findSafeLocation(final ServerLocation location, final int height, final int width) {
+        return this.findSafeLocation(location, height, width,
             TeleportHelper.DEFAULT_FLOOR_CHECK_DISTANCE, TeleportHelperFilters.DEFAULT.get());
     }
 
@@ -125,8 +125,8 @@ public interface TeleportHelper {
      *         location if it is deemed safe. If no safe location can be found,
      *         {@link Optional#empty()} will be returned
      */
-    default Optional<ServerLocation> getSafeLocation(ServerLocation location, int height, int width, int floorDistance) {
-        return this.getSafeLocation(location, height, width, floorDistance, TeleportHelperFilters.DEFAULT.get(), TeleportHelperFilters.CONFIG.get());
+    default Optional<ServerLocation> findSafeLocation(final ServerLocation location, final int height, final int width, final int floorDistance) {
+        return this.findSafeLocation(location, height, width, floorDistance, TeleportHelperFilters.DEFAULT.get(), TeleportHelperFilters.CONFIG.get());
     }
 
     /**
@@ -156,7 +156,7 @@ public interface TeleportHelper {
      *         location if it is deemed safe. If no safe location can be found,
      *         {@link Optional#empty()} will be returned
      */
-    Optional<ServerLocation> getSafeLocation(ServerLocation location, int height, int width, int floorDistance, TeleportHelperFilter filter,
+    Optional<ServerLocation> findSafeLocation(ServerLocation location, int height, int width, int floorDistance, TeleportHelperFilter filter,
         TeleportHelperFilter... additionalFilters);
 
     /**
@@ -187,9 +187,9 @@ public interface TeleportHelper {
      *         location if it is deemed safe. If no safe location can be found,
      *         {@link Optional#empty()} will be returned
      */
-    default Optional<ServerLocation> getSafeLocationWithBlacklist(ServerLocation location, int height, int width, int floorDistance,
-            TeleportHelperFilter... filters) {
-        return this.getSafeLocation(location, height, width, floorDistance, TeleportHelperFilters.CONFIG.get(), filters);
+    default Optional<ServerLocation> findSafeLocationWithBlacklist(final ServerLocation location, final int height, final int width, final int floorDistance,
+            final TeleportHelperFilter... filters) {
+        return this.findSafeLocation(location, height, width, floorDistance, TeleportHelperFilters.CONFIG.get(), filters);
     }
 
 }

@@ -55,7 +55,7 @@ public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject
      *
      * @return The user's profile
      */
-    GameProfile getProfile();
+    GameProfile profile();
 
     /**
      * Gets the player's last known username.
@@ -63,7 +63,7 @@ public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject
      * @return The player's last known username
      */
     @Override
-    String getName();
+    String name();
 
     /**
      * Checks if this user is online or not.
@@ -78,21 +78,21 @@ public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject
      *
      * @return The associated online player, if available
      */
-    Optional<ServerPlayer> getPlayer();
+    Optional<ServerPlayer> player();
 
     /**
      * Gets the position of this User
      *
      * @return The position of this User
      */
-    Vector3d getPosition();
+    Vector3d position();
 
     /**
      * Gets the world {@link ResourceKey key} of this User.
      *
      * @return The key, if found
      */
-    ResourceKey getWorldKey();
+    ResourceKey worldKey();
 
     /**
      * Sets the world and position of this User.
@@ -127,10 +127,10 @@ public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject
      *
      * @return The rotation
      */
-    Vector3d getRotation();
+    Vector3d rotation();
 
     @Override
-    UserInventory getInventory();
+    UserInventory inventory();
 
     /**
      * Gets the {@link Inventory} available for this Player's shared {@link EnderChest}
@@ -138,5 +138,5 @@ public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject
      *
      * @return The ender chest inventory
      */
-    Inventory getEnderChestInventory();
+    Inventory enderChestInventory();
 }

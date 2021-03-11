@@ -40,6 +40,6 @@ public interface AdvancementType extends DefaultedRegistryValue {
      *
      * @return The text format
      */
-    TextColor getTextColor();
+    TextColor textColor();
 
 }

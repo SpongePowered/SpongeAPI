@@ -51,7 +51,7 @@ public interface Objective {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -59,14 +59,14 @@ public interface Objective {
      *
      * @return The objective's name
      */
-    String getName();
+    String name();
 
     /**
      * Gets the name displayed to players.
      *
      * @return The objective's display name
      */
-    Component getDisplayName();
+    Component displayName();
 
     /**
      * Sets the name displayed to players.
@@ -82,14 +82,14 @@ public interface Objective {
      *
      * @return This objective's criterion
      */
-    Criterion getCriterion();
+    Criterion criterion();
 
     /**
      * Gets the {@link ObjectiveDisplayMode} used to display this objective.
      *
      * @return The {@link ObjectiveDisplayMode} used to display this objective
      */
-    ObjectiveDisplayMode getDisplayMode();
+    ObjectiveDisplayMode displayMode();
 
     /**
      * Sets the {@link ObjectiveDisplayMode} used to display this objective.
@@ -103,7 +103,7 @@ public interface Objective {
      *
      * @return The set of {@link Score}s for this objective
      */
-    Map<Component, Score> getScores();
+    Map<Component, Score> scores();
 
     /**
      * Returns whether this objective has a {@link Score} with the given name.
@@ -127,11 +127,11 @@ public interface Objective {
      * @param name The name of the {@link Score} to get.
      * @return The {@link Score} for te specified {@link Component}, if it exists.
      */
-    default Optional<Score> getScore(Component name) {
+    default Optional<Score> score(Component name) {
         if (!this.hasScore(name)) {
             return Optional.empty();
         }
-        return Optional.of(this.getOrCreateScore(name));
+        return Optional.of(this.orCreateScore(name));
     }
 
     /**
@@ -142,7 +142,7 @@ public interface Objective {
      * @param name The name of the {@link Score} to get
      * @return The {@link Score} for the specified {@link Component}
      */
-    Score getOrCreateScore(Component name);
+    Score orCreateScore(Component name);
 
     /**
      * Removes the specified {@link Score} from this objective, if present.
@@ -167,7 +167,7 @@ public interface Objective {
      * @return A {@link Set} of parent {@link Scoreboard}s this
      *         {@link Objective} is registered to
      */
-    Set<Scoreboard> getScoreboards();
+    Set<Scoreboard> scoreboards();
 
     /**
      * Represents a builder to create {@link Objective} instances.

@@ -31,7 +31,7 @@ package org.spongepowered.api.network;
 public interface ClientSideConnection extends EngineConnection {
 
     @Override
-    default EngineConnectionSide<ClientSideConnection> getSide() {
+    default EngineConnectionSide<ClientSideConnection> side() {
         return EngineConnectionSide.CLIENT;
     }
 }

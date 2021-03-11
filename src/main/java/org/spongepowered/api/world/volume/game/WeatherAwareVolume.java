@@ -40,7 +40,7 @@ public interface WeatherAwareVolume extends BlockVolume {
      * @param z The y column value
      * @return The y level that precipitation ends
      */
-    int getPrecipitationLevelAt(int x, int z);
+    int precipitationLevelAt(int x, int z);
 
     /**
      * Returns the y level that precipitation ends falling in the given column.
@@ -51,8 +51,8 @@ public interface WeatherAwareVolume extends BlockVolume {
      * @param column The column value
      * @return The y level that precipitation ends
      */
-    default int getPrecipitationLevelAt(Vector2i column) {
-        return this.getPrecipitationLevelAt(column.getX(), column.getY());
+    default int precipitationLevelAt(Vector2i column) {
+        return this.precipitationLevelAt(column.getX(), column.getY());
     }
 
     /**
@@ -65,7 +65,7 @@ public interface WeatherAwareVolume extends BlockVolume {
      * @param position The position value
      * @return The position that precipitation ends
      */
-    default Vector3i getPrecipitationLevelAt(Vector3i position) {
-        return new Vector3i(position.getX(), this.getPrecipitationLevelAt(position.getX(), position.getZ()), position.getZ());
+    default Vector3i precipitationLevelAt(Vector3i position) {
+        return new Vector3i(position.getX(), this.precipitationLevelAt(position.getX(), position.getZ()), position.getZ());
     }
 }

@@ -45,7 +45,7 @@ public interface Shulker extends Golem, Monster, Ranger {
      * {@link Keys#DIRECTION}
      * @return The direction this shulker is "hanging" or "sitting" on
      */
-    default Value.Mutable<Direction> direction() {
+    default Value.Mutable<Direction> hangingDirection() {
         return this.requireValue(Keys.DIRECTION).asMutable();
     }
 }

@@ -37,7 +37,7 @@ public interface Boat extends Vehicle {
      * {@link Keys#BOAT_TYPE}
      * @return The type of the boat
      */
-    default Value.Mutable<BoatType> type() {
+    default Value.Mutable<BoatType> boatType() {
         return this.requireValue(Keys.BOAT_TYPE).asMutable();
     }
 

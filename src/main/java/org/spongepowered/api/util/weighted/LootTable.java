@@ -83,7 +83,7 @@ public class LootTable<T> {
      * 
      * @return The tables
      */
-    public List<RandomObjectTable<T>> getTables() {
+    public List<RandomObjectTable<T>> tables() {
         return ImmutableList.copyOf(this.pool);
     }
     

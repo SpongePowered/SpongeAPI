@@ -35,12 +35,12 @@ import java.util.function.Predicate;
 @NoFactoryMethod // abstract event, only children should be instantiated
 public interface AffectSlotEvent extends AffectItemStackEvent {
     @Override
-    List<SlotTransaction> getTransactions();
+    List<SlotTransaction> transactions();
 
     @Override
     default List<SlotTransaction> filter(Predicate<ItemStack> predicate) {
         List<SlotTransaction> invalidatedTransactions = Lists.newArrayList();
-        this.getTransactions().stream().filter(transaction -> !predicate.test(transaction.getFinal().createStack())).forEach(transaction -> {
+        this.transactions().stream().filter(transaction -> !predicate.test(transaction.finalReplacement().createStack())).forEach(transaction -> {
             transaction.setValid(false);
             invalidatedTransactions.add(transaction);
         });

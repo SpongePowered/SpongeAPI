@@ -40,5 +40,5 @@ public interface InstrumentType extends DefaultedRegistryValue {
      *
      * @return The sound
      */
-    SoundType getSound();
+    SoundType sound();
 }

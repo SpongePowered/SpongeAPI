@@ -58,14 +58,14 @@ public interface PacketRegistry {
      * @param <P> The type of the packet
      * @return The packet binding, if found
      */
-    <P extends Packet> Optional<PacketBinding<P>> getBinding(Class<P> packetClass);
+    <P extends Packet> Optional<PacketBinding<P>> binding(Class<P> packetClass);
 
     /**
      * Gets a collection with all the {@link PacketBinding}s.
      *
      * @return The opcode bindings
      */
-    Collection<PacketBinding<?>> getBindings();
+    Collection<PacketBinding<?>> bindings();
 
     /**
      * Gets the {@link PacketBinding} for the given packet class, if the packet
@@ -74,5 +74,5 @@ public interface PacketRegistry {
      * @param opcode The opcode
      * @return The opcode binding, if found
      */
-    Optional<PacketBinding<?>> getBinding(int opcode);
+    Optional<PacketBinding<?>> binding(int opcode);
 }

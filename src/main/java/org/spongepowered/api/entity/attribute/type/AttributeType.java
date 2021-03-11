@@ -39,7 +39,7 @@ public interface AttributeType extends DefaultedRegistryValue {
      *
      * @return The default value of this attribute type.
      */
-    double getDefaultValue();
+    double defaultValue();
 
     /**
      * Clamps a value to be within the bounds of this attribute type.

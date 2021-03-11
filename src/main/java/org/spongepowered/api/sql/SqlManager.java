@@ -50,7 +50,7 @@ public interface SqlManager {
      * @throws SQLException if a connection to the given database could not
      *     be established
      */
-    DataSource getDataSource(String jdbcConnection) throws SQLException;
+    DataSource dataSource(String jdbcConnection) throws SQLException;
 
     /**
      * Returns a data source for the provided JDBC connection string or an
@@ -69,7 +69,7 @@ public interface SqlManager {
      * @throws SQLException if a connection to the given database could not
      *     be established
      */
-    DataSource getDataSource(PluginContainer plugin, String jdbcConnection) throws SQLException;
+    DataSource dataSource(PluginContainer plugin, String jdbcConnection) throws SQLException;
 
     /**
      * Returns a possible connection URL for a given alias.
@@ -78,5 +78,5 @@ public interface SqlManager {
      * @return The connection url as a String if it exists,
      *          or {@link Optional#empty()}
      */
-    Optional<String> getConnectionUrlFromAlias(String alias);
+    Optional<String> connectionUrlFromAlias(String alias);
 }

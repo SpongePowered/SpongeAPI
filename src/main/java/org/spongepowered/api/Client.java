@@ -48,7 +48,7 @@ public interface Client extends Engine {
      *
      * @return The local player or {@link Optional#empty()} if it is not found
      */
-    Optional<LocalPlayer> getPlayer();
+    Optional<LocalPlayer> player();
 
     /**
      * Gets the {@link LocalServer server} that powers a local SinglePlayer game instance
@@ -60,7 +60,7 @@ public interface Client extends Engine {
      *
      * @return The local server or {@link Optional#empty()} if it is not found
      */
-    Optional<LocalServer> getServer();
+    Optional<LocalServer> server();
 
     /**
      * Gets the {@link ClientWorld world} that a typical Minecraft client will be viewing
@@ -72,7 +72,7 @@ public interface Client extends Engine {
      *
      * @return The client world or {@link Optional#empty()}} if it is not found
      */
-    Optional<ClientWorld> getWorld();
+    Optional<ClientWorld> world();
 
     /**
      * Gets the {@link ClientSideConnection} that is currently active, this is only the case
@@ -80,5 +80,5 @@ public interface Client extends Engine {
      *
      * @return The client side connection, if present
      */
-    Optional<ClientSideConnection> getConnection();
+    Optional<ClientSideConnection> connection();
 }

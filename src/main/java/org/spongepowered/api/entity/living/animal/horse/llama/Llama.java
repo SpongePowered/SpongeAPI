@@ -42,7 +42,7 @@ public interface Llama extends LlamaLike, TameableHorse, PackHorse {
      * @return The llama type
      * @see org.spongepowered.api.data.type.LlamaTypes
      */
-    default Value.Mutable<LlamaType> type() {
+    default Value.Mutable<LlamaType> llamaType() {
         return this.requireValue(Keys.LLAMA_TYPE).asMutable();
     }
 

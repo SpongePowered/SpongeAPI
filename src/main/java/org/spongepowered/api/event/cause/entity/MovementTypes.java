@@ -64,6 +64,6 @@ public final class MovementTypes {
     }
 
     private static DefaultedRegistryReference<MovementType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.MOVEMENT_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.MOVEMENT_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

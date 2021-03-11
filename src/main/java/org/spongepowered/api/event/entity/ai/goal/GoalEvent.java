@@ -40,21 +40,21 @@ public interface GoalEvent extends Event, Cancellable {
      *
      * @return The agent
      */
-    Agent getAgent();
+    Agent agent();
 
     /**
      * Gets the {@link GoalExecutor} the task will be assigned to.
      *
      * @return The goal
      */
-    GoalExecutor<? extends Agent> getGoal();
+    GoalExecutor<? extends Agent> goal();
 
     /**
      * Gets the {@link Goal} to be assigned.
      *
      * @return The task
      */
-    Goal<? extends Agent> getTask();
+    Goal<? extends Agent> task();
 
     /**
      * Gets the priority the task will be assigned to. Lower numbers mean
@@ -62,23 +62,23 @@ public interface GoalEvent extends Event, Cancellable {
      *
      * @return The priority
      */
-    int getPriority();
+    int priority();
 
     /**
      * Fired when an {@link Goal} is added to an {@link Agent}'s {@link GoalExecutor}.
      */
     interface Add extends GoalEvent {
         /**
-         * Gets the original priority that {@link GoalEvent#getTask()} will
-         * be assigned to. See {@link GoalEvent#getPriority()}.
+         * Gets the original priority that {@link GoalEvent#task()} will
+         * be assigned to. See {@link GoalEvent#priority()}.
          *
          * @return The original priority
          */
-        int getOriginalPriority();
+        int originalPriority();
 
         /**
          * Sets the priority the task will be assigned to. See
-         * {@link GoalEvent#getPriority()}.
+         * {@link GoalEvent#priority()}.
          *
          * @param priority The new priority
          */

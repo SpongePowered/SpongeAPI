@@ -38,7 +38,7 @@ public interface SwimGoal extends Goal<Agent> {
      * @return A new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -49,7 +49,7 @@ public interface SwimGoal extends Goal<Agent> {
      *
      * @return The chance that the owning entity will "swim"
      */
-    float getSwimChance();
+    float swimChance();
 
     /**
      * Sets the chance that the owning {@link Agent} will perform

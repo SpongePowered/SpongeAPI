@@ -63,14 +63,14 @@ public interface DropItemEvent extends Event, Cancellable {
          *
          * @return The original list of dropped items
          */
-        List<ItemStackSnapshot> getOriginalDroppedItems();
+        List<ItemStackSnapshot> originalDroppedItems();
 
         /**
          * Gets the mutable list of {@link ItemStackSnapshot}s to be dropped.
          *
          * @return The list of dropped itemstacks
          */
-        List<ItemStackSnapshot> getDroppedItems();
+        List<ItemStackSnapshot> droppedItems();
 
     }
 

@@ -70,7 +70,7 @@ public class DiscreteTransform3 {
      *
      * @return The matrix for this transform
      */
-    public Matrix4d getMatrix() {
+    public Matrix4d matrix() {
         return this.matrix;
     }
 
@@ -363,7 +363,7 @@ public class DiscreteTransform3 {
      * @return The added transforms as a copy
      */
     public DiscreteTransform3 withTransformation(DiscreteTransform3 transform) {
-        return new DiscreteTransform3(transform.getMatrix().mul(this.getMatrix()));
+        return new DiscreteTransform3(transform.matrix().mul(this.matrix()));
     }
 
     /**
@@ -544,7 +544,7 @@ public class DiscreteTransform3 {
         final Matrix4d rotation3;
         switch (axis) {
             case X: {
-                final Matrix3d rotation2 = DiscreteTransform2.rotationAroundCenter(quarterTurns, new Vector2i(size.getZ(), size.getY())).getMatrix();
+                final Matrix3d rotation2 = DiscreteTransform2.rotationAroundCenter(quarterTurns, new Vector2i(size.getZ(), size.getY())).matrix();
                 rotation3 = new Matrix4d(
                     1, 0, 0, 0,
                     0, rotation2.get(1, 0), rotation2.get(1, 1), rotation2.get(1, 2),
@@ -554,7 +554,7 @@ public class DiscreteTransform3 {
                 break;
             }
             case Y: {
-                final Matrix3d rotation2 = DiscreteTransform2.rotationAroundCenter(quarterTurns, new Vector2i(size.getX(), size.getZ())).getMatrix();
+                final Matrix3d rotation2 = DiscreteTransform2.rotationAroundCenter(quarterTurns, new Vector2i(size.getX(), size.getZ())).matrix();
                 rotation3 = new Matrix4d(
                     rotation2.get(0, 0), 0, rotation2.get(0, 1), rotation2.get(0, 2),
                     0, 1, 0, 0,
@@ -564,7 +564,7 @@ public class DiscreteTransform3 {
                 break;
             }
             case Z: {
-                final Matrix3d rotation2 = DiscreteTransform2.rotationAroundCenter(quarterTurns, new Vector2i(size.getX(), size.getY())).getMatrix();
+                final Matrix3d rotation2 = DiscreteTransform2.rotationAroundCenter(quarterTurns, new Vector2i(size.getX(), size.getY())).matrix();
                 rotation3 = new Matrix4d(
                     rotation2.get(0, 0), rotation2.get(0, 1), 0, rotation2.get(0, 2),
                     rotation2.get(1, 0), rotation2.get(1, 1), 0, rotation2.get(1, 2),

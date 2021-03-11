@@ -37,7 +37,7 @@ public interface LoadWorldEvent extends Event {
      *
      * @return The world
      */
-    ServerWorld getWorld();
+    ServerWorld world();
 
     /**
      * Gets if the {@link ServerWorld world} has loaded before.

@@ -52,7 +52,7 @@ public interface AABB {
      * @return An AABB
      */
     static AABB of(final Vector3d v1, final Vector3d v2) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create(v1, v2);
+        return Sponge.game().factoryProvider().provide(Factory.class).create(v1, v2);
     }
 
     /**
@@ -89,28 +89,28 @@ public interface AABB {
      *
      * @return The minimum corner
      */
-    Vector3d getMin();
+    Vector3d min();
 
     /**
      * The maximum corner of the box.
      *
      * @return The maximum corner
      */
-    Vector3d getMax();
+    Vector3d max();
 
     /**
      * Returns the center of the box, halfway between each corner.
      *
      * @return The center
      */
-    Vector3d getCenter();
+    Vector3d center();
 
     /**
      * Gets the size of the box.
      *
      * @return The size
      */
-    Vector3d getSize();
+    Vector3d size();
 
     /**
      * Checks if the bounding box contains a point.

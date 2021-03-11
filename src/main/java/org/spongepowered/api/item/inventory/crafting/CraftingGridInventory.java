@@ -42,7 +42,7 @@ public interface CraftingGridInventory extends Inventory {
      * @param world The world where the item would be crafted in
      * @return The recipe or {@link Optional#empty()} if no recipe is formed
      */
-    Optional<CraftingRecipe> getRecipe(ServerWorld world);
+    Optional<CraftingRecipe> recipe(ServerWorld world);
 
     /**
      * Returns this inventory as a grid.

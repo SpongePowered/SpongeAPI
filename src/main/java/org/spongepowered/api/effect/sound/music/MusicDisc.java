@@ -42,5 +42,5 @@ public interface MusicDisc extends DefaultedRegistryValue {
      *
      * @return The sound type
      */
-    SoundType getSound();
+    SoundType sound();
 }

@@ -72,7 +72,7 @@ public class SpongeEventFactoryTest {
     private static final Set<Class<?>> excludedEvents = ImmutableSet.of(DamageEntityEvent.class,
             GoalEvent.class, GoalEvent.Add.class, GoalEvent.Remove.class, AttackEntityEvent.class);
 
-    private static final Set<String> excludedMethods = ImmutableSet.of("getEntitySnapshots");
+    private static final Set<String> excludedMethods = ImmutableSet.of("entitySnapshots");
 
     // We need to keep a reference to any mocked World passed into a Location,
     // to ensure that it is not GC'd for the duration of a test. This list
@@ -229,7 +229,7 @@ public class SpongeEventFactoryTest {
             // as Location stores a weak reference
             SpongeEventFactoryTest.worlds.add(world);
             final ServerLocation mock = mock(ServerLocation.class);
-            Mockito.when(mock.getWorld()).thenReturn(world);
+            Mockito.when(mock.world()).thenReturn(world);
             return mock;
         } else if (paramType == Transform.class) {
             return mock(Transform.class);

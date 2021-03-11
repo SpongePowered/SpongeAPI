@@ -55,6 +55,6 @@ public final class DoorHinges {
     }
 
     private static DefaultedRegistryReference<DoorHinge> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.DOOR_HINGE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.DOOR_HINGE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

@@ -50,7 +50,7 @@ public abstract class TableEntry<T> {
      * 
      * @return The weight
      */
-    public double getWeight() {
+    public double weight() {
         return this.weight;
     }
 }

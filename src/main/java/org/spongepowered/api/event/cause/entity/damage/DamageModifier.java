@@ -61,14 +61,14 @@ public interface DamageModifier {
      *
      * @return The damage modifier type
      */
-    DamageModifierType getType();
+    DamageModifierType type();
 
     /**
      * Gets the cause of this {@link DamageModifier}.
      *
      * @return The cause of this damage modifier
      */
-    Cause getCause();
+    Cause cause();
 
     /**
      * Gets the contributing {@link ItemStackSnapshot} that provided the
@@ -82,7 +82,7 @@ public interface DamageModifier {
      *
      * @return The contributing item, if available
      */
-    Optional<ItemStackSnapshot> getContributingItem();
+    Optional<ItemStackSnapshot> contributingItem();
 
     /**
      * A builder that creates {@link DamageModifier}s, for use in both plugin and
@@ -160,9 +160,9 @@ public interface DamageModifier {
 
         @Override
         public Builder from(final DamageModifier value) {
-            this.type = value.getType();
-            this.cause = value.getCause();
-            this.snapshot = value.getContributingItem().orElse(null);
+            this.type = value.type();
+            this.cause = value.cause();
+            this.snapshot = value.contributingItem().orElse(null);
             return this;
         }
 
@@ -186,17 +186,17 @@ public interface DamageModifier {
             }
 
             @Override
-            public DamageModifierType getType() {
+            public DamageModifierType type() {
                 return this.type;
             }
 
             @Override
-            public Cause getCause() {
+            public Cause cause() {
                 return this.cause;
             }
 
             @Override
-            public Optional<ItemStackSnapshot> getContributingItem() {
+            public Optional<ItemStackSnapshot> contributingItem() {
                 return Optional.ofNullable(this.snapshot);
             }
 

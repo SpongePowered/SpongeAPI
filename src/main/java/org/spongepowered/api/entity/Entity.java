@@ -82,7 +82,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      *
      * @return The type
      */
-    EntityType<?> getType();
+    EntityType<?> type();
 
     /**
      * Creates an {@link EntitySnapshot}.
@@ -106,7 +106,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      *
      * @return The position of this entity
      */
-    Vector3d getPosition();
+    Vector3d position();
 
     /**
      * Sets the position of this entity.
@@ -133,7 +133,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      *
      * @return The rotation
      */
-    Vector3d getRotation();
+    Vector3d rotation();
 
     /**
      * Sets the rotation of this entity.
@@ -151,8 +151,8 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      *
      * @return The direction
      */
-    default Vector3d getDirection() {
-        final Vector3d rotation = this.getRotation();
+    default Vector3d direction() {
+        final Vector3d rotation = this.rotation();
         return Quaterniond.fromAxesAnglesDeg(rotation.getX(), -rotation.getY(), rotation.getZ()).getDirection();
     }
 
@@ -190,7 +190,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      *
      * @return The entity scale
      */
-    Vector3d getScale();
+    Vector3d scale();
 
     /**
      * Sets the scale.
@@ -204,7 +204,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      *
      * @return The transform
      */
-    Transform getTransform();
+    Transform transform();
 
     /**
      * Sets the {@link Transform}.
@@ -225,7 +225,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      */
     default boolean transferToWorld(final ServerWorld world) {
         Objects.requireNonNull(world, "World cannot be null");
-        return this.transferToWorld(world, world.getProperties().spawnPosition().toDouble());
+        return this.transferToWorld(world, world.properties().spawnPosition().toDouble());
     }
 
     /**
@@ -246,7 +246,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      *
      * @return The axis aligned bounding box
      */
-    Optional<AABB> getBoundingBox();
+    Optional<AABB> boundingBox();
 
     /**
      * Returns whether this entity has been removed.
@@ -291,28 +291,28 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
     /**
      * Gets the nearby entities within the desired distance.
      *
-     * @see World#getNearbyEntities(Vector3d, double)
+     * @see World#nearbyEntities(Vector3d, double)
      * @param distance The distance
      * @return The collection of nearby entities
      */
-    default Collection<? extends Entity> getNearbyEntities(final double distance) {
+    default Collection<? extends Entity> nearbyEntities(final double distance) {
         if (distance <= 0) {
             throw new IllegalArgumentException("Distance must be greater than 0!");
         }
-        return this.getWorld().getNearbyEntities(this.getLocation().getPosition(), distance);
+        return this.world().nearbyEntities(this.location().position(), distance);
     }
 
     /**
      * Gets the nearby entities that satisfy the desired predicate.
      *
-     * @see World#getEntities(AABB, Predicate)
+     * @see World#entities(AABB, Predicate)
      * @param distance The distance
      * @param predicate The predicate to use
      * @return The collection of entities
      */
-    default Collection<? extends Entity> getNearbyEntities(final double distance, final Predicate<? super Entity> predicate) {
+    default Collection<? extends Entity> nearbyEntities(final double distance, final Predicate<? super Entity> predicate) {
         Objects.requireNonNull(predicate, "Predicate cannot be null");
-        return this.getWorld().getEntities(this.getBoundingBox().get().expand(distance, distance, distance), predicate);
+        return this.world().entities(this.boundingBox().get().expand(distance, distance, distance), predicate);
     }
 
     /**

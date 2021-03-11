@@ -53,14 +53,14 @@ public interface Asset {
      *
      * @return Original owner of asset
      */
-    PluginContainer getOwner();
+    PluginContainer owner();
 
     /**
      * Returns the {@link URL} to this Asset.
      *
      * @return URL to asset
      */
-    URL getUrl();
+    URL url();
 
     /**
      * Copies this Asset to the specified 'output' {@link Path}.
@@ -100,7 +100,7 @@ public interface Asset {
                 return;
             }
         }
-        try (InputStream in = this.getUrl().openStream()) {
+        try (InputStream in = this.url().openStream()) {
             Files.copy(in, output);
         }
     }
@@ -137,7 +137,7 @@ public interface Asset {
     default void copyToDirectory(Path outputDirectory, boolean overwrite, boolean onlyIfAbsent) throws IOException {
         Objects.requireNonNull(outputDirectory, "outputDirectory");
         Files.createDirectories(outputDirectory);
-        this.copyToFile(outputDirectory.resolve(this.getFileName()), overwrite, onlyIfAbsent);
+        this.copyToFile(outputDirectory.resolve(this.fileName()), overwrite, onlyIfAbsent);
     }
 
     /**
@@ -145,8 +145,8 @@ public interface Asset {
      *
      * @return The file name
      */
-    default String getFileName() {
-        String path = this.getUrl().getPath();
+    default String fileName() {
+        String path = this.url().getPath();
         //We don't need to worry about file system specific file separators as we are dealing with a substring of URL
         int end = path.lastIndexOf('/');
         if (end < 0) {
@@ -177,7 +177,7 @@ public interface Asset {
      */
     default String readString(Charset charset) throws IOException {
         Objects.requireNonNull(charset, "charset");
-        return Resources.toString(this.getUrl(), charset);
+        return Resources.toString(this.url(), charset);
     }
 
     /**
@@ -199,7 +199,7 @@ public interface Asset {
      */
     default List<String> readLines(Charset charset) throws IOException {
         Objects.requireNonNull(charset, "charset");
-        return Resources.asCharSource(this.getUrl(), charset).readLines();
+        return Resources.asCharSource(this.url(), charset).readLines();
     }
 
     /**
@@ -210,7 +210,7 @@ public interface Asset {
      * @throws IOException If any file exception is thrown
      */
     default byte[] readBytes() throws IOException {
-        return Resources.toByteArray(this.getUrl());
+        return Resources.toByteArray(this.url());
     }
 
 }

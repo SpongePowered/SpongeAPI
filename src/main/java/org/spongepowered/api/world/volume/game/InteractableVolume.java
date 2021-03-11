@@ -204,8 +204,8 @@ public interface InteractableVolume extends BlockVolume, LocationBaseDataHolder 
      * @param profile The game profile of the player this is imitating
      * @return The duration it takes to dig the block
      */
-    default Duration getBlockDigTimeWith(Vector3i position, ItemStack itemStack, GameProfile profile) {
-        return this.getBlockDigTimeWith(Objects.requireNonNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, profile);
+    default Duration blockDigTimeWith(Vector3i position, ItemStack itemStack, GameProfile profile) {
+        return this.blockDigTimeWith(Objects.requireNonNull(position, "position").getX(), position.getY(), position.getZ(), itemStack, profile);
     }
 
     /**
@@ -218,5 +218,5 @@ public interface InteractableVolume extends BlockVolume, LocationBaseDataHolder 
      * @param profile The game profile of the player this is imitating
      * @return The duration it takes to dig the block
      */
-    Duration getBlockDigTimeWith(int x, int y, int z, ItemStack itemStack, GameProfile profile);
+    Duration blockDigTimeWith(int x, int y, int z, ItemStack itemStack, GameProfile profile);
 }

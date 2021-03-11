@@ -62,7 +62,7 @@ import java.util.stream.Stream;
  */
 public interface VolumeStream<V extends Volume, T> {
 
-    V getVolume();
+    V volume();
 
     VolumeStream<V, T> filter(VolumePredicate<V, T> predicate);
 

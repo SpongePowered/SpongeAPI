@@ -57,7 +57,7 @@ public interface Container extends Inventory {
      *
      * @return the list of viewed inventories.
      */
-    List<Inventory> getViewed();
+    List<Inventory> viewed();
 
     /**
      * Sets the viewing players cursor item.
@@ -75,14 +75,14 @@ public interface Container extends Inventory {
      *
      * @return The players cursor item.
      */
-    Optional<ItemStack> getCursor();
+    Optional<ItemStack> cursor();
 
     /**
      * Gets the viewing {@link ServerPlayer player}.
      *
      * @return The viewing player
      */
-    ServerPlayer getViewer();
+    ServerPlayer viewer();
 
     /**
      * Returns whether this Container is open.
@@ -96,6 +96,6 @@ public interface Container extends Inventory {
      *
      * @return the ContainerType of this container.
      */
-    ContainerType getType();
+    ContainerType type();
 
 }

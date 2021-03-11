@@ -43,7 +43,7 @@ public interface EquipmentInventory extends Inventory {
      *
      * @return This inventory's carrier
      */
-    Optional<Equipable> getCarrier();
+    Optional<Equipable> carrier();
 
     /**
      * Gets and remove the stack for the specified equipment type in this
@@ -108,10 +108,10 @@ public interface EquipmentInventory extends Inventory {
      * @param equipmentType Type of equipment slot to set
      * @return matching slot or {@link Optional#empty()} if no matching slot
      */
-    Optional<Slot> getSlot(EquipmentType equipmentType);
+    Optional<Slot> slot(EquipmentType equipmentType);
 
-    default Optional<Slot> getSlot(final Supplier<? extends EquipmentType> equipmentType) {
-        return this.getSlot(equipmentType.get());
+    default Optional<Slot> slot(final Supplier<? extends EquipmentType> equipmentType) {
+        return this.slot(equipmentType.get());
     }
 
 }

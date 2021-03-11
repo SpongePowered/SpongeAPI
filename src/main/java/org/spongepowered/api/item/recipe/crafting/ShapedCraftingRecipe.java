@@ -48,7 +48,7 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -60,21 +60,21 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
      * @return The ingredient predicate at this position defined by the aisle
      * @throws IndexOutOfBoundsException if the location is invalid
      */
-    Ingredient getIngredient(int x, int y);
+    Ingredient ingredient(int x, int y);
 
     /**
      * Gets the width of the grid this ShapedCraftingRecipe fits into.
      *
      * @return The width of the grid
      */
-    int getWidth();
+    int width();
 
     /**
      * Gets the height of the grid this ShapedCraftingRecipe fits into.
      *
      * @return The height of the grid
      */
-    int getHeight();
+    int height();
 
     /**
      * The Builder for {@link ShapedCraftingRecipe}s.

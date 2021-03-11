@@ -146,7 +146,7 @@ public final class EventContextKeys {
     /**
      * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent} to provide
      * the origin {@link BlockSnapshot} that is doing the "growing". This is likely
-     * useful to determine what is the origin with {@link BlockTransaction#getOperation()}
+     * useful to determine what is the origin with {@link BlockTransaction#operation ()}
      * when the {@link org.spongepowered.api.block.transaction.Operation operation} is of
      * {@link org.spongepowered.api.block.transaction.Operations#GROWTH Operations.GROWTH}.
      */

@@ -41,7 +41,7 @@ public interface CommandResult {
      * @return The {@link Builder}
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -85,14 +85,14 @@ public interface CommandResult {
      *
      * @return The result.
      */
-    int getResult();
+    int result();
 
     /**
      * If present, returns the error message associated with this result.
      *
      * @return The error {@link Component}
      */
-    Optional<Component> getErrorMessage();
+    Optional<Component> errorMessage();
 
     /**
      * Builds {@link CommandResult}s.
@@ -113,7 +113,7 @@ public interface CommandResult {
          * @param result The integer result to set
          * @return This builder, for chaining
          */
-        Builder setResult(int result);
+        Builder result(int result);
 
         /**
          * Sets or removes the error message to return to the user without

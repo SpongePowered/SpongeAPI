@@ -61,6 +61,6 @@ public final class GameModes {
     }
 
     private static DefaultedRegistryReference<GameMode> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.GAME_MODE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.GAME_MODE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

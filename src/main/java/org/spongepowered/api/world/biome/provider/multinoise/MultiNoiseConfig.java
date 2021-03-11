@@ -32,7 +32,7 @@ import java.util.Objects;
 public interface MultiNoiseConfig {
 
     static MultiNoiseConfig nether() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).nether();
+        return Sponge.game().factoryProvider().provide(Factory.class).nether();
     }
 
     static MultiNoiseConfig of(final int firstOctave, final List<Double> amplitudes) {
@@ -40,7 +40,7 @@ public interface MultiNoiseConfig {
             throw new IllegalArgumentException("Amplitudes must have at least 1 value!");
         }
 
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(firstOctave, amplitudes);
+        return Sponge.game().factoryProvider().provide(Factory.class).of(firstOctave, amplitudes);
     }
 
     int firstOctave();

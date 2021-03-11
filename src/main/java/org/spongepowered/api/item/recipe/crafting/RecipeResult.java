@@ -68,16 +68,16 @@ public final class RecipeResult {
 
     /**
      * This method should be used instead of the
-     * {@link CraftingRecipe#getExemplaryResult()} method, as it customizes the
+     * {@link CraftingRecipe#exemplaryResult()} method, as it customizes the
      * result further depending on the specified ingredient
      * {@link ItemStackSnapshot}. It is advised to use the output of
-     * {@link CraftingRecipe#getExemplaryResult()}, modify it accordingly, and
+     * {@link CraftingRecipe#exemplaryResult()}, modify it accordingly, and
      * {@code return} it.
      *
      * @return The result of fulfilling the requirements of a
      *         {@link CraftingRecipe}
      */
-    public ItemStackSnapshot getResult() {
+    public ItemStackSnapshot result() {
         return this.result;
     }
 
@@ -89,7 +89,7 @@ public final class RecipeResult {
      * @return A list of {@link ItemStackSnapshot}s to be set in the input
      *         {@link CraftingGridInventory}
      */
-    public List<ItemStackSnapshot> getRemainingItems() {
+    public List<ItemStackSnapshot> remainingItems() {
         return this.remainingItems;
     }
 

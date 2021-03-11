@@ -46,7 +46,7 @@ public interface ChangeDataHolderEvent extends Event, Cancellable {
      *
      * @return The data holder targeted in this event
      */
-    DataHolder.Mutable getTargetHolder();
+    DataHolder.Mutable targetHolder();
 
     @ImplementedBy(AbstractValueChangeEvent.class)
     interface ValueChange extends ChangeDataHolderEvent {
@@ -57,7 +57,7 @@ public interface ChangeDataHolderEvent extends Event, Cancellable {
          *
          * @return The original changes of values
          */
-        DataTransactionResult getOriginalChanges();
+        DataTransactionResult originalChanges();
 
         /**
          * Submits a new {@link DataTransactionResult} as a proposal of various
@@ -65,7 +65,7 @@ public interface ChangeDataHolderEvent extends Event, Cancellable {
          * {@link org.spongepowered.api.data.DataHolder.Mutable}.
          *
          * <p>If the proposed {@link DataTransactionResult} provides additional
-         * values that were not changed in the {@link #getOriginalChanges()},
+         * values that were not changed in the {@link #originalChanges()},
          * the provided changes suggested to be successfully offered will be
          * re-offered </p>
          *
@@ -81,6 +81,6 @@ public interface ChangeDataHolderEvent extends Event, Cancellable {
          * @return The final transaction details to be submitted
          */
         @PropertySettings(requiredParameter = false)
-        DataTransactionResult getEndResult();
+        DataTransactionResult endResult();
     }
 }

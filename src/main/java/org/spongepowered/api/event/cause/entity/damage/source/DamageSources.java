@@ -47,23 +47,23 @@ public final class DamageSources {
 
     // SORTFIELDS:ON
 
-    public static final DamageSource DROWNING = Sponge.getGame().getFactoryProvider().provide(DamageSource.Factory.class).drowning();
+    public static final DamageSource DROWNING = Sponge.game().factoryProvider().provide(DamageSource.Factory.class).drowning();
 
-    public static final DamageSource DRYOUT = Sponge.getGame().getFactoryProvider().provide(DamageSource.Factory.class).dryout();
+    public static final DamageSource DRYOUT = Sponge.game().factoryProvider().provide(DamageSource.Factory.class).dryout();
 
-    public static final DamageSource FALLING = Sponge.getGame().getFactoryProvider().provide(DamageSource.Factory.class).falling();
+    public static final DamageSource FALLING = Sponge.game().factoryProvider().provide(DamageSource.Factory.class).falling();
 
-    public static final DamageSource FIRE_TICK = Sponge.getGame().getFactoryProvider().provide(DamageSource.Factory.class).fireTick();
+    public static final DamageSource FIRE_TICK = Sponge.game().factoryProvider().provide(DamageSource.Factory.class).fireTick();
 
-    public static final DamageSource GENERIC = Sponge.getGame().getFactoryProvider().provide(DamageSource.Factory.class).generic();
+    public static final DamageSource GENERIC = Sponge.game().factoryProvider().provide(DamageSource.Factory.class).generic();
 
-    public static final DamageSource MAGIC = Sponge.getGame().getFactoryProvider().provide(DamageSource.Factory.class).magic();
+    public static final DamageSource MAGIC = Sponge.game().factoryProvider().provide(DamageSource.Factory.class).magic();
 
-    public static final DamageSource STARVATION = Sponge.getGame().getFactoryProvider().provide(DamageSource.Factory.class).starvation();
+    public static final DamageSource STARVATION = Sponge.game().factoryProvider().provide(DamageSource.Factory.class).starvation();
 
-    public static final DamageSource VOID = Sponge.getGame().getFactoryProvider().provide(DamageSource.Factory.class).voidSource();
+    public static final DamageSource VOID = Sponge.game().factoryProvider().provide(DamageSource.Factory.class).voidSource();
 
-    public static final DamageSource WITHER = Sponge.getGame().getFactoryProvider().provide(DamageSource.Factory.class).wither();
+    public static final DamageSource WITHER = Sponge.game().factoryProvider().provide(DamageSource.Factory.class).wither();
 
     // SORTFIELDS:OFF
 

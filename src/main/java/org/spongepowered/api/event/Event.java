@@ -28,7 +28,6 @@ import org.spongepowered.api.event.impl.AbstractEvent;
 import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.util.annotation.eventgen.AbsoluteSortPosition;
 import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
-import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 
 /**
  * An event called within Sponge.
@@ -45,23 +44,23 @@ public interface Event {
      * is an object which implements the Iterable interface.
      * So, when investigating the Cause of the event a common
      * idiom is to use operations (functions) on the result
-     * of getCause as follows:
+     * of cause as follows:
      *
      * Use-case: Getting the Player (if any) responsible:
-     * {@code Optional<Player> optPlayer = event.getCause().first(Player.class);}
+     * {@code Optional<Player> optPlayer = event.cause().first(Player.class);}
      *
      * @return The cause
      */
     @AbsoluteSortPosition(0)
-    Cause getCause();
+    Cause cause();
 
     /**
      * Gets the source of the event (the first object in the cause).
      * 
      * @return The event source
      */
-    default Object getSource() {
-        return this.getCause().root();
+    default Object source() {
+        return this.cause().root();
     }
 
     /**
@@ -69,7 +68,7 @@ public interface Event {
      * 
      * @return The event context
      */
-    default EventContext getContext() {
-        return this.getCause().getContext();
+    default EventContext context() {
+        return this.cause().context();
     }
 }

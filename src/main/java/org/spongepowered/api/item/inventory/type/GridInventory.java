@@ -44,21 +44,21 @@ public interface GridInventory extends Inventory2D {
      *
      * @return The width of this ItemGrid.
      */
-    int getColumns();
+    int columns();
 
     /**
      * Gets the number of rows in the inventory.
      *
      * @return The height of this ItemGrid.
      */
-    int getRows();
+    int rows();
 
     /**
      * Returns the dimensions of this GridInventory as a {@link Vector2i}.
      *
      * @return The dimensions of this GridInventory.
      */
-    Vector2i getDimensions();
+    Vector2i dimensions();
 
     /**
      * Gets and remove the stack at the supplied position in this Inventory.
@@ -114,7 +114,7 @@ public interface GridInventory extends Inventory2D {
      * @return {@link Slot} at the specified position or
      *      {@link Optional#empty()} if the coordinates are out of bounds
      */
-    Optional<Slot> getSlot(int x, int y);
+    Optional<Slot> slot(int x, int y);
 
     /**
      * Gets the row at the specified index.
@@ -123,7 +123,7 @@ public interface GridInventory extends Inventory2D {
      * @return {@link InventoryRow} at the specified position or
      *      {@link Optional#empty()} if the specified row is out of bounds
      */
-    Optional<InventoryRow> getRow(int y);
+    Optional<InventoryRow> row(int y);
 
     /**
      * Gets the column at the specified index.
@@ -132,6 +132,6 @@ public interface GridInventory extends Inventory2D {
      * @return {@link InventoryColumn} at the specified position or
      *      {@link Optional#empty()} if the specified column is out of bounds
      */
-    Optional<InventoryColumn> getColumn(int x);
+    Optional<InventoryColumn> column(int x);
 
 }

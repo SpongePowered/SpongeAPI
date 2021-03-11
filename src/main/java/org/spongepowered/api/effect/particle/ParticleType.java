@@ -46,8 +46,8 @@ public interface ParticleType extends DefaultedRegistryValue {
      * @param <V> The value type
      * @return The option value if present, otherwise {@link Optional#empty()}
      */
-    default <V> Optional<V> getDefaultOption(Supplier<? extends ParticleOption<V>> option) {
-        return this.getDefaultOption(option.get());
+    default <V> Optional<V> defaultOption(Supplier<? extends ParticleOption<V>> option) {
+        return this.defaultOption(option.get());
     }
 
     /**
@@ -59,7 +59,7 @@ public interface ParticleType extends DefaultedRegistryValue {
      * @param <V> The value type
      * @return The option value if present, otherwise {@link Optional#empty()}
      */
-    <V> Optional<V> getDefaultOption(ParticleOption<V> option);
+    <V> Optional<V> defaultOption(ParticleOption<V> option);
 
     /**
      * Gets a immutable {@link Map} with all the available
@@ -69,6 +69,6 @@ public interface ParticleType extends DefaultedRegistryValue {
      *
      * @return The default options
      */
-    Map<ParticleOption<?>, Object> getDefaultOptions();
+    Map<ParticleOption<?>, Object> defaultOptions();
 
 }

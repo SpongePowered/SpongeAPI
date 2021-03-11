@@ -38,22 +38,22 @@ public interface ScheduledTask extends Identifiable {
      *
      * @return The name
      */
-    String getName();
+    String name();
 
     /**
      * Gets the {@link Task} that was scheduled.
      *
      * @return The task
      */
-    Task getTask();
+    Task task();
 
     /**
      * Returns the plugin that scheduled this task.
      *
      * @return The plugin that scheduled the task
      */
-    default PluginContainer getOwner() {
-        return this.getTask().getOwner();
+    default PluginContainer owner() {
+        return this.task().owner();
     }
 
     /**

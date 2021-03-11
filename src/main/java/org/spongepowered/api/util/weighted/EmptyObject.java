@@ -48,15 +48,15 @@ public class EmptyObject<T> extends TableEntry<T> implements DataSerializable {
     }
 
     @Override
-    public int getContentVersion() {
+    public int contentVersion() {
         return 1;
     }
 
     @Override
     public DataContainer toContainer() {
         return DataContainer.createNew()
-                .set(Queries.CONTENT_VERSION, this.getContentVersion())
-                .set(Queries.WEIGHTED_SERIALIZABLE_WEIGHT, this.getWeight());
+                .set(Queries.CONTENT_VERSION, this.contentVersion())
+                .set(Queries.WEIGHTED_SERIALIZABLE_WEIGHT, this.weight());
     }
 
     @Override
@@ -68,13 +68,13 @@ public class EmptyObject<T> extends TableEntry<T> implements DataSerializable {
             return false;
         }
         EmptyObject<?> c = (EmptyObject<?>) o;
-        return this.getWeight() == c.getWeight();
+        return this.weight() == c.weight();
     }
 
     @Override
     public int hashCode() {
         int r = 1;
-        long w = Double.doubleToLongBits(this.getWeight());
+        long w = Double.doubleToLongBits(this.weight());
         r = r * 37 + (int) (w ^ (w >>> 32));
         return r;
     }
@@ -82,7 +82,7 @@ public class EmptyObject<T> extends TableEntry<T> implements DataSerializable {
     @Override
     public String toString() {
         return new StringJoiner(", ", EmptyObject.class.getSimpleName() + "[", "]")
-            .add("weight=" + this.getWeight())
+            .add("weight=" + this.weight())
             .toString();
     }
 }

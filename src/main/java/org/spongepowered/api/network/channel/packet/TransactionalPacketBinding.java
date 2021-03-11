@@ -49,7 +49,7 @@ public interface TransactionalPacketBinding<P extends RequestPacket<R>, R extend
      * @return The opcode
      */
     @Override
-    int getOpcode();
+    int opcode();
 
     /**
      * Gets the type of the {@link RequestPacket}.
@@ -57,7 +57,7 @@ public interface TransactionalPacketBinding<P extends RequestPacket<R>, R extend
      * @return The request packet type
      */
     @Override
-    Class<P> getPacketType();
+    Class<P> packetType();
 
     /**
      * Sets the {@link RequestPacketHandler} to handle a {@link RequestPacket}

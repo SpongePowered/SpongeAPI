@@ -58,7 +58,7 @@ public interface PacketDispatcher {
      * @param packet The packet to send
      */
     default void sendToAllPlayers(final Packet packet) {
-        Sponge.getServer().getOnlinePlayers().forEach(player -> this.sendTo(player, packet));
+        Sponge.server().onlinePlayers().forEach(player -> this.sendTo(player, packet));
     }
 
     /**
@@ -72,7 +72,7 @@ public interface PacketDispatcher {
      * @param packet The packet to send
      */
     default void sendToAllPlayersIn(final ServerWorld world, final Packet packet) {
-        world.getPlayers().forEach(player -> this.sendTo(player, packet));
+        world.players().forEach(player -> this.sendTo(player, packet));
     }
 
     /**
@@ -87,7 +87,7 @@ public interface PacketDispatcher {
      * @param packet The packet to send
      */
     default CompletableFuture<Void> sendTo(final ServerPlayer player, final Packet packet) {
-        return this.sendTo(player.getConnection(), packet);
+        return this.sendTo(player.connection(), packet);
     }
 
     /**
@@ -106,7 +106,7 @@ public interface PacketDispatcher {
      * @throws IllegalStateException If the server connection isn't in the play phase
      */
     default CompletableFuture<Void> sendToServer(final Packet packet) {
-        final EngineConnection connection = Sponge.getClient().getConnection()
+        final EngineConnection connection = Sponge.client().connection()
                 .orElseThrow(() -> new IllegalStateException("The client is currently not connected to a server."));
         return this.sendTo(connection, packet);
     }

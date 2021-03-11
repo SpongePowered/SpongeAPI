@@ -55,6 +55,6 @@ public final class ComparatorModes {
     }
 
     private static DefaultedRegistryReference<ComparatorMode> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.COMPARATOR_MODE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.COMPARATOR_MODE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

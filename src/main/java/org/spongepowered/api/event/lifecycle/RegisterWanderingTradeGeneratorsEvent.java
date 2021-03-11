@@ -30,12 +30,12 @@ import java.util.List;
 
 public interface RegisterWanderingTradeGeneratorsEvent extends LifecycleEvent {
 
-    List<TradeOfferGenerator> getOriginalGenerators();
+    List<TradeOfferGenerator> originalGenerators();
 
-    List<TradeOfferGenerator> getGenerators();
+    List<TradeOfferGenerator> generators();
 
-    List<TradeOfferGenerator> getOriginalRareGenerators();
+    List<TradeOfferGenerator> originalRareGenerators();
 
-    List<TradeOfferGenerator> getRareGenerators();
+    List<TradeOfferGenerator> rareGenerators();
 
 }

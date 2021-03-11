@@ -32,7 +32,7 @@ import org.spongepowered.api.profile.GameProfile;
 public interface ServerSideConnection extends EngineConnection {
 
     @Override
-    default EngineConnectionSide<? extends ServerSideConnection> getSide() {
+    default EngineConnectionSide<? extends ServerSideConnection> side() {
         return EngineConnectionSide.SERVER;
     }
 
@@ -41,5 +41,5 @@ public interface ServerSideConnection extends EngineConnection {
      *
      * @return The client's profile
      */
-    GameProfile getProfile();
+    GameProfile profile();
 }

@@ -72,7 +72,7 @@ public final class RespawnLocation implements DataSerializable {
      *
      * @return The key
      */
-    public ResourceKey getWorldKey() {
+    public ResourceKey worldKey() {
         return this.world;
     }
 
@@ -81,7 +81,7 @@ public final class RespawnLocation implements DataSerializable {
      *
      * @return The spawn position
      */
-    public Vector3d getPosition() {
+    public Vector3d position() {
         return this.position;
     }
 
@@ -103,24 +103,24 @@ public final class RespawnLocation implements DataSerializable {
      * @return The position object, if available.
      */
     public Optional<ServerLocation> asLocation() {
-        Optional<ServerWorld> optWorld = Sponge.getServer().getWorldManager().world(this.getWorldKey());
-        return optWorld.map(world -> ServerLocation.of(world, this.getPosition()));
+        final Optional<ServerWorld> optWorld = Sponge.server().worldManager().world(this.worldKey());
+        return optWorld.map(world -> ServerLocation.of(world, this.position()));
     }
 
     @Override
-    public int getContentVersion() {
+    public int contentVersion() {
         return 2;
     }
 
     @Override
     public DataContainer toContainer() {
         return DataContainer.createNew()
-                .set(Queries.CONTENT_VERSION, this.getContentVersion())
-                .set(Queries.POSITION_X, this.getPosition().getX())
-                .set(Queries.POSITION_Y, this.getPosition().getY())
-                .set(Queries.POSITION_Z, this.getPosition().getZ())
+                .set(Queries.CONTENT_VERSION, this.contentVersion())
+                .set(Queries.POSITION_X, this.position().getX())
+                .set(Queries.POSITION_Y, this.position().getY())
+                .set(Queries.POSITION_Z, this.position().getZ())
                 .set(Queries.FORCED_SPAWN, this.isForced())
-                .set(Queries.WORLD_KEY, this.getWorldKey().getFormatted());
+                .set(Queries.WORLD_KEY, this.worldKey().formatted());
     }
 
     @Override
@@ -176,7 +176,7 @@ public final class RespawnLocation implements DataSerializable {
          * @return This builder, for chaining
          */
         public Builder world(final ServerWorld world) {
-            return this.world(Objects.requireNonNull(world).getKey());
+            return this.world(Objects.requireNonNull(world).key());
         }
 
         /**
@@ -199,8 +199,8 @@ public final class RespawnLocation implements DataSerializable {
          */
         public Builder location(final ServerLocation location) {
             Objects.requireNonNull(location);
-            final ServerWorld world = location.getWorld();
-            this.position(location.getPosition());
+            final ServerWorld world = location.world();
+            this.position(location.position());
             this.world(world);
             return this;
         }
@@ -257,7 +257,7 @@ public final class RespawnLocation implements DataSerializable {
             Objects.requireNonNull(value);
 
             this.world = value.world;
-            this.position = value.getPosition();
+            this.position = value.position();
             this.forced = value.isForced();
             return this;
         }

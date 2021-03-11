@@ -66,13 +66,13 @@ public class WeightedObject<T> extends TableEntry<T> {
             return false;
         }
         final WeightedObject<?> c = (WeightedObject<?>) o;
-        return this.object.equals(c.object) && this.getWeight() == c.getWeight();
+        return this.object.equals(c.object) && this.weight() == c.weight();
     }
 
     @Override
     public int hashCode() {
         int r = 1;
-        final long w = Double.doubleToLongBits(this.getWeight());
+        final long w = Double.doubleToLongBits(this.weight());
         r = r * 37 + (int) (w ^ (w >>> 32));
         r = r * 37 + this.object.hashCode();
         return r;

@@ -38,7 +38,7 @@ public interface RideEntityEvent extends Event, Cancellable {
      *
      * @return The entity
      */
-    Entity getEntity();
+    Entity entity();
 
     /**
      * Raised when an {@link Entity} is being mounted.

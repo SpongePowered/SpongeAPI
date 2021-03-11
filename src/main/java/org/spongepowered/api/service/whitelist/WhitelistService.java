@@ -44,7 +44,7 @@ public interface WhitelistService {
      *
      * @return The {@link GameProfile}s present on this whitelist
      */
-    CompletableFuture<Collection<GameProfile>> getWhitelistedProfiles();
+    CompletableFuture<Collection<GameProfile>> whitelistedProfiles();
 
     /**
      * Gets whether the specified {@link GameProfile} is present on this

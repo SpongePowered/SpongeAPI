@@ -61,6 +61,6 @@ public final class HorseStyles {
     }
 
     private static DefaultedRegistryReference<HorseStyle> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.HORSE_STYLE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.HORSE_STYLE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

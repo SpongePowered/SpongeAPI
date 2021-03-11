@@ -61,16 +61,16 @@ public final class CookingResult {
 
     /**
      * This method should be used instead of the
-     * {@link CookingRecipe#getExemplaryResult()} method, as it customizes the
+     * {@link CookingRecipe#exemplaryResult()} method, as it customizes the
      * result further depending on the specified ingredient
      * {@link ItemStackSnapshot}. It is advised to use the output of
-     * {@link CookingRecipe#getExemplaryResult()}, modify it accordingly, and
+     * {@link CookingRecipe#exemplaryResult()}, modify it accordingly, and
      * {@code return} it.
      *
      * @return The result of fulfilling the requirements of a
      *         {@link CookingRecipe}
      */
-    public ItemStackSnapshot getResult() {
+    public ItemStackSnapshot result() {
         return this.result;
     }
 
@@ -80,7 +80,7 @@ public final class CookingResult {
      * @return The amount of experience released after fulfilling the
      *         requirements of a {@link CookingRecipe}
      */
-    public double getExperience() {
+    public double experience() {
         return this.experience;
     }
 

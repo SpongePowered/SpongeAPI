@@ -31,11 +31,11 @@ public class CommandFailedRegistrationException extends RuntimeException {
 
     private static final long serialVersionUID = -783923658025L;
 
-    public CommandFailedRegistrationException(String message) {
+    public CommandFailedRegistrationException(final String message) {
         super(message);
     }
 
-    public CommandFailedRegistrationException(String message, Throwable inner) {
+    public CommandFailedRegistrationException(final String message, final Throwable inner) {
         super(message, inner);
     }
 

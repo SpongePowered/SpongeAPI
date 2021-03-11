@@ -39,7 +39,7 @@ public interface InteractEntityEvent extends InteractEvent, Cancellable {
      *
      * @return The entity
      */
-    Entity getEntity();
+    Entity entity();
 
     /**
      * An event where the targeted entity is being interacted with the client's
@@ -58,7 +58,7 @@ public interface InteractEntityEvent extends InteractEvent, Cancellable {
     interface Secondary extends InteractEntityEvent {
 
         /**
-         * An entity is interacted with at an {@link #getInteractionPoint() interactionpoint}.
+         * An entity is interacted with at an {@link #interactionPoint() interactionpoint}.
          *
          * <p>This is used for interactions targeting specific parts of an entity.</p>
          */
@@ -68,7 +68,7 @@ public interface InteractEntityEvent extends InteractEvent, Cancellable {
              *
              * @return The interaction point
              */
-            Vector3d getInteractionPoint();
+            Vector3d interactionPoint();
         }
 
         /**

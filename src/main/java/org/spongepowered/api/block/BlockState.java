@@ -54,12 +54,12 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
      * @return The builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     static BlockState fromString(final String id) {
         Objects.requireNonNull(id);
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class).fromString(id).build();
+        return Sponge.game().builderProvider().provide(Builder.class).fromString(id).build();
     }
 
     /**
@@ -90,7 +90,7 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
      *
      * @return The type of block
      */
-    BlockType getType();
+    BlockType type();
 
     /**
      * Gets the associated {@link FluidState} for this block state.
@@ -99,7 +99,7 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
      *
      * @return The fluid state
      */
-    FluidState getFluidState();
+    FluidState fluidState();
 
     /**
      * Creates a new {@link BlockSnapshot} with this current {@link BlockState}

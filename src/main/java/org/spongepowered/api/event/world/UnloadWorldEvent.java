@@ -38,5 +38,5 @@ public interface UnloadWorldEvent extends Event {
      *
      * @return The world
      */
-    ServerWorld getWorld();
+    ServerWorld world();
 }

@@ -53,14 +53,14 @@ public interface PlayerChangeClientSettingsEvent extends Event {
      *
      * @return The player
      */
-    ServerPlayer getPlayer();
+    ServerPlayer player();
 
     /**
      * Gets the new locale of the player.
      *
      * @return The locale
      */
-    Locale getLocale();
+    Locale locale();
 
     /**
      * Gets the new view distance of the player. This value represents the
@@ -68,14 +68,14 @@ public interface PlayerChangeClientSettingsEvent extends Event {
      *
      * @return The view distance
      */
-    int getViewDistance();
+    int viewDistance();
 
     /**
      * Gets the new chat visibility setting of the player.
      *
      * @return The chat visibility setting
      */
-    ChatVisibility getChatVisibility();
+    ChatVisibility chatVisibility();
 
     /**
      * Gets the new value for whether the player has colors enabled in chat.
@@ -89,6 +89,6 @@ public interface PlayerChangeClientSettingsEvent extends Event {
      *
      * @return The displayed skin parts
      */
-    Set<SkinPart> getDisplayedSkinParts();
+    Set<SkinPart> displayedSkinParts();
 
 }

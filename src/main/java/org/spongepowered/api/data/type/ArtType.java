@@ -39,13 +39,13 @@ public interface ArtType extends DefaultedRegistryValue {
      *
      * @return The height in blocks
      */
-    int getHeight();
+    int height();
 
     /**
      * Gets the width in blocks this art piece spans.
      *
      * @return The width in blocks
      */
-    int getWidth();
+    int width();
 
 }

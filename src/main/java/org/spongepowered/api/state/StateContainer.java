@@ -31,11 +31,11 @@ import java.util.Optional;
 
 public interface StateContainer<S extends State<S>> {
 
-    ImmutableList<S> getValidStates();
+    ImmutableList<S> validStates();
 
-    S getDefaultState();
+    S defaultState();
 
-    Collection<StateProperty<?>> getStateProperties();
+    Collection<StateProperty<?>> stateProperties();
 
     /**
      * Attempts to retrieve the {@link StateProperty} instance associated with
@@ -45,6 +45,6 @@ public interface StateContainer<S extends State<S>> {
      * @param name The state property name
      * @return The state property, if available
      */
-    Optional<StateProperty<?>> getStatePropertyByName(String name);
+    Optional<StateProperty<?>> statePropertyByName(String name);
 
 }

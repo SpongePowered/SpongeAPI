@@ -38,5 +38,5 @@ public interface LocalPlayerConnection extends PlayerConnection, ClientSideConne
      * @return The associated player
      */
     @Override
-    LocalPlayer getPlayer();
+    LocalPlayer player();
 }

@@ -48,7 +48,7 @@ public interface MetricsConfigManager {
      *
      * @return The global state of collection
      */
-    Tristate getGlobalCollectionState();
+    Tristate globalCollectionState();
 
     /**
      * Gets the current state of collection for the specified plugin. The collection state
@@ -56,11 +56,11 @@ public interface MetricsConfigManager {
      *
      * {@link Tristate#TRUE} Permits data collection
      * {@link Tristate#FALSE} Disallows data collection, this has been explicitly set
-     * {@link Tristate#UNDEFINED} Inherit from {@link MetricsConfigManager#getGlobalCollectionState()}, this is set by default
+     * {@link Tristate#UNDEFINED} Inherit from {@link MetricsConfigManager#globalCollectionState()}, this is set by default
      *
      * @param container The {@link PluginContainer}
      * @return The current collection state
      */
-    Tristate getCollectionState(final PluginContainer container);
+    Tristate collectionState(final PluginContainer container);
 
 }

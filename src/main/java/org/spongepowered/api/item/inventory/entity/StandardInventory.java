@@ -38,15 +38,15 @@ public interface StandardInventory {
      *
      * @return The main inventory
      */
-    PrimaryPlayerInventory getPrimary();
+    PrimaryPlayerInventory primary();
 
     /**
      * Gets the hotbar inventory.
      *
      * @return The hotbar
      */
-    default Hotbar getHotbar() {
-        return this.getPrimary().getHotbar();
+    default Hotbar hotbar() {
+        return this.primary().hotbar();
     }
 
     /**
@@ -54,8 +54,8 @@ public interface StandardInventory {
      *
      * @return The main inventory grid
      */
-    default GridInventory getStorage() {
-        return this.getPrimary().getStorage();
+    default GridInventory storage() {
+        return this.primary().storage();
     }
 
     /**
@@ -63,19 +63,19 @@ public interface StandardInventory {
      *
      * @return The armor inventory
      */
-    EquipmentInventory getArmor();
+    EquipmentInventory armor();
 
     /**
      * Gets the offhand inventory.
      *
      * @return The offhand slot
      */
-    Slot getOffhand();
+    Slot offhand();
 
     /**
      * Gets the equipment inventory.
      *
      * @return The equipment inventory
      */
-    EquipmentInventory getEquipment();
+    EquipmentInventory equipment();
 }

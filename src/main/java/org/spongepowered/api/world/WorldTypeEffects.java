@@ -32,11 +32,11 @@ public final class WorldTypeEffects {
 
     // SORTFIELDS:ON
 
-    public static final WorldTypeEffect OVERWORLD = Sponge.getGame().getFactoryProvider().provide(WorldTypeEffect.Factory.class).overworld();
+    public static final WorldTypeEffect OVERWORLD = Sponge.game().factoryProvider().provide(WorldTypeEffect.Factory.class).overworld();
 
-    public static final WorldTypeEffect NETHER = Sponge.getGame().getFactoryProvider().provide(WorldTypeEffect.Factory.class).nether();
+    public static final WorldTypeEffect NETHER = Sponge.game().factoryProvider().provide(WorldTypeEffect.Factory.class).nether();
 
-    public static final WorldTypeEffect END = Sponge.getGame().getFactoryProvider().provide(WorldTypeEffect.Factory.class).end();
+    public static final WorldTypeEffect END = Sponge.game().factoryProvider().provide(WorldTypeEffect.Factory.class).end();
 
     // SORTFIELDS:OFF
 

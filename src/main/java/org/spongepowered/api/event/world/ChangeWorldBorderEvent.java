@@ -46,7 +46,7 @@ public interface ChangeWorldBorderEvent extends Event, Cancellable {
      *
      * @return The border that was previously in use, if there was one.
      */
-    Optional<WorldBorder> getPreviousBorder();
+    Optional<WorldBorder> previousBorder();
 
     /**
      * Gets the border that will be used as an {@link Optional}. For some
@@ -56,7 +56,7 @@ public interface ChangeWorldBorderEvent extends Event, Cancellable {
      *
      * @return The border that will be in use, if there is one.
      */
-    Optional<WorldBorder> getNewBorder();
+    Optional<WorldBorder> newBorder();
 
     /**
      * An event that is fired when a world's border is changed.
@@ -68,7 +68,7 @@ public interface ChangeWorldBorderEvent extends Event, Cancellable {
          *
          * @return The world
          */
-        ServerWorld getWorld();
+        ServerWorld world();
 
     }
 
@@ -83,7 +83,7 @@ public interface ChangeWorldBorderEvent extends Event, Cancellable {
          *
          * @return The player
          */
-        ServerPlayer getPlayer();
+        ServerPlayer player();
     }
 
 }

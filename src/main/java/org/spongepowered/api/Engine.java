@@ -37,7 +37,7 @@ public interface Engine extends ScopedRegistryHolder {
      * Gets the {@link Game} that launched this engine;
      * @return The game
      */
-    Game getGame();
+    Game game();
 
     /**
      * Gets the {@link CauseStackManager} for handling the current event cause
@@ -45,14 +45,14 @@ public interface Engine extends ScopedRegistryHolder {
      *
      * @return The cause stack manager
      */
-    CauseStackManager getCauseStackManager();
+    CauseStackManager causeStackManager();
 
     /**
      * Gets the {@link Scheduler} used to schedule sync tasks on this {@link Engine}.
      *
      * @return The sync scheduler
      */
-    Scheduler getScheduler();
+    Scheduler scheduler();
 
     /**
      * Checks if the {@link Thread#currentThread() current thread} is the main thread of the engine.
