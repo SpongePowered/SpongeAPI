@@ -29,6 +29,7 @@ import org.spongepowered.api.profile.GameProfile;
 import java.net.InetAddress;
 import java.util.Collection;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Represents a service with which to ban things, such as {@link GameProfile}s or IP addresses.
@@ -48,21 +49,21 @@ public interface BanService {
      *
      * @return All registered bans
      */
-    Collection<? extends Ban> getBans();
+    CompletableFuture<Collection<? extends Ban>> getBans();
 
     /**
      * Gets all {@link GameProfile} bans registered.
      *
      * @return All registered {@link GameProfile} bans
      */
-    Collection<Ban.Profile> getProfileBans();
+    CompletableFuture<Collection<Ban.Profile>> getProfileBans();
 
     /**
      * Gets all IP bans registered.
      *
      * @return All registered IP bans
      */
-    Collection<Ban.IP> getIpBans();
+    CompletableFuture<Collection<Ban.IP>> getIpBans();
 
     /**
      * Gets the ban for the given {@link GameProfile}, if available.
@@ -70,7 +71,7 @@ public interface BanService {
      * @param profile The profile
      * @return The ban, if available
      */
-    Optional<Ban.Profile> getBanFor(GameProfile profile);
+    CompletableFuture<Optional<Ban.Profile>> getBanFor(GameProfile profile);
 
     /**
      * Gets the ban for the given address, if available.
@@ -78,7 +79,7 @@ public interface BanService {
      * @param address The address.
      * @return All registered IP bans
      */
-    Optional<Ban.IP> getBanFor(InetAddress address);
+    CompletableFuture<Optional<Ban.IP>> getBanFor(InetAddress address);
 
     /**
      * Checks if a {@link GameProfile} has a ban.
@@ -86,7 +87,7 @@ public interface BanService {
      * @param profile The profile
      * @return True if the profile has a ban, false otherwise
      */
-    boolean isBanned(GameProfile profile);
+    CompletableFuture<Boolean> isBanned(GameProfile profile);
 
     /**
      * Checks if an IP has a ban.
@@ -94,7 +95,7 @@ public interface BanService {
      * @param address The address
      * @return True if the address has a ban, false otherwise
      */
-    boolean isBanned(InetAddress address);
+    CompletableFuture<Boolean> isBanned(InetAddress address);
 
     /**
      * Pardons a profile, or removes its ban, if present.
@@ -102,7 +103,7 @@ public interface BanService {
      * @param profile The profile
      * @return Whether the profile had a ban present
      */
-    boolean pardon(GameProfile profile);
+    CompletableFuture<Boolean> pardon(GameProfile profile);
 
     /**
      * Pardons an IP address, or removes its ban, if present.
@@ -110,7 +111,7 @@ public interface BanService {
      * @param address The IP address
      * @return Whether the address had a ban present
      */
-    boolean pardon(InetAddress address);
+    CompletableFuture<Boolean> pardon(InetAddress address);
 
     /**
      * Removes a ban.
@@ -118,7 +119,7 @@ public interface BanService {
      * @param ban The ban
      * @return Whether the ban was present in this ban service
      */
-    boolean removeBan(Ban ban);
+    CompletableFuture<Boolean> removeBan(Ban ban);
 
     /**
      * Adds a ban.
@@ -129,7 +130,7 @@ public interface BanService {
      * @param ban The ban to add to this ban service
      * @return The previous ban, if available
      */
-    Optional<? extends Ban> addBan(Ban ban);
+    CompletableFuture<Optional<? extends Ban>> addBan(Ban ban);
 
     /**
      * Checks if the specified ban is present.
@@ -137,6 +138,6 @@ public interface BanService {
      * @param ban The ban
      * @return True if the ban exists in this ban service, false otherwise
      */
-    boolean hasBan(Ban ban);
+    CompletableFuture<Boolean> hasBan(Ban ban);
 
 }
