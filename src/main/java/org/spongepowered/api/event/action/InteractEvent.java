@@ -24,8 +24,14 @@
  */
 package org.spongepowered.api.event.action;
 
+import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.data.type.HandType;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.math.vector.Vector3d;
+import org.spongepowered.api.event.EventContextKeys;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 import java.util.Optional;
 
@@ -33,5 +39,54 @@ import java.util.Optional;
  * Base event for all interactions.
  */
 public interface InteractEvent extends Event {
-
+    /**
+     * Gets the fake {@link Player} who performed interaction.
+     *
+     * @return Fake player performing interaction
+     */
+    default Optional<Player> fakePlayer() {
+        return this.getContext().get(EventContextKeys.FAKE_PLAYER);
+    }
+    
+    /**
+     * Gets {@link User} who performed interaction.
+     *
+     * @return User performing interaction
+     */
+    default Optional<User> user() {
+        return this.getContext().get(EventContextKeys.CREATOR);
+    }
+    
+    default Optional<ItemStackSnapshot> usedItem() {
+        return this.getContext().get(EventContextKeys.USED_ITEM);
+    }
+    
+    /**
+     * Gets the {@link HandType} used to interact.
+     *
+     * @return The hand used to interact
+     */
+    default HandType handType() {
+        return this.getContext()
+                .get(EventContextKeys.USED_HAND)
+                .orElseThrow(() -> new IllegalStateException("used hand in interact event is not present"));
+    }
+    
+    /**
+     * Gets the {@link BlockSnapshot} player interacts with.
+     *
+     * @return The BlockSnapshot with which the interaction was performed
+     */
+    default Optional<BlockSnapshot> hitBlock() {
+        return this.getContext().get(EventContextKeys.BLOCK_HIT);
+    }
+    
+    /**
+     * Gets the {@link Entity} player interacts with.
+     *
+     * @return The Entity with which the interaction was performed
+     */
+    default Optional<Entity> hitEntity() {
+        return this.getContext().get(EventContextKeys.ENTITY_HIT);
+    }
 }
