@@ -37,7 +37,6 @@ import java.util.Optional;
  */
 public interface ClickContainerEvent extends ChangeInventoryEvent, InteractContainerEvent {
 
-    @PropertySettings(requiredParameter = false, generateMethods = false)
     @Override
     default Container getInventory() {
         return this.getContainer();
