@@ -24,7 +24,10 @@
  */
 package org.spongepowered.api.advancement;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.entity.living.player.Player;
+
+import java.util.Optional;
 
 /**
  * Represents a {@link Advancement} tree or tab menu. The tree will become
@@ -44,9 +47,6 @@ public interface AdvancementTree  {
      *
      * @return The background texture
      */
-    // TODO: Deprecate when ResourcePath is available
-    String getBackgroundPath();
-
-    // ResourcePath getBackground();
+    Optional<ResourceKey> getBackgroundPath();
 
 }
