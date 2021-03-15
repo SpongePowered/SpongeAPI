@@ -63,6 +63,7 @@ import org.spongepowered.api.data.type.HandPreference;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.InstrumentType;
+import org.spongepowered.api.data.type.ItemTier;
 import org.spongepowered.api.data.type.LlamaType;
 import org.spongepowered.api.data.type.MatterType;
 import org.spongepowered.api.data.type.MooshroomType;
@@ -83,7 +84,6 @@ import org.spongepowered.api.data.type.SpellType;
 import org.spongepowered.api.data.type.SpellTypes;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
-import org.spongepowered.api.data.type.ItemTier;
 import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.type.WireAttachmentType;
@@ -199,6 +199,7 @@ import org.spongepowered.api.item.FireworkShape;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.enchantment.Enchantment;
+import org.spongepowered.api.item.enchantment.EnchantmentTypes;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -224,8 +225,8 @@ import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.TypeTokens;
 import org.spongepowered.api.util.orientation.Orientation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
-import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.explosion.Explosion;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.weather.WeatherType;
 import org.spongepowered.api.world.weather.WeatherTypes;
@@ -341,6 +342,12 @@ public final class Keys {
      * The time of a {@link Ravager} is considered attacking.
      */
     public static final Key<Value<Ticks>> ATTACK_TIME = Keys.key(ResourceKey.sponge("attack_time"), TypeTokens.TICKS_VALUE_TOKEN);
+
+    /**
+     * Remaining ticks of the auto spin attack a {@link Living} is doing.
+     * @see #IS_AUTO_SPIN_ATTACK
+     */
+    public static final Key<Value<Ticks>> AUTO_SPIN_ATTACK_TICKS = Keys.key(ResourceKey.sponge("auto_spin_attack_ticks"), TypeTokens.TICKS_VALUE_TOKEN);
 
     /**
      * The author of a {@link ItemTypes#WRITTEN_BOOK} {@link ItemStack}.
@@ -1172,6 +1179,12 @@ public final class Keys {
      * Whether a {@link BlockState} is "attached" to another block.
      */
     public static final Key<Value<Boolean>> IS_ATTACHED = Keys.key(ResourceKey.sponge("is_attached"), TypeTokens.BOOLEAN_VALUE_TOKEN);
+    
+    /**
+     * Whether a {@link Living} is doing an auto spin attack (doable with the {@link EnchantmentTypes#RIPTIDE} enchantment.)
+     * @see #AUTO_SPIN_ATTACK_TICKS
+     */
+    public static final Key<Value<Boolean>> IS_AUTO_SPIN_ATTACK = Keys.key(ResourceKey.sponge("is_auto_spin_attack"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 
     /**
      * Whether an entity is begging for food.
