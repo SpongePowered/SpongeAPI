@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.util.metric;
 
+import com.google.inject.Inject;
 import org.spongepowered.api.util.Tristate;
 import org.spongepowered.plugin.PluginContainer;
 
@@ -31,7 +32,7 @@ import org.spongepowered.plugin.PluginContainer;
  * Provides information about whether a server has granted permission for
  * server metric data to be transmitted on a per plugin basis.
  *
- * <p>This manager is {@code @Inject}able into plugin classes.</p>
+ * <p>This manager may be {@link Inject injected} into plugin classes.</p>
  */
 public interface MetricsConfigManager {
 
@@ -39,12 +40,36 @@ public interface MetricsConfigManager {
      * Gets the current <em>global</em> state of collection. The collection state determines
      * how data collection should be handled.
      *
-     * Global state determines how an undefined state for a specific plugin should be handled.
-     * If a plugin has a state specified then it will override the global state.
+     * <p>Global state determines how an undefined state for a specific plugin should be
+     * handled. If a plugin has a state specified then it will override the global state.</p>
      *
-     * {@link Tristate#TRUE} Permits data collection
-     * {@link Tristate#FALSE} Disallows data collection, this has been explicitly set
-     * {@link Tristate#UNDEFINED} Disallows data collection, this is set by default
+     * <table>
+     *     <tr>
+     *         <th>State</th>
+     *         <th>Data Collection Permitted</th>
+     *         <th>Comment</th>
+     *     </tr>
+     *     <tr>
+     *         <td>{@link Tristate#TRUE TRUE}</td>
+     *         <td>Allowed</td>
+     *         <td>Server administrator enabled metrics globally.</td>
+     *     </tr>
+     *     <tr>
+     *         <td>{@link Tristate#FALSE FALSE}</td>
+     *         <td>Disallowed (explicitly)</td>
+     *         <td>Server administrator disabled metrics globally.</td>
+     *     </tr>
+     *     <tr>
+     *         <td>{@link Tristate#UNDEFINED UNDEFINED} (default)</td>
+     *         <td>Disallowed (implicitly)</td>
+     *         <td>The server administrator has made no specific global choice on allowing
+     *         plugins to perform data collection, and defaults to disallowed.</td>
+     *     </tr>
+     * </table>
+     *
+     * <p>The value returned from this <em>should not be stored</em>. As the
+     * configuration/permission can be updated at any time, it is best to check this each
+     * time server metric collection is due to occur.</p>
      *
      * @return The global state of collection
      */
@@ -54,9 +79,42 @@ public interface MetricsConfigManager {
      * Gets the current state of collection for the specified plugin. The collection state
      * determines how data collection should be handled.
      *
-     * {@link Tristate#TRUE} Permits data collection
-     * {@link Tristate#FALSE} Disallows data collection, this has been explicitly set
-     * {@link Tristate#UNDEFINED} Inherit from {@link MetricsConfigManager#globalCollectionState()}, this is set by default
+     * <p>The plugin collection state acts as an override of the
+     * {@link #globalCollectionState() global state}, taking precedence when establishing
+     * whether a plugin is allowed to perform data collection.</p>
+     *
+     * <table>
+     *     <tr>
+     *         <th>State</th>
+     *         <th>Data Collection Permitted</th>
+     *         <th>Comment</th>
+     *     </tr>
+     *     <tr>
+     *         <td>{@link Tristate#TRUE TRUE}</td>
+     *         <td>Allowed</td>
+     *         <td>Server administrator enabled metrics for the plugin specifically.</td>
+     *     </tr>
+     *     <tr>
+     *         <td>{@link Tristate#FALSE FALSE}</td>
+     *         <td>Disallowed</td>
+     *         <td>Server administrator disabled metrics for the plugin specifically.</td>
+     *     </tr>
+     *     <tr>
+     *         <td>{@link Tristate#UNDEFINED UNDEFINED} (default)</td>
+     *         <td>Refer to the {@link #globalCollectionState() global state}</td>
+     *         <td>The server administrator has made no specific choice for this plugin, and
+     *         the {@link #globalCollectionState() global state} should be used.</td>
+     *     </tr>
+     * </table>
+     *
+     * <p>The value returned from this <em>should not be stored</em>. As the
+     * configuration/permission can be updated at any time, it is best to check this each
+     * time server metric collection is due to occur.</p>
+     *
+     * <p>Plugin authors may wish to seek permission to perform data collection, noting that
+     * a {@link Tristate#FALSE false} state is explicitly set by the server administrator,
+     * plugins should only seek permission when both the plugin and global states are
+     * {@link Tristate#UNDEFINED undefined}.</p>
      *
      * @param container The {@link PluginContainer}
      * @return The current collection state
