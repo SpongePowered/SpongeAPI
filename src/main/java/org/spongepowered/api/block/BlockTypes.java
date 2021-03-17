@@ -318,9 +318,9 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> CAVE_AIR = BlockTypes.key(ResourceKey.minecraft("cave_air"));
 
-    public static final DefaultedRegistryReference<BlockType> CAVE_VINES_BODY = BlockTypes.key(ResourceKey.minecraft("cave_vines_body"));
+    public static final DefaultedRegistryReference<BlockType> CAVE_VINES = BlockTypes.key(ResourceKey.minecraft("cave_vines"));
 
-    public static final DefaultedRegistryReference<BlockType> CAVE_VINES_HEAD = BlockTypes.key(ResourceKey.minecraft("cave_vines_head"));
+    public static final DefaultedRegistryReference<BlockType> CAVE_VINES_PLANT = BlockTypes.key(ResourceKey.minecraft("cave_vines_plant"));
 
     public static final DefaultedRegistryReference<BlockType> CHAIN = BlockTypes.key(ResourceKey.minecraft("chain"));
 

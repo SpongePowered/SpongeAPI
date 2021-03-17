@@ -2202,7 +2202,11 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ITEM_ARMOR_EQUIP_TURTLE = SoundTypes.key(ResourceKey.minecraft("item.armor.equip_turtle"));
 
+    public static final DefaultedRegistryReference<SoundType> ITEM_AXE_SCRAPE = SoundTypes.key(ResourceKey.minecraft("item.axe.scrape"));
+
     public static final DefaultedRegistryReference<SoundType> ITEM_AXE_STRIP = SoundTypes.key(ResourceKey.minecraft("item.axe.strip"));
+
+    public static final DefaultedRegistryReference<SoundType> ITEM_AXE_WAX_OFF = SoundTypes.key(ResourceKey.minecraft("item.axe.wax_off"));
 
     public static final DefaultedRegistryReference<SoundType> ITEM_BOOK_PAGE_TURN = SoundTypes.key(ResourceKey.minecraft("item.book.page_turn"));
 
@@ -2267,6 +2271,8 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> ITEM_HOE_TILL = SoundTypes.key(ResourceKey.minecraft("item.hoe.till"));
 
     public static final DefaultedRegistryReference<SoundType> ITEM_HONEY_BOTTLE_DRINK = SoundTypes.key(ResourceKey.minecraft("item.honey_bottle.drink"));
+
+    public static final DefaultedRegistryReference<SoundType> ITEM_HONEYCOMB_WAX_ON = SoundTypes.key(ResourceKey.minecraft("item.honeycomb.wax_on"));
 
     public static final DefaultedRegistryReference<SoundType> ITEM_INK_SAC_USE = SoundTypes.key(ResourceKey.minecraft("item.ink_sac.use"));
 

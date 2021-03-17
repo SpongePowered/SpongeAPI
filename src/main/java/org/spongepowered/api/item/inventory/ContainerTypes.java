@@ -128,6 +128,8 @@ public final class ContainerTypes {
 
     public static final DefaultedRegistryReference<ContainerType> LOOM = ContainerTypes.key(ResourceKey.minecraft("loom"));
 
+    public static final DefaultedRegistryReference<ContainerType> SMITHING = ContainerTypes.key(ResourceKey.minecraft("smithing"));
+
     public static final DefaultedRegistryReference<ContainerType> STONECUTTER = ContainerTypes.key(ResourceKey.minecraft("stonecutter"));
 
     // Containers that cannot be opened on their own. Create an Entity to open the container instead.

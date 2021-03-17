@@ -96,6 +96,8 @@ public final class ParticleTypes {
 
     public static final DefaultedRegistryReference<ParticleType> ELDER_GUARDIAN = ParticleTypes.key(ResourceKey.minecraft("elder_guardian"));
 
+    public static final DefaultedRegistryReference<ParticleType> ELECTRIC_SPARK = ParticleTypes.key(ResourceKey.minecraft("electric_spark"));
+
     public static final DefaultedRegistryReference<ParticleType> ENCHANT = ParticleTypes.key(ResourceKey.minecraft("enchant"));
 
     public static final DefaultedRegistryReference<ParticleType> ENCHANTED_HIT = ParticleTypes.key(ResourceKey.minecraft("enchanted_hit"));
@@ -174,6 +176,8 @@ public final class ParticleTypes {
 
     public static final DefaultedRegistryReference<ParticleType> REVERSE_PORTAL = ParticleTypes.key(ResourceKey.minecraft("reverse_portal"));
 
+    public static final DefaultedRegistryReference<ParticleType> SCRAPE = ParticleTypes.key(ResourceKey.minecraft("scrape"));
+
     public static final DefaultedRegistryReference<ParticleType> SMALL_FLAME = ParticleTypes.key(ResourceKey.minecraft("small_flame"));
 
     public static final DefaultedRegistryReference<ParticleType> SMOKE = ParticleTypes.key(ResourceKey.minecraft("smoke"));
@@ -203,6 +207,10 @@ public final class ParticleTypes {
     public static final DefaultedRegistryReference<ParticleType> VIBRATION = ParticleTypes.key(ResourceKey.minecraft("vibration"));
 
     public static final DefaultedRegistryReference<ParticleType> WARPED_SPORE = ParticleTypes.key(ResourceKey.minecraft("warped_spore"));
+
+    public static final DefaultedRegistryReference<ParticleType> WAX_OFF = ParticleTypes.key(ResourceKey.minecraft("wax_off"));
+
+    public static final DefaultedRegistryReference<ParticleType> WAX_ON = ParticleTypes.key(ResourceKey.minecraft("wax_on"));
 
     public static final DefaultedRegistryReference<ParticleType> WHITE_ASH = ParticleTypes.key(ResourceKey.minecraft("white_ash"));
 
