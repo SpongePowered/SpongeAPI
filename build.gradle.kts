@@ -1,3 +1,9 @@
+buildscript {
+    dependencies {
+        classpath("fr.inria.gforge.spoon:spoon-core:9.0.0") // bump for EIG
+    }
+}
+
 plugins {
     `java-library`
     `maven-publish`
@@ -121,11 +127,20 @@ dependencies {
     testImplementation("org.hamcrest:hamcrest:2.2")
     testImplementation("org.mockito:mockito-core:3.7.7")
 }
+
+java {
+    if (JavaVersion.current() < JavaVersion.VERSION_16) {
+        toolchain {
+            this.languageVersion.set(JavaLanguageVersion.of(16))
+        }
+    }
+}
+
 val spongeSnapshotRepo: String? by project
 val spongeReleaseRepo: String? by project
 tasks {
     genEventImpl {
-        sourceCompatibility = "1.8"
+        sourceCompatibility = "15"
 
         outputFactory = "org.spongepowered.api.event.SpongeEventFactory"
         include("org/spongepowered/api/event/*/**/*")
@@ -159,7 +174,7 @@ tasks {
 
     withType(JavaCompile::class).configureEach {
         options.apply {
-            compilerArgs.addAll(listOf("-Xlint:all", "-Xlint:-path", "-parameters"))
+            compilerArgs.addAll(listOf("-Xlint:all", "-Xlint:-path", "-parameters", "-Xdoclint:-missing"))
             isDeprecation = false
             encoding = "UTF-8"
         }
@@ -168,7 +183,6 @@ tasks {
     javadoc {
         options {
             encoding = "UTF-8"
-            source = "1.8"
             charset("UTF-8")
             (this as? StandardJavadocDocletOptions)?.apply {
                 links(
@@ -176,22 +190,20 @@ tasks {
                     "https://google.github.io/guice/api-docs/5.0.1/javadoc/",
                     "https://guava.dev/releases/21.0/api/docs/",
                     "https://configurate.aoeu.xyz/4.0.0/apidocs/",
-                    "https://www.javadoc.io/doc/com.google.code.gson/gson/2.8.0/",
-                    "https://docs.oracle.com/javase/8/docs/api/"
+                    "https://www.javadoc.io/doc/com.google.code.gson/gson/2.8.0/"
                 )
                 sequenceOf("api", "key", "text-serializer-gson", "text-serializer-legacy", "text-serializer-plain").forEach {
                     links("https://jd.adventure.kyori.net/$it/4.7.0/")
                 }
-                addStringOption("-quiet")
+                addBooleanOption("quiet", true)
+                addStringOption("-release", "16")
+                addBooleanOption("Xdoclint:-missing", true);
             }
         }
     }
 
     withType(JavaCompile::class).configureEach {
-        // Use the --release option when available to ensure we only use Java 8 classes
-        if (JavaVersion.current().isJava10Compatible) {
-            options.release.set(8)
-        }
+        options.release.set(16)
     }
 
     test {
