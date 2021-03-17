@@ -60,7 +60,6 @@ public interface Event {
      * 
      * @return The event source
      */
-    @PropertySettings(requiredParameter = false, generateMethods = false)
     default Object getSource() {
         return this.getCause().root();
     }
@@ -70,7 +69,6 @@ public interface Event {
      * 
      * @return The event context
      */
-    @PropertySettings(requiredParameter = false, generateMethods = false)
     default EventContext getContext() {
         return this.getCause().getContext();
     }

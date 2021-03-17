@@ -28,6 +28,7 @@ import org.spongepowered.api.Server;
 import org.spongepowered.api.profile.GameProfile;
 
 import java.util.Collection;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Represents the service for managing a whitelist of {@link GameProfile}s.
@@ -43,7 +44,7 @@ public interface WhitelistService {
      *
      * @return The {@link GameProfile}s present on this whitelist
      */
-    Collection<GameProfile> getWhitelistedProfiles();
+    CompletableFuture<Collection<GameProfile>> getWhitelistedProfiles();
 
     /**
      * Gets whether the specified {@link GameProfile} is present on this
@@ -53,7 +54,7 @@ public interface WhitelistService {
      * @return Whether the specified {@link GameProfile} is present on this
      *         whitelist
      */
-    boolean isWhitelisted(GameProfile profile);
+    CompletableFuture<Boolean> isWhitelisted(GameProfile profile);
 
     /**
      * Adds the specified {@link GameProfile} to this whitelist.
@@ -62,7 +63,7 @@ public interface WhitelistService {
      * @return Whether the specified {@link GameProfile} was already present on
      *         this whitelist
      */
-    boolean addProfile(GameProfile profile);
+    CompletableFuture<Boolean> addProfile(GameProfile profile);
 
     /**
      * Removes the specified {@link GameProfile} from this whitelist, if present.
@@ -71,5 +72,5 @@ public interface WhitelistService {
      * @return Whether the specified {@link GameProfile} was present before
      *         removal
      */
-    boolean removeProfile(GameProfile profile);
+    CompletableFuture<Boolean> removeProfile(GameProfile profile);
 }

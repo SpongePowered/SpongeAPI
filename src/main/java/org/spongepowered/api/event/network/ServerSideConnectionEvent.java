@@ -75,7 +75,6 @@ public interface ServerSideConnectionEvent extends Event {
      *
      * @return The client's profile
      */
-    @PropertySettings(requiredParameter = false, generateMethods = false)
     default GameProfile getProfile() {
         return this.getConnection().getProfile();
     }

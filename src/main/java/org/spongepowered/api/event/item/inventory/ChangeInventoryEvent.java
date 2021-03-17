@@ -33,6 +33,7 @@ import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
+import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 
 import java.util.List;
 import java.util.Optional;
@@ -111,6 +112,7 @@ public interface ChangeInventoryEvent extends Event, AffectSlotEvent {
              *
              * @return The original picked up item
              */
+            @PropertySettings(requiredParameter = true, generateMethods = true)
             default ItemStackSnapshot getOriginalStack() {
                 return this.getItem().item().get();
             }
