@@ -86,8 +86,6 @@ public interface Team {
      * Sets the name displayed to users for this team.
      *
      * @param displayName The {@link Component} to use
-     * @throws IllegalArgumentException If displayName is longer than 32
-     *     characters (in its legacy representation)
      */
     void setDisplayName(Component displayName) throws IllegalArgumentException;
 
@@ -124,8 +122,6 @@ public interface Team {
      * Sets the prefix prepended to the display name of users on this team.
      *
      * @param prefix The new prefix for this team
-     * @throws IllegalArgumentException If prefix is longer than 16
-     *     characters
      */
     void setPrefix(Component prefix) throws IllegalArgumentException;
 
@@ -140,8 +136,6 @@ public interface Team {
      * Sets the suffix appended to the display name of users on this team.
      *
      * @param suffix The new suffix for this team.
-     * @throws IllegalArgumentException If suffix is longer than 16
-     *     characters (in its legacy representation)
      */
     void setSuffix(Component suffix) throws IllegalArgumentException;
 
@@ -342,8 +336,6 @@ public interface Team {
          *
          * @param displayName The {@link Component} to set
          * @return This builder
-         * @throws IllegalArgumentException If the name is longer than 16
-         *     characters
          */
         Builder displayName(Component displayName) throws IllegalArgumentException;
 
