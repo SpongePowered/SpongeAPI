@@ -127,11 +127,11 @@ public interface Objective {
      * @param name The name of the {@link Score} to get.
      * @return The {@link Score} for te specified {@link Component}, if it exists.
      */
-    default Optional<Score> score(Component name) {
+    default Optional<Score> score(final Component name) {
         if (!this.hasScore(name)) {
             return Optional.empty();
         }
-        return Optional.of(this.orCreateScore(name));
+        return Optional.of(this.scoreOrCreate(name));
     }
 
     /**
@@ -142,7 +142,7 @@ public interface Objective {
      * @param name The name of the {@link Score} to get
      * @return The {@link Score} for the specified {@link Component}
      */
-    Score orCreateScore(Component name);
+    Score scoreOrCreate(Component name);
 
     /**
      * Removes the specified {@link Score} from this objective, if present.
@@ -196,7 +196,7 @@ public interface Objective {
          * @param criterion The {@link Criterion} to set
          * @return This builder
          */
-        default Builder criterion(Supplier<? extends Criterion> criterion) {
+        default Builder criterion(final Supplier<? extends Criterion> criterion) {
             return this.criterion(criterion.get());
         }
 
@@ -214,7 +214,7 @@ public interface Objective {
          * @param objectiveDisplayMode The {@link ObjectiveDisplayMode} to set
          * @return This builder
          */
-        default Builder objectiveDisplayMode(Supplier<? extends ObjectiveDisplayMode> objectiveDisplayMode) {
+        default Builder objectiveDisplayMode(final Supplier<? extends ObjectiveDisplayMode> objectiveDisplayMode) {
             return this.objectiveDisplayMode(objectiveDisplayMode.get());
         }
 
@@ -232,6 +232,7 @@ public interface Objective {
          * @return A new instance of an {@link Objective}
          * @throws IllegalStateException if the {@link Objective} is not complete
          */
+        @Override
         Objective build() throws IllegalStateException;
 
     }
