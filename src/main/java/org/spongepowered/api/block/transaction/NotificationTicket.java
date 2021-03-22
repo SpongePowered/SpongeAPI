@@ -22,37 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.block;
+package org.spongepowered.api.block.transaction;
 
-import org.spongepowered.api.block.transaction.NotificationTicket;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
+import org.spongepowered.api.block.BlockSnapshot;
+import org.spongepowered.api.world.LocatableBlock;
 import org.spongepowered.math.vector.Vector3i;
 
-import java.util.List;
-import java.util.function.Predicate;
+public interface NotificationTicket {
 
-/**
- *
- */
-public interface NotifyNeighborBlockEvent extends Event, Cancellable {
+    LocatableBlock notifier();
 
-    List<NotificationTicket> tickets();
-
-    default void filterTargetPositions(final Predicate<Vector3i> predicate) {
-        this.tickets().forEach(ticket -> {
-            if (predicate.test(ticket.targetPosition())) {
-                ticket.setValid(false);
-            }
-        });
+    default Vector3i notifierPosition() {
+        return this.notifier().blockPosition();
     }
 
-    default void filterTickets(final Predicate<NotificationTicket> predicate) {
-        this.tickets().forEach(ticket ->{
-            if (predicate.test(ticket)) {
-                ticket.setValid(false);
-            }
-        });
+    BlockSnapshot target();
+
+    default Vector3i targetPosition() {
+        return this.target().position();
     }
+
+    boolean valid();
+
+    void setValid(boolean valid);
 
 }
