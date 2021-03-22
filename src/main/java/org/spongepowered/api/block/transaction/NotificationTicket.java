@@ -44,6 +44,6 @@ public interface NotificationTicket {
 
     boolean valid();
 
-    void valid(boolean valid);
+    void setValid(boolean valid);
 
 }
