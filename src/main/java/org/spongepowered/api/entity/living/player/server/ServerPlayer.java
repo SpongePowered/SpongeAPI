@@ -225,7 +225,7 @@ public interface ServerPlayer extends Player, Subject {
     /**
      * Manually respawns the player.
      *
-     * <p>If the player is not dead, this method will return <tt>false</tt></p>
+     * <p>If the player is not dead, this method will return {@code false}</p>
      *
      * @return Whether the respawn was successful
      */

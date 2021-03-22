@@ -108,7 +108,7 @@ public interface ChangeBlockEvent extends Event {
          * between this and {@link #transactions()} is that while the general transactions
          * is still an ordered {@link List}, this is a filtered stream of that list, equally
          * unmodifiable. The {@link BlockTransaction transactions} themselves are still
-         * modifiable with {@link BlockTransaction#setCustom(BlockSnapshot)}, but altering
+         * modifiable with {@code BlockTransaction#setCustom(BlockSnapshot)}, but altering
          * the customized snapshot will <strong>NOT</strong> alter the {@link Operation}
          * being performed. As a logical perspective, there is no functional difference
          * between any two {@link Operation operations}, but it can be important to

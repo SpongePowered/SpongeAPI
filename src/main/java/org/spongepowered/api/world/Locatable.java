@@ -51,7 +51,7 @@ public interface Locatable {
      * Gets the location of the source as a {@link ServerLocation}.
      *
      * <p>For ease of use, we provide this as a quick way to not have to map
-     * out the optional in {@link Location#}. Calling this when the source is
+     * out the optional in {@link Location}. Calling this when the source is
      * not on the {@link Server} will result in a hard crash, do so at your
      * own peril.</p>
      *

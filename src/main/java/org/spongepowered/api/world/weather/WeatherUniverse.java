@@ -53,7 +53,6 @@ public interface WeatherUniverse {
          *
          * @param type The weather that should be switched to
          * @param ticks The specified tick duration
-         * @return The weather
          */
         void setWeather(WeatherType type, Ticks ticks);
     }

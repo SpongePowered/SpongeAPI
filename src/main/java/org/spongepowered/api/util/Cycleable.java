@@ -28,8 +28,8 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.type.DyeColor;
 
 /**
- * Represents a type of {@link Enum} or pseudo enum, such as a
- * {@link CatalogType}, that can be "cycled" for the "next" value. The uses are
+ * Represents a type of {@link Enum} or pseudo enum,
+ * that can be "cycled" for the "next" value. The uses are
  * varying, but usually related to cycling {@link BlockState}s. Note that
  * {@link Cycleable} is <b>NOT</b> intended to cycle between "types" that have
  * no particular ordering, such as {@link DyeColor}, etc.

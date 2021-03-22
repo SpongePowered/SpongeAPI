@@ -33,7 +33,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * Represents the service for managing a whitelist of {@link GameProfile}s.
  *
- * <p>In Vanilla, the service is controlled by {@link Server#hasWhitelist()}.
+ * <p>In Vanilla, the service is controlled by {@link Server#isWhitelistEnabled()}.
  * Additionally, operators are always allowed to join, regardless of their
  * absence or presence on the whitelist service.</p>
  */

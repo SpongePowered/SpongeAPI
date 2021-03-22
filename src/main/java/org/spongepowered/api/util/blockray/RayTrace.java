@@ -225,14 +225,14 @@ public interface RayTrace<T extends Locatable> {
      * line of sight purposes). In this case, the predicate may look like this:
      * </p>
      *
-     * <pre>
+     * <pre> {@code
      * block -> {
      *   final BlockType type = block.getBlockState().getType();
      *   return type == BlockTypes.AIR.get() ||
      *          type == BlockTypes.CAVE_AIR.get() ||
      *          type == BlockTypes.VOID_AIR.get();
      * }
-     * </pre>
+     * }</pre>
      *
      * <p>If this is not supplied, this defaults to always returning
      * {@code true}.</p>
@@ -265,14 +265,14 @@ public interface RayTrace<T extends Locatable> {
      * you want to obtain the first non-air block, the predicate might look
      * something like this:</p>
      *
-     * <pre>
+     * <pre> {@code
      * block -> {
      *   final BlockType type = block.getBlockState().getType();
      *   return !(type == BlockTypes.AIR.get() &&
      *          type == BlockTypes.CAVE_AIR.get() &&
      *          type == BlockTypes.VOID_AIR.get());
      * }
-     * </pre>
+     * }</pre>
      *
      * <p>Given the other supplied conditions, if this supplied predicate
      * returns {@code true}, the first hit will be returned as a

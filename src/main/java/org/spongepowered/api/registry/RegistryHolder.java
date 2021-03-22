@@ -39,7 +39,7 @@ public interface RegistryHolder {
      *
      * <p>Great care needs to be made in calling this method with any uncertainty as to
      * if the key will exist in the holder. Should the key lack a value, a
-     * {@link ValueNotFoundException}</p> will be thrown. Therefore, it is advised to call
+     * {@link ValueNotFoundException} will be thrown. Therefore, it is advised to call
      * {@link RegistryHolder#findRegistry(RegistryType)} instead.</p>
      *
      * @param type The type

@@ -241,10 +241,10 @@ public interface WorldManager {
      *
      * <p>If the world is loaded, the following will occur:</p>
      *
-     * <u1>
+     * <ul>
      *     <li>World is unloaded</li>
      *     <li>World is deleted</li>
-     * </u1>
+     * </ul>
      *
      * <p>The default Minecraft world cannot be deleted. Additionally, it is left up to the
      * implementation on exactly what is deleted.</p>

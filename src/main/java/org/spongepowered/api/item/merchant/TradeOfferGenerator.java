@@ -42,7 +42,7 @@ import java.util.function.BiFunction;
  * <p>
  * <p>
  * <strong>Can be directly implemented as a lambda as follows:</strong>
- * <p><pre>
+ * <p><pre> {@code
  * final TradeOfferGenerator generator = (merchant, random) -> TradeOffer.builder()
  *   .firstBuyingItem(ItemStack.of(ItemTypes.EMERALD, 64))
  *   .sellingItem(ItemStack.builder()
@@ -56,7 +56,7 @@ import java.util.function.BiFunction;
  *   .maxUses(20)
  *   .build()
  * );
- * </pre>
+ * }</pre>
  * The by-product of a direct implementation is that you would be needing to
  * build out functions accepting the {@link Random random} instance to add
  * dynamism to your generated {@link TradeOffer TradeOffers}. As such, a handy

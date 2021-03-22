@@ -40,7 +40,7 @@ import org.spongepowered.math.vector.Vector3d;
  * defining a command with a {@link ServerPlayer} parameter may look like this:
  * </p>
  * 
- * <pre>
+ * <pre> {@code
  * final Parameter.Value&lt;ServerPlayer&gt; parameter = Parameter.player().setKey("player").build();
  * final Command.Parameterized builder = Command.builder()
  *      .parameter(parameter)
@@ -49,7 +49,7 @@ import org.spongepowered.math.vector.Vector3d;
  *          return CommandResult.success();
  *      }).build();
  * // registration happens here.
- * </pre>
+ * }</pre>
  *
  * <p>While this is a totally valid approach, there are two particular 
  * considerations that can be made:</p>
@@ -77,7 +77,7 @@ import org.spongepowered.math.vector.Vector3d;
  * obtaining results from the {@link CommandContext}. The example above would
  * then become:</p>
  *
- * <pre>
+ * <pre> {@code
  * final Command.Parameterized builder = Command.builder()
  *      .parameter(CommonParameters.PLAYER)
  *      .executor(context -> {
@@ -85,7 +85,7 @@ import org.spongepowered.math.vector.Vector3d;
  *          return CommandResult.success();
  *      }).build();
  * // registration happens here.
- * </pre>
+ * }</pre>
  *
  * <p>reducing object creation and slightly reducing repetition amongst commands
  * that use the same parameters.</p>
@@ -114,7 +114,7 @@ public final class CommonParameters {
      * A {@link Parameter.Value} that parses a world and a position and stores
      * it as a {@link ServerLocation} under the key "location".
      *
-     * @see ResourceKeyedValueParameters#LOCATION_ONLINE_ONLY
+     * @see ResourceKeyedValueParameters#LOCATION
      */
     public final static Parameter.Value<ServerLocation> LOCATION_ONLINE_ONLY = Parameter.location().key("location").build();
 

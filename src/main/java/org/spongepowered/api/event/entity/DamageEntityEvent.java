@@ -250,7 +250,7 @@ public interface DamageEntityEvent extends Event, Cancellable {
     /**
      * Sets the provided {@link DamageFunction} to be used for the given
      * {@link DamageModifier}. If the {@link DamageModifier} is already
-     * included in {@link #getModifiers()}, the {@link DoubleUnaryOperator} replaces
+     * included in {@link #modifiers()}, the {@link DoubleUnaryOperator} replaces
      * the existing function. If there is no {@link Tuple} for the
      * {@link DamageModifier}, a new one is created and added to the end
      * of the list of {@link DoubleUnaryOperator}s to be applied to the

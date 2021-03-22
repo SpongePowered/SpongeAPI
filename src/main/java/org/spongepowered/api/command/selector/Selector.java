@@ -50,7 +50,7 @@ public interface Selector {
 
     /**
      * Attempts to parse the given string into a selector. It must start with an
-     * @ symbol.
+     * {@literal @} symbol.
      *
      * @param string The string to parse
      * @return The {@link Selector}

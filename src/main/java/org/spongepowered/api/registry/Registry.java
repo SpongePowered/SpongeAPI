@@ -51,7 +51,7 @@ public interface Registry<T> extends Iterable<RegistryEntry<T>> {
      *
      * <p>Great care needs to be made in calling this method with any uncertainty as to
      * if the key will exist. Should the value lack a key, a
-     * {@link IllegalStateException}</p> will be thrown. Therefore, it is advised to call
+     * {@link IllegalStateException} will be thrown. Therefore, it is advised to call
      * {@link Registry#findValueKey(Object)} instead.</p>
      *
      * @param value The value
@@ -112,7 +112,7 @@ public interface Registry<T> extends Iterable<RegistryEntry<T>> {
      *
      * <p>Great care needs to be made in calling this method with any uncertainty as to
      * if the key will exist. Should this key lack a value, a
-     * {@link ValueNotFoundException}</p> will be thrown. Therefore, it is advised to call
+     * {@link ValueNotFoundException} will be thrown. Therefore, it is advised to call
      * {@link Registry#findValue(ResourceKey)} or {@link Registry#findValue(RegistryKey)} instead.</p>
      *
      * @param key The key

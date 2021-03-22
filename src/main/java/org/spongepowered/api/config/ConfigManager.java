@@ -84,12 +84,10 @@ public interface ConfigManager {
      * <p>This collection is expected to handle:</p>
      * <ul>
      *     <li>Every type built-in to Configurate</li>
-     *     <li>Registered subtypes of {@link org.spongepowered.api.CatalogType}</li>
      *     <li>{@link org.spongepowered.api.ResourceKey}s</li>
      *     <li>Registered implementations of {@link org.spongepowered.api.data.persistence.DataSerializable}</li>
      *     <li>All Adventure types including {@link net.kyori.adventure.text.Component}</li>
-     *     <li>Any type with a {@link org.spongepowered.api.data.persistence.DataTranslator} (see
-     *         {@link org.spongepowered.api.data.persistence.DataTranslators})</li>
+     *     <li>Any type with a {@link org.spongepowered.api.data.persistence.DataTranslator}</li>
      * </ul>
      *
      * @return A type serializer collection aware of Sponge serializers

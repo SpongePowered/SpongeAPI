@@ -97,12 +97,11 @@ public interface ServerWorldProperties extends WorldProperties, Identifiable, Re
     /**
      * Gets whether logic surrounding a {@link org.spongepowered.math.vector.Vector3i spawn position} is performed.
      *
-     * <p>It is up to the implementation on how this setting is handled. For Vanilla Minecraft, the following occurs:
-     *     <u1>
+     * <p>It is up to the implementation on how this setting is handled. For Vanilla Minecraft, the following occurs:</p>
+     *     <ul>
      *         <li>If the world is new, a spawn point is calculated</li>
      *         <li>The chunks around the spawn point within a radius are kept loaded in memory</li>
-     *     </u1>
-     * </p>
+     *     </ul>
      *
      * @return performs spawn logic
      */
@@ -111,12 +110,11 @@ public interface ServerWorldProperties extends WorldProperties, Identifiable, Re
     /**
      * Sets whether logic surrounding a {@link org.spongepowered.math.vector.Vector3i spawn position} is performed.
      *
-     * <p>It is up to the implementation on how this setting is handled. For Vanilla Minecraft, the following occurs:
-     *     <u1>
+     * <p>It is up to the implementation on how this setting is handled. For Vanilla Minecraft, the following occurs:</p>
+     *     <ul>
      *         <li>If the world is new, a spawn point is calculated</li>
      *         <li>The chunks around the spawn point within a radius are kept loaded in memory</li>
-     *     </u1>
-     * </p>
+     *     </ul>
      *
      * @param performsSpawnLogic Performs spawn logic
      */

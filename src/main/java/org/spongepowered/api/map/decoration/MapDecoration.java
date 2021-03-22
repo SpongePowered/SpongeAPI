@@ -129,14 +129,14 @@ public interface MapDecoration extends DataSerializable {
      *
      * <p>Examples of persistent MapDecorations:</p>
      * <ul>
-     * <p>  - Plugin added MapDecorations</p>
-     * <p>  - Structures located on the map, i.e Guardian Temple</p>
+     * <li>  - Plugin added MapDecorations</li>
+     * <li>  - Structures located on the map, i.e Guardian Temple</li>
      * </ul>
      * <p>Examples of non-persistent MapDecorations:</p>
      * <ul>
-     * <p>  - MapDecorations marking a {@link Player}'s current location,
-     *          (if {@link Keys#MAP_TRACKS_PLAYERS} is true and if they are in range).</p>
-     * <p>  - MapDecorations marking a {@link ItemFrame}'s position.</p>
+     * <li>  - MapDecorations marking a {@link Player}'s current location,
+     *          (if {@link Keys#MAP_TRACKS_PLAYERS} is true and if they are in range).</li>
+     * <li>  - MapDecorations marking a {@link ItemFrame}'s position.</li>
      * </ul>
      *
      * <p>This affects whether this will be serialized in {@link MapCanvas#toContainer()}.

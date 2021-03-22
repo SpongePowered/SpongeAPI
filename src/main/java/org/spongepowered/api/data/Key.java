@@ -157,7 +157,7 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
          * <p>Common {@link TypeToken TypeTokens} can be found in
          * {@link TypeTokens}. If a new TypeToken is to be created, it is
          * recommended to create an anonymous class instance of a token,
-         * as described in <a hrep="https://github.com/leangen/geantyref#creating-type-literals-using-typetoken">the GeAnTyRef documentation</a>
+         * as described in <a href="https://github.com/leangen/geantyref#creating-type-literals-using-typetoken">the GeAnTyRef documentation</a>
          * </p>
          *
          * @param token The type token

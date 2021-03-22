@@ -81,7 +81,7 @@ public interface ResourcePackStatusEvent extends Event {
          * The client failed to download the resource pack.
          *
          * <p>In some client versions, such as 1.8.0, this may only be sent when
-         * the resource pack URL does not end in <tt>.zip</tt>. Otherwise,
+         * the resource pack URL does not end in {@code .zip}. Otherwise,
          * {@link #SUCCESSFULLY_LOADED} will be sent.</p>
          */
         FAILED(false),

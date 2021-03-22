@@ -90,7 +90,8 @@ public interface TabListEntry {
      *
      * <p>The client displays connection bars based on this number.</p>
      *
-     * <table summary="">
+     * <table>
+     *     <caption></caption>
      *     <thead>
      *         <tr>
      *             <th>Bars</th>

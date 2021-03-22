@@ -67,7 +67,7 @@ import java.time.temporal.TemporalUnit;
  *
  * <p>Information about the current platform and {@link Engine Engine's}
  * expected tick rate can be determined by calling
- * {@link #single()#getExpectedDuration()}. The tick rate is not defined by the
+ * {@link #single()}.{@link #expectedDuration(Engine)}. The tick rate is not defined by the
  * API so may vary amongst different implementations. For all engines based on
  * vanilla Minecraft, this is 50ms for a 20 tick per second rate.</p>
  *

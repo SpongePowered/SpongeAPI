@@ -180,7 +180,7 @@ public interface MapColor extends DataSerializable {
         /**
          * Copies all data from the given {@link MapColor} and applies it to this
          * builder. Therefore, if {@link #build()} is called directly after, the
-         * result of {@link MapColor#equals(Object)} between them will be {@code true}.
+         * result of {@link java.util.Objects#equals(Object, Object)} between them will be {@code true}.
          * Any aspect of this builder could then be modified to produce similar but
          * not identical MapColors.
          *

@@ -34,9 +34,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotates a {@link CatalogType} class to specify a set of special catalog
- * classes which act as the catalog for the annotated type. The annotated class
- * must extend {@link CatalogType}, and the specified catalog classes should be
+ * Annotates a class to specify a set of special catalog
+ * classes which act as the catalog for the annotated type. The
+ * specified catalog classes should be
  * queryable or otherwise serve constant instances of the cataloged type.
  *
  * <p>All Classes mentioned in the CatalogedBy annotation must meet the
