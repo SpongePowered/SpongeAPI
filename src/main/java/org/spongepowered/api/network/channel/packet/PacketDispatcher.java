@@ -85,6 +85,7 @@ public interface PacketDispatcher {
      *
      * @param player The player to send the packet to
      * @param packet The packet to send
+     * @return A future which will complete when the operation has finished
      */
     default CompletableFuture<Void> sendTo(final ServerPlayer player, final Packet packet) {
         return this.sendTo(player.connection(), packet);
@@ -103,6 +104,7 @@ public interface PacketDispatcher {
      * belongs to.</p>
      *
      * @param packet The packet to send
+     * @return A future which will complete when the operation has finished
      * @throws IllegalStateException If the server connection isn't in the play phase
      */
     default CompletableFuture<Void> sendToServer(final Packet packet) {
@@ -121,6 +123,7 @@ public interface PacketDispatcher {
      *
      * @param connection The connection to send the packet to
      * @param packet The packet to send
+     * @return A future which will complete when the operation has finished
      */
     CompletableFuture<Void> sendTo(EngineConnection connection, Packet packet);
 }

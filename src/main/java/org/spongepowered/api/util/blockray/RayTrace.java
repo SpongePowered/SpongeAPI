@@ -227,7 +227,7 @@ public interface RayTrace<T extends Locatable> {
      *
      * <pre> {@code
      * block -> {
-     *   final BlockType type = block.getBlockState().getType();
+     *   final BlockType type = block.blockState().type();
      *   return type == BlockTypes.AIR.get() ||
      *          type == BlockTypes.CAVE_AIR.get() ||
      *          type == BlockTypes.VOID_AIR.get();
@@ -267,7 +267,7 @@ public interface RayTrace<T extends Locatable> {
      *
      * <pre> {@code
      * block -> {
-     *   final BlockType type = block.getBlockState().getType();
+     *   final BlockType type = block.blockState().type();
      *   return !(type == BlockTypes.AIR.get() &&
      *          type == BlockTypes.CAVE_AIR.get() &&
      *          type == BlockTypes.VOID_AIR.get());

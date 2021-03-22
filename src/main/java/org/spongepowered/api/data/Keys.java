@@ -2608,7 +2608,6 @@ public final class Keys {
      *
      * <p>Vanishing an {@link Entity} ridden by other entities (see
      * {@link #PASSENGERS} will cause problems.</p>
-     * <p>
      */
     public static final Key<Value<Boolean>> VANISH = Keys.key(ResourceKey.sponge("vanish"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 

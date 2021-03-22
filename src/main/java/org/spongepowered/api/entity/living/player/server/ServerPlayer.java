@@ -233,7 +233,7 @@ public interface ServerPlayer extends Player, Subject {
 
     /**
      * Gets the {@link WorldBorder} for this player, if present. If no border is
-     * set, an empty {@code Optional} is returned.
+     * set, {@link Optional#empty()} is returned.
      *
      * @return The {@code WorldBorder} of this player as an {@code Optional}, if
      *     present

@@ -40,9 +40,8 @@ import java.util.function.BiFunction;
  * randomization based on {@link ItemStackGenerator}s for populating
  * {@link ItemStack}s and finally generating a {@link TradeOffer}.
  * <p>
- * <p>
  * <strong>Can be directly implemented as a lambda as follows:</strong>
- * <p><pre> {@code
+ * </p><pre> {@code
  * final TradeOfferGenerator generator = (merchant, random) -> TradeOffer.builder()
  *   .firstBuyingItem(ItemStack.of(ItemTypes.EMERALD, 64))
  *   .sellingItem(ItemStack.builder()

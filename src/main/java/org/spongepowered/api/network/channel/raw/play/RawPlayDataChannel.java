@@ -143,6 +143,7 @@ public interface RawPlayDataChannel {
      *
      * @param player The player to send the message to
      * @param payload A consumer to write the data to
+     * @return A future which will complete when the operation has finished
      */
     default CompletableFuture<Void> sendTo(final ServerPlayer player, final Consumer<ChannelBuf> payload) {
         return this.sendTo(player.connection(), payload);
@@ -154,6 +155,7 @@ public interface RawPlayDataChannel {
      * from the client side.
      *
      * @param payload A consumer to write the data to
+     * @return A future which will complete when the operation has finished
      */
     default CompletableFuture<Void> sendToServer(final Consumer<ChannelBuf> payload) {
         final EngineConnection connection = Sponge.client().connection()
@@ -167,6 +169,7 @@ public interface RawPlayDataChannel {
      *
      * @param connection The client connection to send the message to
      * @param payload A consumer to write the data to
+     * @return A future which will complete when the operation has finished
      */
     CompletableFuture<Void> sendTo(EngineConnection connection, Consumer<ChannelBuf> payload);
 }
