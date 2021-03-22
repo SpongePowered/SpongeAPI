@@ -92,7 +92,7 @@ public interface EconomyService extends ContextualService<Account> {
      * @param uuid The {@link UUID} of the account to get.
      * @return The {@link UniqueAccount}, if available.
      */
-    Optional<UniqueAccount> orCreateAccount(UUID uuid);
+    Optional<UniqueAccount> accountOrCreate(UUID uuid);
 
     /**
      * Gets the {@link VirtualAccount} with the specified identifier.
@@ -108,7 +108,7 @@ public interface EconomyService extends ContextualService<Account> {
      * @param identifier The identifier of the account to get.
      * @return The {@link Account}, if available.
      */
-    Optional<Account> orCreateAccount(String identifier);
+    Optional<Account> accountOrCreate(String identifier);
 
     /**
      * Gets a {@link Stream} of all available {@link UniqueAccount}s.
