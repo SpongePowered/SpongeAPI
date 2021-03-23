@@ -152,7 +152,7 @@ public interface PermissionDescription {
      *
      * @return The default value for this permission.
      */
-    Tristate getDefaultValue();
+    Tristate defaultValue();
 
     /**
      * Gets all subjects that have this permission set in the given collection.
@@ -194,7 +194,7 @@ public interface PermissionDescription {
     /**
      * Check if the given subject has the permission described.
      *
-     * <p>If {@link #getId()} contains any template
+     * <p>If {@link #id()} contains any template
      * parameters, they will be stripped out. See overloads if parameters
      * are desired.</p>
      *
@@ -208,7 +208,7 @@ public interface PermissionDescription {
      *
      * <p>Template parameters will be trimmed, and the catalog key will be
      * appended in the format
-     * {@link ResourceKey#getNamespace()}.{@link ResourceKey#getValue()}.</p>
+     * {@link ResourceKey#namespace()}.{@link ResourceKey#value()}.</p>
      *
      * @param subj The subject to query
      * @param key The catalog key to relativize this permission for
@@ -274,7 +274,7 @@ public interface PermissionDescription {
          *
          * <p>Role templates will be namespaced by the plugin that owns each
          * registered permission. The expected format of the namespaced subject
-         * identifier is {@code  <plugin id>:<role>}. Implementations must
+         * identifier is {@code <plugin id>:<role>}. Implementations must
          * provide an un-namespaced role template that inherits its permissions
          * from every plugin-namespaced role template.</p>
          *
@@ -303,7 +303,7 @@ public interface PermissionDescription {
          * This can be used to exclude permissions from node tree inheritance,
          * or to provide a permission to users by default.
          *
-         * <p>This is shorthand for giving {@link #getId()} (with templates
+         * <p>This is shorthand for giving {@link #id()} (with templates
          * stripped) a value on the default subject, except that the default
          * value will only be applied once {@link #register()} is called.</p>
          *

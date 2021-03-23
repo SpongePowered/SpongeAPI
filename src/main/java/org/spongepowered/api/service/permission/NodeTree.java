@@ -152,7 +152,7 @@ public final class NodeTree {
 
     }
 
-    public Tristate getRootValue() {
+    public Tristate rootValue() {
         return this.rootNode.value;
     }
 

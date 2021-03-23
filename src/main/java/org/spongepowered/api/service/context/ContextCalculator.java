@@ -28,7 +28,6 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.service.permission.PermissionService;
 
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.function.Consumer;
@@ -54,12 +53,12 @@ import java.util.function.Function;
  *
  *     <li>Context lookups should <i>not query active contexts</i>: doing so is
  *     likely to result in a stack overflow, or thread deadlock. Care should be
- *     taken to avoid (indirect) calls to {@link ContextualService#contexts()} ()}.</li>
+ *     taken to avoid (indirect) calls to {@link ContextService#contexts()} ()}.</li>
  * </ul>
  *
  * <p>Calculators should be registered with the corresponding
- * {@link ContextualService} using
- * {@link ContextualService#registerContextCalculator(ContextCalculator)}.</p>
+ * {@link ContextService} using
+ * {@link ContextService#registerContextCalculator(ContextCalculator)}.</p>
  *
  * <p>Context lookups for instances provided by the platform,
  * (e.g. {@link Player}) are delegated to the active {@link PermissionService}.

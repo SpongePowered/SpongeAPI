@@ -56,8 +56,8 @@ public interface SubjectProxy extends Subject {
     }
 
     @Override
-    default Optional<?> getAssociatedObject() {
-        return this.subject().getAssociatedObject();
+    default Optional<?> associatedObject() {
+        return this.subject().associatedObject();
     }
 
     @Override

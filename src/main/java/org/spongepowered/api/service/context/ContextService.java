@@ -30,9 +30,8 @@ import java.util.Collection;
 import java.util.Set;
 
 /**
- * A common interface for services which provide a means to store and query
- * data for {@link Contextual}s, according to given or calculated
- * {@link Context} state.
+ * A service that provides shared context calculation functionality for any
+ * services that may wish to use contexts.
  *
  * <p>When functionality is provided to query data based upon a given
  * {@link Set} of {@link Context}s, the querying code must consider which of the
@@ -44,16 +43,15 @@ import java.util.Set;
  * [the context of the entry] is a subset of [the context provided in the
  * query], or programmatically if [the context provided in the query]
  * {@link Set#containsAll(Collection)} of [the context of the entry].</p>
- *
  */
-public interface ContextualService {
+public interface ContextService {
 
     /**
      * Get the active contexts from the current cause.
      *
      * @return an immutable set of contexts
      */
-    Set<Context> getContexts();
+    Set<Context> contexts();
 
     /**
      * Extract applicable contexts from the provided {@link Cause}.
@@ -61,7 +59,7 @@ public interface ContextualService {
      * @param cause source cause
      * @return immutable set of extracted contexts
      */
-    Set<Context> getContextsFor(Cause cause);
+    Set<Context> contextsFor(Cause cause);
 
     /**
      * Registers a {@link ContextCalculator} for use by this service.
@@ -69,4 +67,5 @@ public interface ContextualService {
      * @param calculator The context calculator to register
      */
     void registerContextCalculator(ContextCalculator calculator);
+
 }

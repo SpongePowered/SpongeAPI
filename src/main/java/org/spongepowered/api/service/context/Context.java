@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.service.context;
 
+import org.spongepowered.configurate.util.UnmodifiableCollections;
+
 import java.util.AbstractMap;
 import java.util.Map;
 import java.util.Objects;
@@ -69,7 +71,7 @@ public final class Context implements Map.Entry<String, String> {
     public Context(final String key, final String value) {
         Objects.requireNonNull(key, "key");
         Objects.requireNonNull(value, "value");
-        this.wrapped = new AbstractMap.SimpleImmutableEntry<>(key, value);
+        this.wrapped = UnmodifiableCollections.immutableMapEntry(key, value);
     }
 
     /**

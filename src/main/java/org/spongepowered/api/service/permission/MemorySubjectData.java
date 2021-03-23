@@ -193,17 +193,17 @@ public class MemorySubjectData implements SubjectData {
     }
 
     @Override
-    public Tristate getFallbackPermissionValue(final Set<Context> contexts) {
+    public Tristate fallbackPermissionValue(final Set<Context> contexts) {
         final NodeTree tree = this.permissions.get(Objects.requireNonNull(contexts, "contexts"));
-        return tree == null ? Tristate.UNDEFINED : tree.getRootValue();
+        return tree == null ? Tristate.UNDEFINED : tree.rootValue();
     }
 
     @Override
-    public Map<Set<Context>, Tristate> getAllFallbackPermissionValues() {
+    public Map<Set<Context>, Tristate> allFallbackPermissionValues() {
         final ImmutableMap.Builder<Set<Context>, Tristate> builder = ImmutableMap.builder();
 
         for (final Map.Entry<Set<Context>, NodeTree> entry : this.permissions.entrySet()) {
-            builder.put(entry.getKey(), entry.getValue().getRootValue());
+            builder.put(entry.getKey(), entry.getValue().rootValue());
         }
         return builder.build();
     }
@@ -215,7 +215,7 @@ public class MemorySubjectData implements SubjectData {
 
         while (true) {
             final NodeTree oldTree = this.permissions.get(contexts);
-            if (oldTree != null && oldTree.getRootValue() == fallback) {
+            if (oldTree != null && oldTree.rootValue() == fallback) {
                 return CompletableFuture.completedFuture(false);
             }
 
@@ -239,7 +239,7 @@ public class MemorySubjectData implements SubjectData {
         for (final Set<Context> key : this.permissions.keySet()) {
             while (true) {
                 final NodeTree oldTree = this.permissions.get(key);
-                if (oldTree == null || oldTree.getRootValue() == Tristate.UNDEFINED) {
+                if (oldTree == null || oldTree.rootValue() == Tristate.UNDEFINED) {
                     continue;
                 }
 
@@ -279,7 +279,7 @@ public class MemorySubjectData implements SubjectData {
     }
 
     @Override
-    public Map<Set<Context>, List<SubjectReference>> allParents() {
+    public Map<Set<Context>, List<? extends SubjectReference>> allParents() {
         return ImmutableMap.copyOf(this.parents);
     }
 
@@ -506,9 +506,9 @@ public class MemorySubjectData implements SubjectData {
     public CompletableFuture<Boolean> copyFrom(final SubjectData other, final TransferMethod method) {
         Objects.requireNonNull(other, "other");
         Objects.requireNonNull(method, "method");
-        final Map<Set<Context>, Map<String, Boolean>> otherPerms = other.getAllPermissions();
-        final Map<Set<Context>, Map<String, String>> otherOptions = other.getAllOptions();
-        final Map<Set<Context>, List<? extends SubjectReference>> otherParents = other.getAllParents();
+        final Map<Set<Context>, Map<String, Boolean>> otherPerms = other.allPermissions();
+        final Map<Set<Context>, Map<String, String>> otherOptions = other.allOptions();
+        final Map<Set<Context>, List<? extends SubjectReference>> otherParents = other.allParents();
 
         if (method == TransferMethod.OVERWRITE) {
             this.permissions.clear();

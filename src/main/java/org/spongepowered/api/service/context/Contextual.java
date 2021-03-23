@@ -33,7 +33,7 @@ import java.util.Optional;
  * A common interface for objects that have an identifier and can have a set of
  * active {@link Context}s determined.
  *
- * <p>Used primarily by {@link ContextualService}s.</p>
+ * <p>Used primarily by {@link ContextService}s.</p>
  */
 public interface Contextual {
 

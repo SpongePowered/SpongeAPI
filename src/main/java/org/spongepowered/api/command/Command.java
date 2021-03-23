@@ -562,9 +562,9 @@ public interface Command {
          * {@link Cause} requires to run this command.
          *
          * <p>For more control over whether a command can be executed, use
-         * {@link #setExecutionRequirements(Predicate)}. However, note that
+         * {@link #executionRequirements(Predicate)}. However, note that
          * setting a permission here will not override anything set in
-         * {@link #setExecutionRequirements(Predicate)}, both will be checked
+         * {@link #executionRequirements(Predicate)}, both will be checked
          * during execution.</p>
          *
          * <p>Any permission checks set here will be performed during the
@@ -573,13 +573,13 @@ public interface Command {
          * <p>Calling this repeatedly will not add additional permission
          * checks, instead replacing the permission check. If multiple
          * permission checks are required, use
-         * {@link #setExecutionRequirements(Predicate)}.</p>
+         * {@link #executionRequirements(Predicate)}.</p>
          *
          * @param permission The description for the required permission.
          * @return This builder, for chaining
          */
-        default Builder setPermission(PermissionDescription permission) {
-            return this.setPermission(Objects.requireNonNull(permission, "permission").getId());
+        default Builder permission(PermissionDescription permission) {
+            return this.permission(Objects.requireNonNull(permission, "permission").id());
         }
 
         /**

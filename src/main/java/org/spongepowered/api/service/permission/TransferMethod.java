@@ -28,8 +28,9 @@ package org.spongepowered.api.service.permission;
  * Specifies how data should be transferred into a subject.
  */
 public enum TransferMethod {
+
     /**
-     * Any existing values in the container will be removed
+     * Any existing values in the container will be removed.
      */
     OVERWRITE,
     /**

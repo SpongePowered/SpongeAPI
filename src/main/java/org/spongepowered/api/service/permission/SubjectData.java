@@ -134,14 +134,14 @@ public interface SubjectData {
      * @param contexts The context combination to set this permission in.
      * @return The tristate
      */
-    Tristate getFallbackPermissionValue(Set<Context> contexts);
+    Tristate fallbackPermissionValue(Set<Context> contexts);
 
     /**
      * Get all fallback permission values set on this subject data
      *
      * @return An immutable map from context combination to fallback value
      */
-    Map<Set<Context>, Tristate> getAllFallbackPermissionValues();
+    Map<Set<Context>, Tristate> allFallbackPermissionValues();
 
     /**
      * Set the permission value at the root of the node tree, that will be returned as a response

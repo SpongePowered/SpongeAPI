@@ -111,7 +111,7 @@ public interface Subject extends Contextual {
      *
      * @return a potential game object
      */
-    Optional<?> getAssociatedObject();
+    Optional<?> associatedObject();
 
     /**
      * Returns if this Subject has persistent, non-transient data.
@@ -163,7 +163,7 @@ public interface Subject extends Contextual {
      * @return True if permission is granted
      */
     default boolean hasPermission(final String permission) {
-        return this.hasPermission(permission, Sponge.getServer().getCauseStackManager().getCurrentCause());
+        return this.hasPermission(permission, Sponge.server().causeStackManager().currentCause());
     }
 
     /**
@@ -186,14 +186,14 @@ public interface Subject extends Contextual {
      * to the given permission string.
      *
      * <p>This must return the same boolean equivalent as
-     * {@link #getPermissionValue(String, Cause)}.</p>
+     * {@link #permissionValue(String, Cause)}.</p>
      *
      * @param permission The permission string
      * @param contexts The contexts to calculate permission status in
      * @return True if permission is granted
      */
     default boolean hasPermission(final String permission, final Set<Context> contexts) {
-        return this.getPermissionValue(permission, contexts).asBoolean();
+        return this.permissionValue(permission, contexts).asBoolean();
     }
 
     /**
@@ -205,7 +205,7 @@ public interface Subject extends Contextual {
      *
      * <p>Additionally, the defaults defined the {@link SubjectCollection}
      * that holds this subject, as well as defaults defined in
-     * {@link PermissionService#getDefaults()} should be considered for this
+     * {@link PermissionService#defaults()} should be considered for this
      * lookup.</p>
      *
      * <p>This method is likely to be called frequently, so it is desirable
@@ -248,7 +248,7 @@ public interface Subject extends Contextual {
      *
      * <p>Additionally, the defaults defined the {@link SubjectCollection}
      * that holds this subject, as well as defaults defined in
-     * {@link PermissionService#getDefaults()} should be considered for this
+     * {@link PermissionService#defaults()} should be considered for this
      * lookup.</p>
      *
      * <p>This method is likely to be called frequently, so it is desirable
@@ -302,7 +302,7 @@ public interface Subject extends Contextual {
      *
      * <p>Additionally, the defaults defined the {@link SubjectCollection}
      * that holds this subject, as well as defaults defined in
-     * {@link PermissionService#getDefaults()} should be considered for this
+     * {@link PermissionService#defaults()} should be considered for this
      * lookup.</p>
      *
      * @param parent The parent to check for inheritance
@@ -351,7 +351,7 @@ public interface Subject extends Contextual {
     /**
      * Gets the value of a given option in the subject's current context.
      *
-     * <p>This must return the same value as {@link #getOption(String, Cause)}
+     * <p>This must return the same value as {@link #option(String, Cause)}
      * called with the phase tracker's current cause.
      *
      * @param key The key to get an option by. Case-insensitive.
@@ -386,7 +386,7 @@ public interface Subject extends Contextual {
      *
      * <p>Additionally, the default options defined by the
      * {@link SubjectCollection} that holds this subject, as well as defaults
-     * defined in {@link PermissionService#getDefaults()} should be considered
+     * defined in {@link PermissionService#defaults()} should be considered
      * for this lookup.
      *
      * @param key The key to get an option by. Case-insensitive.
