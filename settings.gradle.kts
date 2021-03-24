@@ -6,12 +6,8 @@ pluginManagement {
     }
     resolutionStrategy {
         eachPlugin {
-            if (requested.id.id.startsWith("org.spongepowered.gradle.")) {
-                val version = requested.version ?: "0.11.7-SNAPSHOT"
-                useModule("org.spongepowered:SpongeGradle:$version")
-            }
             if (requested.id.id == "org.cadixdev.licenser") {
-                val version = requested.version ?: "0.5.0"
+                val version = requested.version ?: "0.5.1"
                 useModule("gradle.plugin.org.cadixdev.gradle:licenser:$version")
             }
         }

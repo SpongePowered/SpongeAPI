@@ -1,7 +1,7 @@
 plugins {
     `java-library`
     `maven-publish`
-    id("org.spongepowered.event-impl-gen") version "7.0.0-SNAPSHOT"
+    id("org.spongepowered.gradle.event-impl-gen") version "7.0.0"
     idea
     eclipse
     id("org.cadixdev.licenser")
