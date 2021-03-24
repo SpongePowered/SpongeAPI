@@ -26,8 +26,6 @@ package org.spongepowered.api.service.permission;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.Cause;
-import org.spongepowered.api.event.CauseStackManager;
-import org.spongepowered.api.event.EventContextKeys;
 import org.spongepowered.api.service.context.Context;
 import org.spongepowered.api.service.context.Contextual;
 import org.spongepowered.api.util.Tristate;

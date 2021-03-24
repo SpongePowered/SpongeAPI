@@ -186,7 +186,7 @@ public interface SubjectData {
      *
      * @return All registered parents and the context they are registered in
      */
-    Map<Set<Context>, List<? extends SubjectReference>> allParents();
+    Map<Set<Context>, ? extends List<? extends SubjectReference>> allParents();
 
     /**
      * Return all registered parent subjects for a given context.

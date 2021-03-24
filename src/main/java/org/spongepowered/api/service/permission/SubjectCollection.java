@@ -131,7 +131,7 @@ public interface SubjectCollection {
      * @param identifiers A set of identifiers to get subjects for
      * @return a map of subjects corresponding to the identifiers passed
      */
-    CompletableFuture<Map<String, ? extends Subject>> loadSubjects(Iterable<String> identifiers);
+    CompletableFuture<? extends Map<String, ? extends Subject>> loadSubjects(Iterable<String> identifiers);
 
     /**
      * Returns an immutable copy of all subjects currently loaded in this
@@ -238,21 +238,20 @@ public interface SubjectCollection {
      * Return the identifiers of all known subjects with the given permission
      * set.
      *
-     * <p>This method <strong>DOES NOT</strong> consider inheritance, and will only query
-     * the data set to the subjects {@link Subject#subjectData()}. Transient
-     * data is not considered.</p>
+     * <p>This method <strong>DOES NOT</strong> consider inheritance, and will
+     * only query the data set to the subjects {@link Subject#subjectData()}.
+     * Transient data is not considered.</p>
      *
      * <p>As no context is passed, it is up to the implementation to decide
-     * which contexts to use. When available,
+     * which contexts to use. When available, it is likely that
+     * {@link SubjectData#GLOBAL_CONTEXT} will be used.</p>
      * <p>Contexts will be extracted from the current cause for each lookup.</p>
-     * is likely that {@link SubjectData#GLOBAL_CONTEXT} will be
-     * used.</p>
      *
      * @param permission The permission to check
      * @return A reference to any subject known to have this permission
      *         set, and the value this permission is set to
      */
-    CompletableFuture<Map<? extends SubjectReference, Boolean>> allWithPermission(String permission);
+    CompletableFuture<? extends Map<? extends SubjectReference, Boolean>> allWithPermission(String permission);
 
     /**
      * Return the identifiers of all known subjects with the given permission
@@ -267,7 +266,7 @@ public interface SubjectCollection {
      * @return A reference to any subject known to have this permission
      *         set, and the value this permission is set to
      */
-    CompletableFuture<Map<? extends SubjectReference, Boolean>> allWithPermission(String permission, Cause cause);
+    CompletableFuture<? extends Map<? extends SubjectReference, Boolean>> allWithPermission(String permission, Cause cause);
 
     /**
      * Return all loaded subjects with the given permission set.

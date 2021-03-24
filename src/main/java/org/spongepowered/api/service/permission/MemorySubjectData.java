@@ -508,7 +508,7 @@ public class MemorySubjectData implements SubjectData {
         Objects.requireNonNull(method, "method");
         final Map<Set<Context>, Map<String, Boolean>> otherPerms = other.allPermissions();
         final Map<Set<Context>, Map<String, String>> otherOptions = other.allOptions();
-        final Map<Set<Context>, List<? extends SubjectReference>> otherParents = other.allParents();
+        final Map<Set<Context>, ? extends List<? extends SubjectReference>> otherParents = other.allParents();
 
         if (method == TransferMethod.OVERWRITE) {
             this.permissions.clear();

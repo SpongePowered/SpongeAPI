@@ -116,7 +116,7 @@ public interface PermissionDescription {
      * <p><b>Note:</b> Permission ids are case insensitive!
      * If permission ids do not start with the plugin ID, implementations will
      * prepend the plugin ID (so {@code command.give} will turn into
-     * {@code myplugin.command.give}<)/p>
+     * {@code myplugin.command.give})</p>
      *
      * @return The permission id
      */
@@ -169,7 +169,7 @@ public interface PermissionDescription {
      *         set, and the value this permission is set to
      * @see SubjectCollection#allWithPermission(String)
      */
-    CompletableFuture<Map<? extends SubjectReference, Boolean>> findAssignedSubjects(String collectionIdentifier);
+    CompletableFuture<? extends Map<? extends SubjectReference, Boolean>> findAssignedSubjects(String collectionIdentifier);
 
     /**
      * Gets all loaded subjects that have this permission set in the given

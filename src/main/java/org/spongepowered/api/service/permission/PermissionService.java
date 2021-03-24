@@ -185,7 +185,7 @@ public interface PermissionService {
      *                     but {@link PermissionDescription} contains some common suggestions.
      * @return An immutable set of mappings from plugin to subject data holder.
      */
-    default Set<Map.Entry<PluginContainer, ? extends SubjectData>> roleTemplates(final String roleTemplate) {
+    default Set<? extends Map.Entry<PluginContainer, ? extends SubjectData>> roleTemplates(final String roleTemplate) {
         final Optional<? extends SubjectCollection> coll = this.collection(PermissionService.SUBJECTS_ROLE_TEMPLATE);
         if (!coll.isPresent()) {
             return Collections.emptySet();
