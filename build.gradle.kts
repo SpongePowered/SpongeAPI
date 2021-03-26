@@ -2,7 +2,6 @@ plugins {
     `java-library`
     `maven-publish`
     id("org.spongepowered.gradle.event-impl-gen") version "7.0.0"
-    idea
     eclipse
     id("org.cadixdev.licenser")
 }
@@ -17,13 +16,17 @@ base {
     archivesBaseName = "spongeapi"
 }
 
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
 val ap by sourceSets.registering {
     compileClasspath += sourceSets.main.get().compileClasspath + sourceSets.main.get().output
 }
 
 // Project dependencies
 dependencies {
-
     // Directly tied to what's available from Minecraft
     api("org.apache.logging.log4j:log4j-api:2.8.1")
     api("com.google.guava:guava:21.0") {
@@ -60,11 +63,11 @@ dependencies {
     }
 
     // High performance cache + guava - shaded guava
-    api("com.github.ben-manes.caffeine:caffeine:2.8.4") {
+    api("com.github.ben-manes.caffeine:caffeine:2.9.0") {
         exclude(group= "org.checkerframework", module = "checker-qual")
         exclude(group = "com.google.errorprone", module = "error_prone_annotations")
     }
-    implementation("com.github.ben-manes.caffeine:guava:2.8.4") {
+    implementation("com.github.ben-manes.caffeine:guava:2.9.0") {
         exclude(group = "com.google.guava", module = "guava")
         exclude(group= "org.checkerframework", module = "checker-qual")
         exclude(group = "com.google.errorprone", module = "error_prone_annotations")
@@ -96,9 +99,8 @@ dependencies {
         exclude(group = "com.google.inject", module = "guice")
     }
 
-    // Math and noise for world gen
+    // Math library
     api("org.spongepowered:math:2.0.0-SNAPSHOT")
-    api("org.spongepowered:noise:2.0.0-SNAPSHOT")
 
     testImplementation("junit:junit:4.13.1")
     testImplementation("org.hamcrest:hamcrest:2.2")
@@ -153,17 +155,17 @@ tasks {
             encoding = "UTF-8"
             source = "1.8"
             charset("UTF-8")
-            isFailOnError = false
             (this as? StandardJavadocDocletOptions)?.apply {
-                links?.addAll(
-                        mutableListOf(
-                                "http://www.slf4j.org/apidocs/",
-                                "https://google.github.io/guava/releases/21.0/api/docs/",
-                                "https://google.github.io/guice/api-docs/4.1/javadoc/",
-                                "https://configurate.aoeu.xyz/4.0.0/apidocs/",
-                                "https://docs.oracle.com/javase/8/docs/api/"
-                        )
+                links(
+                    "https://logging.apache.org/log4j/log4j-2.8.1/log4j-api/apidocs/",
+                    "https://google.github.io/guice/api-docs/4.1/javadoc/",
+                    "https://configurate.aoeu.xyz/4.0.0/apidocs/",
+                    "https://www.javadoc.io/doc/com.google.code.gson/gson/2.8.0/",
+                    "https://docs.oracle.com/javase/8/docs/api/"
                 )
+                sequenceOf("api", "key", "text-serializer-gson", "text-serializer-legacy", "text-serializer-plain").forEach {
+                    links("https://jd.adventure.kyori.net/$it/4.7.0/")
+                }
                 addStringOption("-quiet")
             }
         }
@@ -189,10 +191,6 @@ tasks {
 //        }
 //    }
 
-//    artifacts {
-//        archives(shadowJar)
-//    }
-
     withType<PublishToMavenRepository>().configureEach {
         onlyIf {
             (repository == publishing.repositories["GitHubPackages"] &&
@@ -205,20 +203,7 @@ tasks {
         }
     }
 }
-val javadocJar by tasks.registering(Jar::class) {
-    group = "build"
-    archiveClassifier.set("javadoc")
-    from(tasks.javadoc)
-}
 
-val sourceJar by tasks.registering(Jar::class) {
-    group = "build"
-    archiveClassifier.set("sources")
-    from(sourceSets["main"].allJava)
-}
-base {
-    archivesBaseName = "spongeapi"
-}
 val organization: String by project
 val projectUrl: String by project
 val projectDescription: String by project
@@ -263,8 +248,6 @@ publishing {
         register("sponge", MavenPublication::class) {
             from(components["java"])
 
-            artifact(javadocJar.get())
-            artifact(sourceJar.get())
             pom {
                 artifactId = project.name.toLowerCase()
                 this.name.set(project.name)
