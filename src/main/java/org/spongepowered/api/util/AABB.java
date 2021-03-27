@@ -79,6 +79,7 @@ public interface AABB {
      * @param x2 The second corner x coordinate
      * @param y2 The second corner y coordinate
      * @param z2 The second corner z coordinate
+     * @return An AABB
      */
     static AABB of(final double x1, final double y1, final double z1, final double x2, final double y2, final double z2) {
         return AABB.of(new Vector3d(x1, y1, z1), new Vector3d(x2, y2, z2));

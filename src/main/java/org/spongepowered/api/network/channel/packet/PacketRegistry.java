@@ -46,6 +46,7 @@ public interface PacketRegistry {
      * @param packetClass The class of the packet being registered. Note:
      *        the class must have a no-args constructor
      * @param packetOpcode A unique opcode for this packet
+     * @param <P> The type of the packet
      * @return The created packet binding
      */
     <P extends Packet> HandlerPacketBinding<P> register(Class<P> packetClass, int packetOpcode);

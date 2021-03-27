@@ -49,6 +49,7 @@ public interface TransactionalPacketDispatcher extends PacketDispatcher {
      *
      * @param player The player to send the packet to
      * @param packet The request packet to send
+     * @param <R> The type of the response packet
      * @return The completable future to handle the response packet and exceptions
      * @throws IllegalArgumentException If the given packet type isn't registered in this channel binding
      */
@@ -69,6 +70,7 @@ public interface TransactionalPacketDispatcher extends PacketDispatcher {
      *
      * @param connection The player connection to send the packet to
      * @param packet The request packet to send
+     * @param <R> The type of the response packet
      * @return The completable future to handle the response packet and exceptions
      * @throws IllegalArgumentException If the given packet type isn't registered in this channel binding
      */
@@ -86,6 +88,7 @@ public interface TransactionalPacketDispatcher extends PacketDispatcher {
      * isn't registered in this {@link PacketChannel}.</p>
      *
      * @param packet The packet to send to the server
+     * @param <R> The type of the response packet
      * @return The completable future to handle the response packet and exceptions
      */
     default <R extends Packet> CompletableFuture<R> sendToServer(final RequestPacket<R> packet) {

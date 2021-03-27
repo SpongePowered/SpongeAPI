@@ -162,6 +162,7 @@ public interface MapColor extends DataSerializable {
          * Sets the {@link MapColorType} that will form the basis of the built
          * {@link MapColor}.
          *
+         * @param mapColor the MapColorType
          * @return This builder, for chaining
          */
         Builder baseColor(MapColorType mapColor);

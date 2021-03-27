@@ -96,6 +96,8 @@ public interface Flag {
      *
      * <p>Aliases returned here will <strong>not</strong> be prefixed with the
      * appropriate dashes.</p>
+     *
+     * @return The aliases.
      */
     Collection<String> unprefixedAliases();
 

@@ -46,6 +46,8 @@ public interface Ingredient extends Predicate<ItemStack> {
 
     /**
      * An empty ingredient.
+     *
+     * @return The empty ingredient
      */
     static Ingredient empty() {
         return Sponge.game().factoryProvider().provide(Factory.class).empty();

@@ -185,6 +185,7 @@ public interface RayTrace<T extends Locatable> {
      * <p>This defaults to a distance of 30. This will be ignored if a specific
      * position is set via {@link #continueUntil(Vector3d)}.</p>
      *
+     * @param distance The distance
      * @return This, for chaining
      */
     RayTrace<T> limit(int distance);

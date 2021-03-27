@@ -43,6 +43,8 @@ public interface TransactionalPacketRegistry extends PacketRegistry {
      * @param packetOpcode A unique opcode for this request/response packet type pair
      * @param requestPacketType The type of the request packet being registered
      * @param responsePacketType The type of the response packet being registered
+     * @param <P> The type of the request packet
+     * @param <R> The type of the response packet
      * @return The created transactional packet binding
      */
     <P extends RequestPacket<R>, R extends Packet> FixedTransactionalPacketBinding<P, R> registerTransactional(
@@ -59,6 +61,8 @@ public interface TransactionalPacketRegistry extends PacketRegistry {
      *
      * @param packetOpcode A unique opcode for this request packet type
      * @param requestPacketType The type of the request packet being registered
+     * @param <P> The type of the request packet
+     * @param <R> The type of the response packet
      * @return The created transactional packet binding
      */
     <P extends RequestPacket<R>, R extends Packet> TransactionalPacketBinding<P, R> registerTransactional(

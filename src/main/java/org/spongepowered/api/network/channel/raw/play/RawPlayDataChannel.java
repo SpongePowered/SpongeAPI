@@ -79,6 +79,7 @@ public interface RawPlayDataChannel {
      *
      * @param side The connection side the data will be handled for
      * @param handler The handler
+     * @param <C> The connection type
      */
     <C extends EngineConnection> void addHandler(EngineConnectionSide<C> side, RawPlayDataHandler<? super C> handler);
 
@@ -88,6 +89,7 @@ public interface RawPlayDataChannel {
      *
      * @param connectionType The connection type the data will be handled for
      * @param handler The handler
+     * @param <C> The connection type
      */
     <C extends EngineConnection> void addHandler(Class<C> connectionType, RawPlayDataHandler<? super C> handler);
 
@@ -96,6 +98,7 @@ public interface RawPlayDataChannel {
      *
      * @param side The side to remove the handler from
      * @param handler The handler
+     * @param <C> The connection type
      */
     <C extends EngineConnection> void removeHandler(EngineConnectionSide<C> side, RawPlayDataHandler<? super C> handler);
 
@@ -104,6 +107,7 @@ public interface RawPlayDataChannel {
      *
      * @param connectionType The connection type to remove the handler from
      * @param handler The handler
+     * @param <C> The connection type
      */
     <C extends EngineConnection> void removeHandler(Class<C> connectionType, RawPlayDataHandler<? super C> handler);
 

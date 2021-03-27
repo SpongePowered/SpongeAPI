@@ -29,6 +29,8 @@ import org.spongepowered.api.network.EngineConnection;
 
 /**
  * Represents a listener for data being sent to a raw channel.
+ *
+ * @param <C> The connection type
  */
 @FunctionalInterface
 public interface RawPlayDataHandler<C extends EngineConnection> {

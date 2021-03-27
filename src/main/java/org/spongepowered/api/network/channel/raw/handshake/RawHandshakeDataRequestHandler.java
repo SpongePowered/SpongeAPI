@@ -31,6 +31,8 @@ import org.spongepowered.api.network.channel.packet.RequestPacketResponse;
 
 /**
  * Handles a raw handshake data request.
+ *
+ * @param <C> The connection type
  */
 @FunctionalInterface
 public interface RawHandshakeDataRequestHandler<C extends EngineConnection> {

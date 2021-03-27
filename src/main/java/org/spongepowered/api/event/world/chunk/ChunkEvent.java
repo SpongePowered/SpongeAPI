@@ -35,6 +35,8 @@ public interface ChunkEvent extends Event {
 
     /**
      * Gets the {@link ResourceKey} of the {@link World} that the {@link Chunk} resides in.
+     *
+     * @return The key
      */
     ResourceKey chunkWorld();
 

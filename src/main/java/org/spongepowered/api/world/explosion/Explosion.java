@@ -212,6 +212,7 @@ public interface Explosion extends Locatable {
          * <p>Note, this is a hint to the implementation. Implementations may not
          * provide the means to produce semi-random form explosions.</p>
          *
+         * @param randomness The randomness
          * @return This builder, for chaining
          */
         default Builder randomness(float randomness) {

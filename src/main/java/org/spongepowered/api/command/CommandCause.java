@@ -127,6 +127,8 @@ public interface CommandCause extends SubjectProxy {
 
     /**
      * @see Cause#context()
+     *
+     * @return The event context
      */
     default EventContext context() {
         return this.cause().context();
@@ -134,6 +136,8 @@ public interface CommandCause extends SubjectProxy {
 
     /**
      * @see Cause#root()
+     *
+     * @return The root object cause for this cause
      */
     default Object root() {
         return this.cause().root();
@@ -141,6 +145,10 @@ public interface CommandCause extends SubjectProxy {
 
     /**
      * @see Cause#first(Class)
+     *
+     * @param target The class of the target type
+     * @param <T> The type of object being queried for
+     * @return The first element of the type, if available
      */
     default <T> Optional<T> first(final Class<T> target) {
         return this.cause().first(target);
@@ -148,6 +156,10 @@ public interface CommandCause extends SubjectProxy {
 
     /**
      * @see Cause#last(Class)
+     *
+     * @param target The class of the target type
+     * @param <T> The type of object being queried for
+     * @return The last element of the type, if available
      */
     default <T> Optional<T> last(final Class<T> target) {
         return this.cause().last(target);
@@ -155,6 +167,9 @@ public interface CommandCause extends SubjectProxy {
 
     /**
      * @see Cause#before(Class)
+     *
+     * @param clazz The class of the object
+     * @return The object
      */
     default Optional<?> before(final Class<?> clazz) {
         return this.cause().before(clazz);
@@ -162,6 +177,9 @@ public interface CommandCause extends SubjectProxy {
 
     /**
      * @see Cause#after(Class)
+     *
+     * @param clazz The class to type check
+     * @return The object after, if available
      */
     default Optional<?> after(final Class<?> clazz) {
         return this.cause().after(clazz);
@@ -169,6 +187,9 @@ public interface CommandCause extends SubjectProxy {
 
     /**
      * @see Cause#contains(Object)
+     *
+     * @param target The object to check if it is contained
+     * @return True if the object is contained within this cause
      */
     default boolean containsType(final Class<?> target) {
         return this.cause().containsType(target);
@@ -176,6 +197,9 @@ public interface CommandCause extends SubjectProxy {
 
     /**
      * @see Cause#contains(Object)
+     *
+     * @param object The object to check if it is contained
+     * @return True if the object is contained within this cause
      */
     default boolean contains(final Object object) {
         return this.cause().contains(object);
@@ -183,6 +207,10 @@ public interface CommandCause extends SubjectProxy {
 
     /**
      * @see Cause#allOf(Class)
+     *
+     * @param <T> The type of objects to query for
+     * @param target The class of the target type
+     * @return An immutable list of the objects queried
      */
     default <T> List<T> allOf(final Class<T> target) {
         return this.cause().allOf(target);
@@ -190,6 +218,9 @@ public interface CommandCause extends SubjectProxy {
 
     /**
      * @see Cause#noneOf(Class)
+     *
+     * @param ignoredClass The class of object types to ignore
+     * @return The list of objects not an instance of the provided class
      */
     default List<Object> noneOf(final Class<?> ignoredClass) {
         return this.cause().noneOf(ignoredClass);
@@ -197,6 +228,8 @@ public interface CommandCause extends SubjectProxy {
 
     /**
      * @see Cause#all()
+     *
+     * @return An immutable list of all the causes
      */
     default List<Object> all() {
         return this.cause().all();
@@ -309,6 +342,7 @@ public interface CommandCause extends SubjectProxy {
      *
      * @see Audience#sendMessage(Identity, Component)
      *
+     * @param source The {@link Identity} to send a message from.
      * @param message The message to send.
      */
     void sendMessage(final Identity source, final Component message);

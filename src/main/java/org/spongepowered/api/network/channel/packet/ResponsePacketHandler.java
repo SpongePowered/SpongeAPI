@@ -33,6 +33,7 @@ import org.spongepowered.api.network.channel.NoResponseException;
  *
  * @param <P> The type of the request packet
  * @param <R> The type of the response packet
+ * @param <C> The connection type
  */
 @FunctionalInterface
 public interface ResponsePacketHandler<P extends Packet, R extends Packet, C extends EngineConnection> {

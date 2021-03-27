@@ -33,6 +33,7 @@ import org.spongepowered.api.network.RemoteConnection;
  *
  * @param <P> The request packet type
  * @param <R> The response packet type
+ * @param <C> The connection type
  */
 @FunctionalInterface
 public interface RequestPacketHandler<P extends Packet, R extends Packet, C extends EngineConnection> {

@@ -198,6 +198,8 @@ public interface ServerPlayer extends Player, Subject {
     /**
      * Kicks the player, showing the default kick reason (the translation key
      * {@code disconnect.disconnected}).
+     *
+     * @return whether or not kicking the player succeeded
      */
     boolean kick();
 
@@ -205,6 +207,7 @@ public interface ServerPlayer extends Player, Subject {
      * Kicks the player given a reason.
      *
      * @param reason The reason for the kick
+     * @return whether or not kicking the player succeeded
      */
     boolean kick(Component reason);
 

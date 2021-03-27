@@ -86,6 +86,7 @@ public interface Attribute {
     /**
      * Gets a collection of applied modifiers with the provided operation.
      *
+     * @param operation The operation
      * @return A collection of modifiers
      */
     default Collection<AttributeModifier> modifiers(Supplier<? extends AttributeOperation> operation) {
@@ -95,6 +96,7 @@ public interface Attribute {
     /**
      * Gets a collection of applied modifiers with the provided operation.
      *
+     * @param operation The operation
      * @return A collection of modifiers
      */
     Collection<AttributeModifier> modifiers(AttributeOperation operation);

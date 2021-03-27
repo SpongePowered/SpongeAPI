@@ -343,41 +343,68 @@ public interface Ticks {
 
         /**
          * @see Ticks#of(long)
+         *
+         * @param ticks The number of ticks
+         * @return A {@link Ticks} object that represents the number of ticks.
          */
         Ticks of(long ticks);
 
         /**
          * @see Ticks#ofWallClockTime(Engine, long, TemporalUnit) (long, TemporalUnit)
+         *
+         * @param engine The {@link Engine} to calculate the number of ticks for
+         * @param time The time
+         * @param temporalUnit The {@link TemporalUnit} of time given in {@code time}.
+         * @return The {@link Ticks} that represents the number of ticks that would
+         *      be expected to be run on the given engine in an ideal scenario.
          */
         Ticks ofWallClockTime(Engine engine, long time, TemporalUnit temporalUnit);
 
         /**
          * @see Ticks#ofMinecraftSeconds(Engine, long)
+         *
+         * @param engine The {@link Engine} to calculate the number of ticks for
+         * @param time The number of minecraft seconds
+         * @return The {@link Ticks} that represents the number of ticks that would
+         *      be expected to be run in an ideal scenario.
          */
         Ticks ofMinecraftSeconds(Engine engine, long time);
 
         /**
          * @see Ticks#ofMinecraftHours(Engine, long)
+         *
+         * @param engine The {@link Engine} to calculate the number of ticks for
+         * @param time The number of minecraft hours
+         * @return The {@link Ticks} that represents the number of ticks that would
+         *      be expected to be run in an ideal scenario.
          */
         Ticks ofMinecraftHours(Engine engine, long time);
 
         /**
          * @see Ticks#zero()
+         *
+         * @return A {@link Ticks}
          */
         Ticks zero();
 
         /**
          * @see Ticks#single()
+         *
+         * @return A {@link Ticks}
          */
         Ticks single();
 
         /**
          * @see Ticks#minecraftHour()
+         *
+         * @return A {@link Ticks}
          */
         Ticks minecraftHour();
 
         /**
          * @see Ticks#minecraftDay()
+         *
+         * @return A {@link Ticks}
          */
         Ticks minecraftDay();
 

@@ -273,6 +273,7 @@ public interface Command {
          * @param cause The {@link Cause} of this parse
          * @param arguments The argument {@link String}
          * @return The {@link CommandContext}
+         * @throws ArgumentParseException if a parameter could not be parsed
          */
         CommandContext parseArguments(CommandCause cause, ArgumentReader.Mutable arguments) throws ArgumentParseException;
 
