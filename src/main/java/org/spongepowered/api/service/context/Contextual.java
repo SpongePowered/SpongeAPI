@@ -24,8 +24,11 @@
  */
 package org.spongepowered.api.service.context;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
+import org.spongepowered.api.event.Cause;
+import org.spongepowered.api.event.EventContext;
 
 import java.util.Optional;
 
@@ -66,6 +69,19 @@ public interface Contextual {
      */
     default Optional<String> friendlyIdentifier() {
         return Optional.empty();
+    }
+
+    /**
+     * Get the cause describing the current state of this subject.
+     *
+     * <p>This is often not based on current game state, but rather the last
+     * known state of this subject. If a subject refers to a game object that is
+     * not active in the world, the cause may be a global cause.</p>
+     *
+     * @return the active cause
+     */
+    default Cause contextCause() {
+        return Cause.of(EventContext.empty(), Sponge.game().server());
     }
 
 }

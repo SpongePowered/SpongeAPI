@@ -125,6 +125,11 @@ public interface CommandCause extends SubjectProxy {
      */
     Cause cause();
 
+    @Override
+    default Cause contextCause() {
+        return this.cause();
+    }
+
     /**
      * @see Cause#context()
      *
@@ -249,6 +254,9 @@ public interface CommandCause extends SubjectProxy {
      *    <li>The {@link SystemSubject} if no subject exists within the cause
      *    </li>
      * </ul>
+     *
+     * <p>This subject may present a different view of default context than
+     * calls to {@link Subject} methods directly on this cause.</p>
      *
      * <p><strong>Note:</strong> while it might be tempting to use this as the
      * invoker of the command, the {@link Cause#root()} and this might be

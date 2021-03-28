@@ -35,6 +35,10 @@ import java.util.Set;
 /**
  * Enables an object to act as a proxy to a Subject, delegating all calls through
  * to the actual Subject.
+ *
+ * <p>All default-{@link Cause} methods query the context cause from this proxy,
+ * rather than the backing subject. This allows proxy subjects to override the
+ * context causes.</p>
  */
 public interface SubjectProxy extends Subject {
 
@@ -44,6 +48,16 @@ public interface SubjectProxy extends Subject {
      * @return The {@link Subject}
      */
     Subject subject();
+
+    @Override
+    default Cause contextCause() {
+        return this.subject().contextCause();
+    }
+
+    @Override
+    default Optional<String> friendlyIdentifier() {
+        return this.subject().friendlyIdentifier();
+    }
 
     @Override
     default SubjectCollection containingCollection() {
@@ -86,6 +100,11 @@ public interface SubjectProxy extends Subject {
     }
 
     @Override
+    default Tristate permissionValue(final String permission) {
+        return this.subject().permissionValue(permission, this.contextCause());
+    }
+
+    @Override
     default boolean isChildOf(SubjectReference parent, Set<Context> contexts) {
         return this.subject().isChildOf(parent, contexts);
     }
@@ -97,7 +116,7 @@ public interface SubjectProxy extends Subject {
 
     @Override
     default boolean isChildOf(final SubjectReference parent) {
-        return this.subject().isChildOf(parent);
+        return this.subject().isChildOf(parent, this.contextCause());
     }
 
     @Override
@@ -112,7 +131,7 @@ public interface SubjectProxy extends Subject {
 
     @Override
     default List<? extends SubjectReference> parents() {
-        return this.subject().parents();
+        return this.subject().parents(this.contextCause());
     }
 
     @Override
@@ -127,7 +146,7 @@ public interface SubjectProxy extends Subject {
 
     @Override
     default Optional<String> option(final String key) {
-        return this.subject().option(key);
+        return this.subject().option(key, this.contextCause());
     }
 
     @Override
@@ -147,12 +166,6 @@ public interface SubjectProxy extends Subject {
 
     @Override
     default boolean hasPermission(final String permission) {
-        return this.subject().hasPermission(permission);
+        return this.subject().hasPermission(permission, this.contextCause());
     }
-
-    @Override
-    default Optional<String> friendlyIdentifier() {
-        return this.subject().friendlyIdentifier();
-    }
-
 }

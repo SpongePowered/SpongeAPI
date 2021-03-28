@@ -24,9 +24,11 @@
  */
 package org.spongepowered.api.service.permission;
 
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.Cause;
+import org.spongepowered.api.event.EventContext;
+import org.spongepowered.api.event.EventContextKeys;
 import org.spongepowered.api.service.context.Context;
+import org.spongepowered.api.service.context.ContextCalculator;
 import org.spongepowered.api.service.context.Contextual;
 import org.spongepowered.api.util.Tristate;
 
@@ -43,6 +45,8 @@ import java.util.Set;
  * <p>The most common forms of Subject are "users" and "groups", although these
  * are not the only forms. Anything can hold permission data, and therefore be a
  * subject.</p>
+ *
+ * <h2>Permission strings</h2>
  *
  * <p>Authorization checks are made using "permission strings."</p>
  *
@@ -62,7 +66,7 @@ import java.util.Set;
  * of a {@link NodeTree} is recommended.</p>
  *
  * <p>Plugins may opt to implement "dynamic" permissions such as {@code
- * example.region.define.[region]} where {@code region} would depend on
+ * example.region.define.&lt;region&gt;} where {@code region} would depend on
  * the context of the check. Attention should be made towards the handling of
  * periods / full stops in such cases.</p>
  *
@@ -73,6 +77,8 @@ import java.util.Set;
  * {@code example.function.self} to permit usage on one's self and grant
  * {@code example.function} to grant usage on other users.</p>
  *
+ * <h2>Inheritance</h2>
+ *
  * <p>All methods are expected to account for data inherited from parent
  * subjects. For a representation of the data that the subject explicitly holds,
  * obtain the {@link SubjectData} for the subject.</p>
@@ -81,9 +87,26 @@ import java.util.Set;
  * defined in the {@link SubjectCollection} containing this subject, as well
  * as the defaults set globally in {@link PermissionService#defaults()}.</p>
  *
- * <p>Use a {@link SubjectCollection} to create instances.</p>
+ * <h2>Contexts</h2>
  *
- * @see PermissionService
+ * <p>Permission state is calculated using small pieces of information known as
+ * <em>contexts</em>. These are derived from a provided {@link Cause} using
+ * {@link ContextCalculator}s. Subjects have a
+ * {@linkplain #contextCause() default cause} for context calculation, which is
+ * based on the subject's active state.</p>
+ *
+ * <p>The relevant active state for subject context may be different depending
+ * on which types of permissions are being checked. Mostly, these will fall into
+ * either <em>global game state</em> or <em>the subject's own state</em>. While
+ * the default implementation of {@link #contextCause()} provides the latter,
+ * some proxy subjects that act as a projection of a subject into a certain
+ * state (such as {@link org.spongepowered.api.command.CommandCause} may choose
+ * to default to the former. The relevant cause stack should be carefully
+ * considered when performing permissions checks.</p>
+ *
+ * <p>Use a {@link SubjectCollection} to access instances.</p>
+ *
+ * @see PermissionService to manage Subjects.
  */
 public interface Subject extends Contextual {
 
@@ -110,6 +133,16 @@ public interface Subject extends Contextual {
      * @return a potential game object
      */
     Optional<?> associatedObject();
+
+    @Override
+    default Cause contextCause() {
+        final /* @Nullable */ Object associated = this.associatedObject().orElse(null);
+        if (associated != null) {
+            return Cause.of(EventContext.builder().add(EventContextKeys.SUBJECT, this).build(), associated);
+        } else {
+            return Contextual.super.contextCause();
+        }
+    }
 
     /**
      * Returns if this Subject has persistent, non-transient data.
@@ -161,7 +194,7 @@ public interface Subject extends Contextual {
      * @return True if permission is granted
      */
     default boolean hasPermission(final String permission) {
-        return this.hasPermission(permission, Sponge.server().causeStackManager().currentCause());
+        return this.hasPermission(permission, this.contextCause());
     }
 
     /**
@@ -213,7 +246,7 @@ public interface Subject extends Contextual {
      * @return The tristate result of the check
      */
     default Tristate permissionValue(final String permission) {
-        return this.permissionValue(permission, Sponge.server().causeStackManager().currentCause());
+        return this.permissionValue(permission, this.contextCause());
     }
 
     /**
@@ -270,7 +303,7 @@ public interface Subject extends Contextual {
      * @return Whether this is a child of the given parent
      */
     default boolean isChildOf(final SubjectReference parent) {
-        return this.isChildOf(parent, Sponge.server().causeStackManager().currentCause());
+        return this.isChildOf(parent, this.contextCause());
     }
 
     /**
@@ -321,7 +354,7 @@ public interface Subject extends Contextual {
      * @return An immutable list of parents
      */
     default List<? extends SubjectReference> parents() {
-        return this.parents(Sponge.server().causeStackManager().currentCause());
+        return this.parents(this.contextCause());
     }
 
     /**
@@ -356,7 +389,7 @@ public interface Subject extends Contextual {
      * @return The value of the option, if any is present
      */
     default Optional<String> option(final String key) {
-        return this.option(key, Sponge.server().causeStackManager().currentCause());
+        return this.option(key, this.contextCause());
     }
 
     /**
@@ -392,4 +425,5 @@ public interface Subject extends Contextual {
      * @return The value of the option, if any is present
      */
     Optional<String> option(String key, Set<Context> contexts);
+
 }

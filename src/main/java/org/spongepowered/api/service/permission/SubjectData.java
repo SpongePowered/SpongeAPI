@@ -113,12 +113,13 @@ public interface SubjectData {
     CompletableFuture<Boolean> setPermission(Set<Context> contexts, String permission, Tristate value);
 
     /**
-     * Sets all permissions in a given context combination.
-     *
-     * <p>Providing a {@code null} map will unset all permissions.</p>
+     * Sets permissions in a given context combination.
      *
      * <p>An empty set of contexts applies these permissions to the global
      * context.</p>
+     *
+     * <p>Depending on the {@link TransferMethod} chosen, this will either
+     * replace all existing options or add to the existing options.</p>
      *
      *  @param contexts The particular combination of contexts to set these
      *                  permissions in
@@ -126,7 +127,7 @@ public interface SubjectData {
      * @param method How to treat existing values in this subject
      * @return Whether the operation was successful
      */
-    CompletableFuture<Boolean> setPermissions(Set<Context> contexts, @Nullable Map<String, Boolean> permissions, TransferMethod method);
+    CompletableFuture<Boolean> setPermissions(Set<Context> contexts, Map<String, Boolean> permissions, TransferMethod method);
 
     /**
      * Get the permission value that will be returned if no more specific permission setting matches.
@@ -206,6 +207,9 @@ public interface SubjectData {
      * <p>Passing an empty context combination means the parents are set in the
      * global context.</p>
      *
+     * <p>Depending on the {@link TransferMethod} chosen, this will either
+     * replace all existing options or add to the existing options.</p>
+     *
      * @param contexts The context combination this operation is applicable to
      * @param parents A list of the parents this subject should have
      * @return Whether the operation was successful
@@ -282,15 +286,16 @@ public interface SubjectData {
     CompletableFuture<Boolean> setOption(Set<Context> contexts, String key, @Nullable String value);
 
     /**
-     * Sets all options in a particular context. This will first remove any existing options.
+     * Sets all options in a particular context.
      *
-     * <p>Passing a null value will unset the option.</p>
+     * <p>Depending on the {@link TransferMethod} chosen, this will either
+     * replace all existing options or add to the existing options.</p>
      *
      * @param contexts The context combination to set the options in
      * @param options The map of options to set
      * @return Whether the operation was successful
      */
-    CompletableFuture<Boolean> setOptions(Set<Context> contexts, @Nullable Map<String, String> options, TransferMethod method);
+    CompletableFuture<Boolean> setOptions(Set<Context> contexts, Map<String, String> options, TransferMethod method);
 
     /**
      * Clear all options.

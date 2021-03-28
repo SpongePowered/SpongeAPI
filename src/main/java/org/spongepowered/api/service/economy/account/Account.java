@@ -134,7 +134,7 @@ public interface Account extends Contextual {
      *     {@link Currency} and current active cause.
      */
     default boolean hasBalance(Currency currency) {
-        return this.hasBalance(currency, Sponge.game().server().causeStackManager().currentCause());
+        return this.hasBalance(currency, this.contextCause());
     }
 
     /**
@@ -183,7 +183,7 @@ public interface Account extends Contextual {
      * @return the value for the specified {@link Currency}.
      */
     default BigDecimal balance(final Currency currency) {
-        return this.balance(currency, Sponge.game().server().causeStackManager().currentCause());
+        return this.balance(currency, this.contextCause());
     }
 
     /**
@@ -247,7 +247,7 @@ public interface Account extends Contextual {
      *     that this account holds
      */
     default Map<Currency, BigDecimal> balances() {
-        return this.balances(Sponge.game().server().causeStackManager().currentCause());
+        return this.balances(this.contextCause());
     }
 
     /**
@@ -292,7 +292,7 @@ public interface Account extends Contextual {
      * @return The result of the transaction
      */
     default TransactionResult setBalance(Currency currency, BigDecimal amount) {
-        return this.setBalance(currency, amount, Sponge.game().server().causeStackManager().currentCause());
+        return this.setBalance(currency, amount, this.contextCause());
     }
 
     /**
@@ -326,7 +326,7 @@ public interface Account extends Contextual {
      *     entry represents the result of resetting a particular currency
      */
     default Map<Currency, TransactionResult> resetBalances() {
-        return this.resetBalances(Sponge.game().server().causeStackManager().currentCause());
+        return this.resetBalances(this.contextCause());
     }
 
     /**
@@ -363,7 +363,7 @@ public interface Account extends Contextual {
      * @return The result of the transaction
      */
     default TransactionResult resetBalance(Currency currency) {
-        return this.resetBalance(currency, Sponge.game().server().causeStackManager().currentCause());
+        return this.resetBalance(currency, this.contextCause());
     }
 
     /**
@@ -399,7 +399,7 @@ public interface Account extends Contextual {
      * @return The result of the transaction
      */
     default TransactionResult deposit(Currency currency, BigDecimal amount) {
-        return this.deposit(currency, amount, Sponge.game().server().causeStackManager().currentCause());
+        return this.deposit(currency, amount, this.contextCause());
     }
 
     /**
@@ -435,7 +435,7 @@ public interface Account extends Contextual {
      * @return The result of the transaction
      */
     default TransactionResult withdraw(Currency currency, BigDecimal amount) {
-        return this.withdraw(currency, amount, Sponge.game().server().causeStackManager().currentCause());
+        return this.withdraw(currency, amount, this.contextCause());
     }
 
     /**
@@ -492,6 +492,6 @@ public interface Account extends Contextual {
      *     operation
      */
     default TransferResult transfer(Account to, Currency currency, BigDecimal amount) {
-        return this.transfer(to, currency, amount, Sponge.game().server().causeStackManager().currentCause());
+        return this.transfer(to, currency, amount, this.contextCause());
     }
 }
