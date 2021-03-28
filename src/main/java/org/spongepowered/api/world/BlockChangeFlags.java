@@ -40,43 +40,26 @@ public final class BlockChangeFlags {
     // SORTFIELDS:ON
 
     /**
-     * All the available flags are applied through the AND operator.
+     * All the available flags are applied through the OR operator.
      */
-    public static final BlockChangeFlag ALL = Sponge.game().factoryProvider().provide(BlockChangeFlag.Factory.class).empty().inverse();
+    public static final BlockChangeFlag ALL = Sponge.game().factoryProvider().provide(BlockChangeFlag.Factory.class).none().inverse();
 
     /**
      * The default flags for a placement event.
      */
-    public static final BlockChangeFlag DEFAULT_PLACEMENT = Sponge.game().factoryProvider().provide(BlockChangeFlag.Factory.class).empty().withUpdateNeighbors(true);
-
-    /**
-     * A flag that defines whether a block change should notify
-     * neighboring blocks.
-     */
-    public static final BlockChangeFlag NEIGHBOR = Sponge.game().factoryProvider().provide(BlockChangeFlag.Factory.class).empty().withUpdateNeighbors(true);
-
-    /**
-     * The {@link #NEIGHBOR} and {@link #OBSERVER} flags combined
-     * with the AND operator.
-     */
-    public static final BlockChangeFlag NEIGHBOR_OBSERVER = Sponge.game().factoryProvider().provide(BlockChangeFlag.Factory.class).empty().withUpdateNeighbors(true).withNotifyObservers(true);
-
-    /**
-     * The {@link #NEIGHBOR} and {@link #PHYSICS} flags combined
-     * with the AND operator.
-     */
-    public static final BlockChangeFlag NEIGHBOR_PHYSICS = Sponge.game().factoryProvider().provide(BlockChangeFlag.Factory.class).empty().withUpdateNeighbors(true).withPhysics(true);
-
-    /**
-     * The {@link #NEIGHBOR}, {@link #PHYSICS} and {@link #OBSERVER} flags
-     * combined with the AND operator.
-     */
-    public static final BlockChangeFlag NEIGHBOR_PHYSICS_OBSERVER = Sponge.game().factoryProvider().provide(BlockChangeFlag.Factory.class).empty().withUpdateNeighbors(true).withPhysics(true).withNotifyObservers(true);
+    public static final BlockChangeFlag DEFAULT_PLACEMENT = Sponge.game().factoryProvider().provide(BlockChangeFlag.Factory.class).none()
+            .withNotifyClients(true).withUpdateNeighbors(true)
+            .withPhysics(true).withPathfindingUpdates(true);
 
     /**
      * No flags are set, triggers nothing.
      */
-    public static final BlockChangeFlag NONE = Sponge.game().factoryProvider().provide(BlockChangeFlag.Factory.class).empty();
+    public static final BlockChangeFlag NONE = Sponge.game().factoryProvider().provide(BlockChangeFlag.Factory.class).none();
+
+    /**
+     * Sends block changes to clients but does not trigger block updates on itself or neighboring blocks
+     */
+    public static final BlockChangeFlag NOTIFY_CLIENT = Sponge.game().factoryProvider().provide(BlockChangeFlag.Factory.class).none().withNotifyClients(true);
 
     /**
      * A flag that defines whether to update observer blocks, different
@@ -85,20 +68,14 @@ public final class BlockChangeFlags {
      * whereas this focuses on {@link BlockTypes#OBSERVER} blocks
      * being told of updates.
      */
-    public static final BlockChangeFlag OBSERVER = Sponge.game().factoryProvider().provide(BlockChangeFlag.Factory.class).empty().withNotifyObservers(true);
+    public static final BlockChangeFlag OBSERVER = Sponge.game().factoryProvider().provide(BlockChangeFlag.Factory.class).none().withNotifyObservers(true);
 
     /**
      * A flag that defines whether a block change should
      * perform block physics checks or not. If not, no checks
      * are performed.
      */
-    public static final BlockChangeFlag PHYSICS = Sponge.game().factoryProvider().provide(BlockChangeFlag.Factory.class).empty().withPhysics(true);
-
-    /**
-     * The {@link #PHYSICS} and {@link #OBSERVER} flags combined with
-     * the AND operator.
-     */
-    public static final BlockChangeFlag PHYSICS_OBSERVER = Sponge.game().factoryProvider().provide(BlockChangeFlag.Factory.class).empty().withPhysics(true).withNotifyObservers(true);
+    public static final BlockChangeFlag PHYSICS = Sponge.game().factoryProvider().provide(BlockChangeFlag.Factory.class).none().withPhysics(true);
 
     // SORTFIELDS:OFF
 

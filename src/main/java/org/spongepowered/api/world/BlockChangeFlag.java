@@ -188,28 +188,13 @@ public interface BlockChangeFlag {
     interface Factory {
 
         /**
-         * Provides the defaulted flag.
-         * <ul>
-         *   <li>{@link BlockChangeFlag#updateNeighbors()} is {@code false}</li>
-         *   <li>{@link BlockChangeFlag#notifyClients()} is {@code true}</li>
-         *   <li>{@link BlockChangeFlag#updateNeighboringShapes()} is {@code true}</li>
-         *   <li>{@link BlockChangeFlag#updateLighting()} is {@code true}</li>
-         *   <li>{@link BlockChangeFlag#performBlockPhysics()} is {@code true}</li>
-         *   <li>{@link BlockChangeFlag#notifyPathfinding()} is {@code true}</li>
-         * </ul>
-         * @return The defaulted flag
-         */
-        BlockChangeFlag empty();
-
-        /**
-         * Provides a {@link BlockChangeFlag} where all flags are {@code false}, except the
-         * context of client notifications for visual updates.
+         * Provides a {@link BlockChangeFlag} where all flags are {@code false}.
          *
          * <ul>
          *   <li>{@link BlockChangeFlag#updateNeighbors()} is {@code false}</li>
-         *   <li>{@link BlockChangeFlag#notifyClients()} is {@code true}</li>
+         *   <li>{@link BlockChangeFlag#notifyClients()} is {@code false}</li>
          *   <li>{@link BlockChangeFlag#updateNeighboringShapes()} is {@code false}</li>
-         *   <li>{@link BlockChangeFlag#updateLighting()} is {@code true}</li>
+         *   <li>{@link BlockChangeFlag#updateLighting()} is {@code false}</li>
          *   <li>{@link BlockChangeFlag#performBlockPhysics()} is {@code false}</li>
          *   <li>{@link BlockChangeFlag#notifyPathfinding()} is {@code false}</li>
          * </ul>
