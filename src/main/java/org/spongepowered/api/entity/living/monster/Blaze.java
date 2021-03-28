@@ -37,6 +37,7 @@ public interface Blaze extends Monster, Aerial, Ranger {
 
     /**
      * {@link Keys#IS_AFLAME}
+     *
      * @return Whether this blaze is "ablaze"
      */
     default Value.Mutable<Boolean> aflame() {

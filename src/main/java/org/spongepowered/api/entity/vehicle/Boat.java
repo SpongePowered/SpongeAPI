@@ -35,6 +35,7 @@ public interface Boat extends Vehicle {
 
     /**
      * {@link Keys#BOAT_TYPE}
+     *
      * @return The type of the boat
      */
     default Value.Mutable<BoatType> boatType() {
@@ -43,6 +44,7 @@ public interface Boat extends Vehicle {
 
     /**
      * {@link Keys#IS_IN_WATER}
+     *
      * @return Whether this boat is in water
      */
     default Value.Mutable<Boolean> inWater() {
@@ -51,6 +53,7 @@ public interface Boat extends Vehicle {
 
     /**
      * {@link Keys#CAN_MOVE_ON_LAND}
+     *
      * @return Whether this boat can travel over land
      */
     default Value.Mutable<Boolean> moveOnLand() {
@@ -59,6 +62,7 @@ public interface Boat extends Vehicle {
 
     /**
      * {@link Keys#MAX_SPEED}
+     *
      * @return The maximum speed a boat can go
      */
     default Value.Mutable<Double> maxSpeed() {
@@ -67,6 +71,7 @@ public interface Boat extends Vehicle {
 
     /**
      * {@link Keys#UNOCCUPIED_DECELERATION}
+     *
      * @return The deceleration value when unoccupied
      */
     default Value.Mutable<Double> unoccupiedDeceleration() {
@@ -75,6 +80,7 @@ public interface Boat extends Vehicle {
 
     /**
      * {@link Keys#OCCUPIED_DECELERATION}
+     *
      * @return The deceleration value when occupied
      */
     default Value.Mutable<Double> occupiedDeceleration() {

@@ -47,6 +47,7 @@ public interface BrewingStand extends NameableCarrierBlockEntity {
 
     /**
      * {@link Keys#REMAINING_BREW_TIME}
+     *
      * @return The remaining brewing time in ticks.
      */
     default Value.Mutable<Ticks> remainingBrewTime() {

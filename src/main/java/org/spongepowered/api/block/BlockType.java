@@ -47,6 +47,7 @@ public interface BlockType extends DefaultedRegistryValue, ComponentLike, StateC
 
     /**
      * Return the {@link ItemType} that represents this block.
+     *
      * @return The item type or {@link Optional#empty()} otherwise
      */
     Optional<ItemType> item();

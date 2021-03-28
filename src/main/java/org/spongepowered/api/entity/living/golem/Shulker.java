@@ -35,6 +35,7 @@ public interface Shulker extends Golem, Monster, Ranger {
 
     /**
      * {@link Keys#DYE_COLOR}
+     *
      * @return The dye color of this shulker
      */
     default Value.Mutable<DyeColor> color() {
@@ -43,6 +44,7 @@ public interface Shulker extends Golem, Monster, Ranger {
 
     /**
      * {@link Keys#DIRECTION}
+     *
      * @return The direction this shulker is "hanging" or "sitting" on
      */
     default Value.Mutable<Direction> hangingDirection() {

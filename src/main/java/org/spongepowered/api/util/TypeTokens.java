@@ -52,6 +52,7 @@ import org.spongepowered.api.data.type.HandType;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.InstrumentType;
+import org.spongepowered.api.data.type.ItemTier;
 import org.spongepowered.api.data.type.LlamaType;
 import org.spongepowered.api.data.type.MatterType;
 import org.spongepowered.api.data.type.MooshroomType;
@@ -70,7 +71,6 @@ import org.spongepowered.api.data.type.SlabPortion;
 import org.spongepowered.api.data.type.SpellType;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
-import org.spongepowered.api.data.type.ItemTier;
 import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.type.WireAttachmentType;
@@ -437,7 +437,7 @@ public final class TypeTokens {
 
     public static final TypeToken<WeightedCollectionValue<PotionEffect>> WEIGHTED_POTION_EFFECT_COLLECTION_VALUE_TOKEN = new TypeToken<WeightedCollectionValue<PotionEffect>>() {};
 
-    public static final TypeToken<WeightedCollectionValue<EntityArchetype>> WEIGHTED_ENTITY_ARCHETYPE_COLLECTION_VALUE_TOKEN = new TypeToken<WeightedCollectionValue<EntityArchetype>> () {};
+    public static final TypeToken<WeightedCollectionValue<EntityArchetype>> WEIGHTED_ENTITY_ARCHETYPE_COLLECTION_VALUE_TOKEN = new TypeToken<WeightedCollectionValue<EntityArchetype>>() {};
 
     public static final TypeToken<WeightedTable<EntityArchetype>> WEIGHTED_ENTITY_ARCHETYPE_TABLE_TOKEN = new TypeToken<WeightedTable<EntityArchetype>>() {};
 

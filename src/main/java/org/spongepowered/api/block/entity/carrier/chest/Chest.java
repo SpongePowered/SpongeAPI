@@ -60,6 +60,7 @@ public interface Chest extends NameableCarrierBlockEntity {
 
     /**
      * {@link Keys#CHEST_ATTACHMENT_TYPE}
+     *
      * @return The attachment type of this chest.
      */
     default Value.Mutable<ChestAttachmentType> attachmentType() {

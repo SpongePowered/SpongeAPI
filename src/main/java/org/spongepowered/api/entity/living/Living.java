@@ -49,6 +49,7 @@ public interface Living extends AttributeHolder, Entity, TeamMember {
 
     /**
      * {@link Keys#ABSORPTION}
+     *
      * @return The amount of {@link org.spongepowered.api.effect.potion.PotionEffectTypes#ABSORPTION}
      */
     default Value.Mutable<Double> absorption() {
@@ -57,6 +58,7 @@ public interface Living extends AttributeHolder, Entity, TeamMember {
 
     /**
      * {@link Keys#ACTIVE_ITEM}
+     *
      * @return The active item, such as food being eaten
      */
     default Value.Mutable<ItemStackSnapshot> activeItem() {
@@ -65,6 +67,7 @@ public interface Living extends AttributeHolder, Entity, TeamMember {
 
     /**
      * {@link Keys#HEALTH}
+     *
      * @return The health value
      */
     default Value.Mutable<Double> health() {
@@ -73,6 +76,7 @@ public interface Living extends AttributeHolder, Entity, TeamMember {
 
     /**
      * {@link Keys#MAX_HEALTH}
+     *
      * @return The maximum health value
      */
     default Value.Mutable<Double> maxHealth() {
@@ -81,6 +85,7 @@ public interface Living extends AttributeHolder, Entity, TeamMember {
 
     /**
      * {@link Keys#LAST_ATTACKER}
+     *
      * @return The last attacker who attacked this entity
      */
     default Value.Mutable<Entity> lastAttacker() {
@@ -89,6 +94,7 @@ public interface Living extends AttributeHolder, Entity, TeamMember {
 
     /**
      * {@link Keys#HEAD_ROTATION}
+     *
      * @return The rotation of the head
      */
     default Value.Mutable<Vector3d> headRotation() {
@@ -97,6 +103,7 @@ public interface Living extends AttributeHolder, Entity, TeamMember {
 
     /**
      * {@link Keys#EYE_HEIGHT}
+     *
      * @return The height of the eyes
      */
     default Value<Double> eyeHeight() {
@@ -105,6 +112,7 @@ public interface Living extends AttributeHolder, Entity, TeamMember {
 
     /**
      * {@link Keys#EYE_POSITION}
+     *
      * @return The position of the eyes
      */
     default Value<Vector3d> eyePosition() {
@@ -113,6 +121,7 @@ public interface Living extends AttributeHolder, Entity, TeamMember {
 
     /**
      * {@link Keys#LAST_DAMAGE_RECEIVED}
+     *
      * @return The last damage received
      */
     default Optional<Value<Double>> lastDamageReceived() {
@@ -121,6 +130,7 @@ public interface Living extends AttributeHolder, Entity, TeamMember {
 
     /**
      * {@link Keys#MAX_AIR}
+     *
      * @return The max air supply
      */
     default Value.Mutable<Integer> maxAir() {
@@ -129,6 +139,7 @@ public interface Living extends AttributeHolder, Entity, TeamMember {
 
     /**
      * {@link Keys#REMAINING_AIR}
+     *
      * @return The remaining air supply
      */
     default Value.Mutable<Integer> remainingAir() {
@@ -137,6 +148,7 @@ public interface Living extends AttributeHolder, Entity, TeamMember {
 
     /**
      * {@link Keys#STUCK_ARROWS}
+     *
      * @return The amount of stuck arrows
      */
     default Value.Mutable<Integer> stuckArrows() {
@@ -145,6 +157,7 @@ public interface Living extends AttributeHolder, Entity, TeamMember {
 
     /**
      * {@link Keys#WALKING_SPEED}
+     *
      * @return The base walking speed
      */
     default Value.Mutable<Double> walkingSpeed() {

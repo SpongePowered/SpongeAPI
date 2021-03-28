@@ -88,7 +88,7 @@ public class MemorySubjectData implements SubjectData {
 
     @Override
     public Map<Set<Context>, Map<String, Boolean>> allPermissions() {
-        ImmutableMap.Builder<Set<Context>, Map<String, Boolean>> ret = ImmutableMap.builder();
+        final ImmutableMap.Builder<Set<Context>, Map<String, Boolean>> ret = ImmutableMap.builder();
         for (Map.Entry<Set<Context>, NodeTree> ent : this.permissions.entrySet()) {
             ret.put(ent.getKey(), ent.getValue().asMap());
         }
@@ -104,13 +104,13 @@ public class MemorySubjectData implements SubjectData {
      * @return The node tree
      */
     public NodeTree nodeTree(Set<Context> contexts) {
-        NodeTree perms = this.permissions.get(Objects.requireNonNull(contexts, "contexts"));
+        final NodeTree perms = this.permissions.get(Objects.requireNonNull(contexts, "contexts"));
         return perms == null ? NodeTree.of(ImmutableMap.of()) : perms;
     }
 
     @Override
     public Map<String, Boolean> permissions(Set<Context> contexts) {
-        NodeTree perms = this.permissions.get(Objects.requireNonNull(contexts, "contexts"));
+        final NodeTree perms = this.permissions.get(Objects.requireNonNull(contexts, "contexts"));
         return perms == null ? ImmutableMap.of() : perms.asMap();
     }
 
@@ -121,7 +121,7 @@ public class MemorySubjectData implements SubjectData {
         Objects.requireNonNull(value, "value");
         contexts = ImmutableSet.copyOf(contexts);
         while (true) {
-            NodeTree oldTree = this.permissions.get(contexts);
+            final NodeTree oldTree = this.permissions.get(contexts);
             if (oldTree != null && oldTree.get(permission) == value) {
                 return CompletableFuture.completedFuture(false);
             }
@@ -142,7 +142,7 @@ public class MemorySubjectData implements SubjectData {
 
     @Override
     public CompletableFuture<Boolean> clearPermissions() {
-        boolean wasEmpty = this.permissions.isEmpty();
+        final boolean wasEmpty = this.permissions.isEmpty();
         this.permissions.clear();
         if (!wasEmpty) {
             this.onUpdate();
@@ -152,7 +152,7 @@ public class MemorySubjectData implements SubjectData {
 
     @Override
     public CompletableFuture<Boolean> clearPermissions(Set<Context> context) {
-        boolean ret = this.permissions.remove(Objects.requireNonNull(context, "context")) != null;
+        final boolean ret = this.permissions.remove(Objects.requireNonNull(context, "context")) != null;
         if (ret) {
             this.onUpdate();
         }
@@ -175,12 +175,12 @@ public class MemorySubjectData implements SubjectData {
         Objects.requireNonNull(parent, "parent");
         contexts = ImmutableSet.copyOf(contexts);
         while (true) {
-            List<SubjectReference> oldParents = this.parents.get(contexts);
+            final List<SubjectReference> oldParents = this.parents.get(contexts);
             if (oldParents != null && oldParents.contains(parent)) {
                 return CompletableFuture.completedFuture(false);
             }
 
-            List<SubjectReference> newParents = ImmutableList.<SubjectReference>builder()
+            final List<SubjectReference> newParents = ImmutableList.<SubjectReference>builder()
                     .addAll(oldParents == null ? ImmutableList.of() : oldParents)
                     .add(parent)
                     .build();
@@ -206,12 +206,12 @@ public class MemorySubjectData implements SubjectData {
         Objects.requireNonNull(parent, "parent");
         contexts = ImmutableSet.copyOf(contexts);
         while (true) {
-            List<SubjectReference> oldParents = this.parents.get(contexts);
+            final List<SubjectReference> oldParents = this.parents.get(contexts);
             if (oldParents == null || !oldParents.contains(parent)) {
                 return CompletableFuture.completedFuture(false);
             }
 
-            List<SubjectReference> newParents = new ArrayList<>(oldParents);
+            final List<SubjectReference> newParents = new ArrayList<>(oldParents);
             newParents.remove(parent);
 
             if (this.updateCollection(this.parents, contexts, oldParents, ImmutableList.copyOf(newParents))) {
@@ -223,7 +223,7 @@ public class MemorySubjectData implements SubjectData {
 
     @Override
     public CompletableFuture<Boolean> clearParents() {
-        boolean wasEmpty = this.parents.isEmpty();
+        final boolean wasEmpty = this.parents.isEmpty();
         this.parents.clear();
         if (!wasEmpty) {
             this.onUpdate();
@@ -233,7 +233,7 @@ public class MemorySubjectData implements SubjectData {
 
     @Override
     public CompletableFuture<Boolean> clearParents(Set<Context> contexts) {
-        boolean ret = this.parents.remove(Objects.requireNonNull(contexts, "contexts")) != null;
+        final boolean ret = this.parents.remove(Objects.requireNonNull(contexts, "contexts")) != null;
         if (ret) {
             this.onUpdate();
         }
@@ -286,7 +286,7 @@ public class MemorySubjectData implements SubjectData {
 
     @Override
     public CompletableFuture<Boolean> clearOptions() {
-        boolean wasEmpty = this.options.isEmpty();
+        final boolean wasEmpty = this.options.isEmpty();
         this.options.clear();
         if (!wasEmpty) {
             this.onUpdate();
@@ -296,7 +296,7 @@ public class MemorySubjectData implements SubjectData {
 
     @Override
     public CompletableFuture<Boolean> clearOptions(Set<Context> contexts) {
-        boolean ret = this.options.remove(Objects.requireNonNull(contexts, "contexts")) != null;
+        final boolean ret = this.options.remove(Objects.requireNonNull(contexts, "contexts")) != null;
         if (ret) {
             this.onUpdate();
         }

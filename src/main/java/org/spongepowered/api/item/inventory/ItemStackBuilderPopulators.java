@@ -223,7 +223,7 @@ public final class ItemStackBuilderPopulators {
     public static <E> BiConsumer<ItemStack.Builder, Random> keyValues(Key<? extends Value<E>> key, Iterable<E> values) {
         Objects.requireNonNull(values, "Iterable cannot be null!");
         Objects.requireNonNull(key, "Key cannot be null!");
-        WeightedTable<E> tableEntries = new WeightedTable<>(1);
+        final WeightedTable<E> tableEntries = new WeightedTable<>(1);
         for (E e : values) {
             tableEntries.add(Objects.requireNonNull(e, "Value cannot be null!"), 1);
         }
@@ -258,7 +258,7 @@ public final class ItemStackBuilderPopulators {
         if (elementPool.isEmpty()) {
             throw new IllegalArgumentException("Element pool cannot be empty!");
         }
-        WeightedTable<E> elementTable = new WeightedTable<>(amount);
+        final WeightedTable<E> elementTable = new WeightedTable<>(amount);
         for (E element : elementPool) {
             elementTable.add(Objects.requireNonNull(element, "Element cannot be null!"), 1);
         }
@@ -402,7 +402,7 @@ public final class ItemStackBuilderPopulators {
         if (elementPool.isEmpty()) {
             throw new IllegalArgumentException("Element pool cannot be empty!");
         }
-        WeightedTable<E> elementTable = new WeightedTable<>(amount);
+        final WeightedTable<E> elementTable = new WeightedTable<>(amount);
         for (E element : elementPool) {
             elementTable.add(element, 1);
         }
@@ -469,7 +469,7 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static <E, V extends Value<E>> BiConsumer<ItemStack.Builder, Random> values(Iterable<V> values) {
-        WeightedTable<V> tableEntries = new WeightedTable<>(1);
+        final WeightedTable<V> tableEntries = new WeightedTable<>(1);
         for (V value : values) {
             tableEntries.add(Objects.requireNonNull(value, "Value cannot be null!"), 1);
         }
@@ -586,7 +586,7 @@ public final class ItemStackBuilderPopulators {
             Collection<EnchantmentType> itemEnchantmentTypes) {
         Objects.requireNonNull(amount, "Variable amount cannot be null!");
         Objects.requireNonNull(itemEnchantmentTypes, "EnchantmentType collection cannot be null!");
-        List<Tuple<EnchantmentType, VariableAmount>> list = itemEnchantmentTypes.stream()
+        final List<Tuple<EnchantmentType, VariableAmount>> list = itemEnchantmentTypes.stream()
                 .map(enchantment -> {
                     Objects.requireNonNull(enchantment, "EnchantmentType cannot be null!");
                     final int minimum = enchantment.minimumLevel();

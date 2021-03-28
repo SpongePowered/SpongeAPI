@@ -239,6 +239,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
 
     /**
      * Adds an {@link AttributeModifier} to this item stack.
+     *
      * @param attributeType The attribute type.
      * @param modifier The attribute modifier.
      * @param equipmentType The equipment type this modifier will apply under.
@@ -249,6 +250,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
 
     /**
      * Adds an {@link AttributeModifier} to this item stack.
+     *
      * @param attributeType The attribute type.
      * @param modifier The attribute modifier.
      * @param equipmentType The equipment type this modifier will apply under.
@@ -259,6 +261,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
 
     /**
      * Adds an {@link AttributeModifier} to this item stack.
+     *
      * @param attributeType The attribute type.
      * @param modifier The attribute modifier.
      * @param equipmentType The equipment type this modifier will apply under.
@@ -269,6 +272,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
 
     /**
      * Adds an {@link AttributeModifier} to this item stack.
+     *
      * @param attributeType The attribute type.
      * @param modifier The attribute modifier.
      * @param equipmentType The equipment type this modifier will apply under.

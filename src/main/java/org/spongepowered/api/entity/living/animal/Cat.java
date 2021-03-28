@@ -39,6 +39,7 @@ public interface Cat extends TameableAnimal, Sittable {
 
     /**
      * {@link Keys#CAT_TYPE}
+     *
      * @return The type of cat
      * @see org.spongepowered.api.data.type.CatTypes
      */
@@ -71,6 +72,7 @@ public interface Cat extends TameableAnimal, Sittable {
 
     /**
      * {@link Keys#DYE_COLOR}
+     *
      * @return The collar color
      */
     default Value.Mutable<DyeColor> collarColor() {

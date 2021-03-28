@@ -40,6 +40,7 @@ import org.spongepowered.api.entity.living.player.CooldownTracker;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.PlayerChatRouter;
 import org.spongepowered.api.entity.living.player.User;
+import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
 import org.spongepowered.api.entity.living.player.tab.TabList;
 import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.event.message.PlayerChatEvent;
@@ -49,7 +50,6 @@ import org.spongepowered.api.network.ServerPlayerConnection;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
 import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.plugin.PluginContainer;
@@ -127,6 +127,7 @@ public interface ServerPlayer extends Player, Subject {
 
     /**
      * {@link Keys#VIEW_DISTANCE}
+     *
      * @return The player's view distance
      */
     default Value.Mutable<Integer> viewDistance() {
@@ -135,6 +136,7 @@ public interface ServerPlayer extends Player, Subject {
 
     /**
      * {@link Keys#CHAT_VISIBILITY}
+     *
      * @return Chat visibility setting
      */
     default Value.Mutable<ChatVisibility> chatVisibility() {
@@ -143,6 +145,7 @@ public interface ServerPlayer extends Player, Subject {
 
     /**
      * {@link Keys#CHAT_COLORS_ENABLED}
+     *
      * @return Whether colors are enabled in chat
      */
     default Value.Mutable<Boolean> chatColorsEnabled() {
@@ -278,6 +281,7 @@ public interface ServerPlayer extends Player, Subject {
 
     /**
      * {@link Keys#FIRST_DATE_JOINED}
+     *
      * @return The timestamp value when this player first joined
      */
     default Value.Mutable<Instant> firstJoined() {
@@ -286,6 +290,7 @@ public interface ServerPlayer extends Player, Subject {
 
     /**
      * {@link Keys#LAST_DATE_JOINED}
+     *
      * @return The last timestamp value when this player has joined
      */
     default Value.Mutable<Instant> lastJoined() {
@@ -294,6 +299,7 @@ public interface ServerPlayer extends Player, Subject {
 
     /**
      * {@link Keys#LAST_DATE_PLAYED}
+     *
      * @return The last timestamp value when this player has played
      */
     default Value.Mutable<Instant> lastPlayed() {
@@ -302,6 +308,7 @@ public interface ServerPlayer extends Player, Subject {
 
     /**
      * {@link Keys#HAS_VIEWED_CREDITS}
+     *
      * @return True if this player has viewed the credits
      */
     default Value.Mutable<Boolean> hasViewedCredits() {
@@ -320,6 +327,7 @@ public interface ServerPlayer extends Player, Subject {
 
     /**
      * {@link Keys#IS_SLEEPING_IGNORED}
+     *
      * @return Whether this player is going to be ignored for sleeping to "reset" the day
      */
     default Value.Mutable<Boolean> sleepingIgnored() {
@@ -328,6 +336,7 @@ public interface ServerPlayer extends Player, Subject {
 
     /**
      * {@link Keys#SPECTATOR_TARGET}
+     *
      * @return The entity this player is "spectating"
      */
     default Optional<Value.Mutable<Entity>> spectatorTarget() {

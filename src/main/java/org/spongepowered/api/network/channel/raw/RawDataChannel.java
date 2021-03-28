@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.network.channel.raw;
 
-import org.spongepowered.api.network.channel.Channel;
 import org.spongepowered.api.network.EngineConnection;
+import org.spongepowered.api.network.channel.Channel;
 import org.spongepowered.api.network.channel.raw.handshake.RawHandshakeDataChannel;
 import org.spongepowered.api.network.channel.raw.play.RawPlayDataChannel;
 

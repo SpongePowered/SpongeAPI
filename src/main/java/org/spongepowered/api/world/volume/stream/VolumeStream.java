@@ -79,7 +79,7 @@ public interface VolumeStream<V extends Volume, T> {
     VolumeStream<V, Optional<? extends T>> flatMap(VolumeFlatMapper<V, T> mapper);
 
     default VolumeStream<V, Optional<? extends T>> flatMap(final Function<VolumeElement<V, T>, Optional<? extends T>> mapper) {
-        return this.flatMap((volume, value, x, y, z) -> mapper.apply(VolumeElement.of(volume, value, new Vector3i(x, y,z))));
+        return this.flatMap((volume, value, x, y, z) -> mapper.apply(VolumeElement.of(volume, value, new Vector3i(x, y, z))));
     }
 
     long count();

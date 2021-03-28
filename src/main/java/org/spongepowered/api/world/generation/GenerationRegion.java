@@ -30,10 +30,10 @@ import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.world.ProtoWorld;
-import org.spongepowered.api.world.difficulty.Difficulty;
-import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
+import org.spongepowered.api.world.difficulty.Difficulty;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3i;
 

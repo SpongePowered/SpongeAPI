@@ -35,6 +35,7 @@ public interface Sittable extends Entity {
 
     /**
      * {@link Keys#IS_SITTING}
+     *
      * @return Whether this entity is sitting
      */
     default Value.Mutable<Boolean> sitting() {

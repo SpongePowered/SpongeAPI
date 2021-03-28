@@ -198,7 +198,7 @@ public interface SubjectCollection {
     default CompletableFuture<Void> applyToAll(Consumer<Subject> action) {
         Objects.requireNonNull(action, "action");
         return CompletableFuture.runAsync(() -> {
-            Set<String> identifiers = this.allIdentifiers().join();
+            final Set<String> identifiers = this.allIdentifiers().join();
             this.applyToAll(action, identifiers).join();
         });
     }
@@ -226,7 +226,7 @@ public interface SubjectCollection {
         Objects.requireNonNull(identifiers, "identifiers");
         return CompletableFuture.runAsync(() -> {
             for (String id : identifiers) {
-                Subject subject = this.loadSubject(id).join();
+                final Subject subject = this.loadSubject(id).join();
                 action.accept(subject);
                 this.suggestUnload(subject.identifier());
             }

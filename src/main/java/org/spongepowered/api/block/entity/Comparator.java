@@ -35,6 +35,7 @@ public interface Comparator extends BlockEntity {
 
     /**
      * {@link Keys#COMPARATOR_MODE}
+     *
      * @return The mode of the Comparator.
      */
     default Value.Mutable<ComparatorMode> mode() {

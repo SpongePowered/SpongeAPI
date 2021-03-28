@@ -65,7 +65,10 @@ public final class DataTransactionResult {
 
         @Override
         public BinaryOperator<Builder> combiner() {
-            return (left, right) -> { left.absorbResult(right.build()); return left; };
+            return (left, right) -> {
+                left.absorbResult(right.build());
+                return left;
+            };
         }
 
         @Override

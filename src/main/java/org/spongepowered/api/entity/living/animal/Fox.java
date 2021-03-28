@@ -38,6 +38,7 @@ public interface Fox extends Animal {
 
     /**
      * {@link Keys#FOX_TYPE}
+     *
      * @return The type of fox
      * @see org.spongepowered.api.data.type.FoxTypes
      */
@@ -47,6 +48,7 @@ public interface Fox extends Animal {
 
     /**
      * {@link Keys#FIRST_TRUSTED}
+     *
      * @return The first trusted unique id
      */
     default Optional<Value.Mutable<UUID>> firstTrusted() {
@@ -55,6 +57,7 @@ public interface Fox extends Animal {
 
     /**
      * {@link Keys#SECOND_TRUSTED}
+     *
      * @return The second trusted uuid
      */
     default Optional<Value.Mutable<UUID>> secondTrusted() {
@@ -63,6 +66,7 @@ public interface Fox extends Animal {
 
     /**
      * {@link Keys#IS_SITTING}
+     *
      * @return Whether this fox is sitting
      */
     default Value.Mutable<Boolean> sitting() {
@@ -71,6 +75,7 @@ public interface Fox extends Animal {
 
     /**
      * {@link Keys#IS_FACEPLANTED}
+     *
      * @return Whether this fox has faceplanted
      */
     default Value.Mutable<Boolean> faceplanted() {
@@ -79,6 +84,7 @@ public interface Fox extends Animal {
 
     /**
      * {@link Keys#IS_DEFENDING}
+     *
      * @return Whether this fox is defending
      */
     default Value.Mutable<Boolean> defending() {
@@ -87,6 +93,7 @@ public interface Fox extends Animal {
 
     /**
      * {@link Keys#IS_SLEEPING}
+     *
      * @return Whether this fox is sleeping
      */
     default Value.Mutable<Boolean> sleeping() {
@@ -95,6 +102,7 @@ public interface Fox extends Animal {
 
     /**
      * {@link Keys#IS_POUNCING}
+     *
      * @return Whether this fox is pouncing
      */
     default Value.Mutable<Boolean> pouncing() {
@@ -103,6 +111,7 @@ public interface Fox extends Animal {
 
     /**
      * {@link Keys#IS_CROUCHING}
+     *
      * @return Whether this fox is crouching
      */
     default Value.Mutable<Boolean> crouching() {
@@ -111,6 +120,7 @@ public interface Fox extends Animal {
 
     /**
      * {@link Keys#IS_INTERESTED}
+     *
      * @return Whether this fox is interested in something
      */
     default Value.Mutable<Boolean> interested() {

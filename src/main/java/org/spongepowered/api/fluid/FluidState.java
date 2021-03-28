@@ -29,9 +29,9 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.state.State;
-import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.schematic.Schematic;
+import org.spongepowered.api.world.server.ServerLocation;
 
 import java.util.Objects;
 import java.util.function.Supplier;

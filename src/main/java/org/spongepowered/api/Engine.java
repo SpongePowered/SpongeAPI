@@ -35,6 +35,7 @@ public interface Engine extends ScopedRegistryHolder {
 
     /**
      * Gets the {@link Game} that launched this engine;
+     *
      * @return The game
      */
     Game game();

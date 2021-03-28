@@ -25,9 +25,9 @@
 package org.spongepowered.api.event.entity.living.player;
 
 import org.spongepowered.api.data.type.SkinPart;
+import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
 
 import java.util.Locale;
 import java.util.Set;

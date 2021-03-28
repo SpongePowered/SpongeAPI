@@ -36,6 +36,7 @@ public interface Panda extends Animal, Sittable {
 
     /**
      * {@link Keys#KNOWN_GENE}
+     *
      * @return Whether this panda has a known gene
      */
     default Value.Mutable<PandaGene> knownGene() {
@@ -44,6 +45,7 @@ public interface Panda extends Animal, Sittable {
 
     /**
      * {@link Keys#HIDDEN_GENE}
+     *
      * @return Whether this panda has a hidden gene
      */
     default Value.Mutable<PandaGene> hiddenGene() {
@@ -52,6 +54,7 @@ public interface Panda extends Animal, Sittable {
 
     /**
      * {@link Keys#IS_LYING_ON_BACK}
+     *
      * @return The time remaining to lie on it's back
      */
     default Value.Mutable<Boolean> lyingOnBack() {
@@ -60,6 +63,7 @@ public interface Panda extends Animal, Sittable {
 
     /**
      * {@link Keys#IS_ROLLING_AROUND}
+     *
      * @return The time remaining to roll around
      */
     default Value.Mutable<Boolean> rollingAround() {
@@ -68,6 +72,7 @@ public interface Panda extends Animal, Sittable {
 
     /**
      * {@link Keys#UNHAPPY_TIME}
+     *
      * @return The time remaining to be unhappy
      */
     default Value.Mutable<Ticks> unhappyTime() {

@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api;
 
+import org.spongepowered.api.client.LocalServer;
 import org.spongepowered.api.entity.living.player.client.ClientPlayer;
 import org.spongepowered.api.entity.living.player.client.LocalPlayer;
-import org.spongepowered.api.client.LocalServer;
 import org.spongepowered.api.network.ClientSideConnection;
 import org.spongepowered.api.world.client.ClientWorld;
 

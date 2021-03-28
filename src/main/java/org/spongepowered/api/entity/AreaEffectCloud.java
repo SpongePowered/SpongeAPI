@@ -40,6 +40,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * {@link Keys#COLOR}
+     *
      * @return The color of this cloud
      */
     default Value.Mutable<Color> color() {
@@ -48,6 +49,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * {@link Keys#RADIUS}
+     *
      * @return The initial radius of this cloud
      */
     default Value.Mutable<Double> radius() {
@@ -56,6 +58,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * {@link Keys#PARTICLE_EFFECT}
+     *
      * @return The particle type
      * @see org.spongepowered.api.effect.particle.ParticleTypes
      */
@@ -65,6 +68,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * {@link Keys#DURATION}
+     *
      * @return The duration of which this cloud will linger
      */
     default Value.Mutable<Ticks> duration() {
@@ -73,6 +77,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * {@link Keys#WAIT_TIME}
+     *
      * @return The wait time before applying to an entity
      */
     default Value.Mutable<Ticks> waitTime() {
@@ -81,6 +86,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * {@link Keys#RADIUS_ON_USE}
+     *
      * @return The radius decrease per use
      */
     default Value.Mutable<Double> radiusOnUse() {
@@ -89,6 +95,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * {@link Keys#RADIUS_PER_TICK}
+     *
      * @return The radius decrease per tick
      */
     default Value.Mutable<Double> radiusPerTick() {
@@ -97,6 +104,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * {@link Keys#DURATION_ON_USE}
+     *
      * @return The duration of the potion effects when an entity gets a potion applied
      */
     default Value.Mutable<Ticks> durationOnUse() {
@@ -105,6 +113,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * {@link Keys#REAPPLICATION_DELAY}
+     *
      * @return The delay for an entity to have a potion effect applied while standing in this cloud
      */
     default Value.Mutable<Ticks> applicationDelay() {
@@ -113,6 +122,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * {@link Keys#POTION_EFFECTS}
+     *
      * @return The list of potion effects being applied
      */
     default ListValue.Mutable<PotionEffect> effects() {
@@ -121,6 +131,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * {@link Keys#AGE}
+     *
      * @return The age of this cloud
      */
     default Value.Mutable<Integer> age() {

@@ -145,7 +145,7 @@ public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDat
      * @param <T> The return type of the mapper
      * @return The results of the mapping
      */
-     <T> T mapBiome(BiFunction<ServerWorld, Vector3i, T> mapper);
+    <T> T mapBiome(BiFunction<ServerWorld, Vector3i, T> mapper);
 
     /**
      * Replace the block at this position with a copy of the given snapshot.

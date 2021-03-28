@@ -345,11 +345,11 @@ public interface DataView {
         if (!strings.isPresent()) {
             return Optional.empty();
         }
-        List<ResourceKey> keys = new ArrayList<>();
+        final List<ResourceKey> keys = new ArrayList<>();
         for (final String s : strings.get()) {
             try {
                 keys.add(ResourceKey.resolve(s));
-            } catch (final Exception ignore) {
+            } catch (final Exception ignored) {
             }
         }
 

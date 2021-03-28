@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.network.channel.packet;
 
-import org.spongepowered.api.network.channel.ChannelException;
 import org.spongepowered.api.network.EngineConnection;
+import org.spongepowered.api.network.channel.ChannelException;
 import org.spongepowered.api.network.channel.NoResponseException;
 
 /**

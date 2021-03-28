@@ -83,7 +83,7 @@ public interface ContextCalculator<T extends Contextual> {
         return new ContextCalculator<T>() {
             @Override
             public void accumulateContexts(T target, Set<Context> accumulator) {
-                String value = valueFunction.apply(target);
+                final String value = valueFunction.apply(target);
                 if (value != null) {
                     accumulator.add(new Context(key, value));
                 }
@@ -135,7 +135,7 @@ public interface ContextCalculator<T extends Contextual> {
      *         false.
      */
     default boolean matches(Context context, T target) {
-        Set<Context> set = new HashSet<>();
+        final Set<Context> set = new HashSet<>();
         this.accumulateContexts(target, set);
         return set.contains(context);
     }

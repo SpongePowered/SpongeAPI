@@ -35,6 +35,7 @@ public interface Ravager extends Raider {
 
     /**
      * {@link Keys#ATTACK_TIME}
+     *
      * @return The time this ravager is attacking
      */
     default Value.Mutable<Ticks> attackTime() {
@@ -43,6 +44,7 @@ public interface Ravager extends Raider {
 
     /**
      * {@link Keys#ROARING_TIME}
+     *
      * @return The time this ravager is roaring
      */
     default Value.Mutable<Ticks> roaringTime() {
@@ -51,6 +53,7 @@ public interface Ravager extends Raider {
 
     /**
      * {@link Keys#STUNNED_TIME}
+     *
      * @return The time this ravager is being stunned for
      */
     default Value.Mutable<Ticks> stunnedTime() {

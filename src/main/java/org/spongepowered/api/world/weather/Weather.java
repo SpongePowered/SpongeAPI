@@ -31,6 +31,7 @@ public interface Weather extends DataSerializable {
 
     /**
      * Gets the {@link WeatherType type}.
+     *
      * @return The type
      */
     WeatherType type();

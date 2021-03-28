@@ -66,7 +66,7 @@ public interface Palette<T, R> {
     Optional<PaletteReference<T, R>> get(int id);
 
     default Optional<T> get(final int id, final RegistryHolder holder) {
-        return this.get(id).flatMap(ref -> Objects.requireNonNull(holder,"RegistryHolder cannot be null")
+        return this.get(id).flatMap(ref -> Objects.requireNonNull(holder, "RegistryHolder cannot be null")
             .findRegistry(ref.registry())
             .flatMap(reg -> this.type().resolver().apply(ref.value(), reg)));
     }

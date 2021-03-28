@@ -35,6 +35,7 @@ public interface Parrot extends TameableAnimal, Sittable {
 
     /**
      * {@link Keys#PARROT_TYPE}
+     *
      * @return The type of parrot
      * @see org.spongepowered.api.data.type.ParrotTypes
      */

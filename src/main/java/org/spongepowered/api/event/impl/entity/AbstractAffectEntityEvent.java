@@ -45,8 +45,8 @@ public abstract class AbstractAffectEntityEvent extends AbstractEvent implements
     public List<EntitySnapshot> entitySnapshots() {
         if (this.entitySnapshots == null) {
             if (this.currentOrder == Order.PRE) {
-                ImmutableList.Builder<EntitySnapshot> builder = ImmutableList.builder();
-                for (Entity entity: this.entities) {
+                final ImmutableList.Builder<EntitySnapshot> builder = ImmutableList.builder();
+                for (Entity entity : this.entities) {
                     builder.add(entity.createSnapshot());
                 }
                 this.entitySnapshots = builder.build();

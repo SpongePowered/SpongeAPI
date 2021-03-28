@@ -39,6 +39,7 @@ public interface Piston extends BlockEntity {
 
     /**
      * {@link Keys#BLOCK_STATE}
+     *
      * @return The BlockState representing the block being pushed.
      */
     default Value.Mutable<BlockState> blockState() {
@@ -47,6 +48,7 @@ public interface Piston extends BlockEntity {
 
     /**
      * {@link Keys#IS_EXTENDED}
+     *
      * @return Whether this piston is extending or retracting.
      */
     default Value.Mutable<Boolean> extending() {

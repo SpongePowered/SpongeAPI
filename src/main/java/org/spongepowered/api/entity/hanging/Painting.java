@@ -36,6 +36,7 @@ public interface Painting extends Hanging {
 
     /**
      * {@link Keys#ART_TYPE}
+     *
      * @return The paiting's art type
      * @see ArtTypes
      */

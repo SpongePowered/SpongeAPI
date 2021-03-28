@@ -53,11 +53,11 @@ public interface EquipmentInventory extends Inventory {
      * @param equipmentType Type of equipment slot to query for
      * @return removed ItemStack, per the semantics of {@link Inventory#poll()}
      */
-     InventoryTransactionResult.Poll poll(EquipmentType equipmentType);
+    InventoryTransactionResult.Poll poll(EquipmentType equipmentType);
 
-     default InventoryTransactionResult.Poll poll(final Supplier<? extends EquipmentType> equipmentType) {
-         return this.poll(equipmentType.get());
-     }
+    default InventoryTransactionResult.Poll poll(final Supplier<? extends EquipmentType> equipmentType) {
+        return this.poll(equipmentType.get());
+    }
 
     /**
      * Gets and remove the items from the stack for the specified equipment type

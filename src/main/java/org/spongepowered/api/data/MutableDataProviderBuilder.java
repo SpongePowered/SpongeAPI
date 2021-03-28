@@ -38,17 +38,27 @@ public interface MutableDataProviderBuilder<H extends DataHolder.Mutable, V exte
         Builder<DataProvider<V, E>, MutableDataProviderBuilder<H, V, E>> {
 
     <NV extends Value<NE>, NE> MutableDataProviderBuilder<H, NV, NE> key(Key<NV> key);
+
     <NH extends H> MutableDataProviderBuilder<NH, V, E> dataHolder(TypeToken<NH> holder);
+
     <NH extends H> MutableDataProviderBuilder<NH, V, E> dataHolder(Class<NH> holder);
 
     MutableDataProviderBuilder<H, V, E> get(Function<H, E> get);
+
     MutableDataProviderBuilder<H, V, E> set(BiConsumer<H, E> set);
+
     MutableDataProviderBuilder<H, V, E> setAnd(BiFunction<H, E, Boolean> setAnd);
+
     MutableDataProviderBuilder<H, V, E> delete(Consumer<H> delete);
+
     MutableDataProviderBuilder<H, V, E> deleteAnd(Function<H, Boolean> delete);
+
     MutableDataProviderBuilder<H, V, E> deleteAndGet(Function<H, DataTransactionResult> delete);
+
     MutableDataProviderBuilder<H, V, E> resetOnDelete(Supplier<E> resetOnDeleteTo);
+
     MutableDataProviderBuilder<H, V, E> resetOnDelete(Function<H, E> resetOnDeleteTo);
+
     MutableDataProviderBuilder<H, V, E> setAndGet(BiFunction<H, E, DataTransactionResult> setAndGet);
 
     MutableDataProviderBuilder<H, V, E> supports(final Function<H, Boolean> supports);

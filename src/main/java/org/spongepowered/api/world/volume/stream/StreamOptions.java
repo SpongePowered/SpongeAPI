@@ -151,6 +151,7 @@ public interface StreamOptions {
          * @return Whether sections that are previously empty, should be generated
          */
         public abstract boolean generateArea();
+
         public abstract boolean immediateLoading();
     }
 

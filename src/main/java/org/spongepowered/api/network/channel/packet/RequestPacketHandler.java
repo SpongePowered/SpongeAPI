@@ -25,8 +25,8 @@
 package org.spongepowered.api.network.channel.packet;
 
 import org.spongepowered.api.network.EngineConnection;
-import org.spongepowered.api.network.channel.ChannelException;
 import org.spongepowered.api.network.RemoteConnection;
+import org.spongepowered.api.network.channel.ChannelException;
 
 /**
  * Represents a packet handler for {@link RequestPacket}s.

@@ -102,12 +102,14 @@ public interface MapDecoration extends DataSerializable {
      * or where it would be if applied to a {@link MapInfo}
      * 0,0 is the center of the map
      * Ranges from {@value Byte#MIN_VALUE}-{@value Byte#MAX_VALUE}. AKA any valid byte value
+     *
      * @param position Vector2i world x and y cords
      */
     void setPosition(Vector2i position);
 
     /**
      * Sets rotation with a {@link MapDecorationOrientation}
+     *
      * @param rot MapDecorationOrientation
      */
     void setRotation(MapDecorationOrientation rot);
@@ -118,6 +120,7 @@ public interface MapDecoration extends DataSerializable {
 
     /**
      * Gets the {@link MapDecorationOrientation} the Map Decoration is pointing in
+     *
      * @return MapDecorationOrientation
      */
     MapDecorationOrientation rotation();

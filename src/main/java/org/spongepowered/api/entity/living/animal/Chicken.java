@@ -35,6 +35,7 @@ public interface Chicken extends Animal {
 
     /**
      * {@link Keys#EGG_TIME}
+     *
      * @return The time remaining for the next egg drop
      */
     default Value.Mutable<Ticks> eggTime() {

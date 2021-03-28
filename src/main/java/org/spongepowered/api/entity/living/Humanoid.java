@@ -37,6 +37,7 @@ import org.spongepowered.api.item.inventory.ArmorEquipable;
 public interface Humanoid extends Living, ArmorEquipable, Tamer {
     /**
      * {@link Keys#FOOD_LEVEL}
+     *
      * @return The human's food level
      */
     default Value.Mutable<Integer> foodLevel() {
@@ -45,6 +46,7 @@ public interface Humanoid extends Living, ArmorEquipable, Tamer {
 
     /**
      * {@link Keys#EXHAUSTION}
+     *
      * @return The human's exhaustion
      */
     default Value.Mutable<Double> exhaustion() {
@@ -53,6 +55,7 @@ public interface Humanoid extends Living, ArmorEquipable, Tamer {
 
     /**
      * {@link Keys#SATURATION}
+     *
      * @return The human's saturation
      */
     default Value.Mutable<Double> saturation() {
@@ -61,6 +64,7 @@ public interface Humanoid extends Living, ArmorEquipable, Tamer {
 
     /**
      * {@link Keys#GAME_MODE}
+     *
      * @return The gamemode
      */
     default Value.Mutable<GameMode> gameMode() {

@@ -36,6 +36,7 @@ public interface Enderman extends Monster {
 
     /**
      * {@link Keys#IS_SCREAMING}.
+     *
      * @return Whether the enderman is screaming
      */
     default Value.Mutable<Boolean> screaming() {

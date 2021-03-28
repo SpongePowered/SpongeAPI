@@ -35,8 +35,7 @@ import org.spongepowered.api.util.ResettableBuilder;
  * @param <G> The type of goal
  * @param <B> The type of builder, self-referencing
  */
-public interface GoalBuilder<O extends Agent, G extends Goal<O>, B extends GoalBuilder<O, G, B>> extends CopyableBuilder<G, B>, ResettableBuilder<G
-        , B> {
+public interface GoalBuilder<O extends Agent, G extends Goal<O>, B extends GoalBuilder<O, G, B>> extends CopyableBuilder<G, B>, ResettableBuilder<G, B> {
 
     /**
      * Builds the {@link Goal}.

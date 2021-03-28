@@ -95,7 +95,7 @@ public class DamageFunction implements ModifierFunction<DamageModifier> {
     @Override
     public String toString() {
         return new StringJoiner(",", DamageFunction.class.getSimpleName() + "[", "]")
-                .add("modifier=" +this.modifier())
+                .add("modifier=" + this.modifier())
                 .add("function=" + this.function())
                 .toString();
     }

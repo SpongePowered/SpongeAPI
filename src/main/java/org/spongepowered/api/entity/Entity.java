@@ -41,9 +41,9 @@ import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.Locatable;
-import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.schematic.Schematic;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.imaginary.Quaterniond;
 import org.spongepowered.math.vector.Vector3d;
@@ -329,6 +329,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#DISPLAY_NAME}
+     *
      * @return The display name of this entity
      */
     default Value.Mutable<Component> displayName() {
@@ -337,6 +338,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#FALL_DISTANCE}
+     *
      * @return The fall distance
      */
     default Value.Mutable<Double> fallDistance() {
@@ -345,6 +347,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#PASSENGERS}
+     *
      * @return The list of passengers that may be riding this entity
      */
     default ListValue.Mutable<Entity> passengers() {
@@ -353,6 +356,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#VEHICLE}
+     *
      * @return The vehicle this entity may be riding
      */
     default Optional<Value.Mutable<Entity>> vehicle() {
@@ -361,6 +365,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#BASE_VEHICLE}
+     *
      * @return The "base vehicle" of the entity vehicle riding chain
      */
     default Optional<Value.Mutable<Entity>> baseVehicle() {
@@ -369,6 +374,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#ON_GROUND}
+     *
      * @return Whether this entity is on the ground
      */
     default Value.Mutable<Boolean> onGround() {
@@ -377,6 +383,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#VELOCITY}
+     *
      * @return The velocity of this entity
      */
     default Value.Mutable<Vector3d> velocity() {
@@ -385,6 +392,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#IS_GRAVITY_AFFECTED}
+     *
      * @return Whether this entity is affected by gravity
      */
     default Value.Mutable<Boolean> gravityAffected() {
@@ -393,6 +401,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#IS_SILENT}
+     *
      * @return Whether this entity is silent
      */
     default Value.Mutable<Boolean> silent() {
@@ -401,6 +410,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#CREATOR}
+     *
      * @return The unique id of the creator of this entity
      */
     default Optional<Value.Mutable<UUID>> creator() {
@@ -409,6 +419,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#NOTIFIER}
+     *
      * @return The unique id of the notifier of this entity
      */
     default Optional<Value.Mutable<UUID>> notifier() {
@@ -417,6 +428,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#FIRE_TICKS}
+     *
      * @return The amount of time in ticks an Entity is will continue burn for.
      */
     default Optional<Value.Mutable<Ticks>> fireTicks() {
@@ -425,6 +437,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#FIRE_DAMAGE_DELAY}
+     *
      * @return The amount of time to delay in ticks before an Entity will be burned by fire.
      */
     default Optional<Value.Mutable<Ticks>> fireImmuneTicks() {
@@ -433,6 +446,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#TRANSIENT}
+     *
      * @return The transient state
      */
     default Optional<Value.Mutable<Boolean>> isTransient() {

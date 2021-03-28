@@ -103,7 +103,7 @@ public final class RecipeResult {
             return false;
         }
 
-        RecipeResult that = (RecipeResult) o;
+        final RecipeResult that = (RecipeResult) o;
 
         return this.result.equals(that.result) && this.remainingItems.equals(that.remainingItems);
     }

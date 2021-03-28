@@ -37,30 +37,32 @@ import java.util.UUID;
  */
 public interface MapStorage {
 
-	/**
-	 * Get all {@link MapInfo}s that exist
-	 * on this server.
-	 * @return Set of MapInfos
-	 */
-	Collection<MapInfo> allMapInfos();
+    /**
+     * Get all {@link MapInfo}s that exist
+     * on this server.
+     *
+     * @return Set of MapInfos
+     */
+    Collection<MapInfo> allMapInfos();
 
-	/**
-	 * Gets a MapInfo by its UUID.
-	 * @param uuid UUID of map to get
-	 * @return The map with given uuid, or empty if it doesn't exist.
-	 */
-	Optional<MapInfo> mapInfo(final UUID uuid);
+    /**
+     * Gets a MapInfo by its UUID.
+     *
+     * @param uuid UUID of map to get
+     * @return The map with given uuid, or empty if it doesn't exist.
+     */
+    Optional<MapInfo> mapInfo(final UUID uuid);
 
-	/**
-	 * Creates a new {@link MapInfo}.
-	 *
-	 * <p>The MapInfo will not be successfully created if
-	 * the fired {@link org.spongepowered.api.event.action.CreateMapEvent} is cancelled.
-	 * This can happen due to either a plugin cancelling it, or
-	 * running out of room for maps.
-	 * (Max amount of maps is {@value java.lang.Integer#MAX_VALUE})</p>
-	 *
-	 * @return {@link MapInfo} the new MapInfo if available
-	 */
-	Optional<MapInfo> createNewMapInfo();
+    /**
+     * Creates a new {@link MapInfo}.
+     *
+     * <p>The MapInfo will not be successfully created if
+     * the fired {@link org.spongepowered.api.event.action.CreateMapEvent} is cancelled.
+     * This can happen due to either a plugin cancelling it, or
+     * running out of room for maps.
+     * (Max amount of maps is {@value java.lang.Integer#MAX_VALUE})</p>
+     *
+     * @return {@link MapInfo} the new MapInfo if available
+     */
+    Optional<MapInfo> createNewMapInfo();
 }

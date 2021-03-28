@@ -37,6 +37,7 @@ public interface EntityTargetingProjectile extends Projectile {
 
     /**
      * {@link Keys#TARGET_ENTITY}
+     *
      * @return The targeted entity, if available
      */
     default Optional<Value.Mutable<Entity>> targetEntity() {

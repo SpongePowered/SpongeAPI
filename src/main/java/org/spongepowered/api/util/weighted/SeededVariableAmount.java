@@ -118,7 +118,7 @@ public interface SeededVariableAmount<T> {
             if (!(obj instanceof WrappedVariableAmount)) {
                 return false;
             }
-            WrappedVariableAmount<?> var = (WrappedVariableAmount<?>) obj;
+            final WrappedVariableAmount<?> var = (WrappedVariableAmount<?>) obj;
             return this.inner.equals(var.inner);
         }
 

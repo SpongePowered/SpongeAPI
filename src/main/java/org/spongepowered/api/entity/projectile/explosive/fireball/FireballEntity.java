@@ -36,6 +36,7 @@ public interface FireballEntity extends DamagingProjectile {
 
     /**
      * {@link Keys#ACCELERATION}
+     *
      * @return The fireball's acceleration
      */
     default Value.Mutable<Vector3d> acceleration() {

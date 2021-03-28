@@ -35,6 +35,7 @@ public interface Sheep extends Animal {
 
     /**
      * {@link Keys#DYE_COLOR}
+     *
      * @return The color of this sheep
      * @see org.spongepowered.api.data.type.DyeColors
      */
@@ -44,6 +45,7 @@ public interface Sheep extends Animal {
 
     /**
      * {@link Keys#IS_SHEARED}
+     *
      * @return Whether this sheep is sheared.
      */
     default Value.Mutable<Boolean> sheared() {

@@ -28,9 +28,9 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.ComponentLike;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
+import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
 
 import java.util.Collection;

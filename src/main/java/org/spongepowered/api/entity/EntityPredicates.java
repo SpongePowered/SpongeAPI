@@ -51,7 +51,7 @@ public final class EntityPredicates {
             final double xDist = pos.getX() - x;
             final double yDist = pos.getY() - y;
             final double zDist = pos.getZ() - z;
-            return xDist*xDist + yDist * yDist + zDist * zDist <= distSqrd;
+            return xDist * xDist + yDist * yDist + zDist * zDist <= distSqrd;
         };
     }
 
