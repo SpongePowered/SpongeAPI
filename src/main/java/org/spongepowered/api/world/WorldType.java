@@ -60,6 +60,7 @@ public interface WorldType extends DefaultedRegistryValue, ContextSource {
 
     /**
      * Gets the {@link BiomeSampler}.
+     *
      * @return The biome sampler
      */
     BiomeSampler biomeSampler();
@@ -88,6 +89,7 @@ public interface WorldType extends DefaultedRegistryValue, ContextSource {
      *
      * Best seen when transferring that player from one world to another (as the player's
      * coordinates will adjust to the scale of the destination world's).
+     *
      * @return The scale
      */
     double coordinateMultiplier();
@@ -158,6 +160,7 @@ public interface WorldType extends DefaultedRegistryValue, ContextSource {
     /**
      * Gets if {@link ServerPlayer players} who have the {@link PotionEffectTypes#BAD_OMEN} effect
      * could cause a {@link Raid} while existing in a {@link ServerWorld world} of this type.
+     *
      * @return True if bad omens could case a raid, false if not
      */
     boolean hasRaids();
@@ -175,6 +178,7 @@ public interface WorldType extends DefaultedRegistryValue, ContextSource {
     /**
      * Gets if {@link ServerWorld worlds} of this type will spawn the {@link EnderDragon dragon}
      * fight mechanics.
+     *
      * @return True if dragon fight spawns, false if not
      */
     boolean createDragonFight();

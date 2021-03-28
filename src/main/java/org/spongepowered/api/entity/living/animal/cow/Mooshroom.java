@@ -35,6 +35,7 @@ public interface Mooshroom extends Cow {
 
     /**
      * {@link Keys#MOOSHROOM_TYPE}
+     *
      * @return The mooshroom type
      * @see org.spongepowered.api.data.type.MooshroomTypes
      */

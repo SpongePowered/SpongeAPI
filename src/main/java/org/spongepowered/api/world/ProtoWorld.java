@@ -53,8 +53,7 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
     UpdatableVolume,
     RandomProvider,
     PhysicsAwareMutableBlockVolume<P>,
-    MutableGameVolume
-{
+    MutableGameVolume {
 
     /**
      * Gets the {@link Engine} that simulates this world.

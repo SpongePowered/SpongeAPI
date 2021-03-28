@@ -147,7 +147,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
      * @return If the object is contained within the table
      */
     public boolean containsObject(Object obj) {
-        boolean entry = this.entries.contains(obj);
+        final boolean entry = this.entries.contains(obj);
         if (entry) {
             return true;
         }
@@ -199,12 +199,12 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
      * @return If the table was changed as a result
      */
     public boolean removeObject(Object object) {
-        boolean flag = this.entries.remove(object);
+        final boolean flag = this.entries.remove(object);
         if (flag) {
             return true;
         }
         for (Iterator<TableEntry<T>> it = this.entries.iterator(); it.hasNext();) {
-            TableEntry<T> e = it.next();
+            final TableEntry<T> e = it.next();
             if (e instanceof WeightedObject && ((WeightedObject<T>) e).get().equals(object)) {
                 it.remove();
                 return true;

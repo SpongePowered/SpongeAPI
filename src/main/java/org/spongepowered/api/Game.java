@@ -39,9 +39,9 @@ import org.spongepowered.api.registry.GameRegistry;
 import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.ScopedRegistryHolder;
 import org.spongepowered.api.scheduler.Scheduler;
+import org.spongepowered.api.service.ServiceProvider;
 import org.spongepowered.api.sql.SqlManager;
 import org.spongepowered.api.util.metric.MetricsConfigManager;
-import org.spongepowered.api.service.ServiceProvider;
 
 import java.nio.file.Path;
 import java.util.Locale;

@@ -38,6 +38,7 @@ public interface Villager extends Trader, Ageable {
 
     /**
      * {@link Keys#VILLAGER_TYPE}
+     *
      * @return The villager type
      * @see org.spongepowered.api.data.type.VillagerTypes
      */
@@ -56,6 +57,7 @@ public interface Villager extends Trader, Ageable {
 
     /**
      * {@link Keys#PROFESSION_LEVEL}
+     *
      * @return The profession level of this villager
      */
     default Value.Mutable<Integer> professionLevel() {

@@ -52,9 +52,9 @@ public enum Axis implements Cycleable<Axis> {
      * @return The closest axis.
      */
     public static Axis closest(final Vector3d vector) {
-        double x = Math.abs(vector.getX());
-        double y = Math.abs(vector.getY());
-        double z = Math.abs(vector.getZ());
+        final double x = Math.abs(vector.getX());
+        final double y = Math.abs(vector.getY());
+        final double z = Math.abs(vector.getZ());
         if (x < y) {
             if (z < y) {
                 return Axis.Y;

@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.network.channel.raw.play;
 
-import org.spongepowered.api.network.channel.ChannelBuf;
 import org.spongepowered.api.network.EngineConnection;
+import org.spongepowered.api.network.channel.ChannelBuf;
 
 /**
  * Represents a listener for data being sent to a raw channel.

@@ -48,6 +48,7 @@ public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
 
     /**
      * Creates a new {@link EntityArchetype} with the specified {@link EntityType}.
+     *
      * @param type Type of the entity
      * @return An archetype of the given entity type
      */
@@ -57,6 +58,7 @@ public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
 
     /**
      * Creates a new {@link EntityArchetype} with the specified {@link EntityType}.
+     *
      * @param type Type of the entity
      * @return An archetype of the given entity type
      */

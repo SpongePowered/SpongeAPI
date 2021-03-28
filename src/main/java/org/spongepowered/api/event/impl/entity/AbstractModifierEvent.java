@@ -59,7 +59,7 @@ public abstract class AbstractModifierEvent<T extends ModifierFunction<M>, M> ex
         double finalDamage = originalValue;
         for (T tuple : originalFunctions) {
             this.modifierFunctions.add(this.convertTuple(tuple.modifier(), tuple.function()));
-            double tempDamage = Objects.requireNonNull(tuple.function().applyAsDouble(finalDamage));
+            final double tempDamage = Objects.requireNonNull(tuple.function().applyAsDouble(finalDamage));
             finalDamage += tempDamage;
             modifierMapBuilder.add(new Tuple<>(tuple.modifier(), tempDamage));
             mapBuilder.put(tuple.modifier(), tempDamage);
@@ -78,10 +78,10 @@ public abstract class AbstractModifierEvent<T extends ModifierFunction<M>, M> ex
         double tempAmount = baseAmount;
         this.modifiers.clear();
         for (T entry : this.modifierFunctions) {
-            double modifierAmount = Objects.requireNonNull(entry.function().applyAsDouble(tempAmount));
+            final double modifierAmount = Objects.requireNonNull(entry.function().applyAsDouble(tempAmount));
             if (this.modifiers.containsKey(entry.modifier())) {
-                double oldAmount = this.modifiers.get(entry.modifier());
-                double difference = oldAmount - modifierAmount;
+                final double oldAmount = this.modifiers.get(entry.modifier());
+                final double difference = oldAmount - modifierAmount;
                 if (oldAmount > 0) {
                     this.modifiers.put(entry.modifier(), Math.max(0, oldAmount - difference));
                 } else {
@@ -108,7 +108,7 @@ public abstract class AbstractModifierEvent<T extends ModifierFunction<M>, M> ex
      * @return The list of modifiers
      */
     public List<T> modifiers() {
-        ImmutableList.Builder<T> builder = ImmutableList.builder();
+        final ImmutableList.Builder<T> builder = ImmutableList.builder();
         for (T entry : this.modifierFunctions) {
             builder.add(entry);
         }

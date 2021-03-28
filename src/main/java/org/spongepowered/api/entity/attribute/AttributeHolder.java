@@ -37,6 +37,7 @@ public interface AttributeHolder {
 
     /**
      * Gets an {@link Attribute} from this entity
+     *
      * @param type The attribute type.
      * @return An attribute, if present.
      */
@@ -46,6 +47,7 @@ public interface AttributeHolder {
 
     /**
      * Gets an {@link Attribute} from this entity
+     *
      * @param type The attribute type.
      * @return An attribute, if present.
      */

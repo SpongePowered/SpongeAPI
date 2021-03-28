@@ -101,7 +101,7 @@ public abstract class AbstractDamageEntityEvent extends AbstractModifierEvent<Da
         int indexToAddTo = 0;
         boolean addAtEnd = true;
         for (Iterator<DamageFunction> iterator = this.modifierFunctions.iterator(); iterator.hasNext(); ) {
-            ModifierFunction<DamageModifier> tuple = iterator.next();
+            final ModifierFunction<DamageModifier> tuple = iterator.next();
             if (tuple.modifier().equals(damageModifier)) {
                 iterator.remove();
                 addAtEnd = false;
@@ -172,7 +172,7 @@ public abstract class AbstractDamageEntityEvent extends AbstractModifierEvent<Da
 
     @Override
     public List<DamageFunction> modifiers() {
-        ImmutableList.Builder<DamageFunction> builder = ImmutableList.builder();
+        final ImmutableList.Builder<DamageFunction> builder = ImmutableList.builder();
         for (ModifierFunction<DamageModifier> entry : this.modifierFunctions) {
             if (entry instanceof DamageFunction) {
                 builder.add((DamageFunction) entry);
@@ -196,7 +196,7 @@ public abstract class AbstractDamageEntityEvent extends AbstractModifierEvent<Da
 
     @Override
     public boolean willCauseDeath() {
-        Optional<Double> health = this.entity().get(Keys.HEALTH);
+        final Optional<Double> health = this.entity().get(Keys.HEALTH);
         return health.isPresent() && health.get() - this.finalDamage() <= 0;
     }
 

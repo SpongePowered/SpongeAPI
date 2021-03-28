@@ -72,7 +72,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
 
     @Override
     public boolean add(TableEntry<T> entry) {
-        boolean added = super.add(entry);
+        final boolean added = super.add(entry);
         if (added) {
             this.recalculateWeight();
         }
@@ -81,7 +81,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
 
     @Override
     public boolean add(T object, double weight) {
-        boolean added = super.add(object, weight);
+        final boolean added = super.add(object, weight);
         if (added) {
             this.recalculateWeight();
         }
@@ -90,7 +90,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
 
     @Override
     public boolean addAll(Collection<? extends TableEntry<T>> c) {
-        boolean added = super.addAll(c);
+        final boolean added = super.addAll(c);
         if (added) {
             this.recalculateWeight();
         }
@@ -99,7 +99,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
 
     @Override
     public boolean remove(Object entry) {
-        boolean removed = super.remove(entry);
+        final boolean removed = super.remove(entry);
         if (removed) {
             this.recalculateWeight();
         }
@@ -108,7 +108,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
 
     @Override
     public boolean removeObject(Object entry) {
-        boolean removed = super.removeObject(entry);
+        final boolean removed = super.removeObject(entry);
         if (removed) {
             this.recalculateWeight();
         }
@@ -117,7 +117,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        boolean removed = super.removeAll(c);
+        final boolean removed = super.removeAll(c);
         if (removed) {
             this.recalculateWeight();
         }
@@ -126,7 +126,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        boolean removed = super.retainAll(c);
+        final boolean removed = super.retainAll(c);
         if (removed) {
             this.recalculateWeight();
         }
@@ -145,7 +145,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
     protected void recalculateWeight() {
         this.totalWeight = 0;
         for (Iterator<TableEntry<T>> it = this.entries.iterator(); it.hasNext();) {
-            TableEntry<T> entry = it.next();
+            final TableEntry<T> entry = it.next();
             if (entry.weight() < 0) {
                 // Negative weights on entries will really break this, so we
                 // remove them if found, this is fine as a negatively weighted
@@ -159,15 +159,15 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
 
     @Override
     public List<T> get(Random rand) {
-        List<T> results = Lists.newArrayList();
+        final List<T> results = Lists.newArrayList();
         if (this.entries.isEmpty()) {
             return results;
         }
-        int rolls = this.rolls().flooredAmount(rand);
+        final int rolls = this.rolls().flooredAmount(rand);
         for (int i = 0; i < rolls; i++) {
             double roll = rand.nextDouble() * this.totalWeight;
             for (Iterator<TableEntry<T>> it = this.entries.iterator(); it.hasNext();) {
-                TableEntry<T> next = it.next();
+                final TableEntry<T> next = it.next();
                 roll -= next.weight();
                 if (roll <= 0) {
                     if (next instanceof NestedTableEntry) {
@@ -195,7 +195,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
         if (!(o instanceof WeightedTable)) {
             return false;
         }
-        WeightedTable<?> c = (WeightedTable<?>) o;
+        final WeightedTable<?> c = (WeightedTable<?>) o;
         if (this.rolls() != c.rolls()) {
             return false;
         }
@@ -222,7 +222,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
 
     @Override
     public String toString() {
-        StringBuilder r = new StringBuilder();
+        final StringBuilder r = new StringBuilder();
         r.append("WeightedTable (rolls=").append(this.rolls());
         r.append(",entries=").append(this.entries.size()).append(") {\n");
         for (TableEntry<T> entry : this.entries) {

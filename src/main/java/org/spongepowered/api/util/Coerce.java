@@ -116,16 +116,16 @@ public final class Coerce {
         }
 
         if (obj instanceof List) {
-            return (List<?>)obj;
+            return (List<?>) obj;
         }
 
-        Class<?> clazz = obj.getClass();
+        final Class<?> clazz = obj.getClass();
         if (clazz.isArray()) {
             if (clazz.getComponentType().isPrimitive()) {
                 return Coerce.primitiveArrayToList(obj);
             }
 
-            return Arrays.asList((Object[])obj);
+            return Arrays.asList((Object[]) obj);
         }
 
         return Coerce.parseStringToList(obj.toString());
@@ -146,13 +146,13 @@ public final class Coerce {
             return Optional.<List<?>>of((List<?>) obj);
         }
 
-        Class<?> clazz = obj.getClass();
+        final Class<?> clazz = obj.getClass();
         if (clazz.isArray()) {
             if (clazz.getComponentType().isPrimitive()) {
                 return Optional.<List<?>>of(Coerce.primitiveArrayToList(obj));
             }
 
-            return Optional.<List<?>>of(Arrays.asList((Object[])obj));
+            return Optional.<List<?>>of(Arrays.asList((Object[]) obj));
         }
 
         return Optional.<List<?>>of(Coerce.parseStringToList(obj.toString()));
@@ -171,21 +171,21 @@ public final class Coerce {
     @SuppressWarnings("unchecked")
     public static <T> List<T> toListOf(@Nullable Object obj, Class<T> ofClass) {
         Objects.requireNonNull(ofClass, "ofClass");
-        List<T> filteredList = Lists.newArrayList();
+        final List<T> filteredList = Lists.newArrayList();
 
         for (Object o : Coerce.toList(obj)) {
             if (ofClass.isAssignableFrom(o.getClass())) {
-                filteredList.add((T)o);
+                filteredList.add((T) o);
             } else if (ofClass.equals(String.class)) {
-                filteredList.add((T)Coerce.toString(o));
+                filteredList.add((T) Coerce.toString(o));
             } else if (ofClass.equals(Integer.TYPE) || ofClass.equals(Integer.class)) {
-                filteredList.add((T)(Integer)Coerce.toInteger(o));
+                filteredList.add((T) (Integer) Coerce.toInteger(o));
             } else if (ofClass.equals(Float.TYPE) || ofClass.equals(Float.class)) {
-                filteredList.add((T)new Float(Coerce.toDouble(o)));
+                filteredList.add((T) Float.valueOf((float) Coerce.toDouble(o)));
             } else if (ofClass.equals(Double.TYPE) || ofClass.equals(Double.class)) {
-                filteredList.add((T)(Double)Coerce.toDouble(o));
+                filteredList.add((T) (Double) Coerce.toDouble(o));
             } else if (ofClass.equals(Boolean.TYPE) || ofClass.equals(Boolean.class)) {
-                filteredList.add((T)(Boolean)Coerce.toBoolean(o));
+                filteredList.add((T) (Boolean) Coerce.toBoolean(o));
             }
         }
 
@@ -235,16 +235,16 @@ public final class Coerce {
         }
 
         if (obj instanceof Number) {
-            return ((Number)obj).intValue();
+            return ((Number) obj).intValue();
         }
 
-        String strObj = Coerce.sanitiseNumber(obj);
-        Integer iParsed = Ints.tryParse(strObj);
+        final String strObj = Coerce.sanitiseNumber(obj);
+        final Integer iParsed = Ints.tryParse(strObj);
         if (iParsed != null) {
             return iParsed;
         }
 
-        Double dParsed = Doubles.tryParse(strObj);
+        final Double dParsed = Doubles.tryParse(strObj);
         return dParsed != null ? dParsed.intValue() : 0;
     }
 
@@ -271,10 +271,10 @@ public final class Coerce {
             // do nothing
         }
 
-        String strObj = Coerce.sanitiseNumber(obj);
-        Integer iParsed = Ints.tryParse(strObj);
+        final String strObj = Coerce.sanitiseNumber(obj);
+        final Integer iParsed = Ints.tryParse(strObj);
         if (iParsed == null) {
-            Double dParsed = Doubles.tryParse(strObj);
+            final Double dParsed = Doubles.tryParse(strObj);
             // try parsing as double now
             return dParsed == null ? Optional.<Integer>empty() : Optional.of(dParsed.intValue());
         }
@@ -295,10 +295,10 @@ public final class Coerce {
         }
 
         if (obj instanceof Number) {
-            return ((Number)obj).doubleValue();
+            return ((Number) obj).doubleValue();
         }
 
-        Double parsed = Doubles.tryParse(Coerce.sanitiseNumber(obj));
+        final Double parsed = Doubles.tryParse(Coerce.sanitiseNumber(obj));
         return parsed != null ? parsed : 0.0;
     }
 
@@ -325,8 +325,8 @@ public final class Coerce {
             // do nothing
         }
 
-        String strObj = Coerce.sanitiseNumber(obj);
-        Double dParsed = Doubles.tryParse(strObj);
+        final String strObj = Coerce.sanitiseNumber(obj);
+        final Double dParsed = Doubles.tryParse(strObj);
         // try parsing as double now
         return dParsed == null ? Optional.<Double>empty() : Optional.of(dParsed);
     }
@@ -347,7 +347,7 @@ public final class Coerce {
             return ((Number) obj).floatValue();
         }
 
-        Float parsed = Floats.tryParse(Coerce.sanitiseNumber(obj));
+        final Float parsed = Floats.tryParse(Coerce.sanitiseNumber(obj));
         return parsed != null ? parsed : 0.0f;
     }
 
@@ -374,8 +374,8 @@ public final class Coerce {
             // do nothing
         }
 
-        String strObj = Coerce.sanitiseNumber(obj);
-        Double dParsed = Doubles.tryParse(strObj);
+        final String strObj = Coerce.sanitiseNumber(obj);
+        final Double dParsed = Doubles.tryParse(strObj);
         return dParsed == null ? Optional.<Float>empty() : Optional.of(dParsed.floatValue());
     }
 
@@ -595,11 +595,11 @@ public final class Coerce {
 
         if (enumClass.isAssignableFrom(obj.getClass())) {
             @SuppressWarnings("unchecked")
-            E enumObj = (E)obj;
+            final E enumObj = (E) obj;
             return enumObj;
         }
 
-        String strObj = obj.toString().trim();
+        final String strObj = obj.toString().trim();
 
         try {
             // Efficient but case-sensitive lookup in the constant map
@@ -639,18 +639,18 @@ public final class Coerce {
 
         if (pseudoEnumClass.isAssignableFrom(obj.getClass())) {
             @SuppressWarnings("unchecked")
-            T enumObj = (T)obj;
+            final T enumObj = (T) obj;
             return enumObj;
         }
 
-        String strObj = obj.toString().trim();
+        final String strObj = obj.toString().trim();
 
         try {
             for (Field field : dictionaryClass.getFields()) {
                 if ((field.getModifiers() & Modifier.STATIC) != 0 && pseudoEnumClass.isAssignableFrom(field.getType())) {
-                    String fieldName = field.getName();
+                    final String fieldName = field.getName();
                     @SuppressWarnings("unchecked")
-                    T entry = (T)field.get(null);
+                    final T entry = (T) field.get(null);
                     if (strObj.equalsIgnoreCase(fieldName)) {
                         return entry;
                     }
@@ -675,29 +675,29 @@ public final class Coerce {
         }
 
         if (obj instanceof Vectorl) {
-            obj = ((Vectorl)obj).toInt();
+            obj = ((Vectorl) obj).toInt();
         } else if (obj instanceof Vectorf) {
-            obj = ((Vectorf)obj).toInt();
+            obj = ((Vectorf) obj).toInt();
         } else if (obj instanceof Vectord) {
-            obj = ((Vectord)obj).toInt();
+            obj = ((Vectord) obj).toInt();
         }
 
         if (obj instanceof Vector2i) {
-            return (Vector2i)obj;
+            return (Vector2i) obj;
         } else if (obj instanceof Vector3i) {
-            return new Vector2i((Vector3i)obj);
+            return new Vector2i((Vector3i) obj);
         } else if (obj instanceof Vector4i) {
-            return new Vector2i((Vector4i)obj);
+            return new Vector2i((Vector4i) obj);
         } else if (obj instanceof VectorNi) {
-            return new Vector2i((VectorNi)obj);
+            return new Vector2i((VectorNi) obj);
         }
 
-        Matcher vecMatch = Coerce.vector2Pattern.matcher(obj.toString());
+        final Matcher vecMatch = Coerce.vector2Pattern.matcher(obj.toString());
         if (Coerce.listBracketsMatch(vecMatch)) {
             return new Vector2i(Integer.parseInt(vecMatch.group(1)), Integer.parseInt(vecMatch.group(2)));
         }
 
-        List<?> list = Coerce.toList(obj);
+        final List<?> list = Coerce.toList(obj);
         if (list.size() == 2) {
             return new Vector2i(Coerce.toInteger(list.get(0)), Coerce.toInteger(list.get(1)));
         }
@@ -720,13 +720,13 @@ public final class Coerce {
             return "0";
         }
 
-        Matcher candidate = Coerce.listPattern.matcher(string);
+        final Matcher candidate = Coerce.listPattern.matcher(string);
         if (Coerce.listBracketsMatch(candidate)) {
             string = candidate.group(2).trim();
         }
 
-        int decimal = string.indexOf('.');
-        int comma = string.indexOf(',', decimal);
+        final int decimal = string.indexOf('.');
+        final int comma = string.indexOf(',', decimal);
         if (decimal > -1 && comma > -1) {
             return Coerce.sanitiseNumber(string.substring(0, comma));
         }
@@ -744,33 +744,33 @@ public final class Coerce {
 
     private static List<?> primitiveArrayToList(Object obj) {
         if (obj instanceof boolean[]) {
-            return Booleans.asList((boolean[])obj);
+            return Booleans.asList((boolean[]) obj);
         } else if (obj instanceof char[]) {
-            return Chars.asList((char[])obj);
+            return Chars.asList((char[]) obj);
         } else if (obj instanceof byte[]) {
-            return Bytes.asList((byte[])obj);
+            return Bytes.asList((byte[]) obj);
         } else if (obj instanceof short[]) {
-            return Shorts.asList((short[])obj);
+            return Shorts.asList((short[]) obj);
         } else if (obj instanceof int[]) {
-            return Ints.asList((int[])obj);
+            return Ints.asList((int[]) obj);
         } else if (obj instanceof long[]) {
-            return Longs.asList((long[])obj);
+            return Longs.asList((long[]) obj);
         } else if (obj instanceof float[]) {
-            return Floats.asList((float[])obj);
+            return Floats.asList((float[]) obj);
         } else if (obj instanceof double[]) {
-            return Doubles.asList((double[])obj);
+            return Doubles.asList((double[]) obj);
         }
 
         return Collections.<Object>emptyList();
     }
 
     private static List<?> parseStringToList(String string) {
-        Matcher candidate = Coerce.listPattern.matcher(string);
+        final Matcher candidate = Coerce.listPattern.matcher(string);
         if (!Coerce.listBracketsMatch(candidate)) {
             return Collections.<Object>emptyList();
         }
 
-        List<String> list = Lists.newArrayList();
+        final List<String> list = Lists.newArrayList();
         for (String part : candidate.group(2).split(",")) {
             if (part != null) {
                 list.add(part);

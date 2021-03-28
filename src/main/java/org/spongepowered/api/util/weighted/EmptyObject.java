@@ -67,14 +67,14 @@ public class EmptyObject<T> extends TableEntry<T> implements DataSerializable {
         if (!(o instanceof EmptyObject)) {
             return false;
         }
-        EmptyObject<?> c = (EmptyObject<?>) o;
+        final EmptyObject<?> c = (EmptyObject<?>) o;
         return this.weight() == c.weight();
     }
 
     @Override
     public int hashCode() {
         int r = 1;
-        long w = Double.doubleToLongBits(this.weight());
+        final long w = Double.doubleToLongBits(this.weight());
         r = r * 37 + (int) (w ^ (w >>> 32));
         return r;
     }

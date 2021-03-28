@@ -37,6 +37,7 @@ public interface FusedExplosive extends Explosive {
 
     /**
      * {@link Keys#IS_PRIMED}
+     *
      * @return True if this explosive is primed
      */
     default Value.Mutable<Boolean> primed() {
@@ -45,6 +46,7 @@ public interface FusedExplosive extends Explosive {
 
     /**
      * {@link Keys#FUSE_DURATION}
+     *
      * @return The fuse duration, if this explosive is primed
      */
     default Value.Mutable<Ticks> fuseDuration() {

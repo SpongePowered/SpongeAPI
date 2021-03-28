@@ -31,6 +31,7 @@ public interface PackHorse extends HorseLike {
 
     /**
      * {@link Keys#HAS_CHEST}
+     *
      * @return Whether the horse is has a chest or not
      */
     default Value.Mutable<Boolean> hasChest() {

@@ -37,10 +37,10 @@ import org.spongepowered.api.item.inventory.query.QueryType.NoParam;
 import org.spongepowered.api.item.inventory.query.QueryType.OneParam;
 import org.spongepowered.api.item.inventory.query.QueryType.TwoParam;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.math.vector.Vector2i;
 
 import java.util.function.Predicate;

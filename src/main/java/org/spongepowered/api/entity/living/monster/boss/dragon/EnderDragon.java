@@ -44,6 +44,7 @@ public interface EnderDragon extends ComplexLiving<EnderDragonPart>, Boss, Monst
 
     /**
      * {@link Keys#HEALING_CRYSTAL}
+     *
      * @return The current crystal healing this dragon
      */
     default Optional<Value.Mutable<EndCrystal>> healingCrystal() {

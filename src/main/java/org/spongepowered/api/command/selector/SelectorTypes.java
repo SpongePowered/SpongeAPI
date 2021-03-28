@@ -27,10 +27,10 @@ package org.spongepowered.api.command.selector;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 
 /**
  * All {@link SelectorType}s available in Minecraft.

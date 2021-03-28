@@ -132,10 +132,10 @@ import org.spongepowered.api.entity.vehicle.minecart.carrier.ChestMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.carrier.HopperMinecart;
 import org.spongepowered.api.entity.weather.LightningBolt;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 
 /**
  * An enumeration of all possible {@link EntityType}s available in vanilla minecraft.

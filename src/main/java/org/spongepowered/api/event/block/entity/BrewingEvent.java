@@ -61,6 +61,7 @@ public interface BrewingEvent extends Event {
         /**
          * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the result
          * of the brew.
+         *
          * @return The brewed items
          */
         List<ItemStackSnapshot> brewedItemStacks();
@@ -71,6 +72,7 @@ public interface BrewingEvent extends Event {
         /**
          * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the result
          * of the brew.
+         *
          * @return The brewed items
          */
         List<ItemStackSnapshot> brewedItemStacks();

@@ -38,6 +38,7 @@ public interface TropicalFishShape extends DefaultedRegistryValue {
 
     /**
      * Whether this shape represents a large {@link TropicalFish}.
+     *
      * @return True if this shape represents a large tropical fish.
      */
     boolean isLarge();

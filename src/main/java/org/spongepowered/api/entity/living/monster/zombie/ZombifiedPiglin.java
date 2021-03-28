@@ -34,6 +34,7 @@ public interface ZombifiedPiglin extends ZombieLike {
 
     /**
      * {@link Keys#ANGER_LEVEL}
+     *
      * @return The anger level, decays over time
      */
     default Value.Mutable<Integer> angerLevel() {

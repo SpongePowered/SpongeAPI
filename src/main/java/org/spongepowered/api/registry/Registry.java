@@ -132,12 +132,14 @@ public interface Registry<T> extends Iterable<RegistryEntry<T>> {
 
     /**
      * Gets a {@link Stream} of all {@link RegistryEntry entries} within.
+     *
      * @return The stream
      */
     Stream<RegistryEntry<T>> streamEntries();
 
     /**
      * Gets a {@link Stream} of all registry values within.
+     *
      * @return The stream
      */
     Stream<T> stream();

@@ -34,6 +34,7 @@ public interface Phantom extends Aerial, Creature {
 
     /**
      * {@link Keys#PHANTOM_PHASE}
+     *
      * @return The phantom phase
      */
     default Value.Mutable<PhantomPhase> phase() {
@@ -42,6 +43,7 @@ public interface Phantom extends Aerial, Creature {
 
     /**
      * {@link Keys#SIZE}
+     *
      * @return The size of this phantom
      */
     default Value.Mutable<Integer> size() {

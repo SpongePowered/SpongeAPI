@@ -36,11 +36,11 @@ import org.spongepowered.api.command.parameter.Parameter;
 import org.spongepowered.api.command.parameter.managed.ValueParameter;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.registry.DefaultedRegistryType;
-import org.spongepowered.api.registry.RegistryType;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.Builder;
 
 import java.util.Collection;
@@ -149,6 +149,7 @@ public final class VariableValueParameters {
     /**
      * Creates a builder that builds a {@link ValueParameter} that tries to
      * construct a {@link Component} from an argument.
+     *
      * @return The new builder
      */
     public static TextBuilder textBuilder() {

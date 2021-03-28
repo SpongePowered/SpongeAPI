@@ -36,6 +36,7 @@ public interface ArrowEntity extends DamagingProjectile {
 
     /**
      * {@link Keys#PICKUP_RULE}
+     *
      * @return The pickup rule
      * @see org.spongepowered.api.data.type.PickupRules
      */
@@ -45,6 +46,7 @@ public interface ArrowEntity extends DamagingProjectile {
 
     /**
      * {@link Keys#KNOCKBACK_STRENGTH}
+     *
      * @return The knockback strength
      */
     default Value.Mutable<Double> knockbackStrength() {

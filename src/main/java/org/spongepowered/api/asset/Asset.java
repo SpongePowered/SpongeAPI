@@ -146,9 +146,9 @@ public interface Asset {
      * @return The file name
      */
     default String fileName() {
-        String path = this.url().getPath();
+        final String path = this.url().getPath();
         //We don't need to worry about file system specific file separators as we are dealing with a substring of URL
-        int end = path.lastIndexOf('/');
+        final int end = path.lastIndexOf('/');
         if (end < 0) {
             return path;
         }

@@ -28,8 +28,8 @@ import net.kyori.adventure.text.Component;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.util.locale.LocaleSource;
 import org.spongepowered.api.util.Nameable;
+import org.spongepowered.api.util.locale.LocaleSource;
 
 import java.util.Optional;
 

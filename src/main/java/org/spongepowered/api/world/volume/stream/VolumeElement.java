@@ -68,9 +68,9 @@ public interface VolumeElement<V extends Volume, T> {
                     return false;
                 }
                 final VolumeElement<@NonNull ?, ?> that = (VolumeElement<@NonNull ?, ?>) o;
-                return volume.get().equals(that.volume()) &&
-                    type.get().equals(that.type()) &&
-                    position.equals(that.position());
+                return volume.get().equals(that.volume())
+                    && type.get().equals(that.type())
+                    && position.equals(that.position());
             }
 
             @Override

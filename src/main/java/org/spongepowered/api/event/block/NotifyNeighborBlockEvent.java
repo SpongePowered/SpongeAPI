@@ -48,7 +48,7 @@ public interface NotifyNeighborBlockEvent extends Event, Cancellable {
     }
 
     default void filterTickets(final Predicate<NotificationTicket> predicate) {
-        this.tickets().forEach(ticket ->{
+        this.tickets().forEach(ticket -> {
             if (predicate.test(ticket)) {
                 ticket.setValid(false);
             }

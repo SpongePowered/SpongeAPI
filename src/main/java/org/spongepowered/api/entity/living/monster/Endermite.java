@@ -38,6 +38,7 @@ public interface Endermite extends Monster {
 
     /**
      * {@link Keys#DESPAWN_DELAY}
+     *
      * @return The despawn delay
      */
     default Value.Mutable<Ticks> expirationDelay() {

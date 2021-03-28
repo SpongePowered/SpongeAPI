@@ -37,6 +37,7 @@ public interface EndCrystal extends Explosive {
 
     /**
      * {@link Keys#TARGET_POSITION}
+     *
      * @return The target position of the beam
      */
     default Optional<Value.Mutable<Vector3i>> beamTarget() {
@@ -45,6 +46,7 @@ public interface EndCrystal extends Explosive {
 
     /**
      * {@link Keys#SHOW_BOTTOM}
+     *
      * @return The value whether this crystal is showing a bottom "pedestal"
      */
     default Value.Mutable<Boolean> showBottom() {

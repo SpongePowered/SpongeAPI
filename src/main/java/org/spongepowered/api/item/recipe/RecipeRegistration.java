@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.item.recipe;
 
-import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.data.persistence.DataSerializable;
+import org.spongepowered.api.datapack.DataPackSerializable;
 
 /**
  * A registration of a {@link Recipe} by an API consumer.

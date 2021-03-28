@@ -97,6 +97,7 @@ public interface WorldManager {
 
     /**
      * Gets if a {@link ResourceKey key} exists as an actual world, offline or online.
+     *
      * @param key The key
      * @return True if existed, false if not
      */
@@ -156,6 +157,7 @@ public interface WorldManager {
 
     /**
      * Gets if a {@link ResourceKey key} exists as a {@link WorldTemplate template}.
+     *
      * @param key The key
      * @return True if it exists, false if not
      */
@@ -163,6 +165,7 @@ public interface WorldManager {
 
     /**
      * Gets a {@link WorldTemplate template} by a {@link ResourceKey key}.
+     *
      * @param key The key
      * @return The template or {@link Optional#empty()} if not found
      */

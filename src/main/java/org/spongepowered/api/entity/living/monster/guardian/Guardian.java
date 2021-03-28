@@ -26,10 +26,9 @@ package org.spongepowered.api.entity.living.monster.guardian;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.aquatic.Aquatic;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.Monster;
+import org.spongepowered.api.entity.living.aquatic.Aquatic;
 
 import java.util.Optional;
 
@@ -40,6 +39,7 @@ public interface Guardian extends Aquatic, Monster {
 
     /**
      * {@link Keys#BEAM_TARGET_ENTITY}
+     *
      * @return The targeted entity, if available
      */
     default Optional<Value.Mutable<Living>> beamTarget() {

@@ -34,6 +34,7 @@ public interface Dolphin extends Aquatic {
 
     /**
      * {@link Keys#SKIN_MOISTURE}
+     *
      * @return The skin moisture value, before they are parched
      */
     default Value.Mutable<Integer> skinMoisture() {
@@ -42,6 +43,7 @@ public interface Dolphin extends Aquatic {
 
     /**
      * {@link Keys#HAS_FISH}
+     *
      * @return Whether this dolphin has a fish, but not a towel
      */
     default Value.Mutable<Boolean> gotFish() {

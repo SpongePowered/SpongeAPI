@@ -69,7 +69,6 @@ public final class BlockTransactionReceipt implements DataSerializable {
             .set(Queries.CONTENT_VERSION, this.contentVersion())
             .set(Queries.ORIGINAL, this.originalBlock.toContainer())
             .set(Queries.FINAL_REPLACEMENT, this.finalBlock.toContainer())
-            .set(Queries.BLOCK_OPERATION, resourceKey)
-        ;
+            .set(Queries.BLOCK_OPERATION, resourceKey);
     }
 }

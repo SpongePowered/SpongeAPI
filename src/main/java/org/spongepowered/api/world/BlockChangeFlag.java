@@ -198,6 +198,7 @@ public interface BlockChangeFlag {
          *   <li>{@link BlockChangeFlag#performBlockPhysics()} is {@code false}</li>
          *   <li>{@link BlockChangeFlag#notifyPathfinding()} is {@code false}</li>
          * </ul>
+         *
          * @return The all false change flag
          */
         BlockChangeFlag none();

@@ -232,7 +232,7 @@ public interface DataStore {
             SerializersStep holder(Class<? extends DataHolder>... types);
         }
 
-        interface SerializersStep extends HolderStep, ResettableBuilder<DataStore, Builder>{
+        interface SerializersStep extends HolderStep, ResettableBuilder<DataStore, Builder> {
 
             /**
              * Adds one or more keys using the default implemented serializers for the given key.

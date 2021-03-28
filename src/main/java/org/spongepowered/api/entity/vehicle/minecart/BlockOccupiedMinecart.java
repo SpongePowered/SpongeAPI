@@ -32,6 +32,7 @@ public interface BlockOccupiedMinecart extends MinecartLike {
 
     /**
      * {@link Keys#BLOCK_STATE}
+     *
      * @return The block state in this minecart
      */
     default Value.Immutable<BlockState> block() {

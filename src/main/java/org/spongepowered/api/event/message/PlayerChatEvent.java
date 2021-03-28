@@ -24,12 +24,13 @@
  */
 package org.spongepowered.api.event.message;
 
-import java.util.Optional;
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.entity.living.player.PlayerChatRouter;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
+
+import java.util.Optional;
 
 /**
  * Fired when the {@link Component} being sent to a {@link PlayerChatRouter} was

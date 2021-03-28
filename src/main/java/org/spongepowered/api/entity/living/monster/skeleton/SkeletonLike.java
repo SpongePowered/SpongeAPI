@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.entity.living.monster.skeleton;
 
-import org.spongepowered.api.entity.living.Ranger;
 import org.spongepowered.api.entity.living.Monster;
+import org.spongepowered.api.entity.living.Ranger;
 
 /**
  * An abstract representation of a Skeleton.

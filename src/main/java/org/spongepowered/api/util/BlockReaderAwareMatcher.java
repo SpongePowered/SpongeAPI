@@ -34,7 +34,9 @@ import java.util.Objects;
 
 public interface BlockReaderAwareMatcher<T> {
 
-    static BlockReaderAwareMatcher<BlockState> allBlocks() { return (state, volume, position) -> true; }
+    static BlockReaderAwareMatcher<BlockState> allBlocks() {
+        return (state, volume, position) -> true;
+    }
 
     static BlockReaderAwareMatcher<BlockState> forBlock(BlockState filter) {
         return (state, volume, position) -> state == filter;

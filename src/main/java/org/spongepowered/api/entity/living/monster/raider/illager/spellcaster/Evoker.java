@@ -37,6 +37,7 @@ public interface Evoker extends Spellcaster {
 
     /**
      * {@link Keys#WOLOLO_TARGET}
+     *
      * @return The targeted sheep being herded
      */
     default Optional<Value.Mutable<Sheep>> wololoTarget() {

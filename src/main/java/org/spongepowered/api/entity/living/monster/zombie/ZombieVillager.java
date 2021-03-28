@@ -34,6 +34,7 @@ public interface ZombieVillager extends ZombieLike {
 
     /**
      * {@link Keys#VILLAGER_TYPE}
+     *
      * @return The villager type
      * @see org.spongepowered.api.data.type.VillagerTypes
      */
@@ -43,6 +44,7 @@ public interface ZombieVillager extends ZombieLike {
 
     /**
      * {@link Keys#PROFESSION_TYPE}
+     *
      * @return The profession of this zombie villager
      * @see ProfessionTypes
      */

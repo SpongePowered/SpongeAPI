@@ -45,6 +45,7 @@ public interface StructureBlock extends BlockEntity {
 
     /**
      * {@link Keys#STRUCTURE_MODE}
+     *
      * @return The structure mode of this structure block.
      */
     default Value.Mutable<StructureMode> mode() {
@@ -53,6 +54,7 @@ public interface StructureBlock extends BlockEntity {
 
     /**
      * {@link Keys#STRUCTURE_POWERED}
+     *
      * @return Whether this structure block is powered.
      */
     default Value.Mutable<Boolean> powered() {
@@ -74,6 +76,7 @@ public interface StructureBlock extends BlockEntity {
 
     /**
      * {@link Keys#STRUCTURE_SHOW_AIR}
+     *
      * @return Whether the air within the structure should be visible.
      */
     default Value.Mutable<Boolean> showAir() {
@@ -82,6 +85,7 @@ public interface StructureBlock extends BlockEntity {
 
     /**
      * {@link Keys#STRUCTURE_IGNORE_ENTITIES}
+     *
      * @return Whether this structure block should ignore entities.
      */
     default Value.Mutable<Boolean> ignoreEntities() {
@@ -90,6 +94,7 @@ public interface StructureBlock extends BlockEntity {
 
     /**
      * {@link Keys#STRUCTURE_SIZE}
+     *
      * @return The size of the structure.
      */
     default Value.Mutable<Vector3i> size() {
@@ -98,6 +103,7 @@ public interface StructureBlock extends BlockEntity {
 
     /**
      * {@link Keys#STRUCTURE_POSITION}
+     *
      * @return The position of the structure.
      */
     default Value.Mutable<Vector3i> position() {
@@ -106,6 +112,7 @@ public interface StructureBlock extends BlockEntity {
 
     /**
      * {@link Keys#STRUCTURE_SEED}
+     *
      * @return The seed of the structure to be generated.
      */
     default Value.Mutable<Long> seed() {
@@ -114,6 +121,7 @@ public interface StructureBlock extends BlockEntity {
 
     /**
      * {@link Keys#STRUCTURE_INTEGRITY}
+     *
      * @return The integrity of the structure.
      */
     default Value.Mutable<Double> integrity() {
@@ -122,6 +130,7 @@ public interface StructureBlock extends BlockEntity {
 
     /**
      * {@link Keys#STRUCTURE_AUTHOR}
+     *
      * @return The author of the structure loaded by the structure block.
      */
     default Optional<Value.Mutable<String>> author() {

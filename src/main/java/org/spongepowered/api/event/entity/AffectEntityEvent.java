@@ -32,8 +32,8 @@ import org.spongepowered.api.event.Order;
 import org.spongepowered.api.event.impl.entity.AbstractAffectEntityEvent;
 import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
 import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
-import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.explosion.Explosion;
+import org.spongepowered.api.world.server.ServerLocation;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -86,11 +86,11 @@ public interface AffectEntityEvent extends Event, Cancellable {
      * @return The entities removed from {@link #entities()}
      */
     default List<Entity> filterEntityLocations(Predicate<ServerLocation> predicate) {
-        List<Entity> removedEntities = new ArrayList<>();
+        final List<Entity> removedEntities = new ArrayList<>();
 
-        Iterator<Entity> i = this.entities().iterator();
+        final Iterator<Entity> i = this.entities().iterator();
         while (i.hasNext()) {
-            Entity entity = i.next();
+            final Entity entity = i.next();
             if (!entity.location().onServer().map(predicate::test).orElse(false)) {
                 i.remove();
                 removedEntities.add(entity);
@@ -110,11 +110,11 @@ public interface AffectEntityEvent extends Event, Cancellable {
      * @return The entities removed from {@link #entities()}
      */
     default List<? extends Entity> filterEntities(Predicate<Entity> predicate) {
-        List<Entity> removedEntities = new ArrayList<>();
+        final List<Entity> removedEntities = new ArrayList<>();
 
-        Iterator<Entity> i = this.entities().iterator();
+        final Iterator<Entity> i = this.entities().iterator();
         while (i.hasNext()) {
-            Entity entity = i.next();
+            final Entity entity = i.next();
             if (!predicate.test(entity)) {
                 i.remove();
                 removedEntities.add(entity);

@@ -29,10 +29,10 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.hanging.ItemFrame;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 
 /**
  * An enumeration of possible rotations for something that can rotate,
