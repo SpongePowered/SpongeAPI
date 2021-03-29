@@ -52,10 +52,10 @@ class DataQueryTest {
      */
     @Test
     void testOfForSeparatorPath() {
-        DataQuery first = DataQuery.of('.', "this.test.equals");
-        DataQuery second = DataQuery.of(',', "this,test,equals");
-        DataQuery complex = DataQuery.of('\u8482', "this\u8482test\u8482equals");
-        DataQuery test = DataQuery.of("this", "test", "equals");
+        final DataQuery first = DataQuery.of('.', "this.test.equals");
+        final DataQuery second = DataQuery.of(',', "this,test,equals");
+        final DataQuery complex = DataQuery.of('蒂', "this蒂test蒂equals");
+        final DataQuery test = DataQuery.of("this", "test", "equals");
         MatcherAssert.assertThat(first, is(equalTo(test)));
         MatcherAssert.assertThat(first, is(equalTo(second)));
         MatcherAssert.assertThat(first, is(equalTo(complex)));
@@ -69,8 +69,8 @@ class DataQueryTest {
      */
     @Test
     void testOfParts() {
-        DataQuery first = DataQuery.of("this", "parts", "equal");
-        DataQuery second = DataQuery.of('.', "this.parts.equal");
+        final DataQuery first = DataQuery.of("this", "parts", "equal");
+        final DataQuery second = DataQuery.of('.', "this.parts.equal");
         MatcherAssert.assertThat(first, is(equalTo(second)));
         MatcherAssert.assertThat(second, is(equalTo(first)));
     }
@@ -122,14 +122,14 @@ class DataQueryTest {
      */
     @Test
     void testPop() {
-        DataQuery prePopped = DataQuery.of("this", "test", "query");
-        DataQuery expected = DataQuery.of("this", "test");
+        final DataQuery prePopped = DataQuery.of("this", "test", "query");
+        final DataQuery expected = DataQuery.of("this", "test");
         MatcherAssert.assertThat(prePopped.pop(), equalTo(expected));
-        DataQuery empty = DataQuery.of();
-        DataQuery emptyPopped = empty.pop();
+        final DataQuery empty = DataQuery.of();
+        final DataQuery emptyPopped = empty.pop();
         MatcherAssert.assertThat(emptyPopped, equalTo(empty));
 
-        DataQuery single = DataQuery.of("single");
+        final DataQuery single = DataQuery.of("single");
         MatcherAssert.assertThat(single.pop(), equalTo(empty));
     }
 
@@ -149,9 +149,9 @@ class DataQueryTest {
      */
     @Test
     void testEquals() {
-        DataQuery query1 = DataQuery.of("test");
-        DataQuery query2 = DataQuery.of("test");
-        DataQuery nonEqual = DataQuery.of("nope");
+        final DataQuery query1 = DataQuery.of("test");
+        final DataQuery query2 = DataQuery.of("test");
+        final DataQuery nonEqual = DataQuery.of("nope");
         MatcherAssert.assertThat(query1, equalTo(query1));
         MatcherAssert.assertThat(query1, equalTo(query2));
         MatcherAssert.assertThat(query1, is(not(nonEqual)));

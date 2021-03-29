@@ -58,7 +58,7 @@ class CauseTest {
         final Cause old = Cause.of(EventContext.empty(), "foo");
         final Cause newCause = old.with("bar");
         MatcherAssert.assertThat(old, is(not(newCause)));
-        List<?> list = newCause.all();
+        final List<?> list = newCause.all();
         MatcherAssert.assertThat(list, containsInAnyOrder("foo", "bar"));
     }
 

@@ -42,7 +42,7 @@ class NodeTreeTest {
         testPermissions.put("generate", true);
         testPermissions.put("generate.thunderstorm.explosive", false);
 
-        NodeTree oldTree = NodeTree.of(testPermissions);
+        final NodeTree oldTree = NodeTree.of(testPermissions);
 
         Assertions.assertEquals(testPermissions, oldTree.asMap());
     }
@@ -55,9 +55,9 @@ class NodeTreeTest {
         testPermissions.put("generate", true);
         testPermissions.put("generate.thunderstorm.explosive", false);
 
-        NodeTree oldTree = NodeTree.of(testPermissions);
+        final NodeTree oldTree = NodeTree.of(testPermissions);
         Assertions.assertEquals(Tristate.FALSE, oldTree.get("generate.thunderstorm.explosive"));
-        NodeTree newTree = oldTree.withValue("generate.thunderstorm.explosive", Tristate.TRUE);
+        final NodeTree newTree = oldTree.withValue("generate.thunderstorm.explosive", Tristate.TRUE);
         Assertions.assertEquals(Tristate.FALSE, oldTree.get("generate.thunderstorm.explosive"));
         Assertions.assertEquals(Tristate.TRUE, newTree.get("generate.thunderstorm.explosive"));
     }
@@ -70,14 +70,14 @@ class NodeTreeTest {
         testPermissions.put("generate", true);
         testPermissions.put("generate.thunderstorm.explosive", false);
 
-        NodeTree oldTree = NodeTree.of(testPermissions);
+        final NodeTree oldTree = NodeTree.of(testPermissions);
 
         final Map<String, Tristate> newPermissions = new HashMap<>();
         newPermissions.put("generate.sunset.red", Tristate.TRUE);
         newPermissions.put("generate.thunderstorm.explosive", Tristate.UNDEFINED);
         newPermissions.put("something.new", Tristate.FALSE);
 
-        NodeTree newTree = oldTree.withAll(newPermissions);
+        final NodeTree newTree = oldTree.withAll(newPermissions);
 
         Assertions.assertEquals(Tristate.FALSE, oldTree.get("generate.sunset.red"));
         Assertions.assertEquals(Tristate.TRUE, newTree.get("generate.sunset.red"));
@@ -97,7 +97,7 @@ class NodeTreeTest {
         testPermissions.put("generate", true);
         testPermissions.put("generate.thunderstorm.explosive", false);
 
-        NodeTree nodes = NodeTree.of(testPermissions, Tristate.UNDEFINED);
+        final NodeTree nodes = NodeTree.of(testPermissions, Tristate.UNDEFINED);
 
         Assertions.assertEquals(Tristate.TRUE, nodes.get("generate.rainbow"));
         Assertions.assertEquals(Tristate.TRUE, nodes.get("generate.rainbow.double"));

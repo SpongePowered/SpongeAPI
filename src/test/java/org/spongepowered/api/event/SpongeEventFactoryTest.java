@@ -45,8 +45,8 @@ import org.spongepowered.api.event.impl.AbstractEvent;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.PEBKACException;
 import org.spongepowered.api.util.Transform;
-import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.configurate.util.Types;
 import org.spongepowered.configurate.util.UnmodifiableCollections;
@@ -97,7 +97,7 @@ class SpongeEventFactoryTest {
         // the 'generic' return type of SignData#asImmutable, which is ImmutableSignData.
         // Guava's TypeToken takes generic parameters into account, allowing us to mock
         // the most specific known return type.
-        Type returnType = GenericTypeReflector.getExactReturnType(invoc.getMethod(),
+        final Type returnType = GenericTypeReflector.getExactReturnType(invoc.getMethod(),
                 Mockito.mockingDetails(invoc.getMock()).getMockCreationSettings().getTypeToMock()
         );
         return SpongeEventFactoryTest.mockParam(returnType);
@@ -124,7 +124,7 @@ class SpongeEventFactoryTest {
             for (int i = 0; i < paramTypes.length; i++) {
                 params[i] = SpongeEventFactoryTest.mockParam(paramTypes[i]);
             }
-            Object testEvent = method.invoke(null, params);
+            final Object testEvent = method.invoke(null, params);
             for (Method eventMethod : testEvent.getClass().getMethods()) {
 
                 if (SpongeEventFactoryTest.EXCLUDED_METHODS.contains(eventMethod.getName())) {
@@ -217,7 +217,7 @@ class SpongeEventFactoryTest {
             return null;
         } else if (Types.isArray(paramType)) {
             final Type componentType = GenericTypeReflector.getArrayComponentType(paramType);
-            Object array = Array.newInstance(GenericTypeReflector.erase(componentType), 1);
+            final Object array = Array.newInstance(GenericTypeReflector.erase(componentType), 1);
             Array.set(array, 0, SpongeEventFactoryTest.mockParam(componentType));
             return array;
         } else if (paramType == String.class) {
@@ -229,7 +229,7 @@ class SpongeEventFactoryTest {
         } else if (GenericTypeReflector.isSuperType(Enum.class, paramType)) {
             return erasedType.getEnumConstants()[0];
         } else if (GenericTypeReflector.isSuperType(ServerLocation.class, paramType)) {
-            ServerWorld world = (ServerWorld) SpongeEventFactoryTest.mockParam(ServerWorld.class);
+            final ServerWorld world = (ServerWorld) SpongeEventFactoryTest.mockParam(ServerWorld.class);
             // Make sure we keep a reference to the World,
             // as Location stores a weak reference
             SpongeEventFactoryTest.worlds.add(world);
@@ -259,7 +259,7 @@ class SpongeEventFactoryTest {
         } else if (paramType == Color.class) {
             return Color.BLACK;
         } else if (GenericTypeReflector.isSuperType(DataHolder.class, paramType)) {
-            DataHolder mock = (DataHolder) mock(GenericTypeReflector.erase(paramType),
+            final DataHolder mock = (DataHolder) mock(GenericTypeReflector.erase(paramType),
                     withSettings().defaultAnswer(SpongeEventFactoryTest.EVENT_MOCKING_ANSWER));
             return mock;
 

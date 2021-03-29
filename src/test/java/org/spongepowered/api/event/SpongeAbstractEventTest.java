@@ -42,10 +42,10 @@ class SpongeAbstractEventTest {
 
     @Test
     void testValueChangeEvent() {
-        DataTransactionResult original = DataTransactionResult.failNoData();
-        DataTransactionResult modified = DataTransactionResult.successNoData();
+        final DataTransactionResult original = DataTransactionResult.failNoData();
+        final DataTransactionResult modified = DataTransactionResult.successNoData();
 
-        ChangeDataHolderEvent.ValueChange event = SpongeEventFactory.createChangeDataHolderEventValueChange(
+        final ChangeDataHolderEvent.ValueChange event = SpongeEventFactory.createChangeDataHolderEventValueChange(
             Cause.of(EventContext.empty(), "none"), original, this.mockParam(DataHolder.Mutable.class));
 
         MatcherAssert.assertThat(event.originalChanges(), is(equalTo(original)));

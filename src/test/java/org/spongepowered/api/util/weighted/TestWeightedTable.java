@@ -33,11 +33,11 @@ public class TestWeightedTable {
 
     @Test
     public void test() {
-        RiggedRandom rand = new RiggedRandom();
-        WeightedTable<Object> table = new WeightedTable<>();
+        final RiggedRandom rand = new RiggedRandom();
+        final WeightedTable<Object> table = new WeightedTable<>();
         table.add(new WeightedObject<>(this, 4));
         rand.enqueue(0);
-        List<Object> results = table.get(rand);
+        final List<Object> results = table.get(rand);
         Assertions.assertEquals(this, results.get(0));
     }
 

@@ -4,6 +4,7 @@ plugins {
     id("org.spongepowered.gradle.event-impl-gen") version "7.0.0"
     eclipse
     id("org.cadixdev.licenser")
+    checkstyle
 }
 
 repositories {
@@ -14,6 +15,19 @@ repositories {
 
 base {
     archivesBaseName = "spongeapi"
+}
+
+checkstyle {
+    toolVersion = "8.41"
+    configDirectory.set(layout.projectDirectory)
+    configProperties = mutableMapOf<String, Any>(
+            "severity" to "error"
+    )
+}
+
+tasks.withType(Checkstyle::class) {
+    // checkstyle is source-only and does not cross files, we don't need compiled classes
+    classpath = objects.fileCollection()
 }
 
 java {
@@ -146,7 +160,7 @@ tasks {
         }
     }
 
-    compileJava {
+    withType(JavaCompile::class).configureEach {
         options.apply {
             compilerArgs.addAll(listOf("-Xlint:all", "-Xlint:-path", "-parameters"))
             isDeprecation = false
