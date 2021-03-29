@@ -92,6 +92,48 @@ public interface BlockChangeFlag {
     boolean notifyPathfinding();
 
     /**
+     * Gets whether this flag will allow blocks being destroyed as
+     * a result of {@link #updateNeighboringShapes()} if the affected
+     * blocks could be considered "destroyed" and drop items.
+     *
+     * @return True if this flag will allow neighboring blocks to perform drops
+     */
+    boolean neighborDropsAllowed();
+
+    /**
+     * Gets whether this flag is considering that blocks are being moved
+     * in the world, much like how pistons will move blocks. This has some
+     * effect on {@link org.spongepowered.api.block.entity.BlockEntity} creation
+     * reaction or drop delays. The behaviors are dependent on the block in
+     * particular.
+     *
+     * @return True if the flag is considering blocks are moving
+     */
+    boolean movingBlocks();
+
+    /**
+     * Gets whether this block change is going to request the client to re-render
+     * the block on chnge for the next client tick. This has particular usage
+     * when performing complicated block changes with extra steps, such as
+     * pistons performing a move.
+     *
+     * @return True if the blockchagne is requesting the client to re-render
+     * the change on the next tick
+     */
+    boolean forceClientRerender();
+
+    /**
+     * Gets whether the block change is requested to have no render update on
+     * the client. This is generally used only when {@link #notifyClients()}
+     * is {@code true} as well as {@link #forceClientRerender()} is
+     * {@code false}.
+     *
+     * @return True if the client is not to render te block change, usually
+     * accompanied later by a manual update after some ticks
+     */
+    boolean ignoreRender();
+
+    /**
      * Gets the equivalent {@link BlockChangeFlag} of this flag with all
      * other flags while having the desired {@code updateNeighbors}
      * as defined by the parameter.
@@ -134,6 +176,14 @@ public interface BlockChangeFlag {
     BlockChangeFlag withLightingUpdates(boolean lighting);
 
     BlockChangeFlag withPathfindingUpdates(boolean pathfindingUpdates);
+
+    BlockChangeFlag withNeighborDropsAllowed(boolean dropsAllowed);
+
+    BlockChangeFlag withBlocksMoving(boolean moving);
+
+    BlockChangeFlag withIgnoreRender(boolean ignoreRender);
+
+    BlockChangeFlag withForcedReRender(boolean forcedReRender);
 
     /**
      * Gets the inverted {@link BlockChangeFlag} of this flag.

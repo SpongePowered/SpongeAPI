@@ -45,37 +45,46 @@ public final class BlockChangeFlags {
     public static final BlockChangeFlag ALL = Sponge.game().factoryProvider().provide(BlockChangeFlag.Factory.class).none().inverse();
 
     /**
-     * The default flags for a placement event.
+     * The default flags for a placement event, such as a player placing a block,
+     * another entity placing a block, etc.
+     *
+     * <p>Note: While players are normally placing blocks with this flag, there's
+     * other circumstances of placing a block "as" a {@link org.spongepowered.api.entity.living.player.Player}
+     * that are covered outside the purview of this default placement flag.</p>
      */
     public static final BlockChangeFlag DEFAULT_PLACEMENT = Sponge.game().factoryProvider().provide(BlockChangeFlag.Factory.class).none()
-            .withNotifyClients(true).withUpdateNeighbors(true)
-            .withPhysics(true).withPathfindingUpdates(true);
+            .withNotifyClients(true)
+            .withUpdateNeighbors(true)
+            .withPhysics(true)
+            .withNotifyObservers(true)
+            .withNeighborDropsAllowed(true)
+            .withLightingUpdates(true)
+            .withPathfindingUpdates(true);
 
     /**
-     * No flags are set, triggers nothing.
+     * No flags are set, triggers nothing, the following flags are as such:
+     * <ul>
+     *     <li>{@link BlockChangeFlag#notifyClients()} is {@code false}</li>
+     *     <li>{@link BlockChangeFlag#updateNeighbors()} ()} is {@code false}</li>
+     *     <li>{@link BlockChangeFlag#forceClientRerender()} is {@code false}</li>
+     *     <li>{@link BlockChangeFlag#ignoreRender()} is {@code false}</li>
+     *     <li>{@link BlockChangeFlag#movingBlocks()} is {@code false}</li>
+     *     <li>{@link BlockChangeFlag#updateLighting()} is {@code false}</li>
+     *     <li>{@link BlockChangeFlag#updateNeighboringShapes()} is {@code false}</li>
+     *     <li>{@link BlockChangeFlag#performBlockPhysics()} is {@code false}</li>
+     *     <li>{@link BlockChangeFlag#notifyPathfinding()} is {@code false}</li>
+     * </ul>
      */
     public static final BlockChangeFlag NONE = Sponge.game().factoryProvider().provide(BlockChangeFlag.Factory.class).none();
 
     /**
-     * Sends block changes to clients but does not trigger block updates on itself or neighboring blocks
+     * Sends block changes to clients but does not trigger block updates or
+     * other neighboring notification updates. It does enable lighting updates,
+     * usually much more preferred to having a "minimal"
      */
-    public static final BlockChangeFlag NOTIFY_CLIENT = Sponge.game().factoryProvider().provide(BlockChangeFlag.Factory.class).none().withNotifyClients(true);
-
-    /**
-     * A flag that defines whether to update observer blocks, different
-     * from notifying neighbors in that neighbor notifications
-     * can cause further block notification loops (like redstone),
-     * whereas this focuses on {@link BlockTypes#OBSERVER} blocks
-     * being told of updates.
-     */
-    public static final BlockChangeFlag OBSERVER = Sponge.game().factoryProvider().provide(BlockChangeFlag.Factory.class).none().withNotifyObservers(true);
-
-    /**
-     * A flag that defines whether a block change should
-     * perform block physics checks or not. If not, no checks
-     * are performed.
-     */
-    public static final BlockChangeFlag PHYSICS = Sponge.game().factoryProvider().provide(BlockChangeFlag.Factory.class).none().withPhysics(true);
+    public static final BlockChangeFlag NOTIFY_CLIENTS = Sponge.game().factoryProvider().provide(BlockChangeFlag.Factory.class).none()
+        .withLightingUpdates(true)
+        .withNotifyClients(true);
 
     // SORTFIELDS:OFF
 
