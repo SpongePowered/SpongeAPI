@@ -172,7 +172,7 @@ public interface PermissionService {
         Objects.requireNonNull(plugin, "plugin");
 
         return this.collection(PermissionService.SUBJECTS_ROLE_TEMPLATE).flatMap(coll ->
-                coll.subject(plugin.getMetadata().getId() + ":"
+                coll.subject(plugin.metadata().id() + ":"
                         + Objects.requireNonNull(roleTemplate, "roleTemplate")))
                 .map(Subject::transientSubjectData);
     }

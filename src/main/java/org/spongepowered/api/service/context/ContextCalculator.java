@@ -26,7 +26,6 @@ package org.spongepowered.api.service.context;
 
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cause;
-import org.spongepowered.api.service.permission.PermissionService;
 
 import java.util.Objects;
 import java.util.Set;
@@ -61,7 +60,7 @@ import java.util.function.Function;
  * {@link ContextService#registerContextCalculator(ContextCalculator)}.</p>
  *
  * <p>Context lookups for instances provided by the platform,
- * (e.g. {@link Player}) are delegated to the active {@link PermissionService}.
+ * (e.g. {@link Player}) are delegated to the active {@link ContextService}.
  * Plugins wishing to provide contexts for these instances should register
  * calculators here.</p>
  */
@@ -82,7 +81,7 @@ public interface ContextCalculator {
         Objects.requireNonNull(valueFunction, "valueFunction");
         return (target, accumulator) -> {
             final String value = valueFunction.apply(target);
-                if (value != null) {
+            if (value != null) {
                 accumulator.accept(new Context(key, value));
             }
         };

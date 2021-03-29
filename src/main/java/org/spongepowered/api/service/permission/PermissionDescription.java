@@ -27,8 +27,8 @@ package org.spongepowered.api.service.permission;
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.ResourceKey;
-import org.spongepowered.plugin.PluginContainer;
 import org.spongepowered.api.util.Tristate;
+import org.spongepowered.plugin.PluginContainer;
 
 import java.util.Map;
 import java.util.Optional;
