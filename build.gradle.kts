@@ -57,9 +57,10 @@ dependencies {
     }
 
     // Dependency injection
-    api("com.google.inject:guice:4.1.0") {
+    api("com.google.inject:guice:5.0.1") {
+        exclude(group ="com.google.code.findbugs", module = "jsr305") // We don't want to use jsr305, use checkerframework
         exclude(group = "javax.inject", module = "javax.inject")
-        exclude(group = "com.google.guava", module = "guava") // We bump the version compared to guice
+        exclude(group = "com.google.guava", module = "guava") // We use an older version than Guice does
     }
 
     // High performance cache + guava - shaded guava
@@ -161,7 +162,8 @@ tasks {
             (this as? StandardJavadocDocletOptions)?.apply {
                 links(
                     "https://logging.apache.org/log4j/log4j-2.8.1/log4j-api/apidocs/",
-                    "https://google.github.io/guice/api-docs/4.1/javadoc/",
+                    "https://google.github.io/guice/api-docs/5.0.1/javadoc/",
+                    "https://guava.dev/releases/21.0/api/docs/",
                     "https://configurate.aoeu.xyz/4.0.0/apidocs/",
                     "https://www.javadoc.io/doc/com.google.code.gson/gson/2.8.0/",
                     "https://docs.oracle.com/javase/8/docs/api/"
