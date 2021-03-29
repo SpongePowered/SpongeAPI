@@ -104,14 +104,14 @@ public interface Favicon {
 
     interface Factory {
 
-        Favicon load(String raw);
+        Favicon load(String raw) throws IOException;
 
-        Favicon load(Path path);
+        Favicon load(Path path) throws IOException;
 
-        Favicon load(URL url);
+        Favicon load(URL url) throws IOException;
 
-        Favicon load(InputStream in);
+        Favicon load(InputStream in) throws IOException;
 
-        Favicon load(BufferedImage image);
+        Favicon load(BufferedImage image) throws IOException;
     }
 }
