@@ -39,6 +39,7 @@ import org.spongepowered.api.entity.living.animal.Bee;
 import org.spongepowered.api.entity.living.animal.Cat;
 import org.spongepowered.api.entity.living.animal.Chicken;
 import org.spongepowered.api.entity.living.animal.Fox;
+import org.spongepowered.api.entity.living.animal.Goat;
 import org.spongepowered.api.entity.living.animal.Ocelot;
 import org.spongepowered.api.entity.living.animal.Panda;
 import org.spongepowered.api.entity.living.animal.Parrot;
@@ -231,6 +232,8 @@ public final class EntityTypes {
     public static final DefaultedRegistryReference<EntityType<ItemFrame>> GLOW_ITEM_FRAME = EntityTypes.key(ResourceKey.minecraft("glow_item_frame"));
 
     public static final DefaultedRegistryReference<EntityType<GlowSquid>> GLOW_SQUID = EntityTypes.key(ResourceKey.minecraft("glow_squid"));
+
+    public static final DefaultedRegistryReference<EntityType<Goat>> GOAT = EntityTypes.key(ResourceKey.minecraft("goat"));
 
     public static final DefaultedRegistryReference<EntityType<Guardian>> GUARDIAN = EntityTypes.key(ResourceKey.minecraft("guardian"));
 

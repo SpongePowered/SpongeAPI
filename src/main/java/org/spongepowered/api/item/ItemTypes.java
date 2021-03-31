@@ -862,6 +862,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> GLOWSTONE_DUST = ItemTypes.key(ResourceKey.minecraft("glowstone_dust"));
 
+    public static final DefaultedRegistryReference<ItemType> GOAT_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("goat_spawn_egg"));
+
     public static final DefaultedRegistryReference<ItemType> GOLD_BLOCK = ItemTypes.key(ResourceKey.minecraft("gold_block"));
 
     public static final DefaultedRegistryReference<ItemType> GOLD_INGOT = ItemTypes.key(ResourceKey.minecraft("gold_ingot"));
@@ -1125,6 +1127,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> LECTERN = ItemTypes.key(ResourceKey.minecraft("lectern"));
 
     public static final DefaultedRegistryReference<ItemType> LEVER = ItemTypes.key(ResourceKey.minecraft("lever"));
+
+    public static final DefaultedRegistryReference<ItemType> LIGHT = ItemTypes.key(ResourceKey.minecraft("light"));
 
     public static final DefaultedRegistryReference<ItemType> LIGHT_BLUE_BANNER = ItemTypes.key(ResourceKey.minecraft("light_blue_banner"));
 

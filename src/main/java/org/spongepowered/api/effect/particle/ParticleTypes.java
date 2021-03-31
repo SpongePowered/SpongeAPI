@@ -162,6 +162,8 @@ public final class ParticleTypes {
 
     public static final DefaultedRegistryReference<ParticleType> LAVA = ParticleTypes.key(ResourceKey.minecraft("lava"));
 
+    public static final DefaultedRegistryReference<ParticleType> LIGHT = ParticleTypes.key(ResourceKey.minecraft("light"));
+
     public static final DefaultedRegistryReference<ParticleType> MYCELIUM = ParticleTypes.key(ResourceKey.minecraft("mycelium"));
 
     public static final DefaultedRegistryReference<ParticleType> NAUTILUS = ParticleTypes.key(ResourceKey.minecraft("nautilus"));

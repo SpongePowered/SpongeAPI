@@ -1362,6 +1362,28 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_GLOW_SQUID_SQUIRT = SoundTypes.key(ResourceKey.minecraft("entity.glow_squid.squirt"));
 
+    public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.goat.ambient"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.goat.death"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_HURT = SoundTypes.key(ResourceKey.minecraft("entity.goat.hurt"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_MILK = SoundTypes.key(ResourceKey.minecraft("entity.goat.milk"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_PREPARE_RAM = SoundTypes.key(ResourceKey.minecraft("entity.goat.prepare_ram"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_SCREAMING_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.goat.screaming.ambient"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_SCREAMING_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.goat.screaming.death"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_SCREAMING_HURT = SoundTypes.key(ResourceKey.minecraft("entity.goat.screaming.hurt"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_SCREAMING_MILK = SoundTypes.key(ResourceKey.minecraft("entity.goat.screaming.milk"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_SCREAMING_RAM = SoundTypes.key(ResourceKey.minecraft("entity.goat.screaming.ram"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_STEP = SoundTypes.key(ResourceKey.minecraft("entity.goat.step"));
+
     public static final DefaultedRegistryReference<SoundType> ENTITY_GUARDIAN_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.guardian.ambient"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_GUARDIAN_AMBIENT_LAND = SoundTypes.key(ResourceKey.minecraft("entity.guardian.ambient_land"));

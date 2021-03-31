@@ -882,6 +882,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> LEVER = BlockTypes.key(ResourceKey.minecraft("lever"));
 
+    public static final DefaultedRegistryReference<BlockType> LIGHT = BlockTypes.key(ResourceKey.minecraft("light"));
+
     public static final DefaultedRegistryReference<BlockType> LIGHT_BLUE_BANNER = BlockTypes.key(ResourceKey.minecraft("light_blue_banner"));
 
     public static final DefaultedRegistryReference<BlockType> LIGHT_BLUE_BED = BlockTypes.key(ResourceKey.minecraft("light_blue_bed"));
