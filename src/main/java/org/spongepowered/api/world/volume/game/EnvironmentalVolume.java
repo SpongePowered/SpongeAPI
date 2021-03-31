@@ -34,42 +34,42 @@ import java.util.function.Supplier;
 
 public interface EnvironmentalVolume extends PrimitiveGameVolume, BiomeVolume {
 
-    int getLight(LightType type, int x, int y, int z);
+    int light(LightType type, int x, int y, int z);
 
-    default int getLight(final Supplier<? extends LightType> type, final int x, final int y, final int z) {
+    default int light(final Supplier<? extends LightType> type, final int x, final int y, final int z) {
         Objects.requireNonNull(type);
 
-        return this.getLight(type.get(), x, y, z);
+        return this.light(type.get(), x, y, z);
     }
 
-    default int getLight(final LightType type, final Vector3i position) {
-        Objects.requireNonNull(type);
-        Objects.requireNonNull(position);
-
-        return this.getLight(type, position.getX(), position.getY(), position.getZ());
-    }
-
-    default int getLight(final Supplier<? extends LightType> type, final Vector3i position) {
+    default int light(final LightType type, final Vector3i position) {
         Objects.requireNonNull(type);
         Objects.requireNonNull(position);
 
-        return this.getLight(type.get(), position.getX(), position.getY(), position.getZ());
+        return this.light(type, position.getX(), position.getY(), position.getZ());
     }
 
-    default int getLight(final int x, final int y, final int z) {
-        return this.getLight(LightTypes.BLOCK, x, y, z);
-    }
-
-    default int getLight(final Vector3i position) {
+    default int light(final Supplier<? extends LightType> type, final Vector3i position) {
+        Objects.requireNonNull(type);
         Objects.requireNonNull(position);
 
-        return this.getLight(position.getX(), position.getY(), position.getZ());
+        return this.light(type.get(), position.getX(), position.getY(), position.getZ());
+    }
+
+    default int light(final int x, final int y, final int z) {
+        return this.light(LightTypes.BLOCK, x, y, z);
+    }
+
+    default int light(final Vector3i position) {
+        Objects.requireNonNull(position);
+
+        return this.light(position.getX(), position.getY(), position.getZ());
     }
 
     default boolean isSkylightMax(final Vector3i position) {
         Objects.requireNonNull(position);
 
-        return this.getLight(LightTypes.SKY, position) >= this.getMaximumLight();
+        return this.light(LightTypes.SKY, position) >= this.maximumLight();
     }
 
 }

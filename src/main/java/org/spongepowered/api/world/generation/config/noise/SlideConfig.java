@@ -29,7 +29,7 @@ import org.spongepowered.api.Sponge;
 public interface SlideConfig {
 
     static SlideConfig of(final int target, final int size, final int offset) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(target, size, offset);
+        return Sponge.game().factoryProvider().provide(Factory.class).of(target, size, offset);
     }
 
     int target();

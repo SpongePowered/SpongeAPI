@@ -37,7 +37,7 @@ public interface LookRandomlyGoal extends Goal<Agent> {
      * @return A new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     interface Builder extends GoalBuilder<Agent, LookRandomlyGoal, Builder> {

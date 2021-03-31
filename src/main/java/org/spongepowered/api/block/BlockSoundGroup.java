@@ -37,47 +37,47 @@ public interface BlockSoundGroup {
      *
      * @return The volume
      */
-    double getVolume();
+    double volume();
 
     /**
      * Gets the pitch used when playing sounds.
      *
      * @return The pitch
      */
-    double getPitch();
+    double pitch();
 
     /**
      * Gets the sound played when the block is breaking.
      *
      * @return The break sound
      */
-    SoundType getBreakSound();
+    SoundType breakSound();
 
     /**
      * Gets the sound played when the block is stepped on.
      *
      * @return The step sound
      */
-    SoundType getStepSound();
+    SoundType stepSound();
 
     /**
      * Gets the sound played when the block is placed.
      *
      * @return The place sound
      */
-    SoundType getPlaceSound();
+    SoundType placeSound();
 
     /**
      * Gets the sound played when the block is hit.
      *
      * @return The hit sound
      */
-    SoundType getHitSound();
+    SoundType hitSound();
 
     /**
      * Gets the sound played when a {@link Living} entity falls onto the block.
      *
      * @return The fall sound
      */
-    SoundType getFallSound();
+    SoundType fallSound();
 }

@@ -54,7 +54,7 @@ public interface OperatorCriterion extends AdvancementCriterion {
      *
      * @return The criteria
      */
-    Collection<AdvancementCriterion> getCriteria();
+    Collection<AdvancementCriterion> criteria();
 
     /**
      * Gets the leaf {@link AdvancementCriterion}s. This means that there will
@@ -62,6 +62,6 @@ public interface OperatorCriterion extends AdvancementCriterion {
      *
      * @return The leaf criteria
      */
-    Collection<AdvancementCriterion> getLeafCriteria();
+    Collection<AdvancementCriterion> leafCriteria();
 
 }

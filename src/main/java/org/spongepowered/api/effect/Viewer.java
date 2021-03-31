@@ -115,7 +115,7 @@ public interface Viewer extends Audience {
      *
      * <p>This will not change the {@link World} in any way.</p>
      *
-     * @param vec The position
+     * @param position The position
      * @param state The block state
      */
     default void sendBlockChange(final Vector3i position, final BlockState state) {

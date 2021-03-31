@@ -65,7 +65,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -126,7 +126,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      *
      * @return The item type
      */
-    ItemType getType();
+    ItemType type();
 
     /**
      * Gets the quantity of items in this stack. This may exceed the max stack
@@ -135,25 +135,25 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      *
      * @return Quantity of items
      */
-    int getQuantity();
+    int quantity();
 
     /**
      * Sets the quantity in this stack.
      *
      * @param quantity Quantity
      * @throws IllegalArgumentException If quantity set exceeds the
-     * {@link ItemStack#getMaxStackQuantity()}
+     * {@link ItemStack#maxStackQuantity()}
      */
     void setQuantity(int quantity) throws IllegalArgumentException;
 
     /**
      * Gets the maximum quantity per stack. By default, returns
-     * {@link ItemType#getMaxStackQuantity()}, unless a
+     * {@link ItemType#maxStackQuantity()}, unless a
      * different value has been set for this specific stack.
      *
      * @return Max stack quantity
      */
-    int getMaxStackQuantity();
+    int maxStackQuantity();
 
     /**
      * Gets the {@link ItemStackSnapshot} of this {@link ItemStack}. All
@@ -178,7 +178,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
     boolean equalTo(ItemStack that);
 
     /**
-     * Returns true if {@link #getQuantity()} is zero and therefore this
+     * Returns true if {@link #quantity()} is zero and therefore this
      * ItemStack is empty.
      *
      * <p>In Vanilla empty ItemStacks are not rendered by the client.</p>
@@ -196,8 +196,8 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      *
      * @return A collection of {@link AttributeModifier}s.
      */
-    default Collection<AttributeModifier> getAttributeModifiers(Supplier<? extends AttributeType> attributeType, DefaultedRegistryReference<? extends EquipmentType> equipmentType) {
-        return this.getAttributeModifiers(attributeType.get(), equipmentType.get());
+    default Collection<AttributeModifier> attributeModifiers(Supplier<? extends AttributeType> attributeType, DefaultedRegistryReference<? extends EquipmentType> equipmentType) {
+        return this.attributeModifiers(attributeType.get(), equipmentType.get());
     }
 
     /**
@@ -209,8 +209,8 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      *
      * @return A collection of {@link AttributeModifier}s.
      */
-    default Collection<AttributeModifier> getAttributeModifiers(AttributeType attributeType, DefaultedRegistryReference<? extends EquipmentType> equipmentType) {
-        return this.getAttributeModifiers(attributeType, equipmentType.get());
+    default Collection<AttributeModifier> attributeModifiers(AttributeType attributeType, DefaultedRegistryReference<? extends EquipmentType> equipmentType) {
+        return this.attributeModifiers(attributeType, equipmentType.get());
     }
 
     /**
@@ -222,8 +222,8 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      *
      * @return A collection of {@link AttributeModifier}s.
      */
-    default Collection<AttributeModifier> getAttributeModifiers(Supplier<? extends AttributeType> attributeType, EquipmentType equipmentType) {
-        return this.getAttributeModifiers(attributeType.get(), equipmentType);
+    default Collection<AttributeModifier> attributeModifiers(Supplier<? extends AttributeType> attributeType, EquipmentType equipmentType) {
+        return this.attributeModifiers(attributeType.get(), equipmentType);
     }
 
     /**
@@ -235,10 +235,11 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      *
      * @return A collection of {@link AttributeModifier}s.
      */
-    Collection<AttributeModifier> getAttributeModifiers(AttributeType attributeType, EquipmentType equipmentType);
+    Collection<AttributeModifier> attributeModifiers(AttributeType attributeType, EquipmentType equipmentType);
 
     /**
      * Adds an {@link AttributeModifier} to this item stack.
+     *
      * @param attributeType The attribute type.
      * @param modifier The attribute modifier.
      * @param equipmentType The equipment type this modifier will apply under.
@@ -249,6 +250,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
 
     /**
      * Adds an {@link AttributeModifier} to this item stack.
+     *
      * @param attributeType The attribute type.
      * @param modifier The attribute modifier.
      * @param equipmentType The equipment type this modifier will apply under.
@@ -259,6 +261,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
 
     /**
      * Adds an {@link AttributeModifier} to this item stack.
+     *
      * @param attributeType The attribute type.
      * @param modifier The attribute modifier.
      * @param equipmentType The equipment type this modifier will apply under.
@@ -269,6 +272,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
 
     /**
      * Adds an {@link AttributeModifier} to this item stack.
+     *
      * @param attributeType The attribute type.
      * @param modifier The attribute modifier.
      * @param equipmentType The equipment type this modifier will apply under.
@@ -298,7 +302,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
             return this.itemType(itemType.get());
         }
 
-        ItemType getCurrentItem();
+        ItemType currentItem();
 
         /**
          * Sets the quantity of the item stack.

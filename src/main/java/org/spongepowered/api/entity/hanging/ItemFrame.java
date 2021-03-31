@@ -36,6 +36,7 @@ public interface ItemFrame extends Hanging {
 
     /**
      * {@link Keys#ITEM_STACK_SNAPSHOT}
+     *
      * @return The item being hung on this item frame
      */
     default Value.Mutable<ItemStackSnapshot> item() {
@@ -44,6 +45,7 @@ public interface ItemFrame extends Hanging {
 
     /**
      * {@link Keys#ORIENTATION}
+     *
      * @return The rotation of the item in this item frame.
      */
     default Value.Mutable<Orientation> itemOrientation() {

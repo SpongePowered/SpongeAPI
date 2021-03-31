@@ -49,21 +49,21 @@ public interface ChangeEntityEquipmentEvent extends Event, Cancellable {
      *
      * @return The entity
      */
-    Entity getEntity();
+    Entity entity();
 
     /**
      * Gets the {@link Slot}.
      *
      * @return The slot
      */
-    Slot getSlot();
+    Slot slot();
 
     /**
      * Gets the {@link Transaction} of {@link ItemStackSnapshot}s for this event.
      *
      * @return The transaction of the item
      */
-    Transaction<ItemStackSnapshot> getTransaction();
+    Transaction<ItemStackSnapshot> transaction();
 
     /**
      * Called when the players equipment is broken or otherwise replaced by an empty item-stack.

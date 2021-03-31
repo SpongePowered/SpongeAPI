@@ -26,8 +26,8 @@ package org.spongepowered.api.event.user;
 
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 import org.spongepowered.api.service.ban.Ban;
+import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 /**
  * Occurs when a user is banned.
@@ -40,13 +40,13 @@ public interface BanUserEvent extends Event {
      *
      * @return The user
      */
-    User getUser();
+    User user();
 
     /**
      * Gets the ban involved in this event.
      *
      * @return The ban
      */
-    Ban.Profile getBan();
+    Ban.Profile ban();
 
 }

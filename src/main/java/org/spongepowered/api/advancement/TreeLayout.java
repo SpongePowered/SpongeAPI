@@ -37,7 +37,7 @@ public interface TreeLayout {
      *
      * @return The tree
      */
-    AdvancementTree getTree();
+    AdvancementTree tree();
 
     /**
      * Gets all the {@link TreeLayoutElement}s that are
@@ -45,7 +45,7 @@ public interface TreeLayout {
      *
      * @return The tree layout elements
      */
-    Collection<TreeLayoutElement> getElements();
+    Collection<TreeLayoutElement> elements();
 
     /**
      * Gets the {@link TreeLayoutElement} for the specified {@link Advancement},
@@ -55,6 +55,6 @@ public interface TreeLayout {
      * @param advancement The advancement
      * @return The tree layout element
      */
-    Optional<TreeLayoutElement> getElement(Advancement advancement);
+    Optional<TreeLayoutElement> element(Advancement advancement);
 
 }

@@ -196,9 +196,9 @@ public final class EventContext {
         if (!(object instanceof EventContext)) {
             return false;
         }
-        EventContext ctx = (EventContext) object;
+        final EventContext ctx = (EventContext) object;
         for (Map.Entry<EventContextKey<?>, Object> entry : this.entries.entrySet()) {
-            Object other = ctx.entries.get(entry.getKey());
+            final Object other = ctx.entries.get(entry.getKey());
             if (other == null) {
                 return false;
             }
@@ -216,7 +216,7 @@ public final class EventContext {
 
     @Override
     public String toString() {
-        StringJoiner joiner = new StringJoiner(", ");
+        final StringJoiner joiner = new StringJoiner(", ");
         for (Map.Entry<EventContextKey<?>, Object> entry : this.entries.entrySet()) {
             joiner.add("\"" + entry.getKey().toString() + "\"=" + entry.getValue().toString());
         }

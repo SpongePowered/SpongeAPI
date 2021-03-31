@@ -27,10 +27,10 @@ package org.spongepowered.api.scoreboard.displayslot;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 
 /**
  * Display slot names which display an objective in a particular place in-game.
@@ -100,6 +100,6 @@ public final class DisplaySlots {
     }
 
     private static DefaultedRegistryReference<DisplaySlot> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.DISPLAY_SLOT, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.DISPLAY_SLOT, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

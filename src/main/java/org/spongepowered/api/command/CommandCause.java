@@ -51,10 +51,10 @@ import java.util.Optional;
  * also contains utility methods to obtain key information about said cause.
  *
  * <p>In line with causes used in events, you may assume that the
- * {@link Cause#root()} (from {@link CommandCause#getCause()}) is the direct
+ * {@link Cause#root()} (from {@link CommandCause#cause()}) is the direct
  * invoker of the command, though it should also be noted that the invoker
  * and intended <strong>target</strong> of a command may be different, which
- * will be indicated by entries in the {@link Cause#getContext()}</p>
+ * will be indicated by entries in the {@link Cause#context()}</p>
  *
  * <p>It is <em>very</em> important to note that no object in the {@link Cause}
  * is guaranteed to be a traditional "command source" - a plugin may invoke a
@@ -72,7 +72,7 @@ import java.util.Optional;
  * {@link CauseStackManager} javadocs and associated documentation.
  * </p>
  *
- * <p>The {@link EventContext} that is attached to {@link Cause#getContext()}
+ * <p>The {@link EventContext} that is attached to {@link Cause#context()}
  * <strong>may</strong> offer other indications as to how the command should
  * be handled, in addition to using the provided cause stack:</p>
  *
@@ -92,17 +92,17 @@ import java.util.Optional;
  * </ul>
  *
  * <p>This object acts as a {@link Subject}, and simply redirects all calls
- * inherited by this interface to the subject returned by {@link #getSubject()}.
+ * inherited by this interface to the subject returned by {@link #subject()}.
  * </p>
  *
  * <p>There are utility methods on this interface that provide hints as to what
  * the implementation will select for different tasks, for example, the
- * implementation will use the result of {@link #getSubject()} for permission
+ * implementation will use the result of {@link #subject()} for permission
  * checks. Third party command consumers are under no obligation to use these
  * utility methods as all methods obtain their information from the
  * {@link Cause}.</p>
  *
- * <p>No method on this interface, apart from {@link #getCause()}, should
+ * <p>No method on this interface, apart from {@link #cause()}, should
  * be taken a guarantee of what may be present, however, they indicate what
  * typically would be of interest to command API consumers.</p>
  */
@@ -115,7 +115,7 @@ public interface CommandCause extends SubjectProxy {
      * @return The {@link CommandCause}
      */
     static CommandCause create() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).create();
+        return Sponge.game().factoryProvider().provide(Factory.class).create();
     }
 
     /**
@@ -123,83 +123,116 @@ public interface CommandCause extends SubjectProxy {
      *
      * @return The cause of the invocation.
      */
-    Cause getCause();
+    Cause cause();
 
     /**
-     * @see Cause#getContext()
+     * @see Cause#context()
+     *
+     * @return The event context
      */
-    default EventContext getContext() {
-        return this.getCause().getContext();
+    default EventContext context() {
+        return this.cause().context();
     }
 
     /**
      * @see Cause#root()
+     *
+     * @return The root object cause for this cause
      */
     default Object root() {
-        return this.getCause().root();
+        return this.cause().root();
     }
 
     /**
      * @see Cause#first(Class)
+     *
+     * @param target The class of the target type
+     * @param <T> The type of object being queried for
+     * @return The first element of the type, if available
      */
     default <T> Optional<T> first(final Class<T> target) {
-        return this.getCause().first(target);
+        return this.cause().first(target);
     }
 
     /**
      * @see Cause#last(Class)
+     *
+     * @param target The class of the target type
+     * @param <T> The type of object being queried for
+     * @return The last element of the type, if available
      */
     default <T> Optional<T> last(final Class<T> target) {
-        return this.getCause().last(target);
+        return this.cause().last(target);
     }
 
     /**
      * @see Cause#before(Class)
+     *
+     * @param clazz The class of the object
+     * @return The object
      */
     default Optional<?> before(final Class<?> clazz) {
-        return this.getCause().before(clazz);
+        return this.cause().before(clazz);
     }
 
     /**
      * @see Cause#after(Class)
+     *
+     * @param clazz The class to type check
+     * @return The object after, if available
      */
     default Optional<?> after(final Class<?> clazz) {
-        return this.getCause().after(clazz);
+        return this.cause().after(clazz);
     }
 
     /**
      * @see Cause#contains(Object)
+     *
+     * @param target The object to check if it is contained
+     * @return True if the object is contained within this cause
      */
     default boolean containsType(final Class<?> target) {
-        return this.getCause().containsType(target);
+        return this.cause().containsType(target);
     }
 
     /**
      * @see Cause#contains(Object)
+     *
+     * @param object The object to check if it is contained
+     * @return True if the object is contained within this cause
      */
     default boolean contains(final Object object) {
-        return this.getCause().contains(object);
+        return this.cause().contains(object);
     }
 
     /**
      * @see Cause#allOf(Class)
+     *
+     * @param <T> The type of objects to query for
+     * @param target The class of the target type
+     * @return An immutable list of the objects queried
      */
     default <T> List<T> allOf(final Class<T> target) {
-        return this.getCause().allOf(target);
+        return this.cause().allOf(target);
     }
 
     /**
      * @see Cause#noneOf(Class)
+     *
+     * @param ignoredClass The class of object types to ignore
+     * @return The list of objects not an instance of the provided class
      */
     default List<Object> noneOf(final Class<?> ignoredClass) {
-        return this.getCause().noneOf(ignoredClass);
+        return this.cause().noneOf(ignoredClass);
     }
 
     /**
      * @see Cause#all()
+     *
+     * @return An immutable list of all the causes
      */
     default List<Object> all() {
-        return this.getCause().all();
+        return this.cause().all();
     }
 
     /**
@@ -207,7 +240,7 @@ public interface CommandCause extends SubjectProxy {
      * during command execution (by default).
      *
      * <p>The {@link Subject} will be selected in the following way from the
-     * {@link Cause} in {@link #getCause()}:</p>
+     * {@link Cause} in {@link #cause()}:</p>
      *
      * <ul>
      *    <li>The {@link EventContextKeys#SUBJECT}, if any</li>
@@ -224,14 +257,14 @@ public interface CommandCause extends SubjectProxy {
      *
      * @return The {@link Subject} responsible, if any.
      */
-    Subject getSubject();
+    Subject subject();
 
     /**
      * Gets the {@link Audience} that should be the target for any
      * messages sent by the command (by default).
      *
      * <p>The {@link Audience} will be selected in the following way
-     * from the {@link Cause} in {@link #getCause()}:</p>
+     * from the {@link Cause} in {@link #cause()}:</p>
      *
      * <ul>
      *    <li>The {@link EventContextKeys#AUDIENCE}, if any</li>
@@ -243,11 +276,11 @@ public interface CommandCause extends SubjectProxy {
      * <p>Note that this returns a {@link Audience} and it may not what
      * may be thought of as a traditional entity executing the command.
      * For the object that invoked the command, check the
-     * {@link Cause#root()} of the {@link #getCause()}.</p>
+     * {@link Cause#root()} of the {@link #cause()}.</p>
      *
      * @return The {@link Audience} to send any messages to.
      */
-    Audience getAudience();
+    Audience audience();
 
     /**
      * Gets the {@link ServerLocation} that this command is associated with.
@@ -256,13 +289,13 @@ public interface CommandCause extends SubjectProxy {
      *
      * <ul>
      *     <li>The {@link EventContextKeys#LOCATION}, if any</li>
-     *     <li>{@link #getTargetBlock()}</li>
+     *     <li>{@link #targetBlock()}</li>
      *     <li>the location of the first locatable in the {@link Cause}</li>
      * </ul>
      *
      * @return The {@link ServerLocation}, if it exists
      */
-    Optional<ServerLocation> getLocation();
+    Optional<ServerLocation> location();
 
     /**
      * Gets the {@link Vector3d} rotation that this command is associated with.
@@ -276,7 +309,7 @@ public interface CommandCause extends SubjectProxy {
      *
      * @return The {@link Vector3d} rotation, if it exists
      */
-    Optional<Vector3d> getRotation();
+    Optional<Vector3d> rotation();
 
     /**
      * Returns the target block {@link ServerLocation}, if applicable.
@@ -290,11 +323,11 @@ public interface CommandCause extends SubjectProxy {
      *
      * @return The {@link BlockSnapshot} if applicable, or an empty optional.
      */
-    Optional<BlockSnapshot> getTargetBlock();
+    Optional<BlockSnapshot> targetBlock();
 
     /**
      * Sends a message to the {@link Audience} as given by
-     * {@link #getAudience()}.
+     * {@link #audience()}.
      *
      * @see Audience#sendMessage(Identified, Component)
      *
@@ -305,10 +338,11 @@ public interface CommandCause extends SubjectProxy {
 
     /**
      * Sends a message to the {@link Audience} as given by
-     * {@link #getAudience()}.
+     * {@link #audience()}.
      *
      * @see Audience#sendMessage(Identity, Component)
      *
+     * @param source The {@link Identity} to send a message from.
      * @param message The message to send.
      */
     void sendMessage(final Identity source, final Component message);

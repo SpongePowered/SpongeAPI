@@ -49,7 +49,7 @@ public interface StatusResponse {
      *
      * @return The description to display
      */
-    Component getDescription();
+    Component description();
 
     /**
      * Gets player count and the list of players currently playing on the
@@ -58,7 +58,7 @@ public interface StatusResponse {
      * @return The player information, or {@link Optional#empty()} if not
      *         available
      */
-    Optional<? extends Players> getPlayers();
+    Optional<? extends Players> players();
 
     /**
      * Gets the version of the server displayed when the client or the server
@@ -66,14 +66,14 @@ public interface StatusResponse {
      *
      * @return The server version
      */
-    MinecraftVersion getVersion();
+    MinecraftVersion version();
 
     /**
      * Gets the {@link Favicon} of the server.
      *
      * @return The favicon, or {@link Optional#empty()} if not available
      */
-    Optional<Favicon> getFavicon();
+    Optional<Favicon> favicon();
 
     /**
      * Represents the player count, slots and a list of players current playing
@@ -86,14 +86,14 @@ public interface StatusResponse {
          *
          * @return The amount of online players
          */
-        int getOnline();
+        int online();
 
         /**
          * Gets the maximum amount of allowed players on the server.
          *
          * @return The maximum amount of allowed players
          */
-        int getMax();
+        int max();
 
         /**
          * Gets an immutable list of online players on the server to display on
@@ -101,7 +101,7 @@ public interface StatusResponse {
          *
          * @return An immutable list of online players
          */
-        List<GameProfile> getProfiles();
+        List<GameProfile> profiles();
 
     }
 

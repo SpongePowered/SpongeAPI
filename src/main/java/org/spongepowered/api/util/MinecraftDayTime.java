@@ -39,9 +39,11 @@ public interface MinecraftDayTime {
     /**
      * A {@link MinecraftDayTime} that represents the Minecraft Epoch, which is
      * 6:00am on Day 1.
+     *
+     * @return The {@link MinecraftDayTime}
      */
     static MinecraftDayTime minecraftEpoch() {
-        return Sponge.getGame().getFactoryProvider().provide(MinecraftDayTime.Factory.class).epoch();
+        return Sponge.game().factoryProvider().provide(MinecraftDayTime.Factory.class).epoch();
     }
 
     /**
@@ -62,7 +64,7 @@ public interface MinecraftDayTime {
      * @throws IllegalArgumentException if the duration is negative
      */
     static MinecraftDayTime ofInGameDuration(final Engine engine, final Duration duration) {
-        return Sponge.getGame().getFactoryProvider().provide(MinecraftDayTime.Factory.class).of(engine, duration);
+        return Sponge.game().factoryProvider().provide(MinecraftDayTime.Factory.class).of(engine, duration);
     }
 
     /**
@@ -114,7 +116,7 @@ public interface MinecraftDayTime {
      *      violated.
      */
     static MinecraftDayTime of(final int day, final int hours, final int minutes) {
-        return Sponge.getGame().getFactoryProvider().provide(MinecraftDayTime.Factory.class).of(day, hours, minutes);
+        return Sponge.game().factoryProvider().provide(MinecraftDayTime.Factory.class).of(day, hours, minutes);
     }
 
     /**
@@ -132,7 +134,7 @@ public interface MinecraftDayTime {
      * @throws IllegalArgumentException if the tick count is negative
      */
     static MinecraftDayTime of(final Engine engine, final Ticks ticks) {
-        return Sponge.getGame().getFactoryProvider().provide(MinecraftDayTime.Factory.class).of(engine, ticks);
+        return Sponge.game().factoryProvider().provide(MinecraftDayTime.Factory.class).of(engine, ticks);
     }
 
     /**
@@ -215,10 +217,11 @@ public interface MinecraftDayTime {
      * object represents Day 2 at 12:30pm, will return a {@link Duration} of
      * 25 minutes and 25 seconds for a vanilla minecraft {@link Server}).
      *
+     * @param engine The {@link Engine} to calculate the time for.
      * @return A {@link Duration}
      */
     default Duration asWallClockDuration(final Engine engine) {
-        return this.asTicks().getExpectedDuration(engine);
+        return this.asTicks().expectedDuration(engine);
     }
 
     /**
@@ -236,21 +239,40 @@ public interface MinecraftDayTime {
 
         /**
          * @see MinecraftDayTime#minecraftEpoch()
+         *
+         * @return The {@link MinecraftDayTime}
          */
         MinecraftDayTime epoch();
 
         /**
          * @see MinecraftDayTime#ofInGameDuration(Engine, Duration)
+         *
+         * @param engine The {@link Engine} to use in calculating the day time
+         * @param duration The duration since the Minecraft Epoch.
+         * @return The {@link MinecraftDayTime}
+         * @throws IllegalArgumentException if the duration is negative
          */
         MinecraftDayTime of(Engine engine, Duration duration);
 
         /**
          * @see MinecraftDayTime#of(int, int, int)
+         *
+         * @param days The day to set. Must be positive.
+         * @param hours The hour to set in 24 hour time.
+         * @param minutes The minute to set.
+         * @return The {@link MinecraftDayTime}.
+         * @throws IllegalArgumentException if any of the listed constraints are
+         *      violated.
          */
         MinecraftDayTime of(int days, int hours, int minutes);
 
         /**
          * @see MinecraftDayTime#of(Engine, Ticks)
+         *
+         * @param engine The {@link Engine} to calculate the time for.
+         * @param ticks The {@link Ticks} since the Minecraft Epoch.
+         * @return The {@link MinecraftDayTime}
+         * @throws IllegalArgumentException if the tick count is negative
          */
         MinecraftDayTime of(Engine engine, Ticks ticks);
 

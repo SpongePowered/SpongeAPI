@@ -35,7 +35,7 @@ import java.math.BigDecimal;
  *
  * <p>Unlike other registry-like values, Currency has no predefined
  * values. Unless a plugin has specific knowledge of a particular currency
- * provided by an economy plugin, {@link EconomyService#getDefaultCurrency()}
+ * provided by an economy plugin, {@link EconomyService#defaultCurrency()}
  * should usually be used.</p>
  *
  * <p>Depending on the provider of the {@link EconomyService}, more currencies may be available.</p>
@@ -47,7 +47,7 @@ public interface Currency extends DefaultedRegistryValue {
      *
      * @return displayName of the currency singular
      */
-    Component getDisplayName();
+    Component displayName();
 
     /**
      * The currency's display name in plural form. Ex: Dollars.
@@ -57,14 +57,14 @@ public interface Currency extends DefaultedRegistryValue {
      *
      * @return displayName of the currency plural
      */
-    Component getPluralDisplayName();
+    Component pluralDisplayName();
 
     /**
      * The currency's symbol. Ex. $
      *
      * @return symbol of the currency
      */
-    Component getSymbol();
+    Component symbol();
 
     /**
      * Formats the given amount using the default number of fractional digits.
@@ -75,7 +75,7 @@ public interface Currency extends DefaultedRegistryValue {
      * @return String formatted amount
      */
     default Component format(BigDecimal amount) {
-        return this.format(amount, this.getDefaultFractionDigits());
+        return this.format(amount, this.defaultFractionDigits());
     }
 
     /**
@@ -95,7 +95,7 @@ public interface Currency extends DefaultedRegistryValue {
      *
      * @return defaultFractionDigits utilized.
      */
-    int getDefaultFractionDigits();
+    int defaultFractionDigits();
 
     /**
      * Returns true if this currency is the default currency for the economy,

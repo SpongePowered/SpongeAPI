@@ -54,7 +54,7 @@ public interface Scoreboard {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -63,7 +63,7 @@ public interface Scoreboard {
      * @param name Name of the {@link Objective}
      * @return The {@link Objective}, if it exists
      */
-    Optional<Objective> getObjective(String name);
+    Optional<Objective> objective(String name);
 
     /**
      * Gets the {@link Objective} currently displayed in a {@link DisplaySlot} on this
@@ -72,8 +72,8 @@ public interface Scoreboard {
      * @param slot The {@link DisplaySlot}
      * @return the {@link Objective} currently displayed, if present
      */
-    default Optional<Objective> getObjective(Supplier<? extends DisplaySlot> slot) {
-        return this.getObjective(slot.get());
+    default Optional<Objective> objective(Supplier<? extends DisplaySlot> slot) {
+        return this.objective(slot.get());
     }
 
     /**
@@ -83,14 +83,14 @@ public interface Scoreboard {
      * @param slot The {@link DisplaySlot}
      * @return the {@link Objective} currently displayed, if present
      */
-    Optional<Objective> getObjective(DisplaySlot slot);
+    Optional<Objective> objective(DisplaySlot slot);
 
     /**
      * Adds the specified {@link Objective} to this scoreboard.
      *
      * @param objective The {@link Objective} add
      * @throws IllegalArgumentException if an {@link Objective} with the same
-     *             {@link Objective#getName() name} already exists, or if the
+     *             {@link Objective#name() name} already exists, or if the
      *             specified {@link Objective} has already been added.
      */
     void addObjective(Objective objective) throws IllegalArgumentException;
@@ -147,8 +147,8 @@ public interface Scoreboard {
      * @param criterion {@link Criterion} to search by
      * @return A set of {@link Objective}s using the specified criterion
      */
-    default Set<Objective> getObjectivesByCriterion(Supplier<? extends Criterion> criterion) {
-        return this.getObjectivesByCriterion(criterion.get());
+    default Set<Objective> objectivesByCriterion(Supplier<? extends Criterion> criterion) {
+        return this.objectivesByCriterion(criterion.get());
     }
 
     /**
@@ -157,14 +157,14 @@ public interface Scoreboard {
      * @param criterion {@link Criterion} to search by
      * @return A set of {@link Objective}s using the specified criterion
      */
-    Set<Objective> getObjectivesByCriterion(Criterion criterion);
+    Set<Objective> objectivesByCriterion(Criterion criterion);
 
     /**
      * Gets all {@link Objective}s on this scoreboard.
      *
      * @return A set of all {@link Objective}s on this scoreboard
      */
-    Set<Objective> getObjectives();
+    Set<Objective> objectives();
 
     /**
      * Removes the specified {@link Objective} from this scoreboard.
@@ -181,7 +181,7 @@ public interface Scoreboard {
      *
      * @return A set of all scores
      */
-    Set<Score> getScores();
+    Set<Score> scores();
 
     /**
      * Gets all scores with the specified name on this scoreboard,
@@ -193,7 +193,7 @@ public interface Scoreboard {
      * @param name The name whose scores are being retrieved
      * @return A set of all scores for the name
      */
-    Set<Score> getScores(Component name);
+    Set<Score> scores(Component name);
 
     /**
      * Removes all scores with the specified name on this scoreboard,
@@ -209,14 +209,14 @@ public interface Scoreboard {
      * @param teamName The name of the {@link Team}
      * @return The matching {@link Team}, if it exists
      */
-    Optional<Team> getTeam(String teamName);
+    Optional<Team> team(String teamName);
 
     /**
      * Registers the specified {@link Team} to this scoreboard.
      *
      * @param team The {@link Team} to register
      * @throws IllegalArgumentException if a team with the same
-     *             {@link Team#getName() name} already exists on this scoreboard, or if the specified
+     *             {@link Team#name() name} already exists on this scoreboard, or if the specified
      *             {@link Team} is already registered to a scoreboard (this scoreboard,
      *             or another one).
      */
@@ -227,7 +227,7 @@ public interface Scoreboard {
      *
      * @return The set of {@link Team}s
      */
-    Set<Team> getTeams();
+    Set<Team> teams();
 
     /**
      * Gets a {@link Component} member's {@link Team} on this scoreboard.
@@ -236,7 +236,7 @@ public interface Scoreboard {
      * @return The {@link Component} member's {@link Team}, or Optional.empty()
      *     if the member has no team
      */
-    Optional<Team> getMemberTeam(Component member);
+    Optional<Team> memberTeam(Component member);
 
     /**
      * Represents a builder to create {@link Scoreboard} instances.

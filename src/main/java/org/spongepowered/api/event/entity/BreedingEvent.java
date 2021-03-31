@@ -38,7 +38,7 @@ public interface BreedingEvent extends Event, Cancellable {
      */
     interface ReadyToMate extends BreedingEvent {
 
-        Animal getEntity();
+        Animal entity();
     }
 
     /**
@@ -51,7 +51,7 @@ public interface BreedingEvent extends Event, Cancellable {
          *
          * @return the mate
          */
-        Animal getMatingEntity();
+        Animal matingEntity();
     }
 
     /**
@@ -64,6 +64,6 @@ public interface BreedingEvent extends Event, Cancellable {
          * 
          * @return the offspring
          */
-        Ageable getOffspringEntity();
+        Ageable offspringEntity();
     }
 }

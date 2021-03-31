@@ -33,9 +33,10 @@ import org.spongepowered.api.map.MapInfo;
  * Can be caused by players or a plugin.
  */
 public interface CreateMapEvent extends Event, Cancellable {
-	/**
-	 * Gets the {@link org.spongepowered.api.map.MapInfo} for this map
-	 * @return MapInfoData Map data
-	 */
-	MapInfo getMapInfo();
+    /**
+     * Gets the {@link org.spongepowered.api.map.MapInfo} for this map
+     *
+     * @return MapInfoData Map data
+     */
+    MapInfo mapInfo();
 }

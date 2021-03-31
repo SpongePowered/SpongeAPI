@@ -40,7 +40,7 @@ public interface GenerateTradeOfferEvent extends Event {
      *
      * @return The owner getting a trade offer added
      */
-    Merchant getMerchant();
+    Merchant merchant();
 
     /**
      * Gets the current unmodifiable list of {@link TradeOffer trade offers}
@@ -49,13 +49,13 @@ public interface GenerateTradeOfferEvent extends Event {
      *
      * @return The unmodifiable list of trade offers
      */
-    List<TradeOffer> getTradeOffers();
+    List<TradeOffer> tradeOffers();
 
     interface Propose extends GenerateTradeOfferEvent, Cancellable {
 
         /**
          * Gets the {@link Transaction} of the {@link TradeOffer} that is being
-         * added to the {@link #getTradeOffers() list of offers} available. As
+         * added to the {@link #tradeOffers() list of offers} available. As
          * expected, whether the event is cancelled with {@link #setCancelled(boolean)}
          * or {@link Transaction#invalidate()}, the {@link TradeOffer} is only
          * added if the transaction is valid and the event is not cancelled.
@@ -66,7 +66,7 @@ public interface GenerateTradeOfferEvent extends Event {
          *
          * @return The trade offer transaction
          */
-        Transaction<TradeOffer> getTradeOffer();
+        Transaction<TradeOffer> tradeOffer();
 
     }
 
@@ -77,7 +77,7 @@ public interface GenerateTradeOfferEvent extends Event {
          *
          * @return The trade offer being added
          */
-        TradeOffer getTradeOfferAdded();
+        TradeOffer tradeOfferAdded();
 
     }
 

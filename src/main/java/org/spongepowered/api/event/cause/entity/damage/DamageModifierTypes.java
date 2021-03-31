@@ -37,10 +37,10 @@ import org.spongepowered.api.item.enchantment.EnchantmentType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.difficulty.Difficulty;
 
@@ -70,7 +70,7 @@ public final class DamageModifierTypes {
      * the {@link EnchantmentType}s applicable to an {@link ItemStack} that is
      * considered to be "armor" currently equipped on the owner.
      *
-     * <p>Usually, within the {@link DamageModifier#getCause()} will reside
+     * <p>Usually, within the {@link DamageModifier#cause ()} will reside
      * an {@link ItemStackSnapshot} and an {@link Enchantment} signifying
      * that the {@link EnchantmentType} of the {@link ItemStack} is modifying the
      * incoming/outgoing damage. There can be multiple {@link DamageModifier}s
@@ -97,7 +97,7 @@ public final class DamageModifierTypes {
      * the {@link PotionEffectTypes#RESISTANCE} or any other
      * {@link PotionEffectType} that can be deemed as reducing incoming damage.
      *
-     * <p>Usually, within the {@link DamageModifier#getCause()} will reside
+     * <p>Usually, within the {@link DamageModifier#cause ()} will reside
      * a {@link PotionEffect} including the amplifier and duration, signifying
      * that the {@link PotionEffectType} is modifying the incoming damage.</p>
      */
@@ -113,7 +113,7 @@ public final class DamageModifierTypes {
      * Represents the {@link DamageModifier} that will modify damage from
      * a {@link FallingBlockDamageSource}.
      *
-     * <p>Usually, within the {@link DamageModifier#getCause()} will reside
+     * <p>Usually, within the {@link DamageModifier#cause ()} will reside
      * an {@link ItemStackSnapshot} and an {@link Enchantment} signifying
      * that the {@link EnchantmentType} of the {@link ItemStack} is modifying the
      * incoming/outgoing damage.</p>
@@ -130,7 +130,7 @@ public final class DamageModifierTypes {
      * Represents a {@link DamageModifier} that will reduce outgoing damage
      * based on a {@link PotionEffect}.
      *
-     * <p>Usually, within the {@link DamageModifier#getCause()} will reside
+     * <p>Usually, within the {@link DamageModifier#cause ()} will reside
      * a {@link PotionEffect} including the amplifier and duration, signifying
      * that the {@link PotionEffectType} is reducing the outgoing damage.</p>
      */
@@ -158,7 +158,7 @@ public final class DamageModifierTypes {
      * Represents the {@link DamageModifier} that will modify damage from
      * an {@link EnchantmentType} on an equipped {@link ItemStack}.
      *
-     * <p>Usually, within the {@link DamageModifier#getCause()} will reside
+     * <p>Usually, within the {@link DamageModifier#cause ()} will reside
      * an {@link ItemStackSnapshot} and an {@link Enchantment} signifying
      * that the {@link EnchantmentType} of the {@link ItemStack} is modifying the
      * incoming/outgoing damage.</p>
@@ -173,6 +173,6 @@ public final class DamageModifierTypes {
     }
 
     private static DefaultedRegistryReference<DamageModifierType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.DAMAGE_MODIFIER_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.DAMAGE_MODIFIER_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

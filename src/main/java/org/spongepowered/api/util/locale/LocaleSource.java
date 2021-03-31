@@ -36,7 +36,7 @@ public interface LocaleSource {
      *
      * @return The locale used by this receiver.
      */
-    default Locale getLocale() {
+    default Locale locale() {
         return Locales.DEFAULT;
     }
 

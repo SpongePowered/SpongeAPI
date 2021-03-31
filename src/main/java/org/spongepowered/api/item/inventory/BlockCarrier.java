@@ -44,5 +44,5 @@ public interface BlockCarrier extends Carrier, Locatable {
      * @param from The Direction
      * @return The inventory at the location when accessed from given direction
      */
-    Inventory getInventory(Direction from);
+    Inventory inventory(Direction from);
 }

@@ -39,7 +39,7 @@ import java.util.Optional;
  * An optional registration of {@link Key keys} to associate a semi-persistent
  * state of their associated {@link Value values} that can be stored, retrieved,
  * persisted, and/or associated with {@link DataHolder DataHolders}. A
- * registration identifies the given {@link #getKeys() Keys} are provided by an
+ * registration identifies the given {@link #keys() Keys} are provided by an
  * implementation for specific {@link DataHolder DataHolders} that may support
  * and not support those {@link Key keys}. All API provided {@link Key keys}
  * exposed through the {@link Keys} class will have an associated registration
@@ -64,7 +64,7 @@ public interface DataRegistration {
      * @return The new builder instance
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -83,7 +83,7 @@ public interface DataRegistration {
      * @throws UnregisteredKeyException If the key is not registered in this
      *     registration
      */
-    <V extends Value<E>, E> Collection<DataProvider<V, E>> getProvidersFor(Key<V> key) throws UnregisteredKeyException;
+    <V extends Value<E>, E> Collection<DataProvider<V, E>> providersFor(Key<V> key) throws UnregisteredKeyException;
 
     /**
      * Gets the appropriate {@link DataStore} for the context of the
@@ -96,7 +96,7 @@ public interface DataRegistration {
      * @return The relevant DataStore for the desired type token of the target
      *     type.
      */
-    Optional<DataStore> getDataStore(TypeToken<? extends DataHolder> token);
+    Optional<DataStore> dataStore(TypeToken<? extends DataHolder> token);
 
     /**
      * Gets the appropriate {@link DataStore} for the context of the
@@ -109,7 +109,7 @@ public interface DataRegistration {
      * @return The relevant DataStore for the desired type token of the target
      *     type.
      */
-    Optional<DataStore> getDataStore(Class<? extends DataHolder> token);
+    Optional<DataStore> dataStore(Class<? extends DataHolder> token);
 
     /**
      * Gets the registered {@link Key Keys} this controls. Note that each
@@ -121,7 +121,7 @@ public interface DataRegistration {
      *
      * @return The keys registered
      */
-    Iterable<Key<?>> getKeys();
+    Iterable<Key<?>> keys();
 
     /**
      * Creates a DataRegistration for a single key with a DataStore for given data-holders.
@@ -135,7 +135,7 @@ public interface DataRegistration {
      */
     @SafeVarargs
     static <T, V extends Value<T>> DataRegistration of(final Key<V> key, final Class<? extends DataHolder> dataHolder, final Class<? extends DataHolder>... dataHolders) {
-        final DataStore dataStore = DataStore.of(key, DataQuery.of(key.getKey().getValue()), dataHolder, dataHolders);
+        final DataStore dataStore = DataStore.of(key, DataQuery.of(key.key().namespace(), key.key().value()), dataHolder, dataHolders);
         return DataRegistration.builder().dataKey(key).store(dataStore).build();
     }
 

@@ -37,6 +37,7 @@ public interface FurnaceMinecart extends BlockOccupiedMinecart {
 
     /**
      * {@link Keys#FUEL}
+     *
      * @return The duration of fuel remaining in ticks
      */
     default Value.Mutable<Integer> fuelDuration() {

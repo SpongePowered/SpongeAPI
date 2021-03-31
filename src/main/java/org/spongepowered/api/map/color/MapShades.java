@@ -41,23 +41,23 @@ import java.util.function.Supplier;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class MapShades {
 
-	// SORTFIELDS:ON
+    // SORTFIELDS:ON
 
-	public static final DefaultedRegistryReference<MapShade> DARKER = MapShades.key(ResourceKey.sponge("darker"));
+    public static final DefaultedRegistryReference<MapShade> DARKER = MapShades.key(ResourceKey.sponge("darker"));
 
-	public static final DefaultedRegistryReference<MapShade> DARK = MapShades.key(ResourceKey.sponge("dark"));
+    public static final DefaultedRegistryReference<MapShade> DARK = MapShades.key(ResourceKey.sponge("dark"));
 
-	public static final DefaultedRegistryReference<MapShade> BASE = MapShades.key(ResourceKey.sponge("base"));
+    public static final DefaultedRegistryReference<MapShade> BASE = MapShades.key(ResourceKey.sponge("base"));
 
-	public static final DefaultedRegistryReference<MapShade> DARKEST = MapShades.key(ResourceKey.sponge("darkest"));
+    public static final DefaultedRegistryReference<MapShade> DARKEST = MapShades.key(ResourceKey.sponge("darkest"));
 
-	// SORTFIELDS:OFF
+    // SORTFIELDS:OFF
 
-	private MapShades() {
-		throw new AssertionError("You should not be attempting to instantiate this class.");
-	}
+    private MapShades() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 
-	private static DefaultedRegistryReference<MapShade> key(final ResourceKey location) {
-		return RegistryKey.of(RegistryTypes.MAP_SHADE, location).asDefaultedReference(() -> Sponge.getGame().registries());
-	}
+    private static DefaultedRegistryReference<MapShade> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.MAP_SHADE, location).asDefaultedReference(() -> Sponge.game().registries());
+    }
 }

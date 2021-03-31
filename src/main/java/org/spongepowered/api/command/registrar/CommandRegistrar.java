@@ -57,7 +57,7 @@ import java.util.Optional;
  *
  * <p>For command that wishes to investigate the command string that was
  * executed, they may investigate the context in
- * {@link CommandCause#getCause()}, looking for the
+ * {@link CommandCause#cause()}, looking for the
  * {@link EventContextKeys#COMMAND} context key.</p>
  *
  * <p>Command frameworks are free to choose how they parse commands. However,
@@ -136,6 +136,7 @@ public interface CommandRegistrar<T> {
      *                  {@code /sponge test test2} is invoked, arguments will
      *                  contain {@code test test2}.)
      * @return The suggestions
+     * @throws CommandException if there is an error providing the suggestions
      */
     List<String> suggestions(CommandCause cause, CommandMapping mapping, String command, String arguments) throws CommandException;
 

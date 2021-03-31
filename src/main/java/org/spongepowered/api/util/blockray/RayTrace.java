@@ -77,7 +77,7 @@ public interface RayTrace<T extends Locatable> {
      * @return The ray trace builder.
      */
     static RayTrace<LocatableBlock> block() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).blockRayTrace();
+        return Sponge.game().factoryProvider().provide(Factory.class).blockRayTrace();
     }
 
     /**
@@ -86,7 +86,7 @@ public interface RayTrace<T extends Locatable> {
      * @return The ray trace builder.
      */
     static RayTrace<Entity> entity() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).entityRayTrace();
+        return Sponge.game().factoryProvider().provide(Factory.class).entityRayTrace();
     }
 
     /**
@@ -97,7 +97,7 @@ public interface RayTrace<T extends Locatable> {
      * @return The predicate
      */
     static Predicate<LocatableBlock> onlyAir() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).onlyAir();
+        return Sponge.game().factoryProvider().provide(Factory.class).onlyAir();
     }
 
     /**
@@ -107,7 +107,7 @@ public interface RayTrace<T extends Locatable> {
      * @return The predicate
      */
     static Predicate<LocatableBlock> nonAir() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).notAir();
+        return Sponge.game().factoryProvider().provide(Factory.class).notAir();
     }
 
     /**
@@ -120,9 +120,9 @@ public interface RayTrace<T extends Locatable> {
 
     /**
      * Sets the {@link Vector3d position} to trace from, based on the supplied
-     * {@link Entity}'s {@link Entity#getPosition() position}.
+     * {@link Entity}'s {@link Entity#position() position}.
      *
-     * <p>This will use {@link Entity#getPosition()} to determine the entity
+     * <p>This will use {@link Entity#position()} to determine the entity
      * position. This may be unexpected if you wish to ray trace along the line
      * of sight of the entity. In this scenario, use
      * {@link #sourceEyePosition(Living)} instead.</p>
@@ -131,7 +131,7 @@ public interface RayTrace<T extends Locatable> {
      * @return This, for chaining
      */
     default RayTrace<T> sourcePosition(final Entity entity) {
-        return this.sourcePosition(entity.getPosition());
+        return this.sourcePosition(entity.position());
     }
 
     /**
@@ -166,7 +166,7 @@ public interface RayTrace<T extends Locatable> {
 
     /**
      * Sets the direction to trace in, based on the direction the
-     * {@link Living#getHeadDirection() direction} the supplied {@link Living}
+     * {@link Living#headDirection() direction} the supplied {@link Living}
      * is currently looking.
      *
      * <p>If {@link #continueUntil(Vector3d)} is set, this will be unset.</p>
@@ -175,7 +175,7 @@ public interface RayTrace<T extends Locatable> {
      * @return This, for chaining
      */
     default RayTrace<T> direction(final Living entity) {
-        return this.direction(entity.getHeadDirection());
+        return this.direction(entity.headDirection());
     }
 
     /**
@@ -185,6 +185,7 @@ public interface RayTrace<T extends Locatable> {
      * <p>This defaults to a distance of 30. This will be ignored if a specific
      * position is set via {@link #continueUntil(Vector3d)}.</p>
      *
+     * @param distance The distance
      * @return This, for chaining
      */
     RayTrace<T> limit(int distance);
@@ -225,14 +226,14 @@ public interface RayTrace<T extends Locatable> {
      * line of sight purposes). In this case, the predicate may look like this:
      * </p>
      *
-     * <pre>
+     * <pre> {@code
      * block -> {
-     *   final BlockType type = block.getBlockState().getType();
+     *   final BlockType type = block.blockState().type();
      *   return type == BlockTypes.AIR.get() ||
      *          type == BlockTypes.CAVE_AIR.get() ||
      *          type == BlockTypes.VOID_AIR.get();
      * }
-     * </pre>
+     * }</pre>
      *
      * <p>If this is not supplied, this defaults to always returning
      * {@code true}.</p>
@@ -265,14 +266,14 @@ public interface RayTrace<T extends Locatable> {
      * you want to obtain the first non-air block, the predicate might look
      * something like this:</p>
      *
-     * <pre>
+     * <pre> {@code
      * block -> {
-     *   final BlockType type = block.getBlockState().getType();
+     *   final BlockType type = block.blockState().type();
      *   return !(type == BlockTypes.AIR.get() &&
      *          type == BlockTypes.CAVE_AIR.get() &&
      *          type == BlockTypes.VOID_AIR.get());
      * }
-     * </pre>
+     * }</pre>
      *
      * <p>Given the other supplied conditions, if this supplied predicate
      * returns {@code true}, the first hit will be returned as a

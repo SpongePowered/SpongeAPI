@@ -35,7 +35,7 @@ import java.util.function.Supplier;
 
 /**
  * Represents an effect of a {@link PotionEffectType} for a specified
- * {@link #getDuration()}, {@link #getAmplifier()}, {@link #showsParticles()}
+ * {@link #duration()}, {@link #amplifier()}, {@link #showsParticles()}
  * and {@link #showsIcon()}. The {@link PotionEffect} itself is immutable
  * once created and can be offered to {@link Entity} instances through
  * the {@link Keys#POTION_EFFECTS}.
@@ -48,7 +48,7 @@ public interface PotionEffect extends DataSerializable {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -84,7 +84,7 @@ public interface PotionEffect extends DataSerializable {
      *
      * @return The type.
      */
-    PotionEffectType getType();
+    PotionEffectType type();
 
     /**
      * Gets the duration in ticks for which this potion effect
@@ -92,7 +92,7 @@ public interface PotionEffect extends DataSerializable {
      *
      * @return The duration.
      */
-    int getDuration();
+    int duration();
 
     /**
      * Gets the amplifier at which this potion effect
@@ -100,7 +100,7 @@ public interface PotionEffect extends DataSerializable {
      *
      * @return The amplifier.
      */
-    int getAmplifier();
+    int amplifier();
 
     /**
      * Gets if the potion effect is an ambient effect.

@@ -40,14 +40,14 @@ public interface InteractContainerEvent extends Event, Cancellable {
      *
      * @return The container
      */
-    Container getContainer();
+    Container container();
 
     /**
      * Gets the {@link Transaction} of {@link ItemStackSnapshot}s for this event.
      *
      * @return The transaction of the item
      */
-    Transaction<ItemStackSnapshot> getCursorTransaction();
+    Transaction<ItemStackSnapshot> cursorTransaction();
 
     /**
      * The target container was opened.

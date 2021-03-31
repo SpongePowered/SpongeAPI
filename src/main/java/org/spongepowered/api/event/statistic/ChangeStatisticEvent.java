@@ -38,21 +38,21 @@ public interface ChangeStatisticEvent extends Event, Cancellable {
      *
      * @return The statistic
      */
-    Statistic getStatistic();
+    Statistic statistic();
 
     /**
      * Gets the original value of the statistic.
      * 
      * @return The original value
      */
-    long getOriginalValue();
+    long originalValue();
 
     /**
      * Gets the new value of the statistic.
      * 
      * @return The new value
      */
-    long getValue();
+    long value();
 
     /**
      * Sets the new value of the statistic to the given value.

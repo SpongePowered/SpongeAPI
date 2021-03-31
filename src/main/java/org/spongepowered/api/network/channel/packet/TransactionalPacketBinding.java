@@ -49,7 +49,7 @@ public interface TransactionalPacketBinding<P extends RequestPacket<R>, R extend
      * @return The opcode
      */
     @Override
-    int getOpcode();
+    int opcode();
 
     /**
      * Gets the type of the {@link RequestPacket}.
@@ -57,7 +57,7 @@ public interface TransactionalPacketBinding<P extends RequestPacket<R>, R extend
      * @return The request packet type
      */
     @Override
-    Class<P> getPacketType();
+    Class<P> packetType();
 
     /**
      * Sets the {@link RequestPacketHandler} to handle a {@link RequestPacket}
@@ -66,6 +66,7 @@ public interface TransactionalPacketBinding<P extends RequestPacket<R>, R extend
      *
      * @param side The side the request packet should be handled on
      * @param handler The handler of the request packet
+     * @param <C> The connection type
      * @return This packet binding, for chaining
      */
     <C extends EngineConnection> TransactionalPacketBinding<P, R> setRequestHandler(
@@ -78,6 +79,7 @@ public interface TransactionalPacketBinding<P extends RequestPacket<R>, R extend
      *
      * @param connectionType The connection type the request packet should be handled by
      * @param handler The handler of the request packet
+     * @param <C> The connection type
      * @return This packet binding, for chaining
      */
     <C extends EngineConnection> TransactionalPacketBinding<P, R> setRequestHandler(
@@ -103,6 +105,7 @@ public interface TransactionalPacketBinding<P extends RequestPacket<R>, R extend
      *
      * @param side The side the response packet should be handled on
      * @param handler The handler of the response packet
+     * @param <C> The connection type
      * @return This packet binding, for chaining
      */
     <C extends EngineConnection> TransactionalPacketBinding<P, R> addResponseHandler(
@@ -118,6 +121,7 @@ public interface TransactionalPacketBinding<P extends RequestPacket<R>, R extend
      *
      * @param connectionType The connection type the response packet should be handled by
      * @param responseHandler The handler of the response packet
+     * @param <C> The connection type
      * @return This packet binding, for chaining
      */
     <C extends EngineConnection> TransactionalPacketBinding<P, R> addResponseHandler(
@@ -133,6 +137,7 @@ public interface TransactionalPacketBinding<P extends RequestPacket<R>, R extend
      *
      * @param side The side the response packet should be handled on
      * @param handler The handler of the response packet
+     * @param <C> The connection type
      * @return This packet binding, for chaining
      */
     <C extends EngineConnection> TransactionalPacketBinding<P, R> addResponseHandler(
@@ -148,6 +153,7 @@ public interface TransactionalPacketBinding<P extends RequestPacket<R>, R extend
      *
      * @param connectionType The connection type the response packet should be handled by
      * @param handler The handler of the response packet
+     * @param <C> The connection type
      * @return This packet binding, for chaining
      */
     <C extends EngineConnection> TransactionalPacketBinding<P, R> addResponseHandler(

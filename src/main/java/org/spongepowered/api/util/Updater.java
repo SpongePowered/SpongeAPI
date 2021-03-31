@@ -39,7 +39,7 @@ public interface Updater<C> {
      *
      * @return The numerical input version
      */
-    int getInputVersion();
+    int inputVersion();
 
     /**
      * The outputted {@code version} that this {@link Updater} will
@@ -48,7 +48,7 @@ public interface Updater<C> {
      *
      * @return The numerical output version
      */
-    int getOutputVersion();
+    int outputVersion();
 
     /**
      * Attempts to update the content of {@code C} as long as the content

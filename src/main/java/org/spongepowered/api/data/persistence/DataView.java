@@ -55,7 +55,7 @@ public interface DataView {
      *
      * @return The parent container
      */
-    DataContainer getContainer();
+    DataContainer container();
 
     /**
      * Gets the current path of this {@link DataView} from its root
@@ -69,27 +69,27 @@ public interface DataView {
      *
      * @return The path of this view originating from the root
      */
-    DataQuery getCurrentPath();
+    DataQuery currentPath();
 
     /**
      * Gets the name of this individual {@link DataView} in the path.
      *
      * <p>This will always be the final substring of the full path
-     * from {@link #getCurrentPath()}.</p>
+     * from {@link #currentPath()}.</p>
      *
      * @return The name of this DataView
      */
-    String getName();
+    String name();
 
     /**
      * Gets the parent {@link DataView} of this view. The parent directly
-     * contains this view according to the {@link #getCurrentPath()}.
+     * contains this view according to the {@link #currentPath()}.
      *
      * <p>For any {@link DataContainer}, this will return an absent parent.</p>
      *
      * @return The parent data view containing this view
      */
-    Optional<DataView> getParent();
+    Optional<DataView> parent();
 
     /**
      * Gets a collection containing all keys in this {@link DataView}.
@@ -104,7 +104,7 @@ public interface DataView {
      * @param deep Whether or not to get all children keys
      * @return A set of current keys in this container
      */
-    Set<DataQuery> getKeys(boolean deep);
+    Set<DataQuery> keys(boolean deep);
 
     /**
      * Gets a Map containing all keys and their values for this {@link DataView}.
@@ -119,7 +119,7 @@ public interface DataView {
      * @param deep Whether or not to get a deep list of all children or not
      * @return Map of keys and values of this container
      */
-    Map<DataQuery, Object> getValues(boolean deep);
+    Map<DataQuery, Object> values(boolean deep);
 
     /**
      * Returns whether this {@link DataView} contains the given path.
@@ -345,11 +345,11 @@ public interface DataView {
         if (!strings.isPresent()) {
             return Optional.empty();
         }
-        List<ResourceKey> keys = new ArrayList<>();
+        final List<ResourceKey> keys = new ArrayList<>();
         for (final String s : strings.get()) {
             try {
                 keys.add(ResourceKey.resolve(s));
-            } catch (final Exception ignore) {
+            } catch (final Exception ignored) {
             }
         }
 
@@ -588,7 +588,7 @@ public interface DataView {
      */
     default <T> Optional<T> getRegistryValue(final DataQuery path, final RegistryType<T> registryType) {
         return this.getRegistryValue(Objects.requireNonNull(path, "path"), Objects.requireNonNull(registryType, "registryType"),
-                Sponge.getGame().registries());
+                Sponge.game().registries());
     }
 
     /**
@@ -601,7 +601,7 @@ public interface DataView {
      */
     default <T> Optional<List<T>> getRegistryValueList(final DataQuery path, final RegistryType<T> registryType) {
         return this.getRegistryValueList(Objects.requireNonNull(path, "path"), Objects.requireNonNull(registryType, "registryType"),
-                Sponge.getGame().registries());
+                Sponge.game().registries());
     }
 
     /**
@@ -681,7 +681,7 @@ public interface DataView {
      *
      * @return The safety mode
      */
-    SafetyMode getSafetyMode();
+    SafetyMode safetyMode();
 
     /**
      * The safety mode of the container.

@@ -40,7 +40,7 @@ public final class TestHooks {
     }
 
     public static void setInstance(String name, Object instance)  throws NoSuchFieldException, IllegalAccessException {
-        Field field = Sponge.class.getDeclaredField(name);
+        final Field field = Sponge.class.getDeclaredField(name);
         field.setAccessible(true);
         field.set(null, instance);
     }
@@ -61,7 +61,7 @@ public final class TestHooks {
     private static void removeFinal(Field field) throws NoSuchFieldException, IllegalAccessException {
         field.setAccessible(true);
 
-        Field modifiersField = Field.class.getDeclaredField("modifiers");
+        final Field modifiersField = Field.class.getDeclaredField("modifiers");
         modifiersField.setAccessible(true);
         modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
     }

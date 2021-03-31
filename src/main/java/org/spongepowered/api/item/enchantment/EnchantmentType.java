@@ -44,7 +44,7 @@ public interface EnchantmentType extends DefaultedRegistryValue, ComponentLike {
      *
      * @return The weight of this enchantment type
      */
-    int getWeight();
+    int weight();
 
     /**
      * Gets the minimum level of this enchantment type allowed where
@@ -52,14 +52,14 @@ public interface EnchantmentType extends DefaultedRegistryValue, ComponentLike {
      *
      * @return The minimum level
      */
-    int getMinimumLevel();
+    int minimumLevel();
 
     /**
      * Gets the maximum level of this enchantment type normally allowed.
      *
      * @return The maximum level
      */
-    int getMaximumLevel();
+    int maximumLevel();
 
     /**
      * Gets the minimum item enchantability for this level to be normally added
@@ -68,7 +68,7 @@ public interface EnchantmentType extends DefaultedRegistryValue, ComponentLike {
      * @param level The enchantment type level
      * @return The minimum enchantability
      */
-    int getMinimumEnchantabilityForLevel(int level);
+    int minimumEnchantabilityForLevel(int level);
 
     /**
      * Gets the maximum item enchantability for this level to be normally added
@@ -77,7 +77,7 @@ public interface EnchantmentType extends DefaultedRegistryValue, ComponentLike {
      * @param level The enchantment type level
      * @return The maximum enchantability
      */
-    int getMaximumEnchantabilityForLevel(int level);
+    int maximumEnchantabilityForLevel(int level);
 
     /**
      * Test if this enchantment type can be applied to an {@link ItemStack}.

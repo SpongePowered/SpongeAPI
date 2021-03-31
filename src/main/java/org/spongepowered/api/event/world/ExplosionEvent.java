@@ -28,9 +28,9 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.entity.AffectEntityEvent;
-import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 
 import java.util.ArrayList;
@@ -48,7 +48,7 @@ public interface ExplosionEvent extends Event, Cancellable {
      *
      * @return The explosion
      */
-    Explosion getExplosion();
+    Explosion explosion();
 
     /**
      * An event that is fired before the explosion occurs.
@@ -60,7 +60,7 @@ public interface ExplosionEvent extends Event, Cancellable {
          *
          * @return The world
          */
-        ServerWorld getWorld();
+        ServerWorld world();
 
         /**
          * Sets the {@link Explosion} involved for this event. This will
@@ -87,7 +87,7 @@ public interface ExplosionEvent extends Event, Cancellable {
          *
          * @return The world
          */
-        ServerWorld getWorld();
+        ServerWorld world();
 
         /**
          * Gets the list of calculated affected locations for blocks that will
@@ -96,22 +96,22 @@ public interface ExplosionEvent extends Event, Cancellable {
          *
          * @return The list of blocks that will be affected by the explosion
          */
-        List<ServerLocation> getAffectedLocations();
+        List<ServerLocation> affectedLocations();
 
         /**
          * Filters out {@link ServerLocation}'s from
-         * {@link #getAffectedLocations()} to be affected by this event.
+         * {@link #affectedLocations()} to be affected by this event.
          *
          * <p>Locations for which the predicate returns <code>false</code> will
-         * be removed from {@link #getAffectedLocations()}.</p>
+         * be removed from {@link #affectedLocations()}.</p>
          *
          * @param predicate The predicate to use for filtering
-         * @return The locations removed from {@link #getAffectedLocations()}
+         * @return The locations removed from {@link #affectedLocations()}
          */
         default List<ServerLocation> filterAffectedLocations(Predicate<ServerLocation> predicate) {
             final List<ServerLocation> removedLocations = new ArrayList<>();
 
-            final Iterator<ServerLocation> iter = this.getAffectedLocations().iterator();
+            final Iterator<ServerLocation> iter = this.affectedLocations().iterator();
             while (iter.hasNext()) {
                 final ServerLocation location = iter.next();
 

@@ -39,5 +39,5 @@ public interface ComplexLiving<T extends ComplexLivingPart<T>> extends Living {
      *
      * @return The parts belonging to this entity
      */
-    Set<T> getParts();
+    Set<T> parts();
 }

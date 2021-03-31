@@ -45,7 +45,7 @@ public interface ItemType extends DefaultedRegistryValue, ComponentLike, DataHol
      *
      *  @return The Block
      */
-    Optional<BlockType> getBlock();
+    Optional<BlockType> block();
 
     /**
      * Gets the container item of this item if one exists.
@@ -53,7 +53,7 @@ public interface ItemType extends DefaultedRegistryValue, ComponentLike, DataHol
      *
      * @return The container item.
      */
-    Optional<ItemType> getContainer();
+    Optional<ItemType> container();
 
     /**
      * Gets the default maximum quantity for
@@ -61,7 +61,7 @@ public interface ItemType extends DefaultedRegistryValue, ComponentLike, DataHol
      *
      * @return Max stack quantity
      */
-    int getMaxStackQuantity();
+    int maxStackQuantity();
 
     /**
      * Returns true if this type is any of the given item types

@@ -38,13 +38,13 @@ public interface GameRegistry {
      *
      * @return The catalog registry
      */
-    AdventureRegistry getAdventureRegistry();
+    AdventureRegistry adventureRegistry();
 
     /**
      * Retrieves the {@link RecipeRegistry}.
      *
      * @return The recipe registry
      */
-    RecipeRegistry getRecipeRegistry();
+    RecipeRegistry recipeRegistry();
 
 }

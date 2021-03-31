@@ -47,11 +47,11 @@ public final class EntityPredicates {
             if (entity == null) {
                 return false;
             }
-            final Vector3d pos = entity.getLocation().getPosition();
+            final Vector3d pos = entity.location().position();
             final double xDist = pos.getX() - x;
             final double yDist = pos.getY() - y;
             final double zDist = pos.getZ() - z;
-            return xDist*xDist + yDist * yDist + zDist * zDist <= distSqrd;
+            return xDist * xDist + yDist * yDist + zDist * zDist <= distSqrd;
         };
     }
 

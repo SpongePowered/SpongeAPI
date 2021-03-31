@@ -48,7 +48,7 @@ public interface Chunk extends ProtoChunk<Chunk>, EntityVolume.Mutable<Chunk> {
      * @return The world
      */
     @Override
-    World<?, ?> getWorld();
+    World<?, ?> world();
 
     /**
      * Loads this chunk, and generates if specified and required.
@@ -74,8 +74,7 @@ public interface Chunk extends ProtoChunk<Chunk>, EntityVolume.Mutable<Chunk> {
      *
      * @return The number of ticks
      */
-    long getInhabitedTime();
-
+    long inhabitedTime();
 
     /**
      * Gets the chunk in the given direction from this chunk, if it exists.
@@ -83,8 +82,8 @@ public interface Chunk extends ProtoChunk<Chunk>, EntityVolume.Mutable<Chunk> {
      * @param direction The cardinal or ordinal direction to get the chunk from
      * @return The neighbor chunk, if available
      */
-    default Optional<Chunk> getNeighbor(final Direction direction) {
-        return this.getNeighbor(direction, false);
+    default Optional<Chunk> neighbor(final Direction direction) {
+        return this.neighbor(direction, false);
     }
 
     /**
@@ -95,9 +94,9 @@ public interface Chunk extends ProtoChunk<Chunk>, EntityVolume.Mutable<Chunk> {
      *     if unavailable
      * @return The neighbor chunk, if available or if {@code shouldLoad} is true
      */
-    default Optional<Chunk> getNeighbor(final Direction direction, final boolean shouldLoad) {
-        final Optional<Vector3i> neighborPosition = Sponge.getServer().getChunkLayout().moveToChunk(this.getChunkPosition(), direction);
-        return neighborPosition.flatMap(vector3i -> this.getWorld().loadChunk(vector3i, shouldLoad));
+    default Optional<Chunk> neighbor(final Direction direction, final boolean shouldLoad) {
+        final Optional<Vector3i> neighborPosition = Sponge.server().chunkLayout().moveToChunk(this.chunkPosition(), direction);
+        return neighborPosition.flatMap(vector3i -> this.world().loadChunk(vector3i, shouldLoad));
     }
 
 }

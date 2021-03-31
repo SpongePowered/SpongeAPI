@@ -36,14 +36,14 @@ public interface AnvilCost extends DataSerializable {
      *
      * @return The level cost
      */
-    int getLevelCost();
+    int levelCost();
 
     /**
      * Returns the material cost.
      *
      * @return The material cost
      */
-    int getMaterialCost();
+    int materialCost();
 
     /**
      * Returns a modified copy of the Costs

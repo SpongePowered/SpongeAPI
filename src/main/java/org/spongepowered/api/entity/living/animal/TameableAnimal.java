@@ -34,6 +34,7 @@ public interface TameableAnimal extends Animal {
 
     /**
      * {@link Keys#TAMER}
+     *
      * @return The unique id of the tamer
      */
     default Optional<Value.Mutable<UUID>> tamer() {

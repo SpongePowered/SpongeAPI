@@ -132,8 +132,8 @@ public enum Direction {
      * @param vector The vector to convert to a direction
      * @return The closest horizontal direction.
      */
-    public static Direction getClosest(Vector3d vector) {
-        return Direction.getClosest(vector, Division.SECONDARY_ORDINAL);
+    public static Direction closest(Vector3d vector) {
+        return Direction.closest(vector, Division.SECONDARY_ORDINAL);
     }
 
     /**
@@ -148,9 +148,9 @@ public enum Direction {
      *     returned
      * @return The closest horizontal direction.
      */
-    public static Direction getClosest(Vector3d vector, Division smallestDivision) {
+    public static Direction closest(Vector3d vector, Division smallestDivision) {
         if (vector.getY() * vector.getY() <= vector.getX() * vector.getX() + vector.getZ() * vector.getZ()) {
-            return Direction.getClosestHorizontal(vector, smallestDivision);
+            return Direction.closestHorizontal(vector, smallestDivision);
         } else if (vector.getY() > 0) {
             return Direction.UP;
         } else {
@@ -167,8 +167,8 @@ public enum Direction {
      * @param vector The vector to convert to a direction
      * @return The closest horizontal direction.
      */
-    public static Direction getClosestHorizontal(Vector3d vector) {
-        return Direction.getClosestHorizontal(vector, Division.SECONDARY_ORDINAL);
+    public static Direction closestHorizontal(Vector3d vector) {
+        return Direction.closestHorizontal(vector, Division.SECONDARY_ORDINAL);
     }
 
     /**
@@ -182,7 +182,7 @@ public enum Direction {
      *     returned
      * @return The closest horizontal direction.
      */
-    public static Direction getClosestHorizontal(Vector3d vector, Division smallestDivision) {
+    public static Direction closestHorizontal(Vector3d vector, Division smallestDivision) {
         // Ignore vectors not in the xz plane
         if (Math.abs(vector.getX()) <= GenericMath.DBL_EPSILON && Math.abs(vector.getZ()) <= GenericMath.DBL_EPSILON) {
             return Direction.NONE;
@@ -221,7 +221,7 @@ public enum Direction {
      * @param axis The axis
      * @return The direction
      */
-    public static Direction getFromAxis(final Axis axis) {
+    public static Direction fromAxis(final Axis axis) {
         switch (axis) {
             case X:
                 return Direction.EAST;
@@ -241,14 +241,14 @@ public enum Direction {
      * @param direction The direction along the axis
      * @return The direction
      */
-    public static Direction getFromAxis(final Axis axis, final AxisDirection direction) {
+    public static Direction fromAxis(final Axis axis, final AxisDirection direction) {
         switch (direction) {
             case PLUS:
-                return Direction.getFromAxis(axis);
+                return Direction.fromAxis(axis);
             case ZERO:
                 return Direction.NONE;
             case MINUS:
-                return Direction.getFromAxis(axis).getOpposite();
+                return Direction.fromAxis(axis).opposite();
             default:
                 throw new IllegalArgumentException(axis.name());
         }
@@ -259,7 +259,7 @@ public enum Direction {
      *
      * @return The opposite direction
      */
-    public Direction getOpposite() {
+    public Direction opposite() {
         return this.opposite;
     }
 

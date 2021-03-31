@@ -29,7 +29,7 @@ import org.spongepowered.api.Sponge;
 public interface SeparatedStructureConfig {
 
     static SeparatedStructureConfig of(final int spacing, final int separation, final int seedSalt) {
-        return Sponge.getGame().getFactoryProvider().provide(SeparatedStructureConfig.Factory.class).of(spacing, separation, seedSalt);
+        return Sponge.game().factoryProvider().provide(SeparatedStructureConfig.Factory.class).of(spacing, separation, seedSalt);
     }
 
     int spacing();

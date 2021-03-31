@@ -37,6 +37,7 @@ public interface Boss extends Hostile {
 
     /**
      * {@link Keys#BOSS_BAR}
+     *
      * @return The boss bar
      */
     default Value.Mutable<BossBar> bossBar() {

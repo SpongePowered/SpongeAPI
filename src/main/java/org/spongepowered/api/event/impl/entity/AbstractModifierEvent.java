@@ -58,13 +58,13 @@ public abstract class AbstractModifierEvent<T extends ModifierFunction<M>, M> ex
         final ImmutableMap.Builder<M, Double> mapBuilder = ImmutableMap.builder();
         double finalDamage = originalValue;
         for (T tuple : originalFunctions) {
-            this.modifierFunctions.add(this.convertTuple(tuple.getModifier(), tuple.getFunction()));
-            double tempDamage = Objects.requireNonNull(tuple.getFunction().applyAsDouble(finalDamage));
+            this.modifierFunctions.add(this.convertTuple(tuple.modifier(), tuple.function()));
+            final double tempDamage = Objects.requireNonNull(tuple.function().applyAsDouble(finalDamage));
             finalDamage += tempDamage;
-            modifierMapBuilder.add(new Tuple<>(tuple.getModifier(), tempDamage));
-            mapBuilder.put(tuple.getModifier(), tempDamage);
-            this.modifiers.put(tuple.getModifier(), tempDamage);
-            functionListBuilder.add(this.convertTuple(tuple.getModifier(), tuple.getFunction()));
+            modifierMapBuilder.add(new Tuple<>(tuple.modifier(), tempDamage));
+            mapBuilder.put(tuple.modifier(), tempDamage);
+            this.modifiers.put(tuple.modifier(), tempDamage);
+            functionListBuilder.add(this.convertTuple(tuple.modifier(), tuple.function()));
         }
         this.originalFinalAmount = finalDamage;
         this.originalModifiers = modifierMapBuilder.build();
@@ -78,26 +78,26 @@ public abstract class AbstractModifierEvent<T extends ModifierFunction<M>, M> ex
         double tempAmount = baseAmount;
         this.modifiers.clear();
         for (T entry : this.modifierFunctions) {
-            double modifierAmount = Objects.requireNonNull(entry.getFunction().applyAsDouble(tempAmount));
-            if (this.modifiers.containsKey(entry.getModifier())) {
-                double oldAmount = this.modifiers.get(entry.getModifier());
-                double difference = oldAmount - modifierAmount;
+            final double modifierAmount = Objects.requireNonNull(entry.function().applyAsDouble(tempAmount));
+            if (this.modifiers.containsKey(entry.modifier())) {
+                final double oldAmount = this.modifiers.get(entry.modifier());
+                final double difference = oldAmount - modifierAmount;
                 if (oldAmount > 0) {
-                    this.modifiers.put(entry.getModifier(), Math.max(0, oldAmount - difference));
+                    this.modifiers.put(entry.modifier(), Math.max(0, oldAmount - difference));
                 } else {
-                    this.modifiers.put(entry.getModifier(), Math.min(0, oldAmount - difference));
+                    this.modifiers.put(entry.modifier(), Math.min(0, oldAmount - difference));
                 }
             } else {
-                this.modifiers.put(entry.getModifier(), modifierAmount);
+                this.modifiers.put(entry.modifier(), modifierAmount);
             }
             tempAmount += modifierAmount;
         }
     }
 
-    protected double getFinalAmount(double baseAmount) {
+    protected double finalAmount(double baseAmount) {
         double damage = baseAmount;
         for (T entry : this.modifierFunctions) {
-            damage += Objects.requireNonNull(entry.getFunction().applyAsDouble(damage));
+            damage += Objects.requireNonNull(entry.function().applyAsDouble(damage));
         }
         return damage;
     }
@@ -107,8 +107,8 @@ public abstract class AbstractModifierEvent<T extends ModifierFunction<M>, M> ex
      *
      * @return The list of modifiers
      */
-    public List<T> getModifiers() {
-        ImmutableList.Builder<T> builder = ImmutableList.builder();
+    public List<T> modifiers() {
+        final ImmutableList.Builder<T> builder = ImmutableList.builder();
         for (T entry : this.modifierFunctions) {
             builder.add(entry);
         }

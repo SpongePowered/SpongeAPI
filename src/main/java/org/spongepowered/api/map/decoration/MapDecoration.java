@@ -25,7 +25,6 @@
 package org.spongepowered.api.map.decoration;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.persistence.DataSerializable;
@@ -64,7 +63,7 @@ public interface MapDecoration extends DataSerializable {
      * @return A {@link Builder}
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -88,7 +87,7 @@ public interface MapDecoration extends DataSerializable {
      *
      * @return The {@link MapDecorationType}
      */
-    MapDecorationType getType();
+    MapDecorationType type();
 
     /**
      * Gets the position on a {@link MapInfo} that this decoration will be
@@ -96,19 +95,21 @@ public interface MapDecoration extends DataSerializable {
      *
      * @return Vector2i Co-ordinate position in world
      */
-    Vector2i getPosition();
+    Vector2i position();
 
     /**
      * Sets the position of where the MapDecoration is on Maps,
      * or where it would be if applied to a {@link MapInfo}
      * 0,0 is the center of the map
      * Ranges from {@value Byte#MIN_VALUE}-{@value Byte#MAX_VALUE}. AKA any valid byte value
+     *
      * @param position Vector2i world x and y cords
      */
     void setPosition(Vector2i position);
 
     /**
      * Sets rotation with a {@link MapDecorationOrientation}
+     *
      * @param rot MapDecorationOrientation
      */
     void setRotation(MapDecorationOrientation rot);
@@ -119,9 +120,10 @@ public interface MapDecoration extends DataSerializable {
 
     /**
      * Gets the {@link MapDecorationOrientation} the Map Decoration is pointing in
+     *
      * @return MapDecorationOrientation
      */
-    MapDecorationOrientation getRotation();
+    MapDecorationOrientation rotation();
 
     /**
      * Gets whether this {@link MapDecoration} is persistent
@@ -130,14 +132,14 @@ public interface MapDecoration extends DataSerializable {
      *
      * <p>Examples of persistent MapDecorations:</p>
      * <ul>
-     * <p>  - Plugin added MapDecorations</p>
-     * <p>  - Structures located on the map, i.e Guardian Temple</p>
+     * <li>  - Plugin added MapDecorations</li>
+     * <li>  - Structures located on the map, i.e Guardian Temple</li>
      * </ul>
      * <p>Examples of non-persistent MapDecorations:</p>
      * <ul>
-     * <p>  - MapDecorations marking a {@link Player}'s current location,
-     *          (if {@link Keys#MAP_TRACKS_PLAYERS} is true and if they are in range).</p>
-     * <p>  - MapDecorations marking a {@link ItemFrame}'s position.</p>
+     * <li>  - MapDecorations marking a {@link Player}'s current location,
+     *          (if {@link Keys#MAP_TRACKS_PLAYERS} is true and if they are in range).</li>
+     * <li>  - MapDecorations marking a {@link ItemFrame}'s position.</li>
      * </ul>
      *
      * <p>This affects whether this will be serialized in {@link MapCanvas#toContainer()}.

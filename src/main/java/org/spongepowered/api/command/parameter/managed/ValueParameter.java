@@ -41,7 +41,7 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 public interface ValueParameter<T> extends DefaultedRegistryValue, ValueCompleter, ValueParser<T>, ValueUsage {
 
     @Override
-    default String getUsage(@NonNull final String key) {
+    default String usage(@NonNull final String key) {
         return key;
     }
 

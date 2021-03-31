@@ -37,7 +37,7 @@ public interface FindNearestAttackableTargetGoal extends TargetGoal<FindNearestA
      * @return A new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -45,7 +45,7 @@ public interface FindNearestAttackableTargetGoal extends TargetGoal<FindNearestA
      *
      * @return The entity class that can be targeted
      */
-    Class<? extends Living> getTargetClass();
+    Class<? extends Living> targetClass();
 
     /**
      * Sets the {@link Class entity class} that can be targeted.
@@ -61,7 +61,7 @@ public interface FindNearestAttackableTargetGoal extends TargetGoal<FindNearestA
      *
      * @return The chance that this task will go through and find a target
      */
-    int getChance();
+    int chance();
 
     /**
      * Sets the chance that this task will go through and attempt to find a
@@ -87,7 +87,7 @@ public interface FindNearestAttackableTargetGoal extends TargetGoal<FindNearestA
      *
      * @return The predicate to filter living entities for targeting
      */
-    Predicate<Living> getFilter();
+    Predicate<Living> filter();
 
     interface Builder extends TargetGoal.Builder<FindNearestAttackableTargetGoal, Builder> {
 

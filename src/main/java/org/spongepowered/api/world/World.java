@@ -58,10 +58,11 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends 
      *
      * @return The properties
      */
-    WorldProperties getProperties();
+    WorldProperties properties();
 
+    @Override
     @SuppressWarnings("unchecked")
-    default W getWorld() {
+    default W world() {
         return (W) this;
     }
 
@@ -80,42 +81,42 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends 
      * @return The players
      */
     @Override
-    Collection<? extends Player> getPlayers();
+    Collection<? extends Player> players();
 
     @Override
     default Iterable<? extends Audience> audiences() {
-        return this.getPlayers();
+        return this.players();
     }
 
-    default Optional<? extends Player> getClosestPlayer(final Vector3i position, final double distance) {
+    default Optional<? extends Player> closestPlayer(final Vector3i position, final double distance) {
         Objects.requireNonNull(position, "position");
-        return this.getClosestPlayer(position.getX(), position.getY(), position.getZ(), distance, player -> true);
+        return this.closestPlayer(position.getX(), position.getY(), position.getZ(), distance, player -> true);
     }
 
-    default Optional<? extends Player> getClosestPlayer(final Vector3i position, final double distance, final Predicate<? super Player> predicate) {
+    default Optional<? extends Player> closestPlayer(final Vector3i position, final double distance, final Predicate<? super Player> predicate) {
         Objects.requireNonNull(position, "position");
         Objects.requireNonNull(predicate, "predicate");
-        return this.getClosestPlayer(position.getX(), position.getY(), position.getZ(), distance, predicate);
+        return this.closestPlayer(position.getX(), position.getY(), position.getZ(), distance, predicate);
     }
 
-    default Optional<? extends Player> getClosestPlayer(final Entity entity, final double distance) {
+    default Optional<? extends Player> closestPlayer(final Entity entity, final double distance) {
         Objects.requireNonNull(entity, "entity");
-        final Vector3d position = entity.getLocation().getPosition();
-        return this.getClosestPlayer(position.getFloorX(), position.getFloorY(), position.getFloorZ(), distance, player -> true);
+        final Vector3d position = entity.location().position();
+        return this.closestPlayer(position.getFloorX(), position.getFloorY(), position.getFloorZ(), distance, player -> true);
     }
 
-    default Optional<? extends Player> getClosestPlayer(final Entity entity, final double distance, final Predicate<? super Player> predicate) {
+    default Optional<? extends Player> closestPlayer(final Entity entity, final double distance, final Predicate<? super Player> predicate) {
         Objects.requireNonNull(entity, "entity");
         Objects.requireNonNull(predicate, "predicate");
-        final Vector3d position = entity.getLocation().getPosition();
-        return this.getClosestPlayer(position.getFloorX(), position.getFloorY(), position.getFloorZ(), distance, predicate);
+        final Vector3d position = entity.location().position();
+        return this.closestPlayer(position.getFloorX(), position.getFloorY(), position.getFloorZ(), distance, predicate);
     }
 
-    default Optional<? extends Player> getClosestPlayer(final int x, final int y, final int z, final double distance) {
-        return this.getClosestPlayer(x, y, z, distance, player -> true);
+    default Optional<? extends Player> closestPlayer(final int x, final int y, final int z, final double distance) {
+        return this.closestPlayer(x, y, z, distance, player -> true);
     }
 
-    Optional<? extends Player> getClosestPlayer(int x, int y, int z, double distance, Predicate<? super Player> predicate);
+    Optional<? extends Player> closestPlayer(int x, int y, int z, double distance, Predicate<? super Player> predicate);
 
     /**
      * {@inheritDoc}
@@ -124,7 +125,7 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends 
      * likewise, may not be generated, valid, pre-existing. It is important to
      * check for these cases prior to attmepting to modify the chunk.
      *
-     * <p>Note that this is still different from {@link #getChunk(Vector3i)}
+     * <p>Note that this is still different from {@link #chunk(Vector3i)}
      * due to it being a relative block position which can vary depending on
      * implementation and other mods installed.</p>
      *
@@ -132,7 +133,7 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends 
      * @return The available chunk at that position
      */
     @Override
-    Chunk getChunkAtBlock(final Vector3i blockPosition);
+    Chunk chunkAtBlock(final Vector3i blockPosition);
 
     /**
      * {@inheritDoc}
@@ -141,8 +142,8 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends 
      * likewise, may not be generated, valid, pre-existing. It is important to
      * check for these cases prior to attmepting to modify the chunk.
      *
-     * <p>Note that this is still different from {@link #getChunk(Vector3i)}
-     * due to the relative block position dictated by {@link Server#getChunkLayout()},
+     * <p>Note that this is still different from {@link #chunk(Vector3i)}
+     * due to the relative block position dictated by {@link Server#chunkLayout()},
      * which can vary depending on implementation and other mods installed.</p>
      *
      * @param bx The block x coordinate
@@ -151,7 +152,7 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends 
      * @return The available chunk at that position
      */
     @Override
-    Chunk getChunkAtBlock(int bx, int by, int bz);
+    Chunk chunkAtBlock(int bx, int by, int bz);
 
     /**
      * {@inheritDoc}
@@ -160,13 +161,13 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends 
      * likewise, may not be generated, valid, pre-existing. It is important to
      * check for these cases prior to attmepting to modify the chunk.
      *
-     * @param chunkPos The chunk position relative to the {@link Server#getChunkLayout() chunk layout}
+     * @param chunkPos The chunk position relative to the {@link Server#chunkLayout() chunk layout}
      * @return The available chunk at that position
      */
     @Override
-    default Chunk getChunk(final Vector3i chunkPos) {
+    default Chunk chunk(final Vector3i chunkPos) {
         Objects.requireNonNull(chunkPos, "chunkPos");
-        return this.getChunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
+        return this.chunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
     }
 
     /**
@@ -182,7 +183,7 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends 
      * @return The available chunk at the chunk position
      */
     @Override
-    Chunk getChunk(int cx, int cy, int cz);
+    Chunk chunk(int cx, int cy, int cz);
 
     /**
      * Gets the chunk at the given chunk coordinate position if it exists or if
@@ -218,5 +219,5 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends 
      *
      * @return The loaded chunks
      */
-    Iterable<Chunk> getLoadedChunks();
+    Iterable<Chunk> loadedChunks();
 }

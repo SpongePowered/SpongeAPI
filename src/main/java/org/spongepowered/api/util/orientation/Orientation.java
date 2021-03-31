@@ -40,11 +40,10 @@ public interface Orientation extends DefaultedRegistryValue {
      * Gets the {@link Orientation} with the provided degrees.
      *
      * @param degrees The degrees of the rotation
-     * @return The {@link Orientation} with the given degrees or
-     *      <tt>Optional.empty()</tt> if not found
+     * @return The {@link Orientation} with the given degrees or {@link Optional#empty()} if not found
      */
     static Optional<Orientation> fromDegrees(int degrees) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).fromDegrees(degrees);
+        return Sponge.game().factoryProvider().provide(Factory.class).fromDegrees(degrees);
     }
 
     /**
@@ -53,7 +52,7 @@ public interface Orientation extends DefaultedRegistryValue {
      * @return The angle in degrees
      */
     //TODO we should have an Angle class in the future
-    int getAngle();
+    int angle();
 
     interface Factory {
 

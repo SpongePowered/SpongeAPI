@@ -35,5 +35,5 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 @CatalogedBy(Criteria.class)
 public interface Criterion extends DefaultedRegistryValue {
 
-    ObjectiveDisplayMode getDisplayMode();
+    ObjectiveDisplayMode displayMode();
 }

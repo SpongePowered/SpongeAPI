@@ -56,7 +56,7 @@ import java.util.function.UnaryOperator;
  */
 @SuppressWarnings("unchecked")
 @CatalogedBy(Triggers.class)
-public interface Trigger<C extends FilteredTriggerConfiguration> extends DefaultedRegistryValue, ResourceKeyed, Nameable {
+public interface Trigger<C extends FilteredTriggerConfiguration> extends DefaultedRegistryValue, ResourceKeyed {
 
     /**
      * Creates a new {@link Builder} which can be used to create
@@ -65,7 +65,7 @@ public interface Trigger<C extends FilteredTriggerConfiguration> extends Default
      * @return The builder
      */
     static Builder<?> builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -75,7 +75,7 @@ public interface Trigger<C extends FilteredTriggerConfiguration> extends Default
      *
      * @return The configuration type
      */
-    Type getConfigurationType();
+    Type configurationType();
 
     /**
      * Triggers the {@link Trigger} for all the online
@@ -126,7 +126,7 @@ public interface Trigger<C extends FilteredTriggerConfiguration> extends Default
          *
          * <p>By default, the configuration will be loaded with
          * Sponge-default options, with serializers as defined in
-         * {@link ConfigManager#getSerializers()}.</p>
+         * {@link ConfigManager#serializers()}.</p>
          *
          * @param configClass The configuration class
          * @param <T> The configuration type
@@ -154,7 +154,7 @@ public interface Trigger<C extends FilteredTriggerConfiguration> extends Default
          *
          * <p>The configuration will be loaded with the returned
          * derivation of Sponge-default options, with serializers as defined in
-         * {@link ConfigManager#getSerializers()}.</p>
+         * {@link ConfigManager#serializers()}.</p>
          *
          * @param configClass The configuration class
          * @param options A callback that will receive options to modify
@@ -171,7 +171,7 @@ public interface Trigger<C extends FilteredTriggerConfiguration> extends Default
          *
          * <p>By default, the configuration will be loaded with
          * Sponge-default options, with serializers as defined in
-         * {@link ConfigManager#getSerializers()}.</p>
+         * {@link ConfigManager#serializers()}.</p>
          *
          * @param configClass The configuration class
          * @param <T> The configuration type
@@ -200,7 +200,7 @@ public interface Trigger<C extends FilteredTriggerConfiguration> extends Default
          *
          * <p>The configuration will be loaded with the returned
          * derivation of Sponge-default options, with serializers as defined in
-         * {@link ConfigManager#getSerializers()}.</p>
+         * {@link ConfigManager#serializers()}.</p>
          *
          * @param configClass The configuration class
          * @param options A callback that will receive options to modify

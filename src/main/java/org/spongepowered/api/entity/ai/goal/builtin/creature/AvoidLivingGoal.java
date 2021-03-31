@@ -41,7 +41,7 @@ public interface AvoidLivingGoal extends Goal<Creature> {
      * @return A new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -52,7 +52,7 @@ public interface AvoidLivingGoal extends Goal<Creature> {
      *
      * @return The predicate used to filter which entities to avoid
      */
-    Predicate<Living> getTargetSelector();
+    Predicate<Living> targetSelector();
 
     /**
      * Sets the {@link Predicate} for filtering which {@link Living} instances
@@ -69,7 +69,7 @@ public interface AvoidLivingGoal extends Goal<Creature> {
      *
      * @return The search distance
      */
-    float getSearchDistance();
+    float searchDistance();
 
     /**
      * Sets the search distance at which any {@link Living} instances in a
@@ -87,7 +87,7 @@ public interface AvoidLivingGoal extends Goal<Creature> {
      *
      * @return The close range movement speed modifier
      */
-    double getCloseRangeSpeed();
+    double closeRangeSpeed();
 
     /**
      * Sets the peed "modifier" for which the parent {@link Agent} will
@@ -106,7 +106,7 @@ public interface AvoidLivingGoal extends Goal<Creature> {
      *
      * @return The close range speed
      */
-    double getFarRangeSpeed();
+    double farRangeSpeed();
 
     /**
      * Sets the close range speed "modifier" for which the parent {@link Agent}

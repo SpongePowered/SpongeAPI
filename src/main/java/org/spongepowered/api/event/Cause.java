@@ -145,7 +145,7 @@ public final class Cause implements Iterable<Object> {
         java.util.Objects.requireNonNull(ctx, "Context");
         final Object[] objects = new Object[causes.size()];
         int index = 0;
-        for (final Object cause: causes) {
+        for (final Object cause : causes) {
             objects[index++] = java.util.Objects.requireNonNull(cause, "Null cause element!");
         }
         this.cause = objects;
@@ -157,7 +157,7 @@ public final class Cause implements Iterable<Object> {
      *
      * @return The event context
      */
-    public EventContext getContext() {
+    public EventContext context() {
         return this.context;
     }
 
@@ -248,8 +248,7 @@ public final class Cause implements Iterable<Object> {
     }
 
     /**
-     * Returns whether the target class matches any object of this {@link Cause}
-     * .
+     * Returns whether the target class matches any object of this {@link Cause}.
      * 
      * @param target The class of the target type
      * @return True if found, false otherwise

@@ -45,7 +45,7 @@ public interface InteractItemEvent extends InteractEvent {
      *
      * @return The item being interacted with
      */
-    ItemStackSnapshot getItemStack();
+    ItemStackSnapshot itemStack();
 
     /**
      * Called when a player swings its hand in the air.

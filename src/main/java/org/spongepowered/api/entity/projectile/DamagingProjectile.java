@@ -36,6 +36,7 @@ public interface DamagingProjectile extends Projectile {
 
     /**
      * {@link Keys#ATTACK_DAMAGE}
+     *
      * @return The attack damage
      */
     default Value.Mutable<Double> attackDamage() {

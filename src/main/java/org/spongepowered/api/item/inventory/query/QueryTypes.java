@@ -37,10 +37,10 @@ import org.spongepowered.api.item.inventory.query.QueryType.NoParam;
 import org.spongepowered.api.item.inventory.query.QueryType.OneParam;
 import org.spongepowered.api.item.inventory.query.QueryType.TwoParam;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.math.vector.Vector2i;
 
 import java.util.function.Predicate;
@@ -82,7 +82,7 @@ public final class QueryTypes {
     /**
      * Tests for a match of the type of item contained in each slot.
      *
-     * @see ItemStack#getType()
+     * @see ItemStack#type ()
      */
     public static final DefaultedRegistryReference<OneParam<ItemType>> ITEM_TYPE = QueryTypes.oneParamKey(ResourceKey.sponge("item_type"));
 
@@ -122,14 +122,14 @@ public final class QueryTypes {
     }
 
     private static DefaultedRegistryReference<QueryType.NoParam> noParamKey(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.QUERY_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.QUERY_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 
     private static <T1> DefaultedRegistryReference<QueryType.OneParam<T1>> oneParamKey(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.QUERY_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.QUERY_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 
     private static <T1, T2> DefaultedRegistryReference<QueryType.TwoParam<T1, T2>> twoParamKey(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.QUERY_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.QUERY_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

@@ -42,21 +42,21 @@ public interface TransactionResult {
      *
      * @return The {@link Account}
      */
-    Account getAccount();
+    Account account();
 
     /**
      * Gets the {@link Currency} involved in the transaction.
      *
      * @return The {@link Currency}
      */
-    Currency getCurrency();
+    Currency currency();
 
     /**
      * Gets the amount of the {@link Currency} involved in the transaction.
      *
      * @return The amount
      */
-    BigDecimal getAmount();
+    BigDecimal amount();
 
     /**
      * Returns the set of {@link Context}s used to perform the
@@ -64,19 +64,19 @@ public interface TransactionResult {
      *
      * @return optional set of contexts
      */
-    Set<Context> getContexts();
+    Set<Context> contexts();
 
     /**
      * Gets the {@link ResultType} of this transaction.
      *
      * @return resultType
      */
-    ResultType getResult();
+    ResultType result();
 
     /**
      * Returns the {@link TransactionType} of this result.
      *
      * @return type of Transaction
      */
-    TransactionType getType();
+    TransactionType type();
 }

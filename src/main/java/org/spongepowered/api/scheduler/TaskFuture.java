@@ -39,5 +39,5 @@ public interface TaskFuture<V> extends Future<V> {
      *
      * @return The backing scheduled task
      */
-    ScheduledTask getTask();
+    ScheduledTask task();
 }

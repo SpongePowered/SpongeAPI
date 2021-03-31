@@ -43,14 +43,14 @@ public interface CollideBlockEvent extends CollideEvent {
      *
      * @return The location
      */
-    ServerLocation getTargetLocation();
+    ServerLocation targetLocation();
 
     /**
      * Gets the target {@link BlockState} being interacted with.
      *
      * @return The block state
      */
-    BlockState getTargetBlock();
+    BlockState targetBlock();
 
     /**
      * Gets the target "side" of the {@link BlockState} being interacted with
@@ -59,7 +59,7 @@ public interface CollideBlockEvent extends CollideEvent {
      * @return An optional containing the side being interacted with or
      *     {@link Direction#NONE}
      */
-    Direction getTargetSide();
+    Direction targetSide();
 
     /**
      * Fired when an {@link Entity} impacts another {@link BlockSnapshot}.

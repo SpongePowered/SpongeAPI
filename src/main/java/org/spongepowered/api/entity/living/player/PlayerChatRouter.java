@@ -34,7 +34,7 @@ import net.kyori.adventure.text.Component;
 public interface PlayerChatRouter {
     static PlayerChatRouter toAudience(final Audience audience) {
         return (player, message) -> audience.sendMessage(player, message, MessageType.CHAT);
-    };
+    }
 
     void chat(final Player player, final Component message);
 }

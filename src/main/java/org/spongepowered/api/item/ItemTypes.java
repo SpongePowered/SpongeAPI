@@ -2221,6 +2221,6 @@ public final class ItemTypes {
     }
 
     private static DefaultedRegistryReference<ItemType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.ITEM_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.ITEM_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

@@ -28,7 +28,6 @@ import org.spongepowered.api.event.item.inventory.ChangeInventoryEvent;
 import org.spongepowered.api.event.item.inventory.DropItemEvent;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Slot;
-import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 
 import java.util.Optional;
 
@@ -38,8 +37,8 @@ import java.util.Optional;
 public interface ClickContainerEvent extends ChangeInventoryEvent, InteractContainerEvent {
 
     @Override
-    default Container getInventory() {
-        return this.getContainer();
+    default Container inventory() {
+        return this.container();
     }
 
     /**
@@ -153,7 +152,7 @@ public interface ClickContainerEvent extends ChangeInventoryEvent, InteractConta
          *
          * @return The requested recipe.
          */
-        org.spongepowered.api.item.recipe.Recipe getRecipe();
+        org.spongepowered.api.item.recipe.Recipe recipe();
 
         /**
          * Fires when the Client requests a recipe to be crafted once.
@@ -170,7 +169,7 @@ public interface ClickContainerEvent extends ChangeInventoryEvent, InteractConta
      * A number press swapping the hotbar slot with the slot the mouse hovers over.
      */
     interface NumberPress extends ClickContainerEvent {
-        int getNumber();
+        int number();
     }
 
     /**
@@ -180,5 +179,5 @@ public interface ClickContainerEvent extends ChangeInventoryEvent, InteractConta
      *
      * @return The primary interaction Slot
      */
-    Optional<Slot> getSlot();
+    Optional<Slot> slot();
 }

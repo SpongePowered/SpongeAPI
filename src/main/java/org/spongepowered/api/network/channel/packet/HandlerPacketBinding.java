@@ -41,6 +41,7 @@ public interface HandlerPacketBinding<P extends Packet> extends PacketBinding<P>
      *
      * @param side The side the handler should be used on
      * @param handler The handler to add
+     * @param <C> The connection type
      * @return This binding, for chaining
      */
     <C extends EngineConnection> PacketBinding<P> addHandler(EngineConnectionSide<C> side, PacketHandler<? super P, ? super C> handler);
@@ -52,6 +53,7 @@ public interface HandlerPacketBinding<P extends Packet> extends PacketBinding<P>
      *
      * @param connectionType The connection type the handler should be used by
      * @param handler The handler to add
+     * @param <C> The connection type
      * @return This binding, for chaining
      */
     <C extends EngineConnection> PacketBinding<P> addHandler(Class<C> connectionType, PacketHandler<? super P, ? super C> handler);
@@ -71,6 +73,7 @@ public interface HandlerPacketBinding<P extends Packet> extends PacketBinding<P>
      *
      * @param side The side the handler should be removes from
      * @param handler The handler to remove
+     * @param <C> The connection type
      * @return This binding, for chaining
      */
     <C extends EngineConnection> PacketBinding<P> removeHandler(EngineConnectionSide<C> side, PacketHandler<? super P, ? super C> handler);
@@ -80,6 +83,7 @@ public interface HandlerPacketBinding<P extends Packet> extends PacketBinding<P>
      *
      * @param connectionType The connection type the handler should be removes from
      * @param handler The handler to remove
+     * @param <C> The connection type
      * @return This binding, for chaining
      */
     <C extends EngineConnection> PacketBinding<P> removeHandler(Class<C> connectionType, PacketHandler<? super P, ? super C> handler);

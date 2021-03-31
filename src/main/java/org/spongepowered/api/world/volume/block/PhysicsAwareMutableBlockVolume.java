@@ -32,14 +32,44 @@ import org.spongepowered.math.vector.Vector3i;
 
 public interface PhysicsAwareMutableBlockVolume<P extends PhysicsAwareMutableBlockVolume<P>> extends BlockVolume.Mutable<P> {
 
+    /**
+     * {@inheritDoc}
+     *
+     * Additionally, this performs what's considered to be "default" placement
+     * by a {@link org.spongepowered.api.entity.living.player.Player} such that
+     * neighboring blocks are affected, light is updated, pathfinding awareness
+     * is notified, etc. see {@link BlockChangeFlags#DEFAULT_PLACEMENT} for
+     * more information, and see {@link BlockChangeFlag} for details on the
+     * modifiers and what they may change.
+     *
+     * @param position The position
+     * @param block The block
+     * @return True if the block change was not cancelled
+     */
     @Override
     default boolean setBlock(final Vector3i position, final BlockState block) {
-        return this.setBlock(position.getX(), position.getY(), position.getZ(), block, BlockChangeFlags.ALL);
+        return this.setBlock(position.getX(), position.getY(), position.getZ(), block, BlockChangeFlags.DEFAULT_PLACEMENT);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Additionally, this performs what's considered to be "default" placement
+     * by a {@link org.spongepowered.api.entity.living.player.Player} such that
+     * neighboring blocks are affected, light is updated, pathfinding awareness
+     * is notified, etc. see {@link BlockChangeFlags#DEFAULT_PLACEMENT} for
+     * more information, and see {@link BlockChangeFlag} for details on the
+     * modifiers and what they may change.
+     *
+     * @param x The X position
+     * @param y The Y position
+     * @param z The Z position
+     * @param block The block
+     * @return True if the block change was not cancelled
+     */
     @Override
     default boolean setBlock(final int x, final int y, final int z, final BlockState block) {
-        return this.setBlock(x, y, z, block, BlockChangeFlags.ALL);
+        return this.setBlock(x, y, z, block, BlockChangeFlags.DEFAULT_PLACEMENT);
     }
 
     /**

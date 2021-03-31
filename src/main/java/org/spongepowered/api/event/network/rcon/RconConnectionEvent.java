@@ -38,7 +38,7 @@ public interface RconConnectionEvent extends Event {
      *
      * @return The {@link RconConnection} responsible for the event
      */
-    RconConnection getConnection();
+    RconConnection connection();
 
     /**
      * Called when a RCON client is attempting to connect.

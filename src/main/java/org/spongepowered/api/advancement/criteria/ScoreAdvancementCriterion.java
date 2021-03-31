@@ -28,7 +28,7 @@ import org.spongepowered.api.Sponge;
 
 /**
  * Represents a {@link AdvancementCriterion} that requires a
- * specific score ({@link #getGoal()}) to be achieved.
+ * specific score ({@link #goal()}) to be achieved.
  */
 public interface ScoreAdvancementCriterion extends AdvancementCriterion {
 
@@ -39,7 +39,7 @@ public interface ScoreAdvancementCriterion extends AdvancementCriterion {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -47,7 +47,7 @@ public interface ScoreAdvancementCriterion extends AdvancementCriterion {
      *
      * @return The goal value
      */
-    int getGoal();
+    int goal();
 
     /**
      * A builder to create {@link ScoreAdvancementCriterion}s.

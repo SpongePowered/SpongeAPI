@@ -60,7 +60,7 @@ public interface SubjectCollection {
      *
      * @return The identifier
      */
-    String getIdentifier();
+    String identifier();
 
     /**
      * Returns a predicate which determines whether or not a given identifier is
@@ -72,7 +72,7 @@ public interface SubjectCollection {
      *
      * @return The predicate
      */
-    Predicate<String> getIdentifierValidityPredicate();
+    Predicate<String> identifierValidityPredicate();
 
     /**
      * Loads and returns a subject with the given identifier.
@@ -107,7 +107,7 @@ public interface SubjectCollection {
      * @param identifier The identifier
      * @return A subject for the given identifier
      */
-    Optional<Subject> getSubject(String identifier);
+    Optional<Subject> subject(String identifier);
 
     /**
      * Returns whether a subject with the given identifier currently exists.
@@ -124,7 +124,7 @@ public interface SubjectCollection {
      * Gets a map of subjects from the provided set of identifiers.
      *
      * <p>If any of the identifiers do not pass the collections
-     * {@link #getIdentifierValidityPredicate()}, a subject will not be returned
+     * {@link #identifierValidityPredicate()}, a subject will not be returned
      * for that identifier.</p>
      *
      * @param identifiers A set of identifiers to get subjects for
@@ -139,7 +139,7 @@ public interface SubjectCollection {
      * @return A collection containing the subjects currently loaded into this
      *         subject collection.
      */
-    Collection<Subject> getLoadedSubjects();
+    Collection<Subject> loadedSubjects();
 
     /**
      * Gets a set of Subject identifiers being stored in the collection. This
@@ -157,7 +157,7 @@ public interface SubjectCollection {
      * @return A set containing the identifiers of every Subject in this
      *         collection
      */
-    CompletableFuture<Set<String>> getAllIdentifiers();
+    CompletableFuture<Set<String>> allIdentifiers();
 
     /**
      * Creates a new subject reference to represent the expressed subject.
@@ -198,7 +198,7 @@ public interface SubjectCollection {
     default CompletableFuture<Void> applyToAll(Consumer<Subject> action) {
         Objects.requireNonNull(action, "action");
         return CompletableFuture.runAsync(() -> {
-            Set<String> identifiers = this.getAllIdentifiers().join();
+            final Set<String> identifiers = this.allIdentifiers().join();
             this.applyToAll(action, identifiers).join();
         });
     }
@@ -226,9 +226,9 @@ public interface SubjectCollection {
         Objects.requireNonNull(identifiers, "identifiers");
         return CompletableFuture.runAsync(() -> {
             for (String id : identifiers) {
-                Subject subject = this.loadSubject(id).join();
+                final Subject subject = this.loadSubject(id).join();
                 action.accept(subject);
-                this.suggestUnload(subject.getIdentifier());
+                this.suggestUnload(subject.identifier());
             }
         });
     }
@@ -238,12 +238,12 @@ public interface SubjectCollection {
      * set.
      *
      * <p>This method <strong>DOES NOT</strong> consider inheritance, and will only query
-     * the data set to the subjects {@link Subject#getSubjectData()}. Transient
+     * the data set to the subjects {@link Subject#subjectData()}. Transient
      * data is not considered.</p>
      *
      * <p>As no context is passed, it is up to the implementation to decide
      * which contexts to use. When available,
-     * {@link Subject#getActiveContexts()} is used for the lookup. Otherwise, it
+     * {@link Subject#activeContexts()} is used for the lookup. Otherwise, it
      * is likely that {@link SubjectData#GLOBAL_CONTEXT} will be
      * used.</p>
      *
@@ -251,14 +251,14 @@ public interface SubjectCollection {
      * @return A reference to any subject known to have this permission
      *         set, and the value this permission is set to
      */
-    CompletableFuture<Map<SubjectReference, Boolean>> getAllWithPermission(String permission);
+    CompletableFuture<Map<SubjectReference, Boolean>> allWithPermission(String permission);
 
     /**
      * Return the identifiers of all known subjects with the given permission
      * set.
      *
      * <p>This method <strong>DOES NOT</strong> consider inheritance, and will only query
-     * the data set to the subjects {@link Subject#getSubjectData()}. Transient
+     * the data set to the subjects {@link Subject#subjectData()}. Transient
      * data is not considered.</p>
      *
      * @param contexts The context combination to check for permissions in
@@ -266,18 +266,18 @@ public interface SubjectCollection {
      * @return A reference to any subject known to have this permission
      *         set, and the value this permission is set to
      */
-    CompletableFuture<Map<SubjectReference, Boolean>> getAllWithPermission(Set<Context> contexts, String permission);
+    CompletableFuture<Map<SubjectReference, Boolean>> allWithPermission(Set<Context> contexts, String permission);
 
     /**
      * Return all loaded subjects with the given permission set.
      *
      * <p>This method <strong>DOES NOT</strong> consider inheritance, and will only query
-     * the data set to the subjects {@link Subject#getSubjectData()}. Transient
+     * the data set to the subjects {@link Subject#subjectData()}. Transient
      * data is not considered.</p>
      *
      * <p>As no context is passed, it is up to the implementation to decide
      * which contexts to use. When available,
-     * {@link Subject#getActiveContexts()} is used for the lookup. Otherwise, it
+     * {@link Subject#activeContexts()} is used for the lookup. Otherwise, it
      * is likely that {@link SubjectData#GLOBAL_CONTEXT} will be
      * used.</p>
      *
@@ -285,13 +285,13 @@ public interface SubjectCollection {
      * @return A map containing any subject known to have this permission set,
      *         and the value this permission is set to
      */
-    Map<Subject, Boolean> getLoadedWithPermission(String permission);
+    Map<Subject, Boolean> loadedWithPermission(String permission);
 
     /**
      * Return all loaded subjects with the given permission set.
      *
      * <p>This method <strong>DOES NOT</strong> consider inheritance, and will only query
-     * the data set to the subjects {@link Subject#getSubjectData()}. Transient
+     * the data set to the subjects {@link Subject#subjectData()}. Transient
      * data is not considered.</p>
      *
      * @param contexts The context combination to check for permissions in
@@ -299,7 +299,7 @@ public interface SubjectCollection {
      * @return A map containing any subject known to have this permission set,
      *         and the value this permission is set to
      */
-    Map<Subject, Boolean> getLoadedWithPermission(Set<Context> contexts, String permission);
+    Map<Subject, Boolean> loadedWithPermission(Set<Context> contexts, String permission);
 
     /**
      * Gets the subject holding data that is applied by default to all
@@ -307,14 +307,14 @@ public interface SubjectCollection {
      *
      * <p>This subject is at the root of all inheritance trees for subjects in
      * this collection, but at a higher priority chan defaults expressed to
-     * {@link PermissionService#getDefaults()}.</p>
+     * {@link PermissionService#defaults()}.</p>
      *
      * <p>Note: This data may be persisted, so plugins that add
      * permissions to this subject must take care to not override
      * permissions already set or modified.</p>
      *
      * <p>It is also recommended to use
-     * {@link Subject#getTransientSubjectData()} where possible to avoid
+     * {@link Subject#transientSubjectData()} where possible to avoid
      * persisting unnecessary data.</p>
      *
      * <p>Assigning default permissions should be used sparingly, and by
@@ -323,7 +323,7 @@ public interface SubjectCollection {
      *
      * @return The subject holding defaults for this collection
      */
-    Subject getDefaults();
+    Subject defaults();
 
     /**
      * Indicate that a certain subject may be unloaded by the implementation.

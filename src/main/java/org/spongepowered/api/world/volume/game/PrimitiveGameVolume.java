@@ -39,21 +39,21 @@ import java.util.Objects;
  */
 public interface PrimitiveGameVolume extends BlockVolume, BlockEntityVolume, LocationBaseDataHolder {
 
-    default int getMaximumLight() {
+    default int maximumLight() {
         return 15;
     }
 
-    default int getEmittedLight(Vector3i position) {
+    default int emittedLight(Vector3i position) {
         Objects.requireNonNull(position);
 
         return this.getInt(position, Keys.LIGHT_EMISSION).orElse(0);
     }
 
-    default int getEmittedLight(int x, int y, int z) {
+    default int emittedLight(int x, int y, int z) {
         return this.getInt(x, y, z, Keys.LIGHT_EMISSION).orElse(0);
     }
 
-    default int getHeight() {
+    default int height() {
         return 256;
     }
 

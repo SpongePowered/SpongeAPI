@@ -107,8 +107,8 @@ public abstract class AbstractDamageSourceBuilder<T extends DamageSource, B exte
         this.explosion = value.isExplosive();
         this.creative = value.doesAffectCreative();
         this.magical = value.isMagic();
-        this.exhaustion = value.getExhaustion();
-        this.damageType = value.getType();
+        this.exhaustion = value.exhaustion();
+        this.damageType = value.type();
         return (B) this;
     }
 

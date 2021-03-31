@@ -32,6 +32,7 @@ public interface TraderLlama extends LlamaLike {
 
     /**
      * {@link Keys#DESPAWN_DELAY}
+     *
      * @return The delay before this llama will despawn
      */
     default Value.Mutable<Ticks> despawnDelay() {

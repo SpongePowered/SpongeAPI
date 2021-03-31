@@ -39,13 +39,13 @@ public interface DragonPhase {
      *
      * @return The type of this phase
      */
-    DragonPhaseType getType();
+    DragonPhaseType type();
 
     /**
      * Gets the position the dragon is flying towards.
      *
      * @return The target position
      */
-    Optional<Vector3d> getTargetPosition();
+    Optional<Vector3d> targetPosition();
 
 }

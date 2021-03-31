@@ -33,15 +33,15 @@ import java.util.Optional;
 public interface ScoreCriterionProgress extends CriterionProgress {
 
     @Override
-    ScoreAdvancementCriterion getCriterion();
+    ScoreAdvancementCriterion criterion();
 
     /**
      * Gets the goal value.
      *
      * @return The goal value
      */
-    default int getGoal() {
-        return this.getCriterion().getGoal();
+    default int goal() {
+        return this.criterion().goal();
     }
 
     /**
@@ -49,11 +49,11 @@ public interface ScoreCriterionProgress extends CriterionProgress {
      *
      * @return The score value
      */
-    int getScore();
+    int score();
 
     /**
      * Adds the target score value, the score cannot exceed
-     * the goal value ({@link #getGoal()}) or be under zero.
+     * the goal value ({@link #goal()}) or be under zero.
      * The achieved time will be returned if the goal is met.
      *
      * @param score The score to set
@@ -63,7 +63,7 @@ public interface ScoreCriterionProgress extends CriterionProgress {
 
     /**
      * Adds the target score value, the score cannot exceed
-     * the goal value ({@link #getGoal()}). The achieved time
+     * the goal value ({@link #goal()}). The achieved time
      * will be returned if the goal is met.
      *
      * @param score The score to add

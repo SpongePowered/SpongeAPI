@@ -61,12 +61,12 @@ public abstract class AbstractEntityDamageSource implements EntityDamageSource {
     }
 
     @Override
-    public Entity getSource() {
+    public Entity source() {
         return this.source;
     }
 
     @Override
-    public DamageType getType() {
+    public DamageType type() {
         return this.apiDamageType;
     }
 
@@ -101,7 +101,7 @@ public abstract class AbstractEntityDamageSource implements EntityDamageSource {
     }
 
     @Override
-    public double getExhaustion() {
+    public double exhaustion() {
         return this.exhaustion;
     }
 

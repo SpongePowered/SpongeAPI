@@ -34,9 +34,10 @@ import org.spongepowered.api.data.type.DyeColor;
  * Not all {@link MapDecorationType MapDecorationTypes} are {@link MapDecorationBannerType}.
  */
 public interface MapDecorationBannerType extends MapDecorationType {
-	/**
-	 * Gets the corresponding {@link DyeColor} that this banner decoration type is.
-	 * @return The {@link DyeColor} that this banner decoration type is.
-	 */
-	DyeColor bannerColor();
+    /**
+     * Gets the corresponding {@link DyeColor} that this banner decoration type is.
+     *
+     * @return The {@link DyeColor} that this banner decoration type is.
+     */
+    DyeColor bannerColor();
 }

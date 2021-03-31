@@ -63,6 +63,7 @@ import org.spongepowered.api.data.type.HandPreference;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.InstrumentType;
+import org.spongepowered.api.data.type.ItemTier;
 import org.spongepowered.api.data.type.LlamaType;
 import org.spongepowered.api.data.type.MatterType;
 import org.spongepowered.api.data.type.MooshroomType;
@@ -83,7 +84,6 @@ import org.spongepowered.api.data.type.SpellType;
 import org.spongepowered.api.data.type.SpellTypes;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
-import org.spongepowered.api.data.type.ItemTier;
 import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.type.WireAttachmentType;
@@ -224,8 +224,8 @@ import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.TypeTokens;
 import org.spongepowered.api.util.orientation.Orientation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
-import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.explosion.Explosion;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.weather.WeatherType;
 import org.spongepowered.api.world.weather.WeatherTypes;
@@ -911,7 +911,7 @@ public final class Keys {
      *
      * <p>The offered game profile will be set exactly, unlike in vanilla where the game profile will
      * be resolved automatically for properties (including textures). You can obtain a game profile with
-     * properties using {@link org.spongepowered.api.profile.GameProfileManager#getProfile}.</p>
+     * properties using {@link org.spongepowered.api.profile.GameProfileManager#profile}.</p>
      */
     public static final Key<Value<GameProfile>> GAME_PROFILE = Keys.key(ResourceKey.sponge("game_profile"), TypeTokens.GAME_PROFILE_VALUE_TOKEN);
 
@@ -1011,7 +1011,7 @@ public final class Keys {
      * }</li></ul>
      *
      * <p>Note that the pitch will be the same x value returned by
-     * {@link Entity#getRotation()} and Minecraft does not currently support
+     * {@link Entity#rotation ()} and Minecraft does not currently support
      * head roll so the z value will always be zero.</p>
      */
     public static final Key<Value<Vector3d>> HEAD_ROTATION = Keys.key(ResourceKey.sponge("head_rotation"), TypeTokens.VECTOR_3D_VALUE_TOKEN);
@@ -2608,7 +2608,6 @@ public final class Keys {
      *
      * <p>Vanishing an {@link Entity} ridden by other entities (see
      * {@link #PASSENGERS} will cause problems.</p>
-     * <p>
      */
     public static final Key<Value<Boolean>> VANISH = Keys.key(ResourceKey.sponge("vanish"), TypeTokens.BOOLEAN_VALUE_TOKEN);
 

@@ -37,7 +37,7 @@ import java.util.Optional;
 public interface FlatGeneratorConfig extends ChunkGeneratorConfig {
 
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class).reset();
+        return Sponge.game().builderProvider().provide(Builder.class).reset();
     }
 
     List<LayerConfig> layers();

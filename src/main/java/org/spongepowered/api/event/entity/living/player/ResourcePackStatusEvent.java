@@ -46,21 +46,21 @@ public interface ResourcePackStatusEvent extends Event {
      *
      * @return The player
      */
-    ServerPlayer getPlayer();
+    ServerPlayer player();
 
     /**
      * Gets the pack that this status corresponds to.
      *
      * @return The pack that this status corresponds to.
      */
-    ResourcePack getPack();
+    ResourcePack pack();
 
     /**
      * Gets the status of the sent pack.
      *
      * @return The status of the sent pack.
      */
-    ResourcePackStatus getStatus();
+    ResourcePackStatus status();
 
     /**
      * The different possible responses the client can have.
@@ -81,7 +81,7 @@ public interface ResourcePackStatusEvent extends Event {
          * The client failed to download the resource pack.
          *
          * <p>In some client versions, such as 1.8.0, this may only be sent when
-         * the resource pack URL does not end in <tt>.zip</tt>. Otherwise,
+         * the resource pack URL does not end in {@code .zip}. Otherwise,
          * {@link #SUCCESSFULLY_LOADED} will be sent.</p>
          */
         FAILED(false),

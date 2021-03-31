@@ -63,6 +63,6 @@ public interface RegisterRegistryEvent extends LifecycleEvent {
 
     interface WorldScoped extends RegisterRegistryEvent {
 
-        ResourceKey getWorldKey();
+        ResourceKey worldKey();
     }
 }

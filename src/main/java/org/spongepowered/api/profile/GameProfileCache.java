@@ -75,7 +75,7 @@ public interface GameProfileCache {
      * @return The profile, if present, or {@link Optional#empty()} if
      *     the cache did not contain a profile with the provided id
      */
-    Optional<GameProfile> getById(UUID uniqueId);
+    Optional<GameProfile> byId(UUID uniqueId);
 
     /**
      * Gets {@link GameProfile}s in bulk by their unique id.
@@ -83,7 +83,7 @@ public interface GameProfileCache {
      * @param uniqueIds The unique ids
      * @return A collection of successfully found up profiles
      */
-    Map<UUID, Optional<GameProfile>> getByIds(Iterable<UUID> uniqueIds);
+    Map<UUID, Optional<GameProfile>> byIds(Iterable<UUID> uniqueIds);
 
     /**
      * Gets a {@link GameProfile} from this cache by its name.
@@ -92,7 +92,7 @@ public interface GameProfileCache {
      * @return The profile, if present, or {@link Optional#empty()} if
      *     the cache did not contain a profile with the provided name
      */
-    Optional<GameProfile> getByName(String name);
+    Optional<GameProfile> byName(String name);
 
     /**
      * Gets {@link GameProfile}s in bulk by their name.
@@ -100,7 +100,7 @@ public interface GameProfileCache {
      * @param names The names
      * @return A collection of successfully found up profiles
      */
-    Map<String, Optional<GameProfile>> getByNames(Iterable<String> names);
+    Map<String, Optional<GameProfile>> byNames(Iterable<String> names);
 
     /**
      * Gets a collection of all cached {@link GameProfile}s.

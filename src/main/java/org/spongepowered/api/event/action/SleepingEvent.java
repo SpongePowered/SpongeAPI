@@ -41,14 +41,14 @@ public interface SleepingEvent extends Event {
      *
      * @return The humanoid
      */
-    Humanoid getHumanoid();
+    Humanoid humanoid();
 
     /**
      * Gets the {@link BlockSnapshot} of the bed being used to sleep.
      *
      * @return The location of the bed
      */
-    BlockSnapshot getBed();
+    BlockSnapshot bed();
 
     interface Pre extends SleepingEvent, Cancellable {}
 
@@ -68,14 +68,14 @@ public interface SleepingEvent extends Event {
          *
          * @return The location
          */
-        ServerLocation getFromLocation();
+        ServerLocation fromLocation();
 
         /**
          * Gets the {@link ServerLocation location} the {@link Humanoid} will wake up at.
          *
          * @return The location
          */
-        ServerLocation getToLocation();
+        ServerLocation toLocation();
 
         /**
          * Sets the {@link ServerLocation location} the {@link Humanoid} will wake up at.
@@ -89,14 +89,14 @@ public interface SleepingEvent extends Event {
          *
          * @return The rotation
          */
-        Vector3d getFromRotation();
+        Vector3d fromRotation();
 
         /**
          * Gets the {@link Vector3d rotation} the {@link Humanoid} will wake up to.
          *
          * @return The rotation
          */
-        Vector3d getToRotation();
+        Vector3d toRotation();
 
         /**
          * Sets the {@link Vector3d rotation} the {@link Humanoid} will wake up to.

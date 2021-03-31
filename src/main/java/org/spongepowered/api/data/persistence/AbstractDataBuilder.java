@@ -68,7 +68,7 @@ public abstract class AbstractDataBuilder<T extends DataSerializable> implements
         if (container.contains(Queries.CONTENT_VERSION)) {
             final int contentVersion = container.getInt(Queries.CONTENT_VERSION).get();
             if (contentVersion < this.supportedVersion) {
-                Optional<DataContentUpdater> updater = Sponge.getDataManager().getWrappedContentUpdater(this.requiredClass, contentVersion,
+                final Optional<DataContentUpdater> updater = Sponge.dataManager().wrappedContentUpdater(this.requiredClass, contentVersion,
                         this.supportedVersion);
                 if (!updater.isPresent()) {
                     throw new InvalidDataException("Could not get an updater for " + this.requiredClass.getName()

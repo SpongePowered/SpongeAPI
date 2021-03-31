@@ -43,9 +43,9 @@ public interface Location<W extends World<W, L>, L extends Location<W, L>> {
      * if the world isn't available.
      *
      * @return The underlying world
-     * @see #getWorldIfAvailable()
+     * @see #worldIfAvailable()
      */
-    W getWorld();
+    W world();
 
     /**
      * Gets the underlying {@link World} if it's available. A {@link World}
@@ -54,7 +54,7 @@ public interface Location<W extends World<W, L>, L extends Location<W, L>> {
      * @return The underlying world, if available
      * @see #isAvailable()
      */
-    Optional<W> getWorldIfAvailable();
+    Optional<W> worldIfAvailable();
 
     /**
      * Gets whether this location is available. A location is
@@ -78,70 +78,70 @@ public interface Location<W extends World<W, L>, L extends Location<W, L>> {
      *
      * @return The underlying position
      */
-    Vector3d getPosition();
+    Vector3d position();
 
     /**
      * Gets the underlying block position.
      *
      * @return The underlying block position
      */
-    Vector3i getBlockPosition();
+    Vector3i blockPosition();
 
     /**
      * Gets the underlying chunk position.
      *
      * @return The underlying chunk position
      */
-    Vector3i getChunkPosition();
+    Vector3i chunkPosition();
 
     /**
      * Gets the underlying biome position.
      *
      * @return The underlying biome position
      */
-    Vector3i getBiomePosition();
+    Vector3i biomePosition();
 
     /**
      * Gets the X component of this instance's position.
      *
      * @return The x component
      */
-    double getX();
+    double x();
 
     /**
      * Gets the Y component of this instance's position.
      *
      * @return The y component
      */
-    double getY();
+    double y();
 
     /**
      * Gets the Z component of this instance's position.
      *
      * @return The z component
      */
-    double getZ();
+    double z();
 
     /**
      * Gets the floored X component of this instance's position.
      *
      * @return The floored x component
      */
-    int getBlockX();
+    int blockX();
 
     /**
      * Gets the floored Y component of this instance's position.
      *
      * @return The floored y component
      */
-    int getBlockY();
+    int blockY();
 
     /**
      * Gets the floored Z component of this instance's position.
      *
      * @return The floored z component
      */
-    int getBlockZ();
+    int blockZ();
 
     default Optional<ServerLocation> onServer() {
         return Optional.ofNullable(this instanceof ServerLocation ? (ServerLocation) this : null);
@@ -267,11 +267,11 @@ public interface Location<W extends World<W, L>, L extends Location<W, L>> {
      *
      * @return The biome at this location
      */
-    Biome getBiome();
+    Biome biome();
 
     /**
      * Returns true if this location has a block at its
-     * {@link #getBlockPosition()}.
+     * {@link #blockPosition()}.
      *
      * @return Whether or not there is a block at this location.
      */
@@ -282,15 +282,15 @@ public interface Location<W extends World<W, L>, L extends Location<W, L>> {
      *
      * @return The block state
      */
-    BlockState getBlock();
+    BlockState block();
 
     /**
      * Gets the {@link BlockType} for this location.
      *
      * @return The block type
      */
-    default BlockType getBlockType() {
-        return this.getBlock().getType();
+    default BlockType blockType() {
+        return this.block().type();
     }
 
     /**
@@ -298,7 +298,7 @@ public interface Location<W extends World<W, L>, L extends Location<W, L>> {
      *
      * @return The fluid state
      */
-    FluidState getFluid();
+    FluidState fluid();
 
     /**
      * Checks for whether the block at this location contains block entity data.
@@ -313,7 +313,7 @@ public interface Location<W extends World<W, L>, L extends Location<W, L>> {
      *
      * @return The associated block entity, if available
      */
-    Optional<? extends BlockEntity> getBlockEntity();
+    Optional<? extends BlockEntity> blockEntity();
 
     /**
      * Replace the block at this location with a new state.

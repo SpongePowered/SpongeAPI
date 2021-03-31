@@ -118,7 +118,7 @@ public interface Parameter {
      * @return The {@link Key}
      */
     static <T> Key<T> key(@NonNull final String key, @NonNull final TypeToken<T> typeToken) {
-        return Sponge.getGame().getBuilderProvider().provide(Key.Builder.class).build(key, typeToken);
+        return Sponge.game().builderProvider().provide(Key.Builder.class).build(key, typeToken);
     }
 
     /**
@@ -132,7 +132,7 @@ public interface Parameter {
      */
     static <T> Key<T> key(@NonNull final String key, @NonNull final Class<T> type) {
         Types.requireCompleteParameters(type);
-        return Sponge.getGame().getBuilderProvider().provide(Key.Builder.class).build(key, type);
+        return Sponge.game().builderProvider().provide(Key.Builder.class).build(key, type);
     }
 
     /**
@@ -146,7 +146,7 @@ public interface Parameter {
      * @return The {@link Value.Builder}
      */
     static <T> Value.Builder<T> builder(@NonNull final Class<T> valueClass) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createParameterBuilder(valueClass);
+        return Sponge.game().factoryProvider().provide(Factory.class).createParameterBuilder(valueClass);
     }
 
     /**
@@ -157,7 +157,7 @@ public interface Parameter {
      * @return The {@link Value.Builder}
      */
     static <T> Value.Builder<T> builder(@NonNull final TypeToken<T> typeToken) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createParameterBuilder(typeToken);
+        return Sponge.game().factoryProvider().provide(Factory.class).createParameterBuilder(typeToken);
     }
 
     /**
@@ -172,7 +172,7 @@ public interface Parameter {
      * @return The {@link Value.Builder}
      */
     static <T> Value.Builder<T> builder(@NonNull final Class<T> valueClass, @NonNull final ValueParameter<? extends T> parameter) {
-        return Parameter.builder(valueClass).parser(parameter);
+        return Parameter.builder(valueClass).addParser(parameter);
     }
 
     /**
@@ -184,7 +184,7 @@ public interface Parameter {
      * @return The {@link Value.Builder}
      */
     static <T> Value.Builder<T> builder(@NonNull final TypeToken<T> typeToken, @NonNull final ValueParameter<? extends T> parameter) {
-        return Parameter.builder(typeToken).parser(parameter);
+        return Parameter.builder(typeToken).addParser(parameter);
     }
 
     /**
@@ -226,11 +226,11 @@ public interface Parameter {
      * @return The {@link Subcommand} for use in a {@link Parameter} chain
      */
     static Subcommand subcommand(final Command.@NonNull Parameterized subcommand, @NonNull final String alias, final String @NonNull... aliases) {
-        final Subcommand.Builder builder = Sponge.getGame().getBuilderProvider().provide(Subcommand.Builder.class)
-                .setSubcommand(subcommand)
-                .alias(alias);
+        final Subcommand.Builder builder = Sponge.game().builderProvider().provide(Subcommand.Builder.class)
+                .subcommand(subcommand)
+                .addAlias(alias);
         for (final String a : aliases) {
-            builder.alias(a);
+            builder.addAlias(a);
         }
 
         return builder.build();
@@ -246,7 +246,7 @@ public interface Parameter {
      * @return The {@link Parameter.FirstOfBuilder} to continue chaining
      */
     static Parameter.FirstOfBuilder firstOfBuilder(@NonNull final Parameter parameter) {
-        return Sponge.getGame().getBuilderProvider().provide(FirstOfBuilder.class).or(parameter);
+        return Sponge.game().builderProvider().provide(FirstOfBuilder.class).or(parameter);
     }
 
     /**
@@ -261,7 +261,7 @@ public interface Parameter {
      * @return The {@link Parameter}
      */
     static Parameter firstOf(@NonNull final Parameter first, @NonNull final Parameter second, final Parameter @NonNull... parameters) {
-        return Sponge.getGame().getBuilderProvider().provide(FirstOfBuilder.class).or(first).or(second).orFirstOf(parameters).build();
+        return Sponge.game().builderProvider().provide(FirstOfBuilder.class).or(first).or(second).orFirstOf(parameters).build();
     }
 
     /**
@@ -273,7 +273,7 @@ public interface Parameter {
      * @return The {@link Parameter}
      */
     static Parameter firstOf(@NonNull final Iterable<Parameter> parameters) {
-        return Sponge.getGame().getBuilderProvider().provide(FirstOfBuilder.class).orFirstOf(parameters).build();
+        return Sponge.game().builderProvider().provide(FirstOfBuilder.class).orFirstOf(parameters).build();
     }
 
     /**
@@ -285,7 +285,7 @@ public interface Parameter {
      *         chain
      */
     static Parameter.SequenceBuilder seqBuilder(@NonNull final Parameter parameter) {
-        return Sponge.getGame().getBuilderProvider().provide(SequenceBuilder.class).then(parameter);
+        return Sponge.game().builderProvider().provide(SequenceBuilder.class).then(parameter);
     }
 
     /**
@@ -299,7 +299,7 @@ public interface Parameter {
      * @return The {@link Parameter}
      */
     static Parameter seq(@NonNull final Parameter first, @NonNull final Parameter second, final Parameter @NonNull... parameters) {
-        return Sponge.getGame().getBuilderProvider().provide(SequenceBuilder.class).then(first).then(second).then(parameters).build();
+        return Sponge.game().builderProvider().provide(SequenceBuilder.class).then(first).then(second).then(parameters).build();
     }
 
     /**
@@ -310,7 +310,7 @@ public interface Parameter {
      * @return The {@link Parameter}
      */
     static Parameter seq(@NonNull final Iterable<Parameter> parameters) {
-        return Sponge.getGame().getBuilderProvider().provide(SequenceBuilder.class).then(parameters).build();
+        return Sponge.game().builderProvider().provide(SequenceBuilder.class).then(parameters).build();
     }
 
     // Convenience methods for getting the common parameter types - all in once place.
@@ -423,7 +423,7 @@ public interface Parameter {
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<Entity> entityOrTarget() {
-        return Parameter.entity().parser(ResourceKeyedValueParameters.TARGET_ENTITY);
+        return Parameter.entity().addParser(ResourceKeyedValueParameters.TARGET_ENTITY);
     }
 
     /**
@@ -533,7 +533,7 @@ public interface Parameter {
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<ServerPlayer> playerOrTarget() {
-        return Parameter.player().parser(ResourceKeyedValueParameters.TARGET_PLAYER);
+        return Parameter.player().addParser(ResourceKeyedValueParameters.TARGET_PLAYER);
     }
 
     /**
@@ -556,7 +556,7 @@ public interface Parameter {
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<Double> rangedDouble(final double min, final double max) {
-        return Parameter.builder(Double.class).parser(VariableValueParameters.doubleRange().setMin(min).setMax(max).build());
+        return Parameter.builder(Double.class).addParser(VariableValueParameters.doubleRange().min(min).max(max).build());
     }
 
     /**
@@ -569,7 +569,7 @@ public interface Parameter {
      * @return A {@link Parameter.Value.Builder}
      */
     static Parameter.Value.Builder<Integer> rangedInteger(final int min, final int max) {
-        return Parameter.builder(Integer.class).parser(VariableValueParameters.integerRange().setMin(min).setMax(max).build());
+        return Parameter.builder(Integer.class).addParser(VariableValueParameters.integerRange().min(min).max(max).build());
     }
 
     /**
@@ -655,13 +655,13 @@ public interface Parameter {
      * Creates a builder that has the {@link ValueParameter} that allows you to
      * choose from cataloged types.
      *
-     * <p>See {@link VariableValueParameters.CatalogedTypeBuilder
+     * <p>See {@link VariableValueParameters.RegistryEntryBuilder
      * #defaultNamespace(String)} for how default namespaces work.</p>
      *
      * <p>If the {@link Game} or {@link Server} scoped {@link RegistryHolder}
      * is required,
-     * {@link VariableValueParameters.CatalogedTypeBuilder#GLOBAL_HOLDER_PROVIDER}
-     * or {@link VariableValueParameters.CatalogedTypeBuilder#SERVER_HOLDER_PROVIDER}
+     * {@link VariableValueParameters.RegistryEntryBuilder#GLOBAL_HOLDER_PROVIDER}
+     * or {@link VariableValueParameters.RegistryEntryBuilder#SERVER_HOLDER_PROVIDER}
      * may be used.</p>
      *
      * @param type The registry value type to check for choices
@@ -679,7 +679,7 @@ public interface Parameter {
             @NonNull final Function<CommandContext, RegistryHolder> holderProvider,
             @NonNull final RegistryType<T> registryKey,
             @NonNull final String @NonNull... defaultNamespaces) {
-        final VariableValueParameters.CatalogedTypeBuilder<? extends T> vvp =
+        final VariableValueParameters.RegistryEntryBuilder<? extends T> vvp =
                 VariableValueParameters.registryEntryBuilder(holderProvider, registryKey);
         for (final String namespace : defaultNamespaces) {
             vvp.defaultNamespace(namespace);
@@ -691,7 +691,7 @@ public interface Parameter {
      * Creates a builder that has the {@link ValueParameter} that allows you to
      * choose from types registered in a given {@link Registry}.
      *
-     * <p>See {@link VariableValueParameters.CatalogedTypeBuilder
+     * <p>See {@link VariableValueParameters.RegistryEntryBuilder
      * #defaultNamespace(String)} for how default namespaces work.</p>
      *
      * @param type The registry value type to check for choices
@@ -706,7 +706,7 @@ public interface Parameter {
             final TypeToken<T> type,
             @NonNull final DefaultedRegistryType<T> registryType,
             @NonNull final String @NonNull... defaultNamespaces) {
-        final VariableValueParameters.CatalogedTypeBuilder<? extends T> vvp =
+        final VariableValueParameters.RegistryEntryBuilder<? extends T> vvp =
                 VariableValueParameters.registryEntryBuilder(registryType);
         for (final String namespace : defaultNamespaces) {
             vvp.defaultNamespace(namespace);
@@ -726,9 +726,9 @@ public interface Parameter {
     static Parameter.Value.Builder<String> choices(final String @NonNull... choices) {
         final VariableValueParameters.StaticChoicesBuilder<String> builder = VariableValueParameters
                 .staticChoicesBuilder(String.class)
-                .setShowInUsage(true);
+                .showInUsage(true);
         for (final String choice : choices) {
-            builder.choice(choice, choice);
+            builder.addChoice(choice, choice);
         }
 
         return Parameter.builder(String.class, builder.build());
@@ -748,8 +748,8 @@ public interface Parameter {
      */
     static <T> Parameter.Value.Builder<T> choices(@NonNull final Class<T> returnType, @NonNull final Map<String, ? extends T> choices) {
         return Parameter.builder(returnType, VariableValueParameters.staticChoicesBuilder(returnType)
-                .choices(choices)
-                .setShowInUsage(true).build());
+                .addChoices(choices)
+                .showInUsage(true).build());
     }
 
     /**
@@ -774,9 +774,9 @@ public interface Parameter {
         return Parameter.builder(returnType,
                 VariableValueParameters
                         .dynamicChoicesBuilder(returnType)
-                        .setShowInUsage(true)
-                        .setChoices(choices)
-                        .setResults(valueFunction)
+                        .showInUsage(true)
+                        .choices(choices)
+                        .results(valueFunction)
                         .build());
     }
 
@@ -830,8 +830,8 @@ public interface Parameter {
             @NonNull final Supplier<? extends Collection<String>> literalSupplier) {
         return Parameter.builder(returnType,
                 VariableValueParameters.literalBuilder(returnType)
-                        .setReturnValue(() -> returnedValue)
-                        .setLiteral(literalSupplier).build());
+                        .returnValue(() -> returnedValue)
+                        .literal(literalSupplier).build());
     }
 
     /**
@@ -885,7 +885,7 @@ public interface Parameter {
          *
          * @return The {@link TypeToken}
          */
-        Type getType();
+        Type type();
 
         /**
          * Return whether the value is an instance of this key's value type.
@@ -942,7 +942,7 @@ public interface Parameter {
      *
      * <p>This type of {@link Parameter} will attempt to parse an input
      * using the {@link ValueParser}s in the order that they are returned in
-     * {@link #getParsers()}. If a {@link ValueParser} fails to parse an
+     * {@link #parsers()}. If a {@link ValueParser} fails to parse an
      * argument, the next in the list will be tried, if the final
      * {@link ValueParser} cannot parse the argument, this element will
      * throw a {@link ArgumentParseException}.</p>
@@ -956,7 +956,7 @@ public interface Parameter {
          *
          * @return The key.
          */
-        Key<T> getKey();
+        Key<T> key();
 
         /**
          * The {@link ValueParser}s to use when parsing an argument. They will be
@@ -968,14 +968,14 @@ public interface Parameter {
          *
          * @return The parameters.
          */
-        Collection<ValueParser<? extends T>> getParsers();
+        Collection<ValueParser<? extends T>> parsers();
 
         /**
          * Gets the {@link ValueCompleter} associated with this {@link Value}.
          *
          * @return The {@link ValueCompleter}.
          */
-        ValueCompleter getCompleter();
+        ValueCompleter completer();
 
         /**
          * Gets the {@link ValueUsage} associated with this {@link Value}, if
@@ -983,7 +983,7 @@ public interface Parameter {
          *
          * @return The {@link ValueUsage}, if set.
          */
-        Optional<ValueUsage> getValueUsage();
+        Optional<ValueUsage> valueUsage();
 
         /**
          * Gets a {@link Predicate} that indicates whether a given {@link Cause}
@@ -991,7 +991,7 @@ public interface Parameter {
          *
          * @return the predicate
          */
-        Predicate<CommandCause> getRequirement();
+        Predicate<CommandCause> requirement();
 
         /**
          * Parses the next element(s) in the {@link CommandContext}
@@ -1007,7 +1007,7 @@ public interface Parameter {
 
         /**
          * Returns potential completions of the current tokenized argument. The
-         * completion will be based on {@link ArgumentReader#getRemaining()}.
+         * completion will be based on {@link ArgumentReader#remaining()}.
          *
          * @param reader The {@link ArgumentReader} containing the strings that need
          *               to be parsed
@@ -1025,7 +1025,7 @@ public interface Parameter {
          * @param cause The {@link CommandCause} that requested the usage
          * @return The usage
          */
-        String getUsage(CommandCause cause);
+        String usage(CommandCause cause);
 
         /**
          * If set, this parameter will repeat until the argument string has
@@ -1048,7 +1048,7 @@ public interface Parameter {
              * @param key The key.
              * @return This builder, for chaining
              */
-            Builder<T> setKey(String key);
+            Builder<T> key(String key);
 
             /**
              * The key that the parameter will place parsed values into.
@@ -1058,32 +1058,32 @@ public interface Parameter {
              * @param key The key.
              * @return This builder, for chaining
              */
-            Builder<T> setKey(Parameter.Key<T> key);
+            Builder<T> key(Parameter.Key<T> key);
 
             /**
              * The {@link ValueParser} that will extract the value(s) from the
              * parameters. If this is a {@link ValueParameter}, the object's
              * complete and usage methods will be used for completion and usage
-             * unless this builder's {@link #setSuggestions(ValueCompleter)}} and
-             * {@link #setUsage(ValueUsage)} methods are specified.
+             * unless this builder's {@link #suggestions(ValueCompleter)}} and
+             * {@link #usage(ValueUsage)} methods are specified.
              *
              * @param parser The {@link ValueParameter} to use
              * @return This builder, for chaining
              */
-            Builder<T> parser(ValueParser<? extends T> parser);
+            Builder<T> addParser(ValueParser<? extends T> parser);
 
             /**
              * The {@link ValueParser} that will extract the value(s) from the
              * parameters. If this is a {@link ValueParameter}, the object's
              * complete and usage methods will be used for completion and usage
-             * unless this builder's {@link #setSuggestions(ValueCompleter)}} and
-             * {@link #setUsage(ValueUsage)} methods are specified.
+             * unless this builder's {@link #suggestions(ValueCompleter)}} and
+             * {@link #usage(ValueUsage)} methods are specified.
              *
              * @param parser The {@link ValueParameter} to use
              * @return This builder, for chaining
              */
-            default <V extends ValueParser<? extends T>> Builder<T> parser(@NonNull final DefaultedRegistryReference<V> parser) {
-                return this.parser(parser.get());
+            default <V extends ValueParser<? extends T>> Builder<T> addParser(@NonNull final DefaultedRegistryReference<V> parser) {
+                return this.addParser(parser.get());
             }
 
             /**
@@ -1091,13 +1091,13 @@ public interface Parameter {
              *
              * <p>Optional. If this is <code>null</code> (or never set),
              * completions will either be done via the supplied
-             * {@link Builder#parser(ValueParser)} or will just return an empty
+             * {@link Builder#addParser(ValueParser)} or will just return an empty
              * list. If this is supplied, no modifiers will run on completion.</p>
              *
              * @param completer The {@link ValueCompleter}
              * @return This builder, for chaining
              */
-            Builder<T> setSuggestions(@Nullable ValueCompleter completer);
+            Builder<T> suggestions(@Nullable ValueCompleter completer);
 
             /**
              * Sets the usage. The {@link Function} accepts the parameter key
@@ -1105,14 +1105,14 @@ public interface Parameter {
              *
              * <p>Optional. If this is <code>null</code> (or never set),
              * the usage string will either be provided via the supplied
-             * {@link #parser(ValueParser)} or will just return
+             * {@link #addParser(ValueParser)} or will just return
              * the parameter's key. If this is supplied, no modifiers will run on
              * usage.</p>
              *
              * @param usage The function
              * @return This builder, for chaining
              */
-            Builder<T> setUsage(@Nullable ValueUsage usage);
+            Builder<T> usage(@Nullable ValueUsage usage);
 
             /**
              * Sets a function that determines what is required of the
@@ -1128,7 +1128,7 @@ public interface Parameter {
              *                   no check.
              * @return This builder, for chaining
              */
-            Builder<T> setRequiredPermission(@Nullable String permission);
+            Builder<T> requiredPermission(@Nullable String permission);
 
             /**
              * Sets a function that determines what is required of the provided
@@ -1138,12 +1138,12 @@ public interface Parameter {
              * attempt to parse, subject to other modifiers.</p>
              *
              * <p><strong>Note:</strong> this will overwrite any requirements set
-             * using {@link #setRequiredPermission(String)}}.</p>
+             * using {@link #requiredPermission(String)}}.</p>
              *
              * @param executionRequirements A function that sets the
              * @return This builder, for chaining
              */
-            Builder<T> setRequirements(@Nullable Predicate<CommandCause> executionRequirements);
+            Builder<T> requirements(@Nullable Predicate<CommandCause> executionRequirements);
 
             /**
              * If set, this parameter will repeat until the argument string has
@@ -1229,14 +1229,14 @@ public interface Parameter {
          *
          * @return The command to run.
          */
-        Command.Parameterized getCommand();
+        Command.Parameterized command();
 
         /**
          * The alias for the subcommand.
          *
          * @return The subcommand.
          */
-        Set<String> getAliases();
+        Set<String> aliases();
 
         interface Builder extends org.spongepowered.api.util.Builder<Subcommand, Builder> {
 
@@ -1247,7 +1247,7 @@ public interface Parameter {
              * @param alias The alias
              * @return This builder, for chaining
              */
-            Builder alias(String alias);
+            Builder addAlias(String alias);
 
             /**
              * Sets the {@link Command.Parameterized} to execute for this subcommand.
@@ -1255,7 +1255,7 @@ public interface Parameter {
              * @param command The {@link Command.Parameterized}
              * @return This builder, for chaining.
              */
-            Builder setSubcommand(Command.Parameterized command);
+            Builder subcommand(Command.Parameterized command);
 
             /**
              * Builds this subcommand parameter.
@@ -1281,7 +1281,7 @@ public interface Parameter {
          *
          * @return the child parameters
          */
-        List<Parameter> getChildParameters();
+        List<Parameter> childParameters();
     }
 
     /**

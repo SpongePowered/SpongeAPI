@@ -41,7 +41,7 @@ public interface MoveEntityEvent extends Event, Cancellable {
      * @return The entity
      */
     @AbsoluteSortPosition(1)
-    Entity getEntity();
+    Entity entity();
 
     /**
      * Gets the {@link Vector3d position} the {@link Entity} came from.
@@ -49,7 +49,7 @@ public interface MoveEntityEvent extends Event, Cancellable {
      * @return The original position
      */
     @AbsoluteSortPosition(2)
-    Vector3d getOriginalPosition();
+    Vector3d originalPosition();
 
     /**
      * Gets the {@link Vector3d position} the {@link Entity} would have been going to.
@@ -57,7 +57,7 @@ public interface MoveEntityEvent extends Event, Cancellable {
      * @return The original destination
      */
     @AbsoluteSortPosition(3)
-    Vector3d getOriginalDestinationPosition();
+    Vector3d originalDestinationPosition();
 
     /**
      * Gets the {@link Vector3d position} the {@link Entity} will go to.
@@ -65,7 +65,7 @@ public interface MoveEntityEvent extends Event, Cancellable {
      * @return The new position
      */
     @AbsoluteSortPosition(4)
-    Vector3d getDestinationPosition();
+    Vector3d destinationPosition();
 
     /**
      * Sets the new {@link Vector3d position} the {@link Entity} will go to.

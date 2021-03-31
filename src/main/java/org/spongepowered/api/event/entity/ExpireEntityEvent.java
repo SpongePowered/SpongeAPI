@@ -43,5 +43,5 @@ public interface ExpireEntityEvent extends Event {
      *
      * @return The entity
      */
-    Entity getEntity();
+    Entity entity();
 }

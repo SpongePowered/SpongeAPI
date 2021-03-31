@@ -28,6 +28,8 @@ import org.spongepowered.api.network.EngineConnection;
 
 /**
  * Represents a handler for a packet that was received over the network.
+ *
+ * @param <C> The connection type
  */
 @FunctionalInterface
 public interface PacketHandler<P extends Packet, C extends EngineConnection> {

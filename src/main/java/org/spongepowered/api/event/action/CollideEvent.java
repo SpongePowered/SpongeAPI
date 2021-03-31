@@ -50,6 +50,6 @@ public interface CollideEvent extends Event, Cancellable {
          *
          * @return The impact location
          */
-        ServerLocation getImpactPoint();
+        ServerLocation impactPoint();
     }
 }

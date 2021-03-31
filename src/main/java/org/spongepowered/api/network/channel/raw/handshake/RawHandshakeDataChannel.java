@@ -51,6 +51,7 @@ public interface RawHandshakeDataChannel {
      *
      * @param side The connection side the handler should be set on
      * @param handler The handler to set
+     * @param <C> The connection type
      */
     <C extends EngineConnection> void setRequestHandler(EngineConnectionSide<C> side, RawHandshakeDataRequestHandler<? super C> handler);
 
@@ -59,6 +60,7 @@ public interface RawHandshakeDataChannel {
      *
      * @param connectionType The connection type the handler should be used by
      * @param handler The handler to set
+     * @param <C> The connection type
      */
     <C extends EngineConnection> void setRequestHandler(Class<C> connectionType, RawHandshakeDataRequestHandler<? super C> handler);
 

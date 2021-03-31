@@ -47,7 +47,7 @@ public interface Attribute {
      *
      * @return The attribute type.
      */
-    AttributeType getType();
+    AttributeType type();
 
     /**
      * Gets the base value of this attribute.
@@ -56,7 +56,7 @@ public interface Attribute {
      *
      * @return The base value.
      */
-    double getBaseValue();
+    double baseValue();
 
     /**
      * Sets the base value of this attribute.
@@ -74,30 +74,32 @@ public interface Attribute {
      *
      * @return The value
      */
-    double getValue();
+    double value();
 
     /**
      * Gets a collection of all applied modifiers.
      *
      * @return A collection of applied modifiers
      */
-    Collection<AttributeModifier> getModifiers();
+    Collection<AttributeModifier> modifiers();
 
     /**
      * Gets a collection of applied modifiers with the provided operation.
      *
+     * @param operation The operation
      * @return A collection of modifiers
      */
-    default Collection<AttributeModifier> getModifiers(Supplier<? extends AttributeOperation> operation) {
-        return this.getModifiers(operation.get());
+    default Collection<AttributeModifier> modifiers(Supplier<? extends AttributeOperation> operation) {
+        return this.modifiers(operation.get());
     }
 
     /**
      * Gets a collection of applied modifiers with the provided operation.
      *
+     * @param operation The operation
      * @return A collection of modifiers
      */
-    Collection<AttributeModifier> getModifiers(AttributeOperation operation);
+    Collection<AttributeModifier> modifiers(AttributeOperation operation);
 
     /**
      * Checks if this attribute has the provided modifier.
@@ -115,7 +117,7 @@ public interface Attribute {
      * @return The attribute modifier, if present, {@link Optional#empty()}
      *     otherwise
      */
-    Optional<AttributeModifier> getModifier(UUID uniqueId);
+    Optional<AttributeModifier> modifier(UUID uniqueId);
 
     /**
      * Adds a modifier to this attribute.

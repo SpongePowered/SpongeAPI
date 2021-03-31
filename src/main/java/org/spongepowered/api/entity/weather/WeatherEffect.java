@@ -38,6 +38,7 @@ public interface WeatherEffect extends Entity {
 
     /**
      * {@link Keys#IS_EFFECT_ONLY}
+     *
      * @return Whether this effect is harmful
      */
     default Value.Mutable<Boolean> isEffectOnly() {
@@ -46,6 +47,7 @@ public interface WeatherEffect extends Entity {
 
     /**
      * {@link Keys#DESPAWN_DELAY}
+     *
      * @return The delay before this effect is removed
      */
     default Value.Mutable<Ticks> expirationDelay() {

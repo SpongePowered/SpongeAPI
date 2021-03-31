@@ -43,6 +43,6 @@ public interface SubjectDataUpdateEvent extends Event {
      *
      * @return the updated data
      */
-    SubjectData getUpdatedData();
+    SubjectData updatedData();
 
 }

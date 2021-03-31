@@ -37,7 +37,7 @@ public interface RaidWave {
      *
      * @return The raid
      */
-    Raid getRaid();
+    Raid raid();
 
     /**
      * Determines if this wave was a bonus of the {@link Raid}.
@@ -66,7 +66,7 @@ public interface RaidWave {
      *
      * @return The leader or {@link Optional#empty()} if not present
      */
-    Optional<Raider> getLeader();
+    Optional<Raider> leader();
 
     /**
      * Adds a {@link Raider} to this wave.

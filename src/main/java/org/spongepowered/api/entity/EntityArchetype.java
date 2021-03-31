@@ -43,11 +43,12 @@ public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
      * Creates a new {@link EntityArchetype} with the specified {@link EntityType}.
+     *
      * @param type Type of the entity
      * @return An archetype of the given entity type
      */
@@ -57,6 +58,7 @@ public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
 
     /**
      * Creates a new {@link EntityArchetype} with the specified {@link EntityType}.
+     *
      * @param type Type of the entity
      * @return An archetype of the given entity type
      */
@@ -69,7 +71,7 @@ public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
      *
      * @return The entity type
      */
-    EntityType<?> getType();
+    EntityType<?> type();
 
     /**
      * Gets the raw {@link Entity} data that would be applied to the generated
@@ -82,7 +84,7 @@ public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
      *
      * @return The copied container of the entity
      */
-    DataContainer getEntityData();
+    DataContainer entityData();
 
     @Override
     void setRawData(DataView container) throws InvalidDataException;

@@ -47,7 +47,7 @@ public interface Ban {
      * @return A new ban builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -76,14 +76,14 @@ public interface Ban {
      *
      * @return The ban type
      */
-    BanType getType();
+    BanType type();
 
     /**
      * Gets the reason for the ban, if available.
      *
      * @return The reason specified for the ban, if available
      */
-    Optional<Component> getReason();
+    Optional<Component> reason();
 
     /**
      * Gets the creation date of the ban.
@@ -95,21 +95,21 @@ public interface Ban {
      *
      * @return Creation date of the ban
      */
-    Instant getCreationDate();
+    Instant creationDate();
 
     /**
      * Gets the source that created this ban, if available.
      *
      * @return the source of this ban, if available
      */
-    Optional<Component> getBanSource();
+    Optional<Component> banSource();
 
     /**
      * Gets the expiration date of this ban, if available.
      *
      * @return Expiration time of the ban or {@link Optional#empty()}
      */
-    Optional<Instant> getExpirationDate();
+    Optional<Instant> expirationDate();
 
     /**
      * Gets whether this ban is indefinitely long, e.g. has no expiration date.
@@ -117,7 +117,7 @@ public interface Ban {
      * @return True if this ban has no expiration date, otherwise false
      */
     default boolean isIndefinite() {
-        return !this.getExpirationDate().isPresent();
+        return !this.expirationDate().isPresent();
     }
 
     /**
@@ -130,7 +130,7 @@ public interface Ban {
          *
          * @return The {@link GameProfile}
          */
-        GameProfile getProfile();
+        GameProfile profile();
 
     }
 
@@ -144,7 +144,7 @@ public interface Ban {
          *
          * @return The address
          */
-        InetAddress getAddress();
+        InetAddress address();
 
     }
 

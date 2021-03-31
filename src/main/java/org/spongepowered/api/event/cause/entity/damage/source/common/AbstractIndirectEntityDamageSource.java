@@ -63,12 +63,12 @@ public abstract class AbstractIndirectEntityDamageSource implements IndirectEnti
     }
 
     @Override
-    public Entity getSource() {
+    public Entity source() {
         return this.source;
     }
 
     @Override
-    public DamageType getType() {
+    public DamageType type() {
         return this.apiDamageType;
     }
 
@@ -103,12 +103,12 @@ public abstract class AbstractIndirectEntityDamageSource implements IndirectEnti
     }
 
     @Override
-    public Entity getIndirectSource() {
+    public Entity indirectSource() {
         return this.indirect;
     }
 
     @Override
-    public double getExhaustion() {
+    public double exhaustion() {
         return this.exhaustion;
     }
 

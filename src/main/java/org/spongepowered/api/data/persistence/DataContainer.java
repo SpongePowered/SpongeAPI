@@ -41,7 +41,7 @@ public interface DataContainer extends DataView {
      * @return A new data container
      */
     static DataContainer createNew() {
-        return Sponge.getDataManager().createContainer();
+        return Sponge.dataManager().createContainer();
     }
 
     /**
@@ -53,7 +53,7 @@ public interface DataContainer extends DataView {
      * @return A new data container with the provided safety mode
      */
     static DataContainer createNew(SafetyMode safety) {
-        return Sponge.getDataManager().createContainer(safety);
+        return Sponge.dataManager().createContainer(safety);
     }
 
     @Override

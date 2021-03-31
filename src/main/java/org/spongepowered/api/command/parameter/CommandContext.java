@@ -42,7 +42,7 @@ import java.util.Optional;
  * any other information that might be important when executing a command.
  *
  * <p>For information about the cause of the command, the {@link CommandCause}
- * is available (see {@link #getCause()}. Some popular tasks that operate
+ * is available (see {@link #cause()}. Some popular tasks that operate
  * on the {@link CommandCause} are also directly available on this context,
  * namely permission checks (via {@link SubjectProxy}) and sending a message to
  * the {@link CommandCause}'s {@link Audience} (via {@link #sendMessage}).</p>
@@ -55,14 +55,14 @@ public interface CommandContext extends SubjectProxy {
      *
      * @return The {@link Command.Parameterized}.
      */
-    Optional<Command.Parameterized> getExecutedCommand();
+    Optional<Command.Parameterized> executedCommand();
 
     /**
      * Gets the {@link CommandCause} associated with this context.
      *
      * @return The {@link CommandCause}
      */
-    CommandCause getCause();
+    CommandCause cause();
 
     /**
      * Gets if a flag with given alias was specified at least once.
@@ -96,7 +96,7 @@ public interface CommandContext extends SubjectProxy {
      * @param flagKey The flag's alias (without a prefixed dash)
      * @return The number of times the flag was specified
      */
-    int getFlagInvocationCount(String flagKey);
+    int flagInvocationCount(String flagKey);
 
     /**
      * Returns how many times a given {@link Flag} was invoked for this command.
@@ -104,7 +104,7 @@ public interface CommandContext extends SubjectProxy {
      * @param flag The {@link Flag}
      * @return The number of times the flag was specified
      */
-    int getFlagInvocationCount(Flag flag);
+    int flagInvocationCount(Flag flag);
 
     /**
      * Returns whether this context has any value for the given argument key.
@@ -131,7 +131,7 @@ public interface CommandContext extends SubjectProxy {
      * @throws IllegalArgumentException if more than one value for the key was
      *                                  found
      */
-    <T> Optional<T> getOne(final Parameter.Value<T> parameter) throws IllegalArgumentException;
+    <T> Optional<T> one(final Parameter.Value<T> parameter) throws IllegalArgumentException;
 
     /**
      * Gets the value for the given key if the key has only one value.
@@ -142,7 +142,7 @@ public interface CommandContext extends SubjectProxy {
      * @throws IllegalArgumentException if more than one value for the key was
      *                                  found
      */
-    <T> Optional<T> getOne(Parameter.Key<T> key) throws IllegalArgumentException;
+    <T> Optional<T> one(Parameter.Key<T> key) throws IllegalArgumentException;
 
     /**
      * Gets the value for the given key if the key has only one value,
@@ -178,7 +178,7 @@ public interface CommandContext extends SubjectProxy {
      * @param <T> the expected type of the argument
      * @return the argument
      */
-    <T> Collection<? extends T> getAll(final Parameter.Value<T> parameter);
+    <T> Collection<? extends T> all(final Parameter.Value<T> parameter);
 
     /**
      * Gets all values for the given argument. May return an empty list if no
@@ -188,10 +188,10 @@ public interface CommandContext extends SubjectProxy {
      * @param <T> the type of value to get
      * @return the collection of all values
      */
-    <T> Collection<? extends T> getAll(Parameter.Key<T> key);
+    <T> Collection<? extends T> all(Parameter.Key<T> key);
 
     /**
-     * Sends a message via {@link CommandCause#getAudience()}
+     * Sends a message via {@link CommandCause#audience()}
      *
      * @see Audience#sendMessage(Identified, Component)
      *
@@ -201,7 +201,7 @@ public interface CommandContext extends SubjectProxy {
     void sendMessage(Identified source, Component message);
 
     /**
-     * Sends a message via {@link CommandCause#getAudience()}
+     * Sends a message via {@link CommandCause#audience()}
      *
      * @see Audience#sendMessage(Identity, Component)
      *
@@ -230,7 +230,7 @@ public interface CommandContext extends SubjectProxy {
          * @param value The collection of objects to store.
          */
         default <T> void putEntry(final Parameter.Value<? super T> parameter, final T value) {
-            this.putEntry(parameter.getKey(), value);
+            this.putEntry(parameter.key(), value);
         }
 
         /**

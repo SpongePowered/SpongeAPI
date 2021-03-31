@@ -44,6 +44,7 @@ import org.spongepowered.api.service.permission.Subject;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -82,7 +83,7 @@ public interface Command {
      * @return The {@link Builder}
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -109,7 +110,7 @@ public interface Command {
      * @return A list of suggestions
      * @throws CommandException Thrown if there was a parsing error
      */
-    List<String> getSuggestions(CommandCause cause, ArgumentReader.Mutable arguments) throws CommandException;
+    List<String> suggestions(CommandCause cause, ArgumentReader.Mutable arguments) throws CommandException;
 
     /**
      * Test whether this command can probably be executed given this
@@ -133,24 +134,24 @@ public interface Command {
      * @param cause The {@link CommandCause} of the help request
      * @return A description
      */
-    Optional<Component> getShortDescription(CommandCause cause);
+    Optional<Component> shortDescription(CommandCause cause);
 
     /**
      * Gets a longer formatted help message about this command.
      *
      * <p>The help system may display this description when displaying details
      * about this specific command. It should not contain the description
-     * provided by {@link #getShortDescription(CommandCause)}.</p>
+     * provided by {@link #shortDescription(CommandCause)}.</p>
      *
      * @param cause The {@link Cause} of the help request
      * @return A description
      */
-    Optional<Component> getExtendedDescription(CommandCause cause);
+    Optional<Component> extendedDescription(CommandCause cause);
 
     /**
      * Gets a longer formatted help message about this command. This will
-     * typically comprise of {@link #getShortDescription(CommandCause)}
-     * and {@link #getExtendedDescription(CommandCause)} together.
+     * typically comprise of {@link #shortDescription(CommandCause)}
+     * and {@link #extendedDescription(CommandCause)} together.
      *
      * <p>The help system may display this message when a source requests
      * detailed information about a command.</p>
@@ -158,9 +159,9 @@ public interface Command {
      * @param cause The {@link Cause} of the help request
      * @return A help text
      */
-    default Optional<Component> getHelp(@NonNull final CommandCause cause) {
-        final Optional<Component> shortDesc = this.getShortDescription(cause);
-        final Optional<Component> extended = this.getExtendedDescription(cause);
+    default Optional<Component> help(@NonNull final CommandCause cause) {
+        final Optional<Component> shortDesc = this.shortDescription(cause);
+        final Optional<Component> extended = this.extendedDescription(cause);
         if (extended.isPresent()) {
             if (shortDesc.isPresent()) {
                 return Optional.of(Component.text().append(shortDesc.get(), Component.newline(), Component.newline(), extended.get()).build());
@@ -182,7 +183,7 @@ public interface Command {
      * @param cause The {@link Cause} of the help request
      * @return A usage string
      */
-    Component getUsage(CommandCause cause);
+    Component usage(CommandCause cause);
 
     /**
      * A raw command that also contains a {@link CommandTreeNode} to provide
@@ -238,11 +239,11 @@ public interface Command {
          * <p>A direct subcommand is one that is specified directly after the
          * literal the invokes this command, e.g. on the command {@code /foo},
          * {@code bar} is a direct subcommand if it was specified in
-         * {@link Builder#child(Parameterized, String...)}
-         * or {@link Builder#children(Map)} with the alias
+         * {@link Builder#addChild(Parameterized, String...)}
+         * or {@link Builder#addChildren(Map)} with the alias
          * {@code bar}. This will not contain any subcommands that were
          * registered via
-         * {@link Builder#parameter(Parameter)}</p>
+         * {@link Builder#addParameter(Parameter)}</p>
          *
          * @return A copy of the collection of subcommands.
          */
@@ -250,7 +251,7 @@ public interface Command {
 
         /**
          * Gets whether
-         * {@link Builder#setTerminal(boolean)} was
+         * {@link Builder#terminal(boolean)} was
          * explicitly set to {@code true}, such that this command will
          * execute without any arguments, regardless of the command's
          * {@link #parameters() parameters} or
@@ -265,7 +266,7 @@ public interface Command {
          *
          * @return The predicate.
          */
-        Predicate<CommandCause> getExecutionRequirements();
+        Predicate<CommandCause> executionRequirements();
 
         /**
          * Parses the parameters based on the provided {@link #parameters()}
@@ -273,6 +274,7 @@ public interface Command {
          * @param cause The {@link Cause} of this parse
          * @param arguments The argument {@link String}
          * @return The {@link CommandContext}
+         * @throws ArgumentParseException if a parameter could not be parsed
          */
         CommandContext parseArguments(CommandCause cause, ArgumentReader.Mutable arguments) throws ArgumentParseException;
 
@@ -281,7 +283,7 @@ public interface Command {
          *
          * @return The {@link CommandExecutor}, if it exists.
          */
-        Optional<CommandExecutor> getExecutor();
+        Optional<CommandExecutor> executor();
 
         /**
          * Processes the command by parsing the arguments, then
@@ -300,8 +302,8 @@ public interface Command {
          */
         @Override
         default CommandResult process(final CommandCause cause, final ArgumentReader.Mutable arguments) throws CommandException {
-            if (this.getExecutor().isPresent()) {
-                return this.getExecutor().get().execute(this.parseArguments(cause, arguments));
+            if (this.executor().isPresent()) {
+                return this.executor().get().execute(this.parseArguments(cause, arguments));
             }
             throw new CommandException(Component.text("This command does not have an executor!"));
         }
@@ -325,7 +327,7 @@ public interface Command {
          * {@link Parameter}s. Note that if you wish to add a subcommand
          * in the middle of the parameters, you can do so by creating a
          * {@link org.spongepowered.api.command.parameter.Parameter.Subcommand}
-         * and adding that as a {@link #parameter(Parameter)} at the
+         * and adding that as a {@link #addParameter(Parameter)} at the
          * appropriate time.</p>
          *
          * @param child The {@link Command} that is a child.
@@ -335,8 +337,8 @@ public interface Command {
          *                                  in the builder, or there are no keys
          *                                  supplied
          */
-        default Builder child(final Command.Parameterized child, final String... keys) {
-            return this.child(child, Arrays.asList(keys));
+        default Builder addChild(final Command.Parameterized child, final String... keys) {
+            return this.addChild(child, Arrays.asList(keys));
         }
 
         /**
@@ -347,7 +349,7 @@ public interface Command {
          * {@link Parameter}s. Note that if you wish to add a subcommand
          * in the middle of the parameters, you can do so by creating a
          * {@link org.spongepowered.api.command.parameter.Parameter.Subcommand}
-         * and adding that as a {@link #parameter(Parameter)} at the
+         * and adding that as a {@link #addParameter(Parameter)} at the
          * appropriate time.</p>
          *
          * @param child The {@link Command} that is a child.
@@ -356,7 +358,7 @@ public interface Command {
          * @throws IllegalArgumentException thrown if a child key is already
          *                                  in the builder
          */
-        Builder child(Command.Parameterized child, Iterable<String> keys);
+        Builder addChild(Command.Parameterized child, Iterable<String> keys);
 
         /**
          * Adds multiple {@link Command.Parameterized} as children to this
@@ -366,7 +368,7 @@ public interface Command {
          * {@link Parameter}s. Note that if you wish to add a subcommand
          * in the middle of the parameters, you can do so by creating a
          * {@link Parameter.Subcommand} and adding that as a
-         * {@link #parameter(Parameter)} at the appropriate time.</p>
+         * {@link #addParameter(Parameter)} at the appropriate time.</p>
          *
          * @param children The {@link Map} that contains a mapping of keys to
          *                 their respective {@link Command} children.
@@ -374,9 +376,9 @@ public interface Command {
          * @throws IllegalArgumentException thrown if a child key is already
          *                                  in the builder
          */
-        default Builder children(final Map<? extends Iterable<String>, ? extends Command.Parameterized> children) {
+        default Builder addChildren(final Map<? extends Iterable<String>, ? extends Command.Parameterized> children) {
             for (final Map.Entry<? extends Iterable<String>, ? extends Command.Parameterized> child : children.entrySet()) {
-                this.child(child.getValue(), child.getKey());
+                this.addChild(child.getValue(), child.getKey());
             }
 
             return this;
@@ -385,7 +387,7 @@ public interface Command {
         /**
          * Adds a flag to this command. Flags are always the first arguments of
          * a command. There are no set rules for the order of execution of
-         * flags (unlike {@link #parameter(Parameter)}), and all flags are
+         * flags (unlike {@link #addParameter(Parameter)}), and all flags are
          * considered optional.
          *
          * <p>Duplicate keys and/or duplicate aliases may not be provided.</p>
@@ -393,19 +395,19 @@ public interface Command {
          * @param flag The {@link Flag} to support
          * @return Ths builder, for chaining
          */
-        Builder flag(Flag flag);
+        Builder addFlag(Flag flag);
 
         /**
          * Adds multiple {@link Flag flags} to this command.
          *
-         * @see #flag(Flag) for more information about flags.
+         * @see #addFlag(Flag) for more information about flags.
          *
          * @param flags The flags
          * @return This builder, for chaining
          */
-        default Builder flags(final Flag... flags) {
+        default Builder addFlags(final Flag... flags) {
             for (final Flag flag : flags) {
-                this.flag(flag);
+                this.addFlag(flag);
             }
             return this;
         }
@@ -413,14 +415,14 @@ public interface Command {
         /**
          * Adds multiple {@link Flag flags} to this command.
          *
-         * @see #flag(Flag) for more information about flags.
+         * @see #addFlag(Flag) for more information about flags.
          *
          * @param flags The flags
          * @return This builder, for chaining
          */
-        default Builder flags(final Iterable<Flag> flags) {
+        default Builder addFlags(final Iterable<Flag> flags) {
             for (final Flag flag : flags) {
-                this.flag(flag);
+                this.addFlag(flag);
             }
             return this;
         }
@@ -433,7 +435,7 @@ public interface Command {
          * @param parameter The parameter to add to the parameter list
          * @return This builder, for chaining
          */
-        Builder parameter(Parameter parameter);
+        Builder addParameter(Parameter parameter);
 
         /**
          * Adds parameters to use when parsing arguments. Parameters will be
@@ -442,8 +444,8 @@ public interface Command {
          * @param parameters The {@link Parameter}s to use
          * @return This builder, for chaining
          */
-        default Builder parameters(final Parameter... parameters) {
-            return this.parameters(Arrays.asList(parameters));
+        default Builder addParameters(final Parameter... parameters) {
+            return this.addParameters(Arrays.asList(parameters));
         }
 
         /**
@@ -453,9 +455,9 @@ public interface Command {
          * @param parameters The {@link Parameter}s to use
          * @return This builder, for chaining
          */
-        default Builder parameters(final Iterable<Parameter> parameters) {
+        default Builder addParameters(final Iterable<Parameter> parameters) {
             for (final Parameter parameter : parameters) {
-                this.parameter(parameter);
+                this.addParameter(parameter);
             }
 
             return this;
@@ -470,14 +472,14 @@ public interface Command {
          * @param executor The {@link CommandExecutor} that will run the command
          * @return This builder, for chaining
          */
-        Builder setExecutor(CommandExecutor executor);
+        Builder executor(CommandExecutor executor);
 
         /**
          * Provides the description for this command, which is dependent on the
          * {@link Cause} that requests it.
          *
          * <p>A one line summary should be provided to
-         * {@link #setShortDescription(Component)}</p>
+         * {@link #shortDescription(Component)}</p>
          *
          * <p>It is recommended to use the default text color and style. Sections
          * with text actions (e.g. hyperlinks) should be underlined.</p>
@@ -486,22 +488,22 @@ public interface Command {
          *      relevant description based on the supplied {@link Cause}
          * @return This builder, for chaining
          */
-        Builder setExtendedDescription(Function<CommandCause, Optional<Component>> extendedDescriptionFunction);
+        Builder extendedDescription(Function<CommandCause, Optional<Component>> extendedDescriptionFunction);
 
         /**
          * Provides the description for this command.
          *
          * <p>A one line summary should be provided to
-         * {@link #setShortDescription(Component)}</p>
+         * {@link #shortDescription(Component)}</p>
          *
          * @param extendedDescription The description to use, or {@code null}
          *                            for no description.
          * @return This builder, for chaining
          */
-        default Builder setExtendedDescription(@Nullable final Component extendedDescription) {
+        default Builder extendedDescription(@Nullable final Component extendedDescription) {
             // Done outside the lambda so that we don't have to recreate the object each time.
             final Optional<Component> text = Optional.ofNullable(extendedDescription);
-            return this.setExtendedDescription((cause) -> text);
+            return this.extendedDescription((cause) -> text);
         }
 
         /**
@@ -510,20 +512,20 @@ public interface Command {
          * it.
          *
          * <p>Fuller descriptions should be provided through
-         * {@link #setExtendedDescription(Function)}</p>
+         * {@link #extendedDescription(Function)}</p>
          *
          * @param descriptionFunction A function that provides a relevant
          *      description based on the supplied {@link Cause}
          * @return This builder, for chaining
          */
-        Builder setShortDescription(Function<CommandCause, Optional<Component>> descriptionFunction);
+        Builder shortDescription(Function<CommandCause, Optional<Component>> descriptionFunction);
 
         /**
          * Provides a simple description for this command, typically no more
          * than one line.
          *
          * <p>Fuller descriptions should be provided through
-         * {@link #setExtendedDescription(Component)}</p>
+         * {@link #extendedDescription(Component)}</p>
          *
          * <p>It is recommended to use the default text color and style. Sections
          * with text actions (e.g. hyperlinks) should be underlined.</p>
@@ -532,17 +534,17 @@ public interface Command {
          *                    description
          * @return This builder, for chaining
          */
-        default Builder setShortDescription(@Nullable final Component description) {
+        default Builder shortDescription(@Nullable final Component description) {
             // Done outside the lambda so that we don't have to recreate the object each time.
             final Optional<Component> text = Optional.ofNullable(description);
-            return this.setShortDescription((cause) -> text);
+            return this.shortDescription((cause) -> text);
         }
 
         /**
          * The permission that the responsible {@link Subject} in the given
          * {@link Cause} requires to run this command, or {@code null} if no
          * permission is required. Calling this method will overwrite anything
-         * set via {@link #setExecutionRequirements(Predicate)}, or will replace
+         * set via {@link #executionRequirements(Predicate)}, or will replace
          * the previous permission set by this method.
          *
          * <p>Any permission checks set here will be performed during the
@@ -552,12 +554,12 @@ public interface Command {
          *                   for no permission
          * @return This builder, for chaining
          */
-        Builder setPermission(@Nullable String permission);
+        Builder permission(@Nullable String permission);
 
         /**
          * Sets a function that determines what is required of the provided
          * {@link Cause} before this command executes. Calling this method
-         * will overwrite anything set via {@link #setPermission(String)} or
+         * will overwrite anything set via {@link #permission(String)} or
          * anything previously set via this method.
          *
          * <p>Any requirements set here will be performed as part of
@@ -566,7 +568,7 @@ public interface Command {
          * @param executionRequirements A function that sets the
          * @return This builder, for chaining
          */
-        Builder setExecutionRequirements(@Nullable Predicate<CommandCause> executionRequirements);
+        Builder executionRequirements(@Nullable Predicate<CommandCause> executionRequirements);
 
         /**
          * Sets whether this command is considered "terminal" in its own right,
@@ -580,7 +582,7 @@ public interface Command {
          * @param terminal Whether to mark this command as terminal
          * @return This builder, for chaining
          */
-        Builder setTerminal(boolean terminal);
+        Builder terminal(boolean terminal);
 
         /**
          * Builds this command, creating a {@link Command.Parameterized}
@@ -591,10 +593,10 @@ public interface Command {
          *
          * <ul>
          *     <li>A {@link CommandExecutor} is provided using
-         *     {@link #setExecutor(CommandExecutor)}</li>
+         *     {@link #executor(CommandExecutor)}</li>
          *     <li>At least one {@link Command} is set to be a child command
-         *     using {@link #child(Parameterized, Iterable)} or
-         *     {@link #children(Map)}
+         *     using {@link #addChild(Parameterized, Iterable)} or
+         *     {@link #addChildren(Map)}
          *     </li>
          * </ul>
          *

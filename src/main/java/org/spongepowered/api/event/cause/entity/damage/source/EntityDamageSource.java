@@ -35,7 +35,7 @@ public interface EntityDamageSource extends DamageSource {
      * @return A new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -43,7 +43,7 @@ public interface EntityDamageSource extends DamageSource {
      *
      * @return The entity source
      */
-    Entity getSource();
+    Entity source();
 
     interface Builder extends EntityDamageSourceBuilder<EntityDamageSource, Builder> {
 

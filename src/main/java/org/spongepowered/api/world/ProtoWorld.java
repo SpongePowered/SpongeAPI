@@ -53,29 +53,28 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
     UpdatableVolume,
     RandomProvider,
     PhysicsAwareMutableBlockVolume<P>,
-    MutableGameVolume
-{
+    MutableGameVolume {
 
     /**
      * Gets the {@link Engine} that simulates this world.
      *
      * @return The engine
      */
-    Engine getEngine();
+    Engine engine();
 
     /**
      * Gets the seed of this world.
      *
      * @return The seed
      */
-    long getSeed();
+    long seed();
 
     /**
      * Gets the current {@link Difficulty}.
      *
      * @return The difficulty for this world
      */
-    Difficulty getDifficulty();
+    Difficulty difficulty();
 
     @Override
     default boolean setBlock(final Vector3i position, final BlockState state, final BlockChangeFlag flag) {

@@ -36,5 +36,5 @@ public interface ItemTier extends DefaultedRegistryValue {
      *
      * @return The ingredient
      */
-    Ingredient getRepairIngredient();
+    Ingredient repairIngredient();
 }

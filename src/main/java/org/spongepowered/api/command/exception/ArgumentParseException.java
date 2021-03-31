@@ -71,17 +71,17 @@ public class ArgumentParseException extends CommandException {
         if (this.source == null || this.source.isEmpty()) {
             return super.componentMessage();
         } else if (superText == null) {
-            return Component.text(this.getAnnotatedPosition());
+            return Component.text(this.annotatedPosition());
         } else {
             return Component.text()
               .append(superText)
               .append(Component.newline())
-              .append(Component.text(this.getAnnotatedPosition()))
+              .append(Component.text(this.annotatedPosition()))
               .build();
         }
     }
 
-    public @Nullable Component getSuperText() {
+    public @Nullable Component superText() {
         return super.componentMessage();
     }
 
@@ -91,7 +91,7 @@ public class ArgumentParseException extends CommandException {
      *
      * @return The appropriate position string
      */
-    public String getAnnotatedPosition() {
+    public String annotatedPosition() {
         String source = this.source;
         int position = this.position;
         if (source.length() > 80) {
@@ -117,7 +117,7 @@ public class ArgumentParseException extends CommandException {
      *
      * @return The source string to get position for
      */
-    public int getPosition() {
+    public int position() {
         return this.position;
     }
 
@@ -126,7 +126,7 @@ public class ArgumentParseException extends CommandException {
      *
      * @return The source string
      */
-    public String getSourceString() {
+    public String sourceString() {
         return this.source;
     }
 

@@ -38,5 +38,5 @@ public interface LeashEntityEvent extends Event, Cancellable {
      *
      * @return The entity
      */
-    Entity getEntity();
+    Entity entity();
 }

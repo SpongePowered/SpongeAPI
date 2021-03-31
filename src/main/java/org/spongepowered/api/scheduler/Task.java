@@ -47,7 +47,7 @@ public interface Task {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -55,14 +55,14 @@ public interface Task {
      *
      * @return The name of the task
      */
-    String getName();
+    String name();
 
     /**
      * Returns the plugin that constructed this task.
      *
      * @return The plugin that constructed the task
      */
-    PluginContainer getOwner();
+    PluginContainer owner();
 
     /**
      * Gets the delay that the task was scheduled to run after. A delay of 0
@@ -70,7 +70,7 @@ public interface Task {
      *
      * @return The delay (offset) duration
      */
-    Duration getDelay();
+    Duration delay();
 
     /**
      * Gets the interval for repeating tasks. An interval of 0 represents that
@@ -78,14 +78,14 @@ public interface Task {
      *
      * @return The interval (period) duration
      */
-    Duration getInterval();
+    Duration interval();
 
     /**
      * Gets the {@link Consumer}&gt;{@link Task}&lt; that this task is running.
      *
      * @return The consumer
      */
-    Consumer<ScheduledTask> getConsumer();
+    Consumer<ScheduledTask> consumer();
 
     /**
      * Represents a builder to create a {@link Task}.
@@ -228,16 +228,16 @@ public interface Task {
          * Sets the name of the task, the name cannot be blank.
          *
          * <p>If the name is not set in the builder, the name of the task
-         * will be the form:<br> <tt>PLUGIN_ID "-" ( "A-" | "S-" ) SERIAL_ID
-         * </tt></p>
+         * will be the form:<br> {@code PLUGIN_ID "-" ( "A-" | "S-" ) SERIAL_ID}
+         * </p>
          *
          * <p>Examples of default Task names:<br>
          *
-         * <tt>"FooPlugin-A-12"</tt><br><tt>"BarPlugin-S-4322"</tt></p>
+         * {@code "FooPlugin-A-12"}<br>{@code "BarPlugin-S-4322"}</p>
          *
          * <p>No two active tasks will have the same serial ID for the same
-         * synchronisation type.<br>i.e <tt>APlugin-A-15</tt> and
-         * <tt>BPlugin-A-15</tt> is not possible but <tt>BPlugin-S-15</tt>
+         * synchronisation type.<br>i.e {@code APlugin-A-15} and
+         * {@code BPlugin-A-15} is not possible but {@code BPlugin-S-15}
          * is.</p>
          *
          * @param name The task name

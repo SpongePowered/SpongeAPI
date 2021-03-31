@@ -28,6 +28,6 @@ import java.util.Random;
 
 public interface RandomProvider {
 
-    Random getRandom();
+    Random random();
 
 }

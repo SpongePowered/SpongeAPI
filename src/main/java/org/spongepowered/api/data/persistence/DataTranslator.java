@@ -44,7 +44,7 @@ public interface DataTranslator<T> {
      * @see TypeToken
      * @return The type token for this translator
      */
-    TypeToken<T> getToken();
+    TypeToken<T> token();
 
     /**
      * Attempts to translate the {@code T} object from the provided
@@ -76,7 +76,7 @@ public interface DataTranslator<T> {
      * @return The provided data view, for chaining
      */
     default DataView addTo(T obj, DataView dataView) {
-        for (Map.Entry<DataQuery, Object> entry : this.translate(obj).getValues(false).entrySet()) {
+        for (Map.Entry<DataQuery, Object> entry : this.translate(obj).values(false).entrySet()) {
             dataView.set(entry.getKey(), entry);
         }
         return dataView;

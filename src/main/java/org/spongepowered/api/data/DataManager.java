@@ -83,7 +83,7 @@ public interface DataManager {
      * @param <T> The type of data serializable
      * @return The content updater, if available
      */
-    <T extends DataSerializable> Optional<DataContentUpdater> getWrappedContentUpdater(Class<T> clazz, int fromVersion, int toVersion);
+    <T extends DataSerializable> Optional<DataContentUpdater> wrappedContentUpdater(Class<T> clazz, int fromVersion, int toVersion);
 
     /**
      * Attempts to retrieve the {@link DataBuilder} for the desired
@@ -97,7 +97,7 @@ public interface DataManager {
      * @param <T> The type of data serializable
      * @return The builder, if available
      */
-    <T extends DataSerializable> Optional<DataBuilder<T>> getBuilder(Class<T> clazz);
+    <T extends DataSerializable> Optional<DataBuilder<T>> builder(Class<T> clazz);
 
     /**
      * Attempts to translate an instance of the {@link DataSerializable} from
@@ -147,7 +147,7 @@ public interface DataManager {
      * @param <B> The type of immutable data builder
      * @return The builder, if available
      */
-    <T extends DataHolder.Immutable<T>, B extends DataHolderBuilder.Immutable<T, B>> Optional<B> getImmutableBuilder(Class<T> holderClass);
+    <T extends DataHolder.Immutable<T>, B extends DataHolderBuilder.Immutable<T, B>> Optional<B> immutableBuilder(Class<T> holderClass);
 
     /**
      * Gets the desired {@link DataTranslator} for the provided class.
@@ -156,7 +156,7 @@ public interface DataManager {
      * @param <T> The type of object
      * @return The data translator, if available
      */
-    <T> Optional<DataTranslator<T>> getTranslator(Class<T> objectClass);
+    <T> Optional<DataTranslator<T>> translator(Class<T> objectClass);
 
     /**
      * Creates a new {@link DataContainer} with a default

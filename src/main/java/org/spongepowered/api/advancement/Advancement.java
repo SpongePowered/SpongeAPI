@@ -28,9 +28,9 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.ComponentLike;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
+import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
 
 import java.util.Collection;
@@ -48,7 +48,7 @@ public interface Advancement extends ComponentLike, DataPackSerializable {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -58,14 +58,14 @@ public interface Advancement extends ComponentLike, DataPackSerializable {
      *
      * @return The advancement tree
      */
-    Optional<AdvancementTree> getTree();
+    Optional<AdvancementTree> tree();
 
     /**
      * Gets all the children {@link Advancement}s.
      *
      * @return The children advancements
      */
-    Collection<Advancement> getChildren();
+    Collection<Advancement> children();
 
     /**
      * Gets all the {@link AdvancementCriterion} that should be achieved
@@ -77,21 +77,21 @@ public interface Advancement extends ComponentLike, DataPackSerializable {
      *
      * @return The criterion
      */
-    AdvancementCriterion getCriterion();
+    AdvancementCriterion criterion();
 
     /**
      * Gets the parent {@link Advancement}, if present.
      *
      * @return The parent advancement, if present
      */
-    Optional<Advancement> getParent();
+    Optional<Advancement> parent();
 
     /**
      * Gets the {@link DisplayInfo} of this advancement, if present.
      *
      * @return The display info, if present
      */
-    Optional<DisplayInfo> getDisplayInfo();
+    Optional<DisplayInfo> displayInfo();
 
     /**
      * Gets the {@link Component} lines that would be used to

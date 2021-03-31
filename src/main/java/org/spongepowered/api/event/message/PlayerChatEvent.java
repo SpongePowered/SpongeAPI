@@ -24,12 +24,13 @@
  */
 package org.spongepowered.api.event.message;
 
-import java.util.Optional;
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.entity.living.player.PlayerChatRouter;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
+
+import java.util.Optional;
 
 /**
  * Fired when the {@link Component} being sent to a {@link PlayerChatRouter} was
@@ -42,14 +43,14 @@ public interface PlayerChatEvent extends Event, Cancellable {
      *
      * @return The original router to send to
      */
-    PlayerChatRouter getOriginalChatRouter();
+    PlayerChatRouter originalChatRouter();
 
     /**
      * Gets the current router that this message will be sent to.
      *
      * @return The router the message in this event will be sent to
      */
-    Optional<PlayerChatRouter> getChatRouter();
+    Optional<PlayerChatRouter> chatRouter();
 
     /**
      * Sets the router for this message to go to.
@@ -69,14 +70,14 @@ public interface PlayerChatEvent extends Event, Cancellable {
      *
      * @return The original chat message
      */
-    Component getOriginalMessage();
+    Component originalMessage();
 
     /**
      * Gets the chat message.
      *
      * @return The chat message
      */
-    Component getMessage();
+    Component message();
 
     /**
      * Sets the chat message.

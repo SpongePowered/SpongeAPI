@@ -85,7 +85,7 @@ public interface BannerPatternLayer extends DataSerializable {
      * @return The new pattern layer
      */
     static BannerPatternLayer of(BannerPatternShape shape, DyeColor color) {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class)
+        return Sponge.game().builderProvider().provide(Builder.class)
                 .pattern(shape)
                 .color(color)
                 .build();
@@ -96,14 +96,14 @@ public interface BannerPatternLayer extends DataSerializable {
      *
      * @return The shape
      */
-    BannerPatternShape getShape();
+    BannerPatternShape shape();
 
     /**
      * Gets the color for this layer.
      *
      * @return The color
      */
-    DyeColor getColor();
+    DyeColor color();
 
     interface Builder extends org.spongepowered.api.util.Builder<BannerPatternLayer, Builder>, CopyableBuilder<BannerPatternLayer, Builder>,
             DataBuilder<BannerPatternLayer> {

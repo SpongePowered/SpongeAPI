@@ -50,7 +50,7 @@ public interface DataStore {
      *
      * @return The supported dataHolder type.
      */
-    Collection<Type> getSupportedTypes();
+    Collection<Type> supportedTypes();
 
     /**
      * Serializes the values of the {@link DataManipulator}
@@ -132,7 +132,7 @@ public interface DataStore {
     @SafeVarargs
     @SuppressWarnings("unchecked")
     static <T, V extends Value<T>> DataStore of(final Key<V> key, final DataQuery dataQuery, final TypeToken<? extends DataHolder> typeToken, final TypeToken<? extends DataHolder>... typeTokens) {
-        return DataStore.builder().pluginData(key.getKey()).holder(typeToken).holder(typeTokens).key(key, dataQuery).build();
+        return DataStore.builder().pluginData(key.key()).holder(typeToken).holder(typeTokens).key(key, dataQuery).build();
     }
 
     /**
@@ -151,7 +151,7 @@ public interface DataStore {
     @SafeVarargs
     @SuppressWarnings("unchecked")
     static <T, V extends Value<T>> DataStore of(final Key<V> key, final DataQuery dataQuery, final Class<?extends DataHolder> type, final Class<? extends DataHolder>... types) {
-        return DataStore.builder().pluginData(key.getKey()).holder(type).holder(types).key(key, dataQuery).build();
+        return DataStore.builder().pluginData(key.key()).holder(type).holder(types).key(key, dataQuery).build();
     }
 
     /**
@@ -160,7 +160,7 @@ public interface DataStore {
      * @return The dataStore builder.
      */
     static DataStore.Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     interface Builder extends ResettableBuilder<DataStore, Builder> {
@@ -232,11 +232,11 @@ public interface DataStore {
             SerializersStep holder(Class<? extends DataHolder>... types);
         }
 
-        interface SerializersStep extends HolderStep, ResettableBuilder<DataStore, Builder>{
+        interface SerializersStep extends HolderStep, ResettableBuilder<DataStore, Builder> {
 
             /**
              * Adds one or more keys using the default implemented serializers for the given key.
-             * <p>The {@link Key#getKey()} resource-key} value will be used as DataQuery</p>
+             * <p>The {@link Key#key()} resource-key} value will be used as DataQuery</p>
              *
              * @param key The data key
              * @param moreKeys more data keys

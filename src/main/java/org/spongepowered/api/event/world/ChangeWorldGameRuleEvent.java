@@ -38,27 +38,27 @@ public interface ChangeWorldGameRuleEvent extends Event, Cancellable {
      *
      * @return The world
      */
-    ServerWorld getWorld();
+    ServerWorld world();
 
     /**
      * Gets the original value of the GameRule.
      *
      * @return The original value.
      */
-    String getOriginalValue();
+    String originalValue();
 
     /**
      * Gets the new value of the GameRule.
      *
      * @return The new value.
      */
-    String getValue();
+    String value();
 
     /**
      * Gets the name of this GameRule.
      *
      * @return The name of the GameRule.
      */
-    String getName();
+    String name();
 
 }

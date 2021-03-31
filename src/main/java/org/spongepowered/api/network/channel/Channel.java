@@ -38,14 +38,14 @@ public interface Channel {
      *
      * @return The registrar
      */
-    ChannelRegistry getRegistry();
+    ChannelRegistry registry();
 
     /**
      * Gets this channel's bound key.
      *
      * @return The channel key
      */
-    ResourceKey getKey();
+    ResourceKey key();
 
     /**
      * Sets the {@link ChannelExceptionHandler} that should be used for the channel.

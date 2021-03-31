@@ -38,6 +38,7 @@ public interface FireworkRocket extends Projectile, FusedExplosive {
 
     /**
      * {@link Keys#FIREWORK_EFFECTS}
+     *
      * @return The firework effects
      */
     default ListValue.Mutable<FireworkEffect> effects() {

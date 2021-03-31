@@ -41,14 +41,14 @@ public interface UseItemStackEvent extends Event {
      *
      * @return The original remaining duration
      */
-    int getOriginalRemainingDuration();
+    int originalRemainingDuration();
 
     /**
      * Gets the remaining duration of {@link ItemStack} in use.
      *
      * @return The remaining duration
      */
-    int getRemainingDuration();
+    int remainingDuration();
 
     /**
      * Sets the remaining duration of {@link ItemStack} in use.
@@ -62,7 +62,7 @@ public interface UseItemStackEvent extends Event {
      *
      * @return The item being consumed
      */
-    ItemStackSnapshot getItemStackInUse();
+    ItemStackSnapshot itemStackInUse();
 
     /**
      * Called before {@link UseItemStackEvent.Tick} when a player starts using an
@@ -172,7 +172,7 @@ public interface UseItemStackEvent extends Event {
          *
          * @return The result {@link ItemStack}
          */
-        Transaction<ItemStackSnapshot> getItemStackResult();
+        Transaction<ItemStackSnapshot> itemStackResult();
     }
 
     /**

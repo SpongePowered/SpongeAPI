@@ -39,10 +39,10 @@ public interface ServerLocationCreator extends LocationCreator<ServerWorld, Serv
      * @param position The position to get the locatable block
      * @return The locatable block
      */
-    default LocatableBlock getLocatableBlock(final Vector3i position) {
+    default LocatableBlock locatableBlock(final Vector3i position) {
         Objects.requireNonNull(position, "position");
 
-        return this.getLocatableBlock(position.getX(), position.getY(), position.getZ());
+        return this.locatableBlock(position.getX(), position.getY(), position.getZ());
     }
 
     /**
@@ -53,8 +53,8 @@ public interface ServerLocationCreator extends LocationCreator<ServerWorld, Serv
      * @param z The z position
      * @return The locatable block
      */
-    default LocatableBlock getLocatableBlock(final int x, final int y, final int z) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(this.getWorld(), x, y, z);
+    default LocatableBlock locatableBlock(final int x, final int y, final int z) {
+        return Sponge.game().factoryProvider().provide(Factory.class).of(this.world(), x, y, z);
     }
 
     interface Factory {

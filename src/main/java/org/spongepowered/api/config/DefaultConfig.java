@@ -36,8 +36,8 @@ import java.lang.annotation.Target;
 import java.nio.file.Path;
 
 /**
- * Provides an convenient injection for {@link ConfigRoot#getConfig()} or
- * {@link ConfigRoot#getConfigPath()}.
+ * Provides an convenient injection for {@link ConfigRoot#config()} or
+ * {@link ConfigRoot#configPath()}.
  *
  * <p>Use this annotation on a {@link File} or {@link Path} if you want the
  * pathname to the default configuration. Or instead, use this annotation on a
@@ -55,7 +55,7 @@ public @interface DefaultConfig {
      * Whether the the shared root for configuration should be used.
      *
      * @return True to use a shared root configuration
-     * @see ConfigRoot#getConfigPath() For information on what the
+     * @see ConfigRoot#configPath() For information on what the
      *     shared root is
      */
     boolean sharedRoot();

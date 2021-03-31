@@ -31,10 +31,10 @@ import java.util.List;
 
 public interface RegisterProfessionTradeGeneratorsEvent extends LifecycleEvent {
 
-    ProfessionType getProfession();
+    ProfessionType profession();
 
-    List<TradeOfferGenerator> getOriginalGenerators();
+    List<TradeOfferGenerator> originalGenerators();
 
-    List<TradeOfferGenerator> getGenerators();
+    List<TradeOfferGenerator> generators();
 
 }

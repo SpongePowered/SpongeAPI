@@ -32,5 +32,5 @@ import org.spongepowered.api.entity.living.ComplexLivingPart;
 public interface EnderDragonPart extends ComplexLivingPart<EnderDragonPart> {
 
     @Override
-    EnderDragon getParent();
+    EnderDragon parent();
 }

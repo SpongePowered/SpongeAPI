@@ -29,6 +29,8 @@ import static javax.tools.Diagnostic.Kind.ERROR;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.Listener;
 
+import java.util.List;
+import java.util.Set;
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Messager;
 import javax.annotation.processing.RoundEnvironment;
@@ -46,8 +48,6 @@ import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
-import java.util.List;
-import java.util.Set;
 
 @SupportedAnnotationTypes(ListenerProcessor.LISTENER_ANNOTATION_CLASS)
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
@@ -57,16 +57,16 @@ public class ListenerProcessor extends AbstractProcessor {
     private static final String EVENT_CLASS = Event.class.getName();
 
     @Override
-    public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
+    public boolean process(final Set<? extends TypeElement> annotations, final RoundEnvironment roundEnv) {
         if (ProcessorUtils.contains(annotations, Listener.class)) {
-            for (Element e : roundEnv.getElementsAnnotatedWith(Listener.class)) {
+            for (final Element e : roundEnv.getElementsAnnotatedWith(Listener.class)) {
                 if (e.getKind() != ElementKind.METHOD) {
                     this.processingEnv.getMessager().printMessage(ERROR, "Invalid element of type " + e.getKind() + " annotated with @Listener", e);
                     continue;
                 }
-                ExecutableElement method = (ExecutableElement) e;
+                final ExecutableElement method = (ExecutableElement) e;
 
-                Messager msg = this.processingEnv.getMessager();
+                final Messager msg = this.processingEnv.getMessager();
                 if (method.getModifiers().contains(Modifier.STATIC)) {
                     msg.printMessage(Diagnostic.Kind.ERROR, "method must not be static", method);
                 }
@@ -82,7 +82,7 @@ public class ListenerProcessor extends AbstractProcessor {
                 if (method.getReturnType().getKind() != TypeKind.VOID) {
                     msg.printMessage(Diagnostic.Kind.ERROR, "method must return void", method);
                 }
-                List<? extends VariableElement> parameters = method.getParameters();
+                final List<? extends VariableElement> parameters = method.getParameters();
                 if (parameters.isEmpty() || !this.isTypeSubclass(parameters.get(0), ListenerProcessor.EVENT_CLASS)) {
                     msg.printMessage(Diagnostic.Kind.ERROR, "method must have an Event as its first parameter", method);
                 }
@@ -92,11 +92,11 @@ public class ListenerProcessor extends AbstractProcessor {
         return false;
     }
 
-    private boolean isTypeSubclass(Element typedElement, String subclass) {
-        Elements elements = this.processingEnv.getElementUtils();
-        Types types = this.processingEnv.getTypeUtils();
+    private boolean isTypeSubclass(final Element typedElement, final String subclass) {
+        final Elements elements = this.processingEnv.getElementUtils();
+        final Types types = this.processingEnv.getTypeUtils();
 
-        TypeMirror event = types.getDeclaredType(elements.getTypeElement(subclass));
+        final TypeMirror event = types.getDeclaredType(elements.getTypeElement(subclass));
         return types.isAssignable(typedElement.asType(), event);
     }
 

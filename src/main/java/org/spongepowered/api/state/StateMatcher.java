@@ -51,7 +51,7 @@ public interface StateMatcher<S extends State<S>> extends Predicate<S> {
      * @return The builder
      */
     static Builder<BlockState, BlockType> blockStateMatcherBuilder() {
-        return Sponge.getGame().getFactoryProvider().provide(StateMatcher.Factory.class).blockStateMatcherBuilder();
+        return Sponge.game().factoryProvider().provide(StateMatcher.Factory.class).blockStateMatcherBuilder();
     }
 
     /**
@@ -60,7 +60,7 @@ public interface StateMatcher<S extends State<S>> extends Predicate<S> {
      * @return The builder
      */
     static Builder<FluidState, FluidType> fluidStateMatcherBuilder() {
-        return Sponge.getGame().getFactoryProvider().provide(StateMatcher.Factory.class).fluidStateMatcherBuilder();
+        return Sponge.game().factoryProvider().provide(StateMatcher.Factory.class).fluidStateMatcherBuilder();
     }
 
     /**
@@ -78,7 +78,7 @@ public interface StateMatcher<S extends State<S>> extends Predicate<S> {
      *
      * @return The list of compatible states
      */
-    List<S> getCompatibleStates();
+    List<S> compatibleStates();
 
     @Override
     default boolean test(final S state) {

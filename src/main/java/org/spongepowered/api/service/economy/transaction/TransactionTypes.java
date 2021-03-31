@@ -27,10 +27,10 @@ package org.spongepowered.api.service.economy.transaction;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.service.economy.Currency;
 import org.spongepowered.api.service.economy.account.Account;
 
@@ -64,6 +64,6 @@ public final class TransactionTypes {
     }
 
     private static DefaultedRegistryReference<TransactionType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.TRANSACTION_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.TRANSACTION_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

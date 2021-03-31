@@ -38,7 +38,7 @@ public interface PaletteReference<T, R> {
     String value();
 
     default Optional<T> resolve(final RegistryHolder holder, final PaletteType<T, R> type) {
-        return type.getResolver().apply(this.value(), holder.registry(this.registry()));
+        return type.resolver().apply(this.value(), holder.registry(this.registry()));
     }
 
     static <T, R> PaletteReference<T, R> byString(final RegistryType<R> registryType, final String value) {
@@ -46,7 +46,7 @@ public interface PaletteReference<T, R> {
         if (stringId.isEmpty()) {
             throw new IllegalArgumentException("String cannot be empty to refer to an object in a Palette");
         }
-        return Sponge.getGame().getFactoryProvider().provide(PaletteReference.Factory.class)
+        return Sponge.game().factoryProvider().provide(PaletteReference.Factory.class)
             .stringReference(
                 Objects.requireNonNull(registryType, "RegistryType cannot be null!"),
                 stringId

@@ -46,7 +46,7 @@ public interface ChangeInventoryEvent extends Event, AffectSlotEvent {
      *
      * @return The inventory
      */
-    Inventory getInventory();
+    Inventory inventory();
 
     /**
      * Fired when a {@link Living} changes it's held {@link Slot}.
@@ -60,14 +60,14 @@ public interface ChangeInventoryEvent extends Event, AffectSlotEvent {
          *
          * @return The previously selected slot.
          */
-        Slot getOriginalSlot();
+        Slot originalSlot();
 
         /**
          * The new selected slot.
          *
          * @return The new selected slot.
          */
-        Slot getFinalSlot();
+        Slot finalSlot();
     }
 
     /**
@@ -97,14 +97,14 @@ public interface ChangeInventoryEvent extends Event, AffectSlotEvent {
              *
              * @return The inventory.
              */
-            Inventory getInventory();
+            Inventory inventory();
 
             /**
              * Gets the {@link Item}.
              *
              * @return The item
              */
-            Item getItem();
+            Item item();
 
             /**
              * Returns the original picked up {@link ItemStackSnapshot}
@@ -113,8 +113,8 @@ public interface ChangeInventoryEvent extends Event, AffectSlotEvent {
              * @return The original picked up item
              */
             @PropertySettings(requiredParameter = true, generateMethods = true)
-            default ItemStackSnapshot getOriginalStack() {
-                return this.getItem().item().get();
+            default ItemStackSnapshot originalStack() {
+                return this.item().item().get();
             }
 
             /**
@@ -122,7 +122,7 @@ public interface ChangeInventoryEvent extends Event, AffectSlotEvent {
              *
              * @return The custom set list
              */
-            Optional<List<ItemStackSnapshot>> getCustom();
+            Optional<List<ItemStackSnapshot>> custom();
 
             /**
              * Sets the items to add to the inventory.
@@ -142,7 +142,7 @@ public interface ChangeInventoryEvent extends Event, AffectSlotEvent {
              *
              * @return The proposed final list
              */
-            List<ItemStackSnapshot> getFinal();
+            List<ItemStackSnapshot> finalStacks();
 
         }
     }

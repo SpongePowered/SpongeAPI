@@ -35,6 +35,7 @@ public interface Slime extends Monster {
 
     /**
      * {@link Keys#SIZE}
+     *
      * @return The size of slime
      */
     default Value.Mutable<Integer> size() {

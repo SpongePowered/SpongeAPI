@@ -39,14 +39,14 @@ public interface Score {
      *
      * @return The name of this score
      */
-    Component getName();
+    Component name();
 
     /**
      * Gets the current score value.
      *
      * @return The current score value
      */
-    int getScore();
+    int score();
 
     /**
      * Sets the current score value.
@@ -76,6 +76,6 @@ public interface Score {
      * @return A {@link Set} of parent {@link Objective} this {@link Score} is
      *         registered to
      */
-    Set<Objective> getObjectives();
+    Set<Objective> objectives();
 
 }

@@ -37,6 +37,6 @@ public interface LocalServer extends Server {
         return false;
     }
 
-    Client getClient();
+    Client client();
 
 }

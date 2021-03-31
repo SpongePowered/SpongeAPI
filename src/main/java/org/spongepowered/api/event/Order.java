@@ -29,7 +29,8 @@ package org.spongepowered.api.event;
  *
  * <p>Event handlers are called the order given in the following table.</p>
  *
- * <table summary="Order Recommendations">
+ * <table>
+ *     <caption>Order Recommendations</caption>
  *     <tr><td>Order</td>
  *         <td>Recommendation</td></tr>
  *     <tr><td>PRE</td>

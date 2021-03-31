@@ -46,7 +46,7 @@ public interface FireworkEffect extends DataSerializable {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
 
@@ -74,7 +74,7 @@ public interface FireworkEffect extends DataSerializable {
      *
      * @return The list of colors
      */
-    List<Color> getColors();
+    List<Color> colors();
 
     /**
      * Gets the ordered list of colors.
@@ -84,14 +84,14 @@ public interface FireworkEffect extends DataSerializable {
      *
      * @return The list of colors
      */
-    List<Color> getFadeColors();
+    List<Color> fadeColors();
 
     /**
      * Gets the explosion shape.
      *
      * @return The explosion shape
      */
-    FireworkShape getShape();
+    FireworkShape shape();
 
     interface Builder extends org.spongepowered.api.util.Builder<FireworkEffect, Builder>, CopyableBuilder<FireworkEffect, Builder> {
 

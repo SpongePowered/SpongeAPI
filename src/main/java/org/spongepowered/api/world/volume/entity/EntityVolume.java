@@ -58,7 +58,7 @@ public interface EntityVolume extends Volume {
      *
      * @return An unmodifiable or copied collection of available players
      */
-    Collection<? extends Player> getPlayers();
+    Collection<? extends Player> players();
 
     /**
      * Gets the entity whose {@link UUID} matches the provided id, possibly
@@ -71,7 +71,7 @@ public interface EntityVolume extends Volume {
      * @param uuid The unique id
      * @return An entity, if available
      */
-    Optional<Entity> getEntity(UUID uuid);
+    Optional<Entity> entity(UUID uuid);
 
     /**
      * Gets all the entities that intersect the bounding box, in no particular
@@ -80,13 +80,13 @@ public interface EntityVolume extends Volume {
      * @param box The intersection box
      * @return All the intersecting entities
      */
-    default Collection<? extends Entity> getEntities(AABB box) {
+    default Collection<? extends Entity> entities(AABB box) {
         Objects.requireNonNull(box);
 
-        return this.getEntities(box, entity -> true);
+        return this.entities(box, entity -> true);
     }
 
-    <T extends Entity> Collection<? extends T> getEntities(Class<? extends T> entityClass, AABB box, @Nullable Predicate<? super T> predicate);
+    <T extends Entity> Collection<? extends T> entities(Class<? extends T> entityClass, AABB box, @Nullable Predicate<? super T> predicate);
 
     /**
      * Gets all the entities that intersect the bounding box, in no particular
@@ -96,18 +96,18 @@ public interface EntityVolume extends Volume {
      * @param filter The filter test
      * @return All the intersecting entities that pass the filter test
      */
-    Collection<? extends Entity> getEntities(AABB box, Predicate<? super Entity> filter);
+    Collection<? extends Entity> entities(AABB box, Predicate<? super Entity> filter);
 
-    default <T extends Entity> Collection<? extends T> getEntities(Class<? extends T> entityClass, AABB box) {
-        return this.getEntities(entityClass, box, EntityPredicates.NO_SPECTATOR);
+    default <T extends Entity> Collection<? extends T> entities(Class<? extends T> entityClass, AABB box) {
+        return this.entities(entityClass, box, EntityPredicates.NO_SPECTATOR);
     }
 
-    default Optional<? extends Player> getNearestPlayer(double x, double y, double z, double distance, @Nullable Predicate<? super Entity> predicate) {
+    default Optional<? extends Player> nearestPlayer(double x, double y, double z, double distance, @Nullable Predicate<? super Entity> predicate) {
         Player nearest = null;
         double closest = -1.0D;
-        for (Player player : this.getPlayers()) {
+        for (Player player : this.players()) {
             if (predicate == null || predicate.test(player)) {
-                final double dist = player.getPosition().distanceSquared(x, y, z);
+                final double dist = player.position().distanceSquared(x, y, z);
                 if ((closest < 0 || dist < distance * distance) && (closest == -1 || dist < distance)) {
                     nearest = player;
                     closest = dist;
@@ -129,15 +129,15 @@ public interface EntityVolume extends Volume {
      * @param distance The search radius
      * @return A collection of nearby entities
      */
-    default Collection<? extends Entity> getNearbyEntities(Vector3d location, double distance) {
+    default Collection<? extends Entity> nearbyEntities(Vector3d location, double distance) {
         Objects.requireNonNull(location);
         if (distance <= 0) {
             throw new IllegalArgumentException("Distance must be a positive number!");
         }
 
-        return this.getEntities(AABB.of(location.getX() - distance, location.getY() - distance, location.getZ() - distance,
+        return this.entities(AABB.of(location.getX() - distance, location.getY() - distance, location.getZ() - distance,
                 location.getX() + distance, location.getY() + distance, location.getZ() + distance),
-            entity -> entity.getLocation().getPosition().distanceSquared(location) <= distance * distance);
+            entity -> entity.location().position().distanceSquared(location) <= distance * distance);
     }
 
     interface Streamable<E extends Streamable<E>> extends EntityVolume {
@@ -152,7 +152,7 @@ public interface EntityVolume extends Volume {
          * @param options The options to construct the stream
          * @return The volume stream
          */
-        VolumeStream<E, Entity> getEntityStream(Vector3i min, Vector3i max, StreamOptions options);
+        VolumeStream<E, Entity> entityStream(Vector3i min, Vector3i max, StreamOptions options);
 
     }
 

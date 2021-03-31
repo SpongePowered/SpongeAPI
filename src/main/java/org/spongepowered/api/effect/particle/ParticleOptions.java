@@ -30,10 +30,10 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.math.vector.Vector3d;
@@ -56,7 +56,6 @@ public final class ParticleOptions {
      * <ul>
      *   <li>{@link ParticleTypes#BLOCK}</li>
      *   <li>{@link ParticleTypes#FALLING_DUST}</li>
-     *   <li>{@link ParticleTypes#BREAK_BLOCK}</li>
      *   <li>{@link ParticleTypes#ITEM}</li>
      * </ul>
      */
@@ -96,7 +95,6 @@ public final class ParticleOptions {
      * <ul>
      *   <li>{@link ParticleTypes#BLOCK}</li>
      *   <li>{@link ParticleTypes#FALLING_DUST}</li>
-     *   <li>{@link ParticleTypes#BREAK_BLOCK}</li>
      *   <li>{@link ParticleTypes#ITEM}</li>
      * </ul>
      */
@@ -117,7 +115,6 @@ public final class ParticleOptions {
     /**
      * This option will change the potion type of a particle. The only vanilla
      * {@link ParticleType}s this option is applicable to is
-     * {@link ParticleTypes#SPLASH_POTION}.
      */
     public static final DefaultedRegistryReference<ParticleOption<PotionEffectType>> POTION_EFFECT_TYPE = ParticleOptions.key(ResourceKey.sponge("potion_effect_type"));
 
@@ -128,11 +125,7 @@ public final class ParticleOptions {
      *
      * <ul>
      *   <li>{@link ParticleTypes#BLOCK}</li>
-     *   <li>{@link ParticleTypes#BREAK_EYE_OF_ENDER}</li>
-     *   <li>{@link ParticleTypes#FIRE_SMOKE}</li>
      *   <li>{@link ParticleTypes#FIREWORK}</li>
-     *   <li>{@link ParticleTypes#MOBSPAWNER_FLAMES}</li>
-     *   <li>{@link ParticleTypes#SPLASH_POTION}</li>
      * </ul>
      *
      * <p>The quantity must be at least 1, or a {@link IllegalArgumentException}
@@ -184,6 +177,6 @@ public final class ParticleOptions {
     }
 
     private static <T> DefaultedRegistryReference<ParticleOption<T>> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.PARTICLE_OPTION, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.PARTICLE_OPTION, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

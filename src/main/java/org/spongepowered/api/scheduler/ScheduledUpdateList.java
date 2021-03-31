@@ -224,8 +224,8 @@ public interface ScheduledUpdateList<T> {
      * @param pos The position
      * @return The collection of scheduled updates at the desired position
      */
-    default Collection<? extends ScheduledUpdate<T>> getScheduledAt(Vector3i pos) {
-        return this.getScheduledAt(pos.getX(), pos.getY(), pos.getZ());
+    default Collection<? extends ScheduledUpdate<T>> scheduledAt(Vector3i pos) {
+        return this.scheduledAt(pos.getX(), pos.getY(), pos.getZ());
     }
 
     /**
@@ -236,5 +236,5 @@ public interface ScheduledUpdateList<T> {
      * @param z The z coordinate
      * @return The collection of scheduled updates at the desired position
      */
-    Collection<? extends ScheduledUpdate<T>> getScheduledAt(int x, int y, int z);
+    Collection<? extends ScheduledUpdate<T>> scheduledAt(int x, int y, int z);
 }

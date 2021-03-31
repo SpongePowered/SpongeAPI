@@ -25,8 +25,8 @@
 package org.spongepowered.api.item.merchant;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataBuilder;
+import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -50,17 +50,17 @@ public interface TradeOffer extends DataSerializable {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
      * Gets the first buying item.
      * <p>The first buying item is an item that the customer is selling to the
-     * merchant in exchange for {@link #getSellingItem()}.</p>
+     * merchant in exchange for {@link #sellingItem()}.</p>
      *
      * @return The first buying item
      */
-    ItemStackSnapshot getFirstBuyingItem();
+    ItemStackSnapshot firstBuyingItem();
 
     /**
      * Returns whether this trade offer has a second item the merchant is buying
@@ -74,33 +74,33 @@ public interface TradeOffer extends DataSerializable {
      * <p>Gets the second buying item.</p>
      *
      * <p>The second buying item is an item that the customer is selling to the
-     * merchant, along with the {@link #getFirstBuyingItem()}, in exchange for
-     * {@link #getSellingItem()}.</p>
+     * merchant, along with the {@link #firstBuyingItem()}, in exchange for
+     * {@link #sellingItem()}.</p>
      *
      * @return The second buying item, if available
      */
-    Optional<ItemStackSnapshot> getSecondBuyingItem();
+    Optional<ItemStackSnapshot> secondBuyingItem();
 
     /**
      * Gets the selling item the {@link Merchant} will give to the customer
      * often in exchange for a single item or sometimes, two items from the
-     * following methods: {@link #getFirstBuyingItem()} and
-     * {@link #getSecondBuyingItem}.
+     * following methods: {@link #firstBuyingItem()} and
+     * {@link #secondBuyingItem}.
      *
      * @return The selling item
      */
-    ItemStackSnapshot getSellingItem();
+    ItemStackSnapshot sellingItem();
 
     /**
      * <p>Gets the current uses of this offer.</p>
      *
      * <p>Usually, the uses of an offer are limited by the amount of
-     * {@link #getMaxUses()}. Once the uses reaches the max uses, the offer may
+     * {@link #maxUses()}. Once the uses reaches the max uses, the offer may
      * temporarily become disabled.</p>
      *
      * @return The current uses of this trade offer
      */
-    int getUses();
+    int uses();
 
     /**
      * <p>Gets the current maximum uses of this offer.</p>
@@ -111,7 +111,7 @@ public interface TradeOffer extends DataSerializable {
      *
      * @return The maximum uses of this trade offer
      */
-    int getMaxUses();
+    int maxUses();
 
     /**
      * Checks if this trade offer has indeed passed the time of which the uses
@@ -135,7 +135,7 @@ public interface TradeOffer extends DataSerializable {
      *
      * @return The experience to be granted to the merchant
      */
-    int getExperienceGrantedToMerchant();
+    int experienceGrantedToMerchant();
 
     /**
      * Gets the rate at which this trade offer's price will grow when demand for
@@ -150,14 +150,14 @@ public interface TradeOffer extends DataSerializable {
      * Minecraft Wiki for more detail on how the price growth multiplier applies
      * to trade offers</a>
      */
-    double getPriceGrowthMultiplier();
+    double priceGrowthMultiplier();
 
     /**
      * Gets the demand bonus for this trade offer.
      *
      * @return the demand bonus
      */
-    int getDemandBonus();
+    int demandBonus();
 
     /**
      * Represents a builder to generate immutable {@link TradeOffer}s.

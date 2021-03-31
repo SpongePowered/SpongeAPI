@@ -27,10 +27,10 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 
 /**
  * An enumeration of vanilla {@link MooshroomType}s.
@@ -55,6 +55,6 @@ public final class MooshroomTypes {
     }
 
     private static DefaultedRegistryReference<MooshroomType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.MOOSHROOM_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.MOOSHROOM_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

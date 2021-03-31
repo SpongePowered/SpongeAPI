@@ -51,7 +51,7 @@ public interface ViewableInventory extends Inventory {
      *
      * @return The current viewers of this inventory
      */
-    Set<ServerPlayer> getViewers();
+    Set<ServerPlayer> viewers();
 
     /**
      * Checks for whether this Inventory currently has viewers.
@@ -82,7 +82,7 @@ public interface ViewableInventory extends Inventory {
      * @return The builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -207,7 +207,7 @@ public interface ViewableInventory extends Inventory {
              *
              * @return the building step
              */
-            BuildingStep slotsAtIndizes(List<Slot>source, List<Integer> at);
+            BuildingStep slotsAtIndizes(List<Slot> source, List<Integer> at);
 
             /**
              * Adds given slots to the inventory at given positions
@@ -217,7 +217,7 @@ public interface ViewableInventory extends Inventory {
              *
              * @return the building step
              */
-            BuildingStep slotsAtPositions(List<Slot>source, List<Vector2i> at);
+            BuildingStep slotsAtPositions(List<Slot> source, List<Vector2i> at);
 
             /**
              * Adds all undefined slots as dummy slots.

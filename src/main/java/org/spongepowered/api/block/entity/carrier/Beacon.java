@@ -46,7 +46,7 @@ public interface Beacon extends NameableBlockEntity {
      *
      * @return The number of levels
      */
-    int getCompletedLevels();
+    int completedLevels();
 
     /**
      * Gets the {@link org.spongepowered.api.data.value.Value.Mutable} for the primary

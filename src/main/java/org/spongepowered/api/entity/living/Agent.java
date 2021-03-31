@@ -64,5 +64,5 @@ public interface Agent extends Living, ArmorEquipable {
      * @param <T> Inferred agent type
      * @return The goal or {@link Optional#empty()} if not found.
      */
-    <T extends Agent> Optional<GoalExecutor<T>> getGoal(GoalExecutorType type);
+    <T extends Agent> Optional<GoalExecutor<T>> goal(GoalExecutorType type);
 }

@@ -28,8 +28,8 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.Cause;
+import org.spongepowered.api.event.Event;
 
 import java.util.Optional;
 
@@ -41,12 +41,12 @@ public interface ExecuteCommandEvent extends Event {
     /**
      * Gets the {@link CommandCause} that is involved in this event.
      *
-     * <p>{@link CommandCause#getCause()} returns the same {@link Cause} as
-     * {@link #getCause()}.</p>
+     * <p>{@link CommandCause#cause()} returns the same {@link Cause} as
+     * {@link #cause()}.</p>
      *
      * @return The {@link CommandCause}
      */
-    CommandCause getCommandCause();
+    CommandCause commandCause();
 
     /**
      * Gets the command that were requested by the {@link Cause} before any
@@ -57,14 +57,14 @@ public interface ExecuteCommandEvent extends Event {
      *
      * @return The original command
      */
-    String getOriginalCommand();
+    String originalCommand();
 
     /**
      * Gets the command that will be/has been executed, without any prefix.
      *
      * @return The command
      */
-    String getCommand();
+    String command();
 
     /**
      * Gets the arguments that were requested by the {@link Cause} before any
@@ -75,14 +75,14 @@ public interface ExecuteCommandEvent extends Event {
      *
      * @return The original arguments
      */
-    String getOriginalArguments();
+    String originalArguments();
 
     /**
      * Gets the arguments as a string.
      *
      * @return The arguments
      */
-    String getArguments();
+    String arguments();
 
     /**
      * Fired before the command is executed.
@@ -116,7 +116,7 @@ public interface ExecuteCommandEvent extends Event {
          *
          * @return The result of the command, if set.
          */
-        Optional<CommandResult> getResult();
+        Optional<CommandResult> result();
 
         /**
          * Sets the result of the command.
@@ -127,7 +127,7 @@ public interface ExecuteCommandEvent extends Event {
 
         /**
          * If true, the command will not run and the {@link CommandResult}
-         * given by {@link #getResult()} will be returned.
+         * given by {@link #result()} will be returned.
          *
          * @return The cancellation status of the event.
          */
@@ -137,7 +137,7 @@ public interface ExecuteCommandEvent extends Event {
         /**
          * Sets whether the command will run. If the command is cancelled using
          * this method, an appropriate {@link CommandResult} will be set (and
-         * returned from {@link #getResult()}).
+         * returned from {@link #result()}).
          *
          * @param cancel The new cancelled state
          */
@@ -156,7 +156,7 @@ public interface ExecuteCommandEvent extends Event {
          *
          * @return The result
          */
-        CommandResult getResult();
+        CommandResult result();
 
     }
 

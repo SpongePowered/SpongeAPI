@@ -33,7 +33,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * for the damage modifier. The use case is being able to differentiate between
  * various {@link DamageModifier}s based on the {@link DamageModifierType}
  * without digging through the {@link Cause} provided by
- * {@link DamageModifier#getCause()}.
+ * {@link DamageModifier#cause()}.
  */
 @CatalogedBy(DamageModifierTypes.class)
 public interface DamageModifierType extends DefaultedRegistryValue {

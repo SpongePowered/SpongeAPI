@@ -29,9 +29,9 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.state.State;
-import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.schematic.Schematic;
+import org.spongepowered.api.world.server.ServerLocation;
 
 import java.util.Objects;
 import java.util.function.Supplier;
@@ -51,12 +51,12 @@ public interface FluidState extends State<FluidState> {
      * @return The builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     static FluidState fromString(final String id) {
         Objects.requireNonNull(id);
-        return Sponge.getGame().getBuilderProvider().provide(FluidState.Builder.class).fromString(id).build();
+        return Sponge.game().builderProvider().provide(FluidState.Builder.class).fromString(id).build();
     }
 
     /**
@@ -69,7 +69,7 @@ public interface FluidState extends State<FluidState> {
      *
      * @return The type of block
      */
-    BlockState getBlock();
+    BlockState block();
 
     /**
      * Gets the parent {@link FluidType} that this state is based on. Much
@@ -78,7 +78,7 @@ public interface FluidState extends State<FluidState> {
      *
      * @return The fluid type
      */
-    FluidType getType();
+    FluidType type();
 
     boolean isEmpty();
 

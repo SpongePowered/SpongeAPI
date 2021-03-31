@@ -25,7 +25,6 @@
 package org.spongepowered.api.item.recipe;
 
 import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.event.lifecycle.RegisterRegistryValueEvent;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.cooking.CookingRecipe;
@@ -51,14 +50,14 @@ public interface RecipeRegistry {
      *
      * @return The recipe if available
      */
-    Optional<Recipe> getByKey(ResourceKey key);
+    Optional<Recipe> byKey(ResourceKey key);
 
     /**
      * Gets all registered recipes.
      *
      * @return All registered recipes.
      */
-    Collection<Recipe> getAll();
+    Collection<Recipe> all();
 
     /**
      * Returns all registered recipes of given type
@@ -66,7 +65,7 @@ public interface RecipeRegistry {
      *
      * @return All recipes of given type
      */
-    <T extends Recipe> Collection<T> getAllOfType(RecipeType<T> type);
+    <T extends Recipe> Collection<T> allOfType(RecipeType<T> type);
 
     /**
      * Returns all registered recipes of given type
@@ -74,8 +73,8 @@ public interface RecipeRegistry {
      *
      * @return All recipes of given type
      */
-    default <T extends Recipe> Collection<T> getAllOfType(Supplier<? extends RecipeType<T>> supplier) {
-        return this.getAllOfType(supplier.get());
+    default <T extends Recipe> Collection<T> allOfType(Supplier<? extends RecipeType<T>> supplier) {
+        return this.allOfType(supplier.get());
     }
 
     /**
@@ -165,8 +164,8 @@ public interface RecipeRegistry {
      * @return The {@link RecipeResult} if a recipe was found, or
      *         {@link Optional#empty()} if not
      */
-    default Optional<RecipeResult> getResult(Inventory inventory, ServerWorld world) {
+    default Optional<RecipeResult> result(Inventory inventory, ServerWorld world) {
         return this.findMatchingRecipe(inventory, world)
-                .flatMap(recipe -> recipe.getResult(inventory, world));
+                .flatMap(recipe -> recipe.result(inventory, world));
     }
 }

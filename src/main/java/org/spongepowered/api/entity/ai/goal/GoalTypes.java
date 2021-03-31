@@ -32,10 +32,10 @@ import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.animal.horse.Horse;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 
 import java.util.function.Predicate;
 
@@ -85,6 +85,6 @@ public final class GoalTypes {
     }
 
     private static DefaultedRegistryReference<GoalType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.GOAL_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.GOAL_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

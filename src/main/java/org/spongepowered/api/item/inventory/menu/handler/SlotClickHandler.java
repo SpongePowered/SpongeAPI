@@ -31,7 +31,7 @@ import org.spongepowered.api.item.inventory.menu.ClickType;
 import org.spongepowered.api.item.inventory.menu.ClickTypes;
 
 @FunctionalInterface
-public interface SlotClickHandler extends InventoryCallbackHandler{
+public interface SlotClickHandler extends InventoryCallbackHandler {
 
     /**
      * Handler for inventory click callbacks except {@link ClickTypes#KEY_SWAP} see {@link KeySwapHandler}

@@ -25,14 +25,15 @@
 package org.spongepowered.api.network.channel.packet;
 
 import org.spongepowered.api.network.EngineConnection;
-import org.spongepowered.api.network.channel.ChannelException;
 import org.spongepowered.api.network.RemoteConnection;
+import org.spongepowered.api.network.channel.ChannelException;
 
 /**
  * Represents a packet handler for {@link RequestPacket}s.
  *
  * @param <P> The request packet type
  * @param <R> The response packet type
+ * @param <C> The connection type
  */
 @FunctionalInterface
 public interface RequestPacketHandler<P extends Packet, R extends Packet, C extends EngineConnection> {

@@ -24,13 +24,14 @@
  */
 package org.spongepowered.api.network.channel.raw.handshake;
 
-import org.spongepowered.api.network.channel.ChannelBuf;
 import org.spongepowered.api.network.EngineConnection;
+import org.spongepowered.api.network.channel.ChannelBuf;
 import org.spongepowered.api.network.channel.NoResponseException;
-import org.spongepowered.api.network.channel.packet.RequestPacketResponse;
 
 /**
  * Handles a raw handshake data request.
+ *
+ * @param <C> The connection type
  */
 @FunctionalInterface
 public interface RawHandshakeDataRequestHandler<C extends EngineConnection> {

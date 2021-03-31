@@ -29,7 +29,7 @@ import org.spongepowered.api.Sponge;
 public interface SpacedStructureConfig {
 
     static SpacedStructureConfig of(final int distance, final int spread, final int count) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(distance, spread, count);
+        return Sponge.game().factoryProvider().provide(Factory.class).of(distance, spread, count);
     }
 
     int distance();

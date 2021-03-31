@@ -38,7 +38,7 @@ public interface FluidStackSnapshot extends SerializableDataHolder.Immutable<Flu
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -46,7 +46,7 @@ public interface FluidStackSnapshot extends SerializableDataHolder.Immutable<Flu
      *
      * @return The fluid type
      */
-    FluidType getFluid();
+    FluidType fluid();
 
     /**
      * Gets the volume of this snapshot.
@@ -57,7 +57,7 @@ public interface FluidStackSnapshot extends SerializableDataHolder.Immutable<Flu
      *
      * @return The volume
      */
-    int getVolume();
+    int volume();
 
     /**
      * Creates a new {@link FluidStack} based on this snapshot.

@@ -53,7 +53,7 @@ public class WeightedSerializableObject<T extends DataSerializable> extends Weig
     public String toString() {
         return new StringJoiner(", ", WeightedSerializableObject.class.getSimpleName() + "[", "]")
             .add("object=" + this.get())
-            .add("weight=" + this.getWeight())
+            .add("weight=" + this.weight())
             .toString();
     }
 
@@ -67,19 +67,19 @@ public class WeightedSerializableObject<T extends DataSerializable> extends Weig
             return false;
         }
         final WeightedSerializableObject object = (WeightedSerializableObject) o;
-        return this.get().equals(object.get()) && this.getWeight() == object.getWeight();
+        return this.get().equals(object.get()) && this.weight() == object.weight();
     }
 
     @Override
-    public int getContentVersion() {
+    public int contentVersion() {
         return 1;
     }
 
     @Override
     public DataContainer toContainer() {
         return DataContainer.createNew()
-                .set(Queries.CONTENT_VERSION, this.getContentVersion())
+                .set(Queries.CONTENT_VERSION, this.contentVersion())
                 .set(Queries.WEIGHTED_SERIALIZABLE, this.get())
-                .set(Queries.WEIGHTED_SERIALIZABLE_WEIGHT, this.getWeight());
+                .set(Queries.WEIGHTED_SERIALIZABLE_WEIGHT, this.weight());
     }
 }

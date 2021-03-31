@@ -36,5 +36,5 @@ import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
 @NoFactoryMethod // intermediate event, will not be called directly
 public interface LifecycleEvent extends Event {
 
-    Game getGame();
+    Game game();
 }

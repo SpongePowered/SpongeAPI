@@ -57,15 +57,15 @@ public class ChanceTable<T> extends RandomObjectTable<T> {
 
     @Override
     public List<T> get(Random rand) {
-        List<T> results = Lists.newArrayList();
+        final List<T> results = Lists.newArrayList();
         if (this.entries.isEmpty()) {
             return results;
         }
-        int rolls = this.getRolls().getFlooredAmount(rand);
+        final int rolls = this.rolls().flooredAmount(rand);
         for (int i = 0; i < rolls; i++) {
             for (Iterator<TableEntry<T>> it = this.entries.iterator(); it.hasNext();) {
-                TableEntry<T> next = it.next();
-                if (rand.nextDouble() < next.getWeight()) {
+                final TableEntry<T> next = it.next();
+                if (rand.nextDouble() < next.weight()) {
                     if (next instanceof NestedTableEntry) {
                         results.addAll(((NestedTableEntry<T>) next).get(rand));
                     } else if (next instanceof WeightedObject) {
@@ -85,8 +85,8 @@ public class ChanceTable<T> extends RandomObjectTable<T> {
         if (!(o instanceof ChanceTable)) {
             return false;
         }
-        ChanceTable<?> c = (ChanceTable<?>) o;
-        if (this.getRolls() != c.getRolls()) {
+        final ChanceTable<?> c = (ChanceTable<?>) o;
+        if (this.rolls() != c.rolls()) {
             return false;
         }
         if (this.entries.size() != c.entries.size()) {
@@ -103,7 +103,7 @@ public class ChanceTable<T> extends RandomObjectTable<T> {
     @Override
     public int hashCode() {
         int r = 1;
-        r = r * 37 + this.getRolls().hashCode();
+        r = r * 37 + this.rolls().hashCode();
         for (TableEntry<T> entry : this.entries) {
             r = r * 37 + entry.hashCode();
         }
@@ -112,8 +112,8 @@ public class ChanceTable<T> extends RandomObjectTable<T> {
 
     @Override
     public String toString() {
-        StringBuilder r = new StringBuilder();
-        r.append("ChanceTable (rolls=").append(this.getRolls());
+        final StringBuilder r = new StringBuilder();
+        r.append("ChanceTable (rolls=").append(this.rolls());
         r.append(",entries=").append(this.entries.size()).append(") {\n");
         for (TableEntry<T> entry : this.entries) {
             r.append("\t").append(entry.toString()).append("\n");

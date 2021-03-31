@@ -52,7 +52,7 @@ public interface DamageSource {
      * @return A new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -60,7 +60,7 @@ public interface DamageSource {
      *
      * @return The damage type
      */
-    DamageType getType();
+    DamageType type();
 
     /**
      * Gets whether this {@link DamageSource}'s damage is absolute and
@@ -131,7 +131,7 @@ public interface DamageSource {
      *
      * @return The increase in exhaustion
      */
-    double getExhaustion();
+    double exhaustion();
 
     interface Builder extends DamageSourceBuilder<DamageSource, Builder> { }
 

@@ -35,7 +35,7 @@ import java.util.Random;
 public interface SeededVariableAmount<T> {
 
     /**
-     * Creates a new 'fixed' variable amount, calls to {@link #getAmount} will
+     * Creates a new 'fixed' variable amount, calls to {@link #amount} will
      * always return the fixed value.
      * 
      * @param value The fixed value
@@ -48,7 +48,7 @@ public interface SeededVariableAmount<T> {
 
     /**
      * Creates a new variable amount wrapping the given {@link VariableAmount},
-     * calls to {@link #getAmount} will always return wrapped amounts value.
+     * calls to {@link #amount} will always return wrapped amounts value.
      * 
      * @param value The wrapped variable amount
      * @param <T> The seed object type
@@ -66,18 +66,18 @@ public interface SeededVariableAmount<T> {
      * @param seed The seed object
      * @return The amount
      */
-    double getAmount(Random rand, T seed);
+    double amount(Random rand, T seed);
 
     /**
-     * Gets the amount as if from {@link #getAmount(Random, Object)} but floored
+     * Gets the amount as if from {@link #amount(Random, Object)} but floored
      * to the nearest integer equivalent.
      * 
      * @param rand The random object
      * @param seed The seed object
      * @return The floored amount
      */
-    default int getFlooredAmount(Random rand, T seed) {
-        return (int) Math.floor(this.getAmount(rand, seed));
+    default int flooredAmount(Random rand, T seed) {
+        return (int) Math.floor(this.amount(rand, seed));
     }
 
     /**
@@ -101,8 +101,8 @@ public interface SeededVariableAmount<T> {
         }
 
         @Override
-        public double getAmount(Random rand, T seed) {
-            return this.inner.getAmount(rand);
+        public double amount(Random rand, T seed) {
+            return this.inner.amount(rand);
         }
 
         @Override
@@ -118,7 +118,7 @@ public interface SeededVariableAmount<T> {
             if (!(obj instanceof WrappedVariableAmount)) {
                 return false;
             }
-            WrappedVariableAmount<?> var = (WrappedVariableAmount<?>) obj;
+            final WrappedVariableAmount<?> var = (WrappedVariableAmount<?>) obj;
             return this.inner.equals(var.inner);
         }
 

@@ -41,7 +41,7 @@ public interface AdvancementProgress extends Progressable {
      *
      * @return The advancement
      */
-    Advancement getAdvancement();
+    Advancement advancement();
 
     /**
      * Gets the {@link CriterionProgress} for the given

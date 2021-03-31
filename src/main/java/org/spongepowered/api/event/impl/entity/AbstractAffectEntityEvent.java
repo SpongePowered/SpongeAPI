@@ -42,11 +42,11 @@ public abstract class AbstractAffectEntityEvent extends AbstractEvent implements
     @UseField(overrideToString = true) protected List<EntitySnapshot> entitySnapshots;
 
     @Override
-    public List<EntitySnapshot> getEntitySnapshots() {
+    public List<EntitySnapshot> entitySnapshots() {
         if (this.entitySnapshots == null) {
             if (this.currentOrder == Order.PRE) {
-                ImmutableList.Builder<EntitySnapshot> builder = ImmutableList.builder();
-                for (Entity entity: this.entities) {
+                final ImmutableList.Builder<EntitySnapshot> builder = ImmutableList.builder();
+                for (Entity entity : this.entities) {
                     builder.add(entity.createSnapshot());
                 }
                 this.entitySnapshots = builder.build();

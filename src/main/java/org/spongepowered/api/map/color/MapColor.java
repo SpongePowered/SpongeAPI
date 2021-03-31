@@ -27,7 +27,6 @@ package org.spongepowered.api.map.color;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.persistence.DataView;
-import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.map.MapCanvas;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.ResettableBuilder;
@@ -46,7 +45,7 @@ public interface MapColor extends DataSerializable {
      * @return The builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -100,21 +99,21 @@ public interface MapColor extends DataSerializable {
      *
      * @return The {@link MapColorType}
      */
-    MapColorType getType();
+    MapColorType type();
 
     /**
      * Gets the {@link MapShade} that this {@link MapColor} was built from.
      *
      * @return The {@link MapShade}
      */
-    MapShade getShade();
+    MapShade shade();
 
     /**
      * Gets the {@link Color} that this {@link MapColor} represents.
      *
      * @return The {@link Color}
      */
-    Color getColor();
+    Color color();
 
     /**
      * Builds a {@link MapColor}
@@ -122,7 +121,7 @@ public interface MapColor extends DataSerializable {
     interface Builder extends ResettableBuilder<MapColor, Builder> {
 
         /**
-         * Sets the {@link MapShade} of the supplied {@link #getColor()}.
+         * Sets the {@link MapShade} of the supplied {@link #color()}.
          *
          * <p>If this method is not called, {@link MapShades#BASE} is used.</p>
          *
@@ -163,6 +162,7 @@ public interface MapColor extends DataSerializable {
          * Sets the {@link MapColorType} that will form the basis of the built
          * {@link MapColor}.
          *
+         * @param mapColor the MapColorType
          * @return This builder, for chaining
          */
         Builder baseColor(MapColorType mapColor);
@@ -181,7 +181,7 @@ public interface MapColor extends DataSerializable {
         /**
          * Copies all data from the given {@link MapColor} and applies it to this
          * builder. Therefore, if {@link #build()} is called directly after, the
-         * result of {@link MapColor#equals(Object)} between them will be {@code true}.
+         * result of {@link java.util.Objects#equals(Object, Object)} between them will be {@code true}.
          * Any aspect of this builder could then be modified to produce similar but
          * not identical MapColors.
          *

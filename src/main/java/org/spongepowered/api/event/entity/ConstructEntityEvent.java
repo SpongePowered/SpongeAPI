@@ -41,14 +41,14 @@ public interface ConstructEntityEvent extends Event {
      *
      * @return The location
      */
-    ServerLocation getLocation();
+    ServerLocation location();
 
     /**
      * Gets the {@link Vector3d rotation} the {@link Entity} will construct to.
      *
      * @return The rotation
      */
-    Vector3d getRotation();
+    Vector3d rotation();
 
     /**
      * Gets the {@link EntityType} of the target {@link Entity} that is going to be
@@ -56,7 +56,7 @@ public interface ConstructEntityEvent extends Event {
      *
      * @return The target entity type
      */
-    EntityType<?> getTargetType();
+    EntityType<?> targetType();
 
     /**
      * Called before the construction of an {@link Entity}. Usually, this will
@@ -80,7 +80,7 @@ public interface ConstructEntityEvent extends Event {
          *
          * @return The entity
          */
-        Entity getEntity();
+        Entity entity();
     }
 
 }

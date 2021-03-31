@@ -33,8 +33,8 @@ import org.spongepowered.api.util.mirror.Mirror;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.LocatableBlock;
-import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.schematic.Schematic;
+import org.spongepowered.api.world.server.ServerLocation;
 
 import java.util.function.Supplier;
 
@@ -87,14 +87,14 @@ public interface BlockEntity extends SerializableDataHolder.Mutable, Locatable {
      *
      * @return The type of block entity
      */
-    BlockEntityType getType();
+    BlockEntityType type();
 
     /**
      * Gets the {@link BlockState} that this {@link BlockEntity} represents.
      *
      * @return The blockstate
      */
-    BlockState getBlock();
+    BlockState block();
 
     /**
      * Rotates this {@link BlockEntity} for the desired {@link Rotation}.
@@ -148,7 +148,7 @@ public interface BlockEntity extends SerializableDataHolder.Mutable, Locatable {
      *
      * @return The created locatable block, not as a block snapshot
      */
-    LocatableBlock getLocatableBlock();
+    LocatableBlock locatableBlock();
 
     /**
      * Creates a new {@link BlockEntityArchetype} for use with {@link Schematic}s

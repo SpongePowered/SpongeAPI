@@ -35,6 +35,7 @@ public interface Patroller extends Monster {
 
     /**
      * {@link Keys#TARGET_POSITION}
+     *
      * @return The target position for a patrol
      */
     default Optional<Value.Mutable<Vector3i>> targetPosition() {
@@ -43,6 +44,7 @@ public interface Patroller extends Monster {
 
     /**
      * {@link Keys#IS_LEADER}
+     *
      * @return Whether this is the leader of a patrol
      */
     default Value.Mutable<Boolean> leader() {
@@ -51,6 +53,7 @@ public interface Patroller extends Monster {
 
     /**
      * {@link Keys#IS_PATROLLING}
+     *
      * @return Whether this patroller is patrolling
      */
     default Value.Mutable<Boolean> patrolling() {

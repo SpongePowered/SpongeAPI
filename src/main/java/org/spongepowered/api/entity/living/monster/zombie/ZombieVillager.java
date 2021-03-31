@@ -34,15 +34,17 @@ public interface ZombieVillager extends ZombieLike {
 
     /**
      * {@link Keys#VILLAGER_TYPE}
+     *
      * @return The villager type
      * @see org.spongepowered.api.data.type.VillagerTypes
      */
-    default Value.Mutable<VillagerType> type() {
+    default Value.Mutable<VillagerType> villagerType() {
         return this.requireValue(Keys.VILLAGER_TYPE).asMutable();
     }
 
     /**
      * {@link Keys#PROFESSION_TYPE}
+     *
      * @return The profession of this zombie villager
      * @see ProfessionTypes
      */

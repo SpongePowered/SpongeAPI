@@ -28,5 +28,5 @@ import org.spongepowered.plugin.PluginContainer;
 
 public interface ConstructPluginEvent extends LifecycleEvent {
 
-    PluginContainer getPlugin();
+    PluginContainer plugin();
 }

@@ -37,7 +37,7 @@ public interface BlockDamageSource extends DamageSource {
      * @return A new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -45,14 +45,14 @@ public interface BlockDamageSource extends DamageSource {
      *
      * @return The location of the block
      */
-    ServerLocation getLocation();
+    ServerLocation location();
 
     /**
      * Gets the {@link BlockSnapshot} of the source.
      *
      * @return The block snapshot of the source
      */
-    BlockSnapshot getBlockSnapshot();
+    BlockSnapshot blockSnapshot();
 
     interface Builder extends DamageSource.DamageSourceBuilder<BlockDamageSource, Builder> {
 

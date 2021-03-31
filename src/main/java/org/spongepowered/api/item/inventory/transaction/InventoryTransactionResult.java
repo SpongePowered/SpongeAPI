@@ -44,7 +44,7 @@ public interface InventoryTransactionResult {
      * @return A new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -131,28 +131,28 @@ public interface InventoryTransactionResult {
      *
      * @return the type of result
      */
-    Type getType();
+    Type type();
 
     /**
      * Returns items that were supplied to the operation but rejected by the inventory.
      *
      * @return the items which were rejected by the inventory.
      */
-    List<ItemStackSnapshot> getRejectedItems();
+    List<ItemStackSnapshot> rejectedItems();
 
     /**
      * Returns the items polled by the operation.
      *
      * @return the items which were polled from the inventory.
      */
-    List<ItemStackSnapshot> getPolledItems();
+    List<ItemStackSnapshot> polledItems();
 
     /**
      * Returns the {@link SlotTransaction}s that were executed by the operation.
      *
      * @return the slot-transactions caused by the inventory operation
      */
-    List<SlotTransaction> getSlotTransactions();
+    List<SlotTransaction> slotTransactions();
 
     /**
      * The InventoryTransactionResult for a single {@link Inventory#poll} operation.
@@ -164,7 +164,7 @@ public interface InventoryTransactionResult {
          *
          * @return the item polled by the operation
          */
-        ItemStackSnapshot getPolledItem();
+        ItemStackSnapshot polledItem();
     }
 
     interface Builder extends org.spongepowered.api.util.Builder<InventoryTransactionResult, Builder>, CopyableBuilder<InventoryTransactionResult,

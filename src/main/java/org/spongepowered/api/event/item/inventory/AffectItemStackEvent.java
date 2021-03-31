@@ -49,16 +49,16 @@ public interface AffectItemStackEvent extends Event, Cancellable {
      *
      * @return The unmodifiable list of transactions
      */
-    List<? extends Transaction<ItemStackSnapshot>> getTransactions();
+    List<? extends Transaction<ItemStackSnapshot>> transactions();
 
     /**
      * Applies the provided {@link Predicate} to the {@link List} of
-     * {@link Transaction}s from {@link #getTransactions()} such that
+     * {@link Transaction}s from {@link #transactions()} such that
      * any time that {@link Predicate#test(Object)} returns <code>false</code>
      * on a {@link Transaction}, the {@link Transaction} is
      * marked as "invalid" and will not apply post event.
      *
-     * <p>{@link Transaction#getFinal()} is used to construct
+     * <p>{@link Transaction#finalReplacement()} is used to construct
      * the {@link ItemStack} to pass to the predicate</p>
      *
      * @param predicate The predicate to use for filtering
@@ -66,8 +66,8 @@ public interface AffectItemStackEvent extends Event, Cancellable {
      *     <code>false</code>
      */
     default List<? extends  Transaction<ItemStackSnapshot>> filter(Predicate<ItemStack> predicate) {
-        List<Transaction<ItemStackSnapshot>> invalidatedTransactions = Lists.newArrayList();
-        this.getTransactions().stream().filter(transaction -> !predicate.test(transaction.getFinal().createStack())).forEach(transaction -> {
+        final List<Transaction<ItemStackSnapshot>> invalidatedTransactions = Lists.newArrayList();
+        this.transactions().stream().filter(transaction -> !predicate.test(transaction.finalReplacement().createStack())).forEach(transaction -> {
             transaction.setValid(false);
             invalidatedTransactions.add(transaction);
         });

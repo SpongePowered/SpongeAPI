@@ -39,7 +39,7 @@ public interface RandomWalkingGoal extends Goal<Creature> {
      * @return A new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -48,7 +48,7 @@ public interface RandomWalkingGoal extends Goal<Creature> {
      *
      * @return The speed modifier
      */
-    double getSpeed();
+    double speed();
 
     /**
      * Sets the speed modifier at which the owning {@link Entity}
@@ -64,7 +64,7 @@ public interface RandomWalkingGoal extends Goal<Creature> {
      *
      * @return The chance that the owning entity will "wander"
      */
-    int getExecutionChance();
+    int executionChance();
 
     /**
      * Sets the chance that the owning {@link Entity} will perform

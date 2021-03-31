@@ -87,7 +87,7 @@ public interface WeightedCollectionValue<E> extends CollectionValue<TableEntry<E
     }
 
     @Override
-    Key<? extends WeightedCollectionValue<E>> getKey();
+    Key<? extends WeightedCollectionValue<E>> key();
 
     /**
      * Selects random valued from this list based on their weight.

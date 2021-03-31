@@ -203,7 +203,7 @@ public interface ValueContainer {
      * @return True if the base value is supported
      */
     default boolean supports(final Value<?> value) {
-        return this.supports(value.getKey());
+        return this.supports(value.key());
     }
 
     /**

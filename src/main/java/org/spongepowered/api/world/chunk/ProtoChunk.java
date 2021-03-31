@@ -56,7 +56,7 @@ public interface ProtoChunk<P extends ProtoChunk<P>> extends
 
     /**
      * Adds the {@link Entity} to this {@link ProtoChunk chunk}. It is not
-     * guaranteed this will succeed in all cases, as {@link #getState()}
+     * guaranteed this will succeed in all cases, as {@link #state()}
      * does play a role in whether an entity can be directly added or not.
      *
      * <p>This method should realistically be used only during world
@@ -71,7 +71,7 @@ public interface ProtoChunk<P extends ProtoChunk<P>> extends
      * Gets this {@link ProtoChunk}'s current {@link ChunkState}.
      * The {@link ChunkState} stipulates the potential validity of various
      * operations that can be performed, including but not limited to:
-     * {@link #getWorld()}, etc. Usually,
+     * {@link #world()}, etc. Usually,
      * this {@link ProtoChunk} is tied always to a {@link ProtoWorld},
      * but the validity of that world may also be questionable for feature
      * processing.
@@ -81,7 +81,7 @@ public interface ProtoChunk<P extends ProtoChunk<P>> extends
      *
      * @return This chunk's state
      */
-    ChunkState getState();
+    ChunkState state();
 
     boolean isEmpty();
 
@@ -95,7 +95,7 @@ public interface ProtoChunk<P extends ProtoChunk<P>> extends
      *
      * @return The position
      */
-    Vector3i getChunkPosition();
+    Vector3i chunkPosition();
 
     /**
      * Gets the containing {@link ProtoWorld} of this {@link ProtoChunk}. As
@@ -103,15 +103,15 @@ public interface ProtoChunk<P extends ProtoChunk<P>> extends
      * this {@link ProtoChunk} may be likewise used for world generation, in
      * which case, the {@link ProtoWorld} would not be a {@link World} instance.
      *
-     * <p>It can be inferred however, that if {@link #getState()} returns
+     * <p>It can be inferred however, that if {@link #state()} returns
      * {@link ChunkStates#WORLD_READY}, the {@link ProtoWorld} would be a
-     * {@link World} instance. Inversely, if {@link #getState()} returns
+     * {@link World} instance. Inversely, if {@link #state()} returns
      * {@link ChunkStates#EMPTY}, the {@link ProtoWorld} would not be a
      * valid {@link World} object.</p>
      *
      * @return The parented world
      */
-    ProtoWorld<?> getWorld();
+    ProtoWorld<?> world();
 
     /**
      * Gets the regional difficulty factor for this chunk. In vanilla, it is
@@ -123,7 +123,7 @@ public interface ProtoChunk<P extends ProtoChunk<P>> extends
      *
      * @return The regional difficulty factor for this chunk
      */
-    double getRegionalDifficultyFactor();
+    double regionalDifficultyFactor();
 
     /**
      * Gets the regional difficulty percentage for this chunk. It is calculated
@@ -137,10 +137,10 @@ public interface ProtoChunk<P extends ProtoChunk<P>> extends
      *
      * @return The regional difficulty percentage for this chunk
      */
-    double getRegionalDifficultyPercentage();
+    double regionalDifficultyPercentage();
 
     void setInhabitedTime(long newInhabitedTime);
 
-    long getInhabitedTime();
+    long inhabitedTime();
 
 }

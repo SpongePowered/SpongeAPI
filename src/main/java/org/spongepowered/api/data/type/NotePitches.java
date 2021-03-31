@@ -27,10 +27,10 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 
 /**
  * An enumeration of vanilla {@link NotePitch}es.
@@ -101,6 +101,6 @@ public final class NotePitches {
     }
 
     private static DefaultedRegistryReference<NotePitch> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.NOTE_PITCH, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.NOTE_PITCH, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

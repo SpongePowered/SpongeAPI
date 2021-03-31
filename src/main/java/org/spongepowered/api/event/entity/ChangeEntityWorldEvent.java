@@ -42,7 +42,7 @@ public interface ChangeEntityWorldEvent extends Event {
      * @return The entity
      */
     @AbsoluteSortPosition(1)
-    Entity getEntity();
+    Entity entity();
 
     /**
      * Gets the {@link ServerWorld world} the {@link Entity} is coming from.
@@ -55,7 +55,7 @@ public interface ChangeEntityWorldEvent extends Event {
      * @return The world
      */
     @AbsoluteSortPosition(2)
-    ServerWorld getOriginalWorld();
+    ServerWorld originalWorld();
 
     /**
      * Gets the {@link ServerWorld world} the {@link Entity} originally was going to.
@@ -63,7 +63,7 @@ public interface ChangeEntityWorldEvent extends Event {
      * @return The world
      */
     @AbsoluteSortPosition(3)
-    ServerWorld getOriginalDestinationWorld();
+    ServerWorld originalDestinationWorld();
 
     /**
      * Gets the {@link ServerWorld world} the {@link Entity} will be going to.
@@ -71,7 +71,7 @@ public interface ChangeEntityWorldEvent extends Event {
      * @return The world
      */
     @AbsoluteSortPosition(4)
-    ServerWorld getDestinationWorld();
+    ServerWorld destinationWorld();
 
     interface Pre extends ChangeEntityWorldEvent, Cancellable {
 

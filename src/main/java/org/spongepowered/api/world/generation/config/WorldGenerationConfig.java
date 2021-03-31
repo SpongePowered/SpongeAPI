@@ -57,7 +57,7 @@ public interface WorldGenerationConfig {
     interface Mutable extends WorldGenerationConfig {
 
         static Builder builder() {
-            return Sponge.getGame().getBuilderProvider().provide(Builder.class).reset();
+            return Sponge.game().builderProvider().provide(Builder.class).reset();
         }
 
         /**

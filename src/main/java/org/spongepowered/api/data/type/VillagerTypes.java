@@ -59,6 +59,6 @@ public final class VillagerTypes {
     }
 
     private static DefaultedRegistryReference<VillagerType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.VILLAGER_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.VILLAGER_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

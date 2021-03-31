@@ -39,6 +39,7 @@ public interface Projectile extends Entity {
 
     /**
      * {@link Keys#SHOOTER}
+     *
      * @return The shooter
      */
     default Optional<Value.Mutable<ProjectileSource>> shooter() {

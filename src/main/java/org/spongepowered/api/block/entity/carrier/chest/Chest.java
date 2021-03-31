@@ -46,7 +46,7 @@ public interface Chest extends NameableCarrierBlockEntity {
      *
      * @return The combined inventory, if available
      */
-    Optional<Inventory> getDoubleChestInventory();
+    Optional<Inventory> doubleChestInventory();
 
     /**
      * Returns the connected {@link Chest}, if available.
@@ -56,10 +56,11 @@ public interface Chest extends NameableCarrierBlockEntity {
      *
      * @return The connected {@link Chest}, if available
      */
-    Optional<Chest> getConnectedChest();
+    Optional<Chest> connectedChest();
 
     /**
      * {@link Keys#CHEST_ATTACHMENT_TYPE}
+     *
      * @return The attachment type of this chest.
      */
     default Value.Mutable<ChestAttachmentType> attachmentType() {

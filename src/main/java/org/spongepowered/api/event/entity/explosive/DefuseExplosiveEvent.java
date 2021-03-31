@@ -38,7 +38,7 @@ public interface DefuseExplosiveEvent extends Event {
      *
      * @return The fused explosive
      */
-    FusedExplosive getFusedExplosive();
+    FusedExplosive fusedExplosive();
 
     /**
      * Event called immediately before a primed {@link FusedExplosive} is

@@ -38,7 +38,7 @@ public interface AdvancementTreeEvent extends Event {
      *
      * @return The advancement tree
      */
-    AdvancementTree getTree();
+    AdvancementTree tree();
 
     /**
      * Is called when the layout of a {@link AdvancementTree} gets
@@ -53,6 +53,6 @@ public interface AdvancementTreeEvent extends Event {
          *
          * @return The tree layout
          */
-        TreeLayout getLayout();
+        TreeLayout layout();
     }
 }

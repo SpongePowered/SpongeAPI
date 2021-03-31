@@ -51,25 +51,25 @@ public interface BlockEntityArchetype extends Archetype<BlockSnapshot, BlockEnti
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
      * Gets the block state for this archetype. Note that this state is
-     * unchangeable, as much as {@link #getBlockEntityType()} is. The underlying
+     * unchangeable, as much as {@link #blockEntityType()} is. The underlying
      * data is mutable, but all the data is heavily tied to the block entity
      * type.
      *
      * @return The block state
      */
-    BlockState getState();
+    BlockState state();
 
     /**
      * Gets the {@link BlockEntityType} for this archetype.
      *
      * @return The block entity type
      */
-    BlockEntityType getBlockEntityType();
+    BlockEntityType blockEntityType();
 
     /**
      * Gets the raw {@link BlockEntity} data that would be applied to the
@@ -85,7 +85,7 @@ public interface BlockEntityArchetype extends Archetype<BlockSnapshot, BlockEnti
      *
      * @return The copied container of the block entity
      */
-    DataContainer getBlockEntityData();
+    DataContainer blockEntityData();
 
     /**
      * Sets the raw data for the desired {@link BlockEntity}. Note that position

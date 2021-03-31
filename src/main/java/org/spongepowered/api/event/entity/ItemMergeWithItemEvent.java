@@ -38,13 +38,13 @@ public interface ItemMergeWithItemEvent extends Event, Cancellable {
      *
      * @return The item
      */
-    Item getItem();
+    Item item();
 
     /**
      * Gets a copy of the second item to be merged.
      *
      * @return A copy of the second item to be merged
      */
-    Item getItemToMerge();
+    Item itemToMerge();
 
 }

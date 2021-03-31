@@ -37,5 +37,5 @@ public interface PlayerConnection extends EngineConnection {
      *
      * @return The associated player
      */
-    Player getPlayer();
+    Player player();
 }

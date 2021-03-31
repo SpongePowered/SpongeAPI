@@ -73,14 +73,14 @@ public interface TristateResult {
      *
      * @return The original result of this event
      */
-    Result getOriginalResult();
+    Result originalResult();
 
     /**
      * Returns the {@link Result} of this event.
      *
      * @return The result of this event
      */
-    Result getResult();
+    Result result();
 
     /**
      * Sets the result value for this event.

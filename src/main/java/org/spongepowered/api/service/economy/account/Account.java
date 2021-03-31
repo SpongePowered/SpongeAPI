@@ -27,7 +27,6 @@ package org.spongepowered.api.service.economy.account;
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.User;
-import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.context.Context;
 import org.spongepowered.api.service.context.Contextual;
@@ -70,7 +69,7 @@ public interface Account extends Contextual {
      *
      * @return The display name for this account
      */
-    Component getDisplayName();
+    Component displayName();
 
     /**
      * Gets the default balance of this account for the specified
@@ -84,14 +83,14 @@ public interface Account extends Contextual {
      * @param currency the currency to get the default balance for.
      * @return The default balance for the specified {@link Currency}.
      */
-    BigDecimal getDefaultBalance(Currency currency);
+    BigDecimal defaultBalance(Currency currency);
 
     /**
      * Returns whether this account has a set balance for the specified
      * {@link Currency}, with the specified {@link Context}s.
      *
      * <p>If this method returns <code>false</code>, then
-     * {@link #getDefaultBalance(Currency)} will be used when
+     * {@link #defaultBalance(Currency)} will be used when
      * retrieving a balance for the specified {@link Currency} with
      * the specified {@link Context}s.</p>
      *
@@ -107,7 +106,7 @@ public interface Account extends Contextual {
      * {@link Currency}, with the current active contexts.
      *
      * <p>If this method returns <code>false</code>, then
-     * {@link #getDefaultBalance(Currency)} will be used when retrieving
+     * {@link #defaultBalance(Currency)} will be used when retrieving
      * a balance for the specifid {@link Currency} with
      * the current active contexts</p>.
      *
@@ -116,7 +115,7 @@ public interface Account extends Contextual {
      *     {@link Currency} and current active contexts.
      */
     default boolean hasBalance(Currency currency) {
-        return this.hasBalance(currency, this.getActiveContexts());
+        return this.hasBalance(currency, this.activeContexts());
     }
 
     /**
@@ -124,7 +123,7 @@ public interface Account extends Contextual {
      * {@link Account} for the {@link Currency} given and the set of {@link Context}s.
      *
      * <p>The default result when the account does not have a balance of the
-     * given {@link Currency} will be {@link #getDefaultBalance(Currency)}.</p>
+     * given {@link Currency} will be {@link #defaultBalance(Currency)}.</p>
      *
      * <p>The balance may be unavailable depending on the set of
      * {@link Context}s used.</p>
@@ -134,7 +133,7 @@ public interface Account extends Contextual {
      * @return The value for the specified {@link Currency} with
      *     the specified {@link Context}s.
      */
-    BigDecimal getBalance(Currency currency, Set<Context> contexts);
+    BigDecimal balance(Currency currency, Set<Context> contexts);
 
     /**
      * Returns a {@link BigDecimal} representative of the balance stored
@@ -142,13 +141,13 @@ public interface Account extends Contextual {
      * the current active contexts.
      *
      * <p>The default result when the account does not have a balance of the
-     * given {@link Currency} will be {@link #getDefaultBalance(Currency)}.</p>
+     * given {@link Currency} will be {@link #defaultBalance(Currency)}.</p>
      *
      * @param currency a {@link Currency} to check the balance of
      * @return the value for the specified {@link Currency}.
      */
-    default BigDecimal getBalance(Currency currency) {
-        return this.getBalance(currency, this.getActiveContexts());
+    default BigDecimal balance(Currency currency) {
+        return this.balance(currency, this.activeContexts());
     }
 
     /**
@@ -170,7 +169,7 @@ public interface Account extends Contextual {
      * @return A {@link Map} of {@link Currency} to {@link BigDecimal} amounts
      *     that this account holds
      */
-    Map<Currency, BigDecimal> getBalances(Set<Context> contexts);
+    Map<Currency, BigDecimal> balances(Set<Context> contexts);
 
     /**
      * Returns a {@link Map} of all currently set balances the account holds
@@ -190,8 +189,8 @@ public interface Account extends Contextual {
      * @return A {@link Map} of {@link Currency} to {@link BigDecimal} amounts
      *     that this account holds
      */
-    default Map<Currency, BigDecimal> getBalances() {
-        return this.getBalances(this.getActiveContexts());
+    default Map<Currency, BigDecimal> balances() {
+        return this.balances(this.activeContexts());
     }
 
     /**
@@ -221,12 +220,12 @@ public interface Account extends Contextual {
      * @return The result of the transaction
      */
     default TransactionResult setBalance(Currency currency, BigDecimal amount) {
-        return this.setBalance(currency, amount, this.getActiveContexts());
+        return this.setBalance(currency, amount, this.activeContexts());
     }
 
     /**
      * Resets the balances for all {@link Currency}s used on this account
-     * to their default values ({@link #getDefaultBalance(Currency)}),
+     * to their default values ({@link #defaultBalance(Currency)}),
      * using the specified {@link Context}s.
      *
      * @param contexts the {@link Context}s to use when resetting the balances.
@@ -237,19 +236,19 @@ public interface Account extends Contextual {
 
     /**
      * Resets the balances for all {@link Currency}s used on this account to
-     * their default values ({@link #getDefaultBalance(Currency)}), using
+     * their default values ({@link #defaultBalance(Currency)}), using
      * the current active {@link Context}.
      *
      * @return A map of {@link Currency} to {@link TransactionResult}. Each
      *     entry represents the result of resetting a particular currency
      */
     default Map<Currency, TransactionResult> resetBalances() {
-        return this.resetBalances(this.getActiveContexts());
+        return this.resetBalances(this.activeContexts());
     }
 
     /**
      * Resets the balance for the specified {@link Currency} to its default
-     * value ({@link #getDefaultBalance(Currency)}), using
+     * value ({@link #defaultBalance(Currency)}), using
      * the specified {@link Context}s.
      *
      * @param currency The {@link Currency} to reset the balance for
@@ -261,14 +260,14 @@ public interface Account extends Contextual {
 
     /**
      * Resets the balance for the specified {@link Currency} to its default
-     * value ({@link #getDefaultBalance(Currency)}),
+     * value ({@link #defaultBalance(Currency)}),
      * using the current active {@link Context}s.
      *
      * @param currency The {@link Currency} to reset the balance for
      * @return The result of the transaction
      */
     default TransactionResult resetBalance(Currency currency) {
-        return this.resetBalance(currency, this.getActiveContexts());
+        return this.resetBalance(currency, this.activeContexts());
     }
 
     /**
@@ -292,7 +291,7 @@ public interface Account extends Contextual {
      * @return The result of the transaction
      */
     default TransactionResult deposit(Currency currency, BigDecimal amount) {
-        return this.deposit(currency, amount, this.getActiveContexts());
+        return this.deposit(currency, amount, this.activeContexts());
     }
 
     /**
@@ -316,7 +315,7 @@ public interface Account extends Contextual {
      * @return The result of the transaction
      */
     default TransactionResult withdraw(Currency currency, BigDecimal amount) {
-        return this.withdraw(currency, amount, this.getActiveContexts());
+        return this.withdraw(currency, amount, this.activeContexts());
     }
 
     /**
@@ -354,6 +353,6 @@ public interface Account extends Contextual {
      *     operation
      */
     default TransferResult transfer(Account to, Currency currency, BigDecimal amount) {
-        return this.transfer(to, currency, amount, this.getActiveContexts());
+        return this.transfer(to, currency, amount, this.activeContexts());
     }
 }

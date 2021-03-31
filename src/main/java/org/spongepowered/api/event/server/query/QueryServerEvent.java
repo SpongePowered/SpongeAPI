@@ -44,7 +44,7 @@ public interface QueryServerEvent extends Event {
          *
          * @return The MOTD to respond with.
          */
-        String getMotd();
+        String motd();
 
         /**
          * Sets the MOTD to respond with.
@@ -66,7 +66,7 @@ public interface QueryServerEvent extends Event {
          *
          * @return The GameType to respond with
          */
-        String getGameType();
+        String gameType();
 
         /**
          * Sets the GameType to respond with.
@@ -85,7 +85,7 @@ public interface QueryServerEvent extends Event {
          *
          * @return The map to respond with
          */
-        String getMap();
+        String map();
 
         /**
          * Sets the map (world) to respond with.
@@ -107,7 +107,7 @@ public interface QueryServerEvent extends Event {
          *
          * @return The player count to respond with
          */
-        int getPlayerCount();
+        int playerCount();
 
         /**
          * Sets the player count to respond with.
@@ -127,7 +127,7 @@ public interface QueryServerEvent extends Event {
          *
          * @return The max player count to respond with
          */
-        int getMaxPlayerCount();
+        int maxPlayerCount();
 
         /**
          * Sets the max player count to respond with.
@@ -146,7 +146,7 @@ public interface QueryServerEvent extends Event {
          *
          * @return The address to respond with
          */
-        InetSocketAddress getAddress();
+        InetSocketAddress address();
 
         /**
          * Sets the address to respond with.
@@ -159,11 +159,11 @@ public interface QueryServerEvent extends Event {
          * Gets the current size of the data to respond with.
          *
          * <p>This value is implementation-defined - it is only meaningful when
-         * compared with {@link #getMaxSize()}.</p>
+         * compared with {@link #maxSize()}.</p>
          *
          * @return The current size of the data to respond with
          */
-        int getSize();
+        int size();
 
         /**
          * Gets the maximum size of the data to respond with.
@@ -172,11 +172,11 @@ public interface QueryServerEvent extends Event {
          * it will be automatically truncated.
          *
          * This value is implementation-defined - it is only meaningful when
-         * compared with {@link #getSize()} ()}.</p>
+         * compared with {@link #size()} ()}.</p>
          *
          * @return The maximum size of the data to respond with
          */
-        int getMaxSize();
+        int maxSize();
     }
 
     interface Full extends Basic {
@@ -188,7 +188,7 @@ public interface QueryServerEvent extends Event {
          *
          * @return The GameId to respond with.
          */
-        String getGameId();
+        String gameId();
 
         /**
          * Gets the version to respond with.
@@ -198,7 +198,7 @@ public interface QueryServerEvent extends Event {
          *
          * @return The version to respond with
          */
-        String getVersion();
+        String version();
 
         /**
          * Sets the version to respond with.
@@ -215,7 +215,7 @@ public interface QueryServerEvent extends Event {
          *
          * @return The list of plugins to respond with
          */
-        String getPlugins();
+        String plugins();
 
         /**
          * Sets the list of plugins to respond with.
@@ -236,13 +236,13 @@ public interface QueryServerEvent extends Event {
          *
          * @return The map of custom keys and values to respond with
          */
-        Map<String, String> getCustomValuesMap();
+        Map<String, String> customValuesMap();
 
         /**
          * Gets the list of player names to respond with.
          *
          * @return The list of player names to respond with
          */
-        List<String> getPlayers();
+        List<String> players();
     }
 }

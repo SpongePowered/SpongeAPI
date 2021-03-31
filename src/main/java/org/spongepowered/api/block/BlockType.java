@@ -47,9 +47,10 @@ public interface BlockType extends DefaultedRegistryValue, ComponentLike, StateC
 
     /**
      * Return the {@link ItemType} that represents this block.
+     *
      * @return The item type or {@link Optional#empty()} otherwise
      */
-    Optional<ItemType> getItem();
+    Optional<ItemType> item();
 
     /**
      * Gets if this BlockType is set to receive random block ticks.
@@ -74,7 +75,7 @@ public interface BlockType extends DefaultedRegistryValue, ComponentLike, StateC
      *
      * @return This block's sound group.
      */
-    BlockSoundGroup getSoundGroup();
+    BlockSoundGroup soundGroup();
 
     /**
      * Returns true if this type is any of the given block types

@@ -34,7 +34,7 @@ import java.util.UUID;
  * Represents an {@link Account} identified by a {@link UUID}.
  *
  * <p>This is usually linked to a particular {@link User}'s {@link GameProfile},
- * through {@link #getUniqueId()}.</p>.
+ * through {@link #uniqueId()}.</p>.
  */
 public interface UniqueAccount extends Account, Identifiable {
 

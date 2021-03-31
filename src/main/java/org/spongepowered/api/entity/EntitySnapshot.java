@@ -30,9 +30,9 @@ import org.spongepowered.api.data.DataHolderBuilder;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.world.LocatableSnapshot;
-import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.schematic.Schematic;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.storage.ServerWorldProperties;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.math.vector.Vector3d;
@@ -61,7 +61,7 @@ public interface EntitySnapshot extends LocatableSnapshot<EntitySnapshot> {
      * @return The new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -73,24 +73,24 @@ public interface EntitySnapshot extends LocatableSnapshot<EntitySnapshot> {
      *
      * @return The Optional where the UUID may be present
      */
-    Optional<UUID> getUniqueId();
+    Optional<UUID> uniqueId();
 
     /**
      * Gets the {@link Transform} as an {@link Optional} as the {@link ServerLocation}
      * may be undefined if this {@link EntitySnapshot} was built without a
-     * location. This method is linked to {@link #getLocation()} such that if
+     * location. This method is linked to {@link #location()} such that if
      * there is a {@link ServerLocation}, there is usually a {@link Transform}.
      *
      * @return The transform, if available
      */
-    Optional<Transform> getTransform();
+    Optional<Transform> transform();
 
     /**
      * Gets the {@link EntityType}.
      *
      * @return The EntityType
      */
-    EntityType<?> getType();
+    EntityType<?> type();
 
     /**
      * Restores the {@link EntitySnapshot} to the {@link ServerLocation} stored within

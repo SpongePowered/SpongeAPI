@@ -27,10 +27,10 @@ package org.spongepowered.api.state;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 
 /**
  * Represents all possible {@link BooleanStateProperty}s that are known to exist in
@@ -1052,6 +1052,6 @@ public final class BooleanStateProperties {
     }
 
     private static DefaultedRegistryReference<BooleanStateProperty> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.BOOLEAN_STATE_PROPERTY, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.BOOLEAN_STATE_PROPERTY, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

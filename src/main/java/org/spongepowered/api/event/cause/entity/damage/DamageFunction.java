@@ -78,7 +78,7 @@ public class DamageFunction implements ModifierFunction<DamageModifier> {
      * @return The damage modifier
      */
     @Override
-    public DamageModifier getModifier() {
+    public DamageModifier modifier() {
         return this.modifier;
     }
 
@@ -88,15 +88,15 @@ public class DamageFunction implements ModifierFunction<DamageModifier> {
      * @return The damage function
      */
     @Override
-    public DoubleUnaryOperator getFunction() {
+    public DoubleUnaryOperator function() {
         return this.function;
     }
 
     @Override
     public String toString() {
         return new StringJoiner(",", DamageFunction.class.getSimpleName() + "[", "]")
-                .add("modifier=" +this.getModifier())
-                .add("function=" + this.getFunction())
+                .add("modifier=" + this.modifier())
+                .add("function=" + this.function())
                 .toString();
     }
 

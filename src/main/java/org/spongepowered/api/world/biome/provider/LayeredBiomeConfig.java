@@ -34,7 +34,7 @@ import java.util.List;
 public interface LayeredBiomeConfig extends BiomeProviderConfig {
 
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class).reset();
+        return Sponge.game().builderProvider().provide(Builder.class).reset();
     }
 
     long seed();

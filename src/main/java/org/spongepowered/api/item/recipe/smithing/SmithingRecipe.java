@@ -46,11 +46,11 @@ import java.util.function.Supplier;
 public interface SmithingRecipe extends Recipe {
 
     static SmithingRecipe.Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(SmithingRecipe.Builder.class);
+        return Sponge.game().builderProvider().provide(SmithingRecipe.Builder.class);
     }
 
     @Override
-    RecipeType<? extends SmithingRecipe> getType();
+    RecipeType<? extends SmithingRecipe> type();
 
     /**
      * Builds a simple smithing recipe

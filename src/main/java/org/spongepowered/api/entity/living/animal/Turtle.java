@@ -35,6 +35,7 @@ public interface Turtle extends Animal {
 
     /**
      * {@link Keys#HOME_POSITION}
+     *
      * @return The position that is considered "home"
      */
     default Value.Mutable<Vector3i> homePosition() {
@@ -43,6 +44,7 @@ public interface Turtle extends Animal {
 
     /**
      * {@link Keys#HAS_EGG}
+     *
      * @return Whether this turtle has an egg laid
      */
     default Value.Mutable<Boolean> hasEgg() {
@@ -51,6 +53,7 @@ public interface Turtle extends Animal {
 
     /**
      * {@link Keys#IS_LAYING_EGG}
+     *
      * @return Whether this turtle is laying an egg
      */
     default Value.Mutable<Boolean> layingEgg() {
@@ -59,6 +62,7 @@ public interface Turtle extends Animal {
 
     /**
      * {@link Keys#TARGET_POSITION}
+     *
      * @return The position that this turtle is traveling to
      */
     default Value.Mutable<Vector3i> travelingPosition() {
@@ -67,6 +71,7 @@ public interface Turtle extends Animal {
 
     /**
      * {@link Keys#IS_GOING_HOME}
+     *
      * @return Whether this turtle is heading home
      */
     default Value.Mutable<Boolean> goingHome() {
@@ -75,6 +80,7 @@ public interface Turtle extends Animal {
 
     /**
      * {@link Keys#IS_TRAVELING}
+     *
      * @return Whether this turtle is traveling
      */
     default Value.Mutable<Boolean> traveling() {

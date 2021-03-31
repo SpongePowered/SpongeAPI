@@ -82,7 +82,7 @@ public interface CollectionValue<E, C extends Collection<E>> extends Value<C>, I
      *
      * @return A new collection with all elements copied
      */
-    C getAll();
+    C all();
 
     @Override
     CollectionValue.Mutable<E, C, ?, ?> asMutable();

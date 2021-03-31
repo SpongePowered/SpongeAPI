@@ -27,10 +27,10 @@ package org.spongepowered.api.advancement.criteria.trigger;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 
 /**
  * An enumeration of all the available {@link Trigger}s in minecraft.
@@ -135,6 +135,6 @@ public final class Triggers {
     }
 
     private static DefaultedRegistryReference<Trigger<?>> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.TRIGGER, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.TRIGGER, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

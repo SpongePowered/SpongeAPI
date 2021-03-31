@@ -42,6 +42,6 @@ public interface RingBellEvent extends AffectEntityEvent, Cancellable {
     *
     * @return The bell which was rung
     */
-    Bell getBell();
+    Bell bell();
 
 }

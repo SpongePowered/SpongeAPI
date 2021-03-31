@@ -42,7 +42,7 @@ public interface DataHolderBuilder<H extends DataHolder, B extends DataHolderBui
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     default B add(Value<?> value) {
-        return (B) this.add((Key) value.getKey(), value.get());
+        return (B) this.add((Key) value.key(), value.get());
     }
 
     /**

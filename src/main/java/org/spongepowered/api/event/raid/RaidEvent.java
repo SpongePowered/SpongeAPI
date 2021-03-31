@@ -42,7 +42,7 @@ public interface RaidEvent extends Event {
      *
      * @return The raid
      */
-    Raid getRaid();
+    Raid raid();
 
     /**
      * An event where the {@link Raid} is started.
@@ -64,7 +64,7 @@ public interface RaidEvent extends Event {
          *
          * @return The current wave
          */
-        RaidWave getWave();
+        RaidWave wave();
 
     }
 

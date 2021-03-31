@@ -37,18 +37,18 @@ public interface CommandMapping {
     /**
      * Gets the primary alias that will be passed to the registered
      * {@link CommandRegistrar}. Note that this alias may not correspond to
-     * an alias in {@link #getAllAliases()}, it is used as an identifier to
+     * an alias in {@link #allAliases()}, it is used as an identifier to
      * the underlying {@link CommandRegistrar}.
      *
      * @return The primary alias
      */
-    String getPrimaryAlias();
+    String primaryAlias();
 
     /**
      * Gets an immutable list of all aliases.
      *
      * <p>The returned list must contain at least one entry, of which one must
-     * be the one returned by {@link #getPrimaryAlias()}.</p>
+     * be the one returned by {@link #primaryAlias()}.</p>
      *
      * <p>There may be several versions of the same alias with different
      * casing, although generally implementations should ignore the casing
@@ -56,20 +56,20 @@ public interface CommandMapping {
      *
      * @return A set of aliases
      */
-    Set<String> getAllAliases();
+    Set<String> allAliases();
 
     /**
      * Gets the plugin that owns the command.
      *
      * @return The plugin.
      */
-    PluginContainer getPlugin();
+    PluginContainer plugin();
 
     /**
      * Gets the {@link CommandRegistrar} that registered this command.
      *
      * @return The {@link CommandRegistrar}
      */
-    CommandRegistrar<?> getRegistrar();
+    CommandRegistrar<?> registrar();
 
 }

@@ -46,7 +46,7 @@ public interface State<S extends State<S>> extends SerializableDataHolder.Immuta
      * @param <T> The generic type of state property
      * @return The comparable value, if available and compatible
      */
-    <T extends Comparable<T>> Optional<T> getStateProperty(StateProperty<T> stateProperty);
+    <T extends Comparable<T>> Optional<T> stateProperty(StateProperty<T> stateProperty);
 
     /**
      * Gets the {@link Comparable} value for the specific {@link StateProperty}
@@ -57,8 +57,8 @@ public interface State<S extends State<S>> extends SerializableDataHolder.Immuta
      * @param <T> The generic type of state property
      * @return The comparable value, if available and compatible
      */
-    default <T extends Comparable<T>> Optional<T> getStateProperty(Supplier<? extends StateProperty<T>> stateProperty) {
-        return this.getStateProperty(stateProperty.get());
+    default <T extends Comparable<T>> Optional<T> stateProperty(Supplier<? extends StateProperty<T>> stateProperty) {
+        return this.stateProperty(stateProperty.get());
     }
 
     /**
@@ -69,13 +69,13 @@ public interface State<S extends State<S>> extends SerializableDataHolder.Immuta
      * @param name The state property name
      * @return The state property, if available
      */
-    Optional<StateProperty<?>> getStatePropertyByName(String name);
+    Optional<StateProperty<?>> statePropertyByName(String name);
 
     /**
      * Gets the {@link State} with the appropriate value for the given
      * {@link StateProperty}. If the {@link StateProperty} is not supported,
      * {@link Optional#empty()} is returned. If the object is not either
-     * an instance contained in {@link StateProperty#getPossibleValues()} or
+     * an instance contained in {@link StateProperty#possibleValues()} or
      * an instance {@link Object#toString()}, {@link Optional#empty()} may be
      * returned.
      *
@@ -91,7 +91,7 @@ public interface State<S extends State<S>> extends SerializableDataHolder.Immuta
      * Gets the {@link State} with the appropriate value for the given
      * {@link StateProperty}. If the {@link StateProperty} is not supported,
      * {@link Optional#empty()} is returned. If the object is not either
-     * an instance contained in {@link StateProperty#getPossibleValues()} or
+     * an instance contained in {@link StateProperty#possibleValues()} or
      * an instance {@link Object#toString()}, {@link Optional#empty()} may be
      * returned.
      *
@@ -159,7 +159,7 @@ public interface State<S extends State<S>> extends SerializableDataHolder.Immuta
      *
      * @return An immutable collection of all applicable state properties
      */
-    Collection<StateProperty<?>> getStateProperties();
+    Collection<StateProperty<?>> stateProperties();
 
     /**
      * Gets an immutable {@link Collection} of all the values for all
@@ -167,7 +167,7 @@ public interface State<S extends State<S>> extends SerializableDataHolder.Immuta
      *
      * @return An immutable collection of all the values for all applicable properties
      */
-    Collection<?> getStatePropertyValues();
+    Collection<?> statePropertyValues();
 
     /**
      * Gets an immutable or unmodifiable {@link Map} of the known {@link StateProperty}s
@@ -175,7 +175,7 @@ public interface State<S extends State<S>> extends SerializableDataHolder.Immuta
      *
      * @return The immutable map of state properties to their values representing this state
      */
-    Map<StateProperty<?>, ?> getStatePropertyMap();
+    Map<StateProperty<?>, ?> statePropertyMap();
 
     /**
      * The {@link String} representation of this {@link State} can be considered to be equal to

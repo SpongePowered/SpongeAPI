@@ -39,9 +39,9 @@ import org.spongepowered.api.registry.GameRegistry;
 import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.ScopedRegistryHolder;
 import org.spongepowered.api.scheduler.Scheduler;
+import org.spongepowered.api.service.ServiceProvider;
 import org.spongepowered.api.sql.SqlManager;
 import org.spongepowered.api.util.metric.MetricsConfigManager;
-import org.spongepowered.api.service.ServiceProvider;
 
 import java.nio.file.Path;
 import java.util.Locale;
@@ -57,14 +57,14 @@ public interface Game extends ScopedRegistryHolder {
      *
      * @return The async scheduler
      */
-    Scheduler getAsyncScheduler();
+    Scheduler asyncScheduler();
 
     /**
      * Gets the directory where the game's files are located.
      *
      * @return The game directory
      */
-    Path getGameDirectory();
+    Path gameDirectory();
 
     /**
      * Returns if the {@link Server} is available for use. The result of this method is entirely
@@ -80,7 +80,7 @@ public interface Game extends ScopedRegistryHolder {
      * @return The server
      * @throws IllegalStateException If the Server isn't currently available
      */
-    Server getServer();
+    Server server();
 
     /**
      * Gets the {@link SystemSubject}. Depending on the implementation, this
@@ -88,7 +88,7 @@ public interface Game extends ScopedRegistryHolder {
      *
      * @return The {@link SystemSubject}
      */
-    SystemSubject getSystemSubject();
+    SystemSubject systemSubject();
 
     /**
      * Gets a locale for the specified locale code, e.g. {@code en_US}.
@@ -96,7 +96,7 @@ public interface Game extends ScopedRegistryHolder {
      * @param locale The locale to lookup (e.g. {@code en_US}.
      * @return The locale
      */
-    Locale getLocale(String locale);
+    Locale locale(String locale);
 
     /**
      * Returns if the {@link Client} is available for use. The result of this method is entirely
@@ -115,7 +115,7 @@ public interface Game extends ScopedRegistryHolder {
      * @throws UnsupportedEngineException If the client engine is not supported
      * @throws IllegalStateException If the Client isn't currently available
      */
-    default Client getClient() {
+    default Client client() {
         throw new UnsupportedEngineException("The client engine is not supported.");
     }
 
@@ -124,28 +124,28 @@ public interface Game extends ScopedRegistryHolder {
      *
      * @return The current implementation
      */
-    Platform getPlatform();
+    Platform platform();
 
     /**
      * Gets the {@link GameRegistry}.
      *
      * @return The game registry
      */
-    GameRegistry getRegistry();
+    GameRegistry registry();
 
     /**
      * Retrieves the {@link BuilderProvider}.
      *
      * @return The builder provider
      */
-    BuilderProvider getBuilderProvider();
+    BuilderProvider builderProvider();
 
     /**
      * Retrieves the {@link FactoryProvider}.
      *
      * @return The factory provider
      */
-    FactoryProvider getFactoryProvider();
+    FactoryProvider factoryProvider();
 
     /**
      * Gets the {@link DataManager} instance to register
@@ -153,28 +153,28 @@ public interface Game extends ScopedRegistryHolder {
      *
      * @return The serialization service
      */
-    DataManager getDataManager();
+    DataManager dataManager();
 
     /**
      * Gets the {@link PluginManager}.
      *
      * @return The plugin manager
      */
-    PluginManager getPluginManager();
+    PluginManager pluginManager();
 
     /**
      * Gets the {@link EventManager}.
      *
      * @return The event manager
      */
-    EventManager getEventManager();
+    EventManager eventManager();
 
     /**
      * Gets the {@link AssetManager}.
      *
      * @return The asset manager
      */
-    AssetManager getAssetManager();
+    AssetManager assetManager();
 
     /**
      * Gets the {@link ConfigManager} used to load and manage configuration files
@@ -182,14 +182,14 @@ public interface Game extends ScopedRegistryHolder {
      *
      * @return The configuration manager
      */
-    ConfigManager getConfigManager();
+    ConfigManager configManager();
 
     /**
      * Gets the {@link ChannelRegistry} for creating network channels.
      *
      * @return The channel registry
      */
-    ChannelRegistry getChannelRegistry();
+    ChannelRegistry channelRegistry();
 
     /**
      * Gets the {@link MetricsConfigManager} instance, allowing data/metric gathering
@@ -198,14 +198,14 @@ public interface Game extends ScopedRegistryHolder {
      *
      * @return The {@link MetricsConfigManager} instance
      */
-    MetricsConfigManager getMetricsConfigManager();
+    MetricsConfigManager metricsConfigManager();
 
     /**
      * Gets the {@link SqlManager} for grabbing sql data sources.
      *
      * @return The {@link SqlManager} instance.
      */
-    SqlManager getSqlManager();
+    SqlManager sqlManager();
     
     /**
      * Gets the {@link ServiceProvider.GameScoped}, used to provide Sponge
@@ -218,5 +218,5 @@ public interface Game extends ScopedRegistryHolder {
      *
      * @return The service manager
      */
-    ServiceProvider.GameScoped getServiceProvider();
+    ServiceProvider.GameScoped serviceProvider();
 }

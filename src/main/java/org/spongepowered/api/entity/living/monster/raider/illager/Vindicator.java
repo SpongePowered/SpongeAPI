@@ -34,6 +34,7 @@ public interface Vindicator extends Illager {
 
     /**
      * {@link Keys#IS_JOHNNY}
+     *
      * @return whether this is a johnny vindicator
      */
     default Value.Mutable<Boolean> johnny() {

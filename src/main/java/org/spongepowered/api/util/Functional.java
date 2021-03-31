@@ -153,7 +153,7 @@ public class Functional {
      * @return The future holding the result
      */
     public static <T> CompletableFuture<T> failableFuture(Callable<T> call) {
-        CompletableFuture<T> ret = new CompletableFuture<>();
+        final CompletableFuture<T> ret = new CompletableFuture<>();
         try {
             ret.complete(call.call());
         } catch (Throwable e) {
@@ -172,7 +172,7 @@ public class Functional {
      * @return The future holding the result
      */
     public static <T> CompletableFuture<T> asyncFailableFuture(Callable<T> call, Executor exec) {
-        CompletableFuture<T> ret = new CompletableFuture<>();
+        final CompletableFuture<T> ret = new CompletableFuture<>();
         exec.execute(() -> {
             try {
                 ret.complete(call.call());

@@ -33,9 +33,9 @@ import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.registry.RegistryReference;
 import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.PositionOutOfBoundsException;
-import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.schematic.Palette;
 import org.spongepowered.api.world.schematic.PaletteTypes;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.volume.ImmutableVolume;
 import org.spongepowered.api.world.volume.MutableVolume;
 import org.spongepowered.api.world.volume.UnmodifiableVolume;
@@ -48,23 +48,23 @@ import org.spongepowered.math.vector.Vector3i;
 public interface BlockVolume extends Volume {
 
     static BlockVolume.Mutable<@NonNull ?> empty(final Vector3i min, final Vector3i max) {
-        return BlockVolume.empty(PaletteTypes.BLOCK_STATE_PALETTE.get().create(Sponge.getGame().registries(), RegistryTypes.BLOCK_TYPE), BlockTypes.AIR, min, max);
+        return BlockVolume.empty(PaletteTypes.BLOCK_STATE_PALETTE.get().create(Sponge.game().registries(), RegistryTypes.BLOCK_TYPE), BlockTypes.AIR, min, max);
     }
 
     static BlockVolume.Mutable<@NonNull ?> empty(final Palette<BlockState, BlockType> palette, final RegistryReference<BlockType> defaultState, final Vector3i min, final Vector3i max) {
-        return Sponge.getGame().getFactoryProvider().provide(BlockVolumeFactory.class).empty(palette, defaultState, min, max);
+        return Sponge.game().factoryProvider().provide(BlockVolumeFactory.class).empty(palette, defaultState, min, max);
     }
 
-    BlockState getBlock(int x, int y, int z);
+    BlockState block(int x, int y, int z);
 
-    default BlockState getBlock(final Vector3i vector3i) {
-        return this.getBlock(vector3i.getX(), vector3i.getY(), vector3i.getZ());
+    default BlockState block(final Vector3i vector3i) {
+        return this.block(vector3i.getX(), vector3i.getY(), vector3i.getZ());
     }
 
-    FluidState getFluid(int x, int y, int z);
+    FluidState fluid(int x, int y, int z);
 
-    default FluidState getFluid(final Vector3i vector3i) {
-        return this.getFluid(vector3i.getX(), vector3i.getY(), vector3i.getZ());
+    default FluidState fluid(final Vector3i vector3i) {
+        return this.fluid(vector3i.getX(), vector3i.getY(), vector3i.getZ());
     }
 
     /**
@@ -78,7 +78,7 @@ public interface BlockVolume extends Volume {
      * @param z The z column value
      * @return The y value of the highest opaque block
      */
-    int getHighestYAt(int x, int z);
+    int highestYAt(int x, int z);
 
     /**
      * Get the y value of the highest block that sunlight can reach in the given
@@ -90,8 +90,8 @@ public interface BlockVolume extends Volume {
      * @param column The column value
      * @return The y value of the highest opaque block
      */
-    default int getHighestYAt(final Vector2i column) {
-        return this.getHighestYAt(column.getX(), column.getY());
+    default int highestYAt(final Vector2i column) {
+        return this.highestYAt(column.getX(), column.getY());
     }
 
     /**
@@ -104,8 +104,8 @@ public interface BlockVolume extends Volume {
      * @param position The column position
      * @return The highest opaque position
      */
-    default Vector3i getHighestPositionAt(final Vector3i position) {
-        return new Vector3i(position.getX(), this.getHighestYAt(position.getX(), position.getZ()), position.getZ());
+    default Vector3i highestPositionAt(final Vector3i position) {
+        return new Vector3i(position.getX(), this.highestYAt(position.getX(), position.getZ()), position.getZ());
     }
 
     interface Streamable<B extends Streamable<B>> extends BlockVolume {
@@ -120,7 +120,7 @@ public interface BlockVolume extends Volume {
          * @param options The options to construct the stream
          * @return The volume stream
          */
-        VolumeStream<B, BlockState> getBlockStateStream(Vector3i min, Vector3i max, StreamOptions options);
+        VolumeStream<B, BlockState> blockStateStream(Vector3i min, Vector3i max, StreamOptions options);
 
     }
 

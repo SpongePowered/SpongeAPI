@@ -33,15 +33,15 @@ import java.util.Objects;
 public interface EntityArchetypeEntry {
 
     static EntityArchetypeEntry of(final EntityArchetype archetype, final Vector3d pos) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(
+        return Sponge.game().factoryProvider().provide(Factory.class).of(
             Objects.requireNonNull(archetype, "EntityArchetype cannot be null!"),
             Objects.requireNonNull(pos, "Position cannot be null!")
         );
     }
 
-    EntityArchetype getArchetype();
+    EntityArchetype archetype();
 
-    Vector3d getPosition();
+    Vector3d position();
 
     interface Factory {
 

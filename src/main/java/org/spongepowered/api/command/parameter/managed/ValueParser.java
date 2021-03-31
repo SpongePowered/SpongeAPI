@@ -34,6 +34,7 @@ import org.spongepowered.api.command.parameter.managed.clientcompletion.ClientCo
 import org.spongepowered.api.command.parameter.managed.clientcompletion.ClientCompletionTypes;
 import org.spongepowered.api.event.Cause;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -76,7 +77,7 @@ public interface ValueParser<T> {
      * @return Returns the value(s)
      * @throws ArgumentParseException if a parameter could not be parsed
      */
-    Optional<? extends T> getValue(
+    Optional<? extends T> parseValue(
             Parameter.Key<? super T> parameterKey,
             ArgumentReader.Mutable reader,
             CommandContext.Builder context) throws ArgumentParseException;
@@ -109,8 +110,8 @@ public interface ValueParser<T> {
      *
      * @return The {@link ClientCompletionType}s to use on the client.
      */
-    default List<ClientCompletionType> getClientCompletionType() {
-        return ImmutableList.of();
+    default List<ClientCompletionType> clientCompletionType() {
+        return Collections.emptyList();
     }
 
 }

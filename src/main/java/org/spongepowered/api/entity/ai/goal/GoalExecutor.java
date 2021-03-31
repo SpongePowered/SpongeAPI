@@ -43,14 +43,14 @@ public interface GoalExecutor<O extends Agent> {
      *
      * @return The type
      */
-    GoalExecutorType getType();
+    GoalExecutorType type();
 
     /**
      * The {@link Agent} that owns this goal.
      *
      * @return The owner
      */
-    O getOwner();
+    O owner();
 
     /**
      * Adds a new {@link Goal} to this goal.
@@ -85,14 +85,14 @@ public interface GoalExecutor<O extends Agent> {
      * @param type The type to look for
      * @return All the tasks found
      */
-    List<? super Goal<? extends O>> getTasksByType(GoalType type);
+    List<? super Goal<? extends O>> tasksByType(GoalType type);
 
     /**
      * Gets all {@link Goal}s in this goal.
      *
      * @return The tasks
      */
-    List<? super Goal<? extends O>> getTasks();
+    List<? super Goal<? extends O>> tasks();
 
     /**
      * Clears all {@link Goal}s from this goal.

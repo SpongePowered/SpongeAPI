@@ -36,7 +36,7 @@ public interface DragonPhaseManager {
      *
      * @return The current dragon phase
      */
-    DragonPhase getPhase();
+    DragonPhase phase();
 
     /**
      * Sets the dragon phase.

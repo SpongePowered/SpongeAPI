@@ -34,10 +34,10 @@ public interface LightType extends DefaultedRegistryValue {
     /**
      * Gets the default light value for this light type. Useful
      * for defaulting a light value if there is a missing source
-     * for {@link EnvironmentalVolume#getLight(int, int, int)}.
+     * for {@link EnvironmentalVolume#light(int, int, int)}.
      *
      * @return The default light value
      */
-    int getDefaultLightValue();
+    int defaultLightValue();
 
 }

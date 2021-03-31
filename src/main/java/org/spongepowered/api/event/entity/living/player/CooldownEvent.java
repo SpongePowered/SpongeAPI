@@ -43,14 +43,14 @@ public interface CooldownEvent extends Event {
      *
      * @return The player
      */
-    ServerPlayer getPlayer();
+    ServerPlayer player();
 
     /**
      * Gets the associated item type whose cooldown is being set or removed.
      *
      * @return The associated item type
      */
-    ItemType getItemType();
+    ItemType itemType();
 
     /**
      * Handles an {@link ItemType} being given a cooldown for a {@link ServerPlayer player}.
@@ -64,21 +64,21 @@ public interface CooldownEvent extends Event {
          *
          * @return The cooldown of the item type beforehand
          */
-        OptionalInt getStartingCooldown();
+        OptionalInt startingCooldown();
 
         /**
          * Gets the original new set cooldown at the beginning of the event.
          *
          * @return The originally set cooldown
          */
-        int getOriginalNewCooldown();
+        int originalNewCooldown();
 
         /**
          * Gets the new cooldown the item type has for the player.
          *
          * @return The new cooldown of the item type
          */
-        int getNewCooldown();
+        int newCooldown();
 
         /**
          * Sets the new cooldown for the item type for the player.

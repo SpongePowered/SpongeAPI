@@ -46,6 +46,6 @@ public interface RconService {
      *
      * @return The Rcon password for this service
      */
-    String getRconPassword();
+    String rconPassword();
 
 }

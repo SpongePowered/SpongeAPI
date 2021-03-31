@@ -46,7 +46,7 @@ public interface VillagerEvent extends Event {
      *
      * @return The villager involved
      */
-    Villager getVillager();
+    Villager villager();
 
     /**
      * Fired when a {@link Villager}'s profession changes.
@@ -61,14 +61,14 @@ public interface VillagerEvent extends Event {
          *
          * @return The original profession the villager will take
          */
-        ProfessionType getOriginalProfession();
+        ProfessionType originalProfession();
 
         /**
          * Gets the {@link ProfessionType} the villager will change to.
          *
          * @return The villager's next profession
          */
-        ProfessionType getProfession();
+        ProfessionType profession();
 
         /**
          * Sets the {@link Villager}'s next {@link ProfessionType}.
@@ -89,7 +89,7 @@ public interface VillagerEvent extends Event {
          *
          * @return The original profession level
          */
-        int getOriginalProfessionLevel();
+        int originalProfessionLevel();
 
         /**
          * Gets the {@link ProfessionType} level this {@link Villager}'s
@@ -97,7 +97,7 @@ public interface VillagerEvent extends Event {
          *
          * @return The current set {@link ProfessionType} level
          */
-        int getProfessionLevel();
+        int professionLevel();
 
         /**
          * Sets the profession level of this {@link Villager} will reach.

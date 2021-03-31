@@ -32,7 +32,7 @@ public abstract class AbstractSpawnEntityEvent extends AbstractEvent implements 
 
     @Override
     protected void init() {
-        if (!this.getContext().containsKey(EventContextKeys.SPAWN_TYPE)) {
+        if (!this.context().containsKey(EventContextKeys.SPAWN_TYPE)) {
             throw new IllegalStateException("SpawnType not set for SpawnEvent! Please use StackFrame.addContext(EventContextKeys.SPAWN_TYPE, SpawnTypes.<your spawn type here>); before constructing a SpawnEvent.");
         }
     }

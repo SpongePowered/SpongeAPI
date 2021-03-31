@@ -40,7 +40,7 @@ public interface TickBlockEvent extends Event, Cancellable {
      *
      * @return The block snapshot
      */
-    BlockSnapshot getBlock();
+    BlockSnapshot block();
 
     /**
      * An event when a block at a {@link ServerLocation} is scheduled to tick.

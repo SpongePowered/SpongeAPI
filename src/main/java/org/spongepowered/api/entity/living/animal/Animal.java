@@ -42,6 +42,7 @@ public interface Animal extends Ageable {
 
     /**
      * {@link Keys#BREEDER}
+     *
      * @return The breeder's unique id
      */
     default Optional<Value.Mutable<UUID>> breeder() {
@@ -50,6 +51,7 @@ public interface Animal extends Ageable {
 
     /**
      * {@link Keys#BREEDING_COOLDOWN}
+     *
      * @return The current breeding cooldown
      */
     default Value.Mutable<Ticks> breedingCooldown() {
@@ -58,6 +60,7 @@ public interface Animal extends Ageable {
 
     /**
      * {@link Keys#CAN_BREED}
+     *
      * @return If animal can breed
      */
     default Value.Mutable<Boolean> canBreed() {
@@ -83,6 +86,7 @@ public interface Animal extends Ageable {
 
     /**
      * Instructs this animal to breed with the provided animal.
+     *
      * @param animal The animal to breed with
      */
     void breedWith(Animal animal);

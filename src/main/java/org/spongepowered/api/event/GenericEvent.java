@@ -39,5 +39,5 @@ public interface GenericEvent<T> extends Event {
      *
      * @return The type token
      */
-    TypeToken<T> getParamType();
+    TypeToken<T> paramType();
 }

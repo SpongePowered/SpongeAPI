@@ -40,13 +40,13 @@ public interface AdvancementTree  {
      *
      * @return The root advancement
      */
-    Advancement getRootAdvancement();
+    Advancement rootAdvancement();
 
     /**
      * Gets the background texture of this tree.
      *
      * @return The background texture
      */
-    Optional<ResourceKey> getBackgroundPath();
+    Optional<ResourceKey> backgroundPath();
 
 }

@@ -48,7 +48,7 @@ public interface GameProfileProvider {
      * @param uniqueId The unique id
      * @return The profile found for the given unique id
      */
-    CompletableFuture<GameProfile> getBasicProfile(UUID uniqueId);
+    CompletableFuture<GameProfile> basicProfile(UUID uniqueId);
 
     /**
      * Attempts to get a basic {@link GameProfile} for the given name.
@@ -65,8 +65,8 @@ public interface GameProfileProvider {
      * @param name The name
      * @return The profile found for the given name
      */
-    default CompletableFuture<GameProfile> getBasicProfile(final String name) {
-        return this.getBasicProfile(name, null);
+    default CompletableFuture<GameProfile> basicProfile(final String name) {
+        return this.basicProfile(name, null);
     }
 
     /**
@@ -85,7 +85,7 @@ public interface GameProfileProvider {
      * @param time The time at which the name was assigned to a specific profile, or null if current
      * @return The profile found for the given name
      */
-    CompletableFuture<GameProfile> getBasicProfile(String name, @Nullable Instant time);
+    CompletableFuture<GameProfile> basicProfile(String name, @Nullable Instant time);
 
     /**
      * Attempts to get a basic {@link GameProfile}s for the given names.
@@ -98,8 +98,8 @@ public interface GameProfileProvider {
      * @param names The names
      * @return The profiles found for the given names
      */
-    default CompletableFuture<Map<String, GameProfile>> getBasicProfiles(final Iterable<String> names) {
-        return this.getBasicProfiles(names, null);
+    default CompletableFuture<Map<String, GameProfile>> basicProfiles(final Iterable<String> names) {
+        return this.basicProfiles(names, null);
     }
 
     /**
@@ -114,7 +114,7 @@ public interface GameProfileProvider {
      * @param time The time at which the names were assigned to specific profiles, or null if current
      * @return The profiles found for the given names
      */
-    CompletableFuture<Map<String, GameProfile>> getBasicProfiles(Iterable<String> names, @Nullable Instant time);
+    CompletableFuture<Map<String, GameProfile>> basicProfiles(Iterable<String> names, @Nullable Instant time);
 
     /**
      * Attempts to get a full {@link GameProfile} for the given profile.
@@ -126,8 +126,8 @@ public interface GameProfileProvider {
      * @param profile The profile
      * @return The profile found for the given unique id
      */
-    default CompletableFuture<GameProfile> getProfile(final GameProfile profile) {
-        return this.getProfile(profile.getUniqueId(), true);
+    default CompletableFuture<GameProfile> profile(final GameProfile profile) {
+        return this.profile(profile.uniqueId(), true);
     }
 
     /**
@@ -141,8 +141,8 @@ public interface GameProfileProvider {
      * @param signed Whether property values should be signed
      * @return The profile found for the given unique id
      */
-    default CompletableFuture<GameProfile> getProfile(final GameProfile profile, final boolean signed) {
-        return this.getProfile(profile.getUniqueId(), signed);
+    default CompletableFuture<GameProfile> profile(final GameProfile profile, final boolean signed) {
+        return this.profile(profile.uniqueId(), signed);
     }
 
     /**
@@ -155,8 +155,8 @@ public interface GameProfileProvider {
      * @param name The name
      * @return The profile found for the given name
      */
-    default CompletableFuture<GameProfile> getProfile(final String name) {
-        return this.getProfile(name, true);
+    default CompletableFuture<GameProfile> profile(final String name) {
+        return this.profile(name, true);
     }
 
     /**
@@ -169,8 +169,8 @@ public interface GameProfileProvider {
      * @param uniqueId The unique id
      * @return The profile found for the given unique id
      */
-    default CompletableFuture<GameProfile> getProfile(final UUID uniqueId) {
-        return this.getProfile(uniqueId, true);
+    default CompletableFuture<GameProfile> profile(final UUID uniqueId) {
+        return this.profile(uniqueId, true);
     }
 
     /**
@@ -184,7 +184,7 @@ public interface GameProfileProvider {
      * @param signed Whether property values should be signed
      * @return The profile found for the given name
      */
-    CompletableFuture<GameProfile> getProfile(String name, boolean signed);
+    CompletableFuture<GameProfile> profile(String name, boolean signed);
 
     /**
      * Attempts to get a full {@link GameProfile} for the given unique id.
@@ -197,5 +197,5 @@ public interface GameProfileProvider {
      * @param signed Whether property values should be signed
      * @return The profile found for the given unique id
      */
-    CompletableFuture<GameProfile> getProfile(UUID uniqueId, boolean signed);
+    CompletableFuture<GameProfile> profile(UUID uniqueId, boolean signed);
 }

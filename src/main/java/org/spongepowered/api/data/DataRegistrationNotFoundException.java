@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.data;
 
-import java.util.Optional;
-
 import org.checkerframework.checker.nullness.qual.Nullable;
+
+import java.util.Optional;
 
 public class DataRegistrationNotFoundException extends DataException {
 
@@ -68,7 +68,7 @@ public class DataRegistrationNotFoundException extends DataException {
      *
      * @return The registration query, if present
      */
-    public Optional<String> getRegistrationQuery() {
+    public Optional<String> registrationQuery() {
         return Optional.ofNullable(this.registrationQuery);
     }
 

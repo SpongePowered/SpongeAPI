@@ -35,7 +35,7 @@ public interface ClientSideConnectionEvent extends Event {
      *
      * @return The client side connection
      */
-    ClientSideConnection getConnection();
+    ClientSideConnection connection();
 
     interface Join extends ClientSideConnectionEvent {
 
@@ -44,7 +44,7 @@ public interface ClientSideConnectionEvent extends Event {
          *
          * @return The player
          */
-        ClientPlayer getPlayer();
+        ClientPlayer player();
     }
 
     interface Disconnect extends ClientSideConnectionEvent {
@@ -54,6 +54,6 @@ public interface ClientSideConnectionEvent extends Event {
          *
          * @return The player
          */
-        ClientPlayer getPlayer();
+        ClientPlayer player();
     }
 }

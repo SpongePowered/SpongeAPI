@@ -66,7 +66,7 @@ public abstract class AbstractDamageSource implements DamageSource {
     }
 
     @Override
-    public DamageType getType() {
+    public DamageType type() {
         return this.apiDamageType;
     }
 
@@ -101,7 +101,7 @@ public abstract class AbstractDamageSource implements DamageSource {
     }
 
     @Override
-    public double getExhaustion() {
+    public double exhaustion() {
         return this.exhaustion;
     }
 

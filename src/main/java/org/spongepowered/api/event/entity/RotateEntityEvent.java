@@ -44,7 +44,7 @@ public interface RotateEntityEvent extends Event, Cancellable {
      * @return The entity
      */
     @AbsoluteSortPosition(1)
-    Entity getEntity();
+    Entity entity();
 
     /**
      * Gets the rotation the {@link Entity} was performing.
@@ -52,7 +52,7 @@ public interface RotateEntityEvent extends Event, Cancellable {
      * @return The rotation
      */
     @AbsoluteSortPosition(2)
-    Vector3d getFromRotation();
+    Vector3d fromRotation();
 
     /**
      * Gets the {@link Vector3d rotation} the {@link Entity} will perform.
@@ -60,7 +60,7 @@ public interface RotateEntityEvent extends Event, Cancellable {
      * @return The new rotation
      */
     @AbsoluteSortPosition(3)
-    Vector3d getToRotation();
+    Vector3d toRotation();
 
     /**
      * Sets the new {@link Vector3d rotation} that the {@link Entity} will perform.

@@ -36,6 +36,7 @@ public interface Ocelot extends Animal {
 
     /**
      * {@link Keys#IS_TRUSTING}
+     *
      * @return Whether this ocelot is trusting people
      */
     default Value.Mutable<Boolean> trusting() {

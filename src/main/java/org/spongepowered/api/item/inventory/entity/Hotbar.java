@@ -36,7 +36,7 @@ public interface Hotbar extends InventoryRow {
      *
      * @return The slot being currently held as an integer from 0-8, inclusive
      */
-    int getSelectedSlotIndex();
+    int selectedSlotIndex();
 
     /**
      * Sets the slot selected by the Humanoid.

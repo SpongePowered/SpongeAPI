@@ -40,7 +40,7 @@ public interface LookAtGoal extends Goal<Agent> {
      * @return A new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -49,7 +49,7 @@ public interface LookAtGoal extends Goal<Agent> {
      *
      * @return The class of entity to "watch"
      */
-    Class<? extends Living> getWatchedClass();
+    Class<? extends Living> watchedClass();
 
     /**
      * Sets the {@link Class} of the {@link Living} type to "stare" or
@@ -65,7 +65,7 @@ public interface LookAtGoal extends Goal<Agent> {
      *
      * @return The distance to watch a targeted entity
      */
-    float getMaxDistance();
+    float maxDistance();
 
     /**
      * Sets the maximum distance to "watch" a targeted {@link Living}.
@@ -81,7 +81,7 @@ public interface LookAtGoal extends Goal<Agent> {
      *
      * @return The chance to watch
      */
-    float getChance();
+    float chance();
 
     /**
      * SEts the chance to "watch" a targeted {@link Living}.

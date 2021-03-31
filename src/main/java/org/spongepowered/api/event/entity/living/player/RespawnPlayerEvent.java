@@ -49,7 +49,7 @@ public interface RespawnPlayerEvent extends ChangeEntityWorldEvent {
      * @return The player
      */
     @Override
-    ServerPlayer getEntity();
+    ServerPlayer entity();
 
     interface SelectWorld extends RespawnPlayerEvent {
 
@@ -71,7 +71,7 @@ public interface RespawnPlayerEvent extends ChangeEntityWorldEvent {
          *
          * @return The player
          */
-        ServerPlayer getRecreatedPlayer();
+        ServerPlayer recreatedPlayer();
 
         /**
          * Gets whether the position of spawn was set by a {@link Bed}.
@@ -96,6 +96,6 @@ public interface RespawnPlayerEvent extends ChangeEntityWorldEvent {
          * @return the player
          */
         @Override
-        ServerPlayer getEntity();
+        ServerPlayer entity();
     }
 }

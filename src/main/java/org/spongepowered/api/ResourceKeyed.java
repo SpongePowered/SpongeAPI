@@ -24,17 +24,10 @@
  */
 package org.spongepowered.api;
 
-import net.kyori.adventure.key.Key;
 import net.kyori.adventure.key.Keyed;
-import org.checkerframework.checker.nullness.qual.NonNull;
 
 public interface ResourceKeyed extends Keyed {
 
-    ResourceKey getKey();
+    ResourceKey key();
 
-    @Override
-    @NonNull
-    default Key key() {
-        return this.getKey();
-    }
 }

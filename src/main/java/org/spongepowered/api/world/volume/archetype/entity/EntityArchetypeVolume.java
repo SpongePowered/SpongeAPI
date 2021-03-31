@@ -51,9 +51,9 @@ import java.util.stream.Stream;
  */
 public interface EntityArchetypeVolume extends Volume {
 
-    Collection<EntityArchetype> getEntityArchetypes();
+    Collection<EntityArchetype> entityArchetypes();
 
-    Collection<EntityArchetype> getEntityArchetypes(Predicate<EntityArchetype> filter);
+    Collection<EntityArchetype> entityArchetypes(Predicate<EntityArchetype> filter);
 
     interface Streamable<B extends Streamable<B>> extends EntityArchetypeVolume {
 
@@ -67,13 +67,13 @@ public interface EntityArchetypeVolume extends Volume {
          * @param options The options to construct the stream
          * @return The volume stream
          */
-        VolumeStream<B, EntityArchetype> getEntityArchetypeStream(Vector3i min, Vector3i max, StreamOptions options);
+        VolumeStream<B, EntityArchetype> entityArchetypeStream(Vector3i min, Vector3i max, StreamOptions options);
 
         /**
          * Gets a {@link Stream}&lt;{@link EntityArchetypeEntry}&gt; from this
          * volume such that possibly multiple {@link EntityArchetype EntityArchetypes}
          * can exist at the same {@link Vector3d coordinate} position. A more precise
-         * variation of {@link #getEntityArchetypeStream(Vector3i, Vector3i, StreamOptions)}
+         * variation of {@link #entityArchetypeStream(Vector3i, Vector3i, StreamOptions)}
          * that populates the entire stream of existing archetypes, regardless of position.
          * <p>Note that it may be possible the archetypes are returned as copies in the case
          * of an {@link Immutable immutable volume}. It is advisable that
@@ -83,7 +83,7 @@ public interface EntityArchetypeVolume extends Volume {
          *
          * @return The stream
          */
-        Stream<EntityArchetypeEntry> getEntitiesByPosition();
+        Stream<EntityArchetypeEntry> entitiesByPosition();
 
     }
 

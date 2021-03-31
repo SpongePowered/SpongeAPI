@@ -42,7 +42,7 @@ public interface RangedAttackAgainstAgentGoal extends Goal<Ranger> {
      * @return A new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -51,7 +51,7 @@ public interface RangedAttackAgainstAgentGoal extends Goal<Ranger> {
      *
      * @return The movement speed modifier
      */
-    double getMoveSpeed();
+    double moveSpeed();
 
     /**
      * Sets the movement speed modifier for moving towards a targeted
@@ -68,7 +68,7 @@ public interface RangedAttackAgainstAgentGoal extends Goal<Ranger> {
      *
      * @return The delay in ticks between attempts to attack
      */
-    int getDelayBetweenAttacks();
+    int delayBetweenAttacks();
 
     /**
      * The time, in ticks, this {@link Ranger} will wait before attacking
@@ -85,7 +85,7 @@ public interface RangedAttackAgainstAgentGoal extends Goal<Ranger> {
      *
      * @return The radius of which the owning entity will attempt to attack
      */
-    float getAttackRadius();
+    float attackRadius();
 
     /**
      * Sets the radius of which the owning {@link Ranger} will attempt to

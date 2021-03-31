@@ -64,7 +64,7 @@ public class SlotTransaction extends Transaction<ItemStackSnapshot> {
      *
      * @return The slot of this transaction
      */
-    public Slot getSlot() {
+    public Slot slot() {
         return this.slot;
     }
 
@@ -72,9 +72,9 @@ public class SlotTransaction extends Transaction<ItemStackSnapshot> {
     public String toString() {
         return com.google.common.base.MoreObjects.toStringHelper(this)
                 .add("slot", this.slot)
-                .add("original", this.getOriginal())
-                .add("default", this.getDefault())
-                .add("custom", this.getCustom())
+                .add("original", this.original())
+                .add("default", this.defaultReplacement())
+                .add("custom", this.custom())
                 .add("valid", this.isValid())
                 .toString();
     }

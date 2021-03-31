@@ -44,7 +44,7 @@ public interface FluidStack extends SerializableDataHolder.Mutable {
      * @return The newly created builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -52,7 +52,7 @@ public interface FluidStack extends SerializableDataHolder.Mutable {
      *
      * @return The fluid type of this stack
      */
-    FluidType getFluid();
+    FluidType fluid();
 
     /**
      * Gets the "volume" of this {@link FluidStack}.
@@ -63,7 +63,7 @@ public interface FluidStack extends SerializableDataHolder.Mutable {
      *
      * @return The volume in milli buckets
      */
-    int getVolume();
+    int volume();
 
     /**
      * Sets the desired volume for this stack.

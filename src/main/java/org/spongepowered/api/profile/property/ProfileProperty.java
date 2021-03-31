@@ -73,7 +73,7 @@ public interface ProfileProperty extends DataSerializable {
      * @return The new property
      */
     static ProfileProperty of(final String name, final String value, final @Nullable String signature) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(name, value, signature);
+        return Sponge.game().factoryProvider().provide(Factory.class).of(name, value, signature);
     }
 
     /**
@@ -81,14 +81,14 @@ public interface ProfileProperty extends DataSerializable {
      *
      * @return The name
      */
-    String getName();
+    String name();
 
     /**
      * Gets the value of this property.
      *
      * @return The value
      */
-    String getValue();
+    String value();
 
     /**
      * Gets the signature of this property.
@@ -98,7 +98,7 @@ public interface ProfileProperty extends DataSerializable {
      *
      * @return The signature, or {@link Optional#empty()} if not present
      */
-    Optional<String> getSignature();
+    Optional<String> signature();
 
     /**
      * Tests if this property has a signature.
@@ -106,7 +106,7 @@ public interface ProfileProperty extends DataSerializable {
      * @return Whether this property has a signature
      */
     default boolean hasSignature() {
-        return this.getSignature().isPresent();
+        return this.signature().isPresent();
     }
 
     /**

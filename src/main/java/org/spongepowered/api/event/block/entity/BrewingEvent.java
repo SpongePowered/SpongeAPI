@@ -43,14 +43,14 @@ public interface BrewingEvent extends Event {
      *
      * @return The brewing stand
      */
-    BrewingStand getBrewingStand();
+    BrewingStand brewingStand();
 
     /**
      * Gets the {@link ItemStackSnapshot} as the ingredient used.
      *
      * @return The ingredient
      */
-    ItemStackSnapshot getIngredient();
+    ItemStackSnapshot ingredient();
 
     interface Start extends BrewingEvent, AffectItemStackEvent {}
 
@@ -61,9 +61,10 @@ public interface BrewingEvent extends Event {
         /**
          * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the result
          * of the brew.
+         *
          * @return The brewed items
          */
-        List<ItemStackSnapshot> getBrewedItemStacks();
+        List<ItemStackSnapshot> brewedItemStacks();
     }
 
     interface Finish extends BrewingEvent {
@@ -71,8 +72,9 @@ public interface BrewingEvent extends Event {
         /**
          * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the result
          * of the brew.
+         *
          * @return The brewed items
          */
-        List<ItemStackSnapshot> getBrewedItemStacks();
+        List<ItemStackSnapshot> brewedItemStacks();
     }
 }

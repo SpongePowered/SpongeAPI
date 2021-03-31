@@ -134,10 +134,10 @@ import org.spongepowered.api.entity.vehicle.minecart.carrier.ChestMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.carrier.HopperMinecart;
 import org.spongepowered.api.entity.weather.LightningBolt;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 
 /**
  * An enumeration of all possible {@link EntityType}s available in vanilla minecraft.
@@ -378,6 +378,6 @@ public final class EntityTypes {
     }
 
     private static <T extends Entity> DefaultedRegistryReference<EntityType<T>> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.ENTITY_TYPE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.ENTITY_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

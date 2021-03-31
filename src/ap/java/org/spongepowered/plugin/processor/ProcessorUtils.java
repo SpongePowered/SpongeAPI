@@ -25,7 +25,6 @@
 package org.spongepowered.plugin.processor;
 
 import java.util.Collection;
-
 import javax.lang.model.element.TypeElement;
 
 final class ProcessorUtils {
@@ -33,13 +32,13 @@ final class ProcessorUtils {
     private ProcessorUtils() {
     }
 
-    static boolean contains(Collection<? extends TypeElement> elements, Class<?> clazz) {
+    static boolean contains(final Collection<? extends TypeElement> elements, final Class<?> clazz) {
         if (elements.isEmpty()) {
             return false;
         }
 
         final String name = clazz.getName();
-        for (TypeElement element : elements) {
+        for (final TypeElement element : elements) {
             if (element.getQualifiedName().contentEquals(name)) {
                 return true;
             }

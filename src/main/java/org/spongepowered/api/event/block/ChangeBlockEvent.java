@@ -49,7 +49,7 @@ import java.util.stream.Stream;
 /**
  * Plain event for when one or many {@link BlockState BlockStates} may be
  * changing within a {@link org.spongepowered.api.world.server.ServerWorld}.
- * Ideally, the {@link All#getTransactions()} will contain a full list in order
+ * Ideally, the {@link All#transactions()} will contain a full list in order
  * of which the changes are taking place, but the overall list may not be the
  * full breadth of what changes take place during some complex operations. To
  * record the entirety of all transactions taking place, {@link Post} provides
@@ -58,7 +58,7 @@ import java.util.stream.Stream;
  * without the additional cost of having multiple events thrown throughout.
  * <p>To determine whether a particular {@link BlockTransaction} is a
  * {@code break}, {@code place}, {@code modify}, etc. please refer to the
- * {@link BlockTransaction#getOperation()}</p>
+ * {@link BlockTransaction#operation()}</p>
  */
 public interface ChangeBlockEvent extends Event {
 
@@ -67,7 +67,7 @@ public interface ChangeBlockEvent extends Event {
      *
      * @return The world encompassing these block changes
      */
-    ServerWorld getWorld();
+    ServerWorld world();
 
     /**
      * Called before running specific block logic at one or more 
@@ -88,7 +88,7 @@ public interface ChangeBlockEvent extends Event {
          *
          * @return The immutable list of one or more locations that can change
          */
-        List<ServerLocation> getLocations();
+        List<ServerLocation> locations();
     }
 
     interface All extends ChangeBlockEvent, Cancellable {
@@ -100,15 +100,15 @@ public interface ChangeBlockEvent extends Event {
          *
          * @return The unmodifiable list of transactions
          */
-        List<BlockTransaction> getTransactions();
+        List<BlockTransaction> transactions();
 
         /**
          * Gets a {@link Stream} of {@link BlockTransaction BlockTransactions}
          * filtered by a particular {@link Operation block operation}. The difference
-         * between this and {@link #getTransactions()} is that while the general transactions
+         * between this and {@link #transactions()} is that while the general transactions
          * is still an ordered {@link List}, this is a filtered stream of that list, equally
          * unmodifiable. The {@link BlockTransaction transactions} themselves are still
-         * modifiable with {@link BlockTransaction#setCustom(BlockSnapshot)}, but altering
+         * modifiable with {@code BlockTransaction#setCustom(BlockSnapshot)}, but altering
          * the customized snapshot will <strong>NOT</strong> alter the {@link Operation}
          * being performed. As a logical perspective, there is no functional difference
          * between any two {@link Operation operations}, but it can be important to
@@ -117,31 +117,31 @@ public interface ChangeBlockEvent extends Event {
          * @param operation The operation being performed
          * @return The stream filtering on the given operation, may be empty
          */
-        default Stream<BlockTransaction> getTransactions(final Operation operation) {
+        default Stream<BlockTransaction> transactions(final Operation operation) {
             Objects.requireNonNull(operation, "Operation cannot be null");
-            return this.getTransactions()
+            return this.transactions()
                 .stream()
-                .filter(transaction -> transaction.getOperation().equals(operation));
+                .filter(transaction -> transaction.operation().equals(operation));
         }
 
         /**
          * Applies the provided {@link Predicate} to the {@link List} of
-         * {@link Transaction}s from {@link #getTransactions()} such that
+         * {@link Transaction}s from {@link #transactions()} such that
          * any time that {@link Predicate#test(Object)} returns {@code false}
          * on the location of the {@link Transaction}, the {@link Transaction} is
          * marked as "invalid" and will not apply post event.
          *
-         * <p>{@link Transaction#getOriginal()} is used to get the {@link ServerLocation}</p>
+         * <p>{@link Transaction#original()} is used to get the {@link ServerLocation}</p>
          *
          * @param predicate The predicate to use for filtering
          * @return The transactions for which the predicate returned
          *     {@code false}
          */
         default List<BlockTransaction> invalidate(final Predicate<ServerLocation> predicate) {
-            return this.getTransactions()
+            return this.transactions()
                 .stream()
                 .filter(blockTransaction -> {
-                    if (!predicate.test(blockTransaction.getOriginal().getLocation().get())) {
+                    if (!predicate.test(blockTransaction.original().location().get())) {
                         blockTransaction.setValid(false);
                         return true;
                     }
@@ -155,7 +155,7 @@ public interface ChangeBlockEvent extends Event {
          * marked as "invalid" and will not apply post event.
          */
         default void invalidateAll() {
-            this.getTransactions().forEach(BlockTransaction::invalidate);
+            this.transactions().forEach(BlockTransaction::invalidate);
         }
     }
 
@@ -187,7 +187,7 @@ public interface ChangeBlockEvent extends Event {
      */
     interface Post extends ChangeBlockEvent {
 
-        List<BlockTransactionReceipt> getReceipts();
+        List<BlockTransactionReceipt> receipts();
 
     }
 }

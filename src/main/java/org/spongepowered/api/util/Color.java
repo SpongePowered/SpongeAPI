@@ -84,7 +84,7 @@ public final class Color implements DataSerializable, RGBLike {
      * @param hex The hexadecimal value of the color
      * @return The color object
      */
-    public static Color ofRgb(int hex) {
+    public static Color ofRgb(final int hex) {
         return Color.ofRgb((hex >> 0x10) & Color.MASK, (hex >> 0x8) & Color.MASK, hex & Color.MASK);
     }
 
@@ -98,7 +98,7 @@ public final class Color implements DataSerializable, RGBLike {
      * @param blue The blue value
      * @return The color object
      */
-    public static Color ofRgb(int red, int green, int blue) {
+    public static Color ofRgb(final int red, final int green, final int blue) {
         return new Color(red, green, blue);
     }
 
@@ -109,7 +109,7 @@ public final class Color implements DataSerializable, RGBLike {
      * @param color The java color object
      * @return The converted color object
      */
-    public static Color of(java.awt.Color color) {
+    public static Color of(final java.awt.Color color) {
         return new Color(color.getRed(), color.getGreen(), color.getBlue());
     }
 
@@ -119,7 +119,7 @@ public final class Color implements DataSerializable, RGBLike {
      * @param vector3i The vector of three integers representing color
      * @return The color object
      */
-    public static Color of(Vector3i vector3i) {
+    public static Color of(final Vector3i vector3i) {
         return new Color(vector3i.getX(), vector3i.getY(), vector3i.getZ());
     }
 
@@ -129,7 +129,7 @@ public final class Color implements DataSerializable, RGBLike {
      * @param vector3f The vector of three floats representing color
      * @return The color object
      */
-    public static Color of(Vector3f vector3f) {
+    public static Color of(final Vector3f vector3f) {
         return new Color(Math.round(vector3f.getX()), Math.round(vector3f.getY()), Math.round(vector3f.getZ()));
     }
 
@@ -139,7 +139,7 @@ public final class Color implements DataSerializable, RGBLike {
      * @param vector3d The vector of three doubles representing color
      * @return The color object
      */
-    public static Color of(Vector3d vector3d) {
+    public static Color of(final Vector3d vector3d) {
         return new Color((int) Math.round(vector3d.getX()), (int) Math.round(vector3d.getY()), (int) Math.round(vector3d.getZ()));
     }
 
@@ -152,11 +152,11 @@ public final class Color implements DataSerializable, RGBLike {
      * @param colors The colors to mix
      * @return The final output mixed color
      */
-    public static Color mixDyeColors(DyeColor... colors) {
+    public static Color mixDyeColors(final DyeColor... colors) {
         Objects.requireNonNull(colors, "No nulls allowed!");
         final Color[] actualColors = new Color[colors.length];
         for (int i = 0; i < colors.length; i++) {
-            actualColors[i] = colors[i].getColor();
+            actualColors[i] = colors[i].color();
         }
 
         return Color.mixColors(actualColors);
@@ -170,7 +170,7 @@ public final class Color implements DataSerializable, RGBLike {
      * @param colors The colors to mix
      * @return The final output mixed color
      */
-    public static Color mixColors(Color... colors) {
+    public static Color mixColors(final Color... colors) {
         Objects.requireNonNull(colors, "No null colors allowed!");
         if (colors.length <= 0) {
             throw new IllegalArgumentException("Cannot have an empty color array!");
@@ -178,18 +178,18 @@ public final class Color implements DataSerializable, RGBLike {
         if (colors.length == 1) {
             return colors[0];
         }
-        int red = colors[0].getRed();
-        int green = colors[0].getGreen();
-        int blue = colors[0].getBlue();
+        int red = colors[0].red();
+        int green = colors[0].green();
+        int blue = colors[0].blue();
         for (int i = 1; i < colors.length; i++) {
             Objects.requireNonNull(colors[i], "No null colors allowed!");
-            red += colors[i].getRed();
-            green += colors[i].getGreen();
-            blue += colors[i].getBlue();
+            red += colors[i].red();
+            green += colors[i].green();
+            blue += colors[i].blue();
         }
-        int averageRed = Math.round((float) red / colors.length);
-        int averageGreen = Math.round((float) green / colors.length);
-        int averageBlue = Math.round((float) blue / colors.length);
+        final int averageRed = Math.round((float) red / colors.length);
+        final int averageGreen = Math.round((float) green / colors.length);
+        final int averageBlue = Math.round((float) blue / colors.length);
         return Color.ofRgb(averageRed, averageGreen, averageBlue);
     }
 
@@ -198,7 +198,7 @@ public final class Color implements DataSerializable, RGBLike {
     private final byte blue;
     private final int rgb;
 
-    private Color(int red, int green, int blue) {
+    private Color(final int red, final int green, final int blue) {
         this.red = (byte) (red & Color.MASK);
         this.green = (byte) (green & Color.MASK);
         this.blue = (byte) (blue & Color.MASK);
@@ -212,20 +212,20 @@ public final class Color implements DataSerializable, RGBLike {
      *
      * @return The red value
      */
-    public int getRed() {
+    public @IntRange(from = 0x0, to = 0xff) int red() {
         return Color.MASK & this.red;
     }
 
     /**
      * Creates a new {@link Color} by using the provided
-     * {@code red} color, while retaining the current {@link #getGreen()}
-     * and {@link #getBlue()} values.
+     * {@code red} color, while retaining the current {@link #green()}
+     * and {@link #blue()} values.
      *
      * @param red The red value to use
      * @return The new color object
      */
-    public Color withRed(int red) {
-        return Color.ofRgb(red, this.getGreen(), this.getBlue());
+    public Color withRed(final int red) {
+        return Color.ofRgb(red, this.green(), this.blue());
     }
 
     /**
@@ -233,20 +233,21 @@ public final class Color implements DataSerializable, RGBLike {
      *
      * @return The red value
      */
-    public int getGreen() {
+    @Override
+    public @IntRange(from = 0x0, to = 0xff) int green() {
         return Color.MASK & this.green;
     }
 
     /**
      * Creates a new {@link Color} by using the provided
-     * {@code green} color, while retaining the current {@link #getRed()}
-     * and {@link #getBlue()} values.
+     * {@code green} color, while retaining the current {@link #red()}
+     * and {@link #blue()} values.
      *
      * @param green The green value to use
      * @return The new color object
      */
-    public Color withGreen(int green) {
-        return Color.ofRgb(this.getRed(), green, this.getBlue());
+    public Color withGreen(final int green) {
+        return Color.ofRgb(this.red(), green, this.blue());
     }
 
     /**
@@ -254,35 +255,21 @@ public final class Color implements DataSerializable, RGBLike {
      *
      * @return The blue value
      */
-    public int getBlue() {
+    @Override
+    public @IntRange(from = 0x0, to = 0xff) int blue() {
         return Color.MASK & this.blue;
     }
 
     /**
      * Creates a new {@link Color} by using the provided
-     * {@code blue} color, while retaining the current {@link #getGreen()}
-     * and {@link #getRed()} ()} values.
+     * {@code blue} color, while retaining the current {@link #green()}
+     * and {@link #red()} values.
      *
      * @param blue The blue value to use
      * @return The new color object
      */
-    public Color withBlue(int blue) {
-        return Color.ofRgb(this.getRed(), this.getGreen(), blue);
-    }
-
-    @Override
-    public @IntRange(from = 0x0, to = 0xff) int red() {
-        return this.getRed();
-    }
-
-    @Override
-    public @IntRange(from = 0x0, to = 0xff) int green() {
-        return this.getGreen();
-    }
-
-    @Override
-    public @IntRange(from = 0x0, to = 0xff) int blue() {
-        return this.getBlue();
+    public Color withBlue(final int blue) {
+        return Color.ofRgb(this.red(), this.green(), blue);
     }
 
     /**
@@ -292,7 +279,7 @@ public final class Color implements DataSerializable, RGBLike {
      * @return The java awt color object
      */
     public java.awt.Color asJavaColor() {
-        return new java.awt.Color(this.getRed(), this.getGreen(), this.getBlue());
+        return new java.awt.Color(this.red(), this.green(), this.blue());
     }
 
     /**
@@ -301,7 +288,7 @@ public final class Color implements DataSerializable, RGBLike {
      *
      * @return The current color value in a hexadecimal format
      */
-    public int getRgb() {
+    public int rgb() {
         return this.rgb;
     }
 
@@ -311,8 +298,8 @@ public final class Color implements DataSerializable, RGBLike {
      * @param colors The provided colors to mix
      * @return The new color
      */
-    public Color mixWithColors(Color... colors) {
-        Color[] newColorArray = new Color[colors.length + 1];
+    public Color mixWithColors(final Color... colors) {
+        final Color[] newColorArray = new Color[colors.length + 1];
         newColorArray[0] = this;
         System.arraycopy(colors, 0, newColorArray, 1, colors.length);
         return Color.mixColors(newColorArray);
@@ -325,27 +312,27 @@ public final class Color implements DataSerializable, RGBLike {
      * @param dyeColors The dye colors to mix
      * @return The new color
      */
-    public Color mixWithDyes(DyeColor... dyeColors) {
-        Color[] newColorArray = new Color[dyeColors.length + 1];
+    public Color mixWithDyes(final DyeColor... dyeColors) {
+        final Color[] newColorArray = new Color[dyeColors.length + 1];
         newColorArray[0] = this;
         for (int i = 0; i < dyeColors.length; i++) {
-            newColorArray[i + 1] = dyeColors[i].getColor();
+            newColorArray[i + 1] = dyeColors[i].color();
         }
         return Color.mixColors(newColorArray);
     }
 
     @Override
-    public int getContentVersion() {
+    public int contentVersion() {
         return 1;
     }
 
     @Override
     public DataContainer toContainer() {
         return DataContainer.createNew()
-            .set(Queries.CONTENT_VERSION, this.getContentVersion())
-            .set(Queries.COLOR_RED, this.getRed())
-            .set(Queries.COLOR_GREEN, this.getGreen())
-            .set(Queries.COLOR_BLUE, this.getBlue());
+            .set(Queries.CONTENT_VERSION, this.contentVersion())
+            .set(Queries.COLOR_RED, this.red())
+            .set(Queries.COLOR_GREEN, this.green())
+            .set(Queries.COLOR_BLUE, this.blue());
     }
 
     @Override
@@ -354,7 +341,7 @@ public final class Color implements DataSerializable, RGBLike {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         }
@@ -368,9 +355,9 @@ public final class Color implements DataSerializable, RGBLike {
     @Override
     public String toString() {
         return com.google.common.base.MoreObjects.toStringHelper(this)
-            .add("red", this.getRed())
-            .add("green", this.getGreen())
-            .add("blue", this.getBlue())
+            .add("red", this.red())
+            .add("green", this.green())
+            .add("blue", this.blue())
             .toString();
     }
 
@@ -385,7 +372,7 @@ public final class Color implements DataSerializable, RGBLike {
         }
 
         @Override
-        protected Optional<Color> buildContent(DataView container) throws InvalidDataException {
+        protected Optional<Color> buildContent(final DataView container) throws InvalidDataException {
             if (!container.contains(Queries.COLOR_RED, Queries.COLOR_GREEN, Queries.COLOR_BLUE)) {
                 return Optional.empty();
             }
@@ -394,7 +381,7 @@ public final class Color implements DataSerializable, RGBLike {
                 final int green = container.getInt(Queries.COLOR_GREEN).get();
                 final int blue = container.getInt(Queries.COLOR_BLUE).get();
                 return Optional.of(Color.ofRgb(red, green, blue));
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 throw new InvalidDataException("Could not parse some data.", e);
             }
         }

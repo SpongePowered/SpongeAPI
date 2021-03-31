@@ -38,6 +38,7 @@ public interface ArmorStand extends Living, ArmorEquipable {
 
     /**
      * {@link Keys#HAS_MARKER}
+     *
      * @return Whether this is a marker (non-visible) armor stand
      */
     default Value.Mutable<Boolean> marker() {
@@ -46,6 +47,7 @@ public interface ArmorStand extends Living, ArmorEquipable {
 
     /**
      * {@link Keys#IS_SMALL}
+     *
      * @return Whether this is a small or large armor stand
      */
     default Value.Mutable<Boolean> small() {
@@ -54,6 +56,7 @@ public interface ArmorStand extends Living, ArmorEquipable {
 
     /**
      * {@link Keys#HAS_BASE_PLATE}
+     *
      * @return Whether this armorstand has a base plate or not
      */
     default Value.Mutable<Boolean> basePlate() {
@@ -62,6 +65,7 @@ public interface ArmorStand extends Living, ArmorEquipable {
 
     /**
      * {@link Keys#HAS_ARMS}
+     *
      * @return Whether arms are visible or not
      */
     default Value.Mutable<Boolean> arms() {
@@ -70,6 +74,7 @@ public interface ArmorStand extends Living, ArmorEquipable {
 
     /**
      * {@link Keys#IS_PLACING_DISABLED}
+     *
      * @return The equipment types where placing armor is disabled
      */
     default MapValue.Mutable<EquipmentType, Boolean> placingDisabled() {
@@ -78,6 +83,7 @@ public interface ArmorStand extends Living, ArmorEquipable {
 
     /**
      * {@link Keys#IS_TAKING_DISABLED}
+     *
      * @return The set of equipment types that are preventing "taking"
      */
     default MapValue.Mutable<EquipmentType, Boolean> takingDisabled() {

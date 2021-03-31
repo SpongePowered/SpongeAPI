@@ -42,21 +42,21 @@ public interface ChangeWorldBorderEvent extends Event, Cancellable {
     /**
      * Gets the border that was previously used as an {@link Optional}. There 
      * may be no border set for the target (especially, if it is a player), in 
-     * which case, an empty {@code Optional} is returned.
+     * which case, {@link Optional#empty()} is returned.
      *
      * @return The border that was previously in use, if there was one.
      */
-    Optional<WorldBorder> getPreviousBorder();
+    Optional<WorldBorder> previousBorder();
 
     /**
      * Gets the border that will be used as an {@link Optional}. For some
      * targets, the border may be unset and therefore they may not always have a
-     * border. It is in these instances that an empty {@code Optional} is
+     * border. It is in these instances that {@link Optional#empty()} is
      * returned.
      *
      * @return The border that will be in use, if there is one.
      */
-    Optional<WorldBorder> getNewBorder();
+    Optional<WorldBorder> newBorder();
 
     /**
      * An event that is fired when a world's border is changed.
@@ -68,7 +68,7 @@ public interface ChangeWorldBorderEvent extends Event, Cancellable {
          *
          * @return The world
          */
-        ServerWorld getWorld();
+        ServerWorld world();
 
     }
 
@@ -83,7 +83,7 @@ public interface ChangeWorldBorderEvent extends Event, Cancellable {
          *
          * @return The player
          */
-        ServerPlayer getPlayer();
+        ServerPlayer player();
     }
 
 }

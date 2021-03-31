@@ -50,7 +50,7 @@ public interface InteractBlockEvent extends InteractEvent {
      *
      * @return The block snapshot
      */
-    BlockSnapshot getBlock();
+    BlockSnapshot block();
 
     /**
      * Gets the target "side" of the {@link BlockState} being interacted with
@@ -59,7 +59,7 @@ public interface InteractBlockEvent extends InteractEvent {
      * @return An optional containing the side being interacted with or
      *     {@link Direction#NONE}
      */
-    Direction getTargetSide();
+    Direction targetSide();
 
     /**
      * An event where the targeted block is being interacted with the client's
@@ -103,17 +103,17 @@ public interface InteractBlockEvent extends InteractEvent {
      */
     interface Secondary extends InteractBlockEvent, Cancellable {
 
-        Tristate getOriginalUseItemResult();
+        Tristate originalUseItemResult();
 
         /**
-         * Gets the original {@link #getUseBlockResult}.
+         * Gets the original {@link #useBlockResult}.
          *
-         * @return The original {@link #getUseBlockResult}
+         * @return The original {@link #useBlockResult}
          */
-        Tristate getOriginalUseBlockResult();
+        Tristate originalUseBlockResult();
 
         /**
-         * Gets whether the {@link Player#getItemInHand} should be used.
+         * Gets whether the {@link Player#itemInHand} should be used.
          *
          * <ul>
          * <li>FALSE: The {@link ItemStack} will never be used.</li>
@@ -124,9 +124,9 @@ public interface InteractBlockEvent extends InteractEvent {
          *
          * <p>Note: These results may differ depending on implementation.</p>
          *
-         * @return Whether the {@link Player#getItemInHand} should be used
+         * @return Whether the {@link Player#itemInHand} should be used
          */
-        Tristate getUseItemResult();
+        Tristate useItemResult();
 
         /**
          * Gets whether the interacted {@link BlockSnapshot} should be used.
@@ -141,10 +141,10 @@ public interface InteractBlockEvent extends InteractEvent {
          *
          * @return Whether the interacted {@link BlockSnapshot} should be used
          */
-        Tristate getUseBlockResult();
+        Tristate useBlockResult();
 
         /**
-         * Sets whether the {@link Player#getItemInHand} should be used.
+         * Sets whether the {@link Player#itemInHand} should be used.
          *
          * <ul>
          * <li>FALSE: The {@link ItemStack} will never be used.</li>
@@ -155,7 +155,7 @@ public interface InteractBlockEvent extends InteractEvent {
          *
          * <p>Note: These results may differ depending on implementation.</p>
          *
-         * @param result Whether the {@link Player#getItemInHand} should be used
+         * @param result Whether the {@link Player#itemInHand} should be used
          */
         void setUseItemResult(Tristate result);
 
@@ -180,6 +180,6 @@ public interface InteractBlockEvent extends InteractEvent {
          *
          * @return The interaction point
          */
-        Vector3d getInteractionPoint();
+        Vector3d interactionPoint();
     }
 }

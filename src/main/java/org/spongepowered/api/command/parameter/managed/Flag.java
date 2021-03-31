@@ -56,7 +56,7 @@ import java.util.function.Predicate;
  * starts that subcommand.</p>
  *
  * <p>To check whether the flag was specified in the command, call
- * {@link CommandContext#getFlagInvocationCount(String)}, where the string is a
+ * {@link CommandContext#flagInvocationCount(String)}, where the string is a
  * flag's alias without the preceding dashes.</p>
  */
 public interface Flag {
@@ -67,7 +67,7 @@ public interface Flag {
      * @return A {@link Builder}
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -96,8 +96,10 @@ public interface Flag {
      *
      * <p>Aliases returned here will <strong>not</strong> be prefixed with the
      * appropriate dashes.</p>
+     *
+     * @return The aliases.
      */
-    Collection<String> getUnprefixedAliases();
+    Collection<String> unprefixedAliases();
 
     /**
      * Gets the aliases that this flag will act upon.
@@ -107,7 +109,7 @@ public interface Flag {
      *
      * @return The aliases.
      */
-    Collection<String> getAliases();
+    Collection<String> aliases();
 
     /**
      * Gets the {@link Predicate} that will be checked in order for this flag
@@ -115,7 +117,7 @@ public interface Flag {
      *
      * @return The {@link Predicate}
      */
-    Predicate<CommandCause> getRequirement();
+    Predicate<CommandCause> requirement();
 
     /**
      * Gets the {@link Parameter} that should be parsed if this flag is
@@ -125,7 +127,7 @@ public interface Flag {
      *
      * @return The {@link Parameter}, if it exists.
      */
-    Optional<Parameter> getAssociatedParameter();
+    Optional<Parameter> associatedParameter();
 
     /**
      * A builder for creating {@link Flag}s.

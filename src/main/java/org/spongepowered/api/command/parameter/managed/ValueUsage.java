@@ -36,6 +36,6 @@ public interface ValueUsage {
      * @param key The {@link String} that defines the parameter key
      * @return The usage
      */
-    String getUsage(String key);
+    String usage(String key);
 
 }

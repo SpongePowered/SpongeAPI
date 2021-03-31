@@ -41,22 +41,22 @@ public interface Goal<O extends Agent> {
      *
      * @return The type
      */
-    GoalType getType();
+    GoalType type();
 
     /**
      * Gets the {@link GoalExecutor} that is updating this goal, if any.
      *
      * @return The goal or {@link Optional#empty()} if not present
      */
-    Optional<GoalExecutor<O>> getExecutor();
+    Optional<GoalExecutor<O>> executor();
 
     /**
      * Gets the {@link Agent} that owns this goal, if any.
      *
      * @return The owner or {@link Optional#empty()} if not present
      */
-    default Optional<O> getOwner() {
-        return this.getExecutor().map(GoalExecutor::getOwner);
+    default Optional<O> owner() {
+        return this.executor().map(GoalExecutor::owner);
     }
 
     /**
@@ -68,7 +68,7 @@ public interface Goal<O extends Agent> {
      *
      * <ol>
      *   <li>This task has higher priority than the provided goal for our
-     *   {@link Goal#getExecutor()}.</li>
+     *   {@link Goal#executor()}.</li>
      *   <li>Returning "false" will remove the provided goal from the list of
      *   updated goals, if not there already.</li>
      *   <li>Returning "true" will add the provided task to the list of updated

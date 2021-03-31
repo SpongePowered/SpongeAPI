@@ -41,9 +41,9 @@ import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.Locatable;
-import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.schematic.Schematic;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.imaginary.Quaterniond;
 import org.spongepowered.math.vector.Vector3d;
@@ -82,7 +82,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      *
      * @return The type
      */
-    EntityType<?> getType();
+    EntityType<?> type();
 
     /**
      * Creates an {@link EntitySnapshot}.
@@ -106,7 +106,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      *
      * @return The position of this entity
      */
-    Vector3d getPosition();
+    Vector3d position();
 
     /**
      * Sets the position of this entity.
@@ -133,7 +133,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      *
      * @return The rotation
      */
-    Vector3d getRotation();
+    Vector3d rotation();
 
     /**
      * Sets the rotation of this entity.
@@ -151,8 +151,8 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      *
      * @return The direction
      */
-    default Vector3d getDirection() {
-        final Vector3d rotation = this.getRotation();
+    default Vector3d direction() {
+        final Vector3d rotation = this.rotation();
         return Quaterniond.fromAxesAnglesDeg(rotation.getX(), -rotation.getY(), rotation.getZ()).getDirection();
     }
 
@@ -190,7 +190,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      *
      * @return The entity scale
      */
-    Vector3d getScale();
+    Vector3d scale();
 
     /**
      * Sets the scale.
@@ -204,7 +204,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      *
      * @return The transform
      */
-    Transform getTransform();
+    Transform transform();
 
     /**
      * Sets the {@link Transform}.
@@ -225,7 +225,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      */
     default boolean transferToWorld(final ServerWorld world) {
         Objects.requireNonNull(world, "World cannot be null");
-        return this.transferToWorld(world, world.getProperties().spawnPosition().toDouble());
+        return this.transferToWorld(world, world.properties().spawnPosition().toDouble());
     }
 
     /**
@@ -246,7 +246,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      *
      * @return The axis aligned bounding box
      */
-    Optional<AABB> getBoundingBox();
+    Optional<AABB> boundingBox();
 
     /**
      * Returns whether this entity has been removed.
@@ -291,28 +291,28 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
     /**
      * Gets the nearby entities within the desired distance.
      *
-     * @see World#getNearbyEntities(Vector3d, double)
+     * @see World#nearbyEntities(Vector3d, double)
      * @param distance The distance
      * @return The collection of nearby entities
      */
-    default Collection<? extends Entity> getNearbyEntities(final double distance) {
+    default Collection<? extends Entity> nearbyEntities(final double distance) {
         if (distance <= 0) {
             throw new IllegalArgumentException("Distance must be greater than 0!");
         }
-        return this.getWorld().getNearbyEntities(this.getLocation().getPosition(), distance);
+        return this.world().nearbyEntities(this.location().position(), distance);
     }
 
     /**
      * Gets the nearby entities that satisfy the desired predicate.
      *
-     * @see World#getEntities(AABB, Predicate)
+     * @see World#entities(AABB, Predicate)
      * @param distance The distance
      * @param predicate The predicate to use
      * @return The collection of entities
      */
-    default Collection<? extends Entity> getNearbyEntities(final double distance, final Predicate<? super Entity> predicate) {
+    default Collection<? extends Entity> nearbyEntities(final double distance, final Predicate<? super Entity> predicate) {
         Objects.requireNonNull(predicate, "Predicate cannot be null");
-        return this.getWorld().getEntities(this.getBoundingBox().get().expand(distance, distance, distance), predicate);
+        return this.world().entities(this.boundingBox().get().expand(distance, distance, distance), predicate);
     }
 
     /**
@@ -329,6 +329,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#DISPLAY_NAME}
+     *
      * @return The display name of this entity
      */
     default Value.Mutable<Component> displayName() {
@@ -337,6 +338,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#FALL_DISTANCE}
+     *
      * @return The fall distance
      */
     default Value.Mutable<Double> fallDistance() {
@@ -345,6 +347,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#PASSENGERS}
+     *
      * @return The list of passengers that may be riding this entity
      */
     default ListValue.Mutable<Entity> passengers() {
@@ -353,6 +356,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#VEHICLE}
+     *
      * @return The vehicle this entity may be riding
      */
     default Optional<Value.Mutable<Entity>> vehicle() {
@@ -361,6 +365,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#BASE_VEHICLE}
+     *
      * @return The "base vehicle" of the entity vehicle riding chain
      */
     default Optional<Value.Mutable<Entity>> baseVehicle() {
@@ -369,6 +374,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#ON_GROUND}
+     *
      * @return Whether this entity is on the ground
      */
     default Value.Mutable<Boolean> onGround() {
@@ -377,6 +383,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#VELOCITY}
+     *
      * @return The velocity of this entity
      */
     default Value.Mutable<Vector3d> velocity() {
@@ -385,6 +392,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#IS_GRAVITY_AFFECTED}
+     *
      * @return Whether this entity is affected by gravity
      */
     default Value.Mutable<Boolean> gravityAffected() {
@@ -393,6 +401,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#IS_SILENT}
+     *
      * @return Whether this entity is silent
      */
     default Value.Mutable<Boolean> silent() {
@@ -401,6 +410,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#CREATOR}
+     *
      * @return The unique id of the creator of this entity
      */
     default Optional<Value.Mutable<UUID>> creator() {
@@ -409,6 +419,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#NOTIFIER}
+     *
      * @return The unique id of the notifier of this entity
      */
     default Optional<Value.Mutable<UUID>> notifier() {
@@ -417,6 +428,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#FIRE_TICKS}
+     *
      * @return The amount of time in ticks an Entity is will continue burn for.
      */
     default Optional<Value.Mutable<Ticks>> fireTicks() {
@@ -425,6 +437,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#FIRE_DAMAGE_DELAY}
+     *
      * @return The amount of time to delay in ticks before an Entity will be burned by fire.
      */
     default Optional<Value.Mutable<Ticks>> fireImmuneTicks() {
@@ -433,6 +446,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
 
     /**
      * {@link Keys#TRANSIENT}
+     *
      * @return The transient state
      */
     default Optional<Value.Mutable<Boolean>> isTransient() {

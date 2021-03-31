@@ -35,6 +35,7 @@ public interface Ageable extends Agent {
 
     /**
      * {@link Keys#IS_ADULT}
+     *
      * @return Whether this entity is an adult or not
      */
     default Value.Mutable<Boolean> adult() {
@@ -43,6 +44,7 @@ public interface Ageable extends Agent {
 
     /**
      * {@link Keys#BABY_TICKS}
+     *
      * @return The ticks until this entity turns into an adult
      */
     default Value.Mutable<Ticks> babyTicks() {

@@ -57,7 +57,7 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
     /**
      * Creates a new {@link Transaction} with the added possibility of
      * <i>intermediary</i> transactions that may have taken place between
-     * what is {@link #getOriginal() original} and {@link #getDefault()
+     * what is {@link #original() original} and {@link #defaultReplacement()
      * the default result}. The list may be {@code null}, however the list
      * will wrapped to become an unmodifiable list.
      *
@@ -81,7 +81,7 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
      *
      * @return The original snapshot
      */
-    public final T getOriginal() {
+    public final T original() {
         return this.original;
     }
 
@@ -90,25 +90,25 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
      *
      * @return The default replacement
      */
-    public final T getDefault() {
+    public final T defaultReplacement() {
         return this.defaultReplacement;
     }
 
     /**
      * Gets a {@link List} of any and all intermediary transactions that may
      * have taken place to get the final {@link Transaction} of
-     * {@link #getOriginal() the original} and {@link #getDefault() the default}
+     * {@link #original() the original} and {@link #defaultReplacement() the default}
      * results. This is exposed for monitoring purposes only, as the provided
      * list is not modifiable. The list may be {@link List#isEmpty() empty}
      * by default, but will never be {@code null}.
      *
      * <p>Note that special processing with this list may sometimes only take
-     * place if {@link #getCustom() a custom} result has not been set by a plugin,
+     * place if {@link #custom() a custom} result has not been set by a plugin,
      * or if {@link #isValid()} returns {@code false}.</p>
      *
      * @return The intermediary list of transactions
      */
-    public final List<? extends T> getIntermediary() {
+    public final List<? extends T> intermediary() {
         return this.intermediary == null ? Collections.emptyList() : this.intermediary;
     }
 
@@ -117,13 +117,13 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
      *
      * @return The custom snapshot, if available
      */
-    public final Optional<T> getCustom() {
+    public final Optional<T> custom() {
         return Optional.ofNullable(this.custom);
     }
 
     /**
      * Sets the custom snapshot. If setting <code>null</code>, this will
-     * reset to use the {@link #getDefault()} snapshot.
+     * reset to use the {@link #defaultReplacement()} snapshot.
      *
      * @param custom The custom snapshot
      */
@@ -132,13 +132,13 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
     }
 
     /**
-     * Gets the proposed final snapshot, if the {@link #getCustom()} returns
+     * Gets the proposed final snapshot, if the {@link #custom()} returns
      * {@link Optional#isPresent()}, the custom is returned, otherwise,
-     * {@link #getDefault()} is returned.
+     * {@link #defaultReplacement()} is returned.
      *
      * @return The proposed final snapshot
      */
-    public final T getFinal() {
+    public final T finalReplacement() {
         return this.custom == null ? this.defaultReplacement : this.custom;
     }
 
@@ -200,14 +200,14 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
     }
 
     @Override
-    public int getContentVersion() {
+    public int contentVersion() {
         return 1;
     }
 
     @Override
     public DataContainer toContainer() {
         final DataContainer container = DataContainer.createNew()
-            .set(Queries.CONTENT_VERSION, this.getContentVersion())
+            .set(Queries.CONTENT_VERSION, this.contentVersion())
             .set(Queries.TYPE_CLASS, this.original.getClass().getName())
             .set(Queries.ORIGINAL, this.original)
             .set(Queries.DEFAULT_REPLACEMENT, this.defaultReplacement)

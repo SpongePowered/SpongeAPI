@@ -50,14 +50,14 @@ public interface Selector {
 
     /**
      * Attempts to parse the given string into a selector. It must start with an
-     * @ symbol.
+     * {@literal @} symbol.
      *
      * @param string The string to parse
      * @return The {@link Selector}
      * @throws IllegalArgumentException if the string could not be parsed.
      */
     static Selector parse(final String string) throws IllegalArgumentException {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).parse(string);
+        return Sponge.game().factoryProvider().provide(Factory.class).parse(string);
     }
 
     /**
@@ -69,7 +69,7 @@ public interface Selector {
      * @return The builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -140,7 +140,7 @@ public interface Selector {
          * @param limit The maximum number of entities to return
          * @return This builder, for chaining
          */
-        Builder setLimit(int limit);
+        Builder limit(int limit);
 
         /**
          * Sets the minimum and/or maximum distance from the target location
@@ -149,7 +149,7 @@ public interface Selector {
          * @param range The range
          * @return This builder, for chaining
          */
-        Builder setDistance(Range<Double> range);
+        Builder distance(Range<Double> range);
 
         /**
          * Sets the volume that entities can be selected from. Entities that
@@ -161,7 +161,7 @@ public interface Selector {
          *                entities at a specific point instead)
          * @return This builder, for chaining
          */
-        Builder setVolume(Vector3d corner1, Vector3d corner2);
+        Builder volume(Vector3d corner1, Vector3d corner2);
 
         /**
          * Sets the sorting algorithm to use when returning entities from the
@@ -170,7 +170,7 @@ public interface Selector {
          * @param algorithm The {@link SelectorSortAlgorithm}
          * @return This builder, for chaining
          */
-        Builder setSortAlgorithm(Supplier<? extends SelectorSortAlgorithm> algorithm);
+        Builder sortAlgorithm(Supplier<? extends SelectorSortAlgorithm> algorithm);
 
         /**
          * Sets the sorting algorithm to use when returning entities from the
@@ -179,7 +179,7 @@ public interface Selector {
          * @param algorithm The {@link SelectorSortAlgorithm}
          * @return This builder, for chaining
          */
-        Builder setSortAlgorithm(SelectorSortAlgorithm algorithm);
+        Builder sortAlgorithm(SelectorSortAlgorithm algorithm);
 
         /**
          * Adds an {@link Advancement} constraint to this selector, requiring
@@ -188,7 +188,7 @@ public interface Selector {
          * @param advancement The advancement that players must have.
          * @return This builder, for chaining
          */
-        Builder advancement(Advancement advancement);
+        Builder addAdvancement(Advancement advancement);
 
         /**
          * Adds an {@link Advancement} constraint to this selector, requiring
@@ -197,7 +197,7 @@ public interface Selector {
          * @param advancement The advancement that players must not have.
          * @return This builder, for chaining
          */
-        Builder notAdvancement(Advancement advancement);
+        Builder addNotAdvancement(Advancement advancement);
 
         /**
          * Adds an {@link AdvancementCriterion} constraint to this selector,
@@ -208,7 +208,7 @@ public interface Selector {
          * @param criterion The criterion the player must have
          * @return This builder, for chaining
          */
-        Builder advancementCriterion(Advancement advancement, AdvancementCriterion criterion);
+        Builder addAdvancementCriterion(Advancement advancement, AdvancementCriterion criterion);
 
         /**
          * Adds an {@link AdvancementCriterion} constraint to this selector,
@@ -219,7 +219,7 @@ public interface Selector {
          * @param criterion The criterion the player must not have
          * @return This builder, for chaining
          */
-        Builder notAdvancementCriterion(Advancement advancement, AdvancementCriterion criterion);
+        Builder addNotAdvancementCriterion(Advancement advancement, AdvancementCriterion criterion);
 
         /**
          * Adds an {@link DataView} as an NBT style constraint.
@@ -227,7 +227,7 @@ public interface Selector {
          * @param view The data view
          * @return This builder, for chaining
          */
-        Builder setDataView(DataView view);
+        Builder dataView(DataView view);
 
         /**
          * Adds an {@link EntityType} constraint to this selector, requiring
@@ -240,7 +240,7 @@ public interface Selector {
          * @param inherit Whether subtypes will also be selected
          * @return This builder, for chaining
          */
-        Builder entityType(Supplier<EntityType<?>> type, boolean inherit);
+        Builder addEntityType(Supplier<EntityType<?>> type, boolean inherit);
 
         /**
          * Adds an {@link EntityType} constraint to this selector, requiring
@@ -253,7 +253,7 @@ public interface Selector {
          * @param inherit Whether subtypes will also be selected
          * @return This builder, for chaining
          */
-        Builder entityType(EntityType<?> type, boolean inherit);
+        Builder addEntityType(EntityType<?> type, boolean inherit);
 
         /**
          * Adds an {@link EntityType} constraint to this selector, requiring
@@ -262,7 +262,7 @@ public interface Selector {
          * @param type The type
          * @return This builder, for chaining
          */
-        Builder notEntityType(Supplier<EntityType<?>> type);
+        Builder addNotEntityType(Supplier<EntityType<?>> type);
 
         /**
          * Adds an {@link EntityType} constraint to this selector, requiring
@@ -271,7 +271,7 @@ public interface Selector {
          * @param type The type
          * @return This builder, for chaining
          */
-        Builder notEntityType(EntityType<?> type);
+        Builder addNotEntityType(EntityType<?> type);
 
         /**
          * Adds an experience level constraint to the selector, specifying that
@@ -280,51 +280,51 @@ public interface Selector {
          * @param range The range
          * @return This builder, for chaining
          */
-        Builder setExperienceLevel(Range<Integer> range);
+        Builder experienceLevel(Range<Integer> range);
 
         /**
          * Adds a {@link GameMode} constraint to the selector, requiring players
          * be in the given game mode.
          *
-         * <p>Cannot be used with {@link #notGameMode(GameMode)}.</p>
+         * <p>Cannot be used with {@link #addNotGameMode(GameMode)}.</p>
          *
          * @param mode The gamemode
          * @return This builder, for chaining
          */
-        Builder gameMode(Supplier<? extends GameMode> mode);
+        Builder addGameMode(Supplier<? extends GameMode> mode);
 
         /**
          * Adds a {@link GameMode} constraint to the selector, requiring players
          * be in the given game mode
          *
-         * <p>Cannot be used with {@link #notGameMode(GameMode)}.</p>
+         * <p>Cannot be used with {@link #addNotGameMode(GameMode)}.</p>
          *
          * @param mode The gamemode
          * @return This builder, for chaining
          */
-        Builder gameMode(GameMode mode);
+        Builder addGameMode(GameMode mode);
 
         /**
          * Adds a {@link GameMode} constraint to the selector, requiring that
          * players are not in the given game mode
          *
-         * <p>Cannot be used with {@link #gameMode(GameMode)}.</p>
+         * <p>Cannot be used with {@link #addGameMode(GameMode)}.</p>
          *
          * @param mode The gamemode
          * @return This builder, for chaining
          */
-        Builder notGameMode(Supplier<? extends GameMode> mode);
+        Builder addNotGameMode(Supplier<? extends GameMode> mode);
 
         /**
          * Adds a {@link GameMode} constraint to the selector, requiring that
          * players are not in the given game mode
          *
-         * <p>Cannot be used with {@link #gameMode(GameMode)}.</p>
+         * <p>Cannot be used with {@link #addGameMode(GameMode)}.</p>
          *
          * @param mode The gamemode
          * @return This builder, for chaining
          */
-        Builder notGameMode(GameMode mode);
+        Builder addNotGameMode(GameMode mode);
 
         /**
          * Adds a {@link Team} constraint to the selector, requiring that
@@ -346,45 +346,45 @@ public interface Selector {
          * Adds a {@link Team} constraint to the selector, requiring that
          * players are in a specific team
          *
-         * <p>Cannot be used with {@link #notTeam(Team)}</p>
+         * <p>Cannot be used with {@link #addNotTeam(Team)}</p>
          *
          * @param team The specific team
          * @return This builder, for chaining
          */
-        Builder team(Team team);
+        Builder addTeam(Team team);
 
         /**
          * Adds a {@link Team} constraint to the selector, requiring that
          * players are not in a specific team
          *
-         * <p>Cannot be used with {@link #team(Team)}</p>
+         * <p>Cannot be used with {@link #addTeam(Team)}</p>
          *
          * @param team The specific team
          * @return This builder, for chaining
          */
-        Builder notTeam(Team team);
+        Builder addNotTeam(Team team);
 
         /**
          * Adds a name constraint to the selector, requiring that entities have
          * a specific name.
          *
-         * <p>Cannot be used with {@link #notName(String)}.</p>
+         * <p>Cannot be used with {@link #addNotName(String)}.</p>
          *
          * @param name The name
          * @return This builder, for chaining
          */
-        Builder name(String name);
+        Builder addName(String name);
 
         /**
          * Adds a name constraint to the selector, requiring that entities do
          * not have a specific name.
          *
-         * <p>Cannot be used with {@link #name(String)}.</p>
+         * <p>Cannot be used with {@link #addName(String)}.</p>
          *
          * @param name The name
          * @return This builder, for chaining
          */
-        Builder notName(String name);
+        Builder addNotName(String name);
 
         /**
          * Adds a {@link Score} constraint to the selector, requiring that
@@ -394,29 +394,29 @@ public interface Selector {
          * @param range The range
          * @return This builder, for chaining
          */
-        Builder score(Score score, Range<Integer> range);
+        Builder addScore(Score score, Range<Integer> range);
 
         /**
          * Adds a tag constrain to the selector, requiring that
          * entities have a given tag.
          *
-         * <p>Cannot be used with {@link #notTag(String)}.</p>
+         * <p>Cannot be used with {@link #addNotTag(String)}.</p>
          *
          * @param tag The tag
          * @return This builder, for chaining
          */
-        Builder tag(String tag);
+        Builder addTag(String tag);
 
         /**
          * Adds a tag constraint to the selector, requiring that
          * entities do not have a given tag.
          *
-         * <p>Cannot be used with {@link #tag(String)}.</p>
+         * <p>Cannot be used with {@link #addTag(String)}.</p>
          *
          * @param tag The tag
          * @return This builder, for chaining
          */
-        Builder notTag(String tag);
+        Builder addNotTag(String tag);
 
         /**
          * Adds a pitch constraint to the selector, requiring that entities
@@ -428,7 +428,7 @@ public interface Selector {
          * @param range The range
          * @return This builder, for chaining
          */
-        Builder setPitch(Range<Double> range);
+        Builder pitch(Range<Double> range);
 
         /**
          * Adds a yaw constraint to the selector, requiring that entities
@@ -441,7 +441,7 @@ public interface Selector {
          * @param range The range
          * @return This builder, for chaining
          */
-        Builder setYaw(Range<Double> range);
+        Builder yaw(Range<Double> range);
 
         /**
          * Applies a custom filter to the selector that must also be met by any
@@ -451,7 +451,7 @@ public interface Selector {
          * @param filter A {@link Predicate} used for filtering
          * @return This builder, for chaining
          */
-        Builder filter(Predicate<Entity> filter);
+        Builder addFilter(Predicate<Entity> filter);
 
         /**
          * Creates a {@link Selector} based on this builder.

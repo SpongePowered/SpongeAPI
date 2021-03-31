@@ -38,20 +38,20 @@ public interface IgniteEntityEvent extends Event, Cancellable {
      *
      * @return The entity
      */
-    Entity getEntity();
+    Entity entity();
 
     /**
      * Gets the original amount of fire ticks the entity will remain on fire.
      * @return The original fire ticks
      */
-    int getOriginalFireTicks();
+    int originalFireTicks();
 
     /**
      * Gets the amount of ticks the entity will remain on fire.
      *
      * @return The amount of ticks the entity will remain on fire
      */
-    int getFireTicks();
+    int fireTicks();
 
     /**
      * Sets the amount of ticks the entity will remain on fire.

@@ -41,21 +41,21 @@ public interface ChangeGameModeEvent extends Event, Cancellable {
      *
      * @return The humanoid
      */
-    Humanoid getHumanoid();
+    Humanoid humanoid();
 
     /**
      * Gets the original {@link GameMode}.
      *
      * @return The original {@link GameMode}.
      */
-    GameMode getOriginalGameMode();
+    GameMode originalGameMode();
 
     /**
      * Gets the new {@link GameMode}.
      *
      * @return The new {@link GameMode}.
      */
-    GameMode getGameMode();
+    GameMode gameMode();
 
     /**
      * Sets the new {@link GameMode}.

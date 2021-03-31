@@ -83,7 +83,7 @@ import java.util.function.Function;
  * a {@link DamageSource} has various "states" such as:
  * {@link DamageSource#isAbsolute()}, or {@link DamageSource#isBypassingArmor()}.
  * Quite simply, the {@link DamageSource} will always be the "first" element
- * within a {@link Cause} that can be retrieved from {@link #getCause()}.</p>
+ * within a {@link Cause} that can be retrieved from {@link #cause()}.</p>
  *
  * <p>Next, any additional "aides" in attacking the {@link Entity} will
  * be included in order of "priority of relation" to "attacking" the entity. In
@@ -115,7 +115,7 @@ import java.util.function.Function;
  *
  * <p>Note that due to the mechanics of the game, {@link DamageModifier}s
  * are always ordered in the order of which they apply their modifier onto
- * the "base" damage. The implementation for {@link #getFinalOutputDamage()} can
+ * the "base" damage. The implementation for {@link #finalOutputDamage()} can
  * be exemplified like so:</p>
  *
  * <blockquote><pre>{@code double damage = this.baseDamage;<br />
@@ -143,7 +143,7 @@ import java.util.function.Function;
  *
  * <p>Note that this event is intended for processing incoming damage to
  * an {@link Entity} prior to any {@link DamageModifier}s associated with
- * the {@link #getEntity()}. The {@link AttackEntityEvent} is used
+ * the {@link #entity()}. The {@link AttackEntityEvent} is used
  * to process the various {@link DamageModifier}s of which originate or are
  * associated with the targeted {@link Entity}.</p>
  */
@@ -233,7 +233,7 @@ public interface AttackEntityEvent extends Event, Cancellable {
      *
      * @return The entity
      */
-    Entity getEntity();
+    Entity entity();
 
     /**
      * Gets the original "raw" amount of damage to deal to the targeted
@@ -241,18 +241,18 @@ public interface AttackEntityEvent extends Event, Cancellable {
      *
      * @return The original "raw" damage
      */
-    double getOriginalDamage();
+    double originalDamage();
 
     /**
      * Gets the original "final" amount of damage after all original
-     * {@link DamageModifier}s are applied to {@link #getOriginalDamage()}.
+     * {@link DamageModifier}s are applied to {@link #originalDamage()}.
      * The "final" damage is considered the amount of health being lost by
      * the {@link Entity}, if health is tracked.
      *
      * @return The final amount of damage to originally deal
      */
     @PropertySettings(requiredParameter = false, generateMethods = false)
-    double getOriginalFinalDamage();
+    double originalFinalDamage();
 
     /**
      * Gets an {@link ImmutableMap} of all original {@link DamageModifier}s
@@ -262,18 +262,18 @@ public interface AttackEntityEvent extends Event, Cancellable {
      * @return An immutable map of the original modified damages
      */
     @PropertySettings(requiredParameter = false, generateMethods = false)
-    Map<DamageModifier, Double> getOriginalDamages();
+    Map<DamageModifier, Double> originalDamages();
 
     /**
      * Gets the original damage for the provided {@link DamageModifier}. If
      * the provided {@link DamageModifier} was not included in
-     * {@link #getOriginalDamages()}, an {@link IllegalArgumentException} is
+     * {@link #originalDamages()}, an {@link IllegalArgumentException} is
      * thrown.
      *
      * @param damageModifier The original damage modifier
      * @return The original damage change
      */
-    double getOriginalModifierDamage(DamageModifier damageModifier);
+    double originalModifierDamage(DamageModifier damageModifier);
 
     /**
      * Gets the original {@link List} of {@link DamageModifier} to
@@ -281,7 +281,7 @@ public interface AttackEntityEvent extends Event, Cancellable {
      *
      * @return The list of damage modifier functions
      */
-    List<? extends ModifierFunction<DamageModifier>> getOriginalFunctions();
+    List<? extends ModifierFunction<DamageModifier>> originalFunctions();
 
     /**
      * Gets the "base" damage to deal to the targeted {@link Entity}. The
@@ -291,7 +291,7 @@ public interface AttackEntityEvent extends Event, Cancellable {
      * @return The base damage
      */
     @PropertySettings(requiredParameter = false, generateMethods = false)
-    double getBaseOutputDamage();
+    double baseOutputDamage();
 
     /**
      * Sets the "base" damage to deal to the targeted {@link Entity}. The
@@ -305,14 +305,14 @@ public interface AttackEntityEvent extends Event, Cancellable {
     /**
      * Gets the final damage that will be passed into the proceeding
      * {@link AttackEntityEvent}. The final damage is the end result of the
-     * {@link #getBaseOutputDamage()} being applied in {@link Function#apply(Object)}
+     * {@link #baseOutputDamage()} being applied in {@link Function#apply(Object)}
      * available from all the {@link Tuple}s of {@link DamageModifier} to
-     * {@link Function} in {@link #getOriginalFunctions()}.
+     * {@link Function} in {@link #originalFunctions()}.
      *
      * @return The final damage to deal
      */
     @PropertySettings(requiredParameter = false, generateMethods = false)
-    double getFinalOutputDamage();
+    double finalOutputDamage();
 
     /**
      * Checks whether the provided {@link DamageModifier} is applicable to the
@@ -331,16 +331,16 @@ public interface AttackEntityEvent extends Event, Cancellable {
      * @param damageModifier The damage modifier to get the damage for
      * @return The modifier
      */
-    double getOutputDamage(DamageModifier damageModifier);
+    double outputDamage(DamageModifier damageModifier);
 
     /**
      * Sets the provided {@link Function} to be used for the given
      * {@link DamageModifier}. If the {@link DamageModifier} is already
-     * included in {@link #getModifiers()}, the {@link Function} replaces
+     * included in {@link #modifiers()}, the {@link Function} replaces
      * the existing function. If there is no {@link Tuple} for the
      * {@link DamageModifier}, a new one is created and added to the end
      * of the list of {@link Function}s to be applied to the
-     * {@link #getBaseOutputDamage()}.
+     * {@link #baseOutputDamage()}.
      *
      * <p>If needing to create a custom {@link DamageModifier} is required,
      * usage of the
@@ -386,7 +386,7 @@ public interface AttackEntityEvent extends Event, Cancellable {
      * @return A list of damage modifiers to functions
      */
     @PropertySettings(requiredParameter = false, generateMethods = false)
-    List<DamageFunction> getModifiers();
+    List<DamageFunction> modifiers();
 
     /**
      * Gets the knock back modifier. The modifier itself will apply to the
@@ -394,7 +394,7 @@ public interface AttackEntityEvent extends Event, Cancellable {
      *
      * @return The knock back modifier
      */
-    float getKnockbackModifier();
+    float knockbackModifier();
 
     /**
      * Sets the knock back modifier. The modifier itself will apply to the

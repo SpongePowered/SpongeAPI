@@ -29,8 +29,8 @@ import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
 import org.spongepowered.api.entity.living.Aerial;
-import org.spongepowered.api.entity.living.Ranger;
 import org.spongepowered.api.entity.living.Monster;
+import org.spongepowered.api.entity.living.Ranger;
 
 /**
  * Represents the Wither.

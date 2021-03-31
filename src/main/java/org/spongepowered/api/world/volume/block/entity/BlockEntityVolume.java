@@ -51,7 +51,7 @@ public interface BlockEntityVolume extends BlockVolume, Volume {
      *
      * @return A collection of entities
      */
-    Collection<? extends BlockEntity> getBlockEntities();
+    Collection<? extends BlockEntity> blockEntities();
 
     /**
      * Return a collection of block entities contained within this volume,
@@ -66,10 +66,10 @@ public interface BlockEntityVolume extends BlockVolume, Volume {
      * @param filter The filter to apply to the returned entities
      * @return A collection of filtered entities
      */
-    default Collection<? extends BlockEntity> getBlockEntities(final Predicate<? super BlockEntity> filter) {
+    default Collection<? extends BlockEntity> blockEntities(final Predicate<? super BlockEntity> filter) {
         Objects.requireNonNull(filter);
 
-        return this.getBlockEntities().stream().filter(filter).collect(Collectors.toList());
+        return this.blockEntities().stream().filter(filter).collect(Collectors.toList());
     }
 
     /**
@@ -78,10 +78,10 @@ public interface BlockEntityVolume extends BlockVolume, Volume {
      * @param position The position
      * @return The block entity, or {@link Optional#empty()}
      */
-    default Optional<? extends BlockEntity> getBlockEntity(final Vector3i position) {
+    default Optional<? extends BlockEntity> blockEntity(final Vector3i position) {
         Objects.requireNonNull(position);
 
-        return this.getBlockEntity(position.getX(), position.getY(), position.getZ());
+        return this.blockEntity(position.getX(), position.getY(), position.getZ());
     }
 
     /**
@@ -92,7 +92,7 @@ public interface BlockEntityVolume extends BlockVolume, Volume {
      * @param z The Z position
      * @return The block entity, or {@link Optional#empty()}
      */
-    Optional<? extends BlockEntity> getBlockEntity(int x, int y, int z);
+    Optional<? extends BlockEntity> blockEntity(int x, int y, int z);
 
     interface Unmodifiable<U extends Unmodifiable<U>> extends BlockEntityVolume,
         Streamable<U>,
@@ -112,7 +112,7 @@ public interface BlockEntityVolume extends BlockVolume, Volume {
          * @param options The options to construct the stream
          * @return The volume stream
          */
-        VolumeStream<T, BlockEntity> getBlockEntityStream(Vector3i min, Vector3i max, StreamOptions options);
+        VolumeStream<T, BlockEntity> blockEntityStream(Vector3i min, Vector3i max, StreamOptions options);
 
     }
 

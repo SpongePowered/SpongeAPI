@@ -42,14 +42,14 @@ public interface MessageChannelEvent extends MessageEvent {
      *
      * @return The original audience to send to
      */
-    Audience getOriginalAudience();
+    Audience originalAudience();
 
     /**
      * Gets the current audience that this message will be sent to.
      *
      * @return The message channel the message in this event will be sent to
      */
-    Optional<Audience> getAudience();
+    Optional<Audience> audience();
 
     /**
      * Sets the audience for this message to go to.

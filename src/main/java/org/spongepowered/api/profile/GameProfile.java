@@ -65,12 +65,12 @@ public interface GameProfile extends Identifiable, Identity, DataSerializable {
      * @return The created profile
      */
     static GameProfile of(final UUID uniqueId, final @Nullable String name) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(uniqueId, name);
+        return Sponge.game().factoryProvider().provide(Factory.class).of(uniqueId, name);
     }
 
     @Override
     default UUID uuid() {
-        return this.getUniqueId();
+        return this.uniqueId();
     }
 
     /**
@@ -78,7 +78,7 @@ public interface GameProfile extends Identifiable, Identity, DataSerializable {
      *
      * @return The associated name if present, otherwise {@link Optional#empty()}
      */
-    Optional<String> getName();
+    Optional<String> name();
 
     /**
      * Gets whether this game profile has a known name.
@@ -86,7 +86,7 @@ public interface GameProfile extends Identifiable, Identity, DataSerializable {
      * @return Whether the name is known
      */
     default boolean hasName() {
-        return this.getName().isPresent();
+        return this.name().isPresent();
     }
 
     /**
@@ -102,7 +102,7 @@ public interface GameProfile extends Identifiable, Identity, DataSerializable {
      *
      * @return The properties
      */
-    List<ProfileProperty> getProperties();
+    List<ProfileProperty> properties();
 
     /**
      * Gets a new {@link GameProfile} with the same name and unique id of this profile, but
@@ -144,7 +144,7 @@ public interface GameProfile extends Identifiable, Identity, DataSerializable {
      * @return The new game profile
      */
     default GameProfile withoutProperties(final String name) {
-        return this.withoutProperties(property -> property.getName().equals(name));
+        return this.withoutProperties(property -> property.name().equals(name));
     }
 
     /**

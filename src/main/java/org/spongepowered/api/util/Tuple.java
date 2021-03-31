@@ -70,7 +70,7 @@ public class Tuple<K, V> {
      *
      * @return The first object
      */
-    public K getFirst() {
+    public K first() {
         return this.first;
     }
 
@@ -79,7 +79,7 @@ public class Tuple<K, V> {
      *
      * @return The value
      */
-    public V getSecond() {
+    public V second() {
         return this.second;
     }
 

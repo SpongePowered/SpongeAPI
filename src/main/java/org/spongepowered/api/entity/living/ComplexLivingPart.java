@@ -38,5 +38,5 @@ public interface ComplexLivingPart<P extends ComplexLivingPart<P>> extends Entit
      *
      * @return The associated parent
      */
-    ComplexLiving<P> getParent();
+    ComplexLiving<P> parent();
 }

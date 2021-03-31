@@ -43,7 +43,7 @@ import java.util.StringJoiner;
 public interface VariableAmount extends DataSerializable {
 
     /**
-     * Creates a new 'fixed' variable amount, calls to {@link #getAmount} will
+     * Creates a new 'fixed' variable amount, calls to {@link #amount} will
      * always return the fixed value.
      * 
      * @param value The fixed value
@@ -194,17 +194,17 @@ public interface VariableAmount extends DataSerializable {
      * @param rand The random object
      * @return The amount
      */
-    double getAmount(Random rand);
+    double amount(Random rand);
 
     /**
-     * Gets the amount as if from {@link #getAmount(Random)} but floored to the
+     * Gets the amount as if from {@link #amount(Random)} but floored to the
      * nearest integer equivalent.
      * 
      * @param rand The random object
      * @return The floored amount
      */
-    default int getFlooredAmount(final Random rand) {
-        return GenericMath.floor(this.getAmount(rand));
+    default int flooredAmount(final Random rand) {
+        return GenericMath.floor(this.amount(rand));
     }
 
     // This is overridden to allow this to be a functional interface as this
@@ -215,12 +215,12 @@ public interface VariableAmount extends DataSerializable {
     }
 
     @Override
-    default int getContentVersion() {
+    default int contentVersion() {
         return 0;
     }
 
     /**
-     * Represents a fixed amount, calls to {@link #getAmount} will always return
+     * Represents a fixed amount, calls to {@link #amount} will always return
      * the same fixed value.
      */
     class Fixed implements VariableAmount {
@@ -232,7 +232,7 @@ public interface VariableAmount extends DataSerializable {
         }
 
         @Override
-        public double getAmount(final Random rand) {
+        public double amount(final Random rand) {
             return this.amount;
         }
 
@@ -265,12 +265,12 @@ public interface VariableAmount extends DataSerializable {
         @Override
         public DataContainer toContainer() {
             return DataContainer.createNew()
-                    .set(Queries.CONTENT_VERSION, this.getContentVersion())
+                    .set(Queries.CONTENT_VERSION, this.contentVersion())
                     .set(Queries.VARIABLE_AMOUNT, this.amount);
         }
 
         @Override
-        public int getContentVersion() {
+        public int contentVersion() {
             return 1;
         }
     }
@@ -291,8 +291,8 @@ public interface VariableAmount extends DataSerializable {
         }
 
         @Override
-        public double getAmount(final Random rand) {
-            final double var = this.variance.getAmount(rand);
+        public double amount(final Random rand) {
+            final double var = this.variance.amount(rand);
             return this.base + rand.nextDouble() * var * 2 - var;
         }
 
@@ -327,13 +327,13 @@ public interface VariableAmount extends DataSerializable {
         @Override
         public DataContainer toContainer() {
             return DataContainer.createNew()
-                    .set(Queries.CONTENT_VERSION, this.getContentVersion())
+                    .set(Queries.CONTENT_VERSION, this.contentVersion())
                     .set(Queries.VARIABLE_BASE, this.base)
                     .set(Queries.VARIABLE_VARIANCE, this.variance);
         }
 
         @Override
-        public int getContentVersion() {
+        public int contentVersion() {
             return 1;
         }
 
@@ -355,8 +355,8 @@ public interface VariableAmount extends DataSerializable {
         }
 
         @Override
-        public double getAmount(final Random rand) {
-            return this.base + (rand.nextDouble() * this.addition.getAmount(rand));
+        public double amount(final Random rand) {
+            return this.base + (rand.nextDouble() * this.addition.amount(rand));
         }
 
         @Override
@@ -390,13 +390,13 @@ public interface VariableAmount extends DataSerializable {
         @Override
         public DataContainer toContainer() {
             return DataContainer.createNew()
-                    .set(Queries.CONTENT_VERSION, this.getContentVersion())
+                    .set(Queries.CONTENT_VERSION, this.contentVersion())
                     .set(Queries.VARIABLE_BASE, this.base)
                     .set(Queries.VARIABLE_VARIANCE, this.addition);
         }
 
         @Override
-        public int getContentVersion() {
+        public int contentVersion() {
             return 1;
         }
     }
@@ -419,9 +419,9 @@ public interface VariableAmount extends DataSerializable {
         }
 
         @Override
-        public double getAmount(final Random rand) {
+        public double amount(final Random rand) {
             if (rand.nextDouble() < this.chance) {
-                return this.inner.getAmount(rand);
+                return this.inner.amount(rand);
             }
             return this.base;
         }
@@ -463,14 +463,14 @@ public interface VariableAmount extends DataSerializable {
         @Override
         public DataContainer toContainer() {
             return DataContainer.createNew()
-                    .set(Queries.CONTENT_VERSION, this.getContentVersion())
+                    .set(Queries.CONTENT_VERSION, this.contentVersion())
                     .set(Queries.VARIABLE_CHANCE, this.chance)
                     .set(Queries.VARIABLE_BASE, this.base)
                     .set(Queries.VARIABLE_VARIANCE, this.inner);
         }
 
         @Override
-        public int getContentVersion() {
+        public int contentVersion() {
             return 1;
         }
     }

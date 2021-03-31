@@ -45,7 +45,7 @@ public interface UserManager {
      * @param uniqueId The UUID of the user
      * @return {@link User} or Optional.empty() if not found
      */
-    Optional<User> get(UUID uniqueId);
+    Optional<User> find(UUID uniqueId);
 
     /**
      * Gets the data of a {@link User} by their last known user name
@@ -57,7 +57,7 @@ public interface UserManager {
      * @param lastKnownName The user name
      * @return {@link User} or Optional.empty() if not found
      */
-    Optional<User> get(String lastKnownName);
+    Optional<User> find(String lastKnownName);
 
     /**
      * Gets the data of a {@link User} by their {@link GameProfile}.
@@ -65,7 +65,7 @@ public interface UserManager {
      * @param profile The profile
      * @return {@link User} or Optional.empty() if not found
      */
-    Optional<User> get(GameProfile profile);
+    Optional<User> find(GameProfile profile);
 
     /**
      * Gets or creates a persistent {@link User} associated with the given
@@ -77,7 +77,7 @@ public interface UserManager {
      * @param profile The profile
      * @return The user object
      */
-    User getOrCreate(GameProfile profile);
+    User findOrCreate(GameProfile profile);
 
     /**
      * Gets the collection of all {@link GameProfile}s with stored {@link User}
@@ -90,7 +90,7 @@ public interface UserManager {
      * instead.</p>
      *
      * <p>This {@link Stream} may contain profiles that only hold a result for
-     * {@link GameProfile#getUniqueId()}, that is, do not return a user's name.
+     * {@link GameProfile#uniqueId()}, that is, do not return a user's name.
      * Such profiles should thus be treated as incomplete and are no more than
      * an indicator that a {@link User} associated with the given {@link UUID}
      * exists.</p>
@@ -101,21 +101,21 @@ public interface UserManager {
      *
      * <p>If you require up to date {@link GameProfile}s, use the appropriate
      * methods on the {@link GameProfileManager} and/or its associated
-     * {@link GameProfileCache}.</p>
+     * {@link GameProfileManager}.</p>
      *
-     * <p>Use {@link #get(GameProfile)} to load the {@link User} data associated
+     * <p>Use {@link #find(GameProfile)} to load the {@link User} data associated
      * with the associated {@link GameProfile}.</p>
      *
      * @return A {@link Stream} of {@link GameProfile}s
      */
-    Collection<GameProfile> getAll();
+    Collection<GameProfile> all();
 
     /**
      * Gets a {@link Stream} that returns a {@link GameProfile} for each stored
      * {@link User}s.
      *
      * <p>This {@link Stream} may contain profiles that only hold a result for
-     * {@link GameProfile#getUniqueId()}, that is, do not return a user's name.
+     * {@link GameProfile#uniqueId()}, that is, do not return a user's name.
      * Such profiles should thus be treated as incomplete and are no more than
      * an indicator that a {@link User} associated with the given {@link UUID}
      * exists.</p>
@@ -126,9 +126,9 @@ public interface UserManager {
      *
      * <p>If you require up to date {@link GameProfile}s, use the appropriate
      * methods on the {@link GameProfileManager} and/or its associated
-     * {@link GameProfileCache}.</p>
+     * {@link GameProfileManager}.</p>
      *
-     * <p>Use {@link #get(GameProfile)} to load the {@link User} data associated
+     * <p>Use {@link #find(GameProfile)} to load the {@link User} data associated
      * with the associated {@link GameProfile}.</p>
      *
      * @return A {@link Stream} of {@link GameProfile}s
@@ -166,9 +166,9 @@ public interface UserManager {
      *
      * <p>If you require up to date {@link GameProfile}s, use the appropriate
      * methods on the {@link GameProfileManager} and/or its associated
-     * {@link GameProfileCache}.</p>
+     * {@link GameProfileManager}.</p>
      *
-     * <p>Use {@link #get(GameProfile)} to load associated {@link User} data.
+     * <p>Use {@link #find(GameProfile)} to load associated {@link User} data.
      * </p>
      *
      * @param lastKnownName The name to check for

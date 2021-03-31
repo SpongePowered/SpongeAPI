@@ -24,52 +24,35 @@
  */
 package org.spongepowered.api.event.block;
 
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.block.transaction.NotificationTicket;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.util.Direction;
+import org.spongepowered.math.vector.Vector3i;
 
-import java.util.Map;
+import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Called when a block triggers an update to neighboring {link BlockType}s in
- * one or more {@link Direction}s. There is a way to mark an "update" as being 
- * "invalid" or "cancelled": {@link #filterDirections(Predicate)} will apply a
- * {@link Predicate} such that if the predicate returns <code>false</code>, the
- * {@link Direction} will be removed from the {@link #getNeighbors()} map.
+ *
  */
 public interface NotifyNeighborBlockEvent extends Event, Cancellable {
 
-    /**
-     * Gets the immutable {@link Map} of {@link Direction} to {@link 
-     * BlockState} of the {@link BlockType} that would normally be
-     * notified of changes.
-     *
-     * @return The original directions map
-     */
-    Map<Direction, BlockState> getOriginalNeighbors();
+    List<NotificationTicket> tickets();
 
-    /**
-     * Gets an immutable {@link Map} of {@link Direction} to
-     * {@link BlockState} of the {@link BlockType} that will be notified of
-     * an update. If a {@link Direction} is not required or needing to be
-     * excluded from an update, {@link #filterDirections(Predicate)} will
-     * perform that exclusion.
-     *
-     * @return The map
-     */
-    Map<Direction, BlockState> getNeighbors();
+    default void filterTargetPositions(final Predicate<Vector3i> predicate) {
+        this.tickets().forEach(ticket -> {
+            if (predicate.test(ticket.targetPosition())) {
+                ticket.setValid(false);
+            }
+        });
+    }
 
-    /**
-     * Filters out {@link Direction}s of the {@link BlockState}s to be
-     * marked as "valid" after this event. If the
-     * {@link Predicate#test(Object)} returns <code>false</code>, the
-     * {@link BlockState} is removed from {@link #getNeighbors()} map.
-     *
-     * @param predicate The predicate to use for filtering.
-     */
-    void filterDirections(Predicate<Direction> predicate);
+    default void filterTickets(final Predicate<NotificationTicket> predicate) {
+        this.tickets().forEach(ticket -> {
+            if (predicate.test(ticket)) {
+                ticket.setValid(false);
+            }
+        });
+    }
 
 }

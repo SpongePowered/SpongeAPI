@@ -51,14 +51,14 @@ public interface SubjectReference {
      *
      * @return The identifier of the collection holding this subject
      */
-    String getCollectionIdentifier();
+    String collectionIdentifier();
 
     /**
      * Gets the identifier of the subject.
      *
      * @return The subject identifier
      */
-    String getSubjectIdentifier();
+    String subjectIdentifier();
 
     /**
      * Resolves and returns the Subject being referenced.

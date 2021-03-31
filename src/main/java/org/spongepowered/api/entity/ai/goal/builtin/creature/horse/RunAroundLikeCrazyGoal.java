@@ -39,7 +39,7 @@ public interface RunAroundLikeCrazyGoal extends Goal<HorseLike> {
      * @return A new builder
      */
     static Builder builder() {
-        return Sponge.getGame().getBuilderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
@@ -48,7 +48,7 @@ public interface RunAroundLikeCrazyGoal extends Goal<HorseLike> {
      *
      * @return The speed modifier
      */
-    double getSpeed();
+    double speed();
 
     /**
      * Sets the speed modifier at which when an {@link Entity} is running

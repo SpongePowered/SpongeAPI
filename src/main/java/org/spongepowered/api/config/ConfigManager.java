@@ -44,8 +44,8 @@ import org.spongepowered.plugin.PluginContainer;
  * scenarios. It is not required that plugins use this, but it does ensure
  * consistency.</p>
  *
- * <p>Call either {@link #getSharedConfig(PluginContainer)} or
- * {@link #getPluginConfig(PluginContainer)} to get an object that represents one of
+ * <p>Call either {@link #sharedConfig(PluginContainer)} or
+ * {@link #pluginConfig(PluginContainer)} to get an object that represents one of
  * the two outlined choices.</p>
  */
 public interface ConfigManager {
@@ -59,12 +59,12 @@ public interface ConfigManager {
      * configurations.</p>
      *
      * <p>The plugin parameter is used to determine the filename for
-     * {@link ConfigRoot#getConfigPath()}.</p>
+     * {@link ConfigRoot#configPath()}.</p>
      *
      * @param plugin The plugin instance
      * @return A shared configuration root
      */
-    ConfigRoot getSharedConfig(PluginContainer plugin);
+    ConfigRoot sharedConfig(PluginContainer plugin);
 
     /**
      * Gets the configuration root for a plugin that utilizes a configuration
@@ -76,7 +76,7 @@ public interface ConfigManager {
      * @param plugin The plugin instance
      * @return A plugin-specific configuration root
      */
-    ConfigRoot getPluginConfig(PluginContainer plugin);
+    ConfigRoot pluginConfig(PluginContainer plugin);
 
     /**
      * Get a type serializer collection supporting Sponge types.
@@ -84,17 +84,15 @@ public interface ConfigManager {
      * <p>This collection is expected to handle:</p>
      * <ul>
      *     <li>Every type built-in to Configurate</li>
-     *     <li>Registered subtypes of {@link org.spongepowered.api.CatalogType}</li>
      *     <li>{@link org.spongepowered.api.ResourceKey}s</li>
      *     <li>Registered implementations of {@link org.spongepowered.api.data.persistence.DataSerializable}</li>
      *     <li>All Adventure types including {@link net.kyori.adventure.text.Component}</li>
-     *     <li>Any type with a {@link org.spongepowered.api.data.persistence.DataTranslator} (see
-     *         {@link org.spongepowered.api.data.persistence.DataTranslators})</li>
+     *     <li>Any type with a {@link org.spongepowered.api.data.persistence.DataTranslator}</li>
      * </ul>
      *
      * @return A type serializer collection aware of Sponge serializers
      */
-    TypeSerializerCollection getSerializers();
+    TypeSerializerCollection serializers();
 
     /**
      * Get a file watch listener using the game executor.
@@ -104,6 +102,6 @@ public interface ConfigManager {
      *
      * @return The game watch service listener
      */
-    WatchServiceListener getWatchServiceListener();
+    WatchServiceListener watchServiceListener();
 
 }

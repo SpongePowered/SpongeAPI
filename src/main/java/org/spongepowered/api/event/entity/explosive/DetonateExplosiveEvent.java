@@ -40,7 +40,7 @@ public interface DetonateExplosiveEvent extends Event, Cancellable {
      *
      * @return The explosive
      */
-    Explosive getExplosive();
+    Explosive explosive();
 
     /**
      * Returns the explosion of the vanilla behavior that this event was
@@ -48,7 +48,7 @@ public interface DetonateExplosiveEvent extends Event, Cancellable {
      *
      * @return Original explosion
      */
-    Explosion getOriginalExplosion();
+    Explosion originalExplosion();
 
     /**
      * Returns the {@link Builder} that will be used to build the
@@ -56,6 +56,6 @@ public interface DetonateExplosiveEvent extends Event, Cancellable {
      *
      * @return Explosion builder for detonation
      */
-    Explosion.Builder getExplosionBuilder();
+    Explosion.Builder explosionBuilder();
 
 }

@@ -44,7 +44,7 @@ public interface Merchant extends DataHolder.Mutable, Carrier, Locatable {
      *
      * @return The currently trading customer if available
      */
-    Optional<Humanoid> getCustomer();
+    Optional<Humanoid> customer();
 
     /**
      * Sets the currently trading customer with this merchant.

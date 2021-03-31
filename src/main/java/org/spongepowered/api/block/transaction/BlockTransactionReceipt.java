@@ -44,32 +44,31 @@ public final class BlockTransactionReceipt implements DataSerializable {
         this.operation = operation;
     }
 
-    public BlockSnapshot getOriginal() {
+    public BlockSnapshot originalBlock() {
         return this.originalBlock;
     }
 
-    public BlockSnapshot getFinal() {
+    public BlockSnapshot finalBlock() {
         return this.finalBlock;
     }
 
-    public Operation getOperation() {
+    public Operation operation() {
         return this.operation;
     }
 
     @Override
-    public int getContentVersion() {
+    public int contentVersion() {
         return 1;
     }
 
     @Override
     public DataContainer toContainer() {
-        final ResourceKey resourceKey = Sponge.getGame().registries().registry(RegistryTypes.OPERATION).valueKey(this.operation);
+        final ResourceKey resourceKey = Sponge.game().registries().registry(RegistryTypes.OPERATION).valueKey(this.operation);
 
         return DataContainer.createNew()
-            .set(Queries.CONTENT_VERSION, this.getContentVersion())
+            .set(Queries.CONTENT_VERSION, this.contentVersion())
             .set(Queries.ORIGINAL, this.originalBlock.toContainer())
             .set(Queries.FINAL_REPLACEMENT, this.finalBlock.toContainer())
-            .set(Queries.BLOCK_OPERATION, resourceKey)
-        ;
+            .set(Queries.BLOCK_OPERATION, resourceKey);
     }
 }

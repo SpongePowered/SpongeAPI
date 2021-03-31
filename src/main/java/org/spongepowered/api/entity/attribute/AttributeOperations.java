@@ -27,10 +27,10 @@ package org.spongepowered.api.entity.attribute;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 
 /**
  * An enumeration of {@link AttributeOperation}s.
@@ -57,6 +57,6 @@ public final class AttributeOperations {
     }
 
     private static DefaultedRegistryReference<AttributeOperation> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.ATTRIBUTE_OPERATION, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.ATTRIBUTE_OPERATION, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

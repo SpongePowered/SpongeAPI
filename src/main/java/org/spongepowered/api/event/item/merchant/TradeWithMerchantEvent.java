@@ -40,20 +40,20 @@ public interface TradeWithMerchantEvent extends Event, Cancellable {
      *
      * @return The trading merchant
      */
-    Merchant getMerchant();
+    Merchant merchant();
 
     /**
      * The {@link TradeOffer} being traded.
      *
      * @return The trade offer
      */
-    TradeOffer getTradeOffer();
+    TradeOffer tradeOffer();
 
     /**
      * Gets the {@link Humanoid} who is the customer of this transaction.
      *
      * @return The customer
      */
-    Humanoid getCustomer();
+    Humanoid customer();
 
 }

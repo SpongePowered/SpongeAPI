@@ -37,6 +37,7 @@ public interface Explosive extends Entity {
 
     /**
      * {@link Keys#EXPLOSION_RADIUS}
+     *
      * @return The explosion radius
      */
     default Optional<Value.Mutable<Integer>> explosionRadius() {

@@ -30,12 +30,14 @@ import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents a {@link BlockEntity} which may have a display name.
+ *
  * @see Keys#DISPLAY_NAME
  */
 public interface NameableBlockEntity extends BlockEntity {
 
     /**
      * {@link Keys#DISPLAY_NAME}
+     *
      * @return The display name of this {@link BlockEntity}.
      */
     default Value.Mutable<Component> displayName() {

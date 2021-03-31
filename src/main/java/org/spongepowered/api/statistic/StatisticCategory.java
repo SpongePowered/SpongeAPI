@@ -39,7 +39,7 @@ public interface StatisticCategory {
      *
      * @return The statistics
      */
-    Collection<? extends Statistic> getStatistics();
+    Collection<? extends Statistic> statistics();
 
     /**
      * Represents a {@link StatisticCategory} that owns
@@ -51,14 +51,14 @@ public interface StatisticCategory {
     interface Typed<T> extends StatisticCategory {
 
         @Override
-        Collection<Statistic.TypeInstance<T>> getStatistics();
+        Collection<Statistic.TypeInstance<T>> statistics();
 
         /**
          * Gets the {@link T value}.
          *
          * @return The value type
          */
-        TypeToken<T> getType();
+        TypeToken<T> type();
 
         /**
          * Gets the {@link Statistic.TypeInstance} for the given {@link T value}.
@@ -66,6 +66,6 @@ public interface StatisticCategory {
          * @param value The value
          * @return The instance
          */
-        Statistic.TypeInstance<T> getStatistic(T value);
+        Statistic.TypeInstance<T> statistic(T value);
     }
 }

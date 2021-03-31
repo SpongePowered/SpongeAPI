@@ -40,7 +40,7 @@ public interface Equipable {
      *
      * @return The EquipmentInventory this is holding
      */
-    EquipmentInventory getEquipment();
+    EquipmentInventory equipment();
 
     /**
      * Gets whether this {@link Equipable} can equip equipment of the specified type (eg.
@@ -78,10 +78,10 @@ public interface Equipable {
      * @param type The type of equipment slot to query
      * @return The item in the equipped slot, if available
      */
-    Optional<ItemStack> getEquipped(EquipmentType type);
+    Optional<ItemStack> equipped(EquipmentType type);
 
-    default Optional<ItemStack> getEquipped(final Supplier<? extends EquipmentType> type) {
-        return this.getEquipped(type.get());
+    default Optional<ItemStack> equipped(final Supplier<? extends EquipmentType> type) {
+        return this.equipped(type.get());
     }
 
     /**

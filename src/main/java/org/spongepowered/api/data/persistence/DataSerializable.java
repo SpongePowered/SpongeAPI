@@ -43,7 +43,7 @@ public interface DataSerializable {
      *
      * @return The version of the content being serialized
      */
-    int getContentVersion();
+    int contentVersion();
 
     /**
      * Serializes this object into a comprehensible {@link DataContainer}.

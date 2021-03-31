@@ -27,8 +27,8 @@ package org.spongepowered.api.world.volume.game;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.ProtoWorld;
-import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.chunk.ProtoChunk;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.volume.block.BlockVolume;
 import org.spongepowered.math.vector.Vector3i;
 
@@ -42,11 +42,11 @@ public interface ChunkVolume extends BlockVolume {
 
     /**
      * Gets the loaded chunk at the given chunk coordinate position. The position
-     * is the same as {@link ProtoChunk#getChunkPosition()}. The difference
+     * is the same as {@link ProtoChunk#chunkPosition()}. The difference
      * between a block placed within a {@link ProtoWorld} is different from a
      * {@link ProtoChunk}'s position, and therefore care should be taken when
      * requesting a chunk. It is not guaranteed that the returned {@link ProtoChunk}
-     * is {@link ProtoChunk#isEmpty() empty} or not, nor the {@link ProtoChunk#getState() state}
+     * is {@link ProtoChunk#isEmpty() empty} or not, nor the {@link ProtoChunk#state() state}
      * of the chunk.
      *
      * <p>In Vanilla, the y coordinate will always be 0.</p>
@@ -56,23 +56,23 @@ public interface ChunkVolume extends BlockVolume {
      * @param z The z coordinate
      * @return The chunk, may be empty
      */
-    ProtoChunk<@NonNull ?> getChunk(int x, int y, int z);
+    ProtoChunk<@NonNull ?> chunk(int x, int y, int z);
 
     /**
      * Gets the loaded chunk at the given chunk coordinate position. The position
-     * is the same as {@link ProtoChunk#getChunkPosition()}. The difference
+     * is the same as {@link ProtoChunk#chunkPosition()}. The difference
      * between a block placed within a {@link ProtoWorld} is different from a
      * {@link ProtoChunk}'s position, and therefore care should be taken when
      * requesting a chunk. It is not guaranteed that the returned {@link ProtoChunk}
-     * is {@link ProtoChunk#isEmpty() empty} or not, nor the {@link ProtoChunk#getState() state}
+     * is {@link ProtoChunk#isEmpty() empty} or not, nor the {@link ProtoChunk#state() state}
      * of the chunk.
      *
      * @param chunkPosition The position
      * @return The chunk, if available
      */
-    default ProtoChunk<@NonNull ?> getChunk(final Vector3i chunkPosition) {
+    default ProtoChunk<@NonNull ?> chunk(final Vector3i chunkPosition) {
         Objects.requireNonNull(chunkPosition, "chunkPosition");
-        return this.getChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ());
+        return this.chunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ());
     }
 
     /**
@@ -81,15 +81,15 @@ public interface ChunkVolume extends BlockVolume {
      * @param blockPosition The position
      * @return The chunk, if available
      */
-    default ProtoChunk<@NonNull ?> getChunkAtBlock(final Vector3i blockPosition) {
+    default ProtoChunk<@NonNull ?> chunkAtBlock(final Vector3i blockPosition) {
         Objects.requireNonNull(blockPosition, "blockPosition");
-        return this.getChunkAtBlock(blockPosition.getX(), blockPosition.getY(), blockPosition.getZ());
+        return this.chunkAtBlock(blockPosition.getX(), blockPosition.getY(), blockPosition.getZ());
     }
 
     /**
      * Gets the loaded chunk at the given chunk coordinate position. The position
-     * is the block position relative to the {@link ProtoChunk#getChunkPosition()},
-     * and therefor is going to return a different chunk from {@link #getChunk(Vector3i)}.
+     * is the block position relative to the {@link ProtoChunk#chunkPosition()},
+     * and therefor is going to return a different chunk from {@link #chunk(Vector3i)}.
      * This is more usable from {@link ServerLocation}s or a {@link Locatable} that returns
      * a {@link Vector3i position} in relation to a {@link ProtoWorld}.
      *
@@ -98,7 +98,7 @@ public interface ChunkVolume extends BlockVolume {
      * @param bz The z coordinate
      * @return The chunk, if available
      */
-    ProtoChunk<@NonNull ?> getChunkAtBlock(final int bx, final int by, final int bz);
+    ProtoChunk<@NonNull ?> chunkAtBlock(final int bx, final int by, final int bz);
 
     boolean isChunkLoaded(int x, int y, int z, boolean allowEmpty);
 

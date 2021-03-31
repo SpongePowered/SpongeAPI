@@ -48,9 +48,9 @@ import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.util.TypeTokens;
 import org.spongepowered.api.world.LocatableBlock;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.plugin.PluginContainer;
@@ -146,7 +146,7 @@ public final class EventContextKeys {
     /**
      * Used for {@link org.spongepowered.api.event.block.ChangeBlockEvent} to provide
      * the origin {@link BlockSnapshot} that is doing the "growing". This is likely
-     * useful to determine what is the origin with {@link BlockTransaction#getOperation()}
+     * useful to determine what is the origin with {@link BlockTransaction#operation ()}
      * when the {@link org.spongepowered.api.block.transaction.Operation operation} is of
      * {@link org.spongepowered.api.block.transaction.Operations#GROWTH Operations.GROWTH}.
      */

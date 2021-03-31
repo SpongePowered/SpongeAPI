@@ -27,10 +27,10 @@ package org.spongepowered.api.scoreboard.objective.displaymode;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.scoreboard.displayslot.DisplaySlots;
 import org.spongepowered.api.scoreboard.objective.Objective;
 
@@ -70,6 +70,6 @@ public final class ObjectiveDisplayModes {
     }
 
     private static DefaultedRegistryReference<ObjectiveDisplayMode> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.OBJECTIVE_DISPLAY_MODE, location).asDefaultedReference(() -> Sponge.getGame().registries());
+        return RegistryKey.of(RegistryTypes.OBJECTIVE_DISPLAY_MODE, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

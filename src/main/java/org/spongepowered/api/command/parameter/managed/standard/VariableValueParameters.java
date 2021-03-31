@@ -36,11 +36,11 @@ import org.spongepowered.api.command.parameter.Parameter;
 import org.spongepowered.api.command.parameter.managed.ValueParameter;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.registry.DefaultedRegistryType;
-import org.spongepowered.api.registry.RegistryType;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.Builder;
 
 import java.util.Collection;
@@ -59,7 +59,7 @@ public final class VariableValueParameters {
 
     /**
      * Creates a builder that can build a {@link ValueParameter} that returns
-     * an appropriate {@link CatalogType} from an argument.
+     * an appropriate value via a {@link RegistryHolder} from an argument.
      *
      * @param holderProvider The provider for a {@link RegistryHolder} to
      *          retrieve the selected {@link Registry} from
@@ -68,37 +68,37 @@ public final class VariableValueParameters {
      * @param <T> The type in the {@link Registry}
      * @return The builder
      */
-    public static <T> CatalogedTypeBuilder<T> registryEntryBuilder(
+    public static <T> RegistryEntryBuilder<T> registryEntryBuilder(
             final Function<CommandContext, @Nullable RegistryHolder> holderProvider, final RegistryType<T> registryKey) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createRegistryEntryBuilder(holderProvider, registryKey);
+        return Sponge.game().factoryProvider().provide(Factory.class).createRegistryEntryBuilder(holderProvider, registryKey);
     }
 
     /**
      * Creates a builder that can build a {@link ValueParameter} that returns
-     * an appropriate {@link CatalogType} from an argument.
+     * an appropriate value via a {@link RegistryHolder} from an argument.
      *
      * @param registryProvider A {@link Function} that retrieves an appropriate
      *      {@link Registry} to get objects from
      * @param <T> The type in the {@link Registry}
      * @return The builder
      */
-    public static <T> CatalogedTypeBuilder<T> registryEntryBuilder(
+    public static <T> RegistryEntryBuilder<T> registryEntryBuilder(
             final Function<CommandContext, @Nullable ? extends Registry<? extends T>> registryProvider) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createRegistryEntryBuilder(registryProvider);
+        return Sponge.game().factoryProvider().provide(Factory.class).createRegistryEntryBuilder(registryProvider);
     }
 
     /**
      * Creates a builder that can build a {@link ValueParameter} that returns
      * an appropriate type from the provided {@link Registry} from an argument.
      *
-     * @param defaultedRegistryReference The {@link DefaultedRegistryReference}
+     * @param type The {@link DefaultedRegistryType}
      *      to use to retrieve a {@link Registry} that contains the objects to
      *      retrieve
      * @param <T> The type in the {@link Registry}
      * @return The builder
      */
-    public static <T> CatalogedTypeBuilder<T> registryEntryBuilder(final DefaultedRegistryType<T> type) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createRegistryEntryBuilder(type);
+    public static <T> RegistryEntryBuilder<T> registryEntryBuilder(final DefaultedRegistryType<T> type) {
+        return Sponge.game().factoryProvider().provide(Factory.class).createRegistryEntryBuilder(type);
     }
 
     /**
@@ -114,7 +114,7 @@ public final class VariableValueParameters {
      * @return The builder
      */
     public static <T> StaticChoicesBuilder<T> staticChoicesBuilder(final Class<T> returnType) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createStaticChoicesBuilder(returnType);
+        return Sponge.game().factoryProvider().provide(Factory.class).createStaticChoicesBuilder(returnType);
     }
 
     /**
@@ -130,7 +130,7 @@ public final class VariableValueParameters {
      * @return The builder
      */
     public static <T> DynamicChoicesBuilder<T> dynamicChoicesBuilder(final Class<T> returnType) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createDynamicChoicesBuilder(returnType);
+        return Sponge.game().factoryProvider().provide(Factory.class).createDynamicChoicesBuilder(returnType);
     }
 
     /**
@@ -143,16 +143,17 @@ public final class VariableValueParameters {
      * @return The builder
      */
     public static <T> LiteralBuilder<T> literalBuilder(final Class<T> returnType) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createLiteralBuilder(returnType);
+        return Sponge.game().factoryProvider().provide(Factory.class).createLiteralBuilder(returnType);
     }
 
     /**
      * Creates a builder that builds a {@link ValueParameter} that tries to
      * construct a {@link Component} from an argument.
+     *
      * @return The new builder
      */
     public static TextBuilder textBuilder() {
-        return Sponge.getGame().getBuilderProvider().provide(TextBuilder.class);
+        return Sponge.game().builderProvider().provide(TextBuilder.class);
     }
 
     /**
@@ -164,7 +165,7 @@ public final class VariableValueParameters {
      * @return The appropriate {@link ValueParameter}
      */
     public static <T extends Enum<T>> ValueParameter<T> enumChoices(final Class<T> enumClass) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createEnumParameter(enumClass);
+        return Sponge.game().factoryProvider().provide(Factory.class).createEnumParameter(enumClass);
     }
 
     /**
@@ -174,7 +175,7 @@ public final class VariableValueParameters {
      * @return The {@link NumberRangeBuilder}
      */
     public static NumberRangeBuilder<Double> doubleRange() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createDoubleNumberRangeBuilder();
+        return Sponge.game().factoryProvider().provide(Factory.class).createDoubleNumberRangeBuilder();
     }
 
     /**
@@ -184,7 +185,7 @@ public final class VariableValueParameters {
      * @return The {@link NumberRangeBuilder}
      */
     public static NumberRangeBuilder<Float> floatRange() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createFloatNumberRangeBuilder();
+        return Sponge.game().factoryProvider().provide(Factory.class).createFloatNumberRangeBuilder();
     }
 
     /**
@@ -194,7 +195,7 @@ public final class VariableValueParameters {
      * @return The {@link NumberRangeBuilder}
      */
     public static NumberRangeBuilder<Integer> integerRange() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createIntegerNumberRangeBuilder();
+        return Sponge.game().factoryProvider().provide(Factory.class).createIntegerNumberRangeBuilder();
     }
 
     /**
@@ -204,7 +205,7 @@ public final class VariableValueParameters {
      * @return The {@link NumberRangeBuilder}
      */
     public static NumberRangeBuilder<Long> longRange() {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).createLongNumberRangeBuilder();
+        return Sponge.game().factoryProvider().provide(Factory.class).createLongNumberRangeBuilder();
     }
 
     /**
@@ -214,21 +215,21 @@ public final class VariableValueParameters {
      * @return The {@link ValueParameter}
      */
     public static ValueParameter<String> validatedString(final Pattern pattern) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class)
+        return Sponge.game().factoryProvider().provide(Factory.class)
                 .createValidatedStringParameter(pattern);
     }
 
     /**
      * A builder that creates a {@link ValueParameter} that attempts to get a
-     * specific {@link CatalogType} by the supplied ID.
+     * specific value from a {@link RegistryHolder} by the supplied ID.
      */
-    public interface CatalogedTypeBuilder<T> extends Builder<ValueParameter<T>, CatalogedTypeBuilder<T>> {
+    public interface RegistryEntryBuilder<T> extends Builder<ValueParameter<T>, RegistryEntryBuilder<T>> {
 
         /**
          * A {@link Function} that always provides the {@link Game} scoped
          * {@link RegistryHolder}.
          */
-        Function<CommandContext, @Nullable RegistryHolder> GLOBAL_HOLDER_PROVIDER = in -> Sponge.getGame().registries();
+        Function<CommandContext, @Nullable RegistryHolder> GLOBAL_HOLDER_PROVIDER = in -> Sponge.game().registries();
 
         /**
          * A {@link Function} that always provides the {@link Server} scoped
@@ -236,7 +237,7 @@ public final class VariableValueParameters {
          */
         Function<CommandContext, @Nullable RegistryHolder> SERVER_HOLDER_PROVIDER = in -> {
             try {
-                return Sponge.getGame().getServer().registries();
+                return Sponge.game().server().registries();
             } catch (final IllegalStateException ignored) {
                 return null;
             }
@@ -244,7 +245,7 @@ public final class VariableValueParameters {
 
         /**
          * Adds a prefix that could be prepended to the input argument if it
-         * initially does not match any of the chosen {@link CatalogType}. Any
+         * initially does not match any of the chosen values. Any
          * prefixes that are prepended will include the ":" identifier, this
          * should not be part of the supplied prefix in this method.
          *
@@ -286,7 +287,7 @@ public final class VariableValueParameters {
          *               without such a prefix
          * @return This builder, for chaining.
          */
-        CatalogedTypeBuilder<T> defaultNamespace(String prefix);
+        RegistryEntryBuilder<T> defaultNamespace(String prefix);
 
         /**
          * Tests for validity and creates this {@link ValueParameter}
@@ -317,8 +318,8 @@ public final class VariableValueParameters {
          * @param returnedObject The {@link Object to return}
          * @return This builder, for chaining
          */
-        default StaticChoicesBuilder<T> choice(final String choice, final T returnedObject) {
-            return this.choices(Collections.singleton(choice), () -> returnedObject);
+        default StaticChoicesBuilder<T> addChoice(final String choice, final T returnedObject) {
+            return this.addChoices(Collections.singleton(choice), () -> returnedObject);
         }
 
         /**
@@ -329,9 +330,9 @@ public final class VariableValueParameters {
          *                objects.
          * @return This builder, for chaining
          */
-        default StaticChoicesBuilder<T> choices(final Map<String, ? extends T> choices) {
+        default StaticChoicesBuilder<T> addChoices(final Map<String, ? extends T> choices) {
             for (final Map.Entry<String, ? extends T> entry : choices.entrySet()) {
-                this.choice(entry.getKey(), entry.getValue());
+                this.addChoice(entry.getKey(), entry.getValue());
             }
 
             return this;
@@ -346,7 +347,7 @@ public final class VariableValueParameters {
          * @param returnedObjectSupplier Supplies the object to return
          * @return This builder, for chaining
          */
-        StaticChoicesBuilder<T> choices(Iterable<String> choices, Supplier<? extends T> returnedObjectSupplier);
+        StaticChoicesBuilder<T> addChoices(Iterable<String> choices, Supplier<? extends T> returnedObjectSupplier);
 
         /**
          * Sets what should happen if the usage of this parameter is requested.
@@ -358,7 +359,7 @@ public final class VariableValueParameters {
          * @param showInUsage true if the choices should be shown
          * @return This builder, for chaining
          */
-        StaticChoicesBuilder<T> setShowInUsage(boolean showInUsage);
+        StaticChoicesBuilder<T> showInUsage(boolean showInUsage);
 
         /**
          * Tests for validity and creates this {@link ValueParameter}
@@ -384,7 +385,7 @@ public final class VariableValueParameters {
          * @param choices A supplier that returns an appropriate map.
          * @return This builder, for chaining
          */
-        DynamicChoicesBuilder<T> setChoicesAndResults(Supplier<Map<String, ? extends T>> choices);
+        DynamicChoicesBuilder<T> choicesAndResults(Supplier<Map<String, ? extends T>> choices);
 
         /**
          * Sets the parameter to get its choices from the supplied
@@ -393,7 +394,7 @@ public final class VariableValueParameters {
          * @param choices A supplier that returns the appropriate choices.
          * @return This builder, for chaining
          */
-        DynamicChoicesBuilder<T> setChoices(Supplier<? extends Collection<String>> choices);
+        DynamicChoicesBuilder<T> choices(Supplier<? extends Collection<String>> choices);
 
         /**
          * Sets the function which defines what result is returned for
@@ -403,7 +404,7 @@ public final class VariableValueParameters {
          *                the provided choice
          * @return This builder, for chaining
          */
-        DynamicChoicesBuilder<T> setResults(Function<String, ? extends T> results);
+        DynamicChoicesBuilder<T> results(Function<String, ? extends T> results);
 
         /**
          * Sets what should happen if the usage of this parameter is requested.
@@ -415,7 +416,7 @@ public final class VariableValueParameters {
          * @param showInUsage true if the choices should be shown
          * @return This builder, for chaining
          */
-        DynamicChoicesBuilder<T> setShowInUsage(boolean showInUsage);
+        DynamicChoicesBuilder<T> showInUsage(boolean showInUsage);
 
         /**
          * Tests for validity and creates this {@link ValueParameter}.
@@ -442,7 +443,7 @@ public final class VariableValueParameters {
          * @param literalSupplier The {@link Supplier}
          * @return This builder, for chaining
          */
-        LiteralBuilder<T> setLiteral(Supplier<? extends Collection<String>> literalSupplier);
+        LiteralBuilder<T> literal(Supplier<? extends Collection<String>> literalSupplier);
 
         /**
          * Sets the sequence of strings that need to be matched at runtime.
@@ -452,8 +453,8 @@ public final class VariableValueParameters {
          * @param literal The sequence of elements
          * @return This builder, for chaining
          */
-        default LiteralBuilder<T> setLiteral(final Collection<String> literal) {
-            return this.setLiteral(() -> literal);
+        default LiteralBuilder<T> literal(final Collection<String> literal) {
+            return this.literal(() -> literal);
         }
 
         /**
@@ -463,7 +464,7 @@ public final class VariableValueParameters {
          * @param returnValueSupplier The {@link Supplier}
          * @return This builder, for chaining
          */
-        LiteralBuilder<T> setReturnValue(Supplier<T> returnValueSupplier);
+        LiteralBuilder<T> returnValue(Supplier<T> returnValueSupplier);
 
         /**
          * Sets the object to return if this parameter parses correctly.
@@ -471,8 +472,8 @@ public final class VariableValueParameters {
          * @param returnValue The {@link Object}
          * @return This builder, for chaining
          */
-        default LiteralBuilder<T> setReturnValue(final T returnValue) {
-            return this.setReturnValue(() -> returnValue);
+        default LiteralBuilder<T> returnValue(final T returnValue) {
+            return this.returnValue(() -> returnValue);
         }
 
         /**
@@ -501,7 +502,7 @@ public final class VariableValueParameters {
          * @param serializer A {@link ComponentSerializer}
          * @return This builder, for chaining
          */
-        TextBuilder setSerializer(ComponentSerializer<Component, ? extends Component, String> serializer);
+        TextBuilder serializer(ComponentSerializer<Component, ? extends Component, String> serializer);
 
         /**
          * Sets the {@link ComponentSerializer} for use by the element, though the
@@ -514,7 +515,7 @@ public final class VariableValueParameters {
          *      {@link ComponentSerializer}
          * @return This builder, for chaining
          */
-        TextBuilder setSerializerSupplier(Supplier<ComponentSerializer<Component, ? extends Component, String>> serializerSupplier);
+        TextBuilder serializerSupplier(Supplier<ComponentSerializer<Component, ? extends Component, String>> serializerSupplier);
 
         /**
          * Sets whether the parameter will use all the arguments left in the
@@ -523,7 +524,7 @@ public final class VariableValueParameters {
          * @param allArguments Whether all arguments will be consumed
          * @return This builder, for chaining
          */
-        TextBuilder setConsumeAllArguments(boolean allArguments);
+        TextBuilder consumeAllArguments(boolean allArguments);
 
         /**
          * Tests for validity and creates this {@link ValueParameter}.
@@ -552,7 +553,7 @@ public final class VariableValueParameters {
          * @param min The minimum value
          * @return This builder, for chaining
          */
-        NumberRangeBuilder<T> setMin(T min);
+        NumberRangeBuilder<T> min(T min);
 
         /**
          * Sets the maximum value that the parser will parse.
@@ -562,7 +563,7 @@ public final class VariableValueParameters {
          * @param max The maximum value
          * @return This builder, for chaining
          */
-        NumberRangeBuilder<T> setMax(T max);
+        NumberRangeBuilder<T> max(T max);
 
         /**
          * Tests for validity and creates this {@link ValueParameter}.
@@ -610,7 +611,7 @@ public final class VariableValueParameters {
         <T> DynamicChoicesBuilder<T> createDynamicChoicesBuilder(Class<T> returnType);
 
         /**
-         * Creates a {@link CatalogedTypeBuilder} that retrieves objects from
+         * Creates a {@link RegistryEntryBuilder} that retrieves objects from
          * the {@link Registry} represented by the given {@link RegistryKey}
          * and the provided {@link RegistryHolder}, which may be determined by
          * the current state of the {@link CommandContext}.
@@ -624,8 +625,8 @@ public final class VariableValueParameters {
          *
          * <p>{@link Game} and {@link Server} scoped {@link RegistryHolder}
          * providers are available via
-         * {@link CatalogedTypeBuilder#GLOBAL_HOLDER_PROVIDER} and
-         * {@link CatalogedTypeBuilder#SERVER_HOLDER_PROVIDER}</p>
+         * {@link RegistryEntryBuilder#GLOBAL_HOLDER_PROVIDER} and
+         * {@link RegistryEntryBuilder#SERVER_HOLDER_PROVIDER}</p>
          *
          * @param <T> The type that the target {@link Registry} holds
          * @param holderProvider A {@link Function} that provides a
@@ -634,12 +635,12 @@ public final class VariableValueParameters {
          * @param registryKey The {@link RegistryKey} that represents the target
          *      {@link Registry} in the {@link RegistryHolder} provided via
          *      {@code holderProvider}.
-         * @return The {@link CatalogedTypeBuilder}
+         * @return The {@link RegistryEntryBuilder}
          */
-        <T> VariableValueParameters.CatalogedTypeBuilder<T> createRegistryEntryBuilder(final Function<CommandContext, @Nullable RegistryHolder> holderProvider, final RegistryType<T> registryKey);
+        <T> RegistryEntryBuilder<T> createRegistryEntryBuilder(final Function<CommandContext, @Nullable RegistryHolder> holderProvider, final RegistryType<T> registryKey);
 
         /**
-         * Creates a {@link CatalogedTypeBuilder} that retrieves objects from
+         * Creates a {@link RegistryEntryBuilder} that retrieves objects from
          * the provided {@link Registry}, which provided via the given
          * {@link Function} which <strong>may</strong> use the current
          * {@link CommandContext} to determine the appropriate
@@ -651,20 +652,20 @@ public final class VariableValueParameters {
          * instead, providing the appropriate {@link RegistryHolder} instead.</p>
          *
          * @param <T> The type that the target {@link Registry} holds
-         * @return The {@link CatalogedTypeBuilder}
+         * @return The {@link RegistryEntryBuilder}
          */
-        <T> VariableValueParameters.CatalogedTypeBuilder<T> createRegistryEntryBuilder(final Function<CommandContext, @Nullable ? extends Registry<? extends T>> registryProvider);
+        <T> RegistryEntryBuilder<T> createRegistryEntryBuilder(final Function<CommandContext, @Nullable ? extends Registry<? extends T>> registryProvider);
 
         /**
-         * Creates a {@link CatalogedTypeBuilder} that retrieves objects from
+         * Creates a {@link RegistryEntryBuilder} that retrieves objects from
          * the provided {@link DefaultedRegistryReference}, which retrieves an
          * object from the appropriate {@link Registry}.
          *
          * @param <T> The type that the target {@link Registry} holds
-         * @param registryReference
-         * @return The {@link CatalogedTypeBuilder}
+         * @param type The registry type
+         * @return The {@link RegistryEntryBuilder}
          */
-        <T> VariableValueParameters.CatalogedTypeBuilder<T> createRegistryEntryBuilder(DefaultedRegistryType<T> type);
+        <T> RegistryEntryBuilder<T> createRegistryEntryBuilder(DefaultedRegistryType<T> type);
 
         /**
          * Creates the {@link LiteralBuilder} that will create objects

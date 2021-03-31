@@ -37,14 +37,14 @@ public interface MessageEvent extends Event {
      *
      * @return The message
      */
-    Component getOriginalMessage();
+    Component originalMessage();
 
     /**
      * Gets the message.
      *
      * @return Message
      */
-    Component getMessage();
+    Component message();
 
     /**
      * Sets the message.

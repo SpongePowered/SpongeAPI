@@ -44,14 +44,14 @@ public interface CookingEvent extends Event {
      *
      * @return The furnace
      */
-    BlockEntity getBlockEntity();
+    BlockEntity blockEntity();
 
     /**
      * Gets the fuel represented as an {@link ItemStackSnapshot}.
      *
      * @return The ingredient
      */
-    Optional<ItemStackSnapshot> getFuel();
+    Optional<ItemStackSnapshot> fuel();
 
     /**
      * Gets the recipe currently active.
@@ -59,7 +59,7 @@ public interface CookingEvent extends Event {
      *
      * @return The recipe
      */
-    Optional<CookingRecipe> getRecipe();
+    Optional<CookingRecipe> recipe();
 
     /**
      * The first tick of an item cooking.
@@ -92,6 +92,6 @@ public interface CookingEvent extends Event {
          *
          * @return The cooked items
          */
-        List<ItemStackSnapshot> getCookedItems();
+        List<ItemStackSnapshot> cookedItems();
     }
 }

@@ -37,6 +37,7 @@ public interface FallingBlock extends Entity {
 
     /**
      * {@link Keys#BLOCK_STATE}
+     *
      * @return The blockstate
      */
     default Value.Mutable<BlockState> blockState() {
@@ -45,6 +46,7 @@ public interface FallingBlock extends Entity {
 
     /**
      * {@link Keys#DAMAGE_PER_BLOCK}
+     *
      * @return The rate of damage increase per block fallen
      */
     default Value.Mutable<Double> damagePerBlock() {
@@ -53,6 +55,7 @@ public interface FallingBlock extends Entity {
 
     /**
      * {@link Keys#MAX_FALL_DAMAGE}
+     *
      * @return The maximum fall damage
      */
     default Value.Mutable<Double> maxFallDamage() {
@@ -61,6 +64,7 @@ public interface FallingBlock extends Entity {
 
     /**
      * {@link Keys#CAN_PLACE_AS_BLOCK}
+     *
      * @return Whether this can place a block on landing or not
      */
     default Value.Mutable<Boolean> placeAsBlock() {
@@ -69,6 +73,7 @@ public interface FallingBlock extends Entity {
 
     /**
      * {@link Keys#CAN_DROP_AS_ITEM}
+     *
      * @return Whether this will drop as an item or not
      */
     default Value.Mutable<Boolean> dropAsItem() {
@@ -77,6 +82,7 @@ public interface FallingBlock extends Entity {
 
     /**
      * {@link Keys#FALL_TIME}
+     *
      * @return The fall time
      */
     default Value.Mutable<Ticks> fallTime() {
@@ -85,6 +91,7 @@ public interface FallingBlock extends Entity {
 
     /**
      * {@link Keys#CAN_HURT_ENTITIES}
+     *
      * @return Whether this block will hurt entities on it's way down
      */
     default Value.Mutable<Boolean> hurtEntities() {

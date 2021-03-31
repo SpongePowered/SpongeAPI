@@ -65,7 +65,10 @@ public final class DataTransactionResult {
 
         @Override
         public BinaryOperator<Builder> combiner() {
-            return (left, right) -> { left.absorbResult(right.build()); return left; };
+            return (left, right) -> {
+                left.absorbResult(right.build());
+                return left;
+            };
         }
 
         @Override
@@ -306,7 +309,7 @@ public final class DataTransactionResult {
      *
      * @return the type of result
      */
-    public Type getType() {
+    public Type type() {
         return this.type;
     }
 
@@ -316,7 +319,7 @@ public final class DataTransactionResult {
      * @return True if this result was successful
      */
     public boolean isSuccessful() {
-        return this.getType() == Type.SUCCESS;
+        return this.type() == Type.SUCCESS;
     }
 
     /**
@@ -325,7 +328,7 @@ public final class DataTransactionResult {
      *
      * @return An immutable list of the values successfully offered
      */
-    public List<Value.Immutable<?>> getSuccessfulData() {
+    public List<Value.Immutable<?>> successfulData() {
         return this.success;
     }
 
@@ -336,7 +339,7 @@ public final class DataTransactionResult {
      *
      * @return Any data that was rejected from the operation
      */
-    public List<Value.Immutable<?>> getRejectedData() {
+    public List<Value.Immutable<?>> rejectedData() {
         return this.rejected;
     }
 
@@ -346,14 +349,14 @@ public final class DataTransactionResult {
      *
      * @return Any data that was replaced
      */
-    public List<Value.Immutable<?>> getReplacedData() {
+    public List<Value.Immutable<?>> replacedData() {
         return this.replaced;
     }
 
     /**
      * If this result of {@link #isSuccessful()} returns {@code true},
      * the provided {@link Consumer} is called provided a list of all
-     * "successful" data as retrieved from {@link #getSuccessfulData()}.
+     * "successful" data as retrieved from {@link #successfulData()}.
      *
      * @param consumer The consumer to call
      */
@@ -543,10 +546,10 @@ public final class DataTransactionResult {
         public Builder absorbResult(final DataTransactionResult result) {
             // First, let's handle the type:
             if (this.resultType == null) {
-                this.resultType = result.getType();
+                this.resultType = result.type();
             } else {
-                if (this.resultType.compareTo(result.getType()) < 0) {
-                    this.resultType = result.getType();
+                if (this.resultType.compareTo(result.type()) < 0) {
+                    this.resultType = result.type();
                 }
             }
             final List<Value.Immutable<?>> newSuccessful = new ArrayList<>();
@@ -556,20 +559,20 @@ public final class DataTransactionResult {
             if (this.successful != null) {
                 dance:
                 for (final Value.Immutable<?> value : this.successful) {
-                    for (final Value.Immutable<?> rejected : result.getRejectedData()) {
-                        if (value.getKey().equals(rejected.getKey())) {
+                    for (final Value.Immutable<?> rejected : result.rejectedData()) {
+                        if (value.key().equals(rejected.key())) {
                             newRejected.add(rejected);
                             continue dance;
                         }
                     }
-                    for (final Value.Immutable<?> replaced : result.getReplacedData()) {
-                        if (value.getKey().equals(replaced.getKey())) {
+                    for (final Value.Immutable<?> replaced : result.replacedData()) {
+                        if (value.key().equals(replaced.key())) {
                             newReplaced.add(value);
                             continue dance;
                         }
                     }
-                    for (final Value.Immutable<?> successful : result.getSuccessfulData()) {
-                        if (value.getKey().equals(successful.getKey())) {
+                    for (final Value.Immutable<?> successful : result.successfulData()) {
+                        if (value.key().equals(successful.key())) {
                             newSuccessful.add(successful);
                             continue dance;
                         }
@@ -580,20 +583,20 @@ public final class DataTransactionResult {
             if (this.replaced != null) {
                 dance:
                 for (final Value.Immutable<?> value : this.replaced) {
-                    for (final Value.Immutable<?> rejected : result.getRejectedData()) {
-                        if (value.getKey().equals(rejected.getKey())) {
+                    for (final Value.Immutable<?> rejected : result.rejectedData()) {
+                        if (value.key().equals(rejected.key())) {
                             newRejected.add(rejected);
                             continue dance;
                         }
                     }
-                    for (final Value.Immutable<?> replaced : result.getReplacedData()) {
-                        if (value.getKey().equals(replaced.getKey())) {
+                    for (final Value.Immutable<?> replaced : result.replacedData()) {
+                        if (value.key().equals(replaced.key())) {
                             newReplaced.add(value);
                             continue dance;
                         }
                     }
-                    for (final Value.Immutable<?> successful : result.getSuccessfulData()) {
-                        if (value.getKey().equals(successful.getKey())) {
+                    for (final Value.Immutable<?> successful : result.successfulData()) {
+                        if (value.key().equals(successful.key())) {
                             newSuccessful.add(successful);
                             continue dance;
                         }
@@ -604,20 +607,20 @@ public final class DataTransactionResult {
             if (this.rejected != null) {
                 dance:
                 for (final Value.Immutable<?> value : this.rejected) {
-                    for (final Value.Immutable<?> rejected : result.getRejectedData()) {
-                        if (value.getKey().equals(rejected.getKey())) {
+                    for (final Value.Immutable<?> rejected : result.rejectedData()) {
+                        if (value.key().equals(rejected.key())) {
                             newRejected.add(rejected);
                             continue dance;
                         }
                     }
-                    for (final Value.Immutable<?> replaced : result.getReplacedData()) {
-                        if (value.getKey().equals(replaced.getKey())) {
+                    for (final Value.Immutable<?> replaced : result.replacedData()) {
+                        if (value.key().equals(replaced.key())) {
                             newReplaced.add(value);
                             continue dance;
                         }
                     }
-                    for (final Value.Immutable<?> successful : result.getSuccessfulData()) {
-                        if (value.getKey().equals(successful.getKey())) {
+                    for (final Value.Immutable<?> successful : result.successfulData()) {
+                        if (value.key().equals(successful.key())) {
                             newSuccessful.add(successful);
                             continue dance;
                         }
@@ -626,57 +629,57 @@ public final class DataTransactionResult {
                 }
             }
             dance:
-            for (final Value.Immutable<?> value : result.getSuccessfulData()) {
+            for (final Value.Immutable<?> value : result.successfulData()) {
                 for (final Value.Immutable<?> rejected : newRejected) {
-                    if (value.getKey().equals(rejected.getKey())) {
+                    if (value.key().equals(rejected.key())) {
                         continue dance;
                     }
                 }
                 for (final Value.Immutable<?> replaced : newReplaced) {
-                    if (value.getKey().equals(replaced.getKey())) {
+                    if (value.key().equals(replaced.key())) {
                         continue dance;
                     }
                 }
                 for (final Value.Immutable<?> successful : newSuccessful) {
-                    if (value.getKey().equals(successful.getKey())) {
+                    if (value.key().equals(successful.key())) {
                         continue dance;
                     }
                 }
                 newSuccessful.add(value);
             }
             dance:
-            for (final Value.Immutable<?> value : result.getRejectedData()) {
+            for (final Value.Immutable<?> value : result.rejectedData()) {
                 for (final Value.Immutable<?> rejected : newRejected) {
-                    if (value.getKey().equals(rejected.getKey())) {
+                    if (value.key().equals(rejected.key())) {
                         continue dance;
                     }
                 }
                 for (final Value.Immutable<?> replaced : newReplaced) {
-                    if (value.getKey().equals(replaced.getKey())) {
+                    if (value.key().equals(replaced.key())) {
                         continue dance;
                     }
                 }
                 for (final Value.Immutable<?> successful : newSuccessful) {
-                    if (value.getKey().equals(successful.getKey())) {
+                    if (value.key().equals(successful.key())) {
                         continue dance;
                     }
                 }
                 newRejected.add(value);
             }
             dance:
-            for (final Value.Immutable<?> value : result.getReplacedData()) {
+            for (final Value.Immutable<?> value : result.replacedData()) {
                 for (final Value.Immutable<?> rejected : newRejected) {
-                    if (value.getKey().equals(rejected.getKey())) {
+                    if (value.key().equals(rejected.key())) {
                         continue dance;
                     }
                 }
                 for (final Value.Immutable<?> replaced : newReplaced) {
-                    if (value.getKey().equals(replaced.getKey())) {
+                    if (value.key().equals(replaced.key())) {
                         continue dance;
                     }
                 }
                 for (final Value.Immutable<?> successful : newSuccessful) {
-                    if (value.getKey().equals(successful.getKey())) {
+                    if (value.key().equals(successful.key())) {
                         continue dance;
                     }
                 }
@@ -706,9 +709,9 @@ public final class DataTransactionResult {
         @Override
         public Builder from(final DataTransactionResult value) {
             this.resultType = value.type;
-            this.rejected = new ArrayList<>(value.getRejectedData());
-            this.replaced = new ArrayList<>(value.getReplacedData());
-            this.successful = new ArrayList<>(value.getSuccessfulData());
+            this.rejected = new ArrayList<>(value.rejectedData());
+            this.replaced = new ArrayList<>(value.replacedData());
+            this.successful = new ArrayList<>(value.successfulData());
             return this;
         }
 

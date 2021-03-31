@@ -39,7 +39,7 @@ public interface ScheduledUpdate<T> extends Locatable {
      *
      * @return The target
      */
-    T getTarget();
+    T target();
 
     /**
      * Gets the {@link Duration delay} until this update
@@ -47,21 +47,21 @@ public interface ScheduledUpdate<T> extends Locatable {
      *
      * @return The delay until this SBU should cause the block to update
      */
-    Duration getDelay();
+    Duration delay();
 
     /**
      * Gets the priority of this scheduled block update.
      *
      * @return The priority of this scheduled block update
      */
-    TaskPriority getPriority();
+    TaskPriority priority();
 
     /**
      * Gets the {@link State} of this scheduled update.
      *
      * @return The state
      */
-    State getState();
+    State state();
 
     /**
      * Cancels this scheduled update.

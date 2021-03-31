@@ -36,6 +36,7 @@ public interface MinecartLike extends Entity {
 
     /**
      * {@link Keys#IS_ON_RAIL}
+     *
      * @return Whether this minecart is on a rail or not
      */
     default Value.Mutable<Boolean> onRail() {
@@ -44,6 +45,7 @@ public interface MinecartLike extends Entity {
 
     /**
      * {@link Keys#SWIFTNESS}
+     *
      * @return The current swiftness of the minecart
      */
     default Value.Mutable<Double> swiftness() {
@@ -64,6 +66,7 @@ public interface MinecartLike extends Entity {
 
     /**
      * {@link Keys#SLOWS_UNOCCUPIED}
+     *
      * @return Whether this minecart will slow when unoccupied
      */
     default Value.Mutable<Boolean> slowsUnoccupied() {
@@ -72,6 +75,7 @@ public interface MinecartLike extends Entity {
 
     /**
      * {@link Keys#AIRBORNE_VELOCITY_MODIFIER}
+     *
      * @return The airborne velocity modifier
      */
     default Value.Mutable<Vector3d> airborneVelocityModifier() {
@@ -80,6 +84,7 @@ public interface MinecartLike extends Entity {
 
     /**
      * {@link Keys#DERAILED_VELOCITY_MODIFIER}
+     *
      * @return The derailed velocity modifier
      */
     default Value.Mutable<Vector3d> derailedVelocityModifier() {

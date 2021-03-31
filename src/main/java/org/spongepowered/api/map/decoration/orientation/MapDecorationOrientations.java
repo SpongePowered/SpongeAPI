@@ -39,45 +39,47 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public class MapDecorationOrientations {
 
-	// SORTFIELDS:ON
+    // SORTFIELDS:ON
 
-	public static final DefaultedRegistryReference<MapDecorationOrientation> NORTH = MapDecorationOrientations.key(ResourceKey.sponge("north"));
+    public static final DefaultedRegistryReference<MapDecorationOrientation> NORTH = MapDecorationOrientations.key(ResourceKey.sponge("north"));
 
-	public static final DefaultedRegistryReference<MapDecorationOrientation> NORTH_NORTHEAST = MapDecorationOrientations.key(ResourceKey.sponge("north_northeast"));
+    public static final DefaultedRegistryReference<MapDecorationOrientation> NORTH_NORTHEAST = MapDecorationOrientations.key(ResourceKey.sponge("north_northeast"));
 
-	public static final DefaultedRegistryReference<MapDecorationOrientation> NORTHEAST = MapDecorationOrientations.key(ResourceKey.sponge("northeast"));
+    public static final DefaultedRegistryReference<MapDecorationOrientation> NORTHEAST = MapDecorationOrientations.key(ResourceKey.sponge("northeast"));
 
-	public static final DefaultedRegistryReference<MapDecorationOrientation> EAST_NORTHEAST = MapDecorationOrientations.key(ResourceKey.sponge("east_northeast"));
+    public static final DefaultedRegistryReference<MapDecorationOrientation> EAST_NORTHEAST = MapDecorationOrientations.key(ResourceKey.sponge("east_northeast"));
 
-	public static final DefaultedRegistryReference<MapDecorationOrientation> EAST = MapDecorationOrientations.key(ResourceKey.sponge("east"));
+    public static final DefaultedRegistryReference<MapDecorationOrientation> EAST = MapDecorationOrientations.key(ResourceKey.sponge("east"));
 
-	public static final DefaultedRegistryReference<MapDecorationOrientation> EAST_SOUTHEAST = MapDecorationOrientations.key(ResourceKey.sponge("east_southeast"));
+    public static final DefaultedRegistryReference<MapDecorationOrientation> EAST_SOUTHEAST = MapDecorationOrientations.key(ResourceKey.sponge("east_southeast"));
 
-	public static final DefaultedRegistryReference<MapDecorationOrientation> SOUTHEAST = MapDecorationOrientations.key(ResourceKey.sponge("southeast"));
+    public static final DefaultedRegistryReference<MapDecorationOrientation> SOUTHEAST = MapDecorationOrientations.key(ResourceKey.sponge("southeast"));
 
-	public static final DefaultedRegistryReference<MapDecorationOrientation> SOUTH_SOUTHEAST = MapDecorationOrientations.key(ResourceKey.sponge("south_southeast"));
+    public static final DefaultedRegistryReference<MapDecorationOrientation> SOUTH_SOUTHEAST = MapDecorationOrientations.key(ResourceKey.sponge("south_southeast"));
 
-	public static final DefaultedRegistryReference<MapDecorationOrientation> SOUTH = MapDecorationOrientations.key(ResourceKey.sponge("south"));
+    public static final DefaultedRegistryReference<MapDecorationOrientation> SOUTH = MapDecorationOrientations.key(ResourceKey.sponge("south"));
 
-	public static final DefaultedRegistryReference<MapDecorationOrientation> SOUTH_SOUTHWEST = MapDecorationOrientations.key(ResourceKey.sponge("south_southwest"));
+    public static final DefaultedRegistryReference<MapDecorationOrientation> SOUTH_SOUTHWEST = MapDecorationOrientations.key(ResourceKey.sponge("south_southwest"));
 
-	public static final DefaultedRegistryReference<MapDecorationOrientation> SOUTHWEST = MapDecorationOrientations.key(ResourceKey.sponge("southwest"));
+    public static final DefaultedRegistryReference<MapDecorationOrientation> SOUTHWEST = MapDecorationOrientations.key(ResourceKey.sponge("southwest"));
 
-	public static final DefaultedRegistryReference<MapDecorationOrientation> WEST_SOUTHWEST = MapDecorationOrientations.key(ResourceKey.sponge("west_southwest"));
+    public static final DefaultedRegistryReference<MapDecorationOrientation> WEST_SOUTHWEST = MapDecorationOrientations.key(ResourceKey.sponge("west_southwest"));
 
-	public static final DefaultedRegistryReference<MapDecorationOrientation> WEST = MapDecorationOrientations.key(ResourceKey.sponge("west"));
+    public static final DefaultedRegistryReference<MapDecorationOrientation> WEST = MapDecorationOrientations.key(ResourceKey.sponge("west"));
 
-	public static final DefaultedRegistryReference<MapDecorationOrientation> WEST_NORTHWEST = MapDecorationOrientations.key(ResourceKey.sponge("west_northwest"));
+    public static final DefaultedRegistryReference<MapDecorationOrientation> WEST_NORTHWEST = MapDecorationOrientations.key(ResourceKey.sponge("west_northwest"));
 
-	public static final DefaultedRegistryReference<MapDecorationOrientation> NORTHWEST = MapDecorationOrientations.key(ResourceKey.sponge("northwest"));
+    public static final DefaultedRegistryReference<MapDecorationOrientation> NORTHWEST = MapDecorationOrientations.key(ResourceKey.sponge("northwest"));
 
-	public static final DefaultedRegistryReference<MapDecorationOrientation> NORTH_NORTHWEST = MapDecorationOrientations.key(ResourceKey.sponge("north_northwest"));
+    public static final DefaultedRegistryReference<MapDecorationOrientation> NORTH_NORTHWEST = MapDecorationOrientations.key(ResourceKey.sponge("north_northwest"));
 
-	// SORTFIELDS:OFF
+    // SORTFIELDS:OFF
 
-	private MapDecorationOrientations() { throw new AssertionError("You should not be attempting to instantiate this class."); }
+    private MapDecorationOrientations() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
 
-	private static DefaultedRegistryReference<MapDecorationOrientation> key(final ResourceKey location) {
-		return RegistryKey.of(RegistryTypes.MAP_DECORATION_ORIENTATION, location).asDefaultedReference(() -> Sponge.getGame().registries());
-	}
+    private static DefaultedRegistryReference<MapDecorationOrientation> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.MAP_DECORATION_ORIENTATION, location).asDefaultedReference(() -> Sponge.game().registries());
+    }
 }

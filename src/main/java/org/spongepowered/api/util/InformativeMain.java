@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.util;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.GraphicsEnvironment;
+import javax.swing.JOptionPane;
 
 /**
  * A class containing a main method which throws an Exception to cleanly

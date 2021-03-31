@@ -29,13 +29,14 @@ import org.spongepowered.api.Sponge;
 public interface BiomeAttributes {
 
     static BiomeAttributes of(final float temperature, final float humidity, final float altitude, final float weirdness, final float offset) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).of(temperature, humidity, altitude, weirdness, offset);
+        return Sponge.game().factoryProvider().provide(Factory.class).of(temperature, humidity, altitude, weirdness, offset);
     }
 
     /**
      * Gets the temperature.
      *
      * <p>In Vanilla Minecraft, this is capped between {@code -2} to {@code 2}.</p>
+     *
      * @return temperature
      */
     float temperature();
@@ -44,6 +45,7 @@ public interface BiomeAttributes {
      * Get the humidity.
      *
      * <p>In Vanilla Minecraft, this is capped between {@code -2} to {@code 2}.</p>
+     *
      * @return humidity
      */
     float humidity();
@@ -52,6 +54,7 @@ public interface BiomeAttributes {
      * Gets the altitude.
      *
      * <p>In Vanilla Minecraft, this is capped between {@code -2} to {@code 2}.</p>
+     *
      * @return altitude
      */
     float altitude();
@@ -60,6 +63,7 @@ public interface BiomeAttributes {
      * Gets the weirdness.
      *
      * <p>In Vanilla Minecraft, this is capped between {@code -2} to {@code 2}.</p>
+     *
      * @return weirdness
      */
     float weirdness();
@@ -68,6 +72,7 @@ public interface BiomeAttributes {
      * Gets the offset.
      *
      * <p>In Vanilla Minecraft, this is capped between {@code 0} to {@code 1}.</p>
+     *
      * @return offset
      */
     float offset();

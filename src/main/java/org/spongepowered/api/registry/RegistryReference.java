@@ -39,7 +39,7 @@ import java.util.Set;
 public interface RegistryReference<T> extends RegistryKey<T> {
 
     static <T> RegistryReference<T> referenced(final RegistryHolder holder, final RegistryType<T> registry, final T value) {
-        return Sponge.getGame().getFactoryProvider().provide(Factory.class).referenced(Objects.requireNonNull(holder, "holder"),
+        return Sponge.game().factoryProvider().provide(Factory.class).referenced(Objects.requireNonNull(holder, "holder"),
                 Objects.requireNonNull(registry, "registry"), Objects.requireNonNull(value, "value"));
     }
 
@@ -84,7 +84,7 @@ public interface RegistryReference<T> extends RegistryKey<T> {
      * from the holder. As there are no defined rules, an implementation may choose to only
      * query the passed in holder or may choose to run through various {@link ScopedRegistryHolder holders}
      * for retrieval. As such, no assumption should be made whatsoever that the returned value
-     * originated from the holder./p>
+     * originated from the holder.</p>
      *
      * @param holder The holder
      * @return The value

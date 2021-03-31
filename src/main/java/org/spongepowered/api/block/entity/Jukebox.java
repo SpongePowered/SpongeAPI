@@ -36,6 +36,7 @@ public interface Jukebox extends BlockEntity {
 
     /**
      * {@link Keys#ITEM_STACK_SNAPSHOT}
+     *
      * @return A snapshot of the disc in the jukebox.
      */
     default Value.Mutable<ItemStackSnapshot> item() {
