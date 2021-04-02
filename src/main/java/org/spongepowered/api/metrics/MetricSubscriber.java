@@ -22,25 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.service.metrics.pullgauge;
+package org.spongepowered.api.metrics;
 
-import io.prometheus.client.Collector.MetricFamilySamples.Sample;
+import org.spongepowered.api.metrics.meter.Metadata;
 
-import java.util.List;
-import java.util.function.ToDoubleFunction;
+public interface MetricSubscriber {
+    void onCounterIncrement(Metadata metadata, double incrementedBy, Object[] labelValues);
 
-import static java.util.Collections.singletonList;
+    void onGaugeSet(Metadata metadata, double value, Object[] labelValues);
 
-public final class SimplePullGauge<T> extends PullGauge<T> {
-    private final ToDoubleFunction<T> sampler;
+    void onTimerObserved(Metadata metadata, double seconds, Object[] labelValues);
 
-    public SimplePullGauge(String name, String unit, String help, ToDoubleFunction<T> sampler) {
-        super(name, unit, help);
-        this.sampler = sampler;
-    }
-
-    @Override
-    protected List<Sample> makeSamples(T subject) {
-        return singletonList(sample(sampler.applyAsDouble(subject)));
-    }
+    void onHistogramObserved(Metadata metadata, double[] buckets, double value, Object[] labelValues);
 }

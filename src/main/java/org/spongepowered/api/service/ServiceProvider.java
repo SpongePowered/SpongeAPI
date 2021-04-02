@@ -28,7 +28,6 @@ import org.spongepowered.api.Engine;
 import org.spongepowered.api.service.ban.BanService;
 import org.spongepowered.api.service.economy.EconomyService;
 import org.spongepowered.api.service.healthcheck.HealthCheckService;
-import org.spongepowered.api.service.metrics.MetricsService;
 import org.spongepowered.api.service.pagination.PaginationService;
 import org.spongepowered.api.service.permission.PermissionService;
 import org.spongepowered.api.service.whitelist.WhitelistService;
@@ -112,13 +111,6 @@ public interface ServiceProvider {
          * @return The {@link HealthCheckService}
          */
         HealthCheckService healthCheckService();
-
-        /**
-         * Retrieves the {@link MetricsService}.
-         *
-         * @return The {@link MetricsService}
-         */
-        MetricsService metricsService();
     }
 
 
