@@ -24,9 +24,6 @@
  */
 package org.spongepowered.api.block.entity.carrier.chest;
 
-/**
- * Represents a TrappedChest.
- */
 public interface TrappedChest extends Chest {
 
 }

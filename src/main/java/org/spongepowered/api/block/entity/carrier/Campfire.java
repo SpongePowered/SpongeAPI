@@ -24,8 +24,5 @@
  */
 package org.spongepowered.api.block.entity.carrier;
 
-/**
- * Represents a Campfire.
- */
 public interface Campfire extends CarrierBlockEntity {
 }

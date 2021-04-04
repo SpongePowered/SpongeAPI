@@ -24,9 +24,6 @@
  */
 package org.spongepowered.api.block.entity;
 
-/**
- * Represents a Jigsaw.
- */
 public interface Jigsaw extends BlockEntity {
 
 }

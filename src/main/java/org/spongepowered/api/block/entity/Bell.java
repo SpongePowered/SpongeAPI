@@ -24,9 +24,6 @@
  */
 package org.spongepowered.api.block.entity;
 
-/**
- * Represents a Bell.
- */
 public interface Bell extends BlockEntity {
 
 }

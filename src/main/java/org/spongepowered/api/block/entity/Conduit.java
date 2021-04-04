@@ -24,9 +24,6 @@
  */
 package org.spongepowered.api.block.entity;
 
-/**
- * Represents a Conduit.
- */
 public interface Conduit extends BlockEntity {
 
 }
