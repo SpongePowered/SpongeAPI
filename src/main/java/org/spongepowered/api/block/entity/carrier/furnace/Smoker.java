@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.block.entity.carrier.furnace;
 
+/**
+ * Represents a Smoker.
+ */
 public interface Smoker extends FurnaceBlockEntity {
 
 }

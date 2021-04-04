@@ -28,6 +28,9 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.Value;
 
+/**
+ * Represents a Bed.
+ */
 public interface Bed extends BlockEntity {
 
     /**
