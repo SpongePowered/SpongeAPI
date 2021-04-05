@@ -84,9 +84,16 @@ public interface ChunkEvent extends Event {
     }
 
     /**
+     * Called when a new {@link Chunk} was generated.
+     */
+    interface Generated extends ChunkEvent {
+
+    }
+
+    /**
      * Called when a {@link Chunk} is done loading.
      */
-    interface Load extends ChunkEvent, Save.Pre {
+    interface Load extends ChunkEvent {
 
         /**
          * Gets the {@link Chunk} being changed.
