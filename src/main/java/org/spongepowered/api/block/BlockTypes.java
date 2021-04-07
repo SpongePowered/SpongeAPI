@@ -1726,6 +1726,14 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> WAXED_EXPOSED_CUT_COPPER_STAIRS = BlockTypes.key(ResourceKey.minecraft("waxed_exposed_cut_copper_stairs"));
 
+    public static final DefaultedRegistryReference<BlockType> WAXED_OXIDIZED_COPPER = BlockTypes.key(ResourceKey.minecraft("waxed_oxidized_copper"));
+
+    public static final DefaultedRegistryReference<BlockType> WAXED_OXIDIZED_CUT_COPPER = BlockTypes.key(ResourceKey.minecraft("waxed_oxidized_cut_copper"));
+
+    public static final DefaultedRegistryReference<BlockType> WAXED_OXIDIZED_CUT_COPPER_SLAB = BlockTypes.key(ResourceKey.minecraft("waxed_oxidized_cut_copper_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> WAXED_OXIDIZED_CUT_COPPER_STAIRS = BlockTypes.key(ResourceKey.minecraft("waxed_oxidized_cut_copper_stairs"));
+
     public static final DefaultedRegistryReference<BlockType> WAXED_WEATHERED_COPPER = BlockTypes.key(ResourceKey.minecraft("waxed_weathered_copper"));
 
     public static final DefaultedRegistryReference<BlockType> WAXED_WEATHERED_CUT_COPPER = BlockTypes.key(ResourceKey.minecraft("waxed_weathered_cut_copper"));

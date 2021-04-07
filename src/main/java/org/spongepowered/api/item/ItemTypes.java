@@ -1682,6 +1682,12 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> RAVAGER_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("ravager_spawn_egg"));
 
+    public static final DefaultedRegistryReference<ItemType> RAW_COPPER = ItemTypes.key(ResourceKey.minecraft("raw_copper"));
+
+    public static final DefaultedRegistryReference<ItemType> RAW_GOLD = ItemTypes.key(ResourceKey.minecraft("raw_gold"));
+
+    public static final DefaultedRegistryReference<ItemType> RAW_IRON = ItemTypes.key(ResourceKey.minecraft("raw_iron"));
+
     public static final DefaultedRegistryReference<ItemType> RED_BANNER = ItemTypes.key(ResourceKey.minecraft("red_banner"));
 
     public static final DefaultedRegistryReference<ItemType> RED_BED = ItemTypes.key(ResourceKey.minecraft("red_bed"));
@@ -2105,6 +2111,14 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> WAXED_EXPOSED_CUT_COPPER_SLAB = ItemTypes.key(ResourceKey.minecraft("waxed_exposed_cut_copper_slab"));
 
     public static final DefaultedRegistryReference<ItemType> WAXED_EXPOSED_CUT_COPPER_STAIRS = ItemTypes.key(ResourceKey.minecraft("waxed_exposed_cut_copper_stairs"));
+
+    public static final DefaultedRegistryReference<ItemType> WAXED_OXIDIZED_COPPER = ItemTypes.key(ResourceKey.minecraft("waxed_oxidized_copper"));
+
+    public static final DefaultedRegistryReference<ItemType> WAXED_OXIDIZED_CUT_COPPER = ItemTypes.key(ResourceKey.minecraft("waxed_oxidized_cut_copper"));
+
+    public static final DefaultedRegistryReference<ItemType> WAXED_OXIDIZED_CUT_COPPER_SLAB = ItemTypes.key(ResourceKey.minecraft("waxed_oxidized_cut_copper_slab"));
+
+    public static final DefaultedRegistryReference<ItemType> WAXED_OXIDIZED_CUT_COPPER_STAIRS = ItemTypes.key(ResourceKey.minecraft("waxed_oxidized_cut_copper_stairs"));
 
     public static final DefaultedRegistryReference<ItemType> WAXED_WEATHERED_COPPER = ItemTypes.key(ResourceKey.minecraft("waxed_weathered_copper"));
 
