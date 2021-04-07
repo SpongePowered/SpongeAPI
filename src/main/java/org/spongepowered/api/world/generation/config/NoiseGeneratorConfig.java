@@ -72,6 +72,8 @@ public interface NoiseGeneratorConfig extends ChunkGeneratorConfig {
 
     int seaLevel();
 
+    int minSurfaceLevel();
+
     boolean aquifers();
 
     boolean noiseCaves();
@@ -93,6 +95,8 @@ public interface NoiseGeneratorConfig extends ChunkGeneratorConfig {
         Builder bedrockFloorY(int y);
 
         Builder seaLevel(int y);
+
+        Builder minSurfaceLevel(int y);
 
         Builder aquifers(boolean enableAquifers);
 
