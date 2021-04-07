@@ -45,7 +45,7 @@ public class ArgumentParseException extends CommandException {
      * @param source The source string being parsed
      * @param position The current position in the source string
      */
-    public ArgumentParseException(final Component message, final String source, final int position) {
+    public ArgumentParseException(final @Nullable Component message, final String source, final int position) {
         super(message, true);
         this.source = source;
         this.position = position;
@@ -59,7 +59,7 @@ public class ArgumentParseException extends CommandException {
      * @param source The source string being parsed
      * @param position The current position in the source string
      */
-    public ArgumentParseException(final Component message, final Throwable cause, final String source, final int position) {
+    public ArgumentParseException(final @Nullable Component message, final Throwable cause, final String source, final int position) {
         super(message, cause, true);
         this.source = source;
         this.position = position;

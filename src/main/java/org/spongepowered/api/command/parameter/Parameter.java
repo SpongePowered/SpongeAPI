@@ -39,6 +39,7 @@ import org.spongepowered.api.command.CommandExecutor;
 import org.spongepowered.api.command.exception.ArgumentParseException;
 import org.spongepowered.api.command.parameter.managed.ValueCompleter;
 import org.spongepowered.api.command.parameter.managed.ValueParameter;
+import org.spongepowered.api.command.parameter.managed.ValueParameterModifier;
 import org.spongepowered.api.command.parameter.managed.ValueParser;
 import org.spongepowered.api.command.parameter.managed.ValueUsage;
 import org.spongepowered.api.command.parameter.managed.standard.ResourceKeyedValueParameters;
@@ -191,6 +192,7 @@ public interface Parameter {
      * Gets a builder that builds a {@link Parameter.Value}.
      *
      * @param <T> The type of parameter
+     * @param <V> The {@link ValueParameter} to be used as a parser
      * @param parameter The value parameter
      * @param valueClass The type of value class
      * @return The {@link Value.Builder}
@@ -203,6 +205,7 @@ public interface Parameter {
      * Gets a builder that builds a {@link Parameter.Value}.
      *
      * @param <T> The type of parameter
+     * @param <V> The {@link ValueParameter} to be used as a parser
      * @param parameter The value parameter
      * @param typeToken The type of value class as a {@link TypeToken}
      * @return The {@link Value.Builder}
@@ -978,6 +981,14 @@ public interface Parameter {
         ValueCompleter completer();
 
         /**
+         * Gets the {@link ValueParameterModifier} that affects this parameter,
+         * if any.
+         *
+         * @return The {@link ValueParameterModifier}, if set.
+         */
+        Optional<ValueParameterModifier<T>> modifier();
+
+        /**
          * Gets the {@link ValueUsage} associated with this {@link Value}, if
          * any was set.
          *
@@ -994,7 +1005,7 @@ public interface Parameter {
         Predicate<CommandCause> requirement();
 
         /**
-         * Parses the next element(s) in the {@link CommandContext}
+         * Parses the next element(s) in the {@link CommandContext}.
          *
          * @param reader The {@link ArgumentReader.Mutable} containing the strings
          *               that need to be parsed
@@ -1079,7 +1090,8 @@ public interface Parameter {
              * unless this builder's {@link #suggestions(ValueCompleter)}} and
              * {@link #usage(ValueUsage)} methods are specified.
              *
-             * @param parser The {@link ValueParameter} to use
+             * @param <V> The {@link ValueParser} to be used as a parser
+             * @param parser The {@link ValueParser} to use
              * @return This builder, for chaining
              */
             default <V extends ValueParser<? extends T>> Builder<T> addParser(@NonNull final DefaultedRegistryReference<V> parser) {
@@ -1098,6 +1110,29 @@ public interface Parameter {
              * @return This builder, for chaining
              */
             Builder<T> suggestions(@Nullable ValueCompleter completer);
+
+            /**
+             * Provides a modifier that allows for the modification of the
+             * outcome of an argument parse or a completion. This is primarily
+             * intended for use with Mojang/Sponge standard parameters, allowing
+             * developers to tweak the input of a standard parameter without
+             * having to worry about completion types.
+             *
+             * <p>Developers should only use this when they use a parameter
+             * type that they do not control. If you are using this with a
+             * {@link ValueParameter}, {@link ValueParser} or
+             * {@link ValueCompleter} that you control (that is, able to modify
+             * the source of), it is strongly recommended that you do that
+             * instead. For more information about how a modifier should be
+             * used, read the {@link ValueParameterModifier} docs instead.</p>
+             *
+             * <p>Optional. If this is <code>null</code> (or never set), any
+             * outcomes will not be modified.</p>
+             *
+             * @param modifier The modifier
+             * @return This builder, for chaning
+             */
+            Builder<T> modifier(@Nullable ValueParameterModifier<T> modifier);
 
             /**
              * Sets the usage. The {@link Function} accepts the parameter key

@@ -242,6 +242,8 @@ public interface ArgumentReader {
          * the client completion should be a {@link ResourceKey}, so that your
          * users will not be told to put their argument in quotation marks.</p>
          *
+         * @param defaultNamespace The default namespace to use when parsing a
+         *                         string that does not contain a colon.
          * @return The {@link ResourceKey}
          * @throws ArgumentParseException if a key could not be parsed
          */

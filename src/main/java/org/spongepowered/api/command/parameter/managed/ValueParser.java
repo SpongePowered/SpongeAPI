@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.command.parameter.managed;
 
-import com.google.common.collect.ImmutableList;
+import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.CommandExecutor;
 import org.spongepowered.api.command.exception.ArgumentParseException;
 import org.spongepowered.api.command.parameter.ArgumentReader;

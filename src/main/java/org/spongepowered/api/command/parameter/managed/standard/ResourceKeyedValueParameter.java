@@ -34,6 +34,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * @param <T> The type of value that the parameter will return.
  */
 @CatalogedBy(ResourceKeyedValueParameters.class)
-public interface ResourceKeyedValueParameter<T> extends ValueParameter<T>, ResourceKeyed {
+public interface ResourceKeyedValueParameter<T> extends ValueParameter.Simple<T>, ResourceKeyed {
 
 }
