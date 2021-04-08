@@ -54,7 +54,10 @@ import java.util.Optional;
  *
  * <p>These modifier methods are provided the same information as the original
  * parameter, along with the result of the original parameter - that is, these
- * modifiers run <strong>after</strong> the associated parameter has run.</p>
+ * modifiers run <strong>after</strong> the associated parameter has run. The
+ * main takeaway here is that modifiers <strong>cannot</strong> add new entries
+ * to the parameter, only modify what they return and filter out entries that
+ * are not supported by your operation.</p>
  *
  * <p><strong>Modifiers are not designed to transform the returned type</strong>
  * - this is to maintain the integrity of the key typing and to discourage
@@ -89,6 +92,9 @@ import java.util.Optional;
  *     would be better to process the parsed result in the body of your executor
  *     instead.</li>
  * </ul>
+ *
+ * <p>With all this in mind, modifiers should be used sparingly, preferring the
+ * use of other constructs when at all possible.</p>
  */
 public interface ValueParameterModifier<T> {
 
@@ -123,8 +129,10 @@ public interface ValueParameterModifier<T> {
      * @param completions The completions suggested by the chained parameter
      * @return The modified completions
      */
-    List<String> modifyCompletion(
-            final CommandContext context, final String currentInput, final  List<String> completions);
+    default List<String> modifyCompletion(
+            final CommandContext context, final String currentInput, final  List<String> completions) {
+        return completions;
+    }
 
     /**
      * Modifies the message provided in a {@link ArgumentParseException} if the
