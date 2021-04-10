@@ -42,6 +42,7 @@ import org.spongepowered.api.command.parameter.managed.ValueParameter;
 import org.spongepowered.api.command.parameter.managed.ValueParameterModifier;
 import org.spongepowered.api.command.parameter.managed.ValueParser;
 import org.spongepowered.api.command.parameter.managed.ValueUsage;
+import org.spongepowered.api.command.parameter.managed.operator.Operator;
 import org.spongepowered.api.command.parameter.managed.standard.ResourceKeyedValueParameters;
 import org.spongepowered.api.command.parameter.managed.standard.VariableValueParameters;
 import org.spongepowered.api.data.persistence.DataContainer;
@@ -517,6 +518,16 @@ public interface Parameter {
      */
     static Parameter.Value.Builder<Long> longNumber() {
         return Parameter.builder(Long.class, ResourceKeyedValueParameters.LONG);
+    }
+
+    /**
+     * Creates a builder that has the {@link ValueParameter} set to
+     * {@link ResourceKeyedValueParameters#OPERATOR}.
+     *
+     * @return A {@link Parameter.Value.Builder}
+     */
+    static Parameter.Value.Builder<Operator> operator() {
+        return Parameter.builder(Operator.class, ResourceKeyedValueParameters.OPERATOR);
     }
 
     /**
