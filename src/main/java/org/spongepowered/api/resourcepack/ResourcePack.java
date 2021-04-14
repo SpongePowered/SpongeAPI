@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.resourcepack;
 
+import net.kyori.adventure.text.Component;
 import org.spongepowered.api.Sponge;
 
 import java.io.FileNotFoundException;
@@ -83,6 +84,13 @@ public interface ResourcePack {
      * @return the ID of this resource pack
      */
     String id();
+
+    /**
+     * Gets the prompt of this resource pack.
+     *
+     * @return the prompt of this resource pack
+     */
+    Component prompt();
 
     /**
      * If this resource pack was initialized through
