@@ -28,6 +28,8 @@ import net.kyori.adventure.text.Component;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.command.parameter.managed.operator.Operator;
+import org.spongepowered.api.command.parameter.managed.operator.Operators;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
@@ -253,6 +255,15 @@ public final class ResourceKeyedValueParameters {
      * <p>Returns nothing - no entry will be placed into any provided key.</p>
      */
     public static final DefaultedRegistryReference<ResourceKeyedValueParameter<Void>> NONE = ResourceKeyedValueParameters.key(ResourceKey.sponge("none"));
+
+    /**
+     * Expect an argument to represent an {@link Operator}
+     *
+     * <p>Valid operators are specified in {@link Operators}</p>
+     *
+     * <p>Returns an {@link Operator}</p>
+     */
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<Operator>> OPERATOR = ResourceKeyedValueParameters.key(ResourceKey.sponge("operator"));
 
     /**
      * Expect an argument to represent an online player.

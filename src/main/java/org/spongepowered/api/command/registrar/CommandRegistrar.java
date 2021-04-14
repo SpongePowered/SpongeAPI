@@ -43,7 +43,7 @@ import java.util.Optional;
 /**
  * {@link CommandRegistrar}s are the entry point for plugins wishing to provide
  * their own command framework. The {@link CommandManager} will proxy calls to
- * the correct registrar amd will handle the final {@link CommandResult}.
+ * the correct registrar and will handle the final {@link CommandResult}.
  *
  * <p>This interface defines a way to register commands. This registration
  * method <strong>must</strong> call
@@ -55,7 +55,7 @@ import java.util.Optional;
  * always supply the mapping of the command being invoked at runtime. The alias
  * that was matched will also be supplied.</p>
  *
- * <p>For command that wishes to investigate the command string that was
+ * <p>For a command that wishes to investigate the command string that was
  * executed, they may investigate the context in
  * {@link CommandCause#cause()}, looking for the
  * {@link EventContextKeys#COMMAND} context key.</p>

@@ -34,6 +34,7 @@ import org.spongepowered.api.block.entity.BlockEntityType;
 import org.spongepowered.api.block.transaction.Operation;
 import org.spongepowered.api.command.parameter.managed.ValueParameter;
 import org.spongepowered.api.command.parameter.managed.clientcompletion.ClientCompletionType;
+import org.spongepowered.api.command.parameter.managed.operator.Operator;
 import org.spongepowered.api.command.registrar.CommandRegistrarType;
 import org.spongepowered.api.command.registrar.tree.ClientCompletionKey;
 import org.spongepowered.api.command.selector.SelectorSortAlgorithm;
@@ -315,6 +316,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<NotePitch> NOTE_PITCH = RegistryTypes.spongeKeyInGame("note_pitch");
 
     public static final DefaultedRegistryType<ObjectiveDisplayMode> OBJECTIVE_DISPLAY_MODE = RegistryTypes.spongeKeyInGame("objective_display_mode");
+
+    public static final DefaultedRegistryType<Operator> OPERATOR = RegistryTypes.spongeKeyInGame("operator");
 
     public static final DefaultedRegistryType<Operation> OPERATION = RegistryTypes.spongeKeyInGame("operation");
 
