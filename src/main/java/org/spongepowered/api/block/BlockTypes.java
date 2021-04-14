@@ -1376,6 +1376,12 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> RAIL = BlockTypes.key(ResourceKey.minecraft("rail"));
 
+    public static final DefaultedRegistryReference<BlockType> RAW_COPPER_BLOCK = BlockTypes.key(ResourceKey.minecraft("raw_copper_block"));
+
+    public static final DefaultedRegistryReference<BlockType> RAW_GOLD_BLOCK = BlockTypes.key(ResourceKey.minecraft("raw_gold_block"));
+
+    public static final DefaultedRegistryReference<BlockType> RAW_IRON_BLOCK = BlockTypes.key(ResourceKey.minecraft("raw_iron_block"));
+
     public static final DefaultedRegistryReference<BlockType> RED_BANNER = BlockTypes.key(ResourceKey.minecraft("red_banner"));
 
     public static final DefaultedRegistryReference<BlockType> RED_BED = BlockTypes.key(ResourceKey.minecraft("red_bed"));

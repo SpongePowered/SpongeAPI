@@ -265,6 +265,8 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<MagmaCube>> MAGMA_CUBE = EntityTypes.key(ResourceKey.minecraft("magma_cube"));
 
+    public static final DefaultedRegistryReference<EntityType<Marker>> MARKER = EntityTypes.key(ResourceKey.minecraft("marker"));
+
     public static final DefaultedRegistryReference<EntityType<Minecart>> MINECART = EntityTypes.key(ResourceKey.minecraft("minecart"));
 
     public static final DefaultedRegistryReference<EntityType<Mooshroom>> MOOSHROOM = EntityTypes.key(ResourceKey.minecraft("mooshroom"));

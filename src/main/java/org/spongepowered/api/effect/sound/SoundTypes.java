@@ -1366,21 +1366,33 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.goat.death"));
 
+    public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_EAT = SoundTypes.key(ResourceKey.minecraft("entity.goat.eat"));
+
     public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_HURT = SoundTypes.key(ResourceKey.minecraft("entity.goat.hurt"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_LONG_JUMP = SoundTypes.key(ResourceKey.minecraft("entity.goat.long_jump"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_MILK = SoundTypes.key(ResourceKey.minecraft("entity.goat.milk"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_PREPARE_RAM = SoundTypes.key(ResourceKey.minecraft("entity.goat.prepare_ram"));
 
+    public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_RAM_IMPACT = SoundTypes.key(ResourceKey.minecraft("entity.goat.ram_impact"));
+
     public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_SCREAMING_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.goat.screaming.ambient"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_SCREAMING_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.goat.screaming.death"));
 
+    public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_SCREAMING_EAT = SoundTypes.key(ResourceKey.minecraft("entity.goat.screaming.eat"));
+
     public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_SCREAMING_HURT = SoundTypes.key(ResourceKey.minecraft("entity.goat.screaming.hurt"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_SCREAMING_LONG_JUMP = SoundTypes.key(ResourceKey.minecraft("entity.goat.screaming.long_jump"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_SCREAMING_MILK = SoundTypes.key(ResourceKey.minecraft("entity.goat.screaming.milk"));
 
-    public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_SCREAMING_RAM = SoundTypes.key(ResourceKey.minecraft("entity.goat.screaming.ram"));
+    public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_SCREAMING_PREPARE_RAM = SoundTypes.key(ResourceKey.minecraft("entity.goat.screaming.prepare_ram"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_SCREAMING_RAM_IMPACT = SoundTypes.key(ResourceKey.minecraft("entity.goat.screaming.ram_impact"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_GOAT_STEP = SoundTypes.key(ResourceKey.minecraft("entity.goat.step"));
 
@@ -2229,6 +2241,8 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> ITEM_AXE_STRIP = SoundTypes.key(ResourceKey.minecraft("item.axe.strip"));
 
     public static final DefaultedRegistryReference<SoundType> ITEM_AXE_WAX_OFF = SoundTypes.key(ResourceKey.minecraft("item.axe.wax_off"));
+
+    public static final DefaultedRegistryReference<SoundType> ITEM_BONE_MEAL_USE = SoundTypes.key(ResourceKey.minecraft("item.bone_meal.use"));
 
     public static final DefaultedRegistryReference<SoundType> ITEM_BOOK_PAGE_TURN = SoundTypes.key(ResourceKey.minecraft("item.book.page_turn"));
 

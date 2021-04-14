@@ -1684,9 +1684,15 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> RAW_COPPER = ItemTypes.key(ResourceKey.minecraft("raw_copper"));
 
+    public static final DefaultedRegistryReference<ItemType> RAW_COPPER_BLOCK = ItemTypes.key(ResourceKey.minecraft("raw_copper_block"));
+
     public static final DefaultedRegistryReference<ItemType> RAW_GOLD = ItemTypes.key(ResourceKey.minecraft("raw_gold"));
 
+    public static final DefaultedRegistryReference<ItemType> RAW_GOLD_BLOCK = ItemTypes.key(ResourceKey.minecraft("raw_gold_block"));
+
     public static final DefaultedRegistryReference<ItemType> RAW_IRON = ItemTypes.key(ResourceKey.minecraft("raw_iron"));
+
+    public static final DefaultedRegistryReference<ItemType> RAW_IRON_BLOCK = ItemTypes.key(ResourceKey.minecraft("raw_iron_block"));
 
     public static final DefaultedRegistryReference<ItemType> RED_BANNER = ItemTypes.key(ResourceKey.minecraft("red_banner"));
 
