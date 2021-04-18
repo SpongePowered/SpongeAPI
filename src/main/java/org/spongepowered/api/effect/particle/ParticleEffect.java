@@ -157,6 +157,18 @@ public interface ParticleEffect extends DataSerializable {
         }
 
         /**
+         * Sets the scale of the particle effect.
+         *
+         * <p>The default scale is 1.</p>
+         *
+         * @param scale The scale
+         * @return This builder for chaining
+         */
+        default <V> Builder scale(Double scale) {
+            return this.option(ParticleOptions.SCALE, scale);
+        }
+
+        /**
          * Sets the velocity of the particle effect.
          *
          * <p>The default velocity is {@link Vector3d#ZERO}.</p>

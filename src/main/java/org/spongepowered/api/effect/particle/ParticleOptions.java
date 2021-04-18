@@ -133,20 +133,18 @@ public final class ParticleOptions {
      */
     public static final DefaultedRegistryReference<ParticleOption<Integer>> QUANTITY = ParticleOptions.key(ResourceKey.sponge("quantity"));
 
-//    /** TODO
-//     * This option will change the scale of a particle. The only
-//     * vanilla {@link ParticleType}s this option is applicable to are:
-//     *
-//     * <ul>
-//     *   <li>{@link ParticleTypes#EXPLOSION}</li>
-//     *   <li>{@link ParticleTypes#SWEEP_ATTACK}</li>
-//     *   <li>{@link ParticleTypes#DUST}</li>
-//     * </ul>
-//     *
-//     * <p>The scale may never be negative, or a {@link IllegalArgumentException}
-//     * will be thrown when applying.</p>
-//     */
-//    public static final Supplier<ParticleOption<Double>> SCALE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "scale");
+    /**
+     * This option will change the scale of a particle. The only
+     * vanilla {@link ParticleType}s this option is applicable to is:
+     *
+     * <ul>
+     *   <li>{@link ParticleTypes#DUST}</li>
+     * </ul>
+     *
+     * <p>The scale may never be negative, or a {@link IllegalArgumentException}
+     * will be thrown when applying.</p>
+     */
+    public static final DefaultedRegistryReference<ParticleOption<Double>> SCALE = ParticleOptions.key(ResourceKey.sponge("scale"));
 
 //    /** TODO
 //     * This option will affect whether a particle type will have a lower
