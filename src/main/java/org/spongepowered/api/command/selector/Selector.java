@@ -104,6 +104,20 @@ public interface Selector {
     Collection<Entity> select(CommandCause cause);
 
     /**
+     * Get the limit for how many entities this Selector can select.
+     *
+     * @return The limit for the amount of entities this selector may select
+     */
+    int limit();
+
+    /**
+     * Get whether this selector can only select players, or can select any entity type.
+     *
+     * @return Whether this selector can only select players
+     */
+    boolean playersOnly();
+
+    /**
      * Creates a {@link Selector} based on the provided criteria.
      */
     interface Builder extends org.spongepowered.api.util.Builder<Selector, Builder> {
