@@ -45,6 +45,6 @@ public interface StateContainer<S extends State<S>> {
      * @param name The state property name
      * @return The state property, if available
      */
-    Optional<StateProperty<?>> statePropertyByName(String name);
+    Optional<StateProperty<?>> findStateProperty(String name);
 
 }

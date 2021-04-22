@@ -69,7 +69,7 @@ public interface State<S extends State<S>> extends SerializableDataHolder.Immuta
      * @param name The state property name
      * @return The state property, if available
      */
-    Optional<StateProperty<?>> statePropertyByName(String name);
+    Optional<StateProperty<?>> findStateProperty(String name);
 
     /**
      * Gets the {@link State} with the appropriate value for the given

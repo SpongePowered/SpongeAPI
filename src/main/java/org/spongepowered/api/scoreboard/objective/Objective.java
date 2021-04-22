@@ -127,11 +127,11 @@ public interface Objective {
      * @param name The name of the {@link Score} to get.
      * @return The {@link Score} for te specified {@link Component}, if it exists.
      */
-    default Optional<Score> score(final Component name) {
+    default Optional<Score> findScore(final Component name) {
         if (!this.hasScore(name)) {
             return Optional.empty();
         }
-        return Optional.of(this.scoreOrCreate(name));
+        return Optional.of(this.findOrCreateScore(name));
     }
 
     /**
@@ -142,7 +142,7 @@ public interface Objective {
      * @param name The name of the {@link Score} to get
      * @return The {@link Score} for the specified {@link Component}
      */
-    Score scoreOrCreate(Component name);
+    Score findOrCreateScore(Component name);
 
     /**
      * Removes the specified {@link Score} from this objective, if present.
