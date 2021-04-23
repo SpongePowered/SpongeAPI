@@ -40,6 +40,12 @@ public final class ClientCompletionKeys {
 
     // SORTFIELDS:ON
 
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> ALL_RECIPES = ClientCompletionKeys.key(ResourceKey.minecraft("all_recipes"));
+
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> AVAILABLE_BIOMES = ClientCompletionKeys.key(ResourceKey.minecraft("available_biomes"));
+
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> AVAILABLE_SOUNDS = ClientCompletionKeys.key(ResourceKey.minecraft("available_sounds"));
+
     public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> BLOCK_STATE = ClientCompletionKeys.key(ResourceKey.minecraft("block_state"));
 
     public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> BLOCK_PREDICATE = ClientCompletionKeys.key(ResourceKey.minecraft("block_predicate"));
