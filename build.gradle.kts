@@ -13,12 +13,8 @@ repositories {
     }
 }
 
-base {
-    archivesBaseName = "spongeapi"
-}
-
 checkstyle {
-    toolVersion = "8.41"
+    toolVersion = "8.41.1"
     configDirectory.set(layout.projectDirectory)
     configProperties = mutableMapOf<String, Any>(
             "severity" to "error"
@@ -272,15 +268,14 @@ publishing {
             from(components["java"])
 
             pom {
-                artifactId = project.name.toLowerCase()
                 this.name.set(project.name)
                 this.description.set(projectDescription)
                 this.url.set(projectUrl)
 
                 licenses {
                     license {
-                        this.name.set("MIT")
-                        this.url.set("https://opensource.org/licenses/MIT")
+                        name.set("MIT")
+                        url.set("https://opensource.org/licenses/MIT")
                     }
                 }
                 scm {
