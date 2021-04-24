@@ -31,6 +31,7 @@ import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.scoreboard.Team;
@@ -102,6 +103,21 @@ public interface Selector {
      * @return A {@link Collection} of selected {@link Entity entities}
      */
     Collection<Entity> select(CommandCause cause);
+
+    /**
+     * Gets the maximum number of entities that this selector can select.
+     *
+     * @return The limit
+     */
+    int limit();
+
+    /**
+     * Gets whether this selector will only select {@link Player players}, or
+     * if it will select any {@link Entity}.
+     *
+     * @return Whether this selector will only select players
+     */
+    boolean playersOnly();
 
     /**
      * Creates a {@link Selector} based on the provided criteria.

@@ -171,8 +171,39 @@ public interface CommandTreeNode<T extends CommandTreeNode<T>> {
     T executable();
 
     /**
+     * Declares that the node should use the provided
+     * {@link ClientSuggestionProvider} for generating suggestions on the
+     * client.
+     *
+     * <p>This overrides {@link #customSuggestions()}.</p>
+     *
+     * @param suggestionProvider The provider this node should use
+     * @return This, for chaining
+     */
+    default T suggestions(@Nullable final DefaultedRegistryReference<ClientSuggestionProvider> suggestionProvider) {
+        if (suggestionProvider == null) {
+            return this.suggestions((ClientSuggestionProvider) null);
+        }
+        return this.suggestions(suggestionProvider.get());
+    }
+
+    /**
+     * Declares that the node should use the provided
+     * {@link ClientSuggestionProvider} for generating suggestions on the
+     * client.
+     *
+     * <p>This overrides {@link #customSuggestions()}.</p>
+     *
+     * @param suggestionProvider The provider this node should use
+     * @return This, for chaining
+     */
+    T suggestions(@Nullable ClientSuggestionProvider suggestionProvider);
+
+    /**
      * Declares that this node uses custom suggestions and, as such, tab
      * completions should query the server.
+     *
+     * <p>This overrides {@link #suggestions(ClientSuggestionProvider)}.</p>
      *
      * @return This, for chaining.
      */

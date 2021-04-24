@@ -37,6 +37,7 @@ import org.spongepowered.api.command.parameter.managed.clientcompletion.ClientCo
 import org.spongepowered.api.command.parameter.managed.operator.Operator;
 import org.spongepowered.api.command.registrar.CommandRegistrarType;
 import org.spongepowered.api.command.registrar.tree.ClientCompletionKey;
+import org.spongepowered.api.command.registrar.tree.ClientSuggestionProvider;
 import org.spongepowered.api.command.selector.SelectorSortAlgorithm;
 import org.spongepowered.api.command.selector.SelectorType;
 import org.spongepowered.api.data.persistence.DataFormat;
@@ -236,6 +237,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<ClientCompletionKey<?>> CLIENT_COMPLETION_KEY = RegistryTypes.spongeKeyInGame("client_completion_key");
 
     public static final DefaultedRegistryType<ClientCompletionType> CLIENT_COMPLETION_TYPE = RegistryTypes.spongeKeyInGame("client_completion_type");
+
+    public static final DefaultedRegistryType<ClientSuggestionProvider> CLIENT_SUGGESTION_PROVIDER = RegistryTypes.spongeKeyInGame("client_suggestion_provider");
 
     public static final DefaultedRegistryType<CollisionRule> COLLISION_RULE = RegistryTypes.spongeKeyInGame("collision_rule");
 

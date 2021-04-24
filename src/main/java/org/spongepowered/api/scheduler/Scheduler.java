@@ -42,7 +42,7 @@ public interface Scheduler {
      * @param id The id of the task
      * @return The scheduled or running task, or {@link Optional#empty()}
      */
-    Optional<ScheduledTask> taskById(UUID id);
+    Optional<ScheduledTask> findTask(UUID id);
 
     /**
      * Returns a set of {@link Task}s that match the Regular Expression pattern.
@@ -52,7 +52,7 @@ public interface Scheduler {
      * @return A set of {@link Task}s that have names that match the pattern,
      *         the set will be empty if no names match
      */
-    Set<ScheduledTask> tasksByName(String pattern);
+    Set<ScheduledTask> findTasks(String pattern);
 
     /**
      * Returns a set of all currently scheduled tasks.
@@ -67,7 +67,7 @@ public interface Scheduler {
      * @param plugin The plugin that created the tasks
      * @return A set of scheduled tasks
      */
-    Set<ScheduledTask> tasksByPlugin(PluginContainer plugin);
+    Set<ScheduledTask> tasks(PluginContainer plugin);
 
     /**
      * Creates a new {@link ExecutorService} that can be used to schedule

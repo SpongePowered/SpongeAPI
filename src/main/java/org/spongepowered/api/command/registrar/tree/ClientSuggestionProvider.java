@@ -22,29 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.state;
+package org.spongepowered.api.command.registrar.tree;
 
-import com.google.common.collect.ImmutableList;
+import org.spongepowered.api.command.parameter.managed.ValueCompleter;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-import java.util.Collection;
-import java.util.Optional;
-
-public interface StateContainer<S extends State<S>> {
-
-    ImmutableList<S> validStates();
-
-    S defaultState();
-
-    Collection<StateProperty<?>> stateProperties();
-
-    /**
-     * Attempts to retrieve the {@link StateProperty} instance associated with
-     * this {@link StateContainer} by name. If there is no
-     * {@link StateProperty} available, {@link Optional#empty()} is returned.
-     *
-     * @param name The state property name
-     * @return The state property, if available
-     */
-    Optional<StateProperty<?>> findStateProperty(String name);
-
+/**
+ * Used with {@link ClientCompletionKeys}, suggestion providers tell the client
+ * what should be suggested, usually without requiring a request to the server.
+ * They do not otherwise affect the parse-time behaviour of a parameter.
+ */
+@CatalogedBy(ClientSuggestionProviders.class)
+public interface ClientSuggestionProvider extends ValueCompleter {
 }
