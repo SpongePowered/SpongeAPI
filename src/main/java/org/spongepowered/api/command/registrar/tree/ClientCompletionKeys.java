@@ -40,13 +40,19 @@ public final class ClientCompletionKeys {
 
     // SORTFIELDS:ON
 
-    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> BLOCK_STATE = ClientCompletionKeys.key(ResourceKey.minecraft("block_state"));
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> ANGLE = ClientCompletionKeys.key(ResourceKey.minecraft("angle"));
+
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> BLOCK_POS = ClientCompletionKeys.key(ResourceKey.minecraft("block_pos"));
 
     public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> BLOCK_PREDICATE = ClientCompletionKeys.key(ResourceKey.minecraft("block_predicate"));
+
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> BLOCK_STATE = ClientCompletionKeys.key(ResourceKey.minecraft("block_state"));
 
     public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> BOOL = ClientCompletionKeys.key(ResourceKey.brigadier("bool"));
 
     public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> COLOR = ClientCompletionKeys.key(ResourceKey.minecraft("color"));
+
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> COLUMN_POS = ClientCompletionKeys.key(ResourceKey.minecraft("column_pos"));
 
     public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> COMPONENT = ClientCompletionKeys.key(ResourceKey.minecraft("component"));
 
@@ -62,15 +68,23 @@ public final class ClientCompletionKeys {
 
     public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Range<Float>>> FLOAT = ClientCompletionKeys.key(ResourceKey.brigadier("float"));
 
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> FLOAT_RANGE = ClientCompletionKeys.key(ResourceKey.minecraft("float_range"));
+
     public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> FUNCTION = ClientCompletionKeys.key(ResourceKey.minecraft("function"));
 
     public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> GAME_PROFILE = ClientCompletionKeys.key(ResourceKey.minecraft("game_profile"));
 
     public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Range<Integer>>> INTEGER = ClientCompletionKeys.key(ResourceKey.brigadier("integer"));
 
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> INT_RANGE = ClientCompletionKeys.key(ResourceKey.minecraft("int_range"));
+
     public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> ITEM_ENCHANTMENT = ClientCompletionKeys.key(ResourceKey.minecraft("item_enchantment"));
 
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> ITEM_PREDICATE = ClientCompletionKeys.key(ResourceKey.minecraft("item_predicate"));
+
     public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> ITEM_SLOT = ClientCompletionKeys.key(ResourceKey.minecraft("item_slot"));
+
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> ITEM_STACK = ClientCompletionKeys.key(ResourceKey.minecraft("item_stack"));
 
     public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Range<Long>>> LONG = ClientCompletionKeys.key(ResourceKey.brigadier("long"));
 
@@ -107,6 +121,8 @@ public final class ClientCompletionKeys {
     public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> TEAM = ClientCompletionKeys.key(ResourceKey.minecraft("team"));
 
     public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> TIME = ClientCompletionKeys.key(ResourceKey.minecraft("time"));
+
+    public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> UUID = ClientCompletionKeys.key(ResourceKey.minecraft("uuid"));
 
     public static final DefaultedRegistryReference<ClientCompletionKey<CommandTreeNode.Basic>> VEC2 = ClientCompletionKeys.key(ResourceKey.minecraft("vec2"));
 
