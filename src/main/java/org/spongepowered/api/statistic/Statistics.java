@@ -144,9 +144,9 @@ public final class Statistics {
 
     public static final DefaultedRegistryReference<Statistic> PLAY_NOTEBLOCK = Statistics.key(ResourceKey.minecraft("play_noteblock"));
 
-    public static final DefaultedRegistryReference<Statistic> PLAY_ONE_MINUTE = Statistics.key(ResourceKey.minecraft("play_one_minute"));
-
     public static final DefaultedRegistryReference<Statistic> PLAY_RECORD = Statistics.key(ResourceKey.minecraft("play_record"));
+
+    public static final DefaultedRegistryReference<Statistic> PLAY_TIME = Statistics.key(ResourceKey.minecraft("play_time"));
 
     public static final DefaultedRegistryReference<Statistic> PLAYER_KILLS = Statistics.key(ResourceKey.minecraft("player_kills"));
 
@@ -173,6 +173,8 @@ public final class Statistics {
     public static final DefaultedRegistryReference<Statistic> TIME_SINCE_DEATH = Statistics.key(ResourceKey.minecraft("time_since_death"));
 
     public static final DefaultedRegistryReference<Statistic> TIME_SINCE_REST = Statistics.key(ResourceKey.minecraft("time_since_rest"));
+
+    public static final DefaultedRegistryReference<Statistic> TOTAL_WORLD_TIME = Statistics.key(ResourceKey.minecraft("total_world_time"));
 
     public static final DefaultedRegistryReference<Statistic> TRADED_WITH_VILLAGER = Statistics.key(ResourceKey.minecraft("traded_with_villager"));
 
