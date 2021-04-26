@@ -3,6 +3,7 @@
 MANIFEST.MF
 dependency-reduced-pom.xml
 .checkstyle
+!.checkstyle/
 
 # Compiled #
 ############

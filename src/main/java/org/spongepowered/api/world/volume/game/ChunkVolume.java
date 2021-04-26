@@ -25,10 +25,12 @@
 package org.spongepowered.api.world.volume.game;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.spongepowered.api.Server;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.ProtoWorld;
 import org.spongepowered.api.world.chunk.ProtoChunk;
 import org.spongepowered.api.world.server.ServerLocation;
+import org.spongepowered.api.world.storage.ChunkLayout;
 import org.spongepowered.api.world.volume.block.BlockVolume;
 import org.spongepowered.math.vector.Vector3i;
 
@@ -39,6 +41,15 @@ import java.util.Objects;
  * without a {@link ProtoWorld} volume.
  */
 public interface ChunkVolume extends BlockVolume {
+
+    /**
+     * Returns information about the chunk layout used by this volume's
+     * implementation. May differ based on the {@link Server#chunkLayout()}
+     * used on the server.
+     *
+     * @return The chunk layout used by the implementation
+     */
+    ChunkLayout chunkLayout();
 
     /**
      * Gets the loaded chunk at the given chunk coordinate position. The position
@@ -100,14 +111,118 @@ public interface ChunkVolume extends BlockVolume {
      */
     ProtoChunk<@NonNull ?> chunkAtBlock(final int bx, final int by, final int bz);
 
-    boolean isChunkLoaded(int x, int y, int z, boolean allowEmpty);
+    /**
+     * Gets whether a {@link ProtoChunk} is loaded at the particular chunk
+     * coordinates. Note that chunk coordinates are distinctly different from
+     * block coordinates, refer to the {@link #chunkLayout()} to convert back
+     * and forth.
+     *
+     * @param cx The chunk x coordinate
+     * @param cy The chunk y coordinate
+     * @param cz The chunk z coordinate
+     * @param allowEmpty Whether to allow empty chunks
+     * @return Whether a chunk is loaded or not
+     */
+    boolean isChunkLoaded(int cx, int cy, int cz, boolean allowEmpty);
 
-    default boolean isChunkLoaded(final Vector3i position, final boolean allowEmpty) {
-        Objects.requireNonNull(position, "position");
-        return this.isChunkLoaded(position.getX(), position.getY(), position.getZ(), allowEmpty);
+
+    /**
+     * Gets whether a {@link ProtoChunk} is loaded at the particular block
+     * coordinates. Note that chunk coordinates are distinctly different from
+     * block coordinates, refer to the {@link #chunkLayout()} to convert back
+     * and forth.
+     *
+     * @param bx The block x coordinate
+     * @param by The block y coordinate
+     * @param bz The block z coordinate
+     * @param allowEmpty Whether to allow empty chunks
+     * @return Whether a chunk is loaded or not
+     */
+    default boolean isChunkLoadedAtBlock(int bx, int by, int bz, boolean allowEmpty) {
+        return this.isChunkLoaded(this.chunkLayout().forceToChunk(bx, by, bz), allowEmpty);
     }
 
-    boolean hasChunk(int x, int y, int z);
+    /**
+     * Gets whether a {@link ProtoChunk} is loaded at the particular chunk
+     * coordinates. Note that chunk coordinates are distinctly different from
+     * block coordinates, refer to the {@link #chunkLayout()} to convert back
+     * and forth.
+     *
+     * @param chunkPosition The chunk coordinates
+     * @param allowEmpty Whether to allow empty chunks
+     * @return Whether a chunk is loaded or not
+     */
+    default boolean isChunkLoaded(final Vector3i chunkPosition, final boolean allowEmpty) {
+        Objects.requireNonNull(chunkPosition, "chunkPosition");
+        return this.isChunkLoaded(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), allowEmpty);
+    }
 
-    boolean hasChunk(Vector3i position);
+    /**
+     * Gets whether a {@link ProtoChunk} is loaded at the particular block
+     * coordinates. Note that chunk coordinates are distinctly different from
+     * block coordinates, refer to the {@link #chunkLayout()} to convert back
+     * and forth.
+     *
+     * @param position The block coordinates
+     * @param allowEmpty Whether to allow empty chunks
+     * @return Whether a chunk is loaded or not
+     */
+    default boolean isChunkLoadedAtBlock(final Vector3i position, final boolean allowEmpty) {
+        Objects.requireNonNull(position, "position");
+        return this.isChunkLoaded(this.chunkLayout().forceToChunk(position), allowEmpty);
+    }
+
+    /**
+     * Gets whether a {@link ProtoChunk} exists at the particular chunk
+     * coordinates. Note that chunk coordinates are distinctly different from
+     * block coordinates, refer to the {@link #chunkLayout()} to convert back
+     * and forth.
+     *
+     * @param cx The chunk x coordinate
+     * @param cy The chunk y coordinate
+     * @param cz The chunk z coordinate
+     * @return Whether a chunk exists
+     */
+    boolean hasChunk(int cx, int cy, int cz);
+
+    /**
+     * Gets whether a {@link ProtoChunk} exists at the particular block
+     * coordinates. Note that chunk coordinates are distinctly different from
+     * block coordinates, refer to the {@link #chunkLayout()} to convert back
+     * and forth.
+     *
+     * @param bx The block x coordinate
+     * @param by The block y coordinate
+     * @param bz The block z coordinate
+     * @return Whether a chunk exists
+     */
+    default boolean hasChunkAtBlock(int bx, int by, int bz) {
+        return this.hasChunk(this.chunkLayout().forceToChunk(bx, by, bz));
+    }
+
+    /**
+     * Gets whether a {@link ProtoChunk} exists at the particular block
+     * coordinates. Note that chunk coordinates are distinctly different from
+     * block coordinates, refer to the {@link #chunkLayout()} to convert back
+     * and forth.
+     *
+     * @param chunkPosition The chunk coordinates
+     * @return Whether a chunk exists
+     */
+    default boolean hasChunk(Vector3i chunkPosition) {
+        return this.hasChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ());
+    }
+
+    /**
+     * Gets whether a {@link ProtoChunk} exists at the particular block
+     * coordinates. Note that chunk coordinates are distinctly different from
+     * block coordinates, refer to the {@link #chunkLayout()} to convert back
+     * and forth.
+     *
+     * @param blockPosition The block coordinates
+     * @return Whether a chunk exists
+     */
+    default boolean hasChunkAtBlock(final Vector3i blockPosition) {
+        return this.hasChunk(this.chunkLayout().forceToChunk(Objects.requireNonNull(blockPosition, "blockPosition")));
+    }
 }
