@@ -15,7 +15,7 @@ repositories {
 
 checkstyle {
     toolVersion = "8.41.1"
-    configDirectory.set(layout.projectDirectory)
+    configDirectory.set(layout.projectDirectory.dir(".checkstyle"))
     configProperties = mutableMapOf<String, Any>(
             "severity" to "error"
     )
