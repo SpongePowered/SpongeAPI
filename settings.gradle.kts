@@ -7,6 +7,6 @@ pluginManagement {
         }
     }
     plugins {
-        id("org.cadixdev.licenser") version "0.5.1"
+        id("org.cadixdev.licenser") version "0.6.0"
     }
 }

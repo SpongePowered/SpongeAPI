@@ -14,7 +14,7 @@ repositories {
 }
 
 checkstyle {
-    toolVersion = "8.41.1"
+    toolVersion = "8.42"
     configDirectory.set(layout.projectDirectory.dir(".checkstyle"))
     configProperties = mutableMapOf<String, Any>(
             "severity" to "error"
@@ -227,15 +227,15 @@ val organization: String by project
 val projectUrl: String by project
 val projectDescription: String by project
 license {
-    (this as ExtensionAware).extra.apply {
+    properties {
         this["name"] = "SpongeAPI"
         this["organization"] = organization
         this["url"] = projectUrl
     }
-    header = file("HEADER.txt")
+    header(file("HEADER.txt"))
 
     include("**/*.java")
-    newLine = false
+    newLine(false)
 }
 
 publishing {
