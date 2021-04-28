@@ -82,6 +82,8 @@ public interface NoiseGeneratorConfig extends ChunkGeneratorConfig {
 
     boolean oreVeins();
 
+    boolean noodleCaves();
+
     interface Builder extends org.spongepowered.api.util.Builder<NoiseGeneratorConfig, Builder>, CopyableBuilder<NoiseGeneratorConfig, Builder> {
 
         Builder structureConfig(StructureGenerationConfig config);
@@ -107,6 +109,8 @@ public interface NoiseGeneratorConfig extends ChunkGeneratorConfig {
         Builder deepslate(boolean enableDeepslate);
 
         Builder oreVeins(boolean enableOreVeins);
+
+        Builder noodleCaves(boolean noodleCaves);
     }
 
     interface Factory {
