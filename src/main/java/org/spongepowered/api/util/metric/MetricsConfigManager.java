@@ -68,7 +68,7 @@ public interface MetricsConfigManager {
      * collection state determines how data collection should be handled.
      *
      * <p>The effective collection state for a plugin falls back to the
-     * {@link #getGlobalCollectionState() global collection state} if the server administrator
+     * {@link #globalCollectionState() global collection state} if the server administrator
      * has not made an explicit decision for the plugin.</p>
      *
      * <table>
@@ -110,10 +110,10 @@ public interface MetricsConfigManager {
      * @param container The {@link PluginContainer}
      * @return The current collection state
      */
-    default Tristate getEffectiveCollectionState(final PluginContainer container) {
-        final Tristate pluginState = this.getCollectionState(container);
+    default Tristate effectiveCollectionState(final PluginContainer container) {
+        final Tristate pluginState = this.collectionState(container);
         if (pluginState == Tristate.UNDEFINED) {
-            return this.getGlobalCollectionState();
+            return this.globalCollectionState();
         }
         return pluginState;
     }
