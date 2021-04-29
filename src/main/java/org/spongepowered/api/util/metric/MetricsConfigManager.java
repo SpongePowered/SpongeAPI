@@ -43,7 +43,7 @@ public interface MetricsConfigManager {
      * <p>Global state determines how an undefined state for a specific plugin should be
      * handled. If a plugin has a state specified then it will override the global state.</p>
      *
-     * <table>
+     * <table summary="Data Collection States">
      *     <tr>
      *         <th>State</th>
      *         <th>Data Collection Permitted</th>
@@ -83,7 +83,7 @@ public interface MetricsConfigManager {
      * {@link #globalCollectionState() global state}, taking precedence when establishing
      * whether a plugin is allowed to perform data collection.</p>
      *
-     * <table>
+     * <table summary="Data Collection States">
      *     <tr>
      *         <th>State</th>
      *         <th>Data Collection Permitted</th>
@@ -129,7 +129,7 @@ public interface MetricsConfigManager {
      * {@link #globalCollectionState() global collection state} if the server administrator
      * has not made an explicit decision for the plugin.</p>
      *
-     * <table>
+     * <table summary="Data Collection States">
      *     <tr>
      *         <th>State</th>
      *         <th>Data Collection Permitted</th>
