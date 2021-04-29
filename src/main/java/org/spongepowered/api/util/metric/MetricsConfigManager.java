@@ -63,4 +63,59 @@ public interface MetricsConfigManager {
      */
     Tristate collectionState(final PluginContainer container);
 
+    /**
+     * Gets the current <em>effective</em> state of collection for the specified plugin. The
+     * collection state determines how data collection should be handled.
+     *
+     * <p>The effective collection state for a plugin falls back to the
+     * {@link #getGlobalCollectionState() global collection state} if the server administrator
+     * has not made an explicit decision for the plugin.</p>
+     *
+     * <table>
+     *     <tr>
+     *         <th>State</th>
+     *         <th>Data Collection Permitted</th>
+     *         <th>Comment</th>
+     *     </tr>
+     *     <tr>
+     *         <td>{@link Tristate#TRUE TRUE}</td>
+     *         <td>Allowed</td>
+     *         <td>Server administrator enabled metrics either globally (if the plugin was undefined)
+     *         or for the plugin.</td>
+     *     </tr>
+     *     <tr>
+     *         <td>{@link Tristate#FALSE FALSE}</td>
+     *         <td>Disallowed (explicitly)</td>
+     *         <td>Server administrator disabled metrics either globally (if the plugin was undefined)
+     *         or for the plugin.</td>
+     *     </tr>
+     *     <tr>
+     *         <td>{@link Tristate#UNDEFINED UNDEFINED} (default)</td>
+     *         <td>Disallowed (implicitly)</td>
+     *         <td>The server administrator has made no specific choice either globally or for the
+     *         plugin.</td>
+     *     </tr>
+     * </table>
+     *
+     * <p>The value returned from this <em>should not be stored</em>. As the
+     * configuration/permission can be updated at any time, it is best to check this each
+     * time server metric collection is due to occur.</p>
+     *
+     * <p>Plugin authors may wish to seek permission to perform data collection, noting that
+     * a {@link Tristate#FALSE false} state is explicitly set by the server administrator,
+     * we ask that permission is only sought if a {@link Tristate#UNDEFINED undefined} state
+     * is present. In doing this, server administrators are not asked for consent for something
+     * that have explicitly denied.</p>
+     *
+     * @param container The {@link PluginContainer}
+     * @return The current collection state
+     */
+    default Tristate getEffectiveCollectionState(final PluginContainer container) {
+        final Tristate pluginState = this.getCollectionState(container);
+        if (pluginState == Tristate.UNDEFINED) {
+            return this.getGlobalCollectionState();
+        }
+        return pluginState;
+    }
+
 }
