@@ -116,9 +116,9 @@ public final class RespawnLocation implements DataSerializable {
     public DataContainer toContainer() {
         return DataContainer.createNew()
                 .set(Queries.CONTENT_VERSION, this.contentVersion())
-                .set(Queries.POSITION_X, this.position().getX())
-                .set(Queries.POSITION_Y, this.position().getY())
-                .set(Queries.POSITION_Z, this.position().getZ())
+                .set(Queries.POSITION_X, this.position().x())
+                .set(Queries.POSITION_Y, this.position().y())
+                .set(Queries.POSITION_Z, this.position().z())
                 .set(Queries.FORCED_SPAWN, this.isForced())
                 .set(Queries.WORLD_KEY, this.worldKey().formatted());
     }

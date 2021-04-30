@@ -81,7 +81,7 @@ public interface BlockEntityVolume extends BlockVolume, Volume {
     default Optional<? extends BlockEntity> blockEntity(final Vector3i position) {
         Objects.requireNonNull(position);
 
-        return this.blockEntity(position.getX(), position.getY(), position.getZ());
+        return this.blockEntity(position.x(), position.y(), position.z());
     }
 
     /**
@@ -119,13 +119,13 @@ public interface BlockEntityVolume extends BlockVolume, Volume {
     interface Mutable<M extends Mutable<M>> extends Streamable<M>, BlockVolume.Mutable<M>, MutableVolume {
 
         default void addBlockEntity(final Vector3i pos, final BlockEntity blockEntity) {
-            this.addBlockEntity(pos.getX(), pos.getY(), pos.getZ(), blockEntity);
+            this.addBlockEntity(pos.x(), pos.y(), pos.z(), blockEntity);
         }
 
         void addBlockEntity(int x, int y, int z, BlockEntity blockEntity);
 
         default void removeBlockEntity(final Vector3i pos) {
-            this.removeBlockEntity(pos.getX(), pos.getY(), pos.getZ());
+            this.removeBlockEntity(pos.x(), pos.y(), pos.z());
         }
 
         void removeBlockEntity(int x, int y, int z);

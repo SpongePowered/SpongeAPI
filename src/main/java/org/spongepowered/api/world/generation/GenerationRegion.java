@@ -68,21 +68,21 @@ public interface GenerationRegion extends ProtoWorld<GenerationRegion> {
     Vector3i centerChunkPos();
 
     default int centerChunkX() {
-        return this.centerChunkPos().getX();
+        return this.centerChunkPos().x();
     }
 
     default int centerChunkY() {
-        return this.centerChunkPos().getY();
+        return this.centerChunkPos().y();
     }
 
     default int centerChunkZ() {
-        return this.centerChunkPos().getZ();
+        return this.centerChunkPos().z();
     }
 
     @Override
     default PrimitiveChunk chunkAtBlock(final Vector3i position) {
         Objects.requireNonNull(position, "position");
-        return this.chunkAtBlock(position.getX(), position.getY(), position.getZ());
+        return this.chunkAtBlock(position.x(), position.y(), position.z());
     }
 
     @Override
@@ -93,7 +93,7 @@ public interface GenerationRegion extends ProtoWorld<GenerationRegion> {
     @Override
     default PrimitiveChunk chunk(final Vector3i chunkPosition) {
         Objects.requireNonNull(chunkPosition, "chunkPosition");
-        return this.chunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ());
+        return this.chunk(chunkPosition.x(), chunkPosition.y(), chunkPosition.z());
     }
 
     @Override

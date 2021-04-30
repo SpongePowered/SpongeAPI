@@ -42,7 +42,7 @@ public interface ServerLocationCreator extends LocationCreator<ServerWorld, Serv
     default LocatableBlock locatableBlock(final Vector3i position) {
         Objects.requireNonNull(position, "position");
 
-        return this.locatableBlock(position.getX(), position.getY(), position.getZ());
+        return this.locatableBlock(position.x(), position.y(), position.z());
     }
 
     /**

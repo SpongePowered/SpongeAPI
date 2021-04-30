@@ -153,7 +153,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      */
     default Vector3d direction() {
         final Vector3d rotation = this.rotation();
-        return Quaterniond.fromAxesAnglesDeg(rotation.getX(), -rotation.getY(), rotation.getZ()).getDirection();
+        return Quaterniond.fromAxesAnglesDeg(rotation.x(), -rotation.y(), rotation.z()).direction();
     }
 
     /**

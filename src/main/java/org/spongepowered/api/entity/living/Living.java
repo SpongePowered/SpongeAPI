@@ -178,6 +178,6 @@ public interface Living extends AttributeHolder, Entity, TeamMember {
      */
     default Vector3d headDirection() {
         final Vector3d headRotation = this.headRotation().get();
-        return Quaterniond.fromAxesAnglesDeg(headRotation.getX(), -headRotation.getY(), headRotation.getZ()).getDirection();
+        return Quaterniond.fromAxesAnglesDeg(headRotation.x(), -headRotation.y(), headRotation.z()).direction();
     }
 }

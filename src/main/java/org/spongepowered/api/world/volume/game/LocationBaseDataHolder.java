@@ -66,7 +66,7 @@ public interface LocationBaseDataHolder {
      * @return The data, if available
      */
     default <E> Optional<E> get(final Vector3i position, final Key<? extends Value<E>> key) {
-        return this.get(position.getX(), position.getY(), position.getZ(), key);
+        return this.get(position.x(), position.y(), position.z(), key);
     }
 
     /**
@@ -79,7 +79,7 @@ public interface LocationBaseDataHolder {
      * @return The data, if available
      */
     default <E> Optional<E> get(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
-        return this.get(position.getX(), position.getY(), position.getZ(), key.get());
+        return this.get(position.x(), position.y(), position.z(), key.get());
     }
 
     /**
@@ -119,7 +119,7 @@ public interface LocationBaseDataHolder {
      * @return The data, if available
      */
     default OptionalInt getInt(final Vector3i position, final Key<? extends Value<Integer>> key) {
-        return this.getInt(position.getX(), position.getY(), position.getZ(), key);
+        return this.getInt(position.x(), position.y(), position.z(), key);
     }
 
     /**
@@ -131,7 +131,7 @@ public interface LocationBaseDataHolder {
      * @return The data, if available
      */
     default OptionalInt getInt(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<Integer>>> key) {
-        return this.getInt(position.getX(), position.getY(), position.getZ(), key.get());
+        return this.getInt(position.x(), position.y(), position.z(), key.get());
     }
 
     /**
@@ -171,7 +171,7 @@ public interface LocationBaseDataHolder {
      * @return The data, if available
      */
     default OptionalDouble getDouble(final Vector3i position, final Key<? extends Value<Double>> key) {
-        return this.getDouble(position.getX(), position.getY(), position.getZ(), key);
+        return this.getDouble(position.x(), position.y(), position.z(), key);
     }
 
     /**
@@ -183,7 +183,7 @@ public interface LocationBaseDataHolder {
      * @return The data, if available
      */
     default OptionalDouble getDouble(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<Double>>> key) {
-        return this.getDouble(position.getX(), position.getY(), position.getZ(), key.get());
+        return this.getDouble(position.x(), position.y(), position.z(), key.get());
     }
 
     /**
@@ -223,7 +223,7 @@ public interface LocationBaseDataHolder {
      * @return The data, if available
      */
     default OptionalLong getLong(final Vector3i position, final Key<? extends Value<Long>> key) {
-        return this.getLong(position.getX(), position.getY(), position.getZ(), key);
+        return this.getLong(position.x(), position.y(), position.z(), key);
     }
     
     /**
@@ -235,7 +235,7 @@ public interface LocationBaseDataHolder {
      * @return The data, if available
      */
     default OptionalLong getLong(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<Long>>> key) {
-        return this.getLong(position.getX(), position.getY(), position.getZ(), key.get());
+        return this.getLong(position.x(), position.y(), position.z(), key.get());
     }
 
     /**
@@ -280,7 +280,7 @@ public interface LocationBaseDataHolder {
      * @throws NoSuchElementException If the value is not supported or present
      */
     default <E> E require(final Vector3i position, final Key<? extends Value<E>> key) {
-        return this.require(position.getX(), position.getY(), position.getZ(), key);
+        return this.require(position.x(), position.y(), position.z(), key);
     }
 
     /**
@@ -297,7 +297,7 @@ public interface LocationBaseDataHolder {
      * @throws NoSuchElementException If the value is not supported or present
      */
     default <E> E require(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
-        return this.require(position.getX(), position.getY(), position.getZ(), key.get());
+        return this.require(position.x(), position.y(), position.z(), key.get());
     }
 
     /**
@@ -357,7 +357,7 @@ public interface LocationBaseDataHolder {
      * @return The data or null
      */
     default <E> @Nullable E orNull(final Vector3i position, final Key<? extends Value<E>> key) {
-        return this.get(position.getX(), position.getY(), position.getZ(), key).orElse(null);
+        return this.get(position.x(), position.y(), position.z(), key).orElse(null);
     }
 
     /**
@@ -371,7 +371,7 @@ public interface LocationBaseDataHolder {
      * @return The data or null
      */
     default <E> @Nullable E orNull(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
-        return this.get(position.getX(), position.getY(), position.getZ(), key.get()).orElse(null);
+        return this.get(position.x(), position.y(), position.z(), key.get()).orElse(null);
     }
 
     /**
@@ -418,7 +418,7 @@ public interface LocationBaseDataHolder {
      * @return The data or null
      */
     default <E> E orElse(final Vector3i position, final Key<? extends Value<E>> key, final E defaultValue) {
-        return this.get(position.getX(), position.getY(), position.getZ(), key).orElse(Objects.requireNonNull(defaultValue));
+        return this.get(position.x(), position.y(), position.z(), key).orElse(Objects.requireNonNull(defaultValue));
     }
 
     /**
@@ -433,7 +433,7 @@ public interface LocationBaseDataHolder {
      * @return The data or null
      */
     default <E> E orElse(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final E defaultValue) {
-        return this.get(position.getX(), position.getY(), position.getZ(), key.get()).orElse(Objects.requireNonNull(defaultValue));
+        return this.get(position.x(), position.y(), position.z(), key.get()).orElse(Objects.requireNonNull(defaultValue));
     }
 
     /**
@@ -483,7 +483,7 @@ public interface LocationBaseDataHolder {
      * @return The data or null
      */
     default <E> E orElse(final Vector3i position, final Key<? extends Value<E>> key, final Supplier<? extends E> defaultValue) {
-        return this.get(position.getX(), position.getY(), position.getZ(), key).orElseGet(Objects.requireNonNull(defaultValue));
+        return this.get(position.x(), position.y(), position.z(), key).orElseGet(Objects.requireNonNull(defaultValue));
     }
 
     /**
@@ -498,7 +498,7 @@ public interface LocationBaseDataHolder {
      * @return The data or null
      */
     default <E> E orElse(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final Supplier<? extends E> defaultValue) {
-        return this.get(position.getX(), position.getY(), position.getZ(), key.get()).orElseGet(Objects.requireNonNull(defaultValue));
+        return this.get(position.x(), position.y(), position.z(), key.get()).orElseGet(Objects.requireNonNull(defaultValue));
     }
 
     /**
@@ -547,7 +547,7 @@ public interface LocationBaseDataHolder {
      * @return The base value, if available
      */
     default <E, V extends Value<E>> Optional<V> getValue(final Vector3i position, final Key<V> key) {
-        return this.getValue(position.getX(), position.getY(), position.getZ(), key);
+        return this.getValue(position.x(), position.y(), position.z(), key);
     }
 
     /**
@@ -562,7 +562,7 @@ public interface LocationBaseDataHolder {
      * @return The base value, if available
      */
     default <E, V extends Value<E>> Optional<V> getValue(final Vector3i position, final Supplier<? extends Key<V>> key) {
-        return this.getValue(position.getX(), position.getY(), position.getZ(), key.get());
+        return this.getValue(position.x(), position.y(), position.z(), key.get());
     }
 
     /**
@@ -604,7 +604,7 @@ public interface LocationBaseDataHolder {
      * @return True if the block supports the data
      */
     default boolean supports(final Vector3i position, final Key<?> key) {
-        return this.supports(position.getX(), position.getY(), position.getZ(), key);
+        return this.supports(position.x(), position.y(), position.z(), key);
     }
 
     /**
@@ -616,7 +616,7 @@ public interface LocationBaseDataHolder {
      * @return True if the block supports the data
      */
     default boolean supports(final Vector3i position, final Supplier<? extends Key<?>> key) {
-        return this.supports(position.getX(), position.getY(), position.getZ(), key.get());
+        return this.supports(position.x(), position.y(), position.z(), key.get());
     }
 
     /**
@@ -654,7 +654,7 @@ public interface LocationBaseDataHolder {
      * @return True if the block supports the data
      */
     default boolean supports(final Vector3i position, final Value<?> value) {
-        return this.supports(position.getX(), position.getY(), position.getZ(), value.key());
+        return this.supports(position.x(), position.y(), position.z(), value.key());
     }
 
     /**
@@ -679,7 +679,7 @@ public interface LocationBaseDataHolder {
      * @return The immutable set of values for the block
      */
     default Set<Key<?>> keys(final Vector3i position) {
-        return this.keys(position.getX(), position.getY(), position.getZ());
+        return this.keys(position.x(), position.y(), position.z());
     }
 
     /**
@@ -701,7 +701,7 @@ public interface LocationBaseDataHolder {
      * @return The immutable set of values for the block
      */
     default Set<Value.Immutable<?>> getValues(final Vector3i position) {
-        return this.getValues(position.getX(), position.getY(), position.getZ());
+        return this.getValues(position.x(), position.y(), position.z());
     }
 
     /**
@@ -729,7 +729,7 @@ public interface LocationBaseDataHolder {
          * @return The transaction result
          */
         default <E> DataTransactionResult transform(final Vector3i position, final Key<? extends Value<E>> key, final Function<E, E> function) {
-            return this.transform(position.getX(), position.getY(), position.getZ(), key, function);
+            return this.transform(position.x(), position.y(), position.z(), key, function);
         }
 
         /**
@@ -745,7 +745,7 @@ public interface LocationBaseDataHolder {
          */
         default <E> DataTransactionResult transform(
             final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final Function<E, E> function) {
-            return this.transform(position.getX(), position.getY(), position.getZ(), key.get(), function);
+            return this.transform(position.x(), position.y(), position.z(), key.get(), function);
         }
 
         /**
@@ -810,7 +810,7 @@ public interface LocationBaseDataHolder {
          * @return The transaction result
          */
         default <E> DataTransactionResult offer(final Vector3i position, final Key<? extends Value<E>> key, final E value) {
-            return this.offer(position.getX(), position.getY(), position.getZ(), key, value);
+            return this.offer(position.x(), position.y(), position.z(), key, value);
         }
 
         /**
@@ -828,7 +828,7 @@ public interface LocationBaseDataHolder {
          * @return The transaction result
          */
         default <E> DataTransactionResult offer(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final E value) {
-            return this.offer(position.getX(), position.getY(), position.getZ(), key.get(), value);
+            return this.offer(position.x(), position.y(), position.z(), key.get(), value);
         }
 
         /**
@@ -883,7 +883,7 @@ public interface LocationBaseDataHolder {
          * @return The transaction result
          */
         default <E> DataTransactionResult offer(final Vector3i position, final Value<E> value) {
-            return this.offer(position.getX(), position.getY(), position.getZ(), value.key(), value.get());
+            return this.offer(position.x(), position.y(), position.z(), value.key(), value.get());
         }
 
         /**
@@ -913,7 +913,7 @@ public interface LocationBaseDataHolder {
          * @return The transaction result
          */
         default DataTransactionResult remove(final Vector3i position, final Key<?> key) {
-            return this.remove(position.getX(), position.getY(), position.getZ(), key);
+            return this.remove(position.x(), position.y(), position.z(), key);
         }
 
         /**
@@ -925,7 +925,7 @@ public interface LocationBaseDataHolder {
          * @return The transaction result
          */
         default DataTransactionResult remove(final Vector3i position, final DefaultedRegistryReference<? extends Key<?>> key) {
-            return this.remove(position.getX(), position.getY(), position.getZ(), key.get());
+            return this.remove(position.x(), position.y(), position.z(), key.get());
         }
 
         /**
@@ -964,7 +964,7 @@ public interface LocationBaseDataHolder {
          * @return The transaction result
          */
         default DataTransactionResult undo(final Vector3i position, final DataTransactionResult result) {
-            return this.undo(position.getX(), position.getY(), position.getZ(), result);
+            return this.undo(position.x(), position.y(), position.z(), result);
         }
 
         /**
@@ -989,7 +989,7 @@ public interface LocationBaseDataHolder {
          * @return The transaction result
          */
         default DataTransactionResult copyFrom(final Vector3i to, final ValueContainer from) {
-            return this.copyFrom(to.getX(), to.getY(), to.getZ(), from);
+            return this.copyFrom(to.x(), to.y(), to.z(), from);
         }
 
         /**
@@ -1013,8 +1013,8 @@ public interface LocationBaseDataHolder {
          * @return The transaction result
          */
         default DataTransactionResult copyFrom(final Vector3i positionTo, final Vector3i positionFrom) {
-            return this.copyFrom(positionTo.getX(), positionTo.getY(), positionTo.getZ(),
-                    positionFrom.getX(), positionFrom.getY(), positionFrom.getZ(),
+            return this.copyFrom(positionTo.x(), positionTo.y(), positionTo.z(),
+                    positionFrom.x(), positionFrom.y(), positionFrom.z(),
                     MergeFunction.REPLACEMENT_PREFERRED);
         }
 
@@ -1045,7 +1045,7 @@ public interface LocationBaseDataHolder {
          * @return The transaction result
          */
         default DataTransactionResult copyFrom(final Vector3i to, final ValueContainer from, final MergeFunction function) {
-            return this.copyFrom(to.getX(), to.getY(), to.getZ(), from, function);
+            return this.copyFrom(to.x(), to.y(), to.z(), from, function);
         }
 
         /**
@@ -1073,8 +1073,8 @@ public interface LocationBaseDataHolder {
          * @return The transaction result
          */
         default DataTransactionResult copyFrom(final Vector3i positionTo, final Vector3i positionFrom, final MergeFunction function) {
-            return this.copyFrom(positionTo.getX(), positionTo.getY(), positionTo.getZ(),
-                    positionFrom.getX(), positionFrom.getY(), positionFrom.getZ(), function);
+            return this.copyFrom(positionTo.x(), positionTo.y(), positionTo.z(),
+                    positionFrom.x(), positionFrom.y(), positionFrom.z(), function);
         }
 
         /**
@@ -1106,7 +1106,7 @@ public interface LocationBaseDataHolder {
          * @return True if the data is valid
          */
         default boolean validateRawData(final Vector3i position, final DataView container) {
-            return this.validateRawData(position.getX(), position.getY(), position.getZ(), container);
+            return this.validateRawData(position.x(), position.y(), position.z(), container);
         }
 
         /**
@@ -1144,7 +1144,7 @@ public interface LocationBaseDataHolder {
          *         data that this holder will refuse
          */
         default void setRawData(final Vector3i position, final DataView container) throws InvalidDataException {
-            this.setRawData(position.getX(), position.getY(), position.getZ(), container);
+            this.setRawData(position.x(), position.y(), position.z(), container);
         }
 
         /**

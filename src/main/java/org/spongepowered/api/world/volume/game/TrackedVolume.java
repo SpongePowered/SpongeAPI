@@ -43,7 +43,7 @@ public interface TrackedVolume extends BlockVolume, LocationBaseDataHolder.Mutab
      * @return The {@link UUID} if one exists
      */
     default Optional<UUID> creator(final Vector3i pos) {
-        return this.creator(pos.getX(), pos.getY(), pos.getZ());
+        return this.creator(pos.x(), pos.y(), pos.z());
     }
 
     /**
@@ -67,7 +67,7 @@ public interface TrackedVolume extends BlockVolume, LocationBaseDataHolder.Mutab
      * @return The {@link UUID} if one exists
      */
     default Optional<UUID> notifier(final Vector3i pos) {
-        return this.notifier(pos.getX(), pos.getY(), pos.getZ());
+        return this.notifier(pos.x(), pos.y(), pos.z());
     }
 
     /**
@@ -91,7 +91,7 @@ public interface TrackedVolume extends BlockVolume, LocationBaseDataHolder.Mutab
      * @param uuid The {@link UUID} to set as creator
      */
     default void setCreator(final Vector3i pos, @Nullable final UUID uuid) {
-        this.setCreator(pos.getX(), pos.getY(), pos.getZ(), uuid);
+        this.setCreator(pos.x(), pos.y(), pos.z(), uuid);
     }
 
     /**
@@ -119,7 +119,7 @@ public interface TrackedVolume extends BlockVolume, LocationBaseDataHolder.Mutab
      * @param uuid The {@link UUID} to set as notifier
      */
     default void setNotifier(final Vector3i pos, @Nullable final UUID uuid) {
-        this.setNotifier(pos.getX(), pos.getY(), pos.getZ(), uuid);
+        this.setNotifier(pos.x(), pos.y(), pos.z(), uuid);
     }
 
     /**

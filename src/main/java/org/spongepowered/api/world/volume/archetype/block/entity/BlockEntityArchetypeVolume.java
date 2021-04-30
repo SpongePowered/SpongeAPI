@@ -58,7 +58,7 @@ public interface BlockEntityArchetypeVolume extends BlockVolume {
      * @return The block entity, if found
      */
     default Optional<BlockEntityArchetype> blockEntityArchetype(final Vector3i position) {
-        return this.blockEntityArchetype(position.getX(), position.getY(), position.getZ());
+        return this.blockEntityArchetype(position.x(), position.y(), position.z());
     }
 
     /**
@@ -96,7 +96,7 @@ public interface BlockEntityArchetypeVolume extends BlockVolume {
         MutableVolume {
 
         default void addBlockEntity(final Vector3i pos, final BlockEntity blockEntity) {
-            this.addBlockEntity(pos.getX(), pos.getY(), pos.getZ(), blockEntity);
+            this.addBlockEntity(pos.x(), pos.y(), pos.z(), blockEntity);
         }
 
         default void addBlockEntity(final int x, final int y, final int z, final BlockEntity blockEntity) {
@@ -104,13 +104,13 @@ public interface BlockEntityArchetypeVolume extends BlockVolume {
         }
 
         default void addBlockEntity(final Vector3i pos, final BlockEntityArchetype archetype) {
-            this.addBlockEntity(pos.getX(), pos.getY(), pos.getZ(), archetype);
+            this.addBlockEntity(pos.x(), pos.y(), pos.z(), archetype);
         }
 
         void addBlockEntity(int x, int y, int z, BlockEntityArchetype archetype);
 
         default void removeBlockEntity(final Vector3i pos) {
-            this.removeBlockEntity(pos.getX(), pos.getY(), pos.getZ());
+            this.removeBlockEntity(pos.x(), pos.y(), pos.z());
         }
 
         void removeBlockEntity(int x, int y, int z);

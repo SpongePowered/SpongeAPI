@@ -47,7 +47,7 @@ public interface Volume {
     default boolean containsBlock(final Vector3i position) {
         Objects.requireNonNull(position, "position");
 
-        return this.containsBlock(position.getX(), position.getY(), position.getZ());
+        return this.containsBlock(position.x(), position.y(), position.z());
     }
 
     /**
@@ -65,7 +65,7 @@ public interface Volume {
     default boolean isAreaAvailable(final Vector3i position) {
         Objects.requireNonNull(position, "position");
 
-        return this.isAreaAvailable(position.getX(), position.getY(), position.getZ());
+        return this.isAreaAvailable(position.x(), position.y(), position.z());
     }
 
     boolean isAreaAvailable(int x, int y, int z);

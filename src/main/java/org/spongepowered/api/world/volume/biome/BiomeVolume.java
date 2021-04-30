@@ -49,7 +49,7 @@ public interface BiomeVolume extends Volume {
      */
     default Biome biome(final Vector3i position) {
         Objects.requireNonNull(position, "position");
-        return this.biome(position.getX(), position.getY(), position.getZ());
+        return this.biome(position.x(), position.y(), position.z());
     }
 
     /**
@@ -101,7 +101,7 @@ public interface BiomeVolume extends Volume {
          *                                      bounds of the volume
          */
         default boolean setBiome(Vector3i position, Biome biome) {
-            return this.setBiome(position.getX(), position.getY(), position.getZ(), biome);
+            return this.setBiome(position.x(), position.y(), position.z(), biome);
         }
 
         /**

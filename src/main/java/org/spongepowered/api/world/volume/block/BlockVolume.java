@@ -58,13 +58,13 @@ public interface BlockVolume extends Volume {
     BlockState block(int x, int y, int z);
 
     default BlockState block(final Vector3i vector3i) {
-        return this.block(vector3i.getX(), vector3i.getY(), vector3i.getZ());
+        return this.block(vector3i.x(), vector3i.y(), vector3i.z());
     }
 
     FluidState fluid(int x, int y, int z);
 
     default FluidState fluid(final Vector3i vector3i) {
-        return this.fluid(vector3i.getX(), vector3i.getY(), vector3i.getZ());
+        return this.fluid(vector3i.x(), vector3i.y(), vector3i.z());
     }
 
     /**
@@ -91,7 +91,7 @@ public interface BlockVolume extends Volume {
      * @return The y value of the highest opaque block
      */
     default int highestYAt(final Vector2i column) {
-        return this.highestYAt(column.getX(), column.getY());
+        return this.highestYAt(column.x(), column.y());
     }
 
     /**
@@ -105,7 +105,7 @@ public interface BlockVolume extends Volume {
      * @return The highest opaque position
      */
     default Vector3i highestPositionAt(final Vector3i position) {
-        return new Vector3i(position.getX(), this.highestYAt(position.getX(), position.getZ()), position.getZ());
+        return new Vector3i(position.x(), this.highestYAt(position.x(), position.z()), position.z());
     }
 
     interface Streamable<B extends Streamable<B>> extends BlockVolume {
@@ -150,7 +150,7 @@ public interface BlockVolume extends Volume {
          *         bounds of the volume
          */
         default boolean setBlock(final Vector3i position, final BlockState block) {
-            return this.setBlock(position.getX(), position.getY(), position.getZ(), block);
+            return this.setBlock(position.x(), position.y(), position.z(), block);
         }
 
         /**
@@ -167,7 +167,7 @@ public interface BlockVolume extends Volume {
         boolean setBlock(int x, int y, int z, BlockState block);
 
         default boolean removeBlock(final Vector3i position) {
-            return this.removeBlock(position.getX(), position.getY(), position.getZ());
+            return this.removeBlock(position.x(), position.y(), position.z());
         }
 
         boolean removeBlock(int x, int y, int z);

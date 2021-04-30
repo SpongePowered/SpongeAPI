@@ -33,17 +33,17 @@ import java.util.function.Predicate;
 public interface GenerationVolume extends HeightAwareVolume {
 
     default boolean hasBlockState(Vector3i pos) {
-        return this.hasBlockState(pos.getX(), pos.getY(), pos.getZ(), block -> true);
+        return this.hasBlockState(pos.x(), pos.y(), pos.z(), block -> true);
     }
 
     default boolean hasBlockState(Vector3i pos, Predicate<? super BlockState> predicate) {
-        return this.hasBlockState(pos.getX(), pos.getY(), pos.getZ(), predicate);
+        return this.hasBlockState(pos.x(), pos.y(), pos.z(), predicate);
     }
 
     boolean hasBlockState(int x, int y, int z, Predicate<? super BlockState> predicate);
 
     default int maximumHeight() {
-        return this instanceof World ? ((World) this).blockMax().getY() : 256;
+        return this instanceof World ? ((World) this).blockMax().y() : 256;
     }
 
     interface Mutable extends GenerationVolume, MutableGameVolume {

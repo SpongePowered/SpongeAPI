@@ -30,7 +30,7 @@ import org.spongepowered.math.vector.Vector3i;
 public interface HeightAwareVolume {
 
     default Vector3i height(HeightType type, Vector3i position) {
-        return new Vector3i(position.getX(), this.height(type, position.getX(), position.getZ()), position.getZ());
+        return new Vector3i(position.x(), this.height(type, position.x(), position.z()), position.z());
     }
 
     int height(HeightType type, int x, int z);

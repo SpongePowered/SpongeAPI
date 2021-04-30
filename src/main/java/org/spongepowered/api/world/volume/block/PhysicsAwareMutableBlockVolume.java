@@ -48,7 +48,7 @@ public interface PhysicsAwareMutableBlockVolume<P extends PhysicsAwareMutableBlo
      */
     @Override
     default boolean setBlock(final Vector3i position, final BlockState block) {
-        return this.setBlock(position.getX(), position.getY(), position.getZ(), block, BlockChangeFlags.DEFAULT_PLACEMENT);
+        return this.setBlock(position.x(), position.y(), position.z(), block, BlockChangeFlags.DEFAULT_PLACEMENT);
     }
 
     /**
@@ -83,7 +83,7 @@ public interface PhysicsAwareMutableBlockVolume<P extends PhysicsAwareMutableBlo
      *         bounds of the volume
      */
     default boolean setBlock(final Vector3i position, final BlockState blockState, final BlockChangeFlag flag) {
-        return this.setBlock(position.getX(), position.getY(), position.getZ(), blockState, flag);
+        return this.setBlock(position.x(), position.y(), position.z(), blockState, flag);
     }
 
     /**

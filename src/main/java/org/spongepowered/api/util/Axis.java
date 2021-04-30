@@ -52,9 +52,9 @@ public enum Axis implements Cycleable<Axis> {
      * @return The closest axis.
      */
     public static Axis closest(final Vector3d vector) {
-        final double x = Math.abs(vector.getX());
-        final double y = Math.abs(vector.getY());
-        final double z = Math.abs(vector.getZ());
+        final double x = Math.abs(vector.x());
+        final double y = Math.abs(vector.y());
+        final double z = Math.abs(vector.z());
         if (x < y) {
             if (z < y) {
                 return Axis.Y;
@@ -86,11 +86,11 @@ public enum Axis implements Cycleable<Axis> {
     public double component(final Vector3d vector3d) {
         switch (this) {
             case X:
-                return this.direction.getX();
+                return this.direction.x();
             case Y:
-                return this.direction.getY();
+                return this.direction.y();
             case Z:
-                return this.direction.getZ();
+                return this.direction.z();
             default:
                 throw new IllegalStateException("Not capable of handling the " + this.name() + " axis!");
         }
