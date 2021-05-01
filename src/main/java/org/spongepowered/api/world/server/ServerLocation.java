@@ -31,6 +31,7 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DirectionRelativeDataHolder;
+import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
@@ -63,7 +64,7 @@ import java.util.function.BiFunction;
  * <p>Locations are immutable. Methods that change the properties of the
  * location create a new instance.</p>
  */
-public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDataHolder.Mutable, Location<ServerWorld, ServerLocation> {
+public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDataHolder.Mutable, Location<ServerWorld, ServerLocation>, DataSerializable {
 
     static ServerLocation of(final ServerWorld world, final double x, final double y, final double z) {
         return Sponge.game().factoryProvider().provide(Factory.class).create(world, new Vector3d(x, y, z));
