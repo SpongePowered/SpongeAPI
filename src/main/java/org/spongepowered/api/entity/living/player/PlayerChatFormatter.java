@@ -25,16 +25,15 @@
 package org.spongepowered.api.entity.living.player;
 
 import net.kyori.adventure.audience.Audience;
-import net.kyori.adventure.audience.MessageType;
 import net.kyori.adventure.text.Component;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
+
+import java.util.Optional;
 
 /**
- * A chat router.
+ * A player chat formatter.
  */
-public interface PlayerChatRouter {
-    static PlayerChatRouter toAudience(final Audience audience) {
-        return (player, message) -> audience.sendMessage(player, message, MessageType.CHAT);
-    }
+public interface PlayerChatFormatter {
 
-    void chat(final Player player, final Component message);
+    Optional<Component> format(final ServerPlayer player, final Audience target, final Component message, final Component originalMessage);
 }
