@@ -46,4 +46,8 @@ public interface NotificationTicket {
 
     void setValid(boolean valid);
 
+    default void invalidate() {
+        this.setValid(false);
+    }
+
 }
