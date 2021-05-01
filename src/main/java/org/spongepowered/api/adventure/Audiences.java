@@ -25,9 +25,14 @@
 package org.spongepowered.api.adventure;
 
 import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.audience.ForwardingAudience;
 import org.spongepowered.api.Sponge;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * {@link Audience}s.
@@ -62,6 +67,31 @@ public final class Audiences {
     public static Audience withPermission(final String permission) {
         Objects.requireNonNull(permission);
         return Audiences.factory().withPermission(permission);
+    }
+
+    /**
+     * Filters an audience with given predicate.
+     * <p>For {@link net.kyori.adventure.audience.ForwardingAudience}s the predicate is tested on each {@link ForwardingAudience#audiences()}</p>
+     *
+     * @param predicate The predicate
+     *
+     * @return The filtered audience.
+     */
+    public static Optional<Audience> filtered(final Audience audience, final Predicate<Audience> predicate) {
+        if (!(audience instanceof ForwardingAudience)) {
+            if (predicate.test(audience)) {
+                return Optional.of(audience);
+            }
+            return Optional.empty();
+        }
+        final List<Audience> list = new ArrayList<>();
+        for (Audience subAudience : ((ForwardingAudience) audience).audiences()) {
+            Audiences.filtered(subAudience, predicate).ifPresent(list::add);
+        }
+        if (list.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of((ForwardingAudience) () -> list);
     }
 
     /**

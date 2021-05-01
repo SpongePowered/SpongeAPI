@@ -38,7 +38,7 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.CooldownTracker;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.entity.living.player.PlayerChatRouter;
+import org.spongepowered.api.entity.living.player.PlayerChatFormatter;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
 import org.spongepowered.api.entity.living.player.tab.TabList;
@@ -348,12 +348,12 @@ public interface ServerPlayer extends Player, Subject {
      *
      * @return The chat router
      */
-    PlayerChatRouter chatRouter();
+    PlayerChatFormatter chatFormatter();
 
     /**
      * Sets the chat router.
      *
      * @param router the chat router
      */
-    void setChatRouter(final PlayerChatRouter router);
+    void setChatFormatter(final PlayerChatFormatter router);
 }
