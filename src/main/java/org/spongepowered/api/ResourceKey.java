@@ -196,7 +196,7 @@ public interface ResourceKey extends Key {
          * @return This builder, for chaining
          */
         default Builder namespace(PluginContainer container) {
-            return this.namespace(container.getMetadata().getId());
+            return this.namespace(container.metadata().id());
         }
 
         /**
