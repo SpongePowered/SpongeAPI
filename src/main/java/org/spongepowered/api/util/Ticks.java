@@ -267,7 +267,7 @@ public interface Ticks {
      *      be expected to be run in an ideal scenario.
      */
     static Ticks ofMinecraftHours(final Engine engine, final long hours) {
-        return Ticks.ofMinecraftHours(engine, hours);
+        return Ticks.ofMinecraftMinutes(engine, hours * 60);
     }
 
     /**

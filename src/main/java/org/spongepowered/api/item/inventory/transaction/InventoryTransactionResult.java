@@ -228,6 +228,7 @@ public interface InventoryTransactionResult {
          *
          * @return A new inventory transaction result
          */
+        @Override
         InventoryTransactionResult build();
 
         interface PollBuilder extends Builder {

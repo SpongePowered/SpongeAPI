@@ -50,7 +50,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
      * @see RandomObjectTable#rolls()
      * @param rolls the rolls
      */
-    public RandomObjectTable(int rolls) {
+    protected RandomObjectTable(int rolls) {
         if (rolls < 0) {
             throw new IllegalArgumentException("Rolls cannot be negative!");
         }
@@ -63,7 +63,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
      * @see RandomObjectTable#rolls()
      * @param rolls the rolls
      */
-    public RandomObjectTable(VariableAmount rolls) {
+    protected RandomObjectTable(VariableAmount rolls) {
         this.rolls = Objects.requireNonNull(rolls);
     }
 

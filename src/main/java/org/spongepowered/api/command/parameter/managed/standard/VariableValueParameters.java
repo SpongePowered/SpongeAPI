@@ -294,6 +294,7 @@ public final class VariableValueParameters {
          *
          * @return The {@link ValueParameter}
          */
+        @Override
         ValueParameter<T> build();
 
     }
@@ -367,6 +368,7 @@ public final class VariableValueParameters {
          * @return The {@link ValueParameter}
          * @throws IllegalStateException if no choices have been specified
          */
+        @Override
         ValueParameter<T> build();
 
     }
@@ -424,6 +426,7 @@ public final class VariableValueParameters {
          * @return The {@link ValueParameter}
          * @throws IllegalStateException if no choices have been specified
          */
+        @Override
         ValueParameter<T> build();
 
     }
@@ -483,6 +486,7 @@ public final class VariableValueParameters {
          * @throws IllegalStateException if the literal and the return object
          *             have not been specified
          */
+        @Override
         ValueParameter<T> build();
 
     }
@@ -533,6 +537,7 @@ public final class VariableValueParameters {
          * @throws IllegalStateException if the {@link ComponentSerializer} has not
          *             been specified
          */
+        @Override
         ValueParameter<Component> build() throws IllegalStateException;
 
     }
@@ -572,6 +577,7 @@ public final class VariableValueParameters {
          * @throws IllegalStateException if the minimum is greater than the
          *              maximum
          */
+        @Override
         ValueParameter<T> build();
 
     }

@@ -410,6 +410,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
          * @return A new instance of an ItemStack
          * @throws IllegalStateException If the item stack is not completed
          */
+        @Override
         ItemStack build() throws IllegalStateException;
     }
 }

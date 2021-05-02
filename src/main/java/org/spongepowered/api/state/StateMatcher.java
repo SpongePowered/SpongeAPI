@@ -200,6 +200,7 @@ public interface StateMatcher<S extends State<S>> extends Predicate<S> {
          *
          * @return The built state matcher
          */
+        @Override
         StateMatcher<S> build();
 
     }

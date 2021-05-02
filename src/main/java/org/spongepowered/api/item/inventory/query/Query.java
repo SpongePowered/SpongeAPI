@@ -98,6 +98,7 @@ public interface Query {
          *
          * @return The new composity query.
          */
+        @Override
         Query build();
     }
 }

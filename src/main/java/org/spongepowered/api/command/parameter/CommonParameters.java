@@ -41,7 +41,7 @@ import org.spongepowered.math.vector.Vector3d;
  * </p>
  * 
  * <pre> {@code
- * final Parameter.Value&lt;ServerPlayer&gt; parameter = Parameter.player().setKey("player").build();
+ * final Parameter.Value<ServerPlayer> parameter = Parameter.player().setKey("player").build();
  * final Command.Parameterized builder = Command.builder()
  *      .parameter(parameter)
  *      .executor(context -> {

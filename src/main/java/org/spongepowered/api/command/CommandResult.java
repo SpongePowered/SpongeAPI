@@ -132,6 +132,7 @@ public interface CommandResult {
          *
          * @return A CommandResult with the specified settings
          */
+        @Override
         CommandResult build();
 
     }

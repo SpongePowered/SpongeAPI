@@ -55,7 +55,7 @@ public final class VolumePositionTranslators {
     public static <W extends Volume> VolumePositionTranslator<W, BlockEntity> rotateBlockEntitiesOn(final Vector3i center,
         final Rotation rotation
     ) {
-        return VolumePositionTranslators.rotateOn(center, rotation, (blockEntity -> blockEntity.rotate(rotation)));
+        return VolumePositionTranslators.rotateOn(center, rotation, blockEntity -> blockEntity.rotate(rotation));
     }
 
     public static <W extends Volume, E> VolumePositionTranslator<W, E> rotateOn(final Vector3i center, final Rotation rotation,

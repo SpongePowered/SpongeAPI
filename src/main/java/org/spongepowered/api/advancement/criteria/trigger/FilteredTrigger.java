@@ -88,6 +88,7 @@ public interface FilteredTrigger<C extends FilteredTriggerConfiguration> {
          *
          * @return The trigger
          */
+        @Override
         FilteredTrigger<C> build();
     }
 

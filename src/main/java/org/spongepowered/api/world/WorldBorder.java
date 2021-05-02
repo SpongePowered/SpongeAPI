@@ -355,6 +355,7 @@ public interface WorldBorder {
          * 
          * @return The built world border
          */
+        @Override
         WorldBorder build();
     }
 }

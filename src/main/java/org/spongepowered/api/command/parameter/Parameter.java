@@ -1255,6 +1255,7 @@ public interface Parameter {
              *
              * @return The {@link Parameter}
              */
+            @Override
             Parameter.Value<T> build();
 
         }
@@ -1311,6 +1312,7 @@ public interface Parameter {
              *
              * @return The {@link Subcommand}
              */
+            @Override
             Subcommand build();
 
         }
@@ -1395,6 +1397,7 @@ public interface Parameter {
          *
          * @return The {@link Parameter}
          */
+        @Override
         Multi build();
 
     }
@@ -1467,6 +1470,7 @@ public interface Parameter {
          *
          * @return The {@link Multi}
          */
+        @Override
         Multi build();
 
     }

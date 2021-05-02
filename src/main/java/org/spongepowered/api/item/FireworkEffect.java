@@ -203,6 +203,7 @@ public interface FireworkEffect extends DataSerializable {
          *
          * @return A newly created firework effect
          */
+        @Override
         FireworkEffect build();
     }
 }

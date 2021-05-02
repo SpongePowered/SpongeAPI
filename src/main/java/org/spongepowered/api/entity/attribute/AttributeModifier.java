@@ -138,6 +138,7 @@ public interface AttributeModifier extends Identifiable {
          *
          * @return The attribute modifier.
          */
+        @Override
         AttributeModifier build();
     }
 }

@@ -350,6 +350,7 @@ public interface DataView {
             try {
                 keys.add(ResourceKey.resolve(s));
             } catch (final Exception ignored) {
+                // skip invalid keys
             }
         }
 

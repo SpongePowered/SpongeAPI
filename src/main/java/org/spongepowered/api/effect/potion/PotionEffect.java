@@ -198,6 +198,7 @@ public interface PotionEffect extends DataSerializable {
          * @return A new instance of a PotionEffect
          * @throws IllegalStateException If the potion effect is not completed
          */
+        @Override
         PotionEffect build() throws IllegalStateException;
     }
 }

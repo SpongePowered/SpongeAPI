@@ -273,6 +273,7 @@ public interface ViewableInventory extends Inventory {
              *
              * @return the new inventory.
              */
+            @Override
             ViewableInventory build();
         }
 

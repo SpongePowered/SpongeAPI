@@ -63,5 +63,6 @@ public interface MutableDataProviderBuilder<H extends DataHolder.Mutable, V exte
 
     MutableDataProviderBuilder<H, V, E> supports(final Function<H, Boolean> supports);
 
+    @Override
     DataProvider<V, E> build();
 }
