@@ -7,6 +7,8 @@ pluginManagement {
         }
     }
     plugins {
+        id("org.spongepowered.gradle.event-impl-gen") version "7.0.0"
         id("org.cadixdev.licenser") version "0.6.0"
+        id("org.jetbrains.gradle.plugin.idea-ext") version "1.0"
     }
 }
