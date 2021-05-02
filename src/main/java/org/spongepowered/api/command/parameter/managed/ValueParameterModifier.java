@@ -26,6 +26,7 @@ package org.spongepowered.api.command.parameter.managed;
 
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.spongepowered.api.command.CommandCompletion;
 import org.spongepowered.api.command.CommandExecutor;
 import org.spongepowered.api.command.exception.ArgumentParseException;
 import org.spongepowered.api.command.parameter.ArgumentReader;
@@ -129,8 +130,8 @@ public interface ValueParameterModifier<T> {
      * @param completions The completions suggested by the chained parameter
      * @return The modified completions
      */
-    default List<String> modifyCompletion(
-            final CommandContext context, final String currentInput, final  List<String> completions) {
+    default List<CommandCompletion> modifyCompletion(
+            final CommandContext context, final String currentInput, final  List<CommandCompletion> completions) {
         return completions;
     }
 

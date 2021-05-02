@@ -26,6 +26,7 @@ package org.spongepowered.api.command.registrar;
 
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.command.CommandCause;
+import org.spongepowered.api.command.CommandCompletion;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.exception.CommandException;
 import org.spongepowered.api.command.manager.CommandFailedRegistrationException;
@@ -121,7 +122,7 @@ public interface CommandRegistrar<T> {
     CommandResult process(CommandCause cause, CommandMapping mapping, String command, String arguments) throws CommandException;
 
     /**
-     * Provides a list of suggestions associated with the provided argument
+     * Provides a list of completions associated with the provided argument
      * string.
      *
      * <p>See {@link #process(CommandCause, CommandMapping, String, String)} for any
@@ -135,10 +136,10 @@ public interface CommandRegistrar<T> {
      *                  with the command alias removed, so if
      *                  {@code /sponge test test2} is invoked, arguments will
      *                  contain {@code test test2}.)
-     * @return The suggestions
+     * @return The completions
      * @throws CommandException if there is an error providing the suggestions
      */
-    List<String> suggestions(CommandCause cause, CommandMapping mapping, String command, String arguments) throws CommandException;
+    List<CommandCompletion> complete(CommandCause cause, CommandMapping mapping, String command, String arguments) throws CommandException;
 
     /**
      * Returns help text for the invoked command.

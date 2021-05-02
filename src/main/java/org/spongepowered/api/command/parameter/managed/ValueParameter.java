@@ -26,6 +26,7 @@ package org.spongepowered.api.command.parameter.managed;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.api.command.CommandCause;
+import org.spongepowered.api.command.CommandCompletion;
 import org.spongepowered.api.command.exception.ArgumentParseException;
 import org.spongepowered.api.command.parameter.ArgumentReader;
 import org.spongepowered.api.command.parameter.CommandContext;
@@ -103,16 +104,17 @@ public interface ValueParameter<T> extends DefaultedRegistryValue, ValueComplete
          * @param currentInput The current input for this argument
          * @return The list of values
          */
-        List<String> complete(CommandCause context, String currentInput);
+        List<CommandCompletion> complete(CommandCause context, String currentInput);
 
         /**
          * This should not be overridden by implementations of this class. If
          * you wish to do so, implement {@link ValueParameter} instead.
          *
          * {@inheritDoc}
+         * @return
          */
         @Override
-        default List<String> complete(final CommandContext context, final String currentInput) {
+        default List<CommandCompletion> complete(final CommandContext context, final String currentInput) {
             return this.complete(context.cause(), currentInput);
         }
 

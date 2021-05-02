@@ -44,7 +44,6 @@ import org.spongepowered.api.service.permission.Subject;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -100,9 +99,9 @@ public interface Command {
     CommandResult process(CommandCause cause, ArgumentReader.Mutable arguments) throws CommandException;
 
     /**
-     * Gets a list of suggestions based on input.
+     * Gets a list of completions based on input.
      *
-     * <p>If a suggestion is chosen by the user, it will replace the last
+     * <p>If a completion is chosen by the user, it will replace the last
      * word.</p>
      *
      * @param cause The {@link CommandCause} of the command
@@ -110,7 +109,7 @@ public interface Command {
      * @return A list of suggestions
      * @throws CommandException Thrown if there was a parsing error
      */
-    List<String> suggestions(CommandCause cause, ArgumentReader.Mutable arguments) throws CommandException;
+    List<CommandCompletion> complete(CommandCause cause, ArgumentReader.Mutable arguments) throws CommandException;
 
     /**
      * Test whether this command can probably be executed given this

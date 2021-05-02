@@ -35,6 +35,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.command.Command;
 import org.spongepowered.api.command.CommandCause;
+import org.spongepowered.api.command.CommandCompletion;
 import org.spongepowered.api.command.CommandExecutor;
 import org.spongepowered.api.command.exception.ArgumentParseException;
 import org.spongepowered.api.command.parameter.managed.ValueCompleter;
@@ -1039,7 +1040,7 @@ public interface Parameter {
          * @throws ArgumentParseException thrown if the parameter could not be
          *      parsed
          */
-        List<String> complete(ArgumentReader.@NonNull Immutable reader, @NonNull CommandContext context) throws ArgumentParseException;
+        List<CommandCompletion> complete(ArgumentReader.@NonNull Immutable reader, @NonNull CommandContext context) throws ArgumentParseException;
 
         /**
          * Gets the usage of this parameter.

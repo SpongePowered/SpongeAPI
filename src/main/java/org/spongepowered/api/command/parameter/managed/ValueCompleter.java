@@ -25,6 +25,7 @@
 package org.spongepowered.api.command.parameter.managed;
 
 import org.spongepowered.api.command.CommandCause;
+import org.spongepowered.api.command.CommandCompletion;
 import org.spongepowered.api.command.parameter.CommandContext;
 
 import java.util.List;
@@ -45,6 +46,6 @@ public interface ValueCompleter {
      * @param currentInput The current input for this argument
      * @return The list of values
      */
-    List<String> complete(CommandContext context, String currentInput);
+    List<CommandCompletion> complete(CommandContext context, String currentInput);
 
 }

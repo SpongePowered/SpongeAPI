@@ -26,6 +26,7 @@ package org.spongepowered.api.command.manager;
 
 import io.leangen.geantyref.TypeToken;
 import net.kyori.adventure.audience.Audience;
+import org.spongepowered.api.command.CommandCompletion;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.exception.CommandException;
 import org.spongepowered.api.command.registrar.CommandRegistrar;
@@ -125,27 +126,27 @@ public interface CommandManager {
     CommandResult process(Subject subject, Audience channel, String arguments) throws CommandException;
 
     /**
-     * Suggests possible completions based on the input argument string.
+     * Provides possible completions based on the input argument string.
      *
      * @param arguments The arguments
      * @return The completions
      */
-    List<String> suggest(String arguments);
+    List<CommandCompletion> complete(String arguments);
 
     /**
-     * Suggests possible completions based on the input argument string,
+     * Provides possible completions based on the input argument string,
      * with a provided object that is both a {@link Subject} for permission
      * checks and a {@link Audience} to return command messages to.
      *
+     * @param <T> The type of receiver
      * @param subjectReceiver The {@link Subject} &amp; {@link Audience}
      * @param arguments The arguments
-     * @param <T> The type of receiver
      * @return The completions
      */
-    <T extends Subject & Audience> List<String> suggest(T subjectReceiver, String arguments);
+    <T extends Subject & Audience> List<CommandCompletion> complete(T subjectReceiver, String arguments);
 
     /**
-     * Suggests possible completions based on the input argument string,
+     * Provides possible completions based on the input argument string,
      * with a provided a {@link Subject} for permission checks and a
      * {@link Audience} to return command messages to.
      *
@@ -154,7 +155,7 @@ public interface CommandManager {
      * @param arguments The arguments
      * @return The completions
      */
-    List<String> suggest(Subject subject, Audience receiver, String arguments);
+    List<CommandCompletion> complete(Subject subject, Audience receiver, String arguments);
 
     /**
      * Gets all the command aliases known to this command manager.
