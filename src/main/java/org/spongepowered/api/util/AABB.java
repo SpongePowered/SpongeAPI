@@ -121,7 +121,7 @@ public interface AABB {
      */
     default boolean contains(final Vector3i point) {
         Objects.requireNonNull(point, "point");
-        return this.contains(point.getX(), point.getY(), point.getZ());
+        return this.contains(point.x(), point.y(), point.z());
     }
 
     /**
@@ -132,7 +132,7 @@ public interface AABB {
      */
     default boolean contains(final Vector3d point) {
         Objects.requireNonNull(point, "point");
-        return this.contains(point.getX(), point.getY(), point.getZ());
+        return this.contains(point.x(), point.y(), point.z());
     }
 
     /**
@@ -171,7 +171,7 @@ public interface AABB {
      */
     default AABB offset(final Vector3i offset) {
         Objects.requireNonNull(offset, "offset");
-        return this.offset(offset.getX(), offset.getY(), offset.getZ());
+        return this.offset(offset.x(), offset.y(), offset.z());
     }
 
     /**
@@ -182,7 +182,7 @@ public interface AABB {
      */
     default AABB offset(final Vector3d offset) {
         Objects.requireNonNull(offset, "offset");
-        return this.offset(offset.getX(), offset.getY(), offset.getZ());
+        return this.offset(offset.x(), offset.y(), offset.z());
     }
 
     /**
@@ -205,7 +205,7 @@ public interface AABB {
      */
     default AABB expand(final Vector3i amount) {
         Objects.requireNonNull(amount, "amount");
-        return this.expand(amount.getX(), amount.getY(), amount.getZ());
+        return this.expand(amount.x(), amount.y(), amount.z());
     }
 
     /**
@@ -218,7 +218,7 @@ public interface AABB {
      */
     default AABB expand(final Vector3d amount) {
         Objects.requireNonNull(amount, "amount");
-        return this.expand(amount.getX(), amount.getY(), amount.getZ());
+        return this.expand(amount.x(), amount.y(), amount.z());
     }
 
     /**

@@ -89,7 +89,7 @@ public interface Viewer extends Audience {
      * @param pos the position to play the sound at
      */
     default void playSound(final @NonNull Sound sound, final Vector3d pos) {
-        this.playSound(sound, pos.getX(), pos.getY(), pos.getZ());
+        this.playSound(sound, pos.x(), pos.y(), pos.z());
     }
 
     /**
@@ -120,7 +120,7 @@ public interface Viewer extends Audience {
      */
     default void sendBlockChange(final Vector3i position, final BlockState state) {
         Objects.requireNonNull(position, "position");
-        this.sendBlockChange(position.getX(), position.getY(), position.getZ(), Objects.requireNonNull(state, "state"));
+        this.sendBlockChange(position.x(), position.y(), position.z(), Objects.requireNonNull(state, "state"));
     }
 
     /**
@@ -146,7 +146,7 @@ public interface Viewer extends Audience {
      */
     default void resetBlockChange(final Vector3i position) {
         Objects.requireNonNull(position, "position");
-        this.resetBlockChange(position.getX(), position.getY(), position.getZ());
+        this.resetBlockChange(position.x(), position.y(), position.z());
     }
 
     /**

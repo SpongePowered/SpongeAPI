@@ -263,7 +263,7 @@ public interface WorldBorder {
      * @param border The border whose properties are to be copied
      */
     default void copyPropertiesFrom(WorldBorder border) {
-        this.setCenter(border.center().getX(), border.center().getZ());
+        this.setCenter(border.center().x(), border.center().z());
         this.setDamageAmount(border.damageAmount());
         this.setDamageThreshold(border.damageThreshold());
         this.setDiameter(border.diameter(), border.newDiameter(), border.timeRemaining());

@@ -120,7 +120,7 @@ public final class Color implements DataSerializable, RGBLike {
      * @return The color object
      */
     public static Color of(final Vector3i vector3i) {
-        return new Color(vector3i.getX(), vector3i.getY(), vector3i.getZ());
+        return new Color(vector3i.x(), vector3i.y(), vector3i.z());
     }
 
     /**
@@ -130,7 +130,7 @@ public final class Color implements DataSerializable, RGBLike {
      * @return The color object
      */
     public static Color of(final Vector3f vector3f) {
-        return new Color(Math.round(vector3f.getX()), Math.round(vector3f.getY()), Math.round(vector3f.getZ()));
+        return new Color(Math.round(vector3f.x()), Math.round(vector3f.y()), Math.round(vector3f.z()));
     }
 
     /**
@@ -140,7 +140,7 @@ public final class Color implements DataSerializable, RGBLike {
      * @return The color object
      */
     public static Color of(final Vector3d vector3d) {
-        return new Color((int) Math.round(vector3d.getX()), (int) Math.round(vector3d.getY()), (int) Math.round(vector3d.getZ()));
+        return new Color((int) Math.round(vector3d.x()), (int) Math.round(vector3d.y()), (int) Math.round(vector3d.z()));
     }
 
     /**

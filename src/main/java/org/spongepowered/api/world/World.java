@@ -90,26 +90,26 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends 
 
     default Optional<? extends Player> closestPlayer(final Vector3i position, final double distance) {
         Objects.requireNonNull(position, "position");
-        return this.closestPlayer(position.getX(), position.getY(), position.getZ(), distance, player -> true);
+        return this.closestPlayer(position.x(), position.y(), position.z(), distance, player -> true);
     }
 
     default Optional<? extends Player> closestPlayer(final Vector3i position, final double distance, final Predicate<? super Player> predicate) {
         Objects.requireNonNull(position, "position");
         Objects.requireNonNull(predicate, "predicate");
-        return this.closestPlayer(position.getX(), position.getY(), position.getZ(), distance, predicate);
+        return this.closestPlayer(position.x(), position.y(), position.z(), distance, predicate);
     }
 
     default Optional<? extends Player> closestPlayer(final Entity entity, final double distance) {
         Objects.requireNonNull(entity, "entity");
         final Vector3d position = entity.location().position();
-        return this.closestPlayer(position.getFloorX(), position.getFloorY(), position.getFloorZ(), distance, player -> true);
+        return this.closestPlayer(position.floorX(), position.floorY(), position.floorZ(), distance, player -> true);
     }
 
     default Optional<? extends Player> closestPlayer(final Entity entity, final double distance, final Predicate<? super Player> predicate) {
         Objects.requireNonNull(entity, "entity");
         Objects.requireNonNull(predicate, "predicate");
         final Vector3d position = entity.location().position();
-        return this.closestPlayer(position.getFloorX(), position.getFloorY(), position.getFloorZ(), distance, predicate);
+        return this.closestPlayer(position.floorX(), position.floorY(), position.floorZ(), distance, predicate);
     }
 
     default Optional<? extends Player> closestPlayer(final int x, final int y, final int z, final double distance) {
@@ -167,7 +167,7 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends 
     @Override
     default Chunk chunk(final Vector3i chunkPos) {
         Objects.requireNonNull(chunkPos, "chunkPos");
-        return this.chunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
+        return this.chunk(chunkPos.x(), chunkPos.y(), chunkPos.z());
     }
 
     /**
@@ -195,7 +195,7 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends 
      */
     default Optional<Chunk> loadChunk(final Vector3i chunkPosition, final boolean shouldGenerate) {
         Objects.requireNonNull(chunkPosition, "chunkPosition");
-        return this.loadChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), shouldGenerate);
+        return this.loadChunk(chunkPosition.x(), chunkPosition.y(), chunkPosition.z(), shouldGenerate);
     }
 
     /**

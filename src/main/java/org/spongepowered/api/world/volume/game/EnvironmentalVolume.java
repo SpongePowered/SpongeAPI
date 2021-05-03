@@ -46,14 +46,14 @@ public interface EnvironmentalVolume extends PrimitiveGameVolume, BiomeVolume {
         Objects.requireNonNull(type);
         Objects.requireNonNull(position);
 
-        return this.light(type, position.getX(), position.getY(), position.getZ());
+        return this.light(type, position.x(), position.y(), position.z());
     }
 
     default int light(final Supplier<? extends LightType> type, final Vector3i position) {
         Objects.requireNonNull(type);
         Objects.requireNonNull(position);
 
-        return this.light(type.get(), position.getX(), position.getY(), position.getZ());
+        return this.light(type.get(), position.x(), position.y(), position.z());
     }
 
     default int light(final int x, final int y, final int z) {
@@ -63,7 +63,7 @@ public interface EnvironmentalVolume extends PrimitiveGameVolume, BiomeVolume {
     default int light(final Vector3i position) {
         Objects.requireNonNull(position);
 
-        return this.light(position.getX(), position.getY(), position.getZ());
+        return this.light(position.x(), position.y(), position.z());
     }
 
     default boolean isSkylightMax(final Vector3i position) {

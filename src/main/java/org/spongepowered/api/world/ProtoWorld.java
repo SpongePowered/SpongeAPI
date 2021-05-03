@@ -80,7 +80,7 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
     default boolean setBlock(final Vector3i position, final BlockState state, final BlockChangeFlag flag) {
         Objects.requireNonNull(position, "position");
 
-        return this.setBlock(position.getX(), position.getY(), position.getZ(), Objects.requireNonNull(state, "state"), Objects.requireNonNull(flag, "flag"));
+        return this.setBlock(position.x(), position.y(), position.z(), Objects.requireNonNull(state, "state"), Objects.requireNonNull(flag, "flag"));
     }
 
     @Override
@@ -90,7 +90,7 @@ public interface ProtoWorld<P extends ProtoWorld<P>> extends
     default boolean removeBlock(final Vector3i position) {
         Objects.requireNonNull(position, "position");
 
-        return this.removeBlock(position.getX(), position.getY(), position.getZ());
+        return this.removeBlock(position.x(), position.y(), position.z());
     }
 
     @Override

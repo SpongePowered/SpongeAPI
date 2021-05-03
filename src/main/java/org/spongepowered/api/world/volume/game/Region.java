@@ -54,13 +54,13 @@ public interface Region<R extends Region<R>> extends
     boolean isInBorder(Entity entity);
 
     default boolean canSeeSky(Vector3i position) {
-        return this.canSeeSky(position.getX(), position.getY(), position.getZ());
+        return this.canSeeSky(position.x(), position.y(), position.z());
     }
 
     boolean canSeeSky(int x, int y, int z);
 
     default boolean hasLiquid(Vector3i position) {
-        return this.hasLiquid(position.getX(), position.getY(), position.getZ());
+        return this.hasLiquid(position.x(), position.y(), position.z());
     }
 
     boolean hasLiquid(int x, int y, int z);
@@ -86,19 +86,19 @@ public interface Region<R extends Region<R>> extends
 
     default boolean isBlockLoaded(int x, int y, int z, boolean allowEmpty) {
         final Vector3i chunkPos = Sponge.server().chunkLayout().forceToChunk(x, y, z);
-        return this.isChunkLoaded(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ(), allowEmpty);
+        return this.isChunkLoaded(chunkPos.x(), chunkPos.y(), chunkPos.z(), allowEmpty);
     }
 
     default boolean isBlockLoaded(Vector3i position) {
         Objects.requireNonNull(position);
 
-        return this.isBlockLoaded(position.getX(), position.getY(), position.getZ(), true);
+        return this.isBlockLoaded(position.x(), position.y(), position.z(), true);
     }
 
     default boolean isBlockLoaded(Vector3i position, boolean allowEmpty) {
         Objects.requireNonNull(position);
 
-        return this.isBlockLoaded(position.getX(), position.getY(), position.getZ(), allowEmpty);
+        return this.isBlockLoaded(position.x(), position.y(), position.z(), allowEmpty);
     }
 
     default boolean isAreaLoaded(Vector3i position, int radius) {
@@ -111,12 +111,12 @@ public interface Region<R extends Region<R>> extends
         Objects.requireNonNull(center);
 
         return this.isAreaLoaded(
-            center.getX() - radius,
-            center.getY() - radius,
-            center.getZ() - radius,
-            center.getX() + radius,
-            center.getY() + radius,
-            center.getZ() + radius,
+            center.x() - radius,
+            center.y() - radius,
+            center.z() - radius,
+            center.x() + radius,
+            center.y() + radius,
+            center.z() + radius,
             allowEmpty
         );
     }
@@ -126,7 +126,7 @@ public interface Region<R extends Region<R>> extends
     }
 
     default boolean isAreaLoaded(Vector3i from, Vector3i to, boolean allowEmpty) {
-        return this.isAreaLoaded(from.getX(), from.getY(), from.getZ(), to.getX(), to.getY(), to.getZ(), allowEmpty);
+        return this.isAreaLoaded(from.x(), from.y(), from.z(), to.x(), to.y(), to.z(), allowEmpty);
     }
 
     boolean isAreaLoaded(int xStart, int yStart, int zStart, int xEnd, int yEnd, int zEnd, boolean allowEmpty);

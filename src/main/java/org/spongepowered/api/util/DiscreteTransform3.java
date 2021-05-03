@@ -59,9 +59,9 @@ public class DiscreteTransform3 {
 
     private DiscreteTransform3(Matrix4d matrix) {
         this.matrix = matrix;
-        this.matrixRow0 = matrix.getRow(0);
-        this.matrixRow1 = matrix.getRow(1);
-        this.matrixRow2 = matrix.getRow(2);
+        this.matrixRow0 = matrix.row(0);
+        this.matrixRow1 = matrix.row(1);
+        this.matrixRow2 = matrix.row(2);
     }
 
     /**
@@ -81,7 +81,7 @@ public class DiscreteTransform3 {
      * @return The transformed vector
      */
     public Vector3i transform(Vector3i vector) {
-        return this.transform(vector.getX(), vector.getY(), vector.getZ());
+        return this.transform(vector.x(), vector.y(), vector.z());
     }
 
     /**
@@ -106,7 +106,7 @@ public class DiscreteTransform3 {
      * @return The transformed x coordinate
      */
     public int transformX(Vector3i vector) {
-        return this.transformX(vector.getX(), vector.getY(), vector.getZ());
+        return this.transformX(vector.x(), vector.y(), vector.z());
     }
 
     /**
@@ -132,7 +132,7 @@ public class DiscreteTransform3 {
      * @return The transformed y coordinate
      */
     public int transformY(Vector3i vector) {
-        return this.transformY(vector.getX(), vector.getY(), vector.getZ());
+        return this.transformY(vector.x(), vector.y(), vector.z());
     }
 
     /**
@@ -158,7 +158,7 @@ public class DiscreteTransform3 {
      * @return The transformed z coordinate
      */
     public int transformZ(Vector3i vector) {
-        return this.transformZ(vector.getX(), vector.getY(), vector.getZ());
+        return this.transformZ(vector.x(), vector.y(), vector.z());
     }
 
     /**
@@ -216,7 +216,7 @@ public class DiscreteTransform3 {
      * @return The translated transform as a copy
      */
     public DiscreteTransform3 withTranslation(Vector3i vector) {
-        return this.withTranslation(vector.getX(), vector.getY(), vector.getZ());
+        return this.withTranslation(vector.x(), vector.y(), vector.z());
     }
 
     /**
@@ -252,7 +252,7 @@ public class DiscreteTransform3 {
      * @return The scaled transform as a copy
      */
     public DiscreteTransform3 withScale(Vector3i vector) {
-        return this.withScale(vector.getX(), vector.getY(), vector.getZ());
+        return this.withScale(vector.x(), vector.y(), vector.z());
     }
 
     /**
@@ -388,7 +388,7 @@ public class DiscreteTransform3 {
      * @return The new translation transform
      */
     public static DiscreteTransform3 fromTranslation(Vector3i vector) {
-        return DiscreteTransform3.fromTranslation(vector.getX(), vector.getY(), vector.getZ());
+        return DiscreteTransform3.fromTranslation(vector.x(), vector.y(), vector.z());
     }
 
     /**
@@ -422,7 +422,7 @@ public class DiscreteTransform3 {
      * @return The new scale transform
      */
     public static DiscreteTransform3 fromScale(Vector3i vector) {
-        return DiscreteTransform3.fromScale(vector.getX(), vector.getY(), vector.getZ());
+        return DiscreteTransform3.fromScale(vector.x(), vector.y(), vector.z());
     }
 
     /**
@@ -532,19 +532,19 @@ public class DiscreteTransform3 {
      * @return The new rotation transform
      */
     public static DiscreteTransform3 rotationAroundCenter(int quarterTurns, Axis axis, Vector3i size) {
-        if (size.getX() <= 0) {
+        if (size.x() <= 0) {
             throw new IllegalArgumentException("The size on x must be positive!");
         }
-        if (size.getY() <= 0) {
+        if (size.y() <= 0) {
             throw new IllegalArgumentException("The size on y must be positive");
         }
-        if (size.getZ() <= 0) {
+        if (size.z() <= 0) {
             throw new IllegalArgumentException("The size on z must be positive!");
         }
         final Matrix4d rotation3;
         switch (axis) {
             case X: {
-                final Matrix3d rotation2 = DiscreteTransform2.rotationAroundCenter(quarterTurns, new Vector2i(size.getZ(), size.getY())).matrix();
+                final Matrix3d rotation2 = DiscreteTransform2.rotationAroundCenter(quarterTurns, new Vector2i(size.z(), size.y())).matrix();
                 rotation3 = new Matrix4d(
                     1, 0, 0, 0,
                     0, rotation2.get(1, 0), rotation2.get(1, 1), rotation2.get(1, 2),
@@ -554,7 +554,7 @@ public class DiscreteTransform3 {
                 break;
             }
             case Y: {
-                final Matrix3d rotation2 = DiscreteTransform2.rotationAroundCenter(quarterTurns, new Vector2i(size.getX(), size.getZ())).matrix();
+                final Matrix3d rotation2 = DiscreteTransform2.rotationAroundCenter(quarterTurns, new Vector2i(size.x(), size.z())).matrix();
                 rotation3 = new Matrix4d(
                     rotation2.get(0, 0), 0, rotation2.get(0, 1), rotation2.get(0, 2),
                     0, 1, 0, 0,
@@ -564,7 +564,7 @@ public class DiscreteTransform3 {
                 break;
             }
             case Z: {
-                final Matrix3d rotation2 = DiscreteTransform2.rotationAroundCenter(quarterTurns, new Vector2i(size.getX(), size.getY())).matrix();
+                final Matrix3d rotation2 = DiscreteTransform2.rotationAroundCenter(quarterTurns, new Vector2i(size.x(), size.y())).matrix();
                 rotation3 = new Matrix4d(
                     rotation2.get(0, 0), rotation2.get(0, 1), 0, rotation2.get(0, 2),
                     rotation2.get(1, 0), rotation2.get(1, 1), 0, rotation2.get(1, 2),

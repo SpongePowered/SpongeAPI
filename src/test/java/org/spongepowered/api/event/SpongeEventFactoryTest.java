@@ -51,6 +51,7 @@ import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.configurate.util.Types;
 import org.spongepowered.configurate.util.UnmodifiableCollections;
 import org.spongepowered.math.vector.Vector3d;
+import org.spongepowered.math.vector.Vector3i;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
@@ -258,6 +259,10 @@ class SpongeEventFactoryTest {
             return TypeToken.get(Object.class);
         } else if (paramType == Color.class) {
             return Color.BLACK;
+        } else if (paramType == Vector3i.class) {
+            return Vector3i.ZERO;
+        } else if (paramType == Vector3d.class) {
+            return Vector3d.ZERO;
         } else if (GenericTypeReflector.isSuperType(DataHolder.class, paramType)) {
             final DataHolder mock = (DataHolder) mock(GenericTypeReflector.erase(paramType),
                     withSettings().defaultAnswer(SpongeEventFactoryTest.EVENT_MOCKING_ANSWER));

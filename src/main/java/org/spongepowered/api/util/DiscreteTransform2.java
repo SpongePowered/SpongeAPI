@@ -55,8 +55,8 @@ public class DiscreteTransform2 {
 
     private DiscreteTransform2(Matrix3d matrix) {
         this.matrix = matrix;
-        this.matrixRow0 = matrix.getRow(0);
-        this.matrixRow1 = matrix.getRow(1);
+        this.matrixRow0 = matrix.row(0);
+        this.matrixRow1 = matrix.row(1);
     }
 
     /**
@@ -76,7 +76,7 @@ public class DiscreteTransform2 {
      * @return The transformed vector
      */
     public Vector2i transform(Vector2i vector) {
-        return this.transform(vector.getX(), vector.getY());
+        return this.transform(vector.x(), vector.y());
     }
 
     /**
@@ -99,7 +99,7 @@ public class DiscreteTransform2 {
      * @return The transformed x coordinate
      */
     public int transformX(Vector2i vector) {
-        return this.transformX(vector.getX(), vector.getY());
+        return this.transformX(vector.x(), vector.y());
     }
 
     /**
@@ -122,7 +122,7 @@ public class DiscreteTransform2 {
      * @return The transformed y coordinate
      */
     public int transformY(Vector2i vector) {
-        return this.transformY(vector.getX(), vector.getY());
+        return this.transformY(vector.x(), vector.y());
     }
 
     /**
@@ -177,7 +177,7 @@ public class DiscreteTransform2 {
      * @return The translated transform as a copy
      */
     public DiscreteTransform2 withTranslation(Vector2i vector) {
-        return this.withTranslation(vector.getX(), vector.getY());
+        return this.withTranslation(vector.x(), vector.y());
     }
 
     /**
@@ -210,7 +210,7 @@ public class DiscreteTransform2 {
      * @return The scaled transform as a copy
      */
     public DiscreteTransform2 withScale(Vector2i vector) {
-        return this.withScale(vector.getX(), vector.getY());
+        return this.withScale(vector.x(), vector.y());
     }
 
     /**
@@ -328,7 +328,7 @@ public class DiscreteTransform2 {
      * @return The new translation transform
      */
     public static DiscreteTransform2 fromTranslation(Vector2i vector) {
-        return DiscreteTransform2.fromTranslation(vector.getX(), vector.getY());
+        return DiscreteTransform2.fromTranslation(vector.x(), vector.y());
     }
 
     /**
@@ -361,7 +361,7 @@ public class DiscreteTransform2 {
      * @return The new scale transform
      */
     public static DiscreteTransform2 fromScale(Vector2i vector) {
-        return DiscreteTransform2.fromScale(vector.getX(), vector.getY());
+        return DiscreteTransform2.fromScale(vector.x(), vector.y());
     }
 
     /**
@@ -455,15 +455,15 @@ public class DiscreteTransform2 {
      * @return The new rotation transform
      */
     public static DiscreteTransform2 rotationAroundCenter(int quarterTurns, Vector2i size) {
-        if (size.getX() <= 0) {
+        if (size.x() <= 0) {
             throw new IllegalArgumentException("The size on x must be positive");
         }
-        if (size.getY() <= 0) {
+        if (size.y() <= 0) {
             throw new IllegalArgumentException("The size on y must be positive");
         }
         final boolean mul180 = (quarterTurns & 1) == 0;
-        final boolean xEven = (size.getX() & 1) == 0;
-        final boolean yEven = (size.getY() & 1) == 0;
+        final boolean xEven = (size.x() & 1) == 0;
+        final boolean yEven = (size.y() & 1) == 0;
         if (!mul180 || xEven != yEven) {
             throw new IllegalArgumentException("The size must have the same parity on all axes for rotations that are "
                 + "not a multiple of 180 degrees");

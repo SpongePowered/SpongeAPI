@@ -149,9 +149,9 @@ public enum Direction {
      * @return The closest horizontal direction.
      */
     public static Direction closest(Vector3d vector, Division smallestDivision) {
-        if (vector.getY() * vector.getY() <= vector.getX() * vector.getX() + vector.getZ() * vector.getZ()) {
+        if (vector.y() * vector.y() <= vector.x() * vector.x() + vector.z() * vector.z()) {
             return Direction.closestHorizontal(vector, smallestDivision);
-        } else if (vector.getY() > 0) {
+        } else if (vector.y() > 0) {
             return Direction.UP;
         } else {
             return Direction.DOWN;
@@ -184,14 +184,14 @@ public enum Direction {
      */
     public static Direction closestHorizontal(Vector3d vector, Division smallestDivision) {
         // Ignore vectors not in the xz plane
-        if (Math.abs(vector.getX()) <= GenericMath.DBL_EPSILON && Math.abs(vector.getZ()) <= GenericMath.DBL_EPSILON) {
+        if (Math.abs(vector.x()) <= GenericMath.DBL_EPSILON && Math.abs(vector.z()) <= GenericMath.DBL_EPSILON) {
             return Direction.NONE;
         }
         // Normalize so it lies on the unit circle in xz
         vector = vector.normalize();
         // Get the angle from the x component and correct for complement with z
-        double angle = TrigMath.acos(vector.getX());
-        if (vector.getZ() < 0) {
+        double angle = TrigMath.acos(vector.x());
+        if (vector.z() < 0) {
             angle = TrigMath.TWO_PI - angle;
         }
         // Make the angle positive, offset for MC's system, then wrap in [0, 2pi)

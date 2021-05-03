@@ -83,7 +83,7 @@ public interface ChunkVolume extends BlockVolume {
      */
     default ProtoChunk<@NonNull ?> chunk(final Vector3i chunkPosition) {
         Objects.requireNonNull(chunkPosition, "chunkPosition");
-        return this.chunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ());
+        return this.chunk(chunkPosition.x(), chunkPosition.y(), chunkPosition.z());
     }
 
     /**
@@ -94,7 +94,7 @@ public interface ChunkVolume extends BlockVolume {
      */
     default ProtoChunk<@NonNull ?> chunkAtBlock(final Vector3i blockPosition) {
         Objects.requireNonNull(blockPosition, "blockPosition");
-        return this.chunkAtBlock(blockPosition.getX(), blockPosition.getY(), blockPosition.getZ());
+        return this.chunkAtBlock(blockPosition.x(), blockPosition.y(), blockPosition.z());
     }
 
     /**
@@ -154,7 +154,7 @@ public interface ChunkVolume extends BlockVolume {
      */
     default boolean isChunkLoaded(final Vector3i chunkPosition, final boolean allowEmpty) {
         Objects.requireNonNull(chunkPosition, "chunkPosition");
-        return this.isChunkLoaded(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), allowEmpty);
+        return this.isChunkLoaded(chunkPosition.x(), chunkPosition.y(), chunkPosition.z(), allowEmpty);
     }
 
     /**
@@ -210,7 +210,7 @@ public interface ChunkVolume extends BlockVolume {
      * @return Whether a chunk exists
      */
     default boolean hasChunk(Vector3i chunkPosition) {
-        return this.hasChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ());
+        return this.hasChunk(chunkPosition.x(), chunkPosition.y(), chunkPosition.z());
     }
 
     /**

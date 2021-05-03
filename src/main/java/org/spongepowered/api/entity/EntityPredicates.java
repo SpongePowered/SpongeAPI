@@ -48,9 +48,9 @@ public final class EntityPredicates {
                 return false;
             }
             final Vector3d pos = entity.location().position();
-            final double xDist = pos.getX() - x;
-            final double yDist = pos.getY() - y;
-            final double zDist = pos.getZ() - z;
+            final double xDist = pos.x() - x;
+            final double yDist = pos.y() - y;
+            final double zDist = pos.z() - z;
             return xDist * xDist + yDist * yDist + zDist * zDist <= distSqrd;
         };
     }

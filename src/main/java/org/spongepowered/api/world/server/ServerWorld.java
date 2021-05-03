@@ -86,7 +86,7 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
     @Override
     default Chunk chunkAtBlock(final int bx, final int by, final int bz) {
         final Vector3i chunkPos = this.engine().chunkLayout().forceToChunk(bx, by, bz);
-        return this.chunk(chunkPos.getX(), chunkPos.getY(), chunkPos.getZ());
+        return this.chunk(chunkPos.x(), chunkPos.y(), chunkPos.z());
     }
 
     /**
@@ -97,7 +97,7 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
      */
     default Optional<Chunk> regenerateChunk(final Vector3i chunkPosition) {
         Objects.requireNonNull(chunkPosition, "chunkPosition");
-        return this.regenerateChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), ChunkRegenerateFlags.ALL.get());
+        return this.regenerateChunk(chunkPosition.x(), chunkPosition.y(), chunkPosition.z(), ChunkRegenerateFlags.ALL.get());
     }
 
     /**
@@ -121,7 +121,7 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
      */
     default Optional<Chunk> regenerateChunk(final Vector3i chunkPosition, final ChunkRegenerateFlag flag) {
         Objects.requireNonNull(chunkPosition, "chunkPosition");
-        return this.regenerateChunk(chunkPosition.getX(), chunkPosition.getY(), chunkPosition.getZ(), Objects.requireNonNull(flag, "flag"));
+        return this.regenerateChunk(chunkPosition.x(), chunkPosition.y(), chunkPosition.z(), Objects.requireNonNull(flag, "flag"));
     }
 
     /**
@@ -146,7 +146,7 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
      */
     default BlockSnapshot createSnapshot(final Vector3i position) {
         Objects.requireNonNull(position, "position");
-        return this.createSnapshot(position.getX(), position.getY(), position.getZ());
+        return this.createSnapshot(position.x(), position.y(), position.z());
     }
 
     /**
@@ -198,7 +198,7 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
      */
     default boolean restoreSnapshot(final Vector3i position, final BlockSnapshot snapshot, final boolean force, final BlockChangeFlag flag) {
         Objects.requireNonNull(position, "position");
-        return this.restoreSnapshot(position.getX(), position.getY(), position.getZ(), Objects.requireNonNull(snapshot, "snapshot"), force, Objects.requireNonNull(flag, "flag"));
+        return this.restoreSnapshot(position.x(), position.y(), position.z(), Objects.requireNonNull(snapshot, "snapshot"), force, Objects.requireNonNull(flag, "flag"));
     }
 
     /**

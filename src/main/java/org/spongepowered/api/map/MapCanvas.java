@@ -146,10 +146,10 @@ public interface MapCanvas extends DataSerializable {
          */
         default Builder paint(final Vector2i start, final Vector2i end, final MapColor mapColor) {
             return this.paint(
-                    Math.min(start.getX(), end.getX()),
-                    Math.max(start.getX(), end.getX()),
-                    Math.min(start.getY(), end.getY()),
-                    Math.min(start.getY(), end.getY()),
+                    Math.min(start.x(), end.x()),
+                    Math.max(start.x(), end.x()),
+                    Math.min(start.y(), end.y()),
+                    Math.min(start.y(), end.y()),
                     mapColor);
         }
 

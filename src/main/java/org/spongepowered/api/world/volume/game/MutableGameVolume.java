@@ -33,7 +33,7 @@ import org.spongepowered.math.vector.Vector3i;
 public interface MutableGameVolume {
 
     default boolean setBlock(Vector3i position, BlockState state, BlockChangeFlag flag) {
-        return this.setBlock(position.getX(), position.getY(), position.getZ(), state, flag);
+        return this.setBlock(position.x(), position.y(), position.z(), state, flag);
     }
 
     boolean setBlock(int x, int y, int z, BlockState state, BlockChangeFlag flag);
@@ -41,7 +41,7 @@ public interface MutableGameVolume {
     boolean spawnEntity(Entity entity);
 
     default boolean removeBlock(Vector3i pos) {
-        return this.removeBlock(pos.getX(), pos.getY(), pos.getZ());
+        return this.removeBlock(pos.x(), pos.y(), pos.z());
     }
 
     boolean removeBlock(int x, int y, int z);

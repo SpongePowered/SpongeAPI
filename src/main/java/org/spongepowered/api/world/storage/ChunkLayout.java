@@ -90,7 +90,7 @@ public interface ChunkLayout {
      */
     default boolean isValidChunk(Vector3i coords) {
         Objects.requireNonNull(coords, "coords");
-        return this.isValidChunk(coords.getX(), coords.getY(), coords.getZ());
+        return this.isValidChunk(coords.x(), coords.y(), coords.z());
     }
 
     /**
@@ -103,9 +103,9 @@ public interface ChunkLayout {
      * @return Whether or not the coordinates are valid for chunks
      */
     default boolean isValidChunk(int x, int y, int z) {
-        return x >= this.spaceMin().getX() && x <= this.spaceMax().getX()
-            && y >= this.spaceMin().getY() && y <= this.spaceMax().getY()
-            && z >= this.spaceMin().getZ() && z <= this.spaceMax().getZ();
+        return x >= this.spaceMin().x() && x <= this.spaceMax().x()
+            && y >= this.spaceMin().y() && y <= this.spaceMax().y()
+            && z >= this.spaceMin().z() && z <= this.spaceMax().z();
     }
 
     /**
@@ -117,7 +117,7 @@ public interface ChunkLayout {
      */
     default boolean isInChunk(Vector3i localCoords) {
         Objects.requireNonNull(localCoords, "localCoords");
-        return this.isInChunk(localCoords.getX(), localCoords.getY(), localCoords.getZ());
+        return this.isInChunk(localCoords.x(), localCoords.y(), localCoords.z());
     }
 
     /**
@@ -142,7 +142,7 @@ public interface ChunkLayout {
     default boolean isInChunk(Vector3i worldCoords, Vector3i chunkCoords) {
         Objects.requireNonNull(worldCoords, "worldCoords");
         Objects.requireNonNull(chunkCoords, "chunkCoords");
-        return this.isInChunk(worldCoords.getX(), worldCoords.getY(), worldCoords.getZ(), chunkCoords.getX(), chunkCoords.getY(), chunkCoords.getZ());
+        return this.isInChunk(worldCoords.x(), worldCoords.y(), worldCoords.z(), chunkCoords.x(), chunkCoords.y(), chunkCoords.z());
     }
 
     /**
@@ -168,7 +168,7 @@ public interface ChunkLayout {
      */
     default Optional<Vector3i> toChunk(Vector3i worldCoords) {
         Objects.requireNonNull(worldCoords, "worldCoords");
-        return this.toChunk(worldCoords.getX(), worldCoords.getY(), worldCoords.getZ());
+        return this.toChunk(worldCoords.x(), worldCoords.y(), worldCoords.z());
     }
 
     /**
@@ -194,7 +194,7 @@ public interface ChunkLayout {
      */
     default Optional<Vector3i> toWorld(Vector3i chunkCoords) {
         Objects.requireNonNull(chunkCoords, "chunkCoords");
-        return this.toWorld(chunkCoords.getX(), chunkCoords.getY(), chunkCoords.getZ());
+        return this.toWorld(chunkCoords.x(), chunkCoords.y(), chunkCoords.z());
     }
 
     /**
@@ -219,7 +219,7 @@ public interface ChunkLayout {
      */
     default Vector3i forceToChunk(Vector3i worldCoords) {
         Objects.requireNonNull(worldCoords, "worldCoords");
-        return this.forceToChunk(worldCoords.getX(), worldCoords.getY(), worldCoords.getZ());
+        return this.forceToChunk(worldCoords.x(), worldCoords.y(), worldCoords.z());
     }
 
     /**
@@ -242,7 +242,7 @@ public interface ChunkLayout {
      */
     default Vector3i forceToWorld(Vector3i chunkCoords) {
         Objects.requireNonNull(chunkCoords, "chunkCoords");
-        return this.forceToWorld(chunkCoords.getX(), chunkCoords.getY(), chunkCoords.getZ());
+        return this.forceToWorld(chunkCoords.x(), chunkCoords.y(), chunkCoords.z());
     }
 
     /**
@@ -267,7 +267,7 @@ public interface ChunkLayout {
     default Optional<Vector3i> addToChunk(Vector3i chunkCoords, Vector3i chunkOffset) {
         Objects.requireNonNull(chunkCoords, "chunkCoords");
         Objects.requireNonNull(chunkOffset, "chunkOffset");
-        return this.addToChunk(chunkCoords.getX(), chunkCoords.getY(), chunkCoords.getZ(), chunkOffset.getX(), chunkOffset.getY(), chunkOffset.getZ());
+        return this.addToChunk(chunkCoords.x(), chunkCoords.y(), chunkCoords.z(), chunkOffset.x(), chunkOffset.y(), chunkOffset.z());
     }
 
     /**

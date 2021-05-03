@@ -51,7 +51,7 @@ public interface ScheduledUpdateList<T> {
      * @return The scheduled update
      */
     default ScheduledUpdate<T> schedule(Vector3i pos, T target, int delay, TemporalUnit temporalUnit) {
-        return this.schedule(pos.getX(), pos.getY(), pos.getZ(), target, delay, temporalUnit, TaskPriorities.NORMAL.get());
+        return this.schedule(pos.x(), pos.y(), pos.z(), target, delay, temporalUnit, TaskPriorities.NORMAL.get());
     }
 
     /**
@@ -62,7 +62,7 @@ public interface ScheduledUpdateList<T> {
      * @return The scheduled update
      */
     default ScheduledUpdate<T> schedule(Vector3i pos, T target, Duration delay) {
-        return this.schedule(pos.getX(), pos.getY(), pos.getZ(), target, delay, TaskPriorities.NORMAL);
+        return this.schedule(pos.x(), pos.y(), pos.z(), target, delay, TaskPriorities.NORMAL);
     }
 
     /**
@@ -102,7 +102,7 @@ public interface ScheduledUpdateList<T> {
      * @return The scheduled update
      */
     default ScheduledUpdate<T> schedule(Vector3i pos, T target, int delay, TemporalUnit temporalUnit, TaskPriority priority) {
-        return this.schedule(pos.getX(), pos.getY(), pos.getZ(), target, Duration.of(delay, temporalUnit), priority);
+        return this.schedule(pos.x(), pos.y(), pos.z(), target, Duration.of(delay, temporalUnit), priority);
     }
 
     /**
@@ -115,7 +115,7 @@ public interface ScheduledUpdateList<T> {
      * @return The scheduled update
      */
     default ScheduledUpdate<T> schedule(Vector3i pos, T target, int delay, TemporalUnit temporalUnit, DefaultedRegistryReference<? extends TaskPriority> priority) {
-        return this.schedule(pos.getX(), pos.getY(), pos.getZ(), target, Duration.of(delay, temporalUnit), priority.get());
+        return this.schedule(pos.x(), pos.y(), pos.z(), target, Duration.of(delay, temporalUnit), priority.get());
     }
 
     /**
@@ -127,7 +127,7 @@ public interface ScheduledUpdateList<T> {
      * @return The scheduled update
      */
     default ScheduledUpdate<T> schedule(Vector3i pos, T target, Duration delay, TaskPriority priority) {
-        return this.schedule(pos.getX(), pos.getY(), pos.getZ(), target, delay, priority);
+        return this.schedule(pos.x(), pos.y(), pos.z(), target, delay, priority);
     }
 
     /**
@@ -139,7 +139,7 @@ public interface ScheduledUpdateList<T> {
      * @return The scheduled update
      */
     default ScheduledUpdate<T> schedule(Vector3i pos, T target, Duration delay, DefaultedRegistryReference<? extends TaskPriority> priority) {
-        return this.schedule(pos.getX(), pos.getY(), pos.getZ(), target, delay, priority.get());
+        return this.schedule(pos.x(), pos.y(), pos.z(), target, delay, priority.get());
     }
 
     /**
@@ -206,7 +206,7 @@ public interface ScheduledUpdateList<T> {
      * @return True if there's an update scheduled
      */
     default boolean isScheduled(Vector3i pos, T target) {
-        return this.isScheduled(pos.getX(), pos.getY(), pos.getZ(), target);
+        return this.isScheduled(pos.x(), pos.y(), pos.z(), target);
     }
 
     /**
@@ -225,7 +225,7 @@ public interface ScheduledUpdateList<T> {
      * @return The collection of scheduled updates at the desired position
      */
     default Collection<? extends ScheduledUpdate<T>> scheduledAt(Vector3i pos) {
-        return this.scheduledAt(pos.getX(), pos.getY(), pos.getZ());
+        return this.scheduledAt(pos.x(), pos.y(), pos.z());
     }
 
     /**

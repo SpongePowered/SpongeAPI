@@ -1,10 +1,11 @@
 plugins {
     `java-library`
     `maven-publish`
-    id("org.spongepowered.gradle.event-impl-gen") version "7.0.0"
     eclipse
-    id("org.cadixdev.licenser")
     checkstyle
+    id("org.spongepowered.gradle.event-impl-gen")
+    id("org.cadixdev.licenser")
+    id("org.jetbrains.gradle.plugin.idea-ext")
 }
 
 repositories {
@@ -14,7 +15,7 @@ repositories {
 }
 
 checkstyle {
-    toolVersion = "8.41.1"
+    toolVersion = "8.42"
     configDirectory.set(layout.projectDirectory.dir(".checkstyle"))
     configProperties = mutableMapOf<String, Any>(
             "severity" to "error"
@@ -85,7 +86,7 @@ dependencies {
     }
 
     // Plugin spi, includes plugin-meta
-    api("org.spongepowered:plugin-spi:0.1.4-SNAPSHOT")
+    api("org.spongepowered:plugin-spi:0.2.0-SNAPSHOT")
 
     // Configurate
     api(platform("org.spongepowered:configurate-bom:4.0.0"))
@@ -223,19 +224,39 @@ tasks {
     }
 }
 
+idea {
+    if (project != null) {
+        (project as ExtensionAware).extensions["settings"].run {
+            require(this is ExtensionAware)
+
+            this.extensions.getByType(org.jetbrains.gradle.ext.ActionDelegationConfig::class).run {
+                delegateBuildRunToGradle = false
+                testRunner = org.jetbrains.gradle.ext.ActionDelegationConfig.TestRunner.PLATFORM
+            }
+            this.extensions.getByType(org.jetbrains.gradle.ext.TaskTriggersConfig::class).run {
+                beforeBuild(tasks.genEventImpl)
+            }
+        }
+    }
+}
+
+eclipse {
+    autoBuildTasks(tasks.genEventImpl)
+}
+
 val organization: String by project
 val projectUrl: String by project
 val projectDescription: String by project
 license {
-    (this as ExtensionAware).extra.apply {
+    properties {
         this["name"] = "SpongeAPI"
         this["organization"] = organization
         this["url"] = projectUrl
     }
-    header = file("HEADER.txt")
+    header(file("HEADER.txt"))
 
     include("**/*.java")
-    newLine = false
+    newLine(false)
 }
 
 publishing {
