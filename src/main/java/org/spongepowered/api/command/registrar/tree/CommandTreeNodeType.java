@@ -25,21 +25,41 @@
 package org.spongepowered.api.command.registrar.tree;
 
 import org.spongepowered.api.ResourceKeyed;
+import org.spongepowered.api.command.Command;
+import org.spongepowered.api.command.registrar.CommandRegistrarType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents the client-side behaviour of a command parameter.
+ * Represents the client-side behavior of a {@link CommandTreeNode}, for use
+ * with {@link CommandRegistrarType command registrars} that require such nodes
+ * to specify client side behaviour (for example,
+ * {@link Command.Raw raw commands}).
  *
- * <p>Completion keys are used to create argument branches of a
- * {@link CommandTreeNode command tree}.</p>
+ * <p>These types affect the following behaviours of client-side command
+ * handling:</p>
+ *
+ * <ul>
+ *     <li>The allowed form of an argument - i.e. how the client decides an
+ *     argument will be accepted or not.</li>
+ *     <li>The available tab-completions for a given argument (which may either
+ *     be wholly client-side, or require a request to the server).</li>
+ * </ul>
+ *
+ * <p>Some of these types may have an alternative
+ * {@link CommandCompletionProviders completion provider} that may be used in
+ * conjunction with this node type that provides alternative completions.</p>
+ *
+ * <p>Note that these types do not contain any parsing logic themselves, they
+ * are purely used to inform the client of the behavior it should exhibit when
+ * displaying and completing command strings.</p>
  */
-@CatalogedBy(ClientCompletionKeys.class)
-public interface ClientCompletionKey<T extends CommandTreeNode<T>> extends DefaultedRegistryValue, ResourceKeyed {
+@CatalogedBy(CommandTreeNodeTypes.class)
+public interface CommandTreeNodeType<T extends CommandTreeNode<T>> extends DefaultedRegistryValue, ResourceKeyed {
 
     /**
      * Creates a {@link CommandTreeNode} that represents this
-     * {@link ClientCompletionKey}
+     * {@link CommandTreeNodeType}
      *
      * @return The new {@link CommandTreeNode}
      */

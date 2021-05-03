@@ -34,8 +34,8 @@ import org.spongepowered.api.command.parameter.ArgumentReader;
 import org.spongepowered.api.command.parameter.CommandContext;
 import org.spongepowered.api.command.parameter.Parameter;
 import org.spongepowered.api.command.parameter.managed.Flag;
-import org.spongepowered.api.command.registrar.tree.ClientCompletionKeys;
 import org.spongepowered.api.command.registrar.tree.CommandTreeNode;
+import org.spongepowered.api.command.registrar.tree.CommandTreeNodeTypes;
 import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.event.EventContext;
 import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
@@ -201,7 +201,7 @@ public interface Command {
          */
         default CommandTreeNode.Root commandTree() {
             return CommandTreeNode.root().executable().child("arguments",
-                    ClientCompletionKeys.STRING.get().createNode().greedy().executable().customSuggestions());
+                    CommandTreeNodeTypes.STRING.get().createNode().greedy().executable().customCompletions());
         }
 
     }

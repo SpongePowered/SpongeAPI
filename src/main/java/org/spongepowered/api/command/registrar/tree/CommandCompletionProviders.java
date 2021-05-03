@@ -35,10 +35,10 @@ import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.world.biome.Biome;
 
 /**
- * The {@link ClientSuggestionProvider suggestion providers} available to raw
+ * The {@link CommandCompletionProvider completion providers} available to raw
  * command providers.
  */
-public final class ClientSuggestionProviders {
+public final class CommandCompletionProviders {
 
     // @formatter:off
 
@@ -51,7 +51,7 @@ public final class ClientSuggestionProviders {
      * <p>This provider is intended for use with a {@link ResourceKey} parser.
      * </p>
      */
-    public static final DefaultedRegistryReference<ClientSuggestionProvider> ALL_RECIPES = ClientSuggestionProviders.key(ResourceKey.minecraft("all_recipes"));
+    public static final DefaultedRegistryReference<CommandCompletionProvider> ALL_RECIPES = CommandCompletionProviders.key(ResourceKey.minecraft("all_recipes"));
 
     /**
      * Instructs the node represented by a {@link CommandTreeNode} to display
@@ -60,7 +60,7 @@ public final class ClientSuggestionProviders {
      * <p>This provider is intended for use with a {@link ResourceKey} parser.
      * </p>
      */
-    public static final DefaultedRegistryReference<ClientSuggestionProvider> AVAILABLE_SOUNDS = ClientSuggestionProviders.key(ResourceKey.minecraft("available_sounds"));
+    public static final DefaultedRegistryReference<CommandCompletionProvider> AVAILABLE_SOUNDS = CommandCompletionProviders.key(ResourceKey.minecraft("available_sounds"));
 
     /**
      * Instructs the node represented by a {@link CommandTreeNode} to display
@@ -69,7 +69,7 @@ public final class ClientSuggestionProviders {
      * <p>This provider is intended for use with a {@link ResourceKey} parser.
      * </p>
      */
-    public static final DefaultedRegistryReference<ClientSuggestionProvider> AVAILABLE_BIOMES = ClientSuggestionProviders.key(ResourceKey.minecraft("available_biomes"));
+    public static final DefaultedRegistryReference<CommandCompletionProvider> AVAILABLE_BIOMES = CommandCompletionProviders.key(ResourceKey.minecraft("available_biomes"));
 
     /**
      * Instructs the node represented by a {@link CommandTreeNode} to display
@@ -77,19 +77,19 @@ public final class ClientSuggestionProviders {
      * vanilla {@code /summon} command.
      *
      * <p>This provider is intended for use with
-     * {@link ClientCompletionKeys#ENTITY_SUMMON}</p>
+     * {@link CommandTreeNodeTypes#ENTITY_SUMMON}</p>
      */
-    public static final DefaultedRegistryReference<ClientSuggestionProvider> SUMMONABLE_ENTITIES = ClientSuggestionProviders.key(ResourceKey.minecraft("summonable_entities"));
+    public static final DefaultedRegistryReference<CommandCompletionProvider> SUMMONABLE_ENTITIES = CommandCompletionProviders.key(ResourceKey.minecraft("summonable_entities"));
 
     // SORTFIELDS:OFF
 
     // @formatter:on
 
-    private ClientSuggestionProviders() {
+    private CommandCompletionProviders() {
     }
 
-    private static DefaultedRegistryReference<ClientSuggestionProvider> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.CLIENT_SUGGESTION_PROVIDER, location).asDefaultedReference(() -> Sponge.game().registries());
+    private static DefaultedRegistryReference<CommandCompletionProvider> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.COMMAND_COMPLETION_PROVIDER, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 
 }

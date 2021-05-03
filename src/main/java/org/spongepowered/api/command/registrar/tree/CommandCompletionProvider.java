@@ -28,10 +28,11 @@ import org.spongepowered.api.command.parameter.managed.ValueCompleter;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Used with {@link ClientCompletionKeys}, suggestion providers tell the client
- * what should be suggested, usually without requiring a request to the server.
- * They do not otherwise affect the parse-time behaviour of a parameter.
+ * Used with {@link CommandTreeNodeTypes}, completion providers alter the
+ * standard completion behaviour of a {@link CommandTreeNode}, usually without
+ * requiring a request to the server. They do not otherwise affect the
+ * parse-time behaviour of a parameter.
  */
-@CatalogedBy(ClientSuggestionProviders.class)
-public interface ClientSuggestionProvider extends ValueCompleter {
+@CatalogedBy(CommandCompletionProviders.class)
+public interface CommandCompletionProvider extends ValueCompleter {
 }
