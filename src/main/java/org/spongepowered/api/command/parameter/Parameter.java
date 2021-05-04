@@ -1087,7 +1087,7 @@ public interface Parameter {
              * The {@link ValueParser} that will extract the value(s) from the
              * parameters. If this is a {@link ValueParameter}, the object's
              * complete and usage methods will be used for completion and usage
-             * unless this builder's {@link #suggestions(ValueCompleter)}} and
+             * unless this builder's {@link #completer(ValueCompleter)}} and
              * {@link #usage(ValueUsage)} methods are specified.
              *
              * @param parser The {@link ValueParameter} to use
@@ -1099,7 +1099,7 @@ public interface Parameter {
              * The {@link ValueParser} that will extract the value(s) from the
              * parameters. If this is a {@link ValueParameter}, the object's
              * complete and usage methods will be used for completion and usage
-             * unless this builder's {@link #suggestions(ValueCompleter)}} and
+             * unless this builder's {@link #completer(ValueCompleter)}} and
              * {@link #usage(ValueUsage)} methods are specified.
              *
              * @param <V> The {@link ValueParser} to be used as a parser
@@ -1121,7 +1121,7 @@ public interface Parameter {
              * @param completer The {@link ValueCompleter}
              * @return This builder, for chaining
              */
-            Builder<T> suggestions(@Nullable ValueCompleter completer);
+            Builder<T> completer(@Nullable ValueCompleter completer);
 
             /**
              * Provides a modifier that allows for the modification of the
