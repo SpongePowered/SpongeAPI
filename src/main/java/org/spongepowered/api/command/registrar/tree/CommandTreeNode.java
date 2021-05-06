@@ -83,7 +83,7 @@ public interface CommandTreeNode<T extends CommandTreeNode<T>> {
      * @param key The name of the child node
      * @param childNode The child node
      * @return This, for chaining.
-     * @see ClientCompletionKeys for keys that will create tree node types
+     * @see CommandTreeNodeTypes for the node types that can be created
      */
     T child(final String key, final CommandTreeNode.Argument<@NonNull ?> childNode);
 
@@ -103,11 +103,11 @@ public interface CommandTreeNode<T extends CommandTreeNode<T>> {
      * @param type the type of argument to use in the child node
      * @param processor A callback that will receive the created child node
      * @return This, for chaining.
-     * @see ClientCompletionKeys for keys that will create tree node types
+     * @see CommandTreeNodeTypes for the node types that can be created
      */
     default <C extends CommandTreeNode.Argument<C>> T child(
         final String key,
-        final DefaultedRegistryReference<ClientCompletionKey<C>> type,
+        final DefaultedRegistryReference<CommandTreeNodeType<C>> type,
         final Consumer<C> processor
     ) {
         return this.child(key, Objects.requireNonNull(type, "type").get(), processor);
@@ -129,9 +129,9 @@ public interface CommandTreeNode<T extends CommandTreeNode<T>> {
      * @param type the type of argument to use in the child node
      * @param processor A callback that will receive the created child node
      * @return This, for chaining.
-     * @see ClientCompletionKeys for keys that will create tree node types
+     * @see CommandTreeNodeTypes for the node types that can be created
      */
-    default <C extends CommandTreeNode.Argument<C>> T child(final String key, final ClientCompletionKey<C> type, final Consumer<C> processor) {
+    default <C extends CommandTreeNode.Argument<C>> T child(final String key, final CommandTreeNodeType<C> type, final Consumer<C> processor) {
         Objects.requireNonNull(type, "type");
         Objects.requireNonNull(processor, "processor");
         final C child = type.createNode();
@@ -172,42 +172,42 @@ public interface CommandTreeNode<T extends CommandTreeNode<T>> {
 
     /**
      * Declares that the node should use the provided
-     * {@link ClientSuggestionProvider} for generating suggestions on the
+     * {@link CommandCompletionProvider} for generating completions on the
      * client.
      *
-     * <p>This overrides {@link #customSuggestions()}.</p>
+     * <p>This overrides {@link #customCompletions()}.</p>
      *
-     * @param suggestionProvider The provider this node should use
+     * @param completionProvider The provider this node should use
      * @return This, for chaining
      */
-    default T suggestions(@Nullable final DefaultedRegistryReference<ClientSuggestionProvider> suggestionProvider) {
-        if (suggestionProvider == null) {
-            return this.suggestions((ClientSuggestionProvider) null);
+    default T completions(@Nullable final DefaultedRegistryReference<CommandCompletionProvider> completionProvider) {
+        if (completionProvider == null) {
+            return this.completions((CommandCompletionProvider) null);
         }
-        return this.suggestions(suggestionProvider.get());
+        return this.completions(completionProvider.get());
     }
 
     /**
      * Declares that the node should use the provided
-     * {@link ClientSuggestionProvider} for generating suggestions on the
+     * {@link CommandCompletionProvider} for generating completions on the
      * client.
      *
-     * <p>This overrides {@link #customSuggestions()}.</p>
+     * <p>This overrides {@link #customCompletions()}.</p>
      *
-     * @param suggestionProvider The provider this node should use
+     * @param completionProvider The provider this node should use
      * @return This, for chaining
      */
-    T suggestions(@Nullable ClientSuggestionProvider suggestionProvider);
+    T completions(@Nullable CommandCompletionProvider completionProvider);
 
     /**
-     * Declares that this node uses custom suggestions and, as such, tab
+     * Declares that this node uses custom completions and, as such, tab
      * completions should query the server.
      *
-     * <p>This overrides {@link #suggestions(ClientSuggestionProvider)}.</p>
+     * <p>This overrides {@link #completions(CommandCompletionProvider)}.</p>
      *
      * @return This, for chaining.
      */
-    T customSuggestions();
+    T customCompletions();
 
     /**
      * A {@link CommandTreeNode} that acts as the root of a command.

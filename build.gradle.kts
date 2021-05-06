@@ -86,7 +86,7 @@ dependencies {
     }
 
     // Plugin spi, includes plugin-meta
-    api("org.spongepowered:plugin-spi:0.2.0-SNAPSHOT")
+    api("org.spongepowered:plugin-spi:0.2.0")
 
     // Configurate
     api(platform("org.spongepowered:configurate-bom:4.0.0"))
@@ -112,7 +112,7 @@ dependencies {
     }
 
     // Math library
-    api("org.spongepowered:math:2.0.0-SNAPSHOT")
+    api("org.spongepowered:math:2.0.0")
 
     testImplementation(platform("org.junit:junit-bom:5.7.1"))
     testImplementation("org.junit.jupiter:junit-jupiter-api")

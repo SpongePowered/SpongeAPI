@@ -36,8 +36,8 @@ import org.spongepowered.api.command.parameter.managed.ValueParameter;
 import org.spongepowered.api.command.parameter.managed.clientcompletion.ClientCompletionType;
 import org.spongepowered.api.command.parameter.managed.operator.Operator;
 import org.spongepowered.api.command.registrar.CommandRegistrarType;
-import org.spongepowered.api.command.registrar.tree.ClientCompletionKey;
-import org.spongepowered.api.command.registrar.tree.ClientSuggestionProvider;
+import org.spongepowered.api.command.registrar.tree.CommandCompletionProvider;
+import org.spongepowered.api.command.registrar.tree.CommandTreeNodeType;
 import org.spongepowered.api.command.selector.SelectorSortAlgorithm;
 import org.spongepowered.api.command.selector.SelectorType;
 import org.spongepowered.api.data.persistence.DataFormat;
@@ -234,15 +234,15 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<ClickType<?>> CLICK_TYPE = RegistryTypes.spongeKeyInGame("click_type");
 
-    public static final DefaultedRegistryType<ClientCompletionKey<?>> CLIENT_COMPLETION_KEY = RegistryTypes.spongeKeyInGame("client_completion_key");
-
     public static final DefaultedRegistryType<ClientCompletionType> CLIENT_COMPLETION_TYPE = RegistryTypes.spongeKeyInGame("client_completion_type");
-
-    public static final DefaultedRegistryType<ClientSuggestionProvider> CLIENT_SUGGESTION_PROVIDER = RegistryTypes.spongeKeyInGame("client_suggestion_provider");
 
     public static final DefaultedRegistryType<CollisionRule> COLLISION_RULE = RegistryTypes.spongeKeyInGame("collision_rule");
 
+    public static final DefaultedRegistryType<CommandCompletionProvider> COMMAND_COMPLETION_PROVIDER = RegistryTypes.spongeKeyInGame("command_completion_provider");
+
     public static final DefaultedRegistryType<CommandRegistrarType<?>> COMMAND_REGISTRAR_TYPE = RegistryTypes.spongeKeyInGame("command_registrar_type");
+
+    public static final DefaultedRegistryType<CommandTreeNodeType<?>> COMMAND_TREE_NODE_TYPE = RegistryTypes.spongeKeyInGame("command_tree_node_type");
 
     public static final DefaultedRegistryType<ComparatorMode> COMPARATOR_MODE = RegistryTypes.spongeKeyInGame("comparator_mode");
 

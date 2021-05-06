@@ -35,6 +35,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.command.Command;
 import org.spongepowered.api.command.CommandCause;
+import org.spongepowered.api.command.CommandCompletion;
 import org.spongepowered.api.command.CommandExecutor;
 import org.spongepowered.api.command.exception.ArgumentParseException;
 import org.spongepowered.api.command.parameter.managed.ValueCompleter;
@@ -1039,7 +1040,7 @@ public interface Parameter {
          * @throws ArgumentParseException thrown if the parameter could not be
          *      parsed
          */
-        List<String> complete(ArgumentReader.@NonNull Immutable reader, @NonNull CommandContext context) throws ArgumentParseException;
+        List<CommandCompletion> complete(ArgumentReader.@NonNull Immutable reader, @NonNull CommandContext context) throws ArgumentParseException;
 
         /**
          * Gets the usage of this parameter.
@@ -1086,7 +1087,7 @@ public interface Parameter {
              * The {@link ValueParser} that will extract the value(s) from the
              * parameters. If this is a {@link ValueParameter}, the object's
              * complete and usage methods will be used for completion and usage
-             * unless this builder's {@link #suggestions(ValueCompleter)}} and
+             * unless this builder's {@link #completer(ValueCompleter)}} and
              * {@link #usage(ValueUsage)} methods are specified.
              *
              * @param parser The {@link ValueParameter} to use
@@ -1098,7 +1099,7 @@ public interface Parameter {
              * The {@link ValueParser} that will extract the value(s) from the
              * parameters. If this is a {@link ValueParameter}, the object's
              * complete and usage methods will be used for completion and usage
-             * unless this builder's {@link #suggestions(ValueCompleter)}} and
+             * unless this builder's {@link #completer(ValueCompleter)}} and
              * {@link #usage(ValueUsage)} methods are specified.
              *
              * @param <V> The {@link ValueParser} to be used as a parser
@@ -1120,7 +1121,7 @@ public interface Parameter {
              * @param completer The {@link ValueCompleter}
              * @return This builder, for chaining
              */
-            Builder<T> suggestions(@Nullable ValueCompleter completer);
+            Builder<T> completer(@Nullable ValueCompleter completer);
 
             /**
              * Provides a modifier that allows for the modification of the
