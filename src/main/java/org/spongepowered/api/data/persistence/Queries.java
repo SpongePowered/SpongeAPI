@@ -26,6 +26,7 @@ package org.spongepowered.api.data.persistence;
 
 import static org.spongepowered.api.data.persistence.DataQuery.of;
 
+@SuppressWarnings("BadImport")
 public final class Queries {
 
     // Content version

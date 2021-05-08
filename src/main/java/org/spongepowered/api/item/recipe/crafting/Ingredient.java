@@ -217,6 +217,7 @@ public interface Ingredient extends Predicate<ItemStack> {
          *
          * @return The new Ingredient
          */
+        @Override
         Ingredient build();
     }
 

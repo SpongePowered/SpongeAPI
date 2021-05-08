@@ -175,7 +175,7 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
 
     @SuppressWarnings("rawtypes")
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final @Nullable Object obj) {
         if (this == obj) {
             return true;
         }
@@ -185,7 +185,7 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
         final Transaction other = (Transaction) obj;
         return Objects.equals(this.original, other.original)
                && Objects.equals(this.defaultReplacement, other.defaultReplacement)
-               && Objects.equals(this.valid, other.valid)
+               && this.valid == other.valid
                && Objects.equals(this.custom, other.custom);
     }
 

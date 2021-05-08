@@ -59,7 +59,7 @@ public abstract class AbstractModifierEvent<T extends ModifierFunction<M>, M> ex
         double finalDamage = originalValue;
         for (T tuple : originalFunctions) {
             this.modifierFunctions.add(this.convertTuple(tuple.modifier(), tuple.function()));
-            final double tempDamage = Objects.requireNonNull(tuple.function().applyAsDouble(finalDamage));
+            final double tempDamage = tuple.function().applyAsDouble(finalDamage);
             finalDamage += tempDamage;
             modifierMapBuilder.add(new Tuple<>(tuple.modifier(), tempDamage));
             mapBuilder.put(tuple.modifier(), tempDamage);
@@ -74,11 +74,11 @@ public abstract class AbstractModifierEvent<T extends ModifierFunction<M>, M> ex
 
     protected abstract T convertTuple(M obj, DoubleUnaryOperator function);
 
-    protected void recalculateDamages(double baseAmount) {
+    protected void recalculateDamages(final double baseAmount) {
         double tempAmount = baseAmount;
         this.modifiers.clear();
         for (T entry : this.modifierFunctions) {
-            final double modifierAmount = Objects.requireNonNull(entry.function().applyAsDouble(tempAmount));
+            final double modifierAmount = entry.function().applyAsDouble(tempAmount);
             if (this.modifiers.containsKey(entry.modifier())) {
                 final double oldAmount = this.modifiers.get(entry.modifier());
                 final double difference = oldAmount - modifierAmount;
@@ -94,10 +94,10 @@ public abstract class AbstractModifierEvent<T extends ModifierFunction<M>, M> ex
         }
     }
 
-    protected double finalAmount(double baseAmount) {
+    protected double finalAmount(final double baseAmount) {
         double damage = baseAmount;
-        for (T entry : this.modifierFunctions) {
-            damage += Objects.requireNonNull(entry.function().applyAsDouble(damage));
+        for (final T entry : this.modifierFunctions) {
+            damage += entry.function().applyAsDouble(damage);
         }
         return damage;
     }

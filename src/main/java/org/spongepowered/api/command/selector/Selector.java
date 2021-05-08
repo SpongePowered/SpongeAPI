@@ -476,6 +476,7 @@ public interface Selector {
          * @throws IllegalStateException if the builder could not create a
          *                               selector
          */
+        @Override
         Selector build() throws IllegalStateException;
 
     }

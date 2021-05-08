@@ -164,6 +164,7 @@ public interface PlaceholderContext {
          *  or the associated {@link PlaceholderParser} could not validate the
          *  built {@link PlaceholderComponent}, if applicable.
          */
+        @Override
         PlaceholderContext build() throws IllegalStateException;
 
     }

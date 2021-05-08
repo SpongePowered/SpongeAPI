@@ -156,6 +156,7 @@ public interface Enchantment extends DataSerializable {
          * @return The created enchantment
          * @throws IllegalStateException If a required value was not specified
          */
+        @Override
         Enchantment build() throws IllegalStateException;
 
     }
@@ -228,6 +229,7 @@ public interface Enchantment extends DataSerializable {
          * @return The created enchantment
          * @throws IllegalStateException If a required value was not specified
          */
+        @Override
         List<Enchantment> build() throws IllegalStateException;
 
     }

@@ -54,7 +54,7 @@ public interface SerializableDataHolder extends DataSerializable, CopyableDataHo
     @Override
     SerializableDataHolder copy();
 
-    interface Mutable extends SerializableDataHolder, CopyableDataHolder.Mutable {
+    interface Mutable extends SerializableDataHolder, DataHolder.Mutable {
 
         /**
          * Attempts to set all data of this {@link DataHolder} according to the

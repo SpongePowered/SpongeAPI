@@ -460,6 +460,7 @@ public interface Team {
          * @return A new instance of a {@link Team}
          * @throws IllegalStateException if the {@link Team} is not complete
          */
+        @Override
         Team build() throws IllegalStateException;
 
     }

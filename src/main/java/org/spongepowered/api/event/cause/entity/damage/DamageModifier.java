@@ -148,6 +148,7 @@ public interface DamageModifier {
          *
          * @return The newly created damage modifier
          */
+        @Override
         public DamageModifier build() {
             if (this.type == null) {
                 throw new IllegalStateException("The DamageModifierType must not be null!");

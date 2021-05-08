@@ -222,6 +222,7 @@ public interface DisplayInfo {
          *
          * @return The display info
          */
+        @Override
         DisplayInfo build();
 
     }

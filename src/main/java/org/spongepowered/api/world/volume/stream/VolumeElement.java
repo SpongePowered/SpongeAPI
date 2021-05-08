@@ -38,14 +38,17 @@ public interface VolumeElement<V extends Volume, T> {
 
     static <W extends Volume, T> VolumeElement<W, T> of(final Supplier<W> volume, final Supplier<? extends T> type, final Vector3i position) {
         return new VolumeElement<W, T>() {
+            @Override
             public W volume() {
                 return volume.get();
             }
 
+            @Override
             public Vector3i position() {
                 return position;
             }
 
+            @Override
             public T type() {
                 return type.get();
             }

@@ -29,10 +29,10 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 import java.util.Optional;
 
 /**
- * Utility for working with {@code Optional&lt;Boolean&gt;}s.
+ * Utility for working with {@code Optional<Boolean>}s.
  *
  * <p>This also saves memory by holding three static instances of
- * {@code Optional&lt;Boolean&gt;}, which represents the possible states it can
+ * {@code Optional<Boolean>}, which represents the possible states it can
  * have.</p>
  */
 public final class OptBool {
@@ -53,27 +53,27 @@ public final class OptBool {
      * The absent value.
      *
      * <p>Also a shorthand for constructing instances
-     * with {@code Optional.&lt;Boolean&gt;empty()}.</p>
+     * with {@code Optional.<Boolean>empty()}.</p>
      */
     public static final Optional<Boolean> EMPTY = Optional.empty();
 
     /**
-     * Constructs a new {@code Optional&lt;Boolean&gt;} from the given boolean.
+     * Constructs a new {@code Optional<Boolean>} from the given boolean.
      *
      * @param bool The boolean
      * @return The constructed Optional
      */
-    public static Optional<Boolean> of(boolean bool) {
+    public static Optional<Boolean> of(final boolean bool) {
         return bool ? OptBool.TRUE : OptBool.FALSE;
     }
 
     /**
-     * Constructs a new {@code Optional&lt;Boolean&gt;} from the given {@link Boolean}.
+     * Constructs a new {@code Optional<Boolean>} from the given {@link Boolean}.
      *
      * @param bool The boolean
      * @return The constructed Optional, or {@link Optional#empty()}
      */
-    public static Optional<Boolean> of(@Nullable Boolean bool) {
+    public static Optional<Boolean> of(final @Nullable Boolean bool) {
         if (bool != null) {
             return OptBool.of(bool.booleanValue());
         }
@@ -81,13 +81,13 @@ public final class OptBool {
     }
 
     /**
-     * Coerces the given {@code Optional&lt;Boolean&gt;} into one of the three
+     * Coerces the given {@code Optional<Boolean>} into one of the three
      * stored states.
      *
      * @param bool The boolean
      * @return The constructed Optional, or {@link Optional#empty()}
      */
-    public static Optional<Boolean> of(Optional<Boolean> bool) {
+    public static Optional<Boolean> of(final Optional<Boolean> bool) {
         if (bool.isPresent()) {
             return OptBool.of(bool.get().booleanValue());
         }

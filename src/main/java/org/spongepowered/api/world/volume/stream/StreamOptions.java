@@ -182,6 +182,7 @@ public interface StreamOptions {
 
         Builder setLoadingStyle(LoadingStyle style);
 
+        @Override
         StreamOptions build();
 
     }

@@ -74,6 +74,7 @@ public interface Chunk extends ProtoChunk<Chunk>, EntityVolume.Mutable<Chunk> {
      *
      * @return The number of ticks
      */
+    @Override
     long inhabitedTime();
 
     /**

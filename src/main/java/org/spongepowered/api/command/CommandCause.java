@@ -257,6 +257,7 @@ public interface CommandCause extends SubjectProxy {
      *
      * @return The {@link Subject} responsible, if any.
      */
+    @Override
     Subject subject();
 
     /**

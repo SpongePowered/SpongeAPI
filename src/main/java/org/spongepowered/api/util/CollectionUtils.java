@@ -61,7 +61,8 @@ public final class CollectionUtils {
             } else if (map instanceof ConcurrentHashMap) {
                 return (Map<K, V>) new ConcurrentHashMap<>(map);
             }
-        } catch (Exception ignored) {
+        } catch (final Exception ignored) {
+            // fall back to HashMap
         }
         return new HashMap<>(map);
     }
@@ -85,7 +86,8 @@ public final class CollectionUtils {
             } else if (list instanceof CopyOnWriteArrayList) {
                 return (List<T>) ((CopyOnWriteArrayList<T>) list).clone();
             }
-        } catch (Exception ignored) {
+        } catch (final Exception ignored) {
+            // fall back to a standard copy
         }
         return new ArrayList<>(list);
     }

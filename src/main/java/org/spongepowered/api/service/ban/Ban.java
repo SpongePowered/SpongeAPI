@@ -232,6 +232,7 @@ public interface Ban {
          *
          * @return A new Ban
          */
+        @Override
         Ban build();
 
     }

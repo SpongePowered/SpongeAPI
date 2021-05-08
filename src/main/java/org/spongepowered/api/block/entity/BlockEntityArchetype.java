@@ -182,6 +182,7 @@ public interface BlockEntityArchetype extends Archetype<BlockSnapshot, BlockEnti
          *
          * @return The new instance
          */
+        @Override
         BlockEntityArchetype build();
 
     }

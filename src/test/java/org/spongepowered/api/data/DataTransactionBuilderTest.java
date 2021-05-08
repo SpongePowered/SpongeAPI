@@ -29,6 +29,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.spongepowered.api.data.DataTransactionResult.Type;
 
+@SuppressWarnings("BadImport") // limited-scope test, it's ok to import common names
 class DataTransactionBuilderTest {
 
     @Test
@@ -40,7 +41,7 @@ class DataTransactionBuilderTest {
         Assertions.assertEquals(Type.CANCELLED, this.absorbedType(Type.FAILURE, Type.CANCELLED));
     }
     
-    private Type absorbedType(Type builderType, Type resultType) {
+    private Type absorbedType(final Type builderType, final Type resultType) {
         final DataTransactionResult result = DataTransactionResult.builder().result(resultType).build();
         final DataTransactionResult absorbed = DataTransactionResult.builder().result(builderType).absorbResult(result).build();
         return absorbed.type();

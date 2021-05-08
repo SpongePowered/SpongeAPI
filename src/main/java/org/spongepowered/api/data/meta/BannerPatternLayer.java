@@ -150,6 +150,7 @@ public interface BannerPatternLayer extends DataSerializable {
          *
          * @return The new pattern layer
          */
+        @Override
         BannerPatternLayer build();
 
         @Override

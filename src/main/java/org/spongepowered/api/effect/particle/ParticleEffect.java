@@ -198,6 +198,7 @@ public interface ParticleEffect extends DataSerializable {
          *
          * @return A new instance of a ParticleEffect
          */
+        @Override
         ParticleEffect build();
     }
 }

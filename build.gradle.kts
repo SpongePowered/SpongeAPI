@@ -1,3 +1,5 @@
+import net.ltgt.gradle.errorprone.errorprone
+
 plugins {
     `java-library`
     `maven-publish`
@@ -6,6 +8,7 @@ plugins {
     id("org.spongepowered.gradle.event-impl-gen")
     id("org.cadixdev.licenser")
     id("org.jetbrains.gradle.plugin.idea-ext")
+    id("net.ltgt.errorprone")
 }
 
 repositories {
@@ -38,6 +41,8 @@ val ap by sourceSets.registering {
 
 // Project dependencies
 dependencies {
+    val errorproneVersion: String by project
+
     // Directly tied to what's available from Minecraft
     api("org.apache.logging.log4j:log4j-api:2.8.1")
     api("com.google.guava:guava:21.0") {
@@ -109,6 +114,13 @@ dependencies {
     }
     api("org.spongepowered:configurate-extra-guice") {
         exclude(group = "com.google.inject", module = "guice")
+    }
+
+    // Compile-time static analysis
+    compileOnly("com.google.errorprone:error_prone_annotations:$errorproneVersion")
+    errorprone("com.google.errorprone:error_prone_core:$errorproneVersion")
+    if (!JavaVersion.current().isJava9Compatible) { // for building with JDK 8
+        errorproneJavac("com.google.errorprone:javac:9+181-r4173-1")
     }
 
     // Math library
@@ -191,6 +203,12 @@ tasks {
         // Use the --release option when available to ensure we only use Java 8 classes
         if (JavaVersion.current().isJava10Compatible) {
             options.release.set(8)
+        }
+
+        options.errorprone {
+            disable("FutureReturnValueIgnored") // this check doesn't handle CompletableFuture properly
+            disable("EqualsGetClass") // conflicts with IntelliJ defaults
+            disable("MissingSummary") // TODO: Re-enable this check once Javadoc is in a better state
         }
     }
 

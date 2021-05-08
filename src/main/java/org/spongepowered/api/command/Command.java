@@ -175,7 +175,7 @@ public interface Command {
      * Gets the usage string of this command.
      *
      * <p>A usage string may look like
-     * {@code [&lt;world&gt;] &lt;var1&gt; &lt;var2&gt;}.</p>
+     * {@code [<world>] <var1> <var2>}.</p>
      *
      * <p>The string must not contain the command alias.</p>
      *
@@ -605,6 +605,7 @@ public interface Command {
          * @return The command, ready for registration
          * @throws IllegalStateException if the builder is not complete
          */
+        @Override
         Command.Parameterized build();
 
     }

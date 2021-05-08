@@ -31,6 +31,7 @@ public interface ConfigurableChunkGenerator<T extends ChunkGeneratorConfig> exte
 
     T config();
 
+    @Override
     default StructureGenerationConfig structureConfig() {
         return this.config().structureConfig();
     }

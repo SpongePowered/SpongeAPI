@@ -249,6 +249,7 @@ public interface DamageSource {
          * @throws IllegalStateException If a value required to be set
          *     is not set
          */
+        @Override
         T build() throws IllegalStateException;
     }
 

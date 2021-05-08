@@ -267,6 +267,7 @@ public final class RespawnLocation implements DataSerializable {
          *
          * @return The new respawn location
          */
+        @Override
         public RespawnLocation build() {
             Objects.requireNonNull(this.world);
             Objects.requireNonNull(this.position);

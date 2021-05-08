@@ -98,10 +98,10 @@ public interface MinecraftDayTime {
      *
      * <ul>
      *     <li>{@code day} must be positive;</li>
-     *     <li>{@code hour} is in 24-hour time, and so must be between 0 and 23,
+     *     <li>{@code hours} is in 24-hour time, and so must be between 0 and 23,
      *     <strong>except</strong> on day 1, where it must be between 6 and 23;
      *     and</li>
-     *     <li>{@code minute} must be between 0 and 59.</li>
+     *     <li>{@code minutes} must be between 0 and 59.</li>
      * </ul>
      *
      * <p>In the case where the supplied time does not completely align with a

@@ -81,6 +81,7 @@ public interface ClickContainerEvent extends ChangeInventoryEvent, InteractConta
     /**
      * A double-click with the primary mouse button
      */
+    @SuppressWarnings("JavaLangClash")
     interface Double extends ClickContainerEvent.Primary {}
 
     /**

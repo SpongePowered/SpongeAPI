@@ -269,6 +269,7 @@ public interface Scoreboard {
          * @return A new instance of a {@link Scoreboard}
          * @throws IllegalStateException if the {@link Scoreboard} is not complete
          */
+        @Override
         Scoreboard build() throws IllegalStateException;
 
     }

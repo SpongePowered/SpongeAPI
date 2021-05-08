@@ -180,6 +180,7 @@ public interface Schematic extends ArchetypeVolume, LocationBaseDataHolder.Mutab
          * @throws IllegalArgumentException If any required data was not
          *         specified
          */
+        @Override
         Schematic build() throws IllegalArgumentException;
 
     }

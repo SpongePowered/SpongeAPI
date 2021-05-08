@@ -118,11 +118,11 @@ import java.util.function.Function;
  * the "base" damage. The implementation for {@link #finalOutputDamage()} can
  * be exemplified like so:</p>
  *
- * <blockquote><pre>{@code double damage = this.baseDamage;<br />
- * for (Map.Entry&lt;DamageModifier, Function&lt;? super Double, Double&gt;&gt;
- * entry : this.modifierFunctions.entrySet()) {<br />
- * &nbsp;&nbsp;damage += checkNotNull(entry.getValue().apply(damage));<br />
- * }<br />
+ * <blockquote><pre>{@code
+ * double damage = this.baseDamage;<br />
+ * for (Map.Entry<DamageModifier, Function<? super Double, Double>> entry : this.modifierFunctions.entrySet()) {
+ *     damage += checkNotNull(entry.getValue().apply(damage));
+ * }
  * return damage;
  * }</pre></blockquote>
  *

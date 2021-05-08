@@ -407,7 +407,7 @@ public final class Cause implements Iterable<Object> {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(this.cause);
+        return Arrays.hashCode(this.cause);
     }
 
     @Override
