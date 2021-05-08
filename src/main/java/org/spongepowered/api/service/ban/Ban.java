@@ -89,9 +89,9 @@ public interface Ban {
      * Gets the creation date of the ban.
      *
      * <p>Note that this {@link Instant} has no effect on whether or not a ban is
-     * active. Any ban for which {@link BanService#hasBan(Ban)} returns
-     * <code>true</code> will be used (when checking if a player can join,
-     * for example), regardless of its creation date.</p>
+     * active. Any ban returned by {@link BanService#banFor(GameProfile)}
+     * will be used (when checking if a player can join, for example),
+     * regardless of its creation date.</p>
      *
      * @return Creation date of the ban
      */
