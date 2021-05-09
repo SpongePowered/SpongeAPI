@@ -259,7 +259,7 @@ idea {
 }
 
 eclipse {
-    autoBuildTasks(tasks.genEventImpl)
+    synchronizationTasks(tasks.genEventImpl)
 }
 
 val organization: String by project
