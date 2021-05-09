@@ -94,7 +94,7 @@ dependencies {
     api("org.spongepowered:plugin-spi:0.2.0")
 
     // Configurate
-    api(platform("org.spongepowered:configurate-bom:4.0.0"))
+    api(platform("org.spongepowered:configurate-bom:4.1.1"))
     api("org.spongepowered:configurate-core") {
         exclude(group = "org.checkerframework", module = "checker-qual") // We use our own version
     }
@@ -187,7 +187,7 @@ tasks {
                     "https://logging.apache.org/log4j/log4j-2.8.1/log4j-api/apidocs/",
                     "https://google.github.io/guice/api-docs/5.0.1/javadoc/",
                     "https://guava.dev/releases/21.0/api/docs/",
-                    "https://configurate.aoeu.xyz/4.0.0/apidocs/",
+                    "https://configurate.aoeu.xyz/4.1.1/apidocs/",
                     "https://www.javadoc.io/doc/com.google.code.gson/gson/2.8.0/",
                     "https://docs.oracle.com/javase/8/docs/api/"
                 )
