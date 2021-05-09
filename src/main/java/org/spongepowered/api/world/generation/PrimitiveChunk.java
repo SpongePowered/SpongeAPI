@@ -28,6 +28,4 @@ import org.spongepowered.api.world.chunk.ProtoChunk;
 
 public interface PrimitiveChunk extends ProtoChunk<PrimitiveChunk> {
 
-    @Override
-    GenerationRegion world();
 }
