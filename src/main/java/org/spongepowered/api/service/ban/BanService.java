@@ -39,8 +39,7 @@ import java.util.concurrent.CompletableFuture;
  * service API (e.g. writing them to a database). In essence, expired bans
  * should be treated the same as user-removed bans.
  *
- * <p>For example, {@link #bans()} would not include any expired bans,
- * and {@link #hasBan(Ban)} would return <code>false</code>.</p>
+ * <p>For example, {@link #bans()} would not include any expired bans.</p>
  */
 public interface BanService {
 
@@ -82,22 +81,6 @@ public interface BanService {
     CompletableFuture<Optional<Ban.IP>> banFor(InetAddress address);
 
     /**
-     * Checks if a {@link GameProfile} has a ban.
-     *
-     * @param profile The profile
-     * @return True if the profile has a ban, false otherwise
-     */
-    CompletableFuture<Boolean> isBanned(GameProfile profile);
-
-    /**
-     * Checks if an IP has a ban.
-     *
-     * @param address The address
-     * @return True if the address has a ban, false otherwise
-     */
-    CompletableFuture<Boolean> isBanned(InetAddress address);
-
-    /**
      * Pardons a profile, or removes its ban, if present.
      *
      * @param profile The profile
@@ -131,13 +114,5 @@ public interface BanService {
      * @return The previous ban, if available
      */
     CompletableFuture<Optional<? extends Ban>> addBan(Ban ban);
-
-    /**
-     * Checks if the specified ban is present.
-     *
-     * @param ban The ban
-     * @return True if the ban exists in this ban service, false otherwise
-     */
-    CompletableFuture<Boolean> hasBan(Ban ban);
 
 }

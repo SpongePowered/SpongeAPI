@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.util;
 
+import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.spongepowered.math.GenericMath;
 import org.spongepowered.math.TrigMath;
 import org.spongepowered.math.vector.Vector3d;
@@ -83,7 +84,8 @@ public enum Direction {
     private final Vector3d offset;
     private final Vector3i blockOffset;
     private final Division division;
-    private Direction opposite;
+    @SuppressWarnings("ImmutableEnumChecker")
+    private @MonotonicNonNull Direction opposite;
 
     static {
         Direction.NORTH.opposite = Direction.SOUTH;

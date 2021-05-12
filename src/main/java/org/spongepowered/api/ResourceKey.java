@@ -213,6 +213,7 @@ public interface ResourceKey extends Key {
          * @return The built resource key
          * @throws IllegalStateException If {@link Builder#namespace(String)} or {@link Builder#value(String)} are not set.
          */
+        @Override
         ResourceKey build() throws IllegalStateException;
     }
 

@@ -286,6 +286,7 @@ public final class EventContext {
          * 
          * @return The EventContext
          */
+        @Override
         public EventContext build() {
             return new EventContext(this.entries);
         }

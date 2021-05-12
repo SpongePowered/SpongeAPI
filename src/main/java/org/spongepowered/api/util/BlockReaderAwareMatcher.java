@@ -38,11 +38,11 @@ public interface BlockReaderAwareMatcher<T> {
         return (state, volume, position) -> true;
     }
 
-    static BlockReaderAwareMatcher<BlockState> forBlock(BlockState filter) {
+    static BlockReaderAwareMatcher<BlockState> forBlock(final BlockState filter) {
         return (state, volume, position) -> state == filter;
     }
 
-    static BlockReaderAwareMatcher<BlockState> forBlock(BlockType type) {
+    static BlockReaderAwareMatcher<BlockState> forBlock(final BlockType type) {
         Objects.requireNonNull(type, "BlockType cannot be null");
         return (state, volume, position) -> state != null && state.type() == type;
     }

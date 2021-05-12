@@ -699,6 +699,7 @@ public final class DataTransactionResult {
          *
          * @return The newly created transaction result
          */
+        @Override
         public DataTransactionResult build() {
             if (this.resultType == null) {
                 throw new IllegalStateException("ResultType must be set!");

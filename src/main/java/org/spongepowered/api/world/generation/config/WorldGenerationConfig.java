@@ -92,6 +92,7 @@ public interface WorldGenerationConfig {
 
             Builder generateBonusChest(boolean generateBonusChest);
 
+            @Override
             WorldGenerationConfig.Mutable build();
         }
     }

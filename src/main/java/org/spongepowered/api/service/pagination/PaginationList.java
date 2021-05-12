@@ -239,6 +239,7 @@ public interface PaginationList {
          * @return The pagination list
          * @throws IllegalStateException If no contents were specified
          */
+        @Override
         PaginationList build();
 
         /**

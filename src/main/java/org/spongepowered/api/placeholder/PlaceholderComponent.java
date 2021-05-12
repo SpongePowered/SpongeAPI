@@ -125,6 +125,7 @@ public interface PlaceholderComponent extends ComponentLike {
          *  or the associated {@link PlaceholderParser} could not validate the
          *  built {@link PlaceholderComponent}, if applicable.
          */
+        @Override
         PlaceholderComponent build() throws IllegalStateException;
 
     }

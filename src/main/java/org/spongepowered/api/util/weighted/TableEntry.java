@@ -38,7 +38,7 @@ public abstract class TableEntry<T> {
      *
      * @param weight The weight to associate with this entry
      */
-    public TableEntry(double weight) {
+    protected TableEntry(final double weight) {
         if (weight < 0) {
             throw new IllegalArgumentException("Weight cannot be negative");
         }

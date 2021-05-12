@@ -109,6 +109,7 @@ public interface LocatableBlock extends SerializableDataHolder.Immutable<Locatab
          *
          * @return The new locatable block
          */
+        @Override
         LocatableBlock build();
     }
 

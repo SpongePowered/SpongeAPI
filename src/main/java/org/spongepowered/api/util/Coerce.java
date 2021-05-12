@@ -735,7 +735,7 @@ public final class Coerce {
             return "0";
         }
 
-        return string.replace(",", "").split(" ")[0];
+        return string.replace(",", "").split(" ", 0)[0];
     }
 
     private static boolean listBracketsMatch(Matcher candidate) {
@@ -771,10 +771,8 @@ public final class Coerce {
         }
 
         final List<String> list = Lists.newArrayList();
-        for (String part : candidate.group(2).split(",")) {
-            if (part != null) {
-                list.add(part);
-            }
+        for (final String part : candidate.group(2).split(",", -1)) {
+            list.add(part);
         }
         return list;
     }

@@ -69,7 +69,7 @@ public abstract class AbstractGoal<O extends Agent> implements Goal<O> {
      *
      * @param type The type
      */
-    public AbstractGoal(GoalType type) {
+    protected AbstractGoal(final GoalType type) {
         Objects.requireNonNull(type);
         this.type = type;
     }

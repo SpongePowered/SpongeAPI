@@ -208,6 +208,7 @@ public interface TabListEntry {
          *
          * @return The entry
          */
+        @Override
         TabListEntry build();
     }
 

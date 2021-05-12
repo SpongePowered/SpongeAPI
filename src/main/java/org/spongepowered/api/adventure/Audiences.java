@@ -49,7 +49,7 @@ public final class Audiences {
      * @return An audience
      */
     public static Audience onlinePlayers() {
-        return Sponge.game().factoryProvider().provide(Factory.class).onlinePlayers();
+        return Audiences.factory().onlinePlayers();
     }
 
     /**
@@ -61,7 +61,7 @@ public final class Audiences {
      */
     public static Audience withPermission(final String permission) {
         Objects.requireNonNull(permission);
-        return Sponge.game().factoryProvider().provide(Factory.class).withPermission(permission);
+        return Audiences.factory().withPermission(permission);
     }
 
     /**

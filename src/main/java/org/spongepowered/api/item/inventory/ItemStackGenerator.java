@@ -135,6 +135,7 @@ public interface ItemStackGenerator extends Function<Random, ItemStack> {
          *
          * @return The newly created itemstack generator
          */
+        @Override
         ItemStackGenerator build();
 
     }

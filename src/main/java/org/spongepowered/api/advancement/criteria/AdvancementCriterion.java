@@ -162,6 +162,7 @@ public interface AdvancementCriterion extends Nameable {
          *
          * @return The criterion
          */
+        @Override
         T build();
     }
 

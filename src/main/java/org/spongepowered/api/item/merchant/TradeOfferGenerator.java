@@ -158,6 +158,7 @@ public interface TradeOfferGenerator extends BiFunction<Entity, Random, TradeOff
          *
          * @return The newly created generator
          */
+        @Override
         TradeOfferGenerator build();
 
     }

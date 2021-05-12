@@ -46,5 +46,6 @@ public interface ImmutableDataProviderBuilder<H extends DataHolder, V extends Va
 
     ImmutableDataProviderBuilder<H, V, E> supports(final Function<H, Boolean> supports);
 
+    @Override
     DataProvider<? extends Value<E>, E> build();
 }

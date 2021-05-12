@@ -224,6 +224,7 @@ public interface Flag {
          * @return A {@link Flag}
          * @throws IllegalStateException if no key or no alias is specified
          */
+        @Override
         Flag build() throws IllegalStateException;
 
     }

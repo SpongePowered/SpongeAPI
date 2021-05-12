@@ -1007,11 +1007,14 @@ public final class Keys {
      *
      * <p>The format of the rotation is represented by:</p>
      *
-     * <ul><li>{@code x -&gt; pitch</code></li><li> <code>y -&gt; yaw</code></li><li><code>z -&gt; roll
-     * }</li></ul>
+     * <ul>
+     *     <li>{@code x -> pitch}</li>
+     * <li> {@code y -> yaw}</li>
+     * <li>{@code z -> roll}</li>
+     * </ul>
      *
      * <p>Note that the pitch will be the same x value returned by
-     * {@link Entity#rotation ()} and Minecraft does not currently support
+     * {@link Entity#rotation()} and Minecraft does not currently support
      * head roll so the z value will always be zero.</p>
      */
     public static final Key<Value<Vector3d>> HEAD_ROTATION = Keys.key(ResourceKey.sponge("head_rotation"), TypeTokens.VECTOR_3D_VALUE_TOKEN);

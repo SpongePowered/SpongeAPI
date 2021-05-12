@@ -1,3 +1,5 @@
+import net.ltgt.gradle.errorprone.errorprone
+
 buildscript {
     dependencies {
         classpath("fr.inria.gforge.spoon:spoon-core:9.0.0") // bump for EIG
@@ -12,6 +14,7 @@ plugins {
     id("org.spongepowered.gradle.event-impl-gen")
     id("org.cadixdev.licenser")
     id("org.jetbrains.gradle.plugin.idea-ext")
+    id("net.ltgt.errorprone")
 }
 
 repositories {
@@ -44,6 +47,8 @@ val ap by sourceSets.registering {
 
 // Project dependencies
 dependencies {
+    val errorproneVersion: String by project
+
     // Directly tied to what's available from Minecraft
     api("org.apache.logging.log4j:log4j-api:2.8.1")
     api("com.google.guava:guava:21.0") {
@@ -95,7 +100,7 @@ dependencies {
     api("org.spongepowered:plugin-spi:0.2.0")
 
     // Configurate
-    api(platform("org.spongepowered:configurate-bom:4.0.0"))
+    api(platform("org.spongepowered:configurate-bom:4.1.1"))
     api("org.spongepowered:configurate-core") {
         exclude(group = "org.checkerframework", module = "checker-qual") // We use our own version
     }
@@ -116,6 +121,10 @@ dependencies {
     api("org.spongepowered:configurate-extra-guice") {
         exclude(group = "com.google.inject", module = "guice")
     }
+
+    // Compile-time static analysis
+    compileOnly("com.google.errorprone:error_prone_annotations:$errorproneVersion")
+    errorprone("com.google.errorprone:error_prone_core:$errorproneVersion")
 
     // Math library
     api("org.spongepowered:math:2.0.0")
@@ -189,7 +198,7 @@ tasks {
                     "https://logging.apache.org/log4j/log4j-2.8.1/log4j-api/apidocs/",
                     "https://google.github.io/guice/api-docs/5.0.1/javadoc/",
                     "https://guava.dev/releases/21.0/api/docs/",
-                    "https://configurate.aoeu.xyz/4.0.0/apidocs/",
+                    "https://configurate.aoeu.xyz/4.1.1/apidocs/",
                     "https://www.javadoc.io/doc/com.google.code.gson/gson/2.8.0/"
                 )
                 sequenceOf("api", "key", "text-serializer-gson", "text-serializer-legacy", "text-serializer-plain").forEach {
@@ -204,6 +213,12 @@ tasks {
 
     withType(JavaCompile::class).configureEach {
         options.release.set(16)
+
+        options.errorprone {
+            disable("FutureReturnValueIgnored") // this check doesn't handle CompletableFuture properly
+            disable("EqualsGetClass") // conflicts with IntelliJ defaults
+            disable("MissingSummary") // TODO: Re-enable this check once Javadoc is in a better state
+        }
     }
 
     test {
@@ -253,7 +268,7 @@ idea {
 }
 
 eclipse {
-    autoBuildTasks(tasks.genEventImpl)
+    synchronizationTasks(tasks.genEventImpl)
 }
 
 val organization: String by project

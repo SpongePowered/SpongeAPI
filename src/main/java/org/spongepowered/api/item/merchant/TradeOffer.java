@@ -260,6 +260,7 @@ public interface TradeOffer extends DataSerializable {
          * @throws IllegalStateException If the resulting trade offer would be
          *      invalid
          */
+        @Override
         TradeOffer build() throws IllegalStateException;
 
     }

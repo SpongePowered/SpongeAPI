@@ -212,6 +212,7 @@ public final class Color implements DataSerializable, RGBLike {
      *
      * @return The red value
      */
+    @Override
     public @IntRange(from = 0x0, to = 0xff) int red() {
         return Color.MASK & this.red;
     }

@@ -240,6 +240,7 @@ public interface Explosion extends Locatable {
          * @return The explosion, if successful
          * @throws IllegalArgumentException If any builder parameter is invalid
          */
+        @Override
         Explosion build() throws IllegalArgumentException;
 
     }

@@ -83,7 +83,7 @@ public final class BlockTransaction extends Transaction<BlockSnapshot> {
         final BlockTransaction other = (BlockTransaction) obj;
         return Objects.equals(this.original(), other.original())
             && Objects.equals(this.defaultReplacement(), other.defaultReplacement())
-            && Objects.equals(this.isValid(), other.isValid())
+            && this.isValid() == other.isValid()
             && Objects.equals(this.custom(), other.custom())
             && Objects.equals(this.operation, other.operation);
     }

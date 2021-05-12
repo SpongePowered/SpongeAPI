@@ -73,7 +73,7 @@ public interface VolumeStream<V extends Volume, T> {
     <Out> VolumeStream<V, Out> map(VolumeMapper<V, T, Out> mapper);
 
     default <Out> VolumeStream<V, Out> map(final Function<VolumeElement<V, T>, ? extends Out> mapper) {
-        return this.map(((volume, value, x, y, z) -> mapper.apply(VolumeElement.of(volume, value, new Vector3i(x, y, z)))));
+        return this.map((volume, value, x, y, z) -> mapper.apply(VolumeElement.of(volume, value, new Vector3i(x, y, z))));
     }
 
     VolumeStream<V, Optional<? extends T>> flatMap(VolumeFlatMapper<V, T> mapper);
@@ -87,7 +87,7 @@ public interface VolumeStream<V extends Volume, T> {
     boolean allMatch(VolumePredicate<V, ? super T> predicate);
 
     default boolean allMatch(final Predicate<VolumeElement<V, ? super T>> predicate) {
-        return this.allMatch(((volume, element, x, y, z) -> predicate.test(VolumeElement.of(volume, element, new Vector3i(x, y, z)))));
+        return this.allMatch((volume, element, x, y, z) -> predicate.test(VolumeElement.of(volume, element, new Vector3i(x, y, z))));
     }
 
     boolean noneMatch(VolumePredicate<V, ? super T> predicate);
