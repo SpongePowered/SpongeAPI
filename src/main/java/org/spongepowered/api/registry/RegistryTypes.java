@@ -101,6 +101,7 @@ import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.fluid.FluidType;
 import org.spongepowered.api.item.FireworkShape;
+import org.spongepowered.api.item.ItemRarity;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.enchantment.EnchantmentType;
 import org.spongepowered.api.item.inventory.ContainerType;
@@ -299,6 +300,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<InstrumentType> INSTRUMENT_TYPE = RegistryTypes.spongeKeyInGame("instrument_type");
 
     public static final DefaultedRegistryType<IntegerStateProperty> INTEGER_STATE_PROPERTY = RegistryTypes.spongeKeyInGame("integer_state_property");
+
+    public static final DefaultedRegistryType<ItemRarity> ITEM_RARITY = RegistryTypes.spongeKeyInGame("item_rarity");
 
     public static final DefaultedRegistryType<ItemTier> ITEM_TIER = RegistryTypes.spongeKeyInGame("item_tier");
 
