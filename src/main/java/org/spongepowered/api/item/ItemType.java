@@ -64,6 +64,13 @@ public interface ItemType extends DefaultedRegistryValue, ComponentLike, DataHol
     int maxStackQuantity();
 
     /**
+     * Gets the default {@link ItemRarity} for this {@link ItemType}.
+     *
+     * @return The default rarity for the item type.
+     */
+    ItemRarity rarity();
+
+    /**
      * Returns true if this type is any of the given item types
      *
      * @param types the item types to check
