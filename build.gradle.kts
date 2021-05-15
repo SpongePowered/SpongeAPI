@@ -33,6 +33,7 @@ tasks.withType(Checkstyle::class) {
 java {
     withSourcesJar()
     withJavadocJar()
+    modularity.inferModulePath.set(false)
 }
 
 val ap by sourceSets.registering {
