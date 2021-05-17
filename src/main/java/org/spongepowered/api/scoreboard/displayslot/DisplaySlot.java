@@ -26,6 +26,7 @@ package org.spongepowered.api.scoreboard.displayslot;
 
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.scoreboard.Team;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -39,13 +40,15 @@ import java.util.Optional;
 public interface DisplaySlot extends DefaultedRegistryValue {
 
     /**
-     * Gets the display slot for the specified team color. Returns
-     * this if the color is the same or if colors aren't supported.
+     * Finds and retrieves the sidebar display slot for the specified
+     * {@link NamedTextColor} associated with a {@link Team}, if one exists.
      *
-     * @param color The team color
-     * @return The display slot with the given team color
+     * @param color The {@link NamedTextColor}
+     * @return The slot, if one was found
      */
-    DisplaySlot withTeamColor(@Nullable NamedTextColor color);
+    static Optional<DisplaySlot> findByTeamColor(final NamedTextColor color) {
+        return Sponge.game().factoryProvider().provide(Factory.class).findByTeamColor(color);
+    }
 
     /**
      * Gets the {@link Team} color that this objective will display.
@@ -53,4 +56,21 @@ public interface DisplaySlot extends DefaultedRegistryValue {
      * @return The team color or {@link Optional#empty()} if not set
      */
     Optional<NamedTextColor> teamColor();
+
+    /**
+     * Used to support {@link #findByTeamColor(NamedTextColor)}
+     */
+    interface Factory {
+
+        /**
+         * Finds and retrieves the sidebar display slot for the specified
+         * {@link NamedTextColor} associated with a {@link Team}, if one exists.
+         *
+         * @param color The {@link NamedTextColor}
+         * @return The slot, if one was found
+         */
+        Optional<DisplaySlot> findByTeamColor(NamedTextColor color);
+
+    }
+
 }
