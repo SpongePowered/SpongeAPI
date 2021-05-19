@@ -27,9 +27,6 @@ package org.spongepowered.api.adventure;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
-import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer;
-import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
-import net.kyori.adventure.text.serializer.plain.PlainComponentSerializer;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
@@ -102,96 +99,12 @@ public final class SpongeComponents {
         return SpongeComponents.factory().render(component, senderContext, resolver, otherResolvers);
     }
 
-    /**
-     * Get a serializer for {@link Component}s that will convert to and from the
-     * legacy component format used by the Vanilla client.
-     *
-     * <p>This legacy serializer uses the standard section symbol to mark
-     * formatting characters.</p>
-     *
-     * <p>Implementations may provide a serializer capable of processing any
-     * information that requires access to implementation details.</p>
-     *
-     * @return a section serializer
-     */
-    public static LegacyComponentSerializer legacySectionSerializer() {
-        return SpongeComponents.factory().legacySectionSerializer();
-    }
-
-    /**
-     * Get a serializer for {@link Component}s that will convert to and from the
-     * legacy component format used by the Vanilla client.
-     *
-     * <p>This legacy serializer uses the alternate ampersand symbol ({@code &})
-     * to mark formatting characters.</p>
-     *
-     * <p>Implementations may provide a serializer capable of processing any
-     * information that requires access to implementation details.</p>
-     *
-     * @return a legacy serializer using ampersands
-     */
-    public static LegacyComponentSerializer legacyAmpersandSerializer() {
-        return SpongeComponents.factory().legacyAmpersandSerializer();
-    }
-
-    /**
-     * Get a serializer for {@link Component}s that will convert to and from the
-     * legacy component format used by the Vanilla client.
-     *
-     * <p>Implementations may provide a serializer capable of processing any
-     * information that requires access to implementation details.</p>
-     *
-     * @param formatChar the format character to use in place of the standard
-     *         section symbol
-     * @return a legacy serializer using ampersands
-     */
-    public static LegacyComponentSerializer legacySerializer(final char formatChar) {
-        return SpongeComponents.factory().legacySerializer(formatChar);
-    }
-
-    /**
-     * Get a serializer for {@link Component}s that will convert to and from the
-     * standard JSON serialization format using Gson.
-     *
-     * <p>Implementations may provide a serializer capable of processing any
-     * information that requires implementation details, such as legacy
-     * (pre-1.16) hover events.</p>
-     *
-     * @return a json component serializer
-     */
-    public static GsonComponentSerializer gsonSerializer() {
-        return SpongeComponents.factory().gsonSerializer();
-    }
-
-    /**
-     * Get a serializer for {@link Component}s that will convert components to
-     * a plain-text string.
-     *
-     * <p>Implementations may provide a serializer capable of processing any
-     * information that requires access to implementation details.</p>
-     *
-     * @return a serializer to plain text
-     */
-    public static PlainComponentSerializer plainSerializer() {
-        return SpongeComponents.factory().plainSerializer();
-    }
-
     private static Factory factory() {
         return Sponge.game().factoryProvider().provide(Factory.class);
     }
 
     public interface Factory {
         ClickEvent callbackClickEvent(final Consumer<CommandCause> callback);
-
-        LegacyComponentSerializer legacySectionSerializer();
-
-        LegacyComponentSerializer legacyAmpersandSerializer();
-
-        LegacyComponentSerializer legacySerializer(final char formatChar);
-
-        GsonComponentSerializer gsonSerializer();
-
-        PlainComponentSerializer plainSerializer();
 
         @SuppressWarnings("unchecked")
         Component render(
