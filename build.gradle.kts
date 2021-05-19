@@ -12,6 +12,7 @@ plugins {
 }
 
 repositories {
+  mavenLocal()
     maven("https://repo.spongepowered.org/repository/maven-public/") {
         name = "sponge"
     }
