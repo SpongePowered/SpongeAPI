@@ -28,14 +28,18 @@ import io.leangen.geantyref.TypeToken;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.value.ListValue;
+import org.spongepowered.api.data.value.MapValue;
+import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
+import org.spongepowered.api.data.value.WeightedCollectionValue;
 import org.spongepowered.api.event.EventListener;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 import org.spongepowered.api.event.lifecycle.RegisterRegistryValueEvent;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
-import org.spongepowered.api.util.TypeTokens;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.util.weighted.WeightedTable;
 import org.spongepowered.plugin.PluginContainer;
 
 import java.lang.reflect.ParameterizedType;
@@ -45,6 +49,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.function.BiPredicate;
 
 /**
@@ -89,13 +94,48 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
         return Sponge.game().builderProvider().provide(Builder.class);
     }
 
-    static <E, V extends Value<E>> Key<V> of(final PluginContainer plugin, final String value, final TypeToken<V> type) {
-        return Key.of(ResourceKey.of(Objects.requireNonNull(plugin, "plugin"), value), type);
+    static <V> Key<Value<V>> from(final PluginContainer plugin, final String value, final Class<V> type) {
+        return Key.from(ResourceKey.of(Objects.requireNonNull(plugin, "plugin"), value), type);
     }
 
-    static <E, V extends Value<E>> Key<V> of(final ResourceKey resourceKey, final TypeToken<V> type) {
-        return Key.builder().key(Objects.requireNonNull(resourceKey, "resourceKey")).type(Objects.requireNonNull(type, "type"))
-                .build();
+    static <E> Key<Value<E>> from(final ResourceKey resourceKey, final Class<E> type) {
+        return Key.builder()
+            .key(Objects.requireNonNull(resourceKey, "resourceKey"))
+            .elementType(Objects.requireNonNull(type, "type"))
+            .build();
+    }
+
+    static <V> Key<ListValue<V>> fromList(final PluginContainer plugin, final String value, final Class<V> type) {
+        return Key.fromList(ResourceKey.of(Objects.requireNonNull(plugin, "plugin"), value), type);
+    }
+
+    static <E> Key<ListValue<E>> fromList(final ResourceKey resourceKey, final Class<E> type) {
+        return Key.builder()
+            .key(Objects.requireNonNull(resourceKey, "resourceKey"))
+            .listElementType(Objects.requireNonNull(type, "type"))
+            .build();
+    }
+
+    static <V> Key<SetValue<V>> fromSet(final PluginContainer plugin, final String value, final Class<V> type) {
+        return Key.fromSet(ResourceKey.of(Objects.requireNonNull(plugin, "plugin"), value), type);
+    }
+
+    static <E> Key<SetValue<E>> fromSet(final ResourceKey resourceKey, final Class<E> type) {
+        return Key.builder()
+            .key(Objects.requireNonNull(resourceKey, "resourceKey"))
+            .setElementType(Objects.requireNonNull(type, "type"))
+            .build();
+    }
+
+    static <K, V> Key<MapValue<K, V>> fromMap(final PluginContainer plugin, final String value, final Class<K> keyType, final Class<V> valueType) {
+        return Key.fromMap(ResourceKey.of(Objects.requireNonNull(plugin, "plugin"), value), keyType, valueType);
+    }
+
+    static <K, V> Key<MapValue<K, V>> fromMap(final ResourceKey resourceKey, final Class<K> keyType, final Class<V> valueType) {
+        return Key.builder()
+            .key(Objects.requireNonNull(resourceKey, "resourceKey"))
+            .mapElementType(Objects.requireNonNull(keyType, "keyType"), Objects.requireNonNull(valueType, "valueType"))
+            .build();
     }
 
     /**
@@ -154,10 +194,10 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
          * {@link Key#builder()} is called. This defines the generics for the
          * builder itself to provide the properly generified {@link Key}.
          *
-         * <p>Common {@link TypeToken TypeTokens} can be found in
-         * {@link TypeTokens}. If a new TypeToken is to be created, it is
-         * recommended to create an anonymous class instance of a token,
-         * as described in <a href="https://github.com/leangen/geantyref#creating-type-literals-using-typetoken">the GeAnTyRef documentation</a>
+         * <p>For common cases, element types can be specified using one of the
+         * {@code *elementType(Class)} methods. If a new {@link TypeToken} is to
+         * be created, it is recommended to create an anonymous class instance
+         * of a token, as described in <a href="https://github.com/leangen/geantyref#creating-type-literals-using-typetoken">the GeAnTyRef documentation</a>
          * </p>
          *
          * @param token The type token
@@ -180,6 +220,136 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
          * @return This builder, generified
          */
         <T> Builder<T, Value<T>> elementType(Class<T> type);
+
+        /**
+         * Starter method for the builder, to be used immediately after
+         * {@link Key#builder()} is called. This defines the generics for the
+         * builder itself to provide the properly generified {@link Key}.
+         *
+         * <p>This overload is provided for simple cases where a plain
+         * {@link Value} is used.</p>
+         *
+         * @param type The element type
+         * @param <T> The element type of the Key
+         * @return This builder, generified
+         */
+        <T> Builder<T, Value<T>> elementType(TypeToken<T> type);
+
+        /**
+         * Starter method for the builder, to be used immediately after
+         * {@link Key#builder()} is called. This defines the generics for the
+         * builder itself to provide the properly generified {@link Key}.
+         *
+         * <p>This overload is provided for simple cases where a plain
+         * {@link ListValue} is used.</p>
+         *
+         * @param type The element type
+         * @param <T> The element type of the Key
+         * @return This builder, generified
+         */
+        <T> Builder<List<T>, ListValue<T>> listElementType(Class<T> type);
+
+        /**
+         * Starter method for the builder, to be used immediately after
+         * {@link Key#builder()} is called. This defines the generics for the
+         * builder itself to provide the properly generified {@link Key}.
+         *
+         * <p>This overload is provided for simple cases where a plain
+         * {@link ListValue} is used.</p>
+         *
+         * @param type The element type
+         * @param <T> The element type of the Key
+         * @return This builder, generified
+         */
+        <T> Builder<List<T>, ListValue<T>> listElementType(TypeToken<T> type);
+
+        /**
+         * Starter method for the builder, to be used immediately after
+         * {@link Key#builder()} is called. This defines the generics for the
+         * builder itself to provide the properly generified {@link Key}.
+         *
+         * <p>This overload is provided for simple cases where a plain
+         * {@link SetValue} is used.</p>
+         *
+         * @param type The element type
+         * @param <T> The element type of the Key
+         * @return This builder, generified
+         */
+        <T> Builder<Set<T>, SetValue<T>> setElementType(Class<T> type);
+
+        /**
+         * Starter method for the builder, to be used immediately after
+         * {@link Key#builder()} is called. This defines the generics for the
+         * builder itself to provide the properly generified {@link Key}.
+         *
+         * <p>This overload is provided for simple cases where a plain
+         * {@link SetValue} is used.</p>
+         *
+         * @param type The element type
+         * @param <T> The element type of the Key
+         * @return This builder, generified
+         */
+        <T> Builder<Set<T>, SetValue<T>> setElementType(TypeToken<T> type);
+
+        /**
+         * Starter method for the builder, to be used immediately after
+         * {@link Key#builder()} is called. This defines the generics for the
+         * builder itself to provide the properly generified {@link Key}.
+         *
+         * <p>This overload is provided for simple cases where a plain
+         * {@link MapValue} is used.</p>
+         *
+         * @param keyType the key type
+         * @param valueType the value type
+         * @param <K> The element type of the Key's key type
+         * @param <V> The element type of the Key's value type
+         * @return This builder, generified
+         */
+        <K, V> Builder<Map<K, V>, MapValue<K, V>> mapElementType(Class<K> keyType, Class<V> valueType);
+
+        /**
+         * Starter method for the builder, to be used immediately after
+         * {@link Key#builder()} is called. This defines the generics for the
+         * builder itself to provide the properly generified {@link Key}.
+         *
+         * <p>This overload is provided for simple cases where a plain
+         * {@link MapValue} is used.</p>
+         *
+         * @param keyType the key type
+         * @param valueType the value type
+         * @param <K> The element type of the Key's key type
+         * @param <V> The element type of the Key's value type
+         * @return This builder, generified
+         */
+        <K, V> Builder<Map<K, V>, MapValue<K, V>> mapElementType(TypeToken<K> keyType, TypeToken<V> valueType);
+
+        /**
+         * Starter method for the builder, to be used immediately after
+         * {@link Key#builder()} is called. This defines the generics for the
+         * builder itself to provide the properly generified {@link Key}.
+         *
+         * <p>This overload is provided for simple cases where a plain
+         * {@link WeightedCollectionValue} is used.</p>
+         *
+         * @param type The element type
+         * @param <T> The element type of the Key
+         * @return This builder, generified
+         */
+        <T> Builder<WeightedTable<T>, WeightedCollectionValue<T>> weightedCollectionElementType(Class<T> type);
+
+        /**
+         * Starter method for the builder, to be used immediately after
+         * {@link Key#builder()} is called. This defines the generics for the
+         * builder itself to provide the properly generified {@link Key}.
+         *
+         * <p>This overload is provided for simple cases where a plain
+         * {@link WeightedCollectionValue} is used.</p>
+         *
+         * @param type The element type
+         * @param <T> The element type of the Key
+         * @return This builder, generified
+         */
+        <T> Builder<WeightedTable<T>, WeightedCollectionValue<T>> weightedCollectionElementType(TypeToken<T> type);
 
         /**
          * Sets the {@link Comparator} that can be used to compare
@@ -215,5 +385,6 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
          */
         @Override
         Key<V> build();
+
     }
 }

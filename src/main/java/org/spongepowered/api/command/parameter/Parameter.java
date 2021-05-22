@@ -166,6 +166,17 @@ public interface Parameter {
     /**
      * Gets a builder that builds a {@link Parameter.Value}.
      *
+     * @param <T> The type of parameter
+     * @param key The key to initialize this builder with
+     * @return The {@link Value.Builder}
+     */
+    static <T> Value.Builder<T> builder(final Parameter.@NonNull Key<T> key) {
+        return Sponge.game().factoryProvider().provide(Factory.class).createParameterBuilder(key);
+    }
+
+    /**
+     * Gets a builder that builds a {@link Parameter.Value}.
+     *
      * <p>If your parameter type is generic, use
      * {@link #builder(TypeToken, ValueParameter)} instead.</p>
      *
@@ -1480,6 +1491,16 @@ public interface Parameter {
      * Contains methods to create the generic builders.
      */
     interface Factory {
+
+        /**
+         * Creates a {@link Parameter.Value.Builder} initialized with the provided {@link Key}.
+         *
+         * @param key A key to start with
+         * @param <T> The type of object that will be returned by the built
+         *            {@link Parameter.Value}
+         * @return The builder.
+         */
+        <T> Value.Builder<T> createParameterBuilder(Parameter.Key<T> key);
 
         /**
          * Creates a {@link Parameter.Value.Builder} of the indicated generic type.

@@ -26,16 +26,16 @@ package org.spongepowered.api.event.block;
 
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.action.CollideEvent;
 import org.spongepowered.api.util.Direction;
-import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 import org.spongepowered.api.world.server.ServerLocation;
 
 /**
  * Fired when an {@link Entity} collides with a {@link BlockSnapshot}.
+ * <p>Note that this event is fired very often. You might want to listen to one of its sub-events instead.</p>
  */
-@GenerateFactoryMethod
 public interface CollideBlockEvent extends CollideEvent {
 
     /**
@@ -60,6 +60,37 @@ public interface CollideBlockEvent extends CollideEvent {
      *     {@link Direction#NONE}
      */
     Direction targetSide();
+
+    /**
+     * Fires when an {@link Entity} moves into a block and collides with it.
+     * <p>Cancelling this event will allow the original movement to happen.</p>
+     * <p>e.g. an {@link Entity} falling will continue to fall through solid ground when this event is cancelled</p>
+     */
+    interface Move extends CollideBlockEvent {}
+
+    /**
+     * Fires when an {@link Entity} falls on a block.
+     * <p>Cancelling this event will prevent the fall-logic to run.
+     * e.g. fall-damage or trampling {@link BlockTypes#FARMLAND}
+     * </p>
+     */
+    interface Fall extends CollideBlockEvent {}
+
+    /**
+     * Fires when an {@link Entity} steps on a block.
+     * <p>Cancelling this event will prevent the step-on-logic to run.
+     * e.g. breaking {@link BlockTypes#TURTLE_EGG}s or damage by {@link BlockTypes#MAGMA_BLOCK}s
+     * </p>
+     */
+    interface StepOn extends CollideBlockEvent {}
+
+    /**
+     * Fires when an {@link Entity} is inside a block.
+     * <p>Cancelling this event will prevent the inside-block-logic to run.
+     * e.g. {@link BlockTypes#END_PORTAL } teleporting or {@link BlockTypes#COBWEB} slowing movement.
+     * </p>
+     */
+    interface Inside extends CollideBlockEvent {}
 
     /**
      * Fired when an {@link Entity} impacts another {@link BlockSnapshot}.
