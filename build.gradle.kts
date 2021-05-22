@@ -87,11 +87,11 @@ dependencies {
     }
 
     // High performance cache + guava - shaded guava
-    api("com.github.ben-manes.caffeine:caffeine:2.9.0") {
+    api("com.github.ben-manes.caffeine:caffeine:3.0.2") {
         exclude(group= "org.checkerframework", module = "checker-qual")
         exclude(group = "com.google.errorprone", module = "error_prone_annotations")
     }
-    implementation("com.github.ben-manes.caffeine:guava:2.9.0") {
+    implementation("com.github.ben-manes.caffeine:guava:3.0.2") {
         exclude(group = "com.google.guava", module = "guava")
         exclude(group= "org.checkerframework", module = "checker-qual")
         exclude(group = "com.google.errorprone", module = "error_prone_annotations")
