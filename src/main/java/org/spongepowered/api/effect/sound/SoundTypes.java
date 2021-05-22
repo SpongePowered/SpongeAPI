@@ -918,6 +918,8 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_SWEET_BERRY_BUSH_BREAK = SoundTypes.key(ResourceKey.minecraft("block.sweet_berry_bush.break"));
 
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES = SoundTypes.key(ResourceKey.minecraft("block.sweet_berry_bush.pick_berries"));
+
     public static final DefaultedRegistryReference<SoundType> BLOCK_SWEET_BERRY_BUSH_PLACE = SoundTypes.key(ResourceKey.minecraft("block.sweet_berry_bush.place"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_TRIPWIRE_ATTACH = SoundTypes.key(ResourceKey.minecraft("block.tripwire.attach"));
@@ -2325,8 +2327,6 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> ITEM_SPYGLASS_STOP_USING = SoundTypes.key(ResourceKey.minecraft("item.spyglass.stop_using"));
 
     public static final DefaultedRegistryReference<SoundType> ITEM_SPYGLASS_USE = SoundTypes.key(ResourceKey.minecraft("item.spyglass.use"));
-
-    public static final DefaultedRegistryReference<SoundType> ITEM_SWEET_BERRIES_PICK_FROM_BUSH = SoundTypes.key(ResourceKey.minecraft("item.sweet_berries.pick_from_bush"));
 
     public static final DefaultedRegistryReference<SoundType> ITEM_TOTEM_USE = SoundTypes.key(ResourceKey.minecraft("item.totem.use"));
 
