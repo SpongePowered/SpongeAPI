@@ -73,6 +73,7 @@ public interface PlayerChatEvent extends MessageChannelEvent, Cancellable {
      *
      * @return The original chat message
      */
+    @Override
     Component originalMessage();
 
     /**
@@ -80,6 +81,7 @@ public interface PlayerChatEvent extends MessageChannelEvent, Cancellable {
      *
      * @return The chat message
      */
+    @Override
     Component message();
 
     /**
@@ -87,6 +89,7 @@ public interface PlayerChatEvent extends MessageChannelEvent, Cancellable {
      *
      * @param message The chat message
      */
+    @Override
     void setMessage(final Component message);
 
 }
