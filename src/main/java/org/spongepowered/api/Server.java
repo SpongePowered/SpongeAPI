@@ -34,6 +34,7 @@ import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.world.ChunkTicketManager;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldArchetype;
+import org.spongepowered.api.world.map.MapStorage;
 import org.spongepowered.api.world.storage.ChunkLayout;
 import org.spongepowered.api.world.storage.WorldProperties;
 
@@ -439,4 +440,15 @@ public interface Server {
      * @return True if main thread, false if not
      */
     boolean isMainThread();
+
+    /**
+     * Gets the map storage for this server
+     *
+     * <p>The server map storage may not be available if dimension 0
+     * is not yet loaded. In Vanilla, this will only occur when the
+     * server is first starting, as dimension 0 is normally always loaded.</p>
+     *
+     * @return MapStorage if available
+     */
+    Optional<MapStorage> getMapStorage();
 }

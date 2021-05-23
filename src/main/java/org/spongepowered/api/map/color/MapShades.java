@@ -22,16 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.mutable.item;
+package org.spongepowered.api.map.color;
 
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.immutable.item.ImmutableMapItemData;
-import org.spongepowered.api.item.ItemTypes;
-import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 
 /**
- * Represents an {@link DataManipulator} hosting the specific map
- * information of an {@link ItemStack} of the type {@link ItemTypes#FILLED_MAP}.
+ * A pseudo-enum of supported {@link MapShade}s for a {@link MapColor}.
  */
-public interface MapItemData extends DataManipulator<MapItemData, ImmutableMapItemData> {
+public final class MapShades {
+
+	// SORTFIELDS:ON
+
+	public static final MapShade DARKER = DummyObjectProvider.createFor(MapShade.class, "DARKER");
+
+	public static final MapShade DARK = DummyObjectProvider.createFor(MapShade.class, "DARK");
+
+	public static final MapShade BASE = DummyObjectProvider.createFor(MapShade.class, "BASE");
+
+	public static final MapShade DARKEST = DummyObjectProvider.createFor(MapShade.class, "DARKEST");
+
+	// SORTFIELDS:OFF
+
+	private MapShades() {
+		throw new AssertionError("You should not be attempting to instantiate this class.");
+	}
 }

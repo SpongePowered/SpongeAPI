@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.data.key;
 
+import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.block.BlockState;
@@ -73,6 +74,9 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.merchant.TradeOffer;
+import org.spongepowered.api.map.MapCanvas;
+import org.spongepowered.api.map.MapInfo;
+import org.spongepowered.api.map.decoration.MapDecoration;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.text.Text;
@@ -83,12 +87,12 @@ import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.util.generator.dummy.DummyObjectProvider;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
+import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.weather.Weather;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -290,15 +294,15 @@ public final class Keys {
      * Represents the {@link Key} for whether players are prevented from taking
      * items from an equipment slot on an {@link ArmorStand}
      */
-    public static final Key<SetValue<EquipmentType>> ARMOR_STAND_TAKING_DISABLED = DummyObjectProvider
-	    .createExtendedFor(Key.class, "ARMOR_STAND_TAKING_DISABLED");
+    public static final Key<SetValue<EquipmentType>> ARMOR_STAND_PLACING_DISABLED = DummyObjectProvider
+	    .createExtendedFor(Key.class, "ARMOR_STAND_PLACING_DISABLED");
 
     /**
      * Represents the {@link Key} for whether players are prevented from taking
      * items from an equipment slot on an {@link ArmorStand}
      */
-    public static final Key<SetValue<EquipmentType>> ARMOR_STAND_PLACING_DISABLED = DummyObjectProvider
-	    .createExtendedFor(Key.class, "ARMOR_STAND_PLACING_DISABLED");
+    public static final Key<SetValue<EquipmentType>> ARMOR_STAND_TAKING_DISABLED = DummyObjectProvider
+	    .createExtendedFor(Key.class, "ARMOR_STAND_TAKING_DISABLED");
 
     /**
      * Represents the {@link Key} for the type of {@link Art} shown by
@@ -1457,6 +1461,82 @@ public final class Keys {
      * @see LogAxisData
      */
     public static final Key<Value<LogAxis>> LOG_AXIS = DummyObjectProvider.createExtendedFor(Key.class,"LOG_AXIS");
+
+    /**
+     * Represents the {@link Key} for the {@link MapCanvas} of a map
+     * for a {@link MapInfo}.
+     * This contains the colors displayed on a map.
+     *
+     * @see MapInfoData#canvas()
+     */
+    public static final Key<Value<MapCanvas>> MAP_CANVAS = DummyObjectProvider.createExtendedFor(Key.class, "MAP_CANVAS");
+
+    /**
+     * Represents the {@link Key} for the Set of {@link MapDecoration}s
+     * for a {@link MapInfo}.
+     *
+     * @see MapInfoData#decorations()
+     */
+    public static final Key<SetValue<MapDecoration>> MAP_DECORATIONS = DummyObjectProvider.createExtendedFor(Key.class, "MAP_DECORATIONS");
+
+    /**
+     * Represents the {@link Key} for the {@link MapInfo}
+     * of an {@link ItemStack} of type {@link ItemTypes#FILLED_MAP}.
+     * @see MapInfoItemData#mapInfo()
+     */
+    public static final Key<Value<MapInfo>> MAP_INFO = DummyObjectProvider.createExtendedFor(Key.class, "MAP_INFO");
+
+    /**
+     * Represents the {@link Key} for the centre x and z of where a
+     * {@link MapInfo} represents.
+     * This will be automatically centralised correctly.
+     * @see MapInfoData#location()
+     */
+    public static final Key<Value<Vector2i>> MAP_LOCATION = DummyObjectProvider.createExtendedFor(Key.class, "MAP_LOCATION");
+
+    /**
+     * Represents the {@link Key} for whether a map updates from players
+     * for a {@link MapInfo}.
+     * By default this is false.
+     * Can be used in combination with {@link Keys#MAP_CANVAS} to create
+     * custom static map.
+     * Just a brought forward version of <a href="https://minecraft.gamepedia.com/Map#Locking">Minecraft Wiki - Map Locking</a>
+     *
+     * @see MapInfoData#locked()
+     */
+    public static final Key<Value<Boolean>> MAP_LOCKED = DummyObjectProvider.createExtendedFor(Key.class, "MAP_LOCKED");
+
+    /**
+     * Represents the {@link Key} for the scale of a map
+     * for a {@link MapInfo}.
+     * @see <a href="https://minecraft.gamepedia.com/Map#Zoom_details">Minecraft Wiki - Zoom Details</a>
+     * @see MapInfoData#scale()
+     */
+    public static final Key<MutableBoundedValue<Integer>> MAP_SCALE = DummyObjectProvider.createExtendedFor(Key.class, "MAP_SCALE");
+
+    /**
+     * Represents the {@link Key} for whether a {@link MapInfo}
+     * tracks player positions.
+     *
+     * @see MapInfoData#trackPosition()
+     */
+    public static final Key<Value<Boolean>> MAP_TRACKS_PLAYERS = DummyObjectProvider.createExtendedFor(Key.class, "MAP_TRACKS_PLAYERS");
+
+    /**
+     * Represents the {@link Key} for whether a {@link MapInfo} can track
+     * a player from anywhere in the world.
+     *
+     * @see MapInfoData#unlimitedTracking()
+     */
+    public static final Key<Value<Boolean>> MAP_UNLIMITED_TRACKING = DummyObjectProvider.createExtendedFor(Key.class, "MAP_UNLIMITED_TRACKING");
+
+    /**
+     * Represents the {@link Key} for the world for a
+     * {@link MapInfo}
+     *
+     * @see MapInfoData#world()
+     */
+    public static final Key<Value<World>> MAP_WORLD = DummyObjectProvider.createExtendedFor(Key.class, "DIMENSION");
 
     /**
      * Represents the {@link Key} for the maximum air supply a {@link Living}

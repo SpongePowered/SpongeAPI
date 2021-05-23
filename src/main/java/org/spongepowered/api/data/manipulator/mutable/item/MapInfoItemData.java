@@ -22,17 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.manipulator.immutable.item;
+package org.spongepowered.api.data.manipulator.mutable.item;
 
-import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.item.MapItemData;
+import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.manipulator.immutable.item.ImmutableMapInfoItemData;
+import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.map.MapInfo;
 
 /**
- * Represents an {@link ImmutableDataManipulator} hosting the specific map
- * information of an {@link ItemStack} of the type {@link ItemTypes#FILLED_MAP}.
+ * A {@link DataManipulator} representing the {@link org.spongepowered.api.map.MapInfo}
+ * of a {@link ItemStack} of type {@link ItemTypes#FILLED_MAP}
  */
-public interface ImmutableMapItemData extends ImmutableDataManipulator<ImmutableMapItemData, MapItemData> {
-
+public interface MapInfoItemData extends DataManipulator<MapInfoItemData, ImmutableMapInfoItemData> {
+    /**
+     * Gets the MapInfo that relates to this map
+     * @return {@link MapInfo} that correlates to this map
+     */
+    Value<MapInfo> mapInfo();
 }
