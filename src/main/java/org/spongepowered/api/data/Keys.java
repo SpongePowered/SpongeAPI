@@ -922,6 +922,12 @@ public final class Keys {
     public static final Key<Value<Integer>> GENERATION = Keys.key(ResourceKey.sponge("generation"), Integer.class);
 
     /**
+     * Whether a {@link Sign} has glowing text (from dying
+     * with {@link ItemTypes#GLOW_INK_SAC}).
+     */
+    public static final Key<Value<Boolean>> GLOWING_TEXT = Keys.key(ResourceKey.sponge("glowing_text"), Boolean.class);
+
+    /**
      * The "growth stage" state of a {@link BlockState}.
      * e.g. {@link BlockTypes#CACTUS} or {@link BlockTypes#WHEAT} etc.
      */
