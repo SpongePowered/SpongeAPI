@@ -51,6 +51,7 @@ import org.spongepowered.api.data.type.CatType;
 import org.spongepowered.api.data.type.ChestAttachmentType;
 import org.spongepowered.api.data.type.ComparatorMode;
 import org.spongepowered.api.data.type.DoorHinge;
+import org.spongepowered.api.data.type.DripstoneSegment;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.type.FoxType;
 import org.spongepowered.api.data.type.HandPreference;
@@ -73,11 +74,13 @@ import org.spongepowered.api.data.type.ProfessionType;
 import org.spongepowered.api.data.type.RabbitType;
 import org.spongepowered.api.data.type.RaidStatus;
 import org.spongepowered.api.data.type.RailDirection;
+import org.spongepowered.api.data.type.SculkSensorState;
 import org.spongepowered.api.data.type.SkinPart;
 import org.spongepowered.api.data.type.SlabPortion;
 import org.spongepowered.api.data.type.SpellType;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
+import org.spongepowered.api.data.type.Tilt;
 import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.type.WireAttachmentType;
@@ -267,6 +270,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<DragonPhaseType> DRAGON_PHASE_TYPE = RegistryTypes.spongeKeyInGame("dragon_phase_type");
 
+    public static final DefaultedRegistryType<DripstoneSegment> DRIPSTONE_SEGMENT = RegistryTypes.spongeKeyInGame("dripstone_segment");
+
     public static final DefaultedRegistryType<DyeColor> DYE_COLOR = RegistryTypes.spongeKeyInGame("dye_color");
 
     public static final DefaultedRegistryType<EnumStateProperty<?>> ENUM_STATE_PROPERTY = RegistryTypes.spongeKeyInGame("enum_state_property");
@@ -359,6 +364,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<Rotation> ROTATION = RegistryTypes.spongeKeyInGame("rotation");
 
+    public static final DefaultedRegistryType<SculkSensorState> SCULK_SENSOR_STATE = RegistryTypes.spongeKeyInGame("sculk_sensor_state");
+
     public static final DefaultedRegistryType<SelectorSortAlgorithm> SELECTOR_SORT_ALGORITHM = RegistryTypes.spongeKeyInGame("selector_sort_algorithm");
 
     public static final DefaultedRegistryType<SelectorType> SELECTOR_TYPE = RegistryTypes.spongeKeyInGame("selector_type");
@@ -386,6 +393,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<TropicalFishShape> TROPICAL_FISH_SHAPE = RegistryTypes.spongeKeyInGame("tropical_fish_shape");
 
     public static final DefaultedRegistryType<QueryType> QUERY_TYPE = RegistryTypes.spongeKeyInGame("query_type");
+
+    public static final DefaultedRegistryType<Tilt> TILT = RegistryTypes.spongeKeyInGame("tilt");
 
     public static final DefaultedRegistryType<Visibility> VISIBILITY = RegistryTypes.spongeKeyInGame("visibility");
 
