@@ -1,10 +1,10 @@
 import net.ltgt.gradle.errorprone.errorprone
 
 plugins {
-    `java-library`
-    `maven-publish`
     eclipse
-    checkstyle
+    id("org.spongepowered.gradle.sponge.dev")
+    id("net.kyori.indra.publishing")
+    id("net.kyori.indra.checkstyle")
     id("org.spongepowered.gradle.event-impl-gen")
     id("org.cadixdev.licenser")
     id("org.jetbrains.gradle.plugin.idea-ext")
@@ -17,22 +17,7 @@ repositories {
     }
 }
 
-checkstyle {
-    toolVersion = "8.42"
-    configDirectory.set(layout.projectDirectory.dir(".checkstyle"))
-    configProperties = mutableMapOf<String, Any>(
-            "severity" to "error"
-    )
-}
-
-tasks.withType(Checkstyle::class) {
-    // checkstyle is source-only and does not cross files, we don't need compiled classes
-    classpath = objects.fileCollection()
-}
-
 java {
-    withSourcesJar()
-    withJavadocJar()
     modularity.inferModulePath.set(false)
 }
 
@@ -120,9 +105,6 @@ dependencies {
     // Compile-time static analysis
     compileOnly("com.google.errorprone:error_prone_annotations:$errorproneVersion")
     errorprone("com.google.errorprone:error_prone_core:$errorproneVersion")
-    if (!JavaVersion.current().isJava9Compatible) { // for building with JDK 8
-        errorproneJavac("com.google.errorprone:javac:9+181-r4173-1")
-    }
 
     // Math library
     api("org.spongepowered:math:2.0.0")
@@ -134,8 +116,6 @@ dependencies {
     testImplementation("org.hamcrest:hamcrest:2.2")
     testImplementation("org.mockito:mockito-core:3.7.7")
 }
-val spongeSnapshotRepo: String? by project
-val spongeReleaseRepo: String? by project
 tasks {
     genEventImpl {
         sourceCompatibility = "1.8"
@@ -172,25 +152,20 @@ tasks {
 
     withType(JavaCompile::class).configureEach {
         options.apply {
-            compilerArgs.addAll(listOf("-Xlint:all", "-Xlint:-path", "-parameters"))
+            compilerArgs.addAll(listOf("-Xlint:-path"))
             isDeprecation = false
-            encoding = "UTF-8"
         }
     }
 
     javadoc {
         options {
-            encoding = "UTF-8"
-            source = "1.8"
-            charset("UTF-8")
             (this as? StandardJavadocDocletOptions)?.apply {
                 links(
                     "https://logging.apache.org/log4j/log4j-2.8.1/log4j-api/apidocs/",
                     "https://google.github.io/guice/api-docs/5.0.1/javadoc/",
                     "https://guava.dev/releases/21.0/api/docs/",
                     "https://configurate.aoeu.xyz/4.1.1/apidocs/",
-                    "https://www.javadoc.io/doc/com.google.code.gson/gson/2.8.0/",
-                    "https://docs.oracle.com/javase/8/docs/api/"
+                    "https://www.javadoc.io/doc/com.google.code.gson/gson/2.8.0/"
                 )
                 sequenceOf("api", "key", "text-serializer-gson", "text-serializer-legacy", "text-serializer-plain").forEach {
                     links("https://jd.adventure.kyori.net/$it/4.7.0/")
@@ -201,20 +176,11 @@ tasks {
     }
 
     withType(JavaCompile::class).configureEach {
-        // Use the --release option when available to ensure we only use Java 8 classes
-        if (JavaVersion.current().isJava10Compatible) {
-            options.release.set(8)
-        }
-
         options.errorprone {
             disable("FutureReturnValueIgnored") // this check doesn't handle CompletableFuture properly
             disable("EqualsGetClass") // conflicts with IntelliJ defaults
             disable("MissingSummary") // TODO: Re-enable this check once Javadoc is in a better state
         }
-    }
-
-    test {
-        useJUnitPlatform()
     }
 
 //
@@ -229,18 +195,6 @@ tasks {
 //            add(sourceSets.main.name, it)
 //        }
 //    }
-
-    withType<PublishToMavenRepository>().configureEach {
-        onlyIf {
-            (repository == publishing.repositories["GitHubPackages"] &&
-                    !publication.version.endsWith("-SNAPSHOT")) ||
-                    (!spongeSnapshotRepo.isNullOrBlank()
-                            && !spongeReleaseRepo.isNullOrBlank()
-                            && repository == publishing.repositories["spongeRepo"]
-                            && publication == publishing.publications["sponge"])
-
-        }
-    }
 }
 
 idea {
@@ -266,67 +220,25 @@ eclipse {
 val organization: String by project
 val projectUrl: String by project
 val projectDescription: String by project
-license {
-    properties {
+
+spongeConvention {
+    repository("SpongeAPI") {
+        ci(true)
+        publishing(true)
+    }
+    mitLicense()
+
+    licenseParameters {
         this["name"] = "SpongeAPI"
         this["organization"] = organization
         this["url"] = projectUrl
     }
-    header(file("HEADER.txt"))
-
-    include("**/*.java")
-    newLine(false)
 }
 
-publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            this.setUrl(uri("https://maven.pkg.github.com/spongepowered/SpongeAPI"))
-            credentials {
-                username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_USERNAME")
-                password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
-            }
-        }
-        // Set by the build server
-        maven {
-            name = "spongeRepo"
-            val repoUrl = if ((version as String).endsWith("-SNAPSHOT")) spongeSnapshotRepo else spongeReleaseRepo
-            repoUrl?.apply {
-                setUrl(uri(this))
-            }
-            val spongeUsername: String? by project
-            val spongePassword: String? by project
-            credentials {
-                username = spongeUsername ?: System.getenv("ORG_GRADLE_PROJECT_spongeUsername")
-                password = spongePassword ?: System.getenv("ORG_GRADLE_PROJECT_spongePassword")
-            }
-        }
+indra.configurePublications {
+    pom {
+        this.url.set(projectUrl)
     }
-    publications {
-        register("sponge", MavenPublication::class) {
-            from(components["java"])
-
-            pom {
-                this.name.set(project.name)
-                this.description.set(projectDescription)
-                this.url.set(projectUrl)
-
-                licenses {
-                    license {
-                        name.set("MIT")
-                        url.set("https://opensource.org/licenses/MIT")
-                    }
-                }
-                scm {
-                    connection.set("scm:git:git://github.com/SpongePowered/SpongeAPI.git")
-                    developerConnection.set("scm:git:ssh://github.com/SpongePowered/SpongeAPI.git")
-                    this.url.set(projectUrl)
-                }
-            }
-        }
-    }
-
 }
 
 val sortClasses = listOf(
@@ -456,4 +368,3 @@ val sortClasses = listOf(
         "org.spongepowered.api.world.teleport.TeleportHelperFilters",
         "org.spongepowered.api.world.weather.WeatherTypes"
 )
-
