@@ -32,6 +32,19 @@ jobs:
         uses: gradle/wrapper-validation-action@v1
 
       # Actually build
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: "${{ runner.os }}-spongeapi-${{ hashFiles('**/*.gradle*') }}"
+          restore-keys: |
+            ${{ runner.os }}-spongeapi-
+      - name: Setup env variables
+        run: |
+          echo "GIT_COMMIT=${GITHUB_SHA}" >> $GITHUB_ENV
+          echo "GIT_BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
+          echo "BUILD_NUMBER=${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
       - name: Build with Gradle
         run: ./gradlew build
       - name: Archive test results

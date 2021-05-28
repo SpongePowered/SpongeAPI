@@ -17,10 +17,6 @@ repositories {
     }
 }
 
-java {
-    modularity.inferModulePath.set(false)
-}
-
 val ap by sourceSets.registering {
     compileClasspath += sourceSets.main.get().compileClasspath + sourceSets.main.get().output
 }
@@ -123,6 +119,7 @@ dependencies {
 tasks {
     genEventImpl {
         sourceCompatibility = "1.8"
+        destinationDir = project.layout.buildDirectory.dir("generated/event-factory").get().asFile
 
         outputFactory = "org.spongepowered.api.event.SpongeEventFactory"
         include("org/spongepowered/api/event/*/**/*")
@@ -149,6 +146,8 @@ tasks {
             attributes("Specification-Vendor" to "SpongePowered")
             attributes("Specification-Title" to "SpongeAPI")
             attributes("Specification-Version" to project.version)
+            System.getenv()["GIT_COMMIT"]?.apply { attributes("Git-Commit" to this) }
+            System.getenv()["GIT_BRANCH"]?.apply { attributes("Git-Branch" to this) }
         }
     }
 
