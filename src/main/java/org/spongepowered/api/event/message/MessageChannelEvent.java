@@ -24,12 +24,18 @@
  */
 package org.spongepowered.api.event.message;
 
+import com.google.common.collect.Streams;
 import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.audience.ForwardingAudience;
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.spongepowered.api.adventure.Audiences;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * Describes events when a involving a {@link Component} message and {@link Audience}s.
@@ -57,5 +63,16 @@ public interface MessageChannelEvent extends MessageEvent {
      * @param audience The audience to set
      */
     void setAudience(@Nullable Audience audience);
+
+    /**
+     * Filters the current audience with given predicate.
+     *
+     * @param predicate the predicate
+     */
+    default void filterAudience(Predicate<Audience> predicate) {
+        if (this.audience().isPresent()) {
+            this.setAudience(Audiences.filtered(this.audience().get(), predicate).orElse(null));
+        }
+    }
 
 }

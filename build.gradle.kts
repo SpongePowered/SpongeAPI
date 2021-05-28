@@ -7,10 +7,10 @@ buildscript {
 }
 
 plugins {
-    `java-library`
-    `maven-publish`
     eclipse
-    checkstyle
+    id("org.spongepowered.gradle.sponge.dev")
+    id("net.kyori.indra.publishing")
+    id("net.kyori.indra.checkstyle")
     id("org.spongepowered.gradle.event-impl-gen")
     id("org.cadixdev.licenser")
     id("org.jetbrains.gradle.plugin.idea-ext")
@@ -23,35 +23,20 @@ repositories {
     }
 }
 
-checkstyle {
-    toolVersion = "8.42"
-    configDirectory.set(layout.projectDirectory.dir(".checkstyle"))
-    configProperties = mutableMapOf<String, Any>(
-            "severity" to "error"
-    )
-}
-
-tasks.withType(Checkstyle::class) {
-    // checkstyle is source-only and does not cross files, we don't need compiled classes
-    classpath = objects.fileCollection()
-}
-
-java {
-    withSourcesJar()
-    withJavadocJar()
-    modularity.inferModulePath.set(false)
-}
-
 val ap by sourceSets.registering {
     compileClasspath += sourceSets.main.get().compileClasspath + sourceSets.main.get().output
 }
 
 // Project dependencies
+val adventureVersion: String by project
+val configurateVersion: String by project
+val log4jVersion: String by project
 dependencies {
+    val caffeineVersion: String by project
     val errorproneVersion: String by project
 
     // Directly tied to what's available from Minecraft
-    api("org.apache.logging.log4j:log4j-api:2.8.1")
+    api("org.apache.logging.log4j:log4j-api:$log4jVersion")
     api("com.google.guava:guava:21.0") {
         exclude(group ="com.google.code.findbugs", module = "jsr305") // We don't want to use jsr305, use checkerframework
         exclude(group = "org.checkerframework", module = "checker-qual") // We use our own version
@@ -61,7 +46,7 @@ dependencies {
     api("com.google.code.gson:gson:2.8.0")
 
     // Adventure
-    api(platform("net.kyori:adventure-bom:4.7.0"))
+    api(platform("net.kyori:adventure-bom:$adventureVersion"))
     api("net.kyori:adventure-api") {
         exclude(group = "org.checkerframework", module = "checker-qual")
     }
@@ -87,11 +72,11 @@ dependencies {
     }
 
     // High performance cache + guava - shaded guava
-    api("com.github.ben-manes.caffeine:caffeine:3.0.2") {
+    api("com.github.ben-manes.caffeine:caffeine:$caffeineVersion") {
         exclude(group= "org.checkerframework", module = "checker-qual")
         exclude(group = "com.google.errorprone", module = "error_prone_annotations")
     }
-    implementation("com.github.ben-manes.caffeine:guava:3.0.2") {
+    implementation("com.github.ben-manes.caffeine:guava:$caffeineVersion") {
         exclude(group = "com.google.guava", module = "guava")
         exclude(group= "org.checkerframework", module = "checker-qual")
         exclude(group = "com.google.errorprone", module = "error_prone_annotations")
@@ -101,7 +86,7 @@ dependencies {
     api("org.spongepowered:plugin-spi:0.2.0")
 
     // Configurate
-    api(platform("org.spongepowered:configurate-bom:4.1.1"))
+    api(platform("org.spongepowered:configurate-bom:$configurateVersion"))
     api("org.spongepowered:configurate-core") {
         exclude(group = "org.checkerframework", module = "checker-qual") // We use our own version
     }
@@ -130,27 +115,18 @@ dependencies {
     // Math library
     api("org.spongepowered:math:2.0.0")
 
-    testImplementation(platform("org.junit:junit-bom:5.7.1"))
+    testImplementation(platform("org.junit:junit-bom:5.7.2"))
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testImplementation("org.junit.jupiter:junit-jupiter-params")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
     testImplementation("org.hamcrest:hamcrest:2.2")
-    testImplementation("org.mockito:mockito-core:3.7.7")
+    testImplementation("org.mockito:mockito-core:3.10.0")
 }
 
-java {
-    if (JavaVersion.current() < JavaVersion.VERSION_16) {
-        toolchain {
-            this.languageVersion.set(JavaLanguageVersion.of(16))
-        }
-    }
-}
-
-val spongeSnapshotRepo: String? by project
-val spongeReleaseRepo: String? by project
 tasks {
     genEventImpl {
         sourceCompatibility = "15"
+        destinationDir = project.layout.buildDirectory.dir("generated/event-factory").get().asFile
 
         outputFactory = "org.spongepowered.api.event.SpongeEventFactory"
         include("org/spongepowered/api/event/*/**/*")
@@ -184,46 +160,35 @@ tasks {
 
     withType(JavaCompile::class).configureEach {
         options.apply {
-            compilerArgs.addAll(listOf("-Xlint:all", "-Xlint:-path", "-parameters", "-Xdoclint:-missing"))
+            compilerArgs.addAll(listOf("-Xlint:-path"))
             isDeprecation = false
-            encoding = "UTF-8"
         }
     }
 
     javadoc {
         options {
-            encoding = "UTF-8"
-            charset("UTF-8")
             (this as? StandardJavadocDocletOptions)?.apply {
                 links(
-                    "https://logging.apache.org/log4j/log4j-2.8.1/log4j-api/apidocs/",
+                    "https://logging.apache.org/log4j/log4j-$log4jVersion/log4j-api/apidocs/",
                     "https://google.github.io/guice/api-docs/5.0.1/javadoc/",
                     "https://guava.dev/releases/21.0/api/docs/",
-                    "https://configurate.aoeu.xyz/4.1.1/apidocs/",
+                    "https://configurate.aoeu.xyz/$configurateVersion/apidocs/",
                     "https://www.javadoc.io/doc/com.google.code.gson/gson/2.8.0/"
                 )
                 sequenceOf("api", "key", "text-serializer-gson", "text-serializer-legacy", "text-serializer-plain").forEach {
-                    links("https://jd.adventure.kyori.net/$it/4.7.0/")
+                    links("https://jd.adventure.kyori.net/$it/$adventureVersion/")
                 }
                 addBooleanOption("quiet", true)
-                addStringOption("-release", "16")
-                addBooleanOption("Xdoclint:-missing", true);
             }
         }
     }
 
     withType(JavaCompile::class).configureEach {
-        options.release.set(16)
-
         options.errorprone {
             disable("FutureReturnValueIgnored") // this check doesn't handle CompletableFuture properly
             disable("EqualsGetClass") // conflicts with IntelliJ defaults
             disable("MissingSummary") // TODO: Re-enable this check once Javadoc is in a better state
         }
-    }
-
-    test {
-        useJUnitPlatform()
     }
 
 //
@@ -238,18 +203,6 @@ tasks {
 //            add(sourceSets.main.name, it)
 //        }
 //    }
-
-    withType<PublishToMavenRepository>().configureEach {
-        onlyIf {
-            (repository == publishing.repositories["GitHubPackages"] &&
-                    !publication.version.endsWith("-SNAPSHOT")) ||
-                    (!spongeSnapshotRepo.isNullOrBlank()
-                            && !spongeReleaseRepo.isNullOrBlank()
-                            && repository == publishing.repositories["spongeRepo"]
-                            && publication == publishing.publications["sponge"])
-
-        }
-    }
 }
 
 idea {
@@ -275,67 +228,31 @@ eclipse {
 val organization: String by project
 val projectUrl: String by project
 val projectDescription: String by project
-license {
-    properties {
+
+spongeConvention {
+    repository("SpongeAPI") {
+        ci(true)
+        publishing(true)
+    }
+    mitLicense()
+
+    licenseParameters {
         this["name"] = "SpongeAPI"
         this["organization"] = organization
         this["url"] = projectUrl
     }
-    header(file("HEADER.txt"))
-
-    include("**/*.java")
-    newLine(false)
 }
 
-publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            this.setUrl(uri("https://maven.pkg.github.com/spongepowered/SpongeAPI"))
-            credentials {
-                username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_USERNAME")
-                password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
-            }
-        }
-        // Set by the build server
-        maven {
-            name = "spongeRepo"
-            val repoUrl = if ((version as String).endsWith("-SNAPSHOT")) spongeSnapshotRepo else spongeReleaseRepo
-            repoUrl?.apply {
-                setUrl(uri(this))
-            }
-            val spongeUsername: String? by project
-            val spongePassword: String? by project
-            credentials {
-                username = spongeUsername ?: System.getenv("ORG_GRADLE_PROJECT_spongeUsername")
-                password = spongePassword ?: System.getenv("ORG_GRADLE_PROJECT_spongePassword")
-            }
-        }
-    }
-    publications {
-        register("sponge", MavenPublication::class) {
-            from(components["java"])
-
-            pom {
-                this.name.set(project.name)
-                this.description.set(projectDescription)
-                this.url.set(projectUrl)
-
-                licenses {
-                    license {
-                        name.set("MIT")
-                        url.set("https://opensource.org/licenses/MIT")
-                    }
-                }
-                scm {
-                    connection.set("scm:git:git://github.com/SpongePowered/SpongeAPI.git")
-                    developerConnection.set("scm:git:ssh://github.com/SpongePowered/SpongeAPI.git")
-                    this.url.set(projectUrl)
-                }
-            }
-        }
+indra {
+    javaVersions {
+        target(16)
     }
 
+    configurePublications {
+        pom {
+            this.url.set(projectUrl)
+        }
+    }
 }
 
 val sortClasses = listOf(
@@ -465,4 +382,3 @@ val sortClasses = listOf(
         "org.spongepowered.api.world.teleport.TeleportHelperFilters",
         "org.spongepowered.api.world.weather.WeatherTypes"
 )
-

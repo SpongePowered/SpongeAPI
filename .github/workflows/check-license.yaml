@@ -5,21 +5,19 @@ name: License Check
 
 on:
   push:
-    branches: [ stable-7, api-8 ]
+    branches: [ stable-7, 'api-*' ]
   pull_request:
-    branches: [ stable-7, api-8 ]
+    branches: [ stable-7, 'api-*' ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
         with:
           path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          key: "${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}"
           restore-keys: |
             ${{ runner.os }}-gradle-
       - name: Set up JDK 16
@@ -27,7 +25,5 @@ jobs:
         with:
           distribution: adopt
           java-version: 16
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
       - name: Check license
         run: ./gradlew checkLicenses

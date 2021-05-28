@@ -196,6 +196,7 @@ import org.spongepowered.api.event.cause.entity.damage.source.DamageSources;
 import org.spongepowered.api.fluid.FluidStackSnapshot;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.FireworkShape;
+import org.spongepowered.api.item.ItemRarity;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.enchantment.Enchantment;
@@ -1667,6 +1668,11 @@ public final class Keys {
      * The durability of an {@link ItemStack}. {@link #MAX_DURABILITY}
      */
     public static final Key<Value<Integer>> ITEM_DURABILITY = Keys.key(ResourceKey.sponge("item_durability"), Integer.class);
+
+    /**
+     * The rarity of an item.
+     */
+    public static final Key<Value<ItemRarity>> ITEM_RARITY = Keys.key(ResourceKey.sponge("item_rarity"), ItemRarity.class);
 
     /**
      * The {@link ItemStackSnapshot item} in an

@@ -24,40 +24,43 @@
  */
 package org.spongepowered.api.event.message;
 
+import net.kyori.adventure.audience.ForwardingAudience;
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.entity.living.player.PlayerChatRouter;
+import org.spongepowered.api.entity.living.player.PlayerChatFormatter;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 
 import java.util.Optional;
 
 /**
- * Fired when the {@link Component} being sent to a {@link PlayerChatRouter} was
+ * Fired when the {@link Component} being sent to a {@link PlayerChatFormatter} was
  * due to chatting.
  */
-public interface PlayerChatEvent extends Event, Cancellable {
+public interface PlayerChatEvent extends MessageChannelEvent, Cancellable {
 
     /**
-     * Gets the original router that this message will be sent to.
+     * Gets the original formatter that this message will be sent through.
      *
-     * @return The original router to send to
+     * @return The original formatter used
      */
-    PlayerChatRouter originalChatRouter();
+    PlayerChatFormatter originalChatFormatter();
 
     /**
-     * Gets the current router that this message will be sent to.
+     * Gets the current formatter that this message will be sent through.
      *
-     * @return The router the message in this event will be sent to
+     * @return The formatter the message in this event will be sent through
      */
-    Optional<PlayerChatRouter> chatRouter();
+    Optional<PlayerChatFormatter> chatFormatter();
 
     /**
-     * Sets the router for this message to go to.
+     * Sets the formatter for this message to go trough.
+     * <p>If the target audience is a {@link net.kyori.adventure.audience.ForwardingAudience}
+     * the {@link PlayerChatFormatter} will be applied to each of its {@link ForwardingAudience#audiences()}</p>
      *
      * @param router The router to set
      */
-    void setChatRouter(@Nullable PlayerChatRouter router);
+    void setChatFormatter(@Nullable PlayerChatFormatter router);
 
     /**
      * Gets the original chat message.
@@ -70,6 +73,7 @@ public interface PlayerChatEvent extends Event, Cancellable {
      *
      * @return The original chat message
      */
+    @Override
     Component originalMessage();
 
     /**
@@ -77,6 +81,7 @@ public interface PlayerChatEvent extends Event, Cancellable {
      *
      * @return The chat message
      */
+    @Override
     Component message();
 
     /**
@@ -84,6 +89,7 @@ public interface PlayerChatEvent extends Event, Cancellable {
      *
      * @param message The chat message
      */
+    @Override
     void setMessage(final Component message);
 
 }

@@ -140,9 +140,6 @@ import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.registry.RegistryTypes;
 
-/**
- * An enumeration of all possible {@link EntityType}s available in vanilla minecraft.
- */
 @SuppressWarnings("unused")
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class EntityTypes {
