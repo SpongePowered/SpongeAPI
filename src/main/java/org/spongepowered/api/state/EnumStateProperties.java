@@ -72,6 +72,8 @@ public final class EnumStateProperties {
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> ACTIVATOR_RAIL_SHAPE = EnumStateProperties.key(ResourceKey.sponge("activator_rail_shape"));
 
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> AMETHYST_CLUSTER_FACING = EnumStateProperties.key(ResourceKey.sponge("amethyst_cluster_facing"));
+
     public static final DefaultedRegistryReference<EnumStateProperty<?>> ANDESITE_SLAB_TYPE = EnumStateProperties.key(ResourceKey.sponge("andesite_slab_type"));
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> ANDESITE_STAIRS_FACING = EnumStateProperties.key(ResourceKey.sponge("andesite_stairs_facing"));
@@ -107,6 +109,12 @@ public final class EnumStateProperties {
     public static final DefaultedRegistryReference<EnumStateProperty<?>> BELL_ATTACHMENT = EnumStateProperties.key(ResourceKey.sponge("bell_attachment"));
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> BELL_FACING = EnumStateProperties.key(ResourceKey.sponge("bell_facing"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> BIG_DRIPLEAF_FACING = EnumStateProperties.key(ResourceKey.sponge("big_dripleaf_facing"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> BIG_DRIPLEAF_STEM_FACING = EnumStateProperties.key(ResourceKey.sponge("big_dripleaf_stem_facing"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> BIG_DRIPLEAF_TILT = EnumStateProperties.key(ResourceKey.sponge("big_dripleaf_tilt"));
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> BIRCH_BUTTON_FACE = EnumStateProperties.key(ResourceKey.sponge("birch_button_face"));
 
@@ -222,6 +230,22 @@ public final class EnumStateProperties {
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> CHIPPED_ANVIL_FACING = EnumStateProperties.key(ResourceKey.sponge("chipped_anvil_facing"));
 
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> COBBLED_DEEPSLATE_SLAB_TYPE = EnumStateProperties.key(ResourceKey.sponge("cobbled_deepslate_slab_type"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> COBBLED_DEEPSLATE_STAIRS_FACING = EnumStateProperties.key(ResourceKey.sponge("cobbled_deepslate_stairs_facing"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> COBBLED_DEEPSLATE_STAIRS_HALF = EnumStateProperties.key(ResourceKey.sponge("cobbled_deepslate_stairs_half"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> COBBLED_DEEPSLATE_STAIRS_SHAPE = EnumStateProperties.key(ResourceKey.sponge("cobbled_deepslate_stairs_shape"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> COBBLED_DEEPSLATE_WALL_EAST = EnumStateProperties.key(ResourceKey.sponge("cobbled_deepslate_wall_east"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> COBBLED_DEEPSLATE_WALL_NORTH = EnumStateProperties.key(ResourceKey.sponge("cobbled_deepslate_wall_north"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> COBBLED_DEEPSLATE_WALL_SOUTH = EnumStateProperties.key(ResourceKey.sponge("cobbled_deepslate_wall_south"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> COBBLED_DEEPSLATE_WALL_WEST = EnumStateProperties.key(ResourceKey.sponge("cobbled_deepslate_wall_west"));
+
     public static final DefaultedRegistryReference<EnumStateProperty<?>> COBBLESTONE_SLAB_TYPE = EnumStateProperties.key(ResourceKey.sponge("cobblestone_slab_type"));
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> COBBLESTONE_STAIRS_FACING = EnumStateProperties.key(ResourceKey.sponge("cobblestone_stairs_facing"));
@@ -277,6 +301,14 @@ public final class EnumStateProperties {
     public static final DefaultedRegistryReference<EnumStateProperty<?>> CRIMSON_TRAPDOOR_HALF = EnumStateProperties.key(ResourceKey.sponge("crimson_trapdoor_half"));
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> CRIMSON_WALL_SIGN_FACING = EnumStateProperties.key(ResourceKey.sponge("crimson_wall_sign_facing"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> CUT_COPPER_SLAB_TYPE = EnumStateProperties.key(ResourceKey.sponge("cut_copper_slab_type"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> CUT_COPPER_STAIRS_FACING = EnumStateProperties.key(ResourceKey.sponge("cut_copper_stairs_facing"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> CUT_COPPER_STAIRS_HALF = EnumStateProperties.key(ResourceKey.sponge("cut_copper_stairs_half"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> CUT_COPPER_STAIRS_SHAPE = EnumStateProperties.key(ResourceKey.sponge("cut_copper_stairs_shape"));
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> CUT_RED_SANDSTONE_SLAB_TYPE = EnumStateProperties.key(ResourceKey.sponge("cut_red_sandstone_slab_type"));
 
@@ -342,6 +374,40 @@ public final class EnumStateProperties {
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> DEAD_TUBE_CORAL_WALL_FAN_FACING = EnumStateProperties.key(ResourceKey.sponge("dead_tube_coral_wall_fan_facing"));
 
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> DEEPSLATE_AXIS = EnumStateProperties.key(ResourceKey.sponge("deepslate_axis"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> DEEPSLATE_BRICK_SLAB_TYPE = EnumStateProperties.key(ResourceKey.sponge("deepslate_brick_slab_type"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> DEEPSLATE_BRICK_STAIRS_FACING = EnumStateProperties.key(ResourceKey.sponge("deepslate_brick_stairs_facing"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> DEEPSLATE_BRICK_STAIRS_HALF = EnumStateProperties.key(ResourceKey.sponge("deepslate_brick_stairs_half"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> DEEPSLATE_BRICK_STAIRS_SHAPE = EnumStateProperties.key(ResourceKey.sponge("deepslate_brick_stairs_shape"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> DEEPSLATE_BRICK_WALL_EAST = EnumStateProperties.key(ResourceKey.sponge("deepslate_brick_wall_east"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> DEEPSLATE_BRICK_WALL_NORTH = EnumStateProperties.key(ResourceKey.sponge("deepslate_brick_wall_north"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> DEEPSLATE_BRICK_WALL_SOUTH = EnumStateProperties.key(ResourceKey.sponge("deepslate_brick_wall_south"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> DEEPSLATE_BRICK_WALL_WEST = EnumStateProperties.key(ResourceKey.sponge("deepslate_brick_wall_west"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> DEEPSLATE_TILE_SLAB_TYPE = EnumStateProperties.key(ResourceKey.sponge("deepslate_tile_slab_type"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> DEEPSLATE_TILE_STAIRS_FACING = EnumStateProperties.key(ResourceKey.sponge("deepslate_tile_stairs_facing"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> DEEPSLATE_TILE_STAIRS_HALF = EnumStateProperties.key(ResourceKey.sponge("deepslate_tile_stairs_half"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> DEEPSLATE_TILE_STAIRS_SHAPE = EnumStateProperties.key(ResourceKey.sponge("deepslate_tile_stairs_shape"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> DEEPSLATE_TILE_WALL_EAST = EnumStateProperties.key(ResourceKey.sponge("deepslate_tile_wall_east"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> DEEPSLATE_TILE_WALL_NORTH = EnumStateProperties.key(ResourceKey.sponge("deepslate_tile_wall_north"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> DEEPSLATE_TILE_WALL_SOUTH = EnumStateProperties.key(ResourceKey.sponge("deepslate_tile_wall_south"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> DEEPSLATE_TILE_WALL_WEST = EnumStateProperties.key(ResourceKey.sponge("deepslate_tile_wall_west"));
+
     public static final DefaultedRegistryReference<EnumStateProperty<?>> DETECTOR_RAIL_SHAPE = EnumStateProperties.key(ResourceKey.sponge("detector_rail_shape"));
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> DIORITE_SLAB_TYPE = EnumStateProperties.key(ResourceKey.sponge("diorite_slab_type"));
@@ -387,6 +453,14 @@ public final class EnumStateProperties {
     public static final DefaultedRegistryReference<EnumStateProperty<?>> END_STONE_BRICK_WALL_SOUTH = EnumStateProperties.key(ResourceKey.sponge("end_stone_brick_wall_south"));
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> END_STONE_BRICK_WALL_WEST = EnumStateProperties.key(ResourceKey.sponge("end_stone_brick_wall_west"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> EXPOSED_CUT_COPPER_SLAB_TYPE = EnumStateProperties.key(ResourceKey.sponge("exposed_cut_copper_slab_type"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> EXPOSED_CUT_COPPER_STAIRS_FACING = EnumStateProperties.key(ResourceKey.sponge("exposed_cut_copper_stairs_facing"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> EXPOSED_CUT_COPPER_STAIRS_HALF = EnumStateProperties.key(ResourceKey.sponge("exposed_cut_copper_stairs_half"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> EXPOSED_CUT_COPPER_STAIRS_SHAPE = EnumStateProperties.key(ResourceKey.sponge("exposed_cut_copper_stairs_shape"));
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> FIRE_CORAL_WALL_FAN_FACING = EnumStateProperties.key(ResourceKey.sponge("fire_coral_wall_fan_facing"));
 
@@ -438,6 +512,8 @@ public final class EnumStateProperties {
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> HORN_CORAL_WALL_FAN_FACING = EnumStateProperties.key(ResourceKey.sponge("horn_coral_wall_fan_facing"));
 
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> INFESTED_DEEPSLATE_AXIS = EnumStateProperties.key(ResourceKey.sponge("infested_deepslate_axis"));
+
     public static final DefaultedRegistryReference<EnumStateProperty<?>> IRON_DOOR_FACING = EnumStateProperties.key(ResourceKey.sponge("iron_door_facing"));
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> IRON_DOOR_HALF = EnumStateProperties.key(ResourceKey.sponge("iron_door_half"));
@@ -484,6 +560,8 @@ public final class EnumStateProperties {
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> LADDER_FACING = EnumStateProperties.key(ResourceKey.sponge("ladder_facing"));
 
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> LARGE_AMETHYST_BUD_FACING = EnumStateProperties.key(ResourceKey.sponge("large_amethyst_bud_facing"));
+
     public static final DefaultedRegistryReference<EnumStateProperty<?>> LARGE_FERN_HALF = EnumStateProperties.key(ResourceKey.sponge("large_fern_half"));
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> LECTERN_FACING = EnumStateProperties.key(ResourceKey.sponge("lectern_facing"));
@@ -491,6 +569,8 @@ public final class EnumStateProperties {
     public static final DefaultedRegistryReference<EnumStateProperty<?>> LEVER_FACE = EnumStateProperties.key(ResourceKey.sponge("lever_face"));
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> LEVER_FACING = EnumStateProperties.key(ResourceKey.sponge("lever_facing"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> LIGHTNING_ROD_FACING = EnumStateProperties.key(ResourceKey.sponge("lightning_rod_facing"));
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> LIGHT_BLUE_BED_FACING = EnumStateProperties.key(ResourceKey.sponge("light_blue_bed_facing"));
 
@@ -535,6 +615,8 @@ public final class EnumStateProperties {
     public static final DefaultedRegistryReference<EnumStateProperty<?>> MAGENTA_SHULKER_BOX_FACING = EnumStateProperties.key(ResourceKey.sponge("magenta_shulker_box_facing"));
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> MAGENTA_WALL_BANNER_FACING = EnumStateProperties.key(ResourceKey.sponge("magenta_wall_banner_facing"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> MEDIUM_AMETHYST_BUD_FACING = EnumStateProperties.key(ResourceKey.sponge("medium_amethyst_bud_facing"));
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> MOSSY_COBBLESTONE_SLAB_TYPE = EnumStateProperties.key(ResourceKey.sponge("mossy_cobblestone_slab_type"));
 
@@ -634,6 +716,14 @@ public final class EnumStateProperties {
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> ORANGE_WALL_BANNER_FACING = EnumStateProperties.key(ResourceKey.sponge("orange_wall_banner_facing"));
 
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> OXIDIZED_CUT_COPPER_SLAB_TYPE = EnumStateProperties.key(ResourceKey.sponge("oxidized_cut_copper_slab_type"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> OXIDIZED_CUT_COPPER_STAIRS_FACING = EnumStateProperties.key(ResourceKey.sponge("oxidized_cut_copper_stairs_facing"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> OXIDIZED_CUT_COPPER_STAIRS_HALF = EnumStateProperties.key(ResourceKey.sponge("oxidized_cut_copper_stairs_half"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> OXIDIZED_CUT_COPPER_STAIRS_SHAPE = EnumStateProperties.key(ResourceKey.sponge("oxidized_cut_copper_stairs_shape"));
+
     public static final DefaultedRegistryReference<EnumStateProperty<?>> PEONY_HALF = EnumStateProperties.key(ResourceKey.sponge("peony_half"));
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> PETRIFIED_OAK_SLAB_TYPE = EnumStateProperties.key(ResourceKey.sponge("petrified_oak_slab_type"));
@@ -655,6 +745,10 @@ public final class EnumStateProperties {
     public static final DefaultedRegistryReference<EnumStateProperty<?>> PISTON_HEAD_TYPE = EnumStateProperties.key(ResourceKey.sponge("piston_head_type"));
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> PLAYER_WALL_HEAD_FACING = EnumStateProperties.key(ResourceKey.sponge("player_wall_head_facing"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> POINTED_DRIPSTONE_THICKNESS = EnumStateProperties.key(ResourceKey.sponge("pointed_dripstone_thickness"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> POINTED_DRIPSTONE_VERTICAL_DIRECTION = EnumStateProperties.key(ResourceKey.sponge("pointed_dripstone_vertical_direction"));
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> POLISHED_ANDESITE_SLAB_TYPE = EnumStateProperties.key(ResourceKey.sponge("polished_andesite_slab_type"));
 
@@ -701,6 +795,22 @@ public final class EnumStateProperties {
     public static final DefaultedRegistryReference<EnumStateProperty<?>> POLISHED_BLACKSTONE_WALL_SOUTH = EnumStateProperties.key(ResourceKey.sponge("polished_blackstone_wall_south"));
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> POLISHED_BLACKSTONE_WALL_WEST = EnumStateProperties.key(ResourceKey.sponge("polished_blackstone_wall_west"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> POLISHED_DEEPSLATE_SLAB_TYPE = EnumStateProperties.key(ResourceKey.sponge("polished_deepslate_slab_type"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> POLISHED_DEEPSLATE_STAIRS_FACING = EnumStateProperties.key(ResourceKey.sponge("polished_deepslate_stairs_facing"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> POLISHED_DEEPSLATE_STAIRS_HALF = EnumStateProperties.key(ResourceKey.sponge("polished_deepslate_stairs_half"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> POLISHED_DEEPSLATE_STAIRS_SHAPE = EnumStateProperties.key(ResourceKey.sponge("polished_deepslate_stairs_shape"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> POLISHED_DEEPSLATE_WALL_EAST = EnumStateProperties.key(ResourceKey.sponge("polished_deepslate_wall_east"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> POLISHED_DEEPSLATE_WALL_NORTH = EnumStateProperties.key(ResourceKey.sponge("polished_deepslate_wall_north"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> POLISHED_DEEPSLATE_WALL_SOUTH = EnumStateProperties.key(ResourceKey.sponge("polished_deepslate_wall_south"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> POLISHED_DEEPSLATE_WALL_WEST = EnumStateProperties.key(ResourceKey.sponge("polished_deepslate_wall_west"));
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> POLISHED_DIORITE_SLAB_TYPE = EnumStateProperties.key(ResourceKey.sponge("polished_diorite_slab_type"));
 
@@ -850,9 +960,17 @@ public final class EnumStateProperties {
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> SANDSTONE_WALL_WEST = EnumStateProperties.key(ResourceKey.sponge("sandstone_wall_west"));
 
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> SCULK_SENSOR_SCULK_SENSOR_PHASE = EnumStateProperties.key(ResourceKey.sponge("sculk_sensor_sculk_sensor_phase"));
+
     public static final DefaultedRegistryReference<EnumStateProperty<?>> SHULKER_BOX_FACING = EnumStateProperties.key(ResourceKey.sponge("shulker_box_facing"));
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> SKELETON_WALL_SKULL_FACING = EnumStateProperties.key(ResourceKey.sponge("skeleton_wall_skull_facing"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> SMALL_AMETHYST_BUD_FACING = EnumStateProperties.key(ResourceKey.sponge("small_amethyst_bud_facing"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> SMALL_DRIPLEAF_FACING = EnumStateProperties.key(ResourceKey.sponge("small_dripleaf_facing"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> SMALL_DRIPLEAF_HALF = EnumStateProperties.key(ResourceKey.sponge("small_dripleaf_half"));
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> SMOKER_FACING = EnumStateProperties.key(ResourceKey.sponge("smoker_facing"));
 
@@ -1027,6 +1145,46 @@ public final class EnumStateProperties {
     public static final DefaultedRegistryReference<EnumStateProperty<?>> WARPED_TRAPDOOR_HALF = EnumStateProperties.key(ResourceKey.sponge("warped_trapdoor_half"));
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> WARPED_WALL_SIGN_FACING = EnumStateProperties.key(ResourceKey.sponge("warped_wall_sign_facing"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> WAXED_CUT_COPPER_SLAB_TYPE = EnumStateProperties.key(ResourceKey.sponge("waxed_cut_copper_slab_type"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> WAXED_CUT_COPPER_STAIRS_FACING = EnumStateProperties.key(ResourceKey.sponge("waxed_cut_copper_stairs_facing"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> WAXED_CUT_COPPER_STAIRS_HALF = EnumStateProperties.key(ResourceKey.sponge("waxed_cut_copper_stairs_half"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> WAXED_CUT_COPPER_STAIRS_SHAPE = EnumStateProperties.key(ResourceKey.sponge("waxed_cut_copper_stairs_shape"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> WAXED_EXPOSED_CUT_COPPER_SLAB_TYPE = EnumStateProperties.key(ResourceKey.sponge("waxed_exposed_cut_copper_slab_type"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> WAXED_EXPOSED_CUT_COPPER_STAIRS_FACING = EnumStateProperties.key(ResourceKey.sponge("waxed_exposed_cut_copper_stairs_facing"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> WAXED_EXPOSED_CUT_COPPER_STAIRS_HALF = EnumStateProperties.key(ResourceKey.sponge("waxed_exposed_cut_copper_stairs_half"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> WAXED_EXPOSED_CUT_COPPER_STAIRS_SHAPE = EnumStateProperties.key(ResourceKey.sponge("waxed_exposed_cut_copper_stairs_shape"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> WAXED_OXIDIZED_CUT_COPPER_SLAB_TYPE = EnumStateProperties.key(ResourceKey.sponge("waxed_oxidized_cut_copper_slab_type"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> WAXED_OXIDIZED_CUT_COPPER_STAIRS_FACING = EnumStateProperties.key(ResourceKey.sponge("waxed_oxidized_cut_copper_stairs_facing"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> WAXED_OXIDIZED_CUT_COPPER_STAIRS_HALF = EnumStateProperties.key(ResourceKey.sponge("waxed_oxidized_cut_copper_stairs_half"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> WAXED_OXIDIZED_CUT_COPPER_STAIRS_SHAPE = EnumStateProperties.key(ResourceKey.sponge("waxed_oxidized_cut_copper_stairs_shape"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> WAXED_WEATHERED_CUT_COPPER_SLAB_TYPE = EnumStateProperties.key(ResourceKey.sponge("waxed_weathered_cut_copper_slab_type"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> WAXED_WEATHERED_CUT_COPPER_STAIRS_FACING = EnumStateProperties.key(ResourceKey.sponge("waxed_weathered_cut_copper_stairs_facing"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> WAXED_WEATHERED_CUT_COPPER_STAIRS_HALF = EnumStateProperties.key(ResourceKey.sponge("waxed_weathered_cut_copper_stairs_half"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> WAXED_WEATHERED_CUT_COPPER_STAIRS_SHAPE = EnumStateProperties.key(ResourceKey.sponge("waxed_weathered_cut_copper_stairs_shape"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> WEATHERED_CUT_COPPER_SLAB_TYPE = EnumStateProperties.key(ResourceKey.sponge("weathered_cut_copper_slab_type"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> WEATHERED_CUT_COPPER_STAIRS_FACING = EnumStateProperties.key(ResourceKey.sponge("weathered_cut_copper_stairs_facing"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> WEATHERED_CUT_COPPER_STAIRS_HALF = EnumStateProperties.key(ResourceKey.sponge("weathered_cut_copper_stairs_half"));
+
+    public static final DefaultedRegistryReference<EnumStateProperty<?>> WEATHERED_CUT_COPPER_STAIRS_SHAPE = EnumStateProperties.key(ResourceKey.sponge("weathered_cut_copper_stairs_shape"));
 
     public static final DefaultedRegistryReference<EnumStateProperty<?>> WHITE_BED_FACING = EnumStateProperties.key(ResourceKey.sponge("white_bed_facing"));
 

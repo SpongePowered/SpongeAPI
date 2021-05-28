@@ -1250,6 +1250,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> POTTED_ALLIUM = BlockTypes.key(ResourceKey.minecraft("potted_allium"));
 
+    public static final DefaultedRegistryReference<BlockType> POTTED_AZALEA_BUSH = BlockTypes.key(ResourceKey.minecraft("potted_azalea_bush"));
+
     public static final DefaultedRegistryReference<BlockType> POTTED_AZURE_BLUET = BlockTypes.key(ResourceKey.minecraft("potted_azure_bluet"));
 
     public static final DefaultedRegistryReference<BlockType> POTTED_BAMBOO = BlockTypes.key(ResourceKey.minecraft("potted_bamboo"));
@@ -1275,6 +1277,8 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> POTTED_DEAD_BUSH = BlockTypes.key(ResourceKey.minecraft("potted_dead_bush"));
 
     public static final DefaultedRegistryReference<BlockType> POTTED_FERN = BlockTypes.key(ResourceKey.minecraft("potted_fern"));
+
+    public static final DefaultedRegistryReference<BlockType> POTTED_FLOWERING_AZALEA_BUSH = BlockTypes.key(ResourceKey.minecraft("potted_flowering_azalea_bush"));
 
     public static final DefaultedRegistryReference<BlockType> POTTED_JUNGLE_SAPLING = BlockTypes.key(ResourceKey.minecraft("potted_jungle_sapling"));
 

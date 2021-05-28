@@ -46,6 +46,10 @@ public final class IntegerStateProperties {
 
     public static final DefaultedRegistryReference<IntegerStateProperty> ACACIA_SIGN_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("acacia_sign_rotation"));
 
+    public static final DefaultedRegistryReference<IntegerStateProperty> AZALEA_LEAVES_DISTANCE = IntegerStateProperties.key(ResourceKey.sponge("azalea_leaves_distance"));
+
+    public static final DefaultedRegistryReference<IntegerStateProperty> AZALEA_LEAVES_FLOWERS_DISTANCE = IntegerStateProperties.key(ResourceKey.sponge("azalea_leaves_flowers_distance"));
+
     public static final DefaultedRegistryReference<IntegerStateProperty> BAMBOO_AGE = IntegerStateProperties.key(ResourceKey.sponge("bamboo_age"));
 
     public static final DefaultedRegistryReference<IntegerStateProperty> BAMBOO_STAGE = IntegerStateProperties.key(ResourceKey.sponge("bamboo_stage"));
@@ -64,17 +68,25 @@ public final class IntegerStateProperties {
 
     public static final DefaultedRegistryReference<IntegerStateProperty> BLACK_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("black_banner_rotation"));
 
+    public static final DefaultedRegistryReference<IntegerStateProperty> BLACK_CANDLE_CANDLES = IntegerStateProperties.key(ResourceKey.sponge("black_candle_candles"));
+
     public static final DefaultedRegistryReference<IntegerStateProperty> BLUE_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("blue_banner_rotation"));
 
+    public static final DefaultedRegistryReference<IntegerStateProperty> BLUE_CANDLE_CANDLES = IntegerStateProperties.key(ResourceKey.sponge("blue_candle_candles"));
+
     public static final DefaultedRegistryReference<IntegerStateProperty> BROWN_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("brown_banner_rotation"));
+
+    public static final DefaultedRegistryReference<IntegerStateProperty> BROWN_CANDLE_CANDLES = IntegerStateProperties.key(ResourceKey.sponge("brown_candle_candles"));
 
     public static final DefaultedRegistryReference<IntegerStateProperty> CACTUS_AGE = IntegerStateProperties.key(ResourceKey.sponge("cactus_age"));
 
     public static final DefaultedRegistryReference<IntegerStateProperty> CAKE_BITES = IntegerStateProperties.key(ResourceKey.sponge("cake_bites"));
 
+    public static final DefaultedRegistryReference<IntegerStateProperty> CANDLE_CANDLES = IntegerStateProperties.key(ResourceKey.sponge("candle_candles"));
+
     public static final DefaultedRegistryReference<IntegerStateProperty> CARROTS_AGE = IntegerStateProperties.key(ResourceKey.sponge("carrots_age"));
 
-    public static final DefaultedRegistryReference<IntegerStateProperty> CAULDRON_LEVEL = IntegerStateProperties.key(ResourceKey.sponge("cauldron_level"));
+    public static final DefaultedRegistryReference<IntegerStateProperty> CAVE_VINES_AGE = IntegerStateProperties.key(ResourceKey.sponge("cave_vines_age"));
 
     public static final DefaultedRegistryReference<IntegerStateProperty> CHORUS_FLOWER_AGE = IntegerStateProperties.key(ResourceKey.sponge("chorus_flower_age"));
 
@@ -87,6 +99,8 @@ public final class IntegerStateProperties {
     public static final DefaultedRegistryReference<IntegerStateProperty> CRIMSON_SIGN_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("crimson_sign_rotation"));
 
     public static final DefaultedRegistryReference<IntegerStateProperty> CYAN_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("cyan_banner_rotation"));
+
+    public static final DefaultedRegistryReference<IntegerStateProperty> CYAN_CANDLE_CANDLES = IntegerStateProperties.key(ResourceKey.sponge("cyan_candle_candles"));
 
     public static final DefaultedRegistryReference<IntegerStateProperty> DARK_OAK_LEAVES_DISTANCE = IntegerStateProperties.key(ResourceKey.sponge("dark_oak_leaves_distance"));
 
@@ -106,7 +120,11 @@ public final class IntegerStateProperties {
 
     public static final DefaultedRegistryReference<IntegerStateProperty> GRAY_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("gray_banner_rotation"));
 
+    public static final DefaultedRegistryReference<IntegerStateProperty> GRAY_CANDLE_CANDLES = IntegerStateProperties.key(ResourceKey.sponge("gray_candle_candles"));
+
     public static final DefaultedRegistryReference<IntegerStateProperty> GREEN_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("green_banner_rotation"));
+
+    public static final DefaultedRegistryReference<IntegerStateProperty> GREEN_CANDLE_CANDLES = IntegerStateProperties.key(ResourceKey.sponge("green_candle_candles"));
 
     public static final DefaultedRegistryReference<IntegerStateProperty> HEAVY_WEIGHTED_PRESSURE_PLATE_POWER = IntegerStateProperties.key(ResourceKey.sponge("heavy_weighted_pressure_plate_power"));
 
@@ -122,13 +140,23 @@ public final class IntegerStateProperties {
 
     public static final DefaultedRegistryReference<IntegerStateProperty> LIGHT_BLUE_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("light_blue_banner_rotation"));
 
+    public static final DefaultedRegistryReference<IntegerStateProperty> LIGHT_BLUE_CANDLE_CANDLES = IntegerStateProperties.key(ResourceKey.sponge("light_blue_candle_candles"));
+
     public static final DefaultedRegistryReference<IntegerStateProperty> LIGHT_GRAY_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("light_gray_banner_rotation"));
+
+    public static final DefaultedRegistryReference<IntegerStateProperty> LIGHT_GRAY_CANDLE_CANDLES = IntegerStateProperties.key(ResourceKey.sponge("light_gray_candle_candles"));
+
+    public static final DefaultedRegistryReference<IntegerStateProperty> LIGHT_LEVEL = IntegerStateProperties.key(ResourceKey.sponge("light_level"));
 
     public static final DefaultedRegistryReference<IntegerStateProperty> LIGHT_WEIGHTED_PRESSURE_PLATE_POWER = IntegerStateProperties.key(ResourceKey.sponge("light_weighted_pressure_plate_power"));
 
     public static final DefaultedRegistryReference<IntegerStateProperty> LIME_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("lime_banner_rotation"));
 
+    public static final DefaultedRegistryReference<IntegerStateProperty> LIME_CANDLE_CANDLES = IntegerStateProperties.key(ResourceKey.sponge("lime_candle_candles"));
+
     public static final DefaultedRegistryReference<IntegerStateProperty> MAGENTA_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("magenta_banner_rotation"));
+
+    public static final DefaultedRegistryReference<IntegerStateProperty> MAGENTA_CANDLE_CANDLES = IntegerStateProperties.key(ResourceKey.sponge("magenta_candle_candles"));
 
     public static final DefaultedRegistryReference<IntegerStateProperty> MELON_STEM_AGE = IntegerStateProperties.key(ResourceKey.sponge("melon_stem_age"));
 
@@ -144,25 +172,37 @@ public final class IntegerStateProperties {
 
     public static final DefaultedRegistryReference<IntegerStateProperty> ORANGE_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("orange_banner_rotation"));
 
+    public static final DefaultedRegistryReference<IntegerStateProperty> ORANGE_CANDLE_CANDLES = IntegerStateProperties.key(ResourceKey.sponge("orange_candle_candles"));
+
     public static final DefaultedRegistryReference<IntegerStateProperty> PINK_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("pink_banner_rotation"));
+
+    public static final DefaultedRegistryReference<IntegerStateProperty> PINK_CANDLE_CANDLES = IntegerStateProperties.key(ResourceKey.sponge("pink_candle_candles"));
 
     public static final DefaultedRegistryReference<IntegerStateProperty> PLAYER_HEAD_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("player_head_rotation"));
 
     public static final DefaultedRegistryReference<IntegerStateProperty> POTATOES_AGE = IntegerStateProperties.key(ResourceKey.sponge("potatoes_age"));
 
+    public static final DefaultedRegistryReference<IntegerStateProperty> POWDER_SNOW_CAULDRON_LEVEL = IntegerStateProperties.key(ResourceKey.sponge("powder_snow_cauldron_level"));
+
     public static final DefaultedRegistryReference<IntegerStateProperty> PUMPKIN_STEM_AGE = IntegerStateProperties.key(ResourceKey.sponge("pumpkin_stem_age"));
 
     public static final DefaultedRegistryReference<IntegerStateProperty> PURPLE_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("purple_banner_rotation"));
 
+    public static final DefaultedRegistryReference<IntegerStateProperty> PURPLE_CANDLE_CANDLES = IntegerStateProperties.key(ResourceKey.sponge("purple_candle_candles"));
+
     public static final DefaultedRegistryReference<IntegerStateProperty> REDSTONE_WIRE_POWER = IntegerStateProperties.key(ResourceKey.sponge("redstone_wire_power"));
 
     public static final DefaultedRegistryReference<IntegerStateProperty> RED_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("red_banner_rotation"));
+
+    public static final DefaultedRegistryReference<IntegerStateProperty> RED_CANDLE_CANDLES = IntegerStateProperties.key(ResourceKey.sponge("red_candle_candles"));
 
     public static final DefaultedRegistryReference<IntegerStateProperty> REPEATER_DELAY = IntegerStateProperties.key(ResourceKey.sponge("repeater_delay"));
 
     public static final DefaultedRegistryReference<IntegerStateProperty> RESPAWN_ANCHOR_CHARGES = IntegerStateProperties.key(ResourceKey.sponge("respawn_anchor_charges"));
 
     public static final DefaultedRegistryReference<IntegerStateProperty> SCAFFOLDING_DISTANCE = IntegerStateProperties.key(ResourceKey.sponge("scaffolding_distance"));
+
+    public static final DefaultedRegistryReference<IntegerStateProperty> SCULK_SENSOR_POWER = IntegerStateProperties.key(ResourceKey.sponge("sculk_sensor_power"));
 
     public static final DefaultedRegistryReference<IntegerStateProperty> SEA_PICKLE_PICKLES = IntegerStateProperties.key(ResourceKey.sponge("sea_pickle_pickles"));
 
@@ -190,6 +230,8 @@ public final class IntegerStateProperties {
 
     public static final DefaultedRegistryReference<IntegerStateProperty> WARPED_SIGN_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("warped_sign_rotation"));
 
+    public static final DefaultedRegistryReference<IntegerStateProperty> WATER_CAULDRON_LEVEL = IntegerStateProperties.key(ResourceKey.sponge("water_cauldron_level"));
+
     public static final DefaultedRegistryReference<IntegerStateProperty> WATER_LEVEL = IntegerStateProperties.key(ResourceKey.sponge("water_level"));
 
     public static final DefaultedRegistryReference<IntegerStateProperty> WEEPING_VINES_AGE = IntegerStateProperties.key(ResourceKey.sponge("weeping_vines_age"));
@@ -198,9 +240,13 @@ public final class IntegerStateProperties {
 
     public static final DefaultedRegistryReference<IntegerStateProperty> WHITE_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("white_banner_rotation"));
 
+    public static final DefaultedRegistryReference<IntegerStateProperty> WHITE_CANDLE_CANDLES = IntegerStateProperties.key(ResourceKey.sponge("white_candle_candles"));
+
     public static final DefaultedRegistryReference<IntegerStateProperty> WITHER_SKELETON_SKULL_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("wither_skeleton_skull_rotation"));
 
     public static final DefaultedRegistryReference<IntegerStateProperty> YELLOW_BANNER_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("yellow_banner_rotation"));
+
+    public static final DefaultedRegistryReference<IntegerStateProperty> YELLOW_CANDLE_CANDLES = IntegerStateProperties.key(ResourceKey.sponge("yellow_candle_candles"));
 
     public static final DefaultedRegistryReference<IntegerStateProperty> ZOMBIE_HEAD_ROTATION = IntegerStateProperties.key(ResourceKey.sponge("zombie_head_rotation"));
 

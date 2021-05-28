@@ -82,6 +82,10 @@ public final class BooleanStateProperties {
 
     public static final DefaultedRegistryReference<BooleanStateProperty> ACTIVATOR_RAIL_POWERED = BooleanStateProperties.key(ResourceKey.sponge("activator_rail_powered"));
 
+    public static final DefaultedRegistryReference<BooleanStateProperty> ACTIVATOR_RAIL_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("activator_rail_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> AMETHYST_CLUSTER_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("amethyst_cluster_waterlogged"));
+
     public static final DefaultedRegistryReference<BooleanStateProperty> ANDESITE_SLAB_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("andesite_slab_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> ANDESITE_STAIRS_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("andesite_stairs_waterlogged"));
@@ -90,9 +94,17 @@ public final class BooleanStateProperties {
 
     public static final DefaultedRegistryReference<BooleanStateProperty> ANDESITE_WALL_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("andesite_wall_waterlogged"));
 
+    public static final DefaultedRegistryReference<BooleanStateProperty> AZALEA_LEAVES_FLOWERS_PERSISTENT = BooleanStateProperties.key(ResourceKey.sponge("azalea_leaves_flowers_persistent"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> AZALEA_LEAVES_PERSISTENT = BooleanStateProperties.key(ResourceKey.sponge("azalea_leaves_persistent"));
+
     public static final DefaultedRegistryReference<BooleanStateProperty> BARREL_OPEN = BooleanStateProperties.key(ResourceKey.sponge("barrel_open"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> BELL_POWERED = BooleanStateProperties.key(ResourceKey.sponge("bell_powered"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> BIG_DRIPLEAF_STEM_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("big_dripleaf_stem_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> BIG_DRIPLEAF_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("big_dripleaf_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> BIRCH_BUTTON_POWERED = BooleanStateProperties.key(ResourceKey.sponge("birch_button_powered"));
 
@@ -144,6 +156,12 @@ public final class BooleanStateProperties {
 
     public static final DefaultedRegistryReference<BooleanStateProperty> BLACK_BED_OCCUPIED = BooleanStateProperties.key(ResourceKey.sponge("black_bed_occupied"));
 
+    public static final DefaultedRegistryReference<BooleanStateProperty> BLACK_CANDLE_CAKE_LIT = BooleanStateProperties.key(ResourceKey.sponge("black_candle_cake_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> BLACK_CANDLE_LIT = BooleanStateProperties.key(ResourceKey.sponge("black_candle_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> BLACK_CANDLE_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("black_candle_waterlogged"));
+
     public static final DefaultedRegistryReference<BooleanStateProperty> BLACK_STAINED_GLASS_PANE_EAST = BooleanStateProperties.key(ResourceKey.sponge("black_stained_glass_pane_east"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> BLACK_STAINED_GLASS_PANE_NORTH = BooleanStateProperties.key(ResourceKey.sponge("black_stained_glass_pane_north"));
@@ -157,6 +175,12 @@ public final class BooleanStateProperties {
     public static final DefaultedRegistryReference<BooleanStateProperty> BLAST_FURNACE_LIT = BooleanStateProperties.key(ResourceKey.sponge("blast_furnace_lit"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> BLUE_BED_OCCUPIED = BooleanStateProperties.key(ResourceKey.sponge("blue_bed_occupied"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> BLUE_CANDLE_CAKE_LIT = BooleanStateProperties.key(ResourceKey.sponge("blue_candle_cake_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> BLUE_CANDLE_LIT = BooleanStateProperties.key(ResourceKey.sponge("blue_candle_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> BLUE_CANDLE_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("blue_candle_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> BLUE_STAINED_GLASS_PANE_EAST = BooleanStateProperties.key(ResourceKey.sponge("blue_stained_glass_pane_east"));
 
@@ -189,6 +213,12 @@ public final class BooleanStateProperties {
     public static final DefaultedRegistryReference<BooleanStateProperty> BRICK_WALL_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("brick_wall_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> BROWN_BED_OCCUPIED = BooleanStateProperties.key(ResourceKey.sponge("brown_bed_occupied"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> BROWN_CANDLE_CAKE_LIT = BooleanStateProperties.key(ResourceKey.sponge("brown_candle_cake_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> BROWN_CANDLE_LIT = BooleanStateProperties.key(ResourceKey.sponge("brown_candle_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> BROWN_CANDLE_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("brown_candle_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> BROWN_MUSHROOM_BLOCK_DOWN = BooleanStateProperties.key(ResourceKey.sponge("brown_mushroom_block_down"));
 
@@ -226,6 +256,16 @@ public final class BooleanStateProperties {
 
     public static final DefaultedRegistryReference<BooleanStateProperty> CAMPFIRE_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("campfire_waterlogged"));
 
+    public static final DefaultedRegistryReference<BooleanStateProperty> CANDLE_CAKE_LIT = BooleanStateProperties.key(ResourceKey.sponge("candle_cake_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> CANDLE_LIT = BooleanStateProperties.key(ResourceKey.sponge("candle_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> CANDLE_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("candle_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> CAVE_VINES_BERRIES = BooleanStateProperties.key(ResourceKey.sponge("cave_vines_berries"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> CAVE_VINES_PLANT_BERRIES = BooleanStateProperties.key(ResourceKey.sponge("cave_vines_plant_berries"));
+
     public static final DefaultedRegistryReference<BooleanStateProperty> CHAIN_COMMAND_BLOCK_CONDITIONAL = BooleanStateProperties.key(ResourceKey.sponge("chain_command_block_conditional"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> CHAIN_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("chain_waterlogged"));
@@ -243,6 +283,14 @@ public final class BooleanStateProperties {
     public static final DefaultedRegistryReference<BooleanStateProperty> CHORUS_PLANT_UP = BooleanStateProperties.key(ResourceKey.sponge("chorus_plant_up"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> CHORUS_PLANT_WEST = BooleanStateProperties.key(ResourceKey.sponge("chorus_plant_west"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> COBBLED_DEEPSLATE_SLAB_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("cobbled_deepslate_slab_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> COBBLED_DEEPSLATE_STAIRS_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("cobbled_deepslate_stairs_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> COBBLED_DEEPSLATE_WALL_UP = BooleanStateProperties.key(ResourceKey.sponge("cobbled_deepslate_wall_up"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> COBBLED_DEEPSLATE_WALL_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("cobbled_deepslate_wall_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> COBBLESTONE_SLAB_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("cobblestone_slab_waterlogged"));
 
@@ -296,11 +344,21 @@ public final class BooleanStateProperties {
 
     public static final DefaultedRegistryReference<BooleanStateProperty> CRIMSON_WALL_SIGN_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("crimson_wall_sign_waterlogged"));
 
+    public static final DefaultedRegistryReference<BooleanStateProperty> CUT_COPPER_SLAB_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("cut_copper_slab_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> CUT_COPPER_STAIRS_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("cut_copper_stairs_waterlogged"));
+
     public static final DefaultedRegistryReference<BooleanStateProperty> CUT_RED_SANDSTONE_SLAB_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("cut_red_sandstone_slab_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> CUT_SANDSTONE_SLAB_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("cut_sandstone_slab_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> CYAN_BED_OCCUPIED = BooleanStateProperties.key(ResourceKey.sponge("cyan_bed_occupied"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> CYAN_CANDLE_CAKE_LIT = BooleanStateProperties.key(ResourceKey.sponge("cyan_candle_cake_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> CYAN_CANDLE_LIT = BooleanStateProperties.key(ResourceKey.sponge("cyan_candle_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> CYAN_CANDLE_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("cyan_candle_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> CYAN_STAINED_GLASS_PANE_EAST = BooleanStateProperties.key(ResourceKey.sponge("cyan_stained_glass_pane_east"));
 
@@ -388,7 +446,27 @@ public final class BooleanStateProperties {
 
     public static final DefaultedRegistryReference<BooleanStateProperty> DEAD_TUBE_CORAL_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("dead_tube_coral_waterlogged"));
 
+    public static final DefaultedRegistryReference<BooleanStateProperty> DEEPSLATE_BRICK_SLAB_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("deepslate_brick_slab_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> DEEPSLATE_BRICK_STAIRS_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("deepslate_brick_stairs_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> DEEPSLATE_BRICK_WALL_UP = BooleanStateProperties.key(ResourceKey.sponge("deepslate_brick_wall_up"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> DEEPSLATE_BRICK_WALL_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("deepslate_brick_wall_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> DEEPSLATE_REDSTONE_ORE_LIT = BooleanStateProperties.key(ResourceKey.sponge("deepslate_redstone_ore_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> DEEPSLATE_TILE_SLAB_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("deepslate_tile_slab_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> DEEPSLATE_TILE_STAIRS_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("deepslate_tile_stairs_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> DEEPSLATE_TILE_WALL_UP = BooleanStateProperties.key(ResourceKey.sponge("deepslate_tile_wall_up"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> DEEPSLATE_TILE_WALL_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("deepslate_tile_wall_waterlogged"));
+
     public static final DefaultedRegistryReference<BooleanStateProperty> DETECTOR_RAIL_POWERED = BooleanStateProperties.key(ResourceKey.sponge("detector_rail_powered"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> DETECTOR_RAIL_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("detector_rail_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> DIORITE_SLAB_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("diorite_slab_waterlogged"));
 
@@ -413,6 +491,10 @@ public final class BooleanStateProperties {
     public static final DefaultedRegistryReference<BooleanStateProperty> END_STONE_BRICK_WALL_UP = BooleanStateProperties.key(ResourceKey.sponge("end_stone_brick_wall_up"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> END_STONE_BRICK_WALL_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("end_stone_brick_wall_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> EXPOSED_CUT_COPPER_SLAB_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("exposed_cut_copper_slab_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> EXPOSED_CUT_COPPER_STAIRS_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("exposed_cut_copper_stairs_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> FIRE_CORAL_FAN_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("fire_coral_fan_waterlogged"));
 
@@ -442,6 +524,20 @@ public final class BooleanStateProperties {
 
     public static final DefaultedRegistryReference<BooleanStateProperty> GLASS_PANE_WEST = BooleanStateProperties.key(ResourceKey.sponge("glass_pane_west"));
 
+    public static final DefaultedRegistryReference<BooleanStateProperty> GLOW_LICHEN_DOWN = BooleanStateProperties.key(ResourceKey.sponge("glow_lichen_down"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> GLOW_LICHEN_EAST = BooleanStateProperties.key(ResourceKey.sponge("glow_lichen_east"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> GLOW_LICHEN_NORTH = BooleanStateProperties.key(ResourceKey.sponge("glow_lichen_north"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> GLOW_LICHEN_SOUTH = BooleanStateProperties.key(ResourceKey.sponge("glow_lichen_south"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> GLOW_LICHEN_UP = BooleanStateProperties.key(ResourceKey.sponge("glow_lichen_up"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> GLOW_LICHEN_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("glow_lichen_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> GLOW_LICHEN_WEST = BooleanStateProperties.key(ResourceKey.sponge("glow_lichen_west"));
+
     public static final DefaultedRegistryReference<BooleanStateProperty> GRANITE_SLAB_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("granite_slab_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> GRANITE_STAIRS_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("granite_stairs_waterlogged"));
@@ -453,6 +549,12 @@ public final class BooleanStateProperties {
     public static final DefaultedRegistryReference<BooleanStateProperty> GRASS_BLOCK_SNOWY = BooleanStateProperties.key(ResourceKey.sponge("grass_block_snowy"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> GRAY_BED_OCCUPIED = BooleanStateProperties.key(ResourceKey.sponge("gray_bed_occupied"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> GRAY_CANDLE_CAKE_LIT = BooleanStateProperties.key(ResourceKey.sponge("gray_candle_cake_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> GRAY_CANDLE_LIT = BooleanStateProperties.key(ResourceKey.sponge("gray_candle_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> GRAY_CANDLE_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("gray_candle_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> GRAY_STAINED_GLASS_PANE_EAST = BooleanStateProperties.key(ResourceKey.sponge("gray_stained_glass_pane_east"));
 
@@ -466,6 +568,12 @@ public final class BooleanStateProperties {
 
     public static final DefaultedRegistryReference<BooleanStateProperty> GREEN_BED_OCCUPIED = BooleanStateProperties.key(ResourceKey.sponge("green_bed_occupied"));
 
+    public static final DefaultedRegistryReference<BooleanStateProperty> GREEN_CANDLE_CAKE_LIT = BooleanStateProperties.key(ResourceKey.sponge("green_candle_cake_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> GREEN_CANDLE_LIT = BooleanStateProperties.key(ResourceKey.sponge("green_candle_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> GREEN_CANDLE_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("green_candle_waterlogged"));
+
     public static final DefaultedRegistryReference<BooleanStateProperty> GREEN_STAINED_GLASS_PANE_EAST = BooleanStateProperties.key(ResourceKey.sponge("green_stained_glass_pane_east"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> GREEN_STAINED_GLASS_PANE_NORTH = BooleanStateProperties.key(ResourceKey.sponge("green_stained_glass_pane_north"));
@@ -475,6 +583,8 @@ public final class BooleanStateProperties {
     public static final DefaultedRegistryReference<BooleanStateProperty> GREEN_STAINED_GLASS_PANE_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("green_stained_glass_pane_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> GREEN_STAINED_GLASS_PANE_WEST = BooleanStateProperties.key(ResourceKey.sponge("green_stained_glass_pane_west"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> HANGING_ROOTS_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("hanging_roots_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> HOPPER_ENABLED = BooleanStateProperties.key(ResourceKey.sponge("hopper_enabled"));
 
@@ -552,13 +662,25 @@ public final class BooleanStateProperties {
 
     public static final DefaultedRegistryReference<BooleanStateProperty> LANTERN_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("lantern_waterlogged"));
 
+    public static final DefaultedRegistryReference<BooleanStateProperty> LARGE_AMETHYST_BUD_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("large_amethyst_bud_waterlogged"));
+
     public static final DefaultedRegistryReference<BooleanStateProperty> LECTERN_HAS_BOOK = BooleanStateProperties.key(ResourceKey.sponge("lectern_has_book"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> LECTERN_POWERED = BooleanStateProperties.key(ResourceKey.sponge("lectern_powered"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> LEVER_POWERED = BooleanStateProperties.key(ResourceKey.sponge("lever_powered"));
 
+    public static final DefaultedRegistryReference<BooleanStateProperty> LIGHTNING_ROD_POWERED = BooleanStateProperties.key(ResourceKey.sponge("lightning_rod_powered"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> LIGHTNING_ROD_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("lightning_rod_waterlogged"));
+
     public static final DefaultedRegistryReference<BooleanStateProperty> LIGHT_BLUE_BED_OCCUPIED = BooleanStateProperties.key(ResourceKey.sponge("light_blue_bed_occupied"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> LIGHT_BLUE_CANDLE_CAKE_LIT = BooleanStateProperties.key(ResourceKey.sponge("light_blue_candle_cake_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> LIGHT_BLUE_CANDLE_LIT = BooleanStateProperties.key(ResourceKey.sponge("light_blue_candle_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> LIGHT_BLUE_CANDLE_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("light_blue_candle_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> LIGHT_BLUE_STAINED_GLASS_PANE_EAST = BooleanStateProperties.key(ResourceKey.sponge("light_blue_stained_glass_pane_east"));
 
@@ -572,6 +694,12 @@ public final class BooleanStateProperties {
 
     public static final DefaultedRegistryReference<BooleanStateProperty> LIGHT_GRAY_BED_OCCUPIED = BooleanStateProperties.key(ResourceKey.sponge("light_gray_bed_occupied"));
 
+    public static final DefaultedRegistryReference<BooleanStateProperty> LIGHT_GRAY_CANDLE_CAKE_LIT = BooleanStateProperties.key(ResourceKey.sponge("light_gray_candle_cake_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> LIGHT_GRAY_CANDLE_LIT = BooleanStateProperties.key(ResourceKey.sponge("light_gray_candle_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> LIGHT_GRAY_CANDLE_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("light_gray_candle_waterlogged"));
+
     public static final DefaultedRegistryReference<BooleanStateProperty> LIGHT_GRAY_STAINED_GLASS_PANE_EAST = BooleanStateProperties.key(ResourceKey.sponge("light_gray_stained_glass_pane_east"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> LIGHT_GRAY_STAINED_GLASS_PANE_NORTH = BooleanStateProperties.key(ResourceKey.sponge("light_gray_stained_glass_pane_north"));
@@ -582,7 +710,15 @@ public final class BooleanStateProperties {
 
     public static final DefaultedRegistryReference<BooleanStateProperty> LIGHT_GRAY_STAINED_GLASS_PANE_WEST = BooleanStateProperties.key(ResourceKey.sponge("light_gray_stained_glass_pane_west"));
 
+    public static final DefaultedRegistryReference<BooleanStateProperty> LIGHT_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("light_waterlogged"));
+
     public static final DefaultedRegistryReference<BooleanStateProperty> LIME_BED_OCCUPIED = BooleanStateProperties.key(ResourceKey.sponge("lime_bed_occupied"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> LIME_CANDLE_CAKE_LIT = BooleanStateProperties.key(ResourceKey.sponge("lime_candle_cake_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> LIME_CANDLE_LIT = BooleanStateProperties.key(ResourceKey.sponge("lime_candle_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> LIME_CANDLE_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("lime_candle_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> LIME_STAINED_GLASS_PANE_EAST = BooleanStateProperties.key(ResourceKey.sponge("lime_stained_glass_pane_east"));
 
@@ -596,6 +732,12 @@ public final class BooleanStateProperties {
 
     public static final DefaultedRegistryReference<BooleanStateProperty> MAGENTA_BED_OCCUPIED = BooleanStateProperties.key(ResourceKey.sponge("magenta_bed_occupied"));
 
+    public static final DefaultedRegistryReference<BooleanStateProperty> MAGENTA_CANDLE_CAKE_LIT = BooleanStateProperties.key(ResourceKey.sponge("magenta_candle_cake_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> MAGENTA_CANDLE_LIT = BooleanStateProperties.key(ResourceKey.sponge("magenta_candle_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> MAGENTA_CANDLE_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("magenta_candle_waterlogged"));
+
     public static final DefaultedRegistryReference<BooleanStateProperty> MAGENTA_STAINED_GLASS_PANE_EAST = BooleanStateProperties.key(ResourceKey.sponge("magenta_stained_glass_pane_east"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> MAGENTA_STAINED_GLASS_PANE_NORTH = BooleanStateProperties.key(ResourceKey.sponge("magenta_stained_glass_pane_north"));
@@ -605,6 +747,8 @@ public final class BooleanStateProperties {
     public static final DefaultedRegistryReference<BooleanStateProperty> MAGENTA_STAINED_GLASS_PANE_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("magenta_stained_glass_pane_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> MAGENTA_STAINED_GLASS_PANE_WEST = BooleanStateProperties.key(ResourceKey.sponge("magenta_stained_glass_pane_west"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> MEDIUM_AMETHYST_BUD_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("medium_amethyst_bud_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> MOSSY_COBBLESTONE_SLAB_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("mossy_cobblestone_slab_waterlogged"));
 
@@ -700,6 +844,12 @@ public final class BooleanStateProperties {
 
     public static final DefaultedRegistryReference<BooleanStateProperty> ORANGE_BED_OCCUPIED = BooleanStateProperties.key(ResourceKey.sponge("orange_bed_occupied"));
 
+    public static final DefaultedRegistryReference<BooleanStateProperty> ORANGE_CANDLE_CAKE_LIT = BooleanStateProperties.key(ResourceKey.sponge("orange_candle_cake_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> ORANGE_CANDLE_LIT = BooleanStateProperties.key(ResourceKey.sponge("orange_candle_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> ORANGE_CANDLE_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("orange_candle_waterlogged"));
+
     public static final DefaultedRegistryReference<BooleanStateProperty> ORANGE_STAINED_GLASS_PANE_EAST = BooleanStateProperties.key(ResourceKey.sponge("orange_stained_glass_pane_east"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> ORANGE_STAINED_GLASS_PANE_NORTH = BooleanStateProperties.key(ResourceKey.sponge("orange_stained_glass_pane_north"));
@@ -710,9 +860,19 @@ public final class BooleanStateProperties {
 
     public static final DefaultedRegistryReference<BooleanStateProperty> ORANGE_STAINED_GLASS_PANE_WEST = BooleanStateProperties.key(ResourceKey.sponge("orange_stained_glass_pane_west"));
 
+    public static final DefaultedRegistryReference<BooleanStateProperty> OXIDIZED_CUT_COPPER_SLAB_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("oxidized_cut_copper_slab_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> OXIDIZED_CUT_COPPER_STAIRS_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("oxidized_cut_copper_stairs_waterlogged"));
+
     public static final DefaultedRegistryReference<BooleanStateProperty> PETRIFIED_OAK_SLAB_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("petrified_oak_slab_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> PINK_BED_OCCUPIED = BooleanStateProperties.key(ResourceKey.sponge("pink_bed_occupied"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> PINK_CANDLE_CAKE_LIT = BooleanStateProperties.key(ResourceKey.sponge("pink_candle_cake_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> PINK_CANDLE_LIT = BooleanStateProperties.key(ResourceKey.sponge("pink_candle_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> PINK_CANDLE_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("pink_candle_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> PINK_STAINED_GLASS_PANE_EAST = BooleanStateProperties.key(ResourceKey.sponge("pink_stained_glass_pane_east"));
 
@@ -729,6 +889,8 @@ public final class BooleanStateProperties {
     public static final DefaultedRegistryReference<BooleanStateProperty> PISTON_HEAD_SHORT = BooleanStateProperties.key(ResourceKey.sponge("piston_head_short"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> PODZOL_SNOWY = BooleanStateProperties.key(ResourceKey.sponge("podzol_snowy"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> POINTED_DRIPSTONE_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("pointed_dripstone_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> POLISHED_ANDESITE_SLAB_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("polished_andesite_slab_waterlogged"));
 
@@ -754,6 +916,14 @@ public final class BooleanStateProperties {
 
     public static final DefaultedRegistryReference<BooleanStateProperty> POLISHED_BLACKSTONE_WALL_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("polished_blackstone_wall_waterlogged"));
 
+    public static final DefaultedRegistryReference<BooleanStateProperty> POLISHED_DEEPSLATE_SLAB_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("polished_deepslate_slab_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> POLISHED_DEEPSLATE_STAIRS_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("polished_deepslate_stairs_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> POLISHED_DEEPSLATE_WALL_UP = BooleanStateProperties.key(ResourceKey.sponge("polished_deepslate_wall_up"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> POLISHED_DEEPSLATE_WALL_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("polished_deepslate_wall_waterlogged"));
+
     public static final DefaultedRegistryReference<BooleanStateProperty> POLISHED_DIORITE_SLAB_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("polished_diorite_slab_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> POLISHED_DIORITE_STAIRS_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("polished_diorite_stairs_waterlogged"));
@@ -763,6 +933,8 @@ public final class BooleanStateProperties {
     public static final DefaultedRegistryReference<BooleanStateProperty> POLISHED_GRANITE_STAIRS_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("polished_granite_stairs_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> POWERED_RAIL_POWERED = BooleanStateProperties.key(ResourceKey.sponge("powered_rail_powered"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> POWERED_RAIL_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("powered_rail_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> PRISMARINE_BRICK_SLAB_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("prismarine_brick_slab_waterlogged"));
 
@@ -777,6 +949,12 @@ public final class BooleanStateProperties {
     public static final DefaultedRegistryReference<BooleanStateProperty> PRISMARINE_WALL_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("prismarine_wall_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> PURPLE_BED_OCCUPIED = BooleanStateProperties.key(ResourceKey.sponge("purple_bed_occupied"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> PURPLE_CANDLE_CAKE_LIT = BooleanStateProperties.key(ResourceKey.sponge("purple_candle_cake_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> PURPLE_CANDLE_LIT = BooleanStateProperties.key(ResourceKey.sponge("purple_candle_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> PURPLE_CANDLE_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("purple_candle_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> PURPLE_STAINED_GLASS_PANE_EAST = BooleanStateProperties.key(ResourceKey.sponge("purple_stained_glass_pane_east"));
 
@@ -796,6 +974,8 @@ public final class BooleanStateProperties {
 
     public static final DefaultedRegistryReference<BooleanStateProperty> QUARTZ_STAIRS_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("quartz_stairs_waterlogged"));
 
+    public static final DefaultedRegistryReference<BooleanStateProperty> RAIL_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("rail_waterlogged"));
+
     public static final DefaultedRegistryReference<BooleanStateProperty> REDSTONE_LAMP_LIT = BooleanStateProperties.key(ResourceKey.sponge("redstone_lamp_lit"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> REDSTONE_ORE_LIT = BooleanStateProperties.key(ResourceKey.sponge("redstone_ore_lit"));
@@ -805,6 +985,12 @@ public final class BooleanStateProperties {
     public static final DefaultedRegistryReference<BooleanStateProperty> REDSTONE_WALL_TORCH_LIT = BooleanStateProperties.key(ResourceKey.sponge("redstone_wall_torch_lit"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> RED_BED_OCCUPIED = BooleanStateProperties.key(ResourceKey.sponge("red_bed_occupied"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> RED_CANDLE_CAKE_LIT = BooleanStateProperties.key(ResourceKey.sponge("red_candle_cake_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> RED_CANDLE_LIT = BooleanStateProperties.key(ResourceKey.sponge("red_candle_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> RED_CANDLE_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("red_candle_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> RED_MUSHROOM_BLOCK_DOWN = BooleanStateProperties.key(ResourceKey.sponge("red_mushroom_block_down"));
 
@@ -862,7 +1048,13 @@ public final class BooleanStateProperties {
 
     public static final DefaultedRegistryReference<BooleanStateProperty> SCAFFOLDING_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("scaffolding_waterlogged"));
 
+    public static final DefaultedRegistryReference<BooleanStateProperty> SCULK_SENSOR_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("sculk_sensor_waterlogged"));
+
     public static final DefaultedRegistryReference<BooleanStateProperty> SEA_PICKLE_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("sea_pickle_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> SMALL_AMETHYST_BUD_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("small_amethyst_bud_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> SMALL_DRIPLEAF_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("small_dripleaf_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> SMOKER_LIT = BooleanStateProperties.key(ResourceKey.sponge("smoker_lit"));
 
@@ -1024,7 +1216,33 @@ public final class BooleanStateProperties {
 
     public static final DefaultedRegistryReference<BooleanStateProperty> WARPED_WALL_SIGN_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("warped_wall_sign_waterlogged"));
 
+    public static final DefaultedRegistryReference<BooleanStateProperty> WAXED_CUT_COPPER_SLAB_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("waxed_cut_copper_slab_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> WAXED_CUT_COPPER_STAIRS_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("waxed_cut_copper_stairs_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> WAXED_EXPOSED_CUT_COPPER_SLAB_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("waxed_exposed_cut_copper_slab_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> WAXED_EXPOSED_CUT_COPPER_STAIRS_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("waxed_exposed_cut_copper_stairs_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> WAXED_OXIDIZED_CUT_COPPER_SLAB_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("waxed_oxidized_cut_copper_slab_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> WAXED_OXIDIZED_CUT_COPPER_STAIRS_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("waxed_oxidized_cut_copper_stairs_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> WAXED_WEATHERED_CUT_COPPER_SLAB_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("waxed_weathered_cut_copper_slab_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> WAXED_WEATHERED_CUT_COPPER_STAIRS_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("waxed_weathered_cut_copper_stairs_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> WEATHERED_CUT_COPPER_SLAB_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("weathered_cut_copper_slab_waterlogged"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> WEATHERED_CUT_COPPER_STAIRS_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("weathered_cut_copper_stairs_waterlogged"));
+
     public static final DefaultedRegistryReference<BooleanStateProperty> WHITE_BED_OCCUPIED = BooleanStateProperties.key(ResourceKey.sponge("white_bed_occupied"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> WHITE_CANDLE_CAKE_LIT = BooleanStateProperties.key(ResourceKey.sponge("white_candle_cake_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> WHITE_CANDLE_LIT = BooleanStateProperties.key(ResourceKey.sponge("white_candle_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> WHITE_CANDLE_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("white_candle_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> WHITE_STAINED_GLASS_PANE_EAST = BooleanStateProperties.key(ResourceKey.sponge("white_stained_glass_pane_east"));
 
@@ -1037,6 +1255,12 @@ public final class BooleanStateProperties {
     public static final DefaultedRegistryReference<BooleanStateProperty> WHITE_STAINED_GLASS_PANE_WEST = BooleanStateProperties.key(ResourceKey.sponge("white_stained_glass_pane_west"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> YELLOW_BED_OCCUPIED = BooleanStateProperties.key(ResourceKey.sponge("yellow_bed_occupied"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> YELLOW_CANDLE_CAKE_LIT = BooleanStateProperties.key(ResourceKey.sponge("yellow_candle_cake_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> YELLOW_CANDLE_LIT = BooleanStateProperties.key(ResourceKey.sponge("yellow_candle_lit"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> YELLOW_CANDLE_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("yellow_candle_waterlogged"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> YELLOW_STAINED_GLASS_PANE_EAST = BooleanStateProperties.key(ResourceKey.sponge("yellow_stained_glass_pane_east"));
 
