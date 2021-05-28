@@ -26,11 +26,15 @@ val ap by sourceSets.registering {
 }
 
 // Project dependencies
+val adventureVersion: String by project
+val configurateVersion: String by project
+val log4jVersion: String by project
 dependencies {
+    val caffeineVersion: String by project
     val errorproneVersion: String by project
 
     // Directly tied to what's available from Minecraft
-    api("org.apache.logging.log4j:log4j-api:2.8.1")
+    api("org.apache.logging.log4j:log4j-api:$log4jVersion")
     api("com.google.guava:guava:21.0") {
         exclude(group ="com.google.code.findbugs", module = "jsr305") // We don't want to use jsr305, use checkerframework
         exclude(group = "org.checkerframework", module = "checker-qual") // We use our own version
@@ -40,7 +44,7 @@ dependencies {
     api("com.google.code.gson:gson:2.8.0")
 
     // Adventure
-    api(platform("net.kyori:adventure-bom:4.7.0"))
+    api(platform("net.kyori:adventure-bom:$adventureVersion"))
     api("net.kyori:adventure-api") {
         exclude(group = "org.checkerframework", module = "checker-qual")
     }
@@ -66,11 +70,11 @@ dependencies {
     }
 
     // High performance cache + guava - shaded guava
-    api("com.github.ben-manes.caffeine:caffeine:2.9.0") {
+    api("com.github.ben-manes.caffeine:caffeine:$caffeineVersion") {
         exclude(group= "org.checkerframework", module = "checker-qual")
         exclude(group = "com.google.errorprone", module = "error_prone_annotations")
     }
-    implementation("com.github.ben-manes.caffeine:guava:2.9.0") {
+    implementation("com.github.ben-manes.caffeine:guava:$caffeineVersion") {
         exclude(group = "com.google.guava", module = "guava")
         exclude(group= "org.checkerframework", module = "checker-qual")
         exclude(group = "com.google.errorprone", module = "error_prone_annotations")
@@ -80,7 +84,7 @@ dependencies {
     api("org.spongepowered:plugin-spi:0.2.0")
 
     // Configurate
-    api(platform("org.spongepowered:configurate-bom:4.1.1"))
+    api(platform("org.spongepowered:configurate-bom:$configurateVersion"))
     api("org.spongepowered:configurate-core") {
         exclude(group = "org.checkerframework", module = "checker-qual") // We use our own version
     }
@@ -109,12 +113,12 @@ dependencies {
     // Math library
     api("org.spongepowered:math:2.0.0")
 
-    testImplementation(platform("org.junit:junit-bom:5.7.1"))
+    testImplementation(platform("org.junit:junit-bom:5.7.2"))
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testImplementation("org.junit.jupiter:junit-jupiter-params")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
     testImplementation("org.hamcrest:hamcrest:2.2")
-    testImplementation("org.mockito:mockito-core:3.7.7")
+    testImplementation("org.mockito:mockito-core:3.10.0")
 }
 tasks {
     genEventImpl {
@@ -145,8 +149,6 @@ tasks {
             attributes("Specification-Vendor" to "SpongePowered")
             attributes("Specification-Title" to "SpongeAPI")
             attributes("Specification-Version" to project.version)
-            System.getenv()["GIT_COMMIT"]?.apply { attributes("Git-Commit" to this) }
-            System.getenv()["GIT_BRANCH"]?.apply { attributes("Git-Branch" to this) }
         }
     }
 
@@ -161,14 +163,14 @@ tasks {
         options {
             (this as? StandardJavadocDocletOptions)?.apply {
                 links(
-                    "https://logging.apache.org/log4j/log4j-2.8.1/log4j-api/apidocs/",
+                    "https://logging.apache.org/log4j/log4j-$log4jVersion/log4j-api/apidocs/",
                     "https://google.github.io/guice/api-docs/5.0.1/javadoc/",
                     "https://guava.dev/releases/21.0/api/docs/",
-                    "https://configurate.aoeu.xyz/4.1.1/apidocs/",
+                    "https://configurate.aoeu.xyz/$configurateVersion/apidocs/",
                     "https://www.javadoc.io/doc/com.google.code.gson/gson/2.8.0/"
                 )
                 sequenceOf("api", "key", "text-serializer-gson", "text-serializer-legacy", "text-serializer-plain").forEach {
-                    links("https://jd.adventure.kyori.net/$it/4.7.0/")
+                    links("https://jd.adventure.kyori.net/$it/$adventureVersion/")
                 }
                 addStringOption("-quiet")
             }
@@ -235,9 +237,15 @@ spongeConvention {
     }
 }
 
-indra.configurePublications {
-    pom {
-        this.url.set(projectUrl)
+indra {
+    javaVersions {
+        testWith(8, 11, 16)
+    }
+
+    configurePublications {
+        pom {
+            this.url.set(projectUrl)
+        }
     }
 }
 
