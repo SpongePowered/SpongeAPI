@@ -13,7 +13,7 @@ A mature Minecraft plugin API (not including an implementation), licensed under 
 * [Javadocs]
 
 ## Prerequisites
-* [Java] 8
+* [Java] 8 (JDK 16 recommended for development)
 
 ## Clone
 The following steps will ensure your project is cloned properly.  
@@ -25,6 +25,8 @@ The following steps will ensure your project is cloned properly.
 __Note:__ If you do not have [Gradle] installed then use ./gradlew for Unix systems or Git Bash and gradlew.bat for Windows systems in place of any 'gradle' command.
 
 In order to build SpongeAPI you simply need to run the `gradle` command. You can find the compiled JAR file in `./build/libs` labeled similarly to 'spongeapi-x.x.x-SNAPSHOT.jar'.
+
+Sponge will use a javac version of *at least* 11. If an older JDK is used to launch Gradle, JDK 11 will be downloaded automatically.
 
 ## Contributing
 Are you a talented programmer looking to contribute some code? We'd love the help!
