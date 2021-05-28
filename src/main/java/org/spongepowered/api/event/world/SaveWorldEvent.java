@@ -33,8 +33,7 @@ import org.spongepowered.api.world.server.ServerWorld;
 /**
  * Base event for when a {@link World} is saved.
  */
-@GenerateFactoryMethod
-public interface SaveWorldEvent extends Event, Cancellable {
+public interface SaveWorldEvent extends Event {
 
     /**
      * Gets the {@link ServerWorld world}.
@@ -43,7 +42,13 @@ public interface SaveWorldEvent extends Event, Cancellable {
      */
     ServerWorld world();
 
-    interface Pre extends SaveWorldEvent {}
+    /**
+     * Fired before a world is saved.
+     */
+    interface Pre extends SaveWorldEvent, Cancellable {}
 
+    /**
+     * Fired after a world has been saved.
+     */
     interface Post extends SaveWorldEvent {}
 }
