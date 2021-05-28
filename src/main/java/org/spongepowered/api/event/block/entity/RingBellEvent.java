@@ -35,6 +35,7 @@ import org.spongepowered.api.event.entity.AffectEntityEvent;
  * <p>Entities which are affected by this event will be
  * given a {@link PotionEffectTypes#GLOWING} effect.</p>
  */
+// TODO missing impl - not implementable - glow effect is separate from bell hit
 public interface RingBellEvent extends AffectEntityEvent, Cancellable {
 
     /**

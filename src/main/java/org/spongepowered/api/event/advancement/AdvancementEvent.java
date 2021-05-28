@@ -77,6 +77,7 @@ public interface AdvancementEvent extends Event {
      * {@link CriterionEvent.Grant}s of the underlying {@link CriterionEvent}s
      * to prevent revoking the {@link Advancement}.</p>
      */
+    // TODO missing impl
     interface Revoke extends AdvancementEvent {
     }
 }

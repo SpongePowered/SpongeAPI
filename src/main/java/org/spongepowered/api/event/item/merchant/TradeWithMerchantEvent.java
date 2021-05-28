@@ -33,6 +33,7 @@ import org.spongepowered.api.item.merchant.TradeOffer;
 /**
  * An event when a {@link Humanoid} trades with a {@link Merchant}.
  */
+// TODO missing impl
 public interface TradeWithMerchantEvent extends Event, Cancellable {
 
     /**

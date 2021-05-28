@@ -51,6 +51,7 @@ public interface GenerateTradeOfferEvent extends Event {
      */
     List<TradeOffer> tradeOffers();
 
+    // TODO missing impl
     interface Propose extends GenerateTradeOfferEvent, Cancellable {
 
         /**
@@ -70,6 +71,7 @@ public interface GenerateTradeOfferEvent extends Event {
 
     }
 
+    // TODO missing impl
     interface Post extends GenerateTradeOfferEvent {
 
         /**

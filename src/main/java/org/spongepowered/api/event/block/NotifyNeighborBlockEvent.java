@@ -35,6 +35,7 @@ import java.util.function.Predicate;
 /**
  *
  */
+// TODO missing javadocs
 public interface NotifyNeighborBlockEvent extends Event, Cancellable {
 
     List<NotificationTicket> tickets();

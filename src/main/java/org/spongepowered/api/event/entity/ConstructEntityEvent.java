@@ -73,6 +73,7 @@ public interface ConstructEntityEvent extends Event {
      *
      * <p>Note: This takes before spawning.</p>
      */
+    // TODO impl in invalid
     interface Post extends ConstructEntityEvent {
 
         /**

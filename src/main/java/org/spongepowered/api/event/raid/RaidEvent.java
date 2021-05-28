@@ -50,6 +50,7 @@ public interface RaidEvent extends Event {
      * <p>This is fired before any {@link RaidWave}s have started.</p>
      */
     @GenerateFactoryMethod
+    // TODO missing impl
     interface Start extends RaidEvent, Cancellable {
     }
 
@@ -57,6 +58,7 @@ public interface RaidEvent extends Event {
      * An event where a {@link RaidWave} in a {@link Raid} has started.
      */
     @GenerateFactoryMethod
+    // TODO missing impl
     interface StartWave extends RaidEvent, Cancellable {
 
         /**
@@ -75,6 +77,7 @@ public interface RaidEvent extends Event {
      * or {@link RaidStatuses#LOSS}</p>
      */
     @GenerateFactoryMethod
+    // TODO missing impl
     interface End extends RaidEvent {
     }
 }

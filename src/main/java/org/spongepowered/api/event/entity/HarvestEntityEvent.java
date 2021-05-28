@@ -49,6 +49,7 @@ public interface HarvestEntityEvent extends Event, Cancellable {
      * have additional information regarding whether the player
      * {@link #keepsInventory()} and their current experience.
      */
+    // TODO missing impl
     interface Player extends HarvestEntityEvent {
 
         @Override

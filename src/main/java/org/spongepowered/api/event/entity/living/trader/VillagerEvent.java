@@ -54,6 +54,7 @@ public interface VillagerEvent extends Event {
      * <p>This can include both gaining or losing a {@link ProfessionType}.</p>
      */
     @GenerateFactoryMethod
+    // TODO missing impl
     interface ChangeProfession extends VillagerEvent, Cancellable {
 
         /**
@@ -82,6 +83,7 @@ public interface VillagerEvent extends Event {
      * Fired when a {@link Villager} levels up it's {@link ProfessionType}.
      */
     @GenerateFactoryMethod
+    // TODO missing impl
     interface LevelUpProfession extends VillagerEvent, Cancellable {
 
         /**
@@ -123,6 +125,7 @@ public interface VillagerEvent extends Event {
      * {@link Hostile} agents.</p>
      */
     @GenerateFactoryMethod
+    // TODO missing impl
     interface Panic extends VillagerEvent, Cancellable {
 
         /**

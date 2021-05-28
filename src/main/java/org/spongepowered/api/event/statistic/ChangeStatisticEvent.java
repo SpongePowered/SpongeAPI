@@ -32,6 +32,7 @@ import org.spongepowered.api.statistic.Statistic;
  * Represents an event that is triggered if a {@link Statistic}'s value is being
  * modified.
  */
+// TODO missing impl
 public interface ChangeStatisticEvent extends Event, Cancellable {
     /**
      * Gets the {@link Statistic}.

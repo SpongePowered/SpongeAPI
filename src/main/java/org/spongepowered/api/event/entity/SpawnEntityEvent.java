@@ -58,6 +58,7 @@ public interface SpawnEntityEvent extends AffectEntityEvent {
      */
     interface Pre extends SpawnEntityEvent {}
 
+    // TODO missing impl
     interface ChunkLoad extends SpawnEntityEvent {}
 
     interface Custom extends SpawnEntityEvent {}

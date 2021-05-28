@@ -38,6 +38,7 @@ import java.util.Optional;
  * Fired when the world border changes for a {@code Player} or a {@code World}.
  */
 @GenerateFactoryMethod
+// TODO missing impl?
 public interface ChangeWorldBorderEvent extends Event, Cancellable {
     /**
      * Gets the border that was previously used as an {@link Optional}. There 
@@ -61,6 +62,7 @@ public interface ChangeWorldBorderEvent extends Event, Cancellable {
     /**
      * An event that is fired when a world's border is changed.
      */
+    // TODO missing impl
     interface TargetWorld extends ChangeWorldBorderEvent {
 
         /**

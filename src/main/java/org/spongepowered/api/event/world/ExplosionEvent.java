@@ -131,5 +131,6 @@ public interface ExplosionEvent extends Event, Cancellable {
      * affected blocks) will be included. This is where the block changes can be
      * updated and/or changed.
      */
+    // TODO missing impl
     interface Post extends ExplosionEvent, ChangeBlockEvent.Post {}
 }

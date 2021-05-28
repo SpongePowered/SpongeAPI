@@ -37,6 +37,7 @@ public interface ClientSideConnectionEvent extends Event {
      */
     ClientSideConnection connection();
 
+    // TODO missing impl
     interface Join extends ClientSideConnectionEvent {
 
         /**
@@ -47,6 +48,7 @@ public interface ClientSideConnectionEvent extends Event {
         ClientPlayer player();
     }
 
+    // TODO missing impl
     interface Disconnect extends ClientSideConnectionEvent {
 
         /**
