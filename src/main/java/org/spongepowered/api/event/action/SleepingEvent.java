@@ -50,17 +50,26 @@ public interface SleepingEvent extends Event {
      */
     BlockSnapshot bed();
 
+    /**
+     * Fires before sleeping is attempted.
+     */
     interface Pre extends SleepingEvent, Cancellable {}
 
+    /**
+     * Fires every tick the {@link Humanoid} is sleeping.
+     */
     interface Tick extends SleepingEvent, Cancellable {}
 
     /**
-     * Called when the {@link Humanoid} was sleeping but failed.
+     * Fires when the {@link Humanoid} tried to sleep but failed.
      */
     interface Failed extends SleepingEvent, Cancellable {
 
     }
 
+    /**
+     * Fires when the {@link Humanoid} wakes up.
+     */
     interface Finish extends SleepingEvent {
 
         /**
