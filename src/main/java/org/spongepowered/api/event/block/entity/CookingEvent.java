@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.block.entity;
 
 import org.spongepowered.api.block.entity.BlockEntity;
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.item.inventory.AffectItemStackEvent;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -63,9 +64,8 @@ public interface CookingEvent extends Event {
 
     /**
      * The first tick of an item cooking.
-     * Note that actually no stacks are affected when starting to cook.
      */
-    interface Start extends CookingEvent, AffectItemStackEvent {}
+    interface Start extends CookingEvent, Cancellable {}
 
     /**
      * Fires whenever fuel is consumed to refill the current burn time.
@@ -75,9 +75,8 @@ public interface CookingEvent extends Event {
 
     /**
      * The cooking timer ticking up or down.
-     * Note that actually no stacks are affected when ticking.
      */
-    interface Tick extends CookingEvent, AffectItemStackEvent {}
+    interface Tick extends CookingEvent, Cancellable {}
 
     /**
      * Fires when the cooking is interrupted causing the current cooking time to reset to 0.

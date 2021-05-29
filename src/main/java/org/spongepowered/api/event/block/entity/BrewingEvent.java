@@ -25,6 +25,8 @@
 package org.spongepowered.api.event.block.entity;
 
 import org.spongepowered.api.block.entity.carrier.BrewingStand;
+import org.spongepowered.api.data.Transaction;
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.item.inventory.AffectItemStackEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -52,21 +54,38 @@ public interface BrewingEvent extends Event {
      */
     ItemStackSnapshot ingredient();
 
-    interface Start extends BrewingEvent, AffectItemStackEvent {}
+    /**
+     * Fired when the brewing process starts.
+     */
+    interface Start extends BrewingEvent, Cancellable {}
 
-    interface Tick extends BrewingEvent, AffectItemStackEvent {}
-
-    interface Interrupt extends BrewingEvent {
+    /**
+     * Fired when a fuel item is consumed to refill the fuel bar.
+     */
+    interface ConsumeFuel extends BrewingEvent, Cancellable {
 
         /**
-         * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the result
-         * of the brew.
+         * The consumed fuel transaction.
          *
-         * @return The brewed items
+         * @return The consumed fuel transaction.
          */
-        List<ItemStackSnapshot> brewedItemStacks();
+        Transaction<ItemStackSnapshot> fuel();
+
     }
 
+    /**
+     * Fired every tick while brewing.
+     */
+    interface Tick extends BrewingEvent, Cancellable {}
+
+    /**
+     * Fires when brewing is interrupted.
+     */
+    interface Interrupt extends BrewingEvent {}
+
+    /**
+     * Fires when brewing finished.
+     */
     interface Finish extends BrewingEvent {
 
         /**
