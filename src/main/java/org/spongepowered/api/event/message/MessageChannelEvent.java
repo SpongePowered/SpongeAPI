@@ -24,23 +24,19 @@
  */
 package org.spongepowered.api.event.message;
 
-import com.google.common.collect.Streams;
 import net.kyori.adventure.audience.Audience;
-import net.kyori.adventure.audience.ForwardingAudience;
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.adventure.Audiences;
-import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
+import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 /**
  * Describes events when a involving a {@link Component} message and {@link Audience}s.
  */
-@GenerateFactoryMethod
+@NoFactoryMethod
 public interface MessageChannelEvent extends MessageEvent {
 
     /**

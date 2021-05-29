@@ -33,6 +33,7 @@ import org.spongepowered.api.network.status.StatusClient;
 import org.spongepowered.api.network.status.StatusResponse;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
+import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
 
 import java.util.List;
 import java.util.Optional;
@@ -102,6 +103,7 @@ public interface ClientPingServerEvent extends Event, Cancellable {
          * Represents the information about the players on the server, sent
          * after the {@link ClientPingServerEvent}.
          */
+        @NoFactoryMethod
         interface Players extends StatusResponse.Players {
 
             /**

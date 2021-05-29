@@ -46,11 +46,11 @@ public interface HarvestEntityEvent extends Event, Cancellable {
     Entity entity();
 
     /**
-     * An event where the target is a {@link Player}. Usually this will
+     * An event where the target is a {@link org.spongepowered.api.entity.living.player.Player}. Usually this will
      * have additional information regarding whether the player
      * {@link #keepsInventory()} and their current experience.
      */
-    interface TargetPlayer extends HarvestEntityEvent, ChangeEntityExperienceEvent {
+    interface Player extends HarvestEntityEvent {
 
         @Override
         ServerPlayer entity();
@@ -96,5 +96,27 @@ public interface HarvestEntityEvent extends Event, Cancellable {
          * @param level The new level after death
          */
         void setLevel(int level);
+
+        /**
+         * Gets the original experience unmodified by event changes.
+         *
+         * @return The experience
+         */
+        int originalExperience();
+
+        /**
+         * Gets the experience after an event has been processed.
+         *
+         * @return The experience to receive
+         */
+        int experience();
+
+        /**
+         * Sets the amount of experience after an event has been processed.
+         * Negative values will remove experience.
+         *
+         * @param exp The experience to give or take
+         */
+        void setExperience(int exp);
     }
 }

@@ -29,7 +29,6 @@ import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.entity.living.player.PlayerChatFormatter;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
 
 import java.util.Optional;
 
