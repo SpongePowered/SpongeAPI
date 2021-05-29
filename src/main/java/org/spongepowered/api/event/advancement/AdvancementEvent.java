@@ -29,7 +29,7 @@ import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.message.MessageCancellable;
-import org.spongepowered.api.event.message.MessageChannelEvent;
+import org.spongepowered.api.event.message.AudienceMessageEvent;
 
 import java.time.Instant;
 
@@ -59,7 +59,7 @@ public interface AdvancementEvent extends Event {
      * {@link CriterionEvent.Grant}s of the underlying {@link CriterionEvent}s
      * to prevent unlocking the {@link Advancement}.</p>
      */
-    interface Grant extends AdvancementEvent, MessageChannelEvent, MessageCancellable {
+    interface Grant extends AdvancementEvent, AudienceMessageEvent, MessageCancellable {
 
         /**
          * Gets the {@link Instant} at which the {@link Advancement}

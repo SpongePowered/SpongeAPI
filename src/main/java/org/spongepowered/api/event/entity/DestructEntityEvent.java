@@ -28,7 +28,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.message.MessageCancellable;
-import org.spongepowered.api.event.message.MessageChannelEvent;
+import org.spongepowered.api.event.message.AudienceMessageEvent;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 import org.spongepowered.api.world.gamerule.GameRules;
 
@@ -38,7 +38,7 @@ import org.spongepowered.api.world.gamerule.GameRules;
  * {@link HarvestEntityEvent}.
  */
 @GenerateFactoryMethod
-public interface DestructEntityEvent extends MessageChannelEvent, MessageCancellable {
+public interface DestructEntityEvent extends AudienceMessageEvent, MessageCancellable {
 
     /**
      * Gets the {@link Entity}.

@@ -31,7 +31,7 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import org.spongepowered.api.event.message.MessageCancellable;
-import org.spongepowered.api.event.message.MessageChannelEvent;
+import org.spongepowered.api.event.message.AudienceMessageEvent;
 import org.spongepowered.api.event.message.MessageEvent;
 import org.spongepowered.api.network.ServerSideConnection;
 import org.spongepowered.api.network.channel.Channel;
@@ -188,7 +188,7 @@ public interface ServerSideConnectionEvent extends Event {
      * <p>The {@link SpawnEntityEvent} for the {@link ServerPlayer player} is fired after the
      * #Login event. This event is fired after both.</p>
      */
-    interface Join extends ServerSideConnectionEvent, MessageChannelEvent, MessageCancellable {
+    interface Join extends ServerSideConnectionEvent, AudienceMessageEvent, MessageCancellable {
 
         /**
          * Gets the {@link ServerPlayer player}.
@@ -201,7 +201,7 @@ public interface ServerSideConnectionEvent extends Event {
     /**
      * Called when a {@link ServerPlayer player} disconnects from the game.
      */
-    interface Disconnect extends ServerSideConnectionEvent, MessageChannelEvent {
+    interface Disconnect extends ServerSideConnectionEvent, AudienceMessageEvent {
 
         /**
          * Gets the {@link ServerPlayer player}.

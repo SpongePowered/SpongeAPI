@@ -37,7 +37,7 @@ import java.util.function.Predicate;
  * Describes events when a involving a {@link Component} message and {@link Audience}s.
  */
 @NoFactoryMethod
-public interface MessageChannelEvent extends MessageEvent {
+public interface AudienceMessageEvent extends MessageEvent {
 
     /**
      * Gets the original audience that this message will be sent to.
