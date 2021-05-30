@@ -25,23 +25,23 @@
 package org.spongepowered.api.event.action;
 
 import org.spongepowered.api.block.BlockSnapshot;
-import org.spongepowered.api.entity.living.Humanoid;
+import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.math.vector.Vector3d;
 
 /**
- * Called when a {@link Humanoid} enters a bed to sleep in.
+ * Called when a {@link Living} enters a bed to sleep in.
  */
 public interface SleepingEvent extends Event {
 
     /**
-     * Gets the {@link Humanoid}.
+     * Gets the {@link Living}.
      *
      * @return The humanoid
      */
-    Humanoid humanoid();
+    Living living();
 
     /**
      * Gets the {@link BlockSnapshot} of the bed being used to sleep.
@@ -56,59 +56,59 @@ public interface SleepingEvent extends Event {
     interface Pre extends SleepingEvent, Cancellable {}
 
     /**
-     * Fires every tick the {@link Humanoid} is sleeping.
+     * Fires every tick the {@link Living} is sleeping.
      */
     interface Tick extends SleepingEvent, Cancellable {}
 
     /**
-     * Fires when the {@link Humanoid} tried to sleep but failed.
+     * Fires when the {@link Living} tried to sleep but failed.
      */
     interface Failed extends SleepingEvent, Cancellable {
 
     }
 
     /**
-     * Fires when the {@link Humanoid} wakes up.
+     * Fires when the {@link Living} wakes up.
      */
     interface Finish extends SleepingEvent {
 
         /**
-         * Gets the previous {@link ServerLocation location} the {@link Humanoid} would have woke at.
+         * Gets the previous {@link ServerLocation location} the {@link Living} would have woke at.
          *
          * @return The location
          */
         ServerLocation fromLocation();
 
         /**
-         * Gets the {@link ServerLocation location} the {@link Humanoid} will wake up at.
+         * Gets the {@link ServerLocation location} the {@link Living} will wake up at.
          *
          * @return The location
          */
         ServerLocation toLocation();
 
         /**
-         * Sets the {@link ServerLocation location} the {@link Humanoid} will wake up at.
+         * Sets the {@link ServerLocation location} the {@link Living} will wake up at.
          *
          * @param location The location
          */
         void setToLocation(ServerLocation location);
 
         /**
-         * Gets the {@link Vector3d rotation} the {@link Humanoid} would woke up to.
+         * Gets the {@link Vector3d rotation} the {@link Living} would woke up to.
          *
          * @return The rotation
          */
         Vector3d fromRotation();
 
         /**
-         * Gets the {@link Vector3d rotation} the {@link Humanoid} will wake up to.
+         * Gets the {@link Vector3d rotation} the {@link Living} will wake up to.
          *
          * @return The rotation
          */
         Vector3d toRotation();
 
         /**
-         * Sets the {@link Vector3d rotation} the {@link Humanoid} will wake up to.
+         * Sets the {@link Vector3d rotation} the {@link Living} will wake up to.
          *
          * @param rotation The rotation
          */
