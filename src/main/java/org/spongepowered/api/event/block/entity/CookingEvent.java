@@ -76,7 +76,15 @@ public interface CookingEvent extends Event {
     /**
      * The cooking timer ticking up or down.
      */
-    interface Tick extends CookingEvent, Cancellable {}
+    interface Tick extends CookingEvent, Cancellable {
+
+        /**
+         * Returns the stack currently cooking.
+         *
+         * @return The stack currently cooking
+         */
+        ItemStackSnapshot cookingItem();
+    }
 
     /**
      * Fires when the cooking is interrupted causing the current cooking time to reset to 0.
