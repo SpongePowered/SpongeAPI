@@ -28,8 +28,8 @@ import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.event.message.MessageCancellable;
 import org.spongepowered.api.event.message.AudienceMessageEvent;
+import org.spongepowered.api.event.message.MessageCancellable;
 
 import java.time.Instant;
 

@@ -27,8 +27,8 @@ package org.spongepowered.api.event.entity;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.message.MessageCancellable;
 import org.spongepowered.api.event.message.AudienceMessageEvent;
+import org.spongepowered.api.event.message.MessageCancellable;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 import org.spongepowered.api.world.gamerule.GameRules;
 
