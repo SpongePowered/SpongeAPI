@@ -25,7 +25,6 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
@@ -44,78 +43,4 @@ public interface HarvestEntityEvent extends Event, Cancellable {
      */
     Entity entity();
 
-    /**
-     * An event where the target is a {@link org.spongepowered.api.entity.living.player.Player}. Usually this will
-     * have additional information regarding whether the player
-     * {@link #keepsInventory()} and their current experience.
-     */
-    interface Player extends HarvestEntityEvent {
-
-        @Override
-        ServerPlayer entity();
-
-        /**
-         * Gets whether the player keeps their inventory on death.
-         *
-         * @return Whether the player keeps their inventory on death
-         */
-        boolean keepsInventory();
-
-        /**
-         * Sets if the player keeps their inventory on death.
-         *
-         * @param keepInventory Whether the player should keep inventory
-         */
-        void setKeepsInventory(boolean keepInventory);
-
-        /**
-         * Gets whether the player keeps all of their EXP on death.
-         *
-         * @return Whether the player keeps all of their EXP on death
-         */
-        boolean keepsLevel();
-
-        /**
-         * Sets if the player keeps all of their EXP on death.
-         *
-         * @param keepLevel Whether the player will keep experience on death
-         */
-        void setKeepsLevel(boolean keepLevel);
-
-        /**
-         * Gets the new level the player will have after death.
-         *
-         * @return The new level after death
-         */
-        int level();
-
-        /**
-         * Sets the new level the player will have after death.
-         *
-         * @param level The new level after death
-         */
-        void setLevel(int level);
-
-        /**
-         * Gets the original experience unmodified by event changes.
-         *
-         * @return The experience
-         */
-        int originalExperience();
-
-        /**
-         * Gets the experience after an event has been processed.
-         *
-         * @return The experience to receive
-         */
-        int experience();
-
-        /**
-         * Sets the amount of experience after an event has been processed.
-         * Negative values will remove experience.
-         *
-         * @param exp The experience to give or take
-         */
-        void setExperience(int exp);
-    }
 }
