@@ -66,7 +66,7 @@ import java.util.Set;
  * of a {@link NodeTree} is recommended.</p>
  *
  * <p>Plugins may opt to implement "dynamic" permissions such as {@code
- * example.region.define.&lt;region&gt;} where {@code region} would depend on
+ * example.region.define.<region>} where {@code region} would depend on
  * the context of the check. Attention should be made towards the handling of
  * periods / full stops in such cases.</p>
  *
