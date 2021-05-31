@@ -125,11 +125,4 @@ public interface ExplosionEvent extends Event, Cancellable {
         }
     }
 
-    /**
-     * An event that is fired after the completion of an explosion such that all
-     * block changes that took place due to the explosion (including side
-     * affected blocks) will be included. This is where the block changes can be
-     * updated and/or changed.
-     */
-    interface Post extends ExplosionEvent, ChangeBlockEvent.Post {}
 }
