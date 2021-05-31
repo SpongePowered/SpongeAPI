@@ -29,8 +29,8 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.util.RandomProvider;
-import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.WorldType;
+import org.spongepowered.api.world.border.WorldBorder;
 import org.spongepowered.api.world.volume.biome.BiomeVolume;
 import org.spongepowered.api.world.volume.block.BlockVolume;
 import org.spongepowered.api.world.volume.block.entity.BlockEntityVolume;
@@ -49,17 +49,33 @@ public interface Region<R extends Region<R>> extends
 
     WorldType worldType();
 
+    /**
+     * Gets the {@link WorldBorder} for this {@link Region}.
+     *
+     * @return The border.
+     */
     WorldBorder border();
+
+    /**
+     * Sets ths {@link WorldBorder} for this {@link Region}.
+     *
+     * <p>As events may alter the final border set to the </p>
+     *
+     * @param worldBorder The border to set.
+     * @return The {@link WorldBorder} that was set, which may not be the border
+     *         that was provided.
+     */
+    WorldBorder setBorder(WorldBorder worldBorder);
 
     boolean isInBorder(Entity entity);
 
-    default boolean canSeeSky(Vector3i position) {
+    default boolean canSeeSky(final Vector3i position) {
         return this.canSeeSky(position.x(), position.y(), position.z());
     }
 
     boolean canSeeSky(int x, int y, int z);
 
-    default boolean hasLiquid(Vector3i position) {
+    default boolean hasLiquid(final Vector3i position) {
         return this.hasLiquid(position.x(), position.y(), position.z());
     }
 
@@ -80,34 +96,34 @@ public interface Region<R extends Region<R>> extends
 
     // TODO - Collision Boxes and VoxelShapes
 
-    default boolean isBlockLoaded(int x, int y, int z) {
+    default boolean isBlockLoaded(final int x, final int y, final int z) {
         return this.isBlockLoaded(x, y, z, true);
     }
 
-    default boolean isBlockLoaded(int x, int y, int z, boolean allowEmpty) {
+    default boolean isBlockLoaded(final int x, final int y, final int z, final boolean allowEmpty) {
         final Vector3i chunkPos = Sponge.server().chunkLayout().forceToChunk(x, y, z);
         return this.isChunkLoaded(chunkPos.x(), chunkPos.y(), chunkPos.z(), allowEmpty);
     }
 
-    default boolean isBlockLoaded(Vector3i position) {
+    default boolean isBlockLoaded(final Vector3i position) {
         Objects.requireNonNull(position);
 
         return this.isBlockLoaded(position.x(), position.y(), position.z(), true);
     }
 
-    default boolean isBlockLoaded(Vector3i position, boolean allowEmpty) {
+    default boolean isBlockLoaded(final Vector3i position, final boolean allowEmpty) {
         Objects.requireNonNull(position);
 
         return this.isBlockLoaded(position.x(), position.y(), position.z(), allowEmpty);
     }
 
-    default boolean isAreaLoaded(Vector3i position, int radius) {
+    default boolean isAreaLoaded(final Vector3i position, final int radius) {
         Objects.requireNonNull(position);
 
         return this.isAreaLoaded(position, radius, true);
     }
 
-    default boolean isAreaLoaded(Vector3i center, int radius, boolean allowEmpty) {
+    default boolean isAreaLoaded(final Vector3i center, final int radius, final boolean allowEmpty) {
         Objects.requireNonNull(center);
 
         return this.isAreaLoaded(
@@ -121,11 +137,11 @@ public interface Region<R extends Region<R>> extends
         );
     }
 
-    default boolean isAreaLoaded(Vector3i from, Vector3i to) {
+    default boolean isAreaLoaded(final Vector3i from, final Vector3i to) {
         return this.isAreaLoaded(from, to, true);
     }
 
-    default boolean isAreaLoaded(Vector3i from, Vector3i to, boolean allowEmpty) {
+    default boolean isAreaLoaded(final Vector3i from, final Vector3i to, final boolean allowEmpty) {
         return this.isAreaLoaded(from.x(), from.y(), from.z(), to.x(), to.y(), to.z(), allowEmpty);
     }
 

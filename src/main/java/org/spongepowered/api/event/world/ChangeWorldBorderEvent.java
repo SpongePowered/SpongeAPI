@@ -27,9 +27,8 @@ package org.spongepowered.api.event.world;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
-import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.WorldBorder;
+import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
+import org.spongepowered.api.world.border.WorldBorder;
 import org.spongepowered.api.world.server.ServerWorld;
 
 import java.util.Optional;
@@ -37,16 +36,27 @@ import java.util.Optional;
 /**
  * Fired when the world border changes for a {@code Player} or a {@code World}.
  */
-@GenerateFactoryMethod
+@NoFactoryMethod
 public interface ChangeWorldBorderEvent extends Event, Cancellable {
+
     /**
      * Gets the border that was previously used as an {@link Optional}. There 
-     * may be no border set for the target (especially, if it is a player), in 
+     * may be no border set for the target (especially if it is a player), in
      * which case, {@link Optional#empty()} is returned.
      *
      * @return The border that was previously in use, if there was one.
      */
     Optional<WorldBorder> previousBorder();
+
+    /**
+     * Gets the border that was originally meant to be used as an {@link Optional}.
+     * For some targets, the border may be unset and therefore they may not always
+     * have a border. It is in these instances that {@link Optional#empty()} is
+     * returned.
+     *
+     * @return The border that will be in use, if there is one.
+     */
+    Optional<WorldBorder> originalNewBorder();
 
     /**
      * Gets the border that will be used as an {@link Optional}. For some
@@ -59,14 +69,21 @@ public interface ChangeWorldBorderEvent extends Event, Cancellable {
     Optional<WorldBorder> newBorder();
 
     /**
-     * An event that is fired when a world's border is changed.
+     * Sets the border that will be used.
+     *
+     * @param worldBorder The border that will be used.
      */
-    interface TargetWorld extends ChangeWorldBorderEvent {
+    void setNewBorder(WorldBorder worldBorder);
+
+    /**
+     * Fired when a value on a world's {@link WorldBorder} is changed.
+     */
+    interface World extends ChangeWorldBorderEvent {
 
         /**
-         * Gets the {@link World}.
+         * The {@link ServerWorld} that this is associated with.
          *
-         * @return The world
+         * @return The world.
          */
         ServerWorld world();
 
@@ -76,7 +93,7 @@ public interface ChangeWorldBorderEvent extends Event, Cancellable {
      * An event that is fired when a player's world border is changed. This may
      * also be fired when a player's border is set or unset.
      */
-    interface TargetPlayer extends ChangeWorldBorderEvent {
+    interface Player extends ChangeWorldBorderEvent {
 
         /**
          * Gets the {@link ServerPlayer player}.
@@ -84,6 +101,7 @@ public interface ChangeWorldBorderEvent extends Event, Cancellable {
          * @return The player
          */
         ServerPlayer player();
+
     }
 
 }

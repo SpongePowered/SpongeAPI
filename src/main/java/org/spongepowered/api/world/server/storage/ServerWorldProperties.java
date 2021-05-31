@@ -34,7 +34,6 @@ import org.spongepowered.api.entity.living.trader.WanderingTrader;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.MinecraftDayTime;
 import org.spongepowered.api.world.SerializationBehavior;
-import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.generation.config.WorldGenerationConfig;
@@ -311,10 +310,4 @@ public interface ServerWorldProperties extends WorldProperties, Identifiable, Re
      */
     void setViewDistance(@Nullable Integer viewDistance);
 
-    /**
-     * Gets the {@link WorldBorder}.
-     *
-     * @return The world border
-     */
-    WorldBorder worldBorder();
 }
