@@ -22,5 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
 package org.spongepowered.api.service.permission;
+
+/**
+ * Specifies how data should be transferred into a subject.
+ */
+public enum TransferMethod {
+
+    /**
+     * Any existing values in the container will be removed.
+     */
+    OVERWRITE,
+    /**
+     * Any existing values that are not specifically written by a
+     * value in the container being transferred will be preserved.
+     */
+    MERGE
+
+}

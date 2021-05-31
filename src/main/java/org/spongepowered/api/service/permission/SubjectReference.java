@@ -68,6 +68,6 @@ public interface SubjectReference {
      *
      * @return The subject being referenced by this instance.
      */
-    CompletableFuture<Subject> resolve();
+    CompletableFuture<? extends Subject> resolve();
 
 }

@@ -26,6 +26,7 @@ package org.spongepowered.api.service;
 
 import org.spongepowered.api.Engine;
 import org.spongepowered.api.service.ban.BanService;
+import org.spongepowered.api.service.context.ContextService;
 import org.spongepowered.api.service.economy.EconomyService;
 import org.spongepowered.api.service.pagination.PaginationService;
 import org.spongepowered.api.service.permission.PermissionService;
@@ -82,6 +83,13 @@ public interface ServiceProvider {
          * @return The {@link BanService}
          */
         BanService banService();
+
+        /**
+         * Retrieves the {@link ContextService}, if it exists.
+         *
+         * @return The {@link ContextService}
+         */
+        ContextService contextService();
 
         /**
          * Retrieves the {@link EconomyService}, if it exists.

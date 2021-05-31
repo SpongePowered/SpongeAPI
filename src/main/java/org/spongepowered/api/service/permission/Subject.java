@@ -24,7 +24,11 @@
  */
 package org.spongepowered.api.service.permission;
 
+import org.spongepowered.api.event.Cause;
+import org.spongepowered.api.event.EventContext;
+import org.spongepowered.api.event.EventContextKeys;
 import org.spongepowered.api.service.context.Context;
+import org.spongepowered.api.service.context.ContextCalculator;
 import org.spongepowered.api.service.context.Contextual;
 import org.spongepowered.api.util.Tristate;
 
@@ -41,6 +45,8 @@ import java.util.Set;
  * <p>The most common forms of Subject are "users" and "groups", although these
  * are not the only forms. Anything can hold permission data, and therefore be a
  * subject.</p>
+ *
+ * <h2>Permission strings</h2>
  *
  * <p>Authorization checks are made using "permission strings."</p>
  *
@@ -60,7 +66,7 @@ import java.util.Set;
  * of a {@link NodeTree} is recommended.</p>
  *
  * <p>Plugins may opt to implement "dynamic" permissions such as {@code
- * example.region.define.[region]} where {@code region} would depend on
+ * example.region.define.<region>} where {@code region} would depend on
  * the context of the check. Attention should be made towards the handling of
  * periods / full stops in such cases.</p>
  *
@@ -71,6 +77,8 @@ import java.util.Set;
  * {@code example.function.self} to permit usage on one's self and grant
  * {@code example.function} to grant usage on other users.</p>
  *
+ * <h2>Inheritance</h2>
+ *
  * <p>All methods are expected to account for data inherited from parent
  * subjects. For a representation of the data that the subject explicitly holds,
  * obtain the {@link SubjectData} for the subject.</p>
@@ -79,9 +87,26 @@ import java.util.Set;
  * defined in the {@link SubjectCollection} containing this subject, as well
  * as the defaults set globally in {@link PermissionService#defaults()}.</p>
  *
- * <p>Use a {@link SubjectCollection} to create instances.</p>
+ * <h2>Contexts</h2>
  *
- * @see PermissionService
+ * <p>Permission state is calculated using small pieces of information known as
+ * <em>contexts</em>. These are derived from a provided {@link Cause} using
+ * {@link ContextCalculator}s. Subjects have a
+ * {@linkplain #contextCause() default cause} for context calculation, which is
+ * based on the subject's active state.</p>
+ *
+ * <p>The relevant active state for subject context may be different depending
+ * on which types of permissions are being checked. Mostly, these will fall into
+ * either <em>global game state</em> or <em>the subject's own state</em>. While
+ * the default implementation of {@link #contextCause()} provides the latter,
+ * some proxy subjects that act as a projection of a subject into a certain
+ * state (such as {@link org.spongepowered.api.command.CommandCause} may choose
+ * to default to the former. The relevant cause stack should be carefully
+ * considered when performing permissions checks.</p>
+ *
+ * <p>Use a {@link SubjectCollection} to access instances.</p>
+ *
+ * @see PermissionService to manage Subjects.
  */
 public interface Subject extends Contextual {
 
@@ -98,6 +123,26 @@ public interface Subject extends Contextual {
      * @return A subject reference representing this subject
      */
     SubjectReference asSubjectReference();
+
+    /**
+     * Get the game object that may be associated with this subject.
+     *
+     * <p>This could be a player, system subject, or something else. The return
+     * value of this method should not be stored.</p>
+     *
+     * @return a potential game object
+     */
+    Optional<?> associatedObject();
+
+    @Override
+    default Cause contextCause() {
+        final /* @Nullable */ Object associated = this.associatedObject().orElse(null);
+        if (associated != null) {
+            return Cause.of(EventContext.builder().add(EventContextKeys.SUBJECT, this).build(), associated);
+        } else {
+            return Contextual.super.contextCause();
+        }
+    }
 
     /**
      * Returns if this Subject has persistent, non-transient data.
@@ -139,33 +184,47 @@ public interface Subject extends Contextual {
     SubjectData transientSubjectData();
 
     /**
-     * Test whether the subject is permitted to perform an action corresponding
-     * to the given permission string.
-     *
-     * <p>This must return the same boolean equivalent as
-     * {@link #permissionValue(Set, String)}.</p>
-     *
-     * @param contexts The set of contexts that represents the subject's current
-     *     environment
-     * @param permission The permission string
-     * @return True if permission is granted
-     */
-    default boolean hasPermission(final Set<Context> contexts, final String permission) {
-        return this.permissionValue(contexts, permission).asBoolean();
-    }
-
-    /**
      * Test whether the subject is permitted to perform an action given as the
      * given permission string.
      *
-     * <p>This must return the same value as {@link #hasPermission(Set, String)}
-     * using {@link #activeContexts()}.</p>
+     * <p>This must return the same value as {@link #hasPermission(String, Cause)}
+     * called with the phase tracker's current cause.
      *
      * @param permission The permission string
      * @return True if permission is granted
      */
     default boolean hasPermission(final String permission) {
-        return this.hasPermission(this.activeContexts(), permission);
+        return this.hasPermission(permission, this.contextCause());
+    }
+
+    /**
+     * Test whether the subject is permitted to perform an action corresponding
+     * to the given permission string.
+     *
+     * <p>This must return the same boolean equivalent as
+     * {@link #permissionValue(String, Cause)}.</p>
+     *
+     * @param permission The permission string
+     * @param cause The cause stack to extract context information from
+     * @return True if permission is granted
+     */
+    default boolean hasPermission(final String permission, final Cause cause) {
+        return this.permissionValue(permission, cause).asBoolean();
+    }
+
+    /**
+     * Test whether the subject is permitted to perform an action corresponding
+     * to the given permission string.
+     *
+     * <p>This must return the same boolean equivalent as
+     * {@link #permissionValue(String, Cause)}.</p>
+     *
+     * @param permission The permission string
+     * @param contexts The contexts to calculate permission status in
+     * @return True if permission is granted
+     */
+    default boolean hasPermission(final String permission, final Set<Context> contexts) {
+        return this.permissionValue(permission, contexts).asBoolean();
     }
 
     /**
@@ -183,25 +242,68 @@ public interface Subject extends Contextual {
      * <p>This method is likely to be called frequently, so it is desirable
      * that implementations cache the results to method calls.</p>
      *
-     * @param contexts The contexts to check for permissions in
      * @param permission The permission to check
      * @return The tristate result of the check
      */
-    Tristate permissionValue(Set<Context> contexts, String permission);
+    default Tristate permissionValue(final String permission) {
+        return this.permissionValue(permission, this.contextCause());
+    }
+
+    /**
+     * Returns the calculated value set for a given permission.
+     *
+     * <p>It is expected that this method will also account for values
+     * inherited from parent subjects, as well as permission nodes inherited
+     * implicitly from a more generic level.</p>
+     *
+     * <p>Additionally, the defaults defined the {@link SubjectCollection}
+     * that holds this subject, as well as defaults defined in
+     * {@link PermissionService#defaults()} should be considered for this
+     * lookup.</p>
+     *
+     * <p>This method is likely to be called frequently, so it is desirable
+     * that implementations cache the results to method calls.</p>
+     *
+     * @param permission The permission to check
+     * @param cause The cause to gather context from.
+     * @return The tristate result of the check
+     */
+    Tristate permissionValue(String permission, Cause cause);
+
+    /**
+     * Returns the calculated value set for a given permission.
+     *
+     * <p>It is expected that this method will also account for values
+     * inherited from parent subjects, as well as permission nodes inherited
+     * implicitly from a more generic level.</p>
+     *
+     * <p>Additionally, the defaults defined the {@link SubjectCollection}
+     * that holds this subject, as well as defaults defined in
+     * {@link PermissionService#defaults()} should be considered for this
+     * lookup.</p>
+     *
+     * <p>This method is likely to be called frequently, so it is desirable
+     * that implementations cache the results to method calls.</p>
+     *
+     * @param permission The permission to check
+     * @param contexts The contexts to query permission value in
+     * @return The tristate result of the check
+     */
+    Tristate permissionValue(String permission, Set<Context> contexts);
 
     /**
      * Check if this subject is a child of the given parent in the subject's
      * current context, traversing inheritance.
      *
      * <p>This must return the same value as
-     * {@link #isChildOf(Set, SubjectReference)} using
-     * {@link #activeContexts()}.</p>
+     * {@link #isChildOf(SubjectReference, Cause)} called with the phase
+     * tracker's current cause.
      *
      * @param parent The parent to check for inheritance
      * @return Whether this is a child of the given parent
      */
     default boolean isChildOf(final SubjectReference parent) {
-        return this.isChildOf(this.activeContexts(), parent);
+        return this.isChildOf(parent, this.contextCause());
     }
 
     /**
@@ -216,11 +318,29 @@ public interface Subject extends Contextual {
      * {@link PermissionService#defaults()} should be considered for this
      * lookup.</p>
      *
-     * @param contexts The context combination to check in
      * @param parent The parent to check for inheritance
+     * @param cause The cause to gather context from.
      * @return Whether this is a child of the given parent
      */
-    boolean isChildOf(Set<Context> contexts, SubjectReference parent);
+    boolean isChildOf(SubjectReference parent, Cause cause);
+
+    /**
+     * Check if this subject is a child of the given parent in the given context
+     * combination, traversing inheritance.
+     *
+     * <p>It is expected that this method will also account for data from
+     * distant parents, inherited from direct parent subjects.
+     *
+     * <p>Additionally, the defaults defined the {@link SubjectCollection}
+     * that holds this subject, as well as defaults defined in
+     * {@link PermissionService#defaults()} should be considered for this
+     * lookup.</p>
+     *
+     * @param parent The parent to check for inheritance
+     * @param contexts The contexts to query inheritance in
+     * @return Whether this is a child of the given parent
+     */
+    boolean isChildOf(SubjectReference parent, Set<Context> contexts);
 
     /**
      * Return all parents that this group has in its current context
@@ -229,13 +349,12 @@ public interface Subject extends Contextual {
      * <p>This must include inherited values if the permissions
      * service supports inheritance.</p>
      *
-     * <p>It must also must return the same value as {@link #parents(Set)}
-     * using {@link #activeContexts()}.</p>
+     * <p>It must also must return the same value as {@link #parents(Cause)}
      *
      * @return An immutable list of parents
      */
-    default List<SubjectReference> parents() {
-        return this.parents(this.activeContexts());
+    default List<? extends SubjectReference> parents() {
+        return this.parents(this.contextCause());
     }
 
     /**
@@ -244,10 +363,34 @@ public interface Subject extends Contextual {
      * <p>This must include inherited values if the permissions
      * service supports inheritance.</p>
      *
-     * @param contexts The context combination to check in
+     * @param cause The cause to gather context from.
      * @return An immutable list of parents
      */
-    List<SubjectReference> parents(Set<Context> contexts);
+    List<? extends SubjectReference> parents(Cause cause);
+
+    /**
+     * Return all parents that this group has in the given context combination.
+     *
+     * <p>This must include inherited values if the permissions
+     * service supports inheritance.</p>
+     *
+     * @param contexts The cause to gather context from.
+     * @return An immutable list of parents
+     */
+    List<? extends SubjectReference> parents(Set<Context> contexts);
+
+    /**
+     * Gets the value of a given option in the subject's current context.
+     *
+     * <p>This must return the same value as {@link #option(String, Cause)}
+     * called with the phase tracker's current cause.
+     *
+     * @param key The key to get an option by. Case-insensitive.
+     * @return The value of the option, if any is present
+     */
+    default Optional<String> option(final String key) {
+        return this.option(key, this.contextCause());
+    }
 
     /**
      * Gets the value of a given option in the given context.
@@ -260,22 +403,27 @@ public interface Subject extends Contextual {
      * defined in {@link PermissionService#defaults()} should be considered
      * for this lookup.
      *
-     * @param contexts The contexts to get the options from
      * @param key The key to get an option by. Case-insensitive.
+     * @param cause The cause to gather context from.
      * @return The value of the option, if any is present
      */
-    Optional<String> option(Set<Context> contexts, String key);
+    Optional<String> option(String key, Cause cause);
 
     /**
-     * Gets the value of a given option in the subject's current context.
+     * Gets the value of a given option in the given context.
      *
-     * <p>This must return the same value as {@link #option(Set, String)}
-     * using {@link #activeContexts()}.</p>
+     * <p>It is expected that this method will account for options
+     * inherited from parent subjects.
+     *
+     * <p>Additionally, the default options defined by the
+     * {@link SubjectCollection} that holds this subject, as well as defaults
+     * defined in {@link PermissionService#defaults()} should be considered
+     * for this lookup.
      *
      * @param key The key to get an option by. Case-insensitive.
+     * @param contexts The context set to use when calculating causes
      * @return The value of the option, if any is present
      */
-    default Optional<String> option(final String key) {
-        return this.option(this.activeContexts(), key);
-    }
+    Optional<String> option(String key, Set<Context> contexts);
+
 }

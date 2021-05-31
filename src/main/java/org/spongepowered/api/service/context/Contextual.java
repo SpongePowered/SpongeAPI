@@ -24,14 +24,19 @@
  */
 package org.spongepowered.api.service.context;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.living.player.User;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
+import org.spongepowered.api.event.Cause;
+import org.spongepowered.api.event.EventContext;
+
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * A common interface for objects that have an identifier and can have a set of
  * active {@link Context}s determined.
  *
- * <p>Used primarily by {@link ContextualService}s.</p>
+ * <p>Used primarily by {@link ContextService}s.</p>
  */
 public interface Contextual {
 
@@ -57,8 +62,8 @@ public interface Contextual {
      * <p>If the friendly identifier is equal to the normal identifier,
      * this method should return {@link Optional#empty()}.</p>
      *
-     * <p>Contextuals which represent a Player or a User should return the
-     * username here, if available.</p>
+     * <p>Contextuals which represent a {@link ServerPlayer} or a {@link User}
+     * should return the username here, if available.</p>
      *
      * @return The friendly identifier for this contextual
      */
@@ -67,15 +72,16 @@ public interface Contextual {
     }
 
     /**
-     * Calculates the objects active contexts at the given moment, using the
-     * {@link ContextCalculator}s held by the {@link ContextualService}.
+     * Get the cause describing the current state of this subject.
      *
-     * <p>"Active" contexts refers to the contexts currently applicable to the
-     * contextual.</p>
+     * <p>This is often not based on current game state, but rather the last
+     * known state of this subject. If a subject refers to a game object that is
+     * not active in the world, the cause may be a global cause.</p>
      *
-     * <p>The result of these calculations may be cached.</p>
-     *
-     * @return An immutable set of active contexts
+     * @return the active cause
      */
-    Set<Context> activeContexts();
+    default Cause contextCause() {
+        return Cause.of(EventContext.empty(), Sponge.game().server());
+    }
+
 }

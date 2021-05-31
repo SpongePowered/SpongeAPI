@@ -24,16 +24,13 @@
  */
 package org.spongepowered.api.service.economy;
 
-import org.spongepowered.api.service.context.ContextualService;
 import org.spongepowered.api.service.economy.account.Account;
 import org.spongepowered.api.service.economy.account.AccountDeletionResultType;
-import org.spongepowered.api.service.economy.account.AccountDeletionResultTypes;
 import org.spongepowered.api.service.economy.account.UniqueAccount;
 import org.spongepowered.api.service.economy.account.VirtualAccount;
 
 import java.util.Collection;
 import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Stream;
 
@@ -46,7 +43,7 @@ import java.util.stream.Stream;
  * provided by a plugin. This service exists to provide a common API which
  * can be used by implementors and consumers.</p>
  */
-public interface EconomyService extends ContextualService<Account> {
+public interface EconomyService {
 
     /**
      * Retrieves the default {@link Currency} used by the

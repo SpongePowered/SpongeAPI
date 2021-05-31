@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.service.permission;
 
+import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.service.context.Context;
 import org.spongepowered.api.util.Tristate;
 
@@ -34,6 +35,10 @@ import java.util.Set;
 /**
  * Enables an object to act as a proxy to a Subject, delegating all calls through
  * to the actual Subject.
+ *
+ * <p>All default-{@link Cause} methods query the context cause from this proxy,
+ * rather than the backing subject. This allows proxy subjects to override the
+ * context causes.</p>
  */
 public interface SubjectProxy extends Subject {
 
@@ -45,6 +50,16 @@ public interface SubjectProxy extends Subject {
     Subject subject();
 
     @Override
+    default Cause contextCause() {
+        return this.subject().contextCause();
+    }
+
+    @Override
+    default Optional<String> friendlyIdentifier() {
+        return this.subject().friendlyIdentifier();
+    }
+
+    @Override
     default SubjectCollection containingCollection() {
         return this.subject().containingCollection();
     }
@@ -52,6 +67,11 @@ public interface SubjectProxy extends Subject {
     @Override
     default SubjectReference asSubjectReference() {
         return this.subject().asSubjectReference();
+    }
+
+    @Override
+    default Optional<?> associatedObject() {
+        return this.subject().associatedObject();
     }
 
     @Override
@@ -70,23 +90,63 @@ public interface SubjectProxy extends Subject {
     }
 
     @Override
-    default Tristate permissionValue(final Set<Context> contexts, final String permission) {
-        return this.subject().permissionValue(contexts, permission);
+    default Tristate permissionValue(String permission, Set<Context> contexts) {
+        return this.subject().permissionValue(permission, contexts);
     }
 
     @Override
-    default boolean isChildOf(final Set<Context> contexts, final SubjectReference parent) {
-        return this.subject().isChildOf(contexts, parent);
+    default Tristate permissionValue(final String permission, final Cause causes) {
+        return this.subject().permissionValue(permission, causes);
     }
 
     @Override
-    default List<SubjectReference> parents(final Set<Context> contexts) {
-        return this.subject().parents();
+    default Tristate permissionValue(final String permission) {
+        return this.subject().permissionValue(permission, this.contextCause());
     }
 
     @Override
-    default Optional<String> option(final Set<Context> contexts, final String key) {
-        return this.subject().option(contexts, key);
+    default boolean isChildOf(SubjectReference parent, Set<Context> contexts) {
+        return this.subject().isChildOf(parent, contexts);
+    }
+
+    @Override
+    default boolean isChildOf(final SubjectReference parent, final Cause causes) {
+        return this.subject().isChildOf(parent, causes);
+    }
+
+    @Override
+    default boolean isChildOf(final SubjectReference parent) {
+        return this.subject().isChildOf(parent, this.contextCause());
+    }
+
+    @Override
+    default List<? extends SubjectReference> parents(Set<Context> contexts) {
+        return this.subject().parents(contexts);
+    }
+
+    @Override
+    default List<? extends SubjectReference> parents(final Cause causes) {
+        return this.subject().parents(causes);
+    }
+
+    @Override
+    default List<? extends SubjectReference> parents() {
+        return this.subject().parents(this.contextCause());
+    }
+
+    @Override
+    default Optional<String> option(String key, Set<Context> contexts) {
+        return this.subject().option(key, contexts);
+    }
+
+    @Override
+    default Optional<String> option(final String key, final Cause cause) {
+        return this.subject().option(key, cause);
+    }
+
+    @Override
+    default Optional<String> option(final String key) {
+        return this.subject().option(key, this.contextCause());
     }
 
     @Override
@@ -95,38 +155,17 @@ public interface SubjectProxy extends Subject {
     }
 
     @Override
-    default Set<Context> activeContexts() {
-        return this.subject().activeContexts();
+    default boolean hasPermission(final String permission, final Set<Context> contexts) {
+        return this.subject().hasPermission(permission, contexts);
     }
 
     @Override
-    default boolean hasPermission(final Set<Context> contexts, final String permission) {
-        return this.subject().hasPermission(contexts, permission);
+    default boolean hasPermission(final String permission, final Cause cause) {
+        return this.subject().hasPermission(permission, cause);
     }
 
     @Override
     default boolean hasPermission(final String permission) {
-        return this.subject().hasPermission(permission);
+        return this.subject().hasPermission(permission, this.contextCause());
     }
-
-    @Override
-    default boolean isChildOf(final SubjectReference parent) {
-        return this.subject().isChildOf(parent);
-    }
-
-    @Override
-    default List<SubjectReference> parents() {
-        return this.subject().parents();
-    }
-
-    @Override
-    default Optional<String> option(final String key) {
-        return this.subject().option(key);
-    }
-
-    @Override
-    default Optional<String> friendlyIdentifier() {
-        return this.subject().friendlyIdentifier();
-    }
-
 }
