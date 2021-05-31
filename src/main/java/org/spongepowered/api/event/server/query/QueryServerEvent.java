@@ -155,15 +155,6 @@ public interface QueryServerEvent extends Event {
          */
         void setAddress(InetSocketAddress address);
 
-        /**
-         * Gets the maximum size of the data to respond with.
-         *
-         * <p>If the size of the data is greater than the returned value,
-         * it will be automatically truncated.
-         *
-         * @return The maximum size of the data to respond with
-         */
-        int maxSize();
     }
 
     interface Full extends Basic {
