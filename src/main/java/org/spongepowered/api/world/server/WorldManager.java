@@ -27,8 +27,8 @@ package org.spongepowered.api.world.server;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.world.server.storage.ServerWorldProperties;
-import org.spongepowered.api.world.storage.WorldProperties;
 
+import java.nio.file.Path;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -52,6 +52,17 @@ public interface WorldManager {
      * @return The world, if found
      */
     Optional<ServerWorld> world(ResourceKey key);
+
+    /**
+     * Gets a {@link Path directory} that exists for the provided {@link ResourceKey world key}.
+     *
+     * <p>It is not required for the implementation to validate that the directory contains a proper world,
+     * only that the directory exists.</p>
+     *
+     * @param key The key
+     * @return The directory or {@link Optional#empty()} if not found
+     */
+    Optional<Path> worldDirectory(ResourceKey key);
 
     /**
      * Gets the {@link ServerWorld default world}.
