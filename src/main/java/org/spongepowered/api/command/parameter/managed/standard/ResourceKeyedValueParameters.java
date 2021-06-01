@@ -406,7 +406,7 @@ public final class ResourceKeyedValueParameters {
      *
      * <p>Each element can be relative to a location -- relative is ~(num)</p>
      *
-     * <p>Returns a {@link Vector3d}.</p>
+     * <p>Returns a {@link Vector2d}.</p>
      */
     public static final DefaultedRegistryReference<ResourceKeyedValueParameter<Vector2d>> VECTOR2D = ResourceKeyedValueParameters.key(ResourceKey.sponge("vector2d"));
 
