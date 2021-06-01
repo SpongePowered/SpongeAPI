@@ -82,6 +82,14 @@ public interface WorldManager {
     List<ResourceKey> worldKeys();
 
     /**
+     * Gets the {@link ResourceKey keys} of {@link WorldTemplate templates}.
+     *
+     * <p>It is up to the implementation to determine how template keys are provided to the developer.</p>
+     * @return The keys
+     */
+    List<ResourceKey> templateKeys();
+
+    /**
      * Gets the {@link ResourceKey keys} of offline {@link ServerWorld worlds}.
      *
      * <p>It is up to the implementation to determine how offline keys are provided to the developer.</p>
