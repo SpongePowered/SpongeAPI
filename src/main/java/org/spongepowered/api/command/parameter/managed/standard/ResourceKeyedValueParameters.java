@@ -297,6 +297,28 @@ public final class ResourceKeyedValueParameters {
     public static final DefaultedRegistryReference<ResourceKeyedValueParameter<ResourceKey>> RESOURCE_KEY = ResourceKeyedValueParameters.key(ResourceKey.sponge("resource_key"));
 
     /**
+     * Require an argument to be a {@link Vector3d}, where any relative value
+     * (i.e. anything specified using tilde (~) notation) will be based on the
+     * invoker's current rotation.
+     *
+     * <p>The supplied {@link Vector2d} will contain the Euler components
+     * (yaw, pitch, roll), where:</p>
+     *
+     * <ul>
+     *     <li>the angles are specified in degrees;</li>
+     *     <li>(0, 0) is looking directly south, parallel to the x-z plane;</li>
+     *     <li>the yaw is measured as the angle counter-clockwise from due south
+     *     in the x-z plane; and</li>
+     *     <li>the pitch is negative when rotating up from the x-z plane.</li>
+     *     <li>the roll is zero</li>
+     * </ul>
+     *
+     * <p>This is presented as a {@link Vector3d} even though only two arguments
+     * are parsed for consistency with {@link Entity#rotation()}.</p>
+     */
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<Vector3d>> ROTATION = ResourceKeyedValueParameters.key(ResourceKey.sponge("rotation"));
+
+    /**
      * Require an argument to be a string.
      *
      * <p>Returns a {@link String}.</p>
