@@ -108,8 +108,6 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> AZALEA_LEAVES = ItemTypes.key(ResourceKey.minecraft("azalea_leaves"));
 
-    public static final DefaultedRegistryReference<ItemType> AZALEA_LEAVES_FLOWERS = ItemTypes.key(ResourceKey.minecraft("azalea_leaves_flowers"));
-
     public static final DefaultedRegistryReference<ItemType> AZURE_BLUET = ItemTypes.key(ResourceKey.minecraft("azure_bluet"));
 
     public static final DefaultedRegistryReference<ItemType> BAKED_POTATO = ItemTypes.key(ResourceKey.minecraft("baked_potato"));
@@ -825,6 +823,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> FLOWER_POT = ItemTypes.key(ResourceKey.minecraft("flower_pot"));
 
     public static final DefaultedRegistryReference<ItemType> FLOWERING_AZALEA = ItemTypes.key(ResourceKey.minecraft("flowering_azalea"));
+
+    public static final DefaultedRegistryReference<ItemType> FLOWERING_AZALEA_LEAVES = ItemTypes.key(ResourceKey.minecraft("flowering_azalea_leaves"));
 
     public static final DefaultedRegistryReference<ItemType> FOX_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("fox_spawn_egg"));
 

@@ -100,8 +100,6 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> AZALEA_LEAVES = BlockTypes.key(ResourceKey.minecraft("azalea_leaves"));
 
-    public static final DefaultedRegistryReference<BlockType> AZALEA_LEAVES_FLOWERS = BlockTypes.key(ResourceKey.minecraft("azalea_leaves_flowers"));
-
     public static final DefaultedRegistryReference<BlockType> AZURE_BLUET = BlockTypes.key(ResourceKey.minecraft("azure_bluet"));
 
     public static final DefaultedRegistryReference<BlockType> BAMBOO = BlockTypes.key(ResourceKey.minecraft("bamboo"));
@@ -685,6 +683,8 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> FLOWER_POT = BlockTypes.key(ResourceKey.minecraft("flower_pot"));
 
     public static final DefaultedRegistryReference<BlockType> FLOWERING_AZALEA = BlockTypes.key(ResourceKey.minecraft("flowering_azalea"));
+
+    public static final DefaultedRegistryReference<BlockType> FLOWERING_AZALEA_LEAVES = BlockTypes.key(ResourceKey.minecraft("flowering_azalea_leaves"));
 
     public static final DefaultedRegistryReference<BlockType> FROSTED_ICE = BlockTypes.key(ResourceKey.minecraft("frosted_ice"));
 

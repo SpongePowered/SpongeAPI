@@ -94,8 +94,6 @@ public final class BooleanStateProperties {
 
     public static final DefaultedRegistryReference<BooleanStateProperty> ANDESITE_WALL_WATERLOGGED = BooleanStateProperties.key(ResourceKey.sponge("andesite_wall_waterlogged"));
 
-    public static final DefaultedRegistryReference<BooleanStateProperty> AZALEA_LEAVES_FLOWERS_PERSISTENT = BooleanStateProperties.key(ResourceKey.sponge("azalea_leaves_flowers_persistent"));
-
     public static final DefaultedRegistryReference<BooleanStateProperty> AZALEA_LEAVES_PERSISTENT = BooleanStateProperties.key(ResourceKey.sponge("azalea_leaves_persistent"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> BARREL_OPEN = BooleanStateProperties.key(ResourceKey.sponge("barrel_open"));
@@ -511,6 +509,8 @@ public final class BooleanStateProperties {
     public static final DefaultedRegistryReference<BooleanStateProperty> FIRE_UP = BooleanStateProperties.key(ResourceKey.sponge("fire_up"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> FIRE_WEST = BooleanStateProperties.key(ResourceKey.sponge("fire_west"));
+
+    public static final DefaultedRegistryReference<BooleanStateProperty> FLOWERING_AZALEA_LEAVES_PERSISTENT = BooleanStateProperties.key(ResourceKey.sponge("flowering_azalea_leaves_persistent"));
 
     public static final DefaultedRegistryReference<BooleanStateProperty> FURNACE_LIT = BooleanStateProperties.key(ResourceKey.sponge("furnace_lit"));
 

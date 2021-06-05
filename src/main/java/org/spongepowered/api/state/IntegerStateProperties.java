@@ -48,8 +48,6 @@ public final class IntegerStateProperties {
 
     public static final DefaultedRegistryReference<IntegerStateProperty> AZALEA_LEAVES_DISTANCE = IntegerStateProperties.key(ResourceKey.sponge("azalea_leaves_distance"));
 
-    public static final DefaultedRegistryReference<IntegerStateProperty> AZALEA_LEAVES_FLOWERS_DISTANCE = IntegerStateProperties.key(ResourceKey.sponge("azalea_leaves_flowers_distance"));
-
     public static final DefaultedRegistryReference<IntegerStateProperty> BAMBOO_AGE = IntegerStateProperties.key(ResourceKey.sponge("bamboo_age"));
 
     public static final DefaultedRegistryReference<IntegerStateProperty> BAMBOO_STAGE = IntegerStateProperties.key(ResourceKey.sponge("bamboo_stage"));
@@ -115,6 +113,8 @@ public final class IntegerStateProperties {
     public static final DefaultedRegistryReference<IntegerStateProperty> FARMLAND_MOISTURE = IntegerStateProperties.key(ResourceKey.sponge("farmland_moisture"));
 
     public static final DefaultedRegistryReference<IntegerStateProperty> FIRE_AGE = IntegerStateProperties.key(ResourceKey.sponge("fire_age"));
+
+    public static final DefaultedRegistryReference<IntegerStateProperty> FLOWERING_AZALEA_LEAVES_DISTANCE = IntegerStateProperties.key(ResourceKey.sponge("flowering_azalea_leaves_distance"));
 
     public static final DefaultedRegistryReference<IntegerStateProperty> FROSTED_ICE_AGE = IntegerStateProperties.key(ResourceKey.sponge("frosted_ice_age"));
 
