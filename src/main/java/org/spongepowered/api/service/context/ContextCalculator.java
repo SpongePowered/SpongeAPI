@@ -25,11 +25,11 @@
 package org.spongepowered.api.service.context;
 
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.service.permission.PermissionService;
+import org.spongepowered.api.event.Cause;
 
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 /**
@@ -52,20 +52,20 @@ import java.util.function.Function;
  *
  *     <li>Context lookups should <i>not query active contexts</i>: doing so is
  *     likely to result in a stack overflow, or thread deadlock. Care should be
- *     taken to avoid (indirect) calls to
- *     {@link Contextual#activeContexts()}.</li>
+ *     taken to avoid (indirect) calls to {@link ContextService#contexts()} ()}.</li>
  * </ul>
  *
  * <p>Calculators should be registered with the corresponding
- * {@link ContextualService} using
- * {@link ContextualService#registerContextCalculator(ContextCalculator)}.</p>
+ * {@link ContextService} using
+ * {@link ContextService#registerContextCalculator(ContextCalculator)}.</p>
  *
  * <p>Context lookups for instances provided by the platform,
- * (e.g. {@link Player}) are delegated to the active {@link PermissionService}.
+ * (e.g. {@link Player}) are delegated to the active {@link ContextService}.
  * Plugins wishing to provide contexts for these instances should register
  * calculators here.</p>
  */
-public interface ContextCalculator<T extends Contextual> {
+@FunctionalInterface
+public interface ContextCalculator {
 
     /**
      * Creates a new {@link ContextCalculator} that provides a single context.
@@ -74,27 +74,15 @@ public interface ContextCalculator<T extends Contextual> {
      * @param valueFunction The function used to compute the corresponding value
      *                      for each query. A context will not be "accumulated"
      *                      if the value returned is null.
-     * @param <T> The contextual type
      * @return The resultant calculator
      */
-    static <T extends Contextual> ContextCalculator<T> forSingleContext(String key, Function<T, String> valueFunction) {
+    static ContextCalculator forSingleContext(final String key, final Function<Cause, String> valueFunction) {
         Objects.requireNonNull(key, "key");
         Objects.requireNonNull(valueFunction, "valueFunction");
-        return new ContextCalculator<T>() {
-            @Override
-            public void accumulateContexts(T target, Set<Context> accumulator) {
-                final String value = valueFunction.apply(target);
-                if (value != null) {
-                    accumulator.add(new Context(key, value));
-                }
-            }
-
-            @Override
-            public boolean matches(Context context, T target) {
-                if (!context.getKey().equals(key)) {
-                    return false;
-                }
-                return context.getValue().equals(valueFunction.apply(target));
+        return (target, accumulator) -> {
+            final String value = valueFunction.apply(target);
+            if (value != null) {
+                accumulator.accept(new Context(key, value));
             }
         };
     }
@@ -111,32 +99,10 @@ public interface ContextCalculator<T extends Contextual> {
      * this call, and also shouldn't make calls to remove contexts added by
      * other calculators.</p>
      *
-     * @param target the target {@link Contextual} for this operation
+     * @param source The cause stack to draw from for this operation
      * @param accumulator a {@link Set} of {@link Context}s this operation
      *                    will accumulate to.
      */
-    void accumulateContexts(T target, Set<Context> accumulator);
+    void accumulateContexts(final Cause source, final Consumer<Context> accumulator);
 
-    /**
-     * Checks if a {@link Context} is currently applicable to a
-     * {@link Contextual}.
-     * 
-     * <p>If this calculator does not handle the given type of context, this
-     * method should return false.</p>
-     *
-     * <p>For the given set of contexts which would be accumulated using
-     * {@link #accumulateContexts(Contextual, Set)}, this method should return
-     * true if the given context would be included in the accumulated set.</p>
-     *
-     * @param context the {@link Context} being checked
-     * @param target the {@link Contextual} that is being checked against
-     * @return True if the given {@link Context} is handled by this calculator
-     *         and is applicable to the given {@link Contextual}. Otherwise
-     *         false.
-     */
-    default boolean matches(Context context, T target) {
-        final Set<Context> set = new HashSet<>();
-        this.accumulateContexts(target, set);
-        return set.contains(context);
-    }
 }

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.world;
 
+import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.Ticks;
@@ -36,13 +37,27 @@ import org.spongepowered.api.world.weather.WeatherUniverse;
  */
 public interface ChangeWeatherEvent extends Event, Cancellable {
 
+    /**
+     * The {@link WeatherUniverse} in which the weather changed
+     *
+     * @return The weather universe
+     */
     WeatherUniverse universe();
 
-    Weather originalWeather();
+    /**
+     * The weather change.
+     *
+     * @return The weather change.
+     */
+    Transaction<Weather> weather();
 
-    Weather newWeather();
-
-    void setWeather(WeatherType type);
-
-    void setWeather(WeatherType type, Ticks duration);
+    /**
+     * Sets a custom weather result.
+     *
+     * @param type The weather type
+     * @param duration The custom weather duration
+     */
+    default void setWeather(WeatherType type, Ticks duration) {
+        this.weather().setCustom(Weather.of(type, duration));
+    }
 }

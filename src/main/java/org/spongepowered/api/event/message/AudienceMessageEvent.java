@@ -22,59 +22,53 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.raid;
+package org.spongepowered.api.event.message;
 
-import org.spongepowered.api.data.type.RaidStatuses;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.raid.Raid;
-import org.spongepowered.api.raid.RaidWave;
-import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
+import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.text.Component;
+import org.checkerframework.checker.nullness.qual.Nullable;
+import org.spongepowered.api.adventure.Audiences;
+import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
+
+import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
- * An event when a raid changes it's current state. Always involves
- * a {@link Raid}.
+ * Describes events when a involving a {@link Component} message and {@link Audience}s.
  */
-public interface RaidEvent extends Event {
+@NoFactoryMethod
+public interface AudienceMessageEvent extends MessageEvent {
 
     /**
-     * Gets the {@link Raid} involved with this event.
+     * Gets the original audience that this message will be sent to.
      *
-     * @return The raid
+     * @return The original audience to send to
      */
-    Raid raid();
+    Audience originalAudience();
 
     /**
-     * An event where the {@link Raid} is started.
+     * Gets the current audience that this message will be sent to.
      *
-     * <p>This is fired before any {@link RaidWave}s have started.</p>
+     * @return The message channel the message in this event will be sent to
      */
-    @GenerateFactoryMethod
-    interface Start extends RaidEvent, Cancellable {
+    Optional<Audience> audience();
+
+    /**
+     * Sets the audience for this message to go to.
+     *
+     * @param audience The audience to set
+     */
+    void setAudience(@Nullable Audience audience);
+
+    /**
+     * Filters the current audience with given predicate.
+     *
+     * @param predicate the predicate
+     */
+    default void filterAudience(Predicate<Audience> predicate) {
+        if (this.audience().isPresent()) {
+            this.setAudience(Audiences.filtered(this.audience().get(), predicate).orElse(null));
+        }
     }
 
-    /**
-     * An event where a {@link RaidWave} in a {@link Raid} has started.
-     */
-    @GenerateFactoryMethod
-    interface StartWave extends RaidEvent, Cancellable {
-
-        /**
-         * The {@link RaidWave} which is starting.
-         *
-         * @return The current wave
-         */
-        RaidWave wave();
-
-    }
-
-    /**
-     * An event for when a {@link Raid} has ended.
-     *
-     * <p>The raid's state could be either a {@link RaidStatuses#VICTORY}
-     * or {@link RaidStatuses#LOSS}</p>
-     */
-    @GenerateFactoryMethod
-    interface End extends RaidEvent {
-    }
 }

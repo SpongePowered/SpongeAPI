@@ -39,11 +39,13 @@ import org.spongepowered.api.command.registrar.tree.CommandTreeNodeTypes;
 import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.event.EventContext;
 import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
+import org.spongepowered.api.service.permission.PermissionDescription;
 import org.spongepowered.api.service.permission.Subject;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -554,6 +556,31 @@ public interface Command {
          * @return This builder, for chaining
          */
         Builder permission(@Nullable String permission);
+
+        /**
+         * The permission that the responsible {@link Subject} in the given
+         * {@link Cause} requires to run this command.
+         *
+         * <p>For more control over whether a command can be executed, use
+         * {@link #executionRequirements(Predicate)}. However, note that
+         * setting a permission here will not override anything set in
+         * {@link #executionRequirements(Predicate)}, both will be checked
+         * during execution.</p>
+         *
+         * <p>Any permission checks set here will be performed during the
+         * {@link Command#canExecute(CommandCause)}.</p>
+         *
+         * <p>Calling this repeatedly will not add additional permission
+         * checks, instead replacing the permission check. If multiple
+         * permission checks are required, use
+         * {@link #executionRequirements(Predicate)}.</p>
+         *
+         * @param permission The description for the required permission.
+         * @return This builder, for chaining
+         */
+        default Builder permission(PermissionDescription permission) {
+            return this.permission(Objects.requireNonNull(permission, "permission").id());
+        }
 
         /**
          * Sets a function that determines what is required of the provided

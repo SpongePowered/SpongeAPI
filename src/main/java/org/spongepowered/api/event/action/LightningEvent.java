@@ -28,11 +28,25 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.entity.AffectEntityEvent;
 
+/**
+ * Base event for {@link org.spongepowered.api.entity.EntityTypes#LIGHTNING_BOLT}s.
+ */
 public interface LightningEvent extends Event {
 
+    /**
+     * Fires before a lightning strike happens.
+     * <p>Cancelling this completely prevents the lightning at its effects.</p>
+     */
     interface Pre extends LightningEvent, Cancellable {}
 
+    /**
+     * Fires when a lightning strike happens.
+     * <p>The affected entities can be modified.</p>
+     */
     interface Strike extends LightningEvent, AffectEntityEvent {}
 
+    /**
+     * Fires after a lightning strike happened.
+     */
     interface Post extends LightningEvent {}
 }

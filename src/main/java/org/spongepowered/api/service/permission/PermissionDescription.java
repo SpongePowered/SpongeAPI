@@ -26,6 +26,8 @@ package org.spongepowered.api.service.permission;
 
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.util.Tristate;
 import org.spongepowered.plugin.PluginContainer;
 
 import java.util.Map;
@@ -35,11 +37,12 @@ import java.util.concurrent.CompletableFuture;
 /**
  * A description object for permissions.
  *
- * <p>The description is meant to provide human readable descriptions and meta
- * data for a permission.</p>
+ * <p>The description is meant to provide human readable descriptions and
+ * metadata for a permission, and a central point for the plugin registering
+ * each permission.</p>
  *
- * <p>Descriptions <strong>DO NOT</strong> have any impact on permission check,
- * and are only provided and registered for an informational purpose.</p>
+ * <p>Descriptions are primarily informational, but some default value
+ * information may be provided here.</p>
  *
  * <p>Instances can be built using
  * {@link PermissionService#newDescriptionBuilder(PluginContainer)}.</p>
@@ -80,8 +83,7 @@ public interface PermissionDescription {
      * <li>CHARACTER  = "A" - "Z" | "a" - "z" | "0" - "9" | "_" | "-"</li>
      * <li>NAME       = CHARACTER , { CHARACTER }</li>
      * <li>TEMPLATE   = "&lt;" , NAME , "&gt;"</li>
-     * <li>PART       = NAME | TEMPLATE</li>
-     * <li>PERMISSION = NAME , { "." , PART }</li>
+     * <li>PERMISSION = NAME , { "." , NAME }, {".", TEMPLATE}</li>
      * </ul>
      *
      * <p>The following examples shall help you to structure your permissions
@@ -92,7 +94,7 @@ public interface PermissionDescription {
      * all ItemTypes and Enchantments</li>
      * <li>"myplugin.give.execute" - Allows the execution of give</li>
      * <li>"myplugin.give.type" - Grants all ItemTypes</li>
-     * <li>"myplugin.give.type.&lt;ItemType&gt;" - A template should not be
+     * <li>"myplugin.give.type.&lt;item-type&gt;" - A template should not be
      * granted to anybody</li>
      * <li>"myplugin.give.type.minecraft.diamond" - Only
      * grants minecraft:diamond</li>
@@ -107,12 +109,14 @@ public interface PermissionDescription {
      * So if you want to allow someone to give themself only DIAMONDs, you would
      * assign them the following permissions:
      * <ul>
-     * <li>"myPlugin.give.execute"</li>
-     * <li>"myPlugin.give.type.DIAMOND"</li>
+     * <li>"myplugin.give.execute"</li>
+     * <li>"myplugin.give.type.minecraft.diamond"</li>
      * </ul>
      *
-     * <p><b>Note:</b> Permission ids are case insensitive! Permission ids
-     * should start with the owning plugin's id.</p>
+     * <p><b>Note:</b> Permission ids are case insensitive!
+     * If permission ids do not start with the plugin ID, implementations will
+     * prepend the plugin ID (so {@code command.give} will turn into
+     * {@code myplugin.command.give})</p>
      *
      * @return The permission id
      */
@@ -143,6 +147,14 @@ public interface PermissionDescription {
     Optional<PluginContainer> owner();
 
     /**
+     * Gets the default value this permission should have on this server.
+     * This value will have been applied to the default subject.
+     *
+     * @return The default value for this permission.
+     */
+    Tristate defaultValue();
+
+    /**
      * Gets all subjects that have this permission set in the given collection.
      *
      * <p>If you want to know to which role-templates this permission is
@@ -157,7 +169,7 @@ public interface PermissionDescription {
      *         set, and the value this permission is set to
      * @see SubjectCollection#allWithPermission(String)
      */
-    CompletableFuture<Map<SubjectReference, Boolean>> findAssignedSubjects(String collectionIdentifier);
+    CompletableFuture<? extends Map<? extends SubjectReference, Boolean>> findAssignedSubjects(String collectionIdentifier);
 
     /**
      * Gets all loaded subjects that have this permission set in the given
@@ -177,7 +189,56 @@ public interface PermissionDescription {
      * @return An immutable map of subjects that have this permission set
      * @see SubjectCollection#loadedWithPermission(String)
      */
-    Map<Subject, Boolean> assignedSubjects(String collectionIdentifier);
+    Map<? extends Subject, Boolean> assignedSubjects(String collectionIdentifier);
+
+    /**
+     * Check if the given subject has the permission described.
+     *
+     * <p>If {@link #id()} contains any template
+     * parameters, they will be stripped out. See overloads if parameters
+     * are desired.</p>
+     *
+     * @param subj The subject to query
+     * @return Whether the given subject has this permission.
+     */
+    boolean query(Subject subj);
+
+    /**
+     * Check if the given subject has the permission described.
+     *
+     * <p>Template parameters will be trimmed, and the catalog key will be
+     * appended in the format
+     * {@link ResourceKey#namespace()}.{@link ResourceKey#value()}.</p>
+     *
+     * @param subj The subject to query
+     * @param key The catalog key to relativize this permission for
+     * @return Whether the given subject has this permission.
+     */
+    boolean query(Subject subj, ResourceKey key);
+
+    /**
+     * Check if the given subject has the permission described.
+     *
+     * <p>Template parameters will be trimmed from the permission,
+     * and the given parameters will be appended joined by {@code .}.</p>
+     *
+     * @param subj The subject to query
+     * @param parameters The parameters to append to the permission being checked
+     * @return Whether the given subject has this permission.
+     */
+    boolean query(Subject subj, String... parameters);
+
+    /**
+     * Check if the given subject has the permission described.
+     *
+     * <p>Template parameters will be trimmed from the permission, and the given
+     * parameter will be appended</p>
+     *
+     * @param subj The subject to query
+     * @param parameter The parameter to append to the permission when checking
+     * @return Whether the given subject has this permission.
+     */
+    boolean query(Subject subj, String parameter);
 
     /**
      * A builder for permission descriptions.
@@ -211,8 +272,13 @@ public interface PermissionDescription {
         /**
          * Assigns this permission to the given role-template {@link Subject}.
          *
-         * <p>If the given subject does not exist it will be created. Permission
-         * templates should not be assigned to regular subjects.</p>
+         * <p>Role templates will be namespaced by the plugin that owns each
+         * registered permission. The expected format of the namespaced subject
+         * identifier is {@code <plugin id>:<role>}. Implementations must
+         * provide an un-namespaced role template that inherits its permissions
+         * from every plugin-namespaced role template.</p>
+         *
+         * <p>If the given subject does not exist it will be created.</p>
          *
          * <p>It is recommended to use the standard role suggestions expressed
          * as static parameters in {@link PermissionDescription}.</p>
@@ -230,6 +296,26 @@ public interface PermissionDescription {
          * @return This builder for chaining
          */
         Builder assign(String role, boolean value);
+
+
+        /**
+         * Sets a value that this permission should have by default.
+         * This can be used to exclude permissions from node tree inheritance,
+         * or to provide a permission to users by default.
+         *
+         * <p>This is shorthand for giving {@link #id()} (with templates
+         * stripped) a value on the default subject, except that the default
+         * value will only be applied once {@link #register()} is called.</p>
+         *
+         * <p>Assigning default permissions should be used sparingly, and by
+         * convention, only in situations where "default" game behaviour is restored
+         * by granting a certain permission.</p>
+         *
+         * @param defaultValue The value this permission should have for
+         *                      subjects where none has been assigned.
+         * @return The builder for chaining.
+         */
+        Builder defaultValue(Tristate defaultValue);
 
         /**
          * Creates and registers a new {@link PermissionDescription} instance

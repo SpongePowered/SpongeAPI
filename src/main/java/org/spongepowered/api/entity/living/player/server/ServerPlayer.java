@@ -50,7 +50,7 @@ import org.spongepowered.api.network.ServerPlayerConnection;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.world.WorldBorder;
+import org.spongepowered.api.world.border.WorldBorder;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.plugin.PluginContainer;
 
@@ -239,7 +239,7 @@ public interface ServerPlayer extends Player, Subject {
 
     /**
      * Gets the {@link WorldBorder} for this player, if present. If no border is
-     * set, {@link Optional#empty()} is returned.
+     * set, an empty {@code Optional} is returned.
      *
      * @return The {@code WorldBorder} of this player as an {@code Optional}, if
      *     present
@@ -247,12 +247,22 @@ public interface ServerPlayer extends Player, Subject {
     Optional<WorldBorder> worldBorder();
 
     /**
-     * Sets the {@link WorldBorder} instance for this player to the given world
-     * border. If {@code null} is passed, the world border is unset.
+     * Sets the {@link WorldBorder} that this player sees. If {@code null}, the
+     * border is unset, reverting to the border of the world the player is
+     * currently in.
+     *
+     * <p>The values that are set may be altered by events, so users should
+     * check the returned value if they need to know if an event altered the
+     * values in some way. If no alterations were made, the supplied object
+     * and the returned object (within the optional) will be the same.</p>
      *
      * @param border The world border to be used, may be {@code null}
+     * @return the values that were actually set, which may be different
+     *         from those requested. If the result is an empty optional,
+     *         then the player does not have a personal border, and uses
+     *         that of the world they are in instead.
      */
-    void setWorldBorder(@Nullable WorldBorder border);
+    Optional<WorldBorder> setWorldBorder(@Nullable WorldBorder border);
 
     /**
      * Gets the {@link CooldownTracker} for this player, allowing control

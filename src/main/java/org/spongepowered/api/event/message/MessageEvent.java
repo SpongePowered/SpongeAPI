@@ -26,10 +26,12 @@ package org.spongepowered.api.event.message;
 
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
 
 /**
  * Describes events when a involving a {@link Component} message.
  */
+@NoFactoryMethod
 public interface MessageEvent extends Event {
 
     /**

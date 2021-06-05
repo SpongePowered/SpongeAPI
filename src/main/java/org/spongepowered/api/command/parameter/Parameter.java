@@ -65,6 +65,7 @@ import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.configurate.util.Types;
+import org.spongepowered.math.vector.Vector2d;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.plugin.PluginContainer;
 
@@ -616,6 +617,16 @@ public interface Parameter {
      */
     static Parameter.Value.Builder<ResourceKey> resourceKey() {
         return Parameter.builder(ResourceKey.class, ResourceKeyedValueParameters.RESOURCE_KEY);
+    }
+
+    /**
+     * Creates a builder that has the {@link ValueParameter} set to
+     * {@link ResourceKeyedValueParameters#ROTATION}.
+     *
+     * @return A {@link Parameter.Value.Builder}
+     */
+    static Parameter.Value.Builder<Vector3d> rotation() {
+        return Parameter.builder(Vector3d.class, ResourceKeyedValueParameters.ROTATION);
     }
 
     /**

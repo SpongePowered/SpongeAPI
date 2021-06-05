@@ -29,7 +29,6 @@ import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.entity.living.player.PlayerChatFormatter;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
 
 import java.util.Optional;
 
@@ -37,7 +36,7 @@ import java.util.Optional;
  * Fired when the {@link Component} being sent to a {@link PlayerChatFormatter} was
  * due to chatting.
  */
-public interface PlayerChatEvent extends MessageChannelEvent, Cancellable {
+public interface PlayerChatEvent extends AudienceMessageEvent, Cancellable {
 
     /**
      * Gets the original formatter that this message will be sent through.

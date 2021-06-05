@@ -25,10 +25,12 @@
 package org.spongepowered.api.event.message;
 
 import net.kyori.adventure.text.Component;
+import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
 
 /**
  * Represents an event whose message can be cancelled.
  */
+@NoFactoryMethod
 public interface MessageCancellable {
 
     /**

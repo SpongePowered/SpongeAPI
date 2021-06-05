@@ -24,17 +24,21 @@
  */
 package org.spongepowered.api.service.permission;
 
-import org.spongepowered.api.service.context.ContextualService;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.plugin.PluginContainer;
 
+import java.util.AbstractMap;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * Represents a provider of permissions data.
@@ -61,7 +65,7 @@ import java.util.function.Predicate;
  * {@link CompletableFuture#join()} can be used, but care should be taken to
  * avoid blocking the server thread.</p>
  */
-public interface PermissionService extends ContextualService<Subject> {
+public interface PermissionService {
 
     /**
      * The standard identifier for the collection which stores users.
@@ -154,6 +158,67 @@ public interface PermissionService extends ContextualService<Subject> {
     Subject defaults();
 
     /**
+     * Get data for a role template for a specific plugin. If the plugin has not set any permissions
+     * for the given role template, an empty {@link Optional} will be returned. Whether role template information
+     * is persistent or transient is implementation-dependent, though the final choice should most likely be
+     * up to the user.
+     *
+     * @param plugin The plugin to query the role template for.
+     * @param roleTemplate The specific role template identifier. Any string may be used,
+     *                     but {@link PermissionDescription} contains some common suggestions.
+     * @return An optional possibly containing the subject data for the given role template
+     */
+    default Optional<? extends SubjectData> roleTemplate(final PluginContainer plugin, final String roleTemplate) {
+        Objects.requireNonNull(plugin, "plugin");
+
+        return this.collection(PermissionService.SUBJECTS_ROLE_TEMPLATE).flatMap(coll ->
+                coll.subject(plugin.metadata().id() + ":"
+                        + Objects.requireNonNull(roleTemplate, "roleTemplate")))
+                .map(Subject::transientSubjectData);
+    }
+
+
+    /**
+     * Get the data contained in role templates for all plugins providing data at the given key
+     *
+     * @param roleTemplate The specific role template identifier. Any string may be used,
+     *                     but {@link PermissionDescription} contains some common suggestions.
+     * @return An immutable set of mappings from plugin to subject data holder.
+     */
+    default Set<? extends Map.Entry<PluginContainer, ? extends SubjectData>> roleTemplates(final String roleTemplate) {
+        final Optional<? extends SubjectCollection> coll = this.collection(PermissionService.SUBJECTS_ROLE_TEMPLATE);
+        if (!coll.isPresent()) {
+            return Collections.emptySet();
+        }
+
+        final Optional<? extends Subject> globalSubj
+                = coll.get().subject(Objects.requireNonNull(roleTemplate, "roleTemplate"));
+        if (!globalSubj.isPresent()) {
+            return Collections.emptySet();
+        }
+
+        return Collections.unmodifiableSet(globalSubj.get()
+                .transientSubjectData().parents(SubjectData.GLOBAL_CONTEXT).stream()
+                .map(SubjectReference::resolve)
+                .map(CompletableFuture::join)
+                .map(it -> {
+                    final String[] name = it.identifier().split(":", 2);
+                    if (name.length < 2) {
+                        return null;
+                    }
+
+                    final Optional<PluginContainer> container = Sponge.pluginManager().plugin(name[0]);
+                    if (!container.isPresent()) {
+                        return null;
+                    }
+
+                    return new AbstractMap.SimpleImmutableEntry<>(container.get(), it.transientSubjectData());
+                }).filter(Objects::nonNull)
+                .collect(Collectors.toSet()));
+
+    }
+
+    /**
      * Returns a predicate which determines whether or not a given identifier
      * is valid for a subject collection held by this service.
      *
@@ -180,7 +245,7 @@ public interface PermissionService extends ContextualService<Subject> {
      *                                  pass the validity predicate for this
      *                                  service
      */
-    CompletableFuture<SubjectCollection> loadCollection(String identifier);
+    CompletableFuture<? extends SubjectCollection> loadCollection(String identifier);
 
     /**
      * Returns a subject collection with the given identifier, if the
@@ -198,7 +263,7 @@ public interface PermissionService extends ContextualService<Subject> {
      * @param identifier The identifier
      * @return A subject collection for the given identifier
      */
-    Optional<SubjectCollection> collection(String identifier);
+    Optional<? extends SubjectCollection> collection(String identifier);
 
     /**
      * Returns whether a subject collection with the given identifier currently
@@ -211,11 +276,11 @@ public interface PermissionService extends ContextualService<Subject> {
 
     /**
      * Returns an immutable copy of all currently loaded subject collections
-     * held by this permission service.
+     * held by this permission service. This map is immutable.
      *
      * @return The loaded collections for this service
      */
-    Map<String, SubjectCollection> loadedCollections();
+    Map<String, ? extends SubjectCollection> loadedCollections();
 
     /**
      * Returns a set of the subject collection identifiers known to this
@@ -223,7 +288,7 @@ public interface PermissionService extends ContextualService<Subject> {
      *
      * @return A set of collection identifiers
      */
-    CompletableFuture<Set<String>> allIdentifiers();
+    CompletableFuture<? extends Set<String>> allIdentifiers();
 
     /**
      * Creates a new subject reference to represent the expressed subject.
@@ -266,7 +331,7 @@ public interface PermissionService extends ContextualService<Subject> {
      * @return The description for the given permission or
      *         {@link Optional#empty()}
      */
-    Optional<PermissionDescription> description(String permission);
+    Optional<? extends PermissionDescription> description(String permission);
 
     /**
      * Gets a immutable collection containing all registered or generated
@@ -279,6 +344,6 @@ public interface PermissionService extends ContextualService<Subject> {
      * @return An immutable collection contain all registered or generated
      *         descriptions
      */
-    Collection<PermissionDescription> descriptions();
+    Collection<? extends PermissionDescription> descriptions();
 
 }
