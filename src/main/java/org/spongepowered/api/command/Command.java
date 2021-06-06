@@ -30,10 +30,12 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.exception.ArgumentParseException;
 import org.spongepowered.api.command.exception.CommandException;
+import org.spongepowered.api.command.manager.CommandMapping;
 import org.spongepowered.api.command.parameter.ArgumentReader;
 import org.spongepowered.api.command.parameter.CommandContext;
 import org.spongepowered.api.command.parameter.Parameter;
 import org.spongepowered.api.command.parameter.managed.Flag;
+import org.spongepowered.api.command.registrar.CommandRegistrar;
 import org.spongepowered.api.command.registrar.tree.CommandTreeNode;
 import org.spongepowered.api.command.registrar.tree.CommandTreeNodeTypes;
 import org.spongepowered.api.event.Cause;
@@ -130,7 +132,11 @@ public interface Command {
     /**
      * Gets a short one-line description of this command.
      *
-     * <p>The help system may display the description in the command list.</p>
+     * <p>The help system may display the description in the command list, or
+     * in any other function that displays a command list. It is therefore
+     * recommended that any description here is kept very short.</p>
+     *
+     * @see CommandRegistrar#shortDescription(CommandCause, CommandMapping)
      *
      * @param cause The {@link CommandCause} of the help request
      * @return A description
@@ -156,6 +162,8 @@ public interface Command {
      *
      * <p>The help system may display this message when a source requests
      * detailed information about a command.</p>
+     *
+     * @see CommandRegistrar#help(CommandCause, CommandMapping)
      *
      * @param cause The {@link Cause} of the help request
      * @return A help text

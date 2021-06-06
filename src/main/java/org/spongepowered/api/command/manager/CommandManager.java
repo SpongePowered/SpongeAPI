@@ -165,6 +165,14 @@ public interface CommandManager {
     Set<String> knownAliases();
 
     /**
+     * Gets all the {@link CommandMapping mappings} known to this command
+     * manager.
+     *
+     * @return The known mappings.
+     */
+    Set<CommandMapping> knownMappings();
+
+    /**
      * Gets a {@link Collection} of {@link PluginContainer}s with commands
      * registered.
      *

@@ -142,7 +142,30 @@ public interface CommandRegistrar<T> {
     List<CommandCompletion> complete(CommandCause cause, CommandMapping mapping, String command, String arguments) throws CommandException;
 
     /**
-     * Returns help text for the invoked command.
+     * Returns a short description for the invoked command, if one is
+     * available.
+     *
+     * <p>A good short description is not necessarily help, rather, it should
+     * be a short description of the command's function. This short description
+     * <strong>may</strong> also be part of the
+     * {@link #help(CommandCause, CommandMapping) standard help} for the
+     * function.</p>
+     *
+     * <p>It is recommended that any description here is kept very short as such
+     * a description may be used in a command listing.</p>
+     *
+     * @param cause The {@link CommandCause} that caused the command to be
+     *              executed
+     * @param mapping The {@link CommandMapping} that is associated with the
+     *                command
+     * @return The help, if any
+     */
+    default Optional<Component> shortDescription(final CommandCause cause, final CommandMapping mapping) {
+        return Optional.empty();
+    }
+
+    /**
+     * Returns help text for the invoked command, if one is available.
      *
      * @param cause The {@link CommandCause} that caused the command to be
      *              executed
