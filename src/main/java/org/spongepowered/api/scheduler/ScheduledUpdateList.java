@@ -27,6 +27,7 @@ package org.spongepowered.api.scheduler;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.fluid.FluidType;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.util.Ticks;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.time.Duration;
@@ -192,6 +193,57 @@ public interface ScheduledUpdateList<T> {
      * @param y The y coordinate
      * @param z The z coordinate
      * @param target The target
+     * @param ticks The delay, in {@link Ticks}
+     * @param priority The priority of the scheduled update
+     * @return The scheduled update
+     */
+    default ScheduledUpdate<T> schedule(
+            final int x, final int y, final int z, final T target, final Ticks ticks, final DefaultedRegistryReference<? extends TaskPriority> priority) {
+        return this.schedule(x, y, z, target, ticks, priority.get());
+    }
+
+    /**
+     *
+     * @param x The x coordinate
+     * @param y The y coordinate
+     * @param z The z coordinate
+     * @param target The target
+     * @param delay The delay
+     * @return The scheduled update
+     */
+    default ScheduledUpdate<T> schedule(int x, int y, int z, final T target, final Ticks delay) {
+        return this.schedule(x, y, z, target, delay, TaskPriorities.NORMAL.get());
+    }
+
+    /**
+     *
+     * @param pos The position
+     * @param target The target
+     * @param delay The delay
+     * @return The scheduled update
+     */
+    default ScheduledUpdate<T> schedule(final Vector3i pos, final T target, final Ticks delay) {
+        return this.schedule(pos.x(), pos.y(), pos.z(), target, delay, TaskPriorities.NORMAL.get());
+    }
+
+    /**
+     *
+     * @param pos The position
+     * @param target The target
+     * @param delay The delay
+     * @param priority The priority of the scheduled update
+     * @return The scheduled update
+     */
+    default ScheduledUpdate<T> schedule(final Vector3i pos, final T target, final Ticks delay, final TaskPriority priority) {
+        return this.schedule(pos.x(), pos.y(), pos.z(), target, delay, priority);
+    }
+
+    /**
+     *
+     * @param x The x coordinate
+     * @param y The y coordinate
+     * @param z The z coordinate
+     * @param target The target
      * @param delay The delay
      * @param priority The priority of the scheduled update
      * @return The scheduled update
@@ -199,6 +251,20 @@ public interface ScheduledUpdateList<T> {
     default ScheduledUpdate<T> schedule(final int x, final int y, final int z, final T target, final Duration delay, final DefaultedRegistryReference<? extends TaskPriority> priority) {
         return this.schedule(x, y, z, target, delay, priority.get());
     }
+
+    /**
+     * Schedules a new update at the desired position after the specified
+     * number of {@link Ticks}.
+     *
+     * @param x The x coordinate
+     * @param y The y coordinate
+     * @param z The z coordinate
+     * @param target The target
+     * @param delay The delay, in {@link Ticks}
+     * @param priority The priority of the scheduled update
+     * @return The scheduled update
+     */
+    ScheduledUpdate<T> schedule(int x, int y, int z, T target, Ticks delay, TaskPriority priority);
 
     /**
      * Gets whether there's a scheduled update at the desired position with the provided target.
