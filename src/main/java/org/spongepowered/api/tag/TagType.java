@@ -22,43 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.datapack;
+package org.spongepowered.api.tag;
 
-import io.leangen.geantyref.TypeToken;
-import org.spongepowered.api.advancement.Advancement;
-import org.spongepowered.api.event.lifecycle.RegisterDataPackValueEvent;
-import org.spongepowered.api.item.recipe.RecipeRegistration;
-import org.spongepowered.api.tag.TagTemplate;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
-import org.spongepowered.api.world.WorldTypeTemplate;
-import org.spongepowered.api.world.server.WorldTemplate;
-import org.spongepowered.plugin.PluginContainer;
 
-@CatalogedBy(DataPackTypes.class)
-public interface DataPackType<T> {
+@CatalogedBy(TagTypes.class)
+public interface TagType<T extends Taggable<T>> extends DefaultedRegistryValue {
 
-    TypeToken<T> type();
+    RegistryType<T> taggableRegistry();
 
-    /**
-     * Gets if resources created by this type will persist even if the {@link PluginContainer plugin}
-     * is no longer present (or no longer performs a registration in {@link RegisterDataPackValueEvent}
-     *
-     * <p>Consult your implementation vendor for more details on exactly what resources are kept.</p>
-     * 
-     * @return True if persistent, false if not
-     */
-    boolean persistent();
-
-    interface Factory {
-
-        DataPackType<Advancement> advancement();
-
-        DataPackType<RecipeRegistration> recipe();
-
-        DataPackType<WorldTypeTemplate> worldType();
-
-        DataPackType<WorldTemplate> world();
-
-        DataPackType<TagTemplate> tag();
-    }
+    RegistryType<Tag<T>> tagRegistry();
 }

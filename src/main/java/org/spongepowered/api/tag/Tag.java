@@ -22,45 +22,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity;
+package org.spongepowered.api.tag;
 
-import net.kyori.adventure.text.ComponentLike;
-import org.spongepowered.api.entity.living.player.server.ServerPlayer;
+import org.spongepowered.api.Engine;
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.ResourceKeyed;
+import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
-import org.spongepowered.api.tag.Taggable;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+
+import java.util.Collection;
 
 /**
- * Describes a type of entity.
+ * Represents a Tag for a given type.
+ *
+ * A {@link ResourceKey resource keyed} collection of {@link Taggable} values (of type {@code T}).
+ *
+ * <p>While any number of tags may exist and the values each tag contains is arbitary,
+ * vanilla Minecraft generally uses pre-defined tags for one of the following reasons:</p>
+ *
+ * <ul>
+ *     <li>To define a common material that {@link BlockType blocks} are made of,
+ *     for example, {@link BlockTypeTags#ACACIA_LOGS}</li>
+ *     <li>To define a common behavior that the {@link Engine engine} should apply to a block,
+ *     such as specifying a block as a log that can burn via {@link BlockTypeTags#LOGS_THAT_BURN}</li>
+ * </ul>
+ *
  */
-@CatalogedBy(EntityTypes.class)
-public interface EntityType<A extends Entity> extends DefaultedRegistryValue, ComponentLike, Taggable<EntityType<?>> {
+public interface Tag<T> extends DefaultedRegistryValue, ResourceKeyed {
 
     /**
-     * If true {@link Entity entities} of this type will not be saved to disk.
+     * Get every value in this Tag.
      *
-     * @return If the type is transient
+     * @return All tag values
      */
-    boolean isTransient();
+    Collection<T> values();
 
     /**
-     * If true {@link Entity entities} of this type may be summoned naturally or via command.
+     * Whether this tag includes the given value.
      *
-     * @return If the type is summonable
+     * @param value Value to check
+     * @return Whether the value is contained in this tag.
      */
-    boolean isSummonable();
-
-    /**
-     * If true {@link Entity entities} of this type may be caught on fire.
-     *
-     * @return If the type is flammable
-     */
-    boolean isFlammable();
-
-    /**
-     * If true {@link Entity entities} of this type may spawn out of range from {@link ServerPlayer players}.
-     *
-     * @return If the type can spawn far away from a player
-     */
-    boolean canSpawnAwayFromPlayer();
+    boolean contains(T value);
 }
