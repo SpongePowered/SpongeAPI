@@ -29,7 +29,7 @@ import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 /**
- * Called each tick for all {@link ServerPlayer players} riding a vehicle.
+ * Called each tick for any {@link ServerPlayer player} riding a vehicle.
  */
 @GenerateFactoryMethod
 public interface SteerVehicleEvent extends Event {
