@@ -42,6 +42,7 @@ import org.spongepowered.api.fluid.FluidType;
 import org.spongepowered.api.scheduler.ScheduledUpdate;
 import org.spongepowered.api.scheduler.TaskPriority;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.LocatableBlock;
 import org.spongepowered.api.world.Location;
@@ -262,12 +263,31 @@ public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDat
     /**
      * Adds a new {@link ScheduledUpdate} for the block at this location.
      *
+     * @param delay The delay, in {@link Ticks}, before the scheduled update
+     *              should be processed
+     * @param priority The priority of the scheduled update
+     * @return The newly created scheduled update
+     */
+    ScheduledUpdate<BlockType> scheduleBlockUpdate(Ticks delay, TaskPriority priority);
+
+    /**
+     * Adds a new {@link ScheduledUpdate} for the block at this location.
+     *
      * @param delay The delay before the scheduled update should be processed
      * @param temporalUnit The temporal unit of the delay
      * @param priority The priority of the scheduled update
      * @return The newly created scheduled update
      */
     ScheduledUpdate<BlockType> scheduleBlockUpdate(int delay, TemporalUnit temporalUnit, TaskPriority priority);
+
+    /**
+     * Adds a new {@link ScheduledUpdate} for the block at this location.
+     *
+     * @param delay The delay, in {@link Ticks}, before the scheduled update
+     *              should be processed
+     * @return The newly created scheduled update
+     */
+    ScheduledUpdate<BlockType> scheduleBlockUpdate(Ticks delay);
 
     /**
      * Adds a new {@link ScheduledUpdate} for the block at this location.
@@ -311,6 +331,25 @@ public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDat
      * @return The newly created scheduled update
      */
     ScheduledUpdate<FluidType> scheduleFluidUpdate(int delay, TemporalUnit temporalUnit, TaskPriority priority);
+
+    /**
+     * Adds a new {@link ScheduledUpdate} for the fluid at this location.
+     *
+     * @param ticks The delay, in {@link Ticks}, before the scheduled update
+     *              should be processed
+     * @return The newly created scheduled update
+     */
+    ScheduledUpdate<FluidType> scheduleFluidUpdate(Ticks ticks);
+
+    /**
+     * Adds a new {@link ScheduledUpdate} for the fluid at this location.
+     *
+     * @param ticks The delay, in {@link Ticks}, before the scheduled update
+     *              should be processed
+     * @param priority The priority of the scheduled update
+     * @return The newly created scheduled update
+     */
+    ScheduledUpdate<FluidType> scheduleFluidUpdate(Ticks ticks, TaskPriority priority);
 
     /**
      * Adds a new {@link ScheduledUpdate} for the fluid at this location.
