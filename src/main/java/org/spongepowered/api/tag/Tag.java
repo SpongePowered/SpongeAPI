@@ -52,10 +52,10 @@ import java.util.Optional;
  * @param <T> Type that this tag groups
  * @param <U> Unique value that differentiates these types.
  */
-public interface Tag<T,U> extends DefaultedRegistryValue {
+public interface Tag<T, U> extends DefaultedRegistryValue {
 
     @SuppressWarnings("unchecked")
-    static Builder<?,?> builder() {
+    static Builder<?, ?> builder() {
         return Sponge.game().builderProvider().provide(Builder.class);
     }
 
@@ -108,7 +108,7 @@ public interface Tag<T,U> extends DefaultedRegistryValue {
      */
     <E> Collection<T> findAll(Key<? extends Value<E>> key, E value);
 
-    interface Builder<T,U> extends org.spongepowered.api.util.Builder<Tag<T,U>, Builder<T,U>> {
+    interface Builder<T, U> extends org.spongepowered.api.util.Builder<Tag<T, U>, Builder<T, U>> {
 
         /**
          * Generifies the builder properly to the given type.
@@ -118,7 +118,7 @@ public interface Tag<T,U> extends DefaultedRegistryValue {
          */
         <NT> Builder<NT, U> type(Class<NT> type);
 
-        Builder<T,U> key(ResourceKey key);
+        Builder<T, U> key(ResourceKey key);
 
         /**
          * <p>Adds a key that has an unique value for each value
@@ -148,9 +148,9 @@ public interface Tag<T,U> extends DefaultedRegistryValue {
              * @param childTag Child tag to add.
              * @return This builder, for chaining
              */
-            Builder<T,U> addChild(Tag<T, ?> childTag);
+            Builder<T, U> addChild(Tag<T, ?> childTag);
 
-            Builder<T,U> addChildren(Iterable<Tag<T, ?>> children);
+            Builder<T, U> addChildren(Iterable<Tag<T, ?>> children);
 
             /**
              * Adds the value, retrieving the unique value from
@@ -163,9 +163,9 @@ public interface Tag<T,U> extends DefaultedRegistryValue {
              *                                  the given key.
              * @throws IllegalStateException If {@link #uniqueBy(Key)} has not been set yet.
              */
-            Builder<T,U>  addValue(T value) throws IllegalArgumentException;
+            Builder<T, U>  addValue(T value) throws IllegalArgumentException;
 
-            Builder<T,U>  addValues(Iterable<T> values) throws IllegalArgumentException;
+            Builder<T, U>  addValues(Iterable<T> values) throws IllegalArgumentException;
         }
     }
 }
