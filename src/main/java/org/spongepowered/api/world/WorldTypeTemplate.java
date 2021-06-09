@@ -82,7 +82,11 @@ public interface WorldTypeTemplate extends DataPackSerializable {
 
     boolean hasRaids();
 
+    int minY();
+
     int logicalHeight();
+
+    int maximumHeight();
 
     boolean createDragonFight();
 
@@ -114,7 +118,11 @@ public interface WorldTypeTemplate extends DataPackSerializable {
 
         Builder hasRaids(boolean raids);
 
+        Builder minY(int y);
+
         Builder logicalHeight(int logicalHeight);
+
+        Builder maximumHeight(int maximumHeight);
 
         Builder createDragonFight(boolean createDragonFight);
     }
