@@ -27,6 +27,9 @@ package org.spongepowered.api.tag;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.fluid.FluidType;
+import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
@@ -34,15 +37,25 @@ import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.registry.RegistryTypes;
 
 @RegistryScopes(scopes = RegistryScope.GAME)
-public class BlockTypeTags {
+public class TagTypes {
 
-    // SORTFIELDS:ON
+    // @formatter:off
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> WOOL = BlockTypeTags.key(ResourceKey.minecraft("wool"));
+    public static final DefaultedRegistryReference<TagType<BlockType>> BLOCK_TYPE = TagTypes.key(ResourceKey.sponge("block_type"));
 
-    // SORTFIELDS:OFF
+    public static final DefaultedRegistryReference<TagType<EntityType<?>>> ENTITY_TYPE = TagTypes.key(ResourceKey.sponge("entity_type"));
 
-    private static <T> DefaultedRegistryReference<Tag<BlockType>> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.BLOCK_TYPE_TAGS, location).asDefaultedReference(() -> Sponge.game().registries());
+    public static final DefaultedRegistryReference<TagType<FluidType>> FLUID_TYPE = TagTypes.key(ResourceKey.sponge("fluid_type"));
+
+    public static final DefaultedRegistryReference<TagType<Taggable>> FUNCTIONS = TagTypes.key(ResourceKey.sponge("functions")); // TODO?
+
+    public static final DefaultedRegistryReference<TagType<ItemType>> ITEM_TYPE = TagTypes.key(ResourceKey.sponge("item_type"));
+
+    // @formatter:on
+    private TagTypes() {
+    }
+
+    private static <T extends Taggable> DefaultedRegistryReference<TagType<T>> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.TAG_TYPES, location).asDefaultedReference(() -> Sponge.game().registries());
     }
 }

@@ -22,32 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.fluid;
+package org.spongepowered.api.tag;
 
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.DataHolder;
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
-import org.spongepowered.api.state.StateContainer;
-import org.spongepowered.api.tag.Taggable;
-import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * The functional equivalent of an {@link ItemType} or {@link BlockType},
- * except for fluids. Normally, the gameplay mechanics of fluids are entirely
- * dependent on the implementation of a fluid; however, they are representable
- * as {@link FluidStack}s, where a certain amount of a {@link FluidType} for
- * a specified volume "exists" within a {@link Keys#FLUID_TANK_CONTENTS Fluid Tank Value}.
  *
- * <p>Normally, {@link Keys#FLUID_TANK_CONTENTS} can be either retrieved from
- * either a {@link BlockState} or {@link BlockEntity} that specifically handles
- * fluids. Depending on the implementation, a fluid stack may be used differently
- * than how vanilla implementations handle them.</p>
  */
-@CatalogedBy(FluidTypes.class)
-public interface FluidType extends DefaultedRegistryValue, StateContainer<FluidState>, DataHolder.Immutable<FluidType>, Taggable {
+public interface Taggable extends DataHolder, DefaultedRegistryValue {
 
 }

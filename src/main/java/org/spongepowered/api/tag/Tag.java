@@ -24,38 +24,30 @@
  */
 package org.spongepowered.api.tag;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Key;
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 
 import java.util.Collection;
-import java.util.Optional;
 
 /**
  * Represents a Tag for a given type.
- * Tags group CatalogTypes by a key
- * and unique values.
- * For example, {@link BlockTypeTags#WOOL} has key {@link Keys#DYE_COLOR}.
- * Each BlockType in {@link BlockTypeTags#WOOL} has a unique
- * {@link org.spongepowered.api.data.type.DyeColor}.
- * To retrieve a wool BlockType with {@link org.spongepowered.api.data.type.DyeColors#RED}
- * you could invoke {@link #find(Object)} with {@link org.spongepowered.api.data.type.DyeColors#RED}
- * on the {@link BlockTypeTags#WOOL}.
- *
- * Note that tags added by datapacks and mods may not
- * have a unique key/value associated with them. In this case,
- * attempts to retrieve those will fail.
+ * Tags group {@link TagTypes}.
  *
  * @param <T> Type that this tag groups
- * @param <U> Unique value that differentiates these types.
  */
-public interface Tag<T, U> extends DefaultedRegistryValue {
+public interface Tag<T> extends DefaultedRegistryValue, ResourceKeyed, TagRegistration {
 
+    /**
+     * Creates a builder to create a new {@link Tag}
+     * or modify an existing one.
+     * @return Builder to build a new Tag.
+     */
     @SuppressWarnings("unchecked")
-    static Builder<?, ?> builder() {
+    static Builder<?> builder() {
         return Sponge.game().builderProvider().provide(Builder.class);
     }
 
@@ -66,106 +58,60 @@ public interface Tag<T, U> extends DefaultedRegistryValue {
      */
     Collection<T> all();
 
-    /**
-     * Check whether this tag
-     * contains the given value
-     *
-     * @param value Value to check
-     * @return Whether the value is a part of this tag
-     */
-    default boolean contains(T value) {
-        return all().contains(value);
-    }
-
-    /**
-     * Searches this {@link Tag} <b>But not any of its children</b>
-     * for the given value.
-     *
-     * Note that
-     *
-     * @param value Value to get
-     * @return The corresponding value
-     */
-    T get(U value);
-
-    /**
-     * Same as {@link #get(Object)} but does not require
-     * the value to be present, instead returns an optional.
-     * @param value Value to search for
-     * @return The corresponding value if found
-     */
-    Optional<T> find(U value);
-
-    /**
-     * Searches this {@link Tag} and all of its children
-     * who have compatible keys.
-     *
-     * @param key Key to search with.
-     * @param value Value to match
-     * @param <E> Type retrievable by the key
-     * @return A collection of all found corresponding values.
-     *         Empty if none.
-     */
-    <E> Collection<T> findAll(Key<? extends Value<E>> key, E value);
-
-    interface Builder<T, U> extends org.spongepowered.api.util.Builder<Tag<T, U>, Builder<T, U>> {
+    interface Builder<T extends Taggable> extends org.spongepowered.api.util.ResourceKeyedBuilder<TagRegistration, Builder<T>> {
 
         /**
-         * Generifies the builder properly to the given type.
+         * Sets the tag type and generifies the builder.
          *
-         * @param type Type to build a tag for, e.g {@link org.spongepowered.api.block.BlockType}
+         * @param tagType Type to build a tag for, e.g {@link TagTypes#BLOCK_TYPE}
          * @return This builder, for chaining
          */
-        <NT> Builder<NT, U> type(Class<NT> type);
-
-        Builder<T, U> key(ResourceKey key);
+        <NT extends Taggable> Builder<NT> type(TagType<NT> tagType);
 
         /**
-         * <p>Adds a key that has an unique value for each value
-         * contained in this tag.
-         * This key should be show why these aren't the same
-         * block. For example, {@link org.spongepowered.api.block.BlockTypes#BLACK_WOOL}
-         * is different to {@link org.spongepowered.api.block.BlockTypes#RED_WOOL}
-         * because it has a different {@link org.spongepowered.api.data.type.DyeColor}, thus
-         * {@link Keys#DYE_COLOR} would be the correct choice for the key.</p>
+         * <p>Whether to replace instead of append if the tag already
+         * exists.</p>
          *
-         * <p>If there are multiple {@link Keys} that separate the values,
-         * consider creating multiple tags then creating a tag with those
-         * as children.</p>
+         * <p>By default, if the {@link ResourceKey#value()} is the same as
+         * another data pack / plugin, the two will be combined, and their
+         * tags appended to each other.</p>
          *
-         * @param key Key that differentiates these values.
-         * @return The next step of this builder.
+         * @param replace Whether to replace instead of merge.
+         * @return This builder, for chaining.
          */
-        <NU> EndStep<T, NU> uniqueBy(Key<? extends Value<NU>> key);
+        Builder<T> replace(boolean replace);
 
-        interface EndStep<T, U> extends Builder<T, U> {
-            /**
-             * Adds a child tag to this tag.
-             * This allows for searching through the tag
-             * and its sub tags for all blocktypes with a given
-             * Key using {@link Tag#findAll(Key, Object)}
-             *
-             * @param childTag Child tag to add.
-             * @return This builder, for chaining
-             */
-            Builder<T, U> addChild(Tag<T, ?> childTag);
-
-            Builder<T, U> addChildren(Iterable<Tag<T, ?>> children);
-
-            /**
-             * Adds the value, retrieving the unique value from
-             * the value provided, using the {@link Key} provided in
-             * {@link #uniqueBy(Key)}
-             *
-             * @param value Value to add
-             * @return This builder, for chaining
-             * @throws IllegalArgumentException If the value provided did not contain or support
-             *                                  the given key.
-             * @throws IllegalStateException If {@link #uniqueBy(Key)} has not been set yet.
-             */
-            Builder<T, U>  addValue(T value) throws IllegalArgumentException;
-
-            Builder<T, U>  addValues(Iterable<T> values) throws IllegalArgumentException;
+        default Builder<T> replace() {
+            return replace(true);
         }
+
+        /**
+         * Adds a child tag to this tag.
+         * This adds all of its values to this tag.
+         *
+         * @param childTag Child tag to add.
+         * @return This builder, for chaining
+         */
+        Builder<T> addChild(Tag<T> childTag);
+
+        Builder<T> addChildren(Collection<Tag<T>> children);
+
+        /**
+         * Adds the value to the tag.
+         *
+         * @param value Value to add
+         * @return This builder, for chaining
+         */
+        Builder<T> addValue(T value);
+
+        Builder<T> addValues(Collection<T> values);
+
+        /**
+         * A nicely generified tag, <b>That must be registered</b> in {@link org.spongepowered.api.event.lifecycle.RegisterDataPackValueEvent}.
+         *
+         * @return The built tag.
+         */
+        @Override
+        @NonNull TagRegistration build();
     }
 }

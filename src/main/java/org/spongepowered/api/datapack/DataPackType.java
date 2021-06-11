@@ -28,6 +28,8 @@ import io.leangen.geantyref.TypeToken;
 import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.event.lifecycle.RegisterDataPackValueEvent;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
+import org.spongepowered.api.tag.Tag;
+import org.spongepowered.api.tag.TagRegistration;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.WorldTypeTemplate;
 import org.spongepowered.api.world.server.WorldTemplate;
@@ -57,5 +59,7 @@ public interface DataPackType<T> {
         DataPackType<WorldTypeTemplate> worldType();
 
         DataPackType<WorldTemplate> world();
+
+        DataPackType<TagRegistration> tag();
     }
 }

@@ -22,28 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.datapack;
+package org.spongepowered.api.tag;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.advancement.Advancement;
-import org.spongepowered.api.item.recipe.RecipeRegistration;
-import org.spongepowered.api.tag.Tag;
-import org.spongepowered.api.tag.TagRegistration;
-import org.spongepowered.api.world.WorldTypeTemplate;
-import org.spongepowered.api.world.server.WorldTemplate;
+import org.spongepowered.api.datapack.DataPackSerializable;
 
-public final class DataPackTypes {
+/**
+ * A registration that creates a or modifies a {@link Tag}.
+ *
+ * <p>All registrations through the API will generate into the Vanilla data pack system</p>
+ */
+public interface TagRegistration extends DataPackSerializable {
 
-    public static final DataPackType<Advancement> ADVANCEMENT = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).advancement();
-
-    public static final DataPackType<RecipeRegistration> RECIPE = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).recipe();
-
-    public static final DataPackType<WorldTypeTemplate> WORLD_TYPE = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).worldType();
-
-    public static final DataPackType<WorldTemplate> WORLD = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).world();
-
-    public static final DataPackType<TagRegistration> TAG = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).tag();
-
-    private DataPackTypes() {
-    }
 }

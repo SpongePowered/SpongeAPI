@@ -22,28 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.datapack;
+package org.spongepowered.api.tag;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.advancement.Advancement;
-import org.spongepowered.api.item.recipe.RecipeRegistration;
-import org.spongepowered.api.tag.Tag;
-import org.spongepowered.api.tag.TagRegistration;
-import org.spongepowered.api.world.WorldTypeTemplate;
-import org.spongepowered.api.world.server.WorldTemplate;
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-public final class DataPackTypes {
+@CatalogedBy(TagTypes.class)
+public interface TagType<T extends Taggable> {
 
-    public static final DataPackType<Advancement> ADVANCEMENT = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).advancement();
+    /**
+     * The directory where the tag is stored,
+     * (data/namespace/xxx/(name).json
+     * @see <a href="https://minecraft.fandom.com/wiki/Tag#Folder_structure">https://minecraft.fandom.com/wiki/Tag#Folder_structure</a>
+     * @return Directory name
+     */
+    String datapackDirectory();
 
-    public static final DataPackType<RecipeRegistration> RECIPE = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).recipe();
-
-    public static final DataPackType<WorldTypeTemplate> WORLD_TYPE = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).worldType();
-
-    public static final DataPackType<WorldTemplate> WORLD = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).world();
-
-    public static final DataPackType<TagRegistration> TAG = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).tag();
-
-    private DataPackTypes() {
-    }
+    DefaultedRegistryType<T> taggableRegistry();
 }
