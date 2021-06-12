@@ -27,8 +27,7 @@ package org.spongepowered.api.datapack;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
-import org.spongepowered.api.tag.Tag;
-import org.spongepowered.api.tag.TagRegistration;
+import org.spongepowered.api.tag.TagTemplate;
 import org.spongepowered.api.world.WorldTypeTemplate;
 import org.spongepowered.api.world.server.WorldTemplate;
 
@@ -42,7 +41,7 @@ public final class DataPackTypes {
 
     public static final DataPackType<WorldTemplate> WORLD = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).world();
 
-    public static final DataPackType<TagRegistration> TAG = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).tag();
+    public static final DataPackType<TagTemplate> TAG = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).tag();
 
     private DataPackTypes() {
     }

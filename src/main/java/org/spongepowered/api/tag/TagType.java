@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.tag;
 
-import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.RegistryType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(TagTypes.class)
@@ -35,7 +35,7 @@ public interface TagType<T extends Taggable> {
      */
     String id();
 
-    DefaultedRegistryType<T> taggableRegistry();
+    RegistryType<T> taggableRegistry();
 
-    DefaultedRegistryType<Tag<T>> tagRegistry();
+    RegistryType<Tag<T>> tagRegistry();
 }
