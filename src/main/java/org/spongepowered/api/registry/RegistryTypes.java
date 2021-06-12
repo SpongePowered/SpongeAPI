@@ -404,9 +404,15 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<MapShade> MAP_SHADE = RegistryTypes.spongeKeyInGame("map_shade");
 
+    public static final DefaultedRegistryType<TagType<?>> TAG_TYPES = RegistryTypes.spongeKeyInGame("tag_type");
+
     public static final DefaultedRegistryType<Tag<BlockType>> BLOCK_TYPE_TAGS = RegistryTypes.spongeKeyInGame("block_type_tags");
 
-    public static final DefaultedRegistryType<TagType<?>> TAG_TYPES = RegistryTypes.spongeKeyInGame("tag_type");
+    public static final DefaultedRegistryType<Tag<ItemType>> ITEM_TYPE_TAGS = RegistryTypes.spongeKeyInGame("item_type_tags");
+
+    public static final DefaultedRegistryType<Tag<EntityType<?>>> ENTITY_TYPE_TAGS = RegistryTypes.spongeKeyInGame("entity_type_tags");
+
+    public static final DefaultedRegistryType<Tag<FluidType>> FLUID_TYPE_TAGS = RegistryTypes.spongeKeyInGame("fluid_type_tags");
 
     // @formatter:on
 

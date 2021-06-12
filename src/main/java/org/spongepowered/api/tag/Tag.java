@@ -58,6 +58,14 @@ public interface Tag<T> extends DefaultedRegistryValue, ResourceKeyed, TagRegist
      */
     Collection<T> all();
 
+    /**
+     * Whether this tag includes the given value.
+     *
+     * @param value Value to check
+     * @return Whether the value is contained in this tag.
+     */
+    boolean contains(T value);
+
     interface Builder<T extends Taggable> extends org.spongepowered.api.util.ResourceKeyedBuilder<TagRegistration, Builder<T>> {
 
         /**
