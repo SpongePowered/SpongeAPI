@@ -35,7 +35,7 @@ import java.util.Collection;
  *
  * @param <T> Type that this tag groups
  */
-public interface Tag<T> extends DefaultedRegistryValue, ResourceKeyed, TagTemplate {
+public interface Tag<T> extends DefaultedRegistryValue, ResourceKeyed {
 
     /**
      * Get every value in this Tag.
