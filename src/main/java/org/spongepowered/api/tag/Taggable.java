@@ -24,12 +24,24 @@
  */
 package org.spongepowered.api.tag;
 
-import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 
-/**
- *
- */
-public interface Taggable extends DataHolder, DefaultedRegistryValue {
+import java.util.Collection;
 
+/**
+ * A type that can be tagged inside a {@link Tag}
+ */
+public interface Taggable<T extends Taggable<T>> extends DefaultedRegistryValue {
+
+    /**
+     * Gets the {@link TagType} for this Taggable
+     * @return This Taggable's TagType
+     */
+    TagType<T> tagType();
+
+    /**
+     * Gets all tags that this taggable is in.
+     * @return All tags that this taggable is in.
+     */
+    Collection<Tag<T>> tags();
 }

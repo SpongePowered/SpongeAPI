@@ -34,7 +34,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Describes a type of entity.
  */
 @CatalogedBy(EntityTypes.class)
-public interface EntityType<A extends Entity> extends DefaultedRegistryValue, ComponentLike, Taggable {
+public interface EntityType<A extends Entity> extends DefaultedRegistryValue, ComponentLike, Taggable<EntityType<?>> {
 
     /**
      * If true {@link Entity entities} of this type will not be saved to disk.

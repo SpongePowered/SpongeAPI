@@ -44,7 +44,7 @@ import java.util.function.Supplier;
  * via {@link BlockEntity}.</p>
  */
 @CatalogedBy(BlockTypes.class)
-public interface BlockType extends DefaultedRegistryValue, ComponentLike, StateContainer<BlockState>, DataHolder.Immutable<BlockType>, Taggable {
+public interface BlockType extends DefaultedRegistryValue, ComponentLike, StateContainer<BlockState>, DataHolder.Immutable<BlockType>, Taggable<BlockType> {
 
     /**
      * Return the {@link ItemType} that represents this block.

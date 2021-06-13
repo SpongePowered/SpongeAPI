@@ -22,15 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.tag;
+package org.spongepowered.api.datapack;
 
-import org.spongepowered.api.registry.RegistryType;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.registry.ScopedRegistryHolder;
 
-@CatalogedBy(TagTypes.class)
-public interface TagType<T extends Taggable> {
+import java.util.Collection;
 
-    RegistryType<T> taggableRegistry();
+/**
+ * An interface for all information about data packs.
+ *
+ * Everything in here is subject to change throughout the
+ * lifetime of the server.
+ */
+public interface DataPackManager extends ScopedRegistryHolder {
 
-    RegistryType<Tag<T>> tagRegistry();
+    /**
+     * A list of all currently loaded packs
+     * @return All loaded data packs.
+     */
+    Collection<String> loadedPacks();
 }

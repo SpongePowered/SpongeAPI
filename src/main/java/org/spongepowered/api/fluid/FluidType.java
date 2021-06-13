@@ -48,6 +48,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * than how vanilla implementations handle them.</p>
  */
 @CatalogedBy(FluidTypes.class)
-public interface FluidType extends DefaultedRegistryValue, StateContainer<FluidState>, DataHolder.Immutable<FluidType>, Taggable {
+public interface FluidType extends DefaultedRegistryValue, StateContainer<FluidState>, DataHolder.Immutable<FluidType>, Taggable<FluidType> {
 
 }

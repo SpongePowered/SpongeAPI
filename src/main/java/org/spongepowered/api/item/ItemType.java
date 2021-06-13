@@ -39,7 +39,7 @@ import java.util.function.Supplier;
  * A type of item.
  */
 @CatalogedBy(ItemTypes.class)
-public interface ItemType extends DefaultedRegistryValue, ComponentLike, DataHolder.Immutable<ItemType>, Taggable {
+public interface ItemType extends DefaultedRegistryValue, ComponentLike, DataHolder.Immutable<ItemType>, Taggable<ItemType> {
 
     /**
      * Gets the corresponding {@link BlockType} of this item if one exists.

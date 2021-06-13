@@ -31,5 +31,6 @@ package org.spongepowered.api.registry;
 public enum RegistryScope {
     GAME,
     ENGINE,
-    WORLD
+    WORLD,
+    DATA_PACK,
 }

@@ -60,7 +60,8 @@ public interface TagTemplate extends DataPackSerializable {
 
         /**
          * <p>Whether to replace instead of append if the tag already
-         * exists.</p>
+         * exists. This replaces any minecraft tag data and any data packs
+         * that are lower priority than this one (the plugin data pack)</p>
          *
          * <p>By default, if the {@link ResourceKey#value()} is the same as
          * another data pack / plugin, the two will be combined, and their
