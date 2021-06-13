@@ -28,6 +28,7 @@ import org.spongepowered.api.client.LocalServer;
 import org.spongepowered.api.entity.living.player.client.ClientPlayer;
 import org.spongepowered.api.entity.living.player.client.LocalPlayer;
 import org.spongepowered.api.network.ClientSideConnection;
+import org.spongepowered.api.util.locale.LocaleSource;
 import org.spongepowered.api.world.client.ClientWorld;
 
 import java.util.Optional;
@@ -35,7 +36,7 @@ import java.util.Optional;
 /**
  * Represents a typical Minecraft Client.
  */
-public interface Client extends Engine {
+public interface Client extends Engine, LocaleSource {
 
     /**
      * Gets the {@link ClientPlayer player} responsible
