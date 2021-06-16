@@ -22,23 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api;
+package org.spongepowered.api.world.portal;
 
-import net.kyori.adventure.audience.Audience;
-import org.spongepowered.api.service.permission.Subject;
-import org.spongepowered.api.util.locale.LocaleSource;
+import org.spongepowered.api.util.annotation.DoNotStore;
+import org.spongepowered.api.world.server.ServerLocation;
 
 /**
- * Represents the "super user" of the game.
- *
- * <p>The {@link SystemSubject} is intended to be the {@link Subject} that
- * represents server actions. This subject may represent an interaction
- * through a console.</p>
- *
- * <p>This object is also a {@link LocaleSource}. Any message sent here
- * should be directed to a system visible location, such as a log or a
- * console.</p>
+ * Represents a {@link Portal} with a known shape.
  */
-public interface SystemSubject extends Subject, Audience, LocaleSource {
+@DoNotStore
+public interface TwoDimensionalPortal extends Portal {
+
+    /**
+     * One corner of the portal.
+     *
+     * @return A location with the corner
+     */
+    default ServerLocation minCorner() {
+        return this.origin();
+    }
+
+    /**
+     * One corner of the portal.
+     *
+     * @return A location with the corner
+     */
+    ServerLocation maxCorner();
 
 }
