@@ -48,7 +48,7 @@ public interface TagTemplate extends DataPackSerializable {
         return Sponge.game().builderProvider().provide(Builder.class);
     }
 
-    interface Builder<T extends Taggable> extends org.spongepowered.api.util.ResourceKeyedBuilder<TagTemplate, Builder<T>> {
+    interface Builder<T extends Taggable<T>> extends org.spongepowered.api.util.ResourceKeyedBuilder<TagTemplate, Builder<T>> {
 
         /**
          * Sets the tag type and generifies the builder.
@@ -56,7 +56,7 @@ public interface TagTemplate extends DataPackSerializable {
          * @param tagType Type to build a tag for, e.g {@link TagTypes#BLOCK_TYPE}
          * @return This builder, for chaining
          */
-        <NT extends Taggable> Builder<NT> type(TagType<NT> tagType);
+        <NT extends Taggable<NT>> Builder<NT> type(TagType<NT> tagType);
 
         /**
          * <p>Whether to replace instead of append if the tag already
