@@ -32,5 +32,4 @@ public enum RegistryScope {
     GAME,
     ENGINE,
     WORLD,
-    DATA_PACK,
 }

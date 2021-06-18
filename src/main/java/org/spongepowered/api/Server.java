@@ -29,7 +29,6 @@ import net.kyori.adventure.audience.ForwardingAudience;
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.block.entity.CommandBlock;
 import org.spongepowered.api.command.manager.CommandManager;
-import org.spongepowered.api.datapack.DataPackManager;
 import org.spongepowered.api.entity.living.Hostile;
 import org.spongepowered.api.entity.living.animal.Animal;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
@@ -398,13 +397,4 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      * @return MapStorage
      */
     MapStorage mapStorage();
-
-    /**
-     * Gets the {@link DataPackManager} for this server.
-     *
-     * <p>This allows for control over the server's
-     * datapacks.</p>
-     * @return The {@link DataPackManager} instance.
-     */
-    DataPackManager dataPackManager();
 }

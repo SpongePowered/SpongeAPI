@@ -406,13 +406,13 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<TagType<?>> TAG_TYPES = RegistryTypes.spongeKeyInGame("tag_type");
 
-    public static final DefaultedRegistryType<Tag<BlockType>> BLOCK_TYPE_TAGS = RegistryTypes.spongeKeyInDataPack("block_type_tags");
+    public static final DefaultedRegistryType<Tag<BlockType>> BLOCK_TYPE_TAGS = RegistryTypes.spongeKeyInGame("block_type_tags");
 
-    public static final DefaultedRegistryType<Tag<ItemType>> ITEM_TYPE_TAGS = RegistryTypes.spongeKeyInDataPack("item_type_tags");
+    public static final DefaultedRegistryType<Tag<ItemType>> ITEM_TYPE_TAGS = RegistryTypes.spongeKeyInGame("item_type_tags");
 
-    public static final DefaultedRegistryType<Tag<EntityType<?>>> ENTITY_TYPE_TAGS = RegistryTypes.spongeKeyInDataPack("entity_type_tags");
+    public static final DefaultedRegistryType<Tag<EntityType<?>>> ENTITY_TYPE_TAGS = RegistryTypes.spongeKeyInGame("entity_type_tags");
 
-    public static final DefaultedRegistryType<Tag<FluidType>> FLUID_TYPE_TAGS = RegistryTypes.spongeKeyInDataPack("fluid_type_tags");
+    public static final DefaultedRegistryType<Tag<FluidType>> FLUID_TYPE_TAGS = RegistryTypes.spongeKeyInGame("fluid_type_tags");
 
     // @formatter:on
 
@@ -430,9 +430,5 @@ public final class RegistryTypes {
 
     private static <V> DefaultedRegistryType<V> spongeKeyInGame(final String key) {
         return RegistryType.of(RegistryRoots.SPONGE, ResourceKey.sponge(Objects.requireNonNull(key, "key"))).asDefaultedType(() -> Sponge.game().registries());
-    }
-
-    private static <V> DefaultedRegistryType<V> spongeKeyInDataPack(final String key) {
-        return RegistryType.of(RegistryRoots.SPONGE, ResourceKey.sponge(Objects.requireNonNull(key, "key"))).asDefaultedType(() -> Sponge.game().dataPackManager().registries());
     }
 }

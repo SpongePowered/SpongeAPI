@@ -30,7 +30,6 @@ import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataSerializable;
-import org.spongepowered.api.datapack.DataPackManager;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.network.channel.ChannelManager;
 import org.spongepowered.api.plugin.PluginManager;
@@ -211,11 +210,4 @@ public interface Game extends ScopedRegistryHolder {
      * @return The service manager
      */
     ServiceProvider.GameScoped serviceProvider();
-
-    /**
-     * Gets the {@link DataPackManager} for managing data packs.
-     *
-     * @return The Data Pack Manager
-     */
-    DataPackManager dataPackManager();
 }
