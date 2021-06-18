@@ -49,6 +49,6 @@ Are you a talented programmer looking to contribute some code? We'd love the hel
 [#sponge on irc.esper.net]: irc://irc.esper.net/#sponge
 [Development Chat]: https://webchat.esper.net/?channels=spongedev
 [#spongedev on irc.esper.net]: irc://irc.esper.net/#spongedev
-[Preparing for Development]: https://docs.spongepowered.org/en/preparing/
+[Preparing for Development]: https://docs.spongepowered.org/stable/en/preparing/
 [Javadocs]: https://jd.spongepowered.org
 [stable-7]: https://github.com/SpongePowered/SpongeAPI/tree/stable-7
