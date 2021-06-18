@@ -6,9 +6,9 @@ A mature Minecraft plugin API (not including an implementation), licensed under 
 * [Source]
 * [Issues]
 * [Documentation]
-* [Discord] `#plugins`
 * [Preparing for Development]
 * [Javadocs]
+* [Discord] `#plugins`
 
 ## Prerequisites
 * [Java] 8 (JDK 16 recommended for development)
@@ -40,6 +40,6 @@ Are you a talented programmer looking to contribute some code? We'd love the hel
 [Java]: http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 [Source]: https://github.com/SpongePowered/SpongeAPI/
 [MIT License]: https://www.tldrlegal.com/license/mit-license
-[Community Discord]: https://discord.gg/PtaGRAs
+[Discord]: https://discord.gg/PtaGRAs
 [Preparing for Development]: https://docs.spongepowered.org/stable/en/preparing/
 [Javadocs]: https://jd.spongepowered.org
