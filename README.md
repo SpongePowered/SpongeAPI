@@ -6,9 +6,7 @@ A mature Minecraft plugin API (not including an implementation), licensed under 
 * [Source]
 * [Issues]
 * [Documentation]
-* [Community Discord]
-* [Community IRC]: [#sponge on irc.esper.net]
-* [Development IRC]: [#spongedev on irc.esper.net]
+* [Discord] `#plugins`
 * [Preparing for Development]
 * [Javadocs]
 
@@ -43,12 +41,5 @@ Are you a talented programmer looking to contribute some code? We'd love the hel
 [Source]: https://github.com/SpongePowered/SpongeAPI/
 [MIT License]: https://www.tldrlegal.com/license/mit-license
 [Community Discord]: https://discord.gg/PtaGRAs
-[Community IRC]: https://kiwiirc.com/client/irc.esper.net:+6697/?nick=sponge|?#sponge
-[Development IRC]: https://kiwiirc.com/client/irc.esper.net:+6697/?nick=sponge|?#spongedev
-[Preparing for Development]: https://docs.spongepowered.org/en/preparing/
-[#sponge on irc.esper.net]: irc://irc.esper.net/#sponge
-[Development Chat]: https://webchat.esper.net/?channels=spongedev
-[#spongedev on irc.esper.net]: irc://irc.esper.net/#spongedev
 [Preparing for Development]: https://docs.spongepowered.org/stable/en/preparing/
 [Javadocs]: https://jd.spongepowered.org
-[stable-7]: https://github.com/SpongePowered/SpongeAPI/tree/stable-7
