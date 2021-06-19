@@ -29,7 +29,7 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import java.util.Collection;
 
 /**
- * A type that can be tagged inside a {@link Tag}
+ * A type that may be included in one or more {@link Tag} collections.
  */
 public interface Taggable<T extends Taggable<T>> extends DefaultedRegistryValue {
 

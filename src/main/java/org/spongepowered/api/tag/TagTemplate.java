@@ -28,13 +28,14 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPackSerializable;
+import org.spongepowered.api.event.lifecycle.RegisterDataPackValueEvent;
+import org.spongepowered.api.registry.RegistryKey;
 
 import java.util.Collection;
+import java.util.Map;
 
 /**
  * A template that creates a or modifies a {@link Tag}.
- *
- * <p>All registrations through the API will generate into the Vanilla data pack system</p>
  */
 public interface TagTemplate extends DataPackSerializable {
 
@@ -77,30 +78,88 @@ public interface TagTemplate extends DataPackSerializable {
         }
 
         /**
-         * Adds a child tag to this tag.
-         * This adds all of its values to this tag.
-         *
-         * @param childTag Child tag to add.
-         * @return This builder, for chaining
-         */
-        Builder<T> addChild(Tag<T> childTag);
-
-        Builder<T> addChildren(Collection<Tag<T>> children);
-
-        /**
-         * Adds the value to the tag.
+         * Adds the {@link RegistryKey} for a value to the builder.
          *
          * @param value Value to add
+         * @param required Whether this tag should fail to load if
+         *                 the value is not found while loading.
          * @return This builder, for chaining
          */
-        Builder<T> addValue(T value);
+        Builder<T> addValue(RegistryKey<T> value, boolean required);
 
-        Builder<T> addValues(Collection<T> values);
+        default Builder<T> addValue(RegistryKey<T> value) {
+            return addValue(value, true);
+        }
 
         /**
-         * A nicely generified tag, <b>That must be registered</b> in {@link org.spongepowered.api.event.lifecycle.RegisterDataPackValueEvent}.
+         * Adds a collection of {@link RegistryKey}s for values to this builder.
          *
-         * @return The built tag.
+         * @param values Values to add
+         * @param required Whether the values are required. If required,
+         *                 the tag will fail to load if they are not found
+         *                 while loading.
+         * @return This builder, for chaining.
+         */
+        Builder<T> addValues(Collection<RegistryKey<T>> values, boolean required);
+
+        default Builder<T> addValues(Collection<RegistryKey<T>> values) {
+            return addValues(values, true);
+        }
+
+        /**
+         * Adds a {@link RegistryKey} for a Tag to this builder.
+         * This means anything contained in that tag, is always
+         * also contained in this one.
+         *
+         * @param childTag {@link RegistryKey} for tag to be added.
+         * @param required Whether loading this tag should fail if the child tag is not found.
+         * @return This builder, for chaining
+         */
+        Builder<T> addChild(RegistryKey<Tag<T>> childTag, boolean required);
+
+        default Builder<T> addChild(RegistryKey<Tag<T>> childTag) {
+            return addChild(childTag, true);
+        }
+
+        /**
+         * Adds a child tag to this builder, using a {@link TagTemplate}.
+         *
+         * @param childTag The child to be added.
+         * @return This builder, for chaining
+         * @throws IllegalArgumentException If this TagTemplate is not the same {@link TagType}
+         *                                  as this builder, so is incompatible.
+         */
+        Builder<T> addChild(TagTemplate childTag) throws IllegalArgumentException;
+
+        /**
+         * Adds a collection of children, that are required.
+         * If these are not found they will cause the tag to fail to load.
+         * @param children Children to add.
+         * @param required Whether to fail loading the tag
+         *                 if these children are not found.
+         * @return This builder, for chaining
+         */
+        Builder<T> addChildren(Collection<RegistryKey<Tag<T>>> children, boolean required);
+
+        default Builder<T> addChildren(Collection<RegistryKey<Tag<T>>> children) {
+            return addChildren(children, true);
+        }
+
+        /**
+         * Adds a map of children to this builder, of
+         * {@link RegistryKey} to whether they are required.
+         * This tag will fail to load if the child tag is not
+         * present and it is required.
+         *
+         * @param childrenMap Map of children, RegistryKey-Required
+         * @return This builder, for chaining.
+         */
+        Builder<T> addChildren(Map<RegistryKey<Tag<T>>, Boolean> childrenMap);
+
+        /**
+         * Creates a {@link TagTemplate} that should be registered during the {@link RegisterDataPackValueEvent}.
+         *
+         * @return The built {@link TagTemplate}.
          */
         @Override
         @NonNull TagTemplate build();

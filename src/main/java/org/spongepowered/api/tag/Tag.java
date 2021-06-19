@@ -24,16 +24,29 @@
  */
 package org.spongepowered.api.tag;
 
+import org.spongepowered.api.Engine;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.ResourceKeyed;
+import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 
 import java.util.Collection;
 
 /**
  * Represents a Tag for a given type.
- * Tags group {@link TagTypes}.
  *
- * @param <T> Type that this tag groups
+ * A {@link ResourceKey resource keyed} collection of {@link Taggable} values (of type {@code T}).
+ *
+ * <p>While any number of tags may exist and the values each tag contains is arbitary,
+ * vanilla Minecraft generally uses pre-defined tags for one of the following reasons:</p>
+ *
+ * <ul>
+ *     <li>To define a common material that {@link BlockType blocks} are made of,
+ *     for example, {@link BlockTypeTags#ACACIA_LOGS}</li>
+ *     <li>To define a common behavior that the {@link Engine engine} should apply to a block,
+ *     such as specifying a block as a log that can burn via {@link BlockTypeTags#LOGS_THAT_BURN}</li>
+ * </ul>
+ *
  */
 public interface Tag<T> extends DefaultedRegistryValue, ResourceKeyed {
 
@@ -42,7 +55,7 @@ public interface Tag<T> extends DefaultedRegistryValue, ResourceKeyed {
      *
      * @return All tag values
      */
-    Collection<T> all();
+    Collection<T> values();
 
     /**
      * Whether this tag includes the given value.

@@ -36,8 +36,11 @@ import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.registry.RegistryTypes;
 
+/**
+ * Represents a type that a {@link Tag} can represent.
+ */
 @RegistryScopes(scopes = RegistryScope.GAME)
-public class TagTypes {
+public final class TagTypes {
 
     // @formatter:off
 
