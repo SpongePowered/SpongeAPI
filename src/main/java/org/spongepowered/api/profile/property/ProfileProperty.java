@@ -36,7 +36,9 @@ import java.util.Optional;
 /**
  * Represents a property in a {@link GameProfile}'s profile property map.
  *
- * <p>This interface should not be implemented.</p>
+ * <p>This interface should not be implemented by third parties - use
+ * {@link #of(String, String)} or {@link #of(String, String, String)} to
+ * create instances instead.</p>
  *
  * @see #of(String, String)
  * @see #of(String, String, String)
