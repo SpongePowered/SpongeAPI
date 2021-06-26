@@ -43,7 +43,6 @@ import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.generation.ChunkGenerator;
 import org.spongepowered.api.world.server.storage.ServerWorldProperties;
-import org.spongepowered.api.world.storage.WorldStorage;
 import org.spongepowered.api.world.volume.game.InteractableVolume;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 import org.spongepowered.math.vector.Vector3i;
@@ -228,13 +227,6 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
      * @return The path
      */
     Path directory();
-
-    /**
-     * Gets the associated {@link WorldStorage} persisting this world.
-     *
-     * @return The associated world storage
-     */
-    WorldStorage worldStorage();
 
     /**
      * Instructs the world to save all data.

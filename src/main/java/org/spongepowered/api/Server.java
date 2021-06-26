@@ -34,6 +34,7 @@ import org.spongepowered.api.entity.living.animal.Animal;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
+import org.spongepowered.api.item.recipe.RecipeManager;
 import org.spongepowered.api.map.MapStorage;
 import org.spongepowered.api.network.ServerSideConnection;
 import org.spongepowered.api.profile.GameProfileManager;
@@ -66,6 +67,13 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      * @return The world manager
      */
     WorldManager worldManager();
+
+    /**
+     * Retrieves the {@link RecipeManager}.
+     *
+     * @return The recipe manager
+     */
+    RecipeManager recipeManager();
 
     /**
      * Gets if multiple {@link ServerWorld worlds} will be loaded by the server.
