@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.api.asset.AssetManager;
-import org.spongepowered.api.command.manager.CommandManager;
 import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.data.persistence.DataBuilder;
@@ -35,8 +35,6 @@ import org.spongepowered.api.network.channel.ChannelRegistry;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.registry.BuilderProvider;
 import org.spongepowered.api.registry.FactoryProvider;
-import org.spongepowered.api.registry.GameRegistry;
-import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.ScopedRegistryHolder;
 import org.spongepowered.api.scheduler.Scheduler;
 import org.spongepowered.api.service.ServiceProvider;
@@ -96,7 +94,7 @@ public interface Game extends ScopedRegistryHolder {
      * @param locale The locale to lookup (e.g. {@code en_US}.
      * @return The locale
      */
-    Locale locale(String locale);
+    Locale locale(@NonNull String locale);
 
     /**
      * Returns if the {@link Client} is available for use. The result of this method is entirely
@@ -125,13 +123,6 @@ public interface Game extends ScopedRegistryHolder {
      * @return The current implementation
      */
     Platform platform();
-
-    /**
-     * Gets the {@link GameRegistry}.
-     *
-     * @return The game registry
-     */
-    GameRegistry registry();
 
     /**
      * Retrieves the {@link BuilderProvider}.
