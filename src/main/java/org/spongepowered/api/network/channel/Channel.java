@@ -28,7 +28,7 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.network.EngineConnection;
 
 /**
- * Represents a network channel bound to a {@link ChannelRegistry}. The channel
+ * Represents a network channel bound to a {@link ChannelManager}. The channel
  * can be used to send and receive data.
  */
 public interface Channel {
@@ -38,7 +38,7 @@ public interface Channel {
      *
      * @return The registrar
      */
-    ChannelRegistry registry();
+    ChannelManager registry();
 
     /**
      * Gets this channel's bound key.

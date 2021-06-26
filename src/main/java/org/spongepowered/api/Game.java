@@ -31,7 +31,7 @@ import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.event.EventManager;
-import org.spongepowered.api.network.channel.ChannelRegistry;
+import org.spongepowered.api.network.channel.ChannelManager;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.registry.BuilderProvider;
 import org.spongepowered.api.registry.FactoryProvider;
@@ -176,11 +176,11 @@ public interface Game extends ScopedRegistryHolder {
     ConfigManager configManager();
 
     /**
-     * Gets the {@link ChannelRegistry} for creating network channels.
+     * Gets the {@link ChannelManager} for creating network channels.
      *
-     * @return The channel registry
+     * @return The channel manager
      */
-    ChannelRegistry channelRegistry();
+    ChannelManager channelManager();
 
     /**
      * Gets the {@link MetricsConfigManager} instance, allowing data/metric gathering

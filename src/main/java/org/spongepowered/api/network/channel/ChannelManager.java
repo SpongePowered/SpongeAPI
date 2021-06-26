@@ -31,10 +31,10 @@ import java.util.Collection;
 import java.util.Optional;
 
 /**
- * A registry handling custom payloads via {@link Channel}s to and from
+ * A manager handling custom payloads via {@link Channel}s to and from
  * {@link EngineConnection}s.
  */
-public interface ChannelRegistry {
+public interface ChannelManager {
 
     /**
      * Gets a channel binding if a channel exists for the given key.

@@ -31,7 +31,7 @@ import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.event.lifecycle.LifecycleEvent;
-import org.spongepowered.api.network.channel.ChannelRegistry;
+import org.spongepowered.api.network.channel.ChannelManager;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.scheduler.Scheduler;
 import org.spongepowered.api.service.ServiceProvider;
@@ -116,12 +116,12 @@ public final class Sponge {
     }
 
     /**
-     * Gets the {@link ChannelRegistry} for creating network channels.
+     * Gets the {@link ChannelManager} for creating network channels.
      *
      * @return The channel registry
      */
-    public static ChannelRegistry channelRegistry() {
-        return Sponge.game().channelRegistry();
+    public static ChannelManager channelManager() {
+        return Sponge.game().channelManager();
     }
 
     /**
