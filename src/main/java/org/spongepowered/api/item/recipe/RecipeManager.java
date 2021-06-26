@@ -36,12 +36,12 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 /**
- * A registry holds all registered recipes for a given game.
+ * Manages registered recipes.
  * Register new Recipes during {@link org.spongepowered.api.event.lifecycle.RegisterDataPackValueEvent}
  * using {@link RecipeRegistration}s.
  * To disable a recipe override it with an empty result.
  */
-public interface RecipeRegistry {
+public interface RecipeManager {
 
     /**
      * Gets a recipe by its {@link ResourceKey key}.

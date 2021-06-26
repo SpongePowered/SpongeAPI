@@ -22,44 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network.channel;
+package org.spongepowered.api.world.portal;
 
-import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.network.EngineConnection;
-
-import java.util.Collection;
-import java.util.Optional;
+import org.spongepowered.api.util.annotation.DoNotStore;
+import org.spongepowered.api.world.server.ServerLocation;
 
 /**
- * A registry handling custom payloads via {@link Channel}s to and from
- * {@link EngineConnection}s.
+ * Represents a {@link Portal} with a known shape.
  */
-public interface ChannelRegistry {
+@DoNotStore
+public interface TwoDimensionalPortal extends Portal {
 
     /**
-     * Gets a channel binding if a channel exists for the given key.
+     * One corner of the portal.
      *
-     * @param channelKey The channel key
-     * @return The channel if it exists
+     * @return A location with the corner
      */
-    Optional<Channel> get(ResourceKey channelKey);
+    default ServerLocation minCorner() {
+        return this.origin();
+    }
 
     /**
-     * Gets a {@link Channel} by the given channel key. If the channel exists
-     * and it matches the given channel type, it is returned. If the channel
-     * doesn't match a {@link IllegalStateException} is thrown.
+     * One corner of the portal.
      *
-     * @param channelKey The channel key
-     * @param channelType The channel type
-     * @return A new or existing channel binding
-     * @throws IllegalStateException if the existing channel is not of the given type
+     * @return A location with the corner
      */
-    <C extends Channel> C ofType(ResourceKey channelKey, Class<C> channelType);
+    ServerLocation maxCorner();
 
-    /**
-     * Gets an immutable collection of all the channels that are registered.
-     *
-     * @return The channels
-     */
-    Collection<Channel> channels();
 }

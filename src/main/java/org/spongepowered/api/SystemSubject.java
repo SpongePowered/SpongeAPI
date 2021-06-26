@@ -39,6 +39,6 @@ import org.spongepowered.api.util.locale.LocaleSource;
  * should be directed to a system visible location, such as a log or a
  * console.</p>
  */
-public interface SystemSubject extends Subject, Audience {
+public interface SystemSubject extends Subject, Audience, LocaleSource {
 
 }

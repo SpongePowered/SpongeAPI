@@ -37,7 +37,7 @@ import java.util.stream.Stream;
  * @param <T> The type
  */
 @DoNotStore
-public interface Registry<T> extends Iterable<RegistryEntry<T>> {
+public interface Registry<T> {
 
     /**
      * Gets the {@link ResourceKey key} identifying this registry.

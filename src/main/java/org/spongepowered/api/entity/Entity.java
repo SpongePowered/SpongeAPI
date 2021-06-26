@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity;
 
+import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.event.HoverEventSource;
@@ -74,7 +75,7 @@ import java.util.function.UnaryOperator;
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
 @DoNotStore
-public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEntity>, Locatable, EntityProjectileSource,
+public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEntity>, Locatable, EntityProjectileSource, Sound.Emitter,
         SerializableDataHolder.Mutable, RandomProvider {
 
     /**

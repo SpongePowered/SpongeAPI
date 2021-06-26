@@ -22,29 +22,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.registry;
+package org.spongepowered.api.network.channel;
 
-import org.spongepowered.api.Game;
-import org.spongepowered.api.adventure.AdventureRegistry;
-import org.spongepowered.api.item.recipe.RecipeRegistry;
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.network.EngineConnection;
+
+import java.util.Collection;
+import java.util.Optional;
 
 /**
- * Provides an easy way to query various registries composed in a {@link Game}.
+ * A manager handling custom payloads via {@link Channel}s to and from
+ * {@link EngineConnection}s.
  */
-public interface GameRegistry {
+public interface ChannelManager {
 
     /**
-     * Retrieves the {@link AdventureRegistry}.
+     * Gets a channel binding if a channel exists for the given key.
      *
-     * @return The catalog registry
+     * @param channelKey The channel key
+     * @return The channel if it exists
      */
-    AdventureRegistry adventureRegistry();
+    Optional<Channel> get(ResourceKey channelKey);
 
     /**
-     * Retrieves the {@link RecipeRegistry}.
+     * Gets a {@link Channel} by the given channel key. If the channel exists
+     * and it matches the given channel type, it is returned. If the channel
+     * doesn't match a {@link IllegalStateException} is thrown.
      *
-     * @return The recipe registry
+     * @param channelKey The channel key
+     * @param channelType The channel type
+     * @return A new or existing channel binding
+     * @throws IllegalStateException if the existing channel is not of the given type
      */
-    RecipeRegistry recipeRegistry();
+    <C extends Channel> C ofType(ResourceKey channelKey, Class<C> channelType);
 
+    /**
+     * Gets an immutable collection of all the channels that are registered.
+     *
+     * @return The channels
+     */
+    Collection<Channel> channels();
 }

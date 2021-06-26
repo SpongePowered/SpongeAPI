@@ -25,7 +25,7 @@
 package org.spongepowered.api.util;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.serializer.plain.PlainComponentSerializer;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import net.kyori.adventure.util.ComponentMessageThrowable;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
@@ -81,7 +81,7 @@ public class ComponentMessageException extends Exception implements ComponentMes
     @Override
     public @Nullable String getMessage() {
         final /* @Nullable */ Component message = this.componentMessage();
-        return message == null ? null : PlainComponentSerializer.plain().serialize(message);
+        return message == null ? null : PlainTextComponentSerializer.plainText().serialize(message);
     }
 
     /**

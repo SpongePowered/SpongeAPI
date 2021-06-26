@@ -87,6 +87,11 @@ public final class Queries {
     public static final DataQuery UUID_MOST = of("UuidMost");
     public static final DataQuery POSITION = of("Pos");
 
+    // ProfileProperty
+    public static final DataQuery PROPERTY_NAME = of("name");
+    public static final DataQuery PROPERTY_VALUE = of("value");
+    public static final DataQuery PROPERTY_SIGNATURE = of("signature");
+
     // Suppress default constructor to ensure non-instantiability.
     private Queries() {
         throw new AssertionError("You should not be attempting to instantiate this class.");

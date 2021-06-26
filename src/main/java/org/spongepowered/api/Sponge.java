@@ -25,14 +25,14 @@
 package org.spongepowered.api;
 
 import com.google.inject.Inject;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.asset.AssetManager;
 import org.spongepowered.api.config.ConfigManager;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.event.lifecycle.LifecycleEvent;
-import org.spongepowered.api.network.channel.ChannelRegistry;
+import org.spongepowered.api.network.channel.ChannelManager;
 import org.spongepowered.api.plugin.PluginManager;
-import org.spongepowered.api.registry.GameRegistry;
 import org.spongepowered.api.scheduler.Scheduler;
 import org.spongepowered.api.service.ServiceProvider;
 import org.spongepowered.api.sql.SqlManager;
@@ -44,7 +44,7 @@ import org.spongepowered.api.util.metric.MetricsConfigManager;
  */
 public final class Sponge {
 
-    @Inject private static Game game;
+    @Inject private @Nullable static Game game;
 
     /**
      * Gets the {@link Game} instance. There is ever only going
@@ -67,15 +67,6 @@ public final class Sponge {
      */
     public static Platform platform() {
         return Sponge.game().platform();
-    }
-
-    /**
-     * Gets the {@link GameRegistry} instance.
-     *
-     * @return The game registry instance
-     */
-    public static GameRegistry registry() {
-        return Sponge.game().registry();
     }
 
     /**
@@ -125,12 +116,12 @@ public final class Sponge {
     }
 
     /**
-     * Gets the {@link ChannelRegistry} for creating network channels.
+     * Gets the {@link ChannelManager} for creating network channels.
      *
      * @return The channel registry
      */
-    public static ChannelRegistry channelRegistry() {
-        return Sponge.game().channelRegistry();
+    public static ChannelManager channelManager() {
+        return Sponge.game().channelManager();
     }
 
     /**
