@@ -34,11 +34,11 @@ import org.spongepowered.api.network.EngineConnection;
 public interface Channel {
 
     /**
-     * Gets the registrar that this channel is bound to.
+     * Gets the manager that this channel is bound to.
      *
-     * @return The registrar
+     * @return The manager
      */
-    ChannelManager registry();
+    ChannelManager manager();
 
     /**
      * Gets this channel's bound key.
