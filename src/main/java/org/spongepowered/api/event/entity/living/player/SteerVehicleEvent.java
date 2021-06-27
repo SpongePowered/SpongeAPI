@@ -29,7 +29,7 @@ import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 /**
- * Called each tick for any {@link ServerPlayer player} riding a vehicle.
+ * Called when a {@link ServerPlayer player} riding a vehicle starts or stops steering the vehicle.
  */
 @GenerateFactoryMethod
 public interface SteerVehicleEvent extends Event {
@@ -44,16 +44,24 @@ public interface SteerVehicleEvent extends Event {
     /**
      * Get whether the player is steering left or right.
      *
+     * positive number = left
+     * negative number = right
+     * zero = none
+     *
      * @return The sway
      */
-    Sway sway();
+    float sway();
 
     /**
      * Get whether the player is steering forwards or backwards.
      *
+     * positive number = forwards
+     * negative number = backwards
+     * zero = none
+     *
      * @return The surge
      */
-    Surge surge();
+    float surge();
 
     /**
      * Get whether the player is attempting to jump.
@@ -61,117 +69,5 @@ public interface SteerVehicleEvent extends Event {
      * @return Whether the player is attempting to jump.
      */
     boolean jump();
-
-    /**
-     * Get whether the player is attempting to dismount the entity.
-     *
-     * @return Whether the player is attempting to dismount the entity.
-     */
-    boolean unmount();
-
-    /**
-     * The possible scenarios of steering left or right.
-     */
-    enum Sway {
-
-        /**
-         * The player is not steering left or right.
-         */
-        NONE(0),
-
-        /**
-         * The player is steering right.
-         */
-        RIGHT(-1),
-
-        /**
-         * The player is steering left.
-         */
-        LEFT(1);
-
-        private final int direction;
-
-        Sway(int direction) {
-            this.direction = direction;
-        }
-
-        /**
-         * The direction represented numerically.
-         *
-         * @return The numeric representation of the direction.
-         */
-        public int direction() {
-            return this.direction;
-        }
-
-        /**
-         * Get the direction from it's numerical value.
-         *
-         * @param f The numerical value
-         * @return The direction
-         */
-        public static Sway valueOf(float f) {
-            if (f > 0) {
-                return LEFT;
-            } else if (f < 0) {
-                return RIGHT;
-            }
-
-            return NONE;
-        }
-
-    }
-
-    /**
-     * The possible scenarios of steering forwards or backwards.
-     */
-    enum Surge {
-
-        /**
-         * The player is not steering forwards or backwards.
-         */
-        NONE(0),
-
-        /**
-         * The player is steering backwards.
-         */
-        BACKWARDS(-1),
-
-        /**
-         * The player is steering forwards.
-         */
-        FORWARDS(1);
-
-        private final int direction;
-
-        Surge(int direction) {
-            this.direction = direction;
-        }
-
-        /**
-         * The direction represented numerically.
-         *
-         * @return The numeric representation of the direction.
-         */
-        public int direction() {
-            return this.direction;
-        }
-
-        /**
-         * Get the direction from it's numerical value.
-         *
-         * @param f The numerical value
-         * @return The direction
-         */
-        public static Surge valueOf(float f) {
-            if (f > 0) {
-                return FORWARDS;
-            } else if (f < 0) {
-                return BACKWARDS;
-            }
-
-            return NONE;
-        }
-    }
 
 }
