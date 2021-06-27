@@ -28,11 +28,9 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.ComponentSerializer;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Game;
-import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.parameter.CommandContext;
-import org.spongepowered.api.command.parameter.Parameter;
 import org.spongepowered.api.command.parameter.managed.ValueParameter;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.registry.DefaultedRegistryType;
@@ -40,11 +38,14 @@ import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryType;
-import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.Builder;
+import org.spongepowered.api.world.Locatable;
+import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.server.ServerWorld;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -70,21 +71,23 @@ public final class VariableValueParameters {
      */
     public static <T> RegistryEntryBuilder<T> registryEntryBuilder(
             final Function<CommandContext, @Nullable RegistryHolder> holderProvider, final RegistryType<T> registryKey) {
-        return Sponge.game().factoryProvider().provide(Factory.class).createRegistryEntryBuilder(holderProvider, registryKey);
+        return VariableValueParameters.registryEntryBuilder(Collections.singletonList(holderProvider), registryKey);
     }
 
     /**
      * Creates a builder that can build a {@link ValueParameter} that returns
      * an appropriate {@link Registry registry} entry from an argument.
      *
-     * @param registryProvider A {@link Function} that retrieves an appropriate
-     *      {@link Registry} to get objects from
+     * @param holderProviders The providers for {@link RegistryHolder}s to
+     *          retrieve the selected {@link Registry} from
+     * @param registryKey The {@link RegistryKey} that represents the target
+     *          {@link Registry} to get objects from
      * @param <T> The type in the {@link Registry}
      * @return The builder
      */
     public static <T> RegistryEntryBuilder<T> registryEntryBuilder(
-            final Function<CommandContext, @Nullable ? extends Registry<? extends T>> registryProvider) {
-        return Sponge.game().factoryProvider().provide(Factory.class).createRegistryEntryBuilder(registryProvider);
+            final List<Function<CommandContext, @Nullable RegistryHolder>> holderProviders, final RegistryType<T> registryKey) {
+        return Sponge.game().factoryProvider().provide(Factory.class).createRegistryEntryBuilder(holderProviders, registryKey);
     }
 
     /**
@@ -242,6 +245,37 @@ public final class VariableValueParameters {
                 return null;
             }
         };
+
+        /**
+         * A {@link Function} that always provides the {@link World} scoped
+         * {@link RegistryHolder} from the first {@link Locatable} in the
+         * provided {@link CommandContext}.
+         */
+        Function<CommandContext, @Nullable RegistryHolder> WORLD_FROM_LOCATABLE_HOLDER_PROVIDER =
+                in -> in.cause().first(Locatable.class).map(Locatable::world).map(World::registries).orElse(null);
+
+        /**
+         * A {@link Function} that always provides the {@link World} scoped
+         * {@link RegistryHolder} from the first {@link ServerWorld} in the
+         * provided {@link CommandContext}.
+         */
+        Function<CommandContext, @Nullable RegistryHolder> WORLD_FROM_CAUSE_HOLDER_PROVIDER =
+                in -> in.cause().first(ServerWorld.class).map(ServerWorld::registries).orElse(null);
+
+        /**
+         * Adds an alternative function that retrieves a {@link RegistryHolder}
+         * to attempt to get the selected {@link RegistryType}.
+         *
+         * <p>The order that these functions are added determines their
+         * priority if there are multiple registries, specifically, the first
+         * function that is provided will have the highest priority.</p>
+         *
+         * <p>Standard functions are available on {@link RegistryEntryBuilder}.</p>
+         *
+         * @param holderFunction The holder function
+         * @return This, for chaining
+         */
+        RegistryEntryBuilder<T> addHolderFunction(Function<CommandContext, @Nullable RegistryHolder> holderFunction);
 
         /**
          * Adds a prefix that could be prepended to the input argument if it
@@ -622,17 +656,40 @@ public final class VariableValueParameters {
          * and the provided {@link RegistryHolder}, which may be determined by
          * the current state of the {@link CommandContext}.
          *
-         * <p>This element can only support <strong>one</strong>
-         * {@link RegistryHolder}, due to the potential of conflicting
-         * {@link ResourceKey resource keys} across multiple registries. If
-         * testing multiple registries across multiple registry holders is
-         * required, consider using {@link Parameter#firstOf(Iterable)} with
-         * multiple versions of this parameter.</p>
+         * <p>This element can support multiple functions that return
+         * {@link RegistryHolder}s, however order matters, the {@link Registry}
+         * from the first holder that is resolved will be used. Holders may be
+         * added via {@link RegistryEntryBuilder#addHolderFunction(Function)}.
+         * </p>
+         *
+         * @param <T> The type that the target {@link Registry} holds
+         * @param registryKey The {@link RegistryKey} that represents the target
+         *      {@link Registry} in the {@link RegistryHolder} provided via
+         *      {@code holderProvider}.
+         * @return The {@link RegistryEntryBuilder}
+         */
+        <T> RegistryEntryBuilder<T> createRegistryEntryBuilder(final RegistryType<T> registryKey);
+
+        /**
+         * Creates a {@link RegistryEntryBuilder} that retrieves objects from
+         * the {@link Registry} represented by the given {@link RegistryKey}
+         * and the provided {@link RegistryHolder}, which may be determined by
+         * the current state of the {@link CommandContext}.
+         *
+         * <p>This element can support multiple functions that return
+         * {@link RegistryHolder}s, however order matters, the {@link Registry}
+         * from the first holder that is resolved will be used. Beyond the
+         * holders provided in this function, additional functions that resolve
+         * holders can be added through
+         * {@link RegistryEntryBuilder#addHolderFunction(Function)}.</p>
          *
          * <p>{@link Game} and {@link Server} scoped {@link RegistryHolder}
          * providers are available via
          * {@link RegistryEntryBuilder#GLOBAL_HOLDER_PROVIDER} and
-         * {@link RegistryEntryBuilder#SERVER_HOLDER_PROVIDER}</p>
+         * {@link RegistryEntryBuilder#SERVER_HOLDER_PROVIDER}. {@link World}
+         * scoped providers are available via
+         * {@link RegistryEntryBuilder#WORLD_FROM_CAUSE_HOLDER_PROVIDER} and
+         * {@link RegistryEntryBuilder#WORLD_FROM_LOCATABLE_HOLDER_PROVIDER}.</p>
          *
          * @param <T> The type that the target {@link Registry} holds
          * @param holderProvider A {@link Function} that provides a
@@ -643,25 +700,9 @@ public final class VariableValueParameters {
          *      {@code holderProvider}.
          * @return The {@link RegistryEntryBuilder}
          */
-        <T> RegistryEntryBuilder<T> createRegistryEntryBuilder(final Function<CommandContext, @Nullable RegistryHolder> holderProvider, final RegistryType<T> registryKey);
-
-        /**
-         * Creates a {@link RegistryEntryBuilder} that retrieves objects from
-         * the provided {@link Registry}, which provided via the given
-         * {@link Function} which <strong>may</strong> use the current
-         * {@link CommandContext} to determine the appropriate
-         * {@link RegistryHolder} to retrieve the {@link Registry} from.
-         *
-         * <p>When using a {@link RegistryTypes standard registry}, it is
-         * recommended that consumers use
-         * {@link #createRegistryEntryBuilder(Function, RegistryType)}
-         * instead, providing the appropriate {@link RegistryHolder} instead.</p>
-         *
-         * @param <T> The type that the target {@link Registry} holds
-         * @param registryProvider The {@link Registry} to get the values from
-         * @return The {@link RegistryEntryBuilder}
-         */
-        <T> RegistryEntryBuilder<T> createRegistryEntryBuilder(final Function<CommandContext, @Nullable ? extends Registry<? extends T>> registryProvider);
+        <T> RegistryEntryBuilder<T> createRegistryEntryBuilder(
+                final List<Function<CommandContext, @Nullable RegistryHolder>> holderProvider,
+                final RegistryType<T> registryKey);
 
         /**
          * Creates a {@link RegistryEntryBuilder} that retrieves objects from
