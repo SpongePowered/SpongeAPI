@@ -5,7 +5,6 @@ plugins {
     id("org.spongepowered.gradle.sponge.dev")
     id("net.kyori.indra.publishing")
     id("net.kyori.indra.checkstyle")
-    id("org.spongepowered.gradle.event-impl-gen")
     id("org.cadixdev.licenser")
     id("org.jetbrains.gradle.plugin.idea-ext")
     id("net.ltgt.errorprone")
@@ -21,6 +20,8 @@ val ap by sourceSets.registering {
     compileClasspath += sourceSets.main.get().compileClasspath + sourceSets.main.get().output
 }
 
+val eventFactoryClass = "org.spongepowered.api.event.SpongeEventFactory"
+
 // Project dependencies
 val adventureVersion: String by project
 val configurateVersion: String by project
@@ -29,6 +30,7 @@ val mathVersion: String by project
 dependencies {
     val caffeineVersion: String by project
     val errorproneVersion: String by project
+    val eventImplGenVersion: String by project
 
     // Directly tied to what's available from Minecraft
     api("org.apache.logging.log4j:log4j-api:$log4jVersion")
@@ -107,6 +109,10 @@ dependencies {
     compileOnly("com.google.errorprone:error_prone_annotations:$errorproneVersion")
     errorprone("com.google.errorprone:error_prone_core:$errorproneVersion")
 
+    // Event generation
+    annotationProcessor("org.spongepowered:event-impl-gen:$eventImplGenVersion")
+    compileOnlyApi("org.spongepowered:event-impl-gen-annotations:$eventImplGenVersion")
+
     // Math library
     api("org.spongepowered:math:$mathVersion")
 
@@ -118,28 +124,6 @@ dependencies {
     testImplementation("org.mockito:mockito-core:3.10.0")
 }
 tasks {
-    genEventImpl {
-        sourceCompatibility = "1.8"
-        destinationDir = project.layout.buildDirectory.dir("generated/event-factory").get().asFile
-
-        outputFactory = "org.spongepowered.api.event.SpongeEventFactory"
-        include("org/spongepowered/api/event/*/**/*")
-        exclude("org/spongepowered/api/event/action/InteractEvent.java")
-        exclude("org/spongepowered/api/event/cause/")
-        exclude("org/spongepowered/api/event/entity/AffectEntityEvent.java")
-        exclude("org/spongepowered/api/event/filter/")
-        exclude("org/spongepowered/api/event/impl/")
-        exclude("org/spongepowered/api/event/lifecycle/ProvideServiceEvent.java")
-        exclude("org/spongepowered/api/event/lifecycle/RegisterBuilderEvent.java")
-        exclude("org/spongepowered/api/event/lifecycle/RegisterRegistryEvent.java")
-        exclude("org/spongepowered/api/event/lifecycle/RegisterRegistryValueEvent.java")
-        exclude("org/spongepowered/api/event/lifecycle/RegisterCommandEvent.java")
-        exclude("org/spongepowered/api/event/lifecycle/RegisterFactoryEvent.java")
-        exclude("org/spongepowered/api/event/lifecycle/RegisterWorldEvent.java")
-        inclusiveAnnotations = setOf("org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod")
-        exclusiveAnnotations = setOf("org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod")
-    }
-
     jar {
         from(ap.get().output)
         manifest {
@@ -157,6 +141,15 @@ tasks {
             compilerArgs.addAll(listOf("-Xlint:-path"))
             isDeprecation = false
         }
+        options.errorprone {
+            disable("FutureReturnValueIgnored") // this check doesn't handle CompletableFuture properly
+            disable("EqualsGetClass") // conflicts with IntelliJ defaults
+            disable("MissingSummary") // TODO: Re-enable this check once Javadoc is in a better state
+        }
+    }
+
+    compileJava {
+        options.compilerArgs.add("-AeventGenFactory=$eventFactoryClass")
     }
 
     javadoc {
@@ -175,14 +168,6 @@ tasks {
                 }
                 addStringOption("-quiet")
             }
-        }
-    }
-
-    withType(JavaCompile::class).configureEach {
-        options.errorprone {
-            disable("FutureReturnValueIgnored") // this check doesn't handle CompletableFuture properly
-            disable("EqualsGetClass") // conflicts with IntelliJ defaults
-            disable("MissingSummary") // TODO: Re-enable this check once Javadoc is in a better state
         }
     }
 
@@ -209,15 +194,15 @@ idea {
                 delegateBuildRunToGradle = false
                 testRunner = org.jetbrains.gradle.ext.ActionDelegationConfig.TestRunner.PLATFORM
             }
-            this.extensions.getByType(org.jetbrains.gradle.ext.TaskTriggersConfig::class).run {
-                beforeBuild(tasks.genEventImpl)
+            this.extensions.getByType(org.jetbrains.gradle.ext.IdeaCompilerConfiguration::class).run {
+                javac {
+                    moduleJavacAdditionalOptions = mapOf(
+                            "SpongeAPI.main" to "-AeventGenFactory=$eventFactoryClass"
+                    )
+                }
             }
         }
     }
-}
-
-eclipse {
-    synchronizationTasks(tasks.genEventImpl)
 }
 
 val organization: String by project

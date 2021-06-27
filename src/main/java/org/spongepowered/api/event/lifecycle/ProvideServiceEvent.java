@@ -26,6 +26,7 @@ package org.spongepowered.api.event.lifecycle;
 
 import org.spongepowered.api.Engine;
 import org.spongepowered.api.event.GenericEvent;
+import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
 
 import java.util.function.Supplier;
 
@@ -47,6 +48,7 @@ import java.util.function.Supplier;
  *
  * @param <T> The service to provide.
  */
+@NoFactoryMethod
 public interface ProvideServiceEvent<T> extends GenericEvent<T>, LifecycleEvent {
 
     /**

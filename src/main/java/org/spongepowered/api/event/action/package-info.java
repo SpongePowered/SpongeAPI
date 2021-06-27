@@ -26,5 +26,8 @@
  * A common root package of all {@link org.spongepowered.api.event.Event}s that
  * lack a common "Source" and "Target" such that only the "Action" is known.
  */
+@GenerateFactoryMethod
 @org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
 package org.spongepowered.api.event.action;
+
+import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;

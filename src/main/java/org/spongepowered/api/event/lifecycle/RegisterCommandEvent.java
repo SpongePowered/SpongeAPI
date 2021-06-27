@@ -29,6 +29,7 @@ import org.spongepowered.api.command.manager.CommandFailedRegistrationException;
 import org.spongepowered.api.command.manager.CommandMapping;
 import org.spongepowered.api.command.registrar.CommandRegistrar;
 import org.spongepowered.api.event.GenericEvent;
+import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
 import org.spongepowered.plugin.PluginContainer;
 
 /**
@@ -50,6 +51,7 @@ import org.spongepowered.plugin.PluginContainer;
  *
  * @param <C> The type of command that is being registered.
  */
+@NoFactoryMethod
 public interface RegisterCommandEvent<C> extends GenericEvent<C>, LifecycleEvent {
 
     /**

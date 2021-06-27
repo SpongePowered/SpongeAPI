@@ -22,4 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+@GenerateFactoryMethod
 package org.spongepowered.api.event.permission;
+
+import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;

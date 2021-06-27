@@ -25,13 +25,12 @@
 package org.spongepowered.api.event.action;
 
 import org.spongepowered.api.event.Event;
-import org.spongepowered.math.vector.Vector3d;
-
-import java.util.Optional;
+import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
 
 /**
  * Base event for all interactions.
  */
+@NoFactoryMethod
 public interface InteractEvent extends Event {
 
 }
