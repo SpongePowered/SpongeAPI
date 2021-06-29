@@ -77,7 +77,7 @@ dependencies {
     }
 
     // Plugin spi, includes plugin-meta
-    api("org.spongepowered:plugin-spi:0.2.0")
+    api("org.spongepowered:plugin-spi:0.2.1-SNAPSHOT")
 
     // Configurate
     api(platform("org.spongepowered:configurate-bom:$configurateVersion"))
