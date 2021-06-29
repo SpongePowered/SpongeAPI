@@ -27,6 +27,7 @@ package org.spongepowered.api.entity.living.player.tab;
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
@@ -36,9 +37,9 @@ import org.spongepowered.api.util.CopyableBuilder;
 import java.util.Optional;
 
 /**
- * Represents the information attached to an entry in a {@link TabList}.
+ * Represents the information attached to an entry in a tab list.
  */
-public interface TabListEntry {
+public interface TabListEntry extends DataSerializable {
 
     /**
      * Creates a new {@link Builder} to create {@link TabListEntry}s.
@@ -48,13 +49,6 @@ public interface TabListEntry {
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class);
     }
-
-    /**
-     * Gets the {@link TabList} that owns this entry.
-     *
-     * @return The tab list that owns this entry
-     */
-    TabList list();
 
     /**
      * Gets the {@link GameProfile} associated with this entry.
@@ -71,65 +65,11 @@ public interface TabListEntry {
     Optional<Component> displayName();
 
     /**
-     * Sets this entry's display name.
-     *
-     * @param displayName The new display name
-     * @return This entry, for chaining
-     */
-    TabListEntry setDisplayName(@Nullable Component displayName);
-
-    /**
      * Gets the latency for this entry.
      *
      * @return The latency for this entry
      */
     int latency();
-
-    /**
-     * Sets the latency for this entry.
-     *
-     * <p>The client displays connection bars based on this number.</p>
-     *
-     * <table>
-     *     <caption>Connection Bars</caption>
-     *     <thead>
-     *         <tr>
-     *             <th>Bars</th>
-     *             <th>Time</th>
-     *         </tr>
-     *     </thead>
-     *     <tbody>
-     *         <tr>
-     *             <td>0</td>
-     *             <td>Less than 0</td>
-     *         </tr>
-     *         <tr>
-     *             <td>1</td>
-     *             <td>1000+</td>
-     *         </tr>
-     *         <tr>
-     *             <td>2</td>
-     *             <td>600 - 999</td>
-     *         </tr>
-     *         <tr>
-     *             <td>3</td>
-     *             <td>300 - 599</td>
-     *         </tr>
-     *         <tr>
-     *             <td>4</td>
-     *             <td>150 - 299</td>
-     *         </tr>
-     *         <tr>
-     *             <td>5</td>
-     *             <td>0 - 149</td>
-     *         </tr>
-     *     </tbody>
-     * </table>
-     *
-     * @param latency The new latency, in milliseconds
-     * @return This entry, for chaining
-     */
-    TabListEntry setLatency(int latency);
 
     /**
      * Gets the {@link GameMode} this entry is in.
@@ -139,31 +79,11 @@ public interface TabListEntry {
     GameMode gameMode();
 
     /**
-     * Sets this entry's gamemode.
-     *
-     * <p>When using {@link GameModes#SPECTATOR} and this entry is of an
-     * online {@link Player}, the player will have "spectator effects". Such
-     * effects can include invisibility and noclip.</p>
-     *
-     * @param gameMode The new gamemode
-     * @return This entry, for chaining
-     */
-    TabListEntry setGameMode(GameMode gameMode);
-
-    /**
      * Represents a builder class to create mutable {@link TabListEntry}s.
      *
      * @see TabListEntry
      */
     interface Builder extends org.spongepowered.api.util.Builder<TabListEntry, Builder>, CopyableBuilder<TabListEntry, Builder> {
-
-        /**
-         * Sets the {@link TabList} this entry is owned by.
-         *
-         * @param list The tab list
-         * @return The builder
-         */
-        Builder list(TabList list);
 
         /**
          * Sets the profile for entries created by this builder.
@@ -181,25 +101,64 @@ public interface TabListEntry {
          *
          * @param displayName The display name
          * @return The builder
-         * @see TabListEntry#setDisplayName(Component)
          */
         Builder displayName(@Nullable Component displayName);
 
         /**
          * Sets the latency for entries created by this builder.
          *
+         * <p>The client displays connection bars based on this number.</p>
+         *
+         * <table>
+         *     <caption>Connection Bars</caption>
+         *     <thead>
+         *         <tr>
+         *             <th>Bars</th>
+         *             <th>Time</th>
+         *         </tr>
+         *     </thead>
+         *     <tbody>
+         *         <tr>
+         *             <td>0</td>
+         *             <td>Less than 0</td>
+         *         </tr>
+         *         <tr>
+         *             <td>1</td>
+         *             <td>1000+</td>
+         *         </tr>
+         *         <tr>
+         *             <td>2</td>
+         *             <td>600 - 999</td>
+         *         </tr>
+         *         <tr>
+         *             <td>3</td>
+         *             <td>300 - 599</td>
+         *         </tr>
+         *         <tr>
+         *             <td>4</td>
+         *             <td>150 - 299</td>
+         *         </tr>
+         *         <tr>
+         *             <td>5</td>
+         *             <td>0 - 149</td>
+         *         </tr>
+         *     </tbody>
+         * </table>
+         *
          * @param latency The latency, in milliseconds
          * @return The builder
-         * @see TabListEntry#setLatency(int)
          */
         Builder latency(int latency);
 
         /**
          * Sets the gamemode for entries created by this builder.
          *
+         * <p>When using {@link GameModes#SPECTATOR} and this entry is of an
+         * online {@link Player}, the player will have "spectator effects". Such
+         * effects can include invisibility and noclip.</p>
+         *
          * @param gameMode The gamemode
          * @return The builder
-         * @see TabListEntry#setGameMode(GameMode)
          */
         Builder gameMode(GameMode gameMode);
 

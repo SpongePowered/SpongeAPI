@@ -171,6 +171,7 @@ import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
+import org.spongepowered.api.entity.living.player.tab.TabListEntry;
 import org.spongepowered.api.entity.living.trader.Trader;
 import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
@@ -2513,6 +2514,11 @@ public final class Keys {
      * <p>This is equivalent to the magnitude of the {@link #VELOCITY} vector</p>
      */
     public static final Key<Value<Double>> SWIFTNESS = Keys.key(ResourceKey.sponge("swiftness"), Double.class);
+
+    /**
+     * The {@link TabListEntry}s of a {@link Player}
+     */
+    public static final Key<ListValue<TabListEntry>> TAB_LIST_ENTRIES = Keys.listKey(ResourceKey.sponge("tab_list_entries"), TabListEntry.class);
 
     /**
      * The tamer of a {@link TameableAnimal} or {@link HorseLike}.
