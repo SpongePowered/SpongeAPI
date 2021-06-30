@@ -172,6 +172,7 @@ import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.entity.living.player.tab.TabListEntry;
+import org.spongepowered.api.entity.living.player.tab.TabListEntrySet;
 import org.spongepowered.api.entity.living.trader.Trader;
 import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
@@ -2518,7 +2519,7 @@ public final class Keys {
     /**
      * The {@link TabListEntry}s of a {@link Player}
      */
-    public static final Key<ListValue<TabListEntry>> TAB_LIST_ENTRIES = Keys.listKey(ResourceKey.sponge("tab_list_entries"), TabListEntry.class);
+    public static final Key<Value<TabListEntrySet>> TAB_LIST_ENTRIES = Keys.key(ResourceKey.sponge("tab_list_entries"), TabListEntrySet.class);
 
     /**
      * The tamer of a {@link TameableAnimal} or {@link HorseLike}.
