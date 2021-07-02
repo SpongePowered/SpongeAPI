@@ -171,7 +171,6 @@ import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
-import org.spongepowered.api.entity.living.player.tab.TabListEntry;
 import org.spongepowered.api.entity.living.player.tab.TabListEntries;
 import org.spongepowered.api.entity.living.trader.Trader;
 import org.spongepowered.api.entity.living.trader.Villager;
@@ -2517,7 +2516,7 @@ public final class Keys {
     public static final Key<Value<Double>> SWIFTNESS = Keys.key(ResourceKey.sponge("swiftness"), Double.class);
 
     /**
-     * The {@link TabListEntry}s of a {@link Player}
+     * The {@link TabListEntries} of a {@link Player}
      */
     public static final Key<Value<TabListEntries>> TAB_LIST_ENTRIES = Keys.key(ResourceKey.sponge("tab_list_entries"), TabListEntries.class);
 
