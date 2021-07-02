@@ -34,7 +34,7 @@ import java.util.UUID;
 /**
  * Represents a {@link Player}'s tab list entries.
  */
-public interface TabListEntrySet extends DataSerializable {
+public interface TabListEntries extends DataSerializable {
 
     /**
      * Gets the entries on the entry set.

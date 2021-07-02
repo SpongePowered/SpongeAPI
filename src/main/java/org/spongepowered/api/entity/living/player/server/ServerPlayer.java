@@ -42,7 +42,7 @@ import org.spongepowered.api.entity.living.player.PlayerChatFormatter;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
 import org.spongepowered.api.entity.living.player.tab.TabListEntry;
-import org.spongepowered.api.entity.living.player.tab.TabListEntrySet;
+import org.spongepowered.api.entity.living.player.tab.TabListEntries;
 import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.event.message.PlayerChatEvent;
 import org.spongepowered.api.item.inventory.Container;
@@ -197,7 +197,7 @@ public interface ServerPlayer extends Player, Subject {
      *
      * @return This player's tab list entries
      */
-    default Value.Mutable<TabListEntrySet> tabListEntries() {
+    default Value.Mutable<TabListEntries> tabListEntries() {
         return this.requireValue(Keys.TAB_LIST_ENTRIES).asMutable();
     }
 
