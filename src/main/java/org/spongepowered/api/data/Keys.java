@@ -603,11 +603,11 @@ public final class Keys {
     public static final Key<Value<SpellType>> CURRENT_SPELL = Keys.key(ResourceKey.sponge("current_spell"), SpellType.class);
 
     /**
-     * The damage dealt towards entities of a specific {@link EntityType} by a {@link DamagingProjectile}.
+     * The damage dealt towards entities of a specific {@link EntityType} by a {@link ArrowEntity}.
      *
      * <p>Note that in events, the damage defined for the provided
      * {@link EntityType} will take priority over the "default" damage as
-     * defined from {@link DamagingProjectile#attackDamage()}.</p>
+     * defined from {@link ArrowEntity#attackDamage()}.</p>
      *
      * <p>Types not present in this mapping will be
      * dealt damage to according to {@link #ATTACK_DAMAGE}.</p>
