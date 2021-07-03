@@ -65,7 +65,6 @@ import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.configurate.util.Types;
-import org.spongepowered.math.vector.Vector2d;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.plugin.PluginContainer;
 
@@ -78,6 +77,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -713,11 +713,47 @@ public interface Parameter {
      */
     static <T> Parameter.Value.Builder<T> registryElement(
             final TypeToken<T> type,
-            @NonNull final Function<CommandContext, RegistryHolder> holderProvider,
+            @NonNull final Function<CommandContext, @Nullable RegistryHolder> holderProvider,
             @NonNull final RegistryType<T> registryKey,
             @NonNull final String @NonNull... defaultNamespaces) {
+        return Parameter.registryElement(
+                type,
+                Collections.singletonList(holderProvider),
+                registryKey,
+                defaultNamespaces
+        );
+    }
+
+    /**
+     * Creates a builder that has the {@link ValueParameter} that allows you to
+     * choose from cataloged types.
+     *
+     * <p>See {@link VariableValueParameters.RegistryEntryBuilder
+     * #defaultNamespace(String)} for how default namespaces work.</p>
+     *
+     * <p>If the {@link Game} or {@link Server} scoped {@link RegistryHolder}
+     * is required,
+     * {@link VariableValueParameters.RegistryEntryBuilder#GLOBAL_HOLDER_PROVIDER}
+     * or {@link VariableValueParameters.RegistryEntryBuilder#SERVER_HOLDER_PROVIDER}
+     * may be used.</p>
+     *
+     * @param type The registry value type to check for choices
+     * @param holderProviders {@link Function}s that provides the appropriate
+     *      {@link RegistryHolder} to get the appropriate {@link Registry}
+     * @param registryKey The {@link RegistryKey} that represents the target
+     *      {@link Registry}
+     * @param defaultNamespaces The default namespaces that will be used with the
+     *  provided value if the supplied argument is un-namespaced
+     * @param <T> The type of registry value
+     * @return A {@link Parameter.Value.Builder}
+     */
+    static <T> Parameter.Value.Builder<T> registryElement(
+            final @NonNull TypeToken<T> type,
+            final @NonNull List<Function<CommandContext, @Nullable RegistryHolder>> holderProviders,
+            final @NonNull RegistryType<T> registryKey,
+            final @NonNull String @NonNull... defaultNamespaces) {
         final VariableValueParameters.RegistryEntryBuilder<? extends T> vvp =
-                VariableValueParameters.registryEntryBuilder(holderProvider, registryKey);
+                VariableValueParameters.registryEntryBuilder(holderProviders, registryKey);
         for (final String namespace : defaultNamespaces) {
             vvp.defaultNamespace(namespace);
         }

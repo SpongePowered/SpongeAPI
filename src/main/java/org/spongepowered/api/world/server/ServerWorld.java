@@ -280,4 +280,12 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
      * @return The raid at that location, if present
      */
     Optional<Raid> raidAt(Vector3i blockPosition);
+
+    /**
+     * Gets the {@link ChunkManager} for this world.
+     *
+     * @return The chunk manager.
+     */
+    ChunkManager chunkManager();
+
 }
