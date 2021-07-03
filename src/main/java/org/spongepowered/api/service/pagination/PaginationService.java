@@ -35,4 +35,11 @@ public interface PaginationService {
      * @return The pagination builder
      */
     PaginationList.Builder builder();
+
+    /**
+     * Gets the calculator used for text width and centering.
+     *
+     * @return The pagination calculator
+     */
+    PaginationCalculator getCalculator();
 }
