@@ -35,6 +35,7 @@ public interface Raider extends Patroller {
 
     /**
      * {@link Keys#CAN_JOIN_RAID}
+     *
      * @return Whether this raider can join a raid
      */
     default Value.Mutable<Boolean> canJoinRaid() {
@@ -43,14 +44,16 @@ public interface Raider extends Patroller {
 
     /**
      * {@link Keys#RAID_WAVE}
+     *
      * @return The raid wave of this raider
      */
-    default Optional<Value.Immutable<RaidWave>> raidWave() {
-        return this.getValue(Keys.RAID_WAVE).map(Value::asImmutable);
+    default Optional<Value<RaidWave>> raidWave() {
+        return this.getValue(Keys.RAID_WAVE);
     }
 
     /**
      * {@link Keys#IS_CELEBRATING}
+     *
      * @return Whether this raider is celebrating
      */
     default Value.Mutable<Boolean> celebrating() {

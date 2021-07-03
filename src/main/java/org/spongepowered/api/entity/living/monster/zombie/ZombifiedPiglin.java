@@ -41,4 +41,13 @@ public interface ZombifiedPiglin extends ZombieLike {
         return this.requireValue(Keys.ANGER_LEVEL).asMutable();
     }
 
+    /**
+     * {@link Keys#IS_ANGRY}
+     *
+     * @return Whether this zombified piglin is currently aggressive
+     */
+    default Value.Mutable<Boolean> angry() {
+        return this.requireValue(Keys.IS_ANGRY).asMutable();
+    }
+
 }

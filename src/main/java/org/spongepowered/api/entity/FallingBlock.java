@@ -38,7 +38,7 @@ public interface FallingBlock extends Entity {
     /**
      * {@link Keys#BLOCK_STATE}
      *
-     * @return The blockstate
+     * @return The block state of the falling block
      */
     default Value.Mutable<BlockState> blockState() {
         return this.requireValue(Keys.BLOCK_STATE).asMutable();

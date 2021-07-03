@@ -31,7 +31,7 @@ import org.spongepowered.api.data.value.Value;
 /**
  * Represents a Parrot.
  */
-public interface Parrot extends TameableAnimal, Sittable {
+public interface Parrot extends TameableAnimal {
 
     /**
      * {@link Keys#PARROT_TYPE}

@@ -34,6 +34,7 @@ public interface Pig extends Animal {
 
     /**
      * {@link Keys#IS_SADDLED}
+     *
      * @return Whether this pig has a saddle, and ready to be ridden
      */
     default Value.Mutable<Boolean> saddled() {

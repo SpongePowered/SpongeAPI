@@ -443,7 +443,7 @@ public final class Keys {
 
     /**
      * The {@link BossBar} displayed to the client by a {@link Boss}.
-     * Readonly but mutable?
+     * TODO Readonly but mutable?
      */
     public static final Key<Value<BossBar>> BOSS_BAR = Keys.key(ResourceKey.sponge("boss_bar"), BossBar.class);
 
@@ -603,11 +603,11 @@ public final class Keys {
     public static final Key<Value<SpellType>> CURRENT_SPELL = Keys.key(ResourceKey.sponge("current_spell"), SpellType.class);
 
     /**
-     * The damage dealt towards entities of a specific {@link EntityType} by a {@link DamagingProjectile}.
+     * The damage dealt towards entities of a specific {@link EntityType} by a {@link ArrowEntity}.
      *
      * <p>Note that in events, the damage defined for the provided
      * {@link EntityType} will take priority over the "default" damage as
-     * defined from {@link DamagingProjectile#attackDamage()}.</p>
+     * defined from {@link ArrowEntity#attackDamage()}.</p>
      *
      * <p>Types not present in this mapping will be
      * dealt damage to according to {@link #ATTACK_DAMAGE}.</p>
@@ -2585,7 +2585,7 @@ public final class Keys {
     public static final Key<Value<Boolean>> TRACKS_OUTPUT = Keys.key(ResourceKey.sponge("tracks_output"), Boolean.class);
 
     /**
-     * Tge {@link TradeOffer}s offered by a {@link Trader}.
+     * The {@link TradeOffer}s offered by a {@link Trader}.
      */
     public static final Key<ListValue<TradeOffer>> TRADE_OFFERS = Keys.listKey(ResourceKey.sponge("trade_offers"), TradeOffer.class);
 
