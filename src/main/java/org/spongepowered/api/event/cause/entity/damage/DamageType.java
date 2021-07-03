@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.cause.entity.damage;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
@@ -43,4 +44,26 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 @CatalogedBy(DamageTypes.class)
 public interface DamageType extends DefaultedRegistryValue, Nameable {
 
+    /**
+     * Creates a new {@link Builder builder} to build a {@link DamageType}.
+     *
+     * @return A new builder
+     */
+    static Builder builder() {
+        return Sponge.game().builderProvider().provide(Builder.class);
+    }
+
+    /**
+     * A builder to create {@link DamageType}s.
+     */
+    interface Builder extends org.spongepowered.api.util.Builder<DamageType, Builder> {
+
+        /**
+         * Sets the name of the {@link DamageType}.
+         *
+         * @param name The name
+         * @return This builder, for chaining
+         */
+        Builder name(String name);
+    }
 }
