@@ -37,9 +37,6 @@ import org.spongepowered.api.item.inventory.entity.PlayerInventory;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.util.locale.LocaleSource;
 
-import java.time.Instant;
-import java.util.Optional;
-
 /**
  * A Player is the representation of an actual unit playing the game.
  */
@@ -229,32 +226,4 @@ public interface Player extends Humanoid, Identified, LocaleSource, Viewer, Carr
     default Value.Mutable<Integer> sleepTimer() {
         return this.requireValue(Keys.SLEEP_TIMER).asMutable();
     }
-
-    /**
-     * {@link Keys#FIRST_DATE_JOINED}
-     *
-     * @return The timestamp value when this player first joined
-     */
-    default Optional<Value.Mutable<Instant>> firstJoined() {
-        return this.getValue(Keys.FIRST_DATE_JOINED).map(Value::asMutable);
-    }
-
-    /**
-     * {@link Keys#LAST_DATE_JOINED}
-     *
-     * @return The last timestamp value when this player has joined
-     */
-    default Optional<Value.Mutable<Instant>> lastJoined() {
-        return this.getValue(Keys.LAST_DATE_JOINED).map(Value::asMutable);
-    }
-
-    /**
-     * {@link Keys#LAST_DATE_PLAYED}
-     *
-     * @return The last timestamp value when this player has played
-     */
-    default Optional<Value.Mutable<Instant>> lastPlayed() {
-        return this.getValue(Keys.LAST_DATE_PLAYED).map(Value::asMutable);
-    }
-
 }

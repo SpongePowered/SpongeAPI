@@ -57,6 +57,7 @@ import org.spongepowered.api.world.border.WorldBorder;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.plugin.PluginContainer;
 
+import java.time.Instant;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -359,5 +360,32 @@ public interface ServerPlayer extends Player, Subject {
      */
     default Optional<Value.Mutable<Double>> healthScale() {
         return this.getValue(Keys.HEALTH_SCALE).map(Value::asMutable);
+    }
+
+    /**
+     * {@link Keys#FIRST_DATE_JOINED}
+     *
+     * @return The timestamp value when this player first joined
+     */
+    default Optional<Value.Mutable<Instant>> firstJoined() {
+        return this.getValue(Keys.FIRST_DATE_JOINED).map(Value::asMutable);
+    }
+
+    /**
+     * {@link Keys#LAST_DATE_JOINED}
+     *
+     * @return The last timestamp value when this player has joined
+     */
+    default Optional<Value.Mutable<Instant>> lastJoined() {
+        return this.getValue(Keys.LAST_DATE_JOINED).map(Value::asMutable);
+    }
+
+    /**
+     * {@link Keys#LAST_DATE_PLAYED}
+     *
+     * @return The last timestamp value when this player has played
+     */
+    default Optional<Value.Mutable<Instant>> lastPlayed() {
+        return this.getValue(Keys.LAST_DATE_PLAYED).map(Value::asMutable);
     }
 }

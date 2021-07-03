@@ -55,7 +55,7 @@ public interface FireworkRocket extends Projectile, FusedExplosive {
      *
      * @return The flight duration of the firework rocket
      */
-    default Optional<Value.Mutable<Ticks>> fireworkFlightModifier() {
+    default Optional<Value.Mutable<Ticks>> flightModifier() {
         return this.getValue(Keys.FIREWORK_FLIGHT_MODIFIER).map(Value::asMutable);
     }
 }

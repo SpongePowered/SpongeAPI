@@ -42,7 +42,7 @@ public interface Humanoid extends Living, ArmorEquipable, Tamer {
      *
      * @return The skin of the humanoid
      */
-    default Value.Mutable<ProfileProperty> skinProfileProperty() {
+    default Value.Mutable<ProfileProperty> skinProfile() {
         return this.requireValue(Keys.SKIN_PROFILE_PROPERTY).asMutable();
     }
 }

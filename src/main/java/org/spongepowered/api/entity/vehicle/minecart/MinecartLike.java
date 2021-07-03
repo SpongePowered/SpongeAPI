@@ -85,23 +85,4 @@ public interface MinecartLike extends Entity {
     default Value.Mutable<Vector3d> derailedVelocityModifier() {
         return this.requireValue(Keys.DERAILED_VELOCITY_MODIFIER).asMutable();
     }
-
-    /**
-     * {@link Keys#MINECART_BLOCK_OFFSET}
-     *
-     * @return The represented block's offset of the minecart
-     */
-    default Value.Mutable<Integer> minecartBlockOffset() {
-        return this.requireValue(Keys.MINECART_BLOCK_OFFSET).asMutable();
-    }
-
-    /**
-     * {@link Keys#BLOCK_STATE}
-     *
-     * @return The block state of the block occupied minecart
-     */
-    default Optional<Value.Mutable<BlockState>> block() {
-        return this.getValue(Keys.BLOCK_STATE).map(Value::asMutable);
-    }
-
 }
