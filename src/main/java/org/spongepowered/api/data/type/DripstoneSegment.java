@@ -22,34 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.entity;
+package org.spongepowered.api.data.type;
 
-import net.kyori.adventure.text.Component;
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.ListValue;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.util.Nameable;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-/**
- * Represents a sign.
- */
-public interface Sign extends BlockEntity, Nameable {
-
-    /**
-     * Gets the {@link org.spongepowered.api.data.value.ListValue.Mutable} of {@link Component} for the {@link Sign}
-     * to show.
-     *
-     * @return The list of text lines
-     */
-    default ListValue.Mutable<Component> lines() {
-        return this.requireValue(Keys.SIGN_LINES).asMutable();
-    }
-
-    /**
-     * {@return Whether this sign has glowing text}.
-     */
-    default Value.Mutable<Boolean> glowingText() {
-        return this.requireValue(Keys.GLOWING_TEXT).asMutable();
-    }
+@CatalogedBy(DripstoneSegments.class)
+public interface DripstoneSegment extends DefaultedRegistryValue {
 
 }

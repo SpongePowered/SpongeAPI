@@ -24,32 +24,6 @@
  */
 package org.spongepowered.api.block.entity;
 
-import net.kyori.adventure.text.Component;
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.ListValue;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.util.Nameable;
-
-/**
- * Represents a sign.
- */
-public interface Sign extends BlockEntity, Nameable {
-
-    /**
-     * Gets the {@link org.spongepowered.api.data.value.ListValue.Mutable} of {@link Component} for the {@link Sign}
-     * to show.
-     *
-     * @return The list of text lines
-     */
-    default ListValue.Mutable<Component> lines() {
-        return this.requireValue(Keys.SIGN_LINES).asMutable();
-    }
-
-    /**
-     * {@return Whether this sign has glowing text}.
-     */
-    default Value.Mutable<Boolean> glowingText() {
-        return this.requireValue(Keys.GLOWING_TEXT).asMutable();
-    }
+public interface SculkSensor extends BlockEntity {
 
 }
