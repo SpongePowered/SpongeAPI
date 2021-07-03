@@ -24,18 +24,6 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
-import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.Value;
-
 public interface BlockOccupiedMinecart extends MinecartLike {
 
-    /**
-     * {@link Keys#BLOCK_STATE}
-     *
-     * @return The block state in this minecart
-     */
-    default Value.Immutable<BlockState> block() {
-        return this.requireValue(Keys.BLOCK_STATE).asImmutable();
-    }
 }

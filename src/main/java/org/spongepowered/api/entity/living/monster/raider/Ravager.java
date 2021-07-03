@@ -70,8 +70,8 @@ public interface Ravager extends Raider {
      *
      * @return Whether this ravager is immobilized
      */
-    default Value.Mutable<Boolean> immobilized() {
-        return this.requireValue(Keys.IS_IMMOBILIZED).asMutable();
+    default Value<Boolean> immobilized() {
+        return this.requireValue(Keys.IS_IMMOBILIZED);
     }
 
     /**
@@ -84,8 +84,8 @@ public interface Ravager extends Raider {
      *
      * @return Whether this ravager is roaring
      */
-    default Value.Mutable<Boolean> roaring() {
-        return this.requireValue(Keys.IS_ROARING).asMutable();
+    default Value<Boolean> roaring() {
+        return this.requireValue(Keys.IS_ROARING);
     }
 
     /**
@@ -98,7 +98,7 @@ public interface Ravager extends Raider {
      *
      * @return Whether this ravager is stunned
      */
-    default Value.Mutable<Boolean> stunned() {
-        return this.requireValue(Keys.IS_STUNNED).asMutable();
+    default Value<Boolean> stunned() {
+        return this.requireValue(Keys.IS_STUNNED);
     }
 }

@@ -26,10 +26,15 @@ package org.spongepowered.api.entity.projectile.explosive;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.ListValue;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.Value.Mutable;
 import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
 import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.util.Ticks;
+
+import java.util.Optional;
 
 /**
  * Represents a Firework.
@@ -45,4 +50,12 @@ public interface FireworkRocket extends Projectile, FusedExplosive {
         return this.requireValue(Keys.FIREWORK_EFFECTS).asMutable();
     }
 
+    /**
+     * {@link Keys#FIREWORK_FLIGHT_MODIFIER}
+     *
+     * @return The flight duration of the firework rocket
+     */
+    default Optional<Value.Mutable<Ticks>> fireworkFlightModifier() {
+        return this.getValue(Keys.FIREWORK_FLIGHT_MODIFIER).map(Value::asMutable);
+    }
 }

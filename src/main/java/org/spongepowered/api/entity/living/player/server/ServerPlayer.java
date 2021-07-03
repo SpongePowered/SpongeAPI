@@ -33,6 +33,7 @@ import org.spongepowered.api.advancement.AdvancementProgress;
 import org.spongepowered.api.advancement.AdvancementTree;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.SkinPart;
+import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
@@ -41,6 +42,7 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.PlayerChatFormatter;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
+import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.tab.TabList;
 import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.event.message.PlayerChatEvent;
@@ -50,11 +52,11 @@ import org.spongepowered.api.network.ServerPlayerConnection;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.service.permission.Subject;
+import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.world.border.WorldBorder;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.plugin.PluginContainer;
 
-import java.time.Instant;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -170,6 +172,7 @@ public interface ServerPlayer extends Player, Subject {
 
     /**
      * {@link Keys#SKIN_PARTS}
+     *
      * @return A set of skin parts displayed
      */
     default SetValue.Mutable<SkinPart> displayedSkinParts() {
@@ -290,33 +293,6 @@ public interface ServerPlayer extends Player, Subject {
     Collection<AdvancementTree> unlockedAdvancementTrees();
 
     /**
-     * {@link Keys#FIRST_DATE_JOINED}
-     *
-     * @return The timestamp value when this player first joined
-     */
-    default Value.Mutable<Instant> firstJoined() {
-        return this.requireValue(Keys.FIRST_DATE_JOINED).asMutable();
-    }
-
-    /**
-     * {@link Keys#LAST_DATE_JOINED}
-     *
-     * @return The last timestamp value when this player has joined
-     */
-    default Value.Mutable<Instant> lastJoined() {
-        return this.requireValue(Keys.LAST_DATE_JOINED).asMutable();
-    }
-
-    /**
-     * {@link Keys#LAST_DATE_PLAYED}
-     *
-     * @return The last timestamp value when this player has played
-     */
-    default Value.Mutable<Instant> lastPlayed() {
-        return this.requireValue(Keys.LAST_DATE_PLAYED).asMutable();
-    }
-
-    /**
      * {@link Keys#HAS_VIEWED_CREDITS}
      *
      * @return True if this player has viewed the credits
@@ -336,21 +312,12 @@ public interface ServerPlayer extends Player, Subject {
     }
 
     /**
-     * {@link Keys#IS_SLEEPING_IGNORED}
-     *
-     * @return Whether this player is going to be ignored for sleeping to "reset" the day
-     */
-    default Value.Mutable<Boolean> sleepingIgnored() {
-        return this.requireValue(Keys.IS_SLEEPING_IGNORED).asMutable();
-    }
-
-    /**
      * {@link Keys#SPECTATOR_TARGET}
      *
      * @return The entity this player is "spectating"
      */
-    default Optional<Value.Mutable<Entity>> spectatorTarget() {
-        return this.getValue(Keys.SPECTATOR_TARGET).map(Value::asMutable);
+    default Value.Mutable<Entity> spectatorTarget() {
+        return this.requireValue(Keys.SPECTATOR_TARGET).asMutable();
     }
 
     /**
@@ -366,4 +333,31 @@ public interface ServerPlayer extends Player, Subject {
      * @param router the chat router
      */
     void setChatFormatter(final PlayerChatFormatter router);
+
+    /**
+     * {@link Keys#GAME_MODE}
+     *
+     * @return The game mode the player has
+     */
+    default Value.Mutable<GameMode> gameMode() {
+        return this.requireValue(Keys.GAME_MODE).asMutable();
+    }
+
+    /**
+     * {@link Keys#STATISTICS}
+     *
+     * @return The statistics of the player
+     */
+    default MapValue.Mutable<Statistic, Long> statistics() {
+        return this.requireValue(Keys.STATISTICS).asMutable();
+    }
+
+    /**
+     * {@link Keys#HEALTH_SCALE}
+     *
+     * @return The value the player max-health (excluding absorption) in the GUI will scale to
+     */
+    default Optional<Value.Mutable<Double>> healthScale() {
+        return this.getValue(Keys.HEALTH_SCALE).map(Value::asMutable);
+    }
 }

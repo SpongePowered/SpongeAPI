@@ -24,10 +24,13 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
+import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.math.vector.Vector3d;
+
+import java.util.Optional;
 
 /**
  * An abstract representation of a Minecart.
@@ -44,20 +47,12 @@ public interface MinecartLike extends Entity {
     }
 
     /**
-     * {@link Keys#SWIFTNESS}
-     *
-     * @return The current swiftness of the minecart
-     */
-    default Value.Mutable<Double> swiftness() {
-        return this.requireValue(Keys.SWIFTNESS).asMutable();
-    }
-
-    /**
      * {@link Keys#POTENTIAL_MAX_SPEED}
      *
-     * <p>This differs from {@link Minecart#swiftness()} in that its value is
+     * <p>This differs from {@link Entity#swiftness()} in that its value is
      * affected by the block/rail beneath the cart. However, it is still
      * impacted and limited by the cart's swiftness.</p>
+     *
      * @return The potential maximum speed
      */
     default Value.Mutable<Double> potentialMaxSpeed() {
@@ -90,4 +85,23 @@ public interface MinecartLike extends Entity {
     default Value.Mutable<Vector3d> derailedVelocityModifier() {
         return this.requireValue(Keys.DERAILED_VELOCITY_MODIFIER).asMutable();
     }
+
+    /**
+     * {@link Keys#MINECART_BLOCK_OFFSET}
+     *
+     * @return The represented block's offset of the minecart
+     */
+    default Value.Mutable<Integer> minecartBlockOffset() {
+        return this.requireValue(Keys.MINECART_BLOCK_OFFSET).asMutable();
+    }
+
+    /**
+     * {@link Keys#BLOCK_STATE}
+     *
+     * @return The block state of the block occupied minecart
+     */
+    default Optional<Value.Mutable<BlockState>> block() {
+        return this.getValue(Keys.BLOCK_STATE).map(Value::asMutable);
+    }
+
 }

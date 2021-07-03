@@ -36,6 +36,7 @@ public interface Horse extends TameableHorse {
 
     /**
      * {@link Keys#HORSE_COLOR}
+     *
      * @return The horse's color
      */
     default Value.Mutable<HorseColor> color() {
@@ -44,6 +45,7 @@ public interface Horse extends TameableHorse {
 
     /**
      * {@link Keys#HORSE_STYLE}
+     *
      * @return The horse's style
      */
     default Value.Mutable<HorseStyle> style() {

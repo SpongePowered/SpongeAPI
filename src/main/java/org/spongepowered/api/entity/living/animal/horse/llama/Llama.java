@@ -39,6 +39,7 @@ public interface Llama extends LlamaLike, TameableHorse, PackHorse {
 
     /**
      * {@link Keys#LLAMA_TYPE}
+     *
      * @return The llama type
      * @see org.spongepowered.api.data.type.LlamaTypes
      */
@@ -48,6 +49,7 @@ public interface Llama extends LlamaLike, TameableHorse, PackHorse {
 
     /**
      * {@link Keys#STRENGTH}
+     *
      * @return The strength of this llama, determines how big of an inventory they can carry
      */
     default Value.Mutable<Integer> strength() {

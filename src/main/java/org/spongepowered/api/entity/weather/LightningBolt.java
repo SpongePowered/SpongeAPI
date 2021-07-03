@@ -24,9 +24,30 @@
  */
 package org.spongepowered.api.entity.weather;
 
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.util.Ticks;
+
 /**
  * Represents a Lighting Bolt.
  */
 public interface LightningBolt extends WeatherEffect {
 
+    /**
+     * {@link Keys#DESPAWN_DELAY}
+     *
+     * @return The despawn delay (in ticks) of the lightning bolt
+     */
+    default Value.Mutable<Ticks> despawnDelay() {
+        return this.requireValue(Keys.DESPAWN_DELAY).asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_EFFECT_ONLY}
+     *
+     * @return Whether the lightning bolt is harmful to other entities
+     */
+    default Value<Boolean> effectOnly() {
+        return this.requireValue(Keys.IS_EFFECT_ONLY);
+    }
 }

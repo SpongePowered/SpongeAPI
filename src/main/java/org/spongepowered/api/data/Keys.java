@@ -443,7 +443,7 @@ public final class Keys {
 
     /**
      * The {@link BossBar} displayed to the client by a {@link Boss}.
-     * Readonly but mutable?
+     * TODO Readonly but mutable?
      */
     public static final Key<Value<BossBar>> BOSS_BAR = Keys.key(ResourceKey.sponge("boss_bar"), BossBar.class);
 
@@ -2582,7 +2582,7 @@ public final class Keys {
     public static final Key<Value<Boolean>> TRACKS_OUTPUT = Keys.key(ResourceKey.sponge("tracks_output"), Boolean.class);
 
     /**
-     * Tge {@link TradeOffer}s offered by a {@link Trader}.
+     * The {@link TradeOffer}s offered by a {@link Trader}.
      */
     public static final Key<ListValue<TradeOffer>> TRADE_OFFERS = Keys.listKey(ResourceKey.sponge("trade_offers"), TradeOffer.class);
 

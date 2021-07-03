@@ -26,6 +26,9 @@ package org.spongepowered.api.entity.living.player;
 
 import net.kyori.adventure.identity.Identified;
 import org.spongepowered.api.block.entity.EnderChest;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.type.HandPreference;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.item.inventory.Carrier;
@@ -33,6 +36,9 @@ import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.entity.PlayerInventory;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.util.locale.LocaleSource;
+
+import java.time.Instant;
+import java.util.Optional;
 
 /**
  * A Player is the representation of an actual unit playing the game.
@@ -61,4 +67,194 @@ public interface Player extends Humanoid, Identified, LocaleSource, Viewer, Carr
      * @return The ender chest inventory
      */
     Inventory enderChestInventory();
+
+    /**
+     * {@link Keys#AFFECTS_SPAWNING}
+     *
+     * @return Whether the player affects spawning
+     */
+    default Value.Mutable<Boolean> affectsSpawning() {
+        return this.requireValue(Keys.AFFECTS_SPAWNING).asMutable();
+    }
+
+    /**
+     * {@link Keys#CAN_FLY}
+     *
+     * @return Whether the player can fly
+     */
+    default Value.Mutable<Boolean> canFly() {
+        return this.requireValue(Keys.CAN_FLY).asMutable();
+    }
+
+    /**
+     * {@link Keys#DOMINANT_HAND}
+     *
+     * @return The dominant HandPreference of the player
+     */
+    default Value.Mutable<HandPreference> dominantHand() {
+        return this.requireValue(Keys.DOMINANT_HAND).asMutable();
+    }
+
+    /**
+     * {@link Keys#EXHAUSTION}
+     *
+     * @return The player's exhaustion
+     */
+    default Value.Mutable<Double> exhaustion() {
+        return this.requireValue(Keys.EXHAUSTION).asMutable();
+    }
+
+    /**
+     * {@link Keys#EXPERIENCE}
+     *
+     * @return The amount of experience the player has
+     */
+    default Value.Mutable<Integer> experience() {
+        return this.requireValue(Keys.EXPERIENCE).asMutable();
+    }
+
+    /**
+     * {@link Keys#EXPERIENCE_FROM_START_OF_LEVEL}
+     *
+     * @return The experience requires to advance from the current level to the next one
+     */
+    default Value<Integer> experienceFromStartToLevel() {
+        return this.requireValue(Keys.EXPERIENCE_FROM_START_OF_LEVEL).asMutable();
+    }
+
+    /**
+     * {@link Keys#EXPERIENCE_LEVEL}
+     *
+     * @return The current level the player has
+     */
+    default Value.Mutable<Integer> experienceLevel() {
+        return this.requireValue(Keys.EXPERIENCE_LEVEL).asMutable();
+    }
+
+    /**
+     * {@link Keys#EXPERIENCE_SINCE_LEVEL}
+     *
+     * @return The amount of experience the player has collected towards the next level
+     */
+    default Value.Mutable<Integer> experienceSinceLevel() {
+        return this.requireValue(Keys.EXPERIENCE_SINCE_LEVEL).asMutable();
+    }
+
+    /**
+     * {@link Keys#FLYING_SPEED}
+     *
+     * @return The speed at which the player flies
+     */
+    default Value.Mutable<Double> flyingSpeed() {
+        return this.requireValue(Keys.FLYING_SPEED).asMutable();
+    }
+
+    /**
+     * {@link Keys#FOOD_LEVEL}
+     *
+     * @return The player's food level
+     */
+    default Value.Mutable<Integer> foodLevel() {
+        return this.requireValue(Keys.FOOD_LEVEL).asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_FLYING}
+     *
+     * @return Whether the entity is flying
+     */
+    default Value.Mutable<Boolean> flying() {
+        return this.requireValue(Keys.IS_FLYING).asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_SLEEPING}
+     *
+     * @return Whether the player is sleeping
+     */
+    default Value<Boolean> sleeping() {
+        return this.requireValue(Keys.IS_SLEEPING);
+    }
+
+    /**
+     * {@link Keys#IS_SLEEPING_IGNORED}
+     *
+     * @return Whether this player is going to be ignored for sleeping to "reset" the day
+     */
+    default Value<Boolean> sleepingIgnored() {
+        return this.requireValue(Keys.IS_SLEEPING_IGNORED);
+    }
+
+    /**
+     * {@link Keys#MAX_EXHAUSTION}
+     *
+     * @return The maximum exhaustion of the player
+     */
+    default Value<Double> maxExhaustion() {
+        return this.requireValue(Keys.MAX_EXHAUSTION);
+    }
+
+    /**
+     * {@link Keys#MAX_FOOD_LEVEL}
+     *
+     * @return The maximum food level of the player
+     */
+    default Value<Integer> maxFoodLevel() {
+        return this.requireValue(Keys.MAX_FOOD_LEVEL);
+    }
+
+    /**
+     * {@link Keys#MAX_SATURATION}
+     *
+     * @return The maximum saturation of the player
+     */
+    default Value<Double> maxSaturation() {
+        return this.requireValue(Keys.MAX_SATURATION);
+    }
+
+    /**
+     * {@link Keys#SATURATION}
+     *
+     * @return The player's saturation
+     */
+    default Value.Mutable<Double> saturation() {
+        return this.requireValue(Keys.SATURATION).asMutable();
+    }
+
+    /**
+     * {@link Keys#SLEEP_TIMER}
+     *
+     * @return The sleep timer of the player
+     */
+    default Value.Mutable<Integer> sleepTimer() {
+        return this.requireValue(Keys.SLEEP_TIMER).asMutable();
+    }
+
+    /**
+     * {@link Keys#FIRST_DATE_JOINED}
+     *
+     * @return The timestamp value when this player first joined
+     */
+    default Optional<Value.Mutable<Instant>> firstJoined() {
+        return this.getValue(Keys.FIRST_DATE_JOINED).map(Value::asMutable);
+    }
+
+    /**
+     * {@link Keys#LAST_DATE_JOINED}
+     *
+     * @return The last timestamp value when this player has joined
+     */
+    default Optional<Value.Mutable<Instant>> lastJoined() {
+        return this.getValue(Keys.LAST_DATE_JOINED).map(Value::asMutable);
+    }
+
+    /**
+     * {@link Keys#LAST_DATE_PLAYED}
+     *
+     * @return The last timestamp value when this player has played
+     */
+    default Optional<Value.Mutable<Instant>> lastPlayed() {
+        return this.getValue(Keys.LAST_DATE_PLAYED).map(Value::asMutable);
+    }
+
 }

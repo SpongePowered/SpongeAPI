@@ -26,10 +26,10 @@ package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.MapValue;
-import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.inventory.ArmorEquipable;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
+import org.spongepowered.math.vector.Vector3d;
 
 /**
  * Represents an Armor Stand.
@@ -57,7 +57,7 @@ public interface ArmorStand extends Living, ArmorEquipable {
     /**
      * {@link Keys#HAS_BASE_PLATE}
      *
-     * @return Whether this armorstand has a base plate or not
+     * @return Whether this armor stand has a visible base plate
      */
     default Value.Mutable<Boolean> basePlate() {
         return this.requireValue(Keys.HAS_BASE_PLATE).asMutable();
@@ -66,7 +66,7 @@ public interface ArmorStand extends Living, ArmorEquipable {
     /**
      * {@link Keys#HAS_ARMS}
      *
-     * @return Whether arms are visible or not
+     * @return Whether the arms of this armor stand are visible
      */
     default Value.Mutable<Boolean> arms() {
         return this.requireValue(Keys.HAS_ARMS).asMutable();
@@ -88,5 +88,41 @@ public interface ArmorStand extends Living, ArmorEquipable {
      */
     default MapValue.Mutable<EquipmentType, Boolean> takingDisabled() {
         return this.requireValue(Keys.IS_TAKING_DISABLED).asMutable();
+    }
+
+    /**
+     * {@link Keys#LEFT_ARM_ROTATION}
+     *
+     * @return The left arm rotation of the armor stand
+     */
+    default Value.Mutable<Vector3d> leftArmRotation() {
+        return this.requireValue(Keys.LEFT_ARM_ROTATION).asMutable();
+    }
+
+    /**
+     * {@link Keys#LEFT_LEG_ROTATION}
+     *
+     * @return The left leg rotation of the armor stand
+     */
+    default Value.Mutable<Vector3d> leftLegRotation() {
+        return this.requireValue(Keys.LEFT_LEG_ROTATION).asMutable();
+    }
+
+    /**
+     * {@link Keys#RIGHT_ARM_ROTATION}
+     *
+     * @return The right arm rotation of the armor stand
+     */
+    default Value.Mutable<Vector3d> rightArmRotation() {
+        return this.requireValue(Keys.RIGHT_ARM_ROTATION).asMutable();
+    }
+
+    /**
+     * {@link Keys#RIGHT_LEG_ROTATION}
+     *
+     * @return The right leg rotation of the armor stand
+     */
+    default Value.Mutable<Vector3d> rightLegRotation() {
+        return this.requireValue(Keys.RIGHT_LEG_ROTATION).asMutable();
     }
 }

@@ -30,44 +30,19 @@ import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.item.inventory.ArmorEquipable;
+import org.spongepowered.api.profile.property.ProfileProperty;
 
 /**
  * Represents a human-like entity in game, such as {@link Player} or {@link Human}s.
  */
 public interface Humanoid extends Living, ArmorEquipable, Tamer {
-    /**
-     * {@link Keys#FOOD_LEVEL}
-     *
-     * @return The human's food level
-     */
-    default Value.Mutable<Integer> foodLevel() {
-        return this.requireValue(Keys.FOOD_LEVEL).asMutable();
-    }
 
     /**
-     * {@link Keys#EXHAUSTION}
+     * {@link Keys#SKIN_PROFILE_PROPERTY}
      *
-     * @return The human's exhaustion
+     * @return The skin of the humanoid
      */
-    default Value.Mutable<Double> exhaustion() {
-        return this.requireValue(Keys.EXHAUSTION).asMutable();
-    }
-
-    /**
-     * {@link Keys#SATURATION}
-     *
-     * @return The human's saturation
-     */
-    default Value.Mutable<Double> saturation() {
-        return this.requireValue(Keys.SATURATION).asMutable();
-    }
-
-    /**
-     * {@link Keys#GAME_MODE}
-     *
-     * @return The gamemode
-     */
-    default Value.Mutable<GameMode> gameMode() {
-        return this.requireValue(Keys.GAME_MODE).asMutable();
+    default Value.Mutable<ProfileProperty> skinProfileProperty() {
+        return this.requireValue(Keys.SKIN_PROFILE_PROPERTY).asMutable();
     }
 }
