@@ -65,10 +65,10 @@ public interface Volume {
     boolean containsBlock(int x, int y, int z);
 
     /**
-     * Returns true if {@link #containsBlock(Vector3i)} and the backing
-     * data is actually loaded - e.g. for a {@link ServerWorld}, this will only
-     * return true if the {@link Chunk} that contains this co-ordinate is fully
-     * loaded.
+     * Returns true if {@link #containsBlock(Vector3i)} is true and the
+     * backing data is actually loaded - e.g. for a {@link ServerWorld}, this
+     * will only return true if the {@link Chunk} that contains this co-ordinate
+     * is fully loaded.
      *
      * @param position The position to check
      * @return Whether or not the position has a block in this volume
@@ -81,10 +81,10 @@ public interface Volume {
     }
 
     /**
-     * Returns true if {@link #containsBlock(int, int, int)} and the backing
-     * data is actually loaded - e.g. for a {@link ServerWorld}, this will only
-     * return true if the {@link Chunk} that contains this co-ordinate is fully
-     * loaded.
+     * Returns true if {@link #containsBlock(int, int, int)} is true and the
+     * backing data is actually loaded - e.g. for a {@link ServerWorld}, this
+     * will only return true if the {@link Chunk} that contains this co-ordinate
+     * is fully loaded.
      *
      * @param x The X coordinate to check
      * @param y The Y coordinate to check
