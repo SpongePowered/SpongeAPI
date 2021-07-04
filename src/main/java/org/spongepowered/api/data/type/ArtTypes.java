@@ -27,6 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -40,6 +41,8 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class ArtTypes {
 
     // @formatter:off
+    public static final Registry<ArtType> REGISTRY = ArtTypes.registry();
+
     public static final DefaultedRegistryReference<ArtType> ALBAN = ArtTypes.key(ResourceKey.minecraft("alban"));
 
     public static final DefaultedRegistryReference<ArtType> AZTEC = ArtTypes.key(ResourceKey.minecraft("aztec"));
@@ -94,6 +97,10 @@ public final class ArtTypes {
 
     // @formatter:on
     private ArtTypes() {
+    }
+
+    private static Registry<ArtType> registry() {
+        return Sponge.game().registries().registry(RegistryTypes.ART_TYPE);
     }
 
     private static DefaultedRegistryReference<ArtType> key(final ResourceKey location) {

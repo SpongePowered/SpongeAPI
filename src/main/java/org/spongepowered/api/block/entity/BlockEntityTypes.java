@@ -27,6 +27,7 @@ package org.spongepowered.api.block.entity;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -40,6 +41,8 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class BlockEntityTypes {
 
     // @formatter:off
+    public static final Registry<BlockEntityType> REGISTRY = BlockEntityTypes.registry();
+
     public static final DefaultedRegistryReference<BlockEntityType> BANNER = BlockEntityTypes.key(ResourceKey.minecraft("banner"));
 
     public static final DefaultedRegistryReference<BlockEntityType> BARREL = BlockEntityTypes.key(ResourceKey.minecraft("barrel"));
@@ -108,6 +111,10 @@ public final class BlockEntityTypes {
 
     // @formatter:on
     private BlockEntityTypes() {
+    }
+
+    private static Registry<BlockEntityType> registry() {
+        return Sponge.game().registries().registry(RegistryTypes.BLOCK_ENTITY_TYPE);
     }
 
     private static DefaultedRegistryReference<BlockEntityType> key(final ResourceKey location) {

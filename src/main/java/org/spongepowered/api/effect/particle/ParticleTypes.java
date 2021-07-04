@@ -27,6 +27,7 @@ package org.spongepowered.api.effect.particle;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -40,6 +41,8 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class ParticleTypes {
 
     // @formatter:off
+    public static final Registry<ParticleType> REGISTRY = ParticleTypes.registry();
+
     public static final DefaultedRegistryReference<ParticleType> AMBIENT_ENTITY_EFFECT = ParticleTypes.key(ResourceKey.minecraft("ambient_entity_effect"));
 
     public static final DefaultedRegistryReference<ParticleType> ANGRY_VILLAGER = ParticleTypes.key(ResourceKey.minecraft("angry_villager"));
@@ -186,6 +189,10 @@ public final class ParticleTypes {
 
     // @formatter:on
     private ParticleTypes() {
+    }
+
+    private static Registry<ParticleType> registry() {
+        return Sponge.game().registries().registry(RegistryTypes.PARTICLE_TYPE);
     }
 
     private static DefaultedRegistryReference<ParticleType> key(final ResourceKey location) {

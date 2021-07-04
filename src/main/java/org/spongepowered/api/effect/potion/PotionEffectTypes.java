@@ -27,6 +27,7 @@ package org.spongepowered.api.effect.potion;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -40,6 +41,8 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class PotionEffectTypes {
 
     // @formatter:off
+    public static final Registry<PotionEffectType> REGISTRY = PotionEffectTypes.registry();
+
     public static final DefaultedRegistryReference<PotionEffectType> ABSORPTION = PotionEffectTypes.key(ResourceKey.minecraft("absorption"));
 
     public static final DefaultedRegistryReference<PotionEffectType> BAD_OMEN = PotionEffectTypes.key(ResourceKey.minecraft("bad_omen"));
@@ -106,6 +109,10 @@ public final class PotionEffectTypes {
 
     // @formatter:on
     private PotionEffectTypes() {
+    }
+
+    private static Registry<PotionEffectType> registry() {
+        return Sponge.game().registries().registry(RegistryTypes.POTION_EFFECT_TYPE);
     }
 
     private static DefaultedRegistryReference<PotionEffectType> key(final ResourceKey location) {

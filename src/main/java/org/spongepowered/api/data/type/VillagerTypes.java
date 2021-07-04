@@ -27,6 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -40,6 +41,8 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class VillagerTypes {
 
     // @formatter:off
+    public static final Registry<VillagerType> REGISTRY = VillagerTypes.registry();
+
     public static final DefaultedRegistryReference<VillagerType> DESERT = VillagerTypes.key(ResourceKey.minecraft("desert"));
 
     public static final DefaultedRegistryReference<VillagerType> JUNGLE = VillagerTypes.key(ResourceKey.minecraft("jungle"));
@@ -56,6 +59,10 @@ public final class VillagerTypes {
 
     // @formatter:on
     private VillagerTypes() {
+    }
+
+    private static Registry<VillagerType> registry() {
+        return Sponge.game().registries().registry(RegistryTypes.VILLAGER_TYPE);
     }
 
     private static DefaultedRegistryReference<VillagerType> key(final ResourceKey location) {

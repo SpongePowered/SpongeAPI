@@ -27,6 +27,7 @@ package org.spongepowered.api.world.generation.structure;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -40,6 +41,8 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class Structures {
 
     // @formatter:off
+    public static final Registry<Structure> REGISTRY = Structures.registry();
+
     public static final DefaultedRegistryReference<Structure> BASTION_REMNANT = Structures.key(ResourceKey.minecraft("bastion_remnant"));
 
     public static final DefaultedRegistryReference<Structure> BURIED_TREASURE = Structures.key(ResourceKey.minecraft("buried_treasure"));
@@ -78,6 +81,10 @@ public final class Structures {
 
     // @formatter:on
     private Structures() {
+    }
+
+    private static Registry<Structure> registry() {
+        return Sponge.game().registries().registry(RegistryTypes.STRUCTURE);
     }
 
     private static DefaultedRegistryReference<Structure> key(final ResourceKey location) {

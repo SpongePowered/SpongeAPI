@@ -27,6 +27,7 @@ package org.spongepowered.api.entity.attribute.type;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -40,6 +41,8 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class AttributeTypes {
 
     // @formatter:off
+    public static final Registry<RangedAttributeType> REGISTRY = AttributeTypes.registry();
+
     public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ARMOR = AttributeTypes.key(ResourceKey.minecraft("generic.armor"));
 
     public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ARMOR_TOUGHNESS = AttributeTypes.key(ResourceKey.minecraft("generic.armor_toughness"));
@@ -68,6 +71,10 @@ public final class AttributeTypes {
 
     // @formatter:on
     private AttributeTypes() {
+    }
+
+    private static Registry<RangedAttributeType> registry() {
+        return Sponge.game().registries().registry(RegistryTypes.ATTRIBUTE_TYPE);
     }
 
     private static DefaultedRegistryReference<RangedAttributeType> key(final ResourceKey location) {
