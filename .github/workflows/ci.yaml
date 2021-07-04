@@ -89,8 +89,11 @@ jobs:
       - name: Publish Javadoc
         if: "${{ runner.os == 'Linux' && ((env.STATUS != 'release' && github.event_name == 'push' && startsWith(github.ref, 'refs/heads/api-')) || (env.STATUS == 'release' && github.event_name == 'release')) }}"
         run: |
-          git clone git@github.com:SpongePowered/APIJavadocs.git publish-jd -b data
+          git clone git@github.com:SpongePowered/APIJavadocs.git publish-jd -b data -c core.sshCommand="$(git config --local --get core.sshCommand)"
           cd publish-jd
           mkdir -p $PROJECT_NAME/$PROJECT_VERSION
           cp -R ../build/docs/javadoc/* $PROJECT_NAME/$PROJECT_VERSION
+          git commit -a -m "Publishing javadoc for $PROJECT_NAME $PROJECT_VERSION"
           git push origin
+          cd ..
+          rm -rf publish-jd
