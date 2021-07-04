@@ -41,8 +41,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class BlockTypes {
 
     // @formatter:off
-    public static final Registry<BlockType> REGISTRY = BlockTypes.registry();
-
     public static final DefaultedRegistryReference<BlockType> ACACIA_BUTTON = BlockTypes.key(ResourceKey.minecraft("acacia_button"));
 
     public static final DefaultedRegistryReference<BlockType> ACACIA_DOOR = BlockTypes.key(ResourceKey.minecraft("acacia_door"));
@@ -1573,7 +1571,7 @@ public final class BlockTypes {
     private BlockTypes() {
     }
 
-    private static Registry<BlockType> registry() {
+    public static Registry<BlockType> registry() {
         return Sponge.game().registries().registry(RegistryTypes.BLOCK_TYPE);
     }
 

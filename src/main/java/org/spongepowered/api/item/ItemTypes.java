@@ -41,8 +41,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class ItemTypes {
 
     // @formatter:off
-    public static final Registry<ItemType> REGISTRY = ItemTypes.registry();
-
     public static final DefaultedRegistryReference<ItemType> ACACIA_BOAT = ItemTypes.key(ResourceKey.minecraft("acacia_boat"));
 
     public static final DefaultedRegistryReference<ItemType> ACACIA_BUTTON = ItemTypes.key(ResourceKey.minecraft("acacia_button"));
@@ -1999,7 +1997,7 @@ public final class ItemTypes {
     private ItemTypes() {
     }
 
-    private static Registry<ItemType> registry() {
+    public static Registry<ItemType> registry() {
         return Sponge.game().registries().registry(RegistryTypes.ITEM_TYPE);
     }
 

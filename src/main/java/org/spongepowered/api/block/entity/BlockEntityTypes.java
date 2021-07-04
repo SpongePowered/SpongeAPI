@@ -41,8 +41,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class BlockEntityTypes {
 
     // @formatter:off
-    public static final Registry<BlockEntityType> REGISTRY = BlockEntityTypes.registry();
-
     public static final DefaultedRegistryReference<BlockEntityType> BANNER = BlockEntityTypes.key(ResourceKey.minecraft("banner"));
 
     public static final DefaultedRegistryReference<BlockEntityType> BARREL = BlockEntityTypes.key(ResourceKey.minecraft("barrel"));
@@ -113,7 +111,7 @@ public final class BlockEntityTypes {
     private BlockEntityTypes() {
     }
 
-    private static Registry<BlockEntityType> registry() {
+    public static Registry<BlockEntityType> registry() {
         return Sponge.game().registries().registry(RegistryTypes.BLOCK_ENTITY_TYPE);
     }
 

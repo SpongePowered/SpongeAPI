@@ -41,8 +41,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class SoundTypes {
 
     // @formatter:off
-    public static final Registry<SoundType> REGISTRY = SoundTypes.registry();
-
     public static final DefaultedRegistryReference<SoundType> AMBIENT_BASALT_DELTAS_ADDITIONS = SoundTypes.key(ResourceKey.minecraft("ambient.basalt_deltas.additions"));
 
     public static final DefaultedRegistryReference<SoundType> AMBIENT_BASALT_DELTAS_LOOP = SoundTypes.key(ResourceKey.minecraft("ambient.basalt_deltas.loop"));
@@ -2031,7 +2029,7 @@ public final class SoundTypes {
     private SoundTypes() {
     }
 
-    private static Registry<SoundType> registry() {
+    public static Registry<SoundType> registry() {
         return Sponge.game().registries().registry(RegistryTypes.SOUND_TYPE);
     }
 

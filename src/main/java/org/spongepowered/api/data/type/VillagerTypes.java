@@ -41,8 +41,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class VillagerTypes {
 
     // @formatter:off
-    public static final Registry<VillagerType> REGISTRY = VillagerTypes.registry();
-
     public static final DefaultedRegistryReference<VillagerType> DESERT = VillagerTypes.key(ResourceKey.minecraft("desert"));
 
     public static final DefaultedRegistryReference<VillagerType> JUNGLE = VillagerTypes.key(ResourceKey.minecraft("jungle"));
@@ -61,7 +59,7 @@ public final class VillagerTypes {
     private VillagerTypes() {
     }
 
-    private static Registry<VillagerType> registry() {
+    public static Registry<VillagerType> registry() {
         return Sponge.game().registries().registry(RegistryTypes.VILLAGER_TYPE);
     }
 

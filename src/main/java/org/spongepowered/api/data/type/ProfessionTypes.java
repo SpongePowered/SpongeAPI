@@ -41,8 +41,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class ProfessionTypes {
 
     // @formatter:off
-    public static final Registry<ProfessionType> REGISTRY = ProfessionTypes.registry();
-
     public static final DefaultedRegistryReference<ProfessionType> ARMORER = ProfessionTypes.key(ResourceKey.minecraft("armorer"));
 
     public static final DefaultedRegistryReference<ProfessionType> BUTCHER = ProfessionTypes.key(ResourceKey.minecraft("butcher"));
@@ -77,7 +75,7 @@ public final class ProfessionTypes {
     private ProfessionTypes() {
     }
 
-    private static Registry<ProfessionType> registry() {
+    public static Registry<ProfessionType> registry() {
         return Sponge.game().registries().registry(RegistryTypes.PROFESSION_TYPE);
     }
 

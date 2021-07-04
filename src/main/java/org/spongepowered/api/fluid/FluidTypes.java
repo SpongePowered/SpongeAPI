@@ -41,8 +41,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class FluidTypes {
 
     // @formatter:off
-    public static final Registry<FluidType> REGISTRY = FluidTypes.registry();
-
     public static final DefaultedRegistryReference<FluidType> EMPTY = FluidTypes.key(ResourceKey.minecraft("empty"));
 
     public static final DefaultedRegistryReference<FluidType> FLOWING_LAVA = FluidTypes.key(ResourceKey.minecraft("flowing_lava"));
@@ -57,7 +55,7 @@ public final class FluidTypes {
     private FluidTypes() {
     }
 
-    private static Registry<FluidType> registry() {
+    public static Registry<FluidType> registry() {
         return Sponge.game().registries().registry(RegistryTypes.FLUID_TYPE);
     }
 

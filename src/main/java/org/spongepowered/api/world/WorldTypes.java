@@ -41,8 +41,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class WorldTypes {
 
     // @formatter:off
-    public static final Registry<WorldType> REGISTRY = WorldTypes.registry();
-
     public static final DefaultedRegistryReference<WorldType> OVERWORLD = WorldTypes.key(ResourceKey.minecraft("overworld"));
 
     public static final DefaultedRegistryReference<WorldType> OVERWORLD_CAVES = WorldTypes.key(ResourceKey.minecraft("overworld_caves"));
@@ -55,7 +53,7 @@ public final class WorldTypes {
     private WorldTypes() {
     }
 
-    private static Registry<WorldType> registry() {
+    public static Registry<WorldType> registry() {
         return Sponge.server().registries().registry(RegistryTypes.WORLD_TYPE);
     }
 

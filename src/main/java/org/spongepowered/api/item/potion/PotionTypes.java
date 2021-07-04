@@ -41,8 +41,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class PotionTypes {
 
     // @formatter:off
-    public static final Registry<PotionType> REGISTRY = PotionTypes.registry();
-
     public static final DefaultedRegistryReference<PotionType> AWKWARD = PotionTypes.key(ResourceKey.minecraft("awkward"));
 
     public static final DefaultedRegistryReference<PotionType> EMPTY = PotionTypes.key(ResourceKey.minecraft("empty"));
@@ -133,7 +131,7 @@ public final class PotionTypes {
     private PotionTypes() {
     }
 
-    private static Registry<PotionType> registry() {
+    public static Registry<PotionType> registry() {
         return Sponge.game().registries().registry(RegistryTypes.POTION_TYPE);
     }
 
