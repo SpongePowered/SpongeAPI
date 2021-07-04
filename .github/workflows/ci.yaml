@@ -92,7 +92,7 @@ jobs:
           git clone git@github.com:SpongePowered/APIJavadocs.git publish-jd -b data -c core.sshCommand="$(git config --local --get core.sshCommand)" -c user.name=Spongie -c user.email="staff@spongepowered.org"
           cd publish-jd
           DESTDIR="$PROJECT_NAME/$PROJECT_VERSION"
-          rm -f $DESTDIR
+          rm -rf $DESTDIR
           mkdir -p $DESTDIR
           cp -R ../build/docs/javadoc/* $DESTDIR
           git add .
