@@ -123,7 +123,7 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends 
      * This gets a guaranteed {@link Chunk} at the desired block position; however,
      * the {@link Chunk} instance may be {@link Chunk#isEmpty() empty}, and
      * likewise, may not be generated, valid, pre-existing. It is important to
-     * check for these cases prior to attmepting to modify the chunk.
+     * check for these cases prior to attempting to modify the chunk.
      *
      * <p>Note that this is still different from {@link #chunk(Vector3i)}
      * due to it being a relative block position which can vary depending on
@@ -140,7 +140,7 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends 
      * This gets a guaranteed {@link Chunk} at the desired block position; however,
      * the {@link Chunk} instance may be {@link Chunk#isEmpty() empty}, and
      * likewise, may not be generated, valid, pre-existing. It is important to
-     * check for these cases prior to attmepting to modify the chunk.
+     * check for these cases prior to attempting to modify the chunk.
      *
      * <p>Note that this is still different from {@link #chunk(Vector3i)}
      * due to the relative block position dictated by {@link Server#chunkLayout()},
@@ -156,10 +156,10 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends 
 
     /**
      * {@inheritDoc}
-     * This gets a guaranteed {@link Chunk} at the desired block position; however,
+     * This gets a guaranteed {@link Chunk} at the desired chunk position; however,
      * the {@link Chunk} instance may be {@link Chunk#isEmpty() empty}, and
      * likewise, may not be generated, valid, pre-existing. It is important to
-     * check for these cases prior to attmepting to modify the chunk.
+     * check for these cases prior to attempting to modify the chunk.
      *
      * @param chunkPos The chunk position relative to the {@link Server#chunkLayout() chunk layout}
      * @return The available chunk at that position
@@ -172,10 +172,10 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends 
 
     /**
      * {@inheritDoc}
-     * This gets a guaranteed {@link Chunk} at the desired block position; however,
+     * This gets a guaranteed {@link Chunk} at the desired chunk position; however,
      * the {@link Chunk} instance may be {@link Chunk#isEmpty() empty}, and
      * likewise, may not be generated, valid, pre-existing. It is important to
-     * check for these cases prior to attmepting to modify the chunk.
+     * check for these cases prior to attempting to modify the chunk.
      *
      * @param cx The x chunk coordinate
      * @param cy The y coordinate
