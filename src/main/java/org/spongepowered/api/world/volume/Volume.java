@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.world.volume;
 
+import org.spongepowered.api.world.chunk.Chunk;
+import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Objects;
@@ -62,11 +64,33 @@ public interface Volume {
      */
     boolean containsBlock(int x, int y, int z);
 
+    /**
+     * Returns true if {@link #containsBlock(Vector3i)} is true and the
+     * backing data is actually loaded - e.g. for a {@link ServerWorld}, this
+     * will only return true if the {@link Chunk} that contains this co-ordinate
+     * is fully loaded.
+     *
+     * @param position The position to check
+     * @return Whether or not the position has a block in this volume
+     *         <strong>and</strong> the location is loaded.
+     */
     default boolean isAreaAvailable(final Vector3i position) {
         Objects.requireNonNull(position, "position");
 
         return this.isAreaAvailable(position.x(), position.y(), position.z());
     }
 
+    /**
+     * Returns true if {@link #containsBlock(int, int, int)} is true and the
+     * backing data is actually loaded - e.g. for a {@link ServerWorld}, this
+     * will only return true if the {@link Chunk} that contains this co-ordinate
+     * is fully loaded.
+     *
+     * @param x The X coordinate to check
+     * @param y The Y coordinate to check
+     * @param z The Z coordinate to check
+     * @return Whether or not the position has a block in this volume
+     *         <strong>and</strong> the location is loaded.
+     */
     boolean isAreaAvailable(int x, int y, int z);
 }

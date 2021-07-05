@@ -200,6 +200,7 @@ import org.spongepowered.api.item.ItemRarity;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.enchantment.Enchantment;
+import org.spongepowered.api.item.enchantment.EnchantmentTypes;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -341,6 +342,12 @@ public final class Keys {
      * The time of a {@link Ravager} is considered attacking.
      */
     public static final Key<Value<Ticks>> ATTACK_TIME = Keys.key(ResourceKey.sponge("attack_time"), Ticks.class);
+
+    /**
+     * Remaining ticks of the auto spin attack a {@link Living} is doing.
+     * @see #IS_AUTO_SPIN_ATTACK
+     */
+    public static final Key<Value<Ticks>> AUTO_SPIN_ATTACK_TICKS = Keys.key(ResourceKey.sponge("auto_spin_attack_ticks"), Ticks.class);
 
     /**
      * The author of a {@link ItemTypes#WRITTEN_BOOK} {@link ItemStack}.
@@ -1175,6 +1182,12 @@ public final class Keys {
      * Whether a {@link BlockState} is "attached" to another block.
      */
     public static final Key<Value<Boolean>> IS_ATTACHED = Keys.key(ResourceKey.sponge("is_attached"), Boolean.class);
+
+    /**
+     * Whether a {@link Living} is doing an auto spin attack (doable with the {@link EnchantmentTypes#RIPTIDE} enchantment.)
+     * @see #AUTO_SPIN_ATTACK_TICKS
+     */
+    public static final Key<Value<Boolean>> IS_AUTO_SPIN_ATTACK = Keys.key(ResourceKey.sponge("is_auto_spin_attack"), Boolean.class);
 
     /**
      * Whether an entity is begging for food.
