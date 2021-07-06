@@ -28,10 +28,27 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
+/**
+ * Represents a type that can be associated with a {@link Tag}.
+ *
+ * @param <T> The type of {@link Taggable}.
+ */
 @CatalogedBy(TagTypes.class)
 public interface TagType<T extends Taggable<T>> extends DefaultedRegistryValue {
 
+    /**
+     * The {@link RegistryType} that represents the known collection of objects
+     * of type {@code T}.
+     *
+     * @return The {@link RegistryType}
+     */
     RegistryType<T> taggableRegistry();
 
+    /**
+     * The {@link RegistryType} of tags that can be associated with objects.
+     *
+     * @return The {@link RegistryType}
+     */
     RegistryType<Tag<T>> tagRegistry();
+
 }

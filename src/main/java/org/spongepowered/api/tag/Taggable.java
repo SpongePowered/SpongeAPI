@@ -34,14 +34,18 @@ import java.util.Collection;
 public interface Taggable<T extends Taggable<T>> extends DefaultedRegistryValue {
 
     /**
-     * Gets the {@link TagType} for this Taggable
-     * @return This Taggable's TagType
+     * Gets the {@link TagType} that represents the types of {@link Tag tags}
+     * that can be associated with this object.
+     *
+     * @return The {@link TagType}
      */
     TagType<T> tagType();
 
     /**
-     * Gets all tags that this taggable is in.
-     * @return All tags that this taggable is in.
+     * Gets all {@link Tag tags} that have been associated with this object.
+     *
+     * @return The {@link Collection} of {@link Tag}s.
      */
     Collection<Tag<T>> tags();
+
 }

@@ -33,35 +33,36 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import java.util.Collection;
 
 /**
- * Represents a Tag for a given type.
+ * A {@link ResourceKey resource keyed} collection of {@link Taggable} values
+ * (of type {@code T}).
  *
- * A {@link ResourceKey resource keyed} collection of {@link Taggable} values (of type {@code T}).
- *
- * <p>While any number of tags may exist and the values each tag contains is arbitary,
- * vanilla Minecraft generally uses pre-defined tags for one of the following reasons:</p>
+ * <p>While any number of tags may exist and the values each tag contains is
+ * arbitrary, vanilla Minecraft generally uses pre-defined tags for one of the
+ * following reasons:</p>
  *
  * <ul>
- *     <li>To define a common material that {@link BlockType blocks} are made of,
- *     for example, {@link BlockTypeTags#ACACIA_LOGS}</li>
- *     <li>To define a common behavior that the {@link Engine engine} should apply to a block,
- *     such as specifying a block as a log that can burn via {@link BlockTypeTags#LOGS_THAT_BURN}</li>
+ *     <li>To define a common material that {@link BlockType blocks} are made
+ *     of, for example, {@link BlockTypeTags#ACACIA_LOGS}</li>
+ *     <li>To define a common behavior that the {@link Engine engine} should
+ *     apply to a block, such as specifying a block as a log that can burn via
+ *     {@link BlockTypeTags#LOGS_THAT_BURN}</li>
  * </ul>
- *
  */
 public interface Tag<T> extends DefaultedRegistryValue, ResourceKeyed {
 
     /**
-     * Get every value in this Tag.
+     * Gets all values that are associated with this tag.
      *
      * @return All tag values
      */
     Collection<T> values();
 
     /**
-     * Whether this tag includes the given value.
+     * Gets whether this tag contains the supplied value.
      *
      * @param value Value to check
      * @return Whether the value is contained in this tag.
      */
     boolean contains(T value);
+
 }
