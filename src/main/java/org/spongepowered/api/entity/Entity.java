@@ -31,6 +31,7 @@ import net.kyori.adventure.text.event.HoverEventSource;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.value.ListValue;
+import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.projectile.source.EntityProjectileSource;
@@ -369,8 +370,8 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      *
      * @return The "base vehicle" of the entity vehicle riding chain
      */
-    default Optional<Value.Mutable<Entity>> baseVehicle() {
-        return this.getValue(Keys.BASE_VEHICLE).map(Value::asMutable);
+    default Value<Entity> baseVehicle() {
+        return this.requireValue(Keys.BASE_VEHICLE);
     }
 
     /**
@@ -378,7 +379,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      *
      * @return Whether this entity is on the ground
      */
-    default Value.Mutable<Boolean> onGround() {
+    default Value<Boolean> onGround() {
         return this.requireValue(Keys.ON_GROUND).asMutable();
     }
 
@@ -430,7 +431,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
     /**
      * {@link Keys#FIRE_TICKS}
      *
-     * @return The amount of time in ticks an Entity is will continue burn for.
+     * @return The amount of time in ticks the entity is will continue burn for
      */
     default Optional<Value.Mutable<Ticks>> fireTicks() {
         return this.getValue(Keys.FIRE_TICKS).map(Value::asMutable);
@@ -439,10 +440,10 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
     /**
      * {@link Keys#FIRE_DAMAGE_DELAY}
      *
-     * @return The amount of time to delay in ticks before an Entity will be burned by fire.
+     * @return The amount of time to delay in ticks before the entity will be burned by fire
      */
-    default Optional<Value.Mutable<Ticks>> fireImmuneTicks() {
-        return this.getValue(Keys.FIRE_DAMAGE_DELAY).map(Value::asMutable);
+    default Value.Mutable<Ticks> fireImmuneTicks() {
+        return this.requireValue(Keys.FIRE_DAMAGE_DELAY).asMutable();
     }
 
     /**
@@ -450,8 +451,197 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      *
      * @return The transient state
      */
-    default Optional<Value.Mutable<Boolean>> isTransient() {
-        return this.getValue(Keys.TRANSIENT).map(Value::asMutable);
+    default Value.Mutable<Boolean> isTransient() {
+        return this.requireValue(Keys.TRANSIENT).asMutable();
+    }
+
+    /**
+     * {@link Keys#AGE}
+     *
+     * @return The age of this entity
+     */
+    default Value.Mutable<Integer> age() {
+        return this.requireValue(Keys.AGE).asMutable();
+    }
+
+    /**
+     * {@link Keys#BASE_SIZE}
+     *
+     * @return The base size of the entity
+     */
+    default Value<Double> baseSize() {
+        return this.requireValue(Keys.BASE_SIZE);
+    }
+
+    /**
+     * {@link Keys#EYE_HEIGHT}
+     *
+     * @return The height of the eyes
+     */
+    default Value<Double> eyeHeight() {
+        return this.requireValue(Keys.EYE_HEIGHT);
+    }
+
+    /**
+     * {@link Keys#EYE_POSITION}
+     *
+     * @return The position of the eyes
+     */
+    default Value<Vector3d> eyePosition() {
+        return this.requireValue(Keys.EYE_POSITION);
+    }
+
+    /**
+     * {@link Keys#HEIGHT}
+     *
+     * @return The height of the entity
+     */
+    default Value<Double> height() {
+        return this.requireValue(Keys.HEIGHT);
+    }
+
+    /**
+     * {@link Keys#INVULNERABILITY_TICKS}
+     *
+     * @return The amount of ticks the entity will remain invulnerable for
+     */
+    default Value.Mutable<Ticks> invulnerabilityTicks() {
+        return this.requireValue(Keys.INVULNERABILITY_TICKS).asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_CUSTOM_NAME_VISIBLE}
+     *
+     * @return Whether a custom name is visible on the entity
+     */
+    default Value.Mutable<Boolean> customNameVisible() {
+        return this.requireValue(Keys.IS_CUSTOM_NAME_VISIBLE).asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_GLOWING}
+     *
+     * @return Whether the entity has a glowing outline
+     */
+    default Value.Mutable<Boolean> glowing() {
+        return this.requireValue(Keys.IS_GLOWING).asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_INVISIBLE}
+     *
+     * @return Whether the entity is currently invisible
+     */
+    default Value.Mutable<Boolean> invisible() {
+        return this.requireValue(Keys.IS_INVISIBLE).asMutable();
+    }
+
+    /**
+     * {@link Keys#INVULNERABLE}
+     *
+     * @return Whether the entity is invulnerable
+     */
+    default Value.Mutable<Boolean> invulnerable() {
+        return this.requireValue(Keys.INVULNERABLE).asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_SNEAKING}
+     *
+     * @return Whether the entity is sneaking
+     */
+    default Value.Mutable<Boolean> sneaking() {
+        return this.requireValue(Keys.IS_SNEAKING).asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_SPRINTING}
+     *
+     * @return Whether the entity is sprinting
+     */
+    default Value.Mutable<Boolean> sprinting() {
+        return this.requireValue(Keys.IS_SPRINTING).asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_WET}
+     *
+     * @return Whether the entity is wet
+     */
+    default Value<Boolean> wet() {
+        return this.requireValue(Keys.IS_WET).asMutable();
+    }
+
+    /**
+     * {@link Keys#MAX_AIR}
+     *
+     * @return The max air supply
+     */
+    default Value.Mutable<Integer> maxAir() {
+        return this.requireValue(Keys.MAX_AIR).asMutable();
+    }
+
+    /**
+     * {@link Keys#REMAINING_AIR}
+     *
+     * @return The remaining air supply
+     */
+    default Value.Mutable<Integer> remainingAir() {
+        return this.requireValue(Keys.REMAINING_AIR).asMutable();
+    }
+
+    /**
+     * {@link Keys#SCOREBOARD_TAGS}
+     *
+     * @return The scoreboard tags applied to the entity
+     */
+    default SetValue.Mutable<String> scoreboardTags() {
+        return this.requireValue(Keys.SCOREBOARD_TAGS).asMutable();
+    }
+
+    /**
+     * {@link Keys#VANISH}
+     *
+     * @return Whether the entity is vanished
+     */
+    default Value.Mutable<Boolean> vanish() {
+        return this.requireValue(Keys.VANISH).asMutable();
+    }
+
+    /**
+     * {@link Keys#VANISH_IGNORES_COLLISION}
+     *
+     * @return Whether the entity ignores collision with other entities
+     */
+    default Value.Mutable<Boolean> vanishIgnoresCollision() {
+        return this.requireValue(Keys.VANISH_IGNORES_COLLISION).asMutable();
+    }
+
+    /**
+     * {@link Keys#VANISH_PREVENTS_TARGETING}
+     *
+     * @return Whether the entity can be targeted for attack by another entity
+     */
+    default Value.Mutable<Boolean> vanishPreventsTargeting() {
+        return this.requireValue(Keys.VANISH_PREVENTS_TARGETING).asMutable();
+    }
+
+    /**
+     * {@link Keys#CUSTOM_NAME}
+     *
+     * @return The custom name of the entity
+     */
+    default Optional<Value.Mutable<Component>> customName() {
+        return this.getValue(Keys.CUSTOM_NAME).map(Value::asMutable);
+    }
+
+    /**
+     * {@link Keys#SWIFTNESS}
+     *
+     * @return The current swiftness of the entity
+     */
+    default Optional<Value.Mutable<Double>> swiftness() {
+        return this.getValue(Keys.SWIFTNESS).map(Value::asMutable);
     }
 
     @Override

@@ -26,7 +26,9 @@ package org.spongepowered.api.entity.projectile.arrow;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.PickupRule;
+import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
 
 /**
@@ -51,5 +53,32 @@ public interface ArrowEntity extends DamagingProjectile {
      */
     default Value.Mutable<Double> knockbackStrength() {
         return this.requireValue(Keys.KNOCKBACK_STRENGTH).asMutable();
+    }
+
+    /**
+     * {@link Keys#ATTACK_DAMAGE}
+     *
+     * @return The attack damage
+     */
+    default Value.Mutable<Double> attackDamage() {
+        return this.requireValue(Keys.ATTACK_DAMAGE).asMutable();
+    }
+
+    /**
+     * {@link Keys#CUSTOM_ATTACK_DAMAGE}
+     *
+     * @return The attack damage per type
+     */
+    default MapValue.Mutable<EntityType<?>, Double> customAttackDamage() {
+        return this.requireValue(Keys.CUSTOM_ATTACK_DAMAGE).asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_CRITICAL_HIT}
+     *
+     * @return Whether the arrow will cause a critical hit
+     */
+    default Value.Mutable<Boolean> criticalHit() {
+        return this.requireValue(Keys.IS_CRITICAL_HIT).asMutable();
     }
 }

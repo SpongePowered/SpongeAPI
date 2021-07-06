@@ -25,6 +25,7 @@
 package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.type.HandPreference;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.ai.goal.GoalExecutor;
@@ -42,6 +43,7 @@ public interface Agent extends Living, ArmorEquipable {
 
     /**
      * {@link Keys#TARGET_ENTITY}
+     *
      * @return The targeted entity
      * @see TargetGoal
      */
@@ -51,10 +53,38 @@ public interface Agent extends Living, ArmorEquipable {
 
     /**
      * {@link Keys#IS_AI_ENABLED}
-     * @return Whether ai modules are enabled on this entity or it's a "dumb" entity
+     *
+     * @return Whether AI modules are enabled on this entity or it's a "dumb" entity
      */
     default Value.Mutable<Boolean> aiEnabled() {
         return this.requireValue(Keys.IS_AI_ENABLED).asMutable();
+    }
+
+    /**
+     * {@link Keys#DOMINANT_HAND}
+     *
+     * @return The dominant HandPreference of the agent
+     */
+    default Value.Mutable<HandPreference> dominantHand() {
+        return this.requireValue(Keys.DOMINANT_HAND).asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_PERSISTENT}
+     *
+     * @return Whether the entity will be prevented from despawning
+     */
+    default Value.Mutable<Boolean> persistent() {
+        return this.requireValue(Keys.IS_PERSISTENT).asMutable();
+    }
+
+    /**
+     * {@link Keys#LEASH_HOLDER}
+     *
+     * @return The holder of the leashed agent
+     */
+    default Optional<Value.Mutable<Entity>> leashHolder() {
+        return this.getValue(Keys.LEASH_HOLDER).map(Value::asMutable);
     }
 
     /**

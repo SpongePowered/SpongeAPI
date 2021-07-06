@@ -24,11 +24,20 @@
  */
 package org.spongepowered.api.entity.living.monster.zombie;
 
-import org.spongepowered.api.entity.living.Ageable;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
 
 /**
  * Represents a Zombie.
  */
-public interface Zombie extends ZombieLike, Ageable {
+public interface Zombie extends ZombieLike {
 
+    /**
+     * {@link Keys#IS_ADULT}
+     *
+     * @return Whether this zombie is an adult or not
+     */
+    default Value.Mutable<Boolean> adult() {
+        return this.requireValue(Keys.IS_ADULT).asMutable();
+    }
 }

@@ -28,6 +28,8 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.util.Ticks;
 
+import java.util.Optional;
+
 /**
  * Represents an {@link Agent} that produces offspring and grows into an adult
  */
@@ -47,8 +49,26 @@ public interface Ageable extends Agent {
      *
      * @return The ticks until this entity turns into an adult
      */
-    default Value.Mutable<Ticks> babyTicks() {
-        return this.requireValue(Keys.BABY_TICKS).asMutable();
+    default Optional<Value.Mutable<Ticks>> babyTicks() {
+        return this.getValue(Keys.BABY_TICKS).map(Value::asMutable);
+    }
+
+    /**
+     * {@link Keys#CAN_BREED}
+     *
+     * @return Whether the entity can breed
+     */
+    default Value.Mutable<Boolean> canBreed() {
+        return this.requireValue(Keys.CAN_BREED).asMutable();
+    }
+
+    /**
+     * {@link Keys#BREEDING_COOLDOWN}
+     *
+     * @return The ticks until the entity can breed again
+     */
+    default Optional<Value.Mutable<Ticks>> breedingCooldown() {
+        return this.getValue(Keys.BREEDING_COOLDOWN).map(Value::asMutable);
     }
 
 }

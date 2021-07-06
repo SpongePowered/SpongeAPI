@@ -34,16 +34,18 @@ import java.util.Optional;
 public interface Spellcaster extends Illager {
 
     /**
-     * {@link Keys#CURRENT_SPELL}.
+     * {@link Keys#CURRENT_SPELL}
+     *
      * @return The current spell being casted
      * @see org.spongepowered.api.data.type.SpellTypes
      */
-    default Optional<Value.Mutable<SpellType>> currentSpell() {
-        return this.getValue(Keys.CURRENT_SPELL).map(Value::asMutable);
+    default Value.Mutable<SpellType> currentSpell() {
+        return this.requireValue(Keys.CURRENT_SPELL).asMutable();
     }
 
     /**
      * {@link Keys#CASTING_TIME}
+     *
      * @return The time to cast
      */
     default Value.Mutable<Integer> castingTime() {

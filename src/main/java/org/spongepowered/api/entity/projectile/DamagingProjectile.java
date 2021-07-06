@@ -25,9 +25,8 @@
 package org.spongepowered.api.entity.projectile;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.math.vector.Vector3d;
 
 /**
  * Represents a {@link Projectile} that inflicts damage.
@@ -35,20 +34,12 @@ import org.spongepowered.api.entity.EntityType;
 public interface DamagingProjectile extends Projectile {
 
     /**
-     * {@link Keys#ATTACK_DAMAGE}
+     * {@link Keys#ACCELERATION}
      *
-     * @return The attack damage
+     * @return The acceleration of the damaging projectile
      */
-    default Value.Mutable<Double> attackDamage() {
-        return this.requireValue(Keys.ATTACK_DAMAGE).asMutable();
-    }
-
-    /**
-     * {@link Keys#CUSTOM_ATTACK_DAMAGE}
-     * @return The attack damage per type
-     */
-    default MapValue.Mutable<EntityType<?>, Double> customAttackDamage() {
-        return this.requireValue(Keys.CUSTOM_ATTACK_DAMAGE).asMutable();
+    default Value.Mutable<Vector3d> acceleration() {
+        return this.requireValue(Keys.ACCELERATION).asMutable();
     }
 
 }

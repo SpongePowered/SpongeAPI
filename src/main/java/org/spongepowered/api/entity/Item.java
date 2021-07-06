@@ -29,6 +29,7 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.util.Ticks;
 
 /**
  * Represents an Item.
@@ -42,5 +43,41 @@ public interface Item extends Entity {
      */
     default Value.Mutable<ItemStackSnapshot> item() {
         return this.requireValue(Keys.ITEM_STACK_SNAPSHOT).asMutable();
+    }
+
+    /**
+     * {@link Keys#DESPAWN_DELAY}
+     *
+     * @return The despawn delay (in ticks) of the item
+     */
+    default Value.Mutable<Ticks> despawnDelay() {
+        return this.requireValue(Keys.DESPAWN_DELAY).asMutable();
+    }
+
+    /**
+     * {@link Keys#INFINITE_DESPAWN_DELAY}
+     *
+     * @return Whether the item will not despawn for an infinite time
+     */
+    default Value.Mutable<Boolean> infiniteDespawnDelay() {
+        return this.requireValue(Keys.INFINITE_DESPAWN_DELAY).asMutable();
+    }
+
+    /**
+     * {@link Keys#INFINITE_PICKUP_DELAY}
+     *
+     * @return Whether the item has an infinite pickup delay
+     */
+    default Value.Mutable<Boolean> infinitePickupDelay() {
+        return this.requireValue(Keys.INFINITE_PICKUP_DELAY).asMutable();
+    }
+
+    /**
+     * {@link Keys#PICKUP_DELAY}
+     *
+     * @return The pickup delay (in ticks) of the item
+     */
+    default Value.Mutable<Ticks> pickupDelay() {
+        return this.requireValue(Keys.PICKUP_DELAY).asMutable();
     }
 }

@@ -128,14 +128,4 @@ public interface AreaEffectCloud extends Entity {
     default ListValue.Mutable<PotionEffect> effects() {
         return this.requireValue(Keys.POTION_EFFECTS).asMutable();
     }
-
-    /**
-     * {@link Keys#AGE}
-     *
-     * @return The age of this cloud
-     */
-    default Value.Mutable<Integer> age() {
-        return this.requireValue(Keys.AGE).asMutable();
-    }
-
 }

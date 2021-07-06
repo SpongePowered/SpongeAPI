@@ -132,7 +132,7 @@ public interface Panda extends Animal, Sittable {
      *
      * @return Whether this panda is frightened
      */
-    default Value.Mutable<Boolean> frightened() {
-        return this.requireValue(Keys.IS_FRIGHTENED).asMutable();
+    default Value<Boolean> frightened() {
+        return this.requireValue(Keys.IS_FRIGHTENED);
     }
 }

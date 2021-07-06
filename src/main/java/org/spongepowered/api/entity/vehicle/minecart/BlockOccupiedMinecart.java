@@ -28,14 +28,25 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 
+import java.util.Optional;
+
 public interface BlockOccupiedMinecart extends MinecartLike {
+
+    /**
+     * {@link Keys#MINECART_BLOCK_OFFSET}
+     *
+     * @return The represented block's offset of the minecart
+     */
+    default Value.Mutable<Integer> blockOffset() {
+        return this.requireValue(Keys.MINECART_BLOCK_OFFSET).asMutable();
+    }
 
     /**
      * {@link Keys#BLOCK_STATE}
      *
-     * @return The block state in this minecart
+     * @return The block state of the block occupied minecart
      */
-    default Value.Immutable<BlockState> block() {
-        return this.requireValue(Keys.BLOCK_STATE).asImmutable();
+    default Optional<Value.Mutable<BlockState>> block() {
+        return this.getValue(Keys.BLOCK_STATE).map(Value::asMutable);
     }
 }

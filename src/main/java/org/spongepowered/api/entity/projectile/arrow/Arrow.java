@@ -24,9 +24,23 @@
  */
 package org.spongepowered.api.entity.projectile.arrow;
 
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.ListValue;
+import org.spongepowered.api.effect.potion.PotionEffect;
+
+import java.util.Optional;
+
 /**
  * An arrow generally "tipped" with one or more potion effects.
  */
 public interface Arrow extends ArrowEntity {
 
+    /**
+     * {@link Keys#POTION_EFFECTS}
+     *
+     * @return The potion effects that are applied to the arrow
+     */
+    default Optional<ListValue.Mutable<PotionEffect>> potionEffects() {
+        return this.getValue(Keys.POTION_EFFECTS).map(ListValue::asMutable);
+    }
 }

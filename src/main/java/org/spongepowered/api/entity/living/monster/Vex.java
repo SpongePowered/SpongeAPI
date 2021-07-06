@@ -34,7 +34,7 @@ public interface Vex extends Monster {
     /**
      * {@link Keys#LIFE_TICKS}
      *
-     * @return The amount of ticks till this Vex starts dying.
+     * @return The amount of ticks till this vex starts dying
      */
     default Value.Mutable<Ticks> lifeTicks() {
         return this.requireValue(Keys.LIFE_TICKS).asMutable();

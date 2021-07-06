@@ -39,6 +39,7 @@ public interface Wither extends Monster, Ranger, Boss, Aerial, FusedExplosive {
 
     /**
      * {@link Keys#WITHER_TARGETS}
+     *
      * @return The list of targeted entities, if available
      */
     default ListValue.Mutable<Entity> targetEntities() {

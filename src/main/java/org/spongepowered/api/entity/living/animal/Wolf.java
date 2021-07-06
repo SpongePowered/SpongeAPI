@@ -31,11 +31,12 @@ import org.spongepowered.api.data.value.Value;
 /**
  * Represents a Wolf.
  */
-public interface Wolf extends TameableAnimal, Sittable {
+public interface Wolf extends TameableAnimal {
 
     /**
      * {@link Keys#IS_ANGRY}
-     * @return Whether this wolf is angry
+     *
+     * @return Whether this wolf is currently aggressive
      */
     default Value.Mutable<Boolean> angry() {
         return this.requireValue(Keys.IS_ANGRY).asMutable();

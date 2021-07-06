@@ -34,7 +34,7 @@ import java.util.UUID;
 /**
  * Represents a Fox.
  */
-public interface Fox extends Animal {
+public interface Fox extends Animal, Sittable {
 
     /**
      * {@link Keys#FOX_TYPE}
@@ -62,15 +62,6 @@ public interface Fox extends Animal {
      */
     default Optional<Value.Mutable<UUID>> secondTrusted() {
         return this.getValue(Keys.SECOND_TRUSTED).map(Value::asMutable);
-    }
-
-    /**
-     * {@link Keys#IS_SITTING}
-     *
-     * @return Whether this fox is sitting
-     */
-    default Value.Mutable<Boolean> sitting() {
-        return this.requireValue(Keys.IS_SITTING).asMutable();
     }
 
     /**

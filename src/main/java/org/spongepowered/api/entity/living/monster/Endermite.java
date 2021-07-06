@@ -29,7 +29,7 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Monster;
 import org.spongepowered.api.util.Ticks;
 
-import java.time.Duration;
+import java.util.Optional;
 
 /**
  * Represents an Endermite.
@@ -41,7 +41,7 @@ public interface Endermite extends Monster {
      *
      * @return The despawn delay
      */
-    default Value.Mutable<Ticks> expirationDelay() {
-        return this.requireValue(Keys.DESPAWN_DELAY).asMutable();
+    default Optional<Value.Mutable<Ticks>> expirationDelay() {
+        return this.getValue(Keys.DESPAWN_DELAY).map(Value::asMutable);
     }
 }

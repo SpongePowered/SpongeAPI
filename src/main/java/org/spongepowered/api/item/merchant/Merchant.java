@@ -55,7 +55,12 @@ public interface Merchant extends DataHolder.Mutable, Carrier, Locatable {
      */
     void setCustomer(@Nullable Humanoid humanoid);
 
-    default ListValue<TradeOffer> tradeOffers() {
+    /**
+     * {@link Keys#TRADE_OFFERS}
+     *
+     * @return The trade offers offered by the merchant
+     */
+    default ListValue.Mutable<TradeOffer> tradeOffers() {
         return this.requireValue(Keys.TRADE_OFFERS).asMutable();
     }
 

@@ -51,4 +51,13 @@ public interface ZombieVillager extends ZombieLike {
     default Value.Mutable<ProfessionType> profession() {
         return this.requireValue(Keys.PROFESSION_TYPE).asMutable();
     }
+
+    /**
+     * {@link Keys#PROFESSION_LEVEL}
+     *
+     * @return The profession level of this zombie villager
+     */
+    default Value.Mutable<Integer> professionLevel() {
+        return this.requireValue(Keys.PROFESSION_LEVEL).asMutable();
+    }
 }

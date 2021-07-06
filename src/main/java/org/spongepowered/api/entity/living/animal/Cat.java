@@ -35,7 +35,7 @@ import java.util.Optional;
 /**
  * Represents a Cat, meow.
  */
-public interface Cat extends TameableAnimal, Sittable {
+public interface Cat extends TameableAnimal {
 
     /**
      * {@link Keys#CAT_TYPE}
@@ -108,7 +108,7 @@ public interface Cat extends TameableAnimal, Sittable {
      *
      * <p>In vanilla, a cat hisses when a {@link Phantom} is detected near it.</p>
      *
-     * @return Whether this cat is purring
+     * @return Whether this cat is hissing
      */
     default Value.Mutable<Boolean> hissing() {
         return this.requireValue(Keys.IS_HISSING).asMutable();

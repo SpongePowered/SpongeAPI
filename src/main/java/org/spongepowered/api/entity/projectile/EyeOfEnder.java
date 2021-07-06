@@ -26,6 +26,7 @@ package org.spongepowered.api.entity.projectile;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.util.Ticks;
 import org.spongepowered.math.vector.Vector3d;
 
 /**
@@ -34,12 +35,30 @@ import org.spongepowered.math.vector.Vector3d;
 public interface EyeOfEnder extends Projectile {
 
     /**
+     * {@link Keys#DESPAWN_DELAY}
+     *
+     * @return The despawn delay (in ticks) of the eye of ender
+     */
+    default Value.Mutable<Ticks> despawnDelay() {
+        return this.requireValue(Keys.DESPAWN_DELAY).asMutable();
+    }
+
+    /**
      * {@link Keys#TARGET_LOCATION}
      *
      * @return The targeted location, if available
      */
     default Value.Mutable<Vector3d> targetLocation() {
         return this.requireValue(Keys.TARGET_LOCATION).asMutable();
+    }
+
+    /**
+     * {@link Keys#WILL_SHATTER}
+     *
+     * @return Whether the thrown eye of ender will shatter
+     */
+    default Value.Mutable<Boolean> willShatter() {
+        return this.requireValue(Keys.WILL_SHATTER).asMutable();
     }
 
 }

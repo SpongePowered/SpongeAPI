@@ -27,6 +27,9 @@ package org.spongepowered.api.entity.living.player;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.block.entity.EnderChest;
 import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.MapValue;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
@@ -36,10 +39,12 @@ import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.entity.UserInventory;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.permission.Subject;
+import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.math.vector.Vector3d;
 
+import java.time.Instant;
 import java.util.Optional;
 
 /**
@@ -139,4 +144,76 @@ public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject
      * @return The ender chest inventory
      */
     Inventory enderChestInventory();
+
+    /**
+     * {@link Keys#RESPAWN_LOCATIONS}
+     *
+     * @return The spawn locations of the user may have for various worlds
+     */
+    default MapValue.Mutable<ResourceKey, RespawnLocation> respawnLocations() {
+        return this.requireValue(Keys.RESPAWN_LOCATIONS).asMutable();
+    }
+
+    /**
+     * {@link Keys#FIRST_DATE_JOINED}
+     *
+     * @return The timestamp value when this user first joined
+     */
+    default Optional<Value.Mutable<Instant>> firstJoined() {
+        return this.getValue(Keys.FIRST_DATE_JOINED).map(Value::asMutable);
+    }
+
+    /**
+     * {@link Keys#LAST_DATE_JOINED}
+     *
+     * @return The last timestamp value when this user has joined
+     */
+    default Optional<Value.Mutable<Instant>> lastJoined() {
+        return this.getValue(Keys.LAST_DATE_JOINED).map(Value::asMutable);
+    }
+
+    /**
+     * {@link Keys#INVULNERABLE}
+     *
+     * @return Whether the user is invulnerable
+     */
+    default Value.Mutable<Boolean> invulnerable() {
+        return this.requireValue(Keys.INVULNERABLE).asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_INVISIBLE}
+     *
+     * @return Whether the user is invisible
+     */
+    default Value.Mutable<Boolean> invisible() {
+        return this.requireValue(Keys.IS_INVISIBLE).asMutable();
+    }
+
+    /**
+     * {@link Keys#VANISH}
+     *
+     * @return Whether the user is vanished
+     */
+    default Value.Mutable<Boolean> vanish() {
+        return this.requireValue(Keys.VANISH).asMutable();
+    }
+
+    /**
+     * {@link Keys#VANISH_IGNORES_COLLISION}
+     *
+     * @return Whether the user ignores collision with other entities
+     */
+    default Value.Mutable<Boolean> vanishIgnoresCollision() {
+        return this.requireValue(Keys.VANISH_IGNORES_COLLISION).asMutable();
+    }
+
+    /**
+     * {@link Keys#VANISH_PREVENTS_TARGETING}
+     *
+     * @return Whether the user can be targeted for attack by another entity
+     */
+    default Value.Mutable<Boolean> vanishPreventsTargeting() {
+        return this.requireValue(Keys.VANISH_PREVENTS_TARGETING).asMutable();
+    }
 }

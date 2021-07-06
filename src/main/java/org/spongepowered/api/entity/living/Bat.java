@@ -24,9 +24,20 @@
  */
 package org.spongepowered.api.entity.living;
 
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
+
 /**
  * Represents a Bat.
  */
 public interface Bat extends Ambient, Aerial {
 
+    /**
+     * {@link Keys#IS_SLEEPING}
+     *
+     * @return Whether the bat is sleeping
+     */
+    default Value.Mutable<Boolean> sleeping() {
+        return this.requireValue(Keys.IS_SLEEPING).asMutable();
+    }
 }

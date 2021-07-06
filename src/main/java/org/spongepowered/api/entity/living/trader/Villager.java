@@ -48,6 +48,7 @@ public interface Villager extends Trader, Ageable {
 
     /**
      * {@link Keys#PROFESSION_TYPE}
+     *
      * @return The profession of this villager
      * @see ProfessionTypes
      */
@@ -62,5 +63,14 @@ public interface Villager extends Trader, Ageable {
      */
     default Value.Mutable<Integer> professionLevel() {
         return this.requireValue(Keys.PROFESSION_LEVEL).asMutable();
+    }
+
+    /**
+     * {@link Keys#EXPERIENCE}
+     *
+     * @return The experience of the villager
+     */
+    default Value.Mutable<Integer> experience() {
+        return this.requireValue(Keys.EXPERIENCE).asMutable();
     }
 }
