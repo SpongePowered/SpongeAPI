@@ -24,81 +24,20 @@
  */
 package org.spongepowered.api.entity.living.player.tab;
 
-import net.kyori.adventure.text.Component;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 
 import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
 
 /**
- * Represents a {@link Player}'s tab list.
+ * Represents a {@link Player}'s tab list entries.
  */
-public interface TabList {
+public interface TabListEntries extends DataSerializable {
 
     /**
-     * Gets the associated {@link ServerPlayer player} with this {@link TabList}.
-     *
-     * @return The associated player
-     */
-    ServerPlayer player();
-
-    /**
-     * Gets this list's header.
-     *
-     * @return The current header
-     */
-    Optional<Component> header();
-
-    /**
-     * Sets this list's header.
-     *
-     * <p>When {@code null} is passed, an empty {@link Component} will
-     * be sent.</p>
-     *
-     * @param header The new header
-     * @return This tab list, for chaining
-     */
-    TabList setHeader(@Nullable Component header);
-
-    /**
-     * Gets this list's footer.
-     *
-     * @return The current footer
-     */
-    Optional<Component> footer();
-
-    /**
-     * Sets this list's footer.
-     *
-     * <p>When {@code null} is passed, an empty {@link Component} will
-     * be sent.</p>
-     *
-     * @param footer The new footer
-     * @return This tab list, for chaining
-     */
-    TabList setFooter(@Nullable Component footer);
-
-    /**
-     * Sets this list's header and footer.
-     *
-     * <p>When {@code null} is passed, an empty {@link Component} will
-     * be sent.</p>
-     *
-     * @param header The new header
-     * @param footer The new footer
-     * @return This tab list, for chaining
-     */
-    default TabList setHeaderAndFooter(@Nullable Component header, @Nullable Component footer) {
-        this.setHeader(header);
-        this.setFooter(footer);
-        return this;
-    }
-
-    /**
-     * Gets the entries on the list.
+     * Gets the entries on the entry set.
      *
      * <p>The returned collection should be immutable.</p>
      *
@@ -115,15 +54,14 @@ public interface TabList {
     Optional<TabListEntry> entry(UUID uniqueId);
 
     /**
-     * Adds an entry to the list.
+     * Sets an entry to the entry set.
+     *
+     * <p>If an entry with the same unique id is already in the entry set,
+     * replace the entry.</p>
      *
      * @param entry The entry to add
-     * @return This tab list, for chaining
-     * @throws IllegalArgumentException if an entry already with the same unique
-     *     id exists on the list
-     * @throws IllegalStateException if the provided entry was not
      */
-    TabList addEntry(TabListEntry entry) throws IllegalArgumentException;
+    void setEntry(TabListEntry entry);
 
     /**
      * Removes an entry from the list.
