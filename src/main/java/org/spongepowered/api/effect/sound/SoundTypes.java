@@ -27,6 +27,7 @@ package org.spongepowered.api.effect.sound;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -2026,6 +2027,10 @@ public final class SoundTypes {
 
     // @formatter:on
     private SoundTypes() {
+    }
+
+    public static Registry<SoundType> registry() {
+        return Sponge.game().registries().registry(RegistryTypes.SOUND_TYPE);
     }
 
     private static DefaultedRegistryReference<SoundType> key(final ResourceKey location) {
