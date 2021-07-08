@@ -43,9 +43,19 @@ public final class EntityTypeTags {
     // @formatter:off
     public static final DefaultedRegistryReference<Tag<EntityType<?>>> ARROWS = EntityTypeTags.key(ResourceKey.minecraft("arrows"));
 
+    public static final DefaultedRegistryReference<Tag<EntityType<?>>> AXOLOTL_ALWAYS_HOSTILES = EntityTypeTags.key(ResourceKey.minecraft("axolotl_always_hostiles"));
+
+    public static final DefaultedRegistryReference<Tag<EntityType<?>>> AXOLOTL_HUNT_TARGETS = EntityTypeTags.key(ResourceKey.minecraft("axolotl_hunt_targets"));
+
     public static final DefaultedRegistryReference<Tag<EntityType<?>>> BEEHIVE_INHABITORS = EntityTypeTags.key(ResourceKey.minecraft("beehive_inhabitors"));
 
+    public static final DefaultedRegistryReference<Tag<EntityType<?>>> FREEZE_HURTS_EXTRA_TYPES = EntityTypeTags.key(ResourceKey.minecraft("freeze_hurts_extra_types"));
+
+    public static final DefaultedRegistryReference<Tag<EntityType<?>>> FREEZE_IMMUNE_ENTITY_TYPES = EntityTypeTags.key(ResourceKey.minecraft("freeze_immune_entity_types"));
+
     public static final DefaultedRegistryReference<Tag<EntityType<?>>> IMPACT_PROJECTILES = EntityTypeTags.key(ResourceKey.minecraft("impact_projectiles"));
+
+    public static final DefaultedRegistryReference<Tag<EntityType<?>>> POWDER_SNOW_WALKABLE_MOBS = EntityTypeTags.key(ResourceKey.minecraft("powder_snow_walkable_mobs"));
 
     public static final DefaultedRegistryReference<Tag<EntityType<?>>> RAIDERS = EntityTypeTags.key(ResourceKey.minecraft("raiders"));
 

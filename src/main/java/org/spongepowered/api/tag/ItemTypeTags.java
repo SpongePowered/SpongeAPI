@@ -47,6 +47,8 @@ public final class ItemTypeTags {
 
     public static final DefaultedRegistryReference<Tag<ItemType>> ARROWS = ItemTypeTags.key(ResourceKey.minecraft("arrows"));
 
+    public static final DefaultedRegistryReference<Tag<ItemType>> AXOLOTL_TEMPT_ITEMS = ItemTypeTags.key(ResourceKey.minecraft("axolotl_tempt_items"));
+
     public static final DefaultedRegistryReference<Tag<ItemType>> BANNERS = ItemTypeTags.key(ResourceKey.minecraft("banners"));
 
     public static final DefaultedRegistryReference<Tag<ItemType>> BEACON_PAYMENT_ITEMS = ItemTypeTags.key(ResourceKey.minecraft("beacon_payment_items"));
@@ -59,9 +61,17 @@ public final class ItemTypeTags {
 
     public static final DefaultedRegistryReference<Tag<ItemType>> BUTTONS = ItemTypeTags.key(ResourceKey.minecraft("buttons"));
 
+    public static final DefaultedRegistryReference<Tag<ItemType>> CANDLES = ItemTypeTags.key(ResourceKey.minecraft("candles"));
+
     public static final DefaultedRegistryReference<Tag<ItemType>> CARPETS = ItemTypeTags.key(ResourceKey.minecraft("carpets"));
 
+    public static final DefaultedRegistryReference<Tag<ItemType>> CLUSTER_MAX_HARVESTABLES = ItemTypeTags.key(ResourceKey.minecraft("cluster_max_harvestables"));
+
+    public static final DefaultedRegistryReference<Tag<ItemType>> COAL_ORES = ItemTypeTags.key(ResourceKey.minecraft("coal_ores"));
+
     public static final DefaultedRegistryReference<Tag<ItemType>> COALS = ItemTypeTags.key(ResourceKey.minecraft("coals"));
+
+    public static final DefaultedRegistryReference<Tag<ItemType>> COPPER_ORES = ItemTypeTags.key(ResourceKey.minecraft("copper_ores"));
 
     public static final DefaultedRegistryReference<Tag<ItemType>> CREEPER_DROP_MUSIC_DISCS = ItemTypeTags.key(ResourceKey.minecraft("creeper_drop_music_discs"));
 
@@ -69,7 +79,11 @@ public final class ItemTypeTags {
 
     public static final DefaultedRegistryReference<Tag<ItemType>> DARK_OAK_LOGS = ItemTypeTags.key(ResourceKey.minecraft("dark_oak_logs"));
 
+    public static final DefaultedRegistryReference<Tag<ItemType>> DIAMOND_ORES = ItemTypeTags.key(ResourceKey.minecraft("diamond_ores"));
+
     public static final DefaultedRegistryReference<Tag<ItemType>> DOORS = ItemTypeTags.key(ResourceKey.minecraft("doors"));
+
+    public static final DefaultedRegistryReference<Tag<ItemType>> EMERALD_ORES = ItemTypeTags.key(ResourceKey.minecraft("emerald_ores"));
 
     public static final DefaultedRegistryReference<Tag<ItemType>> FENCES = ItemTypeTags.key(ResourceKey.minecraft("fences"));
 
@@ -77,9 +91,19 @@ public final class ItemTypeTags {
 
     public static final DefaultedRegistryReference<Tag<ItemType>> FLOWERS = ItemTypeTags.key(ResourceKey.minecraft("flowers"));
 
+    public static final DefaultedRegistryReference<Tag<ItemType>> FOX_FOOD = ItemTypeTags.key(ResourceKey.minecraft("fox_food"));
+
+    public static final DefaultedRegistryReference<Tag<ItemType>> FREEZE_IMMUNE_WEARABLES = ItemTypeTags.key(ResourceKey.minecraft("freeze_immune_wearables"));
+
     public static final DefaultedRegistryReference<Tag<ItemType>> GOLD_ORES = ItemTypeTags.key(ResourceKey.minecraft("gold_ores"));
 
+    public static final DefaultedRegistryReference<Tag<ItemType>> IGNORED_BY_PIGLIN_BABIES = ItemTypeTags.key(ResourceKey.minecraft("ignored_by_piglin_babies"));
+
+    public static final DefaultedRegistryReference<Tag<ItemType>> IRON_ORES = ItemTypeTags.key(ResourceKey.minecraft("iron_ores"));
+
     public static final DefaultedRegistryReference<Tag<ItemType>> JUNGLE_LOGS = ItemTypeTags.key(ResourceKey.minecraft("jungle_logs"));
+
+    public static final DefaultedRegistryReference<Tag<ItemType>> LAPIS_ORES = ItemTypeTags.key(ResourceKey.minecraft("lapis_ores"));
 
     public static final DefaultedRegistryReference<Tag<ItemType>> LEAVES = ItemTypeTags.key(ResourceKey.minecraft("leaves"));
 
@@ -95,6 +119,10 @@ public final class ItemTypeTags {
 
     public static final DefaultedRegistryReference<Tag<ItemType>> OAK_LOGS = ItemTypeTags.key(ResourceKey.minecraft("oak_logs"));
 
+    public static final DefaultedRegistryReference<Tag<ItemType>> OCCLUDES_VIBRATION_SIGNALS = ItemTypeTags.key(ResourceKey.minecraft("occludes_vibration_signals"));
+
+    public static final DefaultedRegistryReference<Tag<ItemType>> PIGLIN_FOOD = ItemTypeTags.key(ResourceKey.minecraft("piglin_food"));
+
     public static final DefaultedRegistryReference<Tag<ItemType>> PIGLIN_LOVED = ItemTypeTags.key(ResourceKey.minecraft("piglin_loved"));
 
     public static final DefaultedRegistryReference<Tag<ItemType>> PIGLIN_REPELLENTS = ItemTypeTags.key(ResourceKey.minecraft("piglin_repellents"));
@@ -102,6 +130,8 @@ public final class ItemTypeTags {
     public static final DefaultedRegistryReference<Tag<ItemType>> PLANKS = ItemTypeTags.key(ResourceKey.minecraft("planks"));
 
     public static final DefaultedRegistryReference<Tag<ItemType>> RAILS = ItemTypeTags.key(ResourceKey.minecraft("rails"));
+
+    public static final DefaultedRegistryReference<Tag<ItemType>> REDSTONE_ORES = ItemTypeTags.key(ResourceKey.minecraft("redstone_ores"));
 
     public static final DefaultedRegistryReference<Tag<ItemType>> SAND = ItemTypeTags.key(ResourceKey.minecraft("sand"));
 
