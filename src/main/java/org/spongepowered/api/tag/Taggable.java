@@ -22,45 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity;
+package org.spongepowered.api.tag;
 
-import net.kyori.adventure.text.ComponentLike;
-import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
-import org.spongepowered.api.tag.Taggable;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+
+import java.util.Collection;
 
 /**
- * Describes a type of entity.
+ * A type that may be included in one or more {@link Tag} collections.
  */
-@CatalogedBy(EntityTypes.class)
-public interface EntityType<A extends Entity> extends DefaultedRegistryValue, ComponentLike, Taggable<EntityType<?>> {
+public interface Taggable<T extends Taggable<T>> extends DefaultedRegistryValue {
 
     /**
-     * If true {@link Entity entities} of this type will not be saved to disk.
+     * Gets the {@link TagType} that represents the types of {@link Tag tags}
+     * that can be associated with this object.
      *
-     * @return If the type is transient
+     * @return The {@link TagType}
      */
-    boolean isTransient();
+    TagType<T> tagType();
 
     /**
-     * If true {@link Entity entities} of this type may be summoned naturally or via command.
+     * Gets all {@link Tag tags} that have been associated with this object.
      *
-     * @return If the type is summonable
+     * @return The {@link Collection} of {@link Tag}s.
      */
-    boolean isSummonable();
+    Collection<Tag<T>> tags();
 
-    /**
-     * If true {@link Entity entities} of this type may be caught on fire.
-     *
-     * @return If the type is flammable
-     */
-    boolean isFlammable();
-
-    /**
-     * If true {@link Entity entities} of this type may spawn out of range from {@link ServerPlayer players}.
-     *
-     * @return If the type can spawn far away from a player
-     */
-    boolean canSpawnAwayFromPlayer();
 }

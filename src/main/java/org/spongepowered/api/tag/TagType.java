@@ -22,43 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.datapack;
+package org.spongepowered.api.tag;
 
-import io.leangen.geantyref.TypeToken;
-import org.spongepowered.api.advancement.Advancement;
-import org.spongepowered.api.event.lifecycle.RegisterDataPackValueEvent;
-import org.spongepowered.api.item.recipe.RecipeRegistration;
-import org.spongepowered.api.tag.TagTemplate;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryType;
 import org.spongepowered.api.util.annotation.CatalogedBy;
-import org.spongepowered.api.world.WorldTypeTemplate;
-import org.spongepowered.api.world.server.WorldTemplate;
-import org.spongepowered.plugin.PluginContainer;
 
-@CatalogedBy(DataPackTypes.class)
-public interface DataPackType<T> {
-
-    TypeToken<T> type();
+/**
+ * Represents a type that can be associated with a {@link Tag}.
+ *
+ * @param <T> The type of {@link Taggable}.
+ */
+@CatalogedBy(TagTypes.class)
+public interface TagType<T extends Taggable<T>> extends DefaultedRegistryValue {
 
     /**
-     * Gets if resources created by this type will persist even if the {@link PluginContainer plugin}
-     * is no longer present (or no longer performs a registration in {@link RegisterDataPackValueEvent}
+     * The {@link RegistryType} that represents the known collection of objects
+     * of type {@code T}.
      *
-     * <p>Consult your implementation vendor for more details on exactly what resources are kept.</p>
-     * 
-     * @return True if persistent, false if not
+     * @return The {@link RegistryType}
      */
-    boolean persistent();
+    RegistryType<T> taggableRegistry();
 
-    interface Factory {
+    /**
+     * The {@link RegistryType} of tags that can be associated with objects.
+     *
+     * @return The {@link RegistryType}
+     */
+    RegistryType<Tag<T>> tagRegistry();
 
-        DataPackType<Advancement> advancement();
-
-        DataPackType<RecipeRegistration> recipe();
-
-        DataPackType<WorldTypeTemplate> worldType();
-
-        DataPackType<WorldTemplate> world();
-
-        DataPackType<TagTemplate> tag();
-    }
 }

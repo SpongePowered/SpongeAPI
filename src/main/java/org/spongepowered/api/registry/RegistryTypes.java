@@ -131,6 +131,9 @@ import org.spongepowered.api.state.EnumStateProperty;
 import org.spongepowered.api.state.IntegerStateProperty;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.StatisticCategory;
+import org.spongepowered.api.tag.Tag;
+import org.spongepowered.api.tag.TagType;
+import org.spongepowered.api.tag.TagTypes;
 import org.spongepowered.api.util.mirror.Mirror;
 import org.spongepowered.api.util.orientation.Orientation;
 import org.spongepowered.api.util.rotation.Rotation;
@@ -403,6 +406,16 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<MapDecorationType> MAP_DECORATION_TYPE = RegistryTypes.spongeKeyInGame("map_decoration_type");
 
     public static final DefaultedRegistryType<MapShade> MAP_SHADE = RegistryTypes.spongeKeyInGame("map_shade");
+
+    public static final DefaultedRegistryType<TagType<?>> TAG_TYPES = RegistryTypes.spongeKeyInGame("tag_type");
+
+    public static final DefaultedRegistryType<Tag<BlockType>> BLOCK_TYPE_TAGS = RegistryTypes.spongeKeyInGame("block_type_tags");
+
+    public static final DefaultedRegistryType<Tag<ItemType>> ITEM_TYPE_TAGS = RegistryTypes.spongeKeyInGame("item_type_tags");
+
+    public static final DefaultedRegistryType<Tag<EntityType<?>>> ENTITY_TYPE_TAGS = RegistryTypes.spongeKeyInGame("entity_type_tags");
+
+    public static final DefaultedRegistryType<Tag<FluidType>> FLUID_TYPE_TAGS = RegistryTypes.spongeKeyInGame("fluid_type_tags");
 
     // @formatter:on
 
