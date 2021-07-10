@@ -32,9 +32,6 @@ import java.lang.annotation.Target;
 
 /**
  * Used to annotate a method as an {@link EventListener}.
- *
- * <p>The method being targeted must be public and must be in a class that is
- * also public.</p>
  */
 @Retention(RUNTIME)
 @Target(METHOD)
