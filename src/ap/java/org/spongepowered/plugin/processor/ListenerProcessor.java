@@ -57,7 +57,7 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
 @SupportedAnnotationTypes(ListenerProcessor.LISTENER_ANNOTATION_CLASS)
-@SupportedSourceVersion(SourceVersion.RELEASE_8)
+@SupportedSourceVersion(SourceVersion.RELEASE_16)
 public class ListenerProcessor extends AbstractProcessor {
 
     static final String LISTENER_ANNOTATION_CLASS = "org.spongepowered.api.event.Listener";
@@ -86,24 +86,21 @@ public class ListenerProcessor extends AbstractProcessor {
                 final ExecutableElement method = (ExecutableElement) e;
 
                 if (method.getModifiers().contains(Modifier.STATIC)) {
-                    this.error("method must not be static", method);
-                }
-                if (!method.getModifiers().contains(Modifier.PUBLIC)) {
-                    this.error("method must be public", method);
+                    this.error("Event listener method must not be static", method);
                 }
                 if (method.getModifiers().contains(Modifier.ABSTRACT)) {
-                    this.error("method must not be abstract", method);
+                    this.error("Event listener method must not be abstract", method);
                 }
                 if (method.getEnclosingElement().getKind().isInterface()) {
                     this.error("interfaces cannot declare listeners", method);
                 }
                 if (method.getReturnType().getKind() != TypeKind.VOID) {
-                    this.error("method must return void", method);
+                    this.error("Event listener method must return void", method);
                 }
                 final List<? extends VariableElement> parameters = method.getParameters();
                 final DeclaredType eventType;
                 if (parameters.isEmpty() || !this.isTypeSubclass(parameters.get(0), ListenerProcessor.EVENT_CLASS)) {
-                    this.error("method must have an Event as its first parameter", method);
+                    this.error("Event listener method must have an Event as its first parameter", method);
                     eventType = null;
                 } else {
                     eventType = (DeclaredType) parameters.get(0).asType();
