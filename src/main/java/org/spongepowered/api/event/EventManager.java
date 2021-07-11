@@ -36,13 +36,11 @@ public interface EventManager {
      * Registers {@link Event} methods annotated with @{@link Listener} in the
      * specified object.
      *
-     * <p>Only methods that are public will be registered and the class must be
-     * public as well.</p>
+     * <p>This will not include any methods declared in supertypes, but will
+     * test for private and package-private listener methods.</p>
      *
-     * @param plugin The plugin instance
+     * @param plugin The plugin container
      * @param obj The object
-     * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin
-     *         instance
      */
     void registerListeners(PluginContainer plugin, Object obj);
 

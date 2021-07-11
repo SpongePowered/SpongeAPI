@@ -25,6 +25,7 @@
 package org.spongepowered.plugin.processor;
 
 import static javax.tools.Diagnostic.Kind.ERROR;
+import static javax.tools.Diagnostic.Kind.WARNING;
 
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.Listener;
@@ -50,7 +51,7 @@ import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
 
 @SupportedAnnotationTypes(ListenerProcessor.LISTENER_ANNOTATION_CLASS)
-@SupportedSourceVersion(SourceVersion.RELEASE_8)
+@SupportedSourceVersion(SourceVersion.RELEASE_16)
 public class ListenerProcessor extends AbstractProcessor {
 
     static final String LISTENER_ANNOTATION_CLASS = "org.spongepowered.api.event.Listener";
@@ -68,19 +69,16 @@ public class ListenerProcessor extends AbstractProcessor {
 
                 final Messager msg = this.processingEnv.getMessager();
                 if (method.getModifiers().contains(Modifier.STATIC)) {
-                    msg.printMessage(Diagnostic.Kind.ERROR, "method must not be static", method);
-                }
-                if (!method.getModifiers().contains(Modifier.PUBLIC)) {
-                    msg.printMessage(Diagnostic.Kind.ERROR, "method must be public", method);
+                    msg.printMessage(Diagnostic.Kind.ERROR, "Event listener method must not be static", method);
                 }
                 if (method.getModifiers().contains(Modifier.ABSTRACT)) {
-                    msg.printMessage(Diagnostic.Kind.ERROR, "method must not be abstract", method);
+                    msg.printMessage(Diagnostic.Kind.ERROR, "Event listener method must not be abstract", method);
                 }
                 if (method.getEnclosingElement().getKind().isInterface()) {
                     msg.printMessage(Diagnostic.Kind.ERROR, "interfaces cannot declare listeners", method);
                 }
                 if (method.getReturnType().getKind() != TypeKind.VOID) {
-                    msg.printMessage(Diagnostic.Kind.ERROR, "method must return void", method);
+                    msg.printMessage(Diagnostic.Kind.ERROR, "Event listener method must return void", method);
                 }
                 final List<? extends VariableElement> parameters = method.getParameters();
                 if (parameters.isEmpty() || !this.isTypeSubclass(parameters.get(0), ListenerProcessor.EVENT_CLASS)) {
