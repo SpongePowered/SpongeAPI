@@ -1117,6 +1117,13 @@ public final class Keys {
     public static final Key<Value<HorseStyle>> HORSE_STYLE = Keys.key(ResourceKey.sponge("horse_style"), HorseStyle.class);
 
     /**
+     * The inaccuracy of an {@link ItemStack} that launches {@link Projectile}s.
+     *
+     * <p>An inaccuracy of 0 means perfect accuracy. Inaccuracy of 1 is the default for most vanilla items.</p>
+     */
+    public static final Key<Value<Double>> INACCURACY = Keys.key(ResourceKey.sponge("inaccuracy"), Double.class);
+
+    /**
      * Whether an {@link Item} will not despawn for an infinite time.
      */
     public static final Key<Value<Boolean>> INFINITE_DESPAWN_DELAY = Keys.key(ResourceKey.sponge("infinite_despawn_delay"), Boolean.class);
