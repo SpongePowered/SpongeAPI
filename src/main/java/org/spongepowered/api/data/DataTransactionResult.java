@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.StringJoiner;
 import java.util.function.BiConsumer;
@@ -333,6 +334,24 @@ public final class DataTransactionResult {
     }
 
     /**
+     * Gets the successfully applied {@link Value} based on the provided {@link Key}.
+     *
+     * @param key The key
+     * @param <T> The data type
+     * @param <V> The value type
+     * @return The value, if available
+     */
+    @SuppressWarnings("unchecked")
+    public <T, V extends Value<T>> Optional<Value.Immutable<T>> successfulValue(final Key<V> key) {
+        for (final Value.Immutable<?> value : this.successfulData()) {
+            if (value.key() == key) {
+                return Optional.of((Value.Immutable<T>) value);
+            }
+        }
+        return Optional.empty();
+    }
+
+    /**
      * If {@link Value.Mutable}s were supplied to the operation, this
      * collection will return any {@link Value.Immutable}s which were rejected
      * by the target {@link DataHolder}.
@@ -344,6 +363,24 @@ public final class DataTransactionResult {
     }
 
     /**
+     * Gets the rejected {@link Value} based on the provided {@link Key}.
+     *
+     * @param key The key
+     * @param <T> The data type
+     * @param <V> The value type
+     * @return The value, if available
+     */
+    @SuppressWarnings("unchecked")
+    public <T, V extends Value<T>> Optional<Value.Immutable<T>> rejectedValue(final Key<V> key) {
+        for (final Value.Immutable<?> value : this.rejectedData()) {
+            if (value.key() == key) {
+                return Optional.of((Value.Immutable<T>) value);
+            }
+        }
+        return Optional.empty();
+    }
+
+    /**
      * If the operation replaced any {@link Value.Mutable}s, this returns a collection
      * of the replaced {@link Value.Immutable}s.
      *
@@ -351,6 +388,24 @@ public final class DataTransactionResult {
      */
     public List<Value.Immutable<?>> replacedData() {
         return this.replaced;
+    }
+
+    /**
+     * Gets the replaced {@link Value} based on the provided {@link Key}.
+     *
+     * @param key The key
+     * @param <T> The data type
+     * @param <V> The value type
+     * @return The value, if available
+     */
+    @SuppressWarnings("unchecked")
+    public <T, V extends Value<T>> Optional<Value.Immutable<T>> replacedValue(final Key<V> key) {
+        for (final Value.Immutable<?> value : this.replacedData()) {
+            if (value.key() == key) {
+                return Optional.of((Value.Immutable<T>) value);
+            }
+        }
+        return Optional.empty();
     }
 
     /**
