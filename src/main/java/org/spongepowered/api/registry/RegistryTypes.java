@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.registry;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.AdvancementType;
@@ -181,7 +182,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<EnchantmentType> ENCHANTMENT_TYPE = RegistryTypes.minecraftKeyInGame("enchantment");
 
-    public static final DefaultedRegistryType<EntityType<?>> ENTITY_TYPE = RegistryTypes.minecraftKeyInGame("entity_type");
+    public static final DefaultedRegistryType<EntityType<@NonNull ?>> ENTITY_TYPE = RegistryTypes.minecraftKeyInGame("entity_type");
 
     public static final DefaultedRegistryType<FluidType> FLUID_TYPE = RegistryTypes.minecraftKeyInGame("fluid");
 
@@ -189,21 +190,21 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<ParticleType> PARTICLE_TYPE = RegistryTypes.minecraftKeyInGame("particle_type");
 
-    public static final DefaultedRegistryType<RecipeType<?>> RECIPE_TYPE = RegistryTypes.minecraftKeyInGame("recipe_type");
+    public static final DefaultedRegistryType<ProfessionType> PROFESSION_TYPE = RegistryTypes.minecraftKeyInGame("villager_profession");
+
+    public static final DefaultedRegistryType<PotionType> POTION_TYPE = RegistryTypes.minecraftKeyInGame("potion");
+
+    public static final DefaultedRegistryType<RecipeType<@NonNull ?>> RECIPE_TYPE = RegistryTypes.minecraftKeyInGame("recipe_type");
 
     public static final DefaultedRegistryType<SoundType> SOUND_TYPE = RegistryTypes.minecraftKeyInGame("sound_event");
 
     public static final DefaultedRegistryType<Statistic> STATISTIC = RegistryTypes.minecraftKeyInGame("custom_stat");
 
-    public static final DefaultedRegistryType<StatisticCategory> STATISTIC_CATEGORY = RegistryTypes.minecraftKeyInGame("statistic_category");
+    public static final DefaultedRegistryType<StatisticCategory> STATISTIC_CATEGORY = RegistryTypes.minecraftKeyInGame("stat_type");
 
     public static final DefaultedRegistryType<Structure> STRUCTURE = RegistryTypes.minecraftKeyInGame("worldgen/structure_feature");
 
     public static final DefaultedRegistryType<VillagerType> VILLAGER_TYPE = RegistryTypes.minecraftKeyInGame("villager_type");
-
-    public static final DefaultedRegistryType<ProfessionType> PROFESSION_TYPE = RegistryTypes.minecraftKeyInGame("villager_profession");
-
-    public static final DefaultedRegistryType<PotionType> POTION_TYPE = RegistryTypes.minecraftKeyInGame("potion");
 
     // ----
 
@@ -221,6 +222,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<BannerPatternShape> BANNER_PATTERN_SHAPE = RegistryTypes.spongeKeyInGame("banner_pattern_shape");
 
+    public static final DefaultedRegistryType<Tag<BlockType>> BLOCK_TYPE_TAGS = RegistryTypes.spongeKeyInGame("block_type_tags");
+
     public static final DefaultedRegistryType<BoatType> BOAT_TYPE = RegistryTypes.spongeKeyInGame("boat_type");
 
     public static final DefaultedRegistryType<BodyPart> BODY_PART = RegistryTypes.spongeKeyInGame("body_part");
@@ -228,8 +231,6 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<BooleanStateProperty> BOOLEAN_STATE_PROPERTY = RegistryTypes.spongeKeyInGame("boolean_state_property");
 
     public static final DefaultedRegistryType<CatType> CAT_TYPE = RegistryTypes.spongeKeyInGame("cat_type");
-
-    public static final DefaultedRegistryType<ValueParameter<?>> REGISTRY_KEYED_VALUE_PARAMETER = RegistryTypes.spongeKeyInGame("value_parameter");
 
     public static final DefaultedRegistryType<ChatVisibility> CHAT_VISIBILITY = RegistryTypes.spongeKeyInGame("chat_visibility");
 
@@ -247,7 +248,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<CommandRegistrarType<?>> COMMAND_REGISTRAR_TYPE = RegistryTypes.spongeKeyInGame("command_registrar_type");
 
-    public static final DefaultedRegistryType<CommandTreeNodeType<?>> COMMAND_TREE_NODE_TYPE = RegistryTypes.spongeKeyInGame("command_tree_node_type");
+    public static final DefaultedRegistryType<CommandTreeNodeType<@NonNull ?>> COMMAND_TREE_NODE_TYPE = RegistryTypes.spongeKeyInGame("command_tree_node_type");
 
     public static final DefaultedRegistryType<ComparatorMode> COMPARATOR_MODE = RegistryTypes.spongeKeyInGame("comparator_mode");
 
@@ -273,13 +274,17 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<DyeColor> DYE_COLOR = RegistryTypes.spongeKeyInGame("dye_color");
 
-    public static final DefaultedRegistryType<EnumStateProperty<?>> ENUM_STATE_PROPERTY = RegistryTypes.spongeKeyInGame("enum_state_property");
+    public static final DefaultedRegistryType<EnumStateProperty<@NonNull ?>> ENUM_STATE_PROPERTY = RegistryTypes.spongeKeyInGame("enum_state_property");
+
+    public static final DefaultedRegistryType<Tag<EntityType<@NonNull ?>>> ENTITY_TYPE_TAGS = RegistryTypes.spongeKeyInGame("entity_type_tags");
 
     public static final DefaultedRegistryType<EquipmentGroup> EQUIPMENT_GROUP = RegistryTypes.spongeKeyInGame("equipment_group");
 
     public static final DefaultedRegistryType<EquipmentType> EQUIPMENT_TYPE = RegistryTypes.spongeKeyInGame("equipment_type");
 
     public static final DefaultedRegistryType<FireworkShape> FIREWORK_SHAPE = RegistryTypes.spongeKeyInGame("firework_shape");
+
+    public static final DefaultedRegistryType<Tag<FluidType>> FLUID_TYPE_TAGS = RegistryTypes.spongeKeyInGame("fluid_type_tags");
 
     public static final DefaultedRegistryType<FoxType> FOX_TYPE = RegistryTypes.spongeKeyInGame("fox_type");
 
@@ -309,9 +314,19 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<ItemTier> ITEM_TIER = RegistryTypes.spongeKeyInGame("item_tier");
 
+    public static final DefaultedRegistryType<Tag<ItemType>> ITEM_TYPE_TAGS = RegistryTypes.spongeKeyInGame("item_type_tags");
+
     public static final DefaultedRegistryType<LightType> LIGHT_TYPE = RegistryTypes.spongeKeyInGame("light_type");
 
     public static final DefaultedRegistryType<LlamaType> LLAMA_TYPE = RegistryTypes.spongeKeyInGame("llama_type");
+
+    public static final DefaultedRegistryType<MapColorType> MAP_COLOR_TYPE = RegistryTypes.spongeKeyInGame("map_color_type");
+
+    public static final DefaultedRegistryType<MapDecorationOrientation> MAP_DECORATION_ORIENTATION = RegistryTypes.spongeKeyInGame("map_decoration_orientation");
+
+    public static final DefaultedRegistryType<MapDecorationType> MAP_DECORATION_TYPE = RegistryTypes.spongeKeyInGame("map_decoration_type");
+
+    public static final DefaultedRegistryType<MapShade> MAP_SHADE = RegistryTypes.spongeKeyInGame("map_shade");
 
     public static final DefaultedRegistryType<MatterType> MATTER_TYPE = RegistryTypes.spongeKeyInGame("matter_type");
 
@@ -361,6 +376,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<RailDirection> RAIL_DIRECTION = RegistryTypes.spongeKeyInGame("rail_direction");
 
+    public static final DefaultedRegistryType<ValueParameter<?>> REGISTRY_KEYED_VALUE_PARAMETER = RegistryTypes.spongeKeyInGame("value_parameter");
+
     public static final DefaultedRegistryType<ResolveOperation> RESOLVE_OPERATION = RegistryTypes.spongeKeyInGame("resolve_operation");
 
     public static final DefaultedRegistryType<Rotation> ROTATION = RegistryTypes.spongeKeyInGame("rotation");
@@ -381,6 +398,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<StructureMode> STRUCTURE_MODE = RegistryTypes.spongeKeyInGame("structure_mode");
 
+    public static final DefaultedRegistryType<TagType<@NonNull ?>> TAG_TYPES = RegistryTypes.spongeKeyInGame("tag_type");
+
     public static final DefaultedRegistryType<TaskPriority> TASK_PRIORITY = RegistryTypes.spongeKeyInGame("task_priority");
 
     public static final DefaultedRegistryType<TeleportHelperFilter> TELEPORT_HELPER_FILTER = RegistryTypes.spongeKeyInGame("teleport_helper_filter");
@@ -389,7 +408,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<TransactionType> TRANSACTION_TYPE = RegistryTypes.spongeKeyInGame("transaction_type");
 
-    public static final DefaultedRegistryType<Trigger<?>> TRIGGER = RegistryTypes.spongeKeyInGame("trigger");
+    public static final DefaultedRegistryType<Trigger<@NonNull ?>> TRIGGER = RegistryTypes.spongeKeyInGame("trigger");
 
     public static final DefaultedRegistryType<TropicalFishShape> TROPICAL_FISH_SHAPE = RegistryTypes.spongeKeyInGame("tropical_fish_shape");
 
@@ -398,24 +417,6 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<WeatherType> WEATHER_TYPE = RegistryTypes.spongeKeyInGame("weather_type");
 
     public static final DefaultedRegistryType<WireAttachmentType> WIRE_ATTACHMENT_TYPE = RegistryTypes.spongeKeyInGame("wire_attachment_type");
-
-    public static final DefaultedRegistryType<MapColorType> MAP_COLOR_TYPE = RegistryTypes.spongeKeyInGame("map_color_type");
-
-    public static final DefaultedRegistryType<MapDecorationOrientation> MAP_DECORATION_ORIENTATION = RegistryTypes.spongeKeyInGame("map_decoration_orientation");
-
-    public static final DefaultedRegistryType<MapDecorationType> MAP_DECORATION_TYPE = RegistryTypes.spongeKeyInGame("map_decoration_type");
-
-    public static final DefaultedRegistryType<MapShade> MAP_SHADE = RegistryTypes.spongeKeyInGame("map_shade");
-
-    public static final DefaultedRegistryType<TagType<?>> TAG_TYPES = RegistryTypes.spongeKeyInGame("tag_type");
-
-    public static final DefaultedRegistryType<Tag<BlockType>> BLOCK_TYPE_TAGS = RegistryTypes.spongeKeyInGame("block_type_tags");
-
-    public static final DefaultedRegistryType<Tag<ItemType>> ITEM_TYPE_TAGS = RegistryTypes.spongeKeyInGame("item_type_tags");
-
-    public static final DefaultedRegistryType<Tag<EntityType<?>>> ENTITY_TYPE_TAGS = RegistryTypes.spongeKeyInGame("entity_type_tags");
-
-    public static final DefaultedRegistryType<Tag<FluidType>> FLUID_TYPE_TAGS = RegistryTypes.spongeKeyInGame("fluid_type_tags");
 
     // @formatter:on
 
