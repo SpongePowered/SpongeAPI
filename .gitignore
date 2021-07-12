@@ -5,6 +5,8 @@ dependency-reduced-pom.xml
 .checkstyle
 !.checkstyle/
 
+/src/*/generated/
+
 # Compiled #
 ############
 bin

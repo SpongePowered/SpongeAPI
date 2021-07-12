@@ -36,7 +36,6 @@ import java.util.Optional;
 /**
  * Fired when the world border changes for a {@code Player} or a {@code World}.
  */
-@NoFactoryMethod
 public interface ChangeWorldBorderEvent extends Event, Cancellable {
 
     /**

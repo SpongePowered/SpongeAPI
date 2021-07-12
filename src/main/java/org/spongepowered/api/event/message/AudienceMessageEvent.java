@@ -65,7 +65,7 @@ public interface AudienceMessageEvent extends MessageEvent {
      *
      * @param predicate the predicate
      */
-    default void filterAudience(Predicate<Audience> predicate) {
+    default void filterAudience(final Predicate<Audience> predicate) {
         if (this.audience().isPresent()) {
             this.setAudience(Audiences.filtered(this.audience().get(), predicate).orElse(null));
         }
