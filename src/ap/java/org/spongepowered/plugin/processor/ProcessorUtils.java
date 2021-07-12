@@ -28,7 +28,6 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.Collection;
 import java.util.List;
-
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.TypeElement;

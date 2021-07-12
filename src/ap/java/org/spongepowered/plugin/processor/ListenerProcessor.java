@@ -95,7 +95,7 @@ public class ListenerProcessor extends AbstractProcessor {
                     this.error("method must not be abstract", method);
                 }
                 if (method.getEnclosingElement().getKind().isInterface()) {
-                    this.error( "interfaces cannot declare listeners", method);
+                    this.error("interfaces cannot declare listeners", method);
                 }
                 if (method.getReturnType().getKind() != TypeKind.VOID) {
                     this.error("method must return void", method);
@@ -103,7 +103,7 @@ public class ListenerProcessor extends AbstractProcessor {
                 final List<? extends VariableElement> parameters = method.getParameters();
                 final DeclaredType eventType;
                 if (parameters.isEmpty() || !this.isTypeSubclass(parameters.get(0), ListenerProcessor.EVENT_CLASS)) {
-                    this.error( "method must have an Event as its first parameter", method);
+                    this.error("method must have an Event as its first parameter", method);
                     eventType = null;
                 } else {
                     eventType = (DeclaredType) parameters.get(0).asType();
