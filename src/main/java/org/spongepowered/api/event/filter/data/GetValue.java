@@ -38,6 +38,10 @@ import java.lang.annotation.Target;
  *
  * <p>This value can be taken from the event cause's first {@link ValueContainer},
  * or any preceding parameter that inherits from {@link ValueContainer}.</p>
+ *
+ * <p>When looking for a value, searching will start from the parameter
+ * immediately before the annotated one, moving backwards and checking the first
+ * {@link ValueContainer} in the event cause last.</p>
  */
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
