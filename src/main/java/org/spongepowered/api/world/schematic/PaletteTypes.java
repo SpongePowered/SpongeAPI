@@ -28,6 +28,7 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.block.entity.BlockEntityType;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
@@ -57,6 +58,8 @@ public final class PaletteTypes {
      * {@link BlockState biome} is registered via {@link Palette.Mutable#orAssign (Object)}
      */
     public static final DefaultedRegistryReference<PaletteType<BlockState, BlockType>> BLOCK_STATE_PALETTE = PaletteTypes.key(ResourceKey.sponge("block_state_palette"));
+
+    public static final DefaultedRegistryReference<PaletteType<BlockEntityType, BlockEntityType>> BLOCK_ENTITY_PALETTE = PaletteTypes.key(ResourceKey.sponge("block_entity_type_palette"));
 
     // SORTFIELDS:OFF
 

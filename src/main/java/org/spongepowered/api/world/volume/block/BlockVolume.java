@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world.volume.block;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
@@ -46,14 +45,6 @@ import org.spongepowered.math.vector.Vector2i;
 import org.spongepowered.math.vector.Vector3i;
 
 public interface BlockVolume extends Volume {
-
-    static BlockVolume.Mutable<@NonNull ?> empty(final Vector3i min, final Vector3i max) {
-        return BlockVolume.empty(PaletteTypes.BLOCK_STATE_PALETTE.get().create(Sponge.game().registries(), RegistryTypes.BLOCK_TYPE), BlockTypes.AIR, min, max);
-    }
-
-    static BlockVolume.Mutable<@NonNull ?> empty(final Palette<BlockState, BlockType> palette, final RegistryReference<BlockType> defaultState, final Vector3i min, final Vector3i max) {
-        return Sponge.game().factoryProvider().provide(BlockVolumeFactory.class).empty(palette, defaultState, min, max);
-    }
 
     BlockState block(int x, int y, int z);
 
@@ -138,7 +129,7 @@ public interface BlockVolume extends Volume {
 
     }
 
-    interface Mutable<M extends Mutable<M>> extends Streamable<M>, MutableVolume {
+    interface Modifiable<M extends Modifiable<M>> extends Streamable<M>, MutableVolume {
 
         /**
          * Sets the block at the given position in the world.
@@ -171,6 +162,19 @@ public interface BlockVolume extends Volume {
         }
 
         boolean removeBlock(int x, int y, int z);
+    }
 
+    interface Mutable extends Modifiable<Mutable> {
+
+        static Mutable empty(final Vector3i min, final Vector3i max) {
+            return Mutable.empty(PaletteTypes.BLOCK_STATE_PALETTE.get().create(Sponge.game().registries(), RegistryTypes.BLOCK_TYPE), BlockTypes.AIR, min, max);
+        }
+
+        static Mutable empty(
+            final Palette<BlockState, BlockType> palette, final RegistryReference<BlockType> defaultState,
+            final Vector3i min, final Vector3i max
+        ) {
+            return Sponge.game().factoryProvider().provide(BlockVolumeFactory.class).empty(palette, defaultState, min, max);
+        }
     }
 }

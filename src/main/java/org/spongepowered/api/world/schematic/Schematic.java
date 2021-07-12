@@ -90,6 +90,11 @@ public interface Schematic extends ArchetypeVolume, LocationBaseDataHolder.Mutab
 
         /**
          * Specifies an archetype volume for the world data of the schematic.
+         * This is to take part of the schematic, so it should not be referenced
+         * outside of the schematic, less modifications are going to be made
+         * also affecting {@link #blockEntities(BlockEntityVolume) the block
+         * entity volume}.
+         *
          *
          * @param volume The archetype volume
          * @return This builder, for chaining
