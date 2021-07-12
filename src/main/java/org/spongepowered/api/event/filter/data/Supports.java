@@ -24,21 +24,51 @@
  */
 package org.spongepowered.api.event.filter.data;
 
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.event.Listener;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * Filters a parameter in an event {@link Listener @Listener} method to only
+ * one that supports certain data.
+ *
+ * <p>The parameter type must be {@link DataHolder} or one of its subtypes.</p>
+ *
+ * <p>This is a <em>filtering</em> annotation, meaning it needs to be used in
+ * conjunction with one of the <em>source</em> annotations on a parameter.</p>
+ */
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Supports {
 
+    /**
+     * The holder class to fetch keys from.
+     *
+     * @return the key container, by default {@link Keys}
+     */
     Class<?> container() default Keys.class;
 
+    /**
+     * The name of the field in {@link #container()} providing this key.
+     *
+     * <p>This field must be static and have a value of type {@link Key}</p>
+     *
+     * @return the name of the key field to require
+     */
     String value();
 
+    /**
+     * If true then the behavior of this filter is reversed and the
+     * data holders supporting the specified key are excluded.
+     *
+     * @return if the parameter filter is reversed
+     */
     boolean inverse() default false;
 
 }

@@ -24,7 +24,13 @@
  */
 package org.spongepowered.plugin.processor;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
+
 import java.util.Collection;
+import java.util.List;
+
+import javax.lang.model.element.Element;
+import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.TypeElement;
 
 final class ProcessorUtils {
@@ -45,6 +51,16 @@ final class ProcessorUtils {
         }
 
         return false;
+    }
+
+    static @Nullable Element containingWithNameAndType(final List<? extends Element> elements, final CharSequence name, final ElementKind kind) {
+        for (final Element el : elements) {
+            if ((kind == null || el.getKind() == kind)
+                && el.getSimpleName().contentEquals(name)) {
+                return el;
+            }
+        }
+        return null;
     }
 
 }
