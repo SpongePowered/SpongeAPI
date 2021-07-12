@@ -179,12 +179,12 @@ public final class VolumeApplicators {
      * @param <M> The type of block entity
      * @return A volume applicator that applies block entity archetypes
      */
-    @SuppressWarnings("RedundantCast")
+    @SuppressWarnings({"unchecked"})
     public static
-    <M extends LocationCreator<@NonNull ?, ? extends ServerLocation> & BlockEntityVolume.Modifiable<M>>
+    <M extends BlockEntityVolume.Modifiable<M> & LocationCreator<@NonNull ?, ? extends ServerLocation>>
     VolumeApplicator<M, BlockEntityArchetype, Optional<? extends BlockEntity>>
     applyBlockEntityArchetype() {
-        return (volume, element) -> element.type().apply((ServerLocation) volume.location(element.position()));
+        return (volume, element) -> element.type().apply(volume.location(element.position()));
     }
 
     /**
@@ -234,12 +234,12 @@ public final class VolumeApplicators {
         return (volume, element) -> volume.setBiome(element.position(), element.type());
     }
 
-    @SuppressWarnings("RedundantCast")
+    @SuppressWarnings("unchecked")
     public static
-    <M extends LocationCreator<@NonNull ?, ? extends ServerLocation> & EntityVolume.Modifiable<M>>
+    <M extends EntityVolume.Modifiable<M> & LocationCreator<@NonNull ?, ? extends ServerLocation>>
     VolumeApplicator<M, EntityArchetype, Optional<? extends Entity>>
     applyEntityArchetype() {
-        return (volume, element) -> element.type().apply((ServerLocation) volume.location(element.position()));
+        return (volume, element) -> element.type().apply(volume.location(element.position()));
     }
 
     public static
