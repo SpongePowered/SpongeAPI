@@ -70,7 +70,7 @@ public interface BanService {
      * @param profile The profile
      * @return The ban, if available
      */
-    CompletableFuture<Optional<Ban.Profile>> banFor(GameProfile profile);
+    CompletableFuture<Optional<Ban.Profile>> find(GameProfile profile);
 
     /**
      * Gets the ban for the given address, if available.
@@ -78,7 +78,7 @@ public interface BanService {
      * @param address The address.
      * @return All registered IP bans
      */
-    CompletableFuture<Optional<Ban.IP>> banFor(InetAddress address);
+    CompletableFuture<Optional<Ban.IP>> find(InetAddress address);
 
     /**
      * Pardons a profile, or removes its ban, if present.
@@ -102,7 +102,7 @@ public interface BanService {
      * @param ban The ban
      * @return Whether the ban was present in this ban service
      */
-    CompletableFuture<Boolean> removeBan(Ban ban);
+    CompletableFuture<Boolean> remove(Ban ban);
 
     /**
      * Adds a ban.
@@ -113,6 +113,6 @@ public interface BanService {
      * @param ban The ban to add to this ban service
      * @return The previous ban, if available
      */
-    CompletableFuture<Optional<? extends Ban>> addBan(Ban ban);
+    CompletableFuture<Optional<? extends Ban>> add(Ban ban);
 
 }
