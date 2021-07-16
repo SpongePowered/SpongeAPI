@@ -204,7 +204,7 @@ public final class Biomes {
     }
 
     public static Registry<Biome> registry(final ServerWorld world) {
-        return world.registries().registry(RegistryTypes.BIOME);
+        return world.registry(RegistryTypes.BIOME);
     }
 
     private static RegistryReference<Biome> key(final ResourceKey location) {

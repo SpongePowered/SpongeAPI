@@ -37,6 +37,7 @@ import org.spongepowered.api.item.enchantment.EnchantmentType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -170,6 +171,10 @@ public final class DamageModifierTypes {
     // @formatter:on
 
     private DamageModifierTypes() {
+    }
+
+    public static Registry<DamageModifierType> registry() {
+        return Sponge.game().registry(RegistryTypes.DAMAGE_MODIFIER_TYPE);
     }
 
     private static DefaultedRegistryReference<DamageModifierType> key(final ResourceKey location) {

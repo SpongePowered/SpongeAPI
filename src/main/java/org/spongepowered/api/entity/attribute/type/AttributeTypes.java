@@ -71,8 +71,8 @@ public final class AttributeTypes {
     private AttributeTypes() {
     }
 
-    public static Registry<RangedAttributeType> registry() {
-        return Sponge.game().registries().registry(RegistryTypes.ATTRIBUTE_TYPE);
+    public static Registry<AttributeType> registry() {
+        return Sponge.game().registry(RegistryTypes.ATTRIBUTE_TYPE);
     }
 
     private static DefaultedRegistryReference<RangedAttributeType> key(final ResourceKey location) {

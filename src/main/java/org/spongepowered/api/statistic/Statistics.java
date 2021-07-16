@@ -194,7 +194,7 @@ public final class Statistics {
     }
 
     public static Registry<Statistic> registry() {
-        return Sponge.game().registries().registry(RegistryTypes.STATISTIC);
+        return Sponge.game().registry(RegistryTypes.STATISTIC);
     }
 
     private static DefaultedRegistryReference<Statistic> key(final ResourceKey location) {

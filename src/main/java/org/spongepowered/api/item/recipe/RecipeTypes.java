@@ -31,6 +31,7 @@ import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
 import org.spongepowered.api.item.recipe.single.StoneCutterRecipe;
 import org.spongepowered.api.item.recipe.smithing.SmithingRecipe;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -62,6 +63,10 @@ public final class RecipeTypes {
     // SORTFIELDS:OFF
     // @formatter:on
     private RecipeTypes() {
+    }
+
+    public static Registry<RecipeType<? extends Recipe>> registry() {
+        return Sponge.game().registry(RegistryTypes.RECIPE_TYPE);
     }
 
     private static <T extends Recipe> DefaultedRegistryReference<RecipeType<T>> key(final ResourceKey location) {

@@ -28,6 +28,7 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.map.decoration.MapDecorationType;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -55,6 +56,10 @@ public final class MapShades {
 
     private MapShades() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    public static Registry<MapShade> registry() {
+        return Sponge.game().registry(RegistryTypes.MAP_SHADE);
     }
 
     private static DefaultedRegistryReference<MapShade> key(final ResourceKey location) {

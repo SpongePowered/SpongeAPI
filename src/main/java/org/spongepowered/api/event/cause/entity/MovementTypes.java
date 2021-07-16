@@ -27,6 +27,7 @@ package org.spongepowered.api.event.cause.entity;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -61,6 +62,10 @@ public final class MovementTypes {
     // @formatter:on
 
     private MovementTypes() {
+    }
+
+    public static Registry<MovementType> registry() {
+        return Sponge.game().registry(RegistryTypes.MOVEMENT_TYPE);
     }
 
     private static DefaultedRegistryReference<MovementType> key(final ResourceKey location) {

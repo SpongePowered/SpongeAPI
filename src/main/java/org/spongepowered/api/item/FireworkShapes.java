@@ -27,6 +27,7 @@ package org.spongepowered.api.item;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -58,6 +59,10 @@ public final class FireworkShapes {
     // @formatter:on
 
     private FireworkShapes() {
+    }
+
+    public static Registry<FireworkShape> registry() {
+        return Sponge.game().registry(RegistryTypes.FIREWORK_SHAPE);
     }
 
     private static DefaultedRegistryReference<FireworkShape> key(final ResourceKey location) {

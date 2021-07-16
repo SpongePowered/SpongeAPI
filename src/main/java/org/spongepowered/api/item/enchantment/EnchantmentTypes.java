@@ -27,6 +27,7 @@ package org.spongepowered.api.item.enchantment;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -279,6 +280,10 @@ public final class EnchantmentTypes {
     // SORTFIELDS:OFF
     // @formatter:on
     private EnchantmentTypes() {
+    }
+
+    public static Registry<EnchantmentType> registry() {
+        return Sponge.game().registry(RegistryTypes.ENCHANTMENT_TYPE);
     }
 
     private static DefaultedRegistryReference<EnchantmentType> key(final ResourceKey location) {

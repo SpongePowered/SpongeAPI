@@ -27,6 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -54,6 +55,10 @@ public final class WireAttachmentTypes {
     // @formatter:on
 
     private WireAttachmentTypes() {
+    }
+
+    public static Registry<WireAttachmentType> registry() {
+        return Sponge.game().registry(RegistryTypes.WIRE_ATTACHMENT_TYPE);
     }
 
     private static DefaultedRegistryReference<WireAttachmentType> key(final ResourceKey location) {

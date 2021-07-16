@@ -27,6 +27,7 @@ package org.spongepowered.api.state;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -1054,6 +1055,10 @@ public final class EnumStateProperties {
 
     // @formatter:on
     private EnumStateProperties() {
+    }
+
+    public static Registry<EnumStateProperty<?>> registry() {
+        return Sponge.game().registry(RegistryTypes.ENUM_STATE_PROPERTY);
     }
 
     private static DefaultedRegistryReference<EnumStateProperty<?>> key(final ResourceKey location) {

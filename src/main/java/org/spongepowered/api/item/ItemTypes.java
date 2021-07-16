@@ -1998,7 +1998,7 @@ public final class ItemTypes {
     }
 
     public static Registry<ItemType> registry() {
-        return Sponge.game().registries().registry(RegistryTypes.ITEM_TYPE);
+        return Sponge.game().registry(RegistryTypes.ITEM_TYPE);
     }
 
     private static DefaultedRegistryReference<ItemType> key(final ResourceKey location) {

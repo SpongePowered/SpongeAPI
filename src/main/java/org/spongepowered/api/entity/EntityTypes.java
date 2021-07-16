@@ -132,6 +132,7 @@ import org.spongepowered.api.entity.vehicle.minecart.carrier.ChestMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.carrier.HopperMinecart;
 import org.spongepowered.api.entity.weather.LightningBolt;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -362,6 +363,10 @@ public final class EntityTypes {
     public static final DefaultedRegistryReference<EntityType<ZombifiedPiglin>> ZOMBIFIED_PIGLIN = EntityTypes.key(ResourceKey.minecraft("zombified_piglin"));
 
     private EntityTypes() {
+    }
+
+    public static Registry<EntityType<? extends Entity>> registry() {
+        return Sponge.game().registry(RegistryTypes.ENTITY_TYPE);
     }
 
     private static <T extends Entity> DefaultedRegistryReference<EntityType<T>> key(final ResourceKey location) {

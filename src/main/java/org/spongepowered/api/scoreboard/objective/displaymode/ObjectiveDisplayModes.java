@@ -27,6 +27,7 @@ package org.spongepowered.api.scoreboard.objective.displaymode;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -67,6 +68,10 @@ public final class ObjectiveDisplayModes {
     // @formatter:on
 
     private ObjectiveDisplayModes() {
+    }
+
+    public static Registry<ObjectiveDisplayMode> registry() {
+        return Sponge.game().registry(RegistryTypes.OBJECTIVE_DISPLAY_MODE);
     }
 
     private static DefaultedRegistryReference<ObjectiveDisplayMode> key(final ResourceKey location) {

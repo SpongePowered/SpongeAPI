@@ -2030,7 +2030,7 @@ public final class SoundTypes {
     }
 
     public static Registry<SoundType> registry() {
-        return Sponge.game().registries().registry(RegistryTypes.SOUND_TYPE);
+        return Sponge.game().registry(RegistryTypes.SOUND_TYPE);
     }
 
     private static DefaultedRegistryReference<SoundType> key(final ResourceKey location) {

@@ -60,7 +60,7 @@ public final class VillagerTypes {
     }
 
     public static Registry<VillagerType> registry() {
-        return Sponge.game().registries().registry(RegistryTypes.VILLAGER_TYPE);
+        return Sponge.game().registry(RegistryTypes.VILLAGER_TYPE);
     }
 
     private static DefaultedRegistryReference<VillagerType> key(final ResourceKey location) {

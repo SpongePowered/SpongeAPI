@@ -54,7 +54,7 @@ public final class WorldTypes {
     }
 
     public static Registry<WorldType> registry() {
-        return Sponge.server().registries().registry(RegistryTypes.WORLD_TYPE);
+        return Sponge.server().registry(RegistryTypes.WORLD_TYPE);
     }
 
     private static DefaultedRegistryReference<WorldType> key(final ResourceKey location) {

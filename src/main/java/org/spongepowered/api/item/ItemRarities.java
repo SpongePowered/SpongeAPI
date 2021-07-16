@@ -27,6 +27,7 @@ package org.spongepowered.api.item;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -53,6 +54,10 @@ public final class ItemRarities {
     // @formatter:on
 
     private ItemRarities() {
+    }
+
+    public static Registry<ItemRarity> registry() {
+        return Sponge.game().registry(RegistryTypes.ITEM_RARITY);
     }
 
     private static DefaultedRegistryReference<ItemRarity> key(final ResourceKey location) {

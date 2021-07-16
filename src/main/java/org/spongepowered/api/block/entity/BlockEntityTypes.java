@@ -112,7 +112,7 @@ public final class BlockEntityTypes {
     }
 
     public static Registry<BlockEntityType> registry() {
-        return Sponge.game().registries().registry(RegistryTypes.BLOCK_ENTITY_TYPE);
+        return Sponge.game().registry(RegistryTypes.BLOCK_ENTITY_TYPE);
     }
 
     private static DefaultedRegistryReference<BlockEntityType> key(final ResourceKey location) {

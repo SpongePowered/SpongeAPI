@@ -98,7 +98,7 @@ public final class ArtTypes {
     }
 
     public static Registry<ArtType> registry() {
-        return Sponge.game().registries().registry(RegistryTypes.ART_TYPE);
+        return Sponge.game().registry(RegistryTypes.ART_TYPE);
     }
 
     private static DefaultedRegistryReference<ArtType> key(final ResourceKey location) {

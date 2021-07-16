@@ -27,6 +27,7 @@ package org.spongepowered.api.service.economy.account;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -56,6 +57,10 @@ public final class AccountDeletionResultTypes {
     // @formatter:on
 
     private AccountDeletionResultTypes() {
+    }
+
+    public static Registry<AccountDeletionResultType> registry() {
+        return Sponge.game().registry(RegistryTypes.ACCOUNT_DELETION_RESULT_TYPE);
     }
 
     private static DefaultedRegistryReference<AccountDeletionResultType> key(final ResourceKey location) {

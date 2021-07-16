@@ -82,7 +82,7 @@ public final class Structures {
     }
 
     public static Registry<Structure> registry() {
-        return Sponge.game().registries().registry(RegistryTypes.STRUCTURE);
+        return Sponge.game().registry(RegistryTypes.STRUCTURE);
     }
 
     private static DefaultedRegistryReference<Structure> key(final ResourceKey location) {

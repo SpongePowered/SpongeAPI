@@ -56,7 +56,7 @@ public final class FluidTypes {
     }
 
     public static Registry<FluidType> registry() {
-        return Sponge.game().registries().registry(RegistryTypes.FLUID_TYPE);
+        return Sponge.game().registry(RegistryTypes.FLUID_TYPE);
     }
 
     private static DefaultedRegistryReference<FluidType> key(final ResourceKey location) {

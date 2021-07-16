@@ -110,7 +110,7 @@ public final class PotionEffectTypes {
     }
 
     public static Registry<PotionEffectType> registry() {
-        return Sponge.game().registries().registry(RegistryTypes.POTION_EFFECT_TYPE);
+        return Sponge.game().registry(RegistryTypes.POTION_EFFECT_TYPE);
     }
 
     private static DefaultedRegistryReference<PotionEffectType> key(final ResourceKey location) {

@@ -190,7 +190,7 @@ public final class ParticleTypes {
     }
 
     public static Registry<ParticleType> registry() {
-        return Sponge.game().registries().registry(RegistryTypes.PARTICLE_TYPE);
+        return Sponge.game().registry(RegistryTypes.PARTICLE_TYPE);
     }
 
     private static DefaultedRegistryReference<ParticleType> key(final ResourceKey location) {

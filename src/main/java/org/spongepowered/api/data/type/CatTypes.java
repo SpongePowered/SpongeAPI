@@ -27,6 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -70,6 +71,10 @@ public final class CatTypes {
     // @formatter:on
 
     private CatTypes() {
+    }
+
+    public static Registry<CatType> registry() {
+        return Sponge.game().registry(RegistryTypes.CAT_TYPE);
     }
 
     private static DefaultedRegistryReference<CatType> key(final ResourceKey location) {

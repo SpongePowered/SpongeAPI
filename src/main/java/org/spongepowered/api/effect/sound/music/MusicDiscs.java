@@ -27,6 +27,7 @@ package org.spongepowered.api.effect.sound.music;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -71,6 +72,10 @@ public final class MusicDiscs {
     // @formatter:on
 
     private MusicDiscs() {
+    }
+
+    public static Registry<MusicDisc> registry() {
+        return Sponge.game().registry(RegistryTypes.MUSIC_DISC);
     }
 
     private static DefaultedRegistryReference<MusicDisc> key(final ResourceKey location) {

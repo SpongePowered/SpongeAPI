@@ -171,8 +171,7 @@ public interface StreamOptions {
      * Determines the loading style of sections to populate elements for a Stream,
      * such that the area may be pre-calculated or the elements precalculated based
      *
-     * refer
-     * @return
+     * @return the loading style
      */
     LoadingStyle loadingStyle();
 
