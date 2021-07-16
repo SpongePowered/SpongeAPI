@@ -111,7 +111,6 @@ public interface ValueParameter<T> extends DefaultedRegistryValue, ValueComplete
          * you wish to do so, implement {@link ValueParameter} instead.
          *
          * {@inheritDoc}
-         * @return
          */
         @Override
         default List<CommandCompletion> complete(final CommandContext context, final String currentInput) {

@@ -43,6 +43,7 @@ import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.user.UserManager;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.server.ServerLocation;
@@ -402,14 +403,27 @@ public final class ResourceKeyedValueParameters {
     public static final DefaultedRegistryReference<ResourceKeyedValueParameter<URL>> URL = ResourceKeyedValueParameters.key(ResourceKey.sponge("url"));
 
     /**
-     * Expect an argument to represent a player who has been online at some
-     * point, as a {@link User}.
+     * Expect an argument to represent the UUID of a player who has been online
+     * at some point - that is, a {@link UUID} where either:
+     *
+     * <ul>
+     *     <li>The player is online; or</li>
+     *     <li>The user with the returned {@link UUID} has user data available
+     *     in the {@link UserManager} (that is, for this UUID,
+     *     {@link UserManager#exists(java.util.UUID)} will return {@code true}).
+     *     </li>
+     * </ul>
+     *
+     * <p>As {@link User} objects are potentially slow to load, they are not
+     * created or returned here. In general, you will want to run
+     * {@link UserManager#load(java.util.UUID)} on the returned UUID to actually
+     * obtain the user.</p>
      *
      * <p>This parameter accepts selectors (to obtain players).</p>
      *
-     * <p>Returns a {@link User}.</p>
+     * <p>Returns a {@link UUID}.</p>
      */
-    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<User>> USER = ResourceKeyedValueParameters.key(ResourceKey.sponge("user"));
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<UUID>> USER = ResourceKeyedValueParameters.key(ResourceKey.sponge("user"));
 
     /**
      * Expect an argument to represent a {@link UUID}

@@ -33,7 +33,9 @@ import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.item.inventory.ArmorEquipable;
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.Inventory;
+import org.spongepowered.api.item.inventory.entity.PlayerInventory;
 import org.spongepowered.api.item.inventory.entity.UserInventory;
+import org.spongepowered.api.item.inventory.type.CarriedInventory;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.util.annotation.DoNotStore;
@@ -129,12 +131,18 @@ public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject
      */
     Vector3d rotation();
 
+    /**
+     * {@inheritDoc}
+     *
+     * Note that this may be either a {@link PlayerInventory} or
+     * {@link UserInventory}, depending on whether the user is online or not.
+     */
     @Override
-    UserInventory inventory();
+    CarriedInventory<? extends Carrier> inventory();
 
     /**
-     * Gets the {@link Inventory} available for this Player's shared {@link EnderChest}
-     * contents.
+     * Gets the {@link Inventory} available for this Player's shared
+     * {@link EnderChest} contents.
      *
      * @return The ender chest inventory
      */
