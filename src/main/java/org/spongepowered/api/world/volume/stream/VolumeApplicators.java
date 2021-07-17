@@ -67,7 +67,7 @@ public final class VolumeApplicators {
      * @return A blockstate based VolumeApplicator
      */
     public static <M extends BlockVolume.Modifiable<M>> VolumeApplicator<M, BlockState, Boolean> applyBlocks() {
-        return ((volume, element) -> volume.setBlock(element.position(), element.type()));
+        return ((volume, element) -> volume.setBlock(element.position().round().toInt(), element.type()));
     }
 
     /**
@@ -82,7 +82,7 @@ public final class VolumeApplicators {
      */
     public static <M extends PhysicsAwareMutableBlockVolume<M>> VolumeApplicator<M, BlockState, Boolean> applyBlocks(final BlockChangeFlag flag) {
         Objects.requireNonNull(flag, "BlockChangeFlag cannot be null!");
-        return ((volume, element) -> volume.setBlock(element.position(), element.type(), flag));
+        return ((volume, element) -> volume.setBlock(element.position().round().toInt(), element.type(), flag));
     }
 
     /**
@@ -95,8 +95,8 @@ public final class VolumeApplicators {
      */
     public static <M extends BlockEntityVolume.Modifiable<M>> VolumeApplicator<M, BlockEntity, Boolean> applyBlockEntities() {
         return (volume, element) -> {
-            if (volume.setBlock(element.position(), element.type().block())) {
-                volume.addBlockEntity(element.position(), element.type());
+            if (volume.setBlock(element.position().round().toInt(), element.type().block())) {
+                volume.addBlockEntity(element.position().round().toInt(), element.type());
                 return true;
             }
             return false;
@@ -118,13 +118,13 @@ public final class VolumeApplicators {
             final Optional<? extends BlockEntity> blockEntityOpt = element.type();
             if (blockEntityOpt.isPresent()) {
                 final BlockEntity blockEntity = blockEntityOpt.get();
-                if (volume.setBlock(element.position(), blockEntity.block())) {
-                    volume.addBlockEntity(element.position(), blockEntity);
+                if (volume.setBlock(element.position().round().toInt(), blockEntity.block())) {
+                    volume.addBlockEntity(element.position().round().toInt(), blockEntity);
                     return true;
                 }
                 return false;
             } else {
-                return volume.removeBlock(element.position());
+                return volume.removeBlock(element.position().round().toInt());
             }
         };
     }
@@ -140,8 +140,8 @@ public final class VolumeApplicators {
      */
     public static <M extends BlockVolume.Modifiable<M>> VolumeApplicator<M, Optional<BlockState>, Boolean> applyOrRemoveBlockState() {
         return (volume, element) -> element.type()
-            .map(blockState -> volume.setBlock(element.position(), blockState))
-            .orElseGet(() -> volume.removeBlock(element.position()));
+            .map(blockState -> volume.setBlock(element.position().round().toInt(), blockState))
+            .orElseGet(() -> volume.removeBlock(element.position().round().toInt()));
     }
 
     /**
@@ -155,8 +155,8 @@ public final class VolumeApplicators {
      */
     public static <M extends PhysicsAwareMutableBlockVolume<M>> VolumeApplicator<M, Optional<BlockState>, Boolean> applyOrRemoveBlockState(final BlockChangeFlag flag) {
         return (volume, element) -> element.type()
-            .map(blockState -> volume.setBlock(element.position(), blockState, flag))
-            .orElseGet(() -> volume.removeBlock(element.position()));
+            .map(blockState -> volume.setBlock(element.position().round().toInt(), blockState, flag))
+            .orElseGet(() -> volume.removeBlock(element.position().round().toInt()));
     }
 
     /**
@@ -182,7 +182,7 @@ public final class VolumeApplicators {
      */
     public static <M extends BlockEntityArchetypeVolume.Modifiable<M>> VolumeApplicator<M, BlockEntityArchetype, Boolean> applyBlockEntityArchetypes() {
         return (volume, element) -> {
-            volume.addBlockEntity(element.position(), element.type());
+            volume.addBlockEntity(element.position().round().toInt(), element.type());
             return true;
         };
     }
@@ -208,7 +208,7 @@ public final class VolumeApplicators {
      * @return A volume applicator that applies biomes to volumes
      */
     public static <M extends BiomeVolume.Modifiable<M>> VolumeApplicator<M, Biome, Boolean> applyBiomes() {
-        return (volume, element) -> volume.setBiome(element.position(), element.type());
+        return (volume, element) -> volume.setBiome(element.position().round().toInt(), element.type());
     }
 
     @SuppressWarnings("unchecked")

@@ -37,6 +37,8 @@ import java.util.function.Function;
 
 public final class VolumePositionTranslators {
 
+    public static final Vector3d BLOCK_OFFSET = new Vector3d(0.5, 0.5, 0.5);
+
     public static <W extends Volume, E> VolumePositionTranslator<W, E> identity() {
         return element -> element;
     }
@@ -46,24 +48,32 @@ public final class VolumePositionTranslators {
     }
 
     public static <W extends Volume, E> VolumePositionTranslator<W, E> rotateOn(final Vector3i start, final Vector3d center, final Rotation rotation,
-        final BiFunction<Vector3i, E, E> elementRotation
+        final BiFunction<Vector3d, E, E> elementRotation
     ) {
         return element -> {
             final Quaterniond q = Quaterniond.fromAngleDegAxis(rotation.angle().degrees(), 0, 1, 0);
-            final Vector3i v = q.rotate(center).add(element.position().toDouble().sub(start.toDouble())).round().toInt();
+            final Vector3d v = q.rotate(center).add(element.position().sub(start.toDouble()));
             return VolumeElement.of(element.volume(), elementRotation.apply(v, element.type()), v);
         };
     }
 
     public static <W extends Volume, E> VolumePositionTranslator<W, E> relativeTo(final Vector3i newOrigin) {
+        return VolumePositionTranslators.relativeTo(newOrigin.toDouble().add(VolumePositionTranslators.BLOCK_OFFSET));
+    }
+
+    public static <W extends Volume, E> VolumePositionTranslator<W, E> relativeTo(final Vector3d newOrigin) {
         return element -> VolumeElement.of(element.volume(), element.type(), element.position().add(newOrigin));
     }
 
     public static <W extends Volume, E> VolumePositionTranslator<W, E> offset(final Vector3i min) {
+        return VolumePositionTranslators.offset(min.toDouble().add(VolumePositionTranslators.BLOCK_OFFSET));
+    }
+
+    public static <W extends Volume, E> VolumePositionTranslator<W, E> offset(final Vector3d min) {
         return element -> VolumeElement.of(element.volume(), element.type(), element.position().sub(min));
     }
 
-    public static <W extends Volume, E> VolumePositionTranslator<W, E> position(final Function<Vector3i, Vector3i> func) {
+    public static <W extends Volume, E> VolumePositionTranslator<W, E> position(final Function<Vector3d, Vector3d> func) {
         Objects.requireNonNull(func, "Position function cannot be null!");
         return element -> VolumeElement.of(element.volume(), element.type(), func.apply(element.position()));
     }

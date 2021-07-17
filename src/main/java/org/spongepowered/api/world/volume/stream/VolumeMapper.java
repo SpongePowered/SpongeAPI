@@ -31,5 +31,9 @@ import java.util.function.Supplier;
 @FunctionalInterface
 public interface VolumeMapper<V extends Volume, T, Out> {
 
-    Out map(V volume, Supplier<T> value, int x, int y, int z);
+    default Out map(final V volume, final Supplier<T> value, final int x, final int y, final int z) {
+        return this.map(volume, value, x + 0.5, y + 0.5, z + 0.5);
+    }
+
+    Out map(V volume, Supplier<T> value, double x, double y, double z);
 }

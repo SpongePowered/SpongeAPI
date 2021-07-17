@@ -26,7 +26,7 @@ package org.spongepowered.api.world.volume.stream;
 
 import org.spongepowered.api.world.volume.MutableVolume;
 import org.spongepowered.api.world.volume.Volume;
-import org.spongepowered.math.vector.Vector3i;
+import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -67,19 +67,19 @@ public interface VolumeStream<V extends Volume, T> {
     VolumeStream<V, T> filter(VolumePredicate<V, T> predicate);
 
     default VolumeStream<V, T> filter(final Predicate<VolumeElement<V, ? super T>> predicate) {
-        return this.filter((volume, element, x, y, z) -> predicate.test(VolumeElement.of(volume, element, new Vector3i(x, y, z))));
+        return this.filter((volume, element, x, y, z) -> predicate.test(VolumeElement.of(volume, element, new Vector3d(x, y, z))));
     }
 
     <Out> VolumeStream<V, Out> map(VolumeMapper<V, T, Out> mapper);
 
     default <Out> VolumeStream<V, Out> map(final Function<VolumeElement<V, T>, ? extends Out> mapper) {
-        return this.map((volume, value, x, y, z) -> mapper.apply(VolumeElement.of(volume, value, new Vector3i(x, y, z))));
+        return this.map((volume, value, x, y, z) -> mapper.apply(VolumeElement.of(volume, value, new Vector3d(x, y, z))));
     }
 
     VolumeStream<V, Optional<? extends T>> flatMap(VolumeFlatMapper<V, T> mapper);
 
     default VolumeStream<V, Optional<? extends T>> flatMap(final Function<VolumeElement<V, T>, Optional<? extends T>> mapper) {
-        return this.flatMap((volume, value, x, y, z) -> mapper.apply(VolumeElement.of(volume, value, new Vector3i(x, y, z))));
+        return this.flatMap((volume, value, x, y, z) -> mapper.apply(VolumeElement.of(volume, value, new Vector3d(x, y, z))));
     }
 
     VolumeStream<V, T> transform(VolumePositionTranslator<V, T> transformer);
@@ -89,19 +89,19 @@ public interface VolumeStream<V extends Volume, T> {
     boolean allMatch(VolumePredicate<V, ? super T> predicate);
 
     default boolean allMatch(final Predicate<VolumeElement<V, ? super T>> predicate) {
-        return this.allMatch((volume, element, x, y, z) -> predicate.test(VolumeElement.of(volume, element, new Vector3i(x, y, z))));
+        return this.allMatch((volume, element, x, y, z) -> predicate.test(VolumeElement.of(volume, element, new Vector3d(x, y, z))));
     }
 
     boolean noneMatch(VolumePredicate<V, ? super T> predicate);
 
     default boolean noneMatch(final Predicate<VolumeElement<V, ? super T>> predicate) {
-        return this.noneMatch((volume, element, x, y, z) -> predicate.test(VolumeElement.of(volume, element, new Vector3i(x, y, z))));
+        return this.noneMatch((volume, element, x, y, z) -> predicate.test(VolumeElement.of(volume, element, new Vector3d(x, y, z))));
     }
 
     boolean anyMatch(VolumePredicate<V, ? super T> predicate);
 
     default boolean anyMatch(final Predicate<VolumeElement<V, ? super T>> predicate) {
-        return this.anyMatch((volume, element, x, y, z) -> predicate.test(VolumeElement.of(volume, element, new Vector3i(x, y, z))));
+        return this.anyMatch((volume, element, x, y, z) -> predicate.test(VolumeElement.of(volume, element, new Vector3d(x, y, z))));
     }
 
     Optional<VolumeElement<V, T>> findFirst();
@@ -119,7 +119,7 @@ public interface VolumeStream<V extends Volume, T> {
     void forEach(VolumeConsumer<V, T> visitor);
 
     default void forEach(final Consumer<VolumeElement<V, T>> consumer) {
-        this.forEach((volume, type, x, y, z) -> consumer.accept(VolumeElement.of(volume, type, new Vector3i(x, y, z))));
+        this.forEach((volume, type, x, y, z) -> consumer.accept(VolumeElement.of(volume, type, new Vector3d(x, y, z))));
     }
 
 }
