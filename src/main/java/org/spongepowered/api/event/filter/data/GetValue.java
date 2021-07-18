@@ -24,19 +24,43 @@
  */
 package org.spongepowered.api.event.filter.data;
 
+import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.ValueContainer;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * A parameter source annotation that gets a value for a certain data key.
+ *
+ * <p>This value can be taken from the event cause's first {@link ValueContainer},
+ * or any preceding parameter that inherits from {@link ValueContainer}.</p>
+ *
+ * <p>When looking for a value, searching will start from the parameter
+ * immediately before the annotated one, moving backwards and checking the first
+ * {@link ValueContainer} in the event cause last.</p>
+ */
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface GetValue {
 
+    /**
+     * The holder class to fetch keys from.
+     *
+     * @return the key container, by default {@link Keys}
+     */
     Class<?> container() default Keys.class;
 
+    /**
+     * The name of the field in {@link #container()} providing this key.
+     *
+     * <p>This field must be static and have a value of type {@link Key}</p>
+     *
+     * @return the name of the key field to require
+     */
     String value();
 
 }

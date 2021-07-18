@@ -22,12 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.event.lifecycle;
+
+import org.spongepowered.api.Game;
+
 /**
- * Cause-based <em>parameter source</em> annotations for event listeners.
+ * This event is called at the end of a {@link Game} instance, after the game's
+ * state has shut down.
  *
- * <p>These annotations extract information from the event's
- * {@link org.spongepowered.api.event.Cause}, and if present pass that
- * information to event listeners as method parameters.</p>
+ * <p>This is the last event called by Sponge within a game lifecycle.</p>
+ *
+ * <p>This event may not be fired in the event of an "unclean" shutdown (such
+ * as one due to a crash).</p>
+ *
+ * <p>Most users will want to listen to {@link StoppingEngineEvent} instead, to
+ * do operations tied to the lifecycle of one single engine.</p>
  */
-@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
-package org.spongepowered.api.event.filter.cause;
+public interface StoppedGameEvent extends LifecycleEvent {
+
+}

@@ -22,5 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+/**
+ * Event filter annotations.
+ *
+ * <p>These annotations can be applied to event
+ * {@link org.spongepowered.api.event.Listener @Listener} methods to control
+ * which events are received and extract data from the event.</p>
+ */
 @org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
 package org.spongepowered.api.event.filter;

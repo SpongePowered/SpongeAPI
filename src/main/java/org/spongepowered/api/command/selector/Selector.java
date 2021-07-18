@@ -33,8 +33,8 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
-import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.scoreboard.Team;
+import org.spongepowered.api.scoreboard.objective.Objective;
 import org.spongepowered.api.util.Range;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.math.vector.Vector3d;
@@ -403,14 +403,15 @@ public interface Selector {
         Builder addNotName(String name);
 
         /**
-         * Adds a {@link Score} constraint to the selector, requiring that
-         * players have a given score in a given range (inclusive).
+         * Adds an {@link Objective} constraint to the selector, requiring that
+         * players have a given score in an objective in a given range
+         * (inclusive).
          *
-         * @param score The score
+         * @param objective The objective to check against
          * @param range The range
          * @return This builder, for chaining
          */
-        Builder addScore(Score score, Range<Integer> range);
+        Builder addObjective(Objective objective, Range<Integer> range);
 
         /**
          * Adds a tag constrain to the selector, requiring that

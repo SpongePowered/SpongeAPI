@@ -26,6 +26,7 @@ package org.spongepowered.api.util.orientation;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.util.Angle;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
@@ -37,25 +38,21 @@ import java.util.Optional;
 public interface Orientation extends DefaultedRegistryValue {
 
     /**
-     * Gets the {@link Orientation} with the provided degrees.
+     * Gets the {@link Orientation} that represents the provided {@link Angle}.
      *
-     * @param degrees The degrees of the rotation
-     * @return The {@link Orientation} with the given degrees or {@link Optional#empty()} if not found
+     * @param angle The {@link Angle}
+     * @return The {@link Orientation} with the given {@link Angle}, if it
+     *         exists
      */
-    static Optional<Orientation> fromDegrees(int degrees) {
-        return Sponge.game().factoryProvider().provide(Factory.class).fromDegrees(degrees);
+    static Optional<Orientation> fromAngle(final Angle angle) {
+        return Orientations.registry().stream().filter(x -> x.angle().equals(angle)).findAny();
     }
 
     /**
-     * The angle in degrees.
+     * The {@link Angle} this orientation represents.
      *
-     * @return The angle in degrees
+     * @return The angle
      */
-    //TODO we should have an Angle class in the future
-    int angle();
+    Angle angle();
 
-    interface Factory {
-
-        Optional<Orientation> fromDegrees(int degrees);
-    }
 }

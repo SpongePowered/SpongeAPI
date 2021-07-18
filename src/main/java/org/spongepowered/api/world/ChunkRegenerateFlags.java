@@ -27,9 +27,11 @@ package org.spongepowered.api.world;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
 
 /**

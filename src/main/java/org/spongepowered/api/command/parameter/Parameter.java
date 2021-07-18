@@ -655,8 +655,8 @@ public interface Parameter {
      *
      * @return A {@link Parameter.Value.Builder}
      */
-    static Parameter.Value.Builder<User> user() {
-        return Parameter.builder(User.class, ResourceKeyedValueParameters.USER);
+    static Parameter.Value.Builder<UUID> user() {
+        return Parameter.builder(UUID.class, ResourceKeyedValueParameters.USER);
     }
 
     /**

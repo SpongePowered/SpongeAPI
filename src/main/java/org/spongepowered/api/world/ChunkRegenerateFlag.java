@@ -90,23 +90,15 @@ public interface ChunkRegenerateFlag extends DefaultedRegistryValue {
     ChunkRegenerateFlag andFlag(ChunkRegenerateFlag flag);
 
     /**
-     * Gets the equivalent {@link ChunkRegenerateFlag} of this flag with the
-     * {@code true}s set for this flag and the provided {@code flag}, such that
-     * only if both flags have the same {@code true} flags set will persist.
+     * Gets the equivalent {@link ChunkRegenerateFlag} of this flag where the
+     * provided {@code flag} has its values inverted before performing an
+     * and operation between this flag and the provided flag. Therefore, the
+     * returned flag will only have {@code true} for a value if the value is
+     * {@code true} for this flag and {@code false} for the provided flag.
      *
-     * <p>For example, if this flag has {@link #create()} and the incoming flag
-     * has {@link #create()} returning {@code true}, the resulting flag will
-     * have {@link #create()} return {@code true} as well. The inverse is also
-     * true. If either has differing flags for any of the above methods, the
-     * resulting flag will have a {@code false} value.</p>
-     *
-     * @param flag The incoming flag to and with this flag
+     * @param flag The incoming flag to compare against
      * @return The resulting flag with matched values
      */
     ChunkRegenerateFlag andNotFlag(ChunkRegenerateFlag flag);
 
-    public interface Factory {
-
-        ChunkRegenerateFlag empty();
-    }
 }

@@ -55,6 +55,8 @@ import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.plugin.PluginContainer;
 
+import java.util.UUID;
+
 /**
  * Standard keys for use within {@link EventContext}s.
  */
@@ -111,7 +113,7 @@ public final class EventContextKeys {
     /**
      * Represents the creator of an {@link Entity} or a {@link BlockState} at a {@link Location}
      */
-    public static final EventContextKey<User> CREATOR = EventContextKeys.key(ResourceKey.sponge("creator"), User.class);
+    public static final EventContextKey<UUID> CREATOR = EventContextKeys.key(ResourceKey.sponge("creator"), UUID.class);
 
     /**
      * Represents the {@link DamageType} to an entity.
@@ -199,9 +201,9 @@ public final class EventContextKeys {
     public static final EventContextKey<BlockSnapshot> NEIGHBOR_NOTIFY_SOURCE = EventContextKeys.key(ResourceKey.sponge("neighbor_notify_source"), BlockSnapshot.class);
 
     /**
-     * Represents the {@link User} that notified a block.
+     * Represents the {@link UUID} of a {@link User} that notified a block.
      */
-    public static final EventContextKey<User> NOTIFIER = EventContextKeys.key(ResourceKey.sponge("notifier"), User.class);
+    public static final EventContextKey<UUID> NOTIFIER = EventContextKeys.key(ResourceKey.sponge("notifier"), UUID.class);
 
     /**
      * Used when a {@link BlockTypes#PISTON_HEAD} extends.

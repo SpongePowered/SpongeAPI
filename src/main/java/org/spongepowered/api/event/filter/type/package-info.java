@@ -22,5 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+/**
+ * Listener method filters based on event type.
+ *
+ * <p>These annotations allow {@linkplain org.spongepowered.api.event.filter.type.Exclude excluding}
+ * and {@linkplain org.spongepowered.api.event.filter.type.Include including}
+ * subtypes of the declared event parameter in a declarative manner.</p>
+ */
 @org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
 package org.spongepowered.api.event.filter.type;

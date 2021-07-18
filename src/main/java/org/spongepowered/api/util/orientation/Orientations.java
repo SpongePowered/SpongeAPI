@@ -29,6 +29,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.hanging.ItemFrame;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -36,8 +37,7 @@ import org.spongepowered.api.registry.RegistryTypes;
 
 /**
  * An enumeration of possible rotations for something that can rotate,
- * such as an {@link ItemStack} within
- * an {@link ItemFrame}.
+ * such as an {@link ItemStack} within an {@link ItemFrame}.
  */
 @SuppressWarnings("unused")
 @RegistryScopes(scopes = RegistryScope.GAME)
@@ -68,6 +68,10 @@ public final class Orientations {
     // @formatter:on
 
     private Orientations() {
+    }
+
+    public static Registry<Orientation> registry() {
+        return Sponge.game().registries().registry(RegistryTypes.ORIENTATION);
     }
 
     private static DefaultedRegistryReference<Orientation> key(final ResourceKey location) {

@@ -23,11 +23,11 @@
  * THE SOFTWARE.
  */
 /**
- * Cause-based <em>parameter source</em> annotations for event listeners.
+ * Event filter annotations working on
+ * {@link org.spongepowered.api.data.value.ValueContainer} parameters.
  *
- * <p>These annotations extract information from the event's
- * {@link org.spongepowered.api.event.Cause}, and if present pass that
- * information to event listeners as method parameters.</p>
+ * <p>These annotations can be applied to existing parameters to filter based on
+ * data {@link org.spongepowered.api.data.Key}s.</p>
  */
 @org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
-package org.spongepowered.api.event.filter.cause;
+package org.spongepowered.api.event.filter.data;
