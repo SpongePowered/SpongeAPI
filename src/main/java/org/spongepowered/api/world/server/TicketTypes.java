@@ -27,16 +27,13 @@ package org.spongepowered.api.world.server;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.event.cause.entity.SpawnType;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.Ticks;
-import org.spongepowered.api.world.chunk.Chunk;
+import org.spongepowered.api.world.chunk.WorldChunk;
 import org.spongepowered.api.world.portal.Portal;
 import org.spongepowered.math.vector.Vector3i;
-
-import java.util.function.Supplier;
 
 /**
  * Types of {@link Ticket tickets} that can be requested via the
@@ -50,7 +47,7 @@ public final class TicketTypes {
 
     /**
      * Represents {@link Ticket tickets} that ensures the target
-     * {@link Chunk chunks} are loaded, but are not guaranteed to be loaded at
+     * {@link WorldChunk chunks} are loaded, but are not guaranteed to be loaded at
      * any time in the future, that is, the lifetime of such a ticket is
      * effectively one {@link Ticks tick}.
      *
@@ -63,7 +60,7 @@ public final class TicketTypes {
 
     /**
      * Represents {@link Ticket tickets} that are intended to ensure that the
-     * target {@link Chunk chunks} around a {@link Portal} are loaded, ready to
+     * target {@link WorldChunk chunks} around a {@link Portal} are loaded, ready to
      * accept {@link Entity entities} that travel through it.
      *
      * <p>The position represented by the {@link Vector3i} is a <strong>block
@@ -77,7 +74,7 @@ public final class TicketTypes {
 
     /**
      * Represents {@link Ticket tickets} that are intended to ensure that the
-     * target {@link Chunk chunks} around an {@link Entity} are loaded after
+     * target {@link WorldChunk chunks} around an {@link Entity} are loaded after
      * teleportation.
      */
     public static final DefaultedRegistryReference<TicketType<Entity>> POST_TELEPORT = TicketTypes.key(ResourceKey.sponge("post_teleport"));

@@ -88,7 +88,7 @@ public interface ChunkLayout {
      * @param coords The coordinates to validate
      * @return Whether or not the coordinates are valid for chunks
      */
-    default boolean isValidChunk(Vector3i coords) {
+    default boolean isValidChunk(final Vector3i coords) {
         Objects.requireNonNull(coords, "coords");
         return this.isValidChunk(coords.x(), coords.y(), coords.z());
     }
@@ -102,7 +102,7 @@ public interface ChunkLayout {
      * @param z The z coordinate to validate
      * @return Whether or not the coordinates are valid for chunks
      */
-    default boolean isValidChunk(int x, int y, int z) {
+    default boolean isValidChunk(final int x, final int y, final int z) {
         return x >= this.spaceMin().x() && x <= this.spaceMax().x()
             && y >= this.spaceMin().y() && y <= this.spaceMax().y()
             && z >= this.spaceMin().z() && z <= this.spaceMax().z();
@@ -115,7 +115,7 @@ public interface ChunkLayout {
      * @param localCoords The coordinates to check
      * @return Whether or not the coordinates fit in a chunk
      */
-    default boolean isInChunk(Vector3i localCoords) {
+    default boolean isInChunk(final Vector3i localCoords) {
         Objects.requireNonNull(localCoords, "localCoords");
         return this.isInChunk(localCoords.x(), localCoords.y(), localCoords.z());
     }
@@ -139,7 +139,7 @@ public interface ChunkLayout {
      * @param chunkCoords The chunk coordinates in which they must fit
      * @return Whether or not the world coordinates fit in the chunk
      */
-    default boolean isInChunk(Vector3i worldCoords, Vector3i chunkCoords) {
+    default boolean isInChunk(final Vector3i worldCoords, final Vector3i chunkCoords) {
         Objects.requireNonNull(worldCoords, "worldCoords");
         Objects.requireNonNull(chunkCoords, "chunkCoords");
         return this.isInChunk(worldCoords.x(), worldCoords.y(), worldCoords.z(), chunkCoords.x(), chunkCoords.y(), chunkCoords.z());
@@ -166,7 +166,7 @@ public interface ChunkLayout {
      * @param worldCoords The world coordinates to convert to chunk coordinates
      * @return The chunk coordinates on success, else nothing
      */
-    default Optional<Vector3i> toChunk(Vector3i worldCoords) {
+    default Optional<Vector3i> toChunk(final Vector3i worldCoords) {
         Objects.requireNonNull(worldCoords, "worldCoords");
         return this.toChunk(worldCoords.x(), worldCoords.y(), worldCoords.z());
     }
@@ -180,7 +180,7 @@ public interface ChunkLayout {
      * @param z The z world coordinate to convert to chunk coordinates
      * @return The chunk coordinates on success, else nothing
      */
-    default Optional<Vector3i> toChunk(int x, int y, int z) {
+    default Optional<Vector3i> toChunk(final int x, final int y, final int z) {
         final Vector3i chunkCoords = this.forceToChunk(x, y, z);
         return this.isValidChunk(chunkCoords) ? Optional.of(chunkCoords) : Optional.empty();
     }
@@ -192,7 +192,7 @@ public interface ChunkLayout {
      * @param chunkCoords The chunk coordinates to convert to world coordinates
      * @return The world coordinates on success, else nothing
      */
-    default Optional<Vector3i> toWorld(Vector3i chunkCoords) {
+    default Optional<Vector3i> toWorld(final Vector3i chunkCoords) {
         Objects.requireNonNull(chunkCoords, "chunkCoords");
         return this.toWorld(chunkCoords.x(), chunkCoords.y(), chunkCoords.z());
     }
@@ -206,7 +206,7 @@ public interface ChunkLayout {
      * @param z The z chunk coordinate to convert to world coordinates
      * @return The world coordinates on success, else nothing
      */
-    default Optional<Vector3i> toWorld(int x, int y, int z) {
+    default Optional<Vector3i> toWorld(final int x, final int y, final int z) {
         return this.isValidChunk(x, y, z) ? Optional.of(this.forceToWorld(x, y, z)) : Optional.empty();
     }
 
@@ -217,14 +217,14 @@ public interface ChunkLayout {
      * @param worldCoords The world coordinates to convert to chunk coordinates
      * @return The chunk coordinates
      */
-    default Vector3i forceToChunk(Vector3i worldCoords) {
+    default Vector3i forceToChunk(final Vector3i worldCoords) {
         Objects.requireNonNull(worldCoords, "worldCoords");
         return this.forceToChunk(worldCoords.x(), worldCoords.y(), worldCoords.z());
     }
 
     /**
      * Converts world coordinates to chunk coordinates. This method never fails
-     * and can returns invalid chunk coordinates.
+     * and can return invalid chunk coordinates.
      *
      * @param x The x world coordinate to convert to chunk coordinates
      * @param y The y world coordinate to convert to chunk coordinates
@@ -240,7 +240,7 @@ public interface ChunkLayout {
      * @param chunkCoords The chunk coordinates to convert to world coordinates
      * @return The world coordinates
      */
-    default Vector3i forceToWorld(Vector3i chunkCoords) {
+    default Vector3i forceToWorld(final Vector3i chunkCoords) {
         Objects.requireNonNull(chunkCoords, "chunkCoords");
         return this.forceToWorld(chunkCoords.x(), chunkCoords.y(), chunkCoords.z());
     }
@@ -264,7 +264,7 @@ public interface ChunkLayout {
      * @param chunkOffset The chunk offset to add to the chunk coordinates
      * @return The new chunk coordinates if they are valid
      */
-    default Optional<Vector3i> addToChunk(Vector3i chunkCoords, Vector3i chunkOffset) {
+    default Optional<Vector3i> addToChunk(final Vector3i chunkCoords, final Vector3i chunkOffset) {
         Objects.requireNonNull(chunkCoords, "chunkCoords");
         Objects.requireNonNull(chunkOffset, "chunkOffset");
         return this.addToChunk(chunkCoords.x(), chunkCoords.y(), chunkCoords.z(), chunkOffset.x(), chunkOffset.y(), chunkOffset.z());
@@ -282,7 +282,7 @@ public interface ChunkLayout {
      * @param oz The z chunk offset to add to the chunk coordinates
      * @return The new chunk coordinates if they are valid
      */
-    default Optional<Vector3i> addToChunk(int cx, int cy, int cz, int ox, int oy, int oz) {
+    default Optional<Vector3i> addToChunk(final int cx, final int cy, final int cz, final int ox, final int oy, final int oz) {
         final Vector3i newChunkCoords = new Vector3i(cx + ox, cy + oy, cz + oz);
         return this.isValidChunk(newChunkCoords) ? Optional.of(newChunkCoords) : Optional.empty();
     }
@@ -298,7 +298,7 @@ public interface ChunkLayout {
      * @throws IllegalArgumentException If the direction is a
      * {@link Division#SECONDARY_ORDINAL}
      */
-    default Optional<Vector3i> moveToChunk(Vector3i chunkCoords, Direction direction) {
+    default Optional<Vector3i> moveToChunk(final Vector3i chunkCoords, final Direction direction) {
         return this.moveToChunk(chunkCoords, direction, 1);
     }
 
@@ -316,7 +316,7 @@ public interface ChunkLayout {
      * @throws IllegalArgumentException If the direction is a
      * {@link Division#SECONDARY_ORDINAL}
      */
-    default Optional<Vector3i> moveToChunk(int x, int y, int z, Direction direction) {
+    default Optional<Vector3i> moveToChunk(final int x, final int y, final int z, final Direction direction) {
         return this.moveToChunk(new Vector3i(x, y, z), direction);
     }
 
@@ -333,7 +333,7 @@ public interface ChunkLayout {
      * @throws IllegalArgumentException If the direction is a
      * {@link Division#SECONDARY_ORDINAL}
      */
-    default Optional<Vector3i> moveToChunk(Vector3i chunkCoords, Direction direction, int steps) {
+    default Optional<Vector3i> moveToChunk(final Vector3i chunkCoords, final Direction direction, final int steps) {
         Objects.requireNonNull(direction, "direction");
         if (direction.isSecondaryOrdinal()) {
             throw new IllegalArgumentException("Secondary cardinal directions cannot be used here");
@@ -356,7 +356,7 @@ public interface ChunkLayout {
      * @throws IllegalArgumentException If the direction is a
      * {@link Division#SECONDARY_ORDINAL}
      */
-    default Optional<Vector3i> moveToChunk(int x, int y, int z, Direction direction, int steps) {
+    default Optional<Vector3i> moveToChunk(final int x, final int y, final int z, final Direction direction, final int steps) {
         return this.moveToChunk(new Vector3i(x, y, z), direction, steps);
     }
 

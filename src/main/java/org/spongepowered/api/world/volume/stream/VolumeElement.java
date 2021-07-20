@@ -102,7 +102,7 @@ public interface VolumeElement<V extends Volume, T> {
      * Should not be leaked out of usage of a {@link VolumeStream} or any of
      * its companion functions.
      *
-     * @return
+     * @return The volume
      */
     V volume();
 

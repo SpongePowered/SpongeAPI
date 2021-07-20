@@ -39,7 +39,7 @@ import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.WorldTypes;
-import org.spongepowered.api.world.chunk.Chunk;
+import org.spongepowered.api.world.chunk.WorldChunk;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.generation.ChunkGenerator;
 import org.spongepowered.api.world.server.storage.ServerWorldProperties;
@@ -83,56 +83,10 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
     }
 
     @Override
-    default Chunk chunkAtBlock(final int bx, final int by, final int bz) {
+    default WorldChunk chunkAtBlock(final int bx, final int by, final int bz) {
         final Vector3i chunkPos = this.engine().chunkLayout().forceToChunk(bx, by, bz);
         return this.chunk(chunkPos.x(), chunkPos.y(), chunkPos.z());
     }
-
-    /**
-     * Regenerates a chunk at the given chunk coordinate position.
-     *
-     * @param chunkPosition The chunk position to regenerate
-     * @return The regenerated chunk, if available
-     */
-    default Optional<Chunk> regenerateChunk(final Vector3i chunkPosition) {
-        Objects.requireNonNull(chunkPosition, "chunkPosition");
-        return this.regenerateChunk(chunkPosition.x(), chunkPosition.y(), chunkPosition.z(), ChunkRegenerateFlags.ALL.get());
-    }
-
-    /**
-     * Regenerates a chunk at the given chunk coordinates.
-     *
-     * @param cx The chunk x coordinate
-     * @param cy The chunk y coordinate
-     * @param cz The chunk z coordinate
-     * @return The regenerated chunk, if available
-     */
-    default Optional<Chunk> regenerateChunk(final int cx, final int cy, final int cz) {
-        return this.regenerateChunk(cx, cy, cz, ChunkRegenerateFlags.ALL.get());
-    }
-
-    /**
-     * Regenerates a chunk at the given chunk coordinate position.
-     *
-     * @param chunkPosition The chunk position to regenerate
-     * @param flag The chunk regenerate flag to use
-     * @return The regenerated chunk, if available
-     */
-    default Optional<Chunk> regenerateChunk(final Vector3i chunkPosition, final ChunkRegenerateFlag flag) {
-        Objects.requireNonNull(chunkPosition, "chunkPosition");
-        return this.regenerateChunk(chunkPosition.x(), chunkPosition.y(), chunkPosition.z(), Objects.requireNonNull(flag, "flag"));
-    }
-
-    /**
-     * Regenerates a chunk at the given chunk coordinates.
-     *
-     * @param cx The chunk x coordinate
-     * @param cy The chunk y coordinate
-     * @param cz The chunk z coordinate
-     * @param flag The chunk regenerate flag to use
-     * @return The regenerated chunk, if available
-     */
-    Optional<Chunk> regenerateChunk(int cx, int cy, int cz, ChunkRegenerateFlag flag);
 
     /**
      * Gets a snapshot of this block at the current point in time.
@@ -244,7 +198,7 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
      * @param chunk The chunk to unload
      * @return Whether the operation was successful
      */
-    boolean unloadChunk(Chunk chunk);
+    boolean unloadChunk(WorldChunk chunk);
 
     /**
      * Causes an {@link Explosion} in a world.

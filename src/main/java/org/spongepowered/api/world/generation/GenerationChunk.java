@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.world.generation;
 
-import org.spongepowered.api.world.chunk.ProtoChunk;
+import org.spongepowered.api.world.chunk.Chunk;
 
-public interface PrimitiveChunk extends ProtoChunk<PrimitiveChunk> {
+public interface GenerationChunk extends Chunk<GenerationChunk> {
 
 }

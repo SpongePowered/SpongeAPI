@@ -24,15 +24,14 @@
  */
 package org.spongepowered.api.world.generation;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.world.ProtoWorld;
-import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.chunk.Chunk;
-import org.spongepowered.api.world.difficulty.Difficulty;
+import org.spongepowered.api.world.WorldLike;
+import org.spongepowered.api.world.chunk.WorldChunk;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3i;
@@ -40,62 +39,114 @@ import org.spongepowered.math.vector.Vector3i;
 import java.util.Objects;
 
 /**
- * A generating region of {@link PrimitiveChunk}s that are in the
- * stages of being generated for a {@link World} and eventually will
- * become {@link Chunk} instances. A region is similar to a {@link World}
- * in that there are {@link PrimitiveChunk}s available, {@link BlockState}s
- * are used in this region, and likewise, the region can contain and store
- * {@link BlockEntity} instances being generated, {@link Entity} instances
- * being generated or spawned by generation, etc. The major difference
- * is that a generation region cannot be utilized for {@link ServerLocation}s,
- * nor is it considered to be viewable by {@link Player}s or accessible
- * by the {@link Server} or {@link World}(s).
+ * A region of {@link GenerationChunk}s that are being generated for a
+ * {@link ServerWorld}. Upon completion, the chunks in this region will be
+ * converted into {@link WorldChunk}s and inserted into the target
+ * {@link #worldKey() world}.
+ *
+ * <p>A region is similar to a world in that there are {@link GenerationChunk}s
+ * available, {@link BlockState}s are used in this region, and likewise, the
+ * region can contain and store {@link BlockEntity} instances being generated,
+ * {@link Entity} instances being generated or spawned by generation, etc.
+ * The major differences are that a generation region cannot be utilized for
+ * {@link ServerLocation}s, they are not considered to be viewable by
+ * {@link Player}s and they are not accessible by the {@link Server}
+ * or {@link ServerWorld}(s).
  */
-public interface GenerationRegion extends ProtoWorld<GenerationRegion> {
+public interface GenerationRegion extends WorldLike<GenerationRegion> {
 
-    ServerWorld world();
+    /**
+     * The {@link ResourceKey} of the {@link ServerWorld} that this region will
+     * be placed into.
+     *
+     * <p>As generation regions are designed to be thread-safe with regards to
+     * world generation, it is entirely possible that you may retrieve a region
+     * off the main server thread. As {@link ServerWorld} instances are
+     * <strong>not</strong> thread safe, you should ensure that
+     * {@link Server#onMainThread()} is {@code true} before retreving the world.
+     * </p>
+     *
+     * @return The {@link ResourceKey} that represents the target
+     * {@link ServerWorld}
+     */
+    ResourceKey worldKey();
 
+    /**
+     * Gets the {@link Server} engine.
+     *
+     * @return The {@link Server}
+     */
     @Override
-    default Server engine() {
-        return this.world().engine();
-    }
+    Server engine();
 
+    /**
+     * The minimum chunk co-ordinate of this region.
+     *
+     * @return The chunk co-ordinate as a {@link Vector3i}
+     */
+    Vector3i chunkMin();
+
+    /**
+     * The maximum chunk co-ordinate of this region.
+     *
+     * @return The chunk co-ordinate as a {@link Vector3i}
+     */
+    Vector3i chunkMax();
+
+    /**
+     * Gets the {@link GenerationChunk} at the given block co-ordinates
+     *
+     * @param position The block position
+     * @return The {@link GenerationChunk}
+     * @throws IllegalArgumentException if the provided co-ordinates are out of
+     *                                  bounds.
+     */
     @Override
-    default Difficulty difficulty() {
-        return this.world().difficulty();
-    }
-
-    Vector3i centerChunkPos();
-
-    default int centerChunkX() {
-        return this.centerChunkPos().x();
-    }
-
-    default int centerChunkY() {
-        return this.centerChunkPos().y();
-    }
-
-    default int centerChunkZ() {
-        return this.centerChunkPos().z();
-    }
-
-    @Override
-    default PrimitiveChunk chunkAtBlock(final Vector3i position) {
+    default GenerationChunk chunkAtBlock(final Vector3i position) {
         Objects.requireNonNull(position, "position");
         return this.chunkAtBlock(position.x(), position.y(), position.z());
     }
 
+    /**
+     * Gets the {@link GenerationChunk} at the given block co-ordinates
+     *
+     * @param x The x co-ordinate
+     * @param y The y co-ordinate
+     * @param z The z co-ordinate
+     * @return The {@link GenerationChunk}
+     * @throws IllegalArgumentException if the provided co-ordinates are out of
+     *                                  bounds.
+     */
     @Override
-    default PrimitiveChunk chunkAtBlock(final int x, final int y, final int z) {
+    default GenerationChunk chunkAtBlock(final int x, final int y, final int z) {
         return this.chunk(this.engine().chunkLayout().toChunk(x, y, z).orElseThrow(() -> new IllegalArgumentException(String.format("Cannot convert (%s, %s, %s) to chunk coordinates.", x, y, z))));
     }
 
+    /**
+     * Gets the {@link GenerationChunk} at the given chunk co-ordinates
+     *
+     * @param chunkPosition The chunk co-ordinates
+     * @return The {@link GenerationChunk}
+     * @throws IllegalArgumentException if the provided co-ordinates are out of
+     *                                  bounds.
+     */
     @Override
-    default PrimitiveChunk chunk(final Vector3i chunkPosition) {
+    default GenerationChunk chunk(final Vector3i chunkPosition) {
         Objects.requireNonNull(chunkPosition, "chunkPosition");
         return this.chunk(chunkPosition.x(), chunkPosition.y(), chunkPosition.z());
     }
 
+    /**
+     * Gets the {@link GenerationChunk} at the given chunk co-ordinates
+     *
+     * @param cx The x co-ordinate
+     * @param cy The y co-ordinate
+     * @param cz The z co-ordinate
+     * @return The {@link GenerationChunk}
+     * @throws IllegalArgumentException if the provided co-ordinates are out of
+     *                                  bounds.
+     */
     @Override
-    PrimitiveChunk chunk(int cx, int cy, int cz);
+    GenerationChunk chunk(int cx, int cy, int cz);
+
 }

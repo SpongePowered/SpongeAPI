@@ -42,7 +42,7 @@ import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Objects;
 
-public interface ProtoWorld<P extends ProtoWorld<P>> extends
+public interface WorldLike<P extends WorldLike<P>> extends
     Region<P>,
     BiomeVolume.Modifiable<P>, // Because this is mutable
     BlockVolume.Modifiable<P>, // Because this is mutable

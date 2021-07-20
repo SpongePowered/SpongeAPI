@@ -33,7 +33,7 @@ import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.registry.ScopedRegistryHolder;
 import org.spongepowered.api.service.context.ContextSource;
 import org.spongepowered.api.util.annotation.DoNotStore;
-import org.spongepowered.api.world.chunk.Chunk;
+import org.spongepowered.api.world.chunk.WorldChunk;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.volume.archetype.ArchetypeVolumeCreator;
 import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
@@ -52,7 +52,7 @@ import java.util.function.Predicate;
 @DoNotStore
 public interface World<W extends World<W, L>, L extends Location<W, L>> extends
     ForwardingAudience,
-    ProtoWorld<W>,
+    WorldLike<W>,
     LocationCreator<W, L>,
     PhysicsAwareMutableBlockVolume<W>,
     ContextSource,
@@ -128,8 +128,8 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends
 
     /**
      * {@inheritDoc}
-     * This gets a guaranteed {@link Chunk} at the desired block position; however,
-     * the {@link Chunk} instance may be {@link Chunk#isEmpty() empty}, and
+     * This gets a guaranteed {@link WorldChunk} at the desired block position; however,
+     * the {@link WorldChunk} instance may be {@link WorldChunk#isEmpty() empty}, and
      * likewise, may not be generated, valid, pre-existing. It is important to
      * check for these cases prior to attempting to modify the chunk.
      *
@@ -141,12 +141,12 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends
      * @return The available chunk at that position
      */
     @Override
-    Chunk chunkAtBlock(final Vector3i blockPosition);
+    WorldChunk chunkAtBlock(final Vector3i blockPosition);
 
     /**
      * {@inheritDoc}
-     * This gets a guaranteed {@link Chunk} at the desired block position; however,
-     * the {@link Chunk} instance may be {@link Chunk#isEmpty() empty}, and
+     * This gets a guaranteed {@link WorldChunk} at the desired block position; however,
+     * the {@link WorldChunk} instance may be {@link WorldChunk#isEmpty() empty}, and
      * likewise, may not be generated, valid, pre-existing. It is important to
      * check for these cases prior to attempting to modify the chunk.
      *
@@ -160,12 +160,12 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends
      * @return The available chunk at that position
      */
     @Override
-    Chunk chunkAtBlock(int bx, int by, int bz);
+    WorldChunk chunkAtBlock(int bx, int by, int bz);
 
     /**
      * {@inheritDoc}
-     * This gets a guaranteed {@link Chunk} at the desired chunk position; however,
-     * the {@link Chunk} instance may be {@link Chunk#isEmpty() empty}, and
+     * This gets a guaranteed {@link WorldChunk} at the desired chunk position; however,
+     * the {@link WorldChunk} instance may be {@link WorldChunk#isEmpty() empty}, and
      * likewise, may not be generated, valid, pre-existing. It is important to
      * check for these cases prior to attempting to modify the chunk.
      *
@@ -173,15 +173,15 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends
      * @return The available chunk at that position
      */
     @Override
-    default Chunk chunk(final Vector3i chunkPos) {
+    default WorldChunk chunk(final Vector3i chunkPos) {
         Objects.requireNonNull(chunkPos, "chunkPos");
         return this.chunk(chunkPos.x(), chunkPos.y(), chunkPos.z());
     }
 
     /**
      * {@inheritDoc}
-     * This gets a guaranteed {@link Chunk} at the desired chunk position; however,
-     * the {@link Chunk} instance may be {@link Chunk#isEmpty() empty}, and
+     * This gets a guaranteed {@link WorldChunk} at the desired chunk position; however,
+     * the {@link WorldChunk} instance may be {@link WorldChunk#isEmpty() empty}, and
      * likewise, may not be generated, valid, pre-existing. It is important to
      * check for these cases prior to attempting to modify the chunk.
      *
@@ -191,7 +191,7 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends
      * @return The available chunk at the chunk position
      */
     @Override
-    Chunk chunk(int cx, int cy, int cz);
+    WorldChunk chunk(int cx, int cy, int cz);
 
     /**
      * Gets the chunk at the given chunk coordinate position if it exists or if
@@ -201,7 +201,7 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends
      * @param shouldGenerate True to generate a new chunk
      * @return The loaded or generated chunk, if already generated
      */
-    default Optional<Chunk> loadChunk(final Vector3i chunkPosition, final boolean shouldGenerate) {
+    default Optional<WorldChunk> loadChunk(final Vector3i chunkPosition, final boolean shouldGenerate) {
         Objects.requireNonNull(chunkPosition, "chunkPosition");
         return this.loadChunk(chunkPosition.x(), chunkPosition.y(), chunkPosition.z(), shouldGenerate);
     }
@@ -218,7 +218,7 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends
      * @param shouldGenerate True to generate a new chunk
      * @return The loaded or generated chunk, if already generated
      */
-    Optional<Chunk> loadChunk(int cx, int cy, int cz, boolean shouldGenerate);
+    Optional<WorldChunk> loadChunk(int cx, int cy, int cz, boolean shouldGenerate);
 
     /**
      * Returns a Collection of all actively loaded chunks in this world.
@@ -227,6 +227,6 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends
      *
      * @return The loaded chunks
      */
-    Iterable<Chunk> loadedChunks();
+    Iterable<WorldChunk> loadedChunks();
 
 }

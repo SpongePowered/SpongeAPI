@@ -55,11 +55,11 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.World;
 
 /**
- * Represents the state of a {@link ProtoChunk} that can exist
+ * Represents the state of a {@link Chunk} that can exist
  * through various stages of the game, including but not limited to:
  * <ul><li>Chunk in the process of being generated</li>
  * <li>Chunk being deserialized from storage and being prepared for addition to a {@link World}</li>
- * <li>{@link Chunk}s already existing and loaded in a {@link World}</li>
+ * <li>{@link WorldChunk}s already existing and loaded in a {@link World}</li>
  * </ul>
  */
 @CatalogedBy(ChunkStates.class)
@@ -68,8 +68,8 @@ public interface ChunkState extends DefaultedRegistryValue {
     /**
      * Checks whether this state is considered "after"
      * the provided {@link ChunkState}. Usually used as a check for
-     * whether the {@link ProtoChunk} providing this state is
-     * considered "usable" for consumers of {@link ProtoChunk}s with
+     * whether the {@link Chunk} providing this state is
+     * considered "usable" for consumers of {@link Chunk}s with
      * a specific {@link ChunkState} range.
      *
      * @param state The chunk state

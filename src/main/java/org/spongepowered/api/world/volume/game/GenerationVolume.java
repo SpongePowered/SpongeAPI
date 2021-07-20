@@ -43,7 +43,7 @@ public interface GenerationVolume extends HeightAwareVolume {
     boolean hasBlockState(int x, int y, int z, Predicate<? super BlockState> predicate);
 
     default int maximumHeight() {
-        return this instanceof World ? ((World) this).blockMax().y() : 256;
+        return this instanceof World ? ((World) this).max().y() : 256;
     }
 
     interface Mutable extends GenerationVolume, MutableGameVolume {

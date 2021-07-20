@@ -55,10 +55,11 @@ public interface ArchetypeVolume extends BlockVolume.Modifiable<ArchetypeVolume>
     /**
      * Gets the logical center of a volume, considering the decimal coordinates,
      * the block's center location would have an offset of {@code 0.5}
-     * @return
+     *
+     * @return The logical center of the volume
      */
     default Vector3d logicalCenter() {
-        return this.blockMin().toDouble().add(this.blockSize().toDouble().div(2));
+        return this.min().toDouble().add(this.size().toDouble().div(2));
     }
 
     /**
@@ -78,27 +79,27 @@ public interface ArchetypeVolume extends BlockVolume.Modifiable<ArchetypeVolume>
         Objects.requireNonNull(target, "Target world cannot be null");
         Objects.requireNonNull(placement, "Target position cannot be null");
         try (final CauseStackManager.StackFrame frame = Sponge.server().causeStackManager().pushCauseFrame()) {
-            this.blockStateStream(this.blockMin(), this.blockMax(), StreamOptions.lazily())
+            this.blockStateStream(this.min(), this.max(), StreamOptions.lazily())
                 .apply(VolumeCollectors.of(
                     target,
                     VolumePositionTranslators.relativeTo(placement),
                     VolumeApplicators.applyBlocks(BlockChangeFlags.DEFAULT_PLACEMENT)
                 ));
 
-            this.biomeStream(this.blockMin(), this.blockMax(), StreamOptions.lazily())
+            this.biomeStream(this.min(), this.max(), StreamOptions.lazily())
                 .apply(VolumeCollectors.of(
                     target,
                     VolumePositionTranslators.relativeTo(placement),
                     VolumeApplicators.applyBiomes()
                 ));
-            this.blockEntityArchetypeStream(this.blockMin(), this.blockMax(), StreamOptions.lazily())
+            this.blockEntityArchetypeStream(this.min(), this.max(), StreamOptions.lazily())
                 .apply(VolumeCollectors.of(
                     target,
                     VolumePositionTranslators.relativeTo(placement),
                     VolumeApplicators.applyBlockEntityArchetype()
                 ));
             frame.addContext(EventContextKeys.SPAWN_TYPE, spawnContext);
-            this.entityArchetypeStream(this.blockMin(), this.blockMax(), StreamOptions.lazily())
+            this.entityArchetypeStream(this.min(), this.max(), StreamOptions.lazily())
                 .apply(VolumeCollectors.of(
                     target,
                     VolumePositionTranslators.relativeTo(placement),

@@ -29,9 +29,10 @@ import org.spongepowered.api.world.volume.Volume;
 /**
  * A "final step" to a {@link VolumeStream VolumeStream's} collection into a
  * {@link VolumeCollector} to where the desired {@code T} element is potentially
- * translated
- * @param <V>
- * @param <T>
+ * translated.
+ *
+ * @param <V> The type of {@link Volume} this translator operates upon
+ * @param <T> The type of in-game object this translator operates upon
  */
 public interface VolumePositionTranslator<V extends Volume, T> {
 
