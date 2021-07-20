@@ -29,6 +29,7 @@ import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.volume.block.PhysicsAwareMutableBlockVolume;
 import org.spongepowered.api.world.volume.entity.EntityVolume;
 import org.spongepowered.math.vector.Vector3i;
 
@@ -40,7 +41,7 @@ import java.util.Optional;
  * <p>In Minecraft, the chunk is 16 by 16 blocks on the X and Z axes. The height
  * of each chunk varies between worlds.</p>
  */
-public interface Chunk extends ProtoChunk<Chunk>, EntityVolume.Mutable<Chunk> {
+public interface Chunk extends ProtoChunk<Chunk>, EntityVolume.Mutable<Chunk>, PhysicsAwareMutableBlockVolume<Chunk> {
 
     /**
      * Gets the world the chunk is in.
