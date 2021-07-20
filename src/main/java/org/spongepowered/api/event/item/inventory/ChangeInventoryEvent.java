@@ -78,6 +78,32 @@ public interface ChangeInventoryEvent extends Event, AffectSlotEvent {
     }
 
     /**
+     * An interaction resulting in dropping an item.
+     * <p>Note this is for dropping items with no container open.</p>
+     * <p>See {@link org.spongepowered.api.event.item.inventory.container.ClickContainerEvent.Drop} for events with a container open.</p>
+     */
+    interface Drop extends ChangeInventoryEvent, DropItemEvent.Dispense {
+
+        /**
+         * The current active hand slot
+         *
+         * @return the current active hand slot.
+         */
+        Slot slot();
+
+        /**
+         * An interaction dropping a single item. (Q)
+         */
+        interface Single extends Drop {}
+
+        /**
+         * An interaction dropping an entire stack. (ctrl-Q)
+         */
+        interface Full extends Drop {}
+
+    }
+
+    /**
      * Fires after an {@link Item} has been picked up.
      */
     @GenerateFactoryMethod
