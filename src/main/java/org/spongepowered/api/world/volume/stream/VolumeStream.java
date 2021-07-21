@@ -82,6 +82,8 @@ public interface VolumeStream<V extends Volume, T> {
         return this.flatMap((volume, value, x, y, z) -> mapper.apply(VolumeElement.of(volume, value, new Vector3i(x, y, z))));
     }
 
+    VolumeStream<V, T> transform(VolumePositionTranslator<V, T> transformer);
+
     long count();
 
     boolean allMatch(VolumePredicate<V, ? super T> predicate);

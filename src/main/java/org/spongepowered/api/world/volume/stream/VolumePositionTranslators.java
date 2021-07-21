@@ -25,8 +25,6 @@
 package org.spongepowered.api.world.volume.stream;
 
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.entity.BlockEntity;
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.volume.Volume;
 import org.spongepowered.math.imaginary.Quaterniond;
@@ -47,29 +45,13 @@ public final class VolumePositionTranslators {
         return VolumePositionTranslators.rotateOn(start, center, rotation, (position, state) -> state.rotate(rotation));
     }
 
-    public static <W extends Volume> VolumePositionTranslator<W, Entity> rotateEntitiesOn(final Vector3i start, final Vector3d center, final Rotation rotation) {
-        return VolumePositionTranslators.rotateOn(start, center, rotation, (position, entity) -> {
-            final Quaterniond q = Quaterniond.fromAngleDegAxis(rotation.angle().degrees(), 0, 1, 0);
-            final Vector3d newPosition = q.rotate(entity.position().sub(center.toDouble())).add(center.toDouble());
-            entity.setRotation(entity.rotation().add(0, (float) rotation.angle().degrees() / 360, 0));
-            entity.setPosition(newPosition);
-            return entity;
-        });
-    }
-
-    public static <W extends Volume> VolumePositionTranslator<W, BlockEntity> rotateBlockEntitiesOn(final Vector3i start, final Vector3i center,
-        final Rotation rotation
-    ) {
-        return VolumePositionTranslators.rotateOn(start, center.toDouble(), rotation, (position, blockEntity) -> blockEntity.rotate(rotation));
-    }
-
     public static <W extends Volume, E> VolumePositionTranslator<W, E> rotateOn(final Vector3i start, final Vector3d center, final Rotation rotation,
         final BiFunction<Vector3i, E, E> elementRotation
     ) {
         return element -> {
             final Quaterniond q = Quaterniond.fromAngleDegAxis(rotation.angle().degrees(), 0, 1, 0);
-            final Vector3i v = q.rotate(element.position().sub(center).toDouble()).toInt().add(center);
-            return VolumeElement.of(element.volume(), elementRotation.apply(element.type()), v);
+            final Vector3i v = q.rotate(center).add(element.position().toDouble().sub(start.toDouble())).round().toInt();
+            return VolumeElement.of(element.volume(), elementRotation.apply(v, element.type()), v);
         };
     }
 
@@ -84,13 +66,6 @@ public final class VolumePositionTranslators {
     public static <W extends Volume, E> VolumePositionTranslator<W, E> position(final Function<Vector3i, Vector3i> func) {
         Objects.requireNonNull(func, "Position function cannot be null!");
         return element -> VolumeElement.of(element.volume(), element.type(), func.apply(element.position()));
-    }
-
-    public static <W extends Volume, E> VolumePositionTranslator<W, E> offsetPosition(final Vector3i origin,
-        Vector3i originalOrigin
-    ) {
-        final Vector3i diff = origin.sub(originalOrigin);
-        return element -> VolumeElement.of(element.volume(), element.type(), element.position().add(diff));
     }
 
     private VolumePositionTranslators() {}

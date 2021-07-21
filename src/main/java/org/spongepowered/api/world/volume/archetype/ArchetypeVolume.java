@@ -28,8 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.EventContextKeys;
 import org.spongepowered.api.event.cause.entity.SpawnType;
-import org.spongepowered.api.util.mirror.Mirror;
-import org.spongepowered.api.util.rotation.Rotation;
+import org.spongepowered.api.util.transformation.Transformation;
 import org.spongepowered.api.world.BlockChangeFlags;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.volume.archetype.block.entity.BlockEntityArchetypeVolume;
@@ -40,6 +39,7 @@ import org.spongepowered.api.world.volume.stream.StreamOptions;
 import org.spongepowered.api.world.volume.stream.VolumeApplicators;
 import org.spongepowered.api.world.volume.stream.VolumeCollectors;
 import org.spongepowered.api.world.volume.stream.VolumePositionTranslators;
+import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Objects;
@@ -49,6 +49,17 @@ public interface ArchetypeVolume extends BlockVolume.Modifiable<ArchetypeVolume>
     BlockEntityArchetypeVolume.Modifiable<ArchetypeVolume>,
     EntityArchetypeVolume.Modifiable<ArchetypeVolume>,
     BiomeVolume.Modifiable<ArchetypeVolume> {
+
+    ArchetypeVolume transform(Transformation transformation);
+
+    /**
+     * Gets the logical center of a volume, considering the decimal coordinates,
+     * the block's center location would have an offset of {@code 0.5}
+     * @return
+     */
+    default Vector3d logicalCenter() {
+        return this.blockMin().toDouble().add(this.blockSize().toDouble().div(2));
+    }
 
     /**
      * Attempts to apply all of the contents of this
