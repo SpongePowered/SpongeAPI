@@ -24,13 +24,20 @@
  */
 package org.spongepowered.api.event;
 
-import io.leangen.geantyref.TypeToken;
 import org.spongepowered.plugin.PluginContainer;
 
 /**
  * Manages the registration of event listeners and the dispatching of events.
  */
 public interface EventManager {
+
+    /**
+     * Submits a new {@link EventListenerRegistration listener registration} to this manager.
+     * @param registration The registration
+     * @param <E> The event type
+     * @return This manager, for fluency
+     */
+    <E extends Event> EventManager registerListener(EventListenerRegistration<E> registration);
 
     /**
      * Registers {@link Event} methods annotated with @{@link Listener} in the
@@ -41,131 +48,23 @@ public interface EventManager {
      *
      * @param plugin The plugin instance
      * @param obj The object
-     * @throws IllegalArgumentException Thrown if {@code plugin} is not a plugin
-     *         instance
+     * @return This manager, for fluency
      */
-    void registerListeners(PluginContainer plugin, Object obj);
-
-    /**
-     * Registers an event listener for a specific event class.
-     *
-     * <p>Normally, the annotation-based way in
-     * {@link #registerListeners(PluginContainer, Object)} should be preferred over this way. This
-     * method exists primarily to support dynamic event registration like needed
-     * in scripting plugins.</p>
-     *
-     * @param plugin The plugin instance
-     * @param eventClass The event to listen to
-     * @param listener The listener to receive the events
-     * @param <T> The type of the event
-     */
-    <T extends Event> void registerListener(PluginContainer plugin, Class<T> eventClass, EventListener<? super T> listener);
-
-    /**
-     * Registers an event listener for a specific event {@link TypeToken}.
-     *
-     * <p>Normally, the annotation-based way in
-     * {@link #registerListeners(PluginContainer, Object)} should be preferred over this way. This
-     * method exists primarily to support dynamic event registration like needed
-     * in scripting plugins.</p>
-     *
-     * @param plugin The plugin instance
-     * @param eventType The event to listen to
-     * @param listener The listener to receive the events
-     * @param <T> The type of the event
-     */
-    <T extends Event> void registerListener(PluginContainer plugin, TypeToken<T> eventType, EventListener<? super T> listener);
-
-    /**
-     * Registers an event listener with the specified order for a specific event
-     * class.
-     *
-     * <p>Normally, the annotation-based way in
-     * {@link #registerListeners(PluginContainer, Object)} should be preferred over this way. This
-     * method exists primarily to support dynamic event registration like needed
-     * in scripting plugins.</p>
-     *
-     * @param plugin The plugin instance
-     * @param eventClass The event to listen to
-     * @param order The order the listener will get called at
-     * @param listener The listener to receive the events
-     * @param <T> The type of the event
-     */
-    <T extends Event> void registerListener(PluginContainer plugin, Class<T> eventClass, Order order, EventListener<? super T> listener);
-
-    /**
-     * Registers an event listener with the specified order for a specific event
-     * {@link TypeToken}.
-     *
-     * <p>Normally, the annotation-based way in
-     * {@link #registerListeners(PluginContainer, Object)} should be preferred over this way. This
-     * method exists primarily to support dynamic event registration like needed
-     * in scripting plugins.</p>
-     *
-     * @param plugin The plugin instance
-     * @param eventType The event to listen to
-     * @param order The order the listener will get called at
-     * @param listener The listener to receive the events
-     * @param <T> The type of the event
-     */
-    <T extends Event> void registerListener(PluginContainer plugin, TypeToken<T> eventType, Order order, EventListener<? super T> listener);
-
-    /**
-     * Registers an event listener with the specified order for a specific event
-     * class.
-     *
-     * <p>Normally, the annotation-based way in
-     * {@link #registerListeners(PluginContainer, Object)} should be preferred over this way. This
-     * method exists primarily to support dynamic event registration like needed
-     * in scripting plugins.</p>
-     *
-     * @param plugin The plugin instance
-     * @param eventClass The event to listen to
-     * @param order The order the listener will get called at
-     * @param beforeModifications Whether to call the listener before other
-     *      server modifications
-     * @param listener The listener to receive the events
-     * @param <T> The type of the event
-     */
-    <T extends Event> void registerListener(PluginContainer plugin, Class<T> eventClass, Order order, boolean beforeModifications,
-            EventListener<? super T> listener);
-
-    /**
-     * Registers an event listener with the specified order for a specific event
-     * class.
-     *
-     * <p>Normally, the annotation-based way in
-     * {@link #registerListeners(PluginContainer, Object)} should be preferred over this way. This
-     * method exists primarily to support dynamic event registration like needed
-     * in scripting plugins.</p>
-     *
-     * @param plugin The plugin instance
-     * @param eventType The event to listen to
-     * @param order The order the listener will get called at
-     * @param beforeModifications Whether to call the listener before other
-     *      server modifications
-     * @param listener The listener to receive the events
-     * @param <T> The type of the event
-     */
-    <T extends Event> void registerListener(PluginContainer plugin, TypeToken<T> eventType, Order order, boolean beforeModifications,
-            EventListener<? super T> listener);
+    EventManager registerListeners(PluginContainer plugin, Object obj);
 
     /**
      * Un-registers an object from receiving {@link Event}s.
      *
-     * @param obj The object
-     */
-    void unregisterListeners(Object obj);
-
-    /**
-     * Un-registers all event listeners of a plugin.
+     * <p>If the provided object is a {@link PluginContainer plugin}, all events associated
+     * with that plugin will be unregistered.</p>
      *
-     * @param plugin The plugin instance
+     * @param obj The object
+     * @return This manager, for fluency
      */
-    void unregisterPluginListeners(PluginContainer plugin);
+    EventManager unregisterListeners(Object obj);
 
     /**
-     * Calls a {@link Event} to all listeners that listen to it.
+     * Calls an {@link Event} to all listeners that listen to it.
      *
      * @param event The event
      * @return True if cancelled, false if not

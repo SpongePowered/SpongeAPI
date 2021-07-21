@@ -29,6 +29,7 @@ package org.spongepowered.api.event;
  *
  * @param <T> The type of the event
  */
+@FunctionalInterface
 public interface EventListener<T extends Event> {
 
     /**
