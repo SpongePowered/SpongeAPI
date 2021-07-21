@@ -159,6 +159,28 @@ public interface Transformation {
     Builder toBuilder();
 
     /**
+     * Returns are new Transformation which represents the combination of this
+     * transformation, followed by the supplied transformation.
+     *
+     * <p><strong>You must not assume that the second transformation origin is
+     * relative to the first.</strong> Each transformation is assumed to operate in
+     * <strong>untransformed</strong> and each is assumed to operate around the
+     * origin specified in <em>that</em> transformation. For example, if the
+     * first transformation operates around (1, 1, 1), and the second operates
+     * around (2, 2, 2), this will still be the case, the second won't operate
+     * around (3, 3, 3). As a result, {@link #origin()} will return
+     * {@link Vector3d#ZERO} unless the two origins are equal to each other.
+     * </p>
+     *
+     * <p>The resultant transformation will set {@link #performsRounding()}
+     * to the value of <strong>this</strong> transformation.</p>
+     *
+     * @param transformation The transformation to perform after this one
+     * @return A new, combined, transformation
+     */
+    Transformation then(Transformation transformation);
+
+    /**
      * Creates {@link Transformation transformations}.
      *
      * <p>Apart from the {@link #origin(Vector3d) origin} transformation, all
@@ -175,8 +197,8 @@ public interface Transformation {
          * before the rest of the transformations are made. Once all
          * transformations are performed, this transformation is undone. This
          * is especially useful if you are only transforming around a given
-         * origin which is not at (0, 0, 0), as the rotation will be performed
-         * around this origin instead.</p>
+         * origin which is not at (0, 0, 0), as other transformations specified
+         * in this object will be performed around this origin instead.</p>
          *
          * <p>This does not affect
          * {@link Transformation#transformDirection(Vector3d)}</p>
