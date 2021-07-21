@@ -25,6 +25,7 @@
 package org.spongepowered.api.util.rotation;
 
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.util.Angle;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(Rotations.class)
@@ -35,8 +36,8 @@ public interface Rotation extends DefaultedRegistryValue {
     /**
      * Gets the the rotation in degrees always in clockwise order.
      *
-     * @return The rotation in degrees
+     * @return The rotation
      */
-    int angle();
+    Angle angle();
 
 }

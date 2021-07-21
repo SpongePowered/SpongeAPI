@@ -25,14 +25,12 @@
 package org.spongepowered.api.world.volume.archetype;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.EventContextKeys;
 import org.spongepowered.api.event.cause.entity.SpawnType;
-import org.spongepowered.api.registry.Registry;
-import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.util.mirror.Mirror;
+import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.BlockChangeFlags;
-import org.spongepowered.api.world.biome.Biome;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.volume.archetype.block.entity.BlockEntityArchetypeVolume;
 import org.spongepowered.api.world.volume.archetype.entity.EntityArchetypeVolume;
