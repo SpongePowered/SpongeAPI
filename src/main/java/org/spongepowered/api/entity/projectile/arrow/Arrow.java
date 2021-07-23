@@ -40,7 +40,7 @@ public interface Arrow extends ArrowEntity {
      *
      * @return The potion effects that are applied to the arrow
      */
-    default Optional<ListValue.Mutable<PotionEffect>> potionEffects() {
-        return this.getValue(Keys.POTION_EFFECTS).map(ListValue::asMutable);
+    default ListValue.Mutable<PotionEffect> potionEffects() {
+        return this.requireValue(Keys.POTION_EFFECTS).asMutable();
     }
 }

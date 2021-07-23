@@ -171,8 +171,8 @@ public interface Living extends AttributeHolder, Entity, TeamMember {
      *
      * @return The potion effects that are present on the living entity
      */
-    default Optional<ListValue.Mutable<PotionEffect>> potionEffects() {
-        return this.getValue(Keys.POTION_EFFECTS).map(ListValue::asMutable);
+    default ListValue.Mutable<PotionEffect> potionEffects() {
+        return this.requireValue(Keys.POTION_EFFECTS).asMutable();
     }
 
     /**
