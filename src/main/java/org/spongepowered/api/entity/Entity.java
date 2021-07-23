@@ -370,8 +370,8 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      *
      * @return The "base vehicle" of the entity vehicle riding chain
      */
-    default Value<Entity> baseVehicle() {
-        return this.requireValue(Keys.BASE_VEHICLE);
+    default Optional<Value<Entity>> baseVehicle() {
+        return this.getValue(Keys.BASE_VEHICLE).map(Value::asMutable);
     }
 
     /**
