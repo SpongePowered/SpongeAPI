@@ -36,8 +36,12 @@ import java.util.Optional;
 
 public interface FlatGeneratorConfig extends ChunkGeneratorConfig {
 
+    static FlatGeneratorConfig standard() {
+        return Sponge.game().factoryProvider().provide(Factory.class).standard();
+    }
+
     static Builder builder() {
-        return Sponge.game().builderProvider().provide(Builder.class).reset();
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     List<LayerConfig> layers();
@@ -67,5 +71,10 @@ public interface FlatGeneratorConfig extends ChunkGeneratorConfig {
         Builder performDecoration(boolean performDecoration);
 
         Builder populateLakes(boolean populateLakes);
+    }
+
+    interface Factory {
+
+        FlatGeneratorConfig standard();
     }
 }
