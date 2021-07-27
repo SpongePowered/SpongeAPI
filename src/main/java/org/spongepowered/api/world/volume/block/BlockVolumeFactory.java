@@ -33,11 +33,11 @@ import org.spongepowered.math.vector.Vector3i;
 
 public interface BlockVolumeFactory {
 
-    BlockVolume.Mutable<@NonNull ?> empty(Palette<BlockState, BlockType> palette, RegistryReference<BlockType> defaultState, Vector3i min, Vector3i max);
+    BlockVolume.Mutable empty(Palette<BlockState, BlockType> palette, RegistryReference<BlockType> defaultState, Vector3i min, Vector3i max);
 
-    BlockVolume.Mutable<@NonNull ?> copyFromRange(BlockVolume.Streamable<@NonNull ?> existing, Vector3i newMin, Vector3i newMax);
+    BlockVolume.Mutable copyFromRange(BlockVolume.Streamable<@NonNull ?> existing, Vector3i newMin, Vector3i newMax);
 
-    BlockVolume.Mutable<@NonNull ?> copy(BlockVolume.Streamable<@NonNull ?> existing);
+    BlockVolume.Mutable copy(BlockVolume.Streamable<@NonNull ?> existing);
 
     BlockVolume.Immutable immutableOf(BlockVolume.Streamable<@NonNull ?> existing);
 

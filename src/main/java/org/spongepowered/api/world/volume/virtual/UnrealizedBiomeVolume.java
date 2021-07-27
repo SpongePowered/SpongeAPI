@@ -22,19 +22,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.volume.stream;
+package org.spongepowered.api.world.volume.virtual;
 
-import org.spongepowered.api.world.volume.Volume;
+import org.spongepowered.api.world.biome.Biome;
+import org.spongepowered.api.world.volume.biome.BiomeVolume;
 
-import java.util.Optional;
-import java.util.function.Supplier;
+public interface UnrealizedBiomeVolume<B extends BiomeVolume> extends Virtualized<Biome, B> {
 
-@FunctionalInterface
-public interface VolumeFlatMapper<V extends Volume, T> {
+    interface Streamable<B extends Streamable<B, BU>, BU extends BiomeVolume.Streamable<BU>>
+        extends UnrealizedBiomeVolume<BU>,
+        Virtualized.Streamable<Biome, B, BU> {
 
-    default Optional<? extends T> map(final V volume, final Supplier<T> value, final int x, final int y, final int z) {
-        return this.map(volume, value, x + 0.5, y + 0.5, z + 0.5);
     }
 
-    Optional<? extends T> map(V volume, Supplier<T> value, double x, double y, double z);
+    interface Unmodifiable<U extends Unmodifiable<U, BU>, BU extends BiomeVolume.Unmodifiable<BU>>
+        extends UnrealizedBiomeVolume<BU>,
+        Streamable<U, BU>,
+        Virtualized.Unmodifiable<Biome, U, BU> {
+
+    }
+
+    interface Modifiable<B extends Modifiable<B, MB>, MB extends BiomeVolume.Modifiable<MB>>
+        extends UnrealizedBiomeVolume<MB>,
+        Streamable<B, MB>,
+        Virtualized.Mutable<Biome, B, MB> {
+
+    }
+
+    interface Mutable extends Modifiable<Mutable, BiomeVolume.Mutable> {
+
+    }
+
+    interface Immutable extends Unmodifiable<Immutable, BiomeVolume.Immutable> {
+
+    }
+
+
 }

@@ -31,7 +31,11 @@ import java.util.function.Supplier;
 @FunctionalInterface
 public interface VolumePredicate<V extends Volume, T> {
 
-    boolean test(V volume, Supplier<T> element, int x, int y, int z);
+    boolean test(V volume, Supplier<T> element, double x, double y, double z);
+
+    default boolean test(final V volume, final Supplier<T> element, final int x, final int y, final int z) {
+        return this.test(volume, element, x + 0.5, y + 0.5, z + 0.5);
+    }
 
     default VolumePredicate<V, T> and(final VolumePredicate<V, T> other) {
         return (volume, element, x, y, z) -> this.test(volume, element, x, y, z) && other.test(volume, element, x, y, z);

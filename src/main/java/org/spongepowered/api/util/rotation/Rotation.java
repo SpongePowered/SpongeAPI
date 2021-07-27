@@ -25,7 +25,9 @@
 package org.spongepowered.api.util.rotation;
 
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.util.Angle;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.math.matrix.Matrix4d;
 
 @CatalogedBy(Rotations.class)
 public interface Rotation extends DefaultedRegistryValue {
@@ -35,8 +37,41 @@ public interface Rotation extends DefaultedRegistryValue {
     /**
      * Gets the the rotation in degrees always in clockwise order.
      *
-     * @return The rotation in degrees
+     * @return The rotation
      */
-    int angle();
+    Angle angle();
+
+    /**
+     * Gets the {@link Matrix4d 4D rotation matrix} of this rotation.
+     *
+     * <p>Minecraft's coordinate system is different than traditional systems
+     * applying the semantic meaning behind the {@code x} and {@code z} axis.
+     * These natures are described as below:
+     * </p>
+     * <ul>
+     *     <li>The x-axis indicates the <b>east</b> (when positive) or <b>west</b>
+     *     (when negative) of the origin point {@code (0, 0, 0)}</li>
+     *     <li>The z-axis indicates the <b>south</b> (when positive) or <b>north</b>
+     *     (when negative) of the origin point {@code (0, 0, 0)}</li>
+     * </ul>
+     * <p>
+     * These rules differ from traditional coordinate interpretations and
+     * therefore may be unintuitive when a rotation of {@code 90} degrees will
+     * instead rotate the coordinates {@code (1, 1, 1)} across the pivot
+     * {@code (0, 0, 0)}
+     * </p>
+     *
+     * @return The euler matrix that represents this rotation in the X-Z plane.
+     */
+    default Matrix4d toRotationMatrix() {
+        final int cos = (int) Math.round(Math.cos(Math.toRadians(-this.angle().degrees())));
+        final int sin = (int) Math.round(Math.sin(Math.toRadians(-this.angle().degrees())));
+        return Matrix4d.from(
+            cos, 0, sin, 0,
+            0, 1, 0, 0,
+            -sin, 0, cos, 0,
+            0, 0, 0, 1
+        );
+    }
 
 }

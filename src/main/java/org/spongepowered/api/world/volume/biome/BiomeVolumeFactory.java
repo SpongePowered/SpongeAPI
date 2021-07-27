@@ -22,19 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.volume.stream;
+package org.spongepowered.api.world.volume.biome;
 
-import org.spongepowered.api.world.volume.Volume;
+import org.checkerframework.checker.nullness.qual.NonNull;
+import org.spongepowered.api.registry.RegistryReference;
+import org.spongepowered.api.world.biome.Biome;
+import org.spongepowered.api.world.schematic.Palette;
+import org.spongepowered.api.world.volume.virtual.UnrealizedBiomeVolume;
+import org.spongepowered.math.vector.Vector3i;
 
-import java.util.Optional;
-import java.util.function.Supplier;
+public interface BiomeVolumeFactory {
 
-@FunctionalInterface
-public interface VolumeFlatMapper<V extends Volume, T> {
+    BiomeVolume.Mutable empty(Palette<Biome, Biome> palette, RegistryReference<Biome> defaultBiome, Vector3i min, Vector3i max);
 
-    default Optional<? extends T> map(final V volume, final Supplier<T> value, final int x, final int y, final int z) {
-        return this.map(volume, value, x + 0.5, y + 0.5, z + 0.5);
-    }
+    BiomeVolume.Mutable copyFromRange(BiomeVolume.Streamable<@NonNull ?> existing, Vector3i newMin, Vector3i newMax);
 
-    Optional<? extends T> map(V volume, Supplier<T> value, double x, double y, double z);
+    BiomeVolume.Mutable copy(BiomeVolume.Streamable<@NonNull ?> existing);
+
+    BiomeVolume.Immutable immutableOf(BiomeVolume.Streamable<@NonNull ?> existing);
+
+    BiomeVolume.Immutable immutableOf(BiomeVolume.Streamable<@NonNull ?> existing, Vector3i newMin, Vector3i newMax);
+
+    UnrealizedBiomeVolume.Mutable empty(Vector3i min, Vector3i max);
+
 }

@@ -27,14 +27,18 @@ package org.spongepowered.api.world.server;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.annotation.DoNotStore;
-import org.spongepowered.api.world.chunk.Chunk;
+import org.spongepowered.api.world.ChunkRegenerateFlag;
+import org.spongepowered.api.world.ChunkRegenerateFlags;
+import org.spongepowered.api.world.chunk.WorldChunk;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 /**
- * Manages {@link Chunk chunks} for a {@link ServerWorld}.
+ * Manages {@link WorldChunk chunks} for a {@link ServerWorld}.
  */
 @DoNotStore
 public interface ChunkManager {
@@ -67,7 +71,7 @@ public interface ChunkManager {
      * chunk position.
      *
      * @param type The type of ticket to request.
-     * @param chunkOrigin The chunk co-ordinates of the central {@link Chunk}
+     * @param chunkOrigin The chunk co-ordinates of the central {@link WorldChunk}
      *                    affected by this {@link Ticket}
      * @param radius The radius of the area, in chunks, that this {@link Ticket}
      *               affects.
@@ -83,7 +87,7 @@ public interface ChunkManager {
      * chunk position.
      *
      * @param type The type of ticket to request.
-     * @param chunkOrigin The chunk co-ordinates of the central {@link Chunk}
+     * @param chunkOrigin The chunk co-ordinates of the central {@link WorldChunk}
      *                    affected by this {@link Ticket}
      * @param radius The radius of the area, in chunks, that this {@link Ticket}
      *               affects.
@@ -98,7 +102,7 @@ public interface ChunkManager {
      * Request a {@link Ticket} for the given {@link TicketType}.
      *
      * @param type The type of ticket to request.
-     * @param chunkOrigin The chunk co-ordinates of the central {@link Chunk}
+     * @param chunkOrigin The chunk co-ordinates of the central {@link WorldChunk}
      *                    affected by this {@link Ticket}
      * @param value The value to register the ticket with.
      * @param radius The radius of the area, in chunks, that this {@link Ticket}
@@ -112,7 +116,7 @@ public interface ChunkManager {
      * Request a {@link Ticket} for the given {@link TicketType}.
      *
      * @param type The type of ticket to request.
-     * @param chunkOrigin The chunk co-ordinates of the central {@link Chunk}
+     * @param chunkOrigin The chunk co-ordinates of the central {@link WorldChunk}
      *                    affected by this {@link Ticket}
      * @param value The value to register the ticket with.
      * @param radius The radius of the area, in chunks, that this {@link Ticket}
@@ -167,5 +171,79 @@ public interface ChunkManager {
     default <T> Collection<Ticket<T>> findTickets(final DefaultedRegistryReference<TicketType<T>> type) {
         return this.findTickets(type.get());
     }
+
+    /**
+     * Regenerates a chunk at the given chunk coordinate position.
+     *
+     * <p>Care should be taken to check the result of the future, as an
+     * exception may be provided if the regeneration was not successful.</p>
+     *
+     * <p><strong>Users must not use {@link CompletableFuture#get() get} or
+     * {@link CompletableFuture#join() join} on this future.</strong> Doing so
+     * may end up causing a deadlock on the server.</p>
+     *
+     * @param chunkPosition The chunk position to regenerate
+     * @return The regenerated chunk, if available
+     */
+    default CompletableFuture<Boolean> regenerateChunk(final Vector3i chunkPosition) {
+        Objects.requireNonNull(chunkPosition, "chunkPosition");
+        return this.regenerateChunk(chunkPosition.x(), chunkPosition.y(), chunkPosition.z(), ChunkRegenerateFlags.ALL.get());
+    }
+
+    /**
+     * Regenerates a chunk at the given chunk coordinates.
+     *
+     * <p>Care should be taken to check the result of the future, as an
+     * exception may be provided if the regeneration was not successful.</p>
+     *
+     * <p><strong>Users must not use {@link CompletableFuture#get() get} or
+     * {@link CompletableFuture#join() join} on this future.</strong> Doing so
+     * may end up causing a deadlock on the server.</p>
+     *
+     * @param cx The chunk x coordinate
+     * @param cy The chunk y coordinate
+     * @param cz The chunk z coordinate
+     * @return The regenerated chunk, if available
+     */
+    default CompletableFuture<Boolean> regenerateChunk(final int cx, final int cy, final int cz) {
+        return this.regenerateChunk(cx, cy, cz, ChunkRegenerateFlags.ALL.get());
+    }
+
+    /**
+     * Regenerates a chunk at the given chunk coordinate position.
+     *
+     * <p>Care should be taken to check the result of the future, as an
+     * exception may be provided if the regeneration was not successful.</p>
+     *
+     * <p><strong>Users must not use {@link CompletableFuture#get() get} or
+     * {@link CompletableFuture#join() join} on this future.</strong> Doing so
+     * may end up causing a deadlock on the server.</p>
+     *
+     * @param chunkPosition The chunk position to regenerate
+     * @param flag The chunk regenerate flag to use
+     * @return The regenerated chunk, if available
+     */
+    default CompletableFuture<Boolean> regenerateChunk(final Vector3i chunkPosition, final ChunkRegenerateFlag flag) {
+        Objects.requireNonNull(chunkPosition, "chunkPosition");
+        return this.regenerateChunk(chunkPosition.x(), chunkPosition.y(), chunkPosition.z(), Objects.requireNonNull(flag, "flag"));
+    }
+
+    /**
+     * Regenerates a chunk at the given chunk coordinates.
+     *
+     * <p>Care should be taken to check the result of the future, as an
+     * exception may be provided if the regeneration was not successful.</p>
+     *
+     * <p><strong>Users must not use {@link CompletableFuture#get() get} or
+     * {@link CompletableFuture#join() join} on this future.</strong> Doing so
+     * may end up causing a deadlock on the server.</p>
+     *
+     * @param cx The chunk x coordinate
+     * @param cy The chunk y coordinate
+     * @param cz The chunk z coordinate
+     * @param flag The chunk regenerate flag to use
+     * @return The regenerated chunk, if available
+     */
+    CompletableFuture<Boolean> regenerateChunk(int cx, int cy, int cz, ChunkRegenerateFlag flag);
 
 }

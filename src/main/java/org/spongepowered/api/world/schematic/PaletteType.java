@@ -42,7 +42,11 @@ public interface PaletteType<T, R> extends DefaultedRegistryValue {
         return Sponge.game().builderProvider().provide(Builder.class);
     }
 
-    Palette<T, R> create(RegistryHolder holder, RegistryType<R> registryType);
+    default Palette<T, R> create(RegistryHolder holder, RegistryType<R> registryType) {
+        return this.create(holder.registry(registryType));
+    }
+
+    Palette<T, R> create(Registry<R> registry);
 
     BiFunction<String, Registry<R>, Optional<T>> resolver();
 

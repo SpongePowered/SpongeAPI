@@ -29,5 +29,9 @@ import org.spongepowered.api.world.volume.Volume;
 @FunctionalInterface
 public interface VolumeConsumer<V extends Volume, T> {
 
-    void consume(V volume, T type, int x, int y, int z);
+    default void consume(final V volume, final T type, final int x, final int y, final int z) {
+        this.consume(volume, type, x + 0.5, y + 0.5, z + 0.5);
+    }
+
+    void consume(V volume, T type, double x, double y, double z);
 }

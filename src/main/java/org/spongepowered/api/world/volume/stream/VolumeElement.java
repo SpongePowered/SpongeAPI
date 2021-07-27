@@ -27,7 +27,7 @@ package org.spongepowered.api.world.volume.stream;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.world.volume.Volume;
-import org.spongepowered.math.vector.Vector3i;
+import org.spongepowered.math.vector.Vector3d;
 
 import java.lang.ref.WeakReference;
 import java.util.Objects;
@@ -36,7 +36,7 @@ import java.util.function.Supplier;
 
 public interface VolumeElement<V extends Volume, T> {
 
-    static <W extends Volume, T> VolumeElement<W, T> of(final Supplier<W> volume, final Supplier<? extends T> type, final Vector3i position) {
+    static <W extends Volume, T> VolumeElement<W, T> of(final Supplier<W> volume, final Supplier<? extends T> type, final Vector3d position) {
         return new VolumeElement<W, T>() {
             @Override
             public W volume() {
@@ -44,7 +44,7 @@ public interface VolumeElement<V extends Volume, T> {
             }
 
             @Override
-            public Vector3i position() {
+            public Vector3d position() {
                 return position;
             }
 
@@ -83,13 +83,13 @@ public interface VolumeElement<V extends Volume, T> {
         };
     }
 
-    static <V extends Volume, T> VolumeElement<V, T> of(final V volume, final Supplier<? extends T> type, final Vector3i position) {
+    static <V extends Volume, T> VolumeElement<V, T> of(final V volume, final Supplier<? extends T> type, final Vector3d position) {
         final WeakReference<V> volumeRef = new WeakReference<>(volume);
         final Supplier<V> volumeSupplier = () -> Objects.requireNonNull(volumeRef.get(), "Volume de-referenced");
         return VolumeElement.of(volumeSupplier, type, position);
     }
 
-    static <V extends Volume, T> VolumeElement<V, T> of(final V volume, final T type, final Vector3i position) {
+    static <V extends Volume, T> VolumeElement<V, T> of(final V volume, final T type, final Vector3d position) {
         final WeakReference<V> volumeRef = new WeakReference<>(volume);
         final Supplier<V> volumeSupplier = () -> Objects.requireNonNull(volumeRef.get(), "Volume de-referenced");
         final WeakReference<T> typeRef = new WeakReference<>(type);
@@ -102,11 +102,11 @@ public interface VolumeElement<V extends Volume, T> {
      * Should not be leaked out of usage of a {@link VolumeStream} or any of
      * its companion functions.
      *
-     * @return
+     * @return The volume
      */
     V volume();
 
-    Vector3i position();
+    Vector3d position();
 
     T type();
 

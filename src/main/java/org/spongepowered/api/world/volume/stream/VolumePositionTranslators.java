@@ -25,67 +25,57 @@
 package org.spongepowered.api.world.volume.stream;
 
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.entity.BlockEntity;
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.volume.Volume;
 import org.spongepowered.math.imaginary.Quaterniond;
+import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Objects;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public final class VolumePositionTranslators {
+
+    public static final Vector3d BLOCK_OFFSET = new Vector3d(0.5, 0.5, 0.5);
 
     public static <W extends Volume, E> VolumePositionTranslator<W, E> identity() {
         return element -> element;
     }
 
-    public static <W extends Volume> VolumePositionTranslator<W, BlockState> rotateBlocksOn(final Vector3i center, final Rotation rotation) {
-        return VolumePositionTranslators.rotateOn(center, rotation, (state) -> state.rotate(rotation));
+    public static <W extends Volume> VolumePositionTranslator<W, BlockState> rotateBlocksOn(final Vector3i start, final Vector3d center, final Rotation rotation) {
+        return VolumePositionTranslators.rotateOn(start, center, rotation, (position, state) -> state.rotate(rotation));
     }
 
-    public static <W extends Volume> VolumePositionTranslator<W, Entity> rotateEntitiesOn(final Vector3i center, final Rotation rotation) {
-        return VolumePositionTranslators.rotateOn(center, rotation, (entity) -> {
-            entity.setRotation(entity.rotation().add(0, (float) rotation.angle() / 360, 0));
-            return entity;
-        });
-    }
-
-    public static <W extends Volume> VolumePositionTranslator<W, BlockEntity> rotateBlockEntitiesOn(final Vector3i center,
-        final Rotation rotation
-    ) {
-        return VolumePositionTranslators.rotateOn(center, rotation, blockEntity -> blockEntity.rotate(rotation));
-    }
-
-    public static <W extends Volume, E> VolumePositionTranslator<W, E> rotateOn(final Vector3i center, final Rotation rotation,
-        final Function<E, E> elementRotation
+    public static <W extends Volume, E> VolumePositionTranslator<W, E> rotateOn(final Vector3i start, final Vector3d center, final Rotation rotation,
+        final BiFunction<Vector3d, E, E> elementRotation
     ) {
         return element -> {
-            final Quaterniond q = Quaterniond.fromAngleDegAxis(rotation.angle(), 0, 1, 0);
-            final Vector3i v = q.rotate(element.position().sub(center).toDouble()).toInt().add(center);
-            return VolumeElement.of(element.volume(), elementRotation.apply(element.type()), v);
+            final Quaterniond q = Quaterniond.fromAngleDegAxis(rotation.angle().degrees(), 0, 1, 0);
+            final Vector3d v = q.rotate(center).add(element.position().sub(start.toDouble()));
+            return VolumeElement.of(element.volume(), elementRotation.apply(v, element.type()), v);
         };
     }
 
     public static <W extends Volume, E> VolumePositionTranslator<W, E> relativeTo(final Vector3i newOrigin) {
+        return VolumePositionTranslators.relativeTo(newOrigin.toDouble().add(VolumePositionTranslators.BLOCK_OFFSET));
+    }
+
+    public static <W extends Volume, E> VolumePositionTranslator<W, E> relativeTo(final Vector3d newOrigin) {
         return element -> VolumeElement.of(element.volume(), element.type(), element.position().add(newOrigin));
     }
 
     public static <W extends Volume, E> VolumePositionTranslator<W, E> offset(final Vector3i min) {
+        return VolumePositionTranslators.offset(min.toDouble().add(VolumePositionTranslators.BLOCK_OFFSET));
+    }
+
+    public static <W extends Volume, E> VolumePositionTranslator<W, E> offset(final Vector3d min) {
         return element -> VolumeElement.of(element.volume(), element.type(), element.position().sub(min));
     }
 
-    public static <W extends Volume, E> VolumePositionTranslator<W, E> position(final Function<Vector3i, Vector3i> func) {
+    public static <W extends Volume, E> VolumePositionTranslator<W, E> position(final Function<Vector3d, Vector3d> func) {
         Objects.requireNonNull(func, "Position function cannot be null!");
         return element -> VolumeElement.of(element.volume(), element.type(), func.apply(element.position()));
-    }
-
-    public static <W extends Volume, E> VolumePositionTranslator<W, E> offsetPosition(final Vector3i origin,
-        Vector3i originalOrigin
-    ) {
-        final Vector3i diff = origin.sub(originalOrigin);
-        return element -> VolumeElement.of(element.volume(), element.type(), element.position().add(diff));
     }
 
     private VolumePositionTranslators() {}

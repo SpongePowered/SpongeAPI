@@ -24,78 +24,103 @@
  */
 package org.spongepowered.api.world.chunk;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.volume.entity.EntityVolume;
+import org.spongepowered.api.world.WorldLike;
+import org.spongepowered.api.world.generation.GenerationRegion;
+import org.spongepowered.api.world.volume.biome.BiomeVolume;
+import org.spongepowered.api.world.volume.block.BlockVolume;
+import org.spongepowered.api.world.volume.block.entity.BlockEntityVolume;
+import org.spongepowered.api.world.volume.game.HeightAwareVolume;
+import org.spongepowered.api.world.volume.game.LocationBaseDataHolder;
+import org.spongepowered.api.world.volume.game.UpdatableVolume;
 import org.spongepowered.math.vector.Vector3i;
 
-import java.util.Optional;
-
 /**
- * A chunk is a specific grid-aligned partition of a {@link World}.
+ * A chunk is a specific grid-aligned partition of a {@link WorldLike}.
  *
- * <p>In Minecraft, the chunk is 16 by 16 blocks on the X and Z axes. The height
- * of each chunk varies between worlds.</p>
+ * <p>Chunk is exposed as a superinterface due to the nature of needing
+ * chunk like structures for various purposes, whether it's for world generation,
+ * chunk loading from storage, or empty chunks on clients. Traditionally, a
+ * usable "live" proto chunk instance will be a {@link WorldChunk} with a valid
+ * {@link World} instance.</p>
+ *
+ * <p>A chunk may not be attached to a {@link World} or {@link GenerationRegion}
+ * if it is in the process of being generated.</p>
  */
-public interface Chunk extends ProtoChunk<Chunk>, EntityVolume.Mutable<Chunk> {
+@DoNotStore
+public interface Chunk<P extends Chunk<P>> extends
+    BlockVolume.Modifiable<P>,
+    BlockEntityVolume.Modifiable<P>,
+    BiomeVolume.Modifiable<P>,
+    UpdatableVolume,
+    LocationBaseDataHolder.Mutable,
+    HeightAwareVolume {
 
     /**
-     * Gets the world the chunk is in.
+     * Adds the {@link Entity} to this {@link Chunk chunk}. It is not
+     * guaranteed this will succeed in all cases, as {@link #state()}
+     * does play a role in whether an entity can be directly added or not.
      *
-     * @return The world
+     * <p>This method should realistically be used only during world
+     * generation, and therefore will likely emit warnings if attempting to
+     * add entities to live {@link WorldChunk} instances.</p>
+     *
+     * @param entity The entity to add
      */
-    World<?, ?> world();
+    void addEntity(Entity entity);
 
     /**
-     * Gets the chunk in the given direction from this chunk, if it exists.
+     * Gets this {@link Chunk}'s current {@link ChunkState}.
+     * The {@link ChunkState} stipulates the potential validity of various
+     * operations that can be performed.
      *
-     * @param direction The cardinal or ordinal direction to get the chunk from
-     * @return The neighbor chunk, if available
+     * <p>A fully generated chunk will return {@link ChunkStates#FULL} - though
+     * care should be taken as the chunk may be an {@link #isEmpty() empty} one.
+     * </p>
+     *
+     * @return This chunk's state
      */
-    default Optional<Chunk> neighbor(final Direction direction) {
-        return this.neighbor(direction, false);
-    }
+    ChunkState state();
 
     /**
-     * Gets the chunk in the given direction from this chunk.
+     * Gets whether this chunk is empty.
      *
-     * @param direction The cardinal or ordinal direction to get the chunk from
-     * @param shouldLoad Whether the server should load or generate the chunk
-     *     if unavailable
-     * @return The neighbor chunk, if available or if {@code shouldLoad} is true
+     * @return Whether this chunk is empty
      */
-    default Optional<Chunk> neighbor(final Direction direction, final boolean shouldLoad) {
-        final Optional<Vector3i> neighborPosition = Sponge.server().chunkLayout().moveToChunk(this.chunkPosition(), direction);
-        return neighborPosition.flatMap(vector3i -> this.world().loadChunk(vector3i, shouldLoad));
-    }
+    boolean isEmpty();
 
     /**
-     * Gets the regional difficulty factor for this chunk. In vanilla, it is
-     * dependent on the playtime of the world, inhabited time of the chunk, the
-     * phase of the moon, and the current difficulty setting. This number ranges
-     * from 0.75-1.5 on easy, 1.5-4.0 on normal, and 2.25-6.75 on hard.
+     * Gets the position of the chunk.
      *
-     * <p>This value is used for display only in vanilla.</p>
+     * <p>The returned position is 3-dimensional with the Y-coordinate set to be
+     * the base (lowest) Y-position of the chunk. As 3-dimensional chunks do not
+     * yet exist in Minecraft, the returned position will always have a
+     * {@code y} set to 0.</p>
      *
-     * @return The regional difficulty factor for this chunk
+     * @return The position
      */
-    double regionalDifficultyFactor();
+    Vector3i chunkPosition();
 
     /**
-     * Gets the regional difficulty percentage for this chunk. It is calculated
-     * by taking the regional difficulty factor and using the following rules:
-     * If the factor is less than 2.0, the percentage is 0%. If the factor is
-     * greater than 4.0, the percentage is 100%. Otherwise, the percentage is
-     * the factor minus 2.0, divided by 2.0.
+     * Gets the {@link Ticks number of ticks} players have been present in this
+     * chunk, used for calculation of the regional difficulty factor. In vanilla,
+     * it is increased by the number of players in the chunk every tick, and is
+     * capped at 3,600,000 ticks (50 hours).
      *
-     * <p>This is the value that is used in vanilla to find which effects are
-     * caused by the regional difficulty.</p>
-     *
-     * @return The regional difficulty percentage for this chunk
+     * @return The number of ticks
      */
-    double regionalDifficultyPercentage();
+    Ticks inhabitedTime();
+
+    /**
+     * Sets the {@link Ticks number of ticks} players have been present in this
+     * chunk.
+     *
+     * @see #inhabitedTime()
+     * @param newInhabitedTime The {@link Ticks} to set this value to
+     */
+    void setInhabitedTime(Ticks newInhabitedTime);
 
 }

@@ -41,7 +41,7 @@ import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.chunk.Chunk;
+import org.spongepowered.api.world.chunk.WorldChunk;
 import org.spongepowered.api.world.weather.WeatherType;
 import org.spongepowered.plugin.PluginContainer;
 
@@ -68,7 +68,7 @@ public final class SpawnTypes {
     public static final DefaultedRegistryReference<SpawnType> BREEDING = SpawnTypes.key(ResourceKey.sponge("breeding"));
 
     /**
-     * An entity spawned due to a {@link Chunk} being loaded.
+     * An entity spawned due to a {@link WorldChunk} being loaded.
      */
     public static final DefaultedRegistryReference<SpawnType> CHUNK_LOAD = SpawnTypes.key(ResourceKey.sponge("chunk_load"));
 
