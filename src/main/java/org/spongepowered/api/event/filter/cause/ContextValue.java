@@ -26,6 +26,7 @@ package org.spongepowered.api.event.filter.cause;
 
 import org.spongepowered.api.event.EventContext;
 import org.spongepowered.api.event.EventContextKey;
+import org.spongepowered.api.event.EventContextKeys;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -45,6 +46,8 @@ public @interface ContextValue {
 
     /**
      * Gets the name to use with the {@link EventContextKey}.
+     *
+     * <p>This must be a field in {@link EventContextKeys}.</p>
      *
      * @return The name to use
      */
