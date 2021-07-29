@@ -57,7 +57,7 @@ public interface CommandResult {
      * @return The {@link CommandResult}
      */
     static CommandResult success() {
-        return CommandResults.SUCCESS;
+        return Sponge.game().factoryProvider().provide(Factory.class).success();
     }
 
     /**
@@ -134,6 +134,12 @@ public interface CommandResult {
          */
         @Override
         CommandResult build();
+
+    }
+
+    interface Factory {
+
+        CommandResult success();
 
     }
 
