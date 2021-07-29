@@ -34,7 +34,6 @@ import org.spongepowered.api.world.schematic.Schematic;
 import org.spongepowered.api.world.server.ServerLocation;
 
 import java.util.Objects;
-import java.util.function.Supplier;
 
 /**
  * Represents a particular "state" that can exist at a {@link ServerLocation} with
@@ -91,16 +90,6 @@ public interface FluidState extends State<FluidState> {
      * of {@link DataManipulator}s, otherwise exceptions may be thrown.</p>
      */
     interface Builder extends State.Builder<FluidState, Builder> {
-
-        /**
-         * Sets the {@link FluidType} for the {@link FluidState} to build.
-         *
-         * @param fluidType The fluid type
-         * @return This builder, for chaining
-         */
-        default Builder fluid(Supplier<? extends FluidType> fluidType) {
-            return this.fluid(fluidType.get());
-        }
 
         /**
          * Sets the {@link FluidType} for the {@link FluidState} to build.

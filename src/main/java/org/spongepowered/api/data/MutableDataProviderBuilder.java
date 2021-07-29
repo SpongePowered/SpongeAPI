@@ -32,7 +32,6 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 public interface MutableDataProviderBuilder<H extends DataHolder.Mutable, V extends Value<E>, E> extends
         Builder<DataProvider<V, E>, MutableDataProviderBuilder<H, V, E>> {
@@ -54,8 +53,6 @@ public interface MutableDataProviderBuilder<H extends DataHolder.Mutable, V exte
     MutableDataProviderBuilder<H, V, E> deleteAnd(Function<H, Boolean> delete);
 
     MutableDataProviderBuilder<H, V, E> deleteAndGet(Function<H, DataTransactionResult> delete);
-
-    MutableDataProviderBuilder<H, V, E> resetOnDelete(Supplier<E> resetOnDeleteTo);
 
     MutableDataProviderBuilder<H, V, E> resetOnDelete(Function<H, E> resetOnDeleteTo);
 

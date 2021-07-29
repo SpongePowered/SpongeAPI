@@ -35,7 +35,6 @@ import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 /**
  * A {@link StateMatcher} that will match various {@link State}s
@@ -118,25 +117,15 @@ public interface StateMatcher<S extends State<S>> extends Predicate<S> {
          * @param type The {@link StateContainer} to use
          * @return This builder, for chaining
          */
-        default Builder<S, T> type(final Supplier<? extends T> type) {
-            return this.type(type.get());
-        }
-
-        /**
-         * Sets the root {@link StateContainer} for the {@link StateMatcher}.
-         *
-         * @param type The {@link StateContainer} to use
-         * @return This builder, for chaining
-         */
         Builder<S, T> type(T type);
 
         /**
          * Adds a {@link StateProperty} that needs to be present
          * on a {@link State} to match.
          *
-         * <p>{@link #type(StateContainer)} or {@link #type(Supplier)}
-         * <strong>must</strong> be called before this is called as supported
-         * {@link StateProperty state properties} are specific to the type</p>
+         * <p>{@link #type(StateContainer)} <strong>must</strong> be called
+         * before this is called as supported {@link StateProperty state properties}
+         * are specific to the type</p>
          *
          * @param stateProperty The state property
          * @return This builder, for chaining
@@ -144,27 +133,12 @@ public interface StateMatcher<S extends State<S>> extends Predicate<S> {
         Builder<S, T> supportsStateProperty(StateProperty<@NonNull ?> stateProperty);
 
         /**
-         * Adds a {@link StateProperty} that needs to be present
-         * on a {@link State} to match.
-         *
-         * <p>{@link #type(StateContainer)} or {@link #type(Supplier)}
-         * <strong>must</strong> be called before this is called as supported
-         * {@link StateProperty state properties} are specific to the type</p>
-         *
-         * @param stateProperty The state property
-         * @return This builder, for chaining
-         */
-        default Builder<S, T> supportsStateProperty(final Supplier<? extends StateProperty<@NonNull ?>> stateProperty) {
-            return this.supportsStateProperty(stateProperty.get());
-        }
-
-        /**
          * Adds a {@link StateProperty} and value that needs to
          * match on a {@link State} to match.
          *
-         * <p>{@link #type(StateContainer)} or {@link #type(Supplier)}
-         * <strong>must</strong> be called before this is called as supported
-         * {@link StateProperty state properties} are specific to the type</p>
+         * <p>{@link #type(StateContainer)} <strong>must</strong> be called
+         * before this is called as supported {@link StateProperty state properties}
+         * are specific to the type</p>
          *
          * @param stateProperty The state property
          * @param value The value to match
@@ -172,19 +146,6 @@ public interface StateMatcher<S extends State<S>> extends Predicate<S> {
          * @return This builder, for chaining
          */
         <V extends Comparable<V>> Builder<S, T> stateProperty(StateProperty<V> stateProperty, V value);
-
-        /**
-         * Adds a {@link StateProperty} and value that needs to
-         * match on a {@link State} to match.
-         *
-         * @param stateProperty The state property
-         * @param value The value to match
-         * @param <V> The value type
-         * @return This builder, for chaining
-         */
-        default <V extends Comparable<V>> Builder<S, T> stateProperty(final Supplier<? extends StateProperty<V>> stateProperty, final V value) {
-            return this.stateProperty(stateProperty.get(), value);
-        }
 
         /**
          * Adds a {@link KeyValueMatcher} that the {@link State}

@@ -33,7 +33,6 @@ import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
-import java.util.function.Supplier;
 
 /**
  * A type of item.
@@ -70,16 +69,6 @@ public interface ItemType extends DefaultedRegistryValue, ComponentLike, DataHol
      * @return The default rarity for the item type.
      */
     ItemRarity rarity();
-
-    /**
-     * Returns true if this type is any of the given item types
-     *
-     * @param types the item types to check
-     *
-     * @return true if this type is any of the given item types
-     */
-    @SuppressWarnings("unchecked")
-    boolean isAnyOf(Supplier<? extends ItemType>... types);
 
     /**
      * Returns true if this type is any of the given item types

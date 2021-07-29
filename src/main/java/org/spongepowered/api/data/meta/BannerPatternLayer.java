@@ -33,36 +33,10 @@ import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
 
-import java.util.function.Supplier;
-
 /**
  * A representation on a single layer of a {@link Banner}'s pattern.
  */
 public interface BannerPatternLayer extends DataSerializable {
-
-    /**
-     * Creates a {@link BannerPatternLayer} with the desired
-     * {@link BannerPatternShape} and {@link DyeColor}.
-     *
-     * @param shape The shape
-     * @param color The color
-     * @return The new pattern layer
-     */
-    static BannerPatternLayer of(Supplier<? extends BannerPatternShape> shape, DefaultedRegistryReference<? extends DyeColor> color) {
-        return BannerPatternLayer.of(shape.get(), color.get());
-    }
-
-    /**
-     * Creates a {@link BannerPatternLayer} with the desired
-     * {@link BannerPatternShape} and {@link DyeColor}.
-     *
-     * @param shape The shape
-     * @param color The color
-     * @return The new pattern layer
-     */
-    static BannerPatternLayer of(Supplier<? extends BannerPatternShape> shape, DyeColor color) {
-        return BannerPatternLayer.of(shape.get(), color);
-    }
 
     /**
      * Creates a {@link BannerPatternLayer} with the desired
@@ -117,32 +91,12 @@ public interface BannerPatternLayer extends DataSerializable {
         Builder pattern(BannerPatternShape shape);
 
         /**
-         * Sets the {@link BannerPatternShape} to be used.
-         *
-         * @param shape The shape
-         * @return This builder, for chaining
-         */
-        default Builder pattern(Supplier<? extends BannerPatternShape> shape) {
-            return this.pattern(shape.get());
-        }
-
-        /**
          * Sets the {@link DyeColor} to be used.
          *
          * @param color The color
          * @return This builder, for chaining
          */
         Builder color(DyeColor color);
-
-        /**
-         * Sets the {@link DyeColor} to be used.
-         *
-         * @param color The color
-         * @return This builder, for chaining
-         */
-        default Builder color(Supplier<? extends DyeColor> color) {
-            return this.color(color.get());
-        }
 
         /**
          * Builds a {@link BannerPatternLayer} provided that the

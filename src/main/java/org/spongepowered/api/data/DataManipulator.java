@@ -38,7 +38,6 @@ import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 /**
  * Represents a changelist of data that can be applied to a {@link DataHolder.Mutable}.
@@ -456,15 +455,6 @@ public interface DataManipulator extends CopyableValueContainer {
          */
         <E> Mutable set(Key<? extends Value<E>> key, E value);
 
-        default <E, V extends Value<E>> Mutable set(final Supplier<Key<V>> key, final E value) {
-            return this.set(key.get(), value);
-        }
-
-        default <E, V extends Value<E>> Mutable set(final Supplier<Key<V>> key, final Supplier<E> value) {
-            return this.set(Objects.requireNonNull(key, "Key supplier cannot be null").get(),
-                Objects.requireNonNull(value, "Value supplier cannot be null").get());
-        }
-
         /**
          * Sets the supported {@link Value} onto this {@link Mutable}.
          * The requirement for this to succeed is that the {@link Value} is
@@ -476,7 +466,6 @@ public interface DataManipulator extends CopyableValueContainer {
          * @param value The actual value to set
          * @return This manipulator, for chaining
          */
-        @SuppressWarnings("unchecked")
         default Mutable set(final Value<?> value) {
             return this.set((Key<? extends Value<Object>>) value.key(), value.get());
         }
@@ -536,7 +525,7 @@ public interface DataManipulator extends CopyableValueContainer {
          */
         default <E> Mutable transform(final Key<? extends Value<E>> key, final Function<E, E> function) {
             if (!this.supports(key)) {
-                throw new IllegalArgumentException("The provided key is not supported: " + key.toString());
+                throw new IllegalArgumentException("The provided key is not supported: " + key);
             }
             return this.set(key, Objects.requireNonNull(function.apply(this.get(key).get()), "The function can not be returning null!"));
         }

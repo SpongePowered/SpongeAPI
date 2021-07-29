@@ -30,7 +30,6 @@ import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Optional;
-import java.util.function.Supplier;
 
 /**
  * Represents a valid source of a projectile.
@@ -50,34 +49,11 @@ public interface ProjectileSource {
      * Launches a {@link Projectile} from this projectile source.
      *
      * @param projectileType The type of the projectile
-     * @param <T> The Type of Projectile
-     * @return The projectile instance if it was launched, or absent
-     */
-    default <T extends Projectile> Optional<T> launchProjectile(final Supplier<EntityType<T>> projectileType) {
-        return this.launchProjectile(projectileType.get());
-    }
-
-    /**
-     * Launches a {@link Projectile} from this projectile source.
-     *
-     * @param projectileType The type of the projectile
      * @param velocity The velocity to launch the projectile
      * @param <T> The Type of Projectile
      * @return The projectile instance if it was launched, or absent
      */
     <T extends Projectile> Optional<T> launchProjectile(EntityType<T> projectileType, Vector3d velocity);
-
-    /**
-     * Launches a {@link Projectile} from this projectile source.
-     *
-     * @param projectileType The type of the projectile
-     * @param velocity The velocity to launch the projectile
-     * @param <T> The Type of Projectile
-     * @return The projectile instance if it was launched, or absent
-     */
-    default <T extends Projectile> Optional<T> launchProjectile(final Supplier<EntityType<T>> projectileType, final Vector3d velocity) {
-        return this.launchProjectile(projectileType.get(), velocity);
-    }
 
     /**
      * Launches a new {@link Projectile} from this projectile source.
@@ -88,16 +64,4 @@ public interface ProjectileSource {
      * @return the projectile if successfully launched, {@link Optional#empty()} otherwise
      */
     <T extends Projectile> Optional<T> launchProjectileTo(EntityType<T> projectileType, Entity target);
-
-    /**
-     * Launches a new {@link Projectile} from this projectile source.
-     *
-     * @param projectileType The type of the projectile
-     * @param target the target to launch the projectile at
-     * @param <T> The Type of Projectile
-     * @return the projectile if successfully launched, {@link Optional#empty()} otherwise
-     */
-    default <T extends Projectile> Optional<T> launchProjectileTo(final Supplier<EntityType<T>> projectileType, final Entity target) {
-        return this.launchProjectileTo(projectileType.get(), target);
-    }
 }

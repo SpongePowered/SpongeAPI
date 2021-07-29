@@ -32,9 +32,10 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 /**
  * An Ingredient for a crafting recipe.
@@ -123,7 +124,13 @@ public interface Ingredient extends Predicate<ItemStack> {
         if (itemTypes == null || itemTypes.length == 0) {
             return Ingredient.empty();
         }
-        return Ingredient.builder().with(itemTypes).build();
+
+        final List<ItemType> with = new ArrayList<>();
+        for (final DefaultedRegistryReference<? extends ItemType> itemType : itemTypes) {
+            with.add(itemType.get());
+        }
+
+        return Ingredient.builder().with(with).build();
     }
 
     /**
@@ -169,15 +176,6 @@ public interface Ingredient extends Predicate<ItemStack> {
         Builder with(ItemType... types);
 
         /**
-         * Sets one or more ItemTypes for matching the ingredient.
-         *
-         * @param types The items
-         * @return This Builder, for chaining
-         */
-        @SuppressWarnings("unchecked")
-        Builder with(Supplier<? extends ItemType>... types);
-
-        /**
          * Sets one ore more ItemStack for matching the ingredient.
          *
          * @param types The items
@@ -195,6 +193,14 @@ public interface Ingredient extends Predicate<ItemStack> {
          * @return This Builder, for chaining
          */
         Builder with(ResourceKey resourceKey, Predicate<ItemStack> predicate, ItemStack... exemplaryTypes);
+
+        /**
+         * Sets one ItemStack for matching the ingredient.
+         *
+         * @param types The items
+         * @return This Builder, for chaining
+         */
+        Builder with(Collection<ItemType> types);
 
         /**
          * Sets one ItemStack for matching the ingredient.

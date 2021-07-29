@@ -35,7 +35,6 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 /**
  * A data holder object allows the access of additional data on the object
@@ -74,24 +73,6 @@ public interface DataHolder extends ValueContainer {
         }
 
         /**
-         * Applies a transformation on the provided {@link Value} such that
-         * the return value of {@link Function#apply(Object)} will become the end
-         * resulting value set into this {@link Mutable}. It is not
-         * necessary that the input is actually present, in which case the
-         * {@link Key}ed data is compatible, but not necessarily present. Writing
-         * a {@link Function} to properly handle the potential for a null input
-         * is required for this method to execute without exception.
-         *
-         * @param key The key linked to
-         * @param function The function to manipulate the value
-         * @param <E> The type of value
-         * @return The end resulting value
-         */
-        default <E> DataTransactionResult transform(Supplier<? extends Key<? extends Value<E>>> key, Function<E, E> function) {
-            return this.transform(key.get(), function);
-        }
-
-        /**
          * Offers the given {@code value} as defined by the provided {@link Key}
          * such that a {@link DataTransactionResult} is returned for any
          * successful, rejected, and replaced {@link Value}s from this
@@ -103,36 +84,6 @@ public interface DataHolder extends ValueContainer {
          * @return The transaction result
          */
         <E> DataTransactionResult offer(Key<? extends Value<E>> key, E value);
-
-        /**
-         * Offers the given {@code value} as defined by the provided {@link Key}
-         * such that a {@link DataTransactionResult} is returned for any
-         * successful, rejected, and replaced {@link Value}s from this
-         * {@link Mutable}.
-         *
-         * @param key The key to the value to set
-         * @param value The value to set
-         * @param <E> The type of value
-         * @return The transaction result
-         */
-        default <E> DataTransactionResult offer(Supplier<? extends Key<? extends Value<E>>> key, E value) {
-            return this.offer(key.get(), value);
-        }
-
-        /**
-         * Offers the given {@code value} as defined by the provided {@link Key}
-         * such that a {@link DataTransactionResult} is returned for any
-         * successful, rejected, and replaced {@link Value}s from this
-         * {@link Mutable}.
-         *
-         * @param key The key to the value to set
-         * @param value The value to set
-         * @param <E> The type of value
-         * @return The transaction result
-         */
-        default <E> DataTransactionResult offer(Supplier<? extends Key<? extends Value<E>>> key, Supplier<? extends E> value) {
-            return this.offer(key.get(), value.get());
-        }
 
         /**
          * Offers the given {@link Value} as defined by the provided
@@ -147,21 +98,9 @@ public interface DataHolder extends ValueContainer {
 
         <E> DataTransactionResult offerSingle(Key<? extends CollectionValue<E, ?>> key, E element);
 
-        default <E> DataTransactionResult offerSingle(Supplier<? extends Key<? extends CollectionValue<E, ?>>> key, E element) {
-            return this.offerSingle(key.get(), element);
-        }
-
         <K, V> DataTransactionResult offerSingle(Key<? extends MapValue<K, V>> key, K valueKey, V value);
 
-        default <K, V> DataTransactionResult offerSingle(Supplier<? extends Key<? extends MapValue<K, V>>> key, K valueKey, V value) {
-            return this.offerSingle(key.get(), valueKey, value);
-        }
-
         <K, V> DataTransactionResult offerAll(Key<? extends MapValue<K, V>> key, Map<? extends K, ? extends V> map);
-
-        default <K, V> DataTransactionResult offerAll(Supplier<? extends Key<? extends MapValue<K, V>>> key, Map<? extends K, ? extends V> map) {
-            return this.offerAll(key.get(), map);
-        }
 
         DataTransactionResult offerAll(MapValue<?, ?> value);
 
@@ -169,37 +108,17 @@ public interface DataHolder extends ValueContainer {
 
         <E> DataTransactionResult offerAll(Key<? extends CollectionValue<E, ?>> key, Collection<? extends E> elements);
 
-        default <E> DataTransactionResult offerAll(Supplier<? extends Key<? extends CollectionValue<E, ?>>> key, Collection<? extends E> elements) {
-            return this.offerAll(key.get(), elements);
-        }
-
         <E> DataTransactionResult removeSingle(Key<? extends CollectionValue<E, ?>> key, E element);
 
-        default <E> DataTransactionResult removeSingle(Supplier<? extends Key<? extends CollectionValue<E, ?>>> key, E element) {
-            return this.removeSingle(key.get(), element);
-        }
-
         <K> DataTransactionResult removeKey(Key<? extends MapValue<K, ?>> key, K mapKey);
-
-        default <K> DataTransactionResult removeKey(Supplier<? extends Key<? extends MapValue<K, ?>>> key, K mapKey) {
-            return this.removeKey(key.get(), mapKey);
-        }
 
         DataTransactionResult removeAll(CollectionValue<?, ?> value);
 
         <E> DataTransactionResult removeAll(Key<? extends CollectionValue<E, ?>> key, Collection<? extends E> elements);
 
-        default <E> DataTransactionResult removeAll(Supplier<? extends Key<? extends CollectionValue<E, ?>>> key, Collection<? extends E> elements) {
-            return this.removeAll(key.get(), elements);
-        }
-
         DataTransactionResult removeAll(MapValue<?, ?> value);
 
         <K, V> DataTransactionResult removeAll(Key<? extends MapValue<K, V>> key, Map<? extends K, ? extends V> map);
-
-        default <K, V> DataTransactionResult removeAll(Supplier<? extends Key<? extends MapValue<K, V>>> key, Map<? extends K, ? extends V> map) {
-            return this.removeAll(key.get(), map);
-        }
 
         /**
          * Offers the given {@code value} as defined by the provided {@link Key}
@@ -216,24 +135,6 @@ public interface DataHolder extends ValueContainer {
          *     incompatibility
          */
         <E> DataTransactionResult tryOffer(Key<? extends Value<E>> key, E value);
-
-        /**
-         * Offers the given {@code value} as defined by the provided {@link Key}
-         * such that a {@link DataTransactionResult} is returned for any
-         * successful {@link Value}s from this {@link Mutable}.
-         * Intentionally, however, this differs from {@link #offer(Key, Object)}
-         * as it will intentionally throw an exception if the result was a failure.
-         *
-         * @param key The key to the value to set
-         * @param value The value to set
-         * @param <E> The type of value
-         * @return The transaction result
-         * @throws IllegalArgumentException If the result is a failure likely due to
-         *     incompatibility
-         */
-        default <E> DataTransactionResult tryOffer(Supplier<? extends Key<? extends Value<E>>> key, E value) {
-            return this.tryOffer(key.get(), value);
-        }
 
         /**
          * Offers the given {@code value} as defined by the provided {@link Key}
@@ -281,20 +182,6 @@ public interface DataHolder extends ValueContainer {
          * @return The transaction result
          */
         DataTransactionResult remove(Key<?> key);
-
-        /**
-         * Attempts to remove the data associated with the provided {@link Key}.
-         * All values that were successfully removed will be provided in
-         * {@link DataTransactionResult#replacedData()}. If the data can not be
-         * removed, the result will be an expected
-         * {@link DataTransactionResult.Type#FAILURE}.
-         *
-         * @param key The key of the data
-         * @return The transaction result
-         */
-        default DataTransactionResult remove(Supplier<? extends Key<?>> key) {
-            return this.remove(key.get());
-        }
 
         /**
          * Attempts to "revert" a {@link DataTransactionResult} such that any
@@ -353,20 +240,6 @@ public interface DataHolder extends ValueContainer {
         <E> Optional<I> transform(Key<? extends Value<E>> key, Function<E, E> function);
 
         /**
-         * Applies a transformation on the provided {@link Value} such that
-         * the return value of {@link Function#apply(Object)} will become the end
-         * resulting value set into the newly created {@link Immutable}.
-         *
-         * @param key The key linked to
-         * @param function The function to manipulate the value
-         * @param <E> The type of value
-         * @return The newly created immutable value store
-         */
-        default <E> Optional<I> transform(Supplier<? extends Key<? extends Value<E>>> key, Function<E, E> function) {
-            return this.transform(key.get(), function);
-        }
-
-        /**
          * Creates a new {@link Immutable} with the provided
          * value by {@link Key}. If the key is supported by this value store,
          * the returned value store will be present.
@@ -377,20 +250,6 @@ public interface DataHolder extends ValueContainer {
          * @return The new immutable value store
          */
         <E> Optional<I> with(Key<? extends Value<E>> key, E value);
-
-        /**
-         * Creates a new {@link Immutable} with the provided
-         * value by {@link Key}. If the key is supported by this value store,
-         * the returned value store will be present.
-         *
-         * @param key The key to the value to set
-         * @param value The value to set
-         * @param <E> The type of value
-         * @return The new immutable value store
-         */
-        default <E> Optional<I> with(Supplier<? extends Key<? extends Value<E>>> key, E value) {
-            return this.with(key.get(), value);
-        }
 
         /**
          * Offers the given {@code value} as defined by the provided {@link Key}
@@ -423,18 +282,6 @@ public interface DataHolder extends ValueContainer {
          * @return The new immutable value store
          */
         Optional<I> without(Key<?> key);
-
-        /**
-         * Creates a new {@link Immutable} without the provided {@link Key}. If the
-         * key is supported by this value store, the returned value store will
-         * be present.
-         *
-         * @param key The key to remove
-         * @return The new immutable value store
-         */
-        default Optional<I> without(Supplier<? extends Key<?>> key) {
-            return this.without(key.get());
-        }
 
         /**
          * Attempts to merge the {@link org.spongepowered.api.data.value.Value.Immutable}s from this

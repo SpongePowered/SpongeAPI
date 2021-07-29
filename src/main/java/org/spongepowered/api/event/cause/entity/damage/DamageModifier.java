@@ -37,7 +37,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.StringJoiner;
 import java.util.function.DoubleUnaryOperator;
-import java.util.function.Supplier;
 
 /**
  * Represents a modifier that will apply a function on a damage value to deal
@@ -95,18 +94,6 @@ public interface DamageModifier {
         @Nullable ItemStackSnapshot snapshot;
 
         Builder() {
-        }
-
-
-        /**
-         * Sets the {@link DamageModifierType} for the {@link DamageModifier} to
-         * build.
-         *
-         * @param damageModifierType The damage modifier type
-         * @return This builder, for chaining
-         */
-        public Builder type(final Supplier<? extends DamageModifierType> damageModifierType) {
-            return this.type(damageModifierType.get());
         }
 
         /**

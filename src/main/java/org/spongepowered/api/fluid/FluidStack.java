@@ -29,8 +29,6 @@ import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.SerializableDataHolderBuilder;
 import org.spongepowered.api.item.ItemTypes;
 
-import java.util.function.Supplier;
-
 /**
  * Represents a stack of a particular {@link FluidType} and
  * volume measured in "milliBuckets" where <code>1000</code>mB is equal to
@@ -88,16 +86,6 @@ public interface FluidStack extends SerializableDataHolder.Mutable {
     FluidStack copy();
 
     interface Builder extends SerializableDataHolderBuilder.Mutable<FluidStack, Builder> {
-
-        /**
-         * Sets the {@link FluidType} to use to build the {@link FluidStack}.
-         *
-         * @param fluidType The fluid type
-         * @return This builder, for chaining
-         */
-        default Builder fluid(Supplier<? extends FluidType> fluidType) {
-            return this.fluid(fluidType.get());
-        }
 
         /**
          * Sets the {@link FluidType} to use to build the {@link FluidStack}.

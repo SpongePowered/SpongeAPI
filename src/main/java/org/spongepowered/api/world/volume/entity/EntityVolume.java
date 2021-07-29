@@ -38,7 +38,6 @@ import org.spongepowered.api.world.volume.MutableVolume;
 import org.spongepowered.api.world.volume.UnmodifiableVolume;
 import org.spongepowered.api.world.volume.Volume;
 import org.spongepowered.api.world.volume.block.BlockVolume;
-import org.spongepowered.api.world.volume.block.BlockVolumeFactory;
 import org.spongepowered.api.world.volume.stream.StreamOptions;
 import org.spongepowered.api.world.volume.stream.VolumeStream;
 import org.spongepowered.math.vector.Vector3d;
@@ -50,7 +49,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 public interface EntityVolume extends Volume {
 
@@ -189,27 +187,6 @@ public interface EntityVolume extends Volume {
          * customized further prior to traditional "ticking" and processing by core
          * systems.</p>
          *
-         * @param type The type supplier
-         * @param position The position
-         * @return An entity, if one was created
-         * @throws IllegalArgumentException If the position or entity type is not
-         *      valid to create
-         * @throws IllegalStateException If a constructor cannot be found
-         */
-        default <E extends Entity> E createEntity(Supplier<EntityType<E>> type, Vector3d position) throws IllegalArgumentException, IllegalStateException {
-            return this.createEntity(type.get(), position);
-        }
-
-        /**
-         * Create an entity instance at the given position.
-         *
-         * <p>Creating an entity does not spawn the entity into the world. An entity
-         * created means the entity can be spawned at the given location. If
-         * {@link Optional#empty()} was returned, the entity is not able to spawn at
-         * the given location. Furthermore, this allows for the {@link Entity} to be
-         * customized further prior to traditional "ticking" and processing by core
-         * systems.</p>
-         *
          * @param type The type
          * @param position The position
          * @return An entity, if one was created
@@ -220,27 +197,6 @@ public interface EntityVolume extends Volume {
         default <E extends Entity> E createEntity(EntityType<E> type, Vector3i position) throws IllegalArgumentException, IllegalStateException {
             Objects.requireNonNull(position, "position");
             return this.createEntity(type, position.toDouble());
-        }
-
-        /**
-         * Create an entity instance at the given position.
-         *
-         * <p>Creating an entity does not spawn the entity into the world. An entity
-         * created means the entity can be spawned at the given location. If
-         * {@link Optional#empty()} was returned, the entity is not able to spawn at
-         * the given location. Furthermore, this allows for the {@link Entity} to be
-         * customized further prior to traditional "ticking" and processing by core
-         * systems.</p>
-         *
-         * @param type The type supplier
-         * @param position The position
-         * @return An entity, if one was created
-         * @throws IllegalArgumentException If the position or entity type is not
-         *      valid to create
-         * @throws IllegalStateException If a constructor cannot be found
-         */
-        default <E extends Entity> E createEntity(Supplier<EntityType<E>> type, Vector3i position) throws IllegalArgumentException, IllegalStateException {
-            return this.createEntity(type.get(), position);
         }
 
         /**
@@ -274,28 +230,6 @@ public interface EntityVolume extends Volume {
          * customized further prior to traditional "ticking" and processing by core
          * systems.</p>
          *
-         * @param type The type supplier
-         * @param position The position
-         * @return An entity, if one was created
-         * @throws IllegalArgumentException If the position or entity type is not
-         *     valid to create
-         * @throws IllegalStateException If a constructor cannot be found
-         */
-        default <E extends Entity> E createEntityNaturally(Supplier<EntityType<E>> type, Vector3d position) throws IllegalArgumentException, IllegalStateException {
-            return this.createEntityNaturally(type.get(), position);
-        }
-
-        /**
-         * Create an entity instance at the given position with the default
-         * equipment.
-         *
-         * <p>Creating an entity does not spawn the entity into the world. An entity
-         * created means the entity can be spawned at the given location. If
-         * {@link Optional#empty()} was returned, the entity is not able to spawn at
-         * the given location. Furthermore, this allows for the {@link Entity} to be
-         * customized further prior to traditional "ticking" and processing by core
-         * systems.</p>
-         *
          * @param type The type
          * @param position The position
          * @return An entity, if one was created
@@ -306,28 +240,6 @@ public interface EntityVolume extends Volume {
         default <E extends Entity> E createEntityNaturally(EntityType<E> type, Vector3i position) throws IllegalArgumentException, IllegalStateException {
             Objects.requireNonNull(position, "position");
             return this.createEntityNaturally(type, position.toDouble());
-        }
-
-        /**
-         * Create an entity instance at the given position with the default
-         * equipment.
-         *
-         * <p>Creating an entity does not spawn the entity into the world. An entity
-         * created means the entity can be spawned at the given location. If
-         * {@link Optional#empty()} was returned, the entity is not able to spawn at
-         * the given location. Furthermore, this allows for the {@link Entity} to be
-         * customized further prior to traditional "ticking" and processing by core
-         * systems.</p>
-         *
-         * @param type The type supplier
-         * @param position The position
-         * @return An entity, if one was created
-         * @throws IllegalArgumentException If the position or entity type is not
-         *     valid to create
-         * @throws IllegalStateException If a constructor cannot be found
-         */
-        default <E extends Entity> E createEntityNaturally(Supplier<EntityType<E>> type, Vector3i position) throws IllegalArgumentException, IllegalStateException {
-            return this.createEntityNaturally(type.get(), position);
         }
 
         /**

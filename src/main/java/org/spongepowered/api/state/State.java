@@ -33,7 +33,6 @@ import org.spongepowered.api.util.Cycleable;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 public interface State<S extends State<S>> extends SerializableDataHolder.Immutable<S> {
 
@@ -47,19 +46,6 @@ public interface State<S extends State<S>> extends SerializableDataHolder.Immuta
      * @return The comparable value, if available and compatible
      */
     <T extends Comparable<T>> Optional<T> stateProperty(StateProperty<T> stateProperty);
-
-    /**
-     * Gets the {@link Comparable} value for the specific {@link StateProperty}
-     * such that if the {@link State} does not support the
-     * {@link StateProperty}, {@link Optional#empty()} is returned.
-     *
-     * @param stateProperty The state property
-     * @param <T> The generic type of state property
-     * @return The comparable value, if available and compatible
-     */
-    default <T extends Comparable<T>> Optional<T> stateProperty(Supplier<? extends StateProperty<T>> stateProperty) {
-        return this.stateProperty(stateProperty.get());
-    }
 
     /**
      * Attempts to retrieve the {@link StateProperty} instance associated with
@@ -88,24 +74,6 @@ public interface State<S extends State<S>> extends SerializableDataHolder.Immuta
     <T extends Comparable<T>, V extends T> Optional<S> withStateProperty(StateProperty<T> stateProperty, V value);
 
     /**
-     * Gets the {@link State} with the appropriate value for the given
-     * {@link StateProperty}. If the {@link StateProperty} is not supported,
-     * {@link Optional#empty()} is returned. If the object is not either
-     * an instance contained in {@link StateProperty#possibleValues()} or
-     * an instance {@link Object#toString()}, {@link Optional#empty()} may be
-     * returned.
-     *
-     * @param <T> The type of cycleable value
-     * @param stateProperty The state property
-     * @param value The value
-     * @param <V> The type of extended value
-     * @return The state, if the state property and value are supported
-     */
-    default <T extends Comparable<T>, V extends T> Optional<S> withStateProperty(Supplier<? extends StateProperty<T>> stateProperty, V value) {
-        return this.withStateProperty(stateProperty.get(), value);
-    }
-
-    /**
      * Cycles to the next possible value of the {@link StateProperty} and returns
      * the new {@link State}. Returns {@link Optional#empty()} if the state property or
      * the value isn't supported.
@@ -117,19 +85,6 @@ public interface State<S extends State<S>> extends SerializableDataHolder.Immuta
     <T extends Comparable<T>> Optional<S> cycleStateProperty(StateProperty<T> stateProperty);
 
     /**
-     * Cycles to the next possible value of the {@link StateProperty} and returns
-     * the new {@link State}. Returns {@link Optional#empty()} if the state property or
-     * the value isn't supported.
-     *
-     * @param <T> The type of cycleable value
-     * @param stateProperty The state property
-     * @return The cycled state if successful
-     */
-    default <T extends Comparable<T>> Optional<S> cycleStateProperty(Supplier<? extends StateProperty<T>> stateProperty) {
-        return this.cycleStateProperty(stateProperty.get());
-    }
-
-    /**
      * Cycles to the next possible value of the {@link Key} and returns
      * the new {@link State}. Returns {@link Optional#empty()} if the key or
      * the value isn't supported.
@@ -139,19 +94,6 @@ public interface State<S extends State<S>> extends SerializableDataHolder.Immuta
      * @return The cycled state if successful
      */
     <T extends Cycleable<T>> Optional<S> cycleValue(Key<? extends Value<T>> key);
-
-    /**
-     * Cycles to the next possible value of the {@link Key} and returns
-     * the new {@link State}. Returns {@link Optional#empty()} if the key or
-     * the value isn't supported.
-     *
-     * @param <T> The type of cycleable value
-     * @param key The key
-     * @return The cycled state if successful
-     */
-    default <T extends Cycleable<T>> Optional<S> cycleValue(Supplier<? extends Key<? extends Value<T>>> key) {
-        return this.cycleValue(key.get());
-    }
 
     /**
      * Gets an immutable {@link Collection} of all applicable

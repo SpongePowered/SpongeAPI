@@ -41,7 +41,6 @@ import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Collection;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 /**
  * Allows for the selection of {@link Entity entities} in a world based on given
@@ -130,14 +129,6 @@ public interface Selector {
          * @param selectorType The {@link SelectorType}
          * @return This builder, for chaining
          */
-        Builder applySelectorType(Supplier<? extends SelectorType> selectorType);
-
-        /**
-         * Applies the defaults associated with a given {@link SelectorType}
-         *
-         * @param selectorType The {@link SelectorType}
-         * @return This builder, for chaining
-         */
         Builder applySelectorType(SelectorType selectorType);
 
         /**
@@ -178,15 +169,6 @@ public interface Selector {
          * @return This builder, for chaining
          */
         Builder volume(Vector3d corner1, Vector3d corner2);
-
-        /**
-         * Sets the sorting algorithm to use when returning entities from the
-         * selector.
-         *
-         * @param algorithm The {@link SelectorSortAlgorithm}
-         * @return This builder, for chaining
-         */
-        Builder sortAlgorithm(Supplier<? extends SelectorSortAlgorithm> algorithm);
 
         /**
          * Sets the sorting algorithm to use when returning entities from the
@@ -256,29 +238,7 @@ public interface Selector {
          * @param inherit Whether subtypes will also be selected
          * @return This builder, for chaining
          */
-        Builder addEntityType(Supplier<EntityType<?>> type, boolean inherit);
-
-        /**
-         * Adds an {@link EntityType} constraint to this selector, requiring
-         * that all selected entities must be of the given type.
-         *
-         * <p>If {@code inherit} is true, entities may also be a subtype of the
-         * given type.</p>
-         *
-         * @param type The type
-         * @param inherit Whether subtypes will also be selected
-         * @return This builder, for chaining
-         */
         Builder addEntityType(EntityType<?> type, boolean inherit);
-
-        /**
-         * Adds an {@link EntityType} constraint to this selector, requiring
-         * that all selected entities must not be of the given type.
-         *
-         * @param type The type
-         * @return This builder, for chaining
-         */
-        Builder addNotEntityType(Supplier<EntityType<?>> type);
 
         /**
          * Adds an {@link EntityType} constraint to this selector, requiring
@@ -300,17 +260,6 @@ public interface Selector {
 
         /**
          * Adds a {@link GameMode} constraint to the selector, requiring players
-         * be in the given game mode.
-         *
-         * <p>Cannot be used with {@link #addNotGameMode(GameMode)}.</p>
-         *
-         * @param mode The gamemode
-         * @return This builder, for chaining
-         */
-        Builder addGameMode(Supplier<? extends GameMode> mode);
-
-        /**
-         * Adds a {@link GameMode} constraint to the selector, requiring players
          * be in the given game mode
          *
          * <p>Cannot be used with {@link #addNotGameMode(GameMode)}.</p>
@@ -319,17 +268,6 @@ public interface Selector {
          * @return This builder, for chaining
          */
         Builder addGameMode(GameMode mode);
-
-        /**
-         * Adds a {@link GameMode} constraint to the selector, requiring that
-         * players are not in the given game mode
-         *
-         * <p>Cannot be used with {@link #addGameMode(GameMode)}.</p>
-         *
-         * @param mode The gamemode
-         * @return This builder, for chaining
-         */
-        Builder addNotGameMode(Supplier<? extends GameMode> mode);
 
         /**
          * Adds a {@link GameMode} constraint to the selector, requiring that

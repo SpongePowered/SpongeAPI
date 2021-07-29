@@ -211,7 +211,7 @@ public interface Parameter {
      * @param valueClass The type of value class
      * @return The {@link Value.Builder}
      */
-    static <T, V extends ValueParameter<T>> Value.Builder<T> builder(@NonNull final Class<T> valueClass, @NonNull final DefaultedRegistryReference<V> parameter) {
+    static <T, V extends ValueParameter<T>> Value.Builder<T> builder(@NonNull final Class<T> valueClass, @NonNull final Supplier<V> parameter) {
         return Parameter.builder(valueClass, parameter.get());
     }
 

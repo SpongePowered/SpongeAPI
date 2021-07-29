@@ -31,8 +31,6 @@ import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.CopyableBuilder;
 
-import java.util.function.Supplier;
-
 /**
  * Represents an effect of a {@link PotionEffectType} for a specified
  * {@link #duration()}, {@link #amplifier()}, {@link #showsParticles()}
@@ -62,20 +60,6 @@ public interface PotionEffect extends DataSerializable {
      * @return The potion effect
      */
     static PotionEffect of(PotionEffectType type, int amplifier, int duration) {
-        return PotionEffect.builder().potionType(type).amplifier(amplifier).duration(duration).build();
-    }
-
-    /**
-     * Creates a new {@link PotionEffect} with the provided
-     * {@link PotionEffectType}, the provided amplifier, and the provided
-     * duration in ticks.
-     *
-     * @param type The potion type
-     * @param amplifier The amplifier
-     * @param duration The duration in ticks
-     * @return The potion effect
-     */
-    static PotionEffect of(Supplier<? extends PotionEffectType> type, int amplifier, int duration) {
         return PotionEffect.builder().potionType(type).amplifier(amplifier).duration(duration).build();
     }
 
@@ -138,16 +122,6 @@ public interface PotionEffect extends DataSerializable {
          * @return This builder, for chaining
          */
         Builder potionType(PotionEffectType potionEffectType);
-
-        /**
-         * Sets the {@link PotionEffectType} of the potion.
-         *
-         * @param potionEffectType The type of item
-         * @return This builder, for chaining
-         */
-        default Builder potionType(Supplier<? extends PotionEffectType> potionEffectType) {
-            return this.potionType(potionEffectType.get());
-        }
 
         /**
          * Sets the duration in ticks of the potion effect.

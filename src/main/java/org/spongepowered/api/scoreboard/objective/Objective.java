@@ -35,7 +35,6 @@ import org.spongepowered.api.util.CopyableBuilder;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.Supplier;
 
 /**
  * An objective tracks an integer score for each entry it contains.
@@ -196,27 +195,7 @@ public interface Objective {
          * @param criterion The {@link Criterion} to set
          * @return This builder
          */
-        default Builder criterion(final Supplier<? extends Criterion> criterion) {
-            return this.criterion(criterion.get());
-        }
-
-        /**
-         * Sets the {@link Criterion} of the {@link Objective}.
-         *
-         * @param criterion The {@link Criterion} to set
-         * @return This builder
-         */
         Builder criterion(Criterion criterion);
-
-        /**
-         * Sets the {@link ObjectiveDisplayMode} of the {@link Objective}.
-         *
-         * @param objectiveDisplayMode The {@link ObjectiveDisplayMode} to set
-         * @return This builder
-         */
-        default Builder objectiveDisplayMode(final Supplier<? extends ObjectiveDisplayMode> objectiveDisplayMode) {
-            return this.objectiveDisplayMode(objectiveDisplayMode.get());
-        }
 
         /**
          * Sets the {@link ObjectiveDisplayMode} of the {@link Objective}.

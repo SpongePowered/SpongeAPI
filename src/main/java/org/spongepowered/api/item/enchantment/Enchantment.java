@@ -31,7 +31,6 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.List;
-import java.util.function.Supplier;
 
 /**
  * Represents an {@link EnchantmentType} on an {@link ItemStack} that is paired
@@ -60,20 +59,6 @@ public interface Enchantment extends DataSerializable {
      */
     static RandomListBuilder randomListBuilder() {
         return Sponge.game().builderProvider().provide(RandomListBuilder.class);
-    }
-
-    /**
-     * Creates a new {@link Enchantment} with the provided
-     * {@link EnchantmentType} and level.
-     *
-     * @param enchantmentType The enchantment type
-     * @param level The enchantment level
-     * @return The created enchantment
-     * @throws IllegalArgumentException If the level is smaller than
-     *     {@link Short#MIN_VALUE} or larger than {@link Short#MAX_VALUE}
-     */
-    static Enchantment of(Supplier<? extends EnchantmentType> enchantmentType, int level) throws IllegalArgumentException {
-        return Enchantment.of(enchantmentType.get(), level);
     }
 
     /**
@@ -121,16 +106,6 @@ public interface Enchantment extends DataSerializable {
          * @return The modified builder, for chaining
          */
         Builder type(EnchantmentType enchantmentType);
-
-        /**
-         * Sets the {@link EnchantmentType} for this enchantment.
-         *
-         * @param enchantmentType The desired enchantment type
-         * @return The modified builder, for chaining
-         */
-        default Builder type(Supplier<? extends EnchantmentType> enchantmentType) {
-            return this.type(enchantmentType.get());
-        }
 
         /**
          * Sets the level for this enchantment.

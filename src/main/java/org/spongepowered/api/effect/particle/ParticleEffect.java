@@ -32,7 +32,6 @@ import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 /**
  * Represents a particle effect that can be send to the Minecraft client.
@@ -62,30 +61,7 @@ public interface ParticleEffect extends DataSerializable {
      * @param <V> The value type
      * @return The option value if present, otherwise {@link Optional#empty()}
      */
-    default <V> Optional<V> option(Supplier<? extends ParticleOption<V>> option) {
-        return this.option(option.get());
-    }
-
-    /**
-     * Gets the value for the specified {@link ParticleOption}.
-     *
-     * @param option The particle option
-     * @param <V> The value type
-     * @return The option value if present, otherwise {@link Optional#empty()}
-     */
     <V> Optional<V> option(ParticleOption<V> option);
-
-    /**
-     * Gets the value for the specified {@link ParticleOption} or
-     * the default value if not present.
-     *
-     * @param option The particle option
-     * @param <V> The value type
-     * @return The option value if present, otherwise {@link Optional#empty()}
-     */
-    default <V> Optional<V> optionOrDefault(Supplier<? extends ParticleOption<V>> option) {
-        return this.optionOrDefault(option.get());
-    }
 
     /**
      * Gets the value for the specified {@link ParticleOption} or
@@ -123,16 +99,6 @@ public interface ParticleEffect extends DataSerializable {
         Builder type(ParticleType particleType);
 
         /**
-         * Sets the particle type for the particle effect.
-         *
-         * @param particleType The particle type
-         * @return This builder for chaining
-         */
-        default Builder type(Supplier<? extends ParticleType> particleType) {
-            return this.type(particleType.get());
-        }
-
-        /**
          * Sets the value of the specified {@link ParticleOption}.
          *
          * @param option The option
@@ -144,19 +110,6 @@ public interface ParticleEffect extends DataSerializable {
         <V> Builder option(ParticleOption<V> option, V value) throws IllegalArgumentException;
 
         /**
-         * Sets the value of the specified {@link ParticleOption}.
-         *
-         * @param option The option
-         * @param value The value
-         * @param <V> The type of option value
-         * @return This builder for chaining
-         * @throws IllegalArgumentException If the specified value isn't valid
-         */
-        default <V> Builder option(final Supplier<? extends ParticleOption<V>> option, V value) throws IllegalArgumentException {
-            return this.option(option.get(), value);
-        }
-
-        /**
          * Sets the scale of the particle effect.
          *
          * <p>The default scale is 1.</p>
@@ -165,7 +118,7 @@ public interface ParticleEffect extends DataSerializable {
          * @return This builder for chaining
          */
         default <V> Builder scale(Double scale) {
-            return this.option(ParticleOptions.SCALE, scale);
+            return this.option(ParticleOptions.SCALE.get(), scale);
         }
 
         /**
@@ -177,7 +130,7 @@ public interface ParticleEffect extends DataSerializable {
          * @return This builder for chaining
          */
         default Builder velocity(Vector3d velocity) {
-            return this.option(ParticleOptions.VELOCITY, velocity);
+            return this.option(ParticleOptions.VELOCITY.get(), velocity);
         }
 
         /**
@@ -189,7 +142,7 @@ public interface ParticleEffect extends DataSerializable {
          * @return This builder for chaining
          */
         default Builder offset(Vector3d offset) {
-            return this.option(ParticleOptions.OFFSET, offset);
+            return this.option(ParticleOptions.OFFSET.get(), offset);
         }
 
         /**
@@ -202,7 +155,7 @@ public interface ParticleEffect extends DataSerializable {
          * @throws IllegalArgumentException If the quantity is less than one
          */
         default Builder quantity(int quantity) throws IllegalArgumentException {
-            return this.option(ParticleOptions.QUANTITY, quantity);
+            return this.option(ParticleOptions.QUANTITY.get(), quantity);
         }
 
         /**

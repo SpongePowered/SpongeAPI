@@ -29,7 +29,6 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Identifiable;
 
 import java.util.UUID;
-import java.util.function.Supplier;
 
 /**
  * Represents a modifier to a value in a {@link Attribute} which is transformed
@@ -113,17 +112,7 @@ public interface AttributeModifier extends Identifiable {
          * @param operation The operation
          * @return This builder
          */
-        default Builder operation(Supplier<? extends AttributeOperation> operation) {
-            return this.operation(operation.get());
-        }
-
-        /**
-         * Sets the operation of this attribute modifier.
-         *
-         * @param operation The operation
-         * @return This builder
-         */
-        Builder operation(final AttributeOperation operation);
+        Builder operation(AttributeOperation operation);
 
         /**
          * Sets the amount of the attribute modifier.

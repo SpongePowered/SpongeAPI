@@ -37,7 +37,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.StringJoiner;
-import java.util.function.Supplier;
 
 /**
  * Provides context for an event outside of the direct chain of causes present
@@ -102,19 +101,6 @@ public final class EventContext {
     /**
      * Gets the value corresponding to the given key from the context.
      *
-     * @param key The key
-     * @param <T> The type of the value stored with the key
-     * @return The context value, if found
-     */
-    @SuppressWarnings("unchecked")
-    public <T> Optional<T> get(Supplier<EventContextKey<T>> key) {
-        Objects.requireNonNull(key, "EventContextKey cannot be null");
-        return Optional.ofNullable((T) this.entries.get(key.get()));
-    }
-
-    /**
-     * Gets the value corresponding to the given key from the context.
-     *
      * <p>If the key is not available, {@link NoSuchElementException} will be
      * thrown.</p>
      * 
@@ -131,24 +117,6 @@ public final class EventContext {
     }
 
     /**
-     * Gets the value corresponding to the given key from the context.
-     *
-     * <p>If the key is not available, {@link NoSuchElementException} will be
-     * thrown.</p>
-     *
-     * @param key The key
-     * @param <T> The type of the value stored with the key
-     * @return The context value, if found
-     */
-    public <T> T require(Supplier<EventContextKey<T>> key) {
-        final Optional<T> optional = this.get(key);
-        if (optional.isPresent()) {
-            return optional.get();
-        }
-        throw new NoSuchElementException(String.format("Could not retrieve value for key '%s'", key.get().toString()));
-    }
-
-    /**
      * Gets whether the provided {@link EventContextKey} is included in this
      * context.
      *
@@ -157,17 +125,6 @@ public final class EventContext {
      */
     public boolean containsKey(EventContextKey<?> key) {
         return this.entries.containsKey(key);
-    }
-
-    /**
-     * Gets whether the provided {@link EventContextKey} is included in this
-     * context.
-     *
-     * @param key The context key to check
-     * @return True if the key is used and there is an entry for it
-     */
-    public boolean containsKey(Supplier<? extends EventContextKey<?>> key) {
-        return this.entries.containsKey(key.get());
     }
 
     /**
@@ -223,8 +180,7 @@ public final class EventContext {
         return "Context[" + joiner.toString() + "]";
     }
 
-    public static final class Builder implements org.spongepowered.api.util.Builder<EventContext, Builder>, CopyableBuilder<EventContext,
-        Builder> {
+    public static final class Builder implements org.spongepowered.api.util.Builder<EventContext, Builder>, CopyableBuilder<EventContext, Builder> {
 
         private final Map<EventContextKey<?>, Object> entries = Maps.newHashMap();
 
@@ -246,26 +202,6 @@ public final class EventContext {
                 throw new IllegalArgumentException("Duplicate context keys: " + key.toString());
             }
             this.entries.put(key, value);
-            return this;
-        }
-
-
-        /**
-         * Adds the given context key value pair to the context.
-         *
-         * @param key The key
-         * @param <T> The type of the value stored with the key
-         * @param value The value
-         * @return This builder, for chaining
-         */
-        public <T> Builder add(Supplier<EventContextKey<T>> key, T value) {
-            Objects.requireNonNull(value, "Context object cannot be null");
-            final EventContextKey<T> suppliedKey = key.get();
-            Objects.requireNonNull(suppliedKey, "Supplied key cannot be null!");
-            if (this.entries.containsKey(suppliedKey)) {
-                throw new IllegalArgumentException("Duplicate context keys!");
-            }
-            this.entries.put(suppliedKey, value);
             return this;
         }
 

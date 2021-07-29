@@ -26,7 +26,6 @@ package org.spongepowered.api.event;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 /**
  * Provides an interface into the system managing the cause and contextual
@@ -123,45 +122,6 @@ public interface CauseStackManager {
     <T> CauseStackManager addContext(EventContextKey<T> key, T value);
 
     /**
-     * Adds the given object to the current context under the given key.
-     *
-     * @param key The context key
-     * @param value The object
-     * @param <T> The type of the value stored with the event context key
-     * @return The cause stack manager, for chaining
-     * @see EventContextKeys
-     */
-    default <T> CauseStackManager addContext(EventContextKey<T> key, Supplier<? extends T> value) {
-        return this.addContext(key, value.get());
-    }
-
-    /**
-     * Adds the given object to the current context under the given key.
-     *
-     * @param key The context key
-     * @param value The object
-     * @param <T> The type of the value stored with the event context key
-     * @return The cause stack manager, for chaining
-     * @see EventContextKeys
-     */
-    default <T> CauseStackManager addContext(Supplier<EventContextKey<T>> key, T value) {
-        return this.addContext(key.get(), value);
-    }
-
-    /**
-     * Adds the given object to the current context under the given key.
-     *
-     * @param key The context key
-     * @param value The object
-     * @param <T> The type of the value stored with the event context key
-     * @return The cause stack manager, for chaining
-     * @see EventContextKeys
-     */
-    default <T> CauseStackManager addContext(Supplier<EventContextKey<T>> key, Supplier<? extends T> value) {
-        return this.addContext(key.get(), value.get());
-    }
-
-    /**
      * Gets the context value with the given key.
      * 
      * @param key The context key
@@ -169,17 +129,6 @@ public interface CauseStackManager {
      * @return The context object, if present
      */
     <T> Optional<T> context(EventContextKey<T> key);
-
-    /**
-     * Gets the context value with the given key.
-     *
-     * @param key The context key
-     * @param <T> The type of the value stored with the event context key
-     * @return The context object, if present
-     */
-    default <T> Optional<T> context(Supplier<EventContextKey<T>> key) {
-        return this.context(key.get());
-    }
 
     /**
      * Gets the context value with the given key.
@@ -199,25 +148,6 @@ public interface CauseStackManager {
         throw new NoSuchElementException(String.format("Could not retrieve value for key '%s'", key.toString()));
     }
 
-
-    /**
-     * Gets the context value with the given key.
-     *
-     * <p>If the key is not available, {@link NoSuchElementException} will be
-     * thrown.</p>
-     *
-     * @param key The context key
-     * @param <T> The type of the value stored with the event context key
-     * @return The context object, if present
-     */
-    default <T> T requireContext(Supplier<EventContextKey<T>> key) {
-        final Optional<T> optional = this.context(key.get());
-        if (optional.isPresent()) {
-            return optional.get();
-        }
-        throw new NoSuchElementException(String.format("Could not retrieve value for key '%s'", key.get().toString()));
-    }
-
     /**
      * Removes the given context key from the current context.
      * 
@@ -227,18 +157,6 @@ public interface CauseStackManager {
      * @see EventContextKeys
      */
     <T> Optional<T> removeContext(EventContextKey<T> key);
-
-    /**
-     * Removes the given context key from the current context.
-     *
-     * @param key The key to clear
-     * @param <T> The type of the value stored with the event context key
-     * @return The existing context value, if it was present
-     * @see EventContextKeys
-     */
-    default <T> Optional<T> removeContext(Supplier<EventContextKey<T>> key) {
-        return this.removeContext(key.get());
-    }
 
     interface StackFrame extends AutoCloseable {
 
@@ -292,48 +210,6 @@ public interface CauseStackManager {
         <T> StackFrame addContext(EventContextKey<T> key, T value);
 
         /**
-         * Adds the given object to the current context under the given key.
-         *
-         * @param key The context key
-         * @param value The object
-         * @param <T> The type of value key
-         * @return The stack frame, for chaining
-         * @see EventContextKeys
-         * @see CauseStackManager#addContext(EventContextKey, Object)
-         */
-        default <T> StackFrame addContext(EventContextKey<T> key, Supplier<? extends T> value) {
-            return this.addContext(key, value.get());
-        }
-
-        /**
-         * Adds the given object to the current context under the given key.
-         *
-         * @param key The context key
-         * @param value The object
-         * @param <T> The type of value key
-         * @return The stack frame, for chaining
-         * @see EventContextKeys
-         * @see CauseStackManager#addContext(EventContextKey, Object)
-         */
-        default <T> StackFrame addContext(Supplier<EventContextKey<T>> key, T value) {
-            return this.addContext(key.get(), value);
-        }
-
-        /**
-         * Adds the given object to the current context under the given key.
-         *
-         * @param key The context key
-         * @param value The object
-         * @param <T> The type of value key
-         * @return The stack frame, for chaining
-         * @see EventContextKeys
-         * @see CauseStackManager#addContext(EventContextKey, Object)
-         */
-        default <T> StackFrame addContext(Supplier<EventContextKey<T>> key, Supplier<? extends T> value) {
-            return this.addContext(key.get(), value.get());
-        }
-
-        /**
          * Removes the given context key from the current context.
          *
          * @param key The key to clear
@@ -343,19 +219,6 @@ public interface CauseStackManager {
          * @see CauseStackManager#removeContext(EventContextKey)
          */
         <T> Optional<T> removeContext(EventContextKey<T> key);
-
-        /**
-         * Removes the given context key from the current context.
-         *
-         * @param key The key to clear
-         * @param <T> The type of value key
-         * @return The existing context value, if it was present
-         * @see EventContextKeys
-         * @see CauseStackManager#removeContext(EventContextKey)
-         */
-        default <T> Optional<T> removeContext(Supplier<EventContextKey<T>> key) {
-            return this.removeContext(key.get());
-        }
 
         @Override
         void close();

@@ -30,7 +30,6 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.ItemType;
 
 import java.util.Comparator;
-import java.util.function.Supplier;
 
 /**
  * A utility class for getting all available {@link Comparator}s for {@link ItemStack}s.
@@ -43,7 +42,7 @@ public final class ItemStackComparators {
      * ItemStack.equals(ItemStack) for ItemStacks with extra attached data,
      * different damage values, or different sizes.
      */
-    public static final Supplier<Comparator<ItemStack>> TYPE = Sponge.game().factoryProvider().provide(Factory.class).byType().asSupplier();
+    public static final Comparator<ItemStack> TYPE = Sponge.game().factoryProvider().provide(Factory.class).byType().build();
 
     /**
      * Compares ItemStacks based on
@@ -52,7 +51,7 @@ public final class ItemStackComparators {
      * ItemStack.equals(ItemStack) for ItemStacks with extra attached data,
      * different types, or different damage values.
      */
-    public static final Supplier<Comparator<ItemStack>> SIZE = Sponge.game().factoryProvider().provide(Factory.class).bySize().asSupplier();
+    public static final Comparator<ItemStack> SIZE = Sponge.game().factoryProvider().provide(Factory.class).bySize().build();
 
     /**
      * Compares ItemStacks based on {@link ItemType}
@@ -60,31 +59,31 @@ public final class ItemStackComparators {
      * results as ItemStack.equals(ItemStack) for ItemStacks with extra attached
      * data or different damage values.
      */
-    public static final Supplier<Comparator<ItemStack>> TYPE_SIZE = Sponge.game().factoryProvider().provide(Factory.class).byType().bySize().asSupplier();
+    public static final Comparator<ItemStack> TYPE_SIZE = Sponge.game().factoryProvider().provide(Factory.class).byType().bySize().build();
 
     /**
      * The default comparator for {@link ItemStack}s.
      */
-    public static final Supplier<Comparator<ItemStack>> DEFAULT = Sponge.game().factoryProvider().provide(Factory.class).byType().bySize().asSupplier();
+    public static final Comparator<ItemStack> DEFAULT = Sponge.game().factoryProvider().provide(Factory.class).byType().bySize().build();
 
     /**
      * Compares ItemStacks based on their {@link Value}s.
      */
-    public static final Supplier<Comparator<ItemStack>> ITEM_DATA = Sponge.game().factoryProvider().provide(Factory.class).byData().byDurability().asSupplier();
+    public static final Comparator<ItemStack> ITEM_DATA = Sponge.game().factoryProvider().provide(Factory.class).byData().byDurability().build();
 
     /**
      * Compares ItemStacks based on their {@link Value}s ignoring {@link Keys#ITEM_DURABILITY}.
      */
-    public static final Supplier<Comparator<ItemStack>> ITEM_DATA_IGNORE_DURABILITY = Sponge.game().factoryProvider().provide(Factory.class).byData().asSupplier();
+    public static final Comparator<ItemStack> ITEM_DATA_IGNORE_DURABILITY = Sponge.game().factoryProvider().provide(Factory.class).byData().build();
 
     /**
      * Compares ItemStacks only ignoring their stack-size.
      *
      * <p>This means for stackable items that they can stack together</p>
      */
-    public static final Supplier<Comparator<ItemStack>> IGNORE_SIZE = Sponge.game().factoryProvider().provide(Factory.class).byType().byData().byDurability().asSupplier();
+    public static final Comparator<ItemStack> IGNORE_SIZE = Sponge.game().factoryProvider().provide(Factory.class).byType().byData().byDurability().build();
 
-    public static final Supplier<Comparator<ItemStack>> ALL = Sponge.game().factoryProvider().provide(Factory.class).byType().byData().byDurability().bySize().asSupplier();
+    public static final Comparator<ItemStack> ALL = Sponge.game().factoryProvider().provide(Factory.class).byType().byData().byDurability().bySize().build();
 
     public interface Factory {
 
@@ -96,13 +95,9 @@ public final class ItemStackComparators {
 
         Factory bySize();
 
-        Supplier<Comparator<ItemStack>> asSupplier();
-
         Comparator<ItemStack> build();
     }
 
-    // Suppress default constructor to ensure non-instantiability.
     private ItemStackComparators() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 }

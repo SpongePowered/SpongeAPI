@@ -28,7 +28,6 @@ import org.spongepowered.api.item.inventory.equipment.EquipmentInventory;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 
 import java.util.Optional;
-import java.util.function.Supplier;
 
 /**
  * Represents the holder of a {@link EquipmentInventory}.
@@ -52,10 +51,6 @@ public interface Equipable {
      */
     boolean canEquip(EquipmentType type);
 
-    default boolean canEquip(final Supplier<? extends EquipmentType> type) {
-        return this.canEquip(type.get());
-    }
-
     /**
      * Gets whether this {@link Equipable} can equip the supplied equipment in its slot of
      * the specified type (eg. whether calling {@link #equip} with the specified
@@ -67,11 +62,6 @@ public interface Equipable {
      */
     boolean canEquip(EquipmentType type, ItemStack equipment);
 
-    default boolean canEquip(final Supplier<? extends EquipmentType> type, final ItemStack equipment) {
-        return this.canEquip(type.get(), equipment);
-    }
-
-
     /**
      * Gets the item currently equipped by this {@link Equipable} in the specified slot.
      *
@@ -79,10 +69,6 @@ public interface Equipable {
      * @return The item in the equipped slot, if available
      */
     Optional<ItemStack> equipped(EquipmentType type);
-
-    default Optional<ItemStack> equipped(final Supplier<? extends EquipmentType> type) {
-        return this.equipped(type.get());
-    }
 
     /**
      * Sets the item currently equipped by the {@link Equipable} in the specified slot, if
@@ -96,8 +82,4 @@ public interface Equipable {
      *     the specified slot.
      */
     boolean equip(EquipmentType type, ItemStack equipment);
-
-    default boolean equip(final Supplier<? extends EquipmentType> type, final ItemStack equipment) {
-        return this.equip(type.get(), equipment);
-    }
 }

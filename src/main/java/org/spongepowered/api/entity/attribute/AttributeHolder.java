@@ -28,22 +28,11 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.attribute.type.AttributeType;
 
 import java.util.Optional;
-import java.util.function.Supplier;
 
 /**
  * Represents an {@link Entity} which can hold {@link Attribute}s.
  */
 public interface AttributeHolder {
-
-    /**
-     * Gets an {@link Attribute} from this entity
-     *
-     * @param type The attribute type.
-     * @return An attribute, if present.
-     */
-    default Optional<Attribute> attribute(final Supplier<? extends AttributeType> type) {
-        return this.attribute(type.get());
-    }
 
     /**
      * Gets an {@link Attribute} from this entity

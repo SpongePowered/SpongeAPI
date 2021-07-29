@@ -31,8 +31,6 @@ import org.spongepowered.api.map.MapCanvas;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.ResettableBuilder;
 
-import java.util.function.Supplier;
-
 /**
  * Represents a {@link MapColorType} in a given {@link MapShade} that may be
  * used when drawing a {@link MapCanvas}.
@@ -60,17 +58,6 @@ public interface MapColor extends DataSerializable {
     }
 
     /**
-     * A method to ease using {@link MapColorTypes} enumeration.
-     * Unwraps the given supplier and calls {@link #of(MapColorType)}.
-     *
-     * @param mapColorTypeSupplier Supplier to unwrap.
-     * @return The {@link MapColor} that represents the provided type
-     */
-    static MapColor of(final Supplier<MapColorType> mapColorTypeSupplier) {
-        return MapColor.of(mapColorTypeSupplier.get());
-    }
-
-    /**
      * Creates a {@link MapColor} that represents the provided
      * {@link MapColorType} with the given {@link MapShade}.
      *
@@ -80,18 +67,6 @@ public interface MapColor extends DataSerializable {
      */
     static MapColor of(final MapColorType mapColorType, final MapShade mapShade) {
         return MapColor.builder().baseColor(mapColorType).shade(mapShade).build();
-    }
-
-    /**
-     * A method to ease using the {@link MapColorTypes} and {@link MapShade}.
-     * Unwraps the given suppliers and calls {@link #of(MapColorType, MapShade)}.
-     *
-     * @param mapColorTypeSupplier Supplier to unwrap
-     * @param mapShadeSupplier Supplier to unwrap
-     * @return The {@link MapColor} that represents the provided type.
-     */
-    static MapColor of(final Supplier<MapColorType> mapColorTypeSupplier, final Supplier<MapShade> mapShadeSupplier) {
-        return MapColor.of(mapColorTypeSupplier.get(), mapShadeSupplier.get());
     }
 
     /**
@@ -166,17 +141,6 @@ public interface MapColor extends DataSerializable {
          * @return This builder, for chaining
          */
         Builder baseColor(MapColorType mapColor);
-
-        /**
-         * Method to ease using {@link MapColorTypes} enumerations. Unwraps
-         * then calls {@link #baseColor(MapColorType)}
-         *
-         * @param mapColorTypeSupplier Supplier to be unwrapped and applied
-         * @return This builder, for chaining
-         */
-        default Builder baseColor(Supplier<MapColorType> mapColorTypeSupplier) {
-            return this.baseColor(mapColorTypeSupplier.get());
-        }
 
         /**
          * Copies all data from the given {@link MapColor} and applies it to this

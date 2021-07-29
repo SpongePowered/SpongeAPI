@@ -34,7 +34,6 @@ import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
-import java.util.function.Supplier;
 
 /**
  * Describes a base type of block.
@@ -77,16 +76,6 @@ public interface BlockType extends DefaultedRegistryValue, ComponentLike, StateC
      * @return This block's sound group.
      */
     BlockSoundGroup soundGroup();
-
-    /**
-     * Returns true if this type is any of the given block types
-     *
-     * @param types the block types to check
-     *
-     * @return true if this type is any of the given block types
-     */
-    @SuppressWarnings("unchecked")
-    boolean isAnyOf(Supplier<? extends BlockType>... types);
 
     /**
      * Returns true if this type is any of the given block types

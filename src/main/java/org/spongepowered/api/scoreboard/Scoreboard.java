@@ -37,7 +37,6 @@ import org.spongepowered.api.util.CopyableBuilder;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.Supplier;
 
 /**
  * Represents a scoreboard, which contains {@link Team}s and {@link Objective}s.
@@ -64,17 +63,6 @@ public interface Scoreboard {
      * @return The {@link Objective}, if it exists
      */
     Optional<Objective> objective(String name);
-
-    /**
-     * Gets the {@link Objective} currently displayed in a {@link DisplaySlot} on this
-     * scoreboard, if one is present.
-     *
-     * @param slot The {@link DisplaySlot}
-     * @return the {@link Objective} currently displayed, if present
-     */
-    default Optional<Objective> objective(Supplier<? extends DisplaySlot> slot) {
-        return this.objective(slot.get());
-    }
 
     /**
      * Gets the {@link Objective} currently displayed in a {@link DisplaySlot} on this
@@ -128,27 +116,8 @@ public interface Scoreboard {
      *
      * @param slot The {@link DisplaySlot} to remove any {@link Objective} for
      */
-    default void clearSlot(Supplier<? extends DisplaySlot> slot) {
-        this.clearSlot(slot.get());
-    }
-
-    /**
-     * Clears any {@link Objective} in the specified slot.
-     *
-     * @param slot The {@link DisplaySlot} to remove any {@link Objective} for
-     */
     default void clearSlot(DisplaySlot slot) {
         this.updateDisplaySlot(null, slot);
-    }
-
-    /**
-     * Gets all {@link Objective}s of a Criteria on this scoreboard.
-     *
-     * @param criterion {@link Criterion} to search by
-     * @return A set of {@link Objective}s using the specified criterion
-     */
-    default Set<Objective> objectivesByCriterion(Supplier<? extends Criterion> criterion) {
-        return this.objectivesByCriterion(criterion.get());
     }
 
     /**

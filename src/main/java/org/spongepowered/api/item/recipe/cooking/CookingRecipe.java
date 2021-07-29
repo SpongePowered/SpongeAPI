@@ -38,7 +38,6 @@ import org.spongepowered.api.util.ResourceKeyedBuilder;
 
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 /**
  * A general interface for cooking-type/furnace recipes.
@@ -110,17 +109,6 @@ public interface CookingRecipe extends Recipe {
          */
         IngredientStep type(RecipeType<CookingRecipe> type);
 
-        /**
-         * Sets the type of recipe
-         *
-         * @param type the type of recipe
-         *
-         * @return This builder, for chaining
-         */
-        default IngredientStep type(Supplier<RecipeType<CookingRecipe>> type) {
-            return this.type(type.get());
-        }
-
         interface IngredientStep extends Builder {
 
             /**
@@ -144,18 +132,6 @@ public interface CookingRecipe extends Recipe {
             default ResultStep ingredient(ItemType ingredient) {
                 return this.ingredient(Ingredient.of(ingredient));
             }
-
-            /**
-             * Changes the ingredient and returns this builder.
-             * The {@link Ingredient} required in order for the recipe to be fulfilled.
-             *
-             * @param ingredient The required ingredient
-             *
-             * @return This builder, for chaining
-             */
-            default ResultStep ingredient(Supplier<? extends ItemType> ingredient) {
-                return this.ingredient(ingredient.get());
-            }
         }
 
         interface ResultStep extends Builder {
@@ -168,17 +144,6 @@ public interface CookingRecipe extends Recipe {
              * @return This builder, for chaining
              */
             EndStep result(ItemType result);
-
-            /**
-             * Changes the result and returns this builder. The result is the
-             * {@link ItemType} created when the recipe is fulfilled.
-             *
-             * @param result The output of this recipe
-             * @return This builder, for chaining
-             */
-            default EndStep result(Supplier<? extends ItemType> result) {
-                return this.result(result.get());
-            }
 
             /**
              * Changes the result and returns this builder. The result is the

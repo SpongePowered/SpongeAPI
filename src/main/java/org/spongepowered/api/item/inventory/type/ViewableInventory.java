@@ -39,7 +39,6 @@ import org.spongepowered.math.vector.Vector2i;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
-import java.util.function.Supplier;
 
 /**
  * Interface for inventories which may be interacted with by Players.
@@ -98,17 +97,6 @@ public interface ViewableInventory extends Inventory {
          * @return The building step.
          */
         BuildingStep type(ContainerType type);
-
-        /**
-         * Specifies the type of inventory you want to build.
-         * <p>You must define all slots of the given type.</p>
-         *
-         * @param supplier The ContainerType supplier
-         * @return The building step.
-         */
-        default BuildingStep type(Supplier<? extends ContainerType> supplier) {
-            return this.type(supplier.get());
-        }
 
         /**
          * The building step. Define all slots needed for the chosen {@link ContainerType}.

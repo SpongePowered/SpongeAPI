@@ -38,8 +38,6 @@ import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.math.vector.Vector2i;
 
-import java.util.function.Supplier;
-
 /**
  * A {@code MapDecoration} represents a symbol that may be placed at a specific
  * point on a {@link MapInfo map}, which exists as a separate layer on top of a
@@ -114,10 +112,6 @@ public interface MapDecoration extends DataSerializable {
      */
     void setRotation(MapDecorationOrientation rot);
 
-    default void setRotation(Supplier<MapDecorationOrientation> rotSupplier) {
-        this.setRotation(rotSupplier.get());
-    }
-
     /**
      * Gets the {@link MapDecorationOrientation} the Map Decoration is pointing in
      *
@@ -165,10 +159,6 @@ public interface MapDecoration extends DataSerializable {
          */
         Builder type(MapDecorationType type);
 
-        default Builder type(Supplier<MapDecorationType> type) {
-            return this.type(type.get());
-        }
-
         /**
          * Sets the orientation of the symbol when displayed on a {@link MapInfo}.
          *
@@ -176,10 +166,6 @@ public interface MapDecoration extends DataSerializable {
          * @return This builder, for chaining
          */
         Builder rotation(MapDecorationOrientation rot);
-
-        default Builder rotation(Supplier<MapDecorationOrientation> rotSupplier) {
-            return this.rotation(rotSupplier.get());
-        }
 
         /**
          * Sets the position of the decoration. Valid co-ordinates are between

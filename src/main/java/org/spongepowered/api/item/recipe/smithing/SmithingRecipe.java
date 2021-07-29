@@ -38,7 +38,6 @@ import org.spongepowered.api.item.recipe.crafting.Ingredient;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
 
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 /**
  * A Smithing Recipe.
@@ -73,17 +72,6 @@ public interface SmithingRecipe extends Recipe {
          *
          * @return This builder, for chaining
          */
-        default AdditionStep base(Supplier<? extends ItemType> ingredient) {
-            return this.base(ingredient.get());
-        }
-
-        /**
-         * Sets the base ingredient and returns this builder.
-         *
-         * @param ingredient The ingredient
-         *
-         * @return This builder, for chaining
-         */
         AdditionStep base(Ingredient ingredient);
 
         interface AdditionStep extends SmithingRecipe.Builder {
@@ -95,17 +83,6 @@ public interface SmithingRecipe extends Recipe {
              * @return This builder, for chaining
              */
             ResultStep addition(ItemType ingredient);
-
-            /**
-             * Sets the additional ingredient and returns this builder.
-             *
-             * @param ingredient The ingredient
-             *
-             * @return This builder, for chaining
-             */
-            default ResultStep addition(Supplier<? extends ItemType> ingredient) {
-                return this.addition(ingredient.get());
-            }
 
             /**
              * Sets the additional ingredient and returns this builder.

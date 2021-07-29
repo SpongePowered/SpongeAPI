@@ -32,8 +32,6 @@ import org.spongepowered.api.event.cause.entity.damage.DamageTypes;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.difficulty.Difficulty;
 
-import java.util.function.Supplier;
-
 /**
  * Represents a {@link Cause} for damage on the {@link Entity} being
  * damaged. Usually the {@link DamageSource} will have different properties
@@ -218,18 +216,6 @@ public interface DamageSource {
          * @return This builder
          */
         B exhaustion(double exhaustion);
-
-        /**
-         * Sets the {@link DamageType} of this source.
-         *
-         * <p>This is required to be set.</p>
-         *
-         * @param damageType The desired damage type
-         * @return This builder
-         */
-        default B type(Supplier<? extends DamageType> damageType) {
-            return this.type(damageType.get());
-        }
 
         /**
          * Sets the {@link DamageType} of this source.

@@ -40,7 +40,6 @@ import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Optional;
 import java.util.UUID;
-import java.util.function.Supplier;
 
 /**
  * Represents a snapshot of an {@link Entity} and all of it's related data in
@@ -125,16 +124,6 @@ public interface EntitySnapshot extends LocatableSnapshot<EntitySnapshot> {
          * @return This builder, for chaining
          */
         Builder world(ServerWorldProperties worldProperties);
-
-        /**
-         * Sets the {@link EntityType} for this {@link EntitySnapshot}.
-         *
-         * @param entityType The EntityType
-         * @return This builder, for chaining
-         */
-        default Builder type(Supplier<? extends EntityType<?>> entityType) {
-            return this.type(entityType.get());
-        }
 
         /**
          * Sets the {@link EntityType} for this {@link EntitySnapshot}.

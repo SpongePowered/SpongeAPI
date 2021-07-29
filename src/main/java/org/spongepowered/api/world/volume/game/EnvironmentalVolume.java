@@ -30,17 +30,10 @@ import org.spongepowered.api.world.volume.biome.BiomeVolume;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Objects;
-import java.util.function.Supplier;
 
 public interface EnvironmentalVolume extends PrimitiveGameVolume, BiomeVolume {
 
     int light(LightType type, int x, int y, int z);
-
-    default int light(final Supplier<? extends LightType> type, final int x, final int y, final int z) {
-        Objects.requireNonNull(type);
-
-        return this.light(type.get(), x, y, z);
-    }
 
     default int light(final LightType type, final Vector3i position) {
         Objects.requireNonNull(type);
@@ -49,15 +42,8 @@ public interface EnvironmentalVolume extends PrimitiveGameVolume, BiomeVolume {
         return this.light(type, position.x(), position.y(), position.z());
     }
 
-    default int light(final Supplier<? extends LightType> type, final Vector3i position) {
-        Objects.requireNonNull(type);
-        Objects.requireNonNull(position);
-
-        return this.light(type.get(), position.x(), position.y(), position.z());
-    }
-
     default int light(final int x, final int y, final int z) {
-        return this.light(LightTypes.BLOCK, x, y, z);
+        return this.light(LightTypes.BLOCK.get(), x, y, z);
     }
 
     default int light(final Vector3i position) {
@@ -69,7 +55,7 @@ public interface EnvironmentalVolume extends PrimitiveGameVolume, BiomeVolume {
     default boolean isSkylightMax(final Vector3i position) {
         Objects.requireNonNull(position);
 
-        return this.light(LightTypes.SKY, position) >= this.maximumLight();
+        return this.light(LightTypes.SKY.get(), position) >= this.maximumLight();
     }
 
 }

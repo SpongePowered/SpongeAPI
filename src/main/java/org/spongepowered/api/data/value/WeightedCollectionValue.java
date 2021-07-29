@@ -30,7 +30,6 @@ import org.spongepowered.api.util.weighted.WeightedTable;
 
 import java.util.List;
 import java.util.Random;
-import java.util.function.Supplier;
 
 public interface WeightedCollectionValue<E> extends CollectionValue<TableEntry<E>, WeightedTable<E>>  {
 
@@ -48,19 +47,6 @@ public interface WeightedCollectionValue<E> extends CollectionValue<TableEntry<E
     }
 
     /**
-     * Constructs a mutable {@link WeightedCollectionValue} of the appropriate type based
-     * on the given {@link Key} and the element.
-     *
-     * @param key The key
-     * @param element The element
-     * @param <E> The element type
-     * @return The constructed mutable value
-     */
-    static <E> WeightedCollectionValue.Mutable<E> mutableOf(Supplier<? extends Key<? extends WeightedCollectionValue<E>>> key, WeightedTable<E> element) {
-        return WeightedCollectionValue.mutableOf(key.get(), element);
-    }
-
-    /**
      * Constructs an immutable {@link WeightedCollectionValue} of the appropriate type based
      * on the given {@link Key} and the element.
      *
@@ -71,19 +57,6 @@ public interface WeightedCollectionValue<E> extends CollectionValue<TableEntry<E
      */
     static <E> WeightedCollectionValue.Immutable<E> immutableOf(Key<? extends WeightedCollectionValue<E>> key, WeightedTable<E> element) {
         return Value.immutableOf(key, element);
-    }
-
-    /**
-     * Constructs an immutable {@link WeightedCollectionValue} of the appropriate type based
-     * on the given {@link Key} and the element.
-     *
-     * @param key The key
-     * @param element The element
-     * @param <E> The element type
-     * @return The constructed immutable value
-     */
-    static <E> WeightedCollectionValue.Immutable<E> immutableOf(Supplier<? extends Key<? extends WeightedCollectionValue<E>>> key, WeightedTable<E> element) {
-        return WeightedCollectionValue.immutableOf(key.get(), element);
     }
 
     @Override

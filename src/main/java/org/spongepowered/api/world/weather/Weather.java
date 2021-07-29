@@ -28,8 +28,6 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.util.Ticks;
 
-import java.util.function.Supplier;
-
 public interface Weather extends DataSerializable {
 
     /**
@@ -52,30 +50,6 @@ public interface Weather extends DataSerializable {
      * @return The running duration
      */
     Ticks runningDuration();
-
-    /**
-     * Creates a new weather with given type, remaining duration and no running duration
-     *
-     * @param type The weather type
-     * @param duration The weather remaining duration
-     *
-     * @return The new weather
-     */
-    static Weather of(Supplier<WeatherType> type, long duration) {
-        return Sponge.game().factoryProvider().provide(Factory.class).of(type.get(), Ticks.of(duration), Ticks.of(0));
-    }
-
-    /**
-     * Creates a new weather with given type, remaining duration and no running duration
-     *
-     * @param type The weather type
-     * @param duration The weather remaining duration
-     *
-     * @return The new weather
-     */
-    static Weather of(Supplier<WeatherType> type, Ticks duration) {
-        return Sponge.game().factoryProvider().provide(Factory.class).of(type.get(), duration, Ticks.of(0));
-    }
 
     /**
      * Creates a new weather with given type, remaining duration and no running duration

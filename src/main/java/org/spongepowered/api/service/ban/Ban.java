@@ -32,9 +32,7 @@ import org.spongepowered.api.util.CopyableBuilder;
 
 import java.net.InetAddress;
 import java.time.Instant;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 /**
  * Represents a ban made on an object.
@@ -57,7 +55,7 @@ public interface Ban {
      * @return The created ban
      */
     static Ban of(GameProfile profile) {
-        return Ban.builder().type(BanTypes.PROFILE).profile(profile).build();
+        return Ban.builder().type(BanTypes.PROFILE.get()).profile(profile).build();
     }
 
     /**
@@ -68,7 +66,7 @@ public interface Ban {
      * @return The created ban
      */
     static Ban of(GameProfile profile, Component reason) {
-        return Ban.builder().type(BanTypes.PROFILE).profile(profile).reason(reason).build();
+        return Ban.builder().type(BanTypes.PROFILE.get()).profile(profile).reason(reason).build();
     }
 
     /**
@@ -180,16 +178,6 @@ public interface Ban {
          * @return This builder
          */
         Builder type(BanType type);
-
-        /**
-         * Sets the type of the ban.
-         *
-         * @param type The type to be set
-         * @return This builder
-         */
-        default Builder type(Supplier<? extends BanType> type) {
-            return this.type(Objects.requireNonNull(type.get()));
-        }
 
         /**
          * Sets the reason for the ban.

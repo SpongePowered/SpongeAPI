@@ -47,7 +47,6 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 /**
  * Represents a stack of a specific {@link ItemType}. Supports serialization and
@@ -69,15 +68,12 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
     }
 
     /**
-     * Creates a new {@link ItemStack} of the provided {@link ItemType}
-     * and quantity.
+     * Returns an empty {@link ItemStack}.
      *
-     * @param itemType The item type
-     * @param quantity The quantity
-     * @return The new item stack
+     * @return The empty ItemStack
      */
-    static ItemStack of(Supplier<? extends ItemType> itemType, int quantity) {
-        return ItemStack.of(itemType.get(), quantity);
+    static ItemStack empty() {
+        return Sponge.game().factoryProvider().provide(Factory.class).empty();
     }
 
     /**
@@ -98,27 +94,8 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      * @param itemType The item type
      * @return The new item stack
      */
-    static ItemStack of(Supplier<? extends ItemType> itemType) {
-        return ItemStack.of(itemType.get());
-    }
-
-    /**
-     * Creates a new {@link ItemStack} of the provided {@link ItemType} and quantity of 1
-     *
-     * @param itemType The item type
-     * @return The new item stack
-     */
     static ItemStack of(ItemType itemType) {
         return ItemStack.of(itemType, 1);
-    }
-
-    /**
-     * Returns an empty {@link ItemStack}.
-     *
-     * @return The empty ItemStack
-     */
-    static ItemStack empty() {
-        return ItemStack.builder().itemType(ItemTypes.AIR).build();
     }
 
     /**
@@ -196,34 +173,8 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      *
      * @return A collection of {@link AttributeModifier}s.
      */
-    default Collection<AttributeModifier> attributeModifiers(Supplier<? extends AttributeType> attributeType, DefaultedRegistryReference<? extends EquipmentType> equipmentType) {
-        return this.attributeModifiers(attributeType.get(), equipmentType.get());
-    }
-
-    /**
-     * Gets all {@link AttributeModifier}s on this item stack.
-     *
-     * @param attributeType The {@link AttributeType} of the modifier.
-     * @param equipmentType The {@link EquipmentType} this modifier is applied
-     * to.
-     *
-     * @return A collection of {@link AttributeModifier}s.
-     */
     default Collection<AttributeModifier> attributeModifiers(AttributeType attributeType, DefaultedRegistryReference<? extends EquipmentType> equipmentType) {
         return this.attributeModifiers(attributeType, equipmentType.get());
-    }
-
-    /**
-     * Gets all {@link AttributeModifier}s on this item stack.
-     *
-     * @param attributeType The {@link AttributeType} of the modifier.
-     * @param equipmentType The {@link EquipmentType} this modifier is applied
-     * to.
-     *
-     * @return A collection of {@link AttributeModifier}s.
-     */
-    default Collection<AttributeModifier> attributeModifiers(Supplier<? extends AttributeType> attributeType, EquipmentType equipmentType) {
-        return this.attributeModifiers(attributeType.get(), equipmentType);
     }
 
     /**
@@ -244,30 +195,8 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      * @param modifier The attribute modifier.
      * @param equipmentType The equipment type this modifier will apply under.
      */
-    default void addAttributeModifier(Supplier<? extends AttributeType> attributeType, AttributeModifier modifier, EquipmentType equipmentType) {
-        this.addAttributeModifier(attributeType.get(), modifier, equipmentType);
-    }
-
-    /**
-     * Adds an {@link AttributeModifier} to this item stack.
-     *
-     * @param attributeType The attribute type.
-     * @param modifier The attribute modifier.
-     * @param equipmentType The equipment type this modifier will apply under.
-     */
     default void addAttributeModifier(AttributeType attributeType, AttributeModifier modifier, DefaultedRegistryReference<? extends EquipmentType> equipmentType) {
         this.addAttributeModifier(attributeType, modifier, equipmentType.get());
-    }
-
-    /**
-     * Adds an {@link AttributeModifier} to this item stack.
-     *
-     * @param attributeType The attribute type.
-     * @param modifier The attribute modifier.
-     * @param equipmentType The equipment type this modifier will apply under.
-     */
-    default void addAttributeModifier(Supplier<? extends AttributeType> attributeType, AttributeModifier modifier, DefaultedRegistryReference<? extends EquipmentType> equipmentType) {
-        this.addAttributeModifier(attributeType.get(), modifier, equipmentType.get());
     }
 
     /**
@@ -291,16 +220,6 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
          * @return This builder, for chaining
          */
         Builder itemType(ItemType itemType);
-
-        /**
-         * Sets the {@link ItemType} of the item stack.
-         *
-         * @param itemType The type of item
-         * @return This builder, for chaining
-         */
-        default Builder itemType(final Supplier<? extends ItemType> itemType) {
-            return this.itemType(itemType.get());
-        }
 
         ItemType currentItem();
 
@@ -331,19 +250,6 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
          * {@link AttributeModifier} will apply to.
          * @return This builder, for chaining
          */
-        default Builder attributeModifier(Supplier<? extends AttributeType> attributeType, AttributeModifier modifier, DefaultedRegistryReference<? extends EquipmentType> equipmentType) {
-            return this.attributeModifier(attributeType.get(), modifier, equipmentType.get());
-        }
-
-        /**
-         * Adds an {@link AttributeModifier} to this item stack.
-         *
-         * @param attributeType The Attribute type.
-         * @param modifier The Attribute modifier.
-         * @param equipmentType The equipment type this
-         * {@link AttributeModifier} will apply to.
-         * @return This builder, for chaining
-         */
         Builder attributeModifier(AttributeType attributeType, AttributeModifier modifier, EquipmentType equipmentType);
 
         /**
@@ -354,18 +260,6 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
          * @return This builder, for chaining
          */
         Builder fromBlockState(final BlockState blockState);
-
-        /**
-         * Sets the data to recreate a {@link BlockState} in a held {@link ItemStack}
-         * state.
-         *
-         * @param blockState The block state to use
-         * @return This builder, for chaining
-         */
-        default Builder fromBlockState(final Supplier<? extends BlockState> blockState) {
-            Objects.requireNonNull(blockState, "blockState");
-            return this.fromBlockState(blockState.get());
-        }
 
         /**
          * Attempts to reconstruct the builder with all of the data from
@@ -412,5 +306,10 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
          */
         @Override
         ItemStack build() throws IllegalStateException;
+    }
+
+    interface Factory {
+
+        ItemStack empty();
     }
 }

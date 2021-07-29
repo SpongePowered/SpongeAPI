@@ -32,7 +32,6 @@ import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.Supplier;
 
 /**
  * A team on a scoreboard that has a common display theme and other
@@ -185,16 +184,6 @@ public interface Team {
      *
      * @param visibility The {@link Visibility} for this team's nametags
      */
-    default void setNameTagVisibility(Supplier<? extends Visibility> visibility) {
-        this.setNameTagVisibility(visibility.get());
-    }
-
-    /**
-     * Sets the {@link Visibility} which controls to who nametags
-     * of players on this team are visible to.
-     *
-     * @param visibility The {@link Visibility} for this team's nametags
-     */
     void setNameTagVisibility(Visibility visibility);
 
     /**
@@ -211,16 +200,6 @@ public interface Team {
      *
      * @param visibility The {@link Visibility} for this team's death Texts
      */
-    default void setDeathMessageVisibility(Supplier<? extends Visibility> visibility) {
-        this.setDeathMessageVisibility(visibility.get());
-    }
-
-    /**
-     * Sets the {@link Visibility} which controls who death Texts
-     * of players on this team are visible to.
-     *
-     * @param visibility The {@link Visibility} for this team's death Texts
-     */
     void setDeathMessageVisibility(Visibility visibility);
 
     /**
@@ -229,15 +208,6 @@ public interface Team {
      * @return The {@link CollisionRule} for entities on this team
      */
     CollisionRule collisionRule();
-
-    /**
-     * Sets the {@link CollisionRule} for entities on this team.
-     *
-     * @param rule The {@link CollisionRule} for entities on this team
-     */
-    default void setCollisionRule(Supplier<? extends CollisionRule> rule) {
-        this.setCollisionRule(rule.get());
-    }
 
     /**
      * Sets the {@link CollisionRule} for entities on this team.
@@ -390,18 +360,6 @@ public interface Team {
          *     nametags
          * @return This builder
          */
-        default Builder nameTagVisibility(Supplier<? extends Visibility> visibility) {
-            return this.nameTagVisibility(visibility.get());
-        }
-
-        /**
-         * Sets the {@link Visibility} which controls to who nametags
-         * of players on the {@link Team} are visible to.
-         *
-         * @param visibility The {@link Visibility} for the {@link Team}'s
-         *     nametags
-         * @return This builder
-         */
         Builder nameTagVisibility(Visibility visibility);
 
         /**
@@ -412,29 +370,7 @@ public interface Team {
          *     death Texts
          * @return This builder
          */
-        default Builder deathTextVisibility(Supplier<? extends Visibility> visibility) {
-            return this.deathTextVisibility(visibility.get());
-        }
-
-        /**
-         * Sets the {@link Visibility} which controls who death Texts
-         * of players on the {@link Team} are visible to.
-         *
-         * @param visibility The {@link Visibility} for the {@link Team}'s
-         *     death Texts
-         * @return This builder
-         */
         Builder deathTextVisibility(Visibility visibility);
-
-        /**
-         * Sets the {@link CollisionRule} for this team's members.
-         *
-         * @param rule The {@link CollisionRule} for the {@link Team}'s members
-         * @return This builder
-         */
-        default Builder collisionRule(Supplier<? extends CollisionRule> rule) {
-            return this.collisionRule(rule.get());
-        }
 
         /**
          * Sets the {@link CollisionRule} for this team's members.

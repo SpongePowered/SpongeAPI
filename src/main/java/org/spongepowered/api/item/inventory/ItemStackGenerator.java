@@ -35,7 +35,6 @@ import java.util.Collection;
 import java.util.Random;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 /**
  * A simple generator that takes a {@link Random} and generates
@@ -82,17 +81,6 @@ public interface ItemStackGenerator extends Function<Random, ItemStack> {
          * @param itemType The base item type
          * @return This builder, for chaining
          */
-        default Builder baseItem(final Supplier<? extends ItemType> itemType) {
-            return this.baseItem(itemType.get());
-        }
-
-        /**
-         * Sets the base {@link ItemType} for the {@link ItemStackGenerator}. A
-         * base type must be set to avoid issues.
-         *
-         * @param itemType The base item type
-         * @return This builder, for chaining
-         */
         Builder baseItem(ItemType itemType);
 
 
@@ -116,18 +104,6 @@ public interface ItemStackGenerator extends Function<Random, ItemStack> {
          * @return This builder, for chaining
          */
         <V> Builder add(Key<? extends Value<V>> key, V value);
-
-        /**
-         * Adds the given {@link Key} with the given value.
-         *
-         * @param key The key to assign the value with
-         * @param value The value to assign with the key
-         * @param <V> The type of the value
-         * @return This builder, for chaining
-         */
-        default <V> Builder add(final Supplier<? extends Key<? extends Value<V>>> key, final V value) {
-            return this.add(key.get(), value);
-        }
 
         /**
          * Creates a new {@link ItemStackGenerator} with all of the added

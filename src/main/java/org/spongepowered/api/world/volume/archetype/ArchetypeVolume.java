@@ -43,7 +43,6 @@ import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Objects;
-import java.util.function.Supplier;
 
 public interface ArchetypeVolume extends BlockVolume.Modifiable<ArchetypeVolume>,
     BlockEntityArchetypeVolume.Modifiable<ArchetypeVolume>,
@@ -75,7 +74,7 @@ public interface ArchetypeVolume extends BlockVolume.Modifiable<ArchetypeVolume>
      *      compared to this volume's min position as the offset
      * @param spawnContext The context value used for processing spawn entities.
      */
-    default void applyToWorld(final ServerWorld target, final Vector3i placement, final Supplier<SpawnType> spawnContext) {
+    default void applyToWorld(final ServerWorld target, final Vector3i placement, final SpawnType spawnContext) {
         Objects.requireNonNull(target, "Target world cannot be null");
         Objects.requireNonNull(placement, "Target position cannot be null");
         try (final CauseStackManager.StackFrame frame = Sponge.server().causeStackManager().pushCauseFrame()) {

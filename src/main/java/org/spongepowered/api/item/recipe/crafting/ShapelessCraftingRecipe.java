@@ -36,7 +36,6 @@ import org.spongepowered.api.util.ResourceKeyedBuilder;
 
 import java.util.List;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 /**
  * A ShapelessCraftingRecipe is a CraftingRecipe that does not have shape and
@@ -66,16 +65,6 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
          * @return This builder, for chaining
          */
         ResultStep addIngredients(ItemType... ingredients);
-
-        /**
-         * Adds ingredients for this recipe.
-         *
-         * @param ingredients The ingredients to add
-         *
-         * @return This builder, for chaining
-         */
-        @SuppressWarnings("unchecked")
-        ResultStep addIngredients(Supplier<? extends ItemType>... ingredients);
 
         /**
          * Adds ingredients for this recipe.

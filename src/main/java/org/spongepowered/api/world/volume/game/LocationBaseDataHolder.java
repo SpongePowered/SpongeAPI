@@ -48,7 +48,6 @@ import java.util.OptionalInt;
 import java.util.OptionalLong;
 import java.util.Set;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 /**
  * A type of {@link ServerLocation} based value store that can handle proxied data api
@@ -73,19 +72,6 @@ public interface LocationBaseDataHolder {
      * Gets the value of data that is keyed to the provided {@link Key} at the
      * give block location.
      *
-     * @param position The position of the block
-     * @param key The key to the data
-     * @param <E> The type of element of data
-     * @return The data, if available
-     */
-    default <E> Optional<E> get(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
-        return this.get(position.x(), position.y(), position.z(), key.get());
-    }
-
-    /**
-     * Gets the value of data that is keyed to the provided {@link Key} at the
-     * give block location.
-     *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
@@ -94,21 +80,6 @@ public interface LocationBaseDataHolder {
      * @return The data, if available
      */
     <E> Optional<E> get(int x, int y, int z, Key<? extends Value<E>> key);
-
-    /**
-     * Gets the value of data that is keyed to the provided {@link Key} at the
-     * give block location.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param key The key to the data
-     * @param <E> The type of element of data
-     * @return The data, if available
-     */
-    default <E> Optional<E> get(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
-        return this.get(x, y, z, key.get());
-    }
 
     /**
      * Gets the int value of data that is keyed to the provided {@link Key} at the
@@ -126,18 +97,6 @@ public interface LocationBaseDataHolder {
      * Gets the int value of data that is keyed to the provided {@link Key} at the
      * give block location.
      *
-     * @param position The position of the block
-     * @param key The key to the data
-     * @return The data, if available
-     */
-    default OptionalInt getInt(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<Integer>>> key) {
-        return this.getInt(position.x(), position.y(), position.z(), key.get());
-    }
-
-    /**
-     * Gets the int value of data that is keyed to the provided {@link Key} at the
-     * give block location.
-     *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
@@ -146,20 +105,6 @@ public interface LocationBaseDataHolder {
      */
     default OptionalInt getInt(final int x, final int y, final int z, final Key<? extends Value<Integer>> key) {
         return this.get(x, y, z, key).map(OptionalInt::of).orElseGet(OptionalInt::empty);
-    }
-
-    /**
-     * Gets the int value of data that is keyed to the provided {@link Key} at the
-     * give block location.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param key The key to the data
-     * @return The data, if available
-     */
-    default OptionalInt getInt(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<Integer>>> key) {
-        return this.get(x, y, z, key.get()).map(OptionalInt::of).orElseGet(OptionalInt::empty);
     }
 
     /**
@@ -178,18 +123,6 @@ public interface LocationBaseDataHolder {
      * Gets the double value of data that is keyed to the provided {@link Key} at the
      * give block location.
      *
-     * @param position The position of the block
-     * @param key The key to the data
-     * @return The data, if available
-     */
-    default OptionalDouble getDouble(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<Double>>> key) {
-        return this.getDouble(position.x(), position.y(), position.z(), key.get());
-    }
-
-    /**
-     * Gets the double value of data that is keyed to the provided {@link Key} at the
-     * give block location.
-     *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
@@ -197,20 +130,6 @@ public interface LocationBaseDataHolder {
      * @return The data, if available
      */
     default OptionalDouble getDouble(final int x, final int y, final int z, final Key<? extends Value<Double>> key) {
-        return this.get(x, y, z, key).map(OptionalDouble::of).orElseGet(OptionalDouble::empty);
-    }
-
-    /**
-     * Gets the double value of data that is keyed to the provided {@link Key} at the
-     * give block location.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param key The key to the data
-     * @return The data, if available
-     */
-    default OptionalDouble getDouble(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<Double>>> key) {
         return this.get(x, y, z, key).map(OptionalDouble::of).orElseGet(OptionalDouble::empty);
     }
 
@@ -225,18 +144,6 @@ public interface LocationBaseDataHolder {
     default OptionalLong getLong(final Vector3i position, final Key<? extends Value<Long>> key) {
         return this.getLong(position.x(), position.y(), position.z(), key);
     }
-    
-    /**
-     * Gets the long value of data that is keyed to the provided {@link Key} at the
-     * give block location.
-     *
-     * @param position The position of the block
-     * @param key The key to the data
-     * @return The data, if available
-     */
-    default OptionalLong getLong(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<Long>>> key) {
-        return this.getLong(position.x(), position.y(), position.z(), key.get());
-    }
 
     /**
      * Gets the long value of data that is keyed to the provided {@link Key} at the
@@ -249,20 +156,6 @@ public interface LocationBaseDataHolder {
      * @return The data, if available
      */
     default OptionalLong getLong(final int x, final int y, final int z, final Key<? extends Value<Long>> key) {
-        return this.get(x, y, z, key).map(OptionalLong::of).orElseGet(OptionalLong::empty);
-    }
-
-    /**
-     * Gets the long value of data that is keyed to the provided {@link Key} at the
-     * give block location.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param key The key to the data
-     * @return The data, if available
-     */
-    default OptionalLong getLong(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<Long>>> key) {
         return this.get(x, y, z, key).map(OptionalLong::of).orElseGet(OptionalLong::empty);
     }
 
@@ -290,23 +183,6 @@ public interface LocationBaseDataHolder {
      * <p>If the {@link Key} is not supported or
      * available, {@link NoSuchElementException} will be thrown.</p>
      *
-     * @param position The position of the block
-     * @param key The key
-     * @param <E> The type of value
-     * @return The value
-     * @throws NoSuchElementException If the value is not supported or present
-     */
-    default <E> E require(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
-        return this.require(position.x(), position.y(), position.z(), key.get());
-    }
-
-    /**
-     * Attempts to get the underlying value backed by a {@link Value}
-     * linked to the provided {@link Key}.
-     *
-     * <p>If the {@link Key} is not supported or
-     * available, {@link NoSuchElementException} will be thrown.</p>
-     *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
@@ -320,30 +196,7 @@ public interface LocationBaseDataHolder {
         if (optional.isPresent()) {
             return optional.get();
         }
-        throw new NoSuchElementException(String.format("Could not retrieve value for key '%s'", key.toString()));
-    }
-
-    /**
-     * Attempts to get the underlying value backed by a {@link Value}
-     * linked to the provided {@link Key}.
-     *
-     * <p>If the {@link Key} is not supported or
-     * available, {@link NoSuchElementException} will be thrown.</p>
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param key The key
-     * @param <E> The type of value
-     * @return The value
-     * @throws NoSuchElementException If the value is not supported or present
-     */
-    default <E> E require(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
-        final Optional<E> optional = this.get(x, y, z, key.get());
-        if (optional.isPresent()) {
-            return optional.get();
-        }
-        throw new NoSuchElementException(String.format("Could not retrieve value for key '%s'", key.get().toString()));
+        throw new NoSuchElementException(String.format("Could not retrieve value for key '%s'", key));
     }
 
     /**
@@ -365,20 +218,6 @@ public interface LocationBaseDataHolder {
      * give block location. The data may not exist, or may not be compatible in
      * which case <code>null</code> may be returned.
      *
-     * @param position The position of the block
-     * @param key The key to the data
-     * @param <E> The type of element of data
-     * @return The data or null
-     */
-    default <E> @Nullable E orNull(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
-        return this.get(position.x(), position.y(), position.z(), key.get()).orElse(null);
-    }
-
-    /**
-     * Gets the value of data that is keyed to the provided {@link Key} at the
-     * give block location. The data may not exist, or may not be compatible in
-     * which case <code>null</code> may be returned.
-     *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
@@ -388,22 +227,6 @@ public interface LocationBaseDataHolder {
      */
     default <E> @Nullable E orNull(final int x, final int y, final int z, final Key<? extends Value<E>> key) {
         return this.get(x, y, z, key).orElse(null);
-    }
-
-    /**
-     * Gets the value of data that is keyed to the provided {@link Key} at the
-     * give block location. The data may not exist, or may not be compatible in
-     * which case <code>null</code> may be returned.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param key The key to the data
-     * @param <E> The type of element of data
-     * @return The data or null
-     */
-    default <E> @Nullable E orNull(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
-        return this.get(x, y, z, key.get()).orElse(null);
     }
 
     /**
@@ -426,21 +249,6 @@ public interface LocationBaseDataHolder {
      * give block location. The data may not exist, or may not be compatible in
      * which case the default value may be returned.
      *
-     * @param position The position of the block
-     * @param key The key to the data
-     * @param defaultValue The default value to be provided
-     * @param <E> The type of element of data
-     * @return The data or null
-     */
-    default <E> E orElse(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final E defaultValue) {
-        return this.get(position.x(), position.y(), position.z(), key.get()).orElse(Objects.requireNonNull(defaultValue));
-    }
-
-    /**
-     * Gets the value of data that is keyed to the provided {@link Key} at the
-     * give block location. The data may not exist, or may not be compatible in
-     * which case the default value may be returned.
-     *
      * @param x The X position
      * @param y The Y position
      * @param z The Z position
@@ -451,88 +259,6 @@ public interface LocationBaseDataHolder {
      */
     default <E> E orElse(final int x, final int y, final int z, final Key<? extends Value<E>> key, final E defaultValue) {
         return this.get(x, y, z, key).orElse(Objects.requireNonNull(defaultValue));
-    }
-
-    /**
-     * Gets the value of data that is keyed to the provided {@link Key} at the
-     * give block location. The data may not exist, or may not be compatible in
-     * which case the default value may be returned.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param key The key to the data
-     * @param defaultValue The supplier of the default value to return
-     * @param <E> The type of element of data
-     * @return The data or null
-     */
-    default <E> E orElse(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final E defaultValue) {
-        return this.get(x, y, z, key.get()).orElse(Objects.requireNonNull(defaultValue));
-    }
-
-
-    /**
-     * Gets the value of data that is keyed to the provided {@link Key} at the
-     * give block location. The data may not exist, or may not be compatible in
-     * which case the default value may be returned.
-     *
-     * @param position The position of the block
-     * @param key The key to the data
-     * @param defaultValue The supplier of the default value to be provided
-     * @param <E> The type of element of data
-     * @return The data or null
-     */
-    default <E> E orElse(final Vector3i position, final Key<? extends Value<E>> key, final Supplier<? extends E> defaultValue) {
-        return this.get(position.x(), position.y(), position.z(), key).orElseGet(Objects.requireNonNull(defaultValue));
-    }
-
-    /**
-     * Gets the value of data that is keyed to the provided {@link Key} at the
-     * give block location. The data may not exist, or may not be compatible in
-     * which case the default value may be returned.
-     *
-     * @param position The position of the block
-     * @param key The key to the data
-     * @param defaultValue The supplier of the default value to be provided
-     * @param <E> The type of element of data
-     * @return The data or null
-     */
-    default <E> E orElse(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final Supplier<? extends E> defaultValue) {
-        return this.get(position.x(), position.y(), position.z(), key.get()).orElseGet(Objects.requireNonNull(defaultValue));
-    }
-
-    /**
-     * Gets the value of data that is keyed to the provided {@link Key} at the
-     * give block location. The data may not exist, or may not be compatible in
-     * which case the default value may be returned.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param key The key to the data
-     * @param defaultValue The supplier of the default value to return
-     * @param <E> The type of element of data
-     * @return The data or null
-     */
-    default <E> E orElse(final int x, final int y, final int z, final Key<? extends Value<E>> key, final Supplier<E> defaultValue) {
-        return this.get(x, y, z, key).orElseGet(Objects.requireNonNull(defaultValue));
-    }
-
-    /**
-     * Gets the value of data that is keyed to the provided {@link Key} at the
-     * give block location. The data may not exist, or may not be compatible in
-     * which case the default value may be returned.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param key The key to the data
-     * @param defaultValue The supplier of the default value to return
-     * @param <E> The type of element of data
-     * @return The data or null
-     */
-    default <E> E orElse(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final Supplier<? extends E> defaultValue) {
-        return this.get(x, y, z, key.get()).orElseGet(Objects.requireNonNull(defaultValue));
     }
 
     /**
@@ -552,21 +278,6 @@ public interface LocationBaseDataHolder {
 
     /**
      * Gets the value of data that is keyed to the provided {@link Key} at the
-     * give block location. The data may not exist, or may not be compatible in
-     * which case <code>null</code> may be returned.
-     *
-     * @param position The position of the block
-     * @param key The key to the data
-     * @param <E> The type of element of data
-     * @param <V> The type of value
-     * @return The base value, if available
-     */
-    default <E, V extends Value<E>> Optional<V> getValue(final Vector3i position, final Supplier<? extends Key<V>> key) {
-        return this.getValue(position.x(), position.y(), position.z(), key.get());
-    }
-
-    /**
-     * Gets the value of data that is keyed to the provided {@link Key} at the
      * give block location.
      *
      * @param x The X position
@@ -578,22 +289,6 @@ public interface LocationBaseDataHolder {
      * @return The base value, if available
      */
     <E, V extends Value<E>> Optional<V> getValue(int x, int y, int z, Key<V> key);
-
-    /**
-     * Gets the value of data that is keyed to the provided {@link Key} at the
-     * give block location.
-     *
-     * @param x The X position
-     * @param y The Y position
-     * @param z The Z position
-     * @param key The key to the data
-     * @param <E> The type of element of data
-     * @param <V> The type of value
-     * @return The base value, if available
-     */
-    default <E, V extends Value<E>> Optional<V> getValue(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<V>> key) {
-        return this.getValue(x, y, z, key.get());
-    }
 
     /**
      * Checks if the provided {@link Key} to the data is supported by the block
@@ -611,18 +306,6 @@ public interface LocationBaseDataHolder {
      * Checks if the provided {@link Key} to the data is supported by the block
      * at the provided location.
      *
-     * @param position The position of the block
-     * @param key The Key to the value of data
-     * @return True if the block supports the data
-     */
-    default boolean supports(final Vector3i position, final Supplier<? extends Key<?>> key) {
-        return this.supports(position.x(), position.y(), position.z(), key.get());
-    }
-
-    /**
-     * Checks if the provided {@link Key} to the data is supported by the block
-     * at the provided location.
-     *
      * @param x The X coordinate
      * @param y The Y coordinate
      * @param z The Z coordinate
@@ -630,20 +313,6 @@ public interface LocationBaseDataHolder {
      * @return True if the block supports the data
      */
     boolean supports(int x, int y, int z, Key<?> key);
-
-    /**
-     * Checks if the provided {@link Key} to the data is supported by the block
-     * at the provided location.
-     *
-     * @param x The X coordinate
-     * @param y The Y coordinate
-     * @param z The Z coordinate
-     * @param key The Key to the value of data
-     * @return True if the block supports the data
-     */
-    default boolean supports(final int x, final int y, final int z, final Supplier<? extends Key<?>> key) {
-        return this.supports(x, y, z, key.get());
-    }
 
     /**
      * Checks if the provided {@link Value} is supported by the block at the
@@ -737,22 +406,6 @@ public interface LocationBaseDataHolder {
          * the provided {@link Key} and returns a {@link DataTransactionResult} of
          * said transformation.
          *
-         * @param position The position of the block
-         * @param key The key to the data
-         * @param function The function applying the transformation
-         * @param <E> The type of data
-         * @return The transaction result
-         */
-        default <E> DataTransactionResult transform(
-            final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final Function<E, E> function) {
-            return this.transform(position.x(), position.y(), position.z(), key.get(), function);
-        }
-
-        /**
-         * Applies a transformation on the pre-existing value of the data keyed by
-         * the provided {@link Key} and returns a {@link DataTransactionResult} of
-         * said transformation.
-         *
          * @param x The X position
          * @param y The Y position
          * @param z The Z position
@@ -766,30 +419,6 @@ public interface LocationBaseDataHolder {
                 final Optional<E> optional = this.get(x, y, z, key);
                 if (optional.isPresent()) {
                     return this.offer(x, y, z, key, function.apply(optional.get()));
-                }
-            }
-            return DataTransactionResult.failNoData();
-        }
-
-
-        /**
-         * Applies a transformation on the pre-existing value of the data keyed by
-         * the provided {@link Key} and returns a {@link DataTransactionResult} of
-         * said transformation.
-         *
-         * @param x The X position
-         * @param y The Y position
-         * @param z The Z position
-         * @param key The key to the data
-         * @param function The function applying the transformation
-         * @param <E> The type of data
-         * @return The transaction result
-         */
-        default <E> DataTransactionResult transform(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final Function<E, E> function) {
-            if (this.supports(x, y, z, key)) {
-                final Optional<E> optional = this.get(x, y, z, key.get());
-                if (optional.isPresent()) {
-                    return this.offer(x, y, z, key.get(), function.apply(optional.get()));
                 }
             }
             return DataTransactionResult.failNoData();
@@ -821,24 +450,6 @@ public interface LocationBaseDataHolder {
          * {@link DataTransactionResult} will retain the rejected and replaced
          * data.</p>
          *
-         * @param position The position of the block
-         * @param key The key for the data
-         * @param value The value to offer
-         * @param <E> The type of data being offered
-         * @return The transaction result
-         */
-        default <E> DataTransactionResult offer(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final E value) {
-            return this.offer(position.x(), position.y(), position.z(), key.get(), value);
-        }
-
-        /**
-         * Offers the given <code>E</code> value that is keyed by the provided
-         * {@link Key} to the block at the provided location.
-         *
-         * <p>If any data is rejected or existing data is replaced, the
-         * {@link DataTransactionResult} will retain the rejected and replaced
-         * data.</p>
-         *
          * @param x The X position
          * @param y The Y position
          * @param z The Z position
@@ -848,27 +459,6 @@ public interface LocationBaseDataHolder {
          * @return The transaction result
          */
         <E> DataTransactionResult offer(int x, int y, int z, Key<? extends Value<E>> key, E value);
-
-        /**
-         * Offers the given <code>E</code> value that is keyed by the provided
-         * {@link Key} to the block at the provided location.
-         *
-         * <p>If any data is rejected or existing data is replaced, the
-         * {@link DataTransactionResult} will retain the rejected and replaced
-         * data.</p>
-         *
-         * @param x The X position
-         * @param y The Y position
-         * @param z The Z position
-         * @param key The key for the data
-         * @param value The value to offer
-         * @param <E> The type of data being offered
-         * @return The transaction result
-         */
-        default <E> DataTransactionResult offer(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key,
-                final E value) {
-            return this.offer(x, y, z, key.get(), value);
-        }
 
         /**
          * Offers the given {@link Value} to the block at the given position.
@@ -920,18 +510,6 @@ public interface LocationBaseDataHolder {
          * Attempts to remove the data associated with the provided {@link Key} from
          * the block at the provided location.
          *
-         * @param position The position of the block
-         * @param key The key to the data to remove
-         * @return The transaction result
-         */
-        default DataTransactionResult remove(final Vector3i position, final DefaultedRegistryReference<? extends Key<?>> key) {
-            return this.remove(position.x(), position.y(), position.z(), key.get());
-        }
-
-        /**
-         * Attempts to remove the data associated with the provided {@link Key} from
-         * the block at the provided location.
-         *
          * @param x The X position
          * @param y The Y position
          * @param z The Z position
@@ -939,20 +517,6 @@ public interface LocationBaseDataHolder {
          * @return The transaction result
          */
         DataTransactionResult remove(int x, int y, int z, Key<?> key);
-
-        /**
-         * Attempts to remove the data associated with the provided {@link Key} from
-         * the block at the provided location.
-         *
-         * @param x The X position
-         * @param y The Y position
-         * @param z The Z position
-         * @param key The key of the data to remove
-         * @return The transaction result
-         */
-        default DataTransactionResult remove(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<?>> key) {
-            return this.remove(x, y, z, key.get());
-        }
 
         /**
          * Attempts to undo a {@link DataTransactionResult}. Specifically, all

@@ -50,7 +50,6 @@ import java.util.Random;
 import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 /**
@@ -108,23 +107,6 @@ public final class ItemStackBuilderPopulators {
     }
 
     /**
-     * Creates a new {@link BiConsumer} that defines the provided
-     * {@link ItemType}, provided that the {@link Supplier} does not
-     * return null.
-     *
-     * <p>Note that the {@link Supplier} is not queried for an
-     * {@link ItemType} until the generated {@link BiConsumer} is
-     * called.</p>
-     *
-     * @param supplier The supplier of the item type
-     * @return The new biconsumer to apply to an itemstack builder
-     */
-    public static BiConsumer<ItemStack.Builder, Random> item(Supplier<? extends ItemType> supplier) {
-        Objects.requireNonNull(supplier, "Supplier cannot be null!");
-        return (builder, random) -> builder.itemType(Objects.requireNonNull(supplier.get(), "Supplier returned a null ItemType"));
-    }
-
-    /**
      * Creates a new {@link BiConsumer} that provides a random
      * {@link ItemType} of the provided item types.
      *
@@ -165,23 +147,6 @@ public final class ItemStackBuilderPopulators {
     public static BiConsumer<ItemStack.Builder, Random> quantity(VariableAmount amount) {
         Objects.requireNonNull(amount, "VariableAmount cannot be null!");
         return (builder, random) -> builder.quantity(amount.flooredAmount(random));
-    }
-
-    /**
-     * Creates a new {@link BiConsumer} that sets the desired quantity
-     * for creating an {@link ItemStack}. The supplier is not queried for
-     * a {@link VariableAmount} until the generated bi consumer is
-     * called on.
-     *
-     * <p>Note that the default behavior of an item stack builder is still
-     * expected to take place. Negative values are not allowed.</p>
-     *
-     * @param supplier The supplier of the variable amount
-     * @return The new biconsumer to apply to an itemstack builder
-     */
-    public static BiConsumer<ItemStack.Builder, Random> quantity(Supplier<VariableAmount> supplier) {
-        Objects.requireNonNull(supplier, "Supplier cannot be null!");
-        return (builder, random) -> builder.quantity(supplier.get().flooredAmount(random));
     }
 
     /**
@@ -339,23 +304,6 @@ public final class ItemStackBuilderPopulators {
                     .map(randomEFunction -> randomEFunction.apply(random))
                     .collect(Collectors.toList());
             final DataTransactionResult result = itemStack.offer(key, suppliedElements);
-            if (result.isSuccessful()) {
-                builder.from(itemStack);
-            }
-        };
-    }
-
-    public static <E> BiConsumer<ItemStack.Builder, Random> listValueSuppliers(Supplier<? extends Key<? extends ListValue<E>>> key,
-                                                                               WeightedTable<Function<Random, E>> weightedTable) {
-        Objects.requireNonNull(key, "Key cannot be null!");
-        Objects.requireNonNull(weightedTable, "WeightedTable cannot be null!");
-        return (builder, random) -> {
-            final ItemStack itemStack = builder.build();
-            final List<Function<Random, E>> suppliers = weightedTable.get(random);
-            final List<E> suppliedElements = suppliers.stream()
-                    .map(randomEFunction -> randomEFunction.apply(random))
-                    .collect(Collectors.toList());
-            final DataTransactionResult result = itemStack.offer(key.get(), suppliedElements);
             if (result.isSuccessful()) {
                 builder.from(itemStack);
             }

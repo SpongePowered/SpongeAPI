@@ -37,7 +37,6 @@ import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.server.ServerLocation;
 
 import java.util.Objects;
-import java.util.function.Supplier;
 
 /**
  * Represents a particular "state" that can exist at a {@link ServerLocation} with
@@ -60,16 +59,6 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
     static BlockState fromString(final String id) {
         Objects.requireNonNull(id);
         return Sponge.game().builderProvider().provide(Builder.class).fromString(id).build();
-    }
-
-    /**
-     * Constructs a new builder to construct a {@link StateMatcher}.
-     *
-     * @param type The block type
-     * @return The builder
-     */
-    static StateMatcher.Builder<BlockState, BlockType> matcher(final Supplier<? extends BlockType> type) {
-        return BlockState.matcher(type.get());
     }
 
     /**
@@ -124,18 +113,6 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
     BlockState rotate(Rotation rotation);
 
     /**
-     * Gets the appropriate {@link BlockState} for the desired {@link Rotation}. It may
-     * return the same state, but some states may have extra logic associated with rotating
-     * on its axis, much like mirroring.
-     *
-     * @param rotation The rotation
-     * @return The rotated state if not this state
-     */
-    default BlockState rotate(final Supplier<? extends Rotation> rotation) {
-        return this.rotate(rotation.get());
-    }
-
-    /**
      * Gets the appropriate {@link BlockState} for the desired {@link Mirror}. It may
      * return the same state, but some states may have extra logic associated with mirroring
      * on its axis, much like rotation.
@@ -146,18 +123,6 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
     BlockState mirror(Mirror mirror);
 
     /**
-     * Gets the appropriate {@link BlockState} for the desired {@link Mirror}. It may
-     * return the same state, but some states may have extra logic associated with mirroring
-     * on its axis, much like rotation.
-     *
-     * @param mirror The mirror
-     * @return The mirrored state if not this state
-     */
-    default BlockState mirror(final Supplier<? extends Mirror> mirror) {
-        return this.mirror(mirror.get());
-    }
-
-    /**
      * An {@link org.spongepowered.api.data.DataHolderBuilder.Immutable} for a {@link BlockState}. Just like the
      * {@link org.spongepowered.api.data.DataHolderBuilder.Immutable}, the {@link Value}s passed in to
      * create a {@link BlockState} are copied on creation.
@@ -166,21 +131,6 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
      * of {@link DataManipulator}s, otherwise exceptions may be thrown.</p>
      */
     interface Builder extends State.Builder<BlockState, Builder> {
-
-        /**
-         * Sets the {@link BlockType} for the {@link BlockState} to build.
-         *
-         * <p>The {@link BlockType} is used for some pre-validation on addition of
-         * {@link DataManipulator}s through {@link #add(DataManipulator)}. It is
-         * important to understand that not all manipulators are compatible with
-         * all {@link BlockType}s.</p>
-         *
-         * @param blockType The block type
-         * @return This builder, for chaining
-         */
-        default Builder blockType(final Supplier<? extends BlockType> blockType) {
-            return this.blockType(blockType.get());
-        }
 
         /**
          * Sets the {@link BlockType} for the {@link BlockState} to build.

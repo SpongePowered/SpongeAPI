@@ -30,7 +30,6 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.function.Supplier;
 
 /**
  * Represents an instance of an {@link AttributeType} that contains a value.
@@ -82,16 +81,6 @@ public interface Attribute {
      * @return A collection of applied modifiers
      */
     Collection<AttributeModifier> modifiers();
-
-    /**
-     * Gets a collection of applied modifiers with the provided operation.
-     *
-     * @param operation The operation
-     * @return A collection of modifiers
-     */
-    default Collection<AttributeModifier> modifiers(Supplier<? extends AttributeOperation> operation) {
-        return this.modifiers(operation.get());
-    }
 
     /**
      * Gets a collection of applied modifiers with the provided operation.

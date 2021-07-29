@@ -41,7 +41,6 @@ import org.spongepowered.api.item.inventory.type.ViewableInventory;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.function.Supplier;
 
 /**
  * Base interface for queryable inventories.
@@ -337,21 +336,8 @@ public interface Inventory extends ValueContainer {
      *
      * @return The queried inventory
      */
-    default <P> Inventory query(Supplier<QueryType.OneParam<P>> queryType, P param) {
-        return this.query(queryType.get().of(param));
-    }
-
-    /**
-     * Query this inventory with given {@link QueryType.OneParam} and one parameter.
-     *
-     * @param queryType The queryType
-     * @param param The parameter
-     * @param <P> The parameter type
-     *
-     * @return The queried inventory
-     */
-    default <P> Inventory query(Supplier<QueryType.OneParam<P>> queryType, Supplier<P> param) {
-        return this.query(queryType.get().of(param.get()));
+    default <P> Inventory query(QueryType.OneParam<P> queryType, P param) {
+        return this.query(queryType.of(param));
     }
 
     /**
@@ -365,8 +351,8 @@ public interface Inventory extends ValueContainer {
      *
      * @return The queried inventory
      */
-    default <P1, P2> Inventory query(Supplier<QueryType.TwoParam<P1, P2>> queryType, P1 param1, P2 param2) {
-        return this.query(queryType.get().of(param1, param2));
+    default <P1, P2> Inventory query(QueryType.TwoParam<P1, P2> queryType, P1 param1, P2 param2) {
+        return this.query(queryType.of(param1, param2));
     }
 
     /**

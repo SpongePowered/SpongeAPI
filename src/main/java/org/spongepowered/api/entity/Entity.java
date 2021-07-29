@@ -55,7 +55,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
 /**
@@ -268,17 +267,6 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      * within one game tick.
      */
     void remove();
-
-    /**
-     * Damages this {@link Entity} with the given {@link DamageSource}.
-     *
-     * @param damage The damage to deal
-     * @param damageSource The cause of the damage
-     * @return True if damaging the entity was successful
-     */
-    default boolean damage(final double damage, final Supplier<? extends DamageSource> damageSource) {
-        return this.damage(damage, damageSource.get());
-    }
 
     /**
      * Damages this {@link Entity} with the given {@link DamageSource}.

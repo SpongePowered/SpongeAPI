@@ -31,8 +31,6 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.CopyableBuilder;
 
-import java.util.function.Supplier;
-
 public interface DisplayInfo {
 
     /**
@@ -112,17 +110,6 @@ public interface DisplayInfo {
          * @param advancementType The advancement type
          * @return This builder, for chaining
          */
-        default Builder type(Supplier<? extends AdvancementType> advancementType) {
-            return this.type(advancementType.get());
-        }
-
-        /**
-         * Sets the {@link AdvancementType}. Defaults
-         * to {@link AdvancementTypes#TASK}.
-         *
-         * @param advancementType The advancement type
-         * @return This builder, for chaining
-         */
         Builder type(AdvancementType advancementType);
 
         /**
@@ -140,17 +127,6 @@ public interface DisplayInfo {
          * @return This builder, for chaining
          */
         Builder title(Component title);
-
-        /**
-         * Sets the icon of the advancement with the
-         * specified {@link ItemType}.
-         *
-         * @param itemType The item type
-         * @return This builder, for chaining
-         */
-        default Builder icon(Supplier<? extends ItemType> itemType) {
-            return this.icon(itemType.get());
-        }
 
         /**
          * Sets the icon of the advancement with the
