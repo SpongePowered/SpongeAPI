@@ -37,7 +37,6 @@ import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.entity.attribute.AttributeModifier;
 import org.spongepowered.api.entity.attribute.type.AttributeType;
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 
@@ -58,6 +57,15 @@ import java.util.function.Supplier;
  * this item stack.</p>
  */
 public interface ItemStack extends SerializableDataHolder.Mutable {
+
+    /**
+     * Returns an empty {@link ItemStack}.
+     *
+     * @return The empty ItemStack
+     */
+    static ItemStack empty() {
+        return Sponge.game().factoryProvider().provide(Factory.class).empty();
+    }
 
     /**
      * Creates a new {@link Builder} to build an {@link ItemStack}.
@@ -110,15 +118,6 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
      */
     static ItemStack of(ItemType itemType) {
         return ItemStack.of(itemType, 1);
-    }
-
-    /**
-     * Returns an empty {@link ItemStack}.
-     *
-     * @return The empty ItemStack
-     */
-    static ItemStack empty() {
-        return ItemStack.builder().itemType(ItemTypes.AIR).build();
     }
 
     /**
@@ -412,5 +411,10 @@ public interface ItemStack extends SerializableDataHolder.Mutable {
          */
         @Override
         ItemStack build() throws IllegalStateException;
+    }
+
+    interface Factory {
+
+        ItemStack empty();
     }
 }
