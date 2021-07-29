@@ -37,7 +37,7 @@ public final class CommandResults {
     /**
      * Indicates that the command executed but was unable to carry out its task.
      */
-    public static final CommandResult EMPTY = CommandResult.builder().build();
+    public static final CommandResult UNKNOWN_ERROR = CommandResult.builder().error(null).build();
 
     private CommandResults() {
         throw new AssertionError("You shouldn't be trying to instantiate this");

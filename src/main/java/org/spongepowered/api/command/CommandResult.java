@@ -45,21 +45,19 @@ public interface CommandResult {
     }
 
     /**
-     * Builds a result that indicates successes.
+     * Builds a result that indicates success (where {@link Builder#result(int)}
+     * is set to 1.
+     *
+     * <p>Note that a successful result is one where the command has done what
+     * is expected of it. This should be used in place of "empty" from previous
+     * API iterations. If an error condition should be reported, use
+     * {@link #error(Component)} instead, which will allow the system to react
+     * accordingly.</p>
      *
      * @return The {@link CommandResult}
      */
     static CommandResult success() {
         return CommandResults.SUCCESS;
-    }
-
-    /**
-     * Builds an empty result.
-     *
-     * @return The {@link CommandResult}
-     */
-    static CommandResult empty() {
-        return CommandResults.EMPTY;
     }
 
     /**
@@ -105,7 +103,8 @@ public interface CommandResult {
          *
          * <ul>
          *     <li>A positive value indicates successful execution,</li>
-         *     <li>Zero indicates the command didn't fulfil its task</li>
+         *     <li>Zero (generally) indicates the command didn't fulfil its
+         *     task, though that is not necessarily an error condition.</li>
          *     <li>A negative value is undefined in the API, if returned, the
          *     effects are implementation specific.</li>
          * </ul>
@@ -116,11 +115,12 @@ public interface CommandResult {
         Builder result(int result);
 
         /**
-         * Sets or removes the error message to return to the user without
-         * throwing an exception.
+         * Sets the built result to report an error, with an optional error
+         * message.
          *
          * <p>If this is set, then the command parser will send this message to
-         * the command invoker.</p>
+         * the command invoker. Otherwise, the parser will report an unknown
+         * exception.</p>
          *
          * @param errorMessage The message to send to the user.
          * @return This builder, for chaining
