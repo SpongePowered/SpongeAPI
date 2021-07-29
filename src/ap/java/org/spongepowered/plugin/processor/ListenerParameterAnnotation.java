@@ -123,7 +123,7 @@ public enum ListenerParameterAnnotation {
                             expectedType = declared.getTypeArguments().get(0);
                         }
                     }
-                    if (!ctx.types().isSameType(expectedType, ctx.param().asType())) {
+                    if (!ctx.types().isAssignable(ctx.param().asType(), expectedType)) {
                         ctx.logParamError(
                             "Annotated parameter was of incorrect type for the method referenced in @Getter. The parameter type should be '"
                             + expectedType + "'!"
