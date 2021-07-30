@@ -59,14 +59,4 @@ public interface PluginManager {
      * @return The plugins
      */
     Collection<PluginContainer> plugins();
-
-    /**
-     * Checks if a plugin is loaded based on its ID.
-     * This may contain plugins/mods from other systems in some implementations.
-     *
-     * @param id the id of the {@link PluginContainer}
-     * @return {@code true} if loaded {@code false} if not loaded.
-     */
-    boolean isLoaded(String id);
-
 }
