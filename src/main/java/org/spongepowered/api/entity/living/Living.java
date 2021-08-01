@@ -31,7 +31,6 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.attribute.Attribute;
 import org.spongepowered.api.entity.attribute.AttributeHolder;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.projectile.source.EntityProjectileSource;
 import org.spongepowered.api.scoreboard.TeamMember;
 import org.spongepowered.math.imaginary.Quaterniond;
 import org.spongepowered.math.vector.Vector3d;
@@ -163,13 +162,6 @@ public interface Living extends AttributeHolder, Entity, TeamMember {
     default Value.Mutable<Double> walkingSpeed() {
         return this.requireValue(Keys.WALKING_SPEED).asMutable();
     }
-
-    /**
-     * Makes the entity look at the specified target position.
-     *
-     * @param targetPos Position to target
-     */
-    void lookAt(Vector3d targetPos);
 
     /**
      * Converts the {@link Living}'s head rotation into a quaternion direction unit vector.
