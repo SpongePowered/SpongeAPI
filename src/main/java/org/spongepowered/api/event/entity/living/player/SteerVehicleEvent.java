@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.entity.living.player;
 
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
+import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
@@ -32,7 +33,7 @@ import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
  * Called when a {@link ServerPlayer player} riding a vehicle starts or stops steering the vehicle.
  */
 @GenerateFactoryMethod
-public interface SteerVehicleEvent extends Event {
+public interface SteerVehicleEvent extends Event, Cancellable {
 
     /**
      * Get the {@link ServerPlayer player}.
