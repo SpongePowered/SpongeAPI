@@ -30,7 +30,7 @@ import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 /**
- * Called when a {@link ServerPlayer player} riding a vehicle starts or stops steering the vehicle.
+ * Called when a {@link ServerPlayer player} riding an entity starts or stops steering it.
  */
 @GenerateFactoryMethod
 public interface SteerVehicleEvent extends Event, Cancellable {
