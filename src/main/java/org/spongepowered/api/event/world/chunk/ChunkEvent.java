@@ -36,62 +36,80 @@ import org.spongepowered.math.vector.Vector3i;
 public interface ChunkEvent extends Event {
 
     /**
-     * Gets the position of the {@link Chunk}, in chunk co-ordinates.
+     * Gets the position of the {@link Chunk chunk}, in chunk co-ordinates.
      *
      * @return the position
      */
     Vector3i chunkPosition();
 
     /**
-     * Represents an event that has knowledge about the {@link ServerWorld} that
+     * Represents an event that has knowledge about the {@link ServerWorld world} that
      * is being operated upon.
      */
     @NoFactoryMethod
     interface WorldScoped extends ChunkEvent {
 
         /**
-         * Gets the {@link ResourceKey} of the {@link WorldScoped} that the
-         * {@link WorldChunk} resides in.
+         * Gets the {@link ResourceKey key} of the {@link WorldScoped} that the
+         * {@link WorldChunk chunk} resides in.
          *
-         * <p>Be careful when retrieving the {@link ServerWorld} within this
+         * <p>Be careful when retrieving the {@link ServerWorld world} within this
          * event as some events may not fire on the main thread and such world
          * access is not thread safe.</p>
          *
-         * @return The world's {@link ResourceKey}
+         * @return The world's {@link ResourceKey key}
          */
         ResourceKey worldKey();
-
     }
 
     /**
-     * Called when a {@link WorldChunk} was unloaded.
+     * Called when a {@link WorldChunk chunk} was unloaded.
      */
     interface Unload extends WorldScoped {
 
+        /**
+         * Called before the {@link WorldChunk chunk} is unloaded.
+         */
+        interface Pre extends Unload {
+
+            /**
+             * Gets the {@link WorldChunk chunk} being changed.
+             *
+             * @return The chunk
+             */
+            WorldChunk chunk();
+        }
+
+        /**
+         * Called after the {@link WorldChunk chunk} is unloaded.
+         */
+        interface Post extends Unload {
+
+        }
     }
 
     /**
-     * Called when a {@link WorldChunk} is performing a save.
+     * Called when a {@link WorldChunk chunk} is performing a save.
      */
     interface Save extends WorldScoped {
 
         /**
-         * Called before the {@link WorldChunk} is saved. Cancelling this will prevent any of
+         * Called before the {@link WorldChunk chunk} is saved. Cancelling this will prevent any of
          * the chunk's data being written to it's storage container.
          */
         interface Pre extends Save, Cancellable {
 
             /**
-             * Gets the {@link WorldChunk} being changed.
+             * Gets the {@link WorldChunk chunk} being changed.
              *
-             * @return The Chunk
+             * @return The chunk
              */
-            WorldChunk targetChunk();
+            WorldChunk chunk();
 
         }
 
         /**
-         * Called after the {@link WorldChunk} is saved. Guaranteed to exist in the chunk's
+         * Called after the {@link WorldChunk chunk} is saved. Guaranteed to exist in the chunk's
          * storage container.
          *
          * Depending on the implementation, this event may be called off-thread.
@@ -100,22 +118,22 @@ public interface ChunkEvent extends Event {
     }
 
     /**
-     * Called when a new {@link WorldChunk} was generated.
+     * Called when a new {@link WorldChunk chunk} was generated.
      */
     interface Generated extends WorldScoped {
 
     }
 
     /**
-     * Called when a {@link WorldChunk} is done loading.
+     * Called when a {@link WorldChunk chunk} is done loading.
      */
     interface Load extends WorldScoped {
 
         /**
-         * Gets the {@link WorldChunk} being changed.
+         * Gets the {@link WorldChunk chunk} being changed.
          *
-         * @return The Chunk
+         * @return The chunk
          */
-        WorldChunk targetChunk();
+        WorldChunk chunk();
     }
 }
