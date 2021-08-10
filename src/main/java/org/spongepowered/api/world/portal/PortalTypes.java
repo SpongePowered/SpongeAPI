@@ -40,9 +40,11 @@ public final class PortalTypes {
 
     // SORTFIELDS:ON
 
+    public static final DefaultedRegistryReference<PortalType> END = PortalTypes.key(ResourceKey.sponge("end"));
+
     public static final DefaultedRegistryReference<PortalType> NETHER = PortalTypes.key(ResourceKey.sponge("nether"));
 
-    public static final DefaultedRegistryReference<PortalType> END = PortalTypes.key(ResourceKey.sponge("end"));
+    public static final DefaultedRegistryReference<PortalType> UNKNOWN = PortalTypes.key(ResourceKey.sponge("unknown"));
 
     // SORTFIELDS:OFF
 

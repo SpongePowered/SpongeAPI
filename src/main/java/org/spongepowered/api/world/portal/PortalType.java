@@ -49,8 +49,9 @@ public interface PortalType extends DefaultedRegistryValue {
      *
      * @param location The location
      * @param axis The axis
+     * @return true if a portal could be generated
      */
-    void generatePortal(ServerLocation location, Axis axis);
+    boolean generatePortal(ServerLocation location, Axis axis);
 
     /**
      * Finds a {@link Portal} from a {@link ServerLocation location}.
