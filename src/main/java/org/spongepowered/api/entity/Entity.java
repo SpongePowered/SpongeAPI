@@ -329,6 +329,13 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
     }
 
     /**
+     * Makes the entity look at the specified target position.
+     *
+     * @param targetPos Position to target
+     */
+    void lookAt(Vector3d targetPos);
+
+    /**
      * {@link Keys#DISPLAY_NAME}
      *
      * @return The display name of this entity

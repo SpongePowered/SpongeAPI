@@ -57,7 +57,7 @@ public interface NoiseGeneratorConfig extends ChunkGeneratorConfig {
     }
 
     static Builder builder() {
-        return Sponge.game().builderProvider().provide(Builder.class).reset();
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     NoiseConfig noiseConfig();

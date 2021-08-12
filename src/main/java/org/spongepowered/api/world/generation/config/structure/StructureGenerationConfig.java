@@ -34,8 +34,20 @@ import java.util.Optional;
 
 public interface StructureGenerationConfig {
 
+    static StructureGenerationConfig standard() {
+        return Sponge.game().factoryProvider().provide(Factory.class).standard();
+    }
+
+    static StructureGenerationConfig flat() {
+        return Sponge.game().factoryProvider().provide(Factory.class).flat();
+    }
+
+    static StructureGenerationConfig none() {
+        return Sponge.game().factoryProvider().provide(Factory.class).none();
+    }
+
     static Builder builder() {
-        return Sponge.game().builderProvider().provide(Builder.class).reset();
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     Optional<SpacedStructureConfig> stronghold();
@@ -53,5 +65,14 @@ public interface StructureGenerationConfig {
         Builder addStructures(Map<Structure, SeparatedStructureConfig> structures);
 
         Builder removeStructure(Structure structure);
+    }
+
+    interface Factory {
+
+        StructureGenerationConfig standard();
+
+        StructureGenerationConfig flat();
+
+        StructureGenerationConfig none();
     }
 }

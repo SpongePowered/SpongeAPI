@@ -42,7 +42,7 @@ public interface NoiseConfig {
     }
 
     static Builder builder() {
-        return Sponge.game().builderProvider().provide(Builder.class).reset();
+        return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     int minY();

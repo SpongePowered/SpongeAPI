@@ -22,25 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.command;
+package org.spongepowered.api.world;
+
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.world.server.ServerWorld;
 
 /**
- * Common {@link CommandResult}s.
+ * A listing of the {@link ResourceKey keys} of the default {@link ServerWorld worlds} in Minecraft.
  */
-public final class CommandResults {
+public final class DefaultWorldKeys {
 
-    /**
-     * Indicates that the command executed successfully.
-     */
-    public static final CommandResult SUCCESS = CommandResult.builder().result(1).build();
+    public static final ResourceKey OVERWORLD = ResourceKey.minecraft("overworld");
 
-    /**
-     * Indicates that the command executed but was unable to carry out its task.
-     */
-    public static final CommandResult EMPTY = CommandResult.builder().build();
+    public static final ResourceKey THE_NETHER = ResourceKey.minecraft("the_nether");
 
-    private CommandResults() {
-        throw new AssertionError("You shouldn't be trying to instantiate this");
+    public static final ResourceKey THE_END = ResourceKey.minecraft("the_end");
+
+    private DefaultWorldKeys() {
     }
-
 }
