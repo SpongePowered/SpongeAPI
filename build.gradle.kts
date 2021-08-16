@@ -244,6 +244,7 @@ indra {
     }
 
     configurePublications {
+        artifactId = project.name.toLowerCase()
         pom {
             this.url.set(projectUrl)
         }
