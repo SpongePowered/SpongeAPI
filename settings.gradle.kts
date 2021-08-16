@@ -1,4 +1,4 @@
-rootProject.name = "spongeapi"
+rootProject.name = "SpongeAPI"
 
 pluginManagement {
     repositories {
