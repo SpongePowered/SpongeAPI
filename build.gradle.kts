@@ -25,6 +25,7 @@ val ap by sourceSets.registering {
 val adventureVersion: String by project
 val configurateVersion: String by project
 val log4jVersion: String by project
+val mathVersion: String by project
 dependencies {
     val caffeineVersion: String by project
     val errorproneVersion: String by project
@@ -107,7 +108,7 @@ dependencies {
     errorprone("com.google.errorprone:error_prone_core:$errorproneVersion")
 
     // Math library
-    api("org.spongepowered:math:2.0.0")
+    api("org.spongepowered:math:$mathVersion")
 
     testImplementation(platform("org.junit:junit-bom:5.7.2"))
     testImplementation("org.junit.jupiter:junit-jupiter-api")
@@ -166,7 +167,8 @@ tasks {
                     "https://google.github.io/guice/api-docs/5.0.1/javadoc/",
                     "https://guava.dev/releases/21.0/api/docs/",
                     "https://configurate.aoeu.xyz/$configurateVersion/apidocs/",
-                    "https://www.javadoc.io/doc/com.google.code.gson/gson/2.8.0/"
+                    "https://www.javadoc.io/doc/com.google.code.gson/gson/2.8.0/",
+                    "https://jd.spongepowered.org/math/$mathVersion"
                 )
                 sequenceOf("api", "key", "text-serializer-gson", "text-serializer-legacy", "text-serializer-plain").forEach {
                     links("https://jd.adventure.kyori.net/$it/$adventureVersion/")
