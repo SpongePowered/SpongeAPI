@@ -87,7 +87,7 @@ public final class TicketTypes {
     }
 
     private static <T> DefaultedRegistryReference<TicketType<T>> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.TICKET_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.TICKET_TYPE, location).asDefaultedReference(Sponge::game);
     }
 
 }

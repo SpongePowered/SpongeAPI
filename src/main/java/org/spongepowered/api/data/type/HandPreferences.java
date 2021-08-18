@@ -55,6 +55,6 @@ public final class HandPreferences {
     }
 
     private static DefaultedRegistryReference<HandPreference> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.HAND_PREFERENCE, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.HAND_PREFERENCE, location).asDefaultedReference(Sponge::game);
     }
 }

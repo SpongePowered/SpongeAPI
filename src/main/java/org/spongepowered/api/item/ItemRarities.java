@@ -56,6 +56,6 @@ public final class ItemRarities {
     }
 
     private static DefaultedRegistryReference<ItemRarity> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.ITEM_RARITY, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.ITEM_RARITY, location).asDefaultedReference(Sponge::game);
     }
 }

@@ -119,6 +119,6 @@ public final class DragonPhaseTypes {
     }
 
     private static DefaultedRegistryReference<DragonPhaseType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.DRAGON_PHASE_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.DRAGON_PHASE_TYPE, location).asDefaultedReference(Sponge::game);
     }
 }

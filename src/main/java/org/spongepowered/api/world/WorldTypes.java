@@ -53,6 +53,6 @@ public final class WorldTypes {
     }
 
     private static DefaultedRegistryReference<WorldType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.WORLD_TYPE, location).asDefaultedReference(() -> Sponge.server().registries());
+        return RegistryKey.of(RegistryTypes.WORLD_TYPE, location).asDefaultedReference(Sponge::server);
     }
 }

@@ -135,6 +135,6 @@ public final class Triggers {
     }
 
     private static DefaultedRegistryReference<Trigger<?>> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.TRIGGER, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.TRIGGER, location).asDefaultedReference(Sponge::game);
     }
 }

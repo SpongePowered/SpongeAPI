@@ -139,6 +139,6 @@ public final class CommandTreeNodeTypes {
     }
 
     private static <T extends CommandTreeNode<T>> DefaultedRegistryReference<CommandTreeNodeType<T>> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.COMMAND_TREE_NODE_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.COMMAND_TREE_NODE_TYPE, location).asDefaultedReference(Sponge::game);
     }
 }

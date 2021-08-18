@@ -63,5 +63,5 @@ public interface RegistryHolder {
      * @param root The root to stream registries of
      * @return The stream
      */
-    Stream<Registry<?>> stream(final ResourceKey root);
+    Stream<Registry<?>> streamRegistries(final ResourceKey root);
 }

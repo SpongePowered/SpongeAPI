@@ -50,6 +50,6 @@ public final class FluidTypeTags {
     }
 
     private static DefaultedRegistryReference<Tag<FluidType>> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.FLUID_TYPE_TAGS, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.FLUID_TYPE_TAGS, location).asDefaultedReference(Sponge::game);
     }
 }

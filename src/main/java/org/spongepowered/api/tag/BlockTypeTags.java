@@ -218,6 +218,6 @@ public final class BlockTypeTags {
     }
 
     private static DefaultedRegistryReference<Tag<BlockType>> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.BLOCK_TYPE_TAGS, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.BLOCK_TYPE_TAGS, location).asDefaultedReference(Sponge::game);
     }
 }

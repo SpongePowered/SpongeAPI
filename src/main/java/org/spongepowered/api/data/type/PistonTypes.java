@@ -55,6 +55,6 @@ public final class PistonTypes {
     }
 
     private static DefaultedRegistryReference<PistonType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.PISTON_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.PISTON_TYPE, location).asDefaultedReference(Sponge::game);
     }
 }

@@ -73,6 +73,6 @@ public final class SelectorSortAlgorithms {
     }
 
     private static DefaultedRegistryReference<SelectorSortAlgorithm> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.SELECTOR_SORT_ALGORITHM, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.SELECTOR_SORT_ALGORITHM, location).asDefaultedReference(Sponge::game);
     }
 }

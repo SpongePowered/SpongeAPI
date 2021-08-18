@@ -378,6 +378,6 @@ public final class GameRules {
     }
 
     private static <T> DefaultedRegistryReference<GameRule<T>> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.GAME_RULE, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.GAME_RULE, location).asDefaultedReference(Sponge::game);
     }
 }

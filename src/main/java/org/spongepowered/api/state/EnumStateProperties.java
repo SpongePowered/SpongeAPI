@@ -1057,6 +1057,6 @@ public final class EnumStateProperties {
     }
 
     private static DefaultedRegistryReference<EnumStateProperty<?>> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.ENUM_STATE_PROPERTY, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.ENUM_STATE_PROPERTY, location).asDefaultedReference(Sponge::game);
     }
 }

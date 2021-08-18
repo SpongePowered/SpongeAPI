@@ -63,6 +63,6 @@ public final class ItemTiers {
     }
 
     private static DefaultedRegistryReference<ItemTier> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.ITEM_TIER, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.ITEM_TIER, location).asDefaultedReference(Sponge::game);
     }
 }

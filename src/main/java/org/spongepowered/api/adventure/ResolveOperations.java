@@ -74,7 +74,7 @@ public class ResolveOperations {
     }
 
     private static DefaultedRegistryReference<ResolveOperation> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.RESOLVE_OPERATION, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.RESOLVE_OPERATION, location).asDefaultedReference(Sponge::game);
     }
 
 }

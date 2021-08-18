@@ -167,7 +167,7 @@ public interface BlockVolume extends Volume {
     interface Mutable extends Modifiable<Mutable> {
 
         static Mutable empty(final Vector3i min, final Vector3i max) {
-            return Mutable.empty(PaletteTypes.BLOCK_STATE_PALETTE.get().create(Sponge.game().registries(), RegistryTypes.BLOCK_TYPE), BlockTypes.AIR, min, max);
+            return Mutable.empty(PaletteTypes.BLOCK_STATE_PALETTE.get().create(Sponge.game(), RegistryTypes.BLOCK_TYPE), BlockTypes.AIR, min, max);
         }
 
         static Mutable empty(

@@ -137,6 +137,6 @@ public final class ClickTypes {
     }
 
     private static <T> DefaultedRegistryReference<ClickType<T>> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.CLICK_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.CLICK_TYPE, location).asDefaultedReference(Sponge::game);
     }
 }

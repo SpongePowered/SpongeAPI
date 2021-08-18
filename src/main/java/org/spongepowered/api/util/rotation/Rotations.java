@@ -55,6 +55,6 @@ public final class Rotations {
     }
 
     private static DefaultedRegistryReference<Rotation> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.ROTATION, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.ROTATION, location).asDefaultedReference(Sponge::game);
     }
 }

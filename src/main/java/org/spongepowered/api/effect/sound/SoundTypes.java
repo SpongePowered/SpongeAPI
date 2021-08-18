@@ -2029,6 +2029,6 @@ public final class SoundTypes {
     }
 
     private static DefaultedRegistryReference<SoundType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.SOUND_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.SOUND_TYPE, location).asDefaultedReference(Sponge::game);
     }
 }

@@ -86,6 +86,6 @@ public final class SelectorTypes {
     }
 
     private static DefaultedRegistryReference<SelectorType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.SELECTOR_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.SELECTOR_TYPE, location).asDefaultedReference(Sponge::game);
     }
 }
