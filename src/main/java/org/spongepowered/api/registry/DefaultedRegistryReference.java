@@ -45,7 +45,7 @@ public interface DefaultedRegistryReference<T> extends RegistryReference<T>, Sup
      * <p>Great care needs to be made in calling this method with any uncertainty as to
      * if this reference will exist in the holder. Should this reference lack a value, a
      * {@link ValueNotFoundException} will be thrown. Therefore, it is advised to call
-     * {@link RegistryReference#find(RegistryHolder)} instead.</p>
+     * {@link RegistryReference#find(RegistryHolder...)} instead.</p>
      *
      * @return The value
      */
