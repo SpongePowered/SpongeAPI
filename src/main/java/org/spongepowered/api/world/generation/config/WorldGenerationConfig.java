@@ -68,6 +68,16 @@ public interface WorldGenerationConfig {
         void setSeed(long seed);
 
         /**
+         * Sets the seed
+         *
+         * <p>If the seed is a number value, it will be parsed as a {@code long}. Otherwise, the String's {@link String#hashCode()}
+         * will be used.</p>
+         *
+         * @param seed The seed
+         */
+        void setSeed(String seed);
+
+        /**
          * Sets whether features will generate
          *
          * @param generateFeatures Whether features will generate
@@ -87,6 +97,16 @@ public interface WorldGenerationConfig {
         interface Builder extends org.spongepowered.api.util.Builder<WorldGenerationConfig.Mutable, Builder>, CopyableBuilder<WorldGenerationConfig, Builder> {
 
             Builder seed(long seed);
+
+            /**
+             * Sets the seed
+             *
+             * <p>If the seed is a number value, it will be parsed as a {@code long}. Otherwise, the String's {@link String#hashCode()}
+             * will be used.</p>
+             *
+             * @param seed The seed
+             */
+            void seed(String seed);
 
             Builder generateFeatures(boolean generateFeatures);
 
