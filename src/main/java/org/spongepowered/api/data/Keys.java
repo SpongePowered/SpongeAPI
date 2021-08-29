@@ -623,7 +623,7 @@ public final class Keys {
     public static final Key<Value<Integer>> CUSTOM_MODEL_DATA = Keys.key(ResourceKey.sponge("custom_model_data"), Integer.class);
 
     /**
-     * The custom name of an {@link Entity}.
+     * The custom name of an {@link Entity}, {@link ItemStack} or {@link BlockEntity}.
      */
     public static final Key<Value<Component>> CUSTOM_NAME = Keys.key(ResourceKey.sponge("custom_name"), Component.class);
 
