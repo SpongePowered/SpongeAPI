@@ -29,6 +29,7 @@ val mathVersion: String by project
 dependencies {
     val caffeineVersion: String by project
     val errorproneVersion: String by project
+    val pluginSpiVersion: String by project
 
     // Directly tied to what's available from Minecraft
     api("org.apache.logging.log4j:log4j-api:$log4jVersion")
@@ -78,7 +79,7 @@ dependencies {
     }
 
     // Plugin spi, includes plugin-meta
-    api("org.spongepowered:plugin-spi:0.2.1-SNAPSHOT")
+    api("org.spongepowered:plugin-spi:$pluginSpiVersion")
 
     // Configurate
     api(platform("org.spongepowered:configurate-bom:$configurateVersion"))
