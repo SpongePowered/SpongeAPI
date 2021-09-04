@@ -76,6 +76,14 @@ public interface EntityVolume extends Volume {
     Optional<Entity> entity(UUID uuid);
 
     /**
+     * Gets all the loaded entities in this entity volume, in no particular
+     * order.
+     *
+     * @return All entities in this volume.
+     */
+    Collection<? extends Entity> entities();
+
+    /**
      * Gets all the entities that intersect the bounding box, in no particular
      * order.
      *
