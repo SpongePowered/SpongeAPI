@@ -37,6 +37,7 @@ import org.spongepowered.api.item.inventory.query.QueryType;
 import org.spongepowered.api.item.inventory.query.QueryTypes;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
 import org.spongepowered.api.item.inventory.type.ViewableInventory;
+import org.spongepowered.plugin.PluginContainer;
 
 import java.util.List;
 import java.util.Optional;
@@ -510,6 +511,13 @@ public interface Inventory extends ValueContainer {
          * The end Step. You can set an identifier and/or carrier for the inventory before building it.
          */
         interface EndStep {
+
+            /**
+             * Sets the {@link PluginContainer plugin}.
+             * @param plugin The plugin
+             * @return this step
+             */
+            EndStep plugin(PluginContainer plugin);
 
             /**
              * Sets a unique identifier. Can be retrieved later using. {@link Inventory#get(Key)} with {@link Keys#UNIQUE_ID}
