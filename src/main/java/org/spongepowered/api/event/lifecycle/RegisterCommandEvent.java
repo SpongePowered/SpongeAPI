@@ -34,16 +34,26 @@ import org.spongepowered.plugin.PluginContainer;
 /**
  * Lifecycle event to indicate when commands should be registered.
  *
- * <p>There are two types command that Sponge will always call an event for:</p>
+ * <p>This event is generic and the type parameter is <strong>required</strong>.
+ * This type parameter ({@code C}) will correspond to the base class or
+ * interface that your command inherits from.</p>
+ *
+ * <p>There are two types of command that Sponge will always call an event for:
+ * </p>
  *
  * <ul>
- *     <li>Where {@link C} is {@link Command.Raw}; and</li>
- *     <li>Where {@link C} is {@link Command.Parameterized}.</li>
+ *     <li>Where {@code C} is {@link Command.Raw}; and</li>
+ *     <li>Where {@code C} is {@link Command.Parameterized}.</li>
  * </ul>
  *
- * <p>Other plugins may provide a {@link CommandRegistrar} that allows for other
- * types to be registered as commands. These types will be provided by these
- * other plugins.</p>
+ * <p>Commands that have been generated using {@link Command#builder()} should
+ * be registered during the {@code RegisterCommandEvent<Command.Parameterized>}
+ * event.</p>
+ *
+ * <p>Other plugins and platforms may provide a {@link CommandRegistrar} that
+ * allows for other types to be registered as commands. These types will be
+ * provided by these other plugins, consult their documentation for more
+ * details.</p>
  *
  * <p>This event will be called whenever the game re-initializes commands, and
  * does not guarantee that any specific engine is running.</p>
