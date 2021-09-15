@@ -24,50 +24,41 @@
  */
 package org.spongepowered.api.entity;
 
-import net.kyori.adventure.text.ComponentLike;
-import org.spongepowered.api.entity.living.player.server.ServerPlayer;
+import org.spongepowered.api.entity.living.animal.Chicken;
+import org.spongepowered.api.entity.living.monster.Creeper;
+import org.spongepowered.api.entity.living.monster.zombie.Zombie;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
-import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Describes a type of entity.
+ * A category of entities that conveys a variety of meanings to
+ * consider a group of entities that may differ in {@link EntityType}
+ * are the "same category" grouping. Examples can be for monsters
+ * to include {@link Zombie}, {@link Creeper}, while a creature
+ * may include {@link Chicken}.
  */
-@CatalogedBy(EntityTypes.class)
-public interface EntityType<A extends Entity> extends DefaultedRegistryValue, ComponentLike, Taggable<EntityType<?>> {
+@CatalogedBy(EntityCategories.class)
+public interface EntityCategory extends DefaultedRegistryValue {
 
     /**
-     * If true {@link Entity entities} of this type will not be saved to disk.
+     * Whether this category of entities is considered "friendly".
      *
-     * @return If the type is transient
+     * @return True if this category of entities is friendly
      */
-    boolean isTransient();
+    boolean friendly();
 
     /**
-     * If true {@link Entity entities} of this type may be summoned naturally or via command.
+     * Gets the distance in blocks in which an entity of this category
+     * may be considered to be despawned/removed from a World if too
+     * far from a Player.
+     * <p>Obvious exceptions include when the Entity logic considers
+     * itself not to be despawnable or owned/permanent by a player,
+     * function, or plugin thereof.
      *
-     * @return If the type is summonable
+     * @return The distance at which entities of this category may be
+     * considered to be removed if too far from a player
      */
-    boolean isSummonable();
+    int despawnDistance();
 
-    /**
-     * If true {@link Entity entities} of this type may be caught on fire.
-     *
-     * @return If the type is flammable
-     */
-    boolean isFlammable();
 
-    /**
-     * If true {@link Entity entities} of this type may spawn out of range from {@link ServerPlayer players}.
-     *
-     * @return If the type can spawn far away from a player
-     */
-    boolean canSpawnAwayFromPlayer();
-
-    /**
-     * Gets the {@link EntityCategory} of this type.
-     *
-     * @return The category of this type
-     */
-    EntityCategory category();
 }
