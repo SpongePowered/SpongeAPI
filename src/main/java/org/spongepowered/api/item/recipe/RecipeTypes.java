@@ -65,6 +65,6 @@ public final class RecipeTypes {
     }
 
     private static <T extends Recipe> DefaultedRegistryReference<RecipeType<T>> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.RECIPE_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.RECIPE_TYPE, location).asDefaultedReference(Sponge::game);
     }
 }

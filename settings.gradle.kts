@@ -1,4 +1,4 @@
-rootProject.name = "spongeapi"
+rootProject.name = "SpongeAPI"
 
 pluginManagement {
     repositories {
@@ -7,10 +7,10 @@ pluginManagement {
         }
     }
     plugins {
-        val indraVersion = "2.0.5"
+        val indraVersion = "2.0.6"
         id("org.spongepowered.gradle.event-impl-gen") version "7.0.0"
-        id("org.spongepowered.gradle.sponge.dev") version "1.1.0"
-        id("org.cadixdev.licenser") version "0.6.0"
+        id("org.spongepowered.gradle.sponge.dev") version "1.1.1"
+        id("org.cadixdev.licenser") version "0.6.1"
         id("org.jetbrains.gradle.plugin.idea-ext") version "1.0"
         id("net.ltgt.errorprone") version "2.0.1"
         id("net.kyori.indra.publishing") version indraVersion

@@ -87,7 +87,7 @@ public final class Operators {
     }
 
     private static <T extends Operator> DefaultedRegistryReference<T> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.OPERATOR, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.OPERATOR, location).asDefaultedReference(Sponge::game);
     }
 
     // @formatter:off

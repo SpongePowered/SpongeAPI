@@ -89,7 +89,7 @@ public final class CommandCompletionProviders {
     }
 
     private static DefaultedRegistryReference<CommandCompletionProvider> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.COMMAND_COMPLETION_PROVIDER, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.COMMAND_COMPLETION_PROVIDER, location).asDefaultedReference(Sponge::game);
     }
 
 }

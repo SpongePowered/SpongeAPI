@@ -35,6 +35,7 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.menu.InventoryMenu;
 import org.spongepowered.math.vector.Vector2i;
+import org.spongepowered.plugin.PluginContainer;
 
 import java.util.List;
 import java.util.Set;
@@ -249,6 +250,13 @@ public interface ViewableInventory extends Inventory {
         }
 
         interface EndStep extends Builder {
+
+            /**
+             * Sets the {@link PluginContainer plugin}.
+             * @param plugin The plugin
+             * @return this step
+             */
+            EndStep plugin(PluginContainer plugin);
 
             /**
              * Sets a unique identifier. Can be retrieved later using. {@link Inventory#get(Key)} with {@link Keys#UNIQUE_ID}

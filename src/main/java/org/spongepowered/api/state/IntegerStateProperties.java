@@ -255,6 +255,6 @@ public final class IntegerStateProperties {
     }
 
     private static DefaultedRegistryReference<IntegerStateProperty> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.INTEGER_STATE_PROPERTY, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.INTEGER_STATE_PROPERTY, location).asDefaultedReference(Sponge::game);
     }
 }

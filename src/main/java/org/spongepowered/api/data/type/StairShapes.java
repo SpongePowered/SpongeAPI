@@ -61,6 +61,6 @@ public final class StairShapes {
     }
 
     private static DefaultedRegistryReference<StairShape> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.STAIR_SHAPE, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.STAIR_SHAPE, location).asDefaultedReference(Sponge::game);
     }
 }

@@ -59,6 +59,17 @@ public interface MultiNoiseBiomeConfig extends BiomeProviderConfig {
 
         Builder seed(long seed);
 
+        /**
+         * Sets the seed
+         *
+         * <p>If the seed is a number value, it will be parsed as a {@code long}. Otherwise, the String's {@link String#hashCode()}
+         * will be used.</p>
+         *
+         * @param seed The seed
+         * @return Fluent
+         */
+        Builder seed(String seed);
+
         Builder addBiome(AttributedBiome biome);
 
         Builder addBiomes(List<AttributedBiome> biomes);

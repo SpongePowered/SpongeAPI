@@ -43,10 +43,7 @@ import org.spongepowered.api.world.biome.Biome;
 public final class ChunkStates {
 
     // @formatter:off
-
     // SORTFIELDS:ON
-
-
     /**
      * A {@link Chunk} that is having its {@link Biome biomes}
      * assigned.
@@ -58,12 +55,6 @@ public final class ChunkStates {
      * features that require things like "caves" or "canyons".
      */
     public static final DefaultedRegistryReference<ChunkState> CARVERS = ChunkStates.key(ResourceKey.minecraft("carvers"));
-
-    /**
-     * A {@link Chunk} state that is being populated by world generation,
-     * usually provided by {@link Biome}s.
-     */
-    public static final DefaultedRegistryReference<ChunkState> DECORATED = ChunkStates.key(ResourceKey.minecraft("decorated"));
 
     /**
      * Identifies a {@link Chunk} that is considered empty. The method
@@ -95,18 +86,18 @@ public final class ChunkStates {
     public static final DefaultedRegistryReference<ChunkState> HEIGHTMAPS = ChunkStates.key(ResourceKey.minecraft("heightmaps"));
 
     /**
-     * A {@link Chunk} state that is being "carved" with liquid cave
-     * features, such as underwater ravines, underwater caves, etc.
-     */
-    public static final DefaultedRegistryReference<ChunkState> LIQUID_CARVERS = ChunkStates.key(ResourceKey.minecraft("liquid_carvers"));
-
-    /**
      * A {@link Chunk} state that has yet been processed with lighting in
      * respects to the {@link WorldLike} that contains it. This is the second
      * to last step in the world generation pipeline for a chunk to be marked
      * as ready for being added to a {@link World}.
      */
     public static final DefaultedRegistryReference<ChunkState> LIGHT = ChunkStates.key(ResourceKey.minecraft("light"));
+
+    /**
+     * A {@link Chunk} state that is being "carved" with liquid cave
+     * features, such as underwater ravines, underwater caves, etc.
+     */
+    public static final DefaultedRegistryReference<ChunkState> LIQUID_CARVERS = ChunkStates.key(ResourceKey.minecraft("liquid_carvers"));
 
     /**
      * A {@link Chunk} where the {@link BlockState block states} are being
@@ -123,16 +114,16 @@ public final class ChunkStates {
     public static final DefaultedRegistryReference<ChunkState> SPAWN = ChunkStates.key(ResourceKey.minecraft("spawn"));
 
     /**
-     * A {@link Chunk} where the structures to be placed in the chunk are
-     * being determined and primed for placement.
-     */
-    public static final DefaultedRegistryReference<ChunkState> STRUCTURE_STARTS = ChunkStates.key(ResourceKey.minecraft("structure_starts"));
-
-    /**
      * A {@link Chunk} where final validity checks are being performed on
      * structures that are primed to be placed in the chunk.
      */
     public static final DefaultedRegistryReference<ChunkState> STRUCTURE_REFERENCES = ChunkStates.key(ResourceKey.minecraft("structure_references"));
+
+    /**
+     * A {@link Chunk} where the structures to be placed in the chunk are
+     * being determined and primed for placement.
+     */
+    public static final DefaultedRegistryReference<ChunkState> STRUCTURE_STARTS = ChunkStates.key(ResourceKey.minecraft("structure_starts"));
 
     /**
      * A {@link Chunk} that is at this state means that it is being
@@ -145,14 +136,11 @@ public final class ChunkStates {
     public static final DefaultedRegistryReference<ChunkState> SURFACE = ChunkStates.key(ResourceKey.minecraft("surface"));
 
     // SORTFIELDS:OFF
-
     // @formatter:on
-
     private ChunkStates() {
     }
 
     private static DefaultedRegistryReference<ChunkState> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.CHUNK_STATE, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.CHUNK_STATE, location).asDefaultedReference(Sponge::game);
     }
-
 }

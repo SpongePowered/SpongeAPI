@@ -22,36 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.entity;
 
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.registry.RegistryKey;
-import org.spongepowered.api.registry.RegistryScope;
-import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.registry.RegistryTypes;
 
-@SuppressWarnings("unused")
-@RegistryScopes(scopes = RegistryScope.GAME)
-public final class PortionTypes {
+public final class EntityCategories {
 
-    // @formatter:off
+    //@formatter:off
 
-    // SORTFIELDS:ON
+    public static final DefaultedRegistryReference<EntityCategory> MONSTER = EntityCategories.key(ResourceKey.sponge("monster"));
 
-    public static final DefaultedRegistryReference<PortionType> BOTTOM = PortionTypes.key(ResourceKey.sponge("bottom"));
+    public static final DefaultedRegistryReference<EntityCategory> CREATURE = EntityCategories.key(ResourceKey.sponge("creature"));
 
-    public static final DefaultedRegistryReference<PortionType> TOP = PortionTypes.key(ResourceKey.sponge("top"));
+    public static final DefaultedRegistryReference<EntityCategory> AMBIENT = EntityCategories.key(ResourceKey.sponge("ambient"));
 
-    // SORTFIELDS:OFF
+    public static final DefaultedRegistryReference<EntityCategory> WATER_CREATURE = EntityCategories.key(ResourceKey.sponge("water_creature"));
 
-    // @formatter:on
+    public static final DefaultedRegistryReference<EntityCategory> WATER_AMBIENT = EntityCategories.key(ResourceKey.sponge("water_ambient"));
 
-    private PortionTypes() {
+    public static final DefaultedRegistryReference<EntityCategory> MISCELLANEOUS = EntityCategories.key(ResourceKey.sponge("misc"));
+
+    //@formatter:on
+
+    private EntityCategories() {
+        throw new AssertionError("You should not be attempting to instantiate this class.");
     }
 
-    private static DefaultedRegistryReference<PortionType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.PORTION_TYPE, location).asDefaultedReference(Sponge::game);
+    private static DefaultedRegistryReference<EntityCategory> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.ENTITY_CATEGORY, location).asDefaultedReference(Sponge::game);
     }
 }

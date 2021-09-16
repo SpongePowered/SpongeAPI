@@ -35,7 +35,7 @@ import org.spongepowered.api.network.channel.ChannelManager;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.registry.BuilderProvider;
 import org.spongepowered.api.registry.FactoryProvider;
-import org.spongepowered.api.registry.ScopedRegistryHolder;
+import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.scheduler.Scheduler;
 import org.spongepowered.api.service.ServiceProvider;
 import org.spongepowered.api.sql.SqlManager;
@@ -48,7 +48,7 @@ import java.util.Locale;
  * The core accessor of the API. The implementation uses this to pass
  * constructed objects.
  */
-public interface Game extends ScopedRegistryHolder {
+public interface Game extends RegistryHolder {
 
     /**
      * Gets the async {@link Scheduler}.

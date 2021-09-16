@@ -64,6 +64,6 @@ public final class TransactionTypes {
     }
 
     private static DefaultedRegistryReference<TransactionType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.TRANSACTION_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.TRANSACTION_TYPE, location).asDefaultedReference(Sponge::game);
     }
 }

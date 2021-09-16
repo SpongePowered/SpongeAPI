@@ -57,6 +57,6 @@ public final class TagTypes {
     }
 
     private static <T extends Taggable<T>> DefaultedRegistryReference<TagType<T>> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.TAG_TYPES, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.TAG_TYPES, location).asDefaultedReference(Sponge::game);
     }
 }

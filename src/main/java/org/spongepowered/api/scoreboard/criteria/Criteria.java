@@ -122,6 +122,6 @@ public final class Criteria {
     }
 
     private static DefaultedRegistryReference<Criterion> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.CRITERION, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.CRITERION, location).asDefaultedReference(Sponge::game);
     }
 }

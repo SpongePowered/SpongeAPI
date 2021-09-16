@@ -65,6 +65,6 @@ public final class PandaGenes {
     }
 
     private static DefaultedRegistryReference<PandaGene> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.PANDA_GENE, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.PANDA_GENE, location).asDefaultedReference(Sponge::game);
     }
 }

@@ -170,6 +170,6 @@ public final class MapColorTypes {
     }
 
     private static DefaultedRegistryReference<MapColorType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.MAP_COLOR_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.MAP_COLOR_TYPE, location).asDefaultedReference(Sponge::game);
     }
 }

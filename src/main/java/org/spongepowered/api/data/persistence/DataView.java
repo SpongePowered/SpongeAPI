@@ -589,7 +589,7 @@ public interface DataView {
      */
     default <T> Optional<T> getRegistryValue(final DataQuery path, final RegistryType<T> registryType) {
         return this.getRegistryValue(Objects.requireNonNull(path, "path"), Objects.requireNonNull(registryType, "registryType"),
-                Sponge.game().registries());
+                Sponge.game());
     }
 
     /**
@@ -602,7 +602,7 @@ public interface DataView {
      */
     default <T> Optional<List<T>> getRegistryValueList(final DataQuery path, final RegistryType<T> registryType) {
         return this.getRegistryValueList(Objects.requireNonNull(path, "path"), Objects.requireNonNull(registryType, "registryType"),
-                Sponge.game().registries());
+                Sponge.game());
     }
 
     /**

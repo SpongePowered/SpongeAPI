@@ -165,6 +165,6 @@ public final class SpawnTypes {
     }
 
     private static DefaultedRegistryReference<SpawnType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.SPAWN_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.SPAWN_TYPE, location).asDefaultedReference(Sponge::game);
     }
 }

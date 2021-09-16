@@ -75,6 +75,6 @@ public final class ProfessionTypes {
     }
 
     private static DefaultedRegistryReference<ProfessionType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.PROFESSION_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.PROFESSION_TYPE, location).asDefaultedReference(Sponge::game);
     }
 }

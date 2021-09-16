@@ -184,6 +184,6 @@ public final class ItemTypeTags {
     }
 
     private static DefaultedRegistryReference<Tag<ItemType>> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.ITEM_TYPE_TAGS, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.ITEM_TYPE_TAGS, location).asDefaultedReference(Sponge::game);
     }
 }

@@ -52,6 +52,6 @@ public final class PhantomPhases {
     }
 
     private static DefaultedRegistryReference<PhantomPhase> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.PHANTOM_PHASE, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.PHANTOM_PHASE, location).asDefaultedReference(Sponge::game);
     }
 }

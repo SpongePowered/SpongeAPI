@@ -131,6 +131,6 @@ public final class PotionTypes {
     }
 
     private static DefaultedRegistryReference<PotionType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.POTION_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.POTION_TYPE, location).asDefaultedReference(Sponge::game);
     }
 }

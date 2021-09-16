@@ -623,7 +623,8 @@ public final class Keys {
     public static final Key<Value<Integer>> CUSTOM_MODEL_DATA = Keys.key(ResourceKey.sponge("custom_model_data"), Integer.class);
 
     /**
-     * The custom name of an {@link Entity}.
+     * The custom name of an {@link Entity}, {@link ItemStack} or {@link BlockEntity}.
+     * <p>If no custom name is set the dataholder may still have a {@link Keys#DISPLAY_NAME}</p>
      */
     public static final Key<Value<Component>> CUSTOM_NAME = Keys.key(ResourceKey.sponge("custom_name"), Component.class);
 
@@ -678,8 +679,10 @@ public final class Keys {
     /**
      * The display name of an {@link Entity}, {@link ItemStack} or {@link BlockEntity}.
      *
-     * <p>On an {@link Entity}, this represents a combination of {@link Keys#CUSTOM_NAME} (if set), scoreboard info, and any click data. As such
-     * this is readonly.</p>
+     * <p>To change a display name set a {@link Keys#CUSTOM_NAME} instead.</p>
+     * <p>On an {@link Entity}, this represents a combination of {@link Keys#CUSTOM_NAME} (if set), scoreboard info, and any click data.</p>
+     * <p>On an {@link ItemStack}, this represents the {@link Keys#CUSTOM_NAME} or if not set the {@link ItemType}s translation.
+     * <p>On a {@link BlockEntity}, this usually represents the name displayed in its {@link org.spongepowered.api.item.inventory.Container}
      */
     public static final Key<Value<Component>> DISPLAY_NAME = Keys.key(ResourceKey.sponge("display_name"), Component.class);
 

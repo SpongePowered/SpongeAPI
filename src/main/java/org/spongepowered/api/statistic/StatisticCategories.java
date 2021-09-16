@@ -64,10 +64,10 @@ public final class StatisticCategories {
     }
 
     private static DefaultedRegistryReference<StatisticCategory> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.STATISTIC_CATEGORY, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.STATISTIC_CATEGORY, location).asDefaultedReference(Sponge::game);
     }
 
     private static <T> DefaultedRegistryReference<StatisticCategory.Typed<T>> typedKey(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.STATISTIC_CATEGORY, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.STATISTIC_CATEGORY, location).asDefaultedReference(Sponge::game);
     }
 }

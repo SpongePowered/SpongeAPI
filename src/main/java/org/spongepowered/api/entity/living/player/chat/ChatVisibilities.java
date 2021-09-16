@@ -67,6 +67,6 @@ public final class ChatVisibilities {
     }
 
     private static DefaultedRegistryReference<ChatVisibility> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.CHAT_VISIBILITY, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.CHAT_VISIBILITY, location).asDefaultedReference(Sponge::game);
     }
 }

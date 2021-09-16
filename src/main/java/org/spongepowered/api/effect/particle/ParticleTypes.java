@@ -223,6 +223,6 @@ public final class ParticleTypes {
     }
 
     private static DefaultedRegistryReference<ParticleType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.PARTICLE_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.PARTICLE_TYPE, location).asDefaultedReference(Sponge::game);
     }
 }

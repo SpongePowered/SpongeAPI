@@ -232,7 +232,7 @@ public final class VariableValueParameters {
          * A {@link Function} that always provides the {@link Game} scoped
          * {@link RegistryHolder}.
          */
-        Function<CommandContext, @Nullable RegistryHolder> GLOBAL_HOLDER_PROVIDER = in -> Sponge.game().registries();
+        Function<CommandContext, @Nullable RegistryHolder> GLOBAL_HOLDER_PROVIDER = in -> Sponge.game();
 
         /**
          * A {@link Function} that always provides the {@link Server} scoped
@@ -240,7 +240,7 @@ public final class VariableValueParameters {
          */
         Function<CommandContext, @Nullable RegistryHolder> SERVER_HOLDER_PROVIDER = in -> {
             try {
-                return Sponge.game().server().registries();
+                return Sponge.game().server();
             } catch (final IllegalStateException ignored) {
                 return null;
             }
@@ -252,7 +252,7 @@ public final class VariableValueParameters {
          * provided {@link CommandContext}.
          */
         Function<CommandContext, @Nullable RegistryHolder> WORLD_FROM_LOCATABLE_HOLDER_PROVIDER =
-                in -> in.cause().first(Locatable.class).map(Locatable::world).map(World::registries).orElse(null);
+                in -> in.cause().first(Locatable.class).map(Locatable::world).orElse(null);
 
         /**
          * A {@link Function} that always provides the {@link World} scoped
@@ -260,7 +260,7 @@ public final class VariableValueParameters {
          * provided {@link CommandContext}.
          */
         Function<CommandContext, @Nullable RegistryHolder> WORLD_FROM_CAUSE_HOLDER_PROVIDER =
-                in -> in.cause().first(ServerWorld.class).map(ServerWorld::registries).orElse(null);
+                in -> in.cause().first(ServerWorld.class).orElse(null);
 
         /**
          * Adds an alternative function that retrieves a {@link RegistryHolder}

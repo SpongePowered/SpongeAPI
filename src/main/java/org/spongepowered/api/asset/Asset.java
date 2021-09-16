@@ -26,7 +26,7 @@ package org.spongepowered.api.asset;
 
 import com.google.common.io.Resources;
 import org.spongepowered.plugin.PluginContainer;
-import org.spongepowered.plugin.jvm.Plugin;
+import org.spongepowered.plugin.builtin.jvm.Plugin;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -46,6 +46,10 @@ public interface ChunkGenerator {
         return Sponge.game().factoryProvider().provide(ChunkGenerator.Factory.class).noise(Objects.requireNonNull(provider, "provider"), seed, Objects.requireNonNull(config, "config"));
     }
 
+    static <T extends NoiseGeneratorConfig> ConfigurableChunkGenerator<T> noise(final BiomeProvider provider, final String seed, final T config) {
+        return Sponge.game().factoryProvider().provide(ChunkGenerator.Factory.class).noise(Objects.requireNonNull(provider, "provider"), seed, Objects.requireNonNull(config, "config"));
+    }
+
     static ConfigurableChunkGenerator<NoiseGeneratorConfig> overworld() {
         return Sponge.game().factoryProvider().provide(ChunkGenerator.Factory.class).overworld();
     }
@@ -69,6 +73,8 @@ public interface ChunkGenerator {
         <T extends NoiseGeneratorConfig> ConfigurableChunkGenerator<T> noise(BiomeProvider provider, T config);
 
         <T extends NoiseGeneratorConfig> ConfigurableChunkGenerator<T> noise(BiomeProvider provider, long seed, T config);
+
+        <T extends NoiseGeneratorConfig> ConfigurableChunkGenerator<T> noise(BiomeProvider provider, String seed, T config);
 
         ConfigurableChunkGenerator<NoiseGeneratorConfig> overworld();
 

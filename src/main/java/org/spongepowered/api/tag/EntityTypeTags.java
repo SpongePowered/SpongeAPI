@@ -66,6 +66,6 @@ public final class EntityTypeTags {
     }
 
     private static DefaultedRegistryReference<Tag<EntityType<?>>> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.ENTITY_TYPE_TAGS, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.ENTITY_TYPE_TAGS, location).asDefaultedReference(Sponge::game);
     }
 }

@@ -71,6 +71,6 @@ public final class AttributeTypes {
     }
 
     private static DefaultedRegistryReference<RangedAttributeType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.ATTRIBUTE_TYPE, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.ATTRIBUTE_TYPE, location).asDefaultedReference(Sponge::game);
     }
 }

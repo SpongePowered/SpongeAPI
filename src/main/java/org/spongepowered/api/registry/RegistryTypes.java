@@ -87,6 +87,7 @@ import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.effect.sound.music.MusicDisc;
+import org.spongepowered.api.entity.EntityCategory;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.ai.goal.GoalExecutorType;
 import org.spongepowered.api.entity.ai.goal.GoalType;
@@ -134,7 +135,6 @@ import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.StatisticCategory;
 import org.spongepowered.api.tag.Tag;
 import org.spongepowered.api.tag.TagType;
-import org.spongepowered.api.tag.TagTypes;
 import org.spongepowered.api.util.mirror.Mirror;
 import org.spongepowered.api.util.orientation.Orientation;
 import org.spongepowered.api.util.rotation.Rotation;
@@ -181,6 +181,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<PotionEffectType> POTION_EFFECT_TYPE = RegistryTypes.minecraftKeyInGame("mob_effect");
 
     public static final DefaultedRegistryType<EnchantmentType> ENCHANTMENT_TYPE = RegistryTypes.minecraftKeyInGame("enchantment");
+
+    public static final DefaultedRegistryType<EntityCategory> ENTITY_CATEGORY = RegistryTypes.spongeKeyInGame("mob_category");
 
     public static final DefaultedRegistryType<EntityType<@NonNull ?>> ENTITY_TYPE = RegistryTypes.minecraftKeyInGame("entity_type");
 
@@ -425,14 +427,14 @@ public final class RegistryTypes {
     }
 
     private static <V> DefaultedRegistryType<V> minecraftKeyInGame(final String key) {
-        return RegistryType.of(RegistryRoots.MINECRAFT, ResourceKey.minecraft(Objects.requireNonNull(key, "key"))).asDefaultedType(() -> Sponge.game().registries());
+        return RegistryType.of(RegistryRoots.MINECRAFT, ResourceKey.minecraft(Objects.requireNonNull(key, "key"))).asDefaultedType(Sponge::game);
     }
 
     private static <V> DefaultedRegistryType<V> minecraftKeyInServer(final String key) {
-        return RegistryType.of(RegistryRoots.MINECRAFT, ResourceKey.minecraft(Objects.requireNonNull(key, "key"))).asDefaultedType(() -> Sponge.server().registries());
+        return RegistryType.of(RegistryRoots.MINECRAFT, ResourceKey.minecraft(Objects.requireNonNull(key, "key"))).asDefaultedType(Sponge::server);
     }
 
     private static <V> DefaultedRegistryType<V> spongeKeyInGame(final String key) {
-        return RegistryType.of(RegistryRoots.SPONGE, ResourceKey.sponge(Objects.requireNonNull(key, "key"))).asDefaultedType(() -> Sponge.game().registries());
+        return RegistryType.of(RegistryRoots.SPONGE, ResourceKey.sponge(Objects.requireNonNull(key, "key"))).asDefaultedType(Sponge::game);
     }
 }

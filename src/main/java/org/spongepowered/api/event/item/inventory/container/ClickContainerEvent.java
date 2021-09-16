@@ -25,9 +25,12 @@
 package org.spongepowered.api.event.item.inventory.container;
 
 import org.spongepowered.api.event.item.inventory.ChangeInventoryEvent;
+import org.spongepowered.api.event.item.inventory.CraftItemEvent;
 import org.spongepowered.api.event.item.inventory.DropItemEvent;
 import org.spongepowered.api.item.inventory.Container;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
+import org.spongepowered.api.item.merchant.TradeOffer;
 
 import java.util.Optional;
 
@@ -57,10 +60,31 @@ public interface ClickContainerEvent extends ChangeInventoryEvent, InteractConta
     interface Secondary extends ClickContainerEvent {}
 
     /**
-     * A click in a creative inventory.
-     * <p>The client can dictate what stack is in a Slot</p>
+     * An interaction with a creative inventory.
+     * <p>The cursor transaction is not known to the server</p>
      */
-    interface Creative extends ClickContainerEvent {}
+    interface Creative extends ClickContainerEvent {
+
+        /**
+         * A click in a creative inventory causing an item to drop.
+         */
+        interface Drop extends Creative, DropItemEvent.Dispense {
+
+            /**
+             * Returns the stack to be dropped in creative mode.
+             *
+             * @return The stack to be dropped.
+             */
+            ItemStackSnapshot droppedStack();
+        }
+
+        /**
+         * A click in a creative inventory setting a slot.
+         */
+        interface Set extends Creative {
+
+        }
+    }
 
     /**
      * A click with the <code>shift</code> modifier active
@@ -86,23 +110,25 @@ public interface ClickContainerEvent extends ChangeInventoryEvent, InteractConta
 
     /**
      * An interaction resulting in dropping an item.
+     * <p>Note this is for dropping items with a container open.</p>
+     * <p>See {@link ChangeInventoryEvent.Drop} for events with no container open.</p>
      */
     interface Drop extends ClickContainerEvent, DropItemEvent.Dispense {
 
         /**
          * An interaction dropping a single item. (Q)
          */
-        interface Single extends Drop {}
+        interface Single extends ClickContainerEvent.Drop {}
 
         /**
          * An interaction dropping an entire stack. (shift-Q)
          */
-        interface Full extends Drop {}
+        interface Full extends ClickContainerEvent.Drop {}
 
         /**
          * A click outside of the inventory resulting in dropping the item on cursor.
          */
-        interface Outside extends Drop {
+        interface Outside extends ClickContainerEvent.Drop {
 
             /**
              * A click with the primary mouse button dropping the entire stack on the cursor.
@@ -114,10 +140,6 @@ public interface ClickContainerEvent extends ChangeInventoryEvent, InteractConta
              */
             interface Secondary extends Outside, ClickContainerEvent.Secondary {}
 
-            /**
-             * A click outside of the creative inventory. The cursor transaction is unknown.
-             */
-            interface Creative extends Outside, ClickContainerEvent.Creative {}
         }
     }
 
@@ -146,14 +168,7 @@ public interface ClickContainerEvent extends ChangeInventoryEvent, InteractConta
     /**
      * Fires when the client requests a recipe to be crafted.
      */
-    interface Recipe extends ClickContainerEvent {
-
-        /**
-         * Returns the requested recipe.
-         *
-         * @return The requested recipe.
-         */
-        org.spongepowered.api.item.recipe.Recipe recipe();
+    interface Recipe extends CraftItemEvent.Preview {
 
         /**
          * Fires when the Client requests a recipe to be crafted once.
@@ -164,6 +179,26 @@ public interface ClickContainerEvent extends ChangeInventoryEvent, InteractConta
          * Fires when the client requests a recipe to be crafted as much as possible.
          */
         interface All extends Recipe {}
+    }
+
+    /**
+     * Fies when the client requests to select a trade from a {@link org.spongepowered.api.entity.living.trader.Trader}
+     */
+    interface SelectTrade extends ClickContainerEvent {
+
+        /**
+         * Returns the selected trade offer index.
+         *
+         * @return The selected trade offer index
+         */
+        int selected();
+
+        /**
+         * Returns the selected trade offer.
+         *
+         * @return The selected trade offer
+         */
+        TradeOffer tradeOffer();
     }
 
     /**

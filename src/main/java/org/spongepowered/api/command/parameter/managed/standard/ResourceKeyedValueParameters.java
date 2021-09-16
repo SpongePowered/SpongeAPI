@@ -474,6 +474,6 @@ public final class ResourceKeyedValueParameters {
     }
 
     private static <T> DefaultedRegistryReference<ResourceKeyedValueParameter<T>> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.REGISTRY_KEYED_VALUE_PARAMETER, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.REGISTRY_KEYED_VALUE_PARAMETER, location).asDefaultedReference(Sponge::game);
     }
 }

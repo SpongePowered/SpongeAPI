@@ -80,6 +80,6 @@ public class MapDecorationOrientations {
     }
 
     private static DefaultedRegistryReference<MapDecorationOrientation> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.MAP_DECORATION_ORIENTATION, location).asDefaultedReference(() -> Sponge.game().registries());
+        return RegistryKey.of(RegistryTypes.MAP_DECORATION_ORIENTATION, location).asDefaultedReference(Sponge::game);
     }
 }

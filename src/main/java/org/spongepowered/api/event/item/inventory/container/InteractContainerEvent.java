@@ -27,6 +27,7 @@ package org.spongepowered.api.event.item.inventory.container;
 import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.event.item.inventory.ChangeInventoryEvent;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
@@ -57,5 +58,5 @@ public interface InteractContainerEvent extends Event, Cancellable {
     /**
      * The target container was closed.
      */
-    interface Close extends InteractContainerEvent {}
+    interface Close extends ChangeInventoryEvent, InteractContainerEvent {}
 }
