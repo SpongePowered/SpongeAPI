@@ -78,6 +78,7 @@ public interface EntityVolume extends Volume {
     /**
      * Gets all the loaded entities in this entity volume, in no particular
      * order.
+     * The returned collection is unmodifiable.
      *
      * @return All entities in this volume.
      */
