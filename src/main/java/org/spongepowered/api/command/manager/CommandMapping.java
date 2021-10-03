@@ -27,6 +27,7 @@ package org.spongepowered.api.command.manager;
 import org.spongepowered.api.command.registrar.CommandRegistrar;
 import org.spongepowered.plugin.PluginContainer;
 
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -59,11 +60,11 @@ public interface CommandMapping {
     Set<String> allAliases();
 
     /**
-     * Gets the plugin that owns the command.
+     * Gets the plugin that owns the command, if known.
      *
      * @return The plugin.
      */
-    PluginContainer plugin();
+    Optional<PluginContainer> plugin();
 
     /**
      * Gets the {@link CommandRegistrar} that registered this command.
