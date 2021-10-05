@@ -25,14 +25,12 @@
 package org.spongepowered.api.util;
 
 /**
- * An identifiable object that uses a {@link String} as an identifier.
+ * An object that can be described by a {@link String name}.
  */
 public interface Nameable {
 
     /**
-     * The name that represents this object.
-     *
-     * @return The name.
+     * @return The {@link String name}
      */
     String name();
 

@@ -32,7 +32,7 @@ import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 
 /**
- * Represents a scheduler for running {@link Task}s.
+ * Represents a scheduler for running {@link Task tasks}.
  */
 public interface Scheduler {
 
@@ -47,19 +47,11 @@ public interface Scheduler {
     /**
      * Returns a set of {@link Task}s that match the Regular Expression pattern.
      *
-     * @param pattern The regular expression pattern applied to the name of
-     *        tasks
-     * @return A set of {@link Task}s that have names that match the pattern,
-     *         the set will be empty if no names match
+     * @param pattern The regular expression pattern applied to the name of tasks
+     * @return A set of {@link Task}s that have names that match the pattern, the
+     * set will be empty if no names match
      */
     Set<ScheduledTask> findTasks(String pattern);
-
-    /**
-     * Returns a set of all currently scheduled tasks.
-     *
-     * @return A set of scheduled tasks
-     */
-    Set<ScheduledTask> tasks();
 
     /**
      * Returns a set of all currently scheduled tasks owned by the given plugin.
@@ -70,20 +62,47 @@ public interface Scheduler {
     Set<ScheduledTask> tasks(PluginContainer plugin);
 
     /**
-     * Creates a new {@link ExecutorService} that can be used to schedule
+     * Returns a set of all currently scheduled tasks.
+     *
+     * @return A set of scheduled tasks
+     */
+    Set<ScheduledTask> tasks();
+
+    /**
+     * Gets an {@link ExecutorService executor} that can be used to schedule
      * tasks through the standard Java concurrency interfaces.
      *
      * @param plugin The plugin that will own the created tasks
-     * @return A new executor service that can be used to execute tasks
+     * @return An executor that can be used to execute tasks
      */
-    TaskExecutorService createExecutor(PluginContainer plugin);
+    TaskExecutorService executor(PluginContainer plugin);
 
     /**
      * Submit a {@link Task} to this scheduler and returns the task
      * as a {@link ScheduledTask}.
+     * <p>
+     * The name of the task will be the form:<br> {@code PLUGIN_ID "-" ( "A-" | "S-" ) SERIAL_ID}
+     * <p>
+     * Examples of default Task names:<br>
      *
+     * {@code "FooPlugin-A-12"}<br>{@code "BarPlugin-S-4322"}
+     * <p>
+     * No two active tasks will have the same serial ID for the same
+     * synchronisation type.<br>i.e {@code APlugin-A-15} and
+     * {@code BPlugin-A-15} is not possible but {@code BPlugin-S-15}
+     * is.
      * @param task The task
      * @return The scheduled task
      */
     ScheduledTask submit(Task task);
+
+    /**
+     * Submit a {@link Task} with a specified {@link String name} to this scheduler and returns the task
+     * as a {@link ScheduledTask}.
+     *
+     * @param task The task
+     * @param name The name
+     * @return The scheduled task
+     */
+    ScheduledTask submit(Task task, String name);
 }

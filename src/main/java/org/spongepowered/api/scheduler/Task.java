@@ -25,7 +25,6 @@
 package org.spongepowered.api.scheduler;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.Ticks;
 import org.spongepowered.plugin.PluginContainer;
@@ -51,18 +50,9 @@ public interface Task {
     }
 
     /**
-     * Gets the name of this task.
-     *
-     * @return The name of the task
+     * @return The {@link PluginContainer plugin}
      */
-    String name();
-
-    /**
-     * Returns the plugin that constructed this task.
-     *
-     * @return The plugin that constructed the task
-     */
-    PluginContainer owner();
+    PluginContainer plugin();
 
     /**
      * Gets the delay that the task was scheduled to run after. A delay of 0
@@ -79,13 +69,6 @@ public interface Task {
      * @return The interval (period) duration
      */
     Duration interval();
-
-    /**
-     * Gets the {@link Consumer}&gt;{@link Task}&lt; that this task is running.
-     *
-     * @return The consumer
-     */
-    Consumer<ScheduledTask> consumer();
 
     /**
      * Represents a builder to create a {@link Task}.
@@ -225,35 +208,7 @@ public interface Task {
         Builder interval(final Ticks ticks);
 
         /**
-         * Sets the name of the task, the name cannot be blank.
-         *
-         * <p>If the name is not set in the builder, the name of the task
-         * will be the form:<br> {@code PLUGIN_ID "-" ( "A-" | "S-" ) SERIAL_ID}
-         * </p>
-         *
-         * <p>Examples of default Task names:<br>
-         *
-         * {@code "FooPlugin-A-12"}<br>{@code "BarPlugin-S-4322"}</p>
-         *
-         * <p>No two active tasks will have the same serial ID for the same
-         * synchronisation type.<br>i.e {@code APlugin-A-15} and
-         * {@code BPlugin-A-15} is not possible but {@code BPlugin-S-15}
-         * is.</p>
-         *
-         * @param name The task name
-         * @return This builder, for chaining
-         * @throws IllegalArgumentException If the name is blank
-         */
-        Builder name(String name);
-
-        /**
          * Sets the plugin of the task.
-         *
-         * <p>If no plugin is set, one will be extracted from the
-         * {@link CauseStackManager} when the {@link #build()} method
-         * is called from a main thread. If it's not called called
-         * from a main thread, a {@link IllegalStateException} will
-         * be thrown.</p>
          *
          * @param plugin The plugin instance
          * @return This builder, for chaining
@@ -265,10 +220,8 @@ public interface Task {
          * Builds the task.
          *
          * @return A new instance of a {@link Task}
-         * @throws IllegalStateException If the {@link #execute(Runnable)} isn't set. Or
-         *                               in case that {@link #plugin(PluginContainer)} isn't set and
-         *                               no {@link PluginContainer} could be extracted
-         *                               from the {@link CauseStackManager}.
+         * @throws IllegalStateException If the {@link #execute(Runnable)} isn't set or in the
+         * case that {@link #plugin(PluginContainer)} isn't set.
          */
         @Override
         Task build();

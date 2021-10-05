@@ -25,36 +25,23 @@
 package org.spongepowered.api.scheduler;
 
 import org.spongepowered.api.util.Identifiable;
-import org.spongepowered.plugin.PluginContainer;
+import org.spongepowered.api.util.Nameable;
 
 /**
- * Represents a {@link Task} that was scheduled through a
- * {@link Scheduler} using {@link Scheduler#submit(Task)}.
+ * Represents a {@link Task task} that was scheduled through a
+ * {@link Scheduler scheduler} using {@link Scheduler#submit(Task)}.
  */
-public interface ScheduledTask extends Identifiable {
+public interface ScheduledTask extends Nameable, Identifiable {
 
     /**
-     * Gets the name of this scheduled task.
-     *
-     * @return The name
+     * @return The {@link Scheduler scheduler}
      */
-    String name();
+    Scheduler scheduler();
 
     /**
-     * Gets the {@link Task} that was scheduled.
-     *
-     * @return The task
+     * @return The {@link Task}
      */
     Task task();
-
-    /**
-     * Returns the plugin that scheduled this task.
-     *
-     * @return The plugin that scheduled the task
-     */
-    default PluginContainer owner() {
-        return this.task().owner();
-    }
 
     /**
      * Cancels this scheduled task. Cancelling a repeating task
