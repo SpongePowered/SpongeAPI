@@ -52,4 +52,13 @@ public interface EndCrystal extends Explosive {
     default Value.Mutable<Boolean> showBottom() {
         return this.requireValue(Keys.SHOW_BOTTOM).asMutable();
     }
+
+    /**
+     * {@link Keys#HEALTH}
+     *
+     * @return The health of the end crystal
+     */
+    default Value.Mutable<Double> health() {
+        return this.requireValue(Keys.HEALTH).asMutable();
+    }
 }

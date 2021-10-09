@@ -30,14 +30,23 @@ import org.spongepowered.api.data.value.Value;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface TameableAnimal extends Animal {
+public interface TameableAnimal extends Animal, Sittable {
 
     /**
      * {@link Keys#TAMER}
      *
-     * @return The unique id of the tamer
+     * @return The tamer of the animal
      */
     default Optional<Value.Mutable<UUID>> tamer() {
         return this.getValue(Keys.TAMER).map(Value::asMutable);
+    }
+
+    /**
+     * {@link Keys#IS_TAMED}
+     *
+     * @return Whether the animal is currently tamed
+     */
+    default Value.Mutable<Boolean> tamed() {
+        return this.requireValue(Keys.IS_TAMED).asMutable();
     }
 }

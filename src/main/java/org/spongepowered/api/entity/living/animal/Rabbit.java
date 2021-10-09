@@ -35,6 +35,7 @@ public interface Rabbit extends Animal {
 
     /**
      * {@link Keys#RABBIT_TYPE}
+     *
      * @return The type of rabbit
      * @see org.spongepowered.api.data.type.RabbitTypes
      */

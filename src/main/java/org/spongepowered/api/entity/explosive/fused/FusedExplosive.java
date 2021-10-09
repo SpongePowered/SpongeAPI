@@ -52,4 +52,13 @@ public interface FusedExplosive extends Explosive {
     default Value.Mutable<Ticks> fuseDuration() {
         return this.requireValue(Keys.FUSE_DURATION).asMutable();
     }
+
+    /**
+     * {@link Keys#TICKS_REMAINING}
+     *
+     * @return The remaining fuse time in ticks of the fused explosive
+     */
+    default Value.Mutable<Ticks> ticksRemaining() {
+        return this.requireValue(Keys.TICKS_REMAINING).asMutable();
+    }
 }

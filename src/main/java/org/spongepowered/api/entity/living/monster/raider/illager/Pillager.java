@@ -34,8 +34,9 @@ import org.spongepowered.api.item.inventory.Carrier;
 public interface Pillager extends Illager, Carrier {
 
     /**
-     * {@link Keys#IS_CHARGING_CROSSBOW}.
-     * @return whether this pillager is charging a crossbow
+     * {@link Keys#IS_CHARGING_CROSSBOW}
+     *
+     * @return Whether this pillager is charging a crossbow
      */
     default Value.Mutable<Boolean> chargingCrossbow() {
         return this.requireValue(Keys.IS_CHARGING_CROSSBOW).asMutable();

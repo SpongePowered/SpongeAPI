@@ -43,28 +43,10 @@ public interface Animal extends Ageable {
     /**
      * {@link Keys#BREEDER}
      *
-     * @return The breeder's unique id
+     * @return The current breeder of the animal
      */
     default Optional<Value.Mutable<UUID>> breeder() {
         return this.getValue(Keys.BREEDER).map(Value::asMutable);
-    }
-
-    /**
-     * {@link Keys#BREEDING_COOLDOWN}
-     *
-     * @return The current breeding cooldown
-     */
-    default Value.Mutable<Ticks> breedingCooldown() {
-        return this.requireValue(Keys.BREEDING_COOLDOWN).asMutable();
-    }
-
-    /**
-     * {@link Keys#CAN_BREED}
-     *
-     * @return If animal can breed
-     */
-    default Value.Mutable<Boolean> canBreed() {
-        return this.requireValue(Keys.CAN_BREED).asMutable();
     }
 
     /**

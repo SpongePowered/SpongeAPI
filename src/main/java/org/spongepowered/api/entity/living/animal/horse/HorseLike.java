@@ -24,12 +24,44 @@
  */
 package org.spongepowered.api.entity.living.animal.horse;
 
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.animal.Animal;
 import org.spongepowered.api.item.inventory.Carrier;
+
+import java.util.Optional;
+import java.util.UUID;
 
 /**
  * An abstract representation of a Horse.
  */
 public interface HorseLike extends Animal, Carrier {
+
+    /**
+     * {@link Keys#IS_SADDLED}
+     *
+     * @return Whether the horse is saddled
+     */
+    default Value.Mutable<Boolean> saddled() {
+        return this.requireValue(Keys.IS_SADDLED).asMutable();
+    }
+
+    /**
+     * {@link Keys#IS_TAMED}
+     *
+     * @return Whether the horse is currently tamed
+     */
+    default Value.Mutable<Boolean> tamed() {
+        return this.requireValue(Keys.IS_TAMED).asMutable();
+    }
+
+    /**
+     * {@link Keys#TAMER}
+     *
+     * @return The tamer of the horse
+     */
+    default Optional<Value.Mutable<UUID>> tamer() {
+        return this.getValue(Keys.TAMER).map(Value::asMutable);
+    }
 
 }
