@@ -67,7 +67,7 @@ public final class VolumeApplicators {
      * @return A blockstate based VolumeApplicator
      */
     public static <M extends BlockVolume.Modifiable<M>> VolumeApplicator<M, BlockState, Boolean> applyBlocks() {
-        return ((volume, element) -> volume.setBlock(element.position().round().toInt(), element.type()));
+        return (volume, element) -> volume.setBlock(element.position().round().toInt(), element.type());
     }
 
     /**
@@ -82,7 +82,7 @@ public final class VolumeApplicators {
      */
     public static <M extends PhysicsAwareMutableBlockVolume<M>> VolumeApplicator<M, BlockState, Boolean> applyBlocks(final BlockChangeFlag flag) {
         Objects.requireNonNull(flag, "BlockChangeFlag cannot be null!");
-        return ((volume, element) -> volume.setBlock(element.position().round().toInt(), element.type(), flag));
+        return (volume, element) -> volume.setBlock(element.position().round().toInt(), element.type(), flag);
     }
 
     /**
