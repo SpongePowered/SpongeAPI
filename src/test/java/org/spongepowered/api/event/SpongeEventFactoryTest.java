@@ -89,7 +89,7 @@ class SpongeEventFactoryTest {
     // to ensure that it is not GC'd for the duration of a test. This list
     private static List<World<?, ?>> worlds = new ArrayList<>();
 
-    private static final Answer<Object> EVENT_MOCKING_ANSWER = (invoc -> {
+    private static final Answer<Object> EVENT_MOCKING_ANSWER = invoc -> {
         // We use the original mock type to try to get more information about
         // the return type. For example, imagine that SignData#asImmutable is called
         // on a mocked SignData instance. The return type given to use by
@@ -102,7 +102,7 @@ class SpongeEventFactoryTest {
                 Mockito.mockingDetails(invoc.getMock()).getMockCreationSettings().getTypeToMock()
         );
         return SpongeEventFactoryTest.mockParam(returnType);
-    });
+    };
 
     static Stream<Object[]> eventMethods() {
         return Arrays.stream(SpongeEventFactory.class.getMethods())
@@ -126,7 +126,7 @@ class SpongeEventFactoryTest {
                 params[i] = SpongeEventFactoryTest.mockParam(paramTypes[i]);
             }
             final Object testEvent = method.invoke(null, params);
-            for (Method eventMethod : testEvent.getClass().getMethods()) {
+            for (final Method eventMethod : testEvent.getClass().getMethods()) {
 
                 if (SpongeEventFactoryTest.EXCLUDED_METHODS.contains(eventMethod.getName())) {
                     continue;
@@ -146,7 +146,7 @@ class SpongeEventFactoryTest {
                         Assertions.assertNotNull(eventMethod.invoke(testEvent, params), "The return type of " + eventMethod + " was null!");
                     }
 
-                } catch (Exception e) {
+                } catch (final Exception e) {
                     throw new RuntimeException(
                             "Invocation of the method '" + eventMethod + "' failed\n\n"
                                     + "(To avoid the need to create numerous boilerplate concrete classes for Sponge's many event "
@@ -167,7 +167,7 @@ class SpongeEventFactoryTest {
                             e);
                 }
             }
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new RuntimeException(
                     "Runtime creation of the '" + method.getReturnType().getName() + "' event failed\n\n"
                             + "(To avoid the need to create numerous boilerplate concrete classes for Sponge's many event "

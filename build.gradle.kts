@@ -35,6 +35,8 @@ val mathVersion: String by project
 dependencies {
     val caffeineVersion: String by project
     val errorproneVersion: String by project
+    val junitVersion: String by project
+    val mockitoVersion: String by project
     val pluginSpiVersion: String by project
 
     // Directly tied to what's available from Minecraft
@@ -117,12 +119,12 @@ dependencies {
     // Math library
     api("org.spongepowered:math:$mathVersion")
 
-    testImplementation(platform("org.junit:junit-bom:5.7.2"))
+    testImplementation(platform("org.junit:junit-bom:$junitVersion"))
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testImplementation("org.junit.jupiter:junit-jupiter-params")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
     testImplementation("org.hamcrest:hamcrest:2.2")
-    testImplementation("org.mockito:mockito-core:3.10.0")
+    testImplementation("org.mockito:mockito-core:$mockitoVersion")
 }
 
 tasks {
