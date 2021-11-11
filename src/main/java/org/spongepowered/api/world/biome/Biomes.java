@@ -41,11 +41,7 @@ public final class Biomes {
     // @formatter:off
     public static final RegistryReference<Biome> BADLANDS = Biomes.key(ResourceKey.minecraft("badlands"));
 
-    public static final RegistryReference<Biome> BADLANDS_PLATEAU = Biomes.key(ResourceKey.minecraft("badlands_plateau"));
-
     public static final RegistryReference<Biome> BAMBOO_JUNGLE = Biomes.key(ResourceKey.minecraft("bamboo_jungle"));
-
-    public static final RegistryReference<Biome> BAMBOO_JUNGLE_HILLS = Biomes.key(ResourceKey.minecraft("bamboo_jungle_hills"));
 
     public static final RegistryReference<Biome> BASALT_DELTAS = Biomes.key(ResourceKey.minecraft("basalt_deltas"));
 
@@ -53,15 +49,11 @@ public final class Biomes {
 
     public static final RegistryReference<Biome> BIRCH_FOREST = Biomes.key(ResourceKey.minecraft("birch_forest"));
 
-    public static final RegistryReference<Biome> BIRCH_FOREST_HILLS = Biomes.key(ResourceKey.minecraft("birch_forest_hills"));
-
     public static final RegistryReference<Biome> COLD_OCEAN = Biomes.key(ResourceKey.minecraft("cold_ocean"));
 
     public static final RegistryReference<Biome> CRIMSON_FOREST = Biomes.key(ResourceKey.minecraft("crimson_forest"));
 
     public static final RegistryReference<Biome> DARK_FOREST = Biomes.key(ResourceKey.minecraft("dark_forest"));
-
-    public static final RegistryReference<Biome> DARK_FOREST_HILLS = Biomes.key(ResourceKey.minecraft("dark_forest_hills"));
 
     public static final RegistryReference<Biome> DEEP_COLD_OCEAN = Biomes.key(ResourceKey.minecraft("deep_cold_ocean"));
 
@@ -71,13 +63,7 @@ public final class Biomes {
 
     public static final RegistryReference<Biome> DEEP_OCEAN = Biomes.key(ResourceKey.minecraft("deep_ocean"));
 
-    public static final RegistryReference<Biome> DEEP_WARM_OCEAN = Biomes.key(ResourceKey.minecraft("deep_warm_ocean"));
-
     public static final RegistryReference<Biome> DESERT = Biomes.key(ResourceKey.minecraft("desert"));
-
-    public static final RegistryReference<Biome> DESERT_HILLS = Biomes.key(ResourceKey.minecraft("desert_hills"));
-
-    public static final RegistryReference<Biome> DESERT_LAKES = Biomes.key(ResourceKey.minecraft("desert_lakes"));
 
     public static final RegistryReference<Biome> DRIPSTONE_CAVES = Biomes.key(ResourceKey.minecraft("dripstone_caves"));
 
@@ -95,51 +81,35 @@ public final class Biomes {
 
     public static final RegistryReference<Biome> FROZEN_OCEAN = Biomes.key(ResourceKey.minecraft("frozen_ocean"));
 
+    public static final RegistryReference<Biome> FROZEN_PEAKS = Biomes.key(ResourceKey.minecraft("frozen_peaks"));
+
     public static final RegistryReference<Biome> FROZEN_RIVER = Biomes.key(ResourceKey.minecraft("frozen_river"));
 
-    public static final RegistryReference<Biome> GIANT_SPRUCE_TAIGA = Biomes.key(ResourceKey.minecraft("giant_spruce_taiga"));
-
-    public static final RegistryReference<Biome> GIANT_SPRUCE_TAIGA_HILLS = Biomes.key(ResourceKey.minecraft("giant_spruce_taiga_hills"));
-
-    public static final RegistryReference<Biome> GIANT_TREE_TAIGA = Biomes.key(ResourceKey.minecraft("giant_tree_taiga"));
-
-    public static final RegistryReference<Biome> GIANT_TREE_TAIGA_HILLS = Biomes.key(ResourceKey.minecraft("giant_tree_taiga_hills"));
-
-    public static final RegistryReference<Biome> GRAVELLY_MOUNTAINS = Biomes.key(ResourceKey.minecraft("gravelly_mountains"));
+    public static final RegistryReference<Biome> GROVE = Biomes.key(ResourceKey.minecraft("grove"));
 
     public static final RegistryReference<Biome> ICE_SPIKES = Biomes.key(ResourceKey.minecraft("ice_spikes"));
 
+    public static final RegistryReference<Biome> JAGGED_PEAKS = Biomes.key(ResourceKey.minecraft("jagged_peaks"));
+
     public static final RegistryReference<Biome> JUNGLE = Biomes.key(ResourceKey.minecraft("jungle"));
-
-    public static final RegistryReference<Biome> JUNGLE_EDGE = Biomes.key(ResourceKey.minecraft("jungle_edge"));
-
-    public static final RegistryReference<Biome> JUNGLE_HILLS = Biomes.key(ResourceKey.minecraft("jungle_hills"));
 
     public static final RegistryReference<Biome> LUKEWARM_OCEAN = Biomes.key(ResourceKey.minecraft("lukewarm_ocean"));
 
     public static final RegistryReference<Biome> LUSH_CAVES = Biomes.key(ResourceKey.minecraft("lush_caves"));
 
-    public static final RegistryReference<Biome> MODIFIED_BADLANDS_PLATEAU = Biomes.key(ResourceKey.minecraft("modified_badlands_plateau"));
-
-    public static final RegistryReference<Biome> MODIFIED_GRAVELLY_MOUNTAINS = Biomes.key(ResourceKey.minecraft("modified_gravelly_mountains"));
-
-    public static final RegistryReference<Biome> MODIFIED_JUNGLE = Biomes.key(ResourceKey.minecraft("modified_jungle"));
-
-    public static final RegistryReference<Biome> MODIFIED_JUNGLE_EDGE = Biomes.key(ResourceKey.minecraft("modified_jungle_edge"));
-
-    public static final RegistryReference<Biome> MODIFIED_WOODED_BADLANDS_PLATEAU = Biomes.key(ResourceKey.minecraft("modified_wooded_badlands_plateau"));
-
-    public static final RegistryReference<Biome> MOUNTAIN_EDGE = Biomes.key(ResourceKey.minecraft("mountain_edge"));
-
-    public static final RegistryReference<Biome> MOUNTAINS = Biomes.key(ResourceKey.minecraft("mountains"));
-
-    public static final RegistryReference<Biome> MUSHROOM_FIELD_SHORE = Biomes.key(ResourceKey.minecraft("mushroom_field_shore"));
+    public static final RegistryReference<Biome> MEADOW = Biomes.key(ResourceKey.minecraft("meadow"));
 
     public static final RegistryReference<Biome> MUSHROOM_FIELDS = Biomes.key(ResourceKey.minecraft("mushroom_fields"));
 
     public static final RegistryReference<Biome> NETHER_WASTES = Biomes.key(ResourceKey.minecraft("nether_wastes"));
 
     public static final RegistryReference<Biome> OCEAN = Biomes.key(ResourceKey.minecraft("ocean"));
+
+    public static final RegistryReference<Biome> OLD_GROWTH_BIRCH_FOREST = Biomes.key(ResourceKey.minecraft("old_growth_birch_forest"));
+
+    public static final RegistryReference<Biome> OLD_GROWTH_PINE_TAIGA = Biomes.key(ResourceKey.minecraft("old_growth_pine_taiga"));
+
+    public static final RegistryReference<Biome> OLD_GROWTH_SPRUCE_TAIGA = Biomes.key(ResourceKey.minecraft("old_growth_spruce_taiga"));
 
     public static final RegistryReference<Biome> PLAINS = Biomes.key(ResourceKey.minecraft("plains"));
 
@@ -149,43 +119,29 @@ public final class Biomes {
 
     public static final RegistryReference<Biome> SAVANNA_PLATEAU = Biomes.key(ResourceKey.minecraft("savanna_plateau"));
 
-    public static final RegistryReference<Biome> SHATTERED_SAVANNA = Biomes.key(ResourceKey.minecraft("shattered_savanna"));
-
-    public static final RegistryReference<Biome> SHATTERED_SAVANNA_PLATEAU = Biomes.key(ResourceKey.minecraft("shattered_savanna_plateau"));
-
     public static final RegistryReference<Biome> SMALL_END_ISLANDS = Biomes.key(ResourceKey.minecraft("small_end_islands"));
 
     public static final RegistryReference<Biome> SNOWY_BEACH = Biomes.key(ResourceKey.minecraft("snowy_beach"));
 
-    public static final RegistryReference<Biome> SNOWY_MOUNTAINS = Biomes.key(ResourceKey.minecraft("snowy_mountains"));
+    public static final RegistryReference<Biome> SNOWY_PLAINS = Biomes.key(ResourceKey.minecraft("snowy_plains"));
+
+    public static final RegistryReference<Biome> SNOWY_SLOPES = Biomes.key(ResourceKey.minecraft("snowy_slopes"));
 
     public static final RegistryReference<Biome> SNOWY_TAIGA = Biomes.key(ResourceKey.minecraft("snowy_taiga"));
 
-    public static final RegistryReference<Biome> SNOWY_TAIGA_HILLS = Biomes.key(ResourceKey.minecraft("snowy_taiga_hills"));
-
-    public static final RegistryReference<Biome> SNOWY_TAIGA_MOUNTAINS = Biomes.key(ResourceKey.minecraft("snowy_taiga_mountains"));
-
-    public static final RegistryReference<Biome> SNOWY_TUNDRA = Biomes.key(ResourceKey.minecraft("snowy_tundra"));
-
     public static final RegistryReference<Biome> SOUL_SAND_VALLEY = Biomes.key(ResourceKey.minecraft("soul_sand_valley"));
 
-    public static final RegistryReference<Biome> STONE_SHORE = Biomes.key(ResourceKey.minecraft("stone_shore"));
+    public static final RegistryReference<Biome> SPARSE_JUNGLE = Biomes.key(ResourceKey.minecraft("sparse_jungle"));
+
+    public static final RegistryReference<Biome> STONY_PEAKS = Biomes.key(ResourceKey.minecraft("stony_peaks"));
+
+    public static final RegistryReference<Biome> STONY_SHORE = Biomes.key(ResourceKey.minecraft("stony_shore"));
 
     public static final RegistryReference<Biome> SUNFLOWER_PLAINS = Biomes.key(ResourceKey.minecraft("sunflower_plains"));
 
     public static final RegistryReference<Biome> SWAMP = Biomes.key(ResourceKey.minecraft("swamp"));
 
-    public static final RegistryReference<Biome> SWAMP_HILLS = Biomes.key(ResourceKey.minecraft("swamp_hills"));
-
     public static final RegistryReference<Biome> TAIGA = Biomes.key(ResourceKey.minecraft("taiga"));
-
-    public static final RegistryReference<Biome> TAIGA_HILLS = Biomes.key(ResourceKey.minecraft("taiga_hills"));
-
-    public static final RegistryReference<Biome> TAIGA_MOUNTAINS = Biomes.key(ResourceKey.minecraft("taiga_mountains"));
-
-    public static final RegistryReference<Biome> TALL_BIRCH_FOREST = Biomes.key(ResourceKey.minecraft("tall_birch_forest"));
-
-    public static final RegistryReference<Biome> TALL_BIRCH_HILLS = Biomes.key(ResourceKey.minecraft("tall_birch_hills"));
 
     public static final RegistryReference<Biome> THE_END = Biomes.key(ResourceKey.minecraft("the_end"));
 
@@ -195,11 +151,15 @@ public final class Biomes {
 
     public static final RegistryReference<Biome> WARPED_FOREST = Biomes.key(ResourceKey.minecraft("warped_forest"));
 
-    public static final RegistryReference<Biome> WOODED_BADLANDS_PLATEAU = Biomes.key(ResourceKey.minecraft("wooded_badlands_plateau"));
+    public static final RegistryReference<Biome> WINDSWEPT_FOREST = Biomes.key(ResourceKey.minecraft("windswept_forest"));
 
-    public static final RegistryReference<Biome> WOODED_HILLS = Biomes.key(ResourceKey.minecraft("wooded_hills"));
+    public static final RegistryReference<Biome> WINDSWEPT_GRAVELLY_HILLS = Biomes.key(ResourceKey.minecraft("windswept_gravelly_hills"));
 
-    public static final RegistryReference<Biome> WOODED_MOUNTAINS = Biomes.key(ResourceKey.minecraft("wooded_mountains"));
+    public static final RegistryReference<Biome> WINDSWEPT_HILLS = Biomes.key(ResourceKey.minecraft("windswept_hills"));
+
+    public static final RegistryReference<Biome> WINDSWEPT_SAVANNA = Biomes.key(ResourceKey.minecraft("windswept_savanna"));
+
+    public static final RegistryReference<Biome> WOODED_BADLANDS = Biomes.key(ResourceKey.minecraft("wooded_badlands"));
 
     // @formatter:on
     private Biomes() {

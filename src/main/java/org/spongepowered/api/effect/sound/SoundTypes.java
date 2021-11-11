@@ -474,6 +474,8 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_GRINDSTONE_USE = SoundTypes.key(ResourceKey.minecraft("block.grindstone.use"));
 
+    public static final DefaultedRegistryReference<SoundType> BLOCK_GROWING_PLANT_CROP = SoundTypes.key(ResourceKey.minecraft("block.growing_plant.crop"));
+
     public static final DefaultedRegistryReference<SoundType> BLOCK_HANGING_ROOTS_BREAK = SoundTypes.key(ResourceKey.minecraft("block.hanging_roots.break"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_HANGING_ROOTS_FALL = SoundTypes.key(ResourceKey.minecraft("block.hanging_roots.fall"));
@@ -2276,6 +2278,12 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ITEM_BUCKET_FILL_POWDER_SNOW = SoundTypes.key(ResourceKey.minecraft("item.bucket.fill_powder_snow"));
 
+    public static final DefaultedRegistryReference<SoundType> ITEM_BUNDLE_DROP_CONTENTS = SoundTypes.key(ResourceKey.minecraft("item.bundle.drop_contents"));
+
+    public static final DefaultedRegistryReference<SoundType> ITEM_BUNDLE_INSERT = SoundTypes.key(ResourceKey.minecraft("item.bundle.insert"));
+
+    public static final DefaultedRegistryReference<SoundType> ITEM_BUNDLE_REMOVE_ONE = SoundTypes.key(ResourceKey.minecraft("item.bundle.remove_one"));
+
     public static final DefaultedRegistryReference<SoundType> ITEM_CHORUS_FRUIT_TELEPORT = SoundTypes.key(ResourceKey.minecraft("item.chorus_fruit.teleport"));
 
     public static final DefaultedRegistryReference<SoundType> ITEM_CROP_PLANT = SoundTypes.key(ResourceKey.minecraft("item.crop.plant"));
@@ -2368,6 +2376,22 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> MUSIC_NETHER_WARPED_FOREST = SoundTypes.key(ResourceKey.minecraft("music.nether.warped_forest"));
 
+    public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_DRIPSTONE_CAVES = SoundTypes.key(ResourceKey.minecraft("music.overworld.dripstone_caves"));
+
+    public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_FROZEN_PEAKS = SoundTypes.key(ResourceKey.minecraft("music.overworld.frozen_peaks"));
+
+    public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_GROVE = SoundTypes.key(ResourceKey.minecraft("music.overworld.grove"));
+
+    public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_JAGGED_PEAKS = SoundTypes.key(ResourceKey.minecraft("music.overworld.jagged_peaks"));
+
+    public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_LUSH_CAVES = SoundTypes.key(ResourceKey.minecraft("music.overworld.lush_caves"));
+
+    public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_MEADOW = SoundTypes.key(ResourceKey.minecraft("music.overworld.meadow"));
+
+    public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_SNOWY_SLOPES = SoundTypes.key(ResourceKey.minecraft("music.overworld.snowy_slopes"));
+
+    public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_STONY_PEAKS = SoundTypes.key(ResourceKey.minecraft("music.overworld.stony_peaks"));
+
     public static final DefaultedRegistryReference<SoundType> MUSIC_UNDER_WATER = SoundTypes.key(ResourceKey.minecraft("music.under_water"));
 
     public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_11 = SoundTypes.key(ResourceKey.minecraft("music_disc.11"));
@@ -2385,6 +2409,8 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_MALL = SoundTypes.key(ResourceKey.minecraft("music_disc.mall"));
 
     public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_MELLOHI = SoundTypes.key(ResourceKey.minecraft("music_disc.mellohi"));
+
+    public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_OTHERSIDE = SoundTypes.key(ResourceKey.minecraft("music_disc.otherside"));
 
     public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_PIGSTEP = SoundTypes.key(ResourceKey.minecraft("music_disc.pigstep"));
 

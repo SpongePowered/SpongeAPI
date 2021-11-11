@@ -46,9 +46,9 @@ public final class ParticleTypes {
 
     public static final DefaultedRegistryReference<ParticleType> ASH = ParticleTypes.key(ResourceKey.minecraft("ash"));
 
-    public static final DefaultedRegistryReference<ParticleType> BARRIER = ParticleTypes.key(ResourceKey.minecraft("barrier"));
-
     public static final DefaultedRegistryReference<ParticleType> BLOCK = ParticleTypes.key(ResourceKey.minecraft("block"));
+
+    public static final DefaultedRegistryReference<ParticleType> BLOCK_MARKER = ParticleTypes.key(ResourceKey.minecraft("block_marker"));
 
     public static final DefaultedRegistryReference<ParticleType> BUBBLE = ParticleTypes.key(ResourceKey.minecraft("bubble"));
 
@@ -161,8 +161,6 @@ public final class ParticleTypes {
     public static final DefaultedRegistryReference<ParticleType> LARGE_SMOKE = ParticleTypes.key(ResourceKey.minecraft("large_smoke"));
 
     public static final DefaultedRegistryReference<ParticleType> LAVA = ParticleTypes.key(ResourceKey.minecraft("lava"));
-
-    public static final DefaultedRegistryReference<ParticleType> LIGHT = ParticleTypes.key(ResourceKey.minecraft("light"));
 
     public static final DefaultedRegistryReference<ParticleType> MYCELIUM = ParticleTypes.key(ResourceKey.minecraft("mycelium"));
 

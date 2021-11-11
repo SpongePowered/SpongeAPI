@@ -43,7 +43,11 @@ public final class BlockTypeTags {
     // @formatter:off
     public static final DefaultedRegistryReference<Tag<BlockType>> ACACIA_LOGS = BlockTypeTags.key(ResourceKey.minecraft("acacia_logs"));
 
+    public static final DefaultedRegistryReference<Tag<BlockType>> ANIMALS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("animals_spawnable_on"));
+
     public static final DefaultedRegistryReference<Tag<BlockType>> ANVIL = BlockTypeTags.key(ResourceKey.minecraft("anvil"));
+
+    public static final DefaultedRegistryReference<Tag<BlockType>> AXOLOTLS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("axolotls_spawnable_on"));
 
     public static final DefaultedRegistryReference<Tag<BlockType>> BAMBOO_PLANTABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("bamboo_plantable_on"));
 
@@ -60,6 +64,8 @@ public final class BlockTypeTags {
     public static final DefaultedRegistryReference<Tag<BlockType>> BEE_GROWABLES = BlockTypeTags.key(ResourceKey.minecraft("bee_growables"));
 
     public static final DefaultedRegistryReference<Tag<BlockType>> BEEHIVES = BlockTypeTags.key(ResourceKey.minecraft("beehives"));
+
+    public static final DefaultedRegistryReference<Tag<BlockType>> BIG_DRIPLEAF_PLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("big_dripleaf_placeable"));
 
     public static final DefaultedRegistryReference<Tag<BlockType>> BIRCH_LOGS = BlockTypeTags.key(ResourceKey.minecraft("birch_logs"));
 
@@ -125,7 +131,11 @@ public final class BlockTypeTags {
 
     public static final DefaultedRegistryReference<Tag<BlockType>> FLOWERS = BlockTypeTags.key(ResourceKey.minecraft("flowers"));
 
+    public static final DefaultedRegistryReference<Tag<BlockType>> FOXES_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("foxes_spawnable_on"));
+
     public static final DefaultedRegistryReference<Tag<BlockType>> GEODE_INVALID_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("geode_invalid_blocks"));
+
+    public static final DefaultedRegistryReference<Tag<BlockType>> GOATS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("goats_spawnable_on"));
 
     public static final DefaultedRegistryReference<Tag<BlockType>> GOLD_ORES = BlockTypeTags.key(ResourceKey.minecraft("gold_ores"));
 
@@ -151,7 +161,7 @@ public final class BlockTypeTags {
 
     public static final DefaultedRegistryReference<Tag<BlockType>> LAPIS_ORES = BlockTypeTags.key(ResourceKey.minecraft("lapis_ores"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> LAVA_POOL_STONE_REPLACEABLES = BlockTypeTags.key(ResourceKey.minecraft("lava_pool_stone_replaceables"));
+    public static final DefaultedRegistryReference<Tag<BlockType>> LAVA_POOL_STONE_CANNOT_REPLACE = BlockTypeTags.key(ResourceKey.minecraft("lava_pool_stone_cannot_replace"));
 
     public static final DefaultedRegistryReference<Tag<BlockType>> LEAVES = BlockTypeTags.key(ResourceKey.minecraft("leaves"));
 
@@ -168,6 +178,8 @@ public final class BlockTypeTags {
     public static final DefaultedRegistryReference<Tag<BlockType>> MINEABLE_PICKAXE = BlockTypeTags.key(ResourceKey.minecraft("mineable/pickaxe"));
 
     public static final DefaultedRegistryReference<Tag<BlockType>> MINEABLE_SHOVEL = BlockTypeTags.key(ResourceKey.minecraft("mineable/shovel"));
+
+    public static final DefaultedRegistryReference<Tag<BlockType>> MOOSHROOMS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("mooshrooms_spawnable_on"));
 
     public static final DefaultedRegistryReference<Tag<BlockType>> MOSS_REPLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("moss_replaceable"));
 
@@ -187,15 +199,21 @@ public final class BlockTypeTags {
 
     public static final DefaultedRegistryReference<Tag<BlockType>> OCCLUDES_VIBRATION_SIGNALS = BlockTypeTags.key(ResourceKey.minecraft("occludes_vibration_signals"));
 
+    public static final DefaultedRegistryReference<Tag<BlockType>> PARROTS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("parrots_spawnable_on"));
+
     public static final DefaultedRegistryReference<Tag<BlockType>> PIGLIN_REPELLENTS = BlockTypeTags.key(ResourceKey.minecraft("piglin_repellents"));
 
     public static final DefaultedRegistryReference<Tag<BlockType>> PLANKS = BlockTypeTags.key(ResourceKey.minecraft("planks"));
+
+    public static final DefaultedRegistryReference<Tag<BlockType>> POLAR_BEARS_SPAWNABLE_ON_IN_FROZEN_OCEAN = BlockTypeTags.key(ResourceKey.minecraft("polar_bears_spawnable_on_in_frozen_ocean"));
 
     public static final DefaultedRegistryReference<Tag<BlockType>> PORTALS = BlockTypeTags.key(ResourceKey.minecraft("portals"));
 
     public static final DefaultedRegistryReference<Tag<BlockType>> PRESSURE_PLATES = BlockTypeTags.key(ResourceKey.minecraft("pressure_plates"));
 
     public static final DefaultedRegistryReference<Tag<BlockType>> PREVENT_MOB_SPAWNING_INSIDE = BlockTypeTags.key(ResourceKey.minecraft("prevent_mob_spawning_inside"));
+
+    public static final DefaultedRegistryReference<Tag<BlockType>> RABBITS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("rabbits_spawnable_on"));
 
     public static final DefaultedRegistryReference<Tag<BlockType>> RAILS = BlockTypeTags.key(ResourceKey.minecraft("rails"));
 
@@ -260,6 +278,8 @@ public final class BlockTypeTags {
     public static final DefaultedRegistryReference<Tag<BlockType>> WITHER_IMMUNE = BlockTypeTags.key(ResourceKey.minecraft("wither_immune"));
 
     public static final DefaultedRegistryReference<Tag<BlockType>> WITHER_SUMMON_BASE_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("wither_summon_base_blocks"));
+
+    public static final DefaultedRegistryReference<Tag<BlockType>> WOLVES_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("wolves_spawnable_on"));
 
     public static final DefaultedRegistryReference<Tag<BlockType>> WOODEN_BUTTONS = BlockTypeTags.key(ResourceKey.minecraft("wooden_buttons"));
 
