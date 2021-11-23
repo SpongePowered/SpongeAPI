@@ -41,13 +41,13 @@ dependencies {
 
     // Directly tied to what's available from Minecraft
     api("org.apache.logging.log4j:log4j-api:$log4jVersion")
-    api("com.google.guava:guava:21.0") {
+    api("com.google.guava:guava:31.0.1-jre") {
         exclude(group ="com.google.code.findbugs", module = "jsr305") // We don't want to use jsr305, use checkerframework
         exclude(group = "org.checkerframework", module = "checker-qual") // We use our own version
         exclude(group = "com.google.j2objc", module = "j2objc-annotations")
         exclude(group = "org.codehaus.mojo", module = "animal-sniffer-annotations")
     }
-    api("com.google.code.gson:gson:2.8.0")
+    api("com.google.code.gson:gson:2.8.8")
 
     // Adventure
     api(platform("net.kyori:adventure-bom:$adventureVersion"))
@@ -250,7 +250,7 @@ spongeConvention {
 
 indra {
     javaVersions {
-        target(16)
+        target(17)
     }
 
     configurePublications {
