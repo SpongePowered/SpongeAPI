@@ -32,7 +32,10 @@ import org.spongepowered.api.event.entity.AffectEntityEvent;
 import org.spongepowered.api.event.impl.AbstractEvent;
 import org.spongepowered.api.util.annotation.eventgen.UseField;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 
 public abstract class AbstractAffectEntityEvent extends AbstractEvent implements AffectEntityEvent {
 
@@ -55,5 +58,25 @@ public abstract class AbstractAffectEntityEvent extends AbstractEvent implements
             }
         }
         return this.entitySnapshots;
+    }
+
+    @Override
+    public List<Entity> entities() {
+        return Collections.unmodifiableList(this.entities);
+    }
+
+    @Override
+    public List<Entity> filterEntities(Predicate<Entity> predicate) {
+        final List<Entity> removedEntities = new ArrayList<>();
+
+        this.entities.removeIf(entity -> {
+            if (!predicate.test(entity)) {
+                removedEntities.add(entity);
+                return true;
+            }
+            return false;
+        });
+
+        return removedEntities;
     }
 }

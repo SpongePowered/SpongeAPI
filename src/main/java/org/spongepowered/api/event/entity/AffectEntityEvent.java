@@ -35,8 +35,6 @@ import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.server.ServerLocation;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -73,6 +71,7 @@ public interface AffectEntityEvent extends Event, Cancellable {
      *
      * @return The List
      */
+    @PropertySettings(requiredParameter = true, generateMethods = false)
     List<Entity> entities();
 
     /**
@@ -86,17 +85,7 @@ public interface AffectEntityEvent extends Event, Cancellable {
      * @return The entities removed from {@link #entities()}
      */
     default List<Entity> filterEntityLocations(Predicate<ServerLocation> predicate) {
-        final List<Entity> removedEntities = new ArrayList<>();
-
-        final Iterator<Entity> i = this.entities().iterator();
-        while (i.hasNext()) {
-            final Entity entity = i.next();
-            if (!entity.location().onServer().map(predicate::test).orElse(false)) {
-                i.remove();
-                removedEntities.add(entity);
-            }
-        }
-        return removedEntities;
+        return filterEntities(entity -> entity.location().onServer().map(predicate::test).orElse(false));
     }
 
     /**
@@ -109,17 +98,5 @@ public interface AffectEntityEvent extends Event, Cancellable {
      * @param predicate The predicate to use for filtering
      * @return The entities removed from {@link #entities()}
      */
-    default List<? extends Entity> filterEntities(Predicate<Entity> predicate) {
-        final List<Entity> removedEntities = new ArrayList<>();
-
-        final Iterator<Entity> i = this.entities().iterator();
-        while (i.hasNext()) {
-            final Entity entity = i.next();
-            if (!predicate.test(entity)) {
-                i.remove();
-                removedEntities.add(entity);
-            }
-        }
-        return removedEntities;
-    }
+    List<Entity> filterEntities(Predicate<Entity> predicate);
 }
