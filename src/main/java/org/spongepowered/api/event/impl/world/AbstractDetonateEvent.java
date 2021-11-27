@@ -22,17 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.impl.entity;
+package org.spongepowered.api.event.impl.world;
 
-import org.spongepowered.api.event.EventContextKeys;
-import org.spongepowered.api.event.entity.SpawnEntityEvent;
+import org.spongepowered.api.event.impl.entity.AbstractAffectEntityEvent;
+import org.spongepowered.api.event.world.ExplosionEvent;
+import org.spongepowered.api.util.annotation.eventgen.UseField;
+import org.spongepowered.api.world.server.ServerLocation;
 
-public abstract class AbstractSpawnEntityEvent extends AbstractAffectEntityEvent implements SpawnEntityEvent {
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Predicate;
+
+public abstract class AbstractDetonateEvent extends AbstractAffectEntityEvent implements ExplosionEvent.Detonate {
+
+    @UseField
+    protected List<ServerLocation> affectedLocations;
 
     @Override
-    protected void init() {
-        if (!this.context().containsKey(EventContextKeys.SPAWN_TYPE)) {
-            throw new IllegalStateException("SpawnType not set for SpawnEvent! Please use StackFrame.addContext(EventContextKeys.SPAWN_TYPE, SpawnTypes.<your spawn type here>); before constructing a SpawnEvent.");
-        }
+    public List<ServerLocation> affectedLocations() {
+        return Collections.unmodifiableList(this.affectedLocations);
+    }
+
+    @Override
+    public void filterAffectedLocations(Predicate<ServerLocation> predicate) {
+        this.affectedLocations.removeIf(location -> !predicate.test(location));
     }
 }
