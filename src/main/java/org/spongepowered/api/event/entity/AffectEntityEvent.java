@@ -66,10 +66,11 @@ public interface AffectEntityEvent extends Event, Cancellable {
     List<EntitySnapshot> entitySnapshots() throws IllegalStateException;
 
     /**
-     * Gets the {@link List} who will be affected after event
+     * Gets the {@link List} of entities who will be affected after event
      * resolution.
+     * This list can only be modified using {@link AffectEntityEvent#filterEntities(Predicate)}.
      *
-     * @return The List
+     * @return The list of entities that will be affected.
      */
     @PropertySettings(requiredParameter = true, generateMethods = false)
     List<Entity> entities();
