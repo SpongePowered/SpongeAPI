@@ -26,15 +26,15 @@ package org.spongepowered.api.event.world;
 
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.entity.AffectEntityEvent;
+import org.spongepowered.api.event.impl.world.AbstractDetonateEvent;
+import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
+import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -80,6 +80,7 @@ public interface ExplosionEvent extends Event, Cancellable {
      * already calculated all the blocks and entities the explosion should
      * affect.
      */
+    @ImplementedBy(AbstractDetonateEvent.class)
     interface Detonate extends ExplosionEvent, AffectEntityEvent {
 
         /**
@@ -91,11 +92,12 @@ public interface ExplosionEvent extends Event, Cancellable {
 
         /**
          * Gets the list of calculated affected locations for blocks that will
-         * be removed due to the explosion. Note that the list is mutable.
-         * However, adding new locations may cause unknown effects.
+         * be removed due to the explosion.
+         * This list can only be modified using {@link #filterAffectedLocations(Predicate)}.
          *
          * @return The list of blocks that will be affected by the explosion
          */
+        @PropertySettings(requiredParameter = true, generateMethods = false)
         List<ServerLocation> affectedLocations();
 
         /**
@@ -108,21 +110,7 @@ public interface ExplosionEvent extends Event, Cancellable {
          * @param predicate The predicate to use for filtering
          * @return The locations removed from {@link #affectedLocations()}
          */
-        default List<ServerLocation> filterAffectedLocations(Predicate<ServerLocation> predicate) {
-            final List<ServerLocation> removedLocations = new ArrayList<>();
-
-            final Iterator<ServerLocation> iter = this.affectedLocations().iterator();
-            while (iter.hasNext()) {
-                final ServerLocation location = iter.next();
-
-                if (!predicate.test(location)) {
-                    iter.remove();
-                    removedLocations.add(location);
-                }
-            }
-
-            return removedLocations;
-        }
+        List<ServerLocation> filterAffectedLocations(Predicate<ServerLocation> predicate);
     }
 
 }
