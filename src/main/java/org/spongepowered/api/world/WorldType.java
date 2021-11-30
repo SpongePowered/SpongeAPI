@@ -59,13 +59,6 @@ public interface WorldType extends DefaultedRegistryValue, ContextSource {
     WorldTypeEffect effect();
 
     /**
-     * Gets the {@link BiomeSampler}.
-     *
-     * @return The biome sampler
-     */
-    BiomeSampler biomeSampler();
-
-    /**
      * Gets if {@link BlockTypes#WATER} will evaporate or {@link BlockTypes#WET_SPONGE} will
      * become a {@link BlockTypes#SPONGE}. Additionally {@link FluidTypes#FLOWING_LAVA} will
      * spread faster and thinner.

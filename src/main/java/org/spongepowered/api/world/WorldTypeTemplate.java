@@ -58,8 +58,6 @@ public interface WorldTypeTemplate extends DataPackSerializable {
 
     WorldTypeEffect effect();
 
-    BiomeSampler biomeSampler();
-
     boolean scorching();
 
     boolean natural();
@@ -93,8 +91,6 @@ public interface WorldTypeTemplate extends DataPackSerializable {
     interface Builder extends ResourceKeyedBuilder<WorldTypeTemplate, Builder>, CopyableBuilder<WorldTypeTemplate, Builder> {
 
         Builder effect(WorldTypeEffect effect);
-
-        Builder biomeSampler(BiomeSampler biomeSampler);
 
         Builder scorching(boolean scorching);
 

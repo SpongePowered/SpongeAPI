@@ -66,19 +66,11 @@ public interface NoiseGeneratorConfig extends ChunkGeneratorConfig {
 
     BlockState defaultFluid();
 
-    int bedrockRoofY();
-
-    int bedrockFloorY();
-
     int seaLevel();
-
-    int minSurfaceLevel();
 
     boolean aquifers();
 
     boolean noiseCaves();
-
-    boolean deepslate();
 
     boolean oreVeins();
 
@@ -94,19 +86,11 @@ public interface NoiseGeneratorConfig extends ChunkGeneratorConfig {
 
         Builder defaultFluid(BlockState fluid);
 
-        Builder bedrockRoofY(int y);
-
-        Builder bedrockFloorY(int y);
-
         Builder seaLevel(int y);
-
-        Builder minSurfaceLevel(int y);
 
         Builder aquifers(boolean enableAquifers);
 
         Builder noiseCaves(boolean enableNoiseCaves);
-
-        Builder deepslate(boolean enableDeepslate);
 
         Builder oreVeins(boolean enableOreVeins);
 

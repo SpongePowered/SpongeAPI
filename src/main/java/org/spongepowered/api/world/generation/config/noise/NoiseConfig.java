@@ -59,14 +59,6 @@ public interface NoiseConfig {
 
     int verticalSize();
 
-    double densityFactor();
-
-    double densityOffset();
-
-    boolean simplexForSurface();
-
-    boolean randomizeDensityOffset();
-
     boolean amplified();
 
     interface Builder extends org.spongepowered.api.util.Builder<NoiseConfig, Builder>, CopyableBuilder<NoiseConfig, Builder> {
