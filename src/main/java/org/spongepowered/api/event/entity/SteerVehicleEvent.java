@@ -22,53 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity.living.player;
+package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.entity.living.player.server.ServerPlayer;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
+import org.spongepowered.math.vector.Vector3d;
 
 /**
- * Called when a {@link ServerPlayer player} riding an entity starts or stops steering it.
+ * Called when a vehicle is being controlled.
  */
 @GenerateFactoryMethod
 public interface SteerVehicleEvent extends Event, Cancellable {
 
     /**
-     * Get the {@link ServerPlayer player}.
+     * Get the {@link Entity vehicle}.
      *
-     * @return The player
+     * @return The vehicle.
      */
-    ServerPlayer player();
+    Entity vehicle();
 
     /**
-     * Get whether the player is steering left or right.
-     *
-     * positive number = left
-     * negative number = right
-     * zero = none
-     *
-     * @return The sway
+     * Get the raw input used to control the vehicle.
+     * 
+     * @return The raw input.
      */
-    float sway();
+    Vector3d input();
 
     /**
-     * Get whether the player is steering forwards or backwards.
-     *
-     * positive number = forwards
-     * negative number = backwards
-     * zero = none
-     *
-     * @return The surge
+     * Called when the vehicle controller dismounts.
      */
-    float surge();
-
-    /**
-     * Get whether the player is attempting to jump.
-     *
-     * @return Whether the player is attempting to jump.
-     */
-    boolean jump();
-
+    interface Dismount extends SteerVehicleEvent {
+    
+    }
 }
