@@ -80,7 +80,7 @@ public interface ExplosionEvent extends Event, Cancellable {
      * already calculated all the blocks and entities the explosion should
      * affect.
      */
-    @ImplementedBy(AbstractDetonateEvent.class)
+    @ImplementedBy(value = AbstractDetonateEvent.class, priority = 2)
     interface Detonate extends ExplosionEvent, AffectEntityEvent {
 
         /**

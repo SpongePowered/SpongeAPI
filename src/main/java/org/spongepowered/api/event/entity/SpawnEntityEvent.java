@@ -44,7 +44,7 @@ import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
  * recommended event to interact with connecting players.</p>
  */
 @GenerateFactoryMethod
-@ImplementedBy(AbstractSpawnEntityEvent.class)
+@ImplementedBy(value = AbstractSpawnEntityEvent.class, priority = 2)
 public interface SpawnEntityEvent extends AffectEntityEvent {
 
     /**
