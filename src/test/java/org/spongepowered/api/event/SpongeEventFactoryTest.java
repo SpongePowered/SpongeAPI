@@ -40,6 +40,7 @@ import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.event.entity.AttackEntityEvent;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
+import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import org.spongepowered.api.event.entity.ai.goal.GoalEvent;
 import org.spongepowered.api.event.impl.AbstractEvent;
 import org.spongepowered.api.util.Color;
@@ -75,12 +76,11 @@ class SpongeEventFactoryTest {
     /**
      * Events with types that aren't able to be mocked for one reason or another.
      */
-    private static final Set<Class<?>> EXCLUDED_EVENTS = UnmodifiableCollections.toSet(
+    private static final List<Class<?>> EXCLUDED_EVENTS = UnmodifiableCollections.toList(
         DamageEntityEvent.class,
         GoalEvent.class,
-        GoalEvent.Add.class,
-        GoalEvent.Remove.class,
-        AttackEntityEvent.class
+        AttackEntityEvent.class,
+        SpawnEntityEvent.class
     );
 
     private static final Set<String> EXCLUDED_METHODS = UnmodifiableCollections.toSet("entitySnapshots");
@@ -104,10 +104,19 @@ class SpongeEventFactoryTest {
         return SpongeEventFactoryTest.mockParam(returnType);
     };
 
+    static boolean isExcludedEvent(Class<?> eventClass) {
+        for (Class<?> excludedClass : SpongeEventFactoryTest.EXCLUDED_EVENTS) {
+            if (excludedClass.isAssignableFrom(eventClass)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     static Stream<Object[]> eventMethods() {
         return Arrays.stream(SpongeEventFactory.class.getMethods())
             .filter(method -> method.getName().startsWith("create") && Modifier.isStatic(method.getModifiers())
-                && !SpongeEventFactoryTest.EXCLUDED_EVENTS.contains(method.getReturnType()))
+                && !isExcludedEvent(method.getReturnType()))
             .map(method -> new Object[] { method.getReturnType().getName(), method});
     }
 
