@@ -90,7 +90,7 @@ public interface PotionEffect extends DataSerializable {
      * Gets the duration in ticks for which this potion effect
      * will apply for.
      *
-     * @return The duration.
+     * @return The duration in ticks.
      */
     int duration();
 
@@ -98,14 +98,15 @@ public interface PotionEffect extends DataSerializable {
      * Gets the amplifier at which this potion effect
      * will apply effects.
      *
-     * @return The amplifier.
+     * @return The amplifier as a zero-indexed integer.
      */
     int amplifier();
 
     /**
-     * Gets if the potion effect is an ambient effect.
+     * Gets if the potion effect is an ambient effect. The particles emitted
+     * by ambient effects are less opaque than otherwise.
      *
-     * @return Gets if ambient.
+     * @return If the effect should be ambient.
      */
     boolean isAmbient();
 
@@ -152,15 +153,18 @@ public interface PotionEffect extends DataSerializable {
         /**
          * Sets the duration in ticks of the potion effect.
          *
+         * <p>The duration must be greater than zero ticks.</p>
+         *
          * @param duration The duration in ticks of this effect
          * @return This builder, for chaining
+         * @throws IllegalArgumentException If the duration is less than or equal to zero
          */
         Builder duration(int duration);
 
         /**
          * Sets the amplifier power of the potion effect.
          *
-         * <p>Amplifiers must be above zero.</p>
+         * <p>Amplifiers must be greater than or equal to zero.</p>
          *
          * @param amplifier The amplifier power
          * @return This builder, for chaining
@@ -169,7 +173,8 @@ public interface PotionEffect extends DataSerializable {
         Builder amplifier(int amplifier) throws IllegalArgumentException;
 
         /**
-         * Sets the potion effect to be ambient or not.
+         * Sets the potion effect to be ambient or not. The particles emitted
+         * by ambient effects are less opaque than otherwise.
          *
          * @param ambient Whether the potion effect is ambient
          * @return This builder, for chaining
