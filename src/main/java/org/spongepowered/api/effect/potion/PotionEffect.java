@@ -57,11 +57,12 @@ public interface PotionEffect extends DataSerializable {
      * duration in ticks.
      *
      * @param type The potion type
-     * @param amplifier The amplifier
+     * @param amplifier The zero-indexed amplifier
      * @param duration The duration in ticks
      * @return The potion effect
+     * @throws IllegalArgumentException If the amplifier is negative or the duration is not positive
      */
-    static PotionEffect of(PotionEffectType type, int amplifier, int duration) {
+    static PotionEffect of(PotionEffectType type, int amplifier, int duration) throws IllegalArgumentException {
         return PotionEffect.builder().potionType(type).amplifier(amplifier).duration(duration).build();
     }
 
@@ -74,8 +75,9 @@ public interface PotionEffect extends DataSerializable {
      * @param amplifier The amplifier
      * @param duration The duration in ticks
      * @return The potion effect
+     * @throws IllegalArgumentException If the amplifier is negative or the duration is not positive
      */
-    static PotionEffect of(Supplier<? extends PotionEffectType> type, int amplifier, int duration) {
+    static PotionEffect of(Supplier<? extends PotionEffectType> type, int amplifier, int duration) throws IllegalArgumentException {
         return PotionEffect.builder().potionType(type).amplifier(amplifier).duration(duration).build();
     }
 
@@ -159,7 +161,7 @@ public interface PotionEffect extends DataSerializable {
          * @return This builder, for chaining
          * @throws IllegalArgumentException If the duration is less than or equal to zero
          */
-        Builder duration(int duration);
+        Builder duration(int duration) throws IllegalArgumentException;
 
         /**
          * Sets the amplifier power of the potion effect.
