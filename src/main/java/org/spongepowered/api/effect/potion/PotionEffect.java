@@ -105,8 +105,8 @@ public interface PotionEffect extends DataSerializable {
     int amplifier();
 
     /**
-     * Gets if the potion effect is an ambient effect. The particles emitted
-     * by ambient effects are less opaque than otherwise.
+     * Gets whether or not this potion effect is an ambient effect.
+     * Ambient potions emit more translucent particles.
      *
      * @return If the effect should be ambient.
      */
@@ -175,8 +175,8 @@ public interface PotionEffect extends DataSerializable {
         Builder amplifier(int amplifier) throws IllegalArgumentException;
 
         /**
-         * Sets the potion effect to be ambient or not. The particles emitted
-         * by ambient effects are less opaque than otherwise.
+         * Sets whether the potion effect is ambient.
+         * Ambient potions emit more translucent particles.
          *
          * @param ambient Whether the potion effect is ambient
          * @return This builder, for chaining
@@ -184,7 +184,7 @@ public interface PotionEffect extends DataSerializable {
         Builder ambient(boolean ambient);
 
         /**
-         * Sets the potion effect to show particles when applied or not.
+         * Sets whether the potion effect should show particles when applied.
          *
          * @param showParticles Whether the potion effect will show particles
          * @return This builder, for chaining
@@ -192,7 +192,7 @@ public interface PotionEffect extends DataSerializable {
         Builder showParticles(boolean showParticles);
 
         /**
-         * Sets the potion effect to show its icon when applied or not.
+         * Sets whether the potion effect should show its icon when applied.
          *
          * @param showIcon Whether the potion effect will show its icon
          * @return This builder, for chaining
