@@ -108,9 +108,8 @@ public interface ExplosionEvent extends Event, Cancellable {
          * be removed from {@link #affectedLocations()}.</p>
          *
          * @param predicate The predicate to use for filtering
-         * @return The locations removed from {@link #affectedLocations()}
          */
-        List<ServerLocation> filterAffectedLocations(Predicate<ServerLocation> predicate);
+        void filterAffectedLocations(Predicate<ServerLocation> predicate);
     }
 
 }

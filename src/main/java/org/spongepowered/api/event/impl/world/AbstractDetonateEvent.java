@@ -29,7 +29,6 @@ import org.spongepowered.api.event.world.ExplosionEvent;
 import org.spongepowered.api.util.annotation.eventgen.UseField;
 import org.spongepowered.api.world.server.ServerLocation;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
@@ -45,17 +44,7 @@ public abstract class AbstractDetonateEvent extends AbstractAffectEntityEvent im
     }
 
     @Override
-    public List<ServerLocation> filterAffectedLocations(Predicate<ServerLocation> predicate) {
-        final List<ServerLocation> removedLocations = new ArrayList<>();
-
-        this.affectedLocations.removeIf(location -> {
-            if (!predicate.test(location)) {
-                removedLocations.add(location);
-                return true;
-            }
-            return false;
-        });
-
-        return removedLocations;
+    public void filterAffectedLocations(Predicate<ServerLocation> predicate) {
+        this.affectedLocations.removeIf(location -> !predicate.test(location));
     }
 }

@@ -83,10 +83,9 @@ public interface AffectEntityEvent extends Event, Cancellable {
      * be removed from {@link #entities()}.</p>
      *
      * @param predicate The predicate to use for filtering
-     * @return The entities removed from {@link #entities()}
      */
-    default List<Entity> filterEntityLocations(Predicate<ServerLocation> predicate) {
-        return filterEntities(entity -> entity.location().onServer().map(predicate::test).orElse(false));
+    default void filterEntityLocations(Predicate<ServerLocation> predicate) {
+        filterEntities(entity -> entity.location().onServer().map(predicate::test).orElse(false));
     }
 
     /**
@@ -97,7 +96,6 @@ public interface AffectEntityEvent extends Event, Cancellable {
      * be removed from {@link #entities()}.</p>
      *
      * @param predicate The predicate to use for filtering
-     * @return The entities removed from {@link #entities()}
      */
-    List<Entity> filterEntities(Predicate<Entity> predicate);
+    void filterEntities(Predicate<Entity> predicate);
 }
