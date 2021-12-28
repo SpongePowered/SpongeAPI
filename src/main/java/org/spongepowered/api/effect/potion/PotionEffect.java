@@ -30,6 +30,7 @@ import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.util.Ticks;
 
 import java.util.function.Supplier;
 
@@ -62,7 +63,7 @@ public interface PotionEffect extends DataSerializable {
      * @return The potion effect
      * @throws IllegalArgumentException If the amplifier is negative or the duration is not positive
      */
-    static PotionEffect of(PotionEffectType type, int amplifier, int duration) throws IllegalArgumentException {
+    static PotionEffect of(final PotionEffectType type, final int amplifier, final Ticks duration) throws IllegalArgumentException {
         return PotionEffect.builder().potionType(type).amplifier(amplifier).duration(duration).build();
     }
 
@@ -77,7 +78,7 @@ public interface PotionEffect extends DataSerializable {
      * @return The potion effect
      * @throws IllegalArgumentException If the amplifier is negative or the duration is not positive
      */
-    static PotionEffect of(Supplier<? extends PotionEffectType> type, int amplifier, int duration) throws IllegalArgumentException {
+    static PotionEffect of(final Supplier<? extends PotionEffectType> type, final int amplifier, final Ticks duration) throws IllegalArgumentException {
         return PotionEffect.builder().potionType(type).amplifier(amplifier).duration(duration).build();
     }
 
@@ -94,11 +95,16 @@ public interface PotionEffect extends DataSerializable {
      *
      * @return The duration in ticks.
      */
-    int duration();
+    Ticks duration();
 
     /**
      * Gets the amplifier at which this potion effect
      * will apply effects.
+     *
+     * <p>A potion amplifier dictates the potion level <strong>as a zero based
+     * index</strong>. An amplifier of zero will produce a potion effect of
+     * level 1 (e.g. Strength I), while an amplifier of four will produce a
+     * potion effect corresponding to a potion of level 4 (e.g. Strength V).</p>
      *
      * @return The amplifier as a zero-indexed integer.
      */
@@ -148,7 +154,7 @@ public interface PotionEffect extends DataSerializable {
          * @param potionEffectType The type of item
          * @return This builder, for chaining
          */
-        default Builder potionType(Supplier<? extends PotionEffectType> potionEffectType) {
+        default Builder potionType(final Supplier<? extends PotionEffectType> potionEffectType) {
             return this.potionType(potionEffectType.get());
         }
 
@@ -161,12 +167,14 @@ public interface PotionEffect extends DataSerializable {
          * @return This builder, for chaining
          * @throws IllegalArgumentException If the duration is less than or equal to zero
          */
-        Builder duration(int duration) throws IllegalArgumentException;
+        Builder duration(Ticks duration) throws IllegalArgumentException;
 
         /**
          * Sets the amplifier power of the potion effect.
          *
-         * <p>Amplifiers must be greater than or equal to zero.</p>
+         * <p>Amplifiers must be greater than or equal to zero. See
+         * {@link #amplifier()} for an explanation of what the amplifier means.
+         * </p>
          *
          * @param amplifier The amplifier power
          * @return This builder, for chaining
