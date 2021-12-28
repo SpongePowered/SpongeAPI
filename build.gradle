@@ -1,4 +1,6 @@
-// Gradle plugins
+repositories {
+    mavenCentral()
+}// Gradle plugins
 buildscript {
     repositories {
         maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
@@ -28,7 +30,7 @@ sourceSets {
 // Project dependencies
 dependencies {
     // Logging
-    compile 'org.slf4j:slf4j-api:1.7.25'
+    compile 'org.slf4j:slf4j-api:1.7.32'
 
     // Dependencies provided by Minecraft
     compile 'com.google.guava:guava:21.0'
