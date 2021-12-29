@@ -30,6 +30,7 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -61,6 +62,10 @@ public final class StatisticCategories {
     // SORTFIELDS:OFF
 
     private StatisticCategories() {
+    }
+
+    public static Registry<Statistic> registry() {
+        return Sponge.game().registry(RegistryTypes.STATISTIC);
     }
 
     private static DefaultedRegistryReference<StatisticCategory> key(final ResourceKey location) {

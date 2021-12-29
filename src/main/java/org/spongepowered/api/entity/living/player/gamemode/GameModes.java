@@ -27,6 +27,7 @@ package org.spongepowered.api.entity.living.player.gamemode;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -56,6 +57,10 @@ public final class GameModes {
     // @formatter:on
 
     private GameModes() {
+    }
+
+    public static Registry<GameMode> registry() {
+        return Sponge.game().registry(RegistryTypes.GAME_MODE);
     }
 
     private static DefaultedRegistryReference<GameMode> key(final ResourceKey location) {

@@ -27,6 +27,7 @@ package org.spongepowered.api.map.decoration.orientation;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -77,6 +78,10 @@ public class MapDecorationOrientations {
 
     private MapDecorationOrientations() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    public static Registry<MapDecorationOrientation> registry() {
+        return Sponge.game().registry(RegistryTypes.MAP_DECORATION_ORIENTATION);
     }
 
     private static DefaultedRegistryReference<MapDecorationOrientation> key(final ResourceKey location) {

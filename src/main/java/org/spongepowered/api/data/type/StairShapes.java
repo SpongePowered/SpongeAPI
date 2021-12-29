@@ -27,6 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -58,6 +59,10 @@ public final class StairShapes {
     // @formatter:on
 
     private StairShapes() {
+    }
+
+    public static Registry<StairShape> registry() {
+        return Sponge.game().registry(RegistryTypes.STAIR_SHAPE);
     }
 
     private static DefaultedRegistryReference<StairShape> key(final ResourceKey location) {

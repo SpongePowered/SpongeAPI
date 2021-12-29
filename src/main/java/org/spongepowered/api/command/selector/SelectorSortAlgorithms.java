@@ -28,6 +28,7 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -70,6 +71,10 @@ public final class SelectorSortAlgorithms {
     // @formatter:on
 
     private SelectorSortAlgorithms() {
+    }
+
+    public static Registry<SelectorSortAlgorithm> registry() {
+        return Sponge.game().registry(RegistryTypes.SELECTOR_SORT_ALGORITHM);
     }
 
     private static DefaultedRegistryReference<SelectorSortAlgorithm> key(final ResourceKey location) {

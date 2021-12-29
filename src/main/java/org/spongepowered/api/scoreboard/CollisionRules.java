@@ -27,6 +27,7 @@ package org.spongepowered.api.scoreboard;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -94,6 +95,10 @@ public final class CollisionRules {
     // @formatter:on
 
     private CollisionRules() {
+    }
+
+    public static Registry<CollisionRule> registry() {
+        return Sponge.game().registry(RegistryTypes.COLLISION_RULE);
     }
 
     private static DefaultedRegistryReference<CollisionRule> key(final ResourceKey location) {

@@ -27,6 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -128,6 +129,10 @@ public final class BannerPatternShapes {
     // @formatter:on
 
     private BannerPatternShapes() {
+    }
+
+    public static Registry<BannerPatternShape> registry() {
+        return Sponge.game().registry(RegistryTypes.BANNER_PATTERN_SHAPE);
     }
 
     private static DefaultedRegistryReference<BannerPatternShape> key(final ResourceKey location) {

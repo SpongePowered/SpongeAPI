@@ -30,6 +30,7 @@ import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.world.biome.Biome;
@@ -86,6 +87,10 @@ public final class CommandCompletionProviders {
     // @formatter:on
 
     private CommandCompletionProviders() {
+    }
+
+    public static Registry<CommandCompletionProvider> registry() {
+        return Sponge.game().registry(RegistryTypes.COMMAND_COMPLETION_PROVIDER);
     }
 
     private static DefaultedRegistryReference<CommandCompletionProvider> key(final ResourceKey location) {

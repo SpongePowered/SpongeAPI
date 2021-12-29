@@ -37,6 +37,7 @@ import org.spongepowered.api.item.inventory.query.QueryType.NoParam;
 import org.spongepowered.api.item.inventory.query.QueryType.OneParam;
 import org.spongepowered.api.item.inventory.query.QueryType.TwoParam;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -119,6 +120,10 @@ public final class QueryTypes {
     // @formatter:on
 
     private QueryTypes() {
+    }
+
+    public static Registry<QueryType> registry() {
+        return Sponge.game().registry(RegistryTypes.QUERY_TYPE);
     }
 
     private static DefaultedRegistryReference<QueryType.NoParam> noParamKey(final ResourceKey location) {

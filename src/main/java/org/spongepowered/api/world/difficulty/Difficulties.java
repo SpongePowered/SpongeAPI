@@ -27,6 +27,7 @@ package org.spongepowered.api.world.difficulty;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -56,6 +57,10 @@ public final class Difficulties {
     // @formatter:on
 
     private Difficulties() {
+    }
+
+    public static Registry<Difficulty> registry() {
+        return Sponge.game().registry(RegistryTypes.DIFFICULTY);
     }
 
     private static DefaultedRegistryReference<Difficulty> key(final ResourceKey location) {

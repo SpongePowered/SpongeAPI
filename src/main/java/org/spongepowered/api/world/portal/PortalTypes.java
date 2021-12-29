@@ -27,6 +27,7 @@ package org.spongepowered.api.world.portal;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -51,6 +52,10 @@ public final class PortalTypes {
     // @formatter:on
 
     private PortalTypes() {
+    }
+
+    public static Registry<PortalType> registry() {
+        return Sponge.game().registry(RegistryTypes.PORTAL_TYPE);
     }
 
     private static DefaultedRegistryReference<PortalType> key(final ResourceKey location) {

@@ -22,29 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.asset;
+package org.spongepowered.api.resource;
 
-import com.google.inject.BindingAnnotation;
+import org.spongepowered.api.util.annotation.DoNotStore;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Optional;
 
 /**
- * Provides an injection for {@link Asset}s in plugins.
+ * A resource can represent any kind of loaded data. It can be a file on the
+ * filesystem, a network location, or even generated at runtime. Use
+ * {@link #inputStream()} to retrieve the data.
  */
-@BindingAnnotation
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD, ElementType.PARAMETER})
-public @interface AssetId {
+@DoNotStore
+public interface Resource extends AutoCloseable {
 
     /**
-     * The path to the {@link Asset} in the asset folder of the plugin.
-     *
-     * @return The path to the asset
-     * @see AssetManager#asset(String)
+     * @return The {@link ResourcePath path}
      */
-    String value();
+    ResourcePath path();
+
+    /**
+     * Returns the {@link InputStream} of this resource. Multiple calls to this
+     * method will not return a new object. To get a new object, get a new
+     * resource.
+     *
+     * @return The input stream
+     */
+    InputStream inputStream();
+
+    @Override
+    void close() throws IOException;
 
 }

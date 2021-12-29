@@ -22,5 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
-package org.spongepowered.api.asset;
+package org.spongepowered.api.event.impl.world;
+
+import org.spongepowered.api.event.impl.entity.AbstractAffectEntityEvent;
+import org.spongepowered.api.event.world.ExplosionEvent;
+import org.spongepowered.api.util.annotation.eventgen.UseField;
+import org.spongepowered.api.world.server.ServerLocation;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Predicate;
+
+public abstract class AbstractDetonateEvent extends AbstractAffectEntityEvent implements ExplosionEvent.Detonate {
+
+    @UseField
+    protected List<ServerLocation> affectedLocations;
+
+    @Override
+    public List<ServerLocation> affectedLocations() {
+        return Collections.unmodifiableList(this.affectedLocations);
+    }
+
+    @Override
+    public void filterAffectedLocations(Predicate<ServerLocation> predicate) {
+        this.affectedLocations.removeIf(location -> !predicate.test(location));
+    }
+}

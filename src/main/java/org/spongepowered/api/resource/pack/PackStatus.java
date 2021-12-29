@@ -22,38 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.asset;
+package org.spongepowered.api.resource.pack;
 
-import org.spongepowered.plugin.PluginContainer;
+import org.spongepowered.api.Sponge;
 
-import java.util.Optional;
+public interface PackStatus {
 
-/**
- * The AssetManager offers a convenient way to easily retrieve resources from
- * Sponge {@link PluginContainer plugins}. The asset manager will attempt to find the
- * asset of the specified name at: <code>assets/&lt;plugin_id&gt;</code>
- */
-public interface AssetManager {
+    static PackStatus compatible() {
+        return Sponge.game().factoryProvider().provide(Factory.class).compatible();
+    }
 
-    /**
-     * Returns the {@link Asset} of the specified name for the specified
-     * {@link PluginContainer plugin} instance.
-     *
-     * @param plugin Plugin instance
-     * @param name Name of resource to retrieve
-     * @return Asset if present, empty otherwise
-     */
-    Optional<Asset> asset(PluginContainer plugin, String name);
+    static PackStatus newer() {
+        return Sponge.game().factoryProvider().provide(Factory.class).newer();
+    }
 
-    /**
-     * Returns the {@link Asset} of the specified name within the domain of the
-     * implementation. This method will typically call
-     * {@link #asset(PluginContainer, String)} using a dummy
-     * {@link PluginContainer} for the SpongeAPI implementation.
-     *
-     * @param name Name of resource to retrieve
-     * @return Asset if present, empty otherwise
-     */
-    Optional<Asset> asset(String name);
+    static PackStatus older() {
+        return Sponge.game().factoryProvider().provide(Factory.class).older();
+    }
 
+    interface Factory {
+
+        PackStatus compatible();
+
+        PackStatus newer();
+
+        PackStatus older();
+    }
 }

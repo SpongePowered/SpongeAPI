@@ -27,6 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -53,6 +54,10 @@ public final class RaidStatuses {
     // @formatter:on
 
     private RaidStatuses() {
+    }
+
+    public static Registry<RaidStatus> registry() {
+        return Sponge.game().registry(RegistryTypes.RAID_STATUS);
     }
 
     private static DefaultedRegistryReference<RaidStatus> key(final ResourceKey location) {

@@ -27,6 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -60,6 +61,10 @@ public final class BodyParts {
     // @formatter:on
 
     private BodyParts() {
+    }
+
+    public static Registry<BodyPart> registry() {
+        return Sponge.game().registry(RegistryTypes.BODY_PART);
     }
 
     private static DefaultedRegistryReference<BodyPart> key(final ResourceKey location) {

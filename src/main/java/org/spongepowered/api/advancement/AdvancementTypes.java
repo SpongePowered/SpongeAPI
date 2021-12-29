@@ -27,6 +27,7 @@ package org.spongepowered.api.advancement;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -72,6 +73,10 @@ public final class AdvancementTypes {
     // @formatter:on
 
     private AdvancementTypes() {
+    }
+
+    public static Registry<AdvancementType> registry() {
+        return Sponge.game().registry(RegistryTypes.ADVANCEMENT_TYPE);
     }
 
     private static DefaultedRegistryReference<AdvancementType> key(final ResourceKey location) {

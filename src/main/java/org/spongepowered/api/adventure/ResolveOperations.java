@@ -28,6 +28,7 @@ import net.kyori.adventure.translation.GlobalTranslator;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -71,6 +72,10 @@ public class ResolveOperations {
     // @formatter:ON
 
     private ResolveOperations() {
+    }
+
+    public static Registry<ResolveOperation> registry() {
+        return Sponge.game().registry(RegistryTypes.RESOLVE_OPERATION);
     }
 
     private static DefaultedRegistryReference<ResolveOperation> key(final ResourceKey location) {

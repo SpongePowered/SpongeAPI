@@ -28,6 +28,7 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.map.MapCanvas;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -167,6 +168,10 @@ public final class MapColorTypes {
 
     private MapColorTypes() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    public static Registry<MapColorType> registry() {
+        return Sponge.game().registry(RegistryTypes.MAP_COLOR_TYPE);
     }
 
     private static DefaultedRegistryReference<MapColorType> key(final ResourceKey location) {

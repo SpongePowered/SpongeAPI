@@ -79,6 +79,10 @@ public final class ChunkRegenerateFlags {
     private ChunkRegenerateFlags() {
     }
 
+    public static Registry<ChunkRegenerateFlag> registry() {
+        return Sponge.game().registry(RegistryTypes.CHUNK_REGENERATE_FLAG);
+    }
+
     private static DefaultedRegistryReference<ChunkRegenerateFlag> key(final ResourceKey location) {
         return RegistryKey.of(RegistryTypes.CHUNK_REGENERATE_FLAG, location).asDefaultedReference(Sponge::game);
     }

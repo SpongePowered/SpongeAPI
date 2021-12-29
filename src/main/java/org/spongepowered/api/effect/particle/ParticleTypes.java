@@ -27,6 +27,7 @@ package org.spongepowered.api.effect.particle;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -220,6 +221,10 @@ public final class ParticleTypes {
 
     // @formatter:on
     private ParticleTypes() {
+    }
+
+    public static Registry<ParticleType> registry() {
+        return Sponge.game().registry(RegistryTypes.PARTICLE_TYPE);
     }
 
     private static DefaultedRegistryReference<ParticleType> key(final ResourceKey location) {

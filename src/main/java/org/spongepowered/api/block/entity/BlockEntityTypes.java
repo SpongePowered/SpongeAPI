@@ -27,6 +27,7 @@ package org.spongepowered.api.block.entity;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -110,6 +111,10 @@ public final class BlockEntityTypes {
 
     // @formatter:on
     private BlockEntityTypes() {
+    }
+
+    public static Registry<BlockEntityType> registry() {
+        return Sponge.game().registry(RegistryTypes.BLOCK_ENTITY_TYPE);
     }
 
     private static DefaultedRegistryReference<BlockEntityType> key(final ResourceKey location) {

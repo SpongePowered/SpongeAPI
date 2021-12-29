@@ -27,6 +27,7 @@ package org.spongepowered.api.command.parameter.managed.operator;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryTypes;
 
@@ -84,6 +85,10 @@ public final class Operators {
     // SORTFIELDS:OFF
 
     private Operators() {
+    }
+
+    public static Registry<Operator> registry() {
+        return Sponge.game().registry(RegistryTypes.OPERATOR);
     }
 
     private static <T extends Operator> DefaultedRegistryReference<T> key(final ResourceKey location) {

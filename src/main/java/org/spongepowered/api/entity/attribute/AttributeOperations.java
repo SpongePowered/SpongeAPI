@@ -27,6 +27,7 @@ package org.spongepowered.api.entity.attribute;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -54,6 +55,10 @@ public final class AttributeOperations {
     // @formatter:on
 
     private AttributeOperations() {
+    }
+
+    public static Registry<AttributeOperation> registry() {
+        return Sponge.game().registry(RegistryTypes.ATTRIBUTE_OPERATION);
     }
 
     private static DefaultedRegistryReference<AttributeOperation> key(final ResourceKey location) {

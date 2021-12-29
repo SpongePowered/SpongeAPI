@@ -27,6 +27,7 @@ package org.spongepowered.api.world;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -50,6 +51,10 @@ public final class WorldTypes {
 
     // @formatter:on
     private WorldTypes() {
+    }
+
+    public static Registry<WorldType> registry() {
+        return Sponge.server().registry(RegistryTypes.WORLD_TYPE);
     }
 
     private static DefaultedRegistryReference<WorldType> key(final ResourceKey location) {

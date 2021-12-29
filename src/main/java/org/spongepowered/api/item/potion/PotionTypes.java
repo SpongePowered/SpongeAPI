@@ -27,6 +27,7 @@ package org.spongepowered.api.item.potion;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -128,6 +129,10 @@ public final class PotionTypes {
 
     // @formatter:on
     private PotionTypes() {
+    }
+
+    public static Registry<PotionType> registry() {
+        return Sponge.game().registry(RegistryTypes.POTION_TYPE);
     }
 
     private static DefaultedRegistryReference<PotionType> key(final ResourceKey location) {

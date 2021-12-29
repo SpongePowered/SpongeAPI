@@ -27,6 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -54,6 +55,10 @@ public final class AttachmentSurfaces {
     // @formatter:on
 
     private AttachmentSurfaces() {
+    }
+
+    public static Registry<AttachmentSurface> registry() {
+        return Sponge.game().registry(RegistryTypes.ATTACHMENT_SURFACE);
     }
 
     private static DefaultedRegistryReference<AttachmentSurface> key(final ResourceKey location) {

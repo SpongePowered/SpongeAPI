@@ -27,6 +27,7 @@ package org.spongepowered.api.state;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -1274,6 +1275,10 @@ public final class BooleanStateProperties {
 
     // @formatter:on
     private BooleanStateProperties() {
+    }
+
+    public static Registry<BooleanStateProperty> registry() {
+        return Sponge.game().registry(RegistryTypes.BOOLEAN_STATE_PROPERTY);
     }
 
     private static DefaultedRegistryReference<BooleanStateProperty> key(final ResourceKey location) {

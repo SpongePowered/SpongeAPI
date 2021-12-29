@@ -27,6 +27,7 @@ package org.spongepowered.api.util.mirror;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -50,6 +51,10 @@ public final class Mirrors {
     // @formatter:on
 
     private Mirrors() {
+    }
+
+    public static Registry<Mirror> registry() {
+        return Sponge.game().registry(RegistryTypes.MIRROR);
     }
 
     private static DefaultedRegistryReference<Mirror> key(final ResourceKey location) {

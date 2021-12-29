@@ -27,6 +27,7 @@ package org.spongepowered.api.event.cause.entity;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -51,6 +52,10 @@ public final class DismountTypes {
     // @formatter:on
 
     private DismountTypes() {
+    }
+
+    public static Registry<DismountType> registry() {
+        return Sponge.game().registry(RegistryTypes.DISMOUNT_TYPE);
     }
 
     private static DefaultedRegistryReference<DismountType> key(final ResourceKey location) {

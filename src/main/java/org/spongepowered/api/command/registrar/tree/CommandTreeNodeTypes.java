@@ -27,6 +27,7 @@ package org.spongepowered.api.command.registrar.tree;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -136,6 +137,10 @@ public final class CommandTreeNodeTypes {
     // @formatter:on
 
     private CommandTreeNodeTypes() {
+    }
+
+    public static Registry<CommandTreeNodeType<?>> registry() {
+        return Sponge.game().registry(RegistryTypes.COMMAND_TREE_NODE_TYPE);
     }
 
     private static <T extends CommandTreeNode<T>> DefaultedRegistryReference<CommandTreeNodeType<T>> key(final ResourceKey location) {

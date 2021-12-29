@@ -27,6 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -94,6 +95,10 @@ public final class ArtTypes {
 
     // @formatter:on
     private ArtTypes() {
+    }
+
+    public static Registry<ArtType> registry() {
+        return Sponge.game().registry(RegistryTypes.ART_TYPE);
     }
 
     private static DefaultedRegistryReference<ArtType> key(final ResourceKey location) {

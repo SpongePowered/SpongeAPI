@@ -27,6 +27,7 @@ package org.spongepowered.api.world.teleport;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -94,6 +95,10 @@ public final class TeleportHelperFilters {
     // @formatter:on
 
     private TeleportHelperFilters() {
+    }
+
+    public static Registry<TeleportHelperFilter> registry() {
+        return Sponge.game().registry(RegistryTypes.TELEPORT_HELPER_FILTER);
     }
 
     private static DefaultedRegistryReference<TeleportHelperFilter> key(final ResourceKey location) {

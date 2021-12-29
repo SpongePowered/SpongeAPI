@@ -35,8 +35,6 @@ import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.server.ServerLocation;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -68,11 +66,13 @@ public interface AffectEntityEvent extends Event, Cancellable {
     List<EntitySnapshot> entitySnapshots() throws IllegalStateException;
 
     /**
-     * Gets the {@link List} who will be affected after event
+     * Gets the {@link List} of entities who will be affected after event
      * resolution.
+     * This list can only be modified using {@link AffectEntityEvent#filterEntities(Predicate)}.
      *
-     * @return The List
+     * @return The list of entities that will be affected.
      */
+    @PropertySettings(requiredParameter = true, generateMethods = false)
     List<Entity> entities();
 
     /**
@@ -83,20 +83,9 @@ public interface AffectEntityEvent extends Event, Cancellable {
      * be removed from {@link #entities()}.</p>
      *
      * @param predicate The predicate to use for filtering
-     * @return The entities removed from {@link #entities()}
      */
-    default List<Entity> filterEntityLocations(Predicate<ServerLocation> predicate) {
-        final List<Entity> removedEntities = new ArrayList<>();
-
-        final Iterator<Entity> i = this.entities().iterator();
-        while (i.hasNext()) {
-            final Entity entity = i.next();
-            if (!entity.location().onServer().map(predicate::test).orElse(false)) {
-                i.remove();
-                removedEntities.add(entity);
-            }
-        }
-        return removedEntities;
+    default void filterEntityLocations(Predicate<ServerLocation> predicate) {
+        filterEntities(entity -> entity.location().onServer().map(predicate::test).orElse(false));
     }
 
     /**
@@ -107,19 +96,6 @@ public interface AffectEntityEvent extends Event, Cancellable {
      * be removed from {@link #entities()}.</p>
      *
      * @param predicate The predicate to use for filtering
-     * @return The entities removed from {@link #entities()}
      */
-    default List<? extends Entity> filterEntities(Predicate<Entity> predicate) {
-        final List<Entity> removedEntities = new ArrayList<>();
-
-        final Iterator<Entity> i = this.entities().iterator();
-        while (i.hasNext()) {
-            final Entity entity = i.next();
-            if (!predicate.test(entity)) {
-                i.remove();
-                removedEntities.add(entity);
-            }
-        }
-        return removedEntities;
-    }
+    void filterEntities(Predicate<Entity> predicate);
 }

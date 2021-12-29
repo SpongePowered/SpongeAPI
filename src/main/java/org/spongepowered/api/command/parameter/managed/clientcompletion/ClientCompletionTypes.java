@@ -28,6 +28,7 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.parameter.managed.ValueParser;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -90,6 +91,10 @@ public final class ClientCompletionTypes {
     // @formatter:on
 
     private ClientCompletionTypes() {
+    }
+
+    public static Registry<ClientCompletionType> registry() {
+        return Sponge.game().registry(RegistryTypes.CLIENT_COMPLETION_TYPE);
     }
 
     private static DefaultedRegistryReference<ClientCompletionType> key(final ResourceKey location) {

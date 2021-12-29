@@ -27,6 +27,7 @@ package org.spongepowered.api.scoreboard;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -75,6 +76,10 @@ public final class Visibilities {
     // @formatter:on
 
     private Visibilities() {
+    }
+
+    public static Registry<Visibility> registry() {
+        return Sponge.game().registry(RegistryTypes.VISIBILITY);
     }
 
     private static DefaultedRegistryReference<Visibility> key(final ResourceKey location) {
