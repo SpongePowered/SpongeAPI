@@ -27,6 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -57,6 +58,10 @@ public final class ArmorMaterials {
     // @formatter:on
 
     private ArmorMaterials() {
+    }
+
+    public static Registry<ArmorMaterial> registry() {
+        return Sponge.game().registry(RegistryTypes.ARMOR_MATERIAL);
     }
 
     private static DefaultedRegistryReference<ArmorMaterial> key(final ResourceKey location) {

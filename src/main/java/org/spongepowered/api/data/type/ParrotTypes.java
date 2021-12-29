@@ -27,6 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -58,6 +59,10 @@ public final class ParrotTypes {
     // @formatter:on
 
     private ParrotTypes() {
+    }
+
+    public static Registry<ParrotType> registry() {
+        return Sponge.game().registry(RegistryTypes.PARROT_TYPE);
     }
 
     private static DefaultedRegistryReference<ParrotType> key(final ResourceKey location) {

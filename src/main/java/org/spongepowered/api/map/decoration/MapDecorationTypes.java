@@ -28,6 +28,7 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.map.MapCanvas;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -92,6 +93,10 @@ public final class MapDecorationTypes {
 
     public static final DefaultedRegistryReference<MapDecorationType> BANNER_BLACK = MapDecorationTypes.key(ResourceKey.sponge("banner_black"));
     // SORTFIELDS:OFF
+
+    public static Registry<MapDecorationType> registry() {
+        return Sponge.game().registry(RegistryTypes.MAP_DECORATION_TYPE);
+    }
 
     private static DefaultedRegistryReference<MapDecorationType> key(final ResourceKey location) {
         return RegistryKey.of(RegistryTypes.MAP_DECORATION_TYPE, location).asDefaultedReference(Sponge::game);

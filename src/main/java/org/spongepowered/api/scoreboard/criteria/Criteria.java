@@ -28,6 +28,7 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.effect.potion.PotionEffectTypes;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -119,6 +120,10 @@ public final class Criteria {
     // @formatter:on
 
     private Criteria() {
+    }
+
+    public static Registry<Criterion> registry() {
+        return Sponge.game().registry(RegistryTypes.CRITERION);
     }
 
     private static DefaultedRegistryReference<Criterion> key(final ResourceKey location) {

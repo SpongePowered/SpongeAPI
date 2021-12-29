@@ -26,7 +26,14 @@ package org.spongepowered.api;
 
 import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.registry.RegistryHolder;
+import org.spongepowered.api.resource.Resource;
+import org.spongepowered.api.resource.ResourceManager;
+import org.spongepowered.api.resource.pack.Pack;
+import org.spongepowered.api.resource.pack.PackContents;
+import org.spongepowered.api.resource.pack.PackRepository;
 import org.spongepowered.api.scheduler.Scheduler;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Shared functionality between {@link Client} and {@link Server} engines.
@@ -49,6 +56,16 @@ public interface Engine extends RegistryHolder {
     CauseStackManager causeStackManager();
 
     /**
+     * @return The {@link PackRepository pack repository}
+     */
+    PackRepository packRepository();
+
+    /**
+     * @return The {@link ResourceManager resource manager}
+     */
+    ResourceManager resourceManager();
+
+    /**
      * Gets the {@link Scheduler} used to schedule sync tasks on this {@link Engine}.
      *
      * @return The sync scheduler
@@ -61,4 +78,13 @@ public interface Engine extends RegistryHolder {
      * @return {@code true} if main thread, {@code false} if not
      */
     boolean onMainThread();
+
+    /**
+     * Rediscovers all {@link Resource resources} within all {@link Pack pack's} {@link PackContents contents}.
+     *
+     * <p>On the server, the future will always be completed.</p>
+     *
+     * @return A future that completes when reloading is complete
+     */
+    CompletableFuture<Void> reloadResources();
 }

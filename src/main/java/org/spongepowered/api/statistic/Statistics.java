@@ -27,6 +27,7 @@ package org.spongepowered.api.statistic;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -192,6 +193,10 @@ public final class Statistics {
 
     // @formatter:on
     private Statistics() {
+    }
+
+    public static Registry<Statistic> registry() {
+        return Sponge.game().registry(RegistryTypes.STATISTIC);
     }
 
     private static DefaultedRegistryReference<Statistic> key(final ResourceKey location) {

@@ -27,6 +27,7 @@ package org.spongepowered.api.item;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -2244,6 +2245,10 @@ public final class ItemTypes {
 
     // @formatter:on
     private ItemTypes() {
+    }
+
+    public static Registry<ItemType> registry() {
+        return Sponge.game().registry(RegistryTypes.ITEM_TYPE);
     }
 
     private static DefaultedRegistryReference<ItemType> key(final ResourceKey location) {

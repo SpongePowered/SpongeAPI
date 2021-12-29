@@ -27,6 +27,7 @@ package org.spongepowered.api.entity.attribute.type;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -68,6 +69,10 @@ public final class AttributeTypes {
 
     // @formatter:on
     private AttributeTypes() {
+    }
+
+    public static Registry<AttributeType> registry() {
+        return Sponge.game().registry(RegistryTypes.ATTRIBUTE_TYPE);
     }
 
     private static DefaultedRegistryReference<RangedAttributeType> key(final ResourceKey location) {

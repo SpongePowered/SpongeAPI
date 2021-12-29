@@ -27,6 +27,7 @@ package org.spongepowered.api.world.weather;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -51,6 +52,10 @@ public final class WeatherTypes {
     // @formatter:on
 
     private WeatherTypes() {
+    }
+
+    public static Registry<WeatherType> registry() {
+        return Sponge.game().registry(RegistryTypes.WEATHER_TYPE);
     }
 
     private static DefaultedRegistryReference<WeatherType> key(final ResourceKey location) {

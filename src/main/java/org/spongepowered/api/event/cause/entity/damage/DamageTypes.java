@@ -27,6 +27,7 @@ package org.spongepowered.api.event.cause.entity.damage;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -77,6 +78,10 @@ public final class DamageTypes {
     // @formatter:on
 
     private DamageTypes() {
+    }
+
+    public static Registry<DamageType> registry() {
+        return Sponge.game().registry(RegistryTypes.DAMAGE_TYPE);
     }
 
     private static DefaultedRegistryReference<DamageType> key(final ResourceKey location) {

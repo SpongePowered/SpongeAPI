@@ -27,6 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -59,6 +60,10 @@ public final class HandTypes {
     // @formatter:on
 
     private HandTypes() {
+    }
+
+    public static Registry<HandType> registry() {
+        return Sponge.game().registry(RegistryTypes.HAND_TYPE);
     }
 
     private static DefaultedRegistryReference<HandType> key(final ResourceKey location) {

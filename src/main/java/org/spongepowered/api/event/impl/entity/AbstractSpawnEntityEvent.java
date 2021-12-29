@@ -26,9 +26,8 @@ package org.spongepowered.api.event.impl.entity;
 
 import org.spongepowered.api.event.EventContextKeys;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
-import org.spongepowered.api.event.impl.AbstractEvent;
 
-public abstract class AbstractSpawnEntityEvent extends AbstractEvent implements SpawnEntityEvent {
+public abstract class AbstractSpawnEntityEvent extends AbstractAffectEntityEvent implements SpawnEntityEvent {
 
     @Override
     protected void init() {

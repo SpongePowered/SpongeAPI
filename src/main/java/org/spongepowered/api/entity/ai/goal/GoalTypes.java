@@ -32,6 +32,7 @@ import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.animal.horse.Horse;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -82,6 +83,10 @@ public final class GoalTypes {
     // @formatter:on
 
     private GoalTypes() {
+    }
+
+    public static Registry<GoalType> registry() {
+        return Sponge.game().registry(RegistryTypes.GOAL_TYPE);
     }
 
     private static DefaultedRegistryReference<GoalType> key(final ResourceKey location) {

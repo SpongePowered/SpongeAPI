@@ -27,6 +27,7 @@ package org.spongepowered.api.service.ban;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -55,6 +56,10 @@ public final class BanTypes {
     // @formatter:on
 
     private BanTypes() {
+    }
+
+    public static Registry<BanType> registry() {
+        return Sponge.game().registry(RegistryTypes.BAN_TYPE);
     }
 
     private static DefaultedRegistryReference<BanType> key(final ResourceKey location) {

@@ -31,6 +31,7 @@ import org.spongepowered.api.item.inventory.menu.handler.ClickHandler;
 import org.spongepowered.api.item.inventory.menu.handler.KeySwapHandler;
 import org.spongepowered.api.item.inventory.menu.handler.SlotClickHandler;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -134,6 +135,10 @@ public final class ClickTypes {
     // @formatter:on
 
     private ClickTypes() {
+    }
+
+    public static Registry<ClickType<?>> registry() {
+        return Sponge.game().registry(RegistryTypes.CLICK_TYPE);
     }
 
     private static <T> DefaultedRegistryReference<ClickType<T>> key(final ResourceKey location) {

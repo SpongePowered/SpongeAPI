@@ -28,6 +28,7 @@ import net.kyori.adventure.text.Component;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.command.parameter.managed.ValueParameter;
 import org.spongepowered.api.command.parameter.managed.operator.Operator;
 import org.spongepowered.api.command.parameter.managed.operator.Operators;
 import org.spongepowered.api.data.persistence.DataContainer;
@@ -39,6 +40,7 @@ import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -471,6 +473,10 @@ public final class ResourceKeyedValueParameters {
     // @formatter:on
 
     private ResourceKeyedValueParameters() {
+    }
+
+    public static Registry<ValueParameter<?>> registry() {
+        return Sponge.game().registry(RegistryTypes.REGISTRY_KEYED_VALUE_PARAMETER);
     }
 
     private static <T> DefaultedRegistryReference<ResourceKeyedValueParameter<T>> key(final ResourceKey location) {

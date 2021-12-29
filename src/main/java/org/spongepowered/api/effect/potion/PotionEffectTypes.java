@@ -27,6 +27,7 @@ package org.spongepowered.api.effect.potion;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -106,6 +107,10 @@ public final class PotionEffectTypes {
 
     // @formatter:on
     private PotionEffectTypes() {
+    }
+
+    public static Registry<PotionEffectType> registry() {
+        return Sponge.game().registry(RegistryTypes.POTION_EFFECT_TYPE);
     }
 
     private static DefaultedRegistryReference<PotionEffectType> key(final ResourceKey location) {

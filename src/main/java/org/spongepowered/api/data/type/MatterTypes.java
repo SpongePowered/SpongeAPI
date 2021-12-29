@@ -27,6 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -45,10 +46,14 @@ public final class MatterTypes {
 
     // @formatter:on
 
-    private static DefaultedRegistryReference<MatterType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.MATTER_TYPE, location).asDefaultedReference(Sponge::game);
+    private MatterTypes() {
     }
 
-    private MatterTypes() {
+    public static Registry<MatterType> registry() {
+        return Sponge.game().registry(RegistryTypes.MATTER_TYPE);
+    }
+
+    private static DefaultedRegistryReference<MatterType> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.MATTER_TYPE, location).asDefaultedReference(Sponge::game);
     }
 }

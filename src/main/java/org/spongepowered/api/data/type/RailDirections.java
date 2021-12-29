@@ -27,6 +27,7 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -68,6 +69,10 @@ public final class RailDirections {
     // @formatter:on
 
     private RailDirections() {
+    }
+
+    public static Registry<RailDirection> registry() {
+        return Sponge.game().registry(RegistryTypes.RAIL_DIRECTION);
     }
 
     private static DefaultedRegistryReference<RailDirection> key(final ResourceKey location) {

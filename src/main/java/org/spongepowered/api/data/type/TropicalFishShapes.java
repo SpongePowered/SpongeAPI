@@ -28,6 +28,7 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.aquatic.fish.school.TropicalFish;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -73,6 +74,10 @@ public final class TropicalFishShapes {
     // @formatter:on
 
     private TropicalFishShapes() {
+    }
+
+    public static Registry<TropicalFishShape> registry() {
+        return Sponge.game().registry(RegistryTypes.TROPICAL_FISH_SHAPE);
     }
 
     private static DefaultedRegistryReference<TropicalFishShape> key(final ResourceKey location) {
