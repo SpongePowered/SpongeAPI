@@ -22,34 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.block.entity;
+package org.spongepowered.api.data.type;
 
-import net.kyori.adventure.text.Component;
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.ListValue;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.util.Nameable;
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 
-/**
- * Represents a sign.
- */
-public interface Sign extends BlockEntity, Nameable {
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
+public final class Tilts {
 
-    /**
-     * Gets the {@link org.spongepowered.api.data.value.ListValue.Mutable} of {@link Component} for the {@link Sign}
-     * to show.
-     *
-     * @return The list of text lines
-     */
-    default ListValue.Mutable<Component> lines() {
-        return this.requireValue(Keys.SIGN_LINES).asMutable();
+    // @formatter:off
+    // SORTFIELDS:ON
+
+    public static final DefaultedRegistryReference<Tilt> NONE = Tilts.key(ResourceKey.sponge("none"));
+
+    public static final DefaultedRegistryReference<Tilt> UNSTABLE = Tilts.key(ResourceKey.sponge("unstable"));
+
+    public static final DefaultedRegistryReference<Tilt> PARTIAL = Tilts.key(ResourceKey.sponge("partial"));
+
+    public static final DefaultedRegistryReference<Tilt> FULL = Tilts.key(ResourceKey.sponge("full"));
+
+    // SORTFIELDS:OFF
+    // @formatter:on
+
+    private Tilts() {
     }
 
-    /**
-     * {@return Whether this sign has glowing text}.
-     */
-    default Value.Mutable<Boolean> glowingText() {
-        return this.requireValue(Keys.GLOWING_TEXT).asMutable();
+    private static DefaultedRegistryReference<Tilt> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.TILT, location).asDefaultedReference(Sponge::game);
     }
 
 }

@@ -57,6 +57,7 @@ import org.spongepowered.api.data.type.CatType;
 import org.spongepowered.api.data.type.ChestAttachmentType;
 import org.spongepowered.api.data.type.ComparatorMode;
 import org.spongepowered.api.data.type.DoorHinge;
+import org.spongepowered.api.data.type.DripstoneSegment;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.type.FoxType;
 import org.spongepowered.api.data.type.HandPreference;
@@ -78,12 +79,14 @@ import org.spongepowered.api.data.type.PortionType;
 import org.spongepowered.api.data.type.ProfessionType;
 import org.spongepowered.api.data.type.RabbitType;
 import org.spongepowered.api.data.type.RailDirection;
+import org.spongepowered.api.data.type.SculkSensorState;
 import org.spongepowered.api.data.type.SkinPart;
 import org.spongepowered.api.data.type.SlabPortion;
 import org.spongepowered.api.data.type.SpellType;
 import org.spongepowered.api.data.type.SpellTypes;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
+import org.spongepowered.api.data.type.Tilt;
 import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.type.WireAttachmentType;
@@ -522,6 +525,11 @@ public final class Keys {
     public static final Key<Value<Boolean>> CAN_PLACE_AS_BLOCK = Keys.key(ResourceKey.sponge("can_place_as_block"), Boolean.class);
 
     /**
+     * The number of candles within a candle block.
+     */
+    public static final Key<Value<Integer>> CANDLES = Keys.key(ResourceKey.sponge("candles"), Integer.class);
+
+    /**
      * The current casting time of a {@link Spellcaster}.
      */
     public static final Key<Value<Integer>> CASTING_TIME = Keys.key(ResourceKey.sponge("casting_time"), Integer.class);
@@ -703,6 +711,11 @@ public final class Keys {
      * Whether exact teleport location should be used with a {@link EndGateway}.
      */
     public static final Key<Value<Boolean>> DO_EXACT_TELEPORT = Keys.key(ResourceKey.sponge("do_exact_teleport"), Boolean.class);
+
+    /**
+     * The type of dripstone a certain {@link BlockTypes#DRIPSTONE_BLOCK} represents.
+     */
+    public static final Key<Value<DripstoneSegment>> DRIPSTONE_SEGMENT = Keys.key(ResourceKey.sponge("dripstone_segment"), DripstoneSegment.class);
 
     /**
      * The remaining duration (in ticks) of an {@link AreaEffectCloud}.
@@ -932,6 +945,12 @@ public final class Keys {
     public static final Key<Value<Integer>> GENERATION = Keys.key(ResourceKey.sponge("generation"), Integer.class);
 
     /**
+     * Whether a {@link Sign} has glowing text (from dying
+     * with {@link ItemTypes#GLOW_INK_SAC}).
+     */
+    public static final Key<Value<Boolean>> GLOWING_TEXT = Keys.key(ResourceKey.sponge("glowing_text"), Boolean.class);
+
+    /**
      * The "growth stage" state of a {@link BlockState}.
      * e.g. {@link BlockTypes#CACTUS} or {@link BlockTypes#WHEAT} etc.
      */
@@ -946,6 +965,12 @@ public final class Keys {
      * Whether an {@link ArmorStand} has a visible base plate.
      */
     public static final Key<Value<Boolean>> HAS_BASE_PLATE = Keys.key(ResourceKey.sponge("has_base_plate"), Boolean.class);
+
+    /**
+     * Whether a {@link BlockTypes#CAVE_VINES} or
+     * {@link BlockTypes#CAVE_VINES_PLANT} has glow berries.
+     */
+    public static final Key<Value<Boolean>> HAS_BERRIES = Keys.key(ResourceKey.sponge("has_berries"), Boolean.class);
 
     /**
      * Whether a {@link PackHorse} has a chest.
@@ -2305,6 +2330,11 @@ public final class Keys {
     public static final Key<SetValue<String>> SCOREBOARD_TAGS = Keys.setKey(ResourceKey.sponge("scoreboard_tags"), String.class);
 
     /**
+     * The triggering state of a {@link BlockTypes#SCULK_SENSOR}.
+     */
+    public static final Key<Value<SculkSensorState>> SCULK_SENSOR_STATE = Keys.key(ResourceKey.sponge("sculk_sensor_state"), SculkSensorState.class);
+
+    /**
      * A {@link Beacon}'s secondary effect.
      */
     public static final Key<Value<PotionEffectType>> SECONDARY_POTION_EFFECT_TYPE = Keys.key(ResourceKey.sponge("secondary_potion_effect_type"), PotionEffectType.class);
@@ -2320,7 +2350,7 @@ public final class Keys {
     public static final Key<Value<ProjectileSource>> SHOOTER = Keys.key(ResourceKey.sponge("shooter"), ProjectileSource.class);
 
     /**
-     * Whether a {@link EndCrystal} should show it's bottom bedrock platform.
+     * Whether a {@link EndCrystal} should show its bottom bedrock platform.
      */
     public static final Key<Value<Boolean>> SHOW_BOTTOM = Keys.key(ResourceKey.sponge("show_bottom"), Boolean.class);
 
@@ -2571,6 +2601,12 @@ public final class Keys {
     public static final Key<Value<Ticks>> TICKS_REMAINING = Keys.key(ResourceKey.sponge("ticks_remaining"), Ticks.class);
 
     /**
+     * The tilt of a {@link BlockTypes#BIG_DRIPLEAF} block, as triggered by
+     * player motion.
+     */
+    public static final Key<Value<Tilt>> TILT = Keys.key(ResourceKey.sponge("tilt"), Tilt.class);
+
+    /**
      * The {@link ItemTier} of an {@link ItemStack} tool.
      * Readonly
      */
@@ -2624,8 +2660,15 @@ public final class Keys {
     public static final Key<Value<Boolean>> UNSTABLE = Keys.key(ResourceKey.sponge("unstable"), Boolean.class);
 
     /**
+     * Whether a {@link BlockTypes#POINTED_DRIPSTONE} is facing up or down.
+     *
+     * <p>Only supports {@link Direction#UP} or {@link Direction#DOWN}</p>
+     */
+    public static final Key<Value<Direction>> UP_OR_DOWN = Keys.key(ResourceKey.sponge("up_or_down"), Direction.class);
+
+    /**
      * Whether changes to {@link Keys#SKIN_PROFILE_PROPERTY} should
-     * be reflected in an entitie's {@link GameProfile}.
+     * be reflected in an entity's {@link GameProfile}.
      */
     public static final Key<Value<Boolean>> UPDATE_GAME_PROFILE = Keys.key(ResourceKey.sponge("update_game_profile"), Boolean.class);
 
