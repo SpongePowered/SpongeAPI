@@ -87,6 +87,7 @@ import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.effect.sound.music.MusicDisc;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityCategory;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.ai.goal.GoalExecutorType;
@@ -112,6 +113,7 @@ import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.inventory.menu.ClickType;
 import org.spongepowered.api.item.inventory.query.QueryType;
 import org.spongepowered.api.item.potion.PotionType;
+import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.item.recipe.RecipeType;
 import org.spongepowered.api.map.color.MapColorType;
 import org.spongepowered.api.map.color.MapShade;
@@ -184,7 +186,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<EntityCategory> ENTITY_CATEGORY = RegistryTypes.spongeKeyInGame("mob_category");
 
-    public static final DefaultedRegistryType<EntityType<@NonNull ?>> ENTITY_TYPE = RegistryTypes.minecraftKeyInGame("entity_type");
+    public static final DefaultedRegistryType<EntityType<@NonNull ? extends Entity>> ENTITY_TYPE = RegistryTypes.minecraftKeyInGame("entity_type");
 
     public static final DefaultedRegistryType<FluidType> FLUID_TYPE = RegistryTypes.minecraftKeyInGame("fluid");
 
@@ -196,7 +198,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<PotionType> POTION_TYPE = RegistryTypes.minecraftKeyInGame("potion");
 
-    public static final DefaultedRegistryType<RecipeType<@NonNull ?>> RECIPE_TYPE = RegistryTypes.minecraftKeyInGame("recipe_type");
+    public static final DefaultedRegistryType<RecipeType<@NonNull ? extends Recipe>> RECIPE_TYPE = RegistryTypes.minecraftKeyInGame("recipe_type");
 
     public static final DefaultedRegistryType<SoundType> SOUND_TYPE = RegistryTypes.minecraftKeyInGame("sound_event");
 
