@@ -26,8 +26,10 @@ package org.spongepowered.api.event.cause.entity.damage.source;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.FallingBlock;
+import org.spongepowered.api.util.Ticks;
 
 public interface FallingBlockDamageSource extends EntityDamageSource {
 
@@ -50,7 +52,9 @@ public interface FallingBlockDamageSource extends EntityDamageSource {
      *
      * @return The immutable value for the damage per block of falling
      */
-    Value.Immutable<Double> fallDamagePerBlock();
+    default Value.Immutable<Double> fallDamagePerBlock() {
+        return this.source().requireValue(Keys.DAMAGE_PER_BLOCK).asImmutable();
+    }
 
     /**
      * Gets the maximum damage the {@link FallingBlock} can deal to another
@@ -58,14 +62,18 @@ public interface FallingBlockDamageSource extends EntityDamageSource {
      *
      * @return The maximum damage the block can deal
      */
-    Value.Immutable<Double> maxFallDamage();
+    default Value.Immutable<Double> maxFallDamage() {
+        return this.source().requireValue(Keys.MAX_FALL_DAMAGE).asImmutable();
+    }
 
     /**
      * Gets the {@link BlockState} the falling block is representing.
      *
      * @return The falling block's block state
      */
-    Value.Immutable<BlockState> blockState();
+    default Value.Immutable<BlockState> blockState() {
+        return this.source().requireValue(Keys.BLOCK_STATE).asImmutable();
+    }
 
     /**
      * Gets whether this falling block will try to place itself where
@@ -73,7 +81,9 @@ public interface FallingBlockDamageSource extends EntityDamageSource {
      *
      * @return True if this block will attempt to place itself when it lands
      */
-    Value.Immutable<Boolean> canPlaceAsBlock();
+    default Value.Immutable<Boolean> canPlaceAsBlock() {
+        return this.source().requireValue(Keys.CAN_PLACE_AS_BLOCK).asImmutable();
+    }
 
     /**
      * Gets whether this falling block can drop as an item if it lands in a
@@ -81,7 +91,9 @@ public interface FallingBlockDamageSource extends EntityDamageSource {
      *
      * @return Whether this falling block can drop as an item
      */
-    Value.Immutable<Boolean> canDropAsItem();
+    default Value.Immutable<Boolean> canDropAsItem() {
+        return this.source().requireValue(Keys.CAN_DROP_AS_ITEM).asImmutable();
+    }
 
     /**
      * Gets the time the block has been falling if spawning a entity in air
@@ -89,21 +101,25 @@ public interface FallingBlockDamageSource extends EntityDamageSource {
      *
      * @return The time the block has been falling
      */
-    Value.Immutable<Integer> fallTime();
+    default Value.Immutable<Ticks> fallTime() {
+        return this.source().fallTime().asImmutable();
+    }
 
     /**
      * Gets whether this falling block will damage entities where it lands.
      *
      * @return Whether this falling block will damage entities where it lands
      */
-    Value.Immutable<Boolean> canHurtEntities();
+    default Value.Immutable<Boolean> canHurtEntities() {
+        return this.source().requireValue(Keys.CAN_HURT_ENTITIES).asImmutable();
+    }
 
 
     interface Builder extends EntityDamageSource.EntityDamageSourceBuilder<FallingBlockDamageSource, Builder> {
 
         Builder places(boolean canPlace);
 
-        Builder fallTime(int time);
+        Builder fallTime(Ticks time);
 
         Builder hurtsEntities(boolean hurts);
 
