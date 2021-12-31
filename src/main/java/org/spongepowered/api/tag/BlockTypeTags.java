@@ -49,6 +49,10 @@ public final class BlockTypeTags {
 
     public static final DefaultedRegistryReference<Tag<BlockType>> AXOLOTLS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("axolotls_spawnable_on"));
 
+    public static final DefaultedRegistryReference<Tag<BlockType>> AZALEA_GROWS_ON = BlockTypeTags.key(ResourceKey.minecraft("azalea_grows_on"));
+
+    public static final DefaultedRegistryReference<Tag<BlockType>> AZALEA_ROOT_REPLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("azalea_root_replaceable"));
+
     public static final DefaultedRegistryReference<Tag<BlockType>> BAMBOO_PLANTABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("bamboo_plantable_on"));
 
     public static final DefaultedRegistryReference<Tag<BlockType>> BANNERS = BlockTypeTags.key(ResourceKey.minecraft("banners"));
@@ -219,6 +223,8 @@ public final class BlockTypeTags {
 
     public static final DefaultedRegistryReference<Tag<BlockType>> REDSTONE_ORES = BlockTypeTags.key(ResourceKey.minecraft("redstone_ores"));
 
+    public static final DefaultedRegistryReference<Tag<BlockType>> REPLACEABLE_PLANTS = BlockTypeTags.key(ResourceKey.minecraft("replaceable_plants"));
+
     public static final DefaultedRegistryReference<Tag<BlockType>> SAND = BlockTypeTags.key(ResourceKey.minecraft("sand"));
 
     public static final DefaultedRegistryReference<Tag<BlockType>> SAPLINGS = BlockTypeTags.key(ResourceKey.minecraft("saplings"));
@@ -254,6 +260,8 @@ public final class BlockTypeTags {
     public static final DefaultedRegistryReference<Tag<BlockType>> STRIDER_WARM_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("strider_warm_blocks"));
 
     public static final DefaultedRegistryReference<Tag<BlockType>> TALL_FLOWERS = BlockTypeTags.key(ResourceKey.minecraft("tall_flowers"));
+
+    public static final DefaultedRegistryReference<Tag<BlockType>> TERRACOTTA = BlockTypeTags.key(ResourceKey.minecraft("terracotta"));
 
     public static final DefaultedRegistryReference<Tag<BlockType>> TRAPDOORS = BlockTypeTags.key(ResourceKey.minecraft("trapdoors"));
 

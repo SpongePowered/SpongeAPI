@@ -81,6 +81,8 @@ public final class ItemTypeTags {
 
     public static final DefaultedRegistryReference<Tag<ItemType>> DIAMOND_ORES = ItemTypeTags.key(ResourceKey.minecraft("diamond_ores"));
 
+    public static final DefaultedRegistryReference<Tag<ItemType>> DIRT = ItemTypeTags.key(ResourceKey.minecraft("dirt"));
+
     public static final DefaultedRegistryReference<Tag<ItemType>> DOORS = ItemTypeTags.key(ResourceKey.minecraft("doors"));
 
     public static final DefaultedRegistryReference<Tag<ItemType>> EMERALD_ORES = ItemTypeTags.key(ResourceKey.minecraft("emerald_ores"));
@@ -156,6 +158,8 @@ public final class ItemTypeTags {
     public static final DefaultedRegistryReference<Tag<ItemType>> STONE_TOOL_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("stone_tool_materials"));
 
     public static final DefaultedRegistryReference<Tag<ItemType>> TALL_FLOWERS = ItemTypeTags.key(ResourceKey.minecraft("tall_flowers"));
+
+    public static final DefaultedRegistryReference<Tag<ItemType>> TERRACOTTA = ItemTypeTags.key(ResourceKey.minecraft("terracotta"));
 
     public static final DefaultedRegistryReference<Tag<ItemType>> TRAPDOORS = ItemTypeTags.key(ResourceKey.minecraft("trapdoors"));
 
