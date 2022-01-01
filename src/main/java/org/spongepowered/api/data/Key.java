@@ -81,11 +81,6 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
      * Sponge. If custom keys for {@link DataHolder}s is desired to be
      * persisted, a {@link DataRegistration} is required.
      *
-     * <p>Registration of a custom created {@link Key} is required through
-     * {@link RegisterRegistryValueEvent}. The
-     * registration of a {@link DataRegistration} is done separately.
-     * </p>
-     *
      * @see DataRegistration
      * @return The key builder
      */
