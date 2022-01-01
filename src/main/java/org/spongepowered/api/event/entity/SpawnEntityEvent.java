@@ -38,10 +38,6 @@ import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
  *
  * <p>Note: To determine the {@link Cause}, refer to package
  * org.spongepowered.api.event.cause.entity.spawn.</p>
- *
- * <p>For players, this event is fired before they have fully
- * joined the world. {@link ServerSideConnectionEvent} is the
- * recommended event to interact with connecting players.</p>
  */
 @GenerateFactoryMethod
 @ImplementedBy(value = AbstractSpawnEntityEvent.class, priority = 2)

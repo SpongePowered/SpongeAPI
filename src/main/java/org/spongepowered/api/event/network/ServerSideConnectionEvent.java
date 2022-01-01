@@ -47,18 +47,17 @@ import java.net.InetAddress;
 /**
  * Represents an event fired during the login process.
  *
- * <p>Together with {@link SpawnEntityEvent}, these events represent the
- * progression of a {@link ServerPlayer player} from first authenticating, to being fully
- * loaded in the world.</p>
+ * <p>These events represent the progression of a {@link ServerPlayer player}
+ * from first authenticating, to being fully loaded in the world.</p>
  *
  * <p>The events are fired in the following order:</p>
  *
- * <p>#Auth -&gt; #Handshake -&gt; #Login -&gt; {@link SpawnEntityEvent} -&gt; #Join</p>
+ * <p>#Auth -&gt; #Handshake -&gt; #Login -&gt; #Join</p>
  *
- * <p>{@link SpawnEntityEvent} is still fired for players, for consistency.
- * However, the player is not at a well-defined state at that point. It's
- * recommended to use the event's subinterfaces to interact with the player
- * at well-defined moments during the connection process.</p>
+ * <p>Traditionally one could consider a {@link SpawnEntityEvent} to be thrown,
+ * but due to the nature of cancellations, a {@link ServerPlayer player} joining
+ * a world after {@link Login login} would be inadvisable to cancel due to the
+ * inconsistent state of both the player and the player's client.</p>
  */
 public interface ServerSideConnectionEvent extends Event {
 
@@ -182,11 +181,13 @@ public interface ServerSideConnectionEvent extends Event {
     }
 
     /**
-     * Called when a {@link ServerPlayer player} joins the game within a {@link ServerWorld world} for the first
-     * time after initial connection.
-     *
-     * <p>The {@link SpawnEntityEvent} for the {@link ServerPlayer player} is fired after the
-     * #Login event. This event is fired after both.</p>
+     * Called when a {@link ServerPlayer player} joins the game within a
+     * {@link ServerWorld world} for the first time after initial connection.
+     * Fired after {@link Login} once the {@link ServerPlayer player} has been
+     * properly added to the {@link ServerWorld}. If data is wanted to be
+     * modified that could affect a player's representation (such as vanishing),
+     * it's recommended to modify such data in the logging in
+     * {@link Login#user() User} instead.
      */
     interface Join extends ServerSideConnectionEvent, AudienceMessageEvent, MessageCancellable {
 
