@@ -27,16 +27,34 @@ package org.spongepowered.api.world.generation.config.noise;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.CopyableBuilder;
 
+/**
+ * Noise Parameters for world generation.
+ */
 public interface NoiseConfig {
 
+    /**
+     * Returns the default vanilla overworld noise configuration parameters.
+     *
+     * @return the default vanilla overworld noise configuration parameters.
+     */
     static NoiseConfig overworld() {
         return Sponge.game().factoryProvider().provide(Factory.class).overworld();
     }
 
+    /**
+     * Returns the vanilla nether noise configuration parameters.
+     *
+     * @return the vanilla nether noise configuration parameters.
+     */
     static NoiseConfig nether() {
         return Sponge.game().factoryProvider().provide(Factory.class).nether();
     }
 
+    /**
+     * Returns the vanilla end noise configuration parameters.
+     *
+     * @return the vanilla end noise configuration parameters.
+     */
     static NoiseConfig end() {
         return Sponge.game().factoryProvider().provide(Factory.class).end();
     }
@@ -45,21 +63,81 @@ public interface NoiseConfig {
         return Sponge.game().builderProvider().provide(Builder.class);
     }
 
+    /**
+     * The minimum y coordinate where terrain starts generating.
+     * <p>In vanilla the value is a multiple of 16 between -2048 and 2031.</p>
+     *
+     * @return the minimum y coordinate.
+     */
     int minY();
 
+    /**
+     * The total height where terrain generates.
+     * <p>In vanilla the value is a multiple of 16. Added to {@link #minY()} its value must not exceed 2032.</p>
+     *
+     * @return the total height.
+     */
     int height();
 
+    /**
+     * The noise sampling configuration.
+     *
+     * @return the noise sampling configuration.
+     */
     SamplingConfig samplingConfig();
 
+    /**
+     * The settings for the curve on top of the world.
+     * <p>Negative values round off the top of the hills in the affected area, positive values create a roof</p>
+     *
+     * @return the settings for the curve on top of the world.
+     */
     SlideConfig topConfig();
 
+    /**
+     * The settings for the curve on bottom of the world.
+     * <p>Negative values remove the floor and round off the bottom of the islands, positive values make a floor.</p>
+     *
+     * @return the settings for the curve on bottom of the world.
+     */
     SlideConfig bottomConfig();
 
+    /**
+     * The horizontal scaling of landmass.
+     * <p>Higher values increase the distances</p>
+     *
+     * @return the horizontal scaling of landmass.
+     */
     int horizontalSize();
 
+    /**
+     * The vertical scaling of landmass.
+     * <p>Higher values increase the average height of the landmass</p>
+     *
+     * @return the vertical scaling of landmass.
+     */
     int verticalSize();
 
-    boolean amplified();
+    /**
+     * Whether to generate terrain like the end dimension.
+     *
+     * @return true when generating terrain like the end dimension.
+     */
+    boolean islandNoiseOverride();
+
+    /**
+     * Whether large biomes are generated.
+     *
+     * @return true when large biomes are generated.
+     */
+    boolean largeBiomes();
+
+    /**
+     * The terrain shaper.
+     *
+     * @return the terrain shaper.
+     */
+    Shaper terrainShaper();
 
     interface Builder extends org.spongepowered.api.util.Builder<NoiseConfig, Builder>, CopyableBuilder<NoiseConfig, Builder> {
 
@@ -77,23 +155,34 @@ public interface NoiseConfig {
 
         Builder verticalSize(int vertical);
 
-        Builder densityFactor(double densityFactor);
+        Builder islandNoiseOverride(boolean islandNoiseOverride);
 
-        Builder densityOffset(double densityOffset);
+        Builder largeBiomes(boolean largeBiomes);
 
-        Builder simplexForSurface(boolean simplex);
-
-        Builder randomizeDensityOffset(boolean randomDensityOffset);
-
-        Builder amplified(boolean amplified);
+        Builder terrainShaper(Shaper terrainShaper);
     }
 
     interface Factory {
 
+        /**
+         * Returns the default vanilla overworld noise configuration parameters.
+         *
+         * @return the default vanilla overworld noise configuration parameters.
+         */
         NoiseConfig overworld();
 
+        /**
+         * Returns the vanilla nether noise configuration parameters.
+         *
+         * @return the vanilla nether noise configuration parameters.
+         */
         NoiseConfig nether();
 
+        /**
+         * Returns the vanilla end noise configuration parameters.
+         *
+         * @return the vanilla end noise configuration parameters.
+         */
         NoiseConfig end();
     }
 }

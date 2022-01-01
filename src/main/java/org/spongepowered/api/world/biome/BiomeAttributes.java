@@ -25,39 +25,57 @@
 package org.spongepowered.api.world.biome;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.Range;
 
+/**
+ * Attributes with which biomes are picked for during world generation.
+ */
 public interface BiomeAttributes {
 
-    static BiomeAttributes of(final float temperature, final float humidity, final float altitude, final float weirdness, final float offset) {
-        return Sponge.game().factoryProvider().provide(Factory.class).of(temperature, humidity, altitude, weirdness, offset);
+    static BiomeAttributes of(final float temperature, final float humidity, final float continentalness, final float erosion, final float depth, final float weirdness, final float offset) {
+        return Sponge.game().factoryProvider().provide(Factory.class).of(temperature, humidity, continentalness, erosion, depth, weirdness, offset);
     }
 
     /**
-     * Gets the temperature.
+     * The temperature range.
      *
      * <p>In Vanilla Minecraft, this is capped between {@code -2} to {@code 2}.</p>
      *
      * @return temperature
      */
-    float temperature();
+    Range<Float> temperature();
 
     /**
-     * Get the humidity.
+     * The humidity range.
      *
      * <p>In Vanilla Minecraft, this is capped between {@code -2} to {@code 2}.</p>
      *
      * @return humidity
      */
-    float humidity();
+    Range<Float> humidity();
 
     /**
-     * Gets the altitude.
+     * The continentalness.
+     * <p>Higher value when more inland. For low values oceans may generate.</p>
      *
-     * <p>In Vanilla Minecraft, this is capped between {@code -2} to {@code 2}.</p>
-     *
-     * @return altitude
+     * @return continentalness
      */
-    float altitude();
+    Range<Float> continentalness();
+
+    /**
+     * The erosion.
+     * <p>Higher values result in flatter areas, low values result in mountainous areas.</p>
+     *
+     * @return erosion
+     */
+    Range<Float> erosion();
+
+    /**
+     * The depth.
+     *
+     * @return the depth.
+     */
+    Range<Float> depth();
 
     /**
      * Gets the weirdness.
@@ -66,10 +84,10 @@ public interface BiomeAttributes {
      *
      * @return weirdness
      */
-    float weirdness();
+    Range<Float> weirdness();
 
     /**
-     * Gets the offset.
+     * The offset.
      *
      * <p>In Vanilla Minecraft, this is capped between {@code 0} to {@code 1}.</p>
      *
@@ -79,6 +97,6 @@ public interface BiomeAttributes {
 
     interface Factory {
 
-        BiomeAttributes of(float temperature, float humidity, float altitude, float weirdness, float offset);
+        BiomeAttributes of(float temperature, float humidity, float continentalness, float erosion, float depth, float weirdness, float offset);
     }
 }

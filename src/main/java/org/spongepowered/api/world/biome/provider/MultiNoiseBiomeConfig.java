@@ -29,7 +29,6 @@ import org.spongepowered.api.registry.RegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.biome.AttributedBiome;
 import org.spongepowered.api.world.biome.Biome;
-import org.spongepowered.api.world.biome.provider.multinoise.MultiNoiseConfig;
 
 import java.util.List;
 
@@ -39,54 +38,39 @@ public interface MultiNoiseBiomeConfig extends BiomeProviderConfig {
         return Sponge.game().factoryProvider().provide(Factory.class).nether();
     }
 
+    static MultiNoiseBiomeConfig overworld() {
+        return Sponge.game().factoryProvider().provide(Factory.class).overworld();
+    }
+
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class).reset();
     }
 
-    long seed();
-
     List<AttributedBiome> attributedBiomes();
 
-    MultiNoiseConfig temperatureConfig();
-
-    MultiNoiseConfig humidityConfig();
-
-    MultiNoiseConfig altitudeConfig();
-
-    MultiNoiseConfig weirdnessConfig();
-
     interface Builder extends org.spongepowered.api.util.Builder<MultiNoiseBiomeConfig, Builder>, CopyableBuilder<MultiNoiseBiomeConfig, Builder> {
-
-        Builder seed(long seed);
-
-        /**
-         * Sets the seed
-         *
-         * <p>If the seed is a number value, it will be parsed as a {@code long}. Otherwise, the String's {@link String#hashCode()}
-         * will be used.</p>
-         *
-         * @param seed The seed
-         * @return Fluent
-         */
-        Builder seed(String seed);
 
         Builder addBiome(AttributedBiome biome);
 
         Builder addBiomes(List<AttributedBiome> biomes);
 
         Builder removeBiome(RegistryReference<Biome> biome);
-
-        Builder temperatureConfig(MultiNoiseConfig temperatureConfig);
-
-        Builder humidityConfig(MultiNoiseConfig humidityConfig);
-
-        Builder altitudeConfig(MultiNoiseConfig altitudeConfig);
-
-        Builder weirdnessConfig(MultiNoiseConfig weirdnessConfig);
     }
 
     interface Factory {
 
+        /**
+         * Returns a default nether {@link MultiNoiseBiomeConfig}.
+         *
+         * @return the multinoisebiome configuration
+         */
         MultiNoiseBiomeConfig nether();
+
+        /**
+         * Returns a default overworld {@link MultiNoiseBiomeConfig}.
+         *
+         * @return the multinoisebiome configuration
+         */
+        MultiNoiseBiomeConfig overworld();
     }
 }

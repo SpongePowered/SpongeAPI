@@ -28,18 +28,35 @@ import org.spongepowered.api.Sponge;
 
 public interface SlideConfig {
 
-    static SlideConfig of(final int target, final int size, final int offset) {
+    static SlideConfig of(final double target, final int size, final int offset) {
         return Sponge.game().factoryProvider().provide(Factory.class).of(target, size, offset);
     }
 
-    int target();
+    /**
+     * The target value of the curve.
+     * <p>See {@link NoiseConfig#topConfig()} and {@link NoiseConfig#bottomConfig()} for its effect.<p>
+     * <p>Higher values produce larger effects.</p>
+     *
+     * @return the target value
+     */
+    double target();
 
+    /**
+     * The size of the affected area.
+     *
+     * @return the size
+     */
     int size();
 
+    /**
+     * The offset of the affected area from the top or bottom of the world respectively.
+     *
+     * @return the offset
+     */
     int offset();
 
     interface Factory {
 
-        SlideConfig of(int target, int size, int offset);
+        SlideConfig of(double target, int size, int offset);
     }
 }
