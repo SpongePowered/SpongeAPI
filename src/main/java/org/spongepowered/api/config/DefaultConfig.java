@@ -27,8 +27,8 @@ package org.spongepowered.api.config;
 import com.google.inject.BindingAnnotation;
 import com.google.inject.Inject;
 import org.spongepowered.configurate.loader.ConfigurationLoader;
+import org.spongepowered.configurate.reference.ConfigurationReference;
 
-import java.io.File;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -36,12 +36,14 @@ import java.lang.annotation.Target;
 import java.nio.file.Path;
 
 /**
- * Provides an convenient injection for {@link ConfigRoot#config()} or
+ * Provides a convenient injection for {@link ConfigRoot#config()} or
  * {@link ConfigRoot#configPath()}.
  *
- * <p>Use this annotation on a {@link File} or {@link Path} if you want the
+ * <p>Use this annotation on a {@link Path} if you want the
  * pathname to the default configuration. Or instead, use this annotation on a
- * {@link ConfigurationLoader} to get an instance of that. Remember that
+ * {@link ConfigurationLoader ConfigurationLoader&lt;CommentedConigurationNode&gt;}
+ * or {@link ConfigurationReference&lt;CommentedConigurationNode&gt;} to get a
+ * loader/reference for a HOCON based configuration file. Remember that
  * {@link Inject} is also necessary.</p>
  *
  * @see ConfigManager For getting configuration without injection
