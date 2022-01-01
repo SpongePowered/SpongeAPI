@@ -42,8 +42,8 @@ import java.nio.file.Path;
  * <p>Use this annotation on a {@link Path} if you want the
  * pathname to the default configuration. Or instead, use this annotation on a
  * {@link ConfigurationLoader ConfigurationLoader&lt;CommentedConigurationNode&gt;}
- * or {@link ConfigurationReference&lt;CommentedConigurationNode&gt;} to get a
- * loader/reference for a HOCON based configuration file. Remember that
+ * or {@link ConfigurationReference ConfigurationReference&lt;CommentedConigurationNode&gt;}
+ * to get a loader/reference for a HOCON based configuration file. Remember that
  * {@link Inject} is also necessary.</p>
  *
  * @see ConfigManager For getting configuration without injection
