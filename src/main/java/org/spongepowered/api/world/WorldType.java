@@ -39,7 +39,6 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.service.context.ContextSource;
 import org.spongepowered.api.util.MinecraftDayTime;
 import org.spongepowered.api.util.annotation.CatalogedBy;
-import org.spongepowered.api.world.biome.BiomeSampler;
 import org.spongepowered.api.world.portal.PortalType;
 import org.spongepowered.api.world.portal.PortalTypes;
 import org.spongepowered.api.world.server.ServerLocation;

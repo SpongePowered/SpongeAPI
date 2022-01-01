@@ -29,6 +29,9 @@ import org.spongepowered.api.world.biome.Biome;
 
 import java.util.List;
 
+/**
+ * Base Interface for configurations of {@link BiomeProvider}.
+ */
 public interface BiomeProviderConfig {
 
     List<RegistryReference<Biome>> biomes();

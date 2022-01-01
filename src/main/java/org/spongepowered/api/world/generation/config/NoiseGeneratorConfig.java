@@ -30,28 +30,70 @@ import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.generation.config.noise.NoiseConfig;
 import org.spongepowered.api.world.generation.config.structure.StructureGenerationConfig;
 
+/**
+ * ChunkGeneratorConfig used most of the vanilla provided dimensions.
+ */
 public interface NoiseGeneratorConfig extends ChunkGeneratorConfig {
 
-    static NoiseGeneratorConfig amplified() {
-        return Sponge.game().factoryProvider().provide(Factory.class).amplified();
-    }
-
+    /**
+     * Returns the vanilla overworld noise generation configuration.
+     *
+     * @return he vanilla overworld noise generation configuration.
+     */
     static NoiseGeneratorConfig overworld() {
         return Sponge.game().factoryProvider().provide(Factory.class).overworld();
     }
 
+    /**
+     * Returns the vanilla amplified overworld noise generation configuration.
+     *
+     * @return the vanilla amplified overworld noise generation configuration.
+     */
+    static NoiseGeneratorConfig amplified() {
+        return Sponge.game().factoryProvider().provide(Factory.class).amplified();
+    }
+
+    /**
+     * Returns the vanilla overworld with large biomes noise generation configuration.
+     *
+     * @return the vanilla overworld with large biomes noise generation configuration.
+     */
+    static NoiseGeneratorConfig largeBiomes() {
+        return Sponge.game().factoryProvider().provide(Factory.class).largeBiomes();
+    }
+
+    /**
+     * Returns the vanilla nether noise generation configuration.
+     *
+     * @return the vanilla nether noise generation configuration.
+     */
     static NoiseGeneratorConfig nether() {
         return Sponge.game().factoryProvider().provide(Factory.class).nether();
     }
 
+    /**
+     * Returns the vanilla end noise generation configuration.
+     *
+     * @return the vanilla end noise generation configuration.
+     */
     static NoiseGeneratorConfig end() {
         return Sponge.game().factoryProvider().provide(Factory.class).end();
     }
 
+    /**
+     * Returns the vanilla cave overworld noise generation configuration.
+     *
+     * @return the vanilla cave overworld noise generation configuration.
+     */
     static NoiseGeneratorConfig caves() {
         return Sponge.game().factoryProvider().provide(Factory.class).caves();
     }
 
+    /**
+     * Returns the vanilla floating islands overworld noise generation configuration.
+     *
+     * @return the vanilla floating islands overworld noise generation configuration.
+     */
     static NoiseGeneratorConfig floatingIslands() {
         return Sponge.game().factoryProvider().provide(Factory.class).floatingIslands();
     }
@@ -60,27 +102,91 @@ public interface NoiseGeneratorConfig extends ChunkGeneratorConfig {
         return Sponge.game().builderProvider().provide(Builder.class);
     }
 
+    /**
+     * The noise configuration parameters.
+     *
+     * @return the noise configuration.
+     */
     NoiseConfig noiseConfig();
 
+    /**
+     * The surface rules.
+     *
+     * @return the surface rules.
+     */
+    SurfaceRule surfaceRule();
+
+    /**
+     * The default block used for terrain.
+     *
+     * @return the default block.
+     */
     BlockState defaultBlock();
 
+    /**
+     * The default fluid used for seas and lakes.
+     *
+     * @return the default fluid.
+     */
     BlockState defaultFluid();
 
+    /**
+     * The sea level.
+     *
+     * @return the sea level.
+     */
     int seaLevel();
 
+    /**
+     * Whether aquifers are generated.
+     *
+     * @return true when aquifers are generated.
+     */
     boolean aquifers();
 
-    boolean noiseCaves();
-
+    /**
+     * Whether ore veins are generated.
+     *
+     * @return true when the ore veins are generated.
+     */
     boolean oreVeins();
 
+    /**
+     * Whether different noise caves are generated.
+     *
+     * @return true when different noise caves are generated.
+     */
+    boolean noiseCaves();
+
+    /**
+     * Whether noodle caves are generated.
+     *
+     * @return true when noodle caves are generated.
+     */
     boolean noodleCaves();
+
+    /**
+     * Whether generation uses the legacy random source.
+     * <p>As of Minecraft 1.18 the legacy random source is still used for nether and end generation.</p>
+     *
+     * @return true when using the legacy random source.
+     */
+    boolean legacyRandomSource();
+
+    /**
+     * Whether mobs spawn during generation.
+     *
+     * @return true when mobs spawn during generation.
+     */
+    boolean mobGeneration();
 
     interface Builder extends org.spongepowered.api.util.Builder<NoiseGeneratorConfig, Builder>, CopyableBuilder<NoiseGeneratorConfig, Builder> {
 
         Builder structureConfig(StructureGenerationConfig config);
 
         Builder noiseConfig(NoiseConfig config);
+
+        Builder surfaceRule(SurfaceRule rule);
 
         Builder defaultBlock(BlockState block);
 
@@ -90,25 +196,66 @@ public interface NoiseGeneratorConfig extends ChunkGeneratorConfig {
 
         Builder aquifers(boolean enableAquifers);
 
-        Builder noiseCaves(boolean enableNoiseCaves);
-
         Builder oreVeins(boolean enableOreVeins);
 
-        Builder noodleCaves(boolean noodleCaves);
+        Builder noiseCaves(boolean enableNoiseCaves);
+
+        Builder noodleCaves(boolean enableNoodleCaves);
+
+        Builder mobGeneration(boolean mobGeneration);
+
+        Builder randomSource(boolean useLegacyRandomSource);
     }
 
     interface Factory {
 
-        NoiseGeneratorConfig amplified();
-
+        /**
+         * Returns the vanilla overworld noise generation configuration.
+         *
+         * @return he vanilla overworld noise generation configuration.
+         */
         NoiseGeneratorConfig overworld();
 
+        /**
+         * Returns the vanilla amplified overworld noise generation configuration.
+         *
+         * @return the vanilla amplified overworld noise generation configuration.
+         */
+        NoiseGeneratorConfig amplified();
+
+        /**
+         * Returns the vanilla overworld with large biomes noise generation configuration.
+         *
+         * @return the vanilla overworld with large biomes noise generation configuration.
+         */
+        NoiseGeneratorConfig largeBiomes();
+
+        /**
+         * Returns the vanilla nether noise generation configuration.
+         *
+         * @return the vanilla nether noise generation configuration.
+         */
         NoiseGeneratorConfig nether();
 
+        /**
+         * Returns the vanilla end noise generation configuration.
+         *
+         * @return the vanilla end noise generation configuration.
+         */
         NoiseGeneratorConfig end();
 
+        /**
+         * Returns the vanilla cave overworld noise generation configuration.
+         *
+         * @return the vanilla cave overworld noise generation configuration.
+         */
         NoiseGeneratorConfig caves();
 
+        /**
+         * Returns the vanilla floating islands overworld noise generation configuration.
+         *
+         * @return the vanilla floating islands overworld noise generation configuration.
+         */
         NoiseGeneratorConfig floatingIslands();
     }
 }

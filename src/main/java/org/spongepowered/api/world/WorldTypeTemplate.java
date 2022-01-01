@@ -30,7 +30,6 @@ import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.MinecraftDayTime;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
-import org.spongepowered.api.world.biome.BiomeSampler;
 
 import java.util.Optional;
 

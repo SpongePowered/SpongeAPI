@@ -22,16 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.biome;
+package org.spongepowered.api.world.biome.provider;
 
-public interface BiomeSampler {
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.RegistryReference;
+import org.spongepowered.api.world.biome.Biome;
+
+/**
+ * The configuration for a {@link BiomeProvider} with a single {@link Biome}.
+ */
+public interface FixedBiomeConfig extends BiomeProviderConfig {
+
+    static FixedBiomeConfig of(RegistryReference<Biome> biome) {
+        return Sponge.game().factoryProvider().provide(Factory.class).biome(biome);
+    }
+
+    RegistryReference<Biome> biome();
 
     interface Factory {
 
-        BiomeSampler columnFuzzed();
-
-        BiomeSampler fuzzy();
-
-        BiomeSampler defaultFinder();
+        FixedBiomeConfig biome(RegistryReference<Biome> biome);
     }
 }

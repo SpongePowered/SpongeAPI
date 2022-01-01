@@ -26,7 +26,16 @@ package org.spongepowered.api.world.generation.config;
 
 import org.spongepowered.api.world.generation.config.structure.StructureGenerationConfig;
 
+/**
+ * Base chunk generator configuration.
+ * <p>See {@link NoiseGeneratorConfig} and {@link FlatGeneratorConfig}.</p>
+ */
 public interface ChunkGeneratorConfig {
 
+    /**
+     * The structure generation settings.
+     *
+     * @return the structure generation settings.
+     */
     StructureGenerationConfig structureConfig();
 }
