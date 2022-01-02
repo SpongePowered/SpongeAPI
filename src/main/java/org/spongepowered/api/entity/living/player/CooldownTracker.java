@@ -25,9 +25,10 @@
 package org.spongepowered.api.entity.living.player;
 
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.util.Ticks;
 
+import java.util.Optional;
 import java.util.OptionalDouble;
-import java.util.OptionalInt;
 
 /**
  * Provides access to the item cooldowns of a {@link Player}.
@@ -51,7 +52,7 @@ public interface CooldownTracker {
      * @return The cooldown remaining for this item type in ticks, if not
      *     on cooldown
      */
-    OptionalInt cooldown(ItemType type);
+    Optional<Ticks> cooldown(ItemType type);
 
     /**
      * Sets the cooldown for the specified {@link ItemType} for the
@@ -62,7 +63,7 @@ public interface CooldownTracker {
      * @return False if setting the cooldown failed, possibly due to the event
      *     being cancelled
      */
-    boolean setCooldown(ItemType type, int ticks);
+    boolean setCooldown(ItemType type, Ticks ticks);
 
     /**
      * Resets the cooldown of the specified {@link ItemType} for the

@@ -30,6 +30,7 @@ import org.spongepowered.api.event.Event;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.util.Ticks;
 
 /**
  * Fired when an {@link ItemStack} is used.
@@ -41,21 +42,21 @@ public interface UseItemStackEvent extends Event {
      *
      * @return The original remaining duration
      */
-    int originalRemainingDuration();
+    Ticks originalRemainingDuration();
 
     /**
      * Gets the remaining duration of {@link ItemStack} in use.
      *
      * @return The remaining duration
      */
-    int remainingDuration();
+    Ticks remainingDuration();
 
     /**
      * Sets the remaining duration of {@link ItemStack} in use.
      *
      * @param duration The remaining duration to set
      */
-    void setRemainingDuration(int duration);
+    void setRemainingDuration(Ticks duration);
 
     /**
      * Gets the {@link ItemStack} being consumed.

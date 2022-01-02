@@ -57,7 +57,7 @@ public interface ChangeWeatherEvent extends Event, Cancellable {
      * @param type The weather type
      * @param duration The custom weather duration
      */
-    default void setWeather(WeatherType type, Ticks duration) {
+    default void setWeather(final WeatherType type, final Ticks duration) {
         this.weather().setCustom(Weather.of(type, duration));
     }
 }
