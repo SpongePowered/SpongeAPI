@@ -27,6 +27,7 @@ package org.spongepowered.api.event.entity;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.util.Ticks;
 
 /**
  * An event that occurs when an entity becomes ignited.
@@ -44,20 +45,20 @@ public interface IgniteEntityEvent extends Event, Cancellable {
      * Gets the original amount of fire ticks the entity will remain on fire.
      * @return The original fire ticks
      */
-    int originalFireTicks();
+    Ticks originalFireTicks();
 
     /**
      * Gets the amount of ticks the entity will remain on fire.
      *
      * @return The amount of ticks the entity will remain on fire
      */
-    int fireTicks();
+    Ticks fireTicks();
 
     /**
      * Sets the amount of ticks the entity will remain on fire.
      *
      * @param fireTicks The amount of ticks the entity will remain on fire
      */
-    void setFireTicks(int fireTicks);
+    void setFireTicks(Ticks fireTicks);
 
 }

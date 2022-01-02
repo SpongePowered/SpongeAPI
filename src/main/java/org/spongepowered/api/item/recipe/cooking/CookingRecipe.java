@@ -35,6 +35,7 @@ import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.item.recipe.RecipeType;
 import org.spongepowered.api.item.recipe.crafting.Ingredient;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
+import org.spongepowered.api.util.Ticks;
 
 import java.util.Optional;
 import java.util.function.Function;
@@ -87,7 +88,7 @@ public interface CookingRecipe extends Recipe {
      *
      * @return The cooking time in ticks.
      */
-    int cookingTime();
+    Ticks cookingTime();
 
     /**
      * Returns the experience of this recipe.
@@ -117,7 +118,7 @@ public interface CookingRecipe extends Recipe {
          *
          * @return This builder, for chaining
          */
-        default IngredientStep type(Supplier<RecipeType<CookingRecipe>> type) {
+        default IngredientStep type(final Supplier<RecipeType<CookingRecipe>> type) {
             return this.type(type.get());
         }
 
@@ -238,7 +239,7 @@ public interface CookingRecipe extends Recipe {
              *
              * @return This builder, for chaining
              */
-            EndStep cookingTime(int ticks);
+            EndStep cookingTime(Ticks ticks);
 
         }
     }

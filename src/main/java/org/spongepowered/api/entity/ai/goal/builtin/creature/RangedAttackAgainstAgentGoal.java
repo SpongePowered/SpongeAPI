@@ -29,6 +29,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.ai.goal.Goal;
 import org.spongepowered.api.entity.ai.goal.GoalBuilder;
 import org.spongepowered.api.entity.living.Ranger;
+import org.spongepowered.api.util.Ticks;
 
 /**
  * An {@link Goal} which uses the ranging aspect of the Ranger to attack
@@ -68,7 +69,7 @@ public interface RangedAttackAgainstAgentGoal extends Goal<Ranger> {
      *
      * @return The delay in ticks between attempts to attack
      */
-    int delayBetweenAttacks();
+    Ticks delayBetweenAttacks();
 
     /**
      * The time, in ticks, this {@link Ranger} will wait before attacking
@@ -77,7 +78,7 @@ public interface RangedAttackAgainstAgentGoal extends Goal<Ranger> {
      * @param delay The delay, in ticks
      * @return This goal, for chaining
      */
-    RangedAttackAgainstAgentGoal setDelayBetweenAttacks(int delay);
+    RangedAttackAgainstAgentGoal setDelayBetweenAttacks(Ticks delay);
 
     /**
      * Gets the radius of which the owning {@link Ranger} will attempt to
@@ -101,7 +102,7 @@ public interface RangedAttackAgainstAgentGoal extends Goal<Ranger> {
 
         Builder moveSpeed(double speed);
 
-        Builder delayBetweenAttacks(int delay);
+        Builder delayBetweenAttacks(Ticks delay);
 
         Builder attackRadius(float radius);
     }

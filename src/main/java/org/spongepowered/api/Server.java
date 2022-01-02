@@ -42,6 +42,7 @@ import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.service.ServiceProvider;
 import org.spongepowered.api.user.UserManager;
+import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.locale.LocaleSource;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.generation.config.WorldGenerationConfig;
@@ -278,7 +279,7 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      *
      * @return The number of ticks since this server started running
      */
-    int runningTimeTicks();
+    Ticks runningTimeTicks();
 
     /**
      * Gets the message channel that server-wide messages are sent through.

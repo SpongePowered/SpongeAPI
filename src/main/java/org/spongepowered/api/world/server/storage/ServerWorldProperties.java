@@ -33,6 +33,7 @@ import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.trader.WanderingTrader;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.MinecraftDayTime;
+import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.difficulty.Difficulty;
@@ -229,14 +230,14 @@ public interface ServerWorldProperties extends WorldProperties, Identifiable, Re
      *
      * @return The delay, in ticks
      */
-    int wanderingTraderSpawnDelay();
+    Ticks wanderingTraderSpawnDelay();
 
     /**
      * Sets the delay before a {@link WanderingTrader} will be spawned.
      *
      * @param delay The delay, in ticks
      */
-    void setWanderingTraderSpawnDelay(int delay);
+    void setWanderingTraderSpawnDelay(Ticks delay);
 
     /**
      * Gets the chance that a {@link WanderingTrader} will be spawned, as a percentage
