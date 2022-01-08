@@ -30,6 +30,7 @@ import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.effect.VanishState;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
@@ -198,11 +199,16 @@ public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject
         return this.requireValue(Keys.IS_INVISIBLE).asMutable();
     }
 
+    default Value.Mutable<VanishState> vanishState() {
+        return this.requireValue(Keys.VANISH_STATE).asMutable();
+    }
+
     /**
      * {@link Keys#VANISH}
      *
      * @return Whether the user is vanished
      */
+    @Deprecated
     default Value.Mutable<Boolean> vanish() {
         return this.requireValue(Keys.VANISH).asMutable();
     }
@@ -212,6 +218,7 @@ public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject
      *
      * @return Whether the user ignores collision with other entities
      */
+    @Deprecated
     default Value.Mutable<Boolean> vanishIgnoresCollision() {
         return this.requireValue(Keys.VANISH_IGNORES_COLLISION).asMutable();
     }
@@ -221,6 +228,7 @@ public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject
      *
      * @return Whether the user can be targeted for attack by another entity
      */
+    @Deprecated
     default Value.Mutable<Boolean> vanishPreventsTargeting() {
         return this.requireValue(Keys.VANISH_PREVENTS_TARGETING).asMutable();
     }

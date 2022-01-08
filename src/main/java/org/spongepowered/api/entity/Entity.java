@@ -33,6 +33,7 @@ import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.effect.VanishState;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.projectile.source.EntityProjectileSource;
 import org.spongepowered.api.util.AABB;
@@ -75,6 +76,7 @@ import java.util.function.UnaryOperator;
  *
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
+@SuppressWarnings("deprecation")
 @DoNotStore
 public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEntity>, Locatable, EntityProjectileSource, Sound.Emitter,
         SerializableDataHolder.Mutable, RandomProvider {
@@ -325,8 +327,8 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      */
     default boolean canSee(final Entity entity) {
         Objects.requireNonNull(entity, "Entity cannot be null");
-        final Optional<Boolean> optional = entity.get(Keys.VANISH);
-        return !optional.isPresent() || !optional.get();
+        final Optional<VanishState> optional = entity.get(Keys.VANISH_STATE);
+        return !optional.map(VanishState::invisible).orElse(false);
     }
 
     /**
@@ -607,9 +609,19 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
     }
 
     /**
+     * {@link Keys#VANISH_STATE}
+     *
+     * @return The current vanish state of the entity
+     */
+    default Value.Mutable<VanishState> vanishState() {
+        return this.requireValue(Keys.VANISH_STATE).asMutable();
+    }
+
+    /**
      * {@link Keys#VANISH}
      *
      * @return Whether the entity is vanished
+     * @deprecated Use {@link #vanishState() VanishState} instead
      */
     default Value.Mutable<Boolean> vanish() {
         return this.requireValue(Keys.VANISH).asMutable();
@@ -619,6 +631,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      * {@link Keys#VANISH_IGNORES_COLLISION}
      *
      * @return Whether the entity ignores collision with other entities
+     * @deprecated Use {@link #vanishState()} instead
      */
     default Value.Mutable<Boolean> vanishIgnoresCollision() {
         return this.requireValue(Keys.VANISH_IGNORES_COLLISION).asMutable();
@@ -628,6 +641,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      * {@link Keys#VANISH_PREVENTS_TARGETING}
      *
      * @return Whether the entity can be targeted for attack by another entity
+     * @deprecated Use {@link #vanishState()} instead
      */
     default Value.Mutable<Boolean> vanishPreventsTargeting() {
         return this.requireValue(Keys.VANISH_PREVENTS_TARGETING).asMutable();

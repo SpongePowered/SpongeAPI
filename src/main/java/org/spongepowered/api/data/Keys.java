@@ -95,6 +95,7 @@ import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.WeightedCollectionValue;
+import org.spongepowered.api.effect.VanishState;
 import org.spongepowered.api.effect.particle.ParticleEffect;
 import org.spongepowered.api.effect.particle.ParticleOption;
 import org.spongepowered.api.effect.particle.ParticleType;
@@ -1413,7 +1414,7 @@ public final class Keys {
      * Whether an {@link Entity} is currently invisible.
      * This will only simply render the entity as vanished,
      * but not prevent any entity updates being sent to clients.
-     * To fully "vanish" an {@link Entity}, use {@link #VANISH}.
+     * To fully "vanish" an {@link Entity}, use {@link #VANISH_STATE}.
      */
     public static final Key<Value<Boolean>> IS_INVISIBLE = Keys.key(ResourceKey.sponge("is_invisible"), Boolean.class);
 
@@ -2673,7 +2674,7 @@ public final class Keys {
     public static final Key<Value<Boolean>> UPDATE_GAME_PROFILE = Keys.key(ResourceKey.sponge("update_game_profile"), Boolean.class);
 
     /**
-     * Whether an {@link Entity} is vanished.
+     * The {@link VanishState} of an {@link Entity}.
      *
      * <p>The presence of a vanished entity will not be made known to a client;
      * no packets pertaining to this entity are sent. Client-side, this entity
@@ -2683,6 +2684,21 @@ public final class Keys {
      * <p>Vanishing an {@link Entity} ridden by other entities (see
      * {@link #PASSENGERS} will cause problems.</p>
      */
+    public static final Key<Value<VanishState>> VANISH_STATE = Keys.key(ResourceKey.sponge("vanish"), VanishState.class);
+
+    /**
+     * Whether an {@link Entity} is vanished.
+     *
+     * <p>The presence of a vanished entity will not be made known to a client;
+     * no packets pertaining to this entity are sent. Client-side, this entity
+     * will cease to exist. Server-side it may still be targeted by hostile
+     * entities or collide with other entities.</p>
+     *
+     * <p>Vanishing an {@link Entity} ridden by other entities (see
+     * {@link #PASSENGERS} will cause problems.</p>
+     * @deprecated use {@link #VANISH_STATE}
+     */
+    @Deprecated
     public static final Key<Value<Boolean>> VANISH = Keys.key(ResourceKey.sponge("vanish"), Boolean.class);
 
     /**
@@ -2690,7 +2706,9 @@ public final class Keys {
      *
      * <p>This state will be ignored if the {@link Entity} is not also
      * vanished as per {@link #VANISH}.</p>
+     * @deprecated use {@link #VANISH_STATE}
      */
+    @Deprecated
     public static final Key<Value<Boolean>> VANISH_IGNORES_COLLISION = Keys.key(ResourceKey.sponge("vanish_ignores_collision"), Boolean.class);
 
     /**
@@ -2700,7 +2718,9 @@ public final class Keys {
      *
      * <p>This state will be ignored if the {@link Entity} is not also
      * vanished as per {@link #VANISH}.}.</p>
+     * @deprecated use {@link #VANISH_STATE}
      */
+    @Deprecated
     public static final Key<Value<Boolean>> VANISH_PREVENTS_TARGETING = Keys.key(ResourceKey.sponge("vanish_prevents_targeting"), Boolean.class);
 
     /**
