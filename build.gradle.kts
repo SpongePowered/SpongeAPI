@@ -5,8 +5,8 @@ plugins {
     id("org.spongepowered.gradle.sponge.dev")
     id("net.kyori.indra.publishing")
     id("net.kyori.indra.checkstyle")
+    id("net.kyori.indra.publishing.sonatype")
     id("org.spongepowered.gradle.event-impl-gen")
-    id("org.cadixdev.licenser")
     id("org.jetbrains.gradle.plugin.idea-ext")
     id("net.ltgt.errorprone")
 }
@@ -250,6 +250,7 @@ indra {
         artifactId = project.name.toLowerCase()
         pom {
             this.url.set(projectUrl)
+            this.description.set(projectDescription)
         }
     }
 }
