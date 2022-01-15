@@ -74,7 +74,7 @@ jobs:
           echo "PROJECT_VERSION=$VERSION" >> $GITHUB_ENV
       - name: Publish with Gradle
         if: "${{ runner.os == 'Linux' && ((env.STATUS != 'release' && github.event_name == 'push' && startsWith(github.ref, 'refs/heads/api-')) || (env.STATUS == 'release' && github.event_name == 'release')) }}"
-        run: ./gradlew -PforceSign=true publish
+        run: ./gradlew -PforceSign=true publish closeAndReleaseStagingRepository
         env:
           ORG_GRADLE_PROJECT_githubPackagesUsername: "${{ github.actor }}"
           ORG_GRADLE_PROJECT_githubPackagesPassword: "${{ secrets.GITHUB_TOKEN }}"
