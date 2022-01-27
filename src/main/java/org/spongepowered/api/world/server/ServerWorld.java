@@ -46,6 +46,7 @@ import org.spongepowered.api.world.server.storage.ServerWorldProperties;
 import org.spongepowered.api.world.volume.game.InteractableVolume;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 import org.spongepowered.math.vector.Vector3i;
+import org.spongepowered.plugin.PluginContainer;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -53,6 +54,7 @@ import java.util.Collection;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Predicate;
 
 public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identifiable, InteractableVolume,
         ServerLocationCreator, WeatherUniverse.Mutable {
@@ -81,6 +83,27 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
     default UUID uniqueId() {
         return this.properties().uniqueId();
     }
+
+    /**
+     * Creates a contained {@link ServerTransaction} for the given
+     * {@link Runnable}, provided the runnable is working on the same thread as
+     * this world's {@link ServerWorld#engine() server}. Changes can be made to
+     * this world within the {@link Runnable#run()} that can have side effects,
+     * and the given {@link Predicate} serves as a check for the entire
+     * transaction succeeding or not. If the predicate returns {@code false} at
+     * any point during the runnable, all changes since the beginning of the
+     * transaction will be reverted.
+     * <p>It is intended for the predicate to be called multiple times based on
+     * the number of side effects within the world with potentially several
+     * changes being made in succession. Several
+     * {@link org.spongepowered.api.event.Event events} can also be thrown
+     * during the operation based on the transaction flow, and the
+     * {@link PluginContainer} will remain in the associated
+     * {@link org.spongepowered.api.event.Cause cause} for such events.</p>
+     * @param operation
+     * @param shouldRollback
+     */
+    boolean transact(PluginContainer container, Runnable operation, Predicate<ServerTransaction> shouldRollback);
 
     @Override
     default WorldChunk chunkAtBlock(final int bx, final int by, final int bz) {
