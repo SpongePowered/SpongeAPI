@@ -36,12 +36,17 @@ body:
       description: >
         A breaking change can be, but is not limited to:
         
+        
         * A method is removed from an class/interface
-        * A method's signature is changed (including the number of parameters, the types of those parmaeters, and 
+        
+        * A method's signature is changed (including the number of parameters, the types of those parameters, and 
           the return type of a method) instead of adding an overload (note that changing a return type from `void` to
           something else, such as `boolean` is still a breaking change).
+        
         * A class/interface is removed or renamed, or is converted between a class and an interface
+        
         * The inheritance tree is modified (other than simply being added to)
+        
         
         If you are unsure, select "I don't know". **Breaking changes can only target unreleased major versions.**
       options:
