@@ -1,0 +1,65 @@
+name: Request Addition or Change to API
+description: If you want a new API or are requesting a change to an API, ask here.
+labels: [ "status: needs triage" ]
+body:
+  - type: markdown
+    attributes:
+      value: "## Before You Begin"
+  - type: markdown
+    attributes:
+      value: >
+        This is for requesting a new API to an existing version of the SpongeAPI, or for requesting a change that will 
+        appear in newer versions of the API. This is **not** for reporting errors when trying to use an API in one of
+        our implementations - if you are getting `AbtractMethodError`s or `NoClassDefError`s, [please report that to the
+        Sponge repository instead](https://github.com/SpongePowered/Sponge/issues/new/choose).
+        
+        
+        Please make sure you have searched existing issues to see if someone else has made the same request as you first.
+        We will close duplicates.
+        
+        
+        Remember, Github Issues is not for support. If you require help, visit the 
+        [Sponge Docs](https://docs.spongepowered.org), our [Forums](https://forums.spongepowered.org) or 
+        [Discord Server](https://discord.gg/sponge).
+  - type: dropdown
+    id: type
+  - type: input
+    id: version
+    attributes:
+      label: Major SpongeAPI version
+      description: What major version of the API do you want this to target?
+      placeholder: ex. 8, 9
+    validations:
+      required: true
+  - type: dropdown
+    id: breakingchange
+    attributes:
+      label: Is this likely to be a breaking change?
+      description: >
+        A breaking change can be, but is not limited to:
+        
+        * A method is removed from an class/interface
+        * A method's signature is changed (including the number of parameters, the types of those parmaeters, and 
+          the return type of a method) instead of adding an overload (note that changing a return type from `void` to
+          something else, such as `boolean` is still a breaking change).
+        * A class/interface is removed or renamed, or is converted between a class and an interface
+        * The inheritance tree is modified (other than simply being added to)
+        
+        If you are unsure, select "I don't know". **Breaking changes can only target unreleased major versions.**
+      options:
+        - Yes
+        - No
+        - I don't know
+    validations:
+      required: true
+  - type: textarea
+    id: what-do-you-want
+    attributes:
+      label: What are you requesting?
+      description: >
+        Explain what what you're requesting and why you're requesting it. Please add as much detail as you can.
+        Feel free to give suggestions as to the form of the API you want - it doesn't need to be exact at this stage
+        as we may help you refine your idea.
+    validations:
+      required: true
+

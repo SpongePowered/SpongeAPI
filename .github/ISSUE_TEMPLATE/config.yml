@@ -1,0 +1,26 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Feature or Implementation Request for Sponge Implementations
+    url: https://github.com/SpongePowered/Sponge/issues/new?assignees=&labels=status%3A+needs+triage%2Ctype%3A+feature+request&template=feature_request.yml
+    about: "If you're using an API and it fails with an abstract method or no class def error, report it here."
+  - name: Bug report for Sponge for Minecraft 1.16.5 or later
+    url: https://github.com/SpongePowered/Sponge/issues/new?assignees=&labels=status%3A+needs+triage%2Ctype%3A+bug&template=bug_report.yml
+    about: "If you've discovered a bug with Sponge itself, report that here."
+  - name: Bug report for SpongeForge for Minecraft 1.12.2
+    url: https://github.com/SpongePowered/SpongeForge/issues/new?assignees=&labels=&template=legacy_issue.yml
+    about: "Issues for SpongeForge for Minecraft 1.12.2 should be reported on the SpongeForge repository."
+  - name: Bug report for SpongeVanilla for Minecraft 1.12.2
+    url: https://github.com/SpongePowered/SpongeVanilla/issues/new?assignees=&labels=&template=legacy_issue.yml
+    about: "Issues for SpongeVanilla for Minecraft 1.12.2 should be reported on the SpongeVanilla repository."
+  - name: Known Mod Incompatibilities
+    url: https://docs.spongepowered.org/stable/en/server/spongineer/incompatible.html
+    about: "If you're potentially having issues with mod conflicts, read this page. You may simply need to change a mod or sponge setting."
+  - name: Sponge Docs
+    url: https://docs.spongepowered.org/
+    about: "If you need help setting up a server, our Docs pages may help you."
+  - name: Sponge Forums
+    url: https://forums.spongepowered.org/
+    about: "If you need support running your server and want to ask a question, post on our official forums"
+  - name: Sponge Discord Guild
+    url: https://discord.gg/sponge
+    about: "For quick help, join our Discord channel!"
