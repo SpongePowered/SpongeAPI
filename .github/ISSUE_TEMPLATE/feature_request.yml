@@ -21,8 +21,6 @@ body:
         Remember, Github Issues is not for support. If you require help, visit the 
         [Sponge Docs](https://docs.spongepowered.org), our [Forums](https://forums.spongepowered.org) or 
         [Discord Server](https://discord.gg/sponge).
-  - type: dropdown
-    id: type
   - type: input
     id: version
     attributes:
@@ -47,9 +45,9 @@ body:
         
         If you are unsure, select "I don't know". **Breaking changes can only target unreleased major versions.**
       options:
-        - Yes
-        - No
-        - I don't know
+        - "Yes"
+        - "No"
+        - "I don't know"
     validations:
       required: true
   - type: textarea
