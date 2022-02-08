@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.service.pagination;
 
+import java.util.Optional;
+import net.kyori.adventure.audience.Audience;
+
 /**
  * This service allows pagination of output to users.
  */
@@ -35,4 +38,17 @@ public interface PaginationService {
      * @return The pagination builder
      */
     PaginationList.Builder builder();
+
+    /**
+     * Gets the last known page index of a certain {@link PaginationList} viewed by an {@link Audience}.
+     * If the {@link Audience} is reading another {@link PaginationList}, the last known page number of this
+     * given list may still be saved and returned.
+     *
+     * <p>After some time, the list is forgotten about, at which point the page index will return empty.
+     *
+     * @param audience the audience member who may or may not have viewed any paginated output
+     * @param list     the paginated output that the audience member may be viewing
+     * @return the last known page index, if it exists
+     */
+    Optional<Integer> currentPage(Audience audience, PaginationList list);
 }
