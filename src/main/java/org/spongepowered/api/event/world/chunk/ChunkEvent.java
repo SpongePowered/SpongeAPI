@@ -28,6 +28,7 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
+import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.chunk.WorldChunk;
 import org.spongepowered.api.world.server.ServerWorld;
@@ -125,7 +126,11 @@ public interface ChunkEvent extends Event {
     }
 
     /**
-     * Called when a {@link WorldChunk chunk} is done loading.
+     * Called when a {@link WorldChunk chunk} is loaded. This can be called
+     * outside the {@link World#engine() main} {@link Thread}. It is NOT safe
+     * to perform modifications to the {@link World} or via
+     * {@link org.spongepowered.api.world.server.ServerLocation} as this could
+     * result in a deadlock.
      */
     interface Load extends WorldScoped {
 

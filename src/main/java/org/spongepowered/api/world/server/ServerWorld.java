@@ -83,6 +83,11 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
     }
 
     @Override
+    default WorldChunk chunkAtBlock(final Vector3i blockPosition) {
+        return this.chunkAtBlock(blockPosition.x(), blockPosition.y(), blockPosition.z());
+    }
+
+    @Override
     default WorldChunk chunkAtBlock(final int bx, final int by, final int bz) {
         final Vector3i chunkPos = this.engine().chunkLayout().forceToChunk(bx, by, bz);
         return this.chunk(chunkPos.x(), chunkPos.y(), chunkPos.z());
