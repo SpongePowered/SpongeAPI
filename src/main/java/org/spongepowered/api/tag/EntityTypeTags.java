@@ -28,6 +28,7 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -63,6 +64,10 @@ public final class EntityTypeTags {
 
     // @formatter:on
     private EntityTypeTags() {
+    }
+
+    public static Registry<Tag<EntityType<?>>> registry() {
+        return Sponge.game().registry(RegistryTypes.ENTITY_TYPE_TAGS);
     }
 
     private static DefaultedRegistryReference<Tag<EntityType<?>>> key(final ResourceKey location) {

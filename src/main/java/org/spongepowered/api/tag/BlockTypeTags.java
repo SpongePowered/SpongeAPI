@@ -28,6 +28,7 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -122,6 +123,8 @@ public final class BlockTypeTags {
     public static final DefaultedRegistryReference<Tag<BlockType>> EMERALD_ORES = BlockTypeTags.key(ResourceKey.minecraft("emerald_ores"));
 
     public static final DefaultedRegistryReference<Tag<BlockType>> ENDERMAN_HOLDABLE = BlockTypeTags.key(ResourceKey.minecraft("enderman_holdable"));
+
+    public static final DefaultedRegistryReference<Tag<BlockType>> FALL_DAMAGE_RESETTING = BlockTypeTags.key(ResourceKey.minecraft("fall_damage_resetting"));
 
     public static final DefaultedRegistryReference<Tag<BlockType>> FEATURES_CANNOT_REPLACE = BlockTypeTags.key(ResourceKey.minecraft("features_cannot_replace"));
 
@@ -307,6 +310,10 @@ public final class BlockTypeTags {
 
     // @formatter:on
     private BlockTypeTags() {
+    }
+
+    public static Registry<Tag<BlockType>> registry() {
+        return Sponge.game().registry(RegistryTypes.BLOCK_TYPE_TAGS);
     }
 
     private static DefaultedRegistryReference<Tag<BlockType>> key(final ResourceKey location) {

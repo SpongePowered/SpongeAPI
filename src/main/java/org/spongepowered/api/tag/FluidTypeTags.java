@@ -28,6 +28,7 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.fluid.FluidType;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -47,6 +48,10 @@ public final class FluidTypeTags {
 
     // @formatter:on
     private FluidTypeTags() {
+    }
+
+    public static Registry<Tag<FluidType>> registry() {
+        return Sponge.game().registry(RegistryTypes.FLUID_TYPE_TAGS);
     }
 
     private static DefaultedRegistryReference<Tag<FluidType>> key(final ResourceKey location) {

@@ -28,6 +28,7 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
@@ -185,6 +186,10 @@ public final class ItemTypeTags {
 
     // @formatter:on
     private ItemTypeTags() {
+    }
+
+    public static Registry<Tag<ItemType>> registry() {
+        return Sponge.game().registry(RegistryTypes.ITEM_TYPE_TAGS);
     }
 
     private static DefaultedRegistryReference<Tag<ItemType>> key(final ResourceKey location) {
