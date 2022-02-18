@@ -17,3 +17,7 @@ pluginManagement {
         id("net.kyori.indra.checkstyle") version indraVersion
     }
 }
+
+if (JavaVersion.current() < JavaVersion.VERSION_11) {
+    throw GradleException("SpongeAPI requires at least Java 11 to build, but you have ${JavaVersion.current()}.")
+} 
