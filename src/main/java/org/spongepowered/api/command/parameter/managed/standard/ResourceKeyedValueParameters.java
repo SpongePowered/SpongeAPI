@@ -398,6 +398,24 @@ public final class ResourceKeyedValueParameters {
     public static final DefaultedRegistryReference<ResourceKeyedValueParameter<Component>> TEXT_JSON_ALL = ResourceKeyedValueParameters.key(ResourceKey.sponge("text_json_all"));
 
     /**
+     * Expects an argument to represent some {@link Component} serialised using MiniMessage.
+     *
+     * <p>This will consume all remaining arguments</p>
+     *
+     * <p>Returns a {@link Component}</p>
+     */
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<Component>> TEXT_MINIMESSAGE = ResourceKeyedValueParameters.key(ResourceKey.sponge("text_minimessage"));
+
+    /**
+     * Expects an argument to represent some {@link Component} serialised using MiniMessage in strict mode.
+     *
+     * <p>This will consume all remaining arguments</p>
+     *
+     * <p>Returns a {@link Component}</p>
+     */
+    public static final DefaultedRegistryReference<ResourceKeyedValueParameter<Component>> TEXT_MINIMESSAGE_STRICT = ResourceKeyedValueParameters.key(ResourceKey.sponge("text_minimessage_strict"));
+
+    /**
      * Require an argument to be a URL.
      *
      * <p>Returns a {@link URL}</p>

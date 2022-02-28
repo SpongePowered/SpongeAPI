@@ -27,8 +27,12 @@ package org.spongepowered.api.adventure;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandCause;
+import org.spongepowered.api.placeholder.PlaceholderComponent;
+import org.spongepowered.api.placeholder.PlaceholderContext;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 
 import java.util.function.Consumer;
@@ -99,6 +103,17 @@ public final class SpongeComponents {
         return SpongeComponents.factory().render(component, senderContext, resolver, otherResolvers);
     }
 
+    /**
+     * Get a tag resolver that exposes registered {@link PlaceholderComponent}s
+     * as tags for {@link MiniMessage}.
+     *
+     * @param context the context to provide to resolved placeholders
+     * @return a placeholder resolver tag
+     */
+    public static TagResolver placeholderResolver(final PlaceholderContext context) {
+        return SpongeComponents.factory().placeholderResolver(context);
+    }
+
     private static Factory factory() {
         return Sponge.game().factoryProvider().provide(Factory.class);
     }
@@ -122,6 +137,8 @@ public final class SpongeComponents {
             final DefaultedRegistryReference<ResolveOperation> resolver,
             final DefaultedRegistryReference<ResolveOperation>... otherResolvers
         );
+
+        TagResolver placeholderResolver(final PlaceholderContext context);
 
     }
 }

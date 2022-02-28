@@ -48,7 +48,6 @@ import org.spongepowered.api.command.parameter.managed.standard.ResourceKeyedVal
 import org.spongepowered.api.command.parameter.managed.standard.VariableValueParameters;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -491,6 +490,26 @@ public interface Parameter {
      */
     static Parameter.Value.Builder<ItemStackSnapshot> itemStackSnapshot() {
         return Parameter.builder(ItemStackSnapshot.class, ResourceKeyedValueParameters.ITEM_STACK_SNAPSHOT);
+    }
+
+    /**
+     * Creates a builder that has the {@link ValueParameter} set to
+     * {@link ResourceKeyedValueParameters#TEXT_MINIMESSAGE}.
+     *
+     * @return A {@link Parameter.Value.Builder}
+     */
+    static Parameter.Value.Builder<Component> miniMessage() {
+        return Parameter.builder(Component.class, ResourceKeyedValueParameters.TEXT_MINIMESSAGE);
+    }
+
+    /**
+     * Creates a builder that has the {@link ValueParameter} set to
+     * {@link ResourceKeyedValueParameters#TEXT_MINIMESSAGE_STRICT}.
+     *
+     * @return A {@link Parameter.Value.Builder}
+     */
+    static Parameter.Value.Builder<Component> miniMessageStrict() {
+        return Parameter.builder(Component.class, ResourceKeyedValueParameters.TEXT_MINIMESSAGE_STRICT);
     }
 
     /**

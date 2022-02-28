@@ -25,13 +25,18 @@
 package org.spongepowered.api.command.parameter.managed.standard;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import net.kyori.adventure.text.serializer.ComponentSerializer;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.adventure.SpongeComponents;
+import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.parameter.CommandContext;
 import org.spongepowered.api.command.parameter.managed.ValueParameter;
+import org.spongepowered.api.placeholder.PlaceholderComponent;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.Registry;
@@ -47,6 +52,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.regex.Pattern;
@@ -573,6 +579,53 @@ public final class VariableValueParameters {
          */
         @Override
         ValueParameter<Component> build() throws IllegalStateException;
+
+    }
+
+    /**
+     * A builder that creates a parameter that serializes strings into
+     * {@link Component} using the <a href="https://docs.adventure.kyori.net/minimessage/format.html">MiniMessage</a> format.
+     */
+    public interface MiniMessageBuilder extends Builder<ValueParameter<Component>, MiniMessageBuilder> {
+        /**
+         * Provide a custom MiniMessage instance to use for deserialization.
+         *
+         * @param serializer The specific MiniMessage instance to use
+         * @return This builder, for chaining
+         */
+        MiniMessageBuilder miniMessage(final MiniMessage serializer);
+
+        /**
+         * Provide a custom MiniMessage instance to use for deserialization.
+         *
+         * @param customizer A function to modify a new MiniMessage builder.
+         * @return This builder, for chaining
+         */
+        MiniMessageBuilder miniMessage(final Consumer<MiniMessage.Builder> customizer);
+
+        /**
+         * Expose registered {@link PlaceholderComponent placeholder components} as tags on this MiniMessage instance.
+         *
+         * @return This builder, for chaining
+         * @see SpongeComponents#placeholderResolver(org.spongepowered.api.placeholder.PlaceholderContext)
+         */
+        MiniMessageBuilder withPlaceholders();
+
+        /**
+         * Add a provider for tags that will be computed based on the
+         *
+         * @param tagProvider a function that will produce a resolver with sender-specific tags for parsing
+         * @return This builder, for chaining
+         */
+        MiniMessageBuilder withContextualTags(final Function<CommandCause, TagResolver> tagProvider);
+
+        /**
+         * Tests for validity and creates this {@link ValueParameter}.
+         *
+         * @return The {@link ValueParameter}
+         */
+        @Override
+        ValueParameter<Component> build();
 
     }
 
