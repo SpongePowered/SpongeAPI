@@ -27,6 +27,7 @@ package org.spongepowered.api.adventure;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.flattener.ComponentFlattener;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
@@ -99,6 +100,17 @@ public final class SpongeComponents {
         return SpongeComponents.factory().render(component, senderContext, resolver, otherResolvers);
     }
 
+    /**
+     * Get a {@link ComponentFlattener} with access to server-specific information
+     *
+     * <p>This flattener can be used for custom formats where translatable strings should be localized server-side.</p>
+     *
+     * @return The flattener
+     */
+    public static ComponentFlattener flattener() {
+        return SpongeComponents.factory().flattener();
+    }
+
     private static Factory factory() {
         return Sponge.game().factoryProvider().provide(Factory.class);
     }
@@ -122,6 +134,8 @@ public final class SpongeComponents {
             final DefaultedRegistryReference<ResolveOperation> resolver,
             final DefaultedRegistryReference<ResolveOperation>... otherResolvers
         );
+
+        ComponentFlattener flattener();
 
     }
 }
