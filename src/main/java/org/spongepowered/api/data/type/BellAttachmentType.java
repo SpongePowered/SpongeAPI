@@ -24,13 +24,14 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents a "type" of piston.
+ * Represents the attachment-type of a {@link BlockTypes#BELL} block.
  */
-@CatalogedBy(PistonTypes.class)
-public interface PistonType extends DefaultedRegistryValue, Comparable<PistonType> {
+@CatalogedBy(BellAttachmentTypes.class)
+public interface BellAttachmentType extends DefaultedRegistryValue, Comparable<BellAttachmentType> {
 
 }

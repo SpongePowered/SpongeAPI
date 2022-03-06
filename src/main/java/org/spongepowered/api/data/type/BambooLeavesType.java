@@ -24,13 +24,14 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents a "type" of piston.
+ * Represents the type of leaves of a {@link BlockTypes#BAMBOO} block.
  */
-@CatalogedBy(PistonTypes.class)
-public interface PistonType extends DefaultedRegistryValue, Comparable<PistonType> {
+@CatalogedBy(BambooLeavesTypes.class)
+public interface BambooLeavesType extends DefaultedRegistryValue, Comparable<BambooLeavesType> {
 
 }

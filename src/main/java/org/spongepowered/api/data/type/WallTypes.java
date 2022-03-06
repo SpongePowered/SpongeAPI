@@ -24,13 +24,37 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.registry.DefaultedRegistryValue;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 
-/**
- * Represents a "type" of piston.
- */
-@CatalogedBy(PistonTypes.class)
-public interface PistonType extends DefaultedRegistryValue, Comparable<PistonType> {
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
+public final class WallTypes {
 
+    // @formatter:off
+
+    public static final DefaultedRegistryReference<WallType> NONE = WallTypes.key(ResourceKey.sponge("none"));
+
+    public static final DefaultedRegistryReference<WallType> LOW = WallTypes.key(ResourceKey.sponge("low"));
+
+    public static final DefaultedRegistryReference<WallType> TALL = WallTypes.key(ResourceKey.sponge("tall"));
+
+    // @formatter:on
+
+    private WallTypes() {
+    }
+
+    public static Registry<WallType> registry() {
+        return Sponge.game().registry(RegistryTypes.WALL_TYPE);
+    }
+
+    private static DefaultedRegistryReference<WallType> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.WALL_TYPE, location).asDefaultedReference(Sponge::game);
+    }
 }

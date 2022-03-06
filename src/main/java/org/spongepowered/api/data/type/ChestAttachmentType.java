@@ -34,6 +34,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * chests into a double chests.
  */
 @CatalogedBy(ChestAttachmentTypes.class)
-public interface ChestAttachmentType extends DefaultedRegistryValue {
+public interface ChestAttachmentType extends DefaultedRegistryValue, Comparable<ChestAttachmentType> {
 
 }

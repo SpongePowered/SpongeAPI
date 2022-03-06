@@ -28,7 +28,7 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(Tilts.class)
-public interface Tilt extends DefaultedRegistryValue {
+public interface Tilt extends DefaultedRegistryValue, Comparable<Tilt> {
 
     /**
      * {@return Whether a block entering this tilt state will trigger any

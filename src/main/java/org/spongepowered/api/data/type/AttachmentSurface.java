@@ -31,6 +31,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a block surface.
  */
 @CatalogedBy(AttachmentSurfaces.class)
-public interface AttachmentSurface extends DefaultedRegistryValue {
+public interface AttachmentSurface extends DefaultedRegistryValue, Comparable<AttachmentSurface> {
 
 }
