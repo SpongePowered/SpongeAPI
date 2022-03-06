@@ -28,6 +28,6 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(WireAttachmentTypes.class)
-public interface WireAttachmentType extends DefaultedRegistryValue {
+public interface WireAttachmentType extends DefaultedRegistryValue, Comparable<WireAttachmentType> {
 
 }

@@ -28,6 +28,6 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(DripstoneSegments.class)
-public interface DripstoneSegment extends DefaultedRegistryValue {
+public interface DripstoneSegment extends DefaultedRegistryValue, Comparable<DripstoneSegment> {
 
 }

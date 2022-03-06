@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.state;
 
-import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -33,6 +33,14 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * may not be exposed in the API.
  */
 @CatalogedBy(EnumStateProperties.class)
-public interface EnumStateProperty<E extends Enum<E>> extends DefaultedRegistryValue, StateProperty<E> {
+public interface EnumStateProperty<E extends Comparable<E>> extends StateProperty<E> {
 
+    static <E extends Comparable<E>> EnumStateProperty<E> of(String name) {
+        return Sponge.game().factoryProvider().provide(Factory.class).of(name);
+    }
+
+    interface Factory {
+
+        <E extends Comparable<E>> EnumStateProperty<E> of(String name);
+    }
 }

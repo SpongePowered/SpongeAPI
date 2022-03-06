@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.state;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -33,6 +34,14 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * <code>false</code>.
  */
 @CatalogedBy(BooleanStateProperties.class)
-public interface BooleanStateProperty extends DefaultedRegistryValue, StateProperty<Boolean> {
+public interface BooleanStateProperty extends StateProperty<Boolean> {
 
+    static BooleanStateProperty of(String name) {
+        return Sponge.game().factoryProvider().provide(Factory.class).of(name);
+    }
+
+    interface Factory {
+
+        BooleanStateProperty of(String name);
+    }
 }

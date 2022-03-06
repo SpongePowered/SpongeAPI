@@ -28,6 +28,6 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(SculkSensorStates.class)
-public interface SculkSensorState extends DefaultedRegistryValue {
+public interface SculkSensorState extends DefaultedRegistryValue, Comparable<SculkSensorState> {
 
 }

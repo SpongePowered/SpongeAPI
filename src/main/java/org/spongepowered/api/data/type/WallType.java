@@ -28,9 +28,9 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents a "type" of piston.
+ * Represents the type of wall BlockStates
  */
-@CatalogedBy(PistonTypes.class)
-public interface PistonType extends DefaultedRegistryValue, Comparable<PistonType> {
+@CatalogedBy(WallTypes.class)
+public interface WallType extends DefaultedRegistryValue, Comparable<WallType> {
 
 }

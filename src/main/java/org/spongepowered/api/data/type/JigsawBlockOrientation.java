@@ -24,13 +24,28 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents a "type" of piston.
+ * Represents the front and top orientation of {@link BlockTypes#JIGSAW} blocks.
  */
-@CatalogedBy(PistonTypes.class)
-public interface PistonType extends DefaultedRegistryValue, Comparable<PistonType> {
+@CatalogedBy(JigsawBlockOrientations.class)
+public interface JigsawBlockOrientation extends DefaultedRegistryValue, Comparable<JigsawBlockOrientation> {
 
+    /**
+     * The front facing direction of a jigsaw block.
+     *
+     * @return the front facing direction
+     */
+    Direction frontDirection();
+
+    /**
+     * The top facing direction of a jigsaw block.
+     *
+     * @return the top facing direction
+     */
+    Direction topDirection();
 }

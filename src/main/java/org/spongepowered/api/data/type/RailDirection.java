@@ -29,6 +29,6 @@ import org.spongepowered.api.util.Cycleable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(RailDirections.class)
-public interface RailDirection extends DefaultedRegistryValue,  Cycleable<RailDirection> {
+public interface RailDirection extends DefaultedRegistryValue, Cycleable<RailDirection>, Comparable<RailDirection> {
 
 }

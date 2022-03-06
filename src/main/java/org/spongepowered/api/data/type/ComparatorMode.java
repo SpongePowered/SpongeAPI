@@ -28,6 +28,6 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(ComparatorModes.class)
-public interface ComparatorMode extends DefaultedRegistryValue {
+public interface ComparatorMode extends DefaultedRegistryValue, Comparable<ComparatorMode> {
 
 }

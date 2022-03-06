@@ -43,14 +43,14 @@ import java.util.function.Predicate;
  * {@link StateProperty}s :</p>
  * 
  * <ul>
- *     <li>{@link EnumStateProperties#RED_BED_FACING}</li>
- *     <li>{@link BooleanStateProperties#RED_BED_OCCUPIED}</li>
- *     <li>{@link EnumStateProperties#RED_BED_PART}</li>
+ *     <li>{@link EnumStateProperties#property_FACING()}</li>
+ *     <li>{@link BooleanStateProperties#property_OCCUPIED()}</li>
+ *     <li>{@link EnumStateProperties#property_BED_PART()}</li>
  * </ul>
  *
  * <p>If you query a {@link BlockTypes#RED_BED}'s {@link StateProperty} you have two
  * possible outcomes for each {@link StateProperty}. The
- * {@link BooleanStateProperties#RED_BED_OCCUPIED} has the following possible values:</p>
+ * {@link BooleanStateProperties#property_OCCUPIED()} has the following possible values:</p>
  * 
  * <ul>
  *     <li><code>true</code></li>
@@ -59,7 +59,7 @@ import java.util.function.Predicate;
  *
  * <p>As 'OCCUPIED' is a {@link BooleanStateProperty}, it can only be <code>true</code>
  * or <code>false</code>.
- * The {@link EnumStateProperties#RED_BED_PART} has the following possible values:</p>
+ * The {@link EnumStateProperties#property_BED_PART()} has the following possible values:</p>
  * 
  * <ul>
  *     <li><code>HEAD</code></li>
