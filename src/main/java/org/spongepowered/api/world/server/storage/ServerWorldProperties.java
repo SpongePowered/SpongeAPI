@@ -33,6 +33,7 @@ import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.trader.WanderingTrader;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.MinecraftDayTime;
+import org.spongepowered.api.util.Nameable;
 import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.WorldType;
@@ -46,7 +47,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface ServerWorldProperties extends WorldProperties, Identifiable, ResourceKeyed, WeatherUniverse.Mutable {
+public interface ServerWorldProperties extends WorldProperties, Nameable, Identifiable, ResourceKeyed, WeatherUniverse.Mutable {
 
     /**
      * Gets the {@link ServerWorld} that correlates to this properties, if available.
