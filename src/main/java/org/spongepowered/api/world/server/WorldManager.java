@@ -26,6 +26,7 @@ package org.spongepowered.api.world.server;
 
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Server;
+import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.server.storage.ServerWorldProperties;
 
 import java.nio.file.Path;
@@ -129,6 +130,13 @@ public interface WorldManager {
      * @return The key or {@link Optional#empty()} if not found
      */
     Optional<ResourceKey> worldKey(UUID uniqueId);
+
+    /**
+     * Retrieves all {@link ServerWorld worlds} that are of a particular {@link WorldType type}.
+     * @param type The type
+     * @return The {@link Collection worlds}
+     */
+    Collection<ServerWorld> worldsOfType(WorldType type);
 
     /**
      * Loads a {@link ServerWorld world} from a {@link WorldTemplate template}.
