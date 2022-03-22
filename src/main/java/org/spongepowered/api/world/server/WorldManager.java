@@ -128,7 +128,6 @@ public interface WorldManager {
      * @param uniqueId The unique id
      * @return The key or {@link Optional#empty()} if not found
      */
-    @Deprecated
     Optional<ResourceKey> worldKey(UUID uniqueId);
 
     /**
