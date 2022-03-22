@@ -74,7 +74,10 @@ public interface WorldManager {
      * <p>It is up to the implementation to define what the default world actually is.</p>
      *
      * @return The default world
+     *
+     * @deprecated Use {@link #world(ResourceKey)} with {@link org.spongepowered.api.world.DefaultWorldKeys#DEFAULT} instead
      */
+    @Deprecated
     ServerWorld defaultWorld();
 
     /**
