@@ -51,20 +51,18 @@ dependencies {
 
     // Adventure
     api(platform("net.kyori:adventure-bom:$adventureVersion"))
-    api("net.kyori:adventure-api") {
-        exclude(group = "org.checkerframework", module = "checker-qual")
-    }
+    api("net.kyori:adventure-api")
     api("net.kyori:adventure-text-serializer-gson") {
-        exclude(group = "org.checkerframework", module = "checker-qual")
         exclude(group = "com.google.code.gson", module = "gson")
         exclude(group = "net.kyori", module = "adventure-api")
     }
     api("net.kyori:adventure-text-serializer-legacy") {
-        exclude(group = "org.checkerframework", module = "checker-qual")
         exclude(group = "net.kyori", module = "adventure-api")
     }
     api("net.kyori:adventure-text-serializer-plain") {
-        exclude(group = "org.checkerframework", module = "checker-qual")
+        exclude(group = "net.kyori", module = "adventure-api")
+    }
+    api("net.kyori:adventure-text-minimessage") {
         exclude(group = "net.kyori", module = "adventure-api")
     }
 

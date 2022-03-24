@@ -25,6 +25,7 @@
 package org.spongepowered.api.world;
 
 import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.world.server.ServerWorld;
 
 /**
@@ -32,12 +33,38 @@ import org.spongepowered.api.world.server.ServerWorld;
  */
 public final class DefaultWorldKeys {
 
+    /**
+     * @deprecated Use {@link #DEFAULT} instead
+     */
+    @Deprecated
     public static final ResourceKey OVERWORLD = ResourceKey.minecraft("overworld");
 
-    public static final ResourceKey THE_NETHER = ResourceKey.minecraft("the_nether");
+    /**
+     * The default "world" of a running game session. Typically, the Overworld.
+     * <p>
+     * Refer to: <a href="https://minecraft.fandom.com/wiki/Overworld">Overworld</a>
+     */
+    public static final ResourceKey DEFAULT = Sponge.game().factoryProvider().provide(DefaultWorldKeys.Factory.class).defaultWorld();
 
-    public static final ResourceKey THE_END = ResourceKey.minecraft("the_end");
+    /**
+     * Refer to: <a href="https://minecraft.fandom.com/wiki/The_Nether">The Nether</a>
+     */
+    public static final ResourceKey THE_NETHER = Sponge.game().factoryProvider().provide(DefaultWorldKeys.Factory.class).theNether();
+
+    /**
+     * Refer to: <a href="https://minecraft.fandom.com/wiki/The_End">The End</a>
+     */
+    public static final ResourceKey THE_END = Sponge.game().factoryProvider().provide(DefaultWorldKeys.Factory.class).theEnd();
 
     private DefaultWorldKeys() {
+    }
+
+    public interface Factory {
+
+        ResourceKey defaultWorld();
+
+        ResourceKey theNether();
+
+        ResourceKey theEnd();
     }
 }

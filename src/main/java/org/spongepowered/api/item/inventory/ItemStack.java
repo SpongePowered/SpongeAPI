@@ -25,6 +25,8 @@
 package org.spongepowered.api.item.inventory;
 
 import net.kyori.adventure.text.ComponentLike;
+import net.kyori.adventure.text.event.HoverEvent;
+import net.kyori.adventure.text.event.HoverEventSource;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
@@ -57,7 +59,7 @@ import java.util.function.Supplier;
  * use {@link ValueContainer#get(Key)} in order to retrieve information regarding
  * this item stack.</p>
  */
-public interface ItemStack extends SerializableDataHolder.Mutable, ComponentLike {
+public interface ItemStack extends SerializableDataHolder.Mutable, ComponentLike, HoverEventSource<HoverEvent.ShowItem> {
 
     /**
      * Returns an empty {@link ItemStack}.
