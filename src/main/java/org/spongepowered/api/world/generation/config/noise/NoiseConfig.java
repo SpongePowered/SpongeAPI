@@ -119,20 +119,6 @@ public interface NoiseConfig {
     int verticalSize();
 
     /**
-     * Whether to generate terrain like the end dimension.
-     *
-     * @return true when generating terrain like the end dimension.
-     */
-    boolean islandNoiseOverride();
-
-    /**
-     * Whether large biomes are generated.
-     *
-     * @return true when large biomes are generated.
-     */
-    boolean largeBiomes();
-
-    /**
      * The terrain shaper.
      *
      * @return the terrain shaper.
@@ -154,10 +140,6 @@ public interface NoiseConfig {
         Builder horizontalSize(int horizontal);
 
         Builder verticalSize(int vertical);
-
-        Builder islandNoiseOverride(boolean islandNoiseOverride);
-
-        Builder largeBiomes(boolean largeBiomes);
 
         Builder terrainShaper(Shaper terrainShaper);
     }
