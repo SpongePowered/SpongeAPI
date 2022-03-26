@@ -151,20 +151,6 @@ public interface NoiseGeneratorConfig extends ChunkGeneratorConfig {
     boolean oreVeins();
 
     /**
-     * Whether different noise caves are generated.
-     *
-     * @return true when different noise caves are generated.
-     */
-    boolean noiseCaves();
-
-    /**
-     * Whether noodle caves are generated.
-     *
-     * @return true when noodle caves are generated.
-     */
-    boolean noodleCaves();
-
-    /**
      * Whether generation uses the legacy random source.
      * <p>As of Minecraft 1.18 the legacy random source is still used for nether and end generation.</p>
      *
@@ -194,10 +180,6 @@ public interface NoiseGeneratorConfig extends ChunkGeneratorConfig {
         Builder aquifers(boolean enableAquifers);
 
         Builder oreVeins(boolean enableOreVeins);
-
-        Builder noiseCaves(boolean enableNoiseCaves);
-
-        Builder noodleCaves(boolean enableNoodleCaves);
 
         Builder mobGeneration(boolean mobGeneration);
 
