@@ -25,14 +25,8 @@
 package org.spongepowered.api.world.generation;
 
 import org.spongepowered.api.world.generation.config.ChunkGeneratorConfig;
-import org.spongepowered.api.world.generation.config.structure.StructureGenerationConfig;
 
 public interface ConfigurableChunkGenerator<T extends ChunkGeneratorConfig> extends ChunkGenerator {
 
     T config();
-
-    @Override
-    default StructureGenerationConfig structureConfig() {
-        return this.config().structureConfig();
-    }
 }
