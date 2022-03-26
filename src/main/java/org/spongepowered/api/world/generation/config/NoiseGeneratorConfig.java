@@ -28,7 +28,6 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.generation.config.noise.NoiseConfig;
-import org.spongepowered.api.world.generation.config.structure.StructureGenerationConfig;
 
 /**
  * ChunkGeneratorConfig used most of the vanilla provided dimensions.
@@ -181,8 +180,6 @@ public interface NoiseGeneratorConfig extends ChunkGeneratorConfig {
     boolean mobGeneration();
 
     interface Builder extends org.spongepowered.api.util.Builder<NoiseGeneratorConfig, Builder>, CopyableBuilder<NoiseGeneratorConfig, Builder> {
-
-        Builder structureConfig(StructureGenerationConfig config);
 
         Builder noiseConfig(NoiseConfig config);
 

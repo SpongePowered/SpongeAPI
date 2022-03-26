@@ -28,7 +28,6 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.world.biome.provider.BiomeProvider;
 import org.spongepowered.api.world.generation.config.FlatGeneratorConfig;
 import org.spongepowered.api.world.generation.config.NoiseGeneratorConfig;
-import org.spongepowered.api.world.generation.config.structure.StructureGenerationConfig;
 
 import java.util.Objects;
 
@@ -63,8 +62,6 @@ public interface ChunkGenerator {
     }
 
     BiomeProvider biomeProvider();
-
-    StructureGenerationConfig structureConfig();
 
     interface Factory {
 

@@ -29,7 +29,6 @@ import org.spongepowered.api.registry.RegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.biome.Biome;
 import org.spongepowered.api.world.generation.config.flat.LayerConfig;
-import org.spongepowered.api.world.generation.config.structure.StructureGenerationConfig;
 
 import java.util.List;
 import java.util.Optional;
@@ -55,8 +54,6 @@ public interface FlatGeneratorConfig extends ChunkGeneratorConfig {
     boolean populateLakes();
 
     interface Builder extends org.spongepowered.api.util.Builder<FlatGeneratorConfig, Builder>, CopyableBuilder<FlatGeneratorConfig, Builder> {
-
-        Builder structureConfig(StructureGenerationConfig config);
 
         Builder addLayer(int index, LayerConfig config);
 
