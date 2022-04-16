@@ -762,7 +762,7 @@ public final class Keys {
      * @see #ENTITY_TO_SPAWN
      */
     @SuppressWarnings("unchecked")
-    public static final Key<Value<? extends EntityType<?>>> ENTITY_TYPE = Keys.key(ResourceKey.sponge("entity_type"), (Class) EntityType.class);
+    public static final Key<Value<EntityType<?>>> ENTITY_TYPE = Keys.key(ResourceKey.sponge("entity_type"), (Class) EntityType.class);
 
     /**
      * The {@link EntityArchetype} to spawn from any spawn egg, such as a
