@@ -79,6 +79,13 @@ public interface InventoryMenu {
     void setTitle(Component title);
 
     /**
+     * Returns the title of this menu if set.
+     *
+     * @return the title of this menu if set.
+     */
+    Optional<Component> title();
+
+    /**
      * Registers click callbacks. Unregisters previously registered handler of the same type.
      * <p>Return false in the handler to prevent changes.</p>
      * <p>Possible handlers: {@link ClickHandler}, {@link SlotClickHandler}, {@link KeySwapHandler}, {@link SlotChangeHandler}, {@link CloseHandler}</p>
