@@ -158,6 +158,13 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
     }
 
     /**
+     * Gets a string representation of this block state, including the block type and the properties.
+     *
+     * @return A string representation of this block state.
+     */
+    String asString();
+
+    /**
      * An {@link org.spongepowered.api.data.DataHolderBuilder.Immutable} for a {@link BlockState}. Just like the
      * {@link org.spongepowered.api.data.DataHolderBuilder.Immutable}, the {@link Value}s passed in to
      * create a {@link BlockState} are copied on creation.
