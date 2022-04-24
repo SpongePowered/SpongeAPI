@@ -159,6 +159,7 @@ public interface BlockState extends State<BlockState>, DirectionRelativeDataHold
 
     /**
      * Gets a string representation of this block state, including the block type and the properties.
+     * Do not confuse with {@link #toString} which is implementation specific.
      *
      * @return A string representation of this block state.
      */
