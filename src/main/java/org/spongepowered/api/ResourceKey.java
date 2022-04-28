@@ -120,7 +120,7 @@ public interface ResourceKey extends Key {
      * @return A new resource key
      */
     static ResourceKey of(final String namespace, final String value) {
-        return Sponge.game().factoryProvider().provide(Factory.class).of(Objects.requireNonNull(namespace, "mamespace"), Objects.requireNonNull(value, "value"));
+        return Sponge.game().factoryProvider().provide(Factory.class).of(Objects.requireNonNull(namespace, "namespace"), Objects.requireNonNull(value, "value"));
     }
 
     /**

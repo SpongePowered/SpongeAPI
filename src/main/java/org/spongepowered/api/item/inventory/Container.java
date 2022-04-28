@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.item.inventory;
 
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
+import org.spongepowered.api.item.inventory.menu.InventoryMenu;
 
 import java.util.List;
 import java.util.Optional;
@@ -97,5 +97,12 @@ public interface Container extends Inventory {
      * @return the ContainerType of this container.
      */
     ContainerType type();
+
+    /**
+     * Returns the {@link InventoryMenu} if this container has been opened by one.
+     *
+     * @return the current InventoryMenu if present
+     */
+    Optional<InventoryMenu> currentMenu();
 
 }

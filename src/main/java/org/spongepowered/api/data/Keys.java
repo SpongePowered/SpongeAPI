@@ -765,6 +765,28 @@ public final class Keys {
     public static final Key<Value<Ticks>> END_GATEWAY_AGE = Keys.key(ResourceKey.sponge("end_gateway_age"), Ticks.class);
 
     /**
+     * The {@link EntityType entity type} of a spawn egg, which may be one of
+     * several based on {@link ItemTypes#ZOMBIE_SPAWN_EGG}, etc. It is not
+     * guaranteed that the type of entity is the same as the one that will be
+     * spawned when used. It is likely unable to change the type of entity on
+     * an {@link ItemStack}, but it is possible to change the
+     * {@link EntityArchetype archetype} by using {@link #ENTITY_TO_SPAWN}.
+     *
+     * @see #ENTITY_TO_SPAWN
+     */
+    @SuppressWarnings("unchecked")
+    public static final Key<Value<EntityType<?>>> ENTITY_TYPE = Keys.key(ResourceKey.sponge("entity_type"), (Class) EntityType.class);
+
+    /**
+     * The {@link EntityArchetype} to spawn from any spawn egg, such as a
+     * {@link ItemTypes#ZOMBIE_SPAWN_EGG} or {@link ItemTypes#CREEPER_SPAWN_EGG}.
+     * <p>The {@link #ENTITY_TYPE} is not guaranteed to be the same as the
+     * {@link EntityArchetype#type()} returned, but the spawned entity will be
+     * based on the {@link EntityArchetype} returned here.
+     */
+    public static final Key<Value<EntityArchetype>> ENTITY_TO_SPAWN = Keys.key(ResourceKey.sponge("entity_to_spawn"), EntityArchetype.class);
+
+    /**
      * The {@link EquipmentType} that the target inventory supports. This usually applies to {@link EquipmentSlot}s.
      * or
      * The {@link EquipmentType} of an {@link ItemStack}
