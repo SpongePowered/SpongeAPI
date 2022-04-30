@@ -48,21 +48,6 @@ import java.util.Collection;
  *     {@link BlockTypeTags#LOGS_THAT_BURN}</li>
  * </ul>
  */
-public interface Tag<T> extends DefaultedRegistryValue, ResourceKeyed {
-
-    /**
-     * Gets all values that are associated with this tag.
-     *
-     * @return All tag values
-     */
-    Collection<T> values();
-
-    /**
-     * Gets whether this tag contains the supplied value.
-     *
-     * @param value Value to check
-     * @return Whether the value is contained in this tag.
-     */
-    boolean contains(T value);
+public interface Tag<T> extends ResourceKeyed {
 
 }

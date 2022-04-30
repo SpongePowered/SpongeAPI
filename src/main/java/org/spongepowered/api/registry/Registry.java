@@ -25,10 +25,12 @@
 package org.spongepowered.api.registry;
 
 import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.tag.Tag;
 import org.spongepowered.api.util.annotation.DoNotStore;
 
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Stream;
 
 /**
@@ -119,6 +121,8 @@ public interface Registry<T> {
      * @return The value
      */
     <V extends T> V value(ResourceKey key);
+
+    <V extends T> Set<V> taggedValues(Tag<T> key);
 
     /**
      * {@link Registry#value(ResourceKey)}, provided for convenience when using {@link RegistryKey}.
