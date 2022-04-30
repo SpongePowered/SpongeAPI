@@ -65,15 +65,6 @@ public final class CommandCompletionProviders {
 
     /**
      * Instructs the node represented by a {@link CommandTreeNode} to display
-     * all known {@link Biome biomes}.
-     *
-     * <p>This provider is intended for use with a {@link ResourceKey} parser.
-     * </p>
-     */
-    public static final DefaultedRegistryReference<CommandCompletionProvider> AVAILABLE_BIOMES = CommandCompletionProviders.key(ResourceKey.minecraft("available_biomes"));
-
-    /**
-     * Instructs the node represented by a {@link CommandTreeNode} to display
      * all known {@link Entity entities} that may be summoned using the
      * vanilla {@code /summon} command.
      *
