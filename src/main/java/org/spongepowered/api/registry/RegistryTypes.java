@@ -243,8 +243,6 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<BodyPart> BODY_PART = RegistryTypes.spongeKeyInGame("body_part");
 
-    public static final DefaultedRegistryType<BooleanStateProperty> BOOLEAN_STATE_PROPERTY = RegistryTypes.spongeKeyInGame("boolean_state_property");
-
     public static final DefaultedRegistryType<CatType> CAT_TYPE = RegistryTypes.spongeKeyInGame("cat_type");
 
     public static final DefaultedRegistryType<ChatVisibility> CHAT_VISIBILITY = RegistryTypes.spongeKeyInGame("chat_visibility");
@@ -291,8 +289,6 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<DyeColor> DYE_COLOR = RegistryTypes.spongeKeyInGame("dye_color");
 
-    public static final DefaultedRegistryType<EnumStateProperty<@NonNull ?>> ENUM_STATE_PROPERTY = RegistryTypes.spongeKeyInGame("enum_state_property");
-
     public static final DefaultedRegistryType<Tag<EntityType<@NonNull ?>>> ENTITY_TYPE_TAGS = RegistryTypes.spongeKeyInGame("entity_type_tags");
 
     public static final DefaultedRegistryType<EquipmentGroup> EQUIPMENT_GROUP = RegistryTypes.spongeKeyInGame("equipment_group");
@@ -324,8 +320,6 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<HorseStyle> HORSE_STYLE = RegistryTypes.spongeKeyInGame("horse_style");
 
     public static final DefaultedRegistryType<InstrumentType> INSTRUMENT_TYPE = RegistryTypes.spongeKeyInGame("instrument_type");
-
-    public static final DefaultedRegistryType<IntegerStateProperty> INTEGER_STATE_PROPERTY = RegistryTypes.spongeKeyInGame("integer_state_property");
 
     public static final DefaultedRegistryType<ItemRarity> ITEM_RARITY = RegistryTypes.spongeKeyInGame("item_rarity");
 
