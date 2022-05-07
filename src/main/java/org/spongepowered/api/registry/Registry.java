@@ -122,7 +122,20 @@ public interface Registry<T> {
      */
     <V extends T> V value(ResourceKey key);
 
-    <V extends T> Set<V> taggedValues(Tag<T> key);
+    /**
+     * Returns the registered types associated with given tag.
+     * @param tag The tag
+     *
+     * @return The registered types associated with given tag
+     */
+    <V extends T> Set<V> taggedValues(Tag<T> tag);
+
+    /**
+     * Gets the tags associated with this registry.
+     *
+     * @return The tags associated with this registry
+     */
+    <V extends T> Stream<Tag<V>> tags();
 
     /**
      * {@link Registry#value(ResourceKey)}, provided for convenience when using {@link RegistryKey}.

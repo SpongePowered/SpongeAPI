@@ -51,6 +51,7 @@ import org.spongepowered.api.util.Direction;
  */
 @SuppressWarnings("unused")
 public final class EnumStateProperties {
+
     private EnumStateProperties() {
     }
 

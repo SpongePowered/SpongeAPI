@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.tag;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryType;
 
 import java.util.Collection;
 
@@ -34,12 +36,12 @@ import java.util.Collection;
 public interface Taggable<T extends Taggable<T>> extends DefaultedRegistryValue {
 
     /**
-     * Gets the {@link TagType} that represents the types of {@link Tag tags}
+     * Gets the {@link RegistryType} that holds the types of {@link Tag tags}
      * that can be associated with this object.
      *
-     * @return The {@link TagType}
+     * @return The {@link RegistryType}
      */
-    TagType<T> tagType();
+    DefaultedRegistryType<T> registryType();
 
     /**
      * Gets all {@link Tag tags} that have been associated with this object.
@@ -47,5 +49,12 @@ public interface Taggable<T extends Taggable<T>> extends DefaultedRegistryValue 
      * @return The {@link Collection} of {@link Tag}s.
      */
     Collection<Tag<T>> tags();
+
+    /**
+     * Returns true when given tag is associated with this object
+     * @param tag The tag
+     * @return true when given tag is associated with this object
+     */
+    boolean is(Tag<T> tag);
 
 }

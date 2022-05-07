@@ -137,13 +137,8 @@ import org.spongepowered.api.service.ban.BanType;
 import org.spongepowered.api.service.economy.Currency;
 import org.spongepowered.api.service.economy.account.AccountDeletionResultType;
 import org.spongepowered.api.service.economy.transaction.TransactionType;
-import org.spongepowered.api.state.BooleanStateProperty;
-import org.spongepowered.api.state.EnumStateProperty;
-import org.spongepowered.api.state.IntegerStateProperty;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.StatisticCategory;
-import org.spongepowered.api.tag.Tag;
-import org.spongepowered.api.tag.TagType;
 import org.spongepowered.api.util.mirror.Mirror;
 import org.spongepowered.api.util.orientation.Orientation;
 import org.spongepowered.api.util.rotation.Rotation;
@@ -237,8 +232,6 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<BellAttachmentType> BELL_ATTACHMENT_TYPE = RegistryTypes.spongeKeyInGame("bell_attachment_type");
 
-    public static final DefaultedRegistryType<Tag<BlockType>> BLOCK_TYPE_TAGS = RegistryTypes.spongeKeyInGame("block_type_tags");
-
     public static final DefaultedRegistryType<BoatType> BOAT_TYPE = RegistryTypes.spongeKeyInGame("boat_type");
 
     public static final DefaultedRegistryType<BodyPart> BODY_PART = RegistryTypes.spongeKeyInGame("body_part");
@@ -289,15 +282,11 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<DyeColor> DYE_COLOR = RegistryTypes.spongeKeyInGame("dye_color");
 
-    public static final DefaultedRegistryType<Tag<EntityType<@NonNull ?>>> ENTITY_TYPE_TAGS = RegistryTypes.spongeKeyInGame("entity_type_tags");
-
     public static final DefaultedRegistryType<EquipmentGroup> EQUIPMENT_GROUP = RegistryTypes.spongeKeyInGame("equipment_group");
 
     public static final DefaultedRegistryType<EquipmentType> EQUIPMENT_TYPE = RegistryTypes.spongeKeyInGame("equipment_type");
 
     public static final DefaultedRegistryType<FireworkShape> FIREWORK_SHAPE = RegistryTypes.spongeKeyInGame("firework_shape");
-
-    public static final DefaultedRegistryType<Tag<FluidType>> FLUID_TYPE_TAGS = RegistryTypes.spongeKeyInGame("fluid_type_tags");
 
     public static final DefaultedRegistryType<FoxType> FOX_TYPE = RegistryTypes.spongeKeyInGame("fox_type");
 
@@ -324,8 +313,6 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<ItemRarity> ITEM_RARITY = RegistryTypes.spongeKeyInGame("item_rarity");
 
     public static final DefaultedRegistryType<ItemTier> ITEM_TIER = RegistryTypes.spongeKeyInGame("item_tier");
-
-    public static final DefaultedRegistryType<Tag<ItemType>> ITEM_TYPE_TAGS = RegistryTypes.spongeKeyInGame("item_type_tags");
 
     public static final DefaultedRegistryType<JigsawBlockOrientation> JIGSAW_BLOCK_ORIENTATION = RegistryTypes.spongeKeyInGame("jigsaw_block_orientation");
 
@@ -412,8 +399,6 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<StairShape> STAIR_SHAPE = RegistryTypes.spongeKeyInGame("stair_shape");
 
     public static final DefaultedRegistryType<StructureMode> STRUCTURE_MODE = RegistryTypes.spongeKeyInGame("structure_mode");
-
-    public static final DefaultedRegistryType<TagType<@NonNull ?>> TAG_TYPES = RegistryTypes.spongeKeyInGame("tag_type");
 
     public static final DefaultedRegistryType<TaskPriority> TASK_PRIORITY = RegistryTypes.spongeKeyInGame("task_priority");
 

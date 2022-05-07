@@ -29,6 +29,7 @@ package org.spongepowered.api.state;
  */
 @SuppressWarnings("unused")
 public final class IntegerStateProperties {
+
     private IntegerStateProperties() {
     }
 

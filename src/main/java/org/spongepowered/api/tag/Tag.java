@@ -27,10 +27,9 @@ package org.spongepowered.api.tag;
 import org.spongepowered.api.Engine;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.ResourceKeyed;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
-
-import java.util.Collection;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 
 /**
  * A {@link ResourceKey resource keyed} collection of {@link Taggable} values
@@ -49,5 +48,13 @@ import java.util.Collection;
  * </ul>
  */
 public interface Tag<T> extends ResourceKeyed {
+
+    interface Factory {
+        <T> Tag<T> of(DefaultedRegistryType<T> registryType, ResourceKey key);
+    }
+
+    static <T> Tag<T> of(DefaultedRegistryType<T> registryType, ResourceKey key) {
+        return Sponge.game().factoryProvider().provide(Tag.Factory.class).of(registryType, key);
+    }
 
 }

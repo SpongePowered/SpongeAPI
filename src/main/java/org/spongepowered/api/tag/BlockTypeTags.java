@@ -25,11 +25,7 @@
 package org.spongepowered.api.tag;
 
 import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registry;
-import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.registry.RegistryTypes;
@@ -42,281 +38,277 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class BlockTypeTags {
 
     // @formatter:off
-    public static final DefaultedRegistryReference<Tag<BlockType>> ACACIA_LOGS = BlockTypeTags.key(ResourceKey.minecraft("acacia_logs"));
+    public static final Tag<BlockType> ACACIA_LOGS = BlockTypeTags.key(ResourceKey.minecraft("acacia_logs"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> ANIMALS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("animals_spawnable_on"));
+    public static final Tag<BlockType> ANIMALS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("animals_spawnable_on"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> ANVIL = BlockTypeTags.key(ResourceKey.minecraft("anvil"));
+    public static final Tag<BlockType> ANVIL = BlockTypeTags.key(ResourceKey.minecraft("anvil"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> AXOLOTLS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("axolotls_spawnable_on"));
+    public static final Tag<BlockType> AXOLOTLS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("axolotls_spawnable_on"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> AZALEA_GROWS_ON = BlockTypeTags.key(ResourceKey.minecraft("azalea_grows_on"));
+    public static final Tag<BlockType> AZALEA_GROWS_ON = BlockTypeTags.key(ResourceKey.minecraft("azalea_grows_on"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> AZALEA_ROOT_REPLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("azalea_root_replaceable"));
+    public static final Tag<BlockType> AZALEA_ROOT_REPLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("azalea_root_replaceable"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> BAMBOO_PLANTABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("bamboo_plantable_on"));
+    public static final Tag<BlockType> BAMBOO_PLANTABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("bamboo_plantable_on"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> BANNERS = BlockTypeTags.key(ResourceKey.minecraft("banners"));
+    public static final Tag<BlockType> BANNERS = BlockTypeTags.key(ResourceKey.minecraft("banners"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> BASE_STONE_NETHER = BlockTypeTags.key(ResourceKey.minecraft("base_stone_nether"));
+    public static final Tag<BlockType> BASE_STONE_NETHER = BlockTypeTags.key(ResourceKey.minecraft("base_stone_nether"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> BASE_STONE_OVERWORLD = BlockTypeTags.key(ResourceKey.minecraft("base_stone_overworld"));
+    public static final Tag<BlockType> BASE_STONE_OVERWORLD = BlockTypeTags.key(ResourceKey.minecraft("base_stone_overworld"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> BEACON_BASE_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("beacon_base_blocks"));
+    public static final Tag<BlockType> BEACON_BASE_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("beacon_base_blocks"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> BEDS = BlockTypeTags.key(ResourceKey.minecraft("beds"));
+    public static final Tag<BlockType> BEDS = BlockTypeTags.key(ResourceKey.minecraft("beds"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> BEE_GROWABLES = BlockTypeTags.key(ResourceKey.minecraft("bee_growables"));
+    public static final Tag<BlockType> BEE_GROWABLES = BlockTypeTags.key(ResourceKey.minecraft("bee_growables"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> BEEHIVES = BlockTypeTags.key(ResourceKey.minecraft("beehives"));
+    public static final Tag<BlockType> BEEHIVES = BlockTypeTags.key(ResourceKey.minecraft("beehives"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> BIG_DRIPLEAF_PLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("big_dripleaf_placeable"));
+    public static final Tag<BlockType> BIG_DRIPLEAF_PLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("big_dripleaf_placeable"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> BIRCH_LOGS = BlockTypeTags.key(ResourceKey.minecraft("birch_logs"));
+    public static final Tag<BlockType> BIRCH_LOGS = BlockTypeTags.key(ResourceKey.minecraft("birch_logs"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> BUTTONS = BlockTypeTags.key(ResourceKey.minecraft("buttons"));
+    public static final Tag<BlockType> BUTTONS = BlockTypeTags.key(ResourceKey.minecraft("buttons"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> CAMPFIRES = BlockTypeTags.key(ResourceKey.minecraft("campfires"));
+    public static final Tag<BlockType> CAMPFIRES = BlockTypeTags.key(ResourceKey.minecraft("campfires"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> CANDLE_CAKES = BlockTypeTags.key(ResourceKey.minecraft("candle_cakes"));
+    public static final Tag<BlockType> CANDLE_CAKES = BlockTypeTags.key(ResourceKey.minecraft("candle_cakes"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> CANDLES = BlockTypeTags.key(ResourceKey.minecraft("candles"));
+    public static final Tag<BlockType> CANDLES = BlockTypeTags.key(ResourceKey.minecraft("candles"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> CARPETS = BlockTypeTags.key(ResourceKey.minecraft("carpets"));
+    public static final Tag<BlockType> CARPETS = BlockTypeTags.key(ResourceKey.minecraft("carpets"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> CAULDRONS = BlockTypeTags.key(ResourceKey.minecraft("cauldrons"));
+    public static final Tag<BlockType> CAULDRONS = BlockTypeTags.key(ResourceKey.minecraft("cauldrons"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> CAVE_VINES = BlockTypeTags.key(ResourceKey.minecraft("cave_vines"));
+    public static final Tag<BlockType> CAVE_VINES = BlockTypeTags.key(ResourceKey.minecraft("cave_vines"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> CLIMBABLE = BlockTypeTags.key(ResourceKey.minecraft("climbable"));
+    public static final Tag<BlockType> CLIMBABLE = BlockTypeTags.key(ResourceKey.minecraft("climbable"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> COAL_ORES = BlockTypeTags.key(ResourceKey.minecraft("coal_ores"));
+    public static final Tag<BlockType> COAL_ORES = BlockTypeTags.key(ResourceKey.minecraft("coal_ores"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> COPPER_ORES = BlockTypeTags.key(ResourceKey.minecraft("copper_ores"));
+    public static final Tag<BlockType> COPPER_ORES = BlockTypeTags.key(ResourceKey.minecraft("copper_ores"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> CORAL_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("coral_blocks"));
+    public static final Tag<BlockType> CORAL_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("coral_blocks"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> CORAL_PLANTS = BlockTypeTags.key(ResourceKey.minecraft("coral_plants"));
+    public static final Tag<BlockType> CORAL_PLANTS = BlockTypeTags.key(ResourceKey.minecraft("coral_plants"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> CORALS = BlockTypeTags.key(ResourceKey.minecraft("corals"));
+    public static final Tag<BlockType> CORALS = BlockTypeTags.key(ResourceKey.minecraft("corals"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> CRIMSON_STEMS = BlockTypeTags.key(ResourceKey.minecraft("crimson_stems"));
+    public static final Tag<BlockType> CRIMSON_STEMS = BlockTypeTags.key(ResourceKey.minecraft("crimson_stems"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> CROPS = BlockTypeTags.key(ResourceKey.minecraft("crops"));
+    public static final Tag<BlockType> CROPS = BlockTypeTags.key(ResourceKey.minecraft("crops"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> CRYSTAL_SOUND_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("crystal_sound_blocks"));
+    public static final Tag<BlockType> CRYSTAL_SOUND_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("crystal_sound_blocks"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> DARK_OAK_LOGS = BlockTypeTags.key(ResourceKey.minecraft("dark_oak_logs"));
+    public static final Tag<BlockType> DARK_OAK_LOGS = BlockTypeTags.key(ResourceKey.minecraft("dark_oak_logs"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> DEEPSLATE_ORE_REPLACEABLES = BlockTypeTags.key(ResourceKey.minecraft("deepslate_ore_replaceables"));
+    public static final Tag<BlockType> DEEPSLATE_ORE_REPLACEABLES = BlockTypeTags.key(ResourceKey.minecraft("deepslate_ore_replaceables"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> DIAMOND_ORES = BlockTypeTags.key(ResourceKey.minecraft("diamond_ores"));
+    public static final Tag<BlockType> DIAMOND_ORES = BlockTypeTags.key(ResourceKey.minecraft("diamond_ores"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> DIRT = BlockTypeTags.key(ResourceKey.minecraft("dirt"));
+    public static final Tag<BlockType> DIRT = BlockTypeTags.key(ResourceKey.minecraft("dirt"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> DOORS = BlockTypeTags.key(ResourceKey.minecraft("doors"));
+    public static final Tag<BlockType> DOORS = BlockTypeTags.key(ResourceKey.minecraft("doors"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> DRAGON_IMMUNE = BlockTypeTags.key(ResourceKey.minecraft("dragon_immune"));
+    public static final Tag<BlockType> DRAGON_IMMUNE = BlockTypeTags.key(ResourceKey.minecraft("dragon_immune"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> DRIPSTONE_REPLACEABLE_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("dripstone_replaceable_blocks"));
+    public static final Tag<BlockType> DRIPSTONE_REPLACEABLE_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("dripstone_replaceable_blocks"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> EMERALD_ORES = BlockTypeTags.key(ResourceKey.minecraft("emerald_ores"));
+    public static final Tag<BlockType> EMERALD_ORES = BlockTypeTags.key(ResourceKey.minecraft("emerald_ores"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> ENDERMAN_HOLDABLE = BlockTypeTags.key(ResourceKey.minecraft("enderman_holdable"));
+    public static final Tag<BlockType> ENDERMAN_HOLDABLE = BlockTypeTags.key(ResourceKey.minecraft("enderman_holdable"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> FALL_DAMAGE_RESETTING = BlockTypeTags.key(ResourceKey.minecraft("fall_damage_resetting"));
+    public static final Tag<BlockType> FALL_DAMAGE_RESETTING = BlockTypeTags.key(ResourceKey.minecraft("fall_damage_resetting"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> FEATURES_CANNOT_REPLACE = BlockTypeTags.key(ResourceKey.minecraft("features_cannot_replace"));
+    public static final Tag<BlockType> FEATURES_CANNOT_REPLACE = BlockTypeTags.key(ResourceKey.minecraft("features_cannot_replace"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> FENCE_GATES = BlockTypeTags.key(ResourceKey.minecraft("fence_gates"));
+    public static final Tag<BlockType> FENCE_GATES = BlockTypeTags.key(ResourceKey.minecraft("fence_gates"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> FENCES = BlockTypeTags.key(ResourceKey.minecraft("fences"));
+    public static final Tag<BlockType> FENCES = BlockTypeTags.key(ResourceKey.minecraft("fences"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> FIRE = BlockTypeTags.key(ResourceKey.minecraft("fire"));
+    public static final Tag<BlockType> FIRE = BlockTypeTags.key(ResourceKey.minecraft("fire"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> FLOWER_POTS = BlockTypeTags.key(ResourceKey.minecraft("flower_pots"));
+    public static final Tag<BlockType> FLOWER_POTS = BlockTypeTags.key(ResourceKey.minecraft("flower_pots"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> FLOWERS = BlockTypeTags.key(ResourceKey.minecraft("flowers"));
+    public static final Tag<BlockType> FLOWERS = BlockTypeTags.key(ResourceKey.minecraft("flowers"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> FOXES_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("foxes_spawnable_on"));
+    public static final Tag<BlockType> FOXES_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("foxes_spawnable_on"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> GEODE_INVALID_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("geode_invalid_blocks"));
+    public static final Tag<BlockType> GEODE_INVALID_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("geode_invalid_blocks"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> GOATS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("goats_spawnable_on"));
+    public static final Tag<BlockType> GOATS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("goats_spawnable_on"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> GOLD_ORES = BlockTypeTags.key(ResourceKey.minecraft("gold_ores"));
+    public static final Tag<BlockType> GOLD_ORES = BlockTypeTags.key(ResourceKey.minecraft("gold_ores"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> GUARDED_BY_PIGLINS = BlockTypeTags.key(ResourceKey.minecraft("guarded_by_piglins"));
+    public static final Tag<BlockType> GUARDED_BY_PIGLINS = BlockTypeTags.key(ResourceKey.minecraft("guarded_by_piglins"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> HOGLIN_REPELLENTS = BlockTypeTags.key(ResourceKey.minecraft("hoglin_repellents"));
+    public static final Tag<BlockType> HOGLIN_REPELLENTS = BlockTypeTags.key(ResourceKey.minecraft("hoglin_repellents"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> ICE = BlockTypeTags.key(ResourceKey.minecraft("ice"));
+    public static final Tag<BlockType> ICE = BlockTypeTags.key(ResourceKey.minecraft("ice"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> IMPERMEABLE = BlockTypeTags.key(ResourceKey.minecraft("impermeable"));
+    public static final Tag<BlockType> IMPERMEABLE = BlockTypeTags.key(ResourceKey.minecraft("impermeable"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> INFINIBURN_END = BlockTypeTags.key(ResourceKey.minecraft("infiniburn_end"));
+    public static final Tag<BlockType> INFINIBURN_END = BlockTypeTags.key(ResourceKey.minecraft("infiniburn_end"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> INFINIBURN_NETHER = BlockTypeTags.key(ResourceKey.minecraft("infiniburn_nether"));
+    public static final Tag<BlockType> INFINIBURN_NETHER = BlockTypeTags.key(ResourceKey.minecraft("infiniburn_nether"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> INFINIBURN_OVERWORLD = BlockTypeTags.key(ResourceKey.minecraft("infiniburn_overworld"));
+    public static final Tag<BlockType> INFINIBURN_OVERWORLD = BlockTypeTags.key(ResourceKey.minecraft("infiniburn_overworld"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> INSIDE_STEP_SOUND_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("inside_step_sound_blocks"));
+    public static final Tag<BlockType> INSIDE_STEP_SOUND_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("inside_step_sound_blocks"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> IRON_ORES = BlockTypeTags.key(ResourceKey.minecraft("iron_ores"));
+    public static final Tag<BlockType> IRON_ORES = BlockTypeTags.key(ResourceKey.minecraft("iron_ores"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> JUNGLE_LOGS = BlockTypeTags.key(ResourceKey.minecraft("jungle_logs"));
+    public static final Tag<BlockType> JUNGLE_LOGS = BlockTypeTags.key(ResourceKey.minecraft("jungle_logs"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> LAPIS_ORES = BlockTypeTags.key(ResourceKey.minecraft("lapis_ores"));
+    public static final Tag<BlockType> LAPIS_ORES = BlockTypeTags.key(ResourceKey.minecraft("lapis_ores"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> LAVA_POOL_STONE_CANNOT_REPLACE = BlockTypeTags.key(ResourceKey.minecraft("lava_pool_stone_cannot_replace"));
+    public static final Tag<BlockType> LAVA_POOL_STONE_CANNOT_REPLACE = BlockTypeTags.key(ResourceKey.minecraft("lava_pool_stone_cannot_replace"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> LEAVES = BlockTypeTags.key(ResourceKey.minecraft("leaves"));
+    public static final Tag<BlockType> LEAVES = BlockTypeTags.key(ResourceKey.minecraft("leaves"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> LOGS = BlockTypeTags.key(ResourceKey.minecraft("logs"));
+    public static final Tag<BlockType> LOGS = BlockTypeTags.key(ResourceKey.minecraft("logs"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> LOGS_THAT_BURN = BlockTypeTags.key(ResourceKey.minecraft("logs_that_burn"));
+    public static final Tag<BlockType> LOGS_THAT_BURN = BlockTypeTags.key(ResourceKey.minecraft("logs_that_burn"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> LUSH_GROUND_REPLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("lush_ground_replaceable"));
+    public static final Tag<BlockType> LUSH_GROUND_REPLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("lush_ground_replaceable"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> MINEABLE_AXE = BlockTypeTags.key(ResourceKey.minecraft("mineable/axe"));
+    public static final Tag<BlockType> MINEABLE_AXE = BlockTypeTags.key(ResourceKey.minecraft("mineable/axe"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> MINEABLE_HOE = BlockTypeTags.key(ResourceKey.minecraft("mineable/hoe"));
+    public static final Tag<BlockType> MINEABLE_HOE = BlockTypeTags.key(ResourceKey.minecraft("mineable/hoe"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> MINEABLE_PICKAXE = BlockTypeTags.key(ResourceKey.minecraft("mineable/pickaxe"));
+    public static final Tag<BlockType> MINEABLE_PICKAXE = BlockTypeTags.key(ResourceKey.minecraft("mineable/pickaxe"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> MINEABLE_SHOVEL = BlockTypeTags.key(ResourceKey.minecraft("mineable/shovel"));
+    public static final Tag<BlockType> MINEABLE_SHOVEL = BlockTypeTags.key(ResourceKey.minecraft("mineable/shovel"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> MOOSHROOMS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("mooshrooms_spawnable_on"));
+    public static final Tag<BlockType> MOOSHROOMS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("mooshrooms_spawnable_on"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> MOSS_REPLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("moss_replaceable"));
+    public static final Tag<BlockType> MOSS_REPLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("moss_replaceable"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> MUSHROOM_GROW_BLOCK = BlockTypeTags.key(ResourceKey.minecraft("mushroom_grow_block"));
+    public static final Tag<BlockType> MUSHROOM_GROW_BLOCK = BlockTypeTags.key(ResourceKey.minecraft("mushroom_grow_block"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> NEEDS_DIAMOND_TOOL = BlockTypeTags.key(ResourceKey.minecraft("needs_diamond_tool"));
+    public static final Tag<BlockType> NEEDS_DIAMOND_TOOL = BlockTypeTags.key(ResourceKey.minecraft("needs_diamond_tool"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> NEEDS_IRON_TOOL = BlockTypeTags.key(ResourceKey.minecraft("needs_iron_tool"));
+    public static final Tag<BlockType> NEEDS_IRON_TOOL = BlockTypeTags.key(ResourceKey.minecraft("needs_iron_tool"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> NEEDS_STONE_TOOL = BlockTypeTags.key(ResourceKey.minecraft("needs_stone_tool"));
+    public static final Tag<BlockType> NEEDS_STONE_TOOL = BlockTypeTags.key(ResourceKey.minecraft("needs_stone_tool"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> NON_FLAMMABLE_WOOD = BlockTypeTags.key(ResourceKey.minecraft("non_flammable_wood"));
+    public static final Tag<BlockType> NON_FLAMMABLE_WOOD = BlockTypeTags.key(ResourceKey.minecraft("non_flammable_wood"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> NYLIUM = BlockTypeTags.key(ResourceKey.minecraft("nylium"));
+    public static final Tag<BlockType> NYLIUM = BlockTypeTags.key(ResourceKey.minecraft("nylium"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> OAK_LOGS = BlockTypeTags.key(ResourceKey.minecraft("oak_logs"));
+    public static final Tag<BlockType> OAK_LOGS = BlockTypeTags.key(ResourceKey.minecraft("oak_logs"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> OCCLUDES_VIBRATION_SIGNALS = BlockTypeTags.key(ResourceKey.minecraft("occludes_vibration_signals"));
+    public static final Tag<BlockType> OCCLUDES_VIBRATION_SIGNALS = BlockTypeTags.key(ResourceKey.minecraft("occludes_vibration_signals"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> PARROTS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("parrots_spawnable_on"));
+    public static final Tag<BlockType> PARROTS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("parrots_spawnable_on"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> PIGLIN_REPELLENTS = BlockTypeTags.key(ResourceKey.minecraft("piglin_repellents"));
+    public static final Tag<BlockType> PIGLIN_REPELLENTS = BlockTypeTags.key(ResourceKey.minecraft("piglin_repellents"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> PLANKS = BlockTypeTags.key(ResourceKey.minecraft("planks"));
+    public static final Tag<BlockType> PLANKS = BlockTypeTags.key(ResourceKey.minecraft("planks"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> POLAR_BEARS_SPAWNABLE_ON_IN_FROZEN_OCEAN = BlockTypeTags.key(ResourceKey.minecraft("polar_bears_spawnable_on_in_frozen_ocean"));
+    public static final Tag<BlockType> POLAR_BEARS_SPAWNABLE_ON_IN_FROZEN_OCEAN = BlockTypeTags.key(ResourceKey.minecraft("polar_bears_spawnable_on_in_frozen_ocean"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> PORTALS = BlockTypeTags.key(ResourceKey.minecraft("portals"));
+    public static final Tag<BlockType> PORTALS = BlockTypeTags.key(ResourceKey.minecraft("portals"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> PRESSURE_PLATES = BlockTypeTags.key(ResourceKey.minecraft("pressure_plates"));
+    public static final Tag<BlockType> PRESSURE_PLATES = BlockTypeTags.key(ResourceKey.minecraft("pressure_plates"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> PREVENT_MOB_SPAWNING_INSIDE = BlockTypeTags.key(ResourceKey.minecraft("prevent_mob_spawning_inside"));
+    public static final Tag<BlockType> PREVENT_MOB_SPAWNING_INSIDE = BlockTypeTags.key(ResourceKey.minecraft("prevent_mob_spawning_inside"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> RABBITS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("rabbits_spawnable_on"));
+    public static final Tag<BlockType> RABBITS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("rabbits_spawnable_on"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> RAILS = BlockTypeTags.key(ResourceKey.minecraft("rails"));
+    public static final Tag<BlockType> RAILS = BlockTypeTags.key(ResourceKey.minecraft("rails"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> REDSTONE_ORES = BlockTypeTags.key(ResourceKey.minecraft("redstone_ores"));
+    public static final Tag<BlockType> REDSTONE_ORES = BlockTypeTags.key(ResourceKey.minecraft("redstone_ores"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> REPLACEABLE_PLANTS = BlockTypeTags.key(ResourceKey.minecraft("replaceable_plants"));
+    public static final Tag<BlockType> REPLACEABLE_PLANTS = BlockTypeTags.key(ResourceKey.minecraft("replaceable_plants"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> SAND = BlockTypeTags.key(ResourceKey.minecraft("sand"));
+    public static final Tag<BlockType> SAND = BlockTypeTags.key(ResourceKey.minecraft("sand"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> SAPLINGS = BlockTypeTags.key(ResourceKey.minecraft("saplings"));
+    public static final Tag<BlockType> SAPLINGS = BlockTypeTags.key(ResourceKey.minecraft("saplings"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> SHULKER_BOXES = BlockTypeTags.key(ResourceKey.minecraft("shulker_boxes"));
+    public static final Tag<BlockType> SHULKER_BOXES = BlockTypeTags.key(ResourceKey.minecraft("shulker_boxes"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> SIGNS = BlockTypeTags.key(ResourceKey.minecraft("signs"));
+    public static final Tag<BlockType> SIGNS = BlockTypeTags.key(ResourceKey.minecraft("signs"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> SLABS = BlockTypeTags.key(ResourceKey.minecraft("slabs"));
+    public static final Tag<BlockType> SLABS = BlockTypeTags.key(ResourceKey.minecraft("slabs"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> SMALL_DRIPLEAF_PLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("small_dripleaf_placeable"));
+    public static final Tag<BlockType> SMALL_DRIPLEAF_PLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("small_dripleaf_placeable"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> SMALL_FLOWERS = BlockTypeTags.key(ResourceKey.minecraft("small_flowers"));
+    public static final Tag<BlockType> SMALL_FLOWERS = BlockTypeTags.key(ResourceKey.minecraft("small_flowers"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> SNOW = BlockTypeTags.key(ResourceKey.minecraft("snow"));
+    public static final Tag<BlockType> SNOW = BlockTypeTags.key(ResourceKey.minecraft("snow"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> SOUL_FIRE_BASE_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("soul_fire_base_blocks"));
+    public static final Tag<BlockType> SOUL_FIRE_BASE_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("soul_fire_base_blocks"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> SOUL_SPEED_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("soul_speed_blocks"));
+    public static final Tag<BlockType> SOUL_SPEED_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("soul_speed_blocks"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> SPRUCE_LOGS = BlockTypeTags.key(ResourceKey.minecraft("spruce_logs"));
+    public static final Tag<BlockType> SPRUCE_LOGS = BlockTypeTags.key(ResourceKey.minecraft("spruce_logs"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> STAIRS = BlockTypeTags.key(ResourceKey.minecraft("stairs"));
+    public static final Tag<BlockType> STAIRS = BlockTypeTags.key(ResourceKey.minecraft("stairs"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> STANDING_SIGNS = BlockTypeTags.key(ResourceKey.minecraft("standing_signs"));
+    public static final Tag<BlockType> STANDING_SIGNS = BlockTypeTags.key(ResourceKey.minecraft("standing_signs"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> STONE_BRICKS = BlockTypeTags.key(ResourceKey.minecraft("stone_bricks"));
+    public static final Tag<BlockType> STONE_BRICKS = BlockTypeTags.key(ResourceKey.minecraft("stone_bricks"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> STONE_ORE_REPLACEABLES = BlockTypeTags.key(ResourceKey.minecraft("stone_ore_replaceables"));
+    public static final Tag<BlockType> STONE_ORE_REPLACEABLES = BlockTypeTags.key(ResourceKey.minecraft("stone_ore_replaceables"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> STONE_PRESSURE_PLATES = BlockTypeTags.key(ResourceKey.minecraft("stone_pressure_plates"));
+    public static final Tag<BlockType> STONE_PRESSURE_PLATES = BlockTypeTags.key(ResourceKey.minecraft("stone_pressure_plates"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> STRIDER_WARM_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("strider_warm_blocks"));
+    public static final Tag<BlockType> STRIDER_WARM_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("strider_warm_blocks"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> TALL_FLOWERS = BlockTypeTags.key(ResourceKey.minecraft("tall_flowers"));
+    public static final Tag<BlockType> TALL_FLOWERS = BlockTypeTags.key(ResourceKey.minecraft("tall_flowers"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> TERRACOTTA = BlockTypeTags.key(ResourceKey.minecraft("terracotta"));
+    public static final Tag<BlockType> TERRACOTTA = BlockTypeTags.key(ResourceKey.minecraft("terracotta"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> TRAPDOORS = BlockTypeTags.key(ResourceKey.minecraft("trapdoors"));
+    public static final Tag<BlockType> TRAPDOORS = BlockTypeTags.key(ResourceKey.minecraft("trapdoors"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> UNDERWATER_BONEMEALS = BlockTypeTags.key(ResourceKey.minecraft("underwater_bonemeals"));
+    public static final Tag<BlockType> UNDERWATER_BONEMEALS = BlockTypeTags.key(ResourceKey.minecraft("underwater_bonemeals"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> UNSTABLE_BOTTOM_CENTER = BlockTypeTags.key(ResourceKey.minecraft("unstable_bottom_center"));
+    public static final Tag<BlockType> UNSTABLE_BOTTOM_CENTER = BlockTypeTags.key(ResourceKey.minecraft("unstable_bottom_center"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> VALID_SPAWN = BlockTypeTags.key(ResourceKey.minecraft("valid_spawn"));
+    public static final Tag<BlockType> VALID_SPAWN = BlockTypeTags.key(ResourceKey.minecraft("valid_spawn"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> WALL_CORALS = BlockTypeTags.key(ResourceKey.minecraft("wall_corals"));
+    public static final Tag<BlockType> WALL_CORALS = BlockTypeTags.key(ResourceKey.minecraft("wall_corals"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> WALL_POST_OVERRIDE = BlockTypeTags.key(ResourceKey.minecraft("wall_post_override"));
+    public static final Tag<BlockType> WALL_POST_OVERRIDE = BlockTypeTags.key(ResourceKey.minecraft("wall_post_override"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> WALL_SIGNS = BlockTypeTags.key(ResourceKey.minecraft("wall_signs"));
+    public static final Tag<BlockType> WALL_SIGNS = BlockTypeTags.key(ResourceKey.minecraft("wall_signs"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> WALLS = BlockTypeTags.key(ResourceKey.minecraft("walls"));
+    public static final Tag<BlockType> WALLS = BlockTypeTags.key(ResourceKey.minecraft("walls"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> WARPED_STEMS = BlockTypeTags.key(ResourceKey.minecraft("warped_stems"));
+    public static final Tag<BlockType> WARPED_STEMS = BlockTypeTags.key(ResourceKey.minecraft("warped_stems"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> WART_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("wart_blocks"));
+    public static final Tag<BlockType> WART_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("wart_blocks"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> WITHER_IMMUNE = BlockTypeTags.key(ResourceKey.minecraft("wither_immune"));
+    public static final Tag<BlockType> WITHER_IMMUNE = BlockTypeTags.key(ResourceKey.minecraft("wither_immune"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> WITHER_SUMMON_BASE_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("wither_summon_base_blocks"));
+    public static final Tag<BlockType> WITHER_SUMMON_BASE_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("wither_summon_base_blocks"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> WOLVES_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("wolves_spawnable_on"));
+    public static final Tag<BlockType> WOLVES_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("wolves_spawnable_on"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> WOODEN_BUTTONS = BlockTypeTags.key(ResourceKey.minecraft("wooden_buttons"));
+    public static final Tag<BlockType> WOODEN_BUTTONS = BlockTypeTags.key(ResourceKey.minecraft("wooden_buttons"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> WOODEN_DOORS = BlockTypeTags.key(ResourceKey.minecraft("wooden_doors"));
+    public static final Tag<BlockType> WOODEN_DOORS = BlockTypeTags.key(ResourceKey.minecraft("wooden_doors"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> WOODEN_FENCES = BlockTypeTags.key(ResourceKey.minecraft("wooden_fences"));
+    public static final Tag<BlockType> WOODEN_FENCES = BlockTypeTags.key(ResourceKey.minecraft("wooden_fences"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> WOODEN_PRESSURE_PLATES = BlockTypeTags.key(ResourceKey.minecraft("wooden_pressure_plates"));
+    public static final Tag<BlockType> WOODEN_PRESSURE_PLATES = BlockTypeTags.key(ResourceKey.minecraft("wooden_pressure_plates"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> WOODEN_SLABS = BlockTypeTags.key(ResourceKey.minecraft("wooden_slabs"));
+    public static final Tag<BlockType> WOODEN_SLABS = BlockTypeTags.key(ResourceKey.minecraft("wooden_slabs"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> WOODEN_STAIRS = BlockTypeTags.key(ResourceKey.minecraft("wooden_stairs"));
+    public static final Tag<BlockType> WOODEN_STAIRS = BlockTypeTags.key(ResourceKey.minecraft("wooden_stairs"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> WOODEN_TRAPDOORS = BlockTypeTags.key(ResourceKey.minecraft("wooden_trapdoors"));
+    public static final Tag<BlockType> WOODEN_TRAPDOORS = BlockTypeTags.key(ResourceKey.minecraft("wooden_trapdoors"));
 
-    public static final DefaultedRegistryReference<Tag<BlockType>> WOOL = BlockTypeTags.key(ResourceKey.minecraft("wool"));
+    public static final Tag<BlockType> WOOL = BlockTypeTags.key(ResourceKey.minecraft("wool"));
 
     // @formatter:on
     private BlockTypeTags() {
     }
 
-    public static Registry<Tag<BlockType>> registry() {
-        return Sponge.game().registry(RegistryTypes.BLOCK_TYPE_TAGS);
-    }
-
-    private static DefaultedRegistryReference<Tag<BlockType>> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.BLOCK_TYPE_TAGS, location).asDefaultedReference(Sponge::game);
+    private static Tag<BlockType> key(final ResourceKey key) {
+        return Tag.of(RegistryTypes.BLOCK_TYPE, key);
     }
 }

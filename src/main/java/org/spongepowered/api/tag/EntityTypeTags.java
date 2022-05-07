@@ -25,11 +25,7 @@
 package org.spongepowered.api.tag;
 
 import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registry;
-import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.registry.RegistryTypes;
@@ -42,35 +38,31 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class EntityTypeTags {
 
     // @formatter:off
-    public static final DefaultedRegistryReference<Tag<EntityType<?>>> ARROWS = EntityTypeTags.key(ResourceKey.minecraft("arrows"));
+    public static final Tag<EntityType<?>> ARROWS = EntityTypeTags.key(ResourceKey.minecraft("arrows"));
 
-    public static final DefaultedRegistryReference<Tag<EntityType<?>>> AXOLOTL_ALWAYS_HOSTILES = EntityTypeTags.key(ResourceKey.minecraft("axolotl_always_hostiles"));
+    public static final Tag<EntityType<?>> AXOLOTL_ALWAYS_HOSTILES = EntityTypeTags.key(ResourceKey.minecraft("axolotl_always_hostiles"));
 
-    public static final DefaultedRegistryReference<Tag<EntityType<?>>> AXOLOTL_HUNT_TARGETS = EntityTypeTags.key(ResourceKey.minecraft("axolotl_hunt_targets"));
+    public static final Tag<EntityType<?>> AXOLOTL_HUNT_TARGETS = EntityTypeTags.key(ResourceKey.minecraft("axolotl_hunt_targets"));
 
-    public static final DefaultedRegistryReference<Tag<EntityType<?>>> BEEHIVE_INHABITORS = EntityTypeTags.key(ResourceKey.minecraft("beehive_inhabitors"));
+    public static final Tag<EntityType<?>> BEEHIVE_INHABITORS = EntityTypeTags.key(ResourceKey.minecraft("beehive_inhabitors"));
 
-    public static final DefaultedRegistryReference<Tag<EntityType<?>>> FREEZE_HURTS_EXTRA_TYPES = EntityTypeTags.key(ResourceKey.minecraft("freeze_hurts_extra_types"));
+    public static final Tag<EntityType<?>> FREEZE_HURTS_EXTRA_TYPES = EntityTypeTags.key(ResourceKey.minecraft("freeze_hurts_extra_types"));
 
-    public static final DefaultedRegistryReference<Tag<EntityType<?>>> FREEZE_IMMUNE_ENTITY_TYPES = EntityTypeTags.key(ResourceKey.minecraft("freeze_immune_entity_types"));
+    public static final Tag<EntityType<?>> FREEZE_IMMUNE_ENTITY_TYPES = EntityTypeTags.key(ResourceKey.minecraft("freeze_immune_entity_types"));
 
-    public static final DefaultedRegistryReference<Tag<EntityType<?>>> IMPACT_PROJECTILES = EntityTypeTags.key(ResourceKey.minecraft("impact_projectiles"));
+    public static final Tag<EntityType<?>> IMPACT_PROJECTILES = EntityTypeTags.key(ResourceKey.minecraft("impact_projectiles"));
 
-    public static final DefaultedRegistryReference<Tag<EntityType<?>>> POWDER_SNOW_WALKABLE_MOBS = EntityTypeTags.key(ResourceKey.minecraft("powder_snow_walkable_mobs"));
+    public static final Tag<EntityType<?>> POWDER_SNOW_WALKABLE_MOBS = EntityTypeTags.key(ResourceKey.minecraft("powder_snow_walkable_mobs"));
 
-    public static final DefaultedRegistryReference<Tag<EntityType<?>>> RAIDERS = EntityTypeTags.key(ResourceKey.minecraft("raiders"));
+    public static final Tag<EntityType<?>> RAIDERS = EntityTypeTags.key(ResourceKey.minecraft("raiders"));
 
-    public static final DefaultedRegistryReference<Tag<EntityType<?>>> SKELETONS = EntityTypeTags.key(ResourceKey.minecraft("skeletons"));
+    public static final Tag<EntityType<?>> SKELETONS = EntityTypeTags.key(ResourceKey.minecraft("skeletons"));
 
     // @formatter:on
     private EntityTypeTags() {
     }
 
-    public static Registry<Tag<EntityType<?>>> registry() {
-        return Sponge.game().registry(RegistryTypes.ENTITY_TYPE_TAGS);
-    }
-
-    private static DefaultedRegistryReference<Tag<EntityType<?>>> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.ENTITY_TYPE_TAGS, location).asDefaultedReference(Sponge::game);
+    private static Tag<EntityType<?>> key(final ResourceKey key) {
+        return Tag.of(RegistryTypes.ENTITY_TYPE, key);
     }
 }
