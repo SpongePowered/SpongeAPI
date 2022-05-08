@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.util;
 
-import net.kyori.adventure.util.Buildable;
+import net.kyori.adventure.builder.AbstractBuilder;
 
 /**
  * A common interface for all builder pattern types.
@@ -32,7 +32,7 @@ import net.kyori.adventure.util.Buildable;
  * @param <T> The type built by the builder
  * @param <B> The child builder type
  */
-public interface Builder<T, B extends Builder<T, B>> extends Buildable.Builder<T>, ResettableBuilder<T, B> {
+public interface Builder<T, B extends Builder<T, B>> extends AbstractBuilder<T>, ResettableBuilder<T, B> {
 
     /**
      * Resets this builder to a "default" state such that there is no
