@@ -40,6 +40,8 @@ public final class BlockTypeTags {
     // @formatter:off
     public static final Tag<BlockType> ACACIA_LOGS = BlockTypeTags.key(ResourceKey.minecraft("acacia_logs"));
 
+    public static final Tag<BlockType> ANCIENT_CITY_REPLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("ancient_city_replaceable"));
+
     public static final Tag<BlockType> ANIMALS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("animals_spawnable_on"));
 
     public static final Tag<BlockType> ANVIL = BlockTypeTags.key(ResourceKey.minecraft("anvil"));
@@ -78,8 +80,6 @@ public final class BlockTypeTags {
 
     public static final Tag<BlockType> CANDLES = BlockTypeTags.key(ResourceKey.minecraft("candles"));
 
-    public static final Tag<BlockType> CARPETS = BlockTypeTags.key(ResourceKey.minecraft("carpets"));
-
     public static final Tag<BlockType> CAULDRONS = BlockTypeTags.key(ResourceKey.minecraft("cauldrons"));
 
     public static final Tag<BlockType> CAVE_VINES = BlockTypeTags.key(ResourceKey.minecraft("cave_vines"));
@@ -87,6 +87,10 @@ public final class BlockTypeTags {
     public static final Tag<BlockType> CLIMBABLE = BlockTypeTags.key(ResourceKey.minecraft("climbable"));
 
     public static final Tag<BlockType> COAL_ORES = BlockTypeTags.key(ResourceKey.minecraft("coal_ores"));
+
+    public static final Tag<BlockType> COMPLETES_FIND_TREE_TUTORIAL = BlockTypeTags.key(ResourceKey.minecraft("completes_find_tree_tutorial"));
+
+    public static final Tag<BlockType> CONVERTABLE_TO_MUD = BlockTypeTags.key(ResourceKey.minecraft("convertable_to_mud"));
 
     public static final Tag<BlockType> COPPER_ORES = BlockTypeTags.key(ResourceKey.minecraft("copper_ores"));
 
@@ -102,7 +106,11 @@ public final class BlockTypeTags {
 
     public static final Tag<BlockType> CRYSTAL_SOUND_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("crystal_sound_blocks"));
 
+    public static final Tag<BlockType> DAMPENS_VIBRATIONS = BlockTypeTags.key(ResourceKey.minecraft("dampens_vibrations"));
+
     public static final Tag<BlockType> DARK_OAK_LOGS = BlockTypeTags.key(ResourceKey.minecraft("dark_oak_logs"));
+
+    public static final Tag<BlockType> DEAD_BUSH_MAY_PLACE_ON = BlockTypeTags.key(ResourceKey.minecraft("dead_bush_may_place_on"));
 
     public static final Tag<BlockType> DEEPSLATE_ORE_REPLACEABLES = BlockTypeTags.key(ResourceKey.minecraft("deepslate_ore_replaceables"));
 
@@ -113,6 +121,8 @@ public final class BlockTypeTags {
     public static final Tag<BlockType> DOORS = BlockTypeTags.key(ResourceKey.minecraft("doors"));
 
     public static final Tag<BlockType> DRAGON_IMMUNE = BlockTypeTags.key(ResourceKey.minecraft("dragon_immune"));
+
+    public static final Tag<BlockType> DRAGON_TRANSPARENT = BlockTypeTags.key(ResourceKey.minecraft("dragon_transparent"));
 
     public static final Tag<BlockType> DRIPSTONE_REPLACEABLE_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("dripstone_replaceable_blocks"));
 
@@ -135,6 +145,10 @@ public final class BlockTypeTags {
     public static final Tag<BlockType> FLOWERS = BlockTypeTags.key(ResourceKey.minecraft("flowers"));
 
     public static final Tag<BlockType> FOXES_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("foxes_spawnable_on"));
+
+    public static final Tag<BlockType> FROG_PREFER_JUMP_TO = BlockTypeTags.key(ResourceKey.minecraft("frog_prefer_jump_to"));
+
+    public static final Tag<BlockType> FROGS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("frogs_spawnable_on"));
 
     public static final Tag<BlockType> GEODE_INVALID_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("geode_invalid_blocks"));
 
@@ -174,6 +188,12 @@ public final class BlockTypeTags {
 
     public static final Tag<BlockType> LUSH_GROUND_REPLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("lush_ground_replaceable"));
 
+    public static final Tag<BlockType> MANGROVE_LOGS = BlockTypeTags.key(ResourceKey.minecraft("mangrove_logs"));
+
+    public static final Tag<BlockType> MANGROVE_LOGS_CAN_GROW_THROUGH = BlockTypeTags.key(ResourceKey.minecraft("mangrove_logs_can_grow_through"));
+
+    public static final Tag<BlockType> MANGROVE_ROOTS_CAN_GROW_THROUGH = BlockTypeTags.key(ResourceKey.minecraft("mangrove_roots_can_grow_through"));
+
     public static final Tag<BlockType> MINEABLE_AXE = BlockTypeTags.key(ResourceKey.minecraft("mineable/axe"));
 
     public static final Tag<BlockType> MINEABLE_HOE = BlockTypeTags.key(ResourceKey.minecraft("mineable/hoe"));
@@ -194,6 +214,8 @@ public final class BlockTypeTags {
 
     public static final Tag<BlockType> NEEDS_STONE_TOOL = BlockTypeTags.key(ResourceKey.minecraft("needs_stone_tool"));
 
+    public static final Tag<BlockType> NETHER_CARVER_REPLACEABLES = BlockTypeTags.key(ResourceKey.minecraft("nether_carver_replaceables"));
+
     public static final Tag<BlockType> NON_FLAMMABLE_WOOD = BlockTypeTags.key(ResourceKey.minecraft("non_flammable_wood"));
 
     public static final Tag<BlockType> NYLIUM = BlockTypeTags.key(ResourceKey.minecraft("nylium"));
@@ -202,13 +224,17 @@ public final class BlockTypeTags {
 
     public static final Tag<BlockType> OCCLUDES_VIBRATION_SIGNALS = BlockTypeTags.key(ResourceKey.minecraft("occludes_vibration_signals"));
 
+    public static final Tag<BlockType> OVERWORLD_CARVER_REPLACEABLES = BlockTypeTags.key(ResourceKey.minecraft("overworld_carver_replaceables"));
+
+    public static final Tag<BlockType> OVERWORLD_NATURAL_LOGS = BlockTypeTags.key(ResourceKey.minecraft("overworld_natural_logs"));
+
     public static final Tag<BlockType> PARROTS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("parrots_spawnable_on"));
 
     public static final Tag<BlockType> PIGLIN_REPELLENTS = BlockTypeTags.key(ResourceKey.minecraft("piglin_repellents"));
 
     public static final Tag<BlockType> PLANKS = BlockTypeTags.key(ResourceKey.minecraft("planks"));
 
-    public static final Tag<BlockType> POLAR_BEARS_SPAWNABLE_ON_IN_FROZEN_OCEAN = BlockTypeTags.key(ResourceKey.minecraft("polar_bears_spawnable_on_in_frozen_ocean"));
+    public static final Tag<BlockType> POLAR_BEARS_SPAWNABLE_ON_ALTERNATE = BlockTypeTags.key(ResourceKey.minecraft("polar_bears_spawnable_on_alternate"));
 
     public static final Tag<BlockType> PORTALS = BlockTypeTags.key(ResourceKey.minecraft("portals"));
 
@@ -228,6 +254,10 @@ public final class BlockTypeTags {
 
     public static final Tag<BlockType> SAPLINGS = BlockTypeTags.key(ResourceKey.minecraft("saplings"));
 
+    public static final Tag<BlockType> SCULK_REPLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("sculk_replaceable"));
+
+    public static final Tag<BlockType> SCULK_REPLACEABLE_WORLD_GEN = BlockTypeTags.key(ResourceKey.minecraft("sculk_replaceable_world_gen"));
+
     public static final Tag<BlockType> SHULKER_BOXES = BlockTypeTags.key(ResourceKey.minecraft("shulker_boxes"));
 
     public static final Tag<BlockType> SIGNS = BlockTypeTags.key(ResourceKey.minecraft("signs"));
@@ -238,7 +268,13 @@ public final class BlockTypeTags {
 
     public static final Tag<BlockType> SMALL_FLOWERS = BlockTypeTags.key(ResourceKey.minecraft("small_flowers"));
 
+    public static final Tag<BlockType> SNAPS_GOAT_HORN = BlockTypeTags.key(ResourceKey.minecraft("snaps_goat_horn"));
+
     public static final Tag<BlockType> SNOW = BlockTypeTags.key(ResourceKey.minecraft("snow"));
+
+    public static final Tag<BlockType> SNOW_LAYER_CAN_SURVIVE_ON = BlockTypeTags.key(ResourceKey.minecraft("snow_layer_can_survive_on"));
+
+    public static final Tag<BlockType> SNOW_LAYER_CANNOT_SURVIVE_ON = BlockTypeTags.key(ResourceKey.minecraft("snow_layer_cannot_survive_on"));
 
     public static final Tag<BlockType> SOUL_FIRE_BASE_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("soul_fire_base_blocks"));
 
@@ -303,6 +339,8 @@ public final class BlockTypeTags {
     public static final Tag<BlockType> WOODEN_TRAPDOORS = BlockTypeTags.key(ResourceKey.minecraft("wooden_trapdoors"));
 
     public static final Tag<BlockType> WOOL = BlockTypeTags.key(ResourceKey.minecraft("wool"));
+
+    public static final Tag<BlockType> WOOL_CARPETS = BlockTypeTags.key(ResourceKey.minecraft("wool_carpets"));
 
     // @formatter:on
     private BlockTypeTags() {

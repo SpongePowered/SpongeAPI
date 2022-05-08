@@ -53,6 +53,10 @@ public final class IntegerStateProperties {
         return IntegerStateProperty.of("AGE_3");
     }
 
+    public static IntegerStateProperty property_AGE_4() {
+        return IntegerStateProperty.of("AGE_4");
+    }
+
     public static IntegerStateProperty property_AGE_5() {
         return IntegerStateProperty.of("AGE_5");
     }

@@ -45,6 +45,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> ACACIA_BUTTON = ItemTypes.key(ResourceKey.minecraft("acacia_button"));
 
+    public static final DefaultedRegistryReference<ItemType> ACACIA_CHEST_BOAT = ItemTypes.key(ResourceKey.minecraft("acacia_chest_boat"));
+
     public static final DefaultedRegistryReference<ItemType> ACACIA_DOOR = ItemTypes.key(ResourceKey.minecraft("acacia_door"));
 
     public static final DefaultedRegistryReference<ItemType> ACACIA_FENCE = ItemTypes.key(ResourceKey.minecraft("acacia_fence"));
@@ -74,6 +76,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> ACTIVATOR_RAIL = ItemTypes.key(ResourceKey.minecraft("activator_rail"));
 
     public static final DefaultedRegistryReference<ItemType> AIR = ItemTypes.key(ResourceKey.minecraft("air"));
+
+    public static final DefaultedRegistryReference<ItemType> ALLAY_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("allay_spawn_egg"));
 
     public static final DefaultedRegistryReference<ItemType> ALLIUM = ItemTypes.key(ResourceKey.minecraft("allium"));
 
@@ -148,6 +152,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> BIRCH_BOAT = ItemTypes.key(ResourceKey.minecraft("birch_boat"));
 
     public static final DefaultedRegistryReference<ItemType> BIRCH_BUTTON = ItemTypes.key(ResourceKey.minecraft("birch_button"));
+
+    public static final DefaultedRegistryReference<ItemType> BIRCH_CHEST_BOAT = ItemTypes.key(ResourceKey.minecraft("birch_chest_boat"));
 
     public static final DefaultedRegistryReference<ItemType> BIRCH_DOOR = ItemTypes.key(ResourceKey.minecraft("birch_door"));
 
@@ -569,6 +575,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> DARK_OAK_BUTTON = ItemTypes.key(ResourceKey.minecraft("dark_oak_button"));
 
+    public static final DefaultedRegistryReference<ItemType> DARK_OAK_CHEST_BOAT = ItemTypes.key(ResourceKey.minecraft("dark_oak_chest_boat"));
+
     public static final DefaultedRegistryReference<ItemType> DARK_OAK_DOOR = ItemTypes.key(ResourceKey.minecraft("dark_oak_door"));
 
     public static final DefaultedRegistryReference<ItemType> DARK_OAK_FENCE = ItemTypes.key(ResourceKey.minecraft("dark_oak_fence"));
@@ -711,6 +719,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> DIRT_PATH = ItemTypes.key(ResourceKey.minecraft("dirt_path"));
 
+    public static final DefaultedRegistryReference<ItemType> DISC_FRAGMENT_5 = ItemTypes.key(ResourceKey.minecraft("disc_fragment_5"));
+
     public static final DefaultedRegistryReference<ItemType> DISPENSER = ItemTypes.key(ResourceKey.minecraft("dispenser"));
 
     public static final DefaultedRegistryReference<ItemType> DOLPHIN_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("dolphin_spawn_egg"));
@@ -732,6 +742,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> DROPPER = ItemTypes.key(ResourceKey.minecraft("dropper"));
 
     public static final DefaultedRegistryReference<ItemType> DROWNED_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("drowned_spawn_egg"));
+
+    public static final DefaultedRegistryReference<ItemType> ECHO_SHARD = ItemTypes.key(ResourceKey.minecraft("echo_shard"));
 
     public static final DefaultedRegistryReference<ItemType> EGG = ItemTypes.key(ResourceKey.minecraft("egg"));
 
@@ -829,6 +841,10 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> FOX_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("fox_spawn_egg"));
 
+    public static final DefaultedRegistryReference<ItemType> FROG_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("frog_spawn_egg"));
+
+    public static final DefaultedRegistryReference<ItemType> FROGSPAWN = ItemTypes.key(ResourceKey.minecraft("frogspawn"));
+
     public static final DefaultedRegistryReference<ItemType> FURNACE = ItemTypes.key(ResourceKey.minecraft("furnace"));
 
     public static final DefaultedRegistryReference<ItemType> FURNACE_MINECART = ItemTypes.key(ResourceKey.minecraft("furnace_minecart"));
@@ -862,6 +878,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> GLOWSTONE = ItemTypes.key(ResourceKey.minecraft("glowstone"));
 
     public static final DefaultedRegistryReference<ItemType> GLOWSTONE_DUST = ItemTypes.key(ResourceKey.minecraft("glowstone_dust"));
+
+    public static final DefaultedRegistryReference<ItemType> GOAT_HORN = ItemTypes.key(ResourceKey.minecraft("goat_horn"));
 
     public static final DefaultedRegistryReference<ItemType> GOAT_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("goat_spawn_egg"));
 
@@ -1065,6 +1083,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> JUNGLE_BUTTON = ItemTypes.key(ResourceKey.minecraft("jungle_button"));
 
+    public static final DefaultedRegistryReference<ItemType> JUNGLE_CHEST_BOAT = ItemTypes.key(ResourceKey.minecraft("jungle_chest_boat"));
+
     public static final DefaultedRegistryReference<ItemType> JUNGLE_DOOR = ItemTypes.key(ResourceKey.minecraft("jungle_door"));
 
     public static final DefaultedRegistryReference<ItemType> JUNGLE_FENCE = ItemTypes.key(ResourceKey.minecraft("jungle_fence"));
@@ -1259,6 +1279,40 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> MAGMA_CUBE_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("magma_cube_spawn_egg"));
 
+    public static final DefaultedRegistryReference<ItemType> MANGROVE_BOAT = ItemTypes.key(ResourceKey.minecraft("mangrove_boat"));
+
+    public static final DefaultedRegistryReference<ItemType> MANGROVE_BUTTON = ItemTypes.key(ResourceKey.minecraft("mangrove_button"));
+
+    public static final DefaultedRegistryReference<ItemType> MANGROVE_CHEST_BOAT = ItemTypes.key(ResourceKey.minecraft("mangrove_chest_boat"));
+
+    public static final DefaultedRegistryReference<ItemType> MANGROVE_DOOR = ItemTypes.key(ResourceKey.minecraft("mangrove_door"));
+
+    public static final DefaultedRegistryReference<ItemType> MANGROVE_FENCE = ItemTypes.key(ResourceKey.minecraft("mangrove_fence"));
+
+    public static final DefaultedRegistryReference<ItemType> MANGROVE_FENCE_GATE = ItemTypes.key(ResourceKey.minecraft("mangrove_fence_gate"));
+
+    public static final DefaultedRegistryReference<ItemType> MANGROVE_LEAVES = ItemTypes.key(ResourceKey.minecraft("mangrove_leaves"));
+
+    public static final DefaultedRegistryReference<ItemType> MANGROVE_LOG = ItemTypes.key(ResourceKey.minecraft("mangrove_log"));
+
+    public static final DefaultedRegistryReference<ItemType> MANGROVE_PLANKS = ItemTypes.key(ResourceKey.minecraft("mangrove_planks"));
+
+    public static final DefaultedRegistryReference<ItemType> MANGROVE_PRESSURE_PLATE = ItemTypes.key(ResourceKey.minecraft("mangrove_pressure_plate"));
+
+    public static final DefaultedRegistryReference<ItemType> MANGROVE_PROPAGULE = ItemTypes.key(ResourceKey.minecraft("mangrove_propagule"));
+
+    public static final DefaultedRegistryReference<ItemType> MANGROVE_ROOTS = ItemTypes.key(ResourceKey.minecraft("mangrove_roots"));
+
+    public static final DefaultedRegistryReference<ItemType> MANGROVE_SIGN = ItemTypes.key(ResourceKey.minecraft("mangrove_sign"));
+
+    public static final DefaultedRegistryReference<ItemType> MANGROVE_SLAB = ItemTypes.key(ResourceKey.minecraft("mangrove_slab"));
+
+    public static final DefaultedRegistryReference<ItemType> MANGROVE_STAIRS = ItemTypes.key(ResourceKey.minecraft("mangrove_stairs"));
+
+    public static final DefaultedRegistryReference<ItemType> MANGROVE_TRAPDOOR = ItemTypes.key(ResourceKey.minecraft("mangrove_trapdoor"));
+
+    public static final DefaultedRegistryReference<ItemType> MANGROVE_WOOD = ItemTypes.key(ResourceKey.minecraft("mangrove_wood"));
+
     public static final DefaultedRegistryReference<ItemType> MAP = ItemTypes.key(ResourceKey.minecraft("map"));
 
     public static final DefaultedRegistryReference<ItemType> MEDIUM_AMETHYST_BUD = ItemTypes.key(ResourceKey.minecraft("medium_amethyst_bud"));
@@ -1297,6 +1351,18 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> MOSSY_STONE_BRICKS = ItemTypes.key(ResourceKey.minecraft("mossy_stone_bricks"));
 
+    public static final DefaultedRegistryReference<ItemType> MUD = ItemTypes.key(ResourceKey.minecraft("mud"));
+
+    public static final DefaultedRegistryReference<ItemType> MUD_BRICK_SLAB = ItemTypes.key(ResourceKey.minecraft("mud_brick_slab"));
+
+    public static final DefaultedRegistryReference<ItemType> MUD_BRICK_STAIRS = ItemTypes.key(ResourceKey.minecraft("mud_brick_stairs"));
+
+    public static final DefaultedRegistryReference<ItemType> MUD_BRICK_WALL = ItemTypes.key(ResourceKey.minecraft("mud_brick_wall"));
+
+    public static final DefaultedRegistryReference<ItemType> MUD_BRICKS = ItemTypes.key(ResourceKey.minecraft("mud_bricks"));
+
+    public static final DefaultedRegistryReference<ItemType> MUDDY_MANGROVE_ROOTS = ItemTypes.key(ResourceKey.minecraft("muddy_mangrove_roots"));
+
     public static final DefaultedRegistryReference<ItemType> MULE_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("mule_spawn_egg"));
 
     public static final DefaultedRegistryReference<ItemType> MUSHROOM_STEM = ItemTypes.key(ResourceKey.minecraft("mushroom_stem"));
@@ -1306,6 +1372,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> MUSIC_DISC_11 = ItemTypes.key(ResourceKey.minecraft("music_disc_11"));
 
     public static final DefaultedRegistryReference<ItemType> MUSIC_DISC_13 = ItemTypes.key(ResourceKey.minecraft("music_disc_13"));
+
+    public static final DefaultedRegistryReference<ItemType> MUSIC_DISC_5 = ItemTypes.key(ResourceKey.minecraft("music_disc_5"));
 
     public static final DefaultedRegistryReference<ItemType> MUSIC_DISC_BLOCKS = ItemTypes.key(ResourceKey.minecraft("music_disc_blocks"));
 
@@ -1395,6 +1463,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> OAK_BUTTON = ItemTypes.key(ResourceKey.minecraft("oak_button"));
 
+    public static final DefaultedRegistryReference<ItemType> OAK_CHEST_BOAT = ItemTypes.key(ResourceKey.minecraft("oak_chest_boat"));
+
     public static final DefaultedRegistryReference<ItemType> OAK_DOOR = ItemTypes.key(ResourceKey.minecraft("oak_door"));
 
     public static final DefaultedRegistryReference<ItemType> OAK_FENCE = ItemTypes.key(ResourceKey.minecraft("oak_fence"));
@@ -1426,6 +1496,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> OBSIDIAN = ItemTypes.key(ResourceKey.minecraft("obsidian"));
 
     public static final DefaultedRegistryReference<ItemType> OCELOT_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("ocelot_spawn_egg"));
+
+    public static final DefaultedRegistryReference<ItemType> OCHRE_FROGLIGHT = ItemTypes.key(ResourceKey.minecraft("ochre_froglight"));
 
     public static final DefaultedRegistryReference<ItemType> ORANGE_BANNER = ItemTypes.key(ResourceKey.minecraft("orange_banner"));
 
@@ -1467,6 +1539,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> PACKED_ICE = ItemTypes.key(ResourceKey.minecraft("packed_ice"));
 
+    public static final DefaultedRegistryReference<ItemType> PACKED_MUD = ItemTypes.key(ResourceKey.minecraft("packed_mud"));
+
     public static final DefaultedRegistryReference<ItemType> PAINTING = ItemTypes.key(ResourceKey.minecraft("painting"));
 
     public static final DefaultedRegistryReference<ItemType> PANDA_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("panda_spawn_egg"));
@@ -1474,6 +1548,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> PAPER = ItemTypes.key(ResourceKey.minecraft("paper"));
 
     public static final DefaultedRegistryReference<ItemType> PARROT_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("parrot_spawn_egg"));
+
+    public static final DefaultedRegistryReference<ItemType> PEARLESCENT_FROGLIGHT = ItemTypes.key(ResourceKey.minecraft("pearlescent_froglight"));
 
     public static final DefaultedRegistryReference<ItemType> PEONY = ItemTypes.key(ResourceKey.minecraft("peony"));
 
@@ -1697,6 +1773,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> RAW_IRON_BLOCK = ItemTypes.key(ResourceKey.minecraft("raw_iron_block"));
 
+    public static final DefaultedRegistryReference<ItemType> RECOVERY_COMPASS = ItemTypes.key(ResourceKey.minecraft("recovery_compass"));
+
     public static final DefaultedRegistryReference<ItemType> RED_BANNER = ItemTypes.key(ResourceKey.minecraft("red_banner"));
 
     public static final DefaultedRegistryReference<ItemType> RED_BED = ItemTypes.key(ResourceKey.minecraft("red_bed"));
@@ -1757,6 +1835,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> REDSTONE_TORCH = ItemTypes.key(ResourceKey.minecraft("redstone_torch"));
 
+    public static final DefaultedRegistryReference<ItemType> REINFORCED_DEEPSLATE = ItemTypes.key(ResourceKey.minecraft("reinforced_deepslate"));
+
     public static final DefaultedRegistryReference<ItemType> REPEATER = ItemTypes.key(ResourceKey.minecraft("repeater"));
 
     public static final DefaultedRegistryReference<ItemType> REPEATING_COMMAND_BLOCK = ItemTypes.key(ResourceKey.minecraft("repeating_command_block"));
@@ -1789,7 +1869,15 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> SCAFFOLDING = ItemTypes.key(ResourceKey.minecraft("scaffolding"));
 
+    public static final DefaultedRegistryReference<ItemType> SCULK = ItemTypes.key(ResourceKey.minecraft("sculk"));
+
+    public static final DefaultedRegistryReference<ItemType> SCULK_CATALYST = ItemTypes.key(ResourceKey.minecraft("sculk_catalyst"));
+
     public static final DefaultedRegistryReference<ItemType> SCULK_SENSOR = ItemTypes.key(ResourceKey.minecraft("sculk_sensor"));
+
+    public static final DefaultedRegistryReference<ItemType> SCULK_SHRIEKER = ItemTypes.key(ResourceKey.minecraft("sculk_shrieker"));
+
+    public static final DefaultedRegistryReference<ItemType> SCULK_VEIN = ItemTypes.key(ResourceKey.minecraft("sculk_vein"));
 
     public static final DefaultedRegistryReference<ItemType> SCUTE = ItemTypes.key(ResourceKey.minecraft("scute"));
 
@@ -1895,6 +1983,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> SPRUCE_BUTTON = ItemTypes.key(ResourceKey.minecraft("spruce_button"));
 
+    public static final DefaultedRegistryReference<ItemType> SPRUCE_CHEST_BOAT = ItemTypes.key(ResourceKey.minecraft("spruce_chest_boat"));
+
     public static final DefaultedRegistryReference<ItemType> SPRUCE_DOOR = ItemTypes.key(ResourceKey.minecraft("spruce_door"));
 
     public static final DefaultedRegistryReference<ItemType> SPRUCE_FENCE = ItemTypes.key(ResourceKey.minecraft("spruce_fence"));
@@ -1985,6 +2075,10 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> STRIPPED_JUNGLE_WOOD = ItemTypes.key(ResourceKey.minecraft("stripped_jungle_wood"));
 
+    public static final DefaultedRegistryReference<ItemType> STRIPPED_MANGROVE_LOG = ItemTypes.key(ResourceKey.minecraft("stripped_mangrove_log"));
+
+    public static final DefaultedRegistryReference<ItemType> STRIPPED_MANGROVE_WOOD = ItemTypes.key(ResourceKey.minecraft("stripped_mangrove_wood"));
+
     public static final DefaultedRegistryReference<ItemType> STRIPPED_OAK_LOG = ItemTypes.key(ResourceKey.minecraft("stripped_oak_log"));
 
     public static final DefaultedRegistryReference<ItemType> STRIPPED_OAK_WOOD = ItemTypes.key(ResourceKey.minecraft("stripped_oak_wood"));
@@ -2010,6 +2104,10 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> SUSPICIOUS_STEW = ItemTypes.key(ResourceKey.minecraft("suspicious_stew"));
 
     public static final DefaultedRegistryReference<ItemType> SWEET_BERRIES = ItemTypes.key(ResourceKey.minecraft("sweet_berries"));
+
+    public static final DefaultedRegistryReference<ItemType> TADPOLE_BUCKET = ItemTypes.key(ResourceKey.minecraft("tadpole_bucket"));
+
+    public static final DefaultedRegistryReference<ItemType> TADPOLE_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("tadpole_spawn_egg"));
 
     public static final DefaultedRegistryReference<ItemType> TALL_GRASS = ItemTypes.key(ResourceKey.minecraft("tall_grass"));
 
@@ -2059,6 +2157,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> TWISTING_VINES = ItemTypes.key(ResourceKey.minecraft("twisting_vines"));
 
+    public static final DefaultedRegistryReference<ItemType> VERDANT_FROGLIGHT = ItemTypes.key(ResourceKey.minecraft("verdant_froglight"));
+
     public static final DefaultedRegistryReference<ItemType> VEX_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("vex_spawn_egg"));
 
     public static final DefaultedRegistryReference<ItemType> VILLAGER_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("villager_spawn_egg"));
@@ -2068,6 +2168,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> VINE = ItemTypes.key(ResourceKey.minecraft("vine"));
 
     public static final DefaultedRegistryReference<ItemType> WANDERING_TRADER_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("wandering_trader_spawn_egg"));
+
+    public static final DefaultedRegistryReference<ItemType> WARDEN_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("warden_spawn_egg"));
 
     public static final DefaultedRegistryReference<ItemType> WARPED_BUTTON = ItemTypes.key(ResourceKey.minecraft("warped_button"));
 

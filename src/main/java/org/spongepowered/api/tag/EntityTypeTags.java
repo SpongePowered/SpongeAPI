@@ -50,6 +50,8 @@ public final class EntityTypeTags {
 
     public static final Tag<EntityType<?>> FREEZE_IMMUNE_ENTITY_TYPES = EntityTypeTags.key(ResourceKey.minecraft("freeze_immune_entity_types"));
 
+    public static final Tag<EntityType<?>> FROG_FOOD = EntityTypeTags.key(ResourceKey.minecraft("frog_food"));
+
     public static final Tag<EntityType<?>> IMPACT_PROJECTILES = EntityTypeTags.key(ResourceKey.minecraft("impact_projectiles"));
 
     public static final Tag<EntityType<?>> POWDER_SNOW_WALKABLE_MOBS = EntityTypeTags.key(ResourceKey.minecraft("powder_snow_walkable_mobs"));

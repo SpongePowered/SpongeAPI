@@ -49,6 +49,8 @@ public final class PotionEffectTypes {
 
     public static final DefaultedRegistryReference<PotionEffectType> CONDUIT_POWER = PotionEffectTypes.key(ResourceKey.minecraft("conduit_power"));
 
+    public static final DefaultedRegistryReference<PotionEffectType> DARKNESS = PotionEffectTypes.key(ResourceKey.minecraft("darkness"));
+
     public static final DefaultedRegistryReference<PotionEffectType> DOLPHINS_GRACE = PotionEffectTypes.key(ResourceKey.minecraft("dolphins_grace"));
 
     public static final DefaultedRegistryReference<PotionEffectType> FIRE_RESISTANCE = PotionEffectTypes.key(ResourceKey.minecraft("fire_resistance"));

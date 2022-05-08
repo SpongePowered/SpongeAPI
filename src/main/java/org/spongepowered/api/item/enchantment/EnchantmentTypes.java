@@ -256,6 +256,8 @@ public final class EnchantmentTypes {
      */
     public static final DefaultedRegistryReference<EnchantmentType> SWEEPING = EnchantmentTypes.key(ResourceKey.minecraft("sweeping"));
 
+    public static final DefaultedRegistryReference<FixMe> SWIFT_SNEAK = EnchantmentTypes.key(ResourceKey.minecraft("swift_sneak"));
+
     /**
      * Attackers are damaged when they deal damage to the wearer.
      *

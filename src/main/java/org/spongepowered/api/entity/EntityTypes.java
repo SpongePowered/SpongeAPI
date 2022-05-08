@@ -145,6 +145,8 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class EntityTypes {
 
+    public static final DefaultedRegistryReference<FixMe> ALLAY = EntityTypes.key(ResourceKey.minecraft("allay"));
+
     // @formatter:off
     // SORTFIELDS:ON
     public static final DefaultedRegistryReference<EntityType<AreaEffectCloud>> AREA_EFFECT_CLOUD = EntityTypes.key(ResourceKey.minecraft("area_effect_cloud"));
@@ -166,6 +168,8 @@ public final class EntityTypes {
     public static final DefaultedRegistryReference<EntityType<Cat>> CAT = EntityTypes.key(ResourceKey.minecraft("cat"));
 
     public static final DefaultedRegistryReference<EntityType<CaveSpider>> CAVE_SPIDER = EntityTypes.key(ResourceKey.minecraft("cave_spider"));
+
+    public static final DefaultedRegistryReference<FixMe> CHEST_BOAT = EntityTypes.key(ResourceKey.minecraft("chest_boat"));
 
     public static final DefaultedRegistryReference<EntityType<ChestMinecart>> CHEST_MINECART = EntityTypes.key(ResourceKey.minecraft("chest_minecart"));
 
@@ -220,6 +224,8 @@ public final class EntityTypes {
     public static final DefaultedRegistryReference<EntityType<FishingBobber>> FISHING_BOBBER = EntityTypes.key(ResourceKey.minecraft("fishing_bobber"));
 
     public static final DefaultedRegistryReference<EntityType<Fox>> FOX = EntityTypes.key(ResourceKey.minecraft("fox"));
+
+    public static final DefaultedRegistryReference<FixMe> FROG = EntityTypes.key(ResourceKey.minecraft("frog"));
 
     public static final DefaultedRegistryReference<EntityType<FurnaceMinecart>> FURNACE_MINECART = EntityTypes.key(ResourceKey.minecraft("furnace_minecart"));
 
@@ -335,6 +341,8 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<Strider>> STRIDER = EntityTypes.key(ResourceKey.minecraft("strider"));
 
+    public static final DefaultedRegistryReference<FixMe> TADPOLE = EntityTypes.key(ResourceKey.minecraft("tadpole"));
+
     public static final DefaultedRegistryReference<EntityType<PrimedTNT>> TNT = EntityTypes.key(ResourceKey.minecraft("tnt"));
 
     public static final DefaultedRegistryReference<EntityType<TNTMinecart>> TNT_MINECART = EntityTypes.key(ResourceKey.minecraft("tnt_minecart"));
@@ -354,6 +362,8 @@ public final class EntityTypes {
     public static final DefaultedRegistryReference<EntityType<Vindicator>> VINDICATOR = EntityTypes.key(ResourceKey.minecraft("vindicator"));
 
     public static final DefaultedRegistryReference<EntityType<WanderingTrader>> WANDERING_TRADER = EntityTypes.key(ResourceKey.minecraft("wandering_trader"));
+
+    public static final DefaultedRegistryReference<FixMe> WARDEN = EntityTypes.key(ResourceKey.minecraft("warden"));
 
     public static final DefaultedRegistryReference<EntityType<Witch>> WITCH = EntityTypes.key(ResourceKey.minecraft("witch"));
 

@@ -71,7 +71,7 @@ public final class AttributeTypes {
     private AttributeTypes() {
     }
 
-    public static Registry<AttributeType> registry() {
+    public static Registry<RangedAttributeType> registry() {
         return Sponge.game().registry(RegistryTypes.ATTRIBUTE_TYPE);
     }
 

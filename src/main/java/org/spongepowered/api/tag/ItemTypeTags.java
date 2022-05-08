@@ -60,7 +60,7 @@ public final class ItemTypeTags {
 
     public static final Tag<ItemType> CANDLES = ItemTypeTags.key(ResourceKey.minecraft("candles"));
 
-    public static final Tag<ItemType> CARPETS = ItemTypeTags.key(ResourceKey.minecraft("carpets"));
+    public static final Tag<ItemType> CHEST_BOATS = ItemTypeTags.key(ResourceKey.minecraft("chest_boats"));
 
     public static final Tag<ItemType> CLUSTER_MAX_HARVESTABLES = ItemTypeTags.key(ResourceKey.minecraft("cluster_max_harvestables"));
 
@@ -68,11 +68,17 @@ public final class ItemTypeTags {
 
     public static final Tag<ItemType> COALS = ItemTypeTags.key(ResourceKey.minecraft("coals"));
 
+    public static final Tag<ItemType> COMPASSES = ItemTypeTags.key(ResourceKey.minecraft("compasses"));
+
+    public static final Tag<ItemType> COMPLETES_FIND_TREE_TUTORIAL = ItemTypeTags.key(ResourceKey.minecraft("completes_find_tree_tutorial"));
+
     public static final Tag<ItemType> COPPER_ORES = ItemTypeTags.key(ResourceKey.minecraft("copper_ores"));
 
     public static final Tag<ItemType> CREEPER_DROP_MUSIC_DISCS = ItemTypeTags.key(ResourceKey.minecraft("creeper_drop_music_discs"));
 
     public static final Tag<ItemType> CRIMSON_STEMS = ItemTypeTags.key(ResourceKey.minecraft("crimson_stems"));
+
+    public static final Tag<ItemType> DAMPENS_VIBRATIONS = ItemTypeTags.key(ResourceKey.minecraft("dampens_vibrations"));
 
     public static final Tag<ItemType> DARK_OAK_LOGS = ItemTypeTags.key(ResourceKey.minecraft("dark_oak_logs"));
 
@@ -112,13 +118,15 @@ public final class ItemTypeTags {
 
     public static final Tag<ItemType> LOGS_THAT_BURN = ItemTypeTags.key(ResourceKey.minecraft("logs_that_burn"));
 
+    public static final Tag<ItemType> MANGROVE_LOGS = ItemTypeTags.key(ResourceKey.minecraft("mangrove_logs"));
+
     public static final Tag<ItemType> MUSIC_DISCS = ItemTypeTags.key(ResourceKey.minecraft("music_discs"));
 
     public static final Tag<ItemType> NON_FLAMMABLE_WOOD = ItemTypeTags.key(ResourceKey.minecraft("non_flammable_wood"));
 
     public static final Tag<ItemType> OAK_LOGS = ItemTypeTags.key(ResourceKey.minecraft("oak_logs"));
 
-    public static final Tag<ItemType> OCCLUDES_VIBRATION_SIGNALS = ItemTypeTags.key(ResourceKey.minecraft("occludes_vibration_signals"));
+    public static final Tag<ItemType> OVERWORLD_NATURAL_LOGS = ItemTypeTags.key(ResourceKey.minecraft("overworld_natural_logs"));
 
     public static final Tag<ItemType> PIGLIN_FOOD = ItemTypeTags.key(ResourceKey.minecraft("piglin_food"));
 
@@ -164,6 +172,8 @@ public final class ItemTypeTags {
 
     public static final Tag<ItemType> WARPED_STEMS = ItemTypeTags.key(ResourceKey.minecraft("warped_stems"));
 
+    public static final Tag<ItemType> WART_BLOCKS = ItemTypeTags.key(ResourceKey.minecraft("wart_blocks"));
+
     public static final Tag<ItemType> WOODEN_BUTTONS = ItemTypeTags.key(ResourceKey.minecraft("wooden_buttons"));
 
     public static final Tag<ItemType> WOODEN_DOORS = ItemTypeTags.key(ResourceKey.minecraft("wooden_doors"));
@@ -179,6 +189,8 @@ public final class ItemTypeTags {
     public static final Tag<ItemType> WOODEN_TRAPDOORS = ItemTypeTags.key(ResourceKey.minecraft("wooden_trapdoors"));
 
     public static final Tag<ItemType> WOOL = ItemTypeTags.key(ResourceKey.minecraft("wool"));
+
+    public static final Tag<ItemType> WOOL_CARPETS = ItemTypeTags.key(ResourceKey.minecraft("wool_carpets"));
 
     // @formatter:on
     private ItemTypeTags() {

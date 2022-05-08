@@ -179,6 +179,14 @@ public final class ParticleTypes {
 
     public static final DefaultedRegistryReference<ParticleType> SCRAPE = ParticleTypes.key(ResourceKey.minecraft("scrape"));
 
+    public static final DefaultedRegistryReference<ParticleType> SCULK_CHARGE = ParticleTypes.key(ResourceKey.minecraft("sculk_charge"));
+
+    public static final DefaultedRegistryReference<ParticleType> SCULK_CHARGE_POP = ParticleTypes.key(ResourceKey.minecraft("sculk_charge_pop"));
+
+    public static final DefaultedRegistryReference<ParticleType> SCULK_SOUL = ParticleTypes.key(ResourceKey.minecraft("sculk_soul"));
+
+    public static final DefaultedRegistryReference<ParticleType> SHRIEK = ParticleTypes.key(ResourceKey.minecraft("shriek"));
+
     public static final DefaultedRegistryReference<ParticleType> SMALL_FLAME = ParticleTypes.key(ResourceKey.minecraft("small_flame"));
 
     public static final DefaultedRegistryReference<ParticleType> SMOKE = ParticleTypes.key(ResourceKey.minecraft("smoke"));
@@ -186,6 +194,8 @@ public final class ParticleTypes {
     public static final DefaultedRegistryReference<ParticleType> SNEEZE = ParticleTypes.key(ResourceKey.minecraft("sneeze"));
 
     public static final DefaultedRegistryReference<ParticleType> SNOWFLAKE = ParticleTypes.key(ResourceKey.minecraft("snowflake"));
+
+    public static final DefaultedRegistryReference<ParticleType> SONIC_BOOM = ParticleTypes.key(ResourceKey.minecraft("sonic_boom"));
 
     public static final DefaultedRegistryReference<ParticleType> SOUL = ParticleTypes.key(ResourceKey.minecraft("soul"));
 

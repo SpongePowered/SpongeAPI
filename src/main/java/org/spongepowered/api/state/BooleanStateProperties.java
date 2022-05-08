@@ -41,8 +41,16 @@ public final class BooleanStateProperties {
         return BooleanStateProperty.of("BERRIES");
     }
 
+    public static BooleanStateProperty property_BLOOM() {
+        return BooleanStateProperty.of("BLOOM");
+    }
+
     public static BooleanStateProperty property_BOTTOM() {
         return BooleanStateProperty.of("BOTTOM");
+    }
+
+    public static BooleanStateProperty property_CAN_SUMMON() {
+        return BooleanStateProperty.of("CAN_SUMMON");
     }
 
     public static BooleanStateProperty property_CONDITIONAL() {
@@ -139,6 +147,10 @@ public final class BooleanStateProperties {
 
     public static BooleanStateProperty property_SHORT() {
         return BooleanStateProperty.of("SHORT");
+    }
+
+    public static BooleanStateProperty property_SHRIEKING() {
+        return BooleanStateProperty.of("SHRIEKING");
     }
 
     public static BooleanStateProperty property_SIGNAL_FIRE() {

@@ -59,6 +59,8 @@ public final class Biomes {
 
     public static final RegistryReference<Biome> DEEP_COLD_OCEAN = Biomes.key(ResourceKey.minecraft("deep_cold_ocean"));
 
+    public static final RegistryReference<Biome> DEEP_DARK = Biomes.key(ResourceKey.minecraft("deep_dark"));
+
     public static final RegistryReference<Biome> DEEP_FROZEN_OCEAN = Biomes.key(ResourceKey.minecraft("deep_frozen_ocean"));
 
     public static final RegistryReference<Biome> DEEP_LUKEWARM_OCEAN = Biomes.key(ResourceKey.minecraft("deep_lukewarm_ocean"));
@@ -98,6 +100,8 @@ public final class Biomes {
     public static final RegistryReference<Biome> LUKEWARM_OCEAN = Biomes.key(ResourceKey.minecraft("lukewarm_ocean"));
 
     public static final RegistryReference<Biome> LUSH_CAVES = Biomes.key(ResourceKey.minecraft("lush_caves"));
+
+    public static final RegistryReference<Biome> MANGROVE_SWAMP = Biomes.key(ResourceKey.minecraft("mangrove_swamp"));
 
     public static final RegistryReference<Biome> MEADOW = Biomes.key(ResourceKey.minecraft("meadow"));
 
