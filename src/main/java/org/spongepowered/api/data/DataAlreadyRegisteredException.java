@@ -31,12 +31,12 @@ public class DataAlreadyRegisteredException extends DataException {
     private final Key<?> registeredKey;
     private final DataRegistration owningRegistration;
 
-    public DataAlreadyRegisteredException(Key<?> registeredKey, DataRegistration owningRegistration) {
+    public DataAlreadyRegisteredException(final Key<?> registeredKey, final DataRegistration owningRegistration) {
         this.registeredKey = registeredKey;
         this.owningRegistration = owningRegistration;
     }
 
-    public DataAlreadyRegisteredException(String message, Key<?> registeredKey, DataRegistration owningRegistration) {
+    public DataAlreadyRegisteredException(final String message, final Key<?> registeredKey, final DataRegistration owningRegistration) {
         super(message);
         this.registeredKey = registeredKey;
         this.owningRegistration = owningRegistration;

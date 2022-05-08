@@ -2709,43 +2709,6 @@ public final class Keys {
     public static final Key<Value<VanishState>> VANISH_STATE = Keys.key(ResourceKey.sponge("vanish"), VanishState.class);
 
     /**
-     * Whether an {@link Entity} is vanished.
-     *
-     * <p>The presence of a vanished entity will not be made known to a client;
-     * no packets pertaining to this entity are sent. Client-side, this entity
-     * will cease to exist. Server-side it may still be targeted by hostile
-     * entities or collide with other entities.</p>
-     *
-     * <p>Vanishing an {@link Entity} ridden by other entities (see
-     * {@link #PASSENGERS} will cause problems.</p>
-     * @deprecated use {@link #VANISH_STATE}
-     */
-    @Deprecated
-    public static final Key<Value<Boolean>> VANISH = Keys.key(ResourceKey.sponge("vanish"), Boolean.class);
-
-    /**
-     * Whether an {@link Entity} ignores collision with other entities.
-     *
-     * <p>This state will be ignored if the {@link Entity} is not also
-     * vanished as per {@link #VANISH}.</p>
-     * @deprecated use {@link #VANISH_STATE}
-     */
-    @Deprecated
-    public static final Key<Value<Boolean>> VANISH_IGNORES_COLLISION = Keys.key(ResourceKey.sponge("vanish_ignores_collision"), Boolean.class);
-
-    /**
-     * Whether an {@link Entity} can be targeted for attack by another entity.
-     * This prevents neither {@link Player}s from attacking the entity nor
-     * will it be protected from untargeted damage like fire or explosions.
-     *
-     * <p>This state will be ignored if the {@link Entity} is not also
-     * vanished as per {@link #VANISH}.}.</p>
-     * @deprecated use {@link #VANISH_STATE}
-     */
-    @Deprecated
-    public static final Key<Value<Boolean>> VANISH_PREVENTS_TARGETING = Keys.key(ResourceKey.sponge("vanish_prevents_targeting"), Boolean.class);
-
-    /**
      * The vehicle an {@link Entity} is riding.
      *
      * <p>Vehicles may be nested as a vehicle might itself ride another entity.

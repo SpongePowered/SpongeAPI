@@ -49,7 +49,7 @@ public interface SurfaceRule {
      *
      * @return the custom surface rules
      */
-    static SurfaceRule overworldLike(boolean abovePreliminarySurface, boolean bedrockRoof, boolean bedrockFloor) {
+    static SurfaceRule overworldLike(final boolean abovePreliminarySurface, final boolean bedrockRoof, final boolean bedrockFloor) {
         return Sponge.game().factoryProvider().provide(SurfaceRule.Factory.class).overworldLike(abovePreliminarySurface, bedrockRoof, bedrockFloor);
     }
 

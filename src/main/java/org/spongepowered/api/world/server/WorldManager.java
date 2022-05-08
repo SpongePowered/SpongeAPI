@@ -66,21 +66,6 @@ public interface WorldManager {
     Optional<Path> worldDirectory(ResourceKey key);
 
     /**
-     * Gets the {@link ServerWorld default world}.
-     *
-     * <p>If the default world isn't loaded, an {@link IllegalStateException} will be thrown as this means the manager
-     * is not loaded yet.</p>
-     *
-     * <p>It is up to the implementation to define what the default world actually is.</p>
-     *
-     * @return The default world
-     *
-     * @deprecated Use {@link #world(ResourceKey)} with {@link org.spongepowered.api.world.DefaultWorldKeys#DEFAULT} instead
-     */
-    @Deprecated
-    ServerWorld defaultWorld();
-
-    /**
      * Gets all currently loaded {@link ServerWorld worlds}.
      *
      * @return The worlds

@@ -34,12 +34,6 @@ import org.spongepowered.api.world.server.ServerWorld;
 public final class DefaultWorldKeys {
 
     /**
-     * @deprecated Use {@link #DEFAULT} instead
-     */
-    @Deprecated
-    public static final ResourceKey OVERWORLD = ResourceKey.minecraft("overworld");
-
-    /**
      * The default "world" of a running game session. Typically, the Overworld.
      * <p>
      * Refer to: <a href="https://minecraft.fandom.com/wiki/Overworld">Overworld</a>

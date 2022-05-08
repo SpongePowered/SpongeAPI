@@ -203,33 +203,4 @@ public interface User extends DataHolder.Mutable, ArmorEquipable, Tamer, Subject
         return this.requireValue(Keys.VANISH_STATE).asMutable();
     }
 
-    /**
-     * {@link Keys#VANISH}
-     *
-     * @return Whether the user is vanished
-     */
-    @Deprecated
-    default Value.Mutable<Boolean> vanish() {
-        return this.requireValue(Keys.VANISH).asMutable();
-    }
-
-    /**
-     * {@link Keys#VANISH_IGNORES_COLLISION}
-     *
-     * @return Whether the user ignores collision with other entities
-     */
-    @Deprecated
-    default Value.Mutable<Boolean> vanishIgnoresCollision() {
-        return this.requireValue(Keys.VANISH_IGNORES_COLLISION).asMutable();
-    }
-
-    /**
-     * {@link Keys#VANISH_PREVENTS_TARGETING}
-     *
-     * @return Whether the user can be targeted for attack by another entity
-     */
-    @Deprecated
-    default Value.Mutable<Boolean> vanishPreventsTargeting() {
-        return this.requireValue(Keys.VANISH_PREVENTS_TARGETING).asMutable();
-    }
 }
