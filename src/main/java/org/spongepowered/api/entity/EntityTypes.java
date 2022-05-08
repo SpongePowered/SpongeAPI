@@ -34,11 +34,13 @@ import org.spongepowered.api.entity.hanging.Painting;
 import org.spongepowered.api.entity.living.ArmorStand;
 import org.spongepowered.api.entity.living.Bat;
 import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.animal.Allay;
 import org.spongepowered.api.entity.living.animal.Axolotl;
 import org.spongepowered.api.entity.living.animal.Bee;
 import org.spongepowered.api.entity.living.animal.Cat;
 import org.spongepowered.api.entity.living.animal.Chicken;
 import org.spongepowered.api.entity.living.animal.Fox;
+import org.spongepowered.api.entity.living.animal.frog.Frog;
 import org.spongepowered.api.entity.living.animal.Goat;
 import org.spongepowered.api.entity.living.animal.Ocelot;
 import org.spongepowered.api.entity.living.animal.Panda;
@@ -51,6 +53,7 @@ import org.spongepowered.api.entity.living.animal.Turtle;
 import org.spongepowered.api.entity.living.animal.Wolf;
 import org.spongepowered.api.entity.living.animal.cow.Cow;
 import org.spongepowered.api.entity.living.animal.cow.Mooshroom;
+import org.spongepowered.api.entity.living.animal.frog.Tadpole;
 import org.spongepowered.api.entity.living.animal.horse.Donkey;
 import org.spongepowered.api.entity.living.animal.horse.Horse;
 import org.spongepowered.api.entity.living.animal.horse.Mule;
@@ -78,6 +81,7 @@ import org.spongepowered.api.entity.living.monster.Phantom;
 import org.spongepowered.api.entity.living.monster.Silverfish;
 import org.spongepowered.api.entity.living.monster.Strider;
 import org.spongepowered.api.entity.living.monster.Vex;
+import org.spongepowered.api.entity.living.monster.Warden;
 import org.spongepowered.api.entity.living.monster.Zoglin;
 import org.spongepowered.api.entity.living.monster.boss.Wither;
 import org.spongepowered.api.entity.living.monster.boss.dragon.EnderDragon;
@@ -126,6 +130,7 @@ import org.spongepowered.api.entity.projectile.explosive.fireball.DragonFireball
 import org.spongepowered.api.entity.projectile.explosive.fireball.ExplosiveFireball;
 import org.spongepowered.api.entity.projectile.explosive.fireball.SmallFireball;
 import org.spongepowered.api.entity.vehicle.Boat;
+import org.spongepowered.api.entity.vehicle.ChestBoat;
 import org.spongepowered.api.entity.vehicle.minecart.CommandBlockMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.FurnaceMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.Minecart;
@@ -145,7 +150,7 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class EntityTypes {
 
-    public static final DefaultedRegistryReference<FixMe> ALLAY = EntityTypes.key(ResourceKey.minecraft("allay"));
+    public static final DefaultedRegistryReference<EntityType<Allay>> ALLAY = EntityTypes.key(ResourceKey.minecraft("allay"));
 
     // @formatter:off
     // SORTFIELDS:ON
@@ -169,7 +174,7 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<CaveSpider>> CAVE_SPIDER = EntityTypes.key(ResourceKey.minecraft("cave_spider"));
 
-    public static final DefaultedRegistryReference<FixMe> CHEST_BOAT = EntityTypes.key(ResourceKey.minecraft("chest_boat"));
+    public static final DefaultedRegistryReference<EntityType<ChestBoat>> CHEST_BOAT = EntityTypes.key(ResourceKey.minecraft("chest_boat"));
 
     public static final DefaultedRegistryReference<EntityType<ChestMinecart>> CHEST_MINECART = EntityTypes.key(ResourceKey.minecraft("chest_minecart"));
 
@@ -225,7 +230,7 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<Fox>> FOX = EntityTypes.key(ResourceKey.minecraft("fox"));
 
-    public static final DefaultedRegistryReference<FixMe> FROG = EntityTypes.key(ResourceKey.minecraft("frog"));
+    public static final DefaultedRegistryReference<EntityType<Frog>> FROG = EntityTypes.key(ResourceKey.minecraft("frog"));
 
     public static final DefaultedRegistryReference<EntityType<FurnaceMinecart>> FURNACE_MINECART = EntityTypes.key(ResourceKey.minecraft("furnace_minecart"));
 
@@ -341,7 +346,7 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<Strider>> STRIDER = EntityTypes.key(ResourceKey.minecraft("strider"));
 
-    public static final DefaultedRegistryReference<FixMe> TADPOLE = EntityTypes.key(ResourceKey.minecraft("tadpole"));
+    public static final DefaultedRegistryReference<EntityType<Tadpole>> TADPOLE = EntityTypes.key(ResourceKey.minecraft("tadpole"));
 
     public static final DefaultedRegistryReference<EntityType<PrimedTNT>> TNT = EntityTypes.key(ResourceKey.minecraft("tnt"));
 
@@ -363,7 +368,7 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<WanderingTrader>> WANDERING_TRADER = EntityTypes.key(ResourceKey.minecraft("wandering_trader"));
 
-    public static final DefaultedRegistryReference<FixMe> WARDEN = EntityTypes.key(ResourceKey.minecraft("warden"));
+    public static final DefaultedRegistryReference<EntityType<Warden>> WARDEN = EntityTypes.key(ResourceKey.minecraft("warden"));
 
     public static final DefaultedRegistryReference<EntityType<Witch>> WITCH = EntityTypes.key(ResourceKey.minecraft("witch"));
 
