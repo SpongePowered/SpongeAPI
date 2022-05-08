@@ -168,24 +168,28 @@ public final class EventContextKeys {
      * Used when leaves decay.
      * @deprecated Use {@link BlockTransaction#operation()} instead.
      */
+    @Deprecated
     public static final EventContextKey<ServerWorld> LEAVES_DECAY = EventContextKeys.key(ResourceKey.sponge("leaves_decay"), ServerWorld.class);
 
     /**
      * Used when flowing liquid causing another block to break.
      * @deprecated Use {@link BlockTransaction#operation()} instead.
      */
+    @Deprecated
     public static final EventContextKey<ServerWorld> LIQUID_BREAK = EventContextKeys.key(ResourceKey.sponge("liquid_break"), ServerWorld.class);
 
     /**
      * Used when flowing liquid moves to another location.
      * @deprecated Use {@link BlockTransaction#operation()} instead.
      */
+    @Deprecated
     public static final EventContextKey<ServerWorld> LIQUID_FLOW = EventContextKeys.key(ResourceKey.sponge("liquid_flow"), ServerWorld.class);
 
     /**
      * Used when liquid changes state.
      * @deprecated Use {@link BlockTransaction#operation()} instead.
      */
+    @Deprecated
     public static final EventContextKey<ServerWorld> LIQUID_MIX = EventContextKeys.key(ResourceKey.sponge("liquid_mix"), ServerWorld.class);
 
     /**
