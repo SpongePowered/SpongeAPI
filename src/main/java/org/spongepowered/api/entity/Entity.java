@@ -623,6 +623,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      * @return Whether the entity is vanished
      * @deprecated Use {@link #vanishState() VanishState} instead
      */
+    @Deprecated
     default Value.Mutable<Boolean> vanish() {
         return this.requireValue(Keys.VANISH).asMutable();
     }
@@ -633,6 +634,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      * @return Whether the entity ignores collision with other entities
      * @deprecated Use {@link #vanishState()} instead
      */
+    @Deprecated
     default Value.Mutable<Boolean> vanishIgnoresCollision() {
         return this.requireValue(Keys.VANISH_IGNORES_COLLISION).asMutable();
     }
@@ -643,6 +645,7 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      * @return Whether the entity can be targeted for attack by another entity
      * @deprecated Use {@link #vanishState()} instead
      */
+    @Deprecated
     default Value.Mutable<Boolean> vanishPreventsTargeting() {
         return this.requireValue(Keys.VANISH_PREVENTS_TARGETING).asMutable();
     }
