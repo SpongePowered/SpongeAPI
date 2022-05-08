@@ -34,7 +34,7 @@ public interface SlideConfig {
 
     /**
      * The target value of the curve.
-     * <p>See {@link NoiseConfig#topConfig()} and {@link NoiseConfig#bottomConfig()} for its effect.<p>
+     * <p>See {@link NoiseConfig#topConfig()} and {@link NoiseConfig#bottomConfig()} for its effect.</p>
      * <p>Higher values produce larger effects.</p>
      *
      * @return the target value

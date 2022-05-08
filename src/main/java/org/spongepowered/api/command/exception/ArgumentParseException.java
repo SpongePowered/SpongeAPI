@@ -108,7 +108,7 @@ public class ArgumentParseException extends CommandException {
                 source = source.substring(0, 77) + "...";
             }
         }
-        return source + "\n" + Strings.repeat(" ", position) + "^";
+        return source + "\n" + " ".repeat(position) + "^";
     }
 
     /**
