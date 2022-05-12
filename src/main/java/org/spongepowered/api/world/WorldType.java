@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.effect.potion.PotionEffectTypes;
 import org.spongepowered.api.entity.Entity;
@@ -37,6 +38,7 @@ import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.raid.Raid;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.service.context.ContextSource;
+import org.spongepowered.api.tag.Tag;
 import org.spongepowered.api.util.MinecraftDayTime;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.portal.PortalType;
@@ -158,6 +160,22 @@ public interface WorldType extends DefaultedRegistryValue, ContextSource {
     boolean hasRaids();
 
     /**
+     * Gets the minimum {@code Y} value that blocks can exist within a world of this type.
+     * <p>In vanilla this is a multiple of 16 between -2032 and 2016</p>
+     *
+     * @return The minimum height
+     */
+    int minY();
+
+    /**
+     * Gets the total height in which blocks can exist within a world of this type.
+     * <p>In vanilla this is a multiple of 16 between 16 and 4064. {@link #minY()} + {@link #height()} may not be more than 2032</p>
+     *
+     * @return The maximum height
+     */
+    int height();
+
+    /**
      * Gets the maximum {@code Y} value that teleportation logic performed via
      * {@link ItemTypes#CHORUS_FRUIT} or {@link PortalType portal types} may use to determine
      * the exit {@link ServerLocation location} of the teleport or the generation of a portal
@@ -166,6 +184,13 @@ public interface WorldType extends DefaultedRegistryValue, ContextSource {
      * @return The logical height
      */
     int logicalHeight();
+
+    /**
+     * Gets the tag for blocks that burn indefinitely in a world of this type.
+     *
+     * @return The infiniburn tag
+     */
+    Tag<BlockType> infiniburn();
 
     WorldTypeTemplate asTemplate();
 }

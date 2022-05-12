@@ -25,12 +25,28 @@
 package org.spongepowered.api.world.generation;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.world.biome.provider.BiomeProvider;
 import org.spongepowered.api.world.generation.config.FlatGeneratorConfig;
 import org.spongepowered.api.world.generation.config.NoiseGeneratorConfig;
+import org.spongepowered.api.world.server.ServerWorld;
+import org.spongepowered.api.world.server.WorldTemplate;
 
+import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * A chunk generator.
+ *
+ * Vanilla builtin generators include
+ * - configurable flat generator see {@link FlatGeneratorConfig}
+ * - configurable noise generator see {@link NoiseGeneratorConfig}.
+ *
+ * Other chunk generators may be provided by third parties and may be obtained from
+ * - {@link ServerWorld#generator()}
+ * - {@link WorldTemplate#generator()}
+ * - {@link ChunkGenerator.Factory#fromDataPack} using {@link WorldTemplate} data.
+ */
 public interface ChunkGenerator {
 
     static <T extends FlatGeneratorConfig> ConfigurableChunkGenerator<T> flat(final T config) {
@@ -78,5 +94,15 @@ public interface ChunkGenerator {
         ConfigurableChunkGenerator<NoiseGeneratorConfig> theNether();
 
         ConfigurableChunkGenerator<NoiseGeneratorConfig> theEnd();
+
+        /**
+         * Creates a chunk generator based on the given data view.
+         * <p>The data must be equivalent to a data-pack for {@link WorldTemplate}</p>
+         * see {@link WorldTemplate.Factory#fromDataPack}
+         *
+         * @param pack the data
+         * @return the created ChunkGenerator
+         */
+        ChunkGenerator fromDataPack(DataView pack) throws IOException;
     }
 }

@@ -28,6 +28,7 @@ import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.registry.RegistryReference;
@@ -40,8 +41,14 @@ import org.spongepowered.api.world.generation.ChunkGenerator;
 import org.spongepowered.api.world.generation.config.WorldGenerationConfig;
 import org.spongepowered.math.vector.Vector3i;
 
+import java.io.IOException;
 import java.util.Optional;
 
+/**
+ * A template for a {@link ServerWorld}.
+ * TODO this is actually for LevelStem
+ * <p>Serialized into a data pack at {@code data/<namespace>/dimension/<value>.json}</p>
+ */
 public interface WorldTemplate extends ResourceKeyed, DataPackSerializable {
 
     static WorldTemplate overworld() {
@@ -136,5 +143,14 @@ public interface WorldTemplate extends ResourceKeyed, DataPackSerializable {
         WorldTemplate theNether();
 
         WorldTemplate theEnd();
+
+        /**
+         * Creates a world template based on the given data view.
+         * <p>The given data must be equivalent to a data-pack for world-templates (dimension)</p>
+         *
+         * @param pack the data
+         * @return the created WorldTemplate
+         */
+        WorldTemplate fromDataPack(DataView pack) throws IOException;
     }
 }

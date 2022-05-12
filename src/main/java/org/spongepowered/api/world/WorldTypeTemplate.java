@@ -26,13 +26,18 @@ package org.spongepowered.api.world;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.MinecraftDayTime;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
 
-import java.util.Optional;
+import java.io.IOException;
 
+/**
+ * A template for a {@link WorldType}.
+ * <p>Serialized into a data pack at {@code data/<namespace>/dimension_type/<value>.json}</p>
+ */
 public interface WorldTypeTemplate extends DataPackSerializable {
 
     static WorldTypeTemplate overworld() {
@@ -55,37 +60,13 @@ public interface WorldTypeTemplate extends DataPackSerializable {
         return Sponge.game().builderProvider().provide(Builder.class).reset();
     }
 
-    WorldTypeEffect effect();
-
-    boolean scorching();
-
-    boolean natural();
-
-    double coordinateMultiplier();
-
-    boolean hasSkylight();
-
-    boolean hasCeiling();
-
-    float ambientLighting();
-
-    Optional<MinecraftDayTime> fixedTime();
-
-    boolean piglinSafe();
-
-    boolean bedsUsable();
-
-    boolean respawnAnchorsUsable();
-
-    boolean hasRaids();
-
-    int minY();
-
-    int logicalHeight();
-
-    int maximumHeight();
-
-    boolean createDragonFight();
+    /**
+     * Returns the world type.
+     * TODO usage? probably needs to be turned into a data-pack then - reloaded into registry
+     *
+     * @return The world type
+     */
+    WorldType worldType();
 
     interface Builder extends ResourceKeyedBuilder<WorldTypeTemplate, Builder>, CopyableBuilder<WorldTypeTemplate, Builder> {
 
@@ -117,9 +98,26 @@ public interface WorldTypeTemplate extends DataPackSerializable {
 
         Builder logicalHeight(int logicalHeight);
 
-        Builder maximumHeight(int maximumHeight);
+        Builder height(int maximumHeight);
 
         Builder createDragonFight(boolean createDragonFight);
+
+        /**
+         * Fills the builder with settings from given world type
+         * @param type The world type
+         *
+         * @return This builder, for chaining
+         */
+        Builder from(WorldType type);
+
+        /**
+         * Fills the builder with given data view.
+         * <p>The data must be equivalent to a data-pack</p>
+         *
+         * @param pack The data
+         * @return This builder, for chaining
+         */
+        Builder fromDataPack(DataView pack) throws IOException;
     }
 
     interface Factory {
