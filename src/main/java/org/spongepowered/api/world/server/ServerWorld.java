@@ -34,6 +34,7 @@ import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.WorldSaveMode;
 import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.WorldTypes;
 import org.spongepowered.api.world.chunk.WorldChunk;
@@ -183,13 +184,29 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
     Path directory();
 
     /**
-     * Instructs the world to save all data.
+     * Instructs the world to save all data with
+     * {@link WorldSaveMode#SAVE the default save mode}.
      *
      * @return True if save was successful, or false if
      *     {@link SerializationBehavior} is {@link SerializationBehavior#NONE}
      * @throws IOException If the save failed
+     * @deprecated Use {@link ServerWorld#save(WorldSaveMode)}
+     * @see ServerWorld#save(WorldSaveMode)
      */
-    boolean save() throws IOException;
+    @Deprecated
+    default boolean save() throws IOException {
+        return save(WorldSaveMode.SAVE);
+    }
+
+    /**
+     * Instructs the world to save all data with the specified save mode.
+     *
+     * @param saveMode The save mode
+     * @return True if save was successful, or false if
+     *     {@link SerializationBehavior} is {@link SerializationBehavior#NONE}
+     * @throws IOException If the save failed
+     */
+    boolean save(WorldSaveMode saveMode) throws IOException;
 
     /**
      * Unloads the given chunk from the world. Returns a {@code boolean} flag
