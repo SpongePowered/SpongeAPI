@@ -197,6 +197,15 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
     boolean save() throws IOException;
 
     /**
+     * Instructs the world to save and flush all data.
+     *
+     * @return True if save was successful, or false if
+     *     {@link SerializationBehavior} is {@link SerializationBehavior#NONE}
+     * @throws IOException If the save failed
+     */
+    boolean saveAndFlush() throws IOException;
+
+    /**
      * Unloads the given chunk from the world. Returns a {@code boolean} flag
      * for whether the operation was successful.
      *
