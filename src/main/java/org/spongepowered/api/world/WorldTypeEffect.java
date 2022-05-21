@@ -33,6 +33,7 @@ import org.spongepowered.api.util.ResourceKeyedBuilder;
  * Represents the effect a {@link WorldType} will play on a {@link Player player's}
  * {@link Client}
  */
+// TODO turn into sponge provideded registry type?
 public interface WorldTypeEffect extends ResourceKeyed {
 
     interface Builder extends ResourceKeyedBuilder<WorldTypeEffect, Builder> {
@@ -41,10 +42,19 @@ public interface WorldTypeEffect extends ResourceKeyed {
 
     interface Factory {
 
+        /**
+         * Clouds and celestial objects.
+         */
         WorldTypeEffect overworld();
 
+        /**
+         * Nether Fog
+         */
         WorldTypeEffect nether();
 
+        /**
+         * End Sky
+         */
         WorldTypeEffect end();
     }
 }
