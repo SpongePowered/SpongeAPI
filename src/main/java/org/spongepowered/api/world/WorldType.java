@@ -51,6 +51,9 @@ import java.util.Optional;
 @CatalogedBy(WorldTypes.class)
 public interface WorldType extends DefaultedRegistryValue, ContextSource {
 
+    // TODO turn this stuff into data as to not break API that much.
+    // its literally configured in data packs
+
     /**
      * Gets the {@link WorldTypeEffect effect} that will play for a {@link Player player}
      * traveling in a {@link ServerWorld world} of this type.
@@ -192,5 +195,10 @@ public interface WorldType extends DefaultedRegistryValue, ContextSource {
      */
     Tag<BlockType> infiniburn();
 
-    WorldTypeTemplate asTemplate();
+    /**
+     * Returns the template for this world type if registered via datapack.
+     *
+     * @return The template
+     */
+    Optional<WorldTypeTemplate> asTemplate();
 }

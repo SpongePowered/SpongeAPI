@@ -22,22 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.generation.feature;
+package org.spongepowered.api.world.biome.spawner;
 
-import java.util.List;
+import org.spongepowered.api.Sponge;
 
+// TODO MobSpawnSettings.MobSpawnCost
+public interface NaturalSpawnCost {
 
-/**
- * Placed Features are a combination of a {@link ConfiguredFeature} with a list of @{@link PlacementModifier}s.
- * <p>Modifiers can impact position, rarity, count and more.</p>
- *
- * <p>Serialized into a data pack at {@code data/<namespace>/worldgen/placed_feature/<value>.json}</p>
- */
-// TODO Registry.PLACED_FEATURE_REGISTRY
-// see PlacementUtils.register
-// TODO javadoc me more!
-public interface PlacedFeature {
-    ConfiguredFeature feature();
-    List<PlacementModifier> placementModifiers(); // TODO Placement Modifiers
+    static NaturalSpawnCost of(final double budget, final double charge) {
+        return Sponge.game().factoryProvider().provide(Factory.class).of(budget, charge);
+    }
 
+    double budget();
+
+    double charge();
+
+    interface Factory {
+
+        NaturalSpawnCost of(double budget, double charge);
+    }
 }

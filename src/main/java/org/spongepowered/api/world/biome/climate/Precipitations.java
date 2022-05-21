@@ -22,33 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.effect.sound;
+package org.spongepowered.api.world.biome.climate;
 
-import net.kyori.adventure.sound.Sound;
-import org.spongepowered.api.ResourceKeyed;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.ResourceKeyedBuilder;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 
-/**
- * Represents a sound that can be heard on clients.
- */
-@CatalogedBy(SoundTypes.class)
-public interface SoundType extends ResourceKeyed, Sound.Type {
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
+public final class Precipitations {
 
-    /**
-     * Creates a new {@link Builder} for building SoundTypes.
-     *
-     * @return A new builder
-     */
-    static Builder builder() {
-        return Sponge.game().builderProvider().provide(Builder.class);
+    // @formatter:off
+
+    public static final DefaultedRegistryReference<Precipitation> NONE = Precipitations.key(ResourceKey.sponge("none"));
+
+    public static final DefaultedRegistryReference<Precipitation> RAIN = Precipitations.key(ResourceKey.sponge("rain"));
+
+    public static final DefaultedRegistryReference<Precipitation> SNOW = Precipitations.key(ResourceKey.sponge("snow"));
+
+    // @formatter:on
+
+    private Precipitations() {
     }
 
-    /**
-     * Builds a SoundType, primarily for sending custom sounds to the client.
-     */
-    interface Builder extends ResourceKeyedBuilder<SoundType, Builder> {
+    public static Registry<Precipitation> registry() {
+        return Sponge.game().registry(RegistryTypes.PRECIPITATION);
+    }
 
+    private static DefaultedRegistryReference<Precipitation> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.PRECIPITATION, location).asDefaultedReference(Sponge::game);
     }
 }

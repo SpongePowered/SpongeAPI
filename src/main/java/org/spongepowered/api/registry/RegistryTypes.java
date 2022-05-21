@@ -147,9 +147,15 @@ import org.spongepowered.api.world.HeightType;
 import org.spongepowered.api.world.LightType;
 import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.biome.Biome;
+import org.spongepowered.api.world.biome.BiomeCategory;
+import org.spongepowered.api.world.biome.climate.GrassColorModifier;
+import org.spongepowered.api.world.biome.climate.Precipitation;
+import org.spongepowered.api.world.biome.climate.TemperatureModifier;
 import org.spongepowered.api.world.chunk.ChunkState;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gamerule.GameRule;
+import org.spongepowered.api.world.generation.biome.CarvingStep;
+import org.spongepowered.api.world.generation.biome.DecorationStep;
 import org.spongepowered.api.world.generation.structure.Structure;
 import org.spongepowered.api.world.portal.PortalType;
 import org.spongepowered.api.world.schematic.PaletteType;
@@ -232,11 +238,15 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<BellAttachmentType> BELL_ATTACHMENT_TYPE = RegistryTypes.spongeKeyInGame("bell_attachment_type");
 
+    public static final RegistryType<BiomeCategory> BIOME_CATEGORY = RegistryTypes.spongeKeyInGame("biome_category");
+
     public static final DefaultedRegistryType<BoatType> BOAT_TYPE = RegistryTypes.spongeKeyInGame("boat_type");
 
     public static final DefaultedRegistryType<BodyPart> BODY_PART = RegistryTypes.spongeKeyInGame("body_part");
 
     public static final DefaultedRegistryType<CatType> CAT_TYPE = RegistryTypes.spongeKeyInGame("cat_type");
+
+    public static final DefaultedRegistryType<CarvingStep> CARVING_STEP = RegistryTypes.spongeKeyInGame("carving_step");
 
     public static final DefaultedRegistryType<ChatVisibility> CHAT_VISIBILITY = RegistryTypes.spongeKeyInGame("chat_visibility");
 
@@ -268,6 +278,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<DataFormat> DATA_FORMAT = RegistryTypes.spongeKeyInGame("data_format");
 
+    public static final DefaultedRegistryType<DecorationStep> DECORATION_STEP = RegistryTypes.spongeKeyInGame("decoration_step");
+
     public static final DefaultedRegistryType<Difficulty> DIFFICULTY = RegistryTypes.spongeKeyInGame("difficulty");
 
     public static final DefaultedRegistryType<DismountType> DISMOUNT_TYPE = RegistryTypes.minecraftKeyInGame("dismount_type");
@@ -297,6 +309,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<GoalExecutorType> GOAL_EXECUTOR_TYPE = RegistryTypes.spongeKeyInGame("goal_executor_type");
 
     public static final DefaultedRegistryType<GoalType> GOAL_TYPE = RegistryTypes.spongeKeyInGame("goal_type");
+
+    public static final DefaultedRegistryType<GrassColorModifier> GRASS_COLOR_MODIFIER = RegistryTypes.spongeKeyInGame("grass_color_modifier");
 
     public static final DefaultedRegistryType<HandPreference> HAND_PREFERENCE = RegistryTypes.spongeKeyInGame("hand_preference");
 
@@ -368,6 +382,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<PortionType> PORTION_TYPE = RegistryTypes.spongeKeyInGame("portion_type");
 
+    public static final DefaultedRegistryType<Precipitation> PRECIPITATION = RegistryTypes.spongeKeyInGame("precipitation");
+
     public static final DefaultedRegistryType<QueryType> QUERY_TYPE = RegistryTypes.spongeKeyInGame("query_type");
 
     public static final DefaultedRegistryType<RabbitType> RABBIT_TYPE = RegistryTypes.spongeKeyInGame("rabbit_type");
@@ -379,6 +395,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<ValueParameter<?>> REGISTRY_KEYED_VALUE_PARAMETER = RegistryTypes.spongeKeyInGame("value_parameter");
 
     public static final DefaultedRegistryType<ResolveOperation> RESOLVE_OPERATION = RegistryTypes.spongeKeyInGame("resolve_operation");
+
+    public static final DefaultedRegistryType<TemperatureModifier> TEMPERATURE_MODIFIER = RegistryTypes.spongeKeyInGame("temperature_modifier");
 
     public static final DefaultedRegistryType<Rotation> ROTATION = RegistryTypes.spongeKeyInGame("rotation");
 

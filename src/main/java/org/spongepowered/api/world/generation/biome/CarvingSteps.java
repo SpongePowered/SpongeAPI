@@ -22,22 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.generation.feature;
+package org.spongepowered.api.world.generation.biome;
 
-import java.util.List;
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
+public final class CarvingSteps {
+    // @formatter:off
 
-/**
- * Placed Features are a combination of a {@link ConfiguredFeature} with a list of @{@link PlacementModifier}s.
- * <p>Modifiers can impact position, rarity, count and more.</p>
- *
- * <p>Serialized into a data pack at {@code data/<namespace>/worldgen/placed_feature/<value>.json}</p>
- */
-// TODO Registry.PLACED_FEATURE_REGISTRY
-// see PlacementUtils.register
-// TODO javadoc me more!
-public interface PlacedFeature {
-    ConfiguredFeature feature();
-    List<PlacementModifier> placementModifiers(); // TODO Placement Modifiers
+    public static final DefaultedRegistryReference<CarvingStep> AIR = CarvingSteps.key(ResourceKey.sponge("air"));
 
+    public static final DefaultedRegistryReference<CarvingStep> LIQUID = CarvingSteps.key(ResourceKey.sponge("liquid"));
+
+    // @formatter:on
+
+    private CarvingSteps() {
+    }
+
+    public static Registry<CarvingStep> registry() {
+        return Sponge.game().registry(RegistryTypes.CARVING_STEP);
+    }
+
+    private static DefaultedRegistryReference<CarvingStep> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.CARVING_STEP, location).asDefaultedReference(Sponge::game);
+    }
 }

@@ -102,10 +102,12 @@ import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.effect.potion.PotionEffectTypes;
+import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.effect.sound.music.MusicDisc;
 import org.spongepowered.api.entity.AreaEffectCloud;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
+import org.spongepowered.api.entity.EntityCategory;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.ExperienceOrb;
 import org.spongepowered.api.entity.FallingBlock;
@@ -229,7 +231,23 @@ import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.orientation.Orientation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
+import org.spongepowered.api.util.weighted.WeightedTable;
+import org.spongepowered.api.world.biome.Biome;
+import org.spongepowered.api.world.generation.biome.CarvingStep;
+import org.spongepowered.api.world.generation.biome.DecorationStep;
+import org.spongepowered.api.world.biome.spawner.NaturalSpawnCost;
+import org.spongepowered.api.world.biome.spawner.NaturalSpawner;
+import org.spongepowered.api.world.biome.climate.Precipitation;
+import org.spongepowered.api.world.biome.climate.TemperatureModifier;
 import org.spongepowered.api.world.explosion.Explosion;
+import org.spongepowered.api.world.biome.ambient.AdditionalAmbientSound;
+import org.spongepowered.api.world.biome.ambient.AmbientMoodSettings;
+import org.spongepowered.api.world.biome.ambient.AmbientParticleSettings;
+import org.spongepowered.api.world.biome.ambient.BackgroundMusic;
+import org.spongepowered.api.world.biome.BiomeCategory;
+import org.spongepowered.api.world.generation.biome.ConfiguredCarver;
+import org.spongepowered.api.world.biome.climate.GrassColorModifier;
+import org.spongepowered.api.world.generation.feature.PlacedFeature;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.weather.WeatherType;
@@ -294,6 +312,30 @@ public final class Keys {
      * The modifier to {@link Keys#VELOCITY} of a {@link Minecart} while airborne.
      */
     public static final Key<Value<Vector3d>> AIRBORNE_VELOCITY_MODIFIER = Keys.key(ResourceKey.sponge("airborne_velocity_modifier"), Vector3d.class);
+
+    /**
+     * The additional ambient sound settings in a {@link Biome}
+     * Readonly
+     */
+    public static final Key<Value<AdditionalAmbientSound>> AMBIENT_ADDITIONAL_SOUND = Keys.key(ResourceKey.sponge("ambient_additional_sound"), AdditionalAmbientSound.class);
+
+    /**
+     * The ambient mood settings in a {@link Biome}
+     * Readonly
+     */
+    public static final Key<Value<AmbientMoodSettings>> AMBIENT_MOOD = Keys.key(ResourceKey.sponge("ambient_mood"), AmbientMoodSettings.class);
+
+    /**
+     * The ambient particle settings in a {@link Biome}
+     * Readonly
+     */
+    public static final Key<Value<AmbientParticleSettings>> AMBIENT_PARTICLE = Keys.key(ResourceKey.sponge("ambient_particle"), AmbientParticleSettings.class);
+
+    /**
+     * The ambient sound in a {@link Biome}
+     * Readonly
+     */
+    public static final Key<Value<SoundType>> AMBIENT_SOUND = Keys.key(ResourceKey.sponge("ambient_sound"), SoundType.class);
 
     /**
      * The anger level of a {@link ZombifiedPiglin}.
@@ -369,6 +411,12 @@ public final class Keys {
     public static final Key<Value<Ticks>> BABY_TICKS = Keys.key(ResourceKey.sponge("baby_ticks"), Ticks.class);
 
     /**
+     * The background music settings in a {@link Biome}
+     * Readonly
+     */
+    public static final Key<Value<BackgroundMusic>> BACKGROUND_MUSIC = Keys.key(ResourceKey.sponge("background_music"), BackgroundMusic.class);
+
+    /**
      * The {@link BannerPatternLayer}s of a {@link Banner}.
      */
     public static final Key<ListValue<BannerPatternLayer>> BANNER_PATTERN_LAYERS = Keys.listKey(ResourceKey.sponge("banner_pattern_layers"), BannerPatternLayer.class);
@@ -397,7 +445,12 @@ public final class Keys {
     public static final Key<Value<Living>> BEAM_TARGET_ENTITY = Keys.key(ResourceKey.sponge("beam_target_entity"), Living.class);
 
     /**
-     * The default temperature of a biome at a specific {@link ServerLocation}.
+     * The category of a {@link Biome}
+     */
+    public static final Key<Value<BiomeCategory>> BIOME_CATEGORY = Keys.key(ResourceKey.sponge("biome_category"), BiomeCategory.class);
+
+    /**
+     * The default temperature of a {@link Biome} or the biome at a specific {@link ServerLocation}.
      * For the exact block temperature see {@link #BLOCK_TEMPERATURE}.
      * Readonly
      */
@@ -529,6 +582,12 @@ public final class Keys {
      * The number of candles within a candle block.
      */
     public static final Key<Value<Integer>> CANDLES = Keys.key(ResourceKey.sponge("candles"), Integer.class);
+
+    /**
+     * The carvers of a {@link Biome} used during world generation.
+     * Readonly
+     */
+    public static final Key<MapValue<CarvingStep, List<ConfiguredCarver<?, ?>>>> CARVERS = Keys.mapKey(ResourceKey.sponge("is_placing_disabled"), TypeToken.get(CarvingStep.class), new TypeToken<List<ConfiguredCarver<?, ?>>>() {});
 
     /**
      * The current casting time of a {@link Spellcaster}.
@@ -857,6 +916,12 @@ public final class Keys {
     public static final Key<Value<Ticks>> FALL_TIME = Keys.key(ResourceKey.sponge("fall_time"), Ticks.class);
 
     /**
+     * The features to place during decoration steps during world generation for a {@link Biome}
+     * Readonly
+     */
+    public static final Key<MapValue<DecorationStep, List<PlacedFeature>>> FEATURES = Keys.mapKey(ResourceKey.sponge("is_placing_disabled"), TypeToken.get(DecorationStep.class), new TypeToken<List<PlacedFeature>>() {});
+
+    /**
      * The {@link FireworkEffect}s of a
      * {@link ItemTypes#FIREWORK_STAR}, {@link ItemTypes#FIREWORK_ROCKET} {@link ItemStack} or a
      * {@link FireworkRocket}.
@@ -918,6 +983,20 @@ public final class Keys {
     public static final Key<Value<Double>> FLYING_SPEED = Keys.key(ResourceKey.sponge("flying_speed"), Double.class);
 
     /**
+     * The color of fog in a {@link Biome}.
+     * Readonly
+     */
+    public static final Key<Value<Color>> FOG_COLOR = Keys.key(ResourceKey.sponge("fog_color"), Color.class);
+
+    /**
+     * The color override for foliage in a {@link Biome}.
+     * <p>Such as {@link BlockTypes#OAK_LEAVES}, other leaves, {@link BlockTypes#VINE}</p>
+     * <p>If not present foliage color is instead determined by {@link #BIOME_TEMPERATURE} and {@link #HUMIDITY}</p>
+     * Readonly
+     */
+    public static final Key<Value<Color>> FOLIAGE_COLOR = Keys.key(ResourceKey.sponge("foliage_color"), Color.class);
+
+    /**
      * The food level of a {@link Humanoid}.
      *
      * <p>For a {@link Humanoid}, food level has health effects, depending on game difficulty and
@@ -966,6 +1045,20 @@ public final class Keys {
      * Depending on the book's generation it may be impossible to copy it.
      */
     public static final Key<Value<Integer>> GENERATION = Keys.key(ResourceKey.sponge("generation"), Integer.class);
+
+    /**
+     * The color override for grass in a {@link Biome}.
+     * <p>Such as {@link BlockTypes#GRASS_BLOCK}, {@link BlockTypes#GRASS}, {@link BlockTypes#TALL_GRASS}, {@link BlockTypes#FERN}, {@link BlockTypes#LARGE_FERN}, {@link BlockTypes#SUGAR_CANE}</p>
+     * <p>If not present grass color is instead determined by {@link #BIOME_TEMPERATURE} and {@link #HUMIDITY}</p>
+     * Readonly
+     */
+    public static final Key<Value<Color>> GRASS_COLOR = Keys.key(ResourceKey.sponge("grass_color"), Color.class);
+
+    /**
+     * The grass color modifier in a {@link Biome}.
+     * Readonly
+     */
+    public static final Key<Value<GrassColorModifier>> GRASS_COLOR_MODIFIER = Keys.key(ResourceKey.sponge("grass_color_modifier"), GrassColorModifier.class);
 
     /**
      * Whether a {@link Sign} has glowing text (from dying
@@ -1166,6 +1259,12 @@ public final class Keys {
      * The {@link HorseStyle} of a {@link Horse}.
      */
     public static final Key<Value<HorseStyle>> HORSE_STYLE = Keys.key(ResourceKey.sponge("horse_style"), HorseStyle.class);
+
+    /**
+     * The humidity of a {@link Biome}.
+     * Readonly
+     */
+    public static final Key<Value<Double>> HUMIDITY = Keys.key(ResourceKey.sponge("humidity"), Double.class);
 
     /**
      * The inaccuracy of an {@link ItemStack} that launches {@link Projectile}s.
@@ -2044,6 +2143,20 @@ public final class Keys {
     public static final Key<Value<MusicDisc>> MUSIC_DISC = Keys.key(ResourceKey.sponge("music_disc"), MusicDisc.class);
 
     /**
+     * The settings for entities that can naturally spawn in a {@link Biome}.
+     * <p>See {@link #SPAWN_CHANCE} for the spawn chance during world generation</p>
+     * Readonly
+     */
+    public static final Key<MapValue<EntityCategory, WeightedTable<NaturalSpawner>>> NATURAL_SPAWNERS = Keys.mapKey(ResourceKey.sponge("natural_spawners"), TypeToken.get(EntityCategory.class), new TypeToken<WeightedTable<NaturalSpawner>>() {});
+
+    /**
+     * The cost settings for {@link #NATURAL_SPAWNERS} in a {@link Biome}.
+     * <p>This is an alternative to mob-cap</p>
+     * Readonly
+     */
+    public static final Key<MapValue<EntityType<?>, NaturalSpawnCost>> NATURAL_SPAWNER_COST = Keys.mapKey(ResourceKey.sponge("natural_spawner_cost"), new TypeToken<EntityType<?>>() {}, TypeToken.get(NaturalSpawnCost.class));
+
+    /**
      * The next entity that will be spawned by a {@link MobSpawner}.
      *
      * <p>Normally the entities to be spawned are determined by a random value
@@ -2200,6 +2313,12 @@ public final class Keys {
      * {@link BlockTypes#LIGHT_WEIGHTED_PRESSURE_PLATE} etc.</p>
      */
     public static final Key<Value<Integer>> POWER = Keys.key(ResourceKey.sponge("power"), Integer.class);
+
+    /**
+     * The {@link Precipitation} type of a {@link Biome}.
+     * Readonly
+     */
+    public static final Key<Value<Precipitation>> PRECIPITATION = Keys.key(ResourceKey.sponge("precipitation"), Precipitation.class);
 
     /**
      * A {@link Beacon}'s primary effect.
@@ -2427,6 +2546,12 @@ public final class Keys {
     public static final Key<Value<Integer>> SKY_LIGHT = Keys.key(ResourceKey.sponge("sky_light"), Integer.class);
 
     /**
+     * The color of the sky in a {@link Biome}.
+     * Readonly
+     */
+    public static final Key<Value<Color>> SKY_COLOR = Keys.key(ResourceKey.sponge("sky_color"), Color.class);
+
+    /**
      * The {@link SlabPortion} of a {@link BlockState}.
      */
     public static final Key<Value<SlabPortion>> SLAB_PORTION = Keys.key(ResourceKey.sponge("slab_portion"), SlabPortion.class);
@@ -2468,6 +2593,14 @@ public final class Keys {
      * The list of {@link EntityArchetype}s able to be spawned by a {@link MobSpawner}.
      */
     public static final Key<WeightedCollectionValue<EntityArchetype>> SPAWNABLE_ENTITIES = Keys.weightedKey(ResourceKey.sponge("spawnable_entities"), EntityArchetype.class);
+
+    /**
+     * The chance for an entity to spawn in a {@link Biome} during world generation.
+     * <p>Must be between 0 and 1</p>
+     * <p>Also see {@link #NATURAL_SPAWNERS}</p>
+     * Readonly
+     */
+    public static final Key<Value<Double>> SPAWN_CHANCE = Keys.key(ResourceKey.sponge("spawn_chance"), Double.class);
 
     /**
      * How many entities a {@link MobSpawner} has spawned so far.
@@ -2617,6 +2750,12 @@ public final class Keys {
     public static final Key<Value<Vector3i>> TARGET_POSITION = Keys.key(ResourceKey.sponge("target_position"), Vector3i.class);
 
     /**
+     * The {@link TemperatureModifier} of a {@link Biome}.
+     * Readonly
+     */
+    public static final Key<Value<TemperatureModifier>> TEMPERATURE_MODIFIER = Keys.key(ResourceKey.sponge("temperature_modifier"), TemperatureModifier.class);
+
+    /**
      * The remaining fuse time in ticks of a {@link FusedExplosive}.
      * This value may be set to an arbitrary value
      * if the explosive is not primed.
@@ -2744,6 +2883,18 @@ public final class Keys {
      * The base speed at which a {@link Player} or {@link Living} walks.
      */
     public static final Key<Value<Double>> WALKING_SPEED = Keys.key(ResourceKey.sponge("walking_speed"), Double.class);
+
+    /**
+     * The color of water in a {@link Biome}.
+     * Readonly
+     */
+    public static final Key<Value<Color>> WATER_COLOR = Keys.key(ResourceKey.sponge("water_color"), Color.class);
+
+    /**
+     * The color of water fog in a {@link Biome}.
+     * Readonly
+     */
+    public static final Key<Value<Color>> WATER_FOG_COLOR = Keys.key(ResourceKey.sponge("water_fog_color"), Color.class);
 
     /**
      * Whether a thrown {@link EyeOfEnder} will shatter.

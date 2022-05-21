@@ -22,41 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity;
+package org.spongepowered.api.world.biome.climate;
 
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.registry.RegistryTypes;
 
-public final class EntityCategories {
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
+public final class GrassColorModifiers {
 
-    //@formatter:off
+    // @formatter:off
 
-    public static final DefaultedRegistryReference<EntityCategory> MONSTER = EntityCategories.key(ResourceKey.sponge("monster"));
+    public static final DefaultedRegistryReference<GrassColorModifier> NONE = GrassColorModifiers.key(ResourceKey.sponge("none"));
 
-    public static final DefaultedRegistryReference<EntityCategory> CREATURE = EntityCategories.key(ResourceKey.sponge("creature"));
+    public static final DefaultedRegistryReference<GrassColorModifier> DARK_FOREST = GrassColorModifiers.key(ResourceKey.sponge("dark_forest"));
 
-    public static final DefaultedRegistryReference<EntityCategory> AMBIENT = EntityCategories.key(ResourceKey.sponge("ambient"));
+    public static final DefaultedRegistryReference<GrassColorModifier> SWAMP = GrassColorModifiers.key(ResourceKey.sponge("swamp"));
 
-    public static final DefaultedRegistryReference<EntityCategory> WATER_CREATURE = EntityCategories.key(ResourceKey.sponge("water_creature"));
+    // @formatter:on
 
-    // TODO UNDERGROUND_WATER_CREATURE
-
-    public static final DefaultedRegistryReference<EntityCategory> WATER_AMBIENT = EntityCategories.key(ResourceKey.sponge("water_ambient"));
-
-    public static final DefaultedRegistryReference<EntityCategory> MISCELLANEOUS = EntityCategories.key(ResourceKey.sponge("misc"));
-
-    // TODO AXOLOTLS
-
-    //@formatter:on
-
-    private EntityCategories() {
-        throw new AssertionError("You should not be attempting to instantiate this class.");
+    private GrassColorModifiers() {
     }
 
-    private static DefaultedRegistryReference<EntityCategory> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.ENTITY_CATEGORY, location).asDefaultedReference(Sponge::game);
+    public static Registry<GrassColorModifier> registry() {
+        return Sponge.game().registry(RegistryTypes.GRASS_COLOR_MODIFIER);
+    }
+
+    private static DefaultedRegistryReference<GrassColorModifier> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.GRASS_COLOR_MODIFIER, location).asDefaultedReference(Sponge::game);
     }
 }
