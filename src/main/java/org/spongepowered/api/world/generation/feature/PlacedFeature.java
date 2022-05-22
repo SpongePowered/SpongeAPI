@@ -37,7 +37,9 @@ import java.util.List;
 // see PlacementUtils.register
 // TODO javadoc me more!
 public interface PlacedFeature {
+
     ConfiguredFeature feature();
+
     List<PlacementModifier> placementModifiers(); // TODO Placement Modifiers
 
 }

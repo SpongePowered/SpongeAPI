@@ -29,4 +29,7 @@ package org.spongepowered.api.world.generation.biome;
 // TODO javadoc me
 public interface ConfiguredCarver<C extends Carver<CC>, CC extends CarverConfig> {
 
+    C carver();
+
+    CC config();
 }

@@ -37,11 +37,18 @@ public interface Feature<FC extends FeatureConfig> {
     boolean place(FeaturePlaceContext<FC> ctx);
 
     interface FeaturePlaceContext<FC extends FeatureConfig> {
+
         Optional<ConfiguredFeature<?, ?>> topFeature(); // only used in IcePatchFeature?
+
         ServerWorld world(); // TODO WorldGenRegion too?
+
         ChunkGenerator generator();
+
         Random random();
+
         Vector3i origin();
+
         FC config();
+
     }
 }

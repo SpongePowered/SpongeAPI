@@ -37,6 +37,7 @@ import org.spongepowered.math.vector.Vector3i;
 public interface ConfiguredFeature<F extends Feature<FC>, FC extends FeatureConfig> {
 
     F feature();
+
     FC config();
 
     boolean place(ServerWorld world, Vector3i origin);

@@ -24,11 +24,13 @@
  */
 package org.spongepowered.api.world.generation.biome;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.util.ResourceKeyedBuilder;
 import org.spongepowered.api.world.biome.Biome;
 
 import java.io.IOException;
@@ -39,14 +41,18 @@ import java.io.IOException;
  */
 public interface BiomeTemplate extends DataPackSerializable {
 
+    static Builder builder() {
+        return Sponge.game().builderProvider().provide(Builder.class).reset();
+    }
+
     // TODO usage? probably needs to be turned into a data-pack then - reloaded into registry
     Biome biome();
 
     // see Vanilla Biome.BiomeBuilder
-    interface Builder extends CopyableBuilder<BiomeTemplate, Builder> {
+    interface Builder extends ResourceKeyedBuilder<BiomeTemplate, Builder>, CopyableBuilder<BiomeTemplate, Builder> {
 
         // TODO
-        <V> Builder add(Key<? extends Value<V>> key, V Value);
+        <V> Builder add(Key<? extends Value<V>> key, V value);
 
         // TODO
         Builder from(Biome biome);

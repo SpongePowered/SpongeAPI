@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.world;
 
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.util.MinecraftDayTime;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
 
 import java.io.IOException;
@@ -70,37 +70,8 @@ public interface WorldTypeTemplate extends DataPackSerializable {
 
     interface Builder extends ResourceKeyedBuilder<WorldTypeTemplate, Builder>, CopyableBuilder<WorldTypeTemplate, Builder> {
 
-        Builder effect(WorldTypeEffect effect);
-
-        Builder scorching(boolean scorching);
-
-        Builder natural(boolean natural);
-
-        Builder coordinateMultiplier(double coordinateMultiplier);
-
-        Builder hasSkylight(boolean skylight);
-
-        Builder hasCeiling(boolean ceiling);
-
-        Builder ambientLighting(float ambientLighting);
-
-        Builder fixedTime(@Nullable MinecraftDayTime dayTime);
-
-        Builder piglinSafe(boolean piglinSafe);
-
-        Builder bedsUsable(boolean bedsUsable);
-
-        Builder respawnAnchorsUsable(boolean respawnAnchorsUsable);
-
-        Builder hasRaids(boolean raids);
-
-        Builder minY(int y);
-
-        Builder logicalHeight(int logicalHeight);
-
-        Builder height(int maximumHeight);
-
-        Builder createDragonFight(boolean createDragonFight);
+        // TODO
+        <V> Builder add(Key<? extends Value<V>> key, V value);
 
         /**
          * Fills the builder with settings from given world type

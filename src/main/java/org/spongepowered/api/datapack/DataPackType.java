@@ -31,6 +31,7 @@ import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.tag.TagTemplate;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.WorldTypeTemplate;
+import org.spongepowered.api.world.generation.biome.BiomeTemplate;
 import org.spongepowered.api.world.server.WorldTemplate;
 import org.spongepowered.plugin.PluginContainer;
 
@@ -60,5 +61,7 @@ public interface DataPackType<T> {
         DataPackType<WorldTemplate> world();
 
         DataPackType<TagTemplate> tag();
+
+        DataPackType<BiomeTemplate> biome();
     }
 }

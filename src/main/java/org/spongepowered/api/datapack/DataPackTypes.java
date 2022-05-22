@@ -29,11 +29,14 @@ import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.tag.TagTemplate;
 import org.spongepowered.api.world.WorldTypeTemplate;
+import org.spongepowered.api.world.generation.biome.BiomeTemplate;
 import org.spongepowered.api.world.server.WorldTemplate;
 
 public final class DataPackTypes {
 
     public static final DataPackType<Advancement> ADVANCEMENT = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).advancement();
+
+    public static final DataPackType<BiomeTemplate> BIOME = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).biome();
 
     public static final DataPackType<RecipeRegistration> RECIPE = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).recipe();
 
