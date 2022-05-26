@@ -98,7 +98,7 @@ public interface ChunkGenerator {
         /**
          * Creates a chunk generator based on the given data view.
          * <p>The data must be equivalent to a data-pack for {@link WorldTemplate}</p>
-         * see {@link WorldTemplate.Factory#fromDataPack}
+         * see {@link WorldTemplate.Builder#fromDataPack}
          *
          * @param pack the data
          * @return the created ChunkGenerator

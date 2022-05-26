@@ -226,6 +226,7 @@ import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.projectile.source.ProjectileSource;
 import org.spongepowered.api.raid.Raid;
 import org.spongepowered.api.raid.RaidWave;
+import org.spongepowered.api.registry.RegistryReference;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.tag.Tag;
 import org.spongepowered.api.util.Axis;
@@ -237,6 +238,7 @@ import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.orientation.Orientation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.util.weighted.WeightedTable;
+import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.WorldTypeEffect;
 import org.spongepowered.api.world.WorldTypes;
@@ -251,15 +253,20 @@ import org.spongepowered.api.world.biome.climate.Precipitation;
 import org.spongepowered.api.world.biome.climate.TemperatureModifier;
 import org.spongepowered.api.world.biome.spawner.NaturalSpawnCost;
 import org.spongepowered.api.world.biome.spawner.NaturalSpawner;
+import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.explosion.Explosion;
+import org.spongepowered.api.world.generation.ChunkGenerator;
 import org.spongepowered.api.world.generation.biome.CarvingStep;
 import org.spongepowered.api.world.generation.biome.ConfiguredCarver;
 import org.spongepowered.api.world.generation.biome.DecorationStep;
+import org.spongepowered.api.world.generation.config.WorldGenerationConfig;
 import org.spongepowered.api.world.generation.feature.PlacedFeature;
 import org.spongepowered.api.world.portal.PortalType;
 import org.spongepowered.api.world.portal.PortalTypes;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
+import org.spongepowered.api.world.server.WorldTemplate;
+import org.spongepowered.api.world.server.storage.ServerWorldProperties;
 import org.spongepowered.api.world.weather.WeatherType;
 import org.spongepowered.api.world.weather.WeatherTypes;
 import org.spongepowered.math.vector.Vector2i;
@@ -646,6 +653,12 @@ public final class Keys {
     public static final Key<Value<Vector3d>> CHEST_ROTATION = Keys.key(ResourceKey.sponge("chest_rotation"), Vector3d.class);
 
     /**
+     * The chunk generator of a {@link WorldTemplate}
+     * Readonly
+     */
+    public static final Key<Value<ChunkGenerator>> CHUNK_GENERATOR = Keys.key(ResourceKey.sponge("chunk_generator"), ChunkGenerator.class);
+
+    /**
      * The {@link Color} of an {@link ItemStack}
      * <p>
      *     e.g. {@link ItemTypes#LEATHER_CHESTPLATE} or {@link ItemTypes#POTION} custom color
@@ -658,6 +671,12 @@ public final class Keys {
      * A command stored in a {@link CommandBlock} or {@link CommandBlockMinecart}.
      */
     public static final Key<Value<String>> COMMAND = Keys.key(ResourceKey.sponge("command"), String.class);
+
+    /**
+     * Whether commands can be run in a world of a {@link WorldTemplate}
+     * Readonly
+     */
+    public static final Key<Value<Boolean>> COMMANDS = Keys.key(ResourceKey.sponge("commands"), Boolean.class);
 
     /**
      * The {@link ComparatorMode} of a {@link BlockTypes#COMPARATOR} {@link BlockState}.
@@ -794,6 +813,7 @@ public final class Keys {
      * <p>On an {@link Entity}, this represents a combination of {@link Keys#CUSTOM_NAME} (if set), scoreboard info, and any click data.</p>
      * <p>On an {@link ItemStack}, this represents the {@link Keys#CUSTOM_NAME} or if not set the {@link ItemType}s translation.
      * <p>On a {@link BlockEntity}, this usually represents the name displayed in its {@link org.spongepowered.api.item.inventory.Container}
+     * <p>On a {@link WorldTemplate}, this represents the display name of the corresponding {@link ServerWorld}</p>
      */
     public static final Key<Value<Component>> DISPLAY_NAME = Keys.key(ResourceKey.sponge("display_name"), Component.class);
 
@@ -1081,6 +1101,12 @@ public final class Keys {
     public static final Key<Value<GameMode>> GAME_MODE = Keys.key(ResourceKey.sponge("game_mode"), GameMode.class);
 
     /**
+     * The {@link GameMode} of a {@link WorldTemplate}.
+     * Readonly
+     */
+    public static final Key<Value<RegistryReference<GameMode>>> GAME_MODE_REFERENCE = Keys.key(ResourceKey.sponge("game_mode_reference"), new TypeToken<RegistryReference<GameMode>>() {});
+
+    /**
      * The player represented by a {@link BlockTypes#PLAYER_HEAD} (and {@link BlockTypes#PLAYER_WALL_HEAD})
      * {@link BlockState} or a {@link ItemTypes#PLAYER_HEAD} {@link ItemStack}.
      *
@@ -1121,6 +1147,12 @@ public final class Keys {
      * e.g. {@link BlockTypes#CACTUS} or {@link BlockTypes#WHEAT} etc.
      */
     public static final Key<Value<Integer>> GROWTH_STAGE = Keys.key(ResourceKey.sponge("growth_stage"), Integer.class);
+
+    /**
+     * Whether world of a {@link WorldTemplate} is in hardcore mode.
+     * Readonly
+     */
+    public static final Key<Value<Boolean>> HARDCORE = Keys.key(ResourceKey.sponge("hardcore"), Boolean.class);
 
     /**
      * Whether an {@link ArmorStand}'s arms are visible.
@@ -1651,6 +1683,12 @@ public final class Keys {
      * or {@link BlockTypes#REDSTONE_TORCH}.
      */
     public static final Key<Value<Boolean>> IS_LIT = Keys.key(ResourceKey.sponge("is_lit"), Boolean.class);
+
+    /**
+     * Whether a {@link WorldTemplate} is supposed to be loaded at startup.
+     * Readonly
+     */
+    public static final Key<Value<Boolean>> IS_LOAD_ON_STARTUP = Keys.key(ResourceKey.sponge("is_load_on_startup"), Boolean.class);
 
     /**
      * Whether a {@link Cat} is lying down.
@@ -2328,6 +2366,13 @@ public final class Keys {
     public static final Key<Value<DyeColor>> PATTERN_COLOR = Keys.key(ResourceKey.sponge("pattern_color"), DyeColor.class);
 
     /**
+     * Whether spawn logic is performed on a world of a {@link WorldTemplate}
+     * See {@link ServerWorldProperties#performsSpawnLogic()}.
+     * Readonly
+     */
+    public static final Key<Value<Boolean>> PERFORM_SPAWN_LOGIC = Keys.key(ResourceKey.sponge("perform_spawn_logic"), Boolean.class);
+
+    /**
      * The {@link PhantomPhase phase} of a {@link Phantom}.
      */
     public static final Key<Value<PhantomPhase>> PHANTOM_PHASE = Keys.key(ResourceKey.sponge("phantom_phase"), PhantomPhase.class);
@@ -2433,6 +2478,12 @@ public final class Keys {
      * The {@link Villager} or {@link ZombieVillager}'s {@link ProfessionType} level.
      */
     public static final Key<Value<Integer>> PROFESSION_LEVEL = Keys.key(ResourceKey.sponge("profession_level"), Integer.class);
+
+    /**
+     * Whether pvp combat is enabled in a world of a {@link WorldTemplate}
+     * Readonly
+     */
+    public static final Key<Value<Boolean>> PVP = Keys.key(ResourceKey.sponge("pvp"), Boolean.class);
 
     /**
      * The type of a {@link Rabbit}.
@@ -2602,6 +2653,12 @@ public final class Keys {
     public static final Key<Value<UUID>> SECOND_TRUSTED = Keys.key(ResourceKey.sponge("second_trusted"), UUID.class);
 
     /**
+     * The {@link SerializationBehavior} of a {@link WorldTemplate}
+     * Readonly
+     */
+    public static final Key<Value<SerializationBehavior>> SERIALIZATION_BEHAVIOR = Keys.key(ResourceKey.sponge("serialization_behavior"), SerializationBehavior.class);
+
+    /**
      * The shooter of a {@link Projectile}.
      */
     public static final Key<Value<ProjectileSource>> SHOOTER = Keys.key(ResourceKey.sponge("shooter"), ProjectileSource.class);
@@ -2721,6 +2778,12 @@ public final class Keys {
      * How many entities a {@link MobSpawner} has spawned so far.
      */
     public static final Key<Value<Integer>> SPAWN_COUNT = Keys.key(ResourceKey.sponge("spawn_count"), Integer.class);
+
+    /**
+     * The spawn position in a world of a {@link WorldTemplate}.
+     * Readonly
+     */
+    public static final Key<Value<Vector3i>> SPAWN_POSITION = Keys.key(ResourceKey.sponge("spawn_position"), Vector3i.class);
 
     /**
      * How far away from the {@link MobSpawner} the entities spawned by it may appear.
@@ -2976,10 +3039,12 @@ public final class Keys {
     public static final Key<Value<Vector3d>> VELOCITY = Keys.key(ResourceKey.sponge("velocity"), Vector3d.class);
 
     /**
-     * The client view distance of a {@link ServerPlayer}. Read-only.
+     * The client view distance of a {@link ServerPlayer}
+     * <p>or the view distance in a world of a {@link WorldTemplate}</p>
      *
      * <p>This value represents the radius (around the player) in
      * unit chunks.</p>
+     * Readonly
      */
     public static final Key<Value<Integer>> VIEW_DISTANCE = Keys.key(ResourceKey.sponge("view_distance"), Integer.class);
 
@@ -3057,6 +3122,12 @@ public final class Keys {
     public static final Key<Value<Sheep>> WOLOLO_TARGET = Keys.key(ResourceKey.sponge("wololo_target"), Sheep.class);
 
     /**
+     * The difficulty of a {@link WorldTemplate}
+     * Readonly
+     */
+    public static final Key<Value<RegistryReference<Difficulty>>> WORLD_DIFFICULTY = Keys.key(ResourceKey.sponge("world_difficulty"), new TypeToken<RegistryReference<Difficulty>>() {});
+
+    /**
      * The minimum {@code Y} coordinate of a {@link WorldType}
      * <p>Blocks cannot exist at a lower {@code Y} value in a {@link ServerWorld} of that type</p>
      * <p>In vanilla this is a multiple of 16 between -2032 and 2016</p>
@@ -3064,6 +3135,12 @@ public final class Keys {
      * Readonly
      */
     public static final Key<Value<Integer>> WORLD_FLOOR = Keys.key(ResourceKey.sponge("world_floor"), Integer.class);
+
+    /**
+     * The world generation config of a {@link WorldTemplate}
+     * Readonly
+     */
+    public static final Key<Value<WorldGenerationConfig>> WORLD_GEN_CONFIG = Keys.key(ResourceKey.sponge("world_gen_config"), WorldGenerationConfig.class);
 
     /**
      * The height of a {@link WorldType}
@@ -3081,6 +3158,12 @@ public final class Keys {
      * Readonly
      */
     public static final Key<Value<Integer>> WORLD_LOGICAL_HEIGHT = Keys.key(ResourceKey.sponge("world_logical_height"), Integer.class);
+
+    /**
+     * The {@link WorldType} reference of a {@link WorldTemplate}.
+     * Readonly
+     */
+    public static final Key<Value<RegistryReference<WorldType>>> WORLD_TYPE = Keys.key(ResourceKey.sponge("world_type"), new TypeToken<RegistryReference<WorldType>>() {});
 
     /**
      * The {@link WorldTypeEffect effect} of a {@link WorldType} that will play for a {@link ServerPlayer player}

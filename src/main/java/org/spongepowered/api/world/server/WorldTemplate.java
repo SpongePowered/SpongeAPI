@@ -25,10 +25,13 @@
 package org.spongepowered.api.world.server;
 
 import net.kyori.adventure.text.Component;
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.Key;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.registry.RegistryReference;
@@ -39,6 +42,7 @@ import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.generation.ChunkGenerator;
 import org.spongepowered.api.world.generation.config.WorldGenerationConfig;
+import org.spongepowered.api.world.server.storage.ServerWorldProperties;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.io.IOException;
@@ -49,7 +53,7 @@ import java.util.Optional;
  * TODO this is actually for LevelStem
  * <p>Serialized into a data pack at {@code data/<namespace>/dimension/<value>.json}</p>
  */
-public interface WorldTemplate extends ResourceKeyed, DataPackSerializable {
+public interface WorldTemplate extends ResourceKeyed, DataPackSerializable, DataHolder {
 
     static WorldTemplate overworld() {
         return Sponge.game().factoryProvider().provide(Factory.class).overworld();
@@ -71,33 +75,61 @@ public interface WorldTemplate extends ResourceKeyed, DataPackSerializable {
         return Sponge.game().builderProvider().provide(Builder.class).reset();
     }
 
-    Optional<Component> displayName();
+    default Optional<Component> displayName() {
+        return this.get(Keys.DISPLAY_NAME);
+    }
 
-    RegistryReference<WorldType> worldType();
+    default RegistryReference<WorldType> worldType() {
+        return this.require(Keys.WORLD_TYPE);
+    }
 
-    ChunkGenerator generator();
+    default ChunkGenerator generator() {
+        return this.require(Keys.CHUNK_GENERATOR);
+    }
 
-    WorldGenerationConfig generationConfig();
+    default WorldGenerationConfig generationConfig() {
+        return this.require(Keys.WORLD_GEN_CONFIG);
+    }
 
-    Optional<RegistryReference<GameMode>> gameMode();
+    default Optional<RegistryReference<GameMode>> gameMode() {
+        return this.get(Keys.GAME_MODE_REFERENCE);
+    }
 
-    Optional<RegistryReference<Difficulty>> difficulty();
+    default Optional<RegistryReference<Difficulty>> difficulty() {
+        return this.get(Keys.WORLD_DIFFICULTY);
+    }
 
-    Optional<SerializationBehavior> serializationBehavior();
+    default Optional<SerializationBehavior> serializationBehavior() {
+        return this.get(Keys.SERIALIZATION_BEHAVIOR);
+    }
 
-    boolean loadOnStartup();
+    default boolean loadOnStartup() {
+        return this.require(Keys.IS_LOAD_ON_STARTUP);
+    }
 
-    boolean performsSpawnLogic();
+    default boolean performsSpawnLogic() {
+        return this.require(Keys.PERFORM_SPAWN_LOGIC);
+    }
 
-    Optional<Boolean> hardcore();
+    default Optional<Boolean> hardcore() {
+        return this.get(Keys.HARDCORE);
+    }
 
-    Optional<Boolean> commands();
+    default Optional<Boolean> commands() {
+        return this.get(Keys.COMMANDS);
+    }
 
-    Optional<Boolean> pvp();
+    default Optional<Boolean> pvp() {
+        return this.get(Keys.PVP);
+    }
 
-    Optional<Integer> viewDistance();
+    default Optional<Integer> viewDistance() {
+        return this.get(Keys.VIEW_DISTANCE);
+    }
 
-    Optional<Vector3i> spawnPosition();
+    default Optional<Vector3i> spawnPosition() {
+        return this.get(Keys.SPAWN_POSITION);
+    }
 
     default Builder asBuilder() {
         return Sponge.game().builderProvider().provide(Builder.class).from(this);
@@ -105,33 +137,20 @@ public interface WorldTemplate extends ResourceKeyed, DataPackSerializable {
 
     interface Builder extends ResourceKeyedBuilder<WorldTemplate, Builder>, CopyableBuilder<WorldTemplate, Builder> {
 
-        Builder displayName(@Nullable Component displayName);
+        <V> Builder add(Key<? extends Value<V>> key, V value);
 
-        Builder worldType(RegistryReference<WorldType> type);
+        /**
+         * Creates a world template based on the given data view.
+         * <p>The given data must be equivalent to a data-pack for world-templates (dimension)</p>
+         *
+         * @param pack the data
+         * @return the created WorldTemplate
+         */
+        Builder fromDataPack(DataView pack) throws IOException;
 
-        Builder generator(ChunkGenerator generator);
+        Builder from(ServerWorld world);
 
-        Builder generationConfig(WorldGenerationConfig generationConfig);
-
-        Builder gameMode(RegistryReference<GameMode> gameMode);
-
-        Builder difficulty(RegistryReference<Difficulty> difficulty);
-
-        Builder serializationBehavior(@Nullable SerializationBehavior behavior);
-
-        Builder loadOnStartup(boolean loadOnStartup);
-
-        Builder performsSpawnLogic(boolean performsSpawnLogic);
-
-        Builder hardcore(@Nullable Boolean hardcore);
-
-        Builder commands(@Nullable Boolean commands);
-
-        Builder pvp(@Nullable Boolean pvp);
-
-        Builder viewDistance(@Nullable Integer distance);
-
-        Builder spawnPosition(@Nullable Vector3i position);
+        Builder from(ServerWorldProperties worldProperties);
     }
 
     interface Factory {
@@ -143,14 +162,5 @@ public interface WorldTemplate extends ResourceKeyed, DataPackSerializable {
         WorldTemplate theNether();
 
         WorldTemplate theEnd();
-
-        /**
-         * Creates a world template based on the given data view.
-         * <p>The given data must be equivalent to a data-pack for world-templates (dimension)</p>
-         *
-         * @param pack the data
-         * @return the created WorldTemplate
-         */
-        WorldTemplate fromDataPack(DataView pack) throws IOException;
     }
 }
