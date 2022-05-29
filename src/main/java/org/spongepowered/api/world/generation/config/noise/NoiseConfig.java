@@ -80,29 +80,6 @@ public interface NoiseConfig {
     int height();
 
     /**
-     * The noise sampling configuration.
-     *
-     * @return the noise sampling configuration.
-     */
-    SamplingConfig samplingConfig();
-
-    /**
-     * The settings for the curve on top of the world.
-     * <p>Negative values round off the top of the hills in the affected area, positive values create a roof</p>
-     *
-     * @return the settings for the curve on top of the world.
-     */
-    SlideConfig topConfig();
-
-    /**
-     * The settings for the curve on bottom of the world.
-     * <p>Negative values remove the floor and round off the bottom of the islands, positive values make a floor.</p>
-     *
-     * @return the settings for the curve on bottom of the world.
-     */
-    SlideConfig bottomConfig();
-
-    /**
      * The horizontal scaling of landmass.
      * <p>Higher values increase the distances</p>
      *
@@ -118,30 +95,15 @@ public interface NoiseConfig {
      */
     int verticalSize();
 
-    /**
-     * The terrain shaper.
-     *
-     * @return the terrain shaper.
-     */
-    Shaper terrainShaper();
-
     interface Builder extends org.spongepowered.api.util.Builder<NoiseConfig, Builder>, CopyableBuilder<NoiseConfig, Builder> {
 
         Builder minY(int minY);
 
         Builder height(int height);
 
-        Builder sampling(SamplingConfig sampling);
-
-        Builder top(SlideConfig top);
-
-        Builder bottom(SlideConfig bottom);
-
         Builder horizontalSize(int horizontal);
 
         Builder verticalSize(int vertical);
-
-        Builder terrainShaper(Shaper terrainShaper);
     }
 
     interface Factory {
