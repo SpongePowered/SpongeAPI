@@ -118,18 +118,6 @@ public interface BiomeProvider extends BiomeFinder {
      */
     List<Biome> choices();
 
-    /**
-     * The set of biomes within an area.
-     *
-     * @param x the center x coordinate
-     * @param y the center y coordinate
-     * @param z the center z coordinate
-     * @param size the square area radius
-     *
-     * @return the set of biomes.
-     */
-    Set<Biome> within(int x, int y, int z, int size);
-
     interface Factory {
 
         /**
