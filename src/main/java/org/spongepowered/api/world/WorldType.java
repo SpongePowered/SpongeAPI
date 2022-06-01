@@ -167,13 +167,5 @@ public interface WorldType extends DefaultedRegistryValue, ContextSource {
      */
     int logicalHeight();
 
-    /**
-     * Gets if {@link ServerWorld worlds} of this type will spawn the {@link EnderDragon dragon}
-     * fight mechanics.
-     *
-     * @return True if dragon fight spawns, false if not
-     */
-    boolean createDragonFight();
-
     WorldTypeTemplate asTemplate();
 }
