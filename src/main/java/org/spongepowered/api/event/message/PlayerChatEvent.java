@@ -28,67 +28,74 @@ import net.kyori.adventure.audience.ForwardingAudience;
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.entity.living.player.PlayerChatFormatter;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.Event;
+import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 import java.util.Optional;
 
 /**
- * Fired when the {@link Component} being sent to a {@link PlayerChatFormatter} was
- * due to chatting.
+ * Fired when sending a chat message.
+ * To modify the message use {@link PlayerChatEvent.Decorate}.
  */
-public interface PlayerChatEvent extends AudienceMessageEvent, Cancellable {
+@GenerateFactoryMethod
+public interface PlayerChatEvent extends Event, Cancellable {
 
     /**
-     * Gets the original formatter that this message will be sent through.
+     * Gets the message.
      *
-     * @return The original formatter used
+     * @return Message
      */
-    PlayerChatFormatter originalChatFormatter();
-
-    /**
-     * Gets the current formatter that this message will be sent through.
-     *
-     * @return The formatter the message in this event will be sent through
-     */
-    Optional<PlayerChatFormatter> chatFormatter();
-
-    /**
-     * Sets the formatter for this message to go trough.
-     * <p>If the target audience is a {@link net.kyori.adventure.audience.ForwardingAudience}
-     * the {@link PlayerChatFormatter} will be applied to each of its {@link ForwardingAudience#audiences()}</p>
-     *
-     * @param router The router to set
-     */
-    void setChatFormatter(@Nullable PlayerChatFormatter router);
-
-    /**
-     * Gets the original chat message.
-     *
-     * <p>This message is the original chat message, without any formatting
-     * whatsoever.</p>
-     *
-     * <p>In Vanilla, this is equivalent to what a player typed into the
-     * chat box (no name prefix or other elements).</p>
-     *
-     * @return The original chat message
-     */
-    @Override
-    Component originalMessage();
-
-    /**
-     * Gets the chat message.
-     *
-     * @return The chat message
-     */
-    @Override
     Component message();
 
     /**
-     * Sets the chat message.
-     *
-     * @param message The chat message
+     * Fired for each player receiving a message.
      */
-    @Override
-    void setMessage(final Component message);
+    interface Receive extends AudienceMessageEvent, Cancellable {
+
+        /**
+         * Gets the original formatter that this message will be sent through.
+         *
+         * @return The original formatter used
+         */
+        PlayerChatFormatter originalChatFormatter();
+
+        /**
+         * Gets the current formatter that this message will be sent through.
+         *
+         * @return The formatter the message in this event will be sent through
+         */
+        Optional<PlayerChatFormatter> chatFormatter();
+
+        /**
+         * Sets the formatter for this message to go through.
+         * <p>If the target audience is a {@link net.kyori.adventure.audience.ForwardingAudience}
+         * the {@link PlayerChatFormatter} will be applied to each of its {@link ForwardingAudience#audiences()}</p>
+         *
+         * @param router The router to set
+         */
+        void setChatFormatter(@Nullable PlayerChatFormatter router);
+
+    }
+
+    /**
+     * Fired when decorating a message sent by a player or via {@link ServerPlayer#simulateChat} or creating the preview for a chat message.
+     */
+    interface Decorate extends MessageEvent {
+
+        /**
+         * Gets the original chat message.
+         *
+         * <p>In Vanilla, this is equivalent to what a player typed into the
+         * chat box (no name prefix or other elements).</p>
+         *
+         * @return The original chat message
+         */
+        @Override
+        Component originalMessage();
+
+    }
+
 
 }
