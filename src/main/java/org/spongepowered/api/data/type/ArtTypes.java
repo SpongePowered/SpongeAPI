@@ -59,7 +59,11 @@ public final class ArtTypes {
 
     public static final DefaultedRegistryReference<ArtType> DONKEY_KONG = ArtTypes.key(ResourceKey.minecraft("donkey_kong"));
 
+    public static final DefaultedRegistryReference<ArtType> EARTH = ArtTypes.key(ResourceKey.minecraft("earth"));
+
     public static final DefaultedRegistryReference<ArtType> FIGHTERS = ArtTypes.key(ResourceKey.minecraft("fighters"));
+
+    public static final DefaultedRegistryReference<ArtType> FIRE = ArtTypes.key(ResourceKey.minecraft("fire"));
 
     public static final DefaultedRegistryReference<ArtType> GRAHAM = ArtTypes.key(ResourceKey.minecraft("graham"));
 
@@ -90,6 +94,10 @@ public final class ArtTypes {
     public static final DefaultedRegistryReference<ArtType> WANDERER = ArtTypes.key(ResourceKey.minecraft("wanderer"));
 
     public static final DefaultedRegistryReference<ArtType> WASTELAND = ArtTypes.key(ResourceKey.minecraft("wasteland"));
+
+    public static final DefaultedRegistryReference<ArtType> WATER = ArtTypes.key(ResourceKey.minecraft("water"));
+
+    public static final DefaultedRegistryReference<ArtType> WIND = ArtTypes.key(ResourceKey.minecraft("wind"));
 
     public static final DefaultedRegistryReference<ArtType> WITHER = ArtTypes.key(ResourceKey.minecraft("wither"));
 

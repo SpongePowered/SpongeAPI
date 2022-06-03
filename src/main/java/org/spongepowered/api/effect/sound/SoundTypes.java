@@ -1463,7 +1463,7 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_FROG_STEP = SoundTypes.key(ResourceKey.minecraft("entity.frog.step"));
 
-    public static final DefaultedRegistryReference<SoundType> ENTITY_FROG_TOUNGE = SoundTypes.key(ResourceKey.minecraft("entity.frog.tounge"));
+    public static final DefaultedRegistryReference<SoundType> ENTITY_FROG_TONGUE = SoundTypes.key(ResourceKey.minecraft("entity.frog.tongue"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_GENERIC_BIG_FALL = SoundTypes.key(ResourceKey.minecraft("entity.generic.big_fall"));
 
