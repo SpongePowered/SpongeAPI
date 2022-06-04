@@ -243,7 +243,6 @@ import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.WorldTypeEffect;
 import org.spongepowered.api.world.WorldTypes;
 import org.spongepowered.api.world.biome.Biome;
-import org.spongepowered.api.world.biome.BiomeCategory;
 import org.spongepowered.api.world.biome.ambient.AdditionalAmbientSound;
 import org.spongepowered.api.world.biome.ambient.AmbientMoodSettings;
 import org.spongepowered.api.world.biome.ambient.AmbientParticleSettings;
@@ -476,11 +475,6 @@ public final class Keys {
      * Readonly
      */
     public static final Key<Value<Boolean>> BEDS_USABLE = Keys.key(ResourceKey.sponge("beds_usable"), Boolean.class);
-
-    /**
-     * The category of a {@link Biome}
-     */
-    public static final Key<Value<BiomeCategory>> BIOME_CATEGORY = Keys.key(ResourceKey.sponge("biome_category"), BiomeCategory.class);
 
     /**
      * The default temperature of a {@link Biome} or the biome at a specific {@link ServerLocation}.

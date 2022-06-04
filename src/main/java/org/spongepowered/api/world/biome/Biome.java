@@ -264,16 +264,6 @@ public interface Biome extends DataHolder {
         return this.get(Keys.BACKGROUND_MUSIC);
     }
 
-    // Category
-
-    /**
-     * Gets the biome category.
-     *
-     * @return The biome category
-     */
-    default BiomeCategory category() {
-        return this.require(Keys.BIOME_CATEGORY);
-    }
 
     /**
      * Returns the template for this biome if registered via datapack.

@@ -147,7 +147,6 @@ import org.spongepowered.api.world.HeightType;
 import org.spongepowered.api.world.LightType;
 import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.biome.Biome;
-import org.spongepowered.api.world.biome.BiomeCategory;
 import org.spongepowered.api.world.biome.climate.GrassColorModifier;
 import org.spongepowered.api.world.biome.climate.Precipitation;
 import org.spongepowered.api.world.biome.climate.TemperatureModifier;
@@ -237,8 +236,6 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<BannerPatternShape> BANNER_PATTERN_SHAPE = RegistryTypes.spongeKeyInGame("banner_pattern_shape");
 
     public static final DefaultedRegistryType<BellAttachmentType> BELL_ATTACHMENT_TYPE = RegistryTypes.spongeKeyInGame("bell_attachment_type");
-
-    public static final RegistryType<BiomeCategory> BIOME_CATEGORY = RegistryTypes.spongeKeyInGame("biome_category");
 
     public static final DefaultedRegistryType<BoatType> BOAT_TYPE = RegistryTypes.spongeKeyInGame("boat_type");
 
