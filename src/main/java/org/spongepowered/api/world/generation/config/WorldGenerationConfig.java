@@ -41,11 +41,11 @@ public interface WorldGenerationConfig {
     long seed();
 
     /**
-     * Gets if features will generate
+     * Gets if structures will generate
      *
-     * @return Whether features will generate
+     * @return Whether structures will generate
      */
-    boolean generateFeatures();
+    boolean generateStructures();
 
     /**
      * Gets if the bonus chest will generate
@@ -54,18 +54,18 @@ public interface WorldGenerationConfig {
      */
     boolean generateBonusChest();
 
-    interface Mutable extends WorldGenerationConfig {
+    static Builder builder() {
+        return Sponge.game().builderProvider().provide(Builder.class).reset();
+    }
 
-        static Builder builder() {
-            return Sponge.game().builderProvider().provide(Builder.class).reset();
-        }
+    interface Builder extends org.spongepowered.api.util.Builder<WorldGenerationConfig, Builder>, CopyableBuilder<WorldGenerationConfig, Builder> {
 
         /**
          * Sets the seed
          *
          * @param seed The seed
          */
-        void setSeed(long seed);
+        Builder seed(long seed);
 
         /**
          * Sets the seed
@@ -75,45 +75,22 @@ public interface WorldGenerationConfig {
          *
          * @param seed The seed
          */
-        void setSeed(String seed);
+        void seed(String seed);
+
 
         /**
          * Sets whether features will generate
          *
          * @param generateFeatures Whether features will generate
          */
-        void setGenerateFeatures(boolean generateFeatures);
+        Builder generateFeatures(boolean generateFeatures);
 
         /**
          * Sets if the bonus chest will generate.
          *
-         * <p>It is up to the implementation on how this setting is handled. For Vanilla Minecraft, this setting has no effect
-         * if first-time generation has already occurred.</p>
-         *
          * @param generateBonusChest Whether bonus chest will generate
          */
-        void setGenerateBonusChest(boolean generateBonusChest);
+        Builder generateBonusChest(boolean generateBonusChest);
 
-        interface Builder extends org.spongepowered.api.util.Builder<WorldGenerationConfig.Mutable, Builder>, CopyableBuilder<WorldGenerationConfig, Builder> {
-
-            Builder seed(long seed);
-
-            /**
-             * Sets the seed
-             *
-             * <p>If the seed is a number value, it will be parsed as a {@code long}. Otherwise, the String's {@link String#hashCode()}
-             * will be used.</p>
-             *
-             * @param seed The seed
-             */
-            void seed(String seed);
-
-            Builder generateFeatures(boolean generateFeatures);
-
-            Builder generateBonusChest(boolean generateBonusChest);
-
-            @Override
-            WorldGenerationConfig.Mutable build();
-        }
     }
 }
