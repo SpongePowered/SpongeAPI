@@ -25,6 +25,7 @@
 package org.spongepowered.api.world.generation.biome;
 
 // Registry.CARVER
+// WorldCarver.register
 public interface Carver<CC extends CarverConfig> {
     // Vanilla carvers:
     // CanyonWorldCarver - CanyonCarverConfiguration

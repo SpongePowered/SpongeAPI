@@ -24,31 +24,12 @@
  */
 package org.spongepowered.api.world.generation.feature;
 
-import org.spongepowered.api.world.generation.ChunkGenerator;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3i;
 
-import java.util.Optional;
-import java.util.Random;
-
-// TODO Registry.FEATURE
-public interface Feature<FC extends FeatureConfig> {
-
-    boolean place(FeaturePlaceContext<FC> ctx);
-
-    interface FeaturePlaceContext<FC extends FeatureConfig> {
-
-        Optional<ConfiguredFeature<?, ?>> topFeature(); // only used in IcePatchFeature?
-
-        ServerWorld world(); // TODO WorldGenRegion too?
-
-        ChunkGenerator generator();
-
-        Random random();
-
-        Vector3i origin();
-
-        FC config();
-
-    }
+@CatalogedBy(Features.class)
+public interface Feature<FC extends FeatureConfig> extends DefaultedRegistryValue {
+    boolean place(ServerWorld world, Vector3i pos, FC config);
 }

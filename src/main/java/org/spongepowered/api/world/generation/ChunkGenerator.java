@@ -26,13 +26,17 @@ package org.spongepowered.api.world.generation;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.world.biome.Biome;
 import org.spongepowered.api.world.biome.provider.BiomeProvider;
 import org.spongepowered.api.world.generation.config.FlatGeneratorConfig;
 import org.spongepowered.api.world.generation.config.NoiseGeneratorConfig;
+import org.spongepowered.api.world.generation.feature.PlacedFeature;
+import org.spongepowered.api.world.generation.structure.Structure;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.server.WorldTemplate;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -78,6 +82,9 @@ public interface ChunkGenerator {
     }
 
     BiomeProvider biomeProvider();
+
+    List<PlacedFeature> featuresIn(Biome biome);
+    List<Structure> structureSets(); // TODO Structure -> StructureSet
 
     interface Factory {
 

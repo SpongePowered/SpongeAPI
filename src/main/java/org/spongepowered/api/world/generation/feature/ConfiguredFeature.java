@@ -25,6 +25,8 @@
 package org.spongepowered.api.world.generation.feature;
 
 
+import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3i;
 
@@ -33,13 +35,13 @@ import org.spongepowered.math.vector.Vector3i;
  * <p>configured features are used in world generation as a part of {@link PlacedFeature}s</p>
  * <p>Serialized into a data pack at {@code data/<namespace>/worldgen/configured_feature/<value>.json}</p>
  */
-// TODO Registry.CONFIGURED_FEATURE_REGISTRY?
-public interface ConfiguredFeature<F extends Feature<FC>, FC extends FeatureConfig> {
+@CatalogedBy(ConfiguredFeatures.class)
+public interface ConfiguredFeature<F extends Feature<FC>, FC extends FeatureConfig> extends DefaultedRegistryValue {
 
     F feature();
 
     FC config();
 
-    boolean place(ServerWorld world, Vector3i origin);
+    boolean place(ServerWorld world, Vector3i pos);
 
 }

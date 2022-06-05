@@ -24,6 +24,11 @@
  */
 package org.spongepowered.api.world.generation.feature;
 
+import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.world.server.ServerWorld;
+import org.spongepowered.math.vector.Vector3i;
+
 import java.util.List;
 
 
@@ -34,12 +39,14 @@ import java.util.List;
  * <p>Serialized into a data pack at {@code data/<namespace>/worldgen/placed_feature/<value>.json}</p>
  */
 // TODO Registry.PLACED_FEATURE_REGISTRY
-// see PlacementUtils.register
 // TODO javadoc me more!
-public interface PlacedFeature {
+@CatalogedBy(PlacedFeatures.class)
+public interface PlacedFeature extends DefaultedRegistryValue {
 
-    ConfiguredFeature feature();
+    <F extends Feature<FC>, FC extends FeatureConfig> ConfiguredFeature<F, FC> feature();
 
     List<PlacementModifier> placementModifiers(); // TODO Placement Modifiers
+
+    boolean place(ServerWorld world, Vector3i pos);
 
 }

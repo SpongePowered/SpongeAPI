@@ -155,6 +155,9 @@ import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gamerule.GameRule;
 import org.spongepowered.api.world.generation.biome.CarvingStep;
 import org.spongepowered.api.world.generation.biome.DecorationStep;
+import org.spongepowered.api.world.generation.feature.ConfiguredFeature;
+import org.spongepowered.api.world.generation.feature.Feature;
+import org.spongepowered.api.world.generation.feature.PlacedFeature;
 import org.spongepowered.api.world.generation.structure.Structure;
 import org.spongepowered.api.world.portal.PortalType;
 import org.spongepowered.api.world.schematic.PaletteType;
@@ -183,6 +186,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<ChunkState> CHUNK_STATE = RegistryTypes.minecraftKeyInGame("chunk_status");
 
+    public static final DefaultedRegistryType<ConfiguredFeature<?, ?>> CONFIGURED_FEATURE = RegistryTypes.minecraftKeyInGame("configured_feature");
+
     public static final DefaultedRegistryType<ContainerType> CONTAINER_TYPE = RegistryTypes.minecraftKeyInGame("menu");
 
     public static final DefaultedRegistryType<WorldType> WORLD_TYPE = RegistryTypes.minecraftKeyInServer("dimension_type");
@@ -195,11 +200,15 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<EntityType<@NonNull ? extends Entity>> ENTITY_TYPE = RegistryTypes.minecraftKeyInGame("entity_type");
 
+    public static final DefaultedRegistryType<Feature<?>> FEATURE = RegistryTypes.minecraftKeyInGame("feature");
+
     public static final DefaultedRegistryType<FluidType> FLUID_TYPE = RegistryTypes.minecraftKeyInGame("fluid");
 
     public static final DefaultedRegistryType<ItemType> ITEM_TYPE = RegistryTypes.minecraftKeyInGame("item");
 
     public static final DefaultedRegistryType<ParticleType> PARTICLE_TYPE = RegistryTypes.minecraftKeyInGame("particle_type");
+
+    public static final DefaultedRegistryType<PlacedFeature> PLACED_FEATURE = RegistryTypes.minecraftKeyInGame("placed_feature");
 
     public static final DefaultedRegistryType<ProfessionType> PROFESSION_TYPE = RegistryTypes.minecraftKeyInGame("villager_profession");
 
