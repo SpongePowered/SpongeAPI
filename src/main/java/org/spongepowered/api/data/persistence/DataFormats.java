@@ -48,6 +48,8 @@ public final class DataFormats {
 
     public static final DefaultedRegistryReference<StringDataFormat> JSON = DataFormats.stringKey(ResourceKey.sponge("json"));
 
+    public static final DefaultedRegistryReference<StringDataFormat> SNBT = DataFormats.stringKey(ResourceKey.sponge("snbt"));
+
     public static final DefaultedRegistryReference<DataFormat> NBT = DataFormats.key(ResourceKey.sponge("nbt"));
 
     // SORTFIELDS:OFF
