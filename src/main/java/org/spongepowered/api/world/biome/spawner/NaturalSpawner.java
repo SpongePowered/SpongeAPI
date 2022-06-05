@@ -34,4 +34,8 @@ public interface NaturalSpawner {
     int min();
 
     int max();
+
+    interface Factory {
+        NaturalSpawner of(EntityType<?> type, int min, int max);
+    }
 }
