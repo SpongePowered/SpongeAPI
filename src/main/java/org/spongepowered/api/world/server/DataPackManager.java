@@ -22,13 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.datapack;
+package org.spongepowered.api.world.server;
 
-import org.spongepowered.api.ResourceKeyed;
-import org.spongepowered.api.data.persistence.DataSerializable;
+import org.spongepowered.api.datapack.DataPack;
 
-public interface DataPackSerializable extends ResourceKeyed, DataSerializable {
+public interface DataPackManager {
 
-    @SuppressWarnings("rawtypes")
-    DataPackType type();
+    /**
+     * Reloads reloadable datapacks.
+     * Also causes {@link org.spongepowered.api.event.lifecycle.RegisterDataPackValueEvent} to fire for {@link DataPack}
+     */
+    void reload();
+
+    /**
+     * Saves given persistent data pack.
+     *
+     * @param persistent the data pack to persist
+     */
+    void save(DataPack.Persistent persistent);
+
+
 }

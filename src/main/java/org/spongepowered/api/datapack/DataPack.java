@@ -22,16 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.recipe;
+package org.spongepowered.api.datapack;
 
+import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.data.persistence.DataSerializable;
-import org.spongepowered.api.datapack.DataPack;
 
-/**
- * A registration of a {@link Recipe} by an API consumer.
- *
- * <p>All registrations through the API will generate into the Vanilla data pack system</p>
- */
-public interface RecipeRegistration extends DataPack.Reloadable, DataSerializable {
+public interface DataPack extends ResourceKeyed, DataSerializable {
 
+    @SuppressWarnings("rawtypes")
+    DataPackType type();
+
+    /**
+     * A reloadable data pack
+     */
+    interface Reloadable extends DataPack {
+
+    }
+
+    /**
+     * A persistent data pack. Will only be loaded on startup.
+     */
+    interface Persistent extends DataPack {
+
+    }
 }

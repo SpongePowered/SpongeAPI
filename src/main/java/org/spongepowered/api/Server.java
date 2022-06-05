@@ -46,6 +46,7 @@ import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.locale.LocaleSource;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.generation.config.WorldGenerationConfig;
+import org.spongepowered.api.world.server.DataPackManager;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.server.WorldManager;
@@ -68,6 +69,8 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      * @return The world manager
      */
     WorldManager worldManager();
+
+    DataPackManager dataPackManager();
 
     /**
      * Retrieves the {@link RecipeManager}.

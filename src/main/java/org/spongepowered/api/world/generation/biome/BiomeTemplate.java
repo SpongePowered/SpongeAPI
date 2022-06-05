@@ -28,7 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.datapack.DataPackSerializable;
+import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
 import org.spongepowered.api.world.biome.Biome;
@@ -39,7 +39,7 @@ import java.io.IOException;
  * A template for {@link org.spongepowered.api.world.biome.Biome}s
  * <p>Serialized into a data pack at {@code data/<namespace>/worldgen/biome/<value>.json}</p>
  */
-public interface BiomeTemplate extends DataPackSerializable {
+public interface BiomeTemplate extends DataPack.Persistent {
 
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class).reset();

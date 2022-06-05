@@ -28,7 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.datapack.DataPackSerializable;
+import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
 
@@ -38,7 +38,7 @@ import java.io.IOException;
  * A template for a {@link WorldType}.
  * <p>Serialized into a data pack at {@code data/<namespace>/dimension_type/<value>.json}</p>
  */
-public interface WorldTypeTemplate extends DataPackSerializable {
+public interface WorldTypeTemplate extends DataPack.Persistent {
 
     static WorldTypeTemplate overworld() {
         return Sponge.game().factoryProvider().provide(Factory.class).overworld();
