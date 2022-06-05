@@ -79,11 +79,11 @@ public interface WorldGenerationConfig {
 
 
         /**
-         * Sets whether features will generate
+         * Sets whether structures will generate
          *
-         * @param generateFeatures Whether features will generate
+         * @param generateStructures Whether structures will generate
          */
-        Builder generateFeatures(boolean generateFeatures);
+        Builder generateStructures(boolean generateStructures);
 
         /**
          * Sets if the bonus chest will generate.

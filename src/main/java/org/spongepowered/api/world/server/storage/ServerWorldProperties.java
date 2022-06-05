@@ -41,10 +41,12 @@ import org.spongepowered.api.util.Nameable;
 import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.WorldType;
+import org.spongepowered.api.world.border.WorldBorder;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.generation.config.WorldGenerationConfig;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.storage.WorldProperties;
+import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
 import java.util.List;
@@ -87,7 +89,9 @@ public interface ServerWorldProperties extends WorldProperties, Nameable, Identi
      *
      * @return Is initialized
      */
-    boolean initialized();
+    default boolean initialized() {
+        return this.require(Keys.INITIALIZED);
+    }
 
     /**
      * Gets whether this world will load when the server starts up.
@@ -358,4 +362,17 @@ public interface ServerWorldProperties extends WorldProperties, Nameable, Identi
         this.offer(Keys.VIEW_DISTANCE, viewDistance);
     }
 
+    /**
+     * Gets the saved {@link WorldBorder} for this world.
+     *
+     * @return The world border
+     */
+    default WorldBorder worldBorder() {
+        return this.require(Keys.WORLD_BORDER);
+    }
+
+    @Override
+    default Weather weather() {
+        return this.require(Keys.WEATHER);
+    }
 }

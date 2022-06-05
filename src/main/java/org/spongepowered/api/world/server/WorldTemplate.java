@@ -41,7 +41,6 @@ import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.generation.ChunkGenerator;
-import org.spongepowered.api.world.generation.config.WorldGenerationConfig;
 import org.spongepowered.api.world.server.storage.ServerWorldProperties;
 import org.spongepowered.math.vector.Vector3i;
 
@@ -50,7 +49,6 @@ import java.util.Optional;
 
 /**
  * A template for a {@link ServerWorld}.
- * TODO this is actually for LevelStem
  * <p>Serialized into a data pack at {@code data/<namespace>/dimension/<value>.json}</p>
  */
 public interface WorldTemplate extends ResourceKeyed, DataPackSerializable, DataHolder {
@@ -85,10 +83,6 @@ public interface WorldTemplate extends ResourceKeyed, DataPackSerializable, Data
 
     default ChunkGenerator generator() {
         return this.require(Keys.CHUNK_GENERATOR);
-    }
-
-    default WorldGenerationConfig generationConfig() {
-        return this.require(Keys.WORLD_GEN_CONFIG);
     }
 
     default Optional<RegistryReference<GameMode>> gameMode() {

@@ -29,7 +29,6 @@ import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.util.MinecraftDayTime;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.border.WorldBorder;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gamerule.GameRuleHolder;
 import org.spongepowered.api.world.weather.WeatherUniverse;
@@ -89,12 +88,5 @@ public interface WorldProperties extends WeatherUniverse, GameRuleHolder, DataHo
     default Difficulty difficulty() {
         return this.require(Keys.WORLD_DIFFICULTY).get(Sponge.game());
     }
-
-    /**
-     * Gets the saved {@link WorldBorder} for this world.
-     *
-     * @return The world border
-     */
-    WorldBorder worldBorder(); // TODO data?
 
 }

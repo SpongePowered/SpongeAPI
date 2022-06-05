@@ -252,6 +252,7 @@ import org.spongepowered.api.world.biome.climate.Precipitation;
 import org.spongepowered.api.world.biome.climate.TemperatureModifier;
 import org.spongepowered.api.world.biome.spawner.NaturalSpawnCost;
 import org.spongepowered.api.world.biome.spawner.NaturalSpawner;
+import org.spongepowered.api.world.border.WorldBorder;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.generation.ChunkGenerator;
@@ -267,6 +268,7 @@ import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.server.WorldTemplate;
 import org.spongepowered.api.world.server.storage.ServerWorldProperties;
 import org.spongepowered.api.world.storage.WorldProperties;
+import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.WeatherType;
 import org.spongepowered.api.world.weather.WeatherTypes;
 import org.spongepowered.math.vector.Vector2i;
@@ -1391,6 +1393,11 @@ public final class Keys {
      * Whether an {@link Item} has an infinite pickup delay.
      */
     public static final Key<Value<Boolean>> INFINITE_PICKUP_DELAY = Keys.key(ResourceKey.sponge("infinite_pickup_delay"), Boolean.class);
+
+    /**
+     * Whether a world of a {@link ServerWorldProperties} was initialized.
+     */
+    public static final Key<Value<Boolean>> INITIALIZED = Keys.key(ResourceKey.sponge("initialized"), Boolean.class);
 
     /**
      * The {@link InstrumentType} of a {@link BlockTypes#NOTE_BLOCK} {@link BlockState}.
@@ -3072,6 +3079,11 @@ public final class Keys {
     public static final Key<Value<Color>> WATER_FOG_COLOR = Keys.key(ResourceKey.sponge("water_fog_color"), Color.class);
 
     /**
+     * The weather of a {@link ServerWorldProperties}.
+     */
+    public static final Key<Value<Weather>> WEATHER = Keys.key(ResourceKey.sponge("weather"), Weather.class);
+
+    /**
      * Whether a thrown {@link EyeOfEnder} will shatter.
      */
     public static final Key<Value<Boolean>> WILL_SHATTER = Keys.key(ResourceKey.sponge("will_shatter"), Boolean.class);
@@ -3117,6 +3129,12 @@ public final class Keys {
     public static final Key<Value<Sheep>> WOLOLO_TARGET = Keys.key(ResourceKey.sponge("wololo_target"), Sheep.class);
 
     /**
+     * The world border of {@link WorldProperties}
+     * Readonly
+     */
+    public static final Key<Value<WorldBorder>> WORLD_BORDER = Keys.key(ResourceKey.sponge("world_border"), WorldBorder.class);
+
+    /**
      * The difficulty of a {@link WorldTemplate} or {@link WorldProperties}
      * Readonly
      */
@@ -3132,7 +3150,7 @@ public final class Keys {
     public static final Key<Value<Integer>> WORLD_FLOOR = Keys.key(ResourceKey.sponge("world_floor"), Integer.class);
 
     /**
-     * The world generation config of a {@link WorldTemplate} or {@link ServerWorldProperties}
+     * The world generation config of a {@link ServerWorldProperties}
      * Readonly
      */
     public static final Key<Value<WorldGenerationConfig>> WORLD_GEN_CONFIG = Keys.key(ResourceKey.sponge("world_gen_config"), WorldGenerationConfig.class);
