@@ -30,9 +30,8 @@ import org.spongepowered.api.data.persistence.DataSerializable;
 /**
  * A data pack. Can be saved using the {@link org.spongepowered.api.world.server.DataPackManager} or when registering it on a {@link org.spongepowered.api.event.lifecycle.RegisterDataPackValueEvent}
  */
-public interface DataPackEntry extends ResourceKeyed, DataSerializable {
+public interface DataPackEntry<T extends DataPackEntry<T>> extends ResourceKeyed, DataSerializable {
 
-    @SuppressWarnings("rawtypes")
-    DataPackType type();
+    DataPackType<T> type();
 
 }

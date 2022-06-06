@@ -39,7 +39,7 @@ import java.util.Map;
 /**
  * A template that creates a or modifies a {@link Tag}.
  */
-public interface TagTemplate extends DataPackEntry {
+public interface TagTemplate extends DataPackEntry<TagTemplate> {
 
     /**
      * Returns a {@link Builder} that creates {@link TagTemplate}s.

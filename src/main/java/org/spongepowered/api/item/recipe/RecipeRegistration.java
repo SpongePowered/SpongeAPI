@@ -32,6 +32,6 @@ import org.spongepowered.api.datapack.DataPackEntry;
  *
  * <p>All registrations through the API will generate into the Vanilla data pack system</p>
  */
-public interface RecipeRegistration extends DataPackEntry, DataSerializable {
+public interface RecipeRegistration extends DataPackEntry<RecipeRegistration>, DataSerializable {
 
 }

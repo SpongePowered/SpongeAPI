@@ -40,7 +40,7 @@ import java.util.Optional;
 /**
  * An advancement.
  */
-public interface Advancement extends ComponentLike, DataPackEntry {
+public interface Advancement extends ComponentLike, DataPackEntry<Advancement> {
 
     /**
      * Creates a new {@link Builder} to create {@link Advancement}s.

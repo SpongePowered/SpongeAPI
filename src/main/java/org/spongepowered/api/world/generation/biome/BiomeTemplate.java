@@ -39,7 +39,7 @@ import java.io.IOException;
  * A template for {@link org.spongepowered.api.world.biome.Biome}s
  * <p>Serialized into a data pack at {@code data/<namespace>/worldgen/biome/<value>.json}</p>
  */
-public interface BiomeTemplate extends DataPackEntry {
+public interface BiomeTemplate extends DataPackEntry<BiomeTemplate> {
 
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class).reset();

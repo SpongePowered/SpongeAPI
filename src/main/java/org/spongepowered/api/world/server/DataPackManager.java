@@ -24,8 +24,13 @@
  */
 package org.spongepowered.api.world.server;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.datapack.DataPackEntry;
+import org.spongepowered.api.datapack.DataPackType;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public interface DataPackManager {
@@ -41,12 +46,22 @@ public interface DataPackManager {
     /**
      * Saves given data pack entry. If the datapack is reloadable the type is available after {@link #reload()}
      * otherwise the server will load the persisted datapack at startup.
+     * <p>To load a world from a {@link WorldTemplate} use {@link WorldManager#loadWorld(WorldTemplate)}</p>
      *
      * @param entry the data pack entry to save
      *
      * @return True when the type represented by the datapack entry will be available after reloading
      */
-    CompletableFuture<Boolean> save(DataPackEntry entry);
+    <T extends DataPackEntry<T>> CompletableFuture<Boolean> save(T entry);
 
+    <T extends DataPackEntry<T>> CompletableFuture<Optional<T>> load(DataPackType<T> type, ResourceKey key);
 
+    boolean delete(DataPackType<?> type, ResourceKey key) throws IOException;
+
+    void copy(final DataPackType<?> type, final ResourceKey from, final ResourceKey to) throws IOException;
+    void move(final DataPackType<?> type, final ResourceKey from, final ResourceKey to) throws IOException;
+
+    List<ResourceKey> list(DataPackType<?> type);
+
+    boolean exists(DataPackType<?> type, ResourceKey key);
 }

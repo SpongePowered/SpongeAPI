@@ -38,7 +38,7 @@ import java.io.IOException;
  * A template for a {@link WorldType}.
  * <p>Serialized into a data pack at {@code data/<namespace>/dimension_type/<value>.json}</p>
  */
-public interface WorldTypeTemplate extends DataPackEntry {
+public interface WorldTypeTemplate extends DataPackEntry<WorldTypeTemplate> {
 
     static WorldTypeTemplate overworld() {
         return Sponge.game().factoryProvider().provide(Factory.class).overworld();
