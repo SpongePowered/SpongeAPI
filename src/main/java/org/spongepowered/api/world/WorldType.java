@@ -237,10 +237,4 @@ public interface WorldType extends DefaultedRegistryValue, ContextSource, DataHo
         return this.require(Keys.CREATE_DRAGON_FIGHT);
     }
 
-    /**
-     * Returns the template for this world type if registered via datapack.
-     *
-     * @return The template
-     */
-    Optional<WorldTypeTemplate> asTemplate();
 }

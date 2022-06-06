@@ -28,6 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.datapack.DataPackEntry;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
@@ -40,20 +41,20 @@ import java.io.IOException;
  */
 public interface WorldTypeTemplate extends DataPackEntry<WorldTypeTemplate> {
 
-    static WorldTypeTemplate overworld() {
-        return Sponge.game().factoryProvider().provide(Factory.class).overworld();
+    static WorldTypeTemplate.Builder overworld() {
+        return WorldTypeTemplate.builder().from(WorldTypes.OVERWORLD.get());
     }
 
-    static WorldTypeTemplate overworldCaves() {
-        return Sponge.game().factoryProvider().provide(Factory.class).overworldCaves();
+    static WorldTypeTemplate.Builder overworldCaves() {
+        return WorldTypeTemplate.builder().from(WorldTypes.OVERWORLD_CAVES.get());
     }
 
-    static WorldTypeTemplate theNether() {
-        return Sponge.game().factoryProvider().provide(Factory.class).theNether();
+    static WorldTypeTemplate.Builder theNether() {
+        return WorldTypeTemplate.builder().from(WorldTypes.THE_NETHER.get());
     }
 
-    static WorldTypeTemplate theEnd() {
-        return Sponge.game().factoryProvider().provide(Factory.class).theEnd();
+    static WorldTypeTemplate.Builder theEnd() {
+        return WorldTypeTemplate.builder().from(WorldTypes.THE_END.get());
     }
 
     static Builder builder() {
@@ -70,7 +71,7 @@ public interface WorldTypeTemplate extends DataPackEntry<WorldTypeTemplate> {
 
     interface Builder extends ResourceKeyedBuilder<WorldTypeTemplate, Builder>, CopyableBuilder<WorldTypeTemplate, Builder> {
 
-        // TODO
+        // TODO 1.19 monstersettings
         <V> Builder add(Key<? extends Value<V>> key, V value);
 
         /**
@@ -89,16 +90,8 @@ public interface WorldTypeTemplate extends DataPackEntry<WorldTypeTemplate> {
          * @return This builder, for chaining
          */
         Builder fromDataPack(DataView pack) throws IOException;
+
+        Builder pack(DataPack<WorldTypeTemplate> pack);
     }
 
-    interface Factory {
-
-        WorldTypeTemplate overworld();
-
-        WorldTypeTemplate overworldCaves();
-
-        WorldTypeTemplate theNether();
-
-        WorldTypeTemplate theEnd();
-    }
 }

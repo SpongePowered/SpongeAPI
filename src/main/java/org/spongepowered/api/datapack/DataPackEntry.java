@@ -28,10 +28,15 @@ import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.data.persistence.DataSerializable;
 
 /**
- * A data pack. Can be saved using the {@link org.spongepowered.api.world.server.DataPackManager} or when registering it on a {@link org.spongepowered.api.event.lifecycle.RegisterDataPackValueEvent}
+ * A data pack entry. Can be saved using the {@link org.spongepowered.api.world.server.DataPackManager} or when registering it on a {@link org.spongepowered.api.event.lifecycle.RegisterDataPackValueEvent}
  */
 public interface DataPackEntry<T extends DataPackEntry<T>> extends ResourceKeyed, DataSerializable {
 
-    DataPackType<T> type();
+    /**
+     * The data pack this entry belongs to.
+     *
+     * @return The data pack
+     */
+    DataPack<T> pack();
 
 }

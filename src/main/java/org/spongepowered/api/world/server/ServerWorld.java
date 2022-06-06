@@ -62,8 +62,6 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
 
     ChunkGenerator generator();
 
-    WorldTemplate asTemplate();
-
     /**
      * @see ServerWorldProperties#key()
      * @return The key

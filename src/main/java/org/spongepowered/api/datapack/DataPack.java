@@ -24,21 +24,34 @@
  */
 package org.spongepowered.api.datapack;
 
-import io.leangen.geantyref.TypeToken;
-import org.spongepowered.api.advancement.Advancement;
+import org.spongepowered.api.advancement.AdvancementTemplate;
 import org.spongepowered.api.event.lifecycle.RegisterDataPackValueEvent;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
+import org.spongepowered.api.registry.RegistryType;
 import org.spongepowered.api.tag.TagTemplate;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.WorldTypeTemplate;
 import org.spongepowered.api.world.generation.biome.BiomeTemplate;
 import org.spongepowered.api.world.server.WorldTemplate;
 import org.spongepowered.plugin.PluginContainer;
 
-@CatalogedBy(DataPackTypes.class)
-public interface DataPackType<T> {
+@CatalogedBy(DataPacks.class)
+public interface DataPack<T> {
 
-    TypeToken<T> type();
+    /**
+     * Returns the name of the datapack
+     *
+     * @return The name
+     */
+    String name();
+
+    /**
+     * Returns the datapack description
+     *
+     * @return The description
+     */
+    String description();
 
     /**
      * Gets if resources created by this type will persist even if the {@link PluginContainer plugin}
@@ -50,18 +63,28 @@ public interface DataPackType<T> {
      */
     boolean persistent();
 
+    /**
+     * Returns a data pack for the same type of {@link DataPackEntry entries}.
+     *
+     * @param name The pack name
+     * @param description The pack description
+     *
+     * @return The new pack.
+     */
+    DataPack<T> with(String name, String description);
+
     interface Factory {
 
-        DataPackType<Advancement> advancement();
+        DataPack<AdvancementTemplate> advancement();
 
-        DataPackType<RecipeRegistration> recipe();
+        DataPack<RecipeRegistration> recipe();
 
-        DataPackType<WorldTypeTemplate> worldType();
+        DataPack<WorldTypeTemplate> worldType();
 
-        DataPackType<WorldTemplate> world();
+        DataPack<WorldTemplate> world();
 
-        DataPackType<TagTemplate> tag();
+        <T extends Taggable<T>> DataPack<TagTemplate<T>> tag(RegistryType<T> registryType);
 
-        DataPackType<BiomeTemplate> biome();
+        DataPack<BiomeTemplate> biome();
     }
 }

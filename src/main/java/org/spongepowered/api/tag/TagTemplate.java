@@ -27,9 +27,9 @@ package org.spongepowered.api.tag;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.datapack.DataPackEntry;
 import org.spongepowered.api.event.lifecycle.RegisterDataPackValueEvent;
-import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryType;
 
@@ -39,20 +39,20 @@ import java.util.Map;
 /**
  * A template that creates a or modifies a {@link Tag}.
  */
-public interface TagTemplate extends DataPackEntry<TagTemplate> {
+public interface TagTemplate<T extends Taggable<T>> extends DataPackEntry<TagTemplate<T>> {
 
     /**
      * Returns a {@link Builder} that creates {@link TagTemplate}s.
      *
-     * @param registryType The {@link DefaultedRegistryType} of the builder
+     * @param pack The {@link DataPack} of the builder
      * @return The builder.
      */
     @SuppressWarnings("unchecked")
-    static <T extends Taggable<T>> Builder<T> builder(final DefaultedRegistryType<T> registryType) {
-        return Sponge.game().factoryProvider().provide(Factory.class).builder(registryType);
+    static <T extends Taggable<T>> Builder<T> builder(final DataPack<TagTemplate<T>> pack) {
+        return Sponge.game().factoryProvider().provide(Factory.class).builder(pack);
     }
 
-    interface Builder<T extends Taggable<T>> extends org.spongepowered.api.util.ResourceKeyedBuilder<TagTemplate, Builder<T>> {
+    interface Builder<T extends Taggable<T>> extends org.spongepowered.api.util.ResourceKeyedBuilder<TagTemplate<T>, Builder<T>> {
 
         /**
          * Sets whether the values contained by a tag template will replace
@@ -196,7 +196,7 @@ public interface TagTemplate extends DataPackEntry<TagTemplate> {
          * @throws IllegalArgumentException If this TagTemplate is not the same {@link RegistryType}
          *                                  as this builder.
          */
-        Builder<T> addChild(TagTemplate childTag) throws IllegalArgumentException;
+        Builder<T> addChild(TagTemplate<T> childTag) throws IllegalArgumentException;
 
         /**
          * Adds multiple children to this template.
@@ -239,12 +239,12 @@ public interface TagTemplate extends DataPackEntry<TagTemplate> {
          */
         @Override
         @NonNull
-        TagTemplate build();
+        TagTemplate<T> build();
     }
 
     interface Factory {
 
-        <T extends Taggable<T>> Builder<T> builder(DefaultedRegistryType<T> registryType);
+        <T extends Taggable<T>> Builder<T> builder(DataPack<TagTemplate<T>> pack);
 
     }
 

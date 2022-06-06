@@ -26,7 +26,7 @@ package org.spongepowered.api.world.server;
 
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.datapack.DataPackEntry;
-import org.spongepowered.api.datapack.DataPackType;
+import org.spongepowered.api.datapack.DataPack;
 
 import java.io.IOException;
 import java.util.List;
@@ -54,14 +54,23 @@ public interface DataPackManager {
      */
     <T extends DataPackEntry<T>> CompletableFuture<Boolean> save(T entry);
 
-    <T extends DataPackEntry<T>> CompletableFuture<Optional<T>> load(DataPackType<T> type, ResourceKey key);
+    /**
+     * Loads given data pack entry.
+     * Returned object may not be able to interact well with the active server.
+     *
+     * @param type
+     * @param key
+     * @param <T>
+     * @return
+     */
+    <T extends DataPackEntry<T>> CompletableFuture<Optional<T>> load(DataPack<T> type, ResourceKey key);
 
-    boolean delete(DataPackType<?> type, ResourceKey key) throws IOException;
+    boolean delete(DataPack<?> type, ResourceKey key) throws IOException;
 
-    void copy(final DataPackType<?> type, final ResourceKey from, final ResourceKey to) throws IOException;
-    void move(final DataPackType<?> type, final ResourceKey from, final ResourceKey to) throws IOException;
+    void copy(final DataPack<?> type, final ResourceKey from, final ResourceKey to) throws IOException;
+    void move(final DataPack<?> type, final ResourceKey from, final ResourceKey to) throws IOException;
 
-    List<ResourceKey> list(DataPackType<?> type);
+    List<ResourceKey> list(DataPack<?> type);
 
-    boolean exists(DataPackType<?> type, ResourceKey key);
+    boolean exists(DataPack<?> type, ResourceKey key);
 }

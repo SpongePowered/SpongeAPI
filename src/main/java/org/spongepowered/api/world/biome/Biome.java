@@ -264,12 +264,4 @@ public interface Biome extends DataHolder {
         return this.get(Keys.BACKGROUND_MUSIC);
     }
 
-
-    /**
-     * Returns the template for this biome if registered via datapack.
-     *
-     * @return The template
-     */
-    Optional<BiomeTemplate> asTemplate();
-
 }

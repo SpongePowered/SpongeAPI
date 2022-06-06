@@ -32,6 +32,7 @@ import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.datapack.DataPackEntry;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.registry.RegistryReference;
@@ -145,6 +146,8 @@ public interface WorldTemplate extends ResourceKeyed, DataPackEntry<WorldTemplat
         Builder from(ServerWorld world);
 
         Builder from(ServerWorldProperties worldProperties);
+
+        Builder pack(DataPack<WorldTemplate> pack);
     }
 
     interface Factory {

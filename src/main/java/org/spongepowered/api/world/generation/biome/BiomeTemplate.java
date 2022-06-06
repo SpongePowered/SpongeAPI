@@ -28,6 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.datapack.DataPackEntry;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
@@ -59,6 +60,8 @@ public interface BiomeTemplate extends DataPackEntry<BiomeTemplate> {
 
         // TODO Biome.CODEC
         Builder fromDataPack(DataView pack) throws IOException;
+
+        Builder pack(DataPack<BiomeTemplate> pack);
     }
 
 }
