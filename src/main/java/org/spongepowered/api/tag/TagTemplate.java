@@ -27,7 +27,7 @@ package org.spongepowered.api.tag;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.datapack.DataPack;
+import org.spongepowered.api.datapack.DataPackEntry;
 import org.spongepowered.api.event.lifecycle.RegisterDataPackValueEvent;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryKey;
@@ -39,7 +39,7 @@ import java.util.Map;
 /**
  * A template that creates a or modifies a {@link Tag}.
  */
-public interface TagTemplate extends DataPack.Reloadable {
+public interface TagTemplate extends DataPackEntry {
 
     /**
      * Returns a {@link Builder} that creates {@link TagTemplate}s.

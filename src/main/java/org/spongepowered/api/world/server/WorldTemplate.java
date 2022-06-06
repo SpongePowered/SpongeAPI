@@ -32,7 +32,7 @@ import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.datapack.DataPack;
+import org.spongepowered.api.datapack.DataPackEntry;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.registry.RegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
@@ -51,7 +51,7 @@ import java.util.Optional;
  * A template for a {@link ServerWorld}.
  * <p>Serialized into a data pack at {@code data/<namespace>/dimension/<value>.json}</p>
  */
-public interface WorldTemplate extends ResourceKeyed, DataPack.Persistent, DataHolder {
+public interface WorldTemplate extends ResourceKeyed, DataPackEntry, DataHolder {
 
     static WorldTemplate overworld() {
         return Sponge.game().factoryProvider().provide(Factory.class).overworld();

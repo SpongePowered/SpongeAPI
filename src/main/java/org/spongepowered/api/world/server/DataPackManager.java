@@ -24,22 +24,29 @@
  */
 package org.spongepowered.api.world.server;
 
-import org.spongepowered.api.datapack.DataPack;
+import org.spongepowered.api.datapack.DataPackEntry;
+
+import java.util.concurrent.CompletableFuture;
 
 public interface DataPackManager {
 
     /**
-     * Reloads reloadable datapacks.
-     * Also causes {@link org.spongepowered.api.event.lifecycle.RegisterDataPackValueEvent} to fire for {@link DataPack}
+     * Reloads all reloadable datapacks.
+     * Also causes {@link org.spongepowered.api.event.lifecycle.RegisterDataPackValueEvent} to fire
+     *
+     * @return The future when reloading is complete
      */
-    void reload();
+    CompletableFuture<Void> reload();
 
     /**
-     * Saves given persistent data pack.
+     * Saves given data pack entry. If the datapack is reloadable the type is available after {@link #reload()}
+     * otherwise the server will load the persisted datapack at startup.
      *
-     * @param persistent the data pack to persist
+     * @param entry the data pack entry to save
+     *
+     * @return True when the type represented by the datapack entry will be available after reloading
      */
-    void save(DataPack.Persistent persistent);
+    CompletableFuture<Boolean> save(DataPackEntry entry);
 
 
 }

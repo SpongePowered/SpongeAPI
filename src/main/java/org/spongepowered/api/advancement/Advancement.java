@@ -30,7 +30,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
-import org.spongepowered.api.datapack.DataPack;
+import org.spongepowered.api.datapack.DataPackEntry;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
 
 import java.util.Collection;
@@ -40,7 +40,7 @@ import java.util.Optional;
 /**
  * An advancement.
  */
-public interface Advancement extends ComponentLike, DataPack.Reloadable {
+public interface Advancement extends ComponentLike, DataPackEntry {
 
     /**
      * Creates a new {@link Builder} to create {@link Advancement}s.

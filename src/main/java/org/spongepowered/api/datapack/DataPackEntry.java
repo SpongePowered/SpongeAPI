@@ -27,22 +27,12 @@ package org.spongepowered.api.datapack;
 import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.data.persistence.DataSerializable;
 
-public interface DataPack extends ResourceKeyed, DataSerializable {
+/**
+ * A data pack. Can be saved using the {@link org.spongepowered.api.world.server.DataPackManager} or when registering it on a {@link org.spongepowered.api.event.lifecycle.RegisterDataPackValueEvent}
+ */
+public interface DataPackEntry extends ResourceKeyed, DataSerializable {
 
     @SuppressWarnings("rawtypes")
     DataPackType type();
 
-    /**
-     * A reloadable data pack
-     */
-    interface Reloadable extends DataPack {
-
-    }
-
-    /**
-     * A persistent data pack. Will only be loaded on startup.
-     */
-    interface Persistent extends DataPack {
-
-    }
 }
