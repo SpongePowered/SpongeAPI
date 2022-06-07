@@ -162,7 +162,7 @@ public interface ServerWorldProperties extends WorldProperties, Nameable, Identi
      * @return The world type
      */
     default WorldType worldType() {
-        return this.require(Keys.WORLD_TYPE).get(Sponge.game());
+        return this.require(Keys.WORLD_TYPE);
     }
 
     /**
@@ -171,7 +171,7 @@ public interface ServerWorldProperties extends WorldProperties, Nameable, Identi
      * @param worldType the type
      */
     default void setWorldType(WorldType worldType) {
-        this.offer(Keys.WORLD_TYPE, RegistryReference.referenced(Sponge.game(), RegistryTypes.WORLD_TYPE, worldType));
+        this.offer(Keys.WORLD_TYPE, worldType);
     }
 
     /**
@@ -247,7 +247,7 @@ public interface ServerWorldProperties extends WorldProperties, Nameable, Identi
      * @param difficulty The difficulty
      */
     default void setDifficulty(Difficulty difficulty) {
-        this.offer(Keys.WORLD_DIFFICULTY, RegistryReference.referenced(Sponge.game(), RegistryTypes.DIFFICULTY, difficulty));
+        this.offer(Keys.WORLD_DIFFICULTY, difficulty);
     }
 
     /**

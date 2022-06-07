@@ -45,21 +45,48 @@ public interface BiomeTemplate extends DataPackEntry<BiomeTemplate> {
         return Sponge.game().builderProvider().provide(Builder.class).reset();
     }
 
-    // TODO usage? probably needs to be turned into a data-pack then - reloaded into registry
+    /**
+     * Returns the {@link Biome}
+     *
+     * @return The biome
+     */
     Biome biome();
 
-    // see Vanilla Biome.BiomeBuilder
     interface Builder extends ResourceKeyedBuilder<BiomeTemplate, Builder>, CopyableBuilder<BiomeTemplate, Builder> {
 
-        // TODO
+        /**
+         * Adds the given {@link Key} with the given value.
+         *
+         * @param key The key to assign the value with
+         * @param value The value to assign with the key
+         * @param <V> The type of the value
+         * @return This builder, for chaining
+         */
         <V> Builder add(Key<? extends Value<V>> key, V value);
 
-        // TODO
+        /**
+         * Initializes the builder with all data from given {@link Biome}
+         *
+         * @param biome The biome
+         * @return This builder, for chaining
+         */
         Builder from(Biome biome);
 
-        // TODO Biome.CODEC
+        /**
+         * Initializes the builder with all data from given {@link DataView}
+         * <p>{@link BiomeTemplate#toContainer()}</p>
+         *
+         * @param pack the data pack data
+         * @return This builder, for chaining
+         */
         Builder fromDataPack(DataView pack) throws IOException;
 
+        /**
+         * Sets the data pack.
+         *
+         * @param pack The data pack
+         * @return This builder, for chaining
+         */
         Builder pack(DataPack<BiomeTemplate> pack);
     }
 

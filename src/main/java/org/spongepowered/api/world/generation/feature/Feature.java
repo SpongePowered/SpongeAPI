@@ -24,12 +24,13 @@
  */
 package org.spongepowered.api.world.generation.feature;
 
+import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
-import org.spongepowered.api.world.server.ServerWorld;
-import org.spongepowered.math.vector.Vector3i;
 
 @CatalogedBy(Features.class)
-public interface Feature<FC extends FeatureConfig> extends DefaultedRegistryValue {
-    boolean place(ServerWorld world, Vector3i pos, FC config);
+public interface Feature extends DefaultedRegistryValue {
+
+    ConfiguredFeature<Feature> configure(DataView config);
+
 }

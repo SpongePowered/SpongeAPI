@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world.storage;
 
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.util.MinecraftDayTime;
@@ -86,7 +85,7 @@ public interface WorldProperties extends WeatherUniverse, GameRuleHolder, DataHo
      * @return The difficulty
      */
     default Difficulty difficulty() {
-        return this.require(Keys.WORLD_DIFFICULTY).get(Sponge.game());
+        return this.require(Keys.WORLD_DIFFICULTY);
     }
 
 }

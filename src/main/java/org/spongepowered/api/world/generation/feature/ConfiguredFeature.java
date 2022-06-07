@@ -25,8 +25,10 @@
 package org.spongepowered.api.world.generation.feature;
 
 
+import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3i;
 
@@ -36,12 +38,13 @@ import org.spongepowered.math.vector.Vector3i;
  * <p>Serialized into a data pack at {@code data/<namespace>/worldgen/configured_feature/<value>.json}</p>
  */
 @CatalogedBy(ConfiguredFeatures.class)
-public interface ConfiguredFeature<F extends Feature<FC>, FC extends FeatureConfig> extends DefaultedRegistryValue {
+public interface ConfiguredFeature<F extends Feature> extends DefaultedRegistryValue {
 
     F feature();
 
-    FC config();
+    DataView toContainer();
 
     boolean place(ServerWorld world, Vector3i pos);
+    boolean place(ServerLocation location);
 
 }

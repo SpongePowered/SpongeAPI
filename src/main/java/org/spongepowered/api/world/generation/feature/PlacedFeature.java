@@ -31,9 +31,8 @@ import org.spongepowered.math.vector.Vector3i;
 
 import java.util.List;
 
-
 /**
- * Placed Features are a combination of a {@link ConfiguredFeature} with a list of @{@link PlacementModifier}s.
+ * Placed Features are a combination of a {@link ConfiguredFeature} with a list of {@link PlacementModifier placement modifiers}.
  * <p>Modifiers can impact position, rarity, count and more.</p>
  *
  * <p>Serialized into a data pack at {@code data/<namespace>/worldgen/placed_feature/<value>.json}</p>
@@ -43,7 +42,13 @@ import java.util.List;
 @CatalogedBy(PlacedFeatures.class)
 public interface PlacedFeature extends DefaultedRegistryValue {
 
-    <F extends Feature<FC>, FC extends FeatureConfig> ConfiguredFeature<F, FC> feature();
+    /**
+     * Returns the feature configuration.
+     *
+     * @param <F> The feature type
+     * @return The feature configuration
+     */
+    <F extends Feature> ConfiguredFeature<F> feature();
 
     List<PlacementModifier> placementModifiers(); // TODO Placement Modifiers
 

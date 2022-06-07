@@ -43,7 +43,6 @@ import org.spongepowered.api.world.biome.climate.Precipitation;
 import org.spongepowered.api.world.biome.climate.TemperatureModifier;
 import org.spongepowered.api.world.biome.spawner.NaturalSpawnCost;
 import org.spongepowered.api.world.biome.spawner.NaturalSpawner;
-import org.spongepowered.api.world.generation.biome.BiomeTemplate;
 import org.spongepowered.api.world.generation.biome.CarvingStep;
 import org.spongepowered.api.world.generation.biome.ConfiguredCarver;
 import org.spongepowered.api.world.generation.biome.DecorationStep;

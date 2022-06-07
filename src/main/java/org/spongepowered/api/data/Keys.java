@@ -1093,15 +1093,9 @@ public final class Keys {
     public static final Key<Value<Ticks>> FUSE_DURATION = Keys.key(ResourceKey.sponge("fuse_duration"), Ticks.class);
 
     /**
-     * The {@link GameMode} a {@link Humanoid} or {@link ServerWorldProperties} has.
+     * The {@link GameMode} a {@link Humanoid} or {@link ServerWorldProperties} or {@link WorldTemplate} has.
      */
     public static final Key<Value<GameMode>> GAME_MODE = Keys.key(ResourceKey.sponge("game_mode"), GameMode.class);
-
-    /**
-     * The {@link GameMode} of a {@link WorldTemplate}.
-     * Readonly
-     */
-    public static final Key<Value<RegistryReference<GameMode>>> GAME_MODE_REFERENCE = Keys.key(ResourceKey.sponge("game_mode_reference"), new TypeToken<RegistryReference<GameMode>>() {});
 
     /**
      * The player represented by a {@link BlockTypes#PLAYER_HEAD} (and {@link BlockTypes#PLAYER_WALL_HEAD})
@@ -3138,7 +3132,7 @@ public final class Keys {
      * The difficulty of a {@link WorldTemplate} or {@link WorldProperties}
      * Readonly
      */
-    public static final Key<Value<RegistryReference<Difficulty>>> WORLD_DIFFICULTY = Keys.key(ResourceKey.sponge("world_difficulty"), new TypeToken<RegistryReference<Difficulty>>() {});
+    public static final Key<Value<Difficulty>> WORLD_DIFFICULTY = Keys.key(ResourceKey.sponge("world_difficulty"), Difficulty.class);
 
     /**
      * The minimum {@code Y} coordinate of a {@link WorldType}
@@ -3173,10 +3167,10 @@ public final class Keys {
     public static final Key<Value<Integer>> WORLD_LOGICAL_HEIGHT = Keys.key(ResourceKey.sponge("world_logical_height"), Integer.class);
 
     /**
-     * The {@link WorldType} reference of a {@link WorldTemplate} or {@link ServerWorldProperties}
+     * The {@link WorldType} of a {@link WorldTemplate} or {@link ServerWorldProperties}
      * Readonly
      */
-    public static final Key<Value<RegistryReference<WorldType>>> WORLD_TYPE = Keys.key(ResourceKey.sponge("world_type"), new TypeToken<RegistryReference<WorldType>>() {});
+    public static final Key<Value<WorldType>> WORLD_TYPE = Keys.key(ResourceKey.sponge("world_type"), WorldType.class);
 
     /**
      * The {@link WorldTypeEffect effect} of a {@link WorldType} that will play for a {@link ServerPlayer player}

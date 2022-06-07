@@ -31,7 +31,6 @@ import org.spongepowered.api.world.biome.BiomeFinder;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * Provides available Biomes for world generation.

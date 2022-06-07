@@ -84,6 +84,7 @@ public interface ChunkGenerator {
     BiomeProvider biomeProvider();
 
     List<PlacedFeature> featuresIn(Biome biome);
+
     List<Structure> structureSets(); // TODO Structure -> StructureSet
 
     interface Factory {

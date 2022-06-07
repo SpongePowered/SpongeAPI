@@ -35,7 +35,6 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.datapack.DataPackEntry;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
-import org.spongepowered.api.registry.RegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
 import org.spongepowered.api.world.SerializationBehavior;
@@ -77,7 +76,7 @@ public interface WorldTemplate extends ResourceKeyed, DataPackEntry<WorldTemplat
         return this.get(Keys.DISPLAY_NAME);
     }
 
-    default RegistryReference<WorldType> worldType() {
+    default WorldType worldType() {
         return this.require(Keys.WORLD_TYPE);
     }
 
@@ -85,11 +84,11 @@ public interface WorldTemplate extends ResourceKeyed, DataPackEntry<WorldTemplat
         return this.require(Keys.CHUNK_GENERATOR);
     }
 
-    default Optional<RegistryReference<GameMode>> gameMode() {
-        return this.get(Keys.GAME_MODE_REFERENCE);
+    default Optional<GameMode> gameMode() {
+        return this.get(Keys.GAME_MODE);
     }
 
-    default Optional<RegistryReference<Difficulty>> difficulty() {
+    default Optional<Difficulty> difficulty() {
         return this.get(Keys.WORLD_DIFFICULTY);
     }
 

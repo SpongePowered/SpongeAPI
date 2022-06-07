@@ -186,7 +186,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<ChunkState> CHUNK_STATE = RegistryTypes.minecraftKeyInGame("chunk_status");
 
-    public static final DefaultedRegistryType<ConfiguredFeature<?, ?>> CONFIGURED_FEATURE = RegistryTypes.minecraftKeyInGame("worldgen/configured_feature");
+    public static final DefaultedRegistryType<ConfiguredFeature<? >> CONFIGURED_FEATURE = RegistryTypes.minecraftKeyInGame("worldgen/configured_feature");
 
     public static final DefaultedRegistryType<ContainerType> CONTAINER_TYPE = RegistryTypes.minecraftKeyInGame("menu");
 
@@ -200,7 +200,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<EntityType<@NonNull ? extends Entity>> ENTITY_TYPE = RegistryTypes.minecraftKeyInGame("entity_type");
 
-    public static final DefaultedRegistryType<Feature<?>> FEATURE = RegistryTypes.minecraftKeyInGame("worldgen/feature");
+    public static final DefaultedRegistryType<Feature> FEATURE = RegistryTypes.minecraftKeyInGame("worldgen/feature");
 
     public static final DefaultedRegistryType<FluidType> FLUID_TYPE = RegistryTypes.minecraftKeyInGame("fluid");
 

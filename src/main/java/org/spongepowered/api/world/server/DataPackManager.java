@@ -25,8 +25,8 @@
 package org.spongepowered.api.world.server;
 
 import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.datapack.DataPackEntry;
 import org.spongepowered.api.datapack.DataPack;
+import org.spongepowered.api.datapack.DataPackEntry;
 import org.spongepowered.api.datapack.DataPackType;
 
 import java.io.IOException;
