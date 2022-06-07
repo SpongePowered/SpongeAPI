@@ -25,6 +25,7 @@
 package org.spongepowered.api.item.recipe.crafting;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
@@ -96,6 +97,15 @@ public interface SpecialCraftingRecipe extends CraftingRecipe {
         }
 
         interface EndStep extends Builder, org.spongepowered.api.util.Builder<RecipeRegistration, Builder> {
+
+            /**
+             * Sets the data pack for the recipe.
+             *
+             * @param pack The data pack
+             *
+             * @return This builder, for chaining
+             */
+            EndStep pack(DataPack<RecipeRegistration> pack);
 
             /**
              * Builds the {@link SpecialCraftingRecipe}.

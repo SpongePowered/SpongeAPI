@@ -50,7 +50,6 @@ import java.util.Optional;
 
 /**
  * A template for a {@link ServerWorld}.
- * <p>Serialized into a data pack at {@code data/<namespace>/dimension/<value>.json}</p>
  */
 public interface WorldTemplate extends ResourceKeyed, DataPackEntry<WorldTemplate>, DataHolder {
 

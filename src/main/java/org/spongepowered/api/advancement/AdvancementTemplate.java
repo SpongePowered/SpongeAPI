@@ -33,7 +33,6 @@ import org.spongepowered.api.util.ResourceKeyedBuilder;
 
 /**
  * A template for an {@link Advancement}.
- * <p>Serialized into a data pack at {@code data/<namespace>/advancements/<value>.json}</p>
  */
 public interface AdvancementTemplate extends DataPackEntry<AdvancementTemplate> {
 

@@ -37,8 +37,7 @@ import org.spongepowered.api.world.biome.Biome;
 import java.io.IOException;
 
 /**
- * A template for {@link org.spongepowered.api.world.biome.Biome}s
- * <p>Serialized into a data pack at {@code data/<namespace>/worldgen/biome/<value>.json}</p>
+ * A template for {@link Biome}s
  */
 public interface BiomeTemplate extends DataPackEntry<BiomeTemplate> {
 

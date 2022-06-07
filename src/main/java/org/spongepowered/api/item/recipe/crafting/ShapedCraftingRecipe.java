@@ -27,6 +27,7 @@ package org.spongepowered.api.item.recipe.crafting;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
@@ -263,6 +264,15 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
              * @return This builder, for chaining
              */
             EndStep group(@Nullable String name);
+
+            /**
+             * Sets the data pack for the recipe.
+             *
+             * @param pack The data pack
+             *
+             * @return This builder, for chaining
+             */
+            EndStep pack(DataPack<RecipeRegistration> pack);
 
             /**
              * Builds the {@link ShapedCraftingRecipe}.

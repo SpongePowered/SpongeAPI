@@ -27,9 +27,12 @@ package org.spongepowered.api.world.server;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.datapack.DataPackEntry;
 import org.spongepowered.api.datapack.DataPack;
+import org.spongepowered.api.datapack.DataPackType;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -55,22 +58,80 @@ public interface DataPackManager {
     <T extends DataPackEntry<T>> CompletableFuture<Boolean> save(T entry);
 
     /**
-     * Loads given data pack entry.
+     * Loads a {@link DataPackEntry} from given data pack.
      * Returned object may not be able to interact well with the active server.
      *
-     * @param type
-     * @param key
-     * @param <T>
-     * @return
+     * @param pack The data pack
+     * @param key The data pack entry key
+     *
+     * @return The loaded DataPackEntry
      */
-    <T extends DataPackEntry<T>> CompletableFuture<Optional<T>> load(DataPack<T> type, ResourceKey key);
+    <T extends DataPackEntry<T>> CompletableFuture<Optional<T>> load(DataPack<T> pack, ResourceKey key);
 
-    boolean delete(DataPack<?> type, ResourceKey key) throws IOException;
+    /**
+     * Deletes the data pack entry in given data pack.
+     *
+     * @param pack The data pack
+     * @param key The data pack entry key
+     *
+     * @return True when deleted
+     */
+    boolean delete(DataPack<?> pack, ResourceKey key) throws IOException;
 
-    void copy(final DataPack<?> type, final ResourceKey from, final ResourceKey to) throws IOException;
-    void move(final DataPack<?> type, final ResourceKey from, final ResourceKey to) throws IOException;
+    /**
+     * Copies a data pack entry in given data pack
+     *
+     * @param pack The data pack
+     * @param from The data pack entry key to copy from
+     * @param to  The data pack entry key to copy to
+     */
+    void copy(final DataPack<?> pack, final ResourceKey from, final ResourceKey to) throws IOException;
 
-    List<ResourceKey> list(DataPack<?> type);
+    /**
+     * Moves a data pack entry in the given data pack
+     * @param pack The data pack
+     * @param from The data pack entry key to move from
+     * @param to The data pack entry key to move to
+     */
+    void move(final DataPack<?> pack, final ResourceKey from, final ResourceKey to) throws IOException;
 
-    boolean exists(DataPack<?> type, ResourceKey key);
+    // TODO copy/move variant to move in between packs?
+
+    /**
+     * Lists the data pack entries of the given data pack.
+     *
+     * @param pack The data pack
+     *
+     * @return The data pack entries
+     */
+    List<ResourceKey> list(DataPack<?> pack);
+
+    /**
+     * Returns a map of all data pack to data pack entry keys matching the given type.
+     *
+     * @param packType The data pack type
+     *
+     * @return The data pack entries found by data pack
+     */
+    <T extends DataPackEntry<T>> Map<DataPack<T>, Collection<ResourceKey>> find(DataPackType<T> packType);
+
+    /**
+     * Returns the data pack containing a data pack entry with given key and pack type
+     *
+     * @param packType The data pack type
+     * @param key The data pack entry key
+     *
+     * @return The data pack containing the data pack entry
+     */
+    <T extends DataPackEntry<T>> Optional<DataPack<T>> findPack(DataPackType<T> packType, ResourceKey key);
+
+    /**
+     * Returns whether a data pack entry exists in given data pack.
+     *
+     * @param pack The data pack
+     * @param key The data pack entry key
+     *
+     * @return True when the data pack entry exists
+     */
+    boolean exists(DataPack<?> pack, ResourceKey key);
 }

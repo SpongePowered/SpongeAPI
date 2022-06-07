@@ -24,40 +24,40 @@
  */
 package org.spongepowered.api.datapack;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.AdvancementTemplate;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.fluid.FluidType;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
+import org.spongepowered.api.registry.RegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.tag.TagTemplate;
 import org.spongepowered.api.world.WorldTypeTemplate;
 import org.spongepowered.api.world.generation.biome.BiomeTemplate;
 import org.spongepowered.api.world.server.WorldTemplate;
 
-/**
- * Sponge provided default data packs for plugins. When building a {@link DataPackEntry} these packs are set by default.
- */
-public final class DataPacks {
+public final class DataPackTypes {
 
-    public static final DataPack<AdvancementTemplate> ADVANCEMENT = DataPackTypes.ADVANCEMENT.pack("plugin_advancements", "Sponge plugin provided advancements");
+    public static final DataPackType<AdvancementTemplate> ADVANCEMENT = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).advancement();
 
-    public static final DataPack<RecipeRegistration> RECIPE = DataPackTypes.RECIPE.pack("plugin_recipes", "Sponge plugin provided recipes");
+    public static final DataPackType<RecipeRegistration> RECIPE = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).recipe();
 
-    public static final DataPack<TagTemplate<BlockType>> BLOCK_TAG = DataPackTypes.BLOCK_TAG.pack("plugin_tags", "Sponge plugin provided tags");
+    public static final DataPackType<TagTemplate<BlockType>> BLOCK_TAG = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).tag(RegistryTypes.BLOCK_TYPE);
 
-    public static final DataPack<TagTemplate<FluidType>> FLUID_TAG = DataPackTypes.FLUID_TAG.pack("plugin_tags", "Sponge plugin provided tags");
+    public static final DataPackType<TagTemplate<FluidType>> FLUID_TAG = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).tag(RegistryTypes.FLUID_TYPE);
 
-    public static final DataPack<TagTemplate<ItemType>> ITEM_TAG = DataPackTypes.ITEM_TAG.pack("plugin_tags", "Sponge plugin provided tags");
+    public static final DataPackType<TagTemplate<ItemType>> ITEM_TAG = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).tag(RegistryTypes.ITEM_TYPE);
 
-    public static final DataPack<TagTemplate<EntityType<?>>> ENTITY_TAG = DataPackTypes.ENTITY_TAG.pack("plugin_tags", "Sponge plugin provided tags");
+    public static final DataPackType<TagTemplate<EntityType<?>>> ENTITY_TAG = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).tag((RegistryType<EntityType<?>>) RegistryTypes.ENTITY_TYPE);
 
-    public static final DataPack<BiomeTemplate> BIOME = DataPackTypes.BIOME.pack("plugin_biomes", "Sponge plugin provided biomes");
+    public static final DataPackType<BiomeTemplate> BIOME = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).biome();
 
-    public static final DataPack<WorldTypeTemplate> WORLD_TYPE = DataPackTypes.WORLD_TYPE.pack("plugin_world_types", "Sponge plugin provided world types");
+    public static final DataPackType<WorldTypeTemplate> WORLD_TYPE = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).worldType();
 
-    public static final DataPack<WorldTemplate> WORLD = DataPackTypes.WORLD.pack("plugin_worlds", "Sponge plugin provided worlds");
+    public static final DataPackType<WorldTemplate> WORLD = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).world();
 
-    private DataPacks() {
+    private DataPackTypes() {
     }
 }
