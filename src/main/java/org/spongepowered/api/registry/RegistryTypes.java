@@ -153,11 +153,14 @@ import org.spongepowered.api.world.biome.climate.TemperatureModifier;
 import org.spongepowered.api.world.chunk.ChunkState;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gamerule.GameRule;
-import org.spongepowered.api.world.generation.biome.CarvingStep;
-import org.spongepowered.api.world.generation.biome.DecorationStep;
-import org.spongepowered.api.world.generation.feature.ConfiguredFeature;
+import org.spongepowered.api.world.generation.carver.Carver;
+import org.spongepowered.api.world.generation.carver.CarverType;
+import org.spongepowered.api.world.generation.carver.CarvingStep;
+import org.spongepowered.api.world.generation.feature.DecorationStep;
 import org.spongepowered.api.world.generation.feature.Feature;
+import org.spongepowered.api.world.generation.feature.FeatureType;
 import org.spongepowered.api.world.generation.feature.PlacedFeature;
+import org.spongepowered.api.world.generation.feature.PlacementModifierType;
 import org.spongepowered.api.world.generation.structure.Structure;
 import org.spongepowered.api.world.portal.PortalType;
 import org.spongepowered.api.world.schematic.PaletteType;
@@ -178,15 +181,17 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<AttributeType> ATTRIBUTE_TYPE = RegistryTypes.minecraftKeyInGame("attribute");
 
-    public static final RegistryType<Biome> BIOME = RegistryTypes.minecraftKey("worldgen/biome");
+    public static final DefaultedRegistryType<Biome> BIOME = RegistryTypes.minecraftKeyInServer("worldgen/biome");
 
     public static final DefaultedRegistryType<BlockType> BLOCK_TYPE = RegistryTypes.minecraftKeyInGame("block");
 
     public static final DefaultedRegistryType<BlockEntityType> BLOCK_ENTITY_TYPE = RegistryTypes.minecraftKeyInGame("block_entity_type");
 
-    public static final DefaultedRegistryType<ChunkState> CHUNK_STATE = RegistryTypes.minecraftKeyInGame("chunk_status");
+    public static final DefaultedRegistryType<CarverType> CARVER_TYPE = RegistryTypes.minecraftKeyInGame("worldgen/carver");
 
-    public static final DefaultedRegistryType<ConfiguredFeature<? >> CONFIGURED_FEATURE = RegistryTypes.minecraftKeyInGame("worldgen/configured_feature");
+    public static final DefaultedRegistryType<Carver> CARVER = RegistryTypes.minecraftKeyInGame("worldgen/configured_carver");
+
+    public static final DefaultedRegistryType<ChunkState> CHUNK_STATE = RegistryTypes.minecraftKeyInGame("chunk_status");
 
     public static final DefaultedRegistryType<ContainerType> CONTAINER_TYPE = RegistryTypes.minecraftKeyInGame("menu");
 
@@ -200,7 +205,9 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<EntityType<@NonNull ? extends Entity>> ENTITY_TYPE = RegistryTypes.minecraftKeyInGame("entity_type");
 
-    public static final DefaultedRegistryType<Feature> FEATURE = RegistryTypes.minecraftKeyInGame("worldgen/feature");
+    public static final DefaultedRegistryType<Feature> FEATURE = RegistryTypes.minecraftKeyInServer("worldgen/configured_feature");
+
+    public static final DefaultedRegistryType<FeatureType> FEATURE_TYPE = RegistryTypes.minecraftKeyInGame("worldgen/feature");
 
     public static final DefaultedRegistryType<FluidType> FLUID_TYPE = RegistryTypes.minecraftKeyInGame("fluid");
 
@@ -208,7 +215,9 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<ParticleType> PARTICLE_TYPE = RegistryTypes.minecraftKeyInGame("particle_type");
 
-    public static final DefaultedRegistryType<PlacedFeature> PLACED_FEATURE = RegistryTypes.minecraftKeyInGame("worldgen/placed_feature");
+    public static final DefaultedRegistryType<PlacedFeature> PLACED_FEATURE = RegistryTypes.minecraftKeyInServer("worldgen/placed_feature");
+
+    public static final DefaultedRegistryType<PlacementModifierType> PLACEMENT_MODIFIER = RegistryTypes.minecraftKeyInGame("worldgen/placement_modifier_type");
 
     public static final DefaultedRegistryType<ProfessionType> PROFESSION_TYPE = RegistryTypes.minecraftKeyInGame("villager_profession");
 
@@ -222,7 +231,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<StatisticCategory> STATISTIC_CATEGORY = RegistryTypes.minecraftKeyInGame("stat_type");
 
-    public static final DefaultedRegistryType<Structure> STRUCTURE = RegistryTypes.minecraftKeyInGame("worldgen/structure_feature");
+    public static final DefaultedRegistryType<Structure> STRUCTURE = RegistryTypes.minecraftKeyInServer("worldgen/structure");
 
     public static final DefaultedRegistryType<VillagerType> VILLAGER_TYPE = RegistryTypes.minecraftKeyInGame("villager_type");
 

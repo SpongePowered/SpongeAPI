@@ -22,12 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.generation.biome;
+package org.spongepowered.api.world.generation.carver;
 
-// Registry.CARVER
-// WorldCarver.register
-public interface Carver<CC extends CarverConfig> {
-    // Vanilla carvers:
-    // CanyonWorldCarver - CanyonCarverConfiguration
-    // CaveWorldCarver->NetherWorldCarver - CaveCarverConfiguration
+import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.util.annotation.CatalogedBy;
+
+/**
+ * A type of {@link Carver}.
+ */
+@CatalogedBy(CarverTypes.class)
+public interface CarverType {
+
+    /**
+     * Returns the configured carver
+     * @param config the carver configuration data
+     * @return The configured carver
+     */
+    Carver configure(DataView config) throws IllegalArgumentException;
 }

@@ -35,7 +35,10 @@ import org.spongepowered.api.registry.RegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.tag.TagTemplate;
 import org.spongepowered.api.world.WorldTypeTemplate;
-import org.spongepowered.api.world.generation.biome.BiomeTemplate;
+import org.spongepowered.api.world.biome.BiomeTemplate;
+import org.spongepowered.api.world.generation.carver.CarverTemplate;
+import org.spongepowered.api.world.generation.feature.FeatureTemplate;
+import org.spongepowered.api.world.generation.feature.PlacedFeatureTemplate;
 import org.spongepowered.api.world.server.WorldTemplate;
 
 public final class DataPackTypes {
@@ -53,6 +56,12 @@ public final class DataPackTypes {
     public static final DataPackType<TagTemplate<EntityType<?>>> ENTITY_TAG = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).tag((RegistryType<EntityType<?>>) RegistryTypes.ENTITY_TYPE);
 
     public static final DataPackType<BiomeTemplate> BIOME = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).biome();
+
+    public static final DataPackType<CarverTemplate> CARVER = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).carver();
+
+    public static final DataPackType<FeatureTemplate> FEATURE = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).feature();
+
+    public static final DataPackType<PlacedFeatureTemplate> PLACED_FEATURE = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).placedFeature();
 
     public static final DataPackType<WorldTypeTemplate> WORLD_TYPE = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).worldType();
 

@@ -24,13 +24,53 @@
  */
 package org.spongepowered.api.world.generation.feature;
 
+
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.world.server.ServerLocation;
+import org.spongepowered.api.world.server.ServerWorld;
+import org.spongepowered.math.vector.Vector3i;
 
+/**
+ * Features include smaller objects placed in the world like trees, flowers, ore etc.
+ * <p>Features are used in world generation as a part of {@link PlacedFeature placed features}</p>
+ */
 @CatalogedBy(Features.class)
 public interface Feature extends DefaultedRegistryValue {
 
-    ConfiguredFeature<Feature> configure(DataView config);
+    /**
+     * Returns the feature type.
+     *
+     * @return The feature type
+     */
+    FeatureType type();
+
+    /**
+     * Returns the serialized feature configuration.
+     * <p>Reconfigure a feature using {@link FeatureType#configure(DataView)}</p>
+     *
+     * @return The serialized feature configuration
+     */
+    DataView toContainer();
+
+    /**
+     * Places the feature at given position and world
+     *
+     * @param world The world
+     * @param pos The position
+     *
+     * @return true when the feature was successfully placed
+     */
+    boolean place(ServerWorld world, Vector3i pos);
+
+    /**
+     * Places the feature at given location
+     *
+     * @param location The location
+     *
+     * @return true when the feature was successfully placed
+     */
+    boolean place(ServerLocation location);
 
 }

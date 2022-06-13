@@ -22,10 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.generation.biome;
+package org.spongepowered.api.world.generation.carver;
 
-public interface CarverConfig {
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryScope;
+import org.spongepowered.api.registry.RegistryScopes;
+import org.spongepowered.api.registry.RegistryTypes;
 
-    // TODO using CODEC provide raw access
-    // see ConfiguredWorldCarver.DIRECT_CODEC
+@SuppressWarnings("unused")
+@RegistryScopes(scopes = RegistryScope.GAME)
+public final class CarvingSteps {
+    // @formatter:off
+
+    public static final DefaultedRegistryReference<CarvingStep> AIR = CarvingSteps.key(ResourceKey.sponge("air"));
+
+    public static final DefaultedRegistryReference<CarvingStep> LIQUID = CarvingSteps.key(ResourceKey.sponge("liquid"));
+
+    // @formatter:on
+
+    private CarvingSteps() {
+    }
+
+    public static Registry<CarvingStep> registry() {
+        return Sponge.game().registry(RegistryTypes.CARVING_STEP);
+    }
+
+    private static DefaultedRegistryReference<CarvingStep> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.CARVING_STEP, location).asDefaultedReference(Sponge::game);
+    }
 }

@@ -22,62 +22,57 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.generation.biome;
+package org.spongepowered.api.world.generation.feature;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.persistence.DataView;
-import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.datapack.DataPackEntry;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
-import org.spongepowered.api.world.biome.Biome;
 
 import java.io.IOException;
 
 /**
- * A template for {@link Biome}s
+ * A template for {@link Feature features}
  */
-public interface BiomeTemplate extends DataPackEntry<BiomeTemplate> {
+public interface FeatureTemplate extends DataPackEntry<FeatureTemplate> {
 
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class).reset();
     }
 
     /**
-     * Returns the {@link Biome}
+     * Returns the feature.
      *
-     * @return The biome
+     * @return The feature
      */
-    Biome biome();
+    Feature feature();
 
-    interface Builder extends ResourceKeyedBuilder<BiomeTemplate, Builder>, CopyableBuilder<BiomeTemplate, Builder> {
+    interface Builder extends ResourceKeyedBuilder<FeatureTemplate, Builder>, CopyableBuilder<FeatureTemplate, Builder> {
 
         /**
-         * Adds the given {@link Key} with the given value.
+         * Initializes the builder with all data from given {@link Feature}.
          *
-         * @param key The key to assign the value with
-         * @param value The value to assign with the key
-         * @param <V> The type of the value
-         * @return This builder, for chaining
+         * @param feature The feature
+         * @return The builder, for chaining
          */
-        <V> Builder add(Key<? extends Value<V>> key, V value);
+        Builder from(Feature feature);
 
         /**
-         * Initializes the builder with all data from given {@link Biome}
+         * Sets the given {@link FeatureType}.
          *
-         * @param biome The biome
-         * @return This builder, for chaining
+         * @param type The feature type
+         * @return The builder, for chaining
          */
-        Builder from(Biome biome);
+        Builder type(FeatureType type);
 
         /**
-         * Initializes the builder with all data from given {@link DataView}
-         * <p>{@link BiomeTemplate#toContainer()}</p>
+         * Initializes the builder with all data from given {@link DataView}.
+         * <p>{@link FeatureTemplate#toContainer()}</p>
          *
-         * @param pack the data pack data
-         * @return This builder, for chaining
+         * @param pack The data pack data
+         * @return The builder, for chaining
          */
         Builder fromDataPack(DataView pack) throws IOException;
 
@@ -87,7 +82,7 @@ public interface BiomeTemplate extends DataPackEntry<BiomeTemplate> {
          * @param pack The data pack
          * @return This builder, for chaining
          */
-        Builder pack(DataPack<BiomeTemplate> pack);
+        Builder pack(DataPack<FeatureTemplate> pack);
     }
 
 }

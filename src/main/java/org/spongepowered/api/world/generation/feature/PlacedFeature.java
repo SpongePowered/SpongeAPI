@@ -26,32 +26,50 @@ package org.spongepowered.api.world.generation.feature;
 
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.List;
 
 /**
- * Placed Features are a combination of a {@link ConfiguredFeature} with a list of {@link PlacementModifier placement modifiers}.
+ * Placed Features are a combination of a {@link Feature} with a list of {@link PlacementModifier placement modifiers}.
  * <p>Modifiers can impact position, rarity, count and more.</p>
- *
- * <p>Serialized into a data pack at {@code data/<namespace>/worldgen/placed_feature/<value>.json}</p>
  */
-// TODO Registry.PLACED_FEATURE_REGISTRY
-// TODO javadoc me more!
 @CatalogedBy(PlacedFeatures.class)
 public interface PlacedFeature extends DefaultedRegistryValue {
 
     /**
-     * Returns the feature configuration.
+     * Returns the feature.
      *
      * @param <F> The feature type
      * @return The feature configuration
      */
-    <F extends Feature> ConfiguredFeature<F> feature();
+    <F extends FeatureType> Feature feature();
 
-    List<PlacementModifier> placementModifiers(); // TODO Placement Modifiers
+    /**
+     * Returns the list of {@link PlacementModifier placement modifiers}
+     * @return The list of placement modifiers
+     */
+    List<PlacementModifier> placementModifiers();
 
+    /**
+     * Places the feature at given position and world
+     *
+     * @param world The world
+     * @param pos The position
+     *
+     * @return true when the feature was successfully placed
+     */
     boolean place(ServerWorld world, Vector3i pos);
+
+    /**
+     * Places the feature at given location
+     *
+     * @param location The location
+     *
+     * @return true when the feature was successfully placed
+     */
+    boolean place(ServerLocation location);
 
 }

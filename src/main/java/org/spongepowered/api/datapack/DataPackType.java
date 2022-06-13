@@ -32,7 +32,10 @@ import org.spongepowered.api.tag.TagTemplate;
 import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.WorldTypeTemplate;
-import org.spongepowered.api.world.generation.biome.BiomeTemplate;
+import org.spongepowered.api.world.biome.BiomeTemplate;
+import org.spongepowered.api.world.generation.carver.CarverTemplate;
+import org.spongepowered.api.world.generation.feature.FeatureTemplate;
+import org.spongepowered.api.world.generation.feature.PlacedFeatureTemplate;
 import org.spongepowered.api.world.server.WorldTemplate;
 import org.spongepowered.plugin.PluginContainer;
 
@@ -72,5 +75,11 @@ public interface DataPackType<T> {
         <T extends Taggable<T>> DataPackType<TagTemplate<T>> tag(RegistryType<T> registryType);
 
         DataPackType<BiomeTemplate> biome();
+
+        DataPackType<CarverTemplate> carver();
+
+        DataPackType<FeatureTemplate> feature();
+
+        DataPackType<PlacedFeatureTemplate> placedFeature();
     }
 }

@@ -24,8 +24,15 @@
  */
 package org.spongepowered.api.world.generation.feature;
 
-// levelgen.placement.PlacementModifier
-// PlacementModifierType - Registry.PLACEMENT_MODIFIERS
+/**
+ * A modifier used in {@link PlacedFeature placed features}
+ */
 public interface PlacementModifier {
 
+    /**
+     * Returns the placement modifier type.
+     *
+     * @return The placement modifier type
+     */
+    PlacementModifierType type();
 }

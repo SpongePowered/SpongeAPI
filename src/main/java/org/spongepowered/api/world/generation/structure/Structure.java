@@ -26,8 +26,29 @@ package org.spongepowered.api.world.generation.structure;
 
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.world.server.ServerLocation;
+import org.spongepowered.api.world.server.ServerWorld;
+import org.spongepowered.math.vector.Vector3i;
 
 @CatalogedBy(Structures.class)
 public interface Structure extends DefaultedRegistryValue {
 
+    /**
+     * Places the structure at given position and world
+     *
+     * @param world The world
+     * @param pos The position
+     *
+     * @return true when the feature was successfully placed
+     */
+    boolean place(ServerWorld world, Vector3i pos);
+
+    /**
+     * Places the structure at given location
+     *
+     * @param location The location
+     *
+     * @return true when the feature was successfully placed
+     */
+    boolean place(ServerLocation location);
 }

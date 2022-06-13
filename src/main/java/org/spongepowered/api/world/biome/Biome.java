@@ -43,9 +43,9 @@ import org.spongepowered.api.world.biome.climate.Precipitation;
 import org.spongepowered.api.world.biome.climate.TemperatureModifier;
 import org.spongepowered.api.world.biome.spawner.NaturalSpawnCost;
 import org.spongepowered.api.world.biome.spawner.NaturalSpawner;
-import org.spongepowered.api.world.generation.biome.CarvingStep;
-import org.spongepowered.api.world.generation.biome.ConfiguredCarver;
-import org.spongepowered.api.world.generation.biome.DecorationStep;
+import org.spongepowered.api.world.generation.carver.Carver;
+import org.spongepowered.api.world.generation.carver.CarvingStep;
+import org.spongepowered.api.world.generation.feature.DecorationStep;
 import org.spongepowered.api.world.generation.feature.PlacedFeature;
 
 import java.util.List;
@@ -104,11 +104,11 @@ public interface Biome extends DataHolder {
 
     /**
      * Gets the carvers used in world generation.
-     * <p>For more details see {@link ConfiguredCarver}</p>
+     * <p>For more details see {@link Carver}</p>
      *
      * @return The carvers
      */
-    default Map<CarvingStep, List<ConfiguredCarver<?, ?>>> carvers() {
+    default Map<CarvingStep, List<Carver>> carvers() {
         return this.require(Keys.CARVERS);
     }
 

@@ -22,36 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.generation.biome;
+package org.spongepowered.api.world.generation.feature;
 
-import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registry;
-import org.spongepowered.api.registry.RegistryKey;
-import org.spongepowered.api.registry.RegistryScope;
-import org.spongepowered.api.registry.RegistryScopes;
-import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-@SuppressWarnings("unused")
-@RegistryScopes(scopes = RegistryScope.GAME)
-public final class CarvingSteps {
-    // @formatter:off
+/**
+ * A type of {@link PlacementModifier}.
+ */
+@CatalogedBy(PlacementModifierTypes.class)
+public interface PlacementModifierType {
 
-    public static final DefaultedRegistryReference<CarvingStep> AIR = CarvingSteps.key(ResourceKey.sponge("air"));
-
-    public static final DefaultedRegistryReference<CarvingStep> LIQUID = CarvingSteps.key(ResourceKey.sponge("liquid"));
-
-    // @formatter:on
-
-    private CarvingSteps() {
-    }
-
-    public static Registry<CarvingStep> registry() {
-        return Sponge.game().registry(RegistryTypes.CARVING_STEP);
-    }
-
-    private static DefaultedRegistryReference<CarvingStep> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.CARVING_STEP, location).asDefaultedReference(Sponge::game);
-    }
+    /**
+     * Returns the placement modifier.
+     *
+     * @param config The placement modifier configuration
+     *
+     * @return The placement modifier
+     * @throws IllegalArgumentException when the configuration is not valid for this type of placement modifier
+     */
+    PlacementModifier configure(DataView config) throws IllegalArgumentException;
 }

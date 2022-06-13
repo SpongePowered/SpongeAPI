@@ -24,27 +24,22 @@
  */
 package org.spongepowered.api.world.generation.feature;
 
-
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
-import org.spongepowered.api.world.server.ServerLocation;
-import org.spongepowered.api.world.server.ServerWorld;
-import org.spongepowered.math.vector.Vector3i;
 
-/**
- * Configured Features include smaller objects placed in the world like trees, flowers, ore etc.
- * <p>configured features are used in world generation as a part of {@link PlacedFeature}s</p>
- * <p>Serialized into a data pack at {@code data/<namespace>/worldgen/configured_feature/<value>.json}</p>
- */
-@CatalogedBy(ConfiguredFeatures.class)
-public interface ConfiguredFeature<F extends Feature> extends DefaultedRegistryValue {
+@CatalogedBy(FeatureTypes.class)
+public interface FeatureType extends DefaultedRegistryValue {
 
-    F feature();
-
-    DataView toContainer();
-
-    boolean place(ServerWorld world, Vector3i pos);
-    boolean place(ServerLocation location);
+    /**
+     * Returns the configured feature
+     *
+     * @param config the feature configuration data
+     *
+     * @return The configured feature
+     * @throws IllegalArgumentException when the configuration is not valid for this type of feature
+     */
+    // TODO optional - errors are to be expected when using a wrong/incompatible configuration
+    Feature configure(DataView config) throws IllegalArgumentException;
 
 }

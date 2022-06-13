@@ -32,7 +32,10 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.tag.TagTemplate;
 import org.spongepowered.api.world.WorldTypeTemplate;
-import org.spongepowered.api.world.generation.biome.BiomeTemplate;
+import org.spongepowered.api.world.biome.BiomeTemplate;
+import org.spongepowered.api.world.generation.carver.CarverTemplate;
+import org.spongepowered.api.world.generation.feature.FeatureTemplate;
+import org.spongepowered.api.world.generation.feature.PlacedFeatureTemplate;
 import org.spongepowered.api.world.server.WorldTemplate;
 
 /**
@@ -54,9 +57,16 @@ public final class DataPacks {
 
     public static final DataPack<BiomeTemplate> BIOME = DataPackTypes.BIOME.pack("plugin_biomes", "Sponge plugin provided biomes");
 
+    public static final DataPack<CarverTemplate> CARVER = DataPackTypes.CARVER.pack("plugin_carvers", "Sponge plugin provided carvers");
+
+    public static final DataPack<FeatureTemplate> FEATURE = DataPackTypes.FEATURE.pack("plugin_features", "Sponge plugin provided features");
+
+    public static final DataPack<PlacedFeatureTemplate> PLACED_FEATURE = DataPackTypes.PLACED_FEATURE.pack("plugin_features", "Sponge plugin provided placed features");
+
     public static final DataPack<WorldTypeTemplate> WORLD_TYPE = DataPackTypes.WORLD_TYPE.pack("plugin_world_types", "Sponge plugin provided world types");
 
     public static final DataPack<WorldTemplate> WORLD = DataPackTypes.WORLD.pack("plugin_worlds", "Sponge plugin provided worlds");
+
 
     private DataPacks() {
     }

@@ -22,11 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.generation.biome;
+package org.spongepowered.api.world.generation.carver;
 
+import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-@CatalogedBy(CarvingSteps.class)
-public interface CarvingStep {
+/**
+ * A carver used in world generation.
+ */
+@CatalogedBy(Carvers.class)
+public interface Carver {
 
+    /**
+     * Returns the carver type
+     *
+     * @return The carver type
+     */
+    CarverType type();
+
+    /**
+     * Returns the serialized carver configuration.
+     * <p>Reconfigure are carver using {@link CarverType#configure(DataView)}</p>
+     *
+     * @return The serialized carver configuration
+     */
+    DataView toContainer();
 }

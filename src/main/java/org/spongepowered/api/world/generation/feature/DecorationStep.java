@@ -22,12 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.generation.biome;
+package org.spongepowered.api.world.generation.feature;
+
+import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.world.biome.Biome;
 
 /**
- * A data pack entry for Carvers
- * {@code data/<namespace>/worldgen/configured_carver/<value>.json}
+ * A step in which {@link PlacedFeature features} are placed for a {@link Biome} during world generation.
  */
-public interface ConfiguredCarverTemplate {
+@CatalogedBy(DecorationSteps.class)
+public interface DecorationStep {
 
 }

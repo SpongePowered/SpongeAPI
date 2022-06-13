@@ -22,15 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.generation.biome;
+package org.spongepowered.api.world.generation.carver;
 
-// Registry.CONFIGURED_CARVER_REGISTRY
-// ConfiguredWorldCarver
-// Carvers.register
-// TODO javadoc me
-public interface ConfiguredCarver<C extends Carver<CC>, CC extends CarverConfig> {
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-    C carver();
+@CatalogedBy(CarvingSteps.class)
+public interface CarvingStep {
 
-    CC config();
 }
