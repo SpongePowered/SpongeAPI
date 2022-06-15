@@ -22,26 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.biome;
+package org.spongepowered.api.world.generation.structure;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.registry.RegistryReference;
+import org.spongepowered.api.util.weighted.WeightedTable;
 
-import java.util.Objects;
+/**
+ * A weighted list of {@link Structure}.
+ */
+public interface StructureSet {
 
-public interface AttributedBiome {
+    WeightedTable<Structure> structures();
 
-    static AttributedBiome of(final RegistryReference<Biome> biome, final BiomeAttributes attributes) {
-        return Sponge.game().factoryProvider().provide(Factory.class).of(Objects.requireNonNull(biome, "biome"), Objects.requireNonNull(attributes, "attributes"));
-    }
+    Placement placement();
 
-    RegistryReference<Biome> biome();
-
-    BiomeAttributes attributes();
-
-    interface Factory {
-
-        AttributedBiome of(RegistryReference<Biome> biome, BiomeAttributes attributes);
+    interface Placement {
 
     }
 }

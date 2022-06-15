@@ -26,12 +26,10 @@ package org.spongepowered.api.world.generation;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataView;
-import org.spongepowered.api.world.biome.Biome;
 import org.spongepowered.api.world.biome.provider.BiomeProvider;
-import org.spongepowered.api.world.generation.config.FlatGeneratorConfig;
-import org.spongepowered.api.world.generation.config.NoiseGeneratorConfig;
-import org.spongepowered.api.world.generation.feature.PlacedFeature;
-import org.spongepowered.api.world.generation.structure.Structure;
+import org.spongepowered.api.world.generation.config.flat.FlatGeneratorConfig;
+import org.spongepowered.api.world.generation.config.noise.NoiseGeneratorConfig;
+import org.spongepowered.api.world.generation.structure.StructureSet;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.server.WorldTemplate;
 
@@ -53,20 +51,12 @@ import java.util.Objects;
  */
 public interface ChunkGenerator {
 
-    static <T extends FlatGeneratorConfig> ConfigurableChunkGenerator<T> flat(final T config) {
+    static ConfigurableChunkGenerator<FlatGeneratorConfig> flat(final FlatGeneratorConfig config) {
         return Sponge.game().factoryProvider().provide(ChunkGenerator.Factory.class).flat(Objects.requireNonNull(config, "config"));
     }
 
-    static <T extends NoiseGeneratorConfig> ConfigurableChunkGenerator<T> noise(final BiomeProvider provider, final T config) {
+    static ConfigurableChunkGenerator<NoiseGeneratorConfig> noise(final BiomeProvider provider, final NoiseGeneratorConfig config) {
         return Sponge.game().factoryProvider().provide(ChunkGenerator.Factory.class).noise(Objects.requireNonNull(provider, "provider"), Objects.requireNonNull(config, "config"));
-    }
-
-    static <T extends NoiseGeneratorConfig> ConfigurableChunkGenerator<T> noise(final BiomeProvider provider, final long seed, final T config) {
-        return Sponge.game().factoryProvider().provide(ChunkGenerator.Factory.class).noise(Objects.requireNonNull(provider, "provider"), seed, Objects.requireNonNull(config, "config"));
-    }
-
-    static <T extends NoiseGeneratorConfig> ConfigurableChunkGenerator<T> noise(final BiomeProvider provider, final String seed, final T config) {
-        return Sponge.game().factoryProvider().provide(ChunkGenerator.Factory.class).noise(Objects.requireNonNull(provider, "provider"), seed, Objects.requireNonNull(config, "config"));
     }
 
     static ConfigurableChunkGenerator<NoiseGeneratorConfig> overworld() {
@@ -81,21 +71,25 @@ public interface ChunkGenerator {
         return Sponge.game().factoryProvider().provide(ChunkGenerator.Factory.class).theEnd();
     }
 
+    /**
+     * Returns the biome provider.
+     *
+     * @return The biome provider
+     */
     BiomeProvider biomeProvider();
 
-    List<PlacedFeature> featuresIn(Biome biome);
-
-    List<Structure> structureSets(); // TODO Structure -> StructureSet
+    /**
+     * Returns the list of structure sets.
+     *
+     * @return The list of structure sets
+     */
+    List<StructureSet> structureSets();
 
     interface Factory {
 
-        <T extends FlatGeneratorConfig> ConfigurableChunkGenerator<T> flat(T config);
+        ConfigurableChunkGenerator<FlatGeneratorConfig> flat(FlatGeneratorConfig config);
 
-        <T extends NoiseGeneratorConfig> ConfigurableChunkGenerator<T> noise(BiomeProvider provider, T config);
-
-        <T extends NoiseGeneratorConfig> ConfigurableChunkGenerator<T> noise(BiomeProvider provider, long seed, T config);
-
-        <T extends NoiseGeneratorConfig> ConfigurableChunkGenerator<T> noise(BiomeProvider provider, String seed, T config);
+        ConfigurableChunkGenerator<NoiseGeneratorConfig> noise(BiomeProvider provider, NoiseGeneratorConfig config);
 
         ConfigurableChunkGenerator<NoiseGeneratorConfig> overworld();
 

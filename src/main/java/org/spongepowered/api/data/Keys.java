@@ -2648,6 +2648,11 @@ public final class Keys {
     public static final Key<Value<UUID>> SECOND_TRUSTED = Keys.key(ResourceKey.sponge("second_trusted"), UUID.class);
 
     /**
+     * The seed of a {@link WorldTemplate}
+     */
+    public static final Key<Value<Long>> SEED = Keys.key(ResourceKey.sponge("structure_seed"), Long.class);
+
+    /**
      * The {@link SerializationBehavior} of a {@link WorldTemplate} or {@link ServerWorldProperties}
      * Readonly
      */

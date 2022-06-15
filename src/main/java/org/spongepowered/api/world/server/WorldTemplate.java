@@ -124,6 +124,10 @@ public interface WorldTemplate extends ResourceKeyed, DataPackEntry<WorldTemplat
         return this.get(Keys.SPAWN_POSITION);
     }
 
+    default Optional<Long> seed() {
+        return this.get(Keys.SEED);
+    }
+
     default Builder asBuilder() {
         return Sponge.game().builderProvider().provide(Builder.class).from(this);
     }

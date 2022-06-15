@@ -22,26 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.biome;
+package org.spongepowered.api.world.generation.config.noise;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.registry.RegistryReference;
+/**
+ * Noise Router for world generation.
+ * See {@link NoiseGeneratorConfigs} {@link NoiseGeneratorConfig#noiseRouter()} for the default routers used by vanilla.
+ */
+public interface NoiseRouter {
 
-import java.util.Objects;
+    // TODO density functions
 
-public interface AttributedBiome {
-
-    static AttributedBiome of(final RegistryReference<Biome> biome, final BiomeAttributes attributes) {
-        return Sponge.game().factoryProvider().provide(Factory.class).of(Objects.requireNonNull(biome, "biome"), Objects.requireNonNull(attributes, "attributes"));
-    }
-
-    RegistryReference<Biome> biome();
-
-    BiomeAttributes attributes();
-
-    interface Factory {
-
-        AttributedBiome of(RegistryReference<Biome> biome, BiomeAttributes attributes);
-
+    interface DensityFunction {
+        // TODO factory/builder for custom density functions
     }
 }

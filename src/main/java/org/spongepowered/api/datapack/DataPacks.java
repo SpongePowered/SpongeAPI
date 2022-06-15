@@ -34,6 +34,8 @@ import org.spongepowered.api.tag.TagTemplate;
 import org.spongepowered.api.world.WorldTypeTemplate;
 import org.spongepowered.api.world.biome.BiomeTemplate;
 import org.spongepowered.api.world.generation.carver.CarverTemplate;
+import org.spongepowered.api.world.generation.config.noise.NoiseGeneratorConfig;
+import org.spongepowered.api.world.generation.config.noise.NoiseGeneratorConfigTemplate;
 import org.spongepowered.api.world.generation.feature.FeatureTemplate;
 import org.spongepowered.api.world.generation.feature.PlacedFeatureTemplate;
 import org.spongepowered.api.world.server.WorldTemplate;
@@ -55,17 +57,19 @@ public final class DataPacks {
 
     public static final DataPack<TagTemplate<EntityType<?>>> ENTITY_TAG = DataPackTypes.ENTITY_TAG.pack("plugin_tags", "Sponge plugin provided tags");
 
-    public static final DataPack<BiomeTemplate> BIOME = DataPackTypes.BIOME.pack("plugin_biomes", "Sponge plugin provided biomes");
+    public static final DataPack<BiomeTemplate> BIOME = DataPackTypes.BIOME.pack("plugin_worlds", "Sponge plugin provided biomes");
 
-    public static final DataPack<CarverTemplate> CARVER = DataPackTypes.CARVER.pack("plugin_carvers", "Sponge plugin provided carvers");
+    public static final DataPack<CarverTemplate> CARVER = DataPackTypes.CARVER.pack("plugin_worlds", "Sponge plugin provided carvers");
 
-    public static final DataPack<FeatureTemplate> FEATURE = DataPackTypes.FEATURE.pack("plugin_features", "Sponge plugin provided features");
+    public static final DataPack<FeatureTemplate> FEATURE = DataPackTypes.FEATURE.pack("plugin_worlds", "Sponge plugin provided features");
 
-    public static final DataPack<PlacedFeatureTemplate> PLACED_FEATURE = DataPackTypes.PLACED_FEATURE.pack("plugin_features", "Sponge plugin provided placed features");
+    public static final DataPack<PlacedFeatureTemplate> PLACED_FEATURE = DataPackTypes.PLACED_FEATURE.pack("plugin_worlds", "Sponge plugin provided placed features");
 
-    public static final DataPack<WorldTypeTemplate> WORLD_TYPE = DataPackTypes.WORLD_TYPE.pack("plugin_world_types", "Sponge plugin provided world types");
+    public static final DataPack<WorldTypeTemplate> WORLD_TYPE = DataPackTypes.WORLD_TYPE.pack("plugin_worlds", "Sponge plugin provided world types");
 
     public static final DataPack<WorldTemplate> WORLD = DataPackTypes.WORLD.pack("plugin_worlds", "Sponge plugin provided worlds");
+
+    public static final DataPack<NoiseGeneratorConfigTemplate> NOISE_GENERATOR_CONFIG = DataPackTypes.NOISE_GENERATOR_CONFIG.pack("plugin_worldgen", "Sponge plugin provided noise generator configs");
 
 
     private DataPacks() {

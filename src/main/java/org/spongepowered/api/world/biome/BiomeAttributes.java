@@ -25,15 +25,26 @@
 package org.spongepowered.api.world.biome;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.RegistryReference;
 import org.spongepowered.api.util.Range;
+
+import java.util.Optional;
 
 /**
  * Attributes with which biomes are picked for during world generation.
  */
 public interface BiomeAttributes {
 
-    static BiomeAttributes of(final float temperature, final float humidity, final float continentalness, final float erosion, final float depth, final float weirdness, final float offset) {
-        return Sponge.game().factoryProvider().provide(Factory.class).of(temperature, humidity, continentalness, erosion, depth, weirdness, offset);
+    static BiomeAttributes point(final float temperature, final float humidity, final float continentalness, final float erosion, final float depth, final float weirdness, final float offset) {
+        return Sponge.game().factoryProvider().provide(Factory.class).ofPoint(temperature, humidity, continentalness, erosion, depth, weirdness, offset);
+    }
+
+    static BiomeAttributes range(final Range<Float> temperature, final Range<Float> humidity, final Range<Float> continentalness, final Range<Float> erosion, final Range<Float> depth, final Range<Float> weirdness, final float offset) {
+        return Sponge.game().factoryProvider().provide(Factory.class).ofRange(temperature, humidity, continentalness, erosion, depth, weirdness, offset);
+    }
+
+    static Optional<BiomeAttributes> defaultAttributes(RegistryReference<Biome> biome) {
+        return Sponge.game().factoryProvider().provide(Factory.class).defaultAttributes(biome);
     }
 
     /**
@@ -97,6 +108,35 @@ public interface BiomeAttributes {
 
     interface Factory {
 
-        BiomeAttributes of(float temperature, float humidity, float continentalness, float erosion, float depth, float weirdness, float offset);
+        /**
+         * Returns the full range for {@link BiomeAttributes} settings.
+         *
+         * @return The full range
+         */
+        Range<Float> fullRange();
+
+        /**
+         * Creates {@link BiomeAttributes} with point values.
+         *
+         * @return A biome attributes point
+         */
+        BiomeAttributes ofPoint(float temperature, float humidity, float continentalness, float erosion, float depth, float weirdness, float offset);
+
+        /**
+         * Creates {@link BiomeAttributes} spanning a range of values.
+         *
+         * @return A biome attributes range
+         */
+        BiomeAttributes ofRange(Range<Float> temperature, Range<Float> humidity, Range<Float> continentalness, Range<Float> erosion, Range<Float> depth, Range<Float> weirdness, float offset);
+
+        /**
+         * Returns the default {@link BiomeAttributes} used in vanilla biomes.
+         *
+         * @param biome The biome attributes
+         *
+         * @return The biome attributes
+         */
+        Optional<BiomeAttributes> defaultAttributes(RegistryReference<Biome> biome);
+
     }
 }

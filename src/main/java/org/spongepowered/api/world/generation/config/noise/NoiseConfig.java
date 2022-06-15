@@ -26,38 +26,13 @@ package org.spongepowered.api.world.generation.config.noise;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Noise Parameters for world generation.
  */
+@CatalogedBy(NoiseConfigs.class)
 public interface NoiseConfig {
-
-    /**
-     * Returns the default vanilla overworld noise configuration parameters.
-     *
-     * @return the default vanilla overworld noise configuration parameters.
-     */
-    static NoiseConfig overworld() {
-        return Sponge.game().factoryProvider().provide(Factory.class).overworld();
-    }
-
-    /**
-     * Returns the vanilla nether noise configuration parameters.
-     *
-     * @return the vanilla nether noise configuration parameters.
-     */
-    static NoiseConfig nether() {
-        return Sponge.game().factoryProvider().provide(Factory.class).nether();
-    }
-
-    /**
-     * Returns the vanilla end noise configuration parameters.
-     *
-     * @return the vanilla end noise configuration parameters.
-     */
-    static NoiseConfig end() {
-        return Sponge.game().factoryProvider().provide(Factory.class).end();
-    }
 
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class);
@@ -106,27 +81,4 @@ public interface NoiseConfig {
         Builder verticalSize(int vertical);
     }
 
-    interface Factory {
-
-        /**
-         * Returns the default vanilla overworld noise configuration parameters.
-         *
-         * @return the default vanilla overworld noise configuration parameters.
-         */
-        NoiseConfig overworld();
-
-        /**
-         * Returns the vanilla nether noise configuration parameters.
-         *
-         * @return the vanilla nether noise configuration parameters.
-         */
-        NoiseConfig nether();
-
-        /**
-         * Returns the vanilla end noise configuration parameters.
-         *
-         * @return the vanilla end noise configuration parameters.
-         */
-        NoiseConfig end();
-    }
 }

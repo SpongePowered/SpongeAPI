@@ -24,8 +24,11 @@
  */
 package org.spongepowered.api.world.generation.config;
 
+import org.spongepowered.api.world.generation.config.flat.FlatGeneratorConfig;
+import org.spongepowered.api.world.generation.config.noise.NoiseGeneratorConfig;
+
 /**
- * Base chunk generator configuration.
+ * Configuration for {@link org.spongepowered.api.world.generation.ConfigurableChunkGenerator chunk generators}
  * <p>See {@link NoiseGeneratorConfig} and {@link FlatGeneratorConfig}.</p>
  */
 public interface ChunkGeneratorConfig {

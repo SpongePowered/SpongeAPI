@@ -22,39 +22,56 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.biome.provider;
+package org.spongepowered.api.world.generation.config.noise;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.registry.RegistryReference;
+import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.datapack.DataPack;
+import org.spongepowered.api.datapack.DataPackEntry;
 import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.world.biome.Biome;
+import org.spongepowered.api.util.ResourceKeyedBuilder;
+import org.spongepowered.api.world.biome.BiomeAttributes;
+import org.spongepowered.api.world.generation.config.SurfaceRule;
 
-public interface EndStyleBiomeConfig extends BiomeProviderConfig {
+import java.util.List;
+
+/**
+ * ChunkGeneratorConfig used most of the vanilla provided dimensions.
+ */
+public interface NoiseGeneratorConfigTemplate extends DataPackEntry<NoiseGeneratorConfigTemplate> {
 
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class).reset();
     }
 
-    RegistryReference<Biome> endBiome();
+    NoiseGeneratorConfig config();
 
-    RegistryReference<Biome> highlandsBiome();
+    interface Builder extends ResourceKeyedBuilder<NoiseGeneratorConfigTemplate, Builder>, CopyableBuilder<NoiseGeneratorConfigTemplate, Builder> {
 
-    RegistryReference<Biome> midlandsBiome();
+        Builder noiseConfig(NoiseConfig config);
 
-    RegistryReference<Biome> islandsBiome();
+        Builder surfaceRule(SurfaceRule rule);
 
-    RegistryReference<Biome> barrensBiome();
+        Builder defaultBlock(BlockState block);
 
-    interface Builder extends org.spongepowered.api.util.Builder<EndStyleBiomeConfig, Builder>, CopyableBuilder<EndStyleBiomeConfig, Builder> {
+        Builder defaultFluid(BlockState fluid);
 
-        Builder endBiome(RegistryReference<Biome> endBiome);
+        Builder seaLevel(int y);
 
-        Builder highlandsBiome(RegistryReference<Biome> highlandsBiome);
+        Builder aquifers(boolean enableAquifers);
 
-        Builder midlandsBiome(RegistryReference<Biome> midlandsBiome);
+        Builder oreVeins(boolean enableOreVeins);
 
-        Builder islandsBiome(RegistryReference<Biome> islandsBiome);
+        Builder mobGeneration(boolean mobGeneration);
 
-        Builder barrensBiome(RegistryReference<Biome> barrensBiome);
+        Builder randomSource(boolean useLegacyRandomSource);
+
+        Builder noiseRouter(NoiseRouter router);
+
+        Builder spawnTargets(List<BiomeAttributes> spawnTargets);
+
+        Builder from(final NoiseGeneratorConfig value);
+
+        Builder pack(DataPack<NoiseGeneratorConfigTemplate> pack);
     }
 }

@@ -150,12 +150,16 @@ import org.spongepowered.api.world.biome.Biome;
 import org.spongepowered.api.world.biome.climate.GrassColorModifier;
 import org.spongepowered.api.world.biome.climate.Precipitation;
 import org.spongepowered.api.world.biome.climate.TemperatureModifier;
+import org.spongepowered.api.world.biome.provider.MultiNoiseBiomeConfig;
 import org.spongepowered.api.world.chunk.ChunkState;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gamerule.GameRule;
 import org.spongepowered.api.world.generation.carver.Carver;
 import org.spongepowered.api.world.generation.carver.CarverType;
 import org.spongepowered.api.world.generation.carver.CarvingStep;
+import org.spongepowered.api.world.generation.config.flat.FlatGeneratorConfig;
+import org.spongepowered.api.world.generation.config.noise.NoiseConfig;
+import org.spongepowered.api.world.generation.config.noise.NoiseGeneratorConfig;
 import org.spongepowered.api.world.generation.feature.DecorationStep;
 import org.spongepowered.api.world.generation.feature.Feature;
 import org.spongepowered.api.world.generation.feature.FeatureType;
@@ -212,6 +216,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<FluidType> FLUID_TYPE = RegistryTypes.minecraftKeyInGame("fluid");
 
     public static final DefaultedRegistryType<ItemType> ITEM_TYPE = RegistryTypes.minecraftKeyInGame("item");
+
+    public static final DefaultedRegistryType<NoiseGeneratorConfig> NOISE_GENERATOR_CONFIG = RegistryTypes.minecraftKeyInServer("worldgen/noise_settings");
 
     public static final DefaultedRegistryType<ParticleType> PARTICLE_TYPE = RegistryTypes.minecraftKeyInGame("particle_type");
 
@@ -315,6 +321,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<FireworkShape> FIREWORK_SHAPE = RegistryTypes.spongeKeyInGame("firework_shape");
 
+    public static final DefaultedRegistryType<FlatGeneratorConfig> FLAT_GENERATOR_CONFIG = RegistryTypes.spongeKeyInGame("flat_generator_config");
+
     public static final DefaultedRegistryType<FoxType> FOX_TYPE = RegistryTypes.spongeKeyInGame("fox_type");
 
     public static final DefaultedRegistryType<GameMode> GAME_MODE = RegistryTypes.spongeKeyInGame("game_mode");
@@ -366,6 +374,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<MovementType> MOVEMENT_TYPE = RegistryTypes.spongeKeyInGame("movement_type");
 
     public static final DefaultedRegistryType<MusicDisc> MUSIC_DISC = RegistryTypes.spongeKeyInGame("music_disc");
+
+    public static final DefaultedRegistryType<NoiseConfig> NOISE_CONFIG = RegistryTypes.spongeKeyInGame("noise_config");
 
     public static final DefaultedRegistryType<NotePitch> NOTE_PITCH = RegistryTypes.spongeKeyInGame("note_pitch");
 

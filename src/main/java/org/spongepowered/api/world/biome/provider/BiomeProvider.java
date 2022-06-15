@@ -49,11 +49,10 @@ public interface BiomeProvider extends BiomeFinder {
     /**
      * Returns a multi-noise biome provider based on a {@link MultiNoiseBiomeConfig}.
      * @param config the configuration
-     * @param <T> the configuration type
      *
      * @return the configured BiomeProvider
      */
-    static <T extends MultiNoiseBiomeConfig> ConfigurableBiomeProvider<T> multiNoise(final T config) {
+    static ConfigurableBiomeProvider<MultiNoiseBiomeConfig> multiNoise(final MultiNoiseBiomeConfig config) {
         return Sponge.game().factoryProvider().provide(Factory.class).multiNoise(config);
     }
 
@@ -70,11 +69,10 @@ public interface BiomeProvider extends BiomeFinder {
      * Returns a vanilla end-style biome provider based on a {@link EndStyleBiomeConfig}.
      *
      * @param config the configuration
-     * @param <T> the configuration type
      *
      * @return the configured BiomeProvider
      */
-    static <T extends EndStyleBiomeConfig> ConfigurableBiomeProvider<T> endStyle(final T config) {
+    static ConfigurableBiomeProvider<EndStyleBiomeConfig> endStyle(final EndStyleBiomeConfig config) {
         return Sponge.game().factoryProvider().provide(Factory.class).endStyle(config);
     }
 
@@ -91,11 +89,10 @@ public interface BiomeProvider extends BiomeFinder {
      * Returns a checkerboard-style biome provider based on a {@link CheckerboardBiomeConfig}
      *
      * @param config the configuration
-     * @param <T> the configuration type
      *
      * @return the configured BiomeProvider
      */
-    static <T extends CheckerboardBiomeConfig> ConfigurableBiomeProvider<T> checkerboard(final T config) {
+    static ConfigurableBiomeProvider<CheckerboardBiomeConfig> checkerboard(final CheckerboardBiomeConfig config) {
         return Sponge.game().factoryProvider().provide(Factory.class).checkerboard(config);
     }
 
@@ -106,7 +103,7 @@ public interface BiomeProvider extends BiomeFinder {
      *
      * @return the configured BiomeProvider
      */
-    static BiomeProvider fixed(final RegistryReference<Biome> biome) {
+    static FixedBiomeProvider fixed(final RegistryReference<Biome> biome) {
         return Sponge.game().factoryProvider().provide(Factory.class).fixed(Objects.requireNonNull(biome, "biome"));
     }
 
@@ -129,11 +126,10 @@ public interface BiomeProvider extends BiomeFinder {
         /**
          * Returns a multi-noise biome provider based on a {@link MultiNoiseBiomeConfig}.
          * @param config the configuration
-         * @param <T> the configuration type
          *
          * @return the configured BiomeProvider
          */
-        <T extends MultiNoiseBiomeConfig> ConfigurableBiomeProvider<T> multiNoise(T config);
+        ConfigurableBiomeProvider<MultiNoiseBiomeConfig> multiNoise(MultiNoiseBiomeConfig config);
 
         /**
          * Returns the vanilla nether biome provider.
@@ -146,11 +142,10 @@ public interface BiomeProvider extends BiomeFinder {
          * Returns a vanilla end-style biome provider based on a {@link EndStyleBiomeConfig}.
          *
          * @param config the configuration
-         * @param <T> the configuration type
          *
          * @return the configured BiomeProvider
          */
-        <T extends EndStyleBiomeConfig> ConfigurableBiomeProvider<T> endStyle(T config);
+        ConfigurableBiomeProvider<EndStyleBiomeConfig> endStyle(EndStyleBiomeConfig config);
 
         /**
          * Returns the vanilla end biome provider.
@@ -163,11 +158,10 @@ public interface BiomeProvider extends BiomeFinder {
          * Returns a checkerboard-style biome provider based on a {@link CheckerboardBiomeConfig}
          *
          * @param config the configuration
-         * @param <T> the configuration type
          *
          * @return the configured BiomeProvider
          */
-        <T extends CheckerboardBiomeConfig> ConfigurableBiomeProvider<T> checkerboard(T config);
+        ConfigurableBiomeProvider<CheckerboardBiomeConfig> checkerboard(CheckerboardBiomeConfig config);
 
         /**
          * Returns a fixed biome provider base on a single {@link Biome}
@@ -176,6 +170,6 @@ public interface BiomeProvider extends BiomeFinder {
          *
          * @return the configured BiomeProvider
          */
-        BiomeProvider fixed(RegistryReference<Biome> biome);
+        FixedBiomeProvider fixed(RegistryReference<Biome> biome);
     }
 }

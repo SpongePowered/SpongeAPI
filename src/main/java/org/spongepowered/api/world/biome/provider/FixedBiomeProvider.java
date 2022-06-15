@@ -22,26 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.biome;
+package org.spongepowered.api.world.biome.provider;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.registry.RegistryReference;
+import org.spongepowered.api.world.biome.Biome;
 
-import java.util.Objects;
+public interface FixedBiomeProvider extends BiomeProvider {
 
-public interface AttributedBiome {
-
-    static AttributedBiome of(final RegistryReference<Biome> biome, final BiomeAttributes attributes) {
-        return Sponge.game().factoryProvider().provide(Factory.class).of(Objects.requireNonNull(biome, "biome"), Objects.requireNonNull(attributes, "attributes"));
-    }
-
-    RegistryReference<Biome> biome();
-
-    BiomeAttributes attributes();
-
-    interface Factory {
-
-        AttributedBiome of(RegistryReference<Biome> biome, BiomeAttributes attributes);
-
-    }
+    Biome biome();
 }

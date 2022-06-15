@@ -22,25 +22,58 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.biome.provider;
+package org.spongepowered.api.world.generation.config.flat;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.RegistryReference;
+import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.biome.Biome;
+import org.spongepowered.api.world.generation.config.ChunkGeneratorConfig;
 
-/**
- * The configuration for a {@link BiomeProvider} with a single {@link Biome}.
- */
-public interface FixedBiomeConfig extends BiomeProviderConfig {
+import java.util.List;
+import java.util.Optional;
 
-    static FixedBiomeConfig of(RegistryReference<Biome> biome) {
-        return Sponge.game().factoryProvider().provide(Factory.class).biome(biome);
+@CatalogedBy(FlatGeneratorConfigs.class)
+public interface FlatGeneratorConfig extends ChunkGeneratorConfig {
+
+    static FlatGeneratorConfig standard() {
+        return Sponge.game().factoryProvider().provide(Factory.class).standard();
     }
+
+    static Builder builder() {
+        return Sponge.game().builderProvider().provide(Builder.class);
+    }
+
+    List<LayerConfig> layers();
+
+    Optional<LayerConfig> layer(int index);
 
     RegistryReference<Biome> biome();
 
+    boolean performDecoration();
+
+    boolean populateLakes();
+
+    interface Builder extends org.spongepowered.api.util.Builder<FlatGeneratorConfig, Builder>, CopyableBuilder<FlatGeneratorConfig, Builder> {
+
+        Builder addLayer(int index, LayerConfig config);
+
+        Builder addLayer(LayerConfig config);
+
+        Builder addLayers(List<LayerConfig> layers);
+
+        Builder removeLayer(int index);
+
+        Builder biome(RegistryReference<Biome> biome);
+
+        Builder performDecoration(boolean performDecoration);
+
+        Builder populateLakes(boolean populateLakes);
+    }
+
     interface Factory {
 
-        FixedBiomeConfig biome(RegistryReference<Biome> biome);
+        FlatGeneratorConfig standard();
     }
 }
