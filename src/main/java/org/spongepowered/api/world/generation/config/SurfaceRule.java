@@ -24,11 +24,12 @@
  */
 package org.spongepowered.api.world.generation.config;
 
-import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.registry.RegistryReference;
 import org.spongepowered.api.world.biome.Biome;
+import org.spongepowered.api.world.generation.config.noise.Noise;
+import org.spongepowered.api.world.generation.config.noise.Noises;
 
 import java.util.List;
 
@@ -88,8 +89,20 @@ public interface SurfaceRule {
      * A condition for {@link SurfaceRule surface rules}
      */
     interface Condition {
+
+        /**
+         * Returns the conditional surface rule
+         *
+         * @param rule the surface rule to apply the condition on
+         * @return The surface rule
+         */
         SurfaceRule then(SurfaceRule rule);
 
+        /**
+         * Returns the negated condition
+         *
+         * @return The negated condition
+         */
         Condition not();
     }
 
@@ -220,7 +233,7 @@ public interface SurfaceRule {
 
         /**
          * Returns the surface condition for holes.
-         * TODO surface depth <= 0?
+         * Holes are located where the {@link Noises#SURFACE surface noise} results in depth of zero or less.
          *
          * @return The surface condition
          */
@@ -327,13 +340,14 @@ public interface SurfaceRule {
         Condition surfaceAbove(VerticalAnchor anchor, int depthMultiplier);
 
         /**
-         * TODO NOISE_REGISTRY NormalNoise.NoiseParameters
-         * @param noiseParam
-         * @param min
-         * @param max
-         * @return
+         * Returns the surface condition to match a range of given {@link Noise}.
+         *
+         * @param noise The noise
+         * @param min the minimum value
+         * @param max the maximum value
+         * @return The surface condition
          */
-        Condition noiseThreshold(ResourceKey noiseParam, double min, double max);
+        Condition noiseThreshold(RegistryReference<Noise> noise, double min, double max);
 
         /**
          * Returns an {@link VerticalAnchor} at given y position.

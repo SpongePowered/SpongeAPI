@@ -34,8 +34,8 @@ import org.spongepowered.api.tag.TagTemplate;
 import org.spongepowered.api.world.WorldTypeTemplate;
 import org.spongepowered.api.world.biome.BiomeTemplate;
 import org.spongepowered.api.world.generation.carver.CarverTemplate;
-import org.spongepowered.api.world.generation.config.noise.NoiseGeneratorConfig;
 import org.spongepowered.api.world.generation.config.noise.NoiseGeneratorConfigTemplate;
+import org.spongepowered.api.world.generation.config.noise.NoiseTemplate;
 import org.spongepowered.api.world.generation.feature.FeatureTemplate;
 import org.spongepowered.api.world.generation.feature.PlacedFeatureTemplate;
 import org.spongepowered.api.world.server.WorldTemplate;
@@ -70,6 +70,8 @@ public final class DataPacks {
     public static final DataPack<WorldTemplate> WORLD = DataPackTypes.WORLD.pack("plugin_worlds", "Sponge plugin provided worlds");
 
     public static final DataPack<NoiseGeneratorConfigTemplate> NOISE_GENERATOR_CONFIG = DataPackTypes.NOISE_GENERATOR_CONFIG.pack("plugin_worldgen", "Sponge plugin provided noise generator configs");
+
+    public static final DataPack<NoiseTemplate> NOISE = DataPackTypes.NOISE.pack("plugin_worldgen", "Sponge plugin provided noises");
 
 
     private DataPacks() {

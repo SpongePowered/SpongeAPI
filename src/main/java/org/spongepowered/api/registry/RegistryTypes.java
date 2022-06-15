@@ -158,6 +158,7 @@ import org.spongepowered.api.world.generation.carver.Carver;
 import org.spongepowered.api.world.generation.carver.CarverType;
 import org.spongepowered.api.world.generation.carver.CarvingStep;
 import org.spongepowered.api.world.generation.config.flat.FlatGeneratorConfig;
+import org.spongepowered.api.world.generation.config.noise.Noise;
 import org.spongepowered.api.world.generation.config.noise.NoiseConfig;
 import org.spongepowered.api.world.generation.config.noise.NoiseGeneratorConfig;
 import org.spongepowered.api.world.generation.feature.DecorationStep;
@@ -218,6 +219,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<ItemType> ITEM_TYPE = RegistryTypes.minecraftKeyInGame("item");
 
     public static final DefaultedRegistryType<NoiseGeneratorConfig> NOISE_GENERATOR_CONFIG = RegistryTypes.minecraftKeyInServer("worldgen/noise_settings");
+
+    public static final DefaultedRegistryType<Noise> NOISE = RegistryTypes.minecraftKeyInServer("worldgen/noise");
 
     public static final DefaultedRegistryType<ParticleType> PARTICLE_TYPE = RegistryTypes.minecraftKeyInGame("particle_type");
 

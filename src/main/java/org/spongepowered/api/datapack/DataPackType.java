@@ -35,6 +35,7 @@ import org.spongepowered.api.world.WorldTypeTemplate;
 import org.spongepowered.api.world.biome.BiomeTemplate;
 import org.spongepowered.api.world.generation.carver.CarverTemplate;
 import org.spongepowered.api.world.generation.config.noise.NoiseGeneratorConfigTemplate;
+import org.spongepowered.api.world.generation.config.noise.NoiseTemplate;
 import org.spongepowered.api.world.generation.feature.FeatureTemplate;
 import org.spongepowered.api.world.generation.feature.PlacedFeatureTemplate;
 import org.spongepowered.api.world.server.WorldTemplate;
@@ -84,5 +85,7 @@ public interface DataPackType<T> {
         DataPackType<PlacedFeatureTemplate> placedFeature();
 
         DataPackType<NoiseGeneratorConfigTemplate> noiseGeneratorConfig();
+
+        DataPackType<NoiseTemplate> noise();
     }
 }
