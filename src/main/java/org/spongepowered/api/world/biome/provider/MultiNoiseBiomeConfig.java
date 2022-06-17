@@ -32,6 +32,9 @@ import org.spongepowered.api.world.biome.Biome;
 
 import java.util.List;
 
+/**
+ * The configuration for {@link ConfigurableBiomeProvider} generating a biome distribution based on noise.
+ */
 public interface MultiNoiseBiomeConfig extends BiomeProviderConfig {
 
     static MultiNoiseBiomeConfig nether() {
@@ -46,14 +49,37 @@ public interface MultiNoiseBiomeConfig extends BiomeProviderConfig {
         return Sponge.game().builderProvider().provide(Builder.class).reset();
     }
 
+    /**
+     * The list of attributed biomes.
+     *
+     * @return The attributed biomes
+     */
     List<AttributedBiome> attributedBiomes();
 
     interface Builder extends org.spongepowered.api.util.Builder<MultiNoiseBiomeConfig, Builder>, CopyableBuilder<MultiNoiseBiomeConfig, Builder> {
 
+        /**
+         * Adds an attributed biome.
+         *
+         * @param biome The attributes biomes
+         * @return This builder, for chaining
+         */
         Builder addBiome(AttributedBiome biome);
 
+        /**
+         * Adds attributed biomes.
+         *
+         * @param biomes The biomes
+         * @return This builder, for chaining
+         */
         Builder addBiomes(List<AttributedBiome> biomes);
 
+        /**
+         * Removes an attributed biome.
+         *
+         * @param biome The biome
+         * @return This builder, for chaining
+         */
         Builder removeBiome(RegistryReference<Biome> biome);
     }
 

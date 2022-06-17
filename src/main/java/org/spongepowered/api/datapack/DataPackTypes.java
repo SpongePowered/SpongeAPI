@@ -37,6 +37,7 @@ import org.spongepowered.api.tag.TagTemplate;
 import org.spongepowered.api.world.WorldTypeTemplate;
 import org.spongepowered.api.world.biome.BiomeTemplate;
 import org.spongepowered.api.world.generation.carver.CarverTemplate;
+import org.spongepowered.api.world.generation.config.noise.DensityFunctionTemplate;
 import org.spongepowered.api.world.generation.config.noise.NoiseGeneratorConfigTemplate;
 import org.spongepowered.api.world.generation.config.noise.NoiseTemplate;
 import org.spongepowered.api.world.generation.feature.FeatureTemplate;
@@ -72,6 +73,23 @@ public final class DataPackTypes {
     public static final DataPackType<NoiseGeneratorConfigTemplate> NOISE_GENERATOR_CONFIG = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).noiseGeneratorConfig();
 
     public static final DataPackType<NoiseTemplate> NOISE = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).noise();
+
+    public static final DataPackType<DensityFunctionTemplate> DENSITY_FUNCTION = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).densityFunction();
+
+    // TODO missing worlgen data packs:
+    // Structure `worldgen/structure`
+    // Structure Set `worldgen/structure_set`
+    // Processor List `worldgen/processor_list`
+    // Template Pool `worldgen/template_pool`
+    // World Preset?
+    // Flat World Preset / FlatGeneratorConfig `worldgen/flat_level_generator_preset`
+
+    // TODO missing tag data packs
+    // game event tag
+    // biome tag
+
+    // TODO missing chat type data packs?
+    // TODO missing loot table data packs
 
     private DataPackTypes() {
     }

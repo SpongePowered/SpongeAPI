@@ -28,6 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.RegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.biome.Biome;
+import org.spongepowered.api.world.biome.Biomes;
 
 public interface EndStyleBiomeConfig extends BiomeProviderConfig {
 
@@ -35,14 +36,44 @@ public interface EndStyleBiomeConfig extends BiomeProviderConfig {
         return Sponge.game().builderProvider().provide(Builder.class).reset();
     }
 
+    /**
+     * Returns the configured end biome,
+     * by default {@link Biomes#THE_END}
+     *
+     * @return The configured end biome
+     */
     RegistryReference<Biome> endBiome();
 
+    /**
+     * Returns the configured end highlands biome,
+     * by default {@link Biomes#END_HIGHLANDS}
+     *
+     * @return The configured end highlands biome
+     */
     RegistryReference<Biome> highlandsBiome();
 
+    /**
+     * Returns the configured end midlands biome,
+     * by default {@link Biomes#END_MIDLANDS}
+     *
+     * @return The configured end midlands biome
+     */
     RegistryReference<Biome> midlandsBiome();
 
+    /**
+     * Returns the configured end islands biome,
+     * by default {@link Biomes#SMALL_END_ISLANDS}
+     *
+     * @return The configured end islands biome
+     */
     RegistryReference<Biome> islandsBiome();
 
+    /**
+     * Returns the configured end barrens biome,
+     * by default {@link Biomes#END_BARRENS}
+     *
+     * @return The configured end barrens biome
+     */
     RegistryReference<Biome> barrensBiome();
 
     interface Builder extends org.spongepowered.api.util.Builder<EndStyleBiomeConfig, Builder>, CopyableBuilder<EndStyleBiomeConfig, Builder> {

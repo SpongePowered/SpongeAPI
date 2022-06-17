@@ -31,12 +31,14 @@ import org.spongepowered.api.datapack.DataPackEntry;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
 import org.spongepowered.api.world.biome.BiomeAttributes;
+import org.spongepowered.api.world.generation.ConfigurableChunkGenerator;
 import org.spongepowered.api.world.generation.config.SurfaceRule;
+import org.spongepowered.api.world.server.storage.ServerWorldProperties;
 
 import java.util.List;
 
 /**
- * ChunkGeneratorConfig used most of the vanilla provided dimensions.
+ * A template for noise generator configs used in {@link ConfigurableChunkGenerator configurable chunk generators}.
  */
 public interface NoiseGeneratorConfigTemplate extends DataPackEntry<NoiseGeneratorConfigTemplate> {
 
@@ -48,30 +50,106 @@ public interface NoiseGeneratorConfigTemplate extends DataPackEntry<NoiseGenerat
 
     interface Builder extends ResourceKeyedBuilder<NoiseGeneratorConfigTemplate, Builder>, CopyableBuilder<NoiseGeneratorConfigTemplate, Builder> {
 
+        /**
+         * Sets the noise configuration
+         *
+         * @param config The noise configuration
+         * @return This builder, for chaining
+         */
         Builder noiseConfig(NoiseConfig config);
 
+        /**
+         * Sets the surface rule.
+         *
+         * @param rule The surface rule
+         * @return This builder, for chaining
+         */
         Builder surfaceRule(SurfaceRule rule);
 
+        /**
+         * Sets the default block used for terrain.
+         *
+         * @param block The block
+         * @return This builder, for chaining
+         */
         Builder defaultBlock(BlockState block);
 
+        /**
+         * Sets the default fluid used for seas and lakes.
+         *
+         * @param fluid The fluid
+         * @return This builder, for chaining
+         */
         Builder defaultFluid(BlockState fluid);
 
+        /**
+         * Sets the sea level.
+         *
+         * @param y The sea level
+         * @return This builder, for chaining
+         */
         Builder seaLevel(int y);
 
+        /**
+         * Sets whether to generate aquifers.
+         *
+         * @param enableAquifers true to enable aquifers
+         * @return This builder, for chaining
+         */
         Builder aquifers(boolean enableAquifers);
 
+        /**
+         * Sets whether to generate or veins.
+         *
+         * @param enableOreVeins true to enable ore veins
+         * @return This builder, for chaining
+         */
         Builder oreVeins(boolean enableOreVeins);
 
+        /**
+         * Sets whether to enable mob generation.
+         *
+         * @param mobGeneration true to enable mob generation
+         * @return This builder, for chaining
+         */
         Builder mobGeneration(boolean mobGeneration);
 
+        /**
+         * Sets whether to use the legacy random source.
+         * @param useLegacyRandomSource true when using the legacy random source
+         * @return This builder, for chaining
+         */
         Builder randomSource(boolean useLegacyRandomSource);
 
+        /**
+         * Sets the noise router.
+         * @param router The noise router
+         * @return This builder, for chaining
+         */
         Builder noiseRouter(NoiseRouter router);
 
+        /**
+         * Sets the biome attributes in which the initial {@link ServerWorldProperties#spawnPosition()} is allowed.
+         *
+         * @param spawnTargets The spawn targets
+         * @return This builder, for chaining
+         */
         Builder spawnTargets(List<BiomeAttributes> spawnTargets);
 
+        /**
+         * Initializes this builder with all values from given {@link NoiseGeneratorConfig}
+         *
+         * @param value the configuration
+         * @return This builder, for chaining
+         */
         Builder from(final NoiseGeneratorConfig value);
 
+        /**
+         * Sets the data pack.
+         *
+         * @param pack The data pack
+         * @return This builder, for chaining
+         */
         Builder pack(DataPack<NoiseGeneratorConfigTemplate> pack);
     }
 }

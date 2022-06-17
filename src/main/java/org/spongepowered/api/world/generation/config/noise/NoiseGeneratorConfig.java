@@ -27,6 +27,7 @@ package org.spongepowered.api.world.generation.config.noise;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.world.biome.BiomeAttributes;
+import org.spongepowered.api.world.generation.ConfigurableChunkGenerator;
 import org.spongepowered.api.world.generation.config.ChunkGeneratorConfig;
 import org.spongepowered.api.world.generation.config.SurfaceRule;
 import org.spongepowered.api.world.server.storage.ServerWorldProperties;
@@ -34,10 +35,9 @@ import org.spongepowered.api.world.server.storage.ServerWorldProperties;
 import java.util.List;
 
 /**
- * ChunkGeneratorConfig used by the vanilla provided worlds.
+ * Noise generator config used in {@link ConfigurableChunkGenerator configurable chunk generators}.
  */
 public interface NoiseGeneratorConfig extends ChunkGeneratorConfig {
-
 
     static NoiseGeneratorConfigTemplate.Builder builder() {
         return Sponge.game().builderProvider().provide(NoiseGeneratorConfigTemplate.Builder.class);
@@ -109,7 +109,7 @@ public interface NoiseGeneratorConfig extends ChunkGeneratorConfig {
 
     /**
      * Whether generation uses the legacy random source.
-     * <p>As of Minecraft 1.18 the legacy random source is still used for nether and end generation.</p>
+     * <p>As of Minecraft 1.19 the legacy random source is still used for nether and end generation.</p>
      *
      * @return true when using the legacy random source.
      */

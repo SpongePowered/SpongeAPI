@@ -22,16 +22,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.generation;
+package org.spongepowered.api.world.generation.config.noise;
 
-import org.spongepowered.api.world.generation.config.ChunkGeneratorConfig;
+import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.math.vector.Vector3i;
 
-/**
- * A configurable {@link ChunkGenerator}.
- *
- * @param <T> The type of configuration
- */
-public interface ConfigurableChunkGenerator<T extends ChunkGeneratorConfig> extends ChunkGenerator {
+@CatalogedBy(DensityFunctions.class)
+public interface DensityFunction {
 
-    T config();
+    /**
+     * Returns the minimum value possible.
+     * @return The minimum value
+     */
+    double min();
+
+    /**
+     * Returns the maximum value possible.
+     * @return The maximum value
+     */
+    double max();
+
+    /**
+     * Computes the noise value at given position.
+     *
+     * @param pos The position
+     * @return The noise value at given position
+     */
+    double compute(Vector3i pos);
+
+    /**
+     * Computes the noise value at given position
+     *
+     * @param x The x coordinate
+     * @param y The y coordinate
+     * @param z The z coordinate
+     * @return The noise value at given position
+     */
+    double compute(int x, int y, int z);
+
 }

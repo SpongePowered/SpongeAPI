@@ -158,6 +158,7 @@ import org.spongepowered.api.world.generation.carver.Carver;
 import org.spongepowered.api.world.generation.carver.CarverType;
 import org.spongepowered.api.world.generation.carver.CarvingStep;
 import org.spongepowered.api.world.generation.config.flat.FlatGeneratorConfig;
+import org.spongepowered.api.world.generation.config.noise.DensityFunction;
 import org.spongepowered.api.world.generation.config.noise.Noise;
 import org.spongepowered.api.world.generation.config.noise.NoiseConfig;
 import org.spongepowered.api.world.generation.config.noise.NoiseGeneratorConfig;
@@ -167,6 +168,7 @@ import org.spongepowered.api.world.generation.feature.FeatureType;
 import org.spongepowered.api.world.generation.feature.PlacedFeature;
 import org.spongepowered.api.world.generation.feature.PlacementModifierType;
 import org.spongepowered.api.world.generation.structure.Structure;
+import org.spongepowered.api.world.generation.structure.StructureSet;
 import org.spongepowered.api.world.portal.PortalType;
 import org.spongepowered.api.world.schematic.PaletteType;
 import org.spongepowered.api.world.server.TicketType;
@@ -200,9 +202,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<ContainerType> CONTAINER_TYPE = RegistryTypes.minecraftKeyInGame("menu");
 
-    public static final DefaultedRegistryType<WorldType> WORLD_TYPE = RegistryTypes.minecraftKeyInServer("dimension_type");
-
-    public static final DefaultedRegistryType<PotionEffectType> POTION_EFFECT_TYPE = RegistryTypes.minecraftKeyInGame("mob_effect");
+    public static final DefaultedRegistryType<DensityFunction> DENSITY_FUNCTION = RegistryTypes.minecraftKeyInServer("worldgen/density_function");
 
     public static final DefaultedRegistryType<EnchantmentType> ENCHANTMENT_TYPE = RegistryTypes.minecraftKeyInGame("enchantment");
 
@@ -228,6 +228,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<PlacementModifierType> PLACEMENT_MODIFIER = RegistryTypes.minecraftKeyInGame("worldgen/placement_modifier_type");
 
+    public static final DefaultedRegistryType<PotionEffectType> POTION_EFFECT_TYPE = RegistryTypes.minecraftKeyInGame("mob_effect");
+
     public static final DefaultedRegistryType<ProfessionType> PROFESSION_TYPE = RegistryTypes.minecraftKeyInGame("villager_profession");
 
     public static final DefaultedRegistryType<PotionType> POTION_TYPE = RegistryTypes.minecraftKeyInGame("potion");
@@ -242,7 +244,11 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<Structure> STRUCTURE = RegistryTypes.minecraftKeyInServer("worldgen/structure");
 
+    public static final DefaultedRegistryType<StructureSet> STRUCTURE_SET = RegistryTypes.minecraftKeyInServer("worldgen/structure_set");
+
     public static final DefaultedRegistryType<VillagerType> VILLAGER_TYPE = RegistryTypes.minecraftKeyInGame("villager_type");
+
+    public static final DefaultedRegistryType<WorldType> WORLD_TYPE = RegistryTypes.minecraftKeyInServer("dimension_type");
 
     // ----
 

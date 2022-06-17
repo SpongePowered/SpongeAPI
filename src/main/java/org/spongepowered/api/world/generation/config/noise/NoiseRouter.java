@@ -30,9 +30,109 @@ package org.spongepowered.api.world.generation.config.noise;
  */
 public interface NoiseRouter {
 
-    // TODO density functions
+    /**
+     * Returns the density function for barrierNoise
+     *
+     * @return The density function
+     */
+    DensityFunction barrierNoise();
 
-    interface DensityFunction {
-        // TODO factory/builder for custom density functions
-    }
+    /**
+     * Returns the density function for fluidLevelFloodednessNoise
+     *
+     * @return The density function
+     */
+    DensityFunction fluidLevelFloodednessNoise();
+
+    /**
+     * Returns the density function for fluidLevelSpreadNoise
+     *
+     * @return The density function
+     */
+    DensityFunction fluidLevelSpreadNoise();
+
+    /**
+     * Returns the density function for lavaNoise
+     *
+     * @return The density function
+     */
+    DensityFunction lavaNoise();
+
+    /**
+     * Returns the density function for temperature
+     *
+     * @return The density function
+     */
+    DensityFunction temperature();
+
+    /**
+     * Returns the density function for vegetation
+     *
+     * @return The density function
+     */
+    DensityFunction vegetation();
+
+    /**
+     * Returns the density function for continents
+     *
+     * @return The density function
+     */
+    DensityFunction continents();
+
+    /**
+     * Returns the density function for erosion
+     *
+     * @return The density function
+     */
+    DensityFunction erosion();
+
+    /**
+     * Returns the density function for depth
+     *
+     * @return The density function
+     */
+    DensityFunction depth();
+
+    /**
+     * Returns the density function for ridges
+     *
+     * @return The density function
+     */
+    DensityFunction ridges();
+
+    /**
+     * Returns the density function for initialDensityWithoutJaggedness
+     *
+     * @return The density function
+     */
+    DensityFunction initialDensityWithoutJaggedness();
+
+    /**
+     * Returns the density function for finalDensity
+     *
+     * @return The density function
+     */
+    DensityFunction finalDensity();
+
+    /**
+     * Returns the density function for veinToggle
+     *
+     * @return The density function
+     */
+    DensityFunction veinToggle();
+
+    /**
+     * Returns the density function for veinRidged
+     *
+     * @return The density function
+     */
+    DensityFunction veinRidged();
+
+    /**
+     * Returns the density function for veinGap
+     *
+     * @return The density function
+     */
+    DensityFunction veinGap();
+
 }

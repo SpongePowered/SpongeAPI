@@ -22,63 +22,54 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.biome.provider;
+package org.spongepowered.api.world.generation.config.noise;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.registry.RegistryReference;
+import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.datapack.DataPack;
+import org.spongepowered.api.datapack.DataPackEntry;
 import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.world.biome.Biome;
+import org.spongepowered.api.util.ResourceKeyedBuilder;
 
-import java.util.List;
+import java.io.IOException;
 
 /**
- * The configuration for {@link ConfigurableBiomeProvider} generating a checkerboard style biome distribution.
+ * A template for {@link DensityFunction density functions}
  */
-public interface CheckerboardBiomeConfig extends BiomeProviderConfig {
+public interface DensityFunctionTemplate extends DataPackEntry<DensityFunctionTemplate> {
 
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class).reset();
     }
 
-    /**
-     * Returns the scale of the checkerboard tiles.
-     *
-     * @return The scale
-     */
-    int scale();
+    DensityFunction densityFunction();
 
-    interface Builder extends org.spongepowered.api.util.Builder<CheckerboardBiomeConfig, Builder>, CopyableBuilder<CheckerboardBiomeConfig, Builder> {
+    interface Builder extends ResourceKeyedBuilder<DensityFunctionTemplate, Builder>, CopyableBuilder<DensityFunctionTemplate, Builder> {
+
+        // TODO advanced
 
         /**
-         * Sets the scale of the checkerboard tiles
-         *
-         * @param scale The scale
+         * Sets the density function.
+         * @param densityFunction The density function
          * @return This builder, for chaining
          */
-        Builder scale(int scale);
+        Builder from(DensityFunction densityFunction);
 
         /**
-         * Adds the given biome.
+         * Initializes the builder with the data from given {@link DataView}.
+         * {@link DensityFunctionTemplate#toContainer()}
          *
-         * @param biome The biome
+         * @param datapack The data pack data
          * @return This builder, for chaining
          */
-        Builder addBiome(RegistryReference<Biome> biome);
+        Builder fromDataPack(DataView datapack) throws IOException;
 
         /**
-         * Adds the given biomes.
-         *
-         * @param biomes The biomes
+         * Sets the data pack
+         * @param pack The data pack
          * @return This builder, for chaining
          */
-        Builder addBiomes(List<RegistryReference<Biome>> biomes);
-
-        /**
-         * Removes the given biome.
-         *
-         * @param biome The biome
-         * @return This builder, for chaining
-         */
-        Builder removeBiome(RegistryReference<Biome> biome);
+        Builder pack(DataPack<DensityFunctionTemplate> pack);
     }
+
 }

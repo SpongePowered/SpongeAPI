@@ -140,8 +140,8 @@ public interface WorldTemplate extends ResourceKeyed, DataPackEntry<WorldTemplat
          * Creates a world template based on the given data view.
          * <p>The given data must be equivalent to a data-pack for world-templates (dimension)</p>
          *
-         * @param pack the data
-         * @return the created WorldTemplate
+         * @param pack The data
+         * @return This builder, for chaining
          */
         Builder fromDataPack(DataView pack) throws IOException;
 

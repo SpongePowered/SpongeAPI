@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.world.biome.provider;
 
+/**
+ * A configurable {@link BiomeProvider}.
+ */
 public interface ConfigurableBiomeProvider<T extends BiomeProviderConfig> extends BiomeProvider {
 
     T config();

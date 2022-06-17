@@ -24,11 +24,13 @@
  */
 package org.spongepowered.api.world.generation.structure;
 
+import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.util.weighted.WeightedTable;
 
 /**
- * A weighted list of {@link Structure}.
+ * A weighted list of {@link Structure structures}.
  */
+@CatalogedBy(StructureSets.class)
 public interface StructureSet {
 
     WeightedTable<Structure> structures();
