@@ -167,8 +167,10 @@ import org.spongepowered.api.world.generation.feature.Feature;
 import org.spongepowered.api.world.generation.feature.FeatureType;
 import org.spongepowered.api.world.generation.feature.PlacedFeature;
 import org.spongepowered.api.world.generation.feature.PlacementModifierType;
+import org.spongepowered.api.world.generation.structure.JigsawPool;
 import org.spongepowered.api.world.generation.structure.Structure;
 import org.spongepowered.api.world.generation.structure.StructureSet;
+import org.spongepowered.api.world.generation.structure.StructureType;
 import org.spongepowered.api.world.portal.PortalType;
 import org.spongepowered.api.world.schematic.PaletteType;
 import org.spongepowered.api.world.server.TicketType;
@@ -218,6 +220,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<ItemType> ITEM_TYPE = RegistryTypes.minecraftKeyInGame("item");
 
+    public static final DefaultedRegistryType<JigsawPool> JIGSAW_POOL = RegistryTypes.minecraftKeyInGame("worldgen/template_pool");
+
     public static final DefaultedRegistryType<NoiseGeneratorConfig> NOISE_GENERATOR_CONFIG = RegistryTypes.minecraftKeyInServer("worldgen/noise_settings");
 
     public static final DefaultedRegistryType<Noise> NOISE = RegistryTypes.minecraftKeyInServer("worldgen/noise");
@@ -245,6 +249,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<Structure> STRUCTURE = RegistryTypes.minecraftKeyInServer("worldgen/structure");
 
     public static final DefaultedRegistryType<StructureSet> STRUCTURE_SET = RegistryTypes.minecraftKeyInServer("worldgen/structure_set");
+
+    public static final DefaultedRegistryType<StructureType> STRUCTURE_TYPE = RegistryTypes.minecraftKeyInGame("worldgen/structure_type");
 
     public static final DefaultedRegistryType<VillagerType> VILLAGER_TYPE = RegistryTypes.minecraftKeyInGame("villager_type");
 

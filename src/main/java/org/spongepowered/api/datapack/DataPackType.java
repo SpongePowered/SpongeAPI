@@ -39,6 +39,8 @@ import org.spongepowered.api.world.generation.config.noise.NoiseGeneratorConfigT
 import org.spongepowered.api.world.generation.config.noise.NoiseTemplate;
 import org.spongepowered.api.world.generation.feature.FeatureTemplate;
 import org.spongepowered.api.world.generation.feature.PlacedFeatureTemplate;
+import org.spongepowered.api.world.generation.structure.SchematicTemplate;
+import org.spongepowered.api.world.generation.structure.StructureTemplate;
 import org.spongepowered.api.world.server.WorldTemplate;
 import org.spongepowered.plugin.PluginContainer;
 
@@ -90,5 +92,9 @@ public interface DataPackType<T> {
         DataPackType<NoiseTemplate> noise();
 
         DataPackType<DensityFunctionTemplate> densityFunction();
+
+        DataPackType<StructureTemplate> structure();
+
+        DataPackType<SchematicTemplate> schematic();
     }
 }

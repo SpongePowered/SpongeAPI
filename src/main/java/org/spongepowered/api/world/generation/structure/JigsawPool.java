@@ -24,59 +24,48 @@
  */
 package org.spongepowered.api.world.generation.structure;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
-import org.spongepowered.api.world.biome.Biome;
-import org.spongepowered.api.world.generation.feature.DecorationStep;
-import org.spongepowered.api.world.server.ServerLocation;
-import org.spongepowered.api.world.server.ServerWorld;
-import org.spongepowered.math.vector.Vector3i;
+import org.spongepowered.api.util.weighted.WeightedTable;
+import org.spongepowered.api.world.generation.feature.PlacedFeature;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
- * A structure used in world generation.
+ * A pool to generate {@link Structure structures} using jigsaw blocks.
  */
-@CatalogedBy(Structures.class)
-public interface Structure extends DefaultedRegistryValue {
+@CatalogedBy(JigsawPools.class)
+public interface JigsawPool extends DefaultedRegistryValue {
 
     /**
-     * Places the structure at given position and world
+     * Returns the fallback pool, used when the selec
+     * e.g. {@link JigsawPools#EMPTY}
      *
-     * @param world The world
-     * @param pos The position
-     *
-     * @return true when the feature was successfully placed
+     * @return The fallback pool.
      */
-    boolean place(ServerWorld world, Vector3i pos);
+    JigsawPool fallback();
 
-    /**
-     * Places the structure at given location
-     *
-     * @param location The location
-     *
-     * @return true when the feature was successfully placed
-     */
-    boolean place(ServerLocation location);
+    WeightedTable<Element> elements();
 
-    /**
-     * Returns the biomes the structure is allowed in.
-     *
-     * @return The allowed biomes.
-     */
-    Collection<Biome> allowedBiomes();
+    interface Element {
 
-    /**
-     * Returns the decoration step the structure is used in.
-     *
-     * @return The decoration step
-     */
-    DecorationStep decorationStep();
+    }
 
-    /**
-     * Returns the structure type.
-     *
-     * @return The structure type
-     */
-    StructureType type();
+    interface Projection {
+        // TERRAIN_MATCHING
+        // RIGID
+    }
+
+    interface ProcessorList {}
+
+    interface Factory {
+
+        Element legacy(ResourceKey template, ProcessorList processors, Projection projection);
+        Element single(ResourceKey template, ProcessorList processors, Projection projection);
+        Element feature(PlacedFeature feature, Projection projection);
+        Element list(List<Element> elements, Projection projection);
+        Element empty();
+
+    }
 }

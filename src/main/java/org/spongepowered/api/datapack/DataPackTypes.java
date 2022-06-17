@@ -35,6 +35,7 @@ import org.spongepowered.api.registry.RegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.tag.TagTemplate;
 import org.spongepowered.api.world.WorldTypeTemplate;
+import org.spongepowered.api.world.biome.Biome;
 import org.spongepowered.api.world.biome.BiomeTemplate;
 import org.spongepowered.api.world.generation.carver.CarverTemplate;
 import org.spongepowered.api.world.generation.config.noise.DensityFunctionTemplate;
@@ -42,6 +43,8 @@ import org.spongepowered.api.world.generation.config.noise.NoiseGeneratorConfigT
 import org.spongepowered.api.world.generation.config.noise.NoiseTemplate;
 import org.spongepowered.api.world.generation.feature.FeatureTemplate;
 import org.spongepowered.api.world.generation.feature.PlacedFeatureTemplate;
+import org.spongepowered.api.world.generation.structure.SchematicTemplate;
+import org.spongepowered.api.world.generation.structure.StructureTemplate;
 import org.spongepowered.api.world.server.WorldTemplate;
 
 public final class DataPackTypes {
@@ -57,6 +60,8 @@ public final class DataPackTypes {
     public static final DataPackType<TagTemplate<ItemType>> ITEM_TAG = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).tag(RegistryTypes.ITEM_TYPE);
 
     public static final DataPackType<TagTemplate<EntityType<?>>> ENTITY_TAG = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).tag((RegistryType<EntityType<?>>) RegistryTypes.ENTITY_TYPE);
+
+    public static final DataPackType<TagTemplate<Biome>> BIOME_TAG = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).tag(RegistryTypes.BIOME);
 
     public static final DataPackType<BiomeTemplate> BIOME = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).biome();
 
@@ -76,8 +81,11 @@ public final class DataPackTypes {
 
     public static final DataPackType<DensityFunctionTemplate> DENSITY_FUNCTION = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).densityFunction();
 
+    public static final DataPackType<StructureTemplate> STRUCTURE = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).structure();
+
+    public static final DataPackType<SchematicTemplate> SCHEMATIC = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).schematic();
+
     // TODO missing worlgen data packs:
-    // Structure `worldgen/structure`
     // Structure Set `worldgen/structure_set`
     // Processor List `worldgen/processor_list`
     // Template Pool `worldgen/template_pool`
@@ -86,7 +94,6 @@ public final class DataPackTypes {
 
     // TODO missing tag data packs
     // game event tag
-    // biome tag
 
     // TODO missing chat type data packs?
     // TODO missing loot table data packs

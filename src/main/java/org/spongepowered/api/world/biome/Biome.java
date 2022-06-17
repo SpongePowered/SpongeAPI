@@ -31,6 +31,7 @@ import org.spongepowered.api.entity.EntityCategories;
 import org.spongepowered.api.entity.EntityCategory;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.golem.SnowGolem;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.util.weighted.WeightedTable;
@@ -56,7 +57,7 @@ import java.util.Optional;
  * Represents a biome.
  */
 @CatalogedBy(Biomes.class)
-public interface Biome extends DataHolder {
+public interface Biome extends DataHolder, Taggable<Biome> {
 
     // Biome Climate
 
