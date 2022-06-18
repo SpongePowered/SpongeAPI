@@ -58,7 +58,7 @@ public final class VolumePositionTranslators {
     }
 
     public static <W extends Volume, E> VolumePositionTranslator<W, E> relativeTo(final Vector3i newOrigin) {
-        return VolumePositionTranslators.relativeTo(newOrigin.toDouble().add(VolumePositionTranslators.BLOCK_OFFSET));
+        return VolumePositionTranslators.relativeTo(newOrigin.toDouble().sub(VolumePositionTranslators.BLOCK_OFFSET));
     }
 
     public static <W extends Volume, E> VolumePositionTranslator<W, E> relativeTo(final Vector3d newOrigin) {

@@ -169,7 +169,7 @@ public final class VolumeApplicators {
      */
     @SuppressWarnings({"unchecked"})
     public static <M extends BlockEntityVolume.Modifiable<M> & LocationCreator<@NonNull ?, ? extends ServerLocation>> VolumeApplicator<M, BlockEntityArchetype, Optional<? extends BlockEntity>> applyBlockEntityArchetype() {
-        return (volume, element) -> element.type().apply(volume.location(element.position()));
+        return (volume, element) -> element.type().apply(volume.location(element.position().round()));
     }
 
     /**
