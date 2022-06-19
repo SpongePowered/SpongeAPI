@@ -22,15 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.generation.structure;
+package org.spongepowered.api.world.generation.structure.jigsaw;
 
 import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.util.weighted.WeightedTable;
 import org.spongepowered.api.world.generation.feature.PlacedFeature;
+import org.spongepowered.api.world.generation.structure.Structure;
+import org.spongepowered.api.world.server.ServerLocation;
 
 import java.util.List;
+import java.util.function.Function;
 
 /**
  * A pool to generate {@link Structure structures} using jigsaw blocks.
@@ -50,22 +54,34 @@ public interface JigsawPool extends DefaultedRegistryValue {
 
     interface Element {
 
+        Projection projection();
+
+        boolean place(ServerLocation location);
+
     }
 
     interface Projection {
-        // TERRAIN_MATCHING
-        // RIGID
+
     }
 
-    interface ProcessorList {}
+    static Factory factory() {
+        return Sponge.game().factoryProvider().provide(Factory.class);
+    }
 
     interface Factory {
 
-        Element legacy(ResourceKey template, ProcessorList processors, Projection projection);
-        Element single(ResourceKey template, ProcessorList processors, Projection projection);
-        Element feature(PlacedFeature feature, Projection projection);
-        Element list(List<Element> elements, Projection projection);
-        Element empty();
+        Function<Projection, Element> legacy(ResourceKey template, ProcessorList processors);
+
+        Function<Projection, Element> single(ResourceKey template, ProcessorList processors);
+
+        Function<Projection, Element> feature(PlacedFeature feature);
+
+        Function<Projection, Element> list(List<Function<Projection, Element>> elements);
+
+        Function<Projection, Element> empty();
+
+        Projection matchingTerrain();
+        Projection rigid();
 
     }
 }

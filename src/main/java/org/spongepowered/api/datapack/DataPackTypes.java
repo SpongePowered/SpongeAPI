@@ -45,6 +45,7 @@ import org.spongepowered.api.world.generation.feature.FeatureTemplate;
 import org.spongepowered.api.world.generation.feature.PlacedFeatureTemplate;
 import org.spongepowered.api.world.generation.structure.SchematicTemplate;
 import org.spongepowered.api.world.generation.structure.StructureTemplate;
+import org.spongepowered.api.world.generation.structure.jigsaw.ProcessorListTemplate;
 import org.spongepowered.api.world.server.WorldTemplate;
 
 public final class DataPackTypes {
@@ -85,9 +86,10 @@ public final class DataPackTypes {
 
     public static final DataPackType<SchematicTemplate> SCHEMATIC = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).schematic();
 
+    public static final DataPackType<ProcessorListTemplate> PROCESSOR_LIST = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).processorList();
+
     // TODO missing worlgen data packs:
     // Structure Set `worldgen/structure_set`
-    // Processor List `worldgen/processor_list`
     // Template Pool `worldgen/template_pool`
     // World Preset?
     // Flat World Preset / FlatGeneratorConfig `worldgen/flat_level_generator_preset`

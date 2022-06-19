@@ -22,29 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.generation.structure;
+package org.spongepowered.api.world.generation.structure.jigsaw;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.datapack.DataPack;
-import org.spongepowered.api.datapack.DataPackEntry;
-import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.util.ResourceKeyedBuilder;
-import org.spongepowered.api.world.schematic.Schematic;
+import org.spongepowered.api.data.persistence.DataView;
+
+import java.io.IOException;
 
 /**
- * The template for a vanilla structure schematic.
+ * A type of {@link Processor}.
  */
-public interface SchematicTemplate extends DataPackEntry<SchematicTemplate> {
+public interface ProcessorType {
 
-    static Builder builder() {
-        return Sponge.game().builderProvider().provide(Builder.class).reset();
-    }
-
-    Schematic schematic();
-
-    interface Builder extends ResourceKeyedBuilder<SchematicTemplate, Builder>, CopyableBuilder<SchematicTemplate, Builder> {
-
-        Builder pack(DataPack<SchematicTemplate> pack);
-
-    }
+    Processor configure(DataView dataView) throws IOException;
 }

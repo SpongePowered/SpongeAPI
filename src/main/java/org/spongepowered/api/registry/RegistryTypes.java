@@ -150,7 +150,6 @@ import org.spongepowered.api.world.biome.Biome;
 import org.spongepowered.api.world.biome.climate.GrassColorModifier;
 import org.spongepowered.api.world.biome.climate.Precipitation;
 import org.spongepowered.api.world.biome.climate.TemperatureModifier;
-import org.spongepowered.api.world.biome.provider.MultiNoiseBiomeConfig;
 import org.spongepowered.api.world.chunk.ChunkState;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gamerule.GameRule;
@@ -167,10 +166,12 @@ import org.spongepowered.api.world.generation.feature.Feature;
 import org.spongepowered.api.world.generation.feature.FeatureType;
 import org.spongepowered.api.world.generation.feature.PlacedFeature;
 import org.spongepowered.api.world.generation.feature.PlacementModifierType;
-import org.spongepowered.api.world.generation.structure.JigsawPool;
+import org.spongepowered.api.world.generation.structure.jigsaw.JigsawPool;
 import org.spongepowered.api.world.generation.structure.Structure;
 import org.spongepowered.api.world.generation.structure.StructureSet;
 import org.spongepowered.api.world.generation.structure.StructureType;
+import org.spongepowered.api.world.generation.structure.jigsaw.ProcessorList;
+import org.spongepowered.api.world.generation.structure.jigsaw.ProcessorType;
 import org.spongepowered.api.world.portal.PortalType;
 import org.spongepowered.api.world.schematic.PaletteType;
 import org.spongepowered.api.world.server.TicketType;
@@ -220,7 +221,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<ItemType> ITEM_TYPE = RegistryTypes.minecraftKeyInGame("item");
 
-    public static final DefaultedRegistryType<JigsawPool> JIGSAW_POOL = RegistryTypes.minecraftKeyInGame("worldgen/template_pool");
+    public static final DefaultedRegistryType<JigsawPool> JIGSAW_POOL = RegistryTypes.minecraftKeyInServer("worldgen/template_pool");
 
     public static final DefaultedRegistryType<NoiseGeneratorConfig> NOISE_GENERATOR_CONFIG = RegistryTypes.minecraftKeyInServer("worldgen/noise_settings");
 
@@ -233,6 +234,10 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<PlacementModifierType> PLACEMENT_MODIFIER = RegistryTypes.minecraftKeyInGame("worldgen/placement_modifier_type");
 
     public static final DefaultedRegistryType<PotionEffectType> POTION_EFFECT_TYPE = RegistryTypes.minecraftKeyInGame("mob_effect");
+
+    public static final DefaultedRegistryType<ProcessorList> PROCESSOR_LIST = RegistryTypes.minecraftKeyInServer("worldgen/processor_list");
+
+    public static final DefaultedRegistryType<ProcessorType> PROCESSOR_TYPE = RegistryTypes.minecraftKeyInGame("worldgen/structure_processor");
 
     public static final DefaultedRegistryType<ProfessionType> PROFESSION_TYPE = RegistryTypes.minecraftKeyInGame("villager_profession");
 

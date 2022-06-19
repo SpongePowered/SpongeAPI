@@ -41,6 +41,7 @@ import org.spongepowered.api.world.generation.feature.FeatureTemplate;
 import org.spongepowered.api.world.generation.feature.PlacedFeatureTemplate;
 import org.spongepowered.api.world.generation.structure.SchematicTemplate;
 import org.spongepowered.api.world.generation.structure.StructureTemplate;
+import org.spongepowered.api.world.generation.structure.jigsaw.ProcessorListTemplate;
 import org.spongepowered.api.world.server.WorldTemplate;
 
 /**
@@ -81,6 +82,8 @@ public final class DataPacks {
     public static final DataPack<StructureTemplate> STRUCTURE = DataPackTypes.STRUCTURE.pack("plugin_worldgen", "Sponge plugin provided structures");
 
     public static final DataPack<SchematicTemplate> SCHEMATIC = DataPackTypes.SCHEMATIC.pack("plugin_worldgen", "Sponge plugin provided structure schematics");
+
+    public static final DataPack<ProcessorListTemplate> PROCESSOR_LIST = DataPackTypes.PROCESSOR_LIST.pack("plugin_worldgen", "Sponge plugin provided processor lists");
 
 
     private DataPacks() {

@@ -22,29 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.generation.structure;
+package org.spongepowered.api.world.generation.structure.jigsaw;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.datapack.DataPack;
-import org.spongepowered.api.datapack.DataPackEntry;
-import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.util.ResourceKeyedBuilder;
-import org.spongepowered.api.world.schematic.Schematic;
+
+import java.util.List;
 
 /**
- * The template for a vanilla structure schematic.
+ * A list of {@link Processor processors}.
  */
-public interface SchematicTemplate extends DataPackEntry<SchematicTemplate> {
+public interface ProcessorList {
 
-    static Builder builder() {
-        return Sponge.game().builderProvider().provide(Builder.class).reset();
+    static ProcessorList of(List<Processor> processors) {
+        return Sponge.game().factoryProvider().provide(Factory.class).of(processors);
     }
 
-    Schematic schematic();
+    /**
+     * Returns the list of processors
+     *
+     * @return The list of processors
+     */
+    List<Processor> processors();
 
-    interface Builder extends ResourceKeyedBuilder<SchematicTemplate, Builder>, CopyableBuilder<SchematicTemplate, Builder> {
-
-        Builder pack(DataPack<SchematicTemplate> pack);
-
+    interface Factory {
+        ProcessorList of(List<Processor> processors);
     }
 }
