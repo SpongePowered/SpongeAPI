@@ -232,6 +232,7 @@ import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.MinecraftDayTime;
+import org.spongepowered.api.util.Range;
 import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.orientation.Orientation;
@@ -2778,6 +2779,16 @@ public final class Keys {
      * How many entities a {@link MobSpawner} has spawned so far.
      */
     public static final Key<Value<Integer>> SPAWN_COUNT = Keys.key(ResourceKey.sponge("spawn_count"), Integer.class);
+
+    /**
+     * The light level needed to block monster spawning in a {@link WorldType}.
+     */
+    public static final Key<Value<Integer>> SPAWN_LIGHT_LIMIT = Keys.key(ResourceKey.sponge("spawn_light_limit"), Integer.class);
+
+    /**
+     * The light level range needed to block monster spawning in a {@link WorldType}
+     */
+    public static final Key<Value<Range<Integer>>> SPAWN_LIGHT_RANGE = Keys.key(ResourceKey.sponge("spawn_light_range"), new TypeToken<Range<Integer>>() {});
 
     /**
      * The spawn position in a world of a {@link WorldTemplate} or {@link WorldProperties}

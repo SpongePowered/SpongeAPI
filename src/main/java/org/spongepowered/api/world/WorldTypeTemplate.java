@@ -64,7 +64,6 @@ public interface WorldTypeTemplate extends DataPackEntry<WorldTypeTemplate> {
 
     interface Builder extends DataPackEntryBuilder<WorldType, WorldTypeTemplate, Builder> {
 
-        // TODO 1.19 monstersettings
         <V> Builder add(Key<? extends Value<V>> key, V value);
 
     }

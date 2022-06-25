@@ -41,6 +41,7 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.service.context.ContextSource;
 import org.spongepowered.api.tag.Tag;
 import org.spongepowered.api.util.MinecraftDayTime;
+import org.spongepowered.api.util.Range;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.portal.PortalType;
 import org.spongepowered.api.world.portal.PortalTypes;
@@ -236,5 +237,25 @@ public interface WorldType extends DefaultedRegistryValue, ContextSource, DataHo
     default boolean createDragonFight() {
         return this.require(Keys.CREATE_DRAGON_FIGHT);
     }
+
+    /**
+     * Returns the light level needed to block monster spawning.
+     *
+     * @return spawn light limit
+     */
+    default int spawnLightLimit() {
+        return this.require(Keys.SPAWN_LIGHT_LIMIT);
+    }
+
+    /**
+     * Returns the light level range needed to block monster spawning.
+     *
+     * @return the spawn light range
+     */
+    default Range<Integer> spawnLightRange() {
+        return this.require(Keys.SPAWN_LIGHT_RANGE);
+    }
+
+
 
 }
