@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world.generation.structure;
 
+import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.biome.Biome;
@@ -79,4 +80,12 @@ public interface Structure extends DefaultedRegistryValue {
      * @return The structure type
      */
     StructureType type();
+
+    /**
+     * Returns the serialized structure configuration.
+     * <p>Reconfigure a structure using {@link StructureType#configure(DataView)}</p>
+     *
+     * @return The serialized structure configuration
+     */
+    DataView toContainer();
 }

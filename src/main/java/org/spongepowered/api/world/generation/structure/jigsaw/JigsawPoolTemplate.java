@@ -22,57 +22,63 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.generation.structure;
+package org.spongepowered.api.world.generation.structure.jigsaw;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.persistence.DataView;
-import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.datapack.DataPackEntry;
+import org.spongepowered.api.registry.RegistryReference;
 import org.spongepowered.api.util.DataPackEntryBuilder;
 
-import java.io.IOException;
-
 /**
- * A template for {@link Structure structures}
+ * A template for {@link JigsawPool jigsaw pools}
  */
-public interface StructureTemplate extends DataPackEntry<StructureTemplate> {
+public interface JigsawPoolTemplate extends DataPackEntry<JigsawPoolTemplate> {
 
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class).reset();
     }
 
     /**
-     * Returns the structure.
+     * Returns the jigsaw pool.
      *
-     * @return The structure.
+     * @return The jigsaw pool
      */
-    Structure structure();
+    JigsawPool jigsawPool();
 
-    interface Builder extends DataPackEntryBuilder<Structure, StructureTemplate, Builder> {
-
-        /**
-         * Initializes the builder with given structure.
-         *
-         * @param structure The structure
-         * @return This builder, for chaining
-         */
-        Builder fromValue(Structure structure);
+    interface Builder extends DataPackEntryBuilder<JigsawPool, JigsawPoolTemplate, Builder> {
 
         /**
-         * Initializes the builder with the data from given {@link DataView}.
-         * {@link StructureTemplate#toContainer()}
+         * Adds a jigsaw element with given weight.
          *
-         * @param datapack The data pack data
+         * @param element The element
+         * @param weight The weight
          * @return This builder, for chaining
          */
-        Builder fromDataPack(DataView datapack) throws IOException;
+        Builder add(JigsawPoolElement element, int weight);
 
         /**
-         * Sets the data pack
+         * Sets the name of the jigsaw pool.
          *
-         * @param pack The data pack
+         * @param name The name
          * @return This builder, for chaining
          */
-        Builder pack(DataPack<StructureTemplate> pack);
+        Builder name(ResourceKey name);
+
+        /**
+         * Sets the fallback for the jigsaw pool.
+         *
+         * @param fallback The fallback jigsaw pool
+         * @return This builder, for chaining
+         */
+        Builder fallback(RegistryReference<JigsawPool> fallback);
+
+        /**
+         * Sets the fallback for the jigsaw pool.
+         *
+         * @param fallback the fallback jigsaw pool
+         * @return This builder, for chaining
+         */
+        Builder fallback(JigsawPoolTemplate fallback);
     }
 }

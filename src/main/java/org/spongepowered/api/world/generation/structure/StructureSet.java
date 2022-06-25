@@ -33,11 +33,18 @@ import org.spongepowered.api.util.weighted.WeightedTable;
 @CatalogedBy(StructureSets.class)
 public interface StructureSet {
 
+    /**
+     * Returns the structures included in the structure set.
+     *
+     * @return The structures included
+     */
     WeightedTable<Structure> structures();
 
-    Placement placement();
+    /**
+     * Returns the structure placement
+     *
+     * @return The structure placement
+     */
+    StructurePlacement placement();
 
-    interface Placement {
-
-    }
 }

@@ -25,13 +25,8 @@
 package org.spongepowered.api.world.generation.config.noise;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.persistence.DataView;
-import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.datapack.DataPackEntry;
-import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.util.ResourceKeyedBuilder;
-
-import java.io.IOException;
+import org.spongepowered.api.util.DataPackEntryBuilder;
 
 /**
  * A template for {@link DensityFunction density functions}
@@ -44,32 +39,10 @@ public interface DensityFunctionTemplate extends DataPackEntry<DensityFunctionTe
 
     DensityFunction densityFunction();
 
-    interface Builder extends ResourceKeyedBuilder<DensityFunctionTemplate, Builder>, CopyableBuilder<DensityFunctionTemplate, Builder> {
+    interface Builder extends DataPackEntryBuilder<DensityFunction, DensityFunctionTemplate, Builder> {
 
         // TODO advanced
 
-        /**
-         * Sets the density function.
-         * @param densityFunction The density function
-         * @return This builder, for chaining
-         */
-        Builder from(DensityFunction densityFunction);
-
-        /**
-         * Initializes the builder with the data from given {@link DataView}.
-         * {@link DensityFunctionTemplate#toContainer()}
-         *
-         * @param datapack The data pack data
-         * @return This builder, for chaining
-         */
-        Builder fromDataPack(DataView datapack) throws IOException;
-
-        /**
-         * Sets the data pack
-         * @param pack The data pack
-         * @return This builder, for chaining
-         */
-        Builder pack(DataPack<DensityFunctionTemplate> pack);
     }
 
 }

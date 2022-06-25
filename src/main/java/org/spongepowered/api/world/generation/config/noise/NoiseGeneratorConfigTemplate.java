@@ -26,10 +26,8 @@ package org.spongepowered.api.world.generation.config.noise;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.datapack.DataPackEntry;
-import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.util.ResourceKeyedBuilder;
+import org.spongepowered.api.util.DataPackEntryBuilder;
 import org.spongepowered.api.world.biome.BiomeAttributes;
 import org.spongepowered.api.world.generation.ConfigurableChunkGenerator;
 import org.spongepowered.api.world.generation.config.SurfaceRule;
@@ -48,7 +46,7 @@ public interface NoiseGeneratorConfigTemplate extends DataPackEntry<NoiseGenerat
 
     NoiseGeneratorConfig config();
 
-    interface Builder extends ResourceKeyedBuilder<NoiseGeneratorConfigTemplate, Builder>, CopyableBuilder<NoiseGeneratorConfigTemplate, Builder> {
+    interface Builder extends DataPackEntryBuilder<NoiseGeneratorConfig, NoiseGeneratorConfigTemplate, Builder> {
 
         /**
          * Sets the noise configuration
@@ -135,21 +133,5 @@ public interface NoiseGeneratorConfigTemplate extends DataPackEntry<NoiseGenerat
          * @return This builder, for chaining
          */
         Builder spawnTargets(List<BiomeAttributes> spawnTargets);
-
-        /**
-         * Initializes this builder with all values from given {@link NoiseGeneratorConfig}
-         *
-         * @param value the configuration
-         * @return This builder, for chaining
-         */
-        Builder from(final NoiseGeneratorConfig value);
-
-        /**
-         * Sets the data pack.
-         *
-         * @param pack The data pack
-         * @return This builder, for chaining
-         */
-        Builder pack(DataPack<NoiseGeneratorConfigTemplate> pack);
     }
 }

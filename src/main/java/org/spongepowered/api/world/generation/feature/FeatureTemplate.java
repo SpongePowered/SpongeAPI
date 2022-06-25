@@ -28,8 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.datapack.DataPackEntry;
-import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.util.ResourceKeyedBuilder;
+import org.spongepowered.api.util.DataPackEntryBuilder;
 
 import java.io.IOException;
 
@@ -49,15 +48,7 @@ public interface FeatureTemplate extends DataPackEntry<FeatureTemplate> {
      */
     Feature feature();
 
-    interface Builder extends ResourceKeyedBuilder<FeatureTemplate, Builder>, CopyableBuilder<FeatureTemplate, Builder> {
-
-        /**
-         * Initializes the builder with all data from given {@link Feature}.
-         *
-         * @param feature The feature
-         * @return The builder, for chaining
-         */
-        Builder from(Feature feature);
+    interface Builder extends DataPackEntryBuilder<Feature, FeatureTemplate, Builder> {
 
         /**
          * Sets the given {@link FeatureType}.
@@ -67,22 +58,6 @@ public interface FeatureTemplate extends DataPackEntry<FeatureTemplate> {
          */
         Builder type(FeatureType type);
 
-        /**
-         * Initializes the builder with all data from given {@link DataView}.
-         * <p>{@link FeatureTemplate#toContainer()}</p>
-         *
-         * @param pack The data pack data
-         * @return The builder, for chaining
-         */
-        Builder fromDataPack(DataView pack) throws IOException;
-
-        /**
-         * Sets the data pack.
-         *
-         * @param pack The data pack
-         * @return This builder, for chaining
-         */
-        Builder pack(DataPack<FeatureTemplate> pack);
     }
 
 }

@@ -26,14 +26,9 @@ package org.spongepowered.api.world.biome;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Key;
-import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.datapack.DataPackEntry;
-import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.util.ResourceKeyedBuilder;
-
-import java.io.IOException;
+import org.spongepowered.api.util.DataPackEntryBuilder;
 
 /**
  * A template for {@link Biome biomes}.
@@ -51,7 +46,7 @@ public interface BiomeTemplate extends DataPackEntry<BiomeTemplate> {
      */
     Biome biome();
 
-    interface Builder extends ResourceKeyedBuilder<BiomeTemplate, Builder>, CopyableBuilder<BiomeTemplate, Builder> {
+    interface Builder extends DataPackEntryBuilder<Biome, BiomeTemplate, Builder> {
 
         /**
          * Adds the given {@link Key} with the given value.
@@ -63,30 +58,6 @@ public interface BiomeTemplate extends DataPackEntry<BiomeTemplate> {
          */
         <V> Builder add(Key<? extends Value<V>> key, V value);
 
-        /**
-         * Initializes the builder with all data from given {@link Biome}
-         *
-         * @param biome The biome
-         * @return This builder, for chaining
-         */
-        Builder from(Biome biome);
-
-        /**
-         * Initializes the builder with all data from given {@link DataView}
-         * <p>{@link BiomeTemplate#toContainer()}</p>
-         *
-         * @param pack The data pack data
-         * @return This builder, for chaining
-         */
-        Builder fromDataPack(DataView pack) throws IOException;
-
-        /**
-         * Sets the data pack.
-         *
-         * @param pack The data pack
-         * @return This builder, for chaining
-         */
-        Builder pack(DataPack<BiomeTemplate> pack);
     }
 
 }

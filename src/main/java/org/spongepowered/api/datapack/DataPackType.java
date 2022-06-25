@@ -40,7 +40,9 @@ import org.spongepowered.api.world.generation.config.noise.NoiseTemplate;
 import org.spongepowered.api.world.generation.feature.FeatureTemplate;
 import org.spongepowered.api.world.generation.feature.PlacedFeatureTemplate;
 import org.spongepowered.api.world.generation.structure.SchematicTemplate;
+import org.spongepowered.api.world.generation.structure.StructureSetTemplate;
 import org.spongepowered.api.world.generation.structure.StructureTemplate;
+import org.spongepowered.api.world.generation.structure.jigsaw.JigsawPoolTemplate;
 import org.spongepowered.api.world.generation.structure.jigsaw.ProcessorListTemplate;
 import org.spongepowered.api.world.server.WorldTemplate;
 import org.spongepowered.plugin.PluginContainer;
@@ -99,5 +101,9 @@ public interface DataPackType<T> {
         DataPackType<SchematicTemplate> schematic();
 
         DataPackType<ProcessorListTemplate> processorList();
+
+        DataPackType<StructureSetTemplate> structureSet();
+
+        DataPackType<JigsawPoolTemplate> jigsawPool();
     }
 }

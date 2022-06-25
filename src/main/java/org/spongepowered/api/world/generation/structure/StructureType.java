@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world.generation.structure;
 
+import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.server.ServerLocation;
@@ -36,4 +37,11 @@ import org.spongepowered.math.vector.Vector3i;
 @CatalogedBy(StructureTypes.class)
 public interface StructureType extends DefaultedRegistryValue {
 
+    /**
+     * Returns the configured structure
+     *
+     * @param config the structure configuration data
+     * @return The configured structure
+     */
+    Structure configure(DataView config);
 }

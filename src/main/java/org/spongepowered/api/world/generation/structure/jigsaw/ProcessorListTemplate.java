@@ -24,12 +24,10 @@
  */
 package org.spongepowered.api.world.generation.structure.jigsaw;
 
-import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.datapack.DataPackEntry;
 import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.util.ResourceKeyedBuilder;
+import org.spongepowered.api.util.DataPackEntryBuilder;
 
 import java.util.List;
 
@@ -42,14 +40,21 @@ public interface ProcessorListTemplate extends DataPackEntry<ProcessorListTempla
         return Sponge.game().builderProvider().provide(Builder.class).reset();
     }
 
+    /**
+     * Returns the processor list.
+     * @return The processor list
+     */
     ProcessorList processorList();
 
-    interface Builder extends ResourceKeyedBuilder<ProcessorListTemplate, Builder>, CopyableBuilder<ProcessorListTemplate, Builder> {
+    interface Builder extends DataPackEntryBuilder<ProcessorList, ProcessorListTemplate, Builder>, CopyableBuilder<ProcessorListTemplate, Builder> {
 
-        Builder from(List<Processor> processorList);
+        /**
+         * Sets the list of processors.
+         *
+         * @param processors The list of processors
+         * @return This builder, for chaining
+         */
+        Builder fromValues(List<Processor> processors);
 
-        Builder pack(DataPack<ProcessorListTemplate> pack);
-
-        Builder from(ProcessorList processorList);
     }
 }

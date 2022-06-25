@@ -42,7 +42,7 @@ public interface Carver {
 
     /**
      * Returns the serialized carver configuration.
-     * <p>Reconfigure are carver using {@link CarverType#configure(DataView)}</p>
+     * <p>Reconfigure a carver using {@link CarverType#configure(DataView)}</p>
      *
      * @return The serialized carver configuration
      */

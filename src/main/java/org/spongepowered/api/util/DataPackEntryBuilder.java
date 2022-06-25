@@ -22,57 +22,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.generation.structure;
+package org.spongepowered.api.util;
 
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.datapack.DataPackEntry;
-import org.spongepowered.api.util.DataPackEntryBuilder;
 
 import java.io.IOException;
 
-/**
- * A template for {@link Structure structures}
- */
-public interface StructureTemplate extends DataPackEntry<StructureTemplate> {
-
-    static Builder builder() {
-        return Sponge.game().builderProvider().provide(Builder.class).reset();
-    }
+public interface DataPackEntryBuilder<T, TT extends DataPackEntry<TT>, B extends DataPackEntryBuilder<T, TT, B>> extends
+        ResourceKeyedBuilder<TT, B>,
+        CopyableBuilder<TT, B> {
 
     /**
-     * Returns the structure.
+     * Sets the data pack
      *
-     * @return The structure.
+     * @param pack The data pack
+     * @return This builder, for chaining
      */
-    Structure structure();
+    B pack(DataPack<TT> pack);
 
-    interface Builder extends DataPackEntryBuilder<Structure, StructureTemplate, Builder> {
+    /**
+     * Initializes the builder with given value.
+     *
+     * @param value The template value
+     * @return This builder, for chaining
+     */
+    B fromValue(T value);
 
-        /**
-         * Initializes the builder with given structure.
-         *
-         * @param structure The structure
-         * @return This builder, for chaining
-         */
-        Builder fromValue(Structure structure);
+    /**
+     * Initializes the builder with the data from given {@link DataView}.
+     * <p>{@link DataPackEntry#toContainer()}</p>
+     *
+     * @param datapack The data pack entry data
+     * @return This builder, for chaining
+     */
+    B fromDataPack(DataView datapack) throws IOException;
 
-        /**
-         * Initializes the builder with the data from given {@link DataView}.
-         * {@link StructureTemplate#toContainer()}
-         *
-         * @param datapack The data pack data
-         * @return This builder, for chaining
-         */
-        Builder fromDataPack(DataView datapack) throws IOException;
 
-        /**
-         * Sets the data pack
-         *
-         * @param pack The data pack
-         * @return This builder, for chaining
-         */
-        Builder pack(DataPack<StructureTemplate> pack);
-    }
 }

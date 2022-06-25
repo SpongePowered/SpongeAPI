@@ -25,54 +25,42 @@
 package org.spongepowered.api.world.generation.structure;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.persistence.DataView;
-import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.datapack.DataPackEntry;
 import org.spongepowered.api.util.DataPackEntryBuilder;
 
-import java.io.IOException;
-
 /**
- * A template for {@link Structure structures}
+ * A template for {@link StructureSet structure sets}
  */
-public interface StructureTemplate extends DataPackEntry<StructureTemplate> {
+public interface StructureSetTemplate extends DataPackEntry<StructureSetTemplate> {
 
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class).reset();
     }
 
     /**
-     * Returns the structure.
+     * Returns the structure set.
      *
-     * @return The structure.
+     * @return The structure set
      */
-    Structure structure();
+    StructureSet structureSet();
 
-    interface Builder extends DataPackEntryBuilder<Structure, StructureTemplate, Builder> {
+    interface Builder extends DataPackEntryBuilder<StructureSet, StructureSetTemplate, Builder> {
 
         /**
-         * Initializes the builder with given structure.
+         * Sets the structure placement.
+         *
+         * @param placement The placement
+         * @return This builder, for chaining
+         */
+        Builder placement(StructurePlacement placement);
+
+        /**
+         * Adds a structure with given weight.
          *
          * @param structure The structure
+         * @param weight The weight
          * @return This builder, for chaining
          */
-        Builder fromValue(Structure structure);
-
-        /**
-         * Initializes the builder with the data from given {@link DataView}.
-         * {@link StructureTemplate#toContainer()}
-         *
-         * @param datapack The data pack data
-         * @return This builder, for chaining
-         */
-        Builder fromDataPack(DataView datapack) throws IOException;
-
-        /**
-         * Sets the data pack
-         *
-         * @param pack The data pack
-         * @return This builder, for chaining
-         */
-        Builder pack(DataPack<StructureTemplate> pack);
+        Builder add(Structure structure, int weight);
     }
 }

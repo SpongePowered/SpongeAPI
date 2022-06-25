@@ -38,5 +38,10 @@ public interface Processor {
      */
     ProcessorType type();
 
+    /**
+     * Returns the processor configuration
+     *
+     * @return The processor configuration
+     */
     DataContainer toContainer();
 }

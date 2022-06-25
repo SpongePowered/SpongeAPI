@@ -35,6 +35,7 @@ public interface CarverType {
 
     /**
      * Returns the configured carver
+     *
      * @param config the carver configuration data
      * @return The configured carver
      */

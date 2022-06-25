@@ -25,13 +25,8 @@
 package org.spongepowered.api.world.generation.carver;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.persistence.DataView;
-import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.datapack.DataPackEntry;
-import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.util.ResourceKeyedBuilder;
-
-import java.io.IOException;
+import org.spongepowered.api.util.DataPackEntryBuilder;
 
 /**
  * A template for {@link CarverType carvers}.
@@ -49,7 +44,7 @@ public interface CarverTemplate extends DataPackEntry<CarverTemplate> {
      */
     Carver carver();
 
-    interface Builder extends ResourceKeyedBuilder<CarverTemplate, Builder>, CopyableBuilder<CarverTemplate, Builder> {
+    interface Builder extends DataPackEntryBuilder<Carver, CarverTemplate, Builder> {
 
         /**
          * Sets the {@link CarverType}
@@ -59,30 +54,6 @@ public interface CarverTemplate extends DataPackEntry<CarverTemplate> {
          */
         Builder type(CarverType type);
 
-        /**
-         * Initializes the builder with all data from given {@link Carver}
-         *
-         * @param carver The carver
-         * @return This builder, for chaining
-         */
-        Builder from(Carver carver);
-
-        /**
-         * Initializes the builder with all data from given {@link DataView}
-         * <p>{@link CarverTemplate#toContainer()}</p>
-         *
-         * @param pack The data pack data
-         * @return This builder, for chaining
-         */
-        Builder fromDataPack(DataView pack) throws IOException;
-
-        /**
-         * Sets the data pack.
-         *
-         * @param pack The data pack
-         * @return This builder, for chaining
-         */
-        Builder pack(DataPack<CarverTemplate> pack);
     }
 
 }

@@ -26,14 +26,9 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Key;
-import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.datapack.DataPackEntry;
-import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.util.ResourceKeyedBuilder;
-
-import java.io.IOException;
+import org.spongepowered.api.util.DataPackEntryBuilder;
 
 /**
  * A template for a {@link WorldType}.
@@ -41,19 +36,19 @@ import java.io.IOException;
 public interface WorldTypeTemplate extends DataPackEntry<WorldTypeTemplate> {
 
     static WorldTypeTemplate.Builder overworld() {
-        return WorldTypeTemplate.builder().from(WorldTypes.OVERWORLD.get());
+        return WorldTypeTemplate.builder().fromValue(WorldTypes.OVERWORLD.get());
     }
 
     static WorldTypeTemplate.Builder overworldCaves() {
-        return WorldTypeTemplate.builder().from(WorldTypes.OVERWORLD_CAVES.get());
+        return WorldTypeTemplate.builder().fromValue(WorldTypes.OVERWORLD_CAVES.get());
     }
 
     static WorldTypeTemplate.Builder theNether() {
-        return WorldTypeTemplate.builder().from(WorldTypes.THE_NETHER.get());
+        return WorldTypeTemplate.builder().fromValue(WorldTypes.THE_NETHER.get());
     }
 
     static WorldTypeTemplate.Builder theEnd() {
-        return WorldTypeTemplate.builder().from(WorldTypes.THE_END.get());
+        return WorldTypeTemplate.builder().fromValue(WorldTypes.THE_END.get());
     }
 
     static Builder builder() {
@@ -62,35 +57,16 @@ public interface WorldTypeTemplate extends DataPackEntry<WorldTypeTemplate> {
 
     /**
      * Returns the world type.
-     * TODO usage? probably needs to be turned into a data-pack then - reloaded into registry
      *
      * @return The world type
      */
     WorldType worldType();
 
-    interface Builder extends ResourceKeyedBuilder<WorldTypeTemplate, Builder>, CopyableBuilder<WorldTypeTemplate, Builder> {
+    interface Builder extends DataPackEntryBuilder<WorldType, WorldTypeTemplate, Builder> {
 
         // TODO 1.19 monstersettings
         <V> Builder add(Key<? extends Value<V>> key, V value);
 
-        /**
-         * Fills the builder with settings from given world type
-         * @param type The world type
-         *
-         * @return This builder, for chaining
-         */
-        Builder from(WorldType type);
-
-        /**
-         * Fills the builder with given data view.
-         * <p>The data must be equivalent to a data-pack</p>
-         *
-         * @param pack The data
-         * @return This builder, for chaining
-         */
-        Builder fromDataPack(DataView pack) throws IOException;
-
-        Builder pack(DataPack<WorldTypeTemplate> pack);
     }
 
 }

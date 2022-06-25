@@ -25,10 +25,8 @@
 package org.spongepowered.api.world.generation.config.noise;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.datapack.DataPackEntry;
-import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.util.ResourceKeyedBuilder;
+import org.spongepowered.api.util.DataPackEntryBuilder;
 
 import java.util.List;
 
@@ -43,14 +41,13 @@ public interface NoiseTemplate extends DataPackEntry<NoiseTemplate> {
 
     Noise noise();
 
-    interface Builder extends ResourceKeyedBuilder<NoiseTemplate, Builder>, CopyableBuilder<NoiseTemplate, Builder> {
+    interface Builder extends DataPackEntryBuilder<Noise, NoiseTemplate, Builder> {
 
-        Builder from(Noise noise);
         Builder octave(int octave);
-        Builder amplitudes(double... amplitudes);
-        Builder amplitudes(List<Double> amplitudes);
 
-        Builder pack(DataPack<NoiseTemplate> pack);
+        Builder amplitudes(double... amplitudes);
+
+        Builder amplitudes(List<Double> amplitudes);
 
     }
 }

@@ -24,18 +24,15 @@
  */
 package org.spongepowered.api.world.generation.structure.jigsaw;
 
-import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.List;
 
 /**
  * A list of {@link Processor processors}.
  */
+@CatalogedBy(ProcessorLists.class)
 public interface ProcessorList {
-
-    static ProcessorList of(List<Processor> processors) {
-        return Sponge.game().factoryProvider().provide(Factory.class).of(processors);
-    }
 
     /**
      * Returns the list of processors
@@ -44,7 +41,4 @@ public interface ProcessorList {
      */
     List<Processor> processors();
 
-    interface Factory {
-        ProcessorList of(List<Processor> processors);
-    }
 }

@@ -33,5 +33,11 @@ import java.io.IOException;
  */
 public interface ProcessorType {
 
-    Processor configure(DataView dataView) throws IOException;
+    /**
+     * Returns the configured processor.
+     *
+     * @param config the processor configuration.
+     * @return The configured processor
+     */
+    Processor configure(DataView config) throws IOException;
 }
