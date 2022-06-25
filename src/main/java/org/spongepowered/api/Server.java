@@ -70,6 +70,11 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      */
     WorldManager worldManager();
 
+    /**
+     * Returns the {@link DataPackManager}
+     *
+     * @return The datapack manager
+     */
     DataPackManager dataPackManager();
 
     /**

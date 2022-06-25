@@ -33,5 +33,10 @@ import org.spongepowered.api.world.generation.config.ChunkGeneratorConfig;
  */
 public interface ConfigurableChunkGenerator<T extends ChunkGeneratorConfig> extends ChunkGenerator {
 
+    /**
+     * Returns the chunk generator configuration.
+     *
+     * @return The chunk generator configuration
+     */
     T config();
 }

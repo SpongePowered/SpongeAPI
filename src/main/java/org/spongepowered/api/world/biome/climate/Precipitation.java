@@ -25,7 +25,11 @@
 package org.spongepowered.api.world.biome.climate;
 
 import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.world.biome.Biome;
 
+/**
+ * The type of precipitation in a {@link Biome}.
+ */
 @CatalogedBy(Precipitations.class)
 public interface Precipitation {
 

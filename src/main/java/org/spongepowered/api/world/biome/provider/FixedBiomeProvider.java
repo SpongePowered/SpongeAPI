@@ -26,7 +26,14 @@ package org.spongepowered.api.world.biome.provider;
 
 import org.spongepowered.api.world.biome.Biome;
 
+/**
+ * A {@link BiomeProvider} with a single fixed biome.
+ */
 public interface FixedBiomeProvider extends BiomeProvider {
 
+    /**
+     * Returns the fixed biome.
+     * @return The biome
+     */
     Biome biome();
 }

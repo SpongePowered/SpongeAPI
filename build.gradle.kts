@@ -316,6 +316,7 @@ val sortClasses = listOf(
         "org.spongepowered.api.data.type.TropicalFishShapes",
         "org.spongepowered.api.data.type.VillagerTypes",
         "org.spongepowered.api.data.type.WireAttachmentTypes",
+        "org.spongepowered.api.datapack.DataPacks",
         "org.spongepowered.api.datapack.DataPackTypes",
         "org.spongepowered.api.effect.particle.ParticleOptions",
         "org.spongepowered.api.effect.particle.ParticleTypes",

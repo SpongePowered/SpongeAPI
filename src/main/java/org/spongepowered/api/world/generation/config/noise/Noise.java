@@ -28,6 +28,9 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.List;
 
+/**
+ * Noise used in world generation
+ */
 @CatalogedBy(Noises.class)
 public interface Noise {
 

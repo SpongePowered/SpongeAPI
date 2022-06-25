@@ -40,10 +40,21 @@ public interface SchematicTemplate extends DataPackEntry<SchematicTemplate> {
         return Sponge.game().builderProvider().provide(Builder.class).reset();
     }
 
+    /**
+     * Returns the schematic.
+     *
+     * @return The schematic
+     */
     Schematic schematic();
 
     interface Builder extends ResourceKeyedBuilder<SchematicTemplate, Builder>, CopyableBuilder<SchematicTemplate, Builder> {
 
+        /**
+         * Sets the data pack
+         *
+         * @param pack The data pack
+         * @return This builder, for chaining
+         */
         Builder pack(DataPack<SchematicTemplate> pack);
 
     }

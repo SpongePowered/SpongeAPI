@@ -37,6 +37,11 @@ public interface DensityFunctionTemplate extends DataPackEntry<DensityFunctionTe
         return Sponge.game().builderProvider().provide(Builder.class).reset();
     }
 
+    /**
+     * Returns the density function
+     *
+     * @return The density function
+     */
     DensityFunction densityFunction();
 
     interface Builder extends DataPackEntryBuilder<DensityFunction, DensityFunctionTemplate, Builder> {

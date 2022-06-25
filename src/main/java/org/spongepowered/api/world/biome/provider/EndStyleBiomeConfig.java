@@ -27,9 +27,13 @@ package org.spongepowered.api.world.biome.provider;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.RegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.world.WorldTypes;
 import org.spongepowered.api.world.biome.Biome;
 import org.spongepowered.api.world.biome.Biomes;
 
+/**
+ * {@link BiomeProvider} with defined biomes for a world of type {@link WorldTypes#THE_END}.
+ */
 public interface EndStyleBiomeConfig extends BiomeProviderConfig {
 
     static Builder builder() {

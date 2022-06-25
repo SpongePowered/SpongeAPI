@@ -52,6 +52,8 @@ import org.spongepowered.api.world.server.WorldTemplate;
 
 public final class DataPackTypes {
 
+    // SORTFIELDS:ON
+
     public static final DataPackType<AdvancementTemplate> ADVANCEMENT = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).advancement();
 
     public static final DataPackType<RecipeRegistration> RECIPE = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).recipe();
@@ -93,6 +95,8 @@ public final class DataPackTypes {
     public static final DataPackType<ProcessorListTemplate> PROCESSOR_LIST = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).processorList();
 
     public static final DataPackType<JigsawPoolTemplate> JIGSAW_POOL = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).jigsawPool();
+
+    // SORTFIELDS:OFF
 
     // TODO `worldgen/world_preset`? WorldGenerationConfig? with mapping of LevelStems
     // TODO `worldgen/flat_level_generator_preset`? `FlatGeneratorConfigs`

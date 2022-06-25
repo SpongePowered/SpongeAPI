@@ -26,6 +26,7 @@ package org.spongepowered.api.world.generation;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.world.WorldTypes;
 import org.spongepowered.api.world.biome.provider.BiomeProvider;
 import org.spongepowered.api.world.generation.config.flat.FlatGeneratorConfig;
 import org.spongepowered.api.world.generation.config.noise.NoiseGeneratorConfig;
@@ -87,14 +88,42 @@ public interface ChunkGenerator {
 
     interface Factory {
 
+        /**
+         * Creates a chunk generator based on given configuration.
+         *
+         * @param config The flat generator configuration
+         * @return The new chunk generator
+         */
         ConfigurableChunkGenerator<FlatGeneratorConfig> flat(FlatGeneratorConfig config);
 
+        /**
+         * Creates a chunk generator bases on given biome provider and configuration
+         *
+         * @param provider The biome provider
+         * @param config The noise generator configuration
+         * @return The new chunk generator
+         */
         ConfigurableChunkGenerator<NoiseGeneratorConfig> noise(BiomeProvider provider, NoiseGeneratorConfig config);
 
+        /**
+         * Creates a chunk generator like the vanilla {@link WorldTypes#OVERWORLD}.
+         *
+         * @return The new chunk generator
+         */
         ConfigurableChunkGenerator<NoiseGeneratorConfig> overworld();
 
+        /**
+         * Creates a chunk generator like the vanilla {@link WorldTypes#THE_NETHER}.
+         *
+         * @return The new chunk generator
+         */
         ConfigurableChunkGenerator<NoiseGeneratorConfig> theNether();
 
+        /**
+         * Creates a chunk generator like the vanilla {@link WorldTypes#THE_END}.
+         *
+         * @return The new chunk generator
+         */
         ConfigurableChunkGenerator<NoiseGeneratorConfig> theEnd();
 
         /**

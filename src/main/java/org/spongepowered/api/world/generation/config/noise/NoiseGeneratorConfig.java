@@ -26,6 +26,7 @@ package org.spongepowered.api.world.generation.config.noise;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.biome.BiomeAttributes;
 import org.spongepowered.api.world.generation.ConfigurableChunkGenerator;
 import org.spongepowered.api.world.generation.config.ChunkGeneratorConfig;
@@ -37,6 +38,7 @@ import java.util.List;
 /**
  * Noise generator config used in {@link ConfigurableChunkGenerator configurable chunk generators}.
  */
+@CatalogedBy(NoiseGeneratorConfigs.class)
 public interface NoiseGeneratorConfig extends ChunkGeneratorConfig {
 
     static NoiseGeneratorConfigTemplate.Builder builder() {

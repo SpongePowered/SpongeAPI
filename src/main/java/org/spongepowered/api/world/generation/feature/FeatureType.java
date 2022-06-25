@@ -39,7 +39,6 @@ public interface FeatureType extends DefaultedRegistryValue {
      * @return The configured feature
      * @throws IllegalArgumentException when the configuration is not valid for this type of feature
      */
-    // TODO optional - errors are to be expected when using a wrong/incompatible configuration
     Feature configure(DataView config) throws IllegalArgumentException;
 
 }

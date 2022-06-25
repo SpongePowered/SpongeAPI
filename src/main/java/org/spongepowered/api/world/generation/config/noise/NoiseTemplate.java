@@ -31,7 +31,7 @@ import org.spongepowered.api.util.DataPackEntryBuilder;
 import java.util.List;
 
 /**
- * Noise used in world generation
+ *  A template for {@link Noise}.
  */
 public interface NoiseTemplate extends DataPackEntry<NoiseTemplate> {
 
@@ -39,14 +39,37 @@ public interface NoiseTemplate extends DataPackEntry<NoiseTemplate> {
         return Sponge.game().builderProvider().provide(Builder.class).reset();
     }
 
+    /**
+     * Returns the noise.
+     *
+     * @return The noise
+     */
     Noise noise();
 
     interface Builder extends DataPackEntryBuilder<Noise, NoiseTemplate, Builder> {
 
+        /**
+         * Sets the octave.
+         *
+         * @param octave The octave.
+         * @return This builder, for chaining
+         */
         Builder octave(int octave);
 
+        /**
+         * Sets the amplitudes.
+         *
+         * @param amplitudes The amplitudes
+         * @return This builder, for chaining
+         */
         Builder amplitudes(double... amplitudes);
 
+        /**
+         * Sets the amplitudes.
+         *
+         * @param amplitudes The amplitudes
+         * @return This builder, for chaining
+         */
         Builder amplitudes(List<Double> amplitudes);
 
     }

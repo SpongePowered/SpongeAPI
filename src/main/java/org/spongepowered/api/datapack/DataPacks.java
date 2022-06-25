@@ -51,6 +51,8 @@ import org.spongepowered.api.world.server.WorldTemplate;
  */
 public final class DataPacks {
 
+    // SORTFIELDS:ON
+
     public static final DataPack<AdvancementTemplate> ADVANCEMENT = DataPackTypes.ADVANCEMENT.pack("plugin_advancements", "Sponge plugin provided advancements");
 
     public static final DataPack<RecipeRegistration> RECIPE = DataPackTypes.RECIPE.pack("plugin_recipes", "Sponge plugin provided recipes");
@@ -90,6 +92,8 @@ public final class DataPacks {
     public static final DataPack<ProcessorListTemplate> PROCESSOR_LIST = DataPackTypes.PROCESSOR_LIST.pack("plugin_worldgen", "Sponge plugin provided processor lists");
 
     public static final DataPack<JigsawPoolTemplate> JIGSAW_POOL = DataPackTypes.JIGSAW_POOL.pack("plugin_worldgen", "Sponge plugin provided jigsaw pools");
+
+    // SORTFIELDS:ON
 
     private DataPacks() {
     }

@@ -26,6 +26,9 @@ package org.spongepowered.api.world.generation.carver;
 
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
+/**
+ * A carving step for {@link Carver carvers}
+ */
 @CatalogedBy(CarvingSteps.class)
 public interface CarvingStep {
 
