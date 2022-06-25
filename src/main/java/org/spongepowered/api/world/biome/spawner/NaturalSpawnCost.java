@@ -25,20 +25,36 @@
 package org.spongepowered.api.world.biome.spawner;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.world.biome.Biome;
 
-// TODO MobSpawnSettings.MobSpawnCost
+/**
+ * The natural spawn costs in a {@link Biome}. See {@link Keys#NATURAL_SPAWNER_COST}
+ * Alternatively use {@link NaturalSpawner}.
+ */
 public interface NaturalSpawnCost {
 
     static NaturalSpawnCost of(final double budget, final double charge) {
         return Sponge.game().factoryProvider().provide(Factory.class).of(budget, charge);
     }
 
+    /**
+     * Returns the spawn cost budget.
+     *
+     * @return The budget
+     */
     double budget();
 
+    /**
+     * Returns the charge cost.
+     *
+     * @return The charge
+     */
     double charge();
 
     interface Factory {
 
         NaturalSpawnCost of(double budget, double charge);
+
     }
 }

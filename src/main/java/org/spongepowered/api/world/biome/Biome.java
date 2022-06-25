@@ -138,7 +138,7 @@ public interface Biome extends DataHolder, Taggable<Biome> {
      *
      * @return The weighted natural spawners
      */
-    default Map<EntityCategory, WeightedTable<NaturalSpawner>> spawners() {
+    default Map<EntityCategory, List<NaturalSpawner>> spawners() {
         return this.require(Keys.NATURAL_SPAWNERS);
     }
 

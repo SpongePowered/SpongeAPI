@@ -2261,7 +2261,7 @@ public final class Keys {
      * <p>See {@link #SPAWN_CHANCE} for the spawn chance during world generation</p>
      * Readonly
      */
-    public static final Key<MapValue<EntityCategory, WeightedTable<NaturalSpawner>>> NATURAL_SPAWNERS = Keys.mapKey(ResourceKey.sponge("natural_spawners"), TypeToken.get(EntityCategory.class), new TypeToken<WeightedTable<NaturalSpawner>>() {});
+    public static final Key<MapValue<EntityCategory, List<NaturalSpawner>>> NATURAL_SPAWNERS = Keys.mapKey(ResourceKey.sponge("natural_spawners"), TypeToken.get(EntityCategory.class), new TypeToken<List<NaturalSpawner>>() {});
 
     /**
      * The cost settings for {@link #NATURAL_SPAWNERS} in a {@link Biome}.
