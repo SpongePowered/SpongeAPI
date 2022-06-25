@@ -35,10 +35,8 @@ import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.util.weighted.WeightedTable;
-import org.spongepowered.api.world.biome.ambient.AdditionalAmbientSound;
-import org.spongepowered.api.world.biome.ambient.AmbientMoodSettings;
-import org.spongepowered.api.world.biome.ambient.AmbientParticleSettings;
-import org.spongepowered.api.world.biome.ambient.BackgroundMusic;
+import org.spongepowered.api.world.biome.ambient.ParticleConfig;
+import org.spongepowered.api.world.biome.ambient.SoundConfig;
 import org.spongepowered.api.world.biome.climate.GrassColorModifier;
 import org.spongepowered.api.world.biome.climate.Precipitation;
 import org.spongepowered.api.world.biome.climate.TemperatureModifier;
@@ -224,7 +222,7 @@ public interface Biome extends DataHolder, Taggable<Biome> {
      *
      * @return The ambient particle settings
      */
-    default Optional<AmbientParticleSettings> ambientParticle() {
+    default Optional<ParticleConfig> ambientParticle() {
         return this.get(Keys.AMBIENT_PARTICLE);
     }
 
@@ -242,7 +240,7 @@ public interface Biome extends DataHolder, Taggable<Biome> {
      *
      * @return The ambient mood settings
      */
-    default Optional<AmbientMoodSettings> ambientMood() {
+    default Optional<SoundConfig.Mood> ambientMood() {
         return this.get(Keys.AMBIENT_MOOD);
     }
 
@@ -251,7 +249,7 @@ public interface Biome extends DataHolder, Taggable<Biome> {
      *
      * @return The additional ambient sound settings
      */
-    default Optional<AdditionalAmbientSound> additionalAmbientSound() {
+    default Optional<SoundConfig.Additional> additionalAmbientSound() {
         return this.get(Keys.AMBIENT_ADDITIONAL_SOUND);
     }
 
@@ -260,7 +258,7 @@ public interface Biome extends DataHolder, Taggable<Biome> {
      *
      * @return The background music settings
      */
-    default Optional<BackgroundMusic> backgroundMusic() {
+    default Optional<SoundConfig.BackgroundMusic> backgroundMusic() {
         return this.get(Keys.BACKGROUND_MUSIC);
     }
 

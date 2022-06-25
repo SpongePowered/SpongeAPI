@@ -24,16 +24,34 @@
  */
 package org.spongepowered.api.world.biome.ambient;
 
-import org.spongepowered.api.effect.sound.SoundType;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.effect.particle.ParticleType;
+import org.spongepowered.api.world.biome.Biome;
 
-// TODO
-public interface BackgroundMusic {
+/**
+ * The configuration for ambient particles in a {@link Biome}.
+ */
+public interface ParticleConfig {
 
-    SoundType sound();
+    static ParticleConfig of(ParticleType type, float probability) {
+        return Sponge.game().factoryProvider().provide(Factory.class).of(type, probability);
+    }
 
-    int minDelay();
+    /**
+     * Returns the probability
+     *
+     * @return The probability
+     */
+    float probability();
 
-    int maxDelay();
+    /**
+     * Returns the particle type.
+     *
+     * @return The particle type
+     */
+    ParticleType type();
 
-    boolean replaceCurrentMusic();
+    interface Factory {
+        ParticleConfig of(ParticleType type, float probability);
+    }
 }

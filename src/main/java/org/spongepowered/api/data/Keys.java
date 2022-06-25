@@ -243,10 +243,8 @@ import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.WorldTypeEffect;
 import org.spongepowered.api.world.WorldTypes;
 import org.spongepowered.api.world.biome.Biome;
-import org.spongepowered.api.world.biome.ambient.AdditionalAmbientSound;
-import org.spongepowered.api.world.biome.ambient.AmbientMoodSettings;
-import org.spongepowered.api.world.biome.ambient.AmbientParticleSettings;
-import org.spongepowered.api.world.biome.ambient.BackgroundMusic;
+import org.spongepowered.api.world.biome.ambient.ParticleConfig;
+import org.spongepowered.api.world.biome.ambient.SoundConfig;
 import org.spongepowered.api.world.biome.climate.GrassColorModifier;
 import org.spongepowered.api.world.biome.climate.Precipitation;
 import org.spongepowered.api.world.biome.climate.TemperatureModifier;
@@ -336,7 +334,7 @@ public final class Keys {
      * The additional ambient sound settings in a {@link Biome}
      * Readonly
      */
-    public static final Key<Value<AdditionalAmbientSound>> AMBIENT_ADDITIONAL_SOUND = Keys.key(ResourceKey.sponge("ambient_additional_sound"), AdditionalAmbientSound.class);
+    public static final Key<Value<SoundConfig.Additional>> AMBIENT_ADDITIONAL_SOUND = Keys.key(ResourceKey.sponge("ambient_additional_sound"), SoundConfig.Additional.class);
 
     /**
      * The ambient lightning of a {@link WorldType}.
@@ -350,13 +348,13 @@ public final class Keys {
      * The ambient mood settings in a {@link Biome}
      * Readonly
      */
-    public static final Key<Value<AmbientMoodSettings>> AMBIENT_MOOD = Keys.key(ResourceKey.sponge("ambient_mood"), AmbientMoodSettings.class);
+    public static final Key<Value<SoundConfig.Mood>> AMBIENT_MOOD = Keys.key(ResourceKey.sponge("ambient_mood"), SoundConfig.Mood.class);
 
     /**
      * The ambient particle settings in a {@link Biome}
      * Readonly
      */
-    public static final Key<Value<AmbientParticleSettings>> AMBIENT_PARTICLE = Keys.key(ResourceKey.sponge("ambient_particle"), AmbientParticleSettings.class);
+    public static final Key<Value<ParticleConfig>> AMBIENT_PARTICLE = Keys.key(ResourceKey.sponge("ambient_particle"), ParticleConfig.class);
 
     /**
      * The ambient sound in a {@link Biome}
@@ -441,7 +439,7 @@ public final class Keys {
      * The background music settings in a {@link Biome}
      * Readonly
      */
-    public static final Key<Value<BackgroundMusic>> BACKGROUND_MUSIC = Keys.key(ResourceKey.sponge("background_music"), BackgroundMusic.class);
+    public static final Key<Value<SoundConfig.BackgroundMusic>> BACKGROUND_MUSIC = Keys.key(ResourceKey.sponge("background_music"), SoundConfig.BackgroundMusic.class);
 
     /**
      * The {@link BannerPatternLayer}s of a {@link Banner}.
