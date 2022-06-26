@@ -88,6 +88,16 @@ public interface DataPackManager {
     void copy(final DataPack<?> pack, final ResourceKey from, final ResourceKey to) throws IOException;
 
     /**
+     * Copies a data pack entry into another data pack
+     *
+     * @param fromPack The data pack to copy from
+     * @param from The data pack entry key to copy from
+     * @param toPack The data pack to copy to
+     * @param to The data pack entry key to copy to
+     */
+    void copy(final DataPack<?> fromPack, final ResourceKey from, final DataPack<?> toPack, final ResourceKey to) throws IOException;
+
+    /**
      * Moves a data pack entry in the given data pack
      * @param pack The data pack
      * @param from The data pack entry key to move from
@@ -95,7 +105,15 @@ public interface DataPackManager {
      */
     void move(final DataPack<?> pack, final ResourceKey from, final ResourceKey to) throws IOException;
 
-    // TODO copy/move variant to move in between packs?
+    /**
+     * Moves a data pack entry into another data pack
+     *
+     * @param fromPack The data pack to move from
+     * @param from The data pack entry key to move from
+     * @param toPack The data pack to move to
+     * @param to The data pack entry key to move to
+     */
+    void move(final DataPack<?> fromPack, final ResourceKey from, final DataPack<?> toPack, final ResourceKey to) throws IOException;
 
     /**
      * Lists the data pack entries of the given data pack.
