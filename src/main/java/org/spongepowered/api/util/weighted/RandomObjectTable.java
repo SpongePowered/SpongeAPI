@@ -31,7 +31,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
+import java.util.random.RandomGenerator;
 
 /**
  * An abstract table holding weighted objects. Objects may be retrieved from the
@@ -240,7 +240,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
      * @param rand The random object to use
      * @return The returned items, may be empty but not null
      */
-    public abstract List<T> get(Random rand);
+    public abstract List<T> get(RandomGenerator rand);
 
     /**
      * Gets the entries in the table. Note that the specific sub class of this

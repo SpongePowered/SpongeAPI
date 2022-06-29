@@ -29,8 +29,8 @@ import org.spongepowered.api.util.weighted.TableEntry;
 import org.spongepowered.api.util.weighted.WeightedTable;
 
 import java.util.List;
-import java.util.Random;
 import java.util.function.Supplier;
+import java.util.random.RandomGenerator;
 
 public interface WeightedCollectionValue<E> extends CollectionValue<TableEntry<E>, WeightedTable<E>>  {
 
@@ -98,7 +98,7 @@ public interface WeightedCollectionValue<E> extends CollectionValue<TableEntry<E
      * @param random The random object to use for selection
      * @return The selected values
      */
-    List<E> get(Random random);
+    List<E> get(RandomGenerator random);
 
     @Override
     WeightedCollectionValue.Mutable<E> asMutable();

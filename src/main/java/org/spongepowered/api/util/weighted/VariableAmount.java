@@ -31,6 +31,7 @@ import org.spongepowered.math.GenericMath;
 
 import java.util.Random;
 import java.util.StringJoiner;
+import java.util.random.RandomGenerator;
 
 /**
  * Represents a value which may vary randomly.
@@ -194,16 +195,16 @@ public interface VariableAmount extends DataSerializable {
      * @param rand The random object
      * @return The amount
      */
-    double amount(Random rand);
+    double amount(RandomGenerator rand);
 
     /**
-     * Gets the amount as if from {@link #amount(Random)} but floored to the
+     * Gets the amount as if from {@link #amount(RandomGenerator)} but floored to the
      * nearest integer equivalent.
      * 
      * @param rand The random object
      * @return The floored amount
      */
-    default int flooredAmount(final Random rand) {
+    default int flooredAmount(final RandomGenerator rand) {
         return GenericMath.floor(this.amount(rand));
     }
 
@@ -232,7 +233,7 @@ public interface VariableAmount extends DataSerializable {
         }
 
         @Override
-        public double amount(final Random rand) {
+        public double amount(final RandomGenerator rand) {
             return this.amount;
         }
 
@@ -291,7 +292,7 @@ public interface VariableAmount extends DataSerializable {
         }
 
         @Override
-        public double amount(final Random rand) {
+        public double amount(final RandomGenerator rand) {
             final double var = this.variance.amount(rand);
             return this.base + rand.nextDouble() * var * 2 - var;
         }
@@ -355,7 +356,7 @@ public interface VariableAmount extends DataSerializable {
         }
 
         @Override
-        public double amount(final Random rand) {
+        public double amount(final RandomGenerator rand) {
             return this.base + (rand.nextDouble() * this.addition.amount(rand));
         }
 
@@ -419,7 +420,7 @@ public interface VariableAmount extends DataSerializable {
         }
 
         @Override
-        public double amount(final Random rand) {
+        public double amount(final RandomGenerator rand) {
             if (rand.nextDouble() < this.chance) {
                 return this.inner.amount(rand);
             }

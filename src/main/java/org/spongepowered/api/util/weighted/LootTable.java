@@ -30,8 +30,8 @@ import com.google.common.collect.Lists;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 import java.util.StringJoiner;
+import java.util.random.RandomGenerator;
 
 /**
  * Represents a pool of tables which are rolled sequentially when retrieving
@@ -100,7 +100,7 @@ public class LootTable<T> {
      * @param rand The random object to use
      * @return The retrieved entries
      */
-    public List<T> get(final Random rand) {
+    public List<T> get(final RandomGenerator rand) {
         final List<T> results = Lists.newArrayList();
         for (final RandomObjectTable<T> pool : this.pool) {
             results.addAll(pool.get(rand));

@@ -33,16 +33,16 @@ import org.spongepowered.api.util.RandomProvider;
 import org.spongepowered.api.util.weighted.WeightedTable;
 
 import java.util.Collection;
-import java.util.Random;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.random.RandomGenerator;
 
 /**
- * A simple generator that takes a {@link Random} and generates
+ * A simple generator that takes a {@link RandomGenerator} and generates
  * an {@link ItemStack}.
  */
-public interface ItemStackGenerator extends Function<RandomProvider.RandomSource, ItemStack> {
+public interface ItemStackGenerator extends Function<RandomProvider.Source, ItemStack> {
 
     /**
      * Creates a new builder to build an {@link ItemStackGenerator}.
@@ -66,7 +66,7 @@ public interface ItemStackGenerator extends Function<RandomProvider.RandomSource
          * @param consumer The consumer that mutates an itemstack builder
          * @return This builder, for chaining
          */
-        Builder add(BiConsumer<ItemStack.Builder, Random> consumer);
+        Builder add(BiConsumer<ItemStack.Builder, RandomGenerator> consumer);
 
         /**
          * Adds all the provided biconsumers from the provided collection.
@@ -74,7 +74,7 @@ public interface ItemStackGenerator extends Function<RandomProvider.RandomSource
          * @param collection The collection of consumer to add
          * @return This builder, for chaining
          */
-        Builder addAll(Collection<BiConsumer<ItemStack.Builder, Random>> collection);
+        Builder addAll(Collection<BiConsumer<ItemStack.Builder, RandomGenerator>> collection);
 
         /**
          * Sets the base {@link ItemType} for the {@link ItemStackGenerator}. A

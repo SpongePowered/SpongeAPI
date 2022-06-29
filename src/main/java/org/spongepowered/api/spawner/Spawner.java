@@ -36,8 +36,6 @@ import org.spongepowered.api.entity.vehicle.minecart.SpawnerMinecart;
 import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 
-import java.util.Random;
-
 /**
  * Represents an object which can spawn Entities.
  *
@@ -139,7 +137,7 @@ public interface Spawner extends SerializableDataHolder.Mutable {
      * Gets the {@link org.spongepowered.api.data.value.WeightedCollectionValue.Mutable} of all possible
      * {@link Entity} instances that can be spawned by the spawner. As they
      * are all {@link WeightedSerializableObject}{@code <EntitySnapshot>}
-     * instances, their weight is defined as a {@link Random} to determine
+     * instances, their weight is defined as a {@link java.util.random.RandomGenerator} to determine
      * the next {@link Entity} that will be spawned, unless overriden by
      * {@link #nextEntityToSpawn()}.
      *

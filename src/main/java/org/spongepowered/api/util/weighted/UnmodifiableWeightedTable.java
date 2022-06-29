@@ -32,6 +32,7 @@ import java.util.Random;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.random.RandomGenerator;
 import java.util.stream.Stream;
 
 /**
@@ -175,7 +176,7 @@ public class UnmodifiableWeightedTable<T> extends WeightedTable<T> {
     }
 
     @Override
-    public List<T> get(final Random rand) {
+    public List<T> get(final RandomGenerator rand) {
         return this.table.get(rand);
     }
 

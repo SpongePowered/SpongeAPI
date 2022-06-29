@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.util.weighted;
 
-import java.util.Random;
+import java.util.random.RandomGenerator;
 
 /**
  * Represents a value which may vary depending on a seed object.
@@ -66,17 +66,17 @@ public interface SeededVariableAmount<T> {
      * @param seed The seed object
      * @return The amount
      */
-    double amount(Random rand, T seed);
+    double amount(RandomGenerator rand, T seed);
 
     /**
-     * Gets the amount as if from {@link #amount(Random, Object)} but floored
+     * Gets the amount as if from {@link #amount(RandomGenerator, Object)} but floored
      * to the nearest integer equivalent.
      * 
      * @param rand The random object
      * @param seed The seed object
      * @return The floored amount
      */
-    default int flooredAmount(Random rand, T seed) {
+    default int flooredAmount(RandomGenerator rand, T seed) {
         return (int) Math.floor(this.amount(rand, seed));
     }
 
@@ -101,7 +101,7 @@ public interface SeededVariableAmount<T> {
         }
 
         @Override
-        public double amount(Random rand, T seed) {
+        public double amount(RandomGenerator rand, T seed) {
             return this.inner.amount(rand);
         }
 

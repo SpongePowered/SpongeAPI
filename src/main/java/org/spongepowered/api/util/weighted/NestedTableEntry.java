@@ -26,8 +26,8 @@ package org.spongepowered.api.util.weighted;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 import java.util.StringJoiner;
+import java.util.random.RandomGenerator;
 
 /**
  * Represents a {@link RandomObjectTable} which is nested inside the entry of
@@ -57,7 +57,7 @@ public class NestedTableEntry<T> extends TableEntry<T> {
      * @param rand The random object to use
      * @return The retrieved entries
      */
-    public List<T> get(final Random rand) {
+    public List<T> get(final RandomGenerator rand) {
         return this.table.get(rand);
     }
 

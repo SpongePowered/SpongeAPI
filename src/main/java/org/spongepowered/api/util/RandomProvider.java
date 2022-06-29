@@ -24,25 +24,20 @@
  */
 package org.spongepowered.api.util;
 
+import java.util.random.RandomGenerator;
+
 public interface RandomProvider {
 
-    RandomSource random();
+    Source random();
 
-    interface RandomSource {
+    interface Source extends RandomGenerator {
 
-        int nextInt();
+        void setSeed(long var1);
 
-        int nextInt(int var1);
+        Source fork();
 
-        int nextInt(int var1, int var2);
+        void consume(int n);
 
-        long nextLong();
-
-        boolean nextBoolean();
-
-        float nextFloat();
-
-        double nextDouble();
     }
 
 }

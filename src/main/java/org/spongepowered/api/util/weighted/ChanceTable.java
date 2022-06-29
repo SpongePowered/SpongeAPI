@@ -29,6 +29,7 @@ import com.google.common.collect.Lists;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.random.RandomGenerator;
 
 /**
  * This is a variant of the {@link RandomObjectTable} which uses a 0-1 chance
@@ -56,7 +57,7 @@ public class ChanceTable<T> extends RandomObjectTable<T> {
     }
 
     @Override
-    public List<T> get(Random rand) {
+    public List<T> get(RandomGenerator rand) {
         final List<T> results = Lists.newArrayList();
         if (this.entries.isEmpty()) {
             return results;

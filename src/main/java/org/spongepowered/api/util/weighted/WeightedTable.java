@@ -29,7 +29,7 @@ import com.google.common.collect.Lists;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
+import java.util.random.RandomGenerator;
 
 /**
  * A table of weighted entry, each entry is given a weight, the higher the
@@ -158,7 +158,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
     }
 
     @Override
-    public List<T> get(Random rand) {
+    public List<T> get(RandomGenerator rand) {
         final List<T> results = Lists.newArrayList();
         if (this.entries.isEmpty()) {
             return results;
