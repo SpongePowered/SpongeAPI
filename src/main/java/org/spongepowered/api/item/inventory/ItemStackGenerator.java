@@ -29,6 +29,7 @@ import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.util.RandomProvider;
 import org.spongepowered.api.util.weighted.WeightedTable;
 
 import java.util.Collection;
@@ -41,7 +42,7 @@ import java.util.function.Supplier;
  * A simple generator that takes a {@link Random} and generates
  * an {@link ItemStack}.
  */
-public interface ItemStackGenerator extends Function<Random, ItemStack> {
+public interface ItemStackGenerator extends Function<RandomProvider.RandomSource, ItemStack> {
 
     /**
      * Creates a new builder to build an {@link ItemStackGenerator}.

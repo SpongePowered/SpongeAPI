@@ -30,6 +30,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackGenerator;
 import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.util.RandomProvider;
 import org.spongepowered.api.util.weighted.VariableAmount;
 
 import java.util.Random;
@@ -73,7 +74,7 @@ import java.util.function.BiFunction;
  * what the {@link ItemStack} can be customized as.</p>
  */
 @FunctionalInterface
-public interface TradeOfferGenerator extends BiFunction<Entity, Random, TradeOffer> {
+public interface TradeOfferGenerator extends BiFunction<Entity, RandomProvider.RandomSource, TradeOffer> {
 
     /**
      * Gets a new {@link Builder} to create a new {@link TradeOfferGenerator}.
@@ -85,7 +86,7 @@ public interface TradeOfferGenerator extends BiFunction<Entity, Random, TradeOff
     }
 
     @Override
-    TradeOffer apply(Entity entity, Random random);
+    TradeOffer apply(Entity entity, RandomProvider.RandomSource random);
 
     /**
      * A simple builder to create a {@link TradeOfferGenerator}.

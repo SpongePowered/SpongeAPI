@@ -24,10 +24,25 @@
  */
 package org.spongepowered.api.util;
 
-import java.util.Random;
-
 public interface RandomProvider {
 
-    Random random();
+    RandomSource random();
+
+    interface RandomSource {
+
+        int nextInt();
+
+        int nextInt(int var1);
+
+        int nextInt(int var1, int var2);
+
+        long nextLong();
+
+        boolean nextBoolean();
+
+        float nextFloat();
+
+        double nextDouble();
+    }
 
 }
