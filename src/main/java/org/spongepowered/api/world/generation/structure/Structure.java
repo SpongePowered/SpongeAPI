@@ -25,15 +25,19 @@
 package org.spongepowered.api.world.generation.structure;
 
 import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.entity.EntityCategory;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.biome.Biome;
+import org.spongepowered.api.world.biome.spawner.NaturalSpawner;
 import org.spongepowered.api.world.generation.feature.DecorationStep;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A structure used in world generation.
@@ -82,10 +86,34 @@ public interface Structure extends DefaultedRegistryValue {
     StructureType type();
 
     /**
+     * Returns the spawner overrides to use in the structure instead of {@link Biome#spawners()}
+     *
+     * @return The spawner overrides
+     */
+    Map<EntityCategory, StructureNaturalSpawner> spawners();
+
+    /**
      * Returns the serialized structure configuration.
      * <p>Reconfigure a structure using {@link StructureType#configure(DataView)}</p>
      *
      * @return The serialized structure configuration
      */
     DataView toContainer();
+
+    interface StructureNaturalSpawner {
+
+        /**
+         * Returns whether the full structure or only the structure piece is affected.
+         *
+         * @return Whether the full structure is affected
+         */
+        boolean full();
+
+        /**
+         * Returns the list of natural spawners to use.
+         *
+         * @return The list of spawners to use
+         */
+        List<NaturalSpawner> spawners();
+    }
 }
