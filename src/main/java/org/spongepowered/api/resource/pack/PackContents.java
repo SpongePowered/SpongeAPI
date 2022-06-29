@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.resource.pack;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.resource.Resource;
 import org.spongepowered.api.resource.ResourcePath;
 import org.spongepowered.api.util.Nameable;
@@ -66,18 +67,16 @@ public interface PackContents extends Nameable, AutoCloseable {
     Resource requireResource(PackType type, ResourcePath path) throws IOException;
 
     /**
-     * Finds all the {@link ResourcePath}s in this pack matching the
-     * prefix and filter, and within the given depth.
+     * Finds all the {@link ResourcePath}s in this pack matching the prefix and filter, and within the given depth.
      *
-     * @param type The type
+     * @param type      The type
      * @param namespace The namespace to search
-     * @param prefix The prefix of the path
-     * @param depth The depth to search
-     * @param filter The filter every path must match
+     * @param prefix    The prefix of the path
+     * @param filter    The filter every path must match
      * @return A collection of matching paths
      * @see PackType
      */
-    Collection<ResourcePath> paths(PackType type, String namespace, String prefix, int depth, Predicate<String> filter);
+    Collection<ResourcePath> paths(PackType type, String namespace, String prefix, Predicate<ResourceKey> filter);
 
     /**
      * Tests if this pack contains an entry at the given {@link ResourcePath}.
