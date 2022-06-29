@@ -25,7 +25,6 @@
 package org.spongepowered.api.datapack;
 
 import org.spongepowered.api.advancement.AdvancementTemplate;
-import org.spongepowered.api.event.lifecycle.RegisterDataPackValueEvent;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.registry.RegistryType;
 import org.spongepowered.api.tag.TagTemplate;
@@ -45,20 +44,9 @@ import org.spongepowered.api.world.generation.structure.StructureTemplate;
 import org.spongepowered.api.world.generation.structure.jigsaw.JigsawPoolTemplate;
 import org.spongepowered.api.world.generation.structure.jigsaw.ProcessorListTemplate;
 import org.spongepowered.api.world.server.WorldTemplate;
-import org.spongepowered.plugin.PluginContainer;
 
 @CatalogedBy(DataPackTypes.class)
 public interface DataPackType<T> {
-
-    /**
-     * Gets if resources created by this type will persist even if the {@link PluginContainer plugin}
-     * is no longer present (or no longer performs a registration in {@link RegisterDataPackValueEvent}
-     *
-     * <p>Consult your implementation vendor for more details on exactly what resources are kept.</p>
-     * 
-     * @return True if persistent, false if not
-     */
-    boolean persistent();
 
     /**
      * Returns a data pack for this data pack type.
