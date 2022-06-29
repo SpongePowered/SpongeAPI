@@ -29,18 +29,24 @@ import net.kyori.adventure.key.KeyedValue;
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.ResourceKeyed;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.trader.WanderingTrader;
+import org.spongepowered.api.registry.RegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.MinecraftDayTime;
 import org.spongepowered.api.util.Nameable;
 import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.WorldType;
+import org.spongepowered.api.world.border.WorldBorder;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.generation.config.WorldGenerationConfig;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.storage.WorldProperties;
+import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 
 import java.util.List;
@@ -65,35 +71,45 @@ public interface ServerWorldProperties extends WorldProperties, Nameable, Identi
      *
      * @return The name
      */
-    Optional<Component> displayName();
+    default Optional<Component> displayName() {
+        return this.get(Keys.DISPLAY_NAME);
+    }
 
     /**
      * Sets the {@link Component name}.
      *
      * @param name The name
      */
-    void setDisplayName(@Nullable Component name);
+    default void setDisplayName(@Nullable Component name) {
+        this.offer(Keys.DISPLAY_NAME, name);
+    }
 
     /**
      * Gets if this has been initialized.
      *
      * @return Is initialized
      */
-    boolean initialized();
+    default boolean initialized() {
+        return this.require(Keys.INITIALIZED);
+    }
 
     /**
      * Gets whether this world will load when the server starts up.
      *
      * @return Load on startup
      */
-    boolean loadOnStartup();
+    default boolean loadOnStartup() {
+        return this.require(Keys.IS_LOAD_ON_STARTUP);
+    }
 
     /**
      * Sets whether this should load when the server starts up.
      *
      * @param loadOnStartup Load on startup
      */
-    void setLoadOnStartup(boolean loadOnStartup);
+    default void setLoadOnStartup(boolean loadOnStartup) {
+        this.offer(Keys.IS_LOAD_ON_STARTUP, loadOnStartup);
+    }
 
     /**
      * Gets whether logic surrounding a {@link org.spongepowered.math.vector.Vector3i spawn position} is performed.
@@ -106,7 +122,9 @@ public interface ServerWorldProperties extends WorldProperties, Nameable, Identi
      *
      * @return performs spawn logic
      */
-    boolean performsSpawnLogic();
+    default boolean performsSpawnLogic() {
+        return this.require(Keys.PERFORM_SPAWN_LOGIC);
+    }
 
     /**
      * Sets whether logic surrounding a {@link org.spongepowered.math.vector.Vector3i spawn position} is performed.
@@ -119,13 +137,17 @@ public interface ServerWorldProperties extends WorldProperties, Nameable, Identi
      *
      * @param performsSpawnLogic Performs spawn logic
      */
-    void setPerformsSpawnLogic(boolean performsSpawnLogic);
+    default void setPerformsSpawnLogic(boolean performsSpawnLogic) {
+        this.offer(Keys.PERFORM_SPAWN_LOGIC, performsSpawnLogic);
+    }
 
     /**
      * Gets the {@link WorldGenerationConfig}
      * @return The world generation settings
      */
-    WorldGenerationConfig.Mutable worldGenerationConfig();
+    default WorldGenerationConfig worldGenerationConfig() {
+        return this.require(Keys.WORLD_GEN_CONFIG);
+    }
 
     /**
      * Sets the in-game time of day.
@@ -139,49 +161,63 @@ public interface ServerWorldProperties extends WorldProperties, Nameable, Identi
      *
      * @return The world type
      */
-    WorldType worldType();
+    default WorldType worldType() {
+        return this.require(Keys.WORLD_TYPE);
+    }
 
     /**
      * Sets the {@link WorldType}.
      *
      * @param worldType the type
      */
-    void setWorldType(WorldType worldType);
+    default void setWorldType(WorldType worldType) {
+        this.offer(Keys.WORLD_TYPE, worldType);
+    }
 
     /**
      * Gets whether PVP combat is enabled.
      *
      * @return pvp
      */
-    boolean pvp();
+    default boolean pvp() {
+        return this.require(Keys.PVP);
+    }
 
     /**
      * Sets whether PVP combat is enabled.
      *
      * @param pvp pvp
      */
-    void setPvp(boolean pvp);
+    default void setPvp(boolean pvp) {
+        this.offer(Keys.PVP, pvp);
+    }
 
     /**
      * Gets the default {@link GameMode}.
      *
      * @return The game mode
      */
-    GameMode gameMode();
+    default GameMode gameMode() {
+        return this.require(Keys.GAME_MODE);
+    }
 
     /**
      * Sets the {@link GameMode}.
      *
      * @param gameMode game mode
      */
-    void setGameMode(GameMode gameMode);
+    default void setGameMode(GameMode gameMode) {
+        this.offer(Keys.GAME_MODE, gameMode);
+    }
 
     /**
      * Sets if this is in hardcore mode.
      *
      * @param hardcore hardcore
      */
-    void setHardcore(boolean hardcore);
+    default void setHardcore(boolean hardcore) {
+        this.offer(Keys.HARDCORE, hardcore);
+    }
 
     /**
      * Gets whether commands are enabled.
@@ -190,7 +226,9 @@ public interface ServerWorldProperties extends WorldProperties, Nameable, Identi
      *
      * @return Commands
      */
-    boolean commands();
+    default boolean commands() {
+        return this.require(Keys.COMMANDS);
+    }
 
     /**
      * Sets whether commands are enabled.
@@ -199,28 +237,36 @@ public interface ServerWorldProperties extends WorldProperties, Nameable, Identi
      *
      * @param commands commands
      */
-    void setCommands(boolean commands);
+    default void setCommands(boolean commands) {
+        this.offer(Keys.COMMANDS, commands);
+    }
 
     /**
      * Sets the {@link Difficulty}.
      *
      * @param difficulty The difficulty
      */
-    void setDifficulty(Difficulty difficulty);
+    default void setDifficulty(Difficulty difficulty) {
+        this.offer(Keys.WORLD_DIFFICULTY, difficulty);
+    }
 
     /**
      * Gets the {@link SerializationBehavior}.
      *
      * @return Serialization behavior
      */
-    SerializationBehavior serializationBehavior();
+    default SerializationBehavior serializationBehavior() {
+        return this.require(Keys.SERIALIZATION_BEHAVIOR);
+    }
 
     /**
      * Sets the {@link SerializationBehavior}.
      *
      * @param behavior serialization behavior
      */
-    void setSerializationBehavior(SerializationBehavior behavior);
+    default void setSerializationBehavior(SerializationBehavior behavior) {
+        this.offer(Keys.SERIALIZATION_BEHAVIOR, behavior);
+    }
 
     /**
      * Gets the delay before a {@link WanderingTrader} will be spawned, in ticks.
@@ -298,7 +344,9 @@ public interface ServerWorldProperties extends WorldProperties, Nameable, Identi
      *
      * @return View distance
      */
-    int viewDistance();
+    default int viewDistance() {
+        return this.require(Keys.VIEW_DISTANCE);
+    }
 
     /**
      * Sets the view distance (in chunks).
@@ -310,6 +358,21 @@ public interface ServerWorldProperties extends WorldProperties, Nameable, Identi
      *
      * @param viewDistance The view distance
      */
-    void setViewDistance(@Nullable Integer viewDistance);
+    default void setViewDistance(@Nullable Integer viewDistance) {
+        this.offer(Keys.VIEW_DISTANCE, viewDistance);
+    }
 
+    /**
+     * Gets the saved {@link WorldBorder} for this world.
+     *
+     * @return The world border
+     */
+    default WorldBorder worldBorder() {
+        return this.require(Keys.WORLD_BORDER);
+    }
+
+    @Override
+    default Weather weather() {
+        return this.require(Keys.WEATHER);
+    }
 }

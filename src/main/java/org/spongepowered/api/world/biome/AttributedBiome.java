@@ -42,5 +42,6 @@ public interface AttributedBiome {
     interface Factory {
 
         AttributedBiome of(RegistryReference<Biome> biome, BiomeAttributes attributes);
+
     }
 }

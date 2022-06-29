@@ -24,112 +24,48 @@
  */
 package org.spongepowered.api.world;
 
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.datapack.DataPackSerializable;
-import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.util.MinecraftDayTime;
-import org.spongepowered.api.util.ResourceKeyedBuilder;
+import org.spongepowered.api.data.Key;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.datapack.DataPackEntry;
+import org.spongepowered.api.util.DataPackEntryBuilder;
 
-import java.util.Optional;
+/**
+ * A template for a {@link WorldType}.
+ */
+public interface WorldTypeTemplate extends DataPackEntry<WorldTypeTemplate> {
 
-public interface WorldTypeTemplate extends DataPackSerializable {
-
-    static WorldTypeTemplate overworld() {
-        return Sponge.game().factoryProvider().provide(Factory.class).overworld();
+    static WorldTypeTemplate.Builder overworld() {
+        return WorldTypeTemplate.builder().fromValue(WorldTypes.OVERWORLD.get());
     }
 
-    static WorldTypeTemplate overworldCaves() {
-        return Sponge.game().factoryProvider().provide(Factory.class).overworldCaves();
+    static WorldTypeTemplate.Builder overworldCaves() {
+        return WorldTypeTemplate.builder().fromValue(WorldTypes.OVERWORLD_CAVES.get());
     }
 
-    static WorldTypeTemplate theNether() {
-        return Sponge.game().factoryProvider().provide(Factory.class).theNether();
+    static WorldTypeTemplate.Builder theNether() {
+        return WorldTypeTemplate.builder().fromValue(WorldTypes.THE_NETHER.get());
     }
 
-    static WorldTypeTemplate theEnd() {
-        return Sponge.game().factoryProvider().provide(Factory.class).theEnd();
+    static WorldTypeTemplate.Builder theEnd() {
+        return WorldTypeTemplate.builder().fromValue(WorldTypes.THE_END.get());
     }
 
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class).reset();
     }
 
-    WorldTypeEffect effect();
+    /**
+     * Returns the world type.
+     *
+     * @return The world type
+     */
+    WorldType worldType();
 
-    boolean scorching();
+    interface Builder extends DataPackEntryBuilder<WorldType, WorldTypeTemplate, Builder> {
 
-    boolean natural();
+        <V> Builder add(Key<? extends Value<V>> key, V value);
 
-    double coordinateMultiplier();
-
-    boolean hasSkylight();
-
-    boolean hasCeiling();
-
-    float ambientLighting();
-
-    Optional<MinecraftDayTime> fixedTime();
-
-    boolean piglinSafe();
-
-    boolean bedsUsable();
-
-    boolean respawnAnchorsUsable();
-
-    boolean hasRaids();
-
-    int minY();
-
-    int logicalHeight();
-
-    int maximumHeight();
-
-    boolean createDragonFight();
-
-    interface Builder extends ResourceKeyedBuilder<WorldTypeTemplate, Builder>, CopyableBuilder<WorldTypeTemplate, Builder> {
-
-        Builder effect(WorldTypeEffect effect);
-
-        Builder scorching(boolean scorching);
-
-        Builder natural(boolean natural);
-
-        Builder coordinateMultiplier(double coordinateMultiplier);
-
-        Builder hasSkylight(boolean skylight);
-
-        Builder hasCeiling(boolean ceiling);
-
-        Builder ambientLighting(float ambientLighting);
-
-        Builder fixedTime(@Nullable MinecraftDayTime dayTime);
-
-        Builder piglinSafe(boolean piglinSafe);
-
-        Builder bedsUsable(boolean bedsUsable);
-
-        Builder respawnAnchorsUsable(boolean respawnAnchorsUsable);
-
-        Builder hasRaids(boolean raids);
-
-        Builder minY(int y);
-
-        Builder logicalHeight(int logicalHeight);
-
-        Builder maximumHeight(int maximumHeight);
-
-        Builder createDragonFight(boolean createDragonFight);
     }
 
-    interface Factory {
-
-        WorldTypeTemplate overworld();
-
-        WorldTypeTemplate overworldCaves();
-
-        WorldTypeTemplate theNether();
-
-        WorldTypeTemplate theEnd();
-    }
 }

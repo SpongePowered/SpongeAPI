@@ -82,14 +82,6 @@ public interface WorldManager {
     List<ResourceKey> worldKeys();
 
     /**
-     * Gets the {@link ResourceKey keys} of {@link WorldTemplate templates}.
-     *
-     * <p>It is up to the implementation to determine how template keys are provided to the developer.</p>
-     * @return The keys
-     */
-    List<ResourceKey> templateKeys();
-
-    /**
      * Gets the {@link ResourceKey keys} of offline {@link ServerWorld worlds}.
      *
      * <p>It is up to the implementation to determine how offline keys are provided to the developer.</p>
@@ -168,32 +160,6 @@ public interface WorldManager {
      * @return Whether the operation was successful
      */
     CompletableFuture<Boolean> unloadWorld(ServerWorld world);
-
-    /**
-     * Gets if a {@link ResourceKey key} exists as a {@link WorldTemplate template}.
-     *
-     * @param key The key
-     * @return True if it exists, false if not
-     */
-    boolean templateExists(ResourceKey key);
-
-    /**
-     * Gets a {@link WorldTemplate template} by a {@link ResourceKey key}.
-     *
-     * @param key The key
-     * @return The template or {@link Optional#empty()} if not found
-     */
-    CompletableFuture<Optional<WorldTemplate>> loadTemplate(ResourceKey key);
-
-    /**
-     * Saves a {@link WorldTemplate template}.
-     *
-     * <p>It is left up to the implementation on how exactly templates are saved, if at all.</p>
-     *
-     * @param template The template
-     * @return Whether the operation was successful
-     */
-    CompletableFuture<Boolean> saveTemplate(WorldTemplate template);
 
     /**
      * Loads an offline {@link ServerWorldProperties properties}.

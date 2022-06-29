@@ -24,9 +24,7 @@
  */
 package org.spongepowered.api.effect.sound;
 
-import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
-import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.ResourceKeyedBuilder;

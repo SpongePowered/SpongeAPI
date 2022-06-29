@@ -27,6 +27,7 @@ package org.spongepowered.api.item.recipe.smithing;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -163,6 +164,15 @@ public interface SmithingRecipe extends Recipe {
              * @return This builder, for chaining
              */
             EndStep group(@Nullable String name);
+
+            /**
+             * Sets the data pack for the recipe.
+             *
+             * @param pack The data pack
+             *
+             * @return This builder, for chaining
+             */
+            EndStep pack(DataPack<RecipeRegistration> pack);
 
             /**
              * Builds the {@link SmithingRecipe}.

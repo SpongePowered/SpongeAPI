@@ -42,9 +42,13 @@ public final class EntityCategories {
 
     public static final DefaultedRegistryReference<EntityCategory> WATER_CREATURE = EntityCategories.key(ResourceKey.sponge("water_creature"));
 
+    // TODO UNDERGROUND_WATER_CREATURE
+
     public static final DefaultedRegistryReference<EntityCategory> WATER_AMBIENT = EntityCategories.key(ResourceKey.sponge("water_ambient"));
 
     public static final DefaultedRegistryReference<EntityCategory> MISCELLANEOUS = EntityCategories.key(ResourceKey.sponge("misc"));
+
+    // TODO AXOLOTLS
 
     //@formatter:on
 

@@ -22,25 +22,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.biome.provider;
+package org.spongepowered.api.world.generation.structure;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.registry.RegistryReference;
-import org.spongepowered.api.world.biome.Biome;
+import org.spongepowered.api.datapack.DataPack;
+import org.spongepowered.api.datapack.DataPackEntry;
+import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.util.ResourceKeyedBuilder;
+import org.spongepowered.api.world.schematic.Schematic;
 
 /**
- * The configuration for a {@link BiomeProvider} with a single {@link Biome}.
+ * The template for a vanilla structure schematic.
  */
-public interface FixedBiomeConfig extends BiomeProviderConfig {
+public interface SchematicTemplate extends DataPackEntry<SchematicTemplate> {
 
-    static FixedBiomeConfig of(RegistryReference<Biome> biome) {
-        return Sponge.game().factoryProvider().provide(Factory.class).biome(biome);
+    static Builder builder() {
+        return Sponge.game().builderProvider().provide(Builder.class).reset();
     }
 
-    RegistryReference<Biome> biome();
+    /**
+     * Returns the schematic.
+     *
+     * @return The schematic
+     */
+    Schematic schematic();
 
-    interface Factory {
+    interface Builder extends ResourceKeyedBuilder<SchematicTemplate, Builder>, CopyableBuilder<SchematicTemplate, Builder> {
 
-        FixedBiomeConfig biome(RegistryReference<Biome> biome);
+        /**
+         * Sets the data pack
+         *
+         * @param pack The data pack
+         * @return This builder, for chaining
+         */
+        Builder pack(DataPack<SchematicTemplate> pack);
+
     }
 }

@@ -24,34 +24,43 @@
  */
 package org.spongepowered.api.datapack;
 
-import io.leangen.geantyref.TypeToken;
-import org.spongepowered.api.advancement.Advancement;
-import org.spongepowered.api.event.lifecycle.RegisterDataPackValueEvent;
+import org.spongepowered.api.advancement.AdvancementTemplate;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
+import org.spongepowered.api.registry.RegistryType;
 import org.spongepowered.api.tag.TagTemplate;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.WorldTypeTemplate;
+import org.spongepowered.api.world.biome.BiomeTemplate;
+import org.spongepowered.api.world.generation.carver.CarverTemplate;
+import org.spongepowered.api.world.generation.config.noise.DensityFunctionTemplate;
+import org.spongepowered.api.world.generation.config.noise.NoiseGeneratorConfigTemplate;
+import org.spongepowered.api.world.generation.config.noise.NoiseTemplate;
+import org.spongepowered.api.world.generation.feature.FeatureTemplate;
+import org.spongepowered.api.world.generation.feature.PlacedFeatureTemplate;
+import org.spongepowered.api.world.generation.structure.SchematicTemplate;
+import org.spongepowered.api.world.generation.structure.StructureSetTemplate;
+import org.spongepowered.api.world.generation.structure.StructureTemplate;
+import org.spongepowered.api.world.generation.structure.jigsaw.JigsawPoolTemplate;
+import org.spongepowered.api.world.generation.structure.jigsaw.ProcessorListTemplate;
 import org.spongepowered.api.world.server.WorldTemplate;
-import org.spongepowered.plugin.PluginContainer;
 
 @CatalogedBy(DataPackTypes.class)
 public interface DataPackType<T> {
 
-    TypeToken<T> type();
-
     /**
-     * Gets if resources created by this type will persist even if the {@link PluginContainer plugin}
-     * is no longer present (or no longer performs a registration in {@link RegisterDataPackValueEvent}
+     * Returns a data pack for this data pack type.
      *
-     * <p>Consult your implementation vendor for more details on exactly what resources are kept.</p>
-     * 
-     * @return True if persistent, false if not
+     * @param name The pack name
+     * @param description The pack description
+     *
+     * @return The new pack.
      */
-    boolean persistent();
+    DataPack<T> pack(String name, String description);
 
     interface Factory {
 
-        DataPackType<Advancement> advancement();
+        DataPackType<AdvancementTemplate> advancement();
 
         DataPackType<RecipeRegistration> recipe();
 
@@ -59,6 +68,30 @@ public interface DataPackType<T> {
 
         DataPackType<WorldTemplate> world();
 
-        DataPackType<TagTemplate> tag();
+        <T extends Taggable<T>> DataPackType<TagTemplate<T>> tag(RegistryType<T> registryType);
+
+        DataPackType<BiomeTemplate> biome();
+
+        DataPackType<CarverTemplate> carver();
+
+        DataPackType<FeatureTemplate> feature();
+
+        DataPackType<PlacedFeatureTemplate> placedFeature();
+
+        DataPackType<NoiseGeneratorConfigTemplate> noiseGeneratorConfig();
+
+        DataPackType<NoiseTemplate> noise();
+
+        DataPackType<DensityFunctionTemplate> densityFunction();
+
+        DataPackType<StructureTemplate> structure();
+
+        DataPackType<SchematicTemplate> schematic();
+
+        DataPackType<ProcessorListTemplate> processorList();
+
+        DataPackType<StructureSetTemplate> structureSet();
+
+        DataPackType<JigsawPoolTemplate> jigsawPool();
     }
 }

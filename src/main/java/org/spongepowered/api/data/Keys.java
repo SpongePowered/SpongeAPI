@@ -102,10 +102,12 @@ import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.effect.potion.PotionEffectTypes;
+import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.effect.sound.music.MusicDisc;
 import org.spongepowered.api.entity.AreaEffectCloud;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
+import org.spongepowered.api.entity.EntityCategory;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.ExperienceOrb;
 import org.spongepowered.api.entity.FallingBlock;
@@ -160,6 +162,7 @@ import org.spongepowered.api.entity.living.monster.boss.Boss;
 import org.spongepowered.api.entity.living.monster.boss.Wither;
 import org.spongepowered.api.entity.living.monster.boss.dragon.EnderDragon;
 import org.spongepowered.api.entity.living.monster.guardian.Guardian;
+import org.spongepowered.api.entity.living.monster.piglin.Piglin;
 import org.spongepowered.api.entity.living.monster.raider.Raider;
 import org.spongepowered.api.entity.living.monster.raider.Ravager;
 import org.spongepowered.api.entity.living.monster.raider.illager.Pillager;
@@ -198,6 +201,7 @@ import org.spongepowered.api.entity.weather.LightningBolt;
 import org.spongepowered.api.entity.weather.WeatherEffect;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSources;
 import org.spongepowered.api.fluid.FluidStackSnapshot;
+import org.spongepowered.api.fluid.FluidTypes;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.FireworkShape;
 import org.spongepowered.api.item.ItemRarity;
@@ -220,18 +224,49 @@ import org.spongepowered.api.map.decoration.MapDecoration;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.projectile.source.ProjectileSource;
+import org.spongepowered.api.raid.Raid;
 import org.spongepowered.api.raid.RaidWave;
 import org.spongepowered.api.statistic.Statistic;
+import org.spongepowered.api.tag.Tag;
 import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.util.MinecraftDayTime;
+import org.spongepowered.api.util.Range;
 import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.orientation.Orientation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
+import org.spongepowered.api.util.weighted.WeightedTable;
+import org.spongepowered.api.world.SerializationBehavior;
+import org.spongepowered.api.world.WorldType;
+import org.spongepowered.api.world.WorldTypeEffect;
+import org.spongepowered.api.world.WorldTypes;
+import org.spongepowered.api.world.biome.Biome;
+import org.spongepowered.api.world.biome.ambient.ParticleConfig;
+import org.spongepowered.api.world.biome.ambient.SoundConfig;
+import org.spongepowered.api.world.biome.climate.GrassColorModifier;
+import org.spongepowered.api.world.biome.climate.Precipitation;
+import org.spongepowered.api.world.biome.climate.TemperatureModifier;
+import org.spongepowered.api.world.biome.spawner.NaturalSpawnCost;
+import org.spongepowered.api.world.biome.spawner.NaturalSpawner;
+import org.spongepowered.api.world.border.WorldBorder;
+import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.explosion.Explosion;
+import org.spongepowered.api.world.generation.ChunkGenerator;
+import org.spongepowered.api.world.generation.carver.Carver;
+import org.spongepowered.api.world.generation.carver.CarvingStep;
+import org.spongepowered.api.world.generation.config.WorldGenerationConfig;
+import org.spongepowered.api.world.generation.feature.DecorationStep;
+import org.spongepowered.api.world.generation.feature.PlacedFeature;
+import org.spongepowered.api.world.portal.PortalType;
+import org.spongepowered.api.world.portal.PortalTypes;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
+import org.spongepowered.api.world.server.WorldTemplate;
+import org.spongepowered.api.world.server.storage.ServerWorldProperties;
+import org.spongepowered.api.world.storage.WorldProperties;
+import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.WeatherType;
 import org.spongepowered.api.world.weather.WeatherTypes;
 import org.spongepowered.math.vector.Vector2i;
@@ -294,6 +329,38 @@ public final class Keys {
      * The modifier to {@link Keys#VELOCITY} of a {@link Minecart} while airborne.
      */
     public static final Key<Value<Vector3d>> AIRBORNE_VELOCITY_MODIFIER = Keys.key(ResourceKey.sponge("airborne_velocity_modifier"), Vector3d.class);
+
+    /**
+     * The additional ambient sound settings in a {@link Biome}
+     * Readonly
+     */
+    public static final Key<Value<SoundConfig.Additional>> AMBIENT_ADDITIONAL_SOUND = Keys.key(ResourceKey.sponge("ambient_additional_sound"), SoundConfig.Additional.class);
+
+    /**
+     * The ambient lightning of a {@link WorldType}.
+     * <p>Affects ambient light effects in a {@link ServerWorld} of that type.</p>
+     * <p>In Vanilla, the value will be between {@code 0.0} and {@code 1.0}</p>
+     * Readonly
+     */
+    public static final Key<Value<Float>> AMBIENT_LIGHTING = Keys.key(ResourceKey.sponge("ambient_lighting"), Float.class);
+
+    /**
+     * The ambient mood settings in a {@link Biome}
+     * Readonly
+     */
+    public static final Key<Value<SoundConfig.Mood>> AMBIENT_MOOD = Keys.key(ResourceKey.sponge("ambient_mood"), SoundConfig.Mood.class);
+
+    /**
+     * The ambient particle settings in a {@link Biome}
+     * Readonly
+     */
+    public static final Key<Value<ParticleConfig>> AMBIENT_PARTICLE = Keys.key(ResourceKey.sponge("ambient_particle"), ParticleConfig.class);
+
+    /**
+     * The ambient sound in a {@link Biome}
+     * Readonly
+     */
+    public static final Key<Value<SoundType>> AMBIENT_SOUND = Keys.key(ResourceKey.sponge("ambient_sound"), SoundType.class);
 
     /**
      * The anger level of a {@link ZombifiedPiglin}.
@@ -369,6 +436,12 @@ public final class Keys {
     public static final Key<Value<Ticks>> BABY_TICKS = Keys.key(ResourceKey.sponge("baby_ticks"), Ticks.class);
 
     /**
+     * The background music settings in a {@link Biome}
+     * Readonly
+     */
+    public static final Key<Value<SoundConfig.BackgroundMusic>> BACKGROUND_MUSIC = Keys.key(ResourceKey.sponge("background_music"), SoundConfig.BackgroundMusic.class);
+
+    /**
      * The {@link BannerPatternLayer}s of a {@link Banner}.
      */
     public static final Key<ListValue<BannerPatternLayer>> BANNER_PATTERN_LAYERS = Keys.listKey(ResourceKey.sponge("banner_pattern_layers"), BannerPatternLayer.class);
@@ -397,7 +470,15 @@ public final class Keys {
     public static final Key<Value<Living>> BEAM_TARGET_ENTITY = Keys.key(ResourceKey.sponge("beam_target_entity"), Living.class);
 
     /**
-     * The default temperature of a biome at a specific {@link ServerLocation}.
+     * Whether a {@link WorldType} allows using beds.
+     * <p>When bed usage is not allowed beds will instead explode in a {@link ServerWorld world} of that type.</p>
+     * <p>Also see {@link #RESPAWN_ANCHOR_USABLE}</p>
+     * Readonly
+     */
+    public static final Key<Value<Boolean>> BEDS_USABLE = Keys.key(ResourceKey.sponge("beds_usable"), Boolean.class);
+
+    /**
+     * The default temperature of a {@link Biome} or the biome at a specific {@link ServerLocation}.
      * For the exact block temperature see {@link #BLOCK_TEMPERATURE}.
      * Readonly
      */
@@ -531,6 +612,12 @@ public final class Keys {
     public static final Key<Value<Integer>> CANDLES = Keys.key(ResourceKey.sponge("candles"), Integer.class);
 
     /**
+     * The carvers of a {@link Biome} used during world generation.
+     * Readonly
+     */
+    public static final Key<MapValue<CarvingStep, List<Carver>>> CARVERS = Keys.mapKey(ResourceKey.sponge("is_placing_disabled"), TypeToken.get(CarvingStep.class), new TypeToken<List<Carver>>() {});
+
+    /**
      * The current casting time of a {@link Spellcaster}.
      */
     public static final Key<Value<Integer>> CASTING_TIME = Keys.key(ResourceKey.sponge("casting_time"), Integer.class);
@@ -561,6 +648,12 @@ public final class Keys {
     public static final Key<Value<Vector3d>> CHEST_ROTATION = Keys.key(ResourceKey.sponge("chest_rotation"), Vector3d.class);
 
     /**
+     * The chunk generator of a {@link WorldTemplate}
+     * Readonly
+     */
+    public static final Key<Value<ChunkGenerator>> CHUNK_GENERATOR = Keys.key(ResourceKey.sponge("chunk_generator"), ChunkGenerator.class);
+
+    /**
      * The {@link Color} of an {@link ItemStack}
      * <p>
      *     e.g. {@link ItemTypes#LEATHER_CHESTPLATE} or {@link ItemTypes#POTION} custom color
@@ -573,6 +666,12 @@ public final class Keys {
      * A command stored in a {@link CommandBlock} or {@link CommandBlockMinecart}.
      */
     public static final Key<Value<String>> COMMAND = Keys.key(ResourceKey.sponge("command"), String.class);
+
+    /**
+     * Whether commands can be run in a world of a {@link WorldTemplate} or {@link ServerWorldProperties}
+     * Readonly
+     */
+    public static final Key<Value<Boolean>> COMMANDS = Keys.key(ResourceKey.sponge("commands"), Boolean.class);
 
     /**
      * The {@link ComparatorMode} of a {@link BlockTypes#COMPARATOR} {@link BlockState}.
@@ -600,6 +699,23 @@ public final class Keys {
      * The amount of ticks a {@link EndGateway} has to wait for the next teleportation.
      */
     public static final Key<Value<Ticks>> COOLDOWN = Keys.key(ResourceKey.sponge("cooldown"), Ticks.class);
+
+    /**
+     * The coordinate scale of a {@link WorldType} applied to the coordinates of a {@link ServerPlayer player}
+     * when traveling in between {@link ServerWorld worlds}.
+     * <p>
+     * Best seen when transferring that player from one world to another (as the player's
+     * coordinates will adjust to the scale of the destination world's).
+     * </p>
+     * Readonly
+     */
+    public static final Key<Value<Double>> COORDINATE_MULTIPLIER = Keys.key(ResourceKey.sponge("coordinate_multiplier"), Double.class);
+
+    /**
+     * Whether a {@link WorldType} allows the {@link EnderDragon dragon} fight mechanic to spawn.
+     * Readonly
+     */
+    public static final Key<Value<Boolean>> CREATE_DRAGON_FIGHT = Keys.key(ResourceKey.sponge("create_dragon_fight"), Boolean.class);
 
     /**
      * The creator, usually of an {@link Entity}. It is up to the implementation to define.
@@ -692,6 +808,7 @@ public final class Keys {
      * <p>On an {@link Entity}, this represents a combination of {@link Keys#CUSTOM_NAME} (if set), scoreboard info, and any click data.</p>
      * <p>On an {@link ItemStack}, this represents the {@link Keys#CUSTOM_NAME} or if not set the {@link ItemType}s translation.
      * <p>On a {@link BlockEntity}, this usually represents the name displayed in its {@link org.spongepowered.api.item.inventory.Container}
+     * <p>On a {@link WorldTemplate} or {@link ServerWorldProperties}, this represents the display name of the corresponding {@link ServerWorld}</p>
      */
     public static final Key<Value<Component>> DISPLAY_NAME = Keys.key(ResourceKey.sponge("display_name"), Component.class);
 
@@ -857,6 +974,12 @@ public final class Keys {
     public static final Key<Value<Ticks>> FALL_TIME = Keys.key(ResourceKey.sponge("fall_time"), Ticks.class);
 
     /**
+     * The features to place during decoration steps during world generation for a {@link Biome}
+     * Readonly
+     */
+    public static final Key<MapValue<DecorationStep, List<PlacedFeature>>> FEATURES = Keys.mapKey(ResourceKey.sponge("is_placing_disabled"), TypeToken.get(DecorationStep.class), new TypeToken<List<PlacedFeature>>() {});
+
+    /**
      * The {@link FireworkEffect}s of a
      * {@link ItemTypes#FIREWORK_STAR}, {@link ItemTypes#FIREWORK_ROCKET} {@link ItemStack} or a
      * {@link FireworkRocket}.
@@ -895,6 +1018,13 @@ public final class Keys {
     public static final Key<Value<UUID>> FIRST_TRUSTED = Keys.key(ResourceKey.sponge("first_trusted"), UUID.class);
 
     /**
+     * The fixed time in a {@link ServerWorld world} of a {@link WorldType}.
+     * <p>If set the time is fixed at a particular {@link MinecraftDayTime} otherwise time flows freely.</p>
+     * Readonly
+     */
+    public static final Key<Value<MinecraftDayTime>> FIXED_TIME = Keys.key(ResourceKey.sponge("fixed_time"), MinecraftDayTime.class);
+
+    /**
      * The {@link FluidStackSnapshot} contained within an item container.
      * Item containers may include buckets and other mod added items.
      * See {@link #CONTAINER_ITEM}
@@ -916,6 +1046,20 @@ public final class Keys {
      * The speed at which an {@link Player} flies.
      */
     public static final Key<Value<Double>> FLYING_SPEED = Keys.key(ResourceKey.sponge("flying_speed"), Double.class);
+
+    /**
+     * The color of fog in a {@link Biome}.
+     * Readonly
+     */
+    public static final Key<Value<Color>> FOG_COLOR = Keys.key(ResourceKey.sponge("fog_color"), Color.class);
+
+    /**
+     * The color override for foliage in a {@link Biome}.
+     * <p>Such as {@link BlockTypes#OAK_LEAVES}, other leaves, {@link BlockTypes#VINE}</p>
+     * <p>If not present foliage color is instead determined by {@link #BIOME_TEMPERATURE} and {@link #HUMIDITY}</p>
+     * Readonly
+     */
+    public static final Key<Value<Color>> FOLIAGE_COLOR = Keys.key(ResourceKey.sponge("foliage_color"), Color.class);
 
     /**
      * The food level of a {@link Humanoid}.
@@ -947,7 +1091,7 @@ public final class Keys {
     public static final Key<Value<Ticks>> FUSE_DURATION = Keys.key(ResourceKey.sponge("fuse_duration"), Ticks.class);
 
     /**
-     * The {@link GameMode} a {@link Humanoid} has.
+     * The {@link GameMode} a {@link Humanoid} or {@link ServerWorldProperties} or {@link WorldTemplate} has.
      */
     public static final Key<Value<GameMode>> GAME_MODE = Keys.key(ResourceKey.sponge("game_mode"), GameMode.class);
 
@@ -968,6 +1112,20 @@ public final class Keys {
     public static final Key<Value<Integer>> GENERATION = Keys.key(ResourceKey.sponge("generation"), Integer.class);
 
     /**
+     * The color override for grass in a {@link Biome}.
+     * <p>Such as {@link BlockTypes#GRASS_BLOCK}, {@link BlockTypes#GRASS}, {@link BlockTypes#TALL_GRASS}, {@link BlockTypes#FERN}, {@link BlockTypes#LARGE_FERN}, {@link BlockTypes#SUGAR_CANE}</p>
+     * <p>If not present grass color is instead determined by {@link #BIOME_TEMPERATURE} and {@link #HUMIDITY}</p>
+     * Readonly
+     */
+    public static final Key<Value<Color>> GRASS_COLOR = Keys.key(ResourceKey.sponge("grass_color"), Color.class);
+
+    /**
+     * The grass color modifier in a {@link Biome}.
+     * Readonly
+     */
+    public static final Key<Value<GrassColorModifier>> GRASS_COLOR_MODIFIER = Keys.key(ResourceKey.sponge("grass_color_modifier"), GrassColorModifier.class);
+
+    /**
      * Whether a {@link Sign} has glowing text (from dying
      * with {@link ItemTypes#GLOW_INK_SAC}).
      */
@@ -978,6 +1136,12 @@ public final class Keys {
      * e.g. {@link BlockTypes#CACTUS} or {@link BlockTypes#WHEAT} etc.
      */
     public static final Key<Value<Integer>> GROWTH_STAGE = Keys.key(ResourceKey.sponge("growth_stage"), Integer.class);
+
+    /**
+     * Whether world of a {@link WorldTemplate} or {@link WorldProperties} is in hardcore mode.
+     * Readonly
+     */
+    public static final Key<Value<Boolean>> HARDCORE = Keys.key(ResourceKey.sponge("hardcore"), Boolean.class);
 
     /**
      * Whether an {@link ArmorStand}'s arms are visible.
@@ -994,6 +1158,16 @@ public final class Keys {
      * {@link BlockTypes#CAVE_VINES_PLANT} has glow berries.
      */
     public static final Key<Value<Boolean>> HAS_BERRIES = Keys.key(ResourceKey.sponge("has_berries"), Boolean.class);
+
+    /**
+     * Whether a {@link WorldType} generates a {@link ServerWorld world} with a ceiling at some
+     * pre-determined y value composed of {@link BlockTypes#BEDROCK}. Most notable usage of
+     * this is for the {@link WorldTypes#THE_NETHER type}.
+     *
+     * <p>In Vanilla, used in weather, map items, and respawning mechanics</p>
+     * Readonly
+     */
+    public static final Key<Value<Boolean>> HAS_CEILING = Keys.key(ResourceKey.sponge("has_ceiling"), Boolean.class);
 
     /**
      * Whether a {@link PackHorse} has a chest.
@@ -1052,6 +1226,22 @@ public final class Keys {
      * Whether a giant mushroom {@link BlockState} has pores on the {@link Direction#WEST} direction. See {@link #PORES}.
      */
     public static final Key<Value<Boolean>> HAS_PORES_WEST = Keys.key(ResourceKey.sponge("has_pores_west"), Boolean.class);
+
+    /**
+     * Whether a {@link WorldType} allows {@link Raid raids} to spawn.
+     * <p>If true {@link ServerPlayer players} who have the {@link PotionEffectTypes#BAD_OMEN} effect
+     * can cause a {@link Raid} while in a {@link ServerWorld world} of that type.</p>
+     * Readonly
+     */
+    public static final Key<Value<Boolean>> HAS_RAIDS = Keys.key(ResourceKey.sponge("has_rais"), Boolean.class);
+
+    /**
+     * Whether the {@link ServerWorld world} of a {@link WorldType} will have global lighting, used
+     * in game mechanics such as {@link Entity} spawning.
+     * <p>In Vanilla, used in weather, lighting engine, and respawning mechanics</p>
+     * Readonly
+     */
+    public static final Key<Value<Boolean>> HAS_SKYLIGHT = Keys.key(ResourceKey.sponge("has_skylight"), Boolean.class);
 
     /**
      * Whether a server player has viewed the credits.
@@ -1168,11 +1358,23 @@ public final class Keys {
     public static final Key<Value<HorseStyle>> HORSE_STYLE = Keys.key(ResourceKey.sponge("horse_style"), HorseStyle.class);
 
     /**
+     * The humidity of a {@link Biome}.
+     * Readonly
+     */
+    public static final Key<Value<Double>> HUMIDITY = Keys.key(ResourceKey.sponge("humidity"), Double.class);
+
+    /**
      * The inaccuracy of an {@link ItemStack} that launches {@link Projectile}s.
      *
      * <p>An inaccuracy of 0 means perfect accuracy. Inaccuracy of 1 is the default for most vanilla items.</p>
      */
     public static final Key<Value<Double>> INACCURACY = Keys.key(ResourceKey.sponge("inaccuracy"), Double.class);
+
+    /**
+     * The tag to determine which {@link BlockType blocks} burn infinitely in a {@link ServerWorld world} of a {@link WorldType}.
+     * Readonly
+     */
+    public static final Key<Value<Tag<BlockType>>> INFINIBURN = Keys.key(ResourceKey.sponge("infiniburn"), new TypeToken<Tag<BlockType>>() {});
 
     /**
      * Whether an {@link Item} will not despawn for an infinite time.
@@ -1183,6 +1385,11 @@ public final class Keys {
      * Whether an {@link Item} has an infinite pickup delay.
      */
     public static final Key<Value<Boolean>> INFINITE_PICKUP_DELAY = Keys.key(ResourceKey.sponge("infinite_pickup_delay"), Boolean.class);
+
+    /**
+     * Whether a world of a {@link ServerWorldProperties} was initialized.
+     */
+    public static final Key<Value<Boolean>> INITIALIZED = Keys.key(ResourceKey.sponge("initialized"), Boolean.class);
 
     /**
      * The {@link InstrumentType} of a {@link BlockTypes#NOTE_BLOCK} {@link BlockState}.
@@ -1470,6 +1677,12 @@ public final class Keys {
      * or {@link BlockTypes#REDSTONE_TORCH}.
      */
     public static final Key<Value<Boolean>> IS_LIT = Keys.key(ResourceKey.sponge("is_lit"), Boolean.class);
+
+    /**
+     * Whether a world of a {@link WorldTemplate} or {@link ServerWorldProperties} is supposed to be loaded at startup.
+     * Readonly
+     */
+    public static final Key<Value<Boolean>> IS_LOAD_ON_STARTUP = Keys.key(ResourceKey.sponge("is_load_on_startup"), Boolean.class);
 
     /**
      * Whether a {@link Cat} is lying down.
@@ -2044,6 +2257,30 @@ public final class Keys {
     public static final Key<Value<MusicDisc>> MUSIC_DISC = Keys.key(ResourceKey.sponge("music_disc"), MusicDisc.class);
 
     /**
+     * The settings for entities that can naturally spawn in a {@link Biome}.
+     * <p>See {@link #SPAWN_CHANCE} for the spawn chance during world generation</p>
+     * Readonly
+     */
+    public static final Key<MapValue<EntityCategory, List<NaturalSpawner>>> NATURAL_SPAWNERS = Keys.mapKey(ResourceKey.sponge("natural_spawners"), TypeToken.get(EntityCategory.class), new TypeToken<List<NaturalSpawner>>() {});
+
+    /**
+     * The cost settings for {@link #NATURAL_SPAWNERS} in a {@link Biome}.
+     * <p>This is an alternative to mob-cap</p>
+     * Readonly
+     */
+    public static final Key<MapValue<EntityType<?>, NaturalSpawnCost>> NATURAL_SPAWNER_COST = Keys.mapKey(ResourceKey.sponge("natural_spawner_cost"), new TypeToken<EntityType<?>>() {}, TypeToken.get(NaturalSpawnCost.class));
+
+    /**
+     * Whether a {@link WorldType} is considered natural.
+     * <p>Natural worlds allow
+     * sleeping in beds and setting the respawn point,
+     * {@link PortalTypes#NETHER} portals to spawn {@link ZombifiedPiglin} and
+     * {@link ItemTypes#COMPASS} to work</p>
+     * Readonly
+     */
+    public static final Key<Value<Boolean>> NATURAL_WORLD_TYPE = Keys.key(ResourceKey.sponge("natural_world_type"), Boolean.class);
+
+    /**
      * The next entity that will be spawned by a {@link MobSpawner}.
      *
      * <p>Normally the entities to be spawned are determined by a random value
@@ -2123,6 +2360,13 @@ public final class Keys {
     public static final Key<Value<DyeColor>> PATTERN_COLOR = Keys.key(ResourceKey.sponge("pattern_color"), DyeColor.class);
 
     /**
+     * Whether spawn logic is performed on a world of a {@link WorldTemplate} or {@link ServerWorldProperties}
+     * See {@link ServerWorldProperties#performsSpawnLogic()}.
+     * Readonly
+     */
+    public static final Key<Value<Boolean>> PERFORM_SPAWN_LOGIC = Keys.key(ResourceKey.sponge("perform_spawn_logic"), Boolean.class);
+
+    /**
      * The {@link PhantomPhase phase} of a {@link Phantom}.
      */
     public static final Key<Value<PhantomPhase>> PHANTOM_PHASE = Keys.key(ResourceKey.sponge("phantom_phase"), PhantomPhase.class);
@@ -2136,6 +2380,13 @@ public final class Keys {
      * The {@link PickupRule} of an {@link ArrowEntity}.
      */
     public static final Key<Value<PickupRule>> PICKUP_RULE = Keys.key(ResourceKey.sponge("pickup_rule"), PickupRule.class);
+
+    /**
+     * Whether a {@link WorldType} is safe for {@link Piglin} to not transform
+     * into {@link ZombifiedPiglin} over time in a {@link ServerWorld world} of that type
+     * Readonly
+     */
+    public static final Key<Value<Boolean>> PIGLIN_SAFE = Keys.key(ResourceKey.sponge("piglin_safe"), Boolean.class);
 
     /**
      * The piston type of a piston {@link BlockState} TODO dataholder {@link Piston}.
@@ -2202,6 +2453,12 @@ public final class Keys {
     public static final Key<Value<Integer>> POWER = Keys.key(ResourceKey.sponge("power"), Integer.class);
 
     /**
+     * The {@link Precipitation} type of a {@link Biome}.
+     * Readonly
+     */
+    public static final Key<Value<Precipitation>> PRECIPITATION = Keys.key(ResourceKey.sponge("precipitation"), Precipitation.class);
+
+    /**
      * A {@link Beacon}'s primary effect.
      */
     public static final Key<Value<PotionEffectType>> PRIMARY_POTION_EFFECT_TYPE = Keys.key(ResourceKey.sponge("primary_potion_effect_type"), PotionEffectType.class);
@@ -2215,6 +2472,12 @@ public final class Keys {
      * The {@link Villager} or {@link ZombieVillager}'s {@link ProfessionType} level.
      */
     public static final Key<Value<Integer>> PROFESSION_LEVEL = Keys.key(ResourceKey.sponge("profession_level"), Integer.class);
+
+    /**
+     * Whether pvp combat is enabled in a world of a {@link WorldTemplate} or {@link ServerWorldProperties}
+     * Readonly
+     */
+    public static final Key<Value<Boolean>> PVP = Keys.key(ResourceKey.sponge("pvp"), Boolean.class);
 
     /**
      * The type of a {@link Rabbit}.
@@ -2306,6 +2569,15 @@ public final class Keys {
     public static final Key<Value<Double>> REQUIRED_PLAYER_RANGE = Keys.key(ResourceKey.sponge("required_player_range"), Double.class);
 
     /**
+     * Whether a {@link WorldType} allows using {@link BlockTypes#RESPAWN_ANCHOR}s.
+     * TODO check if true
+     * <p>When respawn anchor usage is not allowed they will instead explode in a {@link ServerWorld world} of that type.</p>
+     * <p>Also see {@link #BEDS_USABLE}</p>
+     * Readonly
+     */
+    public static final Key<Value<Boolean>> RESPAWN_ANCHOR_USABLE = Keys.key(ResourceKey.sponge("respawn_anchor_usable"), Boolean.class);
+
+    /**
      * The spawn locations a {@link Player}
      * may have for various worlds based on {@link UUID} of the world.
      */
@@ -2353,6 +2625,13 @@ public final class Keys {
     public static final Key<SetValue<String>> SCOREBOARD_TAGS = Keys.setKey(ResourceKey.sponge("scoreboard_tags"), String.class);
 
     /**
+     * Whether a {@link WorldType} is considered scorching hot.
+     * <p>Affects {@link BlockTypes#WATER}, {@link BlockTypes#WET_SPONGE} and flow of {@link FluidTypes#FLOWING_LAVA}</p>
+     * Readonly
+     */
+    public static final Key<Value<Boolean>> SCORCHING = Keys.key(ResourceKey.sponge("scorching"), Boolean.class);
+
+    /**
      * The triggering state of a {@link BlockTypes#SCULK_SENSOR}.
      */
     public static final Key<Value<SculkSensorState>> SCULK_SENSOR_STATE = Keys.key(ResourceKey.sponge("sculk_sensor_state"), SculkSensorState.class);
@@ -2366,6 +2645,17 @@ public final class Keys {
      * A {@link Fox fox's} second trusted {@link UUID}, usually a {@link Player}.
      */
     public static final Key<Value<UUID>> SECOND_TRUSTED = Keys.key(ResourceKey.sponge("second_trusted"), UUID.class);
+
+    /**
+     * The seed of a {@link WorldTemplate}
+     */
+    public static final Key<Value<Long>> SEED = Keys.key(ResourceKey.sponge("structure_seed"), Long.class);
+
+    /**
+     * The {@link SerializationBehavior} of a {@link WorldTemplate} or {@link ServerWorldProperties}
+     * Readonly
+     */
+    public static final Key<Value<SerializationBehavior>> SERIALIZATION_BEHAVIOR = Keys.key(ResourceKey.sponge("serialization_behavior"), SerializationBehavior.class);
 
     /**
      * The shooter of a {@link Projectile}.
@@ -2427,6 +2717,12 @@ public final class Keys {
     public static final Key<Value<Integer>> SKY_LIGHT = Keys.key(ResourceKey.sponge("sky_light"), Integer.class);
 
     /**
+     * The color of the sky in a {@link Biome}.
+     * Readonly
+     */
+    public static final Key<Value<Color>> SKY_COLOR = Keys.key(ResourceKey.sponge("sky_color"), Color.class);
+
+    /**
      * The {@link SlabPortion} of a {@link BlockState}.
      */
     public static final Key<Value<SlabPortion>> SLAB_PORTION = Keys.key(ResourceKey.sponge("slab_portion"), SlabPortion.class);
@@ -2470,9 +2766,33 @@ public final class Keys {
     public static final Key<WeightedCollectionValue<EntityArchetype>> SPAWNABLE_ENTITIES = Keys.weightedKey(ResourceKey.sponge("spawnable_entities"), EntityArchetype.class);
 
     /**
+     * The chance for an entity to spawn in a {@link Biome} during world generation.
+     * <p>Must be between 0 and 1</p>
+     * <p>Also see {@link #NATURAL_SPAWNERS}</p>
+     * Readonly
+     */
+    public static final Key<Value<Double>> SPAWN_CHANCE = Keys.key(ResourceKey.sponge("spawn_chance"), Double.class);
+
+    /**
      * How many entities a {@link MobSpawner} has spawned so far.
      */
     public static final Key<Value<Integer>> SPAWN_COUNT = Keys.key(ResourceKey.sponge("spawn_count"), Integer.class);
+
+    /**
+     * The light level needed to block monster spawning in a {@link WorldType}.
+     */
+    public static final Key<Value<Integer>> SPAWN_LIGHT_LIMIT = Keys.key(ResourceKey.sponge("spawn_light_limit"), Integer.class);
+
+    /**
+     * The light level range needed to block monster spawning in a {@link WorldType}
+     */
+    public static final Key<Value<Range<Integer>>> SPAWN_LIGHT_RANGE = Keys.key(ResourceKey.sponge("spawn_light_range"), new TypeToken<Range<Integer>>() {});
+
+    /**
+     * The spawn position in a world of a {@link WorldTemplate} or {@link WorldProperties}
+     * Readonly
+     */
+    public static final Key<Value<Vector3i>> SPAWN_POSITION = Keys.key(ResourceKey.sponge("spawn_position"), Vector3i.class);
 
     /**
      * How far away from the {@link MobSpawner} the entities spawned by it may appear.
@@ -2617,6 +2937,12 @@ public final class Keys {
     public static final Key<Value<Vector3i>> TARGET_POSITION = Keys.key(ResourceKey.sponge("target_position"), Vector3i.class);
 
     /**
+     * The {@link TemperatureModifier} of a {@link Biome}.
+     * Readonly
+     */
+    public static final Key<Value<TemperatureModifier>> TEMPERATURE_MODIFIER = Keys.key(ResourceKey.sponge("temperature_modifier"), TemperatureModifier.class);
+
+    /**
      * The remaining fuse time in ticks of a {@link FusedExplosive}.
      * This value may be set to an arbitrary value
      * if the explosive is not primed.
@@ -2722,10 +3048,12 @@ public final class Keys {
     public static final Key<Value<Vector3d>> VELOCITY = Keys.key(ResourceKey.sponge("velocity"), Vector3d.class);
 
     /**
-     * The client view distance of a {@link ServerPlayer}. Read-only.
+     * The client view distance of a {@link ServerPlayer}
+     * <p>or the view distance in a world of a {@link WorldTemplate} or {@link ServerWorldProperties}</p>
      *
      * <p>This value represents the radius (around the player) in
      * unit chunks.</p>
+     * Readonly
      */
     public static final Key<Value<Integer>> VIEW_DISTANCE = Keys.key(ResourceKey.sponge("view_distance"), Integer.class);
 
@@ -2744,6 +3072,23 @@ public final class Keys {
      * The base speed at which a {@link Player} or {@link Living} walks.
      */
     public static final Key<Value<Double>> WALKING_SPEED = Keys.key(ResourceKey.sponge("walking_speed"), Double.class);
+
+    /**
+     * The color of water in a {@link Biome}.
+     * Readonly
+     */
+    public static final Key<Value<Color>> WATER_COLOR = Keys.key(ResourceKey.sponge("water_color"), Color.class);
+
+    /**
+     * The color of water fog in a {@link Biome}.
+     * Readonly
+     */
+    public static final Key<Value<Color>> WATER_FOG_COLOR = Keys.key(ResourceKey.sponge("water_fog_color"), Color.class);
+
+    /**
+     * The weather of a {@link ServerWorldProperties}.
+     */
+    public static final Key<Value<Weather>> WEATHER = Keys.key(ResourceKey.sponge("weather"), Weather.class);
 
     /**
      * Whether a thrown {@link EyeOfEnder} will shatter.
@@ -2789,6 +3134,63 @@ public final class Keys {
      * spell being casted by an {@link Evoker}
      */
     public static final Key<Value<Sheep>> WOLOLO_TARGET = Keys.key(ResourceKey.sponge("wololo_target"), Sheep.class);
+
+    /**
+     * The world border of {@link WorldProperties}
+     * Readonly
+     */
+    public static final Key<Value<WorldBorder>> WORLD_BORDER = Keys.key(ResourceKey.sponge("world_border"), WorldBorder.class);
+
+    /**
+     * The difficulty of a {@link WorldTemplate} or {@link WorldProperties}
+     * Readonly
+     */
+    public static final Key<Value<Difficulty>> WORLD_DIFFICULTY = Keys.key(ResourceKey.sponge("world_difficulty"), Difficulty.class);
+
+    /**
+     * The minimum {@code Y} coordinate of a {@link WorldType}
+     * <p>Blocks cannot exist at a lower {@code Y} value in a {@link ServerWorld} of that type</p>
+     * <p>In vanilla this is a multiple of 16 between -2032 and 2016</p>
+     * <p>Also see {@link #WORLD_HEIGHT}</p>
+     * Readonly
+     */
+    public static final Key<Value<Integer>> WORLD_FLOOR = Keys.key(ResourceKey.sponge("world_floor"), Integer.class);
+
+    /**
+     * The world generation config of a {@link ServerWorldProperties}
+     * Readonly
+     */
+    public static final Key<Value<WorldGenerationConfig>> WORLD_GEN_CONFIG = Keys.key(ResourceKey.sponge("world_gen_config"), WorldGenerationConfig.class);
+
+    /**
+     * The height of a {@link WorldType}
+     * <p>In vanilla this is a multiple of 16 between 16 and 4064. {@code floor+height} may not be more than 2032</p>
+     * <p>Also see {@link #WORLD_FLOOR}</p>
+     * Readonly
+     */
+    public static final Key<Value<Integer>> WORLD_HEIGHT = Keys.key(ResourceKey.sponge("world_floor"), Integer.class);
+
+    /**
+     * The logical height of a {@link WorldType}
+     * <p>Restricts teleportation via {@link ItemTypes#CHORUS_FRUIT} or {@link PortalType portal types}
+     * or portal generation
+     * to below the logical height.</p>
+     * Readonly
+     */
+    public static final Key<Value<Integer>> WORLD_LOGICAL_HEIGHT = Keys.key(ResourceKey.sponge("world_logical_height"), Integer.class);
+
+    /**
+     * The {@link WorldType} of a {@link WorldTemplate} or {@link ServerWorldProperties}
+     * Readonly
+     */
+    public static final Key<Value<WorldType>> WORLD_TYPE = Keys.key(ResourceKey.sponge("world_type"), WorldType.class);
+
+    /**
+     * The {@link WorldTypeEffect effect} of a {@link WorldType} that will play for a {@link ServerPlayer player}
+     * in a {@link ServerWorld world} of this type.
+     * Readonly
+     */
+    public static final Key<Value<WorldTypeEffect>> WORLD_TYPE_EFFECT = Keys.key(ResourceKey.sponge("world_type_effect"), WorldTypeEffect.class);
 
     // SORTFIELDS:OFF
 

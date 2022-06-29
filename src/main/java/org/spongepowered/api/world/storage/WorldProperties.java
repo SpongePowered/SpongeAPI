@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.world.storage;
 
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.util.MinecraftDayTime;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.border.WorldBorder;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gamerule.GameRuleHolder;
 import org.spongepowered.api.world.weather.WeatherUniverse;
@@ -35,55 +36,56 @@ import org.spongepowered.math.vector.Vector3i;
 /**
  * Represents the properties of a {@link World} which are persisted across runtime instances.
  */
-public interface WorldProperties extends WeatherUniverse, GameRuleHolder {
+public interface WorldProperties extends WeatherUniverse, GameRuleHolder, DataHolder.Mutable {
 
     /**
      * Gets the default spawn position.
      *
      * @return The spawn position
      */
-    Vector3i spawnPosition();
+    default Vector3i spawnPosition() {
+        return this.require(Keys.SPAWN_POSITION);
+    }
 
     /**
      * Sets the default spawn position.
      *
      * @param position The spawn position
      */
-    void setSpawnPosition(Vector3i position);
+    default void setSpawnPosition(Vector3i position) {
+        this.offer(Keys.SPAWN_POSITION, position);
+    }
 
     /**
      * Gets the {@link MinecraftDayTime} since the world was created.
      *
      * @return The total time
      */
-    MinecraftDayTime gameTime();
+    MinecraftDayTime gameTime(); // TODO data?
 
     /**
      * Gets the time of day.
      *
      * @return The time of day
      */
-    MinecraftDayTime dayTime();
+    MinecraftDayTime dayTime(); // TODO data?
 
     /**
      * Gets if this is in hardcore mode.
      *
      * @return Is hardcore
      */
-    boolean hardcore();
+    default boolean hardcore() {
+        return this.require(Keys.HARDCORE);
+    }
 
     /**
      * Gets the {@link Difficulty}.
      *
      * @return The difficulty
      */
-    Difficulty difficulty();
-
-    /**
-     * Gets the saved {@link WorldBorder} for this world.
-     *
-     * @return The world border
-     */
-    WorldBorder worldBorder();
+    default Difficulty difficulty() {
+        return this.require(Keys.WORLD_DIFFICULTY);
+    }
 
 }

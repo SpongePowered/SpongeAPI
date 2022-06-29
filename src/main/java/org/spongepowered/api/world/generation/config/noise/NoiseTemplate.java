@@ -22,56 +22,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.generation.config;
+package org.spongepowered.api.world.generation.config.noise;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.registry.RegistryReference;
-import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.world.biome.Biome;
-import org.spongepowered.api.world.generation.config.flat.LayerConfig;
+import org.spongepowered.api.datapack.DataPackEntry;
+import org.spongepowered.api.util.DataPackEntryBuilder;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface FlatGeneratorConfig extends ChunkGeneratorConfig {
-
-    static FlatGeneratorConfig standard() {
-        return Sponge.game().factoryProvider().provide(Factory.class).standard();
-    }
+/**
+ *  A template for {@link Noise}.
+ */
+public interface NoiseTemplate extends DataPackEntry<NoiseTemplate> {
 
     static Builder builder() {
-        return Sponge.game().builderProvider().provide(Builder.class);
+        return Sponge.game().builderProvider().provide(Builder.class).reset();
     }
 
-    List<LayerConfig> layers();
+    /**
+     * Returns the noise.
+     *
+     * @return The noise
+     */
+    Noise noise();
 
-    Optional<LayerConfig> layer(int index);
+    interface Builder extends DataPackEntryBuilder<Noise, NoiseTemplate, Builder> {
 
-    RegistryReference<Biome> biome();
+        /**
+         * Sets the octave.
+         *
+         * @param octave The octave.
+         * @return This builder, for chaining
+         */
+        Builder octave(int octave);
 
-    boolean performDecoration();
+        /**
+         * Sets the amplitudes.
+         *
+         * @param amplitudes The amplitudes
+         * @return This builder, for chaining
+         */
+        Builder amplitudes(double... amplitudes);
 
-    boolean populateLakes();
+        /**
+         * Sets the amplitudes.
+         *
+         * @param amplitudes The amplitudes
+         * @return This builder, for chaining
+         */
+        Builder amplitudes(List<Double> amplitudes);
 
-    interface Builder extends org.spongepowered.api.util.Builder<FlatGeneratorConfig, Builder>, CopyableBuilder<FlatGeneratorConfig, Builder> {
-
-        Builder addLayer(int index, LayerConfig config);
-
-        Builder addLayer(LayerConfig config);
-
-        Builder addLayers(List<LayerConfig> layers);
-
-        Builder removeLayer(int index);
-
-        Builder biome(RegistryReference<Biome> biome);
-
-        Builder performDecoration(boolean performDecoration);
-
-        Builder populateLakes(boolean populateLakes);
-    }
-
-    interface Factory {
-
-        FlatGeneratorConfig standard();
     }
 }

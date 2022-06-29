@@ -26,7 +26,17 @@ package org.spongepowered.api.world.generation;
 
 import org.spongepowered.api.world.generation.config.ChunkGeneratorConfig;
 
+/**
+ * A configurable {@link ChunkGenerator}.
+ *
+ * @param <T> The type of configuration
+ */
 public interface ConfigurableChunkGenerator<T extends ChunkGeneratorConfig> extends ChunkGenerator {
 
+    /**
+     * Returns the chunk generator configuration.
+     *
+     * @return The chunk generator configuration
+     */
     T config();
 }

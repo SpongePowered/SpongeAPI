@@ -34,5 +34,10 @@ import java.util.List;
  */
 public interface BiomeProviderConfig {
 
+    /**
+     * Returns the list of configured biomes
+     *
+     * @return The list of configured biomes
+     */
     List<RegistryReference<Biome>> biomes();
 }

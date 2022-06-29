@@ -147,10 +147,31 @@ import org.spongepowered.api.world.HeightType;
 import org.spongepowered.api.world.LightType;
 import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.biome.Biome;
+import org.spongepowered.api.world.biome.climate.GrassColorModifier;
+import org.spongepowered.api.world.biome.climate.Precipitation;
+import org.spongepowered.api.world.biome.climate.TemperatureModifier;
 import org.spongepowered.api.world.chunk.ChunkState;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gamerule.GameRule;
+import org.spongepowered.api.world.generation.carver.Carver;
+import org.spongepowered.api.world.generation.carver.CarverType;
+import org.spongepowered.api.world.generation.carver.CarvingStep;
+import org.spongepowered.api.world.generation.config.flat.FlatGeneratorConfig;
+import org.spongepowered.api.world.generation.config.noise.DensityFunction;
+import org.spongepowered.api.world.generation.config.noise.Noise;
+import org.spongepowered.api.world.generation.config.noise.NoiseConfig;
+import org.spongepowered.api.world.generation.config.noise.NoiseGeneratorConfig;
+import org.spongepowered.api.world.generation.feature.DecorationStep;
+import org.spongepowered.api.world.generation.feature.Feature;
+import org.spongepowered.api.world.generation.feature.FeatureType;
+import org.spongepowered.api.world.generation.feature.PlacedFeature;
+import org.spongepowered.api.world.generation.feature.PlacementModifierType;
 import org.spongepowered.api.world.generation.structure.Structure;
+import org.spongepowered.api.world.generation.structure.StructureSet;
+import org.spongepowered.api.world.generation.structure.StructureType;
+import org.spongepowered.api.world.generation.structure.jigsaw.JigsawPool;
+import org.spongepowered.api.world.generation.structure.jigsaw.ProcessorList;
+import org.spongepowered.api.world.generation.structure.jigsaw.ProcessorType;
 import org.spongepowered.api.world.portal.PortalType;
 import org.spongepowered.api.world.schematic.PaletteType;
 import org.spongepowered.api.world.server.TicketType;
@@ -170,19 +191,21 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<AttributeType> ATTRIBUTE_TYPE = RegistryTypes.minecraftKeyInGame("attribute");
 
-    public static final RegistryType<Biome> BIOME = RegistryTypes.minecraftKey("worldgen/biome");
+    public static final DefaultedRegistryType<Biome> BIOME = RegistryTypes.minecraftKeyInServer("worldgen/biome");
 
     public static final DefaultedRegistryType<BlockType> BLOCK_TYPE = RegistryTypes.minecraftKeyInGame("block");
 
     public static final DefaultedRegistryType<BlockEntityType> BLOCK_ENTITY_TYPE = RegistryTypes.minecraftKeyInGame("block_entity_type");
 
+    public static final DefaultedRegistryType<CarverType> CARVER_TYPE = RegistryTypes.minecraftKeyInGame("worldgen/carver");
+
+    public static final DefaultedRegistryType<Carver> CARVER = RegistryTypes.minecraftKeyInGame("worldgen/configured_carver");
+
     public static final DefaultedRegistryType<ChunkState> CHUNK_STATE = RegistryTypes.minecraftKeyInGame("chunk_status");
 
     public static final DefaultedRegistryType<ContainerType> CONTAINER_TYPE = RegistryTypes.minecraftKeyInGame("menu");
 
-    public static final DefaultedRegistryType<WorldType> WORLD_TYPE = RegistryTypes.minecraftKeyInServer("dimension_type");
-
-    public static final DefaultedRegistryType<PotionEffectType> POTION_EFFECT_TYPE = RegistryTypes.minecraftKeyInGame("mob_effect");
+    public static final DefaultedRegistryType<DensityFunction> DENSITY_FUNCTION = RegistryTypes.minecraftKeyInServer("worldgen/density_function");
 
     public static final DefaultedRegistryType<EnchantmentType> ENCHANTMENT_TYPE = RegistryTypes.minecraftKeyInGame("enchantment");
 
@@ -190,11 +213,31 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<EntityType<@NonNull ? extends Entity>> ENTITY_TYPE = RegistryTypes.minecraftKeyInGame("entity_type");
 
+    public static final DefaultedRegistryType<Feature> FEATURE = RegistryTypes.minecraftKeyInServer("worldgen/configured_feature");
+
+    public static final DefaultedRegistryType<FeatureType> FEATURE_TYPE = RegistryTypes.minecraftKeyInGame("worldgen/feature");
+
     public static final DefaultedRegistryType<FluidType> FLUID_TYPE = RegistryTypes.minecraftKeyInGame("fluid");
 
     public static final DefaultedRegistryType<ItemType> ITEM_TYPE = RegistryTypes.minecraftKeyInGame("item");
 
+    public static final DefaultedRegistryType<JigsawPool> JIGSAW_POOL = RegistryTypes.minecraftKeyInServer("worldgen/template_pool");
+
+    public static final DefaultedRegistryType<NoiseGeneratorConfig> NOISE_GENERATOR_CONFIG = RegistryTypes.minecraftKeyInServer("worldgen/noise_settings");
+
+    public static final DefaultedRegistryType<Noise> NOISE = RegistryTypes.minecraftKeyInServer("worldgen/noise");
+
     public static final DefaultedRegistryType<ParticleType> PARTICLE_TYPE = RegistryTypes.minecraftKeyInGame("particle_type");
+
+    public static final DefaultedRegistryType<PlacedFeature> PLACED_FEATURE = RegistryTypes.minecraftKeyInServer("worldgen/placed_feature");
+
+    public static final DefaultedRegistryType<PlacementModifierType> PLACEMENT_MODIFIER = RegistryTypes.minecraftKeyInGame("worldgen/placement_modifier_type");
+
+    public static final DefaultedRegistryType<PotionEffectType> POTION_EFFECT_TYPE = RegistryTypes.minecraftKeyInGame("mob_effect");
+
+    public static final DefaultedRegistryType<ProcessorList> PROCESSOR_LIST = RegistryTypes.minecraftKeyInServer("worldgen/processor_list");
+
+    public static final DefaultedRegistryType<ProcessorType> PROCESSOR_TYPE = RegistryTypes.minecraftKeyInGame("worldgen/structure_processor");
 
     public static final DefaultedRegistryType<ProfessionType> PROFESSION_TYPE = RegistryTypes.minecraftKeyInGame("villager_profession");
 
@@ -208,9 +251,15 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<StatisticCategory> STATISTIC_CATEGORY = RegistryTypes.minecraftKeyInGame("stat_type");
 
-    public static final DefaultedRegistryType<Structure> STRUCTURE = RegistryTypes.minecraftKeyInGame("worldgen/structure_feature");
+    public static final DefaultedRegistryType<Structure> STRUCTURE = RegistryTypes.minecraftKeyInServer("worldgen/structure");
+
+    public static final DefaultedRegistryType<StructureSet> STRUCTURE_SET = RegistryTypes.minecraftKeyInServer("worldgen/structure_set");
+
+    public static final DefaultedRegistryType<StructureType> STRUCTURE_TYPE = RegistryTypes.minecraftKeyInGame("worldgen/structure_type");
 
     public static final DefaultedRegistryType<VillagerType> VILLAGER_TYPE = RegistryTypes.minecraftKeyInGame("villager_type");
+
+    public static final DefaultedRegistryType<WorldType> WORLD_TYPE = RegistryTypes.minecraftKeyInServer("dimension_type");
 
     // ----
 
@@ -237,6 +286,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<BodyPart> BODY_PART = RegistryTypes.spongeKeyInGame("body_part");
 
     public static final DefaultedRegistryType<CatType> CAT_TYPE = RegistryTypes.spongeKeyInGame("cat_type");
+
+    public static final DefaultedRegistryType<CarvingStep> CARVING_STEP = RegistryTypes.spongeKeyInGame("carving_step");
 
     public static final DefaultedRegistryType<ChatVisibility> CHAT_VISIBILITY = RegistryTypes.spongeKeyInGame("chat_visibility");
 
@@ -268,6 +319,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<DataFormat> DATA_FORMAT = RegistryTypes.spongeKeyInGame("data_format");
 
+    public static final DefaultedRegistryType<DecorationStep> DECORATION_STEP = RegistryTypes.spongeKeyInGame("decoration_step");
+
     public static final DefaultedRegistryType<Difficulty> DIFFICULTY = RegistryTypes.spongeKeyInGame("difficulty");
 
     public static final DefaultedRegistryType<DismountType> DISMOUNT_TYPE = RegistryTypes.minecraftKeyInGame("dismount_type");
@@ -288,6 +341,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<FireworkShape> FIREWORK_SHAPE = RegistryTypes.spongeKeyInGame("firework_shape");
 
+    public static final DefaultedRegistryType<FlatGeneratorConfig> FLAT_GENERATOR_CONFIG = RegistryTypes.spongeKeyInGame("flat_generator_config");
+
     public static final DefaultedRegistryType<FoxType> FOX_TYPE = RegistryTypes.spongeKeyInGame("fox_type");
 
     public static final DefaultedRegistryType<GameMode> GAME_MODE = RegistryTypes.spongeKeyInGame("game_mode");
@@ -297,6 +352,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<GoalExecutorType> GOAL_EXECUTOR_TYPE = RegistryTypes.spongeKeyInGame("goal_executor_type");
 
     public static final DefaultedRegistryType<GoalType> GOAL_TYPE = RegistryTypes.spongeKeyInGame("goal_type");
+
+    public static final DefaultedRegistryType<GrassColorModifier> GRASS_COLOR_MODIFIER = RegistryTypes.spongeKeyInGame("grass_color_modifier");
 
     public static final DefaultedRegistryType<HandPreference> HAND_PREFERENCE = RegistryTypes.spongeKeyInGame("hand_preference");
 
@@ -338,6 +395,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<MusicDisc> MUSIC_DISC = RegistryTypes.spongeKeyInGame("music_disc");
 
+    public static final DefaultedRegistryType<NoiseConfig> NOISE_CONFIG = RegistryTypes.spongeKeyInGame("noise_config");
+
     public static final DefaultedRegistryType<NotePitch> NOTE_PITCH = RegistryTypes.spongeKeyInGame("note_pitch");
 
     public static final DefaultedRegistryType<ObjectiveDisplayMode> OBJECTIVE_DISPLAY_MODE = RegistryTypes.spongeKeyInGame("objective_display_mode");
@@ -368,6 +427,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<PortionType> PORTION_TYPE = RegistryTypes.spongeKeyInGame("portion_type");
 
+    public static final DefaultedRegistryType<Precipitation> PRECIPITATION = RegistryTypes.spongeKeyInGame("precipitation");
+
     public static final DefaultedRegistryType<QueryType> QUERY_TYPE = RegistryTypes.spongeKeyInGame("query_type");
 
     public static final DefaultedRegistryType<RabbitType> RABBIT_TYPE = RegistryTypes.spongeKeyInGame("rabbit_type");
@@ -379,6 +440,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<ValueParameter<?>> REGISTRY_KEYED_VALUE_PARAMETER = RegistryTypes.spongeKeyInGame("value_parameter");
 
     public static final DefaultedRegistryType<ResolveOperation> RESOLVE_OPERATION = RegistryTypes.spongeKeyInGame("resolve_operation");
+
+    public static final DefaultedRegistryType<TemperatureModifier> TEMPERATURE_MODIFIER = RegistryTypes.spongeKeyInGame("temperature_modifier");
 
     public static final DefaultedRegistryType<Rotation> ROTATION = RegistryTypes.spongeKeyInGame("rotation");
 

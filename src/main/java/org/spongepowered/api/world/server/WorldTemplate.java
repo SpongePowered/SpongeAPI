@@ -25,24 +25,32 @@
 package org.spongepowered.api.world.server;
 
 import net.kyori.adventure.text.Component;
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.datapack.DataPackSerializable;
+import org.spongepowered.api.data.DataHolder;
+import org.spongepowered.api.data.Key;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.datapack.DataPack;
+import org.spongepowered.api.datapack.DataPackEntry;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
-import org.spongepowered.api.registry.RegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.generation.ChunkGenerator;
-import org.spongepowered.api.world.generation.config.WorldGenerationConfig;
+import org.spongepowered.api.world.server.storage.ServerWorldProperties;
 import org.spongepowered.math.vector.Vector3i;
 
+import java.io.IOException;
 import java.util.Optional;
 
-public interface WorldTemplate extends ResourceKeyed, DataPackSerializable {
+/**
+ * A template for a {@link ServerWorld}.
+ */
+public interface WorldTemplate extends ResourceKeyed, DataPackEntry<WorldTemplate>, DataHolder {
 
     static WorldTemplate overworld() {
         return Sponge.game().factoryProvider().provide(Factory.class).overworld();
@@ -64,33 +72,61 @@ public interface WorldTemplate extends ResourceKeyed, DataPackSerializable {
         return Sponge.game().builderProvider().provide(Builder.class).reset();
     }
 
-    Optional<Component> displayName();
+    default Optional<Component> displayName() {
+        return this.get(Keys.DISPLAY_NAME);
+    }
 
-    RegistryReference<WorldType> worldType();
+    default WorldType worldType() {
+        return this.require(Keys.WORLD_TYPE);
+    }
 
-    ChunkGenerator generator();
+    default ChunkGenerator generator() {
+        return this.require(Keys.CHUNK_GENERATOR);
+    }
 
-    WorldGenerationConfig generationConfig();
+    default Optional<GameMode> gameMode() {
+        return this.get(Keys.GAME_MODE);
+    }
 
-    Optional<RegistryReference<GameMode>> gameMode();
+    default Optional<Difficulty> difficulty() {
+        return this.get(Keys.WORLD_DIFFICULTY);
+    }
 
-    Optional<RegistryReference<Difficulty>> difficulty();
+    default Optional<SerializationBehavior> serializationBehavior() {
+        return this.get(Keys.SERIALIZATION_BEHAVIOR);
+    }
 
-    Optional<SerializationBehavior> serializationBehavior();
+    default boolean loadOnStartup() {
+        return this.require(Keys.IS_LOAD_ON_STARTUP);
+    }
 
-    boolean loadOnStartup();
+    default boolean performsSpawnLogic() {
+        return this.require(Keys.PERFORM_SPAWN_LOGIC);
+    }
 
-    boolean performsSpawnLogic();
+    default Optional<Boolean> hardcore() {
+        return this.get(Keys.HARDCORE);
+    }
 
-    Optional<Boolean> hardcore();
+    default Optional<Boolean> commands() {
+        return this.get(Keys.COMMANDS);
+    }
 
-    Optional<Boolean> commands();
+    default Optional<Boolean> pvp() {
+        return this.get(Keys.PVP);
+    }
 
-    Optional<Boolean> pvp();
+    default Optional<Integer> viewDistance() {
+        return this.get(Keys.VIEW_DISTANCE);
+    }
 
-    Optional<Integer> viewDistance();
+    default Optional<Vector3i> spawnPosition() {
+        return this.get(Keys.SPAWN_POSITION);
+    }
 
-    Optional<Vector3i> spawnPosition();
+    default Optional<Long> seed() {
+        return this.get(Keys.SEED);
+    }
 
     default Builder asBuilder() {
         return Sponge.game().builderProvider().provide(Builder.class).from(this);
@@ -98,33 +134,22 @@ public interface WorldTemplate extends ResourceKeyed, DataPackSerializable {
 
     interface Builder extends ResourceKeyedBuilder<WorldTemplate, Builder>, CopyableBuilder<WorldTemplate, Builder> {
 
-        Builder displayName(@Nullable Component displayName);
+        <V> Builder add(Key<? extends Value<V>> key, V value);
 
-        Builder worldType(RegistryReference<WorldType> type);
+        /**
+         * Creates a world template based on the given data view.
+         * <p>The given data must be equivalent to a data-pack for world-templates (dimension)</p>
+         *
+         * @param pack The data
+         * @return This builder, for chaining
+         */
+        Builder fromDataPack(DataView pack) throws IOException;
 
-        Builder generator(ChunkGenerator generator);
+        Builder from(ServerWorld world);
 
-        Builder generationConfig(WorldGenerationConfig generationConfig);
+        Builder from(ServerWorldProperties worldProperties);
 
-        Builder gameMode(RegistryReference<GameMode> gameMode);
-
-        Builder difficulty(RegistryReference<Difficulty> difficulty);
-
-        Builder serializationBehavior(@Nullable SerializationBehavior behavior);
-
-        Builder loadOnStartup(boolean loadOnStartup);
-
-        Builder performsSpawnLogic(boolean performsSpawnLogic);
-
-        Builder hardcore(@Nullable Boolean hardcore);
-
-        Builder commands(@Nullable Boolean commands);
-
-        Builder pvp(@Nullable Boolean pvp);
-
-        Builder viewDistance(@Nullable Integer distance);
-
-        Builder spawnPosition(@Nullable Vector3i position);
+        Builder pack(DataPack<WorldTemplate> pack);
     }
 
     interface Factory {

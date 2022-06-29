@@ -31,22 +31,54 @@ import org.spongepowered.api.world.biome.Biome;
 
 import java.util.List;
 
+/**
+ * The configuration for {@link ConfigurableBiomeProvider} generating a checkerboard style biome distribution.
+ */
 public interface CheckerboardBiomeConfig extends BiomeProviderConfig {
 
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class).reset();
     }
 
+    /**
+     * Returns the scale of the checkerboard tiles.
+     *
+     * @return The scale
+     */
     int scale();
 
     interface Builder extends org.spongepowered.api.util.Builder<CheckerboardBiomeConfig, Builder>, CopyableBuilder<CheckerboardBiomeConfig, Builder> {
 
+        /**
+         * Sets the scale of the checkerboard tiles
+         *
+         * @param scale The scale
+         * @return This builder, for chaining
+         */
         Builder scale(int scale);
 
+        /**
+         * Adds the given biome.
+         *
+         * @param biome The biome
+         * @return This builder, for chaining
+         */
         Builder addBiome(RegistryReference<Biome> biome);
 
+        /**
+         * Adds the given biomes.
+         *
+         * @param biomes The biomes
+         * @return This builder, for chaining
+         */
         Builder addBiomes(List<RegistryReference<Biome>> biomes);
 
+        /**
+         * Removes the given biome.
+         *
+         * @param biome The biome
+         * @return This builder, for chaining
+         */
         Builder removeBiome(RegistryReference<Biome> biome);
     }
 }

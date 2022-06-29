@@ -24,14 +24,13 @@
  */
 package org.spongepowered.api.item.recipe;
 
-import org.spongepowered.api.data.persistence.DataSerializable;
-import org.spongepowered.api.datapack.DataPackSerializable;
+import org.spongepowered.api.datapack.DataPackEntry;
 
 /**
  * A registration of a {@link Recipe} by an API consumer.
  *
  * <p>All registrations through the API will generate into the Vanilla data pack system</p>
  */
-public interface RecipeRegistration extends DataPackSerializable, DataSerializable {
+public interface RecipeRegistration extends DataPackEntry<RecipeRegistration> {
 
 }

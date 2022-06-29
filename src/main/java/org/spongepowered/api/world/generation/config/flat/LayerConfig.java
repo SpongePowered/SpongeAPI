@@ -27,14 +27,25 @@ package org.spongepowered.api.world.generation.config.flat;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 
+/**
+ * The configuration of a layer in a {@link FlatGeneratorConfig}
+ */
 public interface LayerConfig {
 
     static LayerConfig of(final int height, final BlockState block) {
         return Sponge.game().factoryProvider().provide(Factory.class).of(height, block);
     }
 
+    /**
+     * Returns the height of the layer.
+     * @return The height
+     */
     int height();
 
+    /**
+     * Returns the {@link BlockState} of the layer.
+     * @return the block state
+     */
     BlockState block();
 
     interface Factory {

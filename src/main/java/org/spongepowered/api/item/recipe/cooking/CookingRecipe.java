@@ -26,6 +26,7 @@ package org.spongepowered.api.item.recipe.cooking;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -240,6 +241,16 @@ public interface CookingRecipe extends Recipe {
              * @return This builder, for chaining
              */
             EndStep cookingTime(Ticks ticks);
+
+
+            /**
+             * Sets the data pack for the recipe.
+             *
+             * @param pack The data pack
+             *
+             * @return This builder, for chaining
+             */
+            EndStep pack(DataPack<RecipeRegistration> pack);
 
         }
     }

@@ -27,29 +27,60 @@ package org.spongepowered.api.world.biome.provider;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.RegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.world.WorldTypes;
 import org.spongepowered.api.world.biome.Biome;
+import org.spongepowered.api.world.biome.Biomes;
 
+/**
+ * {@link BiomeProvider} with defined biomes for a world of type {@link WorldTypes#THE_END}.
+ */
 public interface EndStyleBiomeConfig extends BiomeProviderConfig {
 
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class).reset();
     }
 
-    long seed();
-
+    /**
+     * Returns the configured end biome,
+     * by default {@link Biomes#THE_END}
+     *
+     * @return The configured end biome
+     */
     RegistryReference<Biome> endBiome();
 
+    /**
+     * Returns the configured end highlands biome,
+     * by default {@link Biomes#END_HIGHLANDS}
+     *
+     * @return The configured end highlands biome
+     */
     RegistryReference<Biome> highlandsBiome();
 
+    /**
+     * Returns the configured end midlands biome,
+     * by default {@link Biomes#END_MIDLANDS}
+     *
+     * @return The configured end midlands biome
+     */
     RegistryReference<Biome> midlandsBiome();
 
+    /**
+     * Returns the configured end islands biome,
+     * by default {@link Biomes#SMALL_END_ISLANDS}
+     *
+     * @return The configured end islands biome
+     */
     RegistryReference<Biome> islandsBiome();
 
+    /**
+     * Returns the configured end barrens biome,
+     * by default {@link Biomes#END_BARRENS}
+     *
+     * @return The configured end barrens biome
+     */
     RegistryReference<Biome> barrensBiome();
 
     interface Builder extends org.spongepowered.api.util.Builder<EndStyleBiomeConfig, Builder>, CopyableBuilder<EndStyleBiomeConfig, Builder> {
-
-        Builder seed(long seed);
 
         Builder endBiome(RegistryReference<Biome> endBiome);
 

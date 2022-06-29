@@ -22,13 +22,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.datapack;
+package org.spongepowered.api.world.biome.spawner;
 
-import org.spongepowered.api.ResourceKeyed;
-import org.spongepowered.api.data.persistence.DataSerializable;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.world.biome.Biome;
 
-public interface DataPackSerializable extends ResourceKeyed, DataSerializable {
+/**
+ * Natural spawner configuration in a {@link Biome}.
+ * See {@link Keys#NATURAL_SPAWNERS} and {@link Keys#SPAWN_CHANCE}.
+ * Alternatively use {@link NaturalSpawnCost}.
+ */
+public interface NaturalSpawner {
 
-    @SuppressWarnings("rawtypes")
-    DataPackType type();
+    static NaturalSpawner of(EntityType<?> type, int weight, int min, int max) {
+        return Sponge.game().factoryProvider().provide(Factory.class).of(type, weight, min, max);
+    }
+
+    /**
+     * Returns the entity type to spawn.
+     *
+     * @return The entity type to spawn
+     */
+    EntityType<?> type();
+
+    /**
+     * Returns the minimum amount to spawn in an attempt.
+     *
+     * @return The minimum amount
+     */
+    int min();
+
+    /**
+     * Returns the maximum amount to spawn in an attempt.
+     *
+     * @return The maximum amount
+     */
+    int max();
+
+    /**
+     * Returns the relative spawn weight.
+     *
+     * @return The spawn weight
+     */
+    int weight();
+
+    interface Factory {
+
+        NaturalSpawner of(EntityType<?> type, int weight, int min, int max);
+
+    }
 }

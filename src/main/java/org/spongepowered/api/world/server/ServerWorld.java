@@ -28,13 +28,10 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.raid.Raid;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.world.BlockChangeFlag;
-import org.spongepowered.api.world.ChunkRegenerateFlag;
-import org.spongepowered.api.world.ChunkRegenerateFlags;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldType;
@@ -64,8 +61,6 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
     ServerWorldProperties properties();
 
     ChunkGenerator generator();
-
-    WorldTemplate asTemplate();
 
     /**
      * @see ServerWorldProperties#key()

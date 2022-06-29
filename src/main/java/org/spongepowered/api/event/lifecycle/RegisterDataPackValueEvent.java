@@ -24,14 +24,13 @@
  */
 package org.spongepowered.api.event.lifecycle;
 
-import org.spongepowered.api.datapack.DataPackSerializable;
+import org.spongepowered.api.datapack.DataPackEntry;
 import org.spongepowered.api.datapack.DataPackType;
-import org.spongepowered.api.datapack.DataPackTypes;
 import org.spongepowered.api.event.GenericEvent;
 import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
 
 @NoFactoryMethod
-public interface RegisterDataPackValueEvent<T extends DataPackSerializable> extends LifecycleEvent, GenericEvent<T> {
+public interface RegisterDataPackValueEvent<T extends DataPackEntry> extends LifecycleEvent, GenericEvent<T> {
 
     DataPackType<T> type();
 
