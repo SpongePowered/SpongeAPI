@@ -28,6 +28,7 @@ import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.identity.Identified;
 import net.kyori.adventure.identity.Identity;
 import net.kyori.adventure.text.Component;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.SystemSubject;
 import org.spongepowered.api.block.BlockSnapshot;
@@ -333,6 +334,15 @@ public interface CommandCause extends SubjectProxy {
      * @return The {@link BlockSnapshot} if applicable, or an empty optional.
      */
     Optional<BlockSnapshot> targetBlock();
+
+    /**
+     * Sends a system message to the {@link Audience} as given by {@link #audience()}.
+     *
+     * @see Audience#sendMessage(Component)
+     *
+     * @param message The message to send
+     */
+    void sendMessage(Component message);
 
     /**
      * Sends a message to the {@link Audience} as given by

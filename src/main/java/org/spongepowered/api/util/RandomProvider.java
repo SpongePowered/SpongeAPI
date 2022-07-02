@@ -28,14 +28,38 @@ import java.util.random.RandomGenerator;
 
 public interface RandomProvider {
 
+    /**
+     * Returns the random source.
+     *
+     * @return The random source
+     */
     Source random();
 
+
+    /**
+     * A source of randomness.
+     */
     interface Source extends RandomGenerator {
 
-        void setSeed(long var1);
+        /**
+         * Sets the seed for this random source
+         *
+         * @param seed The seed
+         */
+        void setSeed(long seed);
 
+        /**
+         * Returns a forked random source.
+         *
+         * @return The forked random source
+         */
         Source fork();
 
+        /**
+         * Skips the next n randomly generated numbers.
+         *
+         * @param n The number of generated numbers to skip
+         */
         void consume(int n);
 
     }

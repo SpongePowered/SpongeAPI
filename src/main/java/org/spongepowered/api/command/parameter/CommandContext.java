@@ -191,6 +191,15 @@ public interface CommandContext extends SubjectProxy {
     <T> Collection<? extends T> all(Parameter.Key<T> key);
 
     /**
+     * Sends a system message via {@link CommandCause#audience()}
+     *
+     * @see Audience#sendMessage(Component)
+     *
+     * @param message The message to send
+     */
+    void sendMessage(Component message);
+
+    /**
      * Sends a message via {@link CommandCause#audience()}
      *
      * @see Audience#sendMessage(Identified, Component)
