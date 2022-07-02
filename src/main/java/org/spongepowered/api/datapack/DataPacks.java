@@ -25,6 +25,7 @@
 package org.spongepowered.api.datapack;
 
 import org.spongepowered.api.advancement.AdvancementTemplate;
+import org.spongepowered.api.adventure.ChatTypeTemplate;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.fluid.FluidType;
@@ -92,6 +93,7 @@ public final class DataPacks {
     public static final DataPack<ProcessorListTemplate> PROCESSOR_LIST = DataPackTypes.PROCESSOR_LIST.pack("plugin_worldgen", "Sponge plugin provided processor lists");
 
     public static final DataPack<JigsawPoolTemplate> JIGSAW_POOL = DataPackTypes.JIGSAW_POOL.pack("plugin_worldgen", "Sponge plugin provided jigsaw pools");
+    public static final DataPack<ChatTypeTemplate> CHAT_TYPE = DataPackTypes.CHAT_TYPE.pack("plugin_chat_types", "Sponge plugin provided chat types");
 
     // SORTFIELDS:ON
 

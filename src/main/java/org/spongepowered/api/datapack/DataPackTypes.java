@@ -26,6 +26,7 @@ package org.spongepowered.api.datapack;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.AdvancementTemplate;
+import org.spongepowered.api.adventure.ChatTypeTemplate;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.fluid.FluidType;
@@ -96,12 +97,13 @@ public final class DataPackTypes {
 
     public static final DataPackType<JigsawPoolTemplate> JIGSAW_POOL = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).jigsawPool();
 
+    public static final DataPackType<ChatTypeTemplate> CHAT_TYPE = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).chatType();
+
     // SORTFIELDS:OFF
 
     // TODO `worldgen/world_preset`? WorldGenerationConfig? with mapping of LevelStems
     // TODO `worldgen/flat_level_generator_preset`? `FlatGeneratorConfigs`
     // TODO tag for `game_event` + registry
-    // TODO `chat_type` + registry
     // TODO `loot_tables`
 
     private DataPackTypes() {

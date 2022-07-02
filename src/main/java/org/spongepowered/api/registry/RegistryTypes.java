@@ -29,6 +29,7 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.AdvancementType;
 import org.spongepowered.api.advancement.criteria.trigger.Trigger;
+import org.spongepowered.api.adventure.ChatType;
 import org.spongepowered.api.adventure.ResolveOperation;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.entity.BlockEntityType;
@@ -200,6 +201,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<CarverType> CARVER_TYPE = RegistryTypes.minecraftKeyInGame("worldgen/carver");
 
     public static final DefaultedRegistryType<Carver> CARVER = RegistryTypes.minecraftKeyInGame("worldgen/configured_carver");
+
+    public static final DefaultedRegistryType<ChatType> CHAT = RegistryTypes.minecraftKeyInGame("chat_type");
 
     public static final DefaultedRegistryType<ChunkState> CHUNK_STATE = RegistryTypes.minecraftKeyInGame("chunk_status");
 

@@ -25,6 +25,7 @@
 package org.spongepowered.api.datapack;
 
 import org.spongepowered.api.advancement.AdvancementTemplate;
+import org.spongepowered.api.adventure.ChatTypeTemplate;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.registry.RegistryType;
 import org.spongepowered.api.tag.TagTemplate;
@@ -93,5 +94,7 @@ public interface DataPackType<T> {
         DataPackType<StructureSetTemplate> structureSet();
 
         DataPackType<JigsawPoolTemplate> jigsawPool();
+
+        DataPackType<ChatTypeTemplate> chatType();
     }
 }
