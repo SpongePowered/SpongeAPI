@@ -159,6 +159,15 @@ public interface DataManager {
     <T> Optional<DataTranslator<T>> translator(Class<T> objectClass);
 
     /**
+     * Registers a {@link DataTranslator} for the desired class.
+     *
+     * @param objectClass The class of the object type being managed
+     * @param translator The translator for the desired class object
+     * @param <T> The type of object
+     */
+    <T> void registerTranslator(Class<T> objectClass, DataTranslator<T> translator);
+
+    /**
      * Creates a new {@link DataContainer} with a default
      * {@link org.spongepowered.api.data.persistence.DataView.SafetyMode} of
      * {@link org.spongepowered.api.data.persistence.DataView.SafetyMode#ALL_DATA_CLONED}.
