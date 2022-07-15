@@ -24,14 +24,18 @@
  */
 package org.spongepowered.api.adventure;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPackEntry;
 import org.spongepowered.api.util.DataPackEntryBuilder;
-import org.spongepowered.api.world.biome.BiomeTemplate;
 
 /**
  * A template for {@link ChatType chat types}.
  */
 public interface ChatTypeTemplate extends DataPackEntry<ChatTypeTemplate> {
+
+    static Builder builder() {
+        return Sponge.game().builderProvider().provide(Builder.class).reset();
+    }
 
     /**
      * Returns the chat type
@@ -41,6 +45,7 @@ public interface ChatTypeTemplate extends DataPackEntry<ChatTypeTemplate> {
     ChatType type();
 
     interface Builder extends DataPackEntryBuilder<ChatType, ChatTypeTemplate, Builder> {
-
+        // TODO improve builder
+        Builder translationKey(String translationKey);
     }
 }

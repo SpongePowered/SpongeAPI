@@ -22,18 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.player;
+package org.spongepowered.api.event.message;
 
-import net.kyori.adventure.audience.Audience;
-import net.kyori.adventure.text.Component;
-import org.spongepowered.api.entity.living.player.server.ServerPlayer;
-
-import java.util.Optional;
+import org.spongepowered.api.event.Cancellable;
 
 /**
- * A player chat formatter.
+ * Fired when sending a system message.
  */
-public interface PlayerChatFormatter {
+public interface SystemChatEvent extends AudienceMessageEvent, Cancellable {
 
-    Optional<Component> format(final ServerPlayer player, final Audience target, final Component message, final Component originalMessage);
 }

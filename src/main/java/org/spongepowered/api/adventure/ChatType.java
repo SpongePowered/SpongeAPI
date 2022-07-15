@@ -34,4 +34,6 @@ public interface ChatType extends Examinable, Keyed {
     // TODO replace with or extend adventure ChatType when updated
     // based on https://github.com/KyoriPowered/adventure/pull/777/
     // TODO do not forget SpongeAdventure#asVanilla(ChatType)
+
+
 }

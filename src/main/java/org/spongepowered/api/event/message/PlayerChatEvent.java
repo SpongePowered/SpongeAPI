@@ -24,65 +24,94 @@
  */
 package org.spongepowered.api.event.message;
 
-import net.kyori.adventure.audience.ForwardingAudience;
 import net.kyori.adventure.text.Component;
-import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.entity.living.player.PlayerChatFormatter;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
+import org.spongepowered.api.event.Cause;
+import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * Fired when sending a chat message.
- * To modify the message use {@link PlayerChatEvent.Decorate}.
+ * To modify the message use {@link Decorate}.
  */
-@GenerateFactoryMethod
-public interface PlayerChatEvent extends Event, Cancellable {
+@NoFactoryMethod
+public interface PlayerChatEvent extends MessageEvent {
 
     /**
-     * Gets the message.
+     * Returns the player sending the message.
      *
-     * @return Message
+     * @return The player sending the message
      */
-    Component message();
+    ServerPlayer player();
 
     /**
-     * Fired for each player receiving a message.
+     * Fired when a message is sent by a player.
+     * <p>Note that a signed message cannot be modified.</p>
      */
-    interface Receive extends AudienceMessageEvent, Cancellable {
+    interface Submit extends PlayerChatEvent, Cancellable {
 
         /**
-         * Gets the original formatter that this message will be sent through.
+         * Returns the predicate for filtering the players receiving the message if set.
          *
-         * @return The original formatter used
+         * @return the predicate
          */
-        PlayerChatFormatter originalChatFormatter();
+        Optional<Predicate<ServerPlayer>> filter();
 
         /**
-         * Gets the current formatter that this message will be sent through.
+         * Sets the predicate for filtering the players receiving the message.
          *
-         * @return The formatter the message in this event will be sent through
+         * @param filter the predicate
          */
-        Optional<PlayerChatFormatter> chatFormatter();
+        void setFilter(Predicate<ServerPlayer> filter);
 
         /**
-         * Sets the formatter for this message to go through.
-         * <p>If the target audience is a {@link net.kyori.adventure.audience.ForwardingAudience}
-         * the {@link PlayerChatFormatter} will be applied to each of its {@link ForwardingAudience#audiences()}</p>
+         * Returns the component to use as the sender.
+         * In Vanilla this defaults to the players display name
          *
-         * @param router The router to set
+         * @return The sender component
          */
-        void setChatFormatter(@Nullable PlayerChatFormatter router);
+        Component sender();
+
+        /**
+         * Sets the component to use as the sender.
+         *
+         * @param sender The sender component
+         */
+        void setSender(Component sender);
+
+        /**
+         * Returns true when using the sponge chat type.
+         *
+         * @return True when using the sponge chat type.
+         */
+        boolean isCustom();
+
+        /**
+         * Sets whether to use the sponge chat type.
+         * The Sponge Chat Type uses {@code %s%s} as a Formatting Mask for chat messages.
+         * This allows plugins to essentially modify the chat format by {@link #setSender setting} a custom sender component.
+         * To modify the chat message itself it is recommended to use {@link PlayerChatEvent.Decorate}.
+         *
+         * @param isCustomized True to use the sponge chat type.
+         */
+        void setCustom(boolean isCustomized);
+
+        /**
+         * Returns true when {@link #originalMessage()} is signed and cannot be modified.
+         *
+         * @return True when signed
+         */
+        boolean isSigned();
 
     }
 
     /**
-     * Fired when decorating a message sent by a player or via {@link ServerPlayer#simulateChat} or creating the preview for a chat message.
+     * Fired when previewing a message by a player or {@link ServerPlayer#simulateChat(Component, Cause) simulating chat}
      */
-    interface Decorate extends MessageEvent {
+    interface Decorate extends PlayerChatEvent {
 
         /**
          * Gets the original chat message.
@@ -96,6 +125,5 @@ public interface PlayerChatEvent extends Event, Cancellable {
         Component originalMessage();
 
     }
-
 
 }
