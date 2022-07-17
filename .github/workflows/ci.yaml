@@ -15,4 +15,5 @@ jobs:
     uses: SpongePowered/.github/.github/workflows/shared-ci.yaml@master
     with:
       publish_snapshot_javadoc: true
+      publishing_branch_regex: 'api-\d+'
     secrets: inherit
