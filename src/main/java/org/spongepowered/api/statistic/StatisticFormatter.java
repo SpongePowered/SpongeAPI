@@ -24,37 +24,22 @@
  */
 package org.spongepowered.api.statistic;
 
-import org.spongepowered.api.entity.living.player.server.ServerPlayer;
-import org.spongepowered.api.scoreboard.criteria.Criterion;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-/**
- * Represents some statistic in minecraft.
- *
- * To access them from {@link ServerPlayer players}, use {@link ServerPlayer#statistics()}
- */
-@CatalogedBy(Statistics.class)
-public interface Statistic<T> extends Criterion {
+@CatalogedBy(StatisticFormatters.class)
+public interface StatisticFormatter {
 
-    /**
-     * Gets the {@link StatisticCategory category} this statistic resides under.
-     *
-     * @return The category
-     */
-    StatisticCategory<T> category();
+    // Vanilla does have a format method but Forge has it sided, need to investigate options...
+    // String format(int value);
 
-    /**
-     * Gets the {@link T value} this statistic is an expression of.
-     *
-     * @return The value
-     */
-    T value();
+    interface Factory {
 
-    /**
-     * Returns the {@link StatisticFormatter formatter} used to format the value of this
-     * statistic.
-     *
-     * @return The formatter
-     */
-    StatisticFormatter formatter();
+        StatisticFormatter defaultFormat();
+
+        StatisticFormatter divideByTen();
+
+        StatisticFormatter distance();
+
+        StatisticFormatter time();
+    }
 }

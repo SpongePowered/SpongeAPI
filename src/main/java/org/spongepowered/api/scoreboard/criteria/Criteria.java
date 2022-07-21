@@ -50,31 +50,31 @@ public final class Criteria {
      * Represents a {@link Criterion} which causes an {@link Objective} to have
      * a score for a player represent their current air value.
      */
-    public static final DefaultedRegistryReference<Criterion> AIR = Criteria.key(ResourceKey.sponge("air"));
+    public static final Criterion AIR = Criteria.factory().air();
 
     /**
      * Represents a {@link Criterion} which causes an {@link Objective} to have
      * a score for a player represent their current armor value.
      */
-    public static final DefaultedRegistryReference<Criterion> ARMOR = Criteria.key(ResourceKey.sponge("armor"));
+    public static final Criterion ARMOR = Criteria.factory().armor();
 
     /**
      * Represents a {@link Criterion} which causes an {@link Objective}
      * to have a score for a player incremented when they die.
      */
-    public static final DefaultedRegistryReference<Criterion> DEATH_COUNT = Criteria.key(ResourceKey.sponge("death_count"));
+    public static final Criterion DEATH_COUNT = Criteria.factory().deathCount();
 
     /**
      * Represents a {@link Criterion} which causes an {@link Objective}
      * is only updated manually, through commands or plugins.
      */
-    public static final DefaultedRegistryReference<Criterion> DUMMY = Criteria.key(ResourceKey.sponge("dummy"));
+    public static final Criterion DUMMY = Criteria.factory().dummy();
 
     /**
      * Represents a {@link Criterion} which causes an {@link Objective} to have
      * a score for a player represent their current food.
      */
-    public static final DefaultedRegistryReference<Criterion> FOOD = Criteria.key(ResourceKey.sponge("food"));
+    public static final Criterion FOOD = Criteria.factory().food();
 
     /**
      * Represents a {@link Criterion} which causes an {@link Objective} to have
@@ -82,38 +82,38 @@ public final class Criteria {
      * (can be greater than 20 due to effects such as
      * {@link PotionEffectTypes#HEALTH_BOOST}).
      */
-    public static final DefaultedRegistryReference<Criterion> HEALTH = Criteria.key(ResourceKey.sponge("health"));
+    public static final Criterion HEALTH = Criteria.factory().health();
 
     /**
      * Represents a {@link Criterion} which causes an {@link Objective} to have
      * a score for a player represent their current level.
      */
-    public static final DefaultedRegistryReference<Criterion> LEVEL = Criteria.key(ResourceKey.sponge("level"));
+    public static final Criterion LEVEL = Criteria.factory().level();
 
     /**
      * Represents a {@link Criterion} which causes an {@link Objective}
      * to have a score for a player incremented when they kill a player.
      */
-    public static final DefaultedRegistryReference<Criterion> PLAYER_KILL_COUNT = Criteria.key(ResourceKey.sponge("kill_count_players"));
+    public static final Criterion PLAYER_KILL_COUNT = Criteria.factory().playerKillCount();
 
     /**
      * Represents a {@link Criterion} which causes an {@link Objective}
      * to have a score for a player incremented when they kill an entity.
      */
-    public static final DefaultedRegistryReference<Criterion> TOTAL_KILL_COUNT = Criteria.key(ResourceKey.sponge("kill_count_all"));
+    public static final Criterion TOTAL_KILL_COUNT = Criteria.factory().totalKillCount();
 
     /**
      * Represents a {@link Criterion} which causes an {@link Objective}
      * to have a score for a player updated by the <code>/trigger</code>
      * command.
      */
-    public static final DefaultedRegistryReference<Criterion> TRIGGER = Criteria.key(ResourceKey.sponge("trigger"));
+    public static final Criterion TRIGGER = Criteria.factory().trigger();
 
     /**
      * Represents a {@link Criterion} which causes an {@link Objective} to have
      * a score for a player represent their current xp.
      */
-    public static final DefaultedRegistryReference<Criterion> EXPERIENCE = Criteria.key(ResourceKey.sponge("experience"));
+    public static final Criterion EXPERIENCE = Criteria.factory().experience();
 
     // SORTFIELDS:OFF
 
@@ -122,11 +122,7 @@ public final class Criteria {
     private Criteria() {
     }
 
-    public static Registry<Criterion> registry() {
-        return Sponge.game().registry(RegistryTypes.CRITERION);
-    }
-
-    private static DefaultedRegistryReference<Criterion> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.CRITERION, location).asDefaultedReference(Sponge::game);
+    private static Criterion.Factory factory() {
+        return Sponge.game().factoryProvider().provide(Criterion.Factory.class);
     }
 }

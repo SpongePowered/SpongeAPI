@@ -24,37 +24,22 @@
  */
 package org.spongepowered.api.statistic;
 
-import org.spongepowered.api.entity.living.player.server.ServerPlayer;
-import org.spongepowered.api.scoreboard.criteria.Criterion;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.Sponge;
 
-/**
- * Represents some statistic in minecraft.
- *
- * To access them from {@link ServerPlayer players}, use {@link ServerPlayer#statistics()}
- */
-@CatalogedBy(Statistics.class)
-public interface Statistic<T> extends Criterion {
+public final class StatisticFormatters {
 
-    /**
-     * Gets the {@link StatisticCategory category} this statistic resides under.
-     *
-     * @return The category
-     */
-    StatisticCategory<T> category();
+    public static final StatisticFormatter DEFAULT = StatisticFormatters.factory().defaultFormat();
 
-    /**
-     * Gets the {@link T value} this statistic is an expression of.
-     *
-     * @return The value
-     */
-    T value();
+    public static final StatisticFormatter DIVIDE_BY_TEN = StatisticFormatters.factory().divideByTen();
 
-    /**
-     * Returns the {@link StatisticFormatter formatter} used to format the value of this
-     * statistic.
-     *
-     * @return The formatter
-     */
-    StatisticFormatter formatter();
+    public static final StatisticFormatter DISTANCE = StatisticFormatters.factory().distance();
+
+    public static final StatisticFormatter TIME = StatisticFormatters.factory().time();
+
+    private StatisticFormatters() {
+    }
+
+    private static StatisticFormatter.Factory factory() {
+        return Sponge.game().factoryProvider().provide(StatisticFormatter.Factory.class);
+    }
 }

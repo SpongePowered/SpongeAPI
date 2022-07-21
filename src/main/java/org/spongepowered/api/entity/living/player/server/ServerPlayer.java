@@ -349,7 +349,7 @@ public interface ServerPlayer extends Player, Subject {
      *
      * @return The statistics of the player
      */
-    default MapValue.Mutable<Statistic, Long> statistics() {
+    default MapValue.Mutable<Statistic<?>, Long> statistics() {
         return this.requireValue(Keys.STATISTICS).asMutable();
     }
 

@@ -41,38 +41,34 @@ public final class StatisticCategories {
 
     // SORTFIELDS:ON
 
-    public static final DefaultedRegistryReference<StatisticCategory.Typed<BlockType>> BLOCKS_BROKEN = StatisticCategories.typedKey(ResourceKey.minecraft("blocks_broken"));
+    public static final DefaultedRegistryReference<StatisticCategory<BlockType>> BLOCKS_BROKEN = StatisticCategories.key(ResourceKey.minecraft("blocks_broken"));
 
-    public static final DefaultedRegistryReference<StatisticCategory> CUSTOM = StatisticCategories.key(ResourceKey.minecraft("custom"));
+    public static final DefaultedRegistryReference<StatisticCategory<ResourceKey>> CUSTOM = StatisticCategories.key(ResourceKey.minecraft("custom"));
 
-    public static final DefaultedRegistryReference<StatisticCategory.Typed<EntityType<?>>> ENTITIES_KILLED = StatisticCategories.typedKey(ResourceKey.minecraft("entities_killed"));
+    public static final DefaultedRegistryReference<StatisticCategory<EntityType<?>>> ENTITIES_KILLED = StatisticCategories.key(ResourceKey.minecraft("entities_killed"));
 
-    public static final DefaultedRegistryReference<StatisticCategory.Typed<ItemType>> ITEMS_BROKEN = StatisticCategories.typedKey(ResourceKey.minecraft("items_broken"));
+    public static final DefaultedRegistryReference<StatisticCategory<ItemType>> ITEMS_BROKEN = StatisticCategories.key(ResourceKey.minecraft("items_broken"));
 
-    public static final DefaultedRegistryReference<StatisticCategory.Typed<ItemType>> ITEMS_CRAFTED = StatisticCategories.typedKey(ResourceKey.minecraft("items_crafted"));
+    public static final DefaultedRegistryReference<StatisticCategory<ItemType>> ITEMS_CRAFTED = StatisticCategories.key(ResourceKey.minecraft("items_crafted"));
 
-    public static final DefaultedRegistryReference<StatisticCategory.Typed<ItemType>> ITEMS_DROPPED = StatisticCategories.typedKey(ResourceKey.minecraft("items_dropped"));
+    public static final DefaultedRegistryReference<StatisticCategory<ItemType>> ITEMS_DROPPED = StatisticCategories.key(ResourceKey.minecraft("items_dropped"));
 
-    public static final DefaultedRegistryReference<StatisticCategory.Typed<ItemType>> ITEMS_PICKED_UP = StatisticCategories.typedKey(ResourceKey.minecraft("items_picked_up"));
+    public static final DefaultedRegistryReference<StatisticCategory<ItemType>> ITEMS_PICKED_UP = StatisticCategories.key(ResourceKey.minecraft("items_picked_up"));
 
-    public static final DefaultedRegistryReference<StatisticCategory.Typed<ItemType>> ITEMS_USED = StatisticCategories.typedKey(ResourceKey.minecraft("items_used"));
+    public static final DefaultedRegistryReference<StatisticCategory<ItemType>> ITEMS_USED = StatisticCategories.key(ResourceKey.minecraft("items_used"));
 
-    public static final DefaultedRegistryReference<StatisticCategory.Typed<EntityType<?>>> KILLED_BY_ENTITIES = StatisticCategories.typedKey(ResourceKey.minecraft("killed_by_entities"));
+    public static final DefaultedRegistryReference<StatisticCategory<EntityType<?>>> KILLED_BY_ENTITIES = StatisticCategories.key(ResourceKey.minecraft("killed_by_entities"));
 
     // SORTFIELDS:OFF
 
     private StatisticCategories() {
     }
 
-    public static Registry<Statistic> registry() {
-        return Sponge.game().registry(RegistryTypes.STATISTIC);
+    public static Registry<StatisticCategory<?>> registry() {
+        return Sponge.game().registry(RegistryTypes.STATISTIC_CATEGORY);
     }
 
-    private static DefaultedRegistryReference<StatisticCategory> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.STATISTIC_CATEGORY, location).asDefaultedReference(Sponge::game);
-    }
-
-    private static <T> DefaultedRegistryReference<StatisticCategory.Typed<T>> typedKey(final ResourceKey location) {
+    private static <T> DefaultedRegistryReference<StatisticCategory<T>> key(final ResourceKey location) {
         return RegistryKey.of(RegistryTypes.STATISTIC_CATEGORY, location).asDefaultedReference(Sponge::game);
     }
 }

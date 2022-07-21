@@ -24,14 +24,42 @@
  */
 package org.spongepowered.api.statistic;
 
-import io.leangen.geantyref.TypeToken;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @CatalogedBy(StatisticCategories.class)
-public interface StatisticCategory {
+public interface StatisticCategory<T> extends Iterable<Statistic<T>> {
+
+    /**
+     * Gets the {@link Statistic} for the given {@link T value}.
+     *
+     * @param value The value
+     * @return The instance or {@link Optional#empty()} if not found
+     */
+    Optional<Statistic<T>> statistic(T value);
+
+    /**
+     * Gets the {@link Statistic} for the given {@link T value}. If it doesn't exist, a new
+     * {@link Statistic statistic} will be registered for this category using the {@link StatisticFormatters#DEFAULT}
+     * formatter.
+     *
+     * @param value The value
+     * @return The instance
+     */
+    Statistic<T> statisticOrCreate(T value);
+
+    /**
+     * Gets the {@link Statistic} for the given {@link T value}. If it doesn't exist, a new
+     * {@link Statistic statistic} will be registered for this category using the provided
+     * {@link StatisticFormatter formatter}.
+     *
+     * @param value The value
+     * @param formatter The formatter
+     * @return The instance
+     */
+    Statistic<T> statisticOrCreate(T value, StatisticFormatter formatter);
 
     /**
      * Gets all the {@link Statistic}s that are listed
@@ -39,33 +67,5 @@ public interface StatisticCategory {
      *
      * @return The statistics
      */
-    Collection<? extends Statistic> statistics();
-
-    /**
-     * Represents a {@link StatisticCategory} that owns
-     * {@link Statistic}s for all the {@link T values}
-     * of a specific type.
-     *
-     * @param <T> The type
-     */
-    interface Typed<T> extends StatisticCategory {
-
-        @Override
-        Collection<Statistic.TypeInstance<T>> statistics();
-
-        /**
-         * Gets the {@link T value}.
-         *
-         * @return The value type
-         */
-        TypeToken<T> type();
-
-        /**
-         * Gets the {@link Statistic.TypeInstance} for the given {@link T value}.
-         *
-         * @param value The value
-         * @return The instance
-         */
-        Statistic.TypeInstance<T> statistic(T value);
-    }
+    Collection<Statistic<T>> statistics();
 }

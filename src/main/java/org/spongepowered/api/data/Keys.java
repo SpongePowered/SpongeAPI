@@ -2460,9 +2460,9 @@ public final class Keys {
     public static final Key<Value<StairShape>> STAIR_SHAPE = Keys.key(ResourceKey.sponge("stair_shape"), StairShape.class);
 
     /**
-     * The {@link Statistic}s of a {@link Player}.
+     * The {@link Statistic statistics} of a {@link Player player}.
      */
-    public static final Key<MapValue<Statistic, Long>> STATISTICS = Keys.mapKey(ResourceKey.sponge("statistics"), Statistic.class, Long.class);
+    public static final Key<MapValue<Statistic<?>, Long>> STATISTICS = Keys.mapKey(ResourceKey.sponge("statistics"), new TypeToken<Statistic<?>>() {}, TypeToken.get(Long.class));
 
     /**
      * The enchantments stored on an {@link ItemStack}.

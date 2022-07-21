@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.scoreboard.criteria;
 
-import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -33,7 +32,32 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * automatically updated.
  */
 @CatalogedBy(Criteria.class)
-public interface Criterion extends DefaultedRegistryValue {
+public interface Criterion {
 
     ObjectiveDisplayMode displayMode();
+
+    interface Factory {
+
+        Criterion air();
+
+        Criterion armor();
+
+        Criterion deathCount();
+
+        Criterion dummy();
+
+        Criterion food();
+
+        Criterion health();
+
+        Criterion level();
+
+        Criterion playerKillCount();
+
+        Criterion totalKillCount();
+
+        Criterion trigger();
+
+        Criterion experience();
+    }
 }

@@ -131,7 +131,6 @@ import org.spongepowered.api.service.economy.transaction.TransactionType;
 import org.spongepowered.api.state.BooleanStateProperty;
 import org.spongepowered.api.state.EnumStateProperty;
 import org.spongepowered.api.state.IntegerStateProperty;
-import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.statistic.StatisticCategory;
 import org.spongepowered.api.tag.Tag;
 import org.spongepowered.api.tag.TagType;
@@ -200,9 +199,9 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<SoundType> SOUND_TYPE = RegistryTypes.minecraftKeyInGame("sound_event");
 
-    public static final DefaultedRegistryType<Statistic> STATISTIC = RegistryTypes.minecraftKeyInGame("custom_stat");
+    public static final DefaultedRegistryType<ResourceKey> STATISTIC = RegistryTypes.minecraftKeyInGame("custom_stat");
 
-    public static final DefaultedRegistryType<StatisticCategory> STATISTIC_CATEGORY = RegistryTypes.minecraftKeyInGame("stat_type");
+    public static final DefaultedRegistryType<StatisticCategory<?>> STATISTIC_CATEGORY = RegistryTypes.minecraftKeyInGame("stat_type");
 
     public static final DefaultedRegistryType<Structure> STRUCTURE = RegistryTypes.minecraftKeyInGame("worldgen/structure_feature");
 
@@ -253,8 +252,6 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<CommandTreeNodeType<@NonNull ?>> COMMAND_TREE_NODE_TYPE = RegistryTypes.spongeKeyInGame("command_tree_node_type");
 
     public static final DefaultedRegistryType<ComparatorMode> COMPARATOR_MODE = RegistryTypes.spongeKeyInGame("comparator_mode");
-
-    public static final DefaultedRegistryType<Criterion> CRITERION = RegistryTypes.spongeKeyInGame("criterion");
 
     public static final DefaultedRegistryType<Currency> CURRENCY = RegistryTypes.spongeKeyInGame("currency");
 
