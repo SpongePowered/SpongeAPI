@@ -86,6 +86,7 @@ import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
 import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.VillagerType;
+import org.spongepowered.api.data.type.WallConnectionState;
 import org.spongepowered.api.data.type.WireAttachmentType;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.MapValue;
@@ -2743,6 +2744,36 @@ public final class Keys {
      * The base speed at which a {@link Player} or {@link Living} walks.
      */
     public static final Key<Value<Double>> WALKING_SPEED = Keys.key(ResourceKey.sponge("walking_speed"), Double.class);
+
+    /**
+     * The connection state of a wall in all four cardinal directions (north, west,
+     * east, and south).
+     */
+    public static final Key<MapValue<Direction, WallConnectionState>> WALL_CONNECTION_STATES = Keys.mapKey(ResourceKey.sponge("wall_connection_states"), Direction.class, WallConnectionState.class);
+
+    /**
+     * The east connection state of a wall.
+     * Also see {@link #WALL_CONNECTION_STATES}.
+     */
+    public static final Key<Value<WallConnectionState>> WALL_EAST_CONNECTION_STATE = Keys.key(ResourceKey.sponge("wall_east_connection_state"), WallConnectionState.class);
+
+    /**
+     * The north connection state of a wall.
+     * Also see {@link #WALL_CONNECTION_STATES}.
+     */
+    public static final Key<Value<WallConnectionState>> WALL_NORTH_CONNECTION_STATE = Keys.key(ResourceKey.sponge("wall_north_connection_state"), WallConnectionState.class);
+
+    /**
+     * The south connection state of a wall.
+     * Also see {@link #WALL_CONNECTION_STATES}.
+     */
+    public static final Key<Value<WallConnectionState>> WALL_SOUTH_CONNECTION_STATE = Keys.key(ResourceKey.sponge("wall_south_connection_state"), WallConnectionState.class);
+
+    /**
+     * The west connection state of a wall.
+     * Also see {@link #WALL_CONNECTION_STATES}.
+     */
+    public static final Key<Value<WallConnectionState>> WALL_WEST_CONNECTION_STATE = Keys.key(ResourceKey.sponge("wall_west_connection_state"), WallConnectionState.class);
 
     /**
      * Whether a thrown {@link EyeOfEnder} will shatter.
