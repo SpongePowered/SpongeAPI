@@ -961,6 +961,11 @@ public final class Keys {
     public static final Key<Value<Integer>> GROWTH_STAGE = Keys.key(ResourceKey.sponge("growth_stage"), Integer.class);
 
     /**
+     * Whether a lantern block is hanging.
+     */
+    public static final Key<Value<Boolean>> HANGING = Keys.key(ResourceKey.sponge("hanging"), Boolean.class);
+
+    /**
      * Whether an {@link ArmorStand}'s arms are visible.
      */
     public static final Key<Value<Boolean>> HAS_ARMS = Keys.key(ResourceKey.sponge("has_arms"), Boolean.class);
