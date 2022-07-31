@@ -961,11 +961,6 @@ public final class Keys {
     public static final Key<Value<Integer>> GROWTH_STAGE = Keys.key(ResourceKey.sponge("growth_stage"), Integer.class);
 
     /**
-     * Whether a lantern block is hanging.
-     */
-    public static final Key<Value<Boolean>> HANGING = Keys.key(ResourceKey.sponge("hanging"), Boolean.class);
-
-    /**
      * Whether an {@link ArmorStand}'s arms are visible.
      */
     public static final Key<Value<Boolean>> HAS_ARMS = Keys.key(ResourceKey.sponge("has_arms"), Boolean.class);
@@ -1389,6 +1384,11 @@ public final class Keys {
      * Readonly(BlockState.class)
      */
     public static final Key<Value<Boolean>> IS_GRAVITY_AFFECTED = Keys.key(ResourceKey.sponge("is_gravity_affected"), Boolean.class);
+
+    /**
+     * Whether a lantern block is hanging.
+     */
+    public static final Key<Value<Boolean>> IS_HANGING = Keys.key(ResourceKey.sponge("is_hanging"), Boolean.class);
 
     /**
      * Whether a {@link Cat} is hissing.
