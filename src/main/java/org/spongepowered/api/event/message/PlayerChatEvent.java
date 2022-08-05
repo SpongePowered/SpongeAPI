@@ -25,9 +25,11 @@
 package org.spongepowered.api.event.message;
 
 import net.kyori.adventure.text.Component;
+import org.spongepowered.api.adventure.ChatType;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Cause;
+import org.spongepowered.api.registry.RegistryReference;
 import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
 
 import java.util.Optional;
@@ -83,21 +85,35 @@ public interface PlayerChatEvent extends MessageEvent {
         void setSender(Component sender);
 
         /**
-         * Returns true when using the sponge chat type.
+         * Returns the component to use as the target.
          *
-         * @return True when using the sponge chat type.
+         * @return The target component
          */
-        boolean isCustom();
+        Optional<Component> target();
 
         /**
-         * Sets whether to use the sponge chat type.
-         * The Sponge Chat Type uses {@code %s%s} as a Formatting Mask for chat messages.
-         * This allows plugins to essentially modify the chat format by {@link #setSender setting} a custom sender component.
-         * To modify the chat message itself it is recommended to use {@link PlayerChatEvent.Decorate}.
+         * Sets the component to use as the target.
          *
-         * @param isCustomized True to use the sponge chat type.
+         * @param target The target component
          */
-        void setCustom(boolean isCustomized);
+        void setTarget(Component target);
+
+        /**
+         * Returns the chat type used.
+         *
+         * @return The chat type
+         */
+        RegistryReference<ChatType> chatType();
+
+        /**
+         * Sets the chat type.
+         * To control the full message format use one of {@link org.spongepowered.api.adventure.ChatTypes#CUSTOM_CHAT}
+         * or {@link org.spongepowered.api.adventure.ChatTypes#CUSTOM_MESSAGE}
+         * <p>To modify the chat message itself it is recommended to use {@link PlayerChatEvent.Decorate}.</p>
+         *
+         * @param chatType the chat type to use.
+         */
+        void setChatType(RegistryReference<ChatType> chatType);
 
         /**
          * Returns true when {@link #originalMessage()} is signed and cannot be modified.

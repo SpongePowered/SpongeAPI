@@ -24,16 +24,19 @@
  */
 package org.spongepowered.api.adventure;
 
-import net.kyori.adventure.key.Keyed;
-import net.kyori.examination.Examinable;
+import net.kyori.adventure.text.format.Style;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * A type of chat
  */
-public interface ChatType extends Examinable, Keyed {
-    // TODO replace with or extend adventure ChatType when updated
+@CatalogedBy(ChatTypes.class)
+public interface ChatType {
+    // TODO extend adventure ChatType when updated
     // based on https://github.com/KyoriPowered/adventure/pull/777/
-    // TODO do not forget SpongeAdventure#asVanilla(ChatType)
 
+    String translationKey();
+
+    Style style();
 
 }
