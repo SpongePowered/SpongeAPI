@@ -202,7 +202,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<Carver> CARVER = RegistryTypes.minecraftKeyInGame("worldgen/configured_carver");
 
-    public static final DefaultedRegistryType<ChatType> CHAT = RegistryTypes.minecraftKeyInGame("chat_type");
+    public static final DefaultedRegistryType<ChatType> CHAT_TYPE = RegistryTypes.minecraftKeyInServer("chat_type");
 
     public static final DefaultedRegistryType<ChunkState> CHUNK_STATE = RegistryTypes.minecraftKeyInGame("chunk_status");
 

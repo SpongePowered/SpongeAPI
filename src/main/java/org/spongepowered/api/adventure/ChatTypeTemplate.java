@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.adventure;
 
+import net.kyori.adventure.text.format.Style;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPackEntry;
 import org.spongepowered.api.util.DataPackEntryBuilder;
@@ -45,7 +46,43 @@ public interface ChatTypeTemplate extends DataPackEntry<ChatTypeTemplate> {
     ChatType type();
 
     interface Builder extends DataPackEntryBuilder<ChatType, ChatTypeTemplate, Builder> {
-        // TODO improve builder
+
+        /**
+         * Sets the translation key or custom format mask.
+         *
+         * @param translationKey The translation key or format mask
+         * @return this builder, for chaining
+         */
         Builder translationKey(String translationKey);
+
+        /**
+         * Sets the style.
+         *
+         * @param style The style
+         * @return this builder, for chaining
+         */
+        Builder style(Style style);
+
+        /**
+         * Adds a sender parameter.
+         *
+         * @return this builder, for chaining
+         */
+        Builder addSender();
+
+        /**
+         * Adds a content parameter.
+         *
+         * @return this builder, for chaining
+         */
+        Builder addContent();
+
+        /**
+         * Adds a target parameter.
+         *
+         * @return this builder, for chaining
+         */
+        Builder addTarget();
+
     }
 }

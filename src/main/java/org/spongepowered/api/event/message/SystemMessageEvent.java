@@ -29,6 +29,6 @@ import org.spongepowered.api.event.Cancellable;
 /**
  * Fired when sending a system message.
  */
-public interface SystemChatEvent extends AudienceMessageEvent, Cancellable {
+public interface SystemMessageEvent extends AudienceMessageEvent, Cancellable {
 
 }
