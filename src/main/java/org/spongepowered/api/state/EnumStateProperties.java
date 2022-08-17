@@ -41,7 +41,7 @@ import org.spongepowered.api.data.type.SlabPortion;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
 import org.spongepowered.api.data.type.Tilt;
-import org.spongepowered.api.data.type.WallType;
+import org.spongepowered.api.data.type.WallConnectionState;
 import org.spongepowered.api.data.type.WireAttachmentType;
 import org.spongepowered.api.util.Axis;
 import org.spongepowered.api.util.Direction;
@@ -95,7 +95,7 @@ public final class EnumStateProperties {
         return EnumStateProperty.of("EAST_REDSTONE");
     }
 
-    public static EnumStateProperty<WallType> property_EAST_WALL() {
+    public static EnumStateProperty<WallConnectionState> property_EAST_WALL() {
         return EnumStateProperty.of("EAST_WALL");
     }
 
@@ -127,7 +127,7 @@ public final class EnumStateProperties {
         return EnumStateProperty.of("NORTH_REDSTONE");
     }
 
-    public static EnumStateProperty<WallType> property_NORTH_WALL() {
+    public static EnumStateProperty<WallConnectionState> property_NORTH_WALL() {
         return EnumStateProperty.of("NORTH_WALL");
     }
 
@@ -163,7 +163,7 @@ public final class EnumStateProperties {
         return EnumStateProperty.of("SOUTH_REDSTONE");
     }
 
-    public static EnumStateProperty<WallType> property_SOUTH_WALL() {
+    public static EnumStateProperty<WallConnectionState> property_SOUTH_WALL() {
         return EnumStateProperty.of("SOUTH_WALL");
     }
 
@@ -187,7 +187,7 @@ public final class EnumStateProperties {
         return EnumStateProperty.of("WEST_REDSTONE");
     }
 
-    public static EnumStateProperty<WallType> property_WEST_WALL() {
+    public static EnumStateProperty<WallConnectionState> property_WEST_WALL() {
         return EnumStateProperty.of("WEST_WALL");
     }
 }

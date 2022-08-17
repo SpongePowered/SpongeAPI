@@ -35,26 +35,26 @@ import org.spongepowered.api.registry.RegistryTypes;
 
 @SuppressWarnings("unused")
 @RegistryScopes(scopes = RegistryScope.GAME)
-public final class WallTypes {
+public final class WallConnectionStates {
 
     // @formatter:off
 
-    public static final DefaultedRegistryReference<WallType> NONE = WallTypes.key(ResourceKey.sponge("none"));
+    public static final DefaultedRegistryReference<WallConnectionState> NONE = WallConnectionStates.key(ResourceKey.sponge("none"));
 
-    public static final DefaultedRegistryReference<WallType> LOW = WallTypes.key(ResourceKey.sponge("low"));
+    public static final DefaultedRegistryReference<WallConnectionState> LOW = WallConnectionStates.key(ResourceKey.sponge("low"));
 
-    public static final DefaultedRegistryReference<WallType> TALL = WallTypes.key(ResourceKey.sponge("tall"));
+    public static final DefaultedRegistryReference<WallConnectionState> TALL = WallConnectionStates.key(ResourceKey.sponge("tall"));
 
     // @formatter:on
 
-    private WallTypes() {
+    private WallConnectionStates() {
     }
 
-    public static Registry<WallType> registry() {
-        return Sponge.game().registry(RegistryTypes.WALL_TYPE);
+    public static Registry<WallConnectionState> registry() {
+        return Sponge.game().registry(RegistryTypes.WALL_CONNECTION_STATE);
     }
 
-    private static DefaultedRegistryReference<WallType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.WALL_TYPE, location).asDefaultedReference(Sponge::game);
+    private static DefaultedRegistryReference<WallConnectionState> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.WALL_CONNECTION_STATE, location).asDefaultedReference(Sponge::game);
     }
 }

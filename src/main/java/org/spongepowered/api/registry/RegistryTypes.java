@@ -89,7 +89,7 @@ import org.spongepowered.api.data.type.StructureMode;
 import org.spongepowered.api.data.type.Tilt;
 import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.VillagerType;
-import org.spongepowered.api.data.type.WallType;
+import org.spongepowered.api.data.type.WallConnectionState;
 import org.spongepowered.api.data.type.WireAttachmentType;
 import org.spongepowered.api.effect.particle.ParticleOption;
 import org.spongepowered.api.effect.particle.ParticleType;
@@ -485,7 +485,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<Visibility> VISIBILITY = RegistryTypes.spongeKeyInGame("visibility");
 
-    public static final DefaultedRegistryType<WallType> WALL_TYPE = RegistryTypes.spongeKeyInGame("wall_type");
+    public static final DefaultedRegistryType<WallConnectionState> WALL_CONNECTION_STATE = RegistryTypes.spongeKeyInGame("wall_connection_state");
 
     public static final DefaultedRegistryType<WeatherType> WEATHER_TYPE = RegistryTypes.spongeKeyInGame("weather_type");
 
@@ -509,3 +509,4 @@ public final class RegistryTypes {
         return RegistryType.of(RegistryRoots.SPONGE, ResourceKey.sponge(Objects.requireNonNull(key, "key"))).asDefaultedType(Sponge::game);
     }
 }
+

@@ -89,6 +89,7 @@ import org.spongepowered.api.data.type.StructureMode;
 import org.spongepowered.api.data.type.Tilt;
 import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.VillagerType;
+import org.spongepowered.api.data.type.WallConnectionState;
 import org.spongepowered.api.data.type.WireAttachmentType;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.MapValue;
@@ -3082,6 +3083,14 @@ public final class Keys {
      * The base speed at which a {@link Player} or {@link Living} walks.
      */
     public static final Key<Value<Double>> WALKING_SPEED = Keys.key(ResourceKey.sponge("walking_speed"), Double.class);
+
+    /**
+     * The connection state of a wall in all four cardinal directions (north, west, east, and south).
+     * <p>See {@link BlockStateKeys#NORTH_WALL}, {@link BlockStateKeys#EAST_WALL},
+     * {@link BlockStateKeys#SOUTH_WALL} or {@link BlockStateKeys#WEST_WALL} for the individual connections.
+     * </p>
+     */
+    public static final Key<MapValue<Direction, WallConnectionState>> WALL_CONNECTION_STATES = Keys.mapKey(ResourceKey.sponge("wall_connection_states"), Direction.class, WallConnectionState.class);
 
     /**
      * The color of water in a {@link Biome}.
