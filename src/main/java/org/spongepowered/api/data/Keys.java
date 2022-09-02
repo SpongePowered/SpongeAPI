@@ -2182,6 +2182,11 @@ public final class Keys {
     public static final Key<Value<Integer>> POWER = Keys.key(ResourceKey.sponge("power"), Integer.class);
 
     /**
+     * The previous {@link GameMode} of a {@link Humanoid}.
+     */
+    public static final Key<Value<GameMode>> PREVIOUS_GAME_MODE = Keys.key(ResourceKey.sponge("previous_game_mode"), GameMode.class);
+
+    /**
      * A {@link Beacon}'s primary effect.
      */
     public static final Key<Value<PotionEffectType>> PRIMARY_POTION_EFFECT_TYPE = Keys.key(ResourceKey.sponge("primary_potion_effect_type"), PotionEffectType.class);
