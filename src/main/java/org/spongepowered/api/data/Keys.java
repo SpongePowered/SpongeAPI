@@ -2182,7 +2182,7 @@ public final class Keys {
     public static final Key<Value<Integer>> POWER = Keys.key(ResourceKey.sponge("power"), Integer.class);
 
     /**
-     * The previous {@link GameMode} of a {@link ServerPlayer}.
+     * The previous {@link GameMode} of a {@link ServerPlayer}. Readonly.
      */
     public static final Key<Value<GameMode>> PREVIOUS_GAME_MODE = Keys.key(ResourceKey.sponge("previous_game_mode"), GameMode.class);
 

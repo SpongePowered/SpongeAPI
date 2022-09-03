@@ -349,8 +349,8 @@ public interface ServerPlayer extends Player, Subject {
      *
      * @return The previous game mode of the player
      */
-    default Value.Mutable<GameMode> previousGameMode() {
-        return this.requireValue(Keys.PREVIOUS_GAME_MODE).asMutable();
+    default Value<GameMode> previousGameMode() {
+        return this.requireValue(Keys.PREVIOUS_GAME_MODE);
     }
 
     /**
