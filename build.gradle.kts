@@ -9,8 +9,9 @@ buildscript {
 plugins {
     eclipse
     id("org.spongepowered.gradle.sponge.dev")
-    id("net.kyori.indra.publishing")
     id("net.kyori.indra.checkstyle")
+    id("net.kyori.indra.crossdoc")
+    id("net.kyori.indra.publishing")
     id("net.kyori.indra.publishing.sonatype")
     id("org.spongepowered.gradle.event-impl-gen")
     id("org.jetbrains.gradle.plugin.idea-ext")
@@ -157,8 +158,10 @@ tasks {
             attributes("Specification-Vendor" to "SpongePowered")
             attributes("Specification-Title" to "SpongeAPI")
             attributes("Specification-Version" to project.version)
-            System.getenv()["GIT_COMMIT"]?.apply { attributes("Git-Commit" to this) }
-            System.getenv()["GIT_BRANCH"]?.apply { attributes("Git-Branch" to this) }
+            if (!indraGit.isPresent) {
+              throw InvalidUserDataException("SpongeAPI must be built as a Git checkout, rather than through a zip/tar export")
+            }
+            indraGit.applyVcsInformationToManifest(this)
         }
     }
 
@@ -260,6 +263,10 @@ indra {
             this.description.set(projectDescription)
         }
     }
+}
+
+indraCrossdoc {
+    baseUrl(providers.gradleProperty("javadocPublishRoot"))
 }
 
 val sortClasses = listOf(

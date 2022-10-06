@@ -26,7 +26,6 @@ package org.spongepowered.api.service.context;
 
 import org.spongepowered.configurate.util.UnmodifiableCollections;
 
-import java.util.AbstractMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -95,10 +94,10 @@ public final class Context implements Map.Entry<String, String> {
     }
 
     /**
-     * @deprecated Context does not support changing the values
      * @param value The value
      * @return Nothing
      * @throws UnsupportedOperationException Contexts are immutable
+     * @deprecated Context does not support changing the values
      */
     @Deprecated
     @Override

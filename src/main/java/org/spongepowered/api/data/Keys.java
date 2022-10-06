@@ -1618,6 +1618,11 @@ public final class Keys {
     public static final Key<Value<Boolean>> IS_GRAVITY_AFFECTED = Keys.key(ResourceKey.sponge("is_gravity_affected"), Boolean.class);
 
     /**
+     * Whether a lantern block is hanging.
+     */
+    public static final Key<Value<Boolean>> IS_HANGING = Keys.key(ResourceKey.sponge("is_hanging"), Boolean.class);
+
+    /**
      * Whether a {@link Cat} is hissing.
      */
     public static final Key<Value<Boolean>> IS_HISSING = Keys.key(ResourceKey.sponge("is_hissing"), Boolean.class);
