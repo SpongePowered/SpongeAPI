@@ -32,6 +32,7 @@ import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.registry.RegistryTypes;
+
 @RegistryScopes(scopes = RegistryScope.ENGINE)
 public final class ChatTypes {
 
