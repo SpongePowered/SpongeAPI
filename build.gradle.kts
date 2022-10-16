@@ -243,9 +243,12 @@ spongeConvention {
 }
 
 indra {
+    val checkstyleVersion: String by project
+    
     javaVersions {
         testWith(8, 11, 17)
     }
+    checkstyle(checkstyleVersion)
 
     configurePublications {
         artifactId = project.name.toLowerCase()
