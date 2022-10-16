@@ -35,7 +35,7 @@ public interface EquipmentSlot extends FilteringSlot {
      * Check whether the supplied equipment type can be inserted into this slot.
      * Returning false from this method implies that {@link #offer} <b>would
      * always return false</b> for items of this type.
-     * 
+     *
      * @param type EquipmentType to check
      * @return true if the specified EquipmentType is valid for this slot
      */

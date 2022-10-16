@@ -56,7 +56,7 @@ public interface Event {
 
     /**
      * Gets the source of the event (the first object in the cause).
-     * 
+     *
      * @return The event source
      */
     default Object source() {
@@ -65,7 +65,7 @@ public interface Event {
 
     /**
      * Gets the context of the event.
-     * 
+     *
      * @return The event context
      */
     default EventContext context() {

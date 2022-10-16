@@ -70,7 +70,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
     /**
      * Gets the number of times this table will roll while retrieving items. For
      * each roll a complete pass through of the table will occur.
-     * 
+     *
      * @return The number of rolls
      */
     public VariableAmount rolls() {
@@ -79,7 +79,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
 
     /**
      * Sets the number of times this table will roll while retrieving items.
-     * 
+     *
      * @param rolls The new roll count
      */
     public void setRolls(VariableAmount rolls) {
@@ -88,7 +88,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
 
     /**
      * Sets the number of times this table will roll while retrieving items.
-     * 
+     *
      * @param rolls The new roll count
      */
     public void setRolls(int rolls) {
@@ -109,7 +109,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
 
     /**
      * Adds the given object to the table with the given weight.
-     * 
+     *
      * @param object The new object
      * @param weight The weight of the object
      * @return If the object was successfully added
@@ -142,7 +142,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
     /**
      * Gets if this table contains the given object, the object may either be a
      * {@link TableEntry} or the object contained within.
-     * 
+     *
      * @param obj The object to check for
      * @return If the object is contained within the table
      */
@@ -168,7 +168,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
      * Gets if this table contains all of the given objects, the objects may
      * either be {@link TableEntry}s or the objects contained within the
      * entries.
-     * 
+     *
      * @param c The objects to check for
      * @return If all of the objects are contained within the table
      */
@@ -194,7 +194,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
     /**
      * Removes the first instance of an entry in this table which is a
      * {@link WeightedObject} entry and contains the given object.
-     * 
+     *
      * @param object The object to remove
      * @return If the table was changed as a result
      */
@@ -236,7 +236,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
     /**
      * Performs a number of rolls according to the number of rolls defined by
      * {@link #rolls()} and returns items from the table for each roll.
-     * 
+     *
      * @param rand The random object to use
      * @return The returned items, may be empty but not null
      */
@@ -246,7 +246,7 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
      * Gets the entries in the table. Note that the specific sub class of this
      * abstract table will determine the context that the entry weights should
      * be interpreted in (either weights or chances).
-     * 
+     *
      * @return The raw entries
      */
     public List<TableEntry<T>> entries() {

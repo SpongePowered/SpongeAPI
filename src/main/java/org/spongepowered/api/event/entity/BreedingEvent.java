@@ -61,7 +61,7 @@ public interface BreedingEvent extends Event, Cancellable {
 
         /**
          * Gets the offspring {@link Entity}.
-         * 
+         *
          * @return the offspring
          */
         Ageable offspringEntity();

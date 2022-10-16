@@ -35,7 +35,7 @@ import java.lang.annotation.Target;
  * Filters out all specified event types. This allows listening for a supertype
  * event and filtering to only receive events not from a specific subset of the
  * annotated event's subtypes.
- * 
+ *
  * <p>This annotation cannot be specified in addition to the {@link Include}
  * annotation.</p>
  */
@@ -45,7 +45,7 @@ public @interface Exclude {
 
     /**
      * Gets the event types to exclude.
-     * 
+     *
      * @return The event types
      */
     Class<? extends Event>[] value();

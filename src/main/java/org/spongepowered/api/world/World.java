@@ -82,7 +82,7 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends
      * @return True if loaded, false if not
      */
     boolean isLoaded();
-    
+
     /**
      * Gets an unmodifiable collection of {@link Player players} currently in this world.
      *

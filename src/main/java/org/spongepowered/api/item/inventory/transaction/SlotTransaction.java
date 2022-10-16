@@ -32,7 +32,7 @@ import org.spongepowered.api.item.inventory.Slot;
 import java.util.Objects;
 
 public class SlotTransaction extends Transaction<ItemStackSnapshot> {
-    
+
     private final Slot slot;
 
     /**
@@ -78,5 +78,5 @@ public class SlotTransaction extends Transaction<ItemStackSnapshot> {
                 .add("valid", this.isValid())
                 .toString();
     }
-    
+
 }

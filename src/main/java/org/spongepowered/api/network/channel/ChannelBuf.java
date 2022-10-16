@@ -796,7 +796,7 @@ public interface ChannelBuf {
     /**
      * Sets the specified varint at the current writerIndex and increases the
      * writerIndex by the number of bytes written.
-     * 
+     *
      * <p>The number of bytes written depends on the size of the value, see <a
      * href=
      * "https://developers.google.com/protocol-buffers/docs/encoding#varints">
@@ -811,7 +811,7 @@ public interface ChannelBuf {
     /**
      * Sets the specified varint at the specified absolute index in this buffer.
      * This method does not modify readerIndex or writerIndex of this buffer.
-     * 
+     *
      * <p>The number of bytes written depends on the size of the value, see <a
      * href=
      * "https://developers.google.com/protocol-buffers/docs/encoding#varints">
@@ -827,7 +827,7 @@ public interface ChannelBuf {
     /**
      * Gets a varint at the current readerIndex and increases the readerIndex by
      * the number of bytes read.
-     * 
+     *
      * <p>The number of bytes read depends on the size of the value, see <a
      * href=
      * "https://developers.google.com/protocol-buffers/docs/encoding#varints">
@@ -840,7 +840,7 @@ public interface ChannelBuf {
 
     /**
      * Gets a varint at the specified absolute index in this buffer.
-     * 
+     *
      * <p>The number of bytes read depends on the size of the value, see <a
      * href=
      * "https://developers.google.com/protocol-buffers/docs/encoding#varints">
@@ -898,7 +898,7 @@ public interface ChannelBuf {
     /**
      * Sets the specified string at the current writerIndex and increases the
      * writerIndex by the length of the string.
-     * 
+     *
      * <p>The string will be encoded as the utf length as a varint followed by
      * the UTF-8 bytes of the string.</p>
      *
@@ -911,7 +911,7 @@ public interface ChannelBuf {
      * Sets the string at the specified absolute index in this
      * buffer. This method does not modify readerIndex or writerIndex
      * of this buffer.
-     * 
+     *
      * <p>The string will be encoded as the utf length as a varint followed by
      * the UTF-8 bytes of the string.</p>
      *
@@ -924,7 +924,7 @@ public interface ChannelBuf {
     /**
      * Gets a string at the current readerIndex and increases the readerIndex by
      * the length of a varint followed by the utf-8 bytes of the string.
-     * 
+     *
      * <p>The string will be encoded as the utf length as a varint followed by
      * the UTF-8 bytes of the string.</p>
      *
@@ -934,7 +934,7 @@ public interface ChannelBuf {
 
     /**
      * Gets a string at the specified absolute index in this buffer.
-     * 
+     *
      * <p>The string will be encoded as the utf length as a varint followed by
      * the UTF-8 bytes of the string.</p>
      *
@@ -946,7 +946,7 @@ public interface ChannelBuf {
     /**
      * Sets the specified string at the current writerIndex and increases the
      * writerIndex by the length of the string.
-     * 
+     *
      * <p>The string will be encoded as the utf length as a short followed by
      * the UTF-8 bytes of the string.</p>
      *
@@ -959,7 +959,7 @@ public interface ChannelBuf {
      * Sets the string at the specified absolute index in this
      * buffer. This method does not modify readerIndex or writerIndex
      * of this buffer.
-     * 
+     *
      * <p>The string will be encoded as the utf length as a short followed by
      * the UTF-8 bytes of the string.</p>
      *
@@ -972,7 +972,7 @@ public interface ChannelBuf {
     /**
      * Gets a string at the current readerIndex and increases the readerIndex by
      * the length of a varint followed by the utf-8 bytes of the string.
-     * 
+     *
      * <p>The string will be encoded as the utf length as a short followed by
      * the UTF-8 bytes of the string.</p>
      *
@@ -982,7 +982,7 @@ public interface ChannelBuf {
 
     /**
      * Gets a string at the specified absolute index in this buffer.
-     * 
+     *
      * <p>The string will be encoded as the utf length as a short followed by
      * the UTF-8 bytes of the string.</p>
      *

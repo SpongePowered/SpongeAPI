@@ -87,7 +87,7 @@ public class ComponentMessageException extends Exception implements ComponentMes
     /**
      * Returns the text message for this exception, or null if nothing is
      * present.
-     * 
+     *
      * @return The text for this message
      */
     @Override

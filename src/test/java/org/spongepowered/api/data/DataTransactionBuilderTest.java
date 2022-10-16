@@ -40,7 +40,7 @@ class DataTransactionBuilderTest {
         Assertions.assertEquals(Type.ERROR, this.absorbedType(Type.FAILURE, Type.ERROR));
         Assertions.assertEquals(Type.CANCELLED, this.absorbedType(Type.FAILURE, Type.CANCELLED));
     }
-    
+
     private Type absorbedType(final Type builderType, final Type resultType) {
         final DataTransactionResult result = DataTransactionResult.builder().result(resultType).build();
         final DataTransactionResult absorbed = DataTransactionResult.builder().result(builderType).absorbResult(result).build();

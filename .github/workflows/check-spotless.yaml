@@ -1,4 +1,4 @@
-name: License Check
+name: Spotless Check
 
 on:
   push:
@@ -8,5 +8,5 @@ on:
 
 jobs:
   call-check:
-    uses: SpongePowered/.github/.github/workflows/shared-check-license.yaml@master
+    uses: SpongePowered/.github/.github/workflows/shared-check-spotless.yaml@master
     secrets: inherit

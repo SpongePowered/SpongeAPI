@@ -36,10 +36,10 @@ import java.lang.annotation.Target;
  * Filters out events which do not match the specified cancellation state
  * (represented by a {@link Tristate}). If the state is set to undefined then
  * the listener will be called regardless of the cancellation state.
- * 
+ *
  * <p>If this annotation is not present then the behavior is as normal, which is
  * to say that the listener is only called if the event is not cancelled.</p>
- * 
+ *
  * <p> The event type of the annotated event listener <strong>MUST</strong> be
  * cancellable (eg. must extend {@link Cancellable}). </p>
  */
@@ -50,7 +50,7 @@ public @interface IsCancelled {
     /**
      * Gets the required cancellation state of the event for the annotated
      * listener to be called.
-     * 
+     *
      * @return The cancellation state
      */
     Tristate value() default Tristate.TRUE;

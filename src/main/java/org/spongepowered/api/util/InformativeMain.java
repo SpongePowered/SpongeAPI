@@ -25,6 +25,7 @@
 package org.spongepowered.api.util;
 
 import java.awt.GraphicsEnvironment;
+
 import javax.swing.JOptionPane;
 
 /**

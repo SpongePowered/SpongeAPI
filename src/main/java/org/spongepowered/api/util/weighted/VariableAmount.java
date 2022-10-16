@@ -35,7 +35,7 @@ import java.util.random.RandomGenerator;
 
 /**
  * Represents a value which may vary randomly.
- * 
+ *
  * <p>Implementors of this interface using it in a fashion in which may ever be
  * serialized <strong>must</strong> implement the {@link #toContainer()}
  * method.</p>
@@ -46,7 +46,7 @@ public interface VariableAmount extends DataSerializable {
     /**
      * Creates a new 'fixed' variable amount, calls to {@link #amount} will
      * always return the fixed value.
-     * 
+     *
      * @param value The fixed value
      * @return A variable amount representation
      */
@@ -57,7 +57,7 @@ public interface VariableAmount extends DataSerializable {
     /**
      * Creates a new variable amount which return values between the given min
      * (inclusive) and max (exclusive).
-     * 
+     *
      * @param min The minimum of the range (inclusive)
      * @param max The maximum of the range (exclusive)
      * @return A variable amount representation
@@ -70,7 +70,7 @@ public interface VariableAmount extends DataSerializable {
      * Creates a new variable about which has a base and variance. The final
      * amount will be the base amount plus or minus a random amount between zero
      * (inclusive) and the variance (exclusive).
-     * 
+     *
      * @param base The base value
      * @param variance The variance
      * @return A variable amount representation
@@ -83,7 +83,7 @@ public interface VariableAmount extends DataSerializable {
      * Creates a new variable about which has a base and variance. The final
      * amount will be the base amount plus or minus a random amount between zero
      * (inclusive) and the variance (exclusive).
-     * 
+     *
      * @param base The base value
      * @param variance The variance
      * @return A variable amount representation
@@ -96,7 +96,7 @@ public interface VariableAmount extends DataSerializable {
      * Creates a new variable amount which has a base and an additional amount.
      * The final amount will be the base amount plus a random amount between
      * zero (inclusive) and the additional amount (exclusive).
-     * 
+     *
      * @param base The base value
      * @param addition The additional amount
      * @return A variable amount representation
@@ -109,7 +109,7 @@ public interface VariableAmount extends DataSerializable {
      * Creates a new variable amount which has a base and an additional amount.
      * The final amount will be the base amount plus a random amount between
      * zero (inclusive) and the additional amount (exclusive).
-     * 
+     *
      * @param base The base value
      * @param addition The additional amount
      * @return A variable amount representation
@@ -125,7 +125,7 @@ public interface VariableAmount extends DataSerializable {
      * succeeds then the final amount will be the base amount plus or minus a
      * random amount between zero (inclusive) and the variance (exclusive). If
      * the chance fails then the final amount will just be the base value.
-     * 
+     *
      * @param base The base value
      * @param variance The variance
      * @param chance The chance to apply the variance
@@ -142,7 +142,7 @@ public interface VariableAmount extends DataSerializable {
      * succeeds then the final amount will be the base amount plus or minus a
      * random amount between zero (inclusive) and the variance (exclusive). If
      * the chance fails then the final amount will just be the base value.
-     * 
+     *
      * @param base The base value
      * @param variance The variance
      * @param chance The chance to apply the variance
@@ -160,7 +160,7 @@ public interface VariableAmount extends DataSerializable {
      * amount plus a random amount between zero (inclusive) and the additional
      * amount (exclusive). If the chance fails then the final amount will just
      * be the base value.
-     * 
+     *
      * @param base The base value
      * @param addition The additional amount
      * @param chance The chance to apply the additional amount
@@ -178,7 +178,7 @@ public interface VariableAmount extends DataSerializable {
      * amount plus a random amount between zero (inclusive) and the additional
      * amount (exclusive). If the chance fails then the final amount will just
      * be the base value.
-     * 
+     *
      * @param base The base value
      * @param addition The additional amount
      * @param chance The chance to apply the additional amount
@@ -191,7 +191,7 @@ public interface VariableAmount extends DataSerializable {
     /**
      * Gets an instance of the variable amount depending on the given random
      * object.
-     * 
+     *
      * @param rand The random object
      * @return The amount
      */
@@ -200,7 +200,7 @@ public interface VariableAmount extends DataSerializable {
     /**
      * Gets the amount as if from {@link #amount(RandomGenerator)} but floored to the
      * nearest integer equivalent.
-     * 
+     *
      * @param rand The random object
      * @return The floored amount
      */

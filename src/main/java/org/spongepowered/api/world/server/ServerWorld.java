@@ -209,7 +209,7 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
 
     @Override
     Collection<ServerPlayer> players();
-    
+
     /**
      * Gets all {@link Raid}s occuring in this {@link ServerWorld}.
      *

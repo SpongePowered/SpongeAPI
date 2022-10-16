@@ -1,0 +1,15 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 4
+indent_style = space
+insert_final_newline = true
+max_line_length = 150
+tab_width = 4
+
+[*.java]
+ij_java_imports_layout = $*,|,*,|,java.**,|,javax.**
+ij_java_insert_inner_class_imports = false
+ij_java_layout_static_imports_separately = true

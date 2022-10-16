@@ -238,8 +238,8 @@ public interface TagTemplate<T extends Taggable<T>> extends DataPackEntry<TagTem
          * @return The built {@link TagTemplate}.
          */
         @Override
-        @NonNull
-        TagTemplate<T> build();
+        @NonNull TagTemplate<T> build();
+
     }
 
     interface Factory {

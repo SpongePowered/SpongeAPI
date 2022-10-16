@@ -40,7 +40,7 @@ public class PEBKACException extends UnsupportedOperationException {
 
     /**
      * Constructs a new {@link PEBKACException} with the given message.
-     * 
+     *
      * @param msg The exception message
      */
     public PEBKACException(String msg) {
@@ -50,7 +50,7 @@ public class PEBKACException extends UnsupportedOperationException {
     /**
      * Constructs a new {@link PEBKACException} with the given message and
      * cause.
-     * 
+     *
      * @param msg The exception message
      * @param cause The cause of the exception
      */
@@ -60,7 +60,7 @@ public class PEBKACException extends UnsupportedOperationException {
 
     /**
      * Constructs a new {@link PEBKACException} with the given cause.
-     * 
+     *
      * @param cause The cause of the exception
      */
     public PEBKACException(Throwable cause) {

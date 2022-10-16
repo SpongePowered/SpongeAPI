@@ -47,7 +47,7 @@ public abstract class TableEntry<T> {
 
     /**
      * Gets the weight of this entry.
-     * 
+     *
      * @return The weight
      */
     public double weight() {

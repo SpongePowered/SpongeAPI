@@ -74,8 +74,7 @@ public interface ResourceKey extends Key {
      * @param value The value
      * @return A new resource key
      */
-    @NonNull
-    static ResourceKey brigadier(final String value) {
+    static @NonNull ResourceKey brigadier(final String value) {
         return ResourceKey.of(ResourceKey.BRIGADIER_NAMESPACE, value);
     }
 
@@ -85,8 +84,7 @@ public interface ResourceKey extends Key {
      * @param value The value
      * @return A new resource key
      */
-    @NonNull
-    static ResourceKey minecraft(final String value) {
+    static @NonNull ResourceKey minecraft(final String value) {
         return ResourceKey.of(ResourceKey.MINECRAFT_NAMESPACE, value);
     }
 
@@ -96,8 +94,7 @@ public interface ResourceKey extends Key {
      * @param value The value
      * @return A new resource key
      */
-    @NonNull
-    static ResourceKey sponge(final String value) {
+    static @NonNull ResourceKey sponge(final String value) {
         return ResourceKey.of(ResourceKey.SPONGE_NAMESPACE, value);
     }
 
@@ -166,7 +163,7 @@ public interface ResourceKey extends Key {
     }
 
     @Override
-    default int compareTo(Key o) {
+    default int compareTo(final Key o) {
         return Key.super.compareTo(o);
     }
 
@@ -195,7 +192,7 @@ public interface ResourceKey extends Key {
          * @param container The plugin container to fetch from
          * @return This builder, for chaining
          */
-        default Builder namespace(PluginContainer container) {
+        default Builder namespace(final PluginContainer container) {
             return this.namespace(container.metadata().id());
         }
 

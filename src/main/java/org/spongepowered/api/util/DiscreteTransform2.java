@@ -53,7 +53,7 @@ public class DiscreteTransform2 {
     private final Vector3d matrixRow0;
     private final Vector3d matrixRow1;
 
-    private DiscreteTransform2(Matrix3d matrix) {
+    private DiscreteTransform2(final Matrix3d matrix) {
         this.matrix = matrix;
         this.matrixRow0 = matrix.row(0);
         this.matrixRow1 = matrix.row(1);
@@ -75,7 +75,7 @@ public class DiscreteTransform2 {
      * @param vector The original vector
      * @return The transformed vector
      */
-    public Vector2i transform(Vector2i vector) {
+    public Vector2i transform(final Vector2i vector) {
         return this.transform(vector.x(), vector.y());
     }
 
@@ -87,7 +87,7 @@ public class DiscreteTransform2 {
      * @param y The y coordinate of the original vector
      * @return The transformed vector
      */
-    public Vector2i transform(int x, int y) {
+    public Vector2i transform(final int x, final int y) {
         return new Vector2i(this.transformX(x, y), this.transformY(x, y));
     }
 
@@ -98,7 +98,7 @@ public class DiscreteTransform2 {
      * @param vector The original vector
      * @return The transformed x coordinate
      */
-    public int transformX(Vector2i vector) {
+    public int transformX(final Vector2i vector) {
         return this.transformX(vector.x(), vector.y());
     }
 
@@ -110,7 +110,7 @@ public class DiscreteTransform2 {
      * @param y The y coordinate of the original vector
      * @return The transformed x coordinate
      */
-    public int transformX(int x, int y) {
+    public int transformX(final int x, final int y) {
         return GenericMath.floor(this.matrixRow0.dot(x, y, 1) + GenericMath.FLT_EPSILON);
     }
 
@@ -121,7 +121,7 @@ public class DiscreteTransform2 {
      * @param vector The original vector
      * @return The transformed y coordinate
      */
-    public int transformY(Vector2i vector) {
+    public int transformY(final Vector2i vector) {
         return this.transformY(vector.x(), vector.y());
     }
 
@@ -133,7 +133,7 @@ public class DiscreteTransform2 {
      * @param y The y coordinate of the original vector
      * @return The transformed y coordinate
      */
-    public int transformY(int x, int y) {
+    public int transformY(final int x, final int y) {
         return GenericMath.floor(this.matrixRow1.dot(x, y, 1) + GenericMath.FLT_EPSILON);
     }
 
@@ -154,7 +154,7 @@ public class DiscreteTransform2 {
      * @param that The transform to compose with
      * @return The new composed transform
      */
-    public DiscreteTransform2 compose(DiscreteTransform2 that) {
+    public DiscreteTransform2 compose(final DiscreteTransform2 that) {
         return new DiscreteTransform2(this.matrix.mul(that.matrix));
     }
 
@@ -166,7 +166,7 @@ public class DiscreteTransform2 {
      * @param that The transform to compose with
      * @return The new composed transform
      */
-    public DiscreteTransform2 andThen(DiscreteTransform2 that) {
+    public DiscreteTransform2 andThen(final DiscreteTransform2 that) {
         return that.compose(this);
     }
 
@@ -176,7 +176,7 @@ public class DiscreteTransform2 {
      * @param vector The translation vector
      * @return The translated transform as a copy
      */
-    public DiscreteTransform2 withTranslation(Vector2i vector) {
+    public DiscreteTransform2 withTranslation(final Vector2i vector) {
         return this.withTranslation(vector.x(), vector.y());
     }
 
@@ -187,7 +187,7 @@ public class DiscreteTransform2 {
      * @param y The y coordinate of the translation
      * @return The translated transform as a copy
      */
-    public DiscreteTransform2 withTranslation(int x, int y) {
+    public DiscreteTransform2 withTranslation(final int x, final int y) {
         return new DiscreteTransform2(this.matrix.translate(x, y));
     }
 
@@ -198,7 +198,7 @@ public class DiscreteTransform2 {
      * @param a The scale factor
      * @return The scaled transform as a copy
      */
-    public DiscreteTransform2 withScale(int a) {
+    public DiscreteTransform2 withScale(final int a) {
         return this.withScale(a, a);
     }
 
@@ -209,7 +209,7 @@ public class DiscreteTransform2 {
      * @param vector The scale vector
      * @return The scaled transform as a copy
      */
-    public DiscreteTransform2 withScale(Vector2i vector) {
+    public DiscreteTransform2 withScale(final Vector2i vector) {
         return this.withScale(vector.x(), vector.y());
     }
 
@@ -221,7 +221,7 @@ public class DiscreteTransform2 {
      * @param y The scale factor on y
      * @return The scaled transform as a copy
      */
-    public DiscreteTransform2 withScale(int x, int y) {
+    public DiscreteTransform2 withScale(final int x, final int y) {
         if (x == 0) {
             throw new IllegalArgumentException("x == 0");
         }
@@ -240,7 +240,7 @@ public class DiscreteTransform2 {
      * @param quarterTurns The number of quarter turns in this rotation
      * @return The rotated transform as a copy
      */
-    public DiscreteTransform2 withRotation(int quarterTurns) {
+    public DiscreteTransform2 withRotation(final int quarterTurns) {
         return new DiscreteTransform2(this.matrix.rotate(Complexd.fromAngleDeg(quarterTurns * 90)));
     }
 
@@ -257,7 +257,7 @@ public class DiscreteTransform2 {
      *        the center
      * @return The rotated transform as a copy
      */
-    public DiscreteTransform2 withRotation(int quarterTurns, Vector2i point, boolean tileCorner) {
+    public DiscreteTransform2 withRotation(final int quarterTurns, final Vector2i point, final boolean tileCorner) {
         Vector2d pointDouble = point.toDouble();
         if (tileCorner) {
             pointDouble = pointDouble.add(0.5, 0.5);
@@ -283,7 +283,7 @@ public class DiscreteTransform2 {
      *        of the center on the y axis
      * @return The rotated transform as a copy
      */
-    public DiscreteTransform2 withRotation(int halfTurns, Vector2i point, boolean tileCornerX, boolean tileCornerY) {
+    public DiscreteTransform2 withRotation(final int halfTurns, final Vector2i point, final boolean tileCornerX, final boolean tileCornerY) {
         Vector2d pointDouble = point.toDouble();
         if (tileCornerX) {
             pointDouble = pointDouble.add(0.5, 0);
@@ -302,7 +302,7 @@ public class DiscreteTransform2 {
      * @param transform The transformation to add
      * @return The added transforms as a copy
      */
-    public DiscreteTransform2 withTransformation(DiscreteTransform2 transform) {
+    public DiscreteTransform2 withTransformation(final DiscreteTransform2 transform) {
         return new DiscreteTransform2(transform.matrix().mul(this.matrix()));
     }
 
@@ -313,7 +313,7 @@ public class DiscreteTransform2 {
      * @param matrix The matrix to use for the transform
      * @return The new transform, or {@link Optional#empty()}
      */
-    public static Optional<DiscreteTransform2> of(Matrix3d matrix) {
+    public static Optional<DiscreteTransform2> of(final Matrix3d matrix) {
         if (Arrays.stream(matrix.toArray())
             .anyMatch(value -> Math.rint(value) != value)) {
             return Optional.empty();
@@ -327,7 +327,7 @@ public class DiscreteTransform2 {
      * @param vector The translation vector
      * @return The new translation transform
      */
-    public static DiscreteTransform2 fromTranslation(Vector2i vector) {
+    public static DiscreteTransform2 fromTranslation(final Vector2i vector) {
         return DiscreteTransform2.fromTranslation(vector.x(), vector.y());
     }
 
@@ -338,7 +338,7 @@ public class DiscreteTransform2 {
      * @param y The y coordinate of the translation
      * @return The new translation transform
      */
-    public static DiscreteTransform2 fromTranslation(int x, int y) {
+    public static DiscreteTransform2 fromTranslation(final int x, final int y) {
         return new DiscreteTransform2(Matrix3d.createTranslation(x, y));
     }
 
@@ -349,7 +349,7 @@ public class DiscreteTransform2 {
      * @param a The scale factor
      * @return The new scale transform
      */
-    public static DiscreteTransform2 fromScale(int a) {
+    public static DiscreteTransform2 fromScale(final int a) {
         return DiscreteTransform2.fromScale(a, a);
     }
 
@@ -360,7 +360,7 @@ public class DiscreteTransform2 {
      * @param vector The scale vector
      * @return The new scale transform
      */
-    public static DiscreteTransform2 fromScale(Vector2i vector) {
+    public static DiscreteTransform2 fromScale(final Vector2i vector) {
         return DiscreteTransform2.fromScale(vector.x(), vector.y());
     }
 
@@ -372,7 +372,7 @@ public class DiscreteTransform2 {
      * @param y The scale factor on y
      * @return The new scale transform
      */
-    public static DiscreteTransform2 fromScale(int x, int y) {
+    public static DiscreteTransform2 fromScale(final int x, final int y) {
         if (x == 0) {
             throw new IllegalArgumentException("x == 0");
         }
@@ -391,7 +391,7 @@ public class DiscreteTransform2 {
      * @param quarterTurns The number of quarter turns in this rotation
      * @return The new rotation transform
      */
-    public static DiscreteTransform2 fromRotation(int quarterTurns) {
+    public static DiscreteTransform2 fromRotation(final int quarterTurns) {
         return new DiscreteTransform2(Matrix3d.createRotation(Complexd.fromAngleDeg(quarterTurns * 90)));
     }
 
@@ -407,7 +407,7 @@ public class DiscreteTransform2 {
      *        the center
      * @return The new rotation transform
      */
-    public static DiscreteTransform2 fromRotation(int quarterTurns, Vector2i point, boolean tileCorner) {
+    public static DiscreteTransform2 fromRotation(final int quarterTurns, final Vector2i point, final boolean tileCorner) {
         Vector2d pointDouble = point.toDouble();
         if (tileCorner) {
             pointDouble = pointDouble.add(0.5, 0.5);
@@ -432,7 +432,7 @@ public class DiscreteTransform2 {
      *        of the center on the y axis
      * @return The new rotation transform
      */
-    public static DiscreteTransform2 fromRotation(int halfTurns, Vector2i point, boolean tileCornerX, boolean tileCornerY) {
+    public static DiscreteTransform2 fromRotation(final int halfTurns, final Vector2i point, final boolean tileCornerX, final boolean tileCornerY) {
         Vector2d pointDouble = point.toDouble();
         if (tileCornerX) {
             pointDouble = pointDouble.add(0.5, 0);
@@ -454,7 +454,7 @@ public class DiscreteTransform2 {
      * @param size The size of the area to rotate
      * @return The new rotation transform
      */
-    public static DiscreteTransform2 rotationAroundCenter(int quarterTurns, Vector2i size) {
+    public static DiscreteTransform2 rotationAroundCenter(final int quarterTurns, final Vector2i size) {
         if (size.x() <= 0) {
             throw new IllegalArgumentException("The size on x must be positive");
         }
@@ -464,7 +464,7 @@ public class DiscreteTransform2 {
         final boolean mul180 = (quarterTurns & 1) == 0;
         final boolean xEven = (size.x() & 1) == 0;
         final boolean yEven = (size.y() & 1) == 0;
-        if (!mul180 || xEven != yEven) {
+        if (!mul180 && xEven != yEven) {
             throw new IllegalArgumentException("The size must have the same parity on all axes for rotations that are "
                 + "not a multiple of 180 degrees");
         }
