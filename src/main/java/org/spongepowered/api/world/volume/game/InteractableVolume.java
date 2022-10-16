@@ -173,7 +173,7 @@ public interface InteractableVolume extends BlockVolume, LocationBaseDataHolder 
     /**
      * Simulate the digging of the block with the given tool as if a player had
      * done so.
-     * 
+     *
      * @param position The position of the block
      * @param itemStack The tool
      * @param profile The game profile of the player this is imitating

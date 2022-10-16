@@ -39,8 +39,8 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import java.util.List;
 
 /**
- * Handles when one or more {@link Item} or {@link ItemStack} are about to be 
- * "dropped" onto the ground. This will happen before they are physically 
+ * Handles when one or more {@link Item} or {@link ItemStack} are about to be
+ * "dropped" onto the ground. This will happen before they are physically
  * dropped, let alone spawned.
  */
 public interface DropItemEvent extends Event, Cancellable {
@@ -75,7 +75,7 @@ public interface DropItemEvent extends Event, Cancellable {
     }
 
     /**
-     * Called when one or more {@link Item} drops are triggered by an 
+     * Called when one or more {@link Item} drops are triggered by an
      * object such as an {@link Entity} or {@link BlockType} destruction.
      *
      * <p>Canceling this event only prevents the items from being dropped.

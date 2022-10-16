@@ -225,7 +225,7 @@ public interface LocationBaseDataHolder {
     default OptionalLong getLong(final Vector3i position, final Key<? extends Value<Long>> key) {
         return this.getLong(position.x(), position.y(), position.z(), key);
     }
-    
+
     /**
      * Gets the long value of data that is keyed to the provided {@link Key} at the
      * give block location.

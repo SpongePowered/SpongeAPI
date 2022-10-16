@@ -32,12 +32,12 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 public enum Tristate {
     TRUE(true) {
         @Override
-        public Tristate and(Tristate other) {
+        public Tristate and(final Tristate other) {
             return other == Tristate.FALSE ? Tristate.FALSE : Tristate.TRUE;
         }
 
         @Override
-        public Tristate or(Tristate other) {
+        public Tristate or(final Tristate other) {
             return Tristate.TRUE;
         }
 
@@ -48,12 +48,12 @@ public enum Tristate {
     },
     FALSE(false) {
         @Override
-        public Tristate and(Tristate other) {
+        public Tristate and(final Tristate other) {
             return Tristate.FALSE;
         }
 
         @Override
-        public Tristate or(Tristate other) {
+        public Tristate or(final Tristate other) {
             return other == Tristate.TRUE ? Tristate.TRUE : Tristate.FALSE;
         }
 
@@ -64,12 +64,12 @@ public enum Tristate {
     },
     UNDEFINED(false) {
         @Override
-        public Tristate and(Tristate other) {
+        public Tristate and(final Tristate other) {
             return other;
         }
 
         @Override
-        public Tristate or(Tristate other) {
+        public Tristate or(final Tristate other) {
             return other;
         }
 
@@ -81,7 +81,7 @@ public enum Tristate {
 
     private final boolean val;
 
-    Tristate(boolean val) {
+    Tristate(final boolean val) {
         this.val = val;
     }
 
@@ -91,7 +91,7 @@ public enum Tristate {
      * @param val The boolean value
      * @return The appropriate tristate
      */
-    public static Tristate fromBoolean(boolean val) {
+    public static Tristate fromBoolean(final boolean val) {
         return val ? Tristate.TRUE : Tristate.FALSE;
     }
 
@@ -102,7 +102,7 @@ public enum Tristate {
      * @param val The nullable boolean value
      * @return The appropriate tristate
      */
-    public static Tristate fromNullableBoolean(@Nullable Boolean val) {
+    public static Tristate fromNullableBoolean(final @Nullable Boolean val) {
         if (val == null) {
             return Tristate.UNDEFINED;
         } else {
@@ -152,8 +152,7 @@ public enum Tristate {
      *
      * @return The nullable boolean tristate representation
      */
-    @Nullable
-    public Boolean asNullableBoolean() {
+    public @Nullable Boolean asNullableBoolean() {
         if (this == Tristate.UNDEFINED) {
             return null;
         } else {

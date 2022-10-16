@@ -70,7 +70,7 @@ public interface ChangeBlockEvent extends Event {
     ServerWorld world();
 
     /**
-     * Called before running specific block logic at one or more 
+     * Called before running specific block logic at one or more
      * {@link ServerLocation}'s such as {@link BlockTypes#WATER}.
      */
     interface Pre extends ChangeBlockEvent, Cancellable {

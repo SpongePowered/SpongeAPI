@@ -48,7 +48,7 @@ public class ChanceTable<T> extends RandomObjectTable<T> {
 
     /**
      * Creates a new {@link ChanceTable}.
-     * 
+     *
      * @param rolls The number of rolls to perform
      */
     public ChanceTable(int rolls) {

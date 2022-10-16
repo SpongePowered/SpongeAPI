@@ -33,15 +33,15 @@ import java.util.function.Predicate;
 
 /**
  * Represents a possible state property in a {@link StateContainer}s {@link State}.
- * 
+ *
  * <p>A {@link State} can include zero or more {@link StateProperty}s. Each
  * {@link StateProperty} within a {@link State} is mapped to a value which
  * represents the current value at the time the {@link State} was taken.
  * </p>
- * 
+ *
  * <p>For example, a {@link BlockTypes#RED_BED} contains three possible
  * {@link StateProperty}s :</p>
- * 
+ *
  * <ul>
  *     <li>{@link EnumStateProperties#RED_BED_FACING}</li>
  *     <li>{@link BooleanStateProperties#RED_BED_OCCUPIED}</li>
@@ -51,7 +51,7 @@ import java.util.function.Predicate;
  * <p>If you query a {@link BlockTypes#RED_BED}'s {@link StateProperty} you have two
  * possible outcomes for each {@link StateProperty}. The
  * {@link BooleanStateProperties#RED_BED_OCCUPIED} has the following possible values:</p>
- * 
+ *
  * <ul>
  *     <li><code>true</code></li>
  *     <li><code>false</code></li>
@@ -60,12 +60,12 @@ import java.util.function.Predicate;
  * <p>As 'OCCUPIED' is a {@link BooleanStateProperty}, it can only be <code>true</code>
  * or <code>false</code>.
  * The {@link EnumStateProperties#RED_BED_PART} has the following possible values:</p>
- * 
+ *
  * <ul>
  *     <li><code>HEAD</code></li>
  *     <li><code>FOOT</code></li>
  * </ul>
- * 
+ *
  * <p>To determine the current value of a {@link StateProperty}, you would call
  * {@link State#stateProperty(StateProperty)}. To determine all possible
  * values of a {@link StateProperty}, you would call
@@ -97,7 +97,7 @@ public interface StateProperty<T extends Comparable<T>> extends Nameable {
      * {@link StateProperty}. Any "value" that returns <code>true</code> when
      * {@link Predicate#test(Object)} is called is valid. The
      * {@link Predicate} is specific to this property.
-     * 
+     *
      * @return The predicate
      */
     Predicate<T> predicate();

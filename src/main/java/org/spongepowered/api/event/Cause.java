@@ -249,7 +249,7 @@ public final class Cause implements Iterable<Object> {
 
     /**
      * Returns whether the target class matches any object of this {@link Cause}.
-     * 
+     *
      * @param target The class of the target type
      * @return True if found, false otherwise
      */

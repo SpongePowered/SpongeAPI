@@ -39,7 +39,7 @@ import org.spongepowered.math.vector.Vector3d;
  * used when creating commands and retrieving elements. A general workflow for
  * defining a command with a {@link ServerPlayer} parameter may look like this:
  * </p>
- * 
+ *
  * <pre> {@code
  * final Parameter.Value<ServerPlayer> parameter = Parameter.player().setKey("player").build();
  * final Command.Parameterized builder = Command.builder()
@@ -51,9 +51,9 @@ import org.spongepowered.math.vector.Vector3d;
  * // registration happens here.
  * }</pre>
  *
- * <p>While this is a totally valid approach, there are two particular 
+ * <p>While this is a totally valid approach, there are two particular
  * considerations that can be made:</p>
- * 
+ *
  * <ul>
  *     <li>Sponge provided {@link ValueParameter}s and, by extension,
  *     {@link Parameter.Value}s are stateless and so can be reused by multiple
@@ -67,7 +67,7 @@ import org.spongepowered.math.vector.Vector3d;
  * </ul>
  *
  * <p>Given these two considerations, it generally makes sense to store one
- * {@link Parameter.Value} for a given {@link ValueParameter} and 
+ * {@link Parameter.Value} for a given {@link ValueParameter} and
  * {@link Parameter.Key} combination. Further, it is clear that plugins will
  * tend to use similar, if not the same, parameter/key combinations.</p>
  *

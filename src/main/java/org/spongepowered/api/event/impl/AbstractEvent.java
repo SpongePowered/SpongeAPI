@@ -50,7 +50,6 @@ public abstract class AbstractEvent implements Event {
      * processing the event. When no handler is processing the event,
      * it will be set to <code>null</code>
      */
-    @Nullable
-    public Order currentOrder;
+    @Nullable public Order currentOrder;
 
 }

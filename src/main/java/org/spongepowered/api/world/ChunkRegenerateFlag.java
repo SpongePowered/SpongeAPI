@@ -45,7 +45,7 @@ public interface ChunkRegenerateFlag extends DefaultedRegistryValue {
     /**
      * Gets whether this flag will preserve entities in chunks that are
      * regenerated.
-     * 
+     *
      * Note: It is up to the implementation to decide whether this will
      * include moving entities to safe locations.
      *

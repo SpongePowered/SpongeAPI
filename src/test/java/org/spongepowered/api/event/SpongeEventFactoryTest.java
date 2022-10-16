@@ -104,8 +104,8 @@ class SpongeEventFactoryTest {
         return SpongeEventFactoryTest.mockParam(returnType);
     };
 
-    static boolean isExcludedEvent(Class<?> eventClass) {
-        for (Class<?> excludedClass : SpongeEventFactoryTest.EXCLUDED_EVENTS) {
+    static boolean isExcludedEvent(final Class<?> eventClass) {
+        for (final Class<?> excludedClass : SpongeEventFactoryTest.EXCLUDED_EVENTS) {
             if (excludedClass.isAssignableFrom(eventClass)) {
                 return true;
             }
@@ -202,8 +202,7 @@ class SpongeEventFactoryTest {
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})
-    @Nullable
-    public static Object mockParam(final Type paramType) {
+    public static @Nullable Object mockParam(final Type paramType) {
         final Class<?> erasedType = GenericTypeReflector.erase(paramType);
         if (erasedType == Class.class) {
             return PEBKACException.class;

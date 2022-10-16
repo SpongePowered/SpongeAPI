@@ -244,7 +244,7 @@ spongeConvention {
 
 indra {
     val checkstyleVersion: String by project
-    
+
     javaVersions {
         testWith(8, 11, 17)
     }
@@ -261,6 +261,22 @@ indra {
 
 indraCrossdoc {
     baseUrl(providers.gradleProperty("javadocPublishRoot"))
+}
+
+spotless {
+    java {
+        endWithNewline()
+        indentWithSpaces(4)
+        trimTrailingWhitespace()
+        toggleOffOn("@formatter:off", "@formatter:on")
+        formatAnnotations()
+        importOrderFile(rootProject.file("extra/eclipse/sponge_eclipse.importorder"))
+    }
+    kotlinGradle {
+        endWithNewline()
+        indentWithSpaces(4)
+        trimTrailingWhitespace()
+    }
 }
 
 val sortClasses = listOf(

@@ -248,8 +248,7 @@ public interface TagTemplate extends DataPackSerializable {
          * @return The built {@link TagTemplate}.
          */
         @Override
-        @NonNull
-        TagTemplate build();
+        @NonNull TagTemplate build();
     }
 
     interface Factory {

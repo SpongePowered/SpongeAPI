@@ -50,7 +50,7 @@ public final class EventContext {
 
     /**
      * Gets an empty context.
-     * 
+     *
      * @return The empty context
      */
     public static EventContext empty() {
@@ -59,7 +59,7 @@ public final class EventContext {
 
     /**
      * Creates a new {@link EventContext} from the given map of entries.
-     * 
+     *
      * @param entries The context entries
      * @return The new EventContext
      */
@@ -73,7 +73,7 @@ public final class EventContext {
 
     /**
      * Creates a new builder for creating an {@link EventContext}.
-     * 
+     *
      * @return The new builder
      */
     public static Builder builder() {
@@ -88,7 +88,7 @@ public final class EventContext {
 
     /**
      * Gets the value corresponding to the given key from the context.
-     * 
+     *
      * @param key The key
      * @param <T> The type of the value stored with the key
      * @return The context value, if found
@@ -117,7 +117,7 @@ public final class EventContext {
      *
      * <p>If the key is not available, {@link NoSuchElementException} will be
      * thrown.</p>
-     * 
+     *
      * @param key The key
      * @param <T> The type of the value stored with the key
      * @return The context value, if found
@@ -172,7 +172,7 @@ public final class EventContext {
 
     /**
      * Gets all {@link EventContextKey}s present in this context.
-     * 
+     *
      * @return All present keys
      */
     public Set<EventContextKey<?>> keySet() {
@@ -181,7 +181,7 @@ public final class EventContext {
 
     /**
      * Gets this event context as a {@link Map} of EventContextKeys to Objects.
-     * 
+     *
      * @return A map view of this context
      */
     public Map<EventContextKey<?>, Object> asMap() {
@@ -230,11 +230,11 @@ public final class EventContext {
 
         Builder() {
 
-        } 
+        }
 
         /**
          * Adds the given context key value pair to the context.
-         * 
+         *
          * @param key The key
          * @param <T> The type of the value stored with the key
          * @param value The value
@@ -283,7 +283,7 @@ public final class EventContext {
 
         /**
          * Creates a new {@link EventContext}.
-         * 
+         *
          * @return The EventContext
          */
         @Override

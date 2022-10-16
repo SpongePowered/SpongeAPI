@@ -41,7 +41,7 @@ public interface DataFormat extends DefaultedRegistryValue {
     /**
      * Creates a new {@link DataContainer} from the contents of the given
      * {@link InputStream}.
-     * 
+     *
      * @param input The input stream
      * @return A data container representing the contents of the input stream
      * @throws InvalidDataFormatException If the data in the stream was not a
@@ -53,7 +53,7 @@ public interface DataFormat extends DefaultedRegistryValue {
     /**
      * Writes the given {@link DataView} to the given {@link OutputStream} using
      * the format specified by this {@link DataFormat}.
-     * 
+     *
      * @param output The output stream to write the data to
      * @param data The DataView to write to the stream
      * @throws IOException If there was an error writing to the stream
