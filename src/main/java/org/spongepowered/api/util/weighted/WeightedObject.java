@@ -50,7 +50,7 @@ public class WeightedObject<T> extends TableEntry<T> {
 
     /**
      * Gets the entry contained in this entry.
-     * 
+     *
      * @return The object
      */
     public T get() {

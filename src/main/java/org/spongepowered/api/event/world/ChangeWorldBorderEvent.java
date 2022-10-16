@@ -40,7 +40,7 @@ import java.util.Optional;
 public interface ChangeWorldBorderEvent extends Event, Cancellable {
 
     /**
-     * Gets the border that was previously used as an {@link Optional}. There 
+     * Gets the border that was previously used as an {@link Optional}. There
      * may be no border set for the target (especially if it is a player), in
      * which case, {@link Optional#empty()} is returned.
      *

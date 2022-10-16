@@ -36,5 +36,5 @@ public interface PersistentInventory extends Inventory {
      * mechanism.
      */
     void markDirty();
-    
+
 }

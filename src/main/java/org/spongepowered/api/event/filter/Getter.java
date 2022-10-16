@@ -33,10 +33,10 @@ import java.util.Optional;
 /**
  * Annotates a parameter in an event listener whose value should be fetched from
  * a getter on the event type with the specified name.
- * 
+ *
  * <p>For example if the event type has a method 'T getObject();' then you would
  * annotate a parameter of type T with '@Getter("getObject")'.</p>
- * 
+ *
  * <p>For optional types the value of the parameter can be either
  * {@link Optional} or the type of the enclosed object. If the type is the
  * enclosed type then the optional will be automatically unwrapped and if the
@@ -48,7 +48,7 @@ public @interface Getter {
 
     /**
      * The name of the method to fetch the value from within the event type.
-     * 
+     *
      * @return The method name
      */
     String value();

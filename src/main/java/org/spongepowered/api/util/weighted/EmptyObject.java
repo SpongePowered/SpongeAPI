@@ -40,7 +40,7 @@ public class EmptyObject<T> extends TableEntry<T> implements DataSerializable {
 
     /**
      * Creates a new {@link EmptyObject} with the given weight.
-     * 
+     *
      * @param weight The weight of this object
      */
     public EmptyObject(double weight) {

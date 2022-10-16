@@ -53,7 +53,7 @@ public class NestedTableEntry<T> extends TableEntry<T> {
 
     /**
      * Retrieves entries from the nested table.
-     * 
+     *
      * @param rand The random object to use
      * @return The retrieved entries
      */

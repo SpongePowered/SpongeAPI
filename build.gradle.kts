@@ -252,9 +252,12 @@ spongeConvention {
 }
 
 indra {
+    val checkstyleVersion: String by project
+
     javaVersions {
         target(17)
     }
+    checkstyle(checkstyleVersion)
 
     configurePublications {
         artifactId = project.name.toLowerCase()
@@ -267,6 +270,25 @@ indra {
 
 indraCrossdoc {
     baseUrl(providers.gradleProperty("javadocPublishRoot"))
+    nameBasedDocumentationUrlProvider {
+        lowercaseProjectName.set(true)
+    }
+}
+
+spotless {
+    java {
+        endWithNewline()
+        indentWithSpaces(4)
+        trimTrailingWhitespace()
+        toggleOffOn("@formatter:off", "@formatter:on")
+        formatAnnotations()
+        importOrderFile(rootProject.file("extra/eclipse/sponge_eclipse.importorder"))
+    }
+    kotlinGradle {
+        endWithNewline()
+        indentWithSpaces(4)
+        trimTrailingWhitespace()
+    }
 }
 
 val sortClasses = listOf(

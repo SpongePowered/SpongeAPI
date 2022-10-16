@@ -55,7 +55,7 @@ public interface Schematic extends ArchetypeVolume, LocationBaseDataHolder.Mutab
 
     /**
      * Gets a new builder for schematics.
-     * 
+     *
      * @return The new builder
      */
     static Builder builder() {
@@ -78,7 +78,7 @@ public interface Schematic extends ArchetypeVolume, LocationBaseDataHolder.Mutab
 
     /**
      * Gets any additional metadata attached to this schematic.
-     * 
+     *
      * @return The additional metadata
      */
     DataView metadata();
@@ -162,7 +162,7 @@ public interface Schematic extends ArchetypeVolume, LocationBaseDataHolder.Mutab
 
         /**
          * Specifies the metadata container.
-         * 
+         *
          * @param metadata The metadata container
          * @return This builder, for chaining
          */
@@ -171,7 +171,7 @@ public interface Schematic extends ArchetypeVolume, LocationBaseDataHolder.Mutab
         /**
          * Specifies a metadata value which will be included in the metadata of
          * the schematic.
-         * 
+         *
          * @param key The metadata key
          * @param value The value
          * @return This builder, for chaining

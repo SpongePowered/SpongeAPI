@@ -52,7 +52,7 @@ public class LootTable<T> {
 
     /**
      * Adds a table to the pool.
-     * 
+     *
      * @param table The new table
      */
     public void addTable(final RandomObjectTable<T> table) {
@@ -61,7 +61,7 @@ public class LootTable<T> {
 
     /**
      * Adds all tables from the given {@link LootTable} to this LootTable's pool.
-     * 
+     *
      * @param other The other loot table
      */
     public void addAll(final LootTable<T> other) {
@@ -70,23 +70,23 @@ public class LootTable<T> {
 
     /**
      * Removes a table from the pool.
-     * 
+     *
      * @param table The table to remove
      * @return If the pool contained the table
      */
     public boolean removeTable(final RandomObjectTable<T> table) {
         return this.pool.remove(table);
     }
-    
+
     /**
      * Gets all tables in the pool.
-     * 
+     *
      * @return The tables
      */
     public List<RandomObjectTable<T>> tables() {
         return ImmutableList.copyOf(this.pool);
     }
-    
+
     /**
      * Clears all tables from the pool.
      */
@@ -96,7 +96,7 @@ public class LootTable<T> {
 
     /**
      * Gets a List of objects as retrieved from all pools.
-     * 
+     *
      * @param rand The random object to use
      * @return The retrieved entries
      */

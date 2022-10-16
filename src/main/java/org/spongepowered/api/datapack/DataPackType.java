@@ -44,7 +44,7 @@ public interface DataPackType<T> {
      * is no longer present (or no longer performs a registration in {@link RegisterDataPackValueEvent}
      *
      * <p>Consult your implementation vendor for more details on exactly what resources are kept.</p>
-     * 
+     *
      * @return True if persistent, false if not
      */
     boolean persistent();

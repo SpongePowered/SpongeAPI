@@ -28,7 +28,7 @@ import java.util.Random;
 
 /**
  * Represents a value which may vary depending on a seed object.
- * 
+ *
  * @param <T> The seed object type
  */
 @FunctionalInterface
@@ -37,7 +37,7 @@ public interface SeededVariableAmount<T> {
     /**
      * Creates a new 'fixed' variable amount, calls to {@link #amount} will
      * always return the fixed value.
-     * 
+     *
      * @param value The fixed value
      * @param <T> The seed object type
      * @return A variable amount representation
@@ -49,7 +49,7 @@ public interface SeededVariableAmount<T> {
     /**
      * Creates a new variable amount wrapping the given {@link VariableAmount},
      * calls to {@link #amount} will always return wrapped amounts value.
-     * 
+     *
      * @param value The wrapped variable amount
      * @param <T> The seed object type
      * @return A variable amount representation
@@ -61,7 +61,7 @@ public interface SeededVariableAmount<T> {
     /**
      * Gets an instance of the variable amount depending on the given random
      * object and the seed object.
-     * 
+     *
      * @param rand The random object
      * @param seed The seed object
      * @return The amount
@@ -71,7 +71,7 @@ public interface SeededVariableAmount<T> {
     /**
      * Gets the amount as if from {@link #amount(Random, Object)} but floored
      * to the nearest integer equivalent.
-     * 
+     *
      * @param rand The random object
      * @param seed The seed object
      * @return The floored amount
@@ -83,7 +83,7 @@ public interface SeededVariableAmount<T> {
     /**
      * A {@link SeededVariableAmount} which wraps another {@link VariableAmount}
      * and defers all operations to the inner VariableAmount without the seed.
-     * 
+     *
      * @param <T> The seed type
      */
     final class WrappedVariableAmount<T> implements SeededVariableAmount<T> {
@@ -93,7 +93,7 @@ public interface SeededVariableAmount<T> {
         /**
          * Creates a new WrappedVariableAmount wrapping the given
          * {@link VariableAmount}.
-         * 
+         *
          * @param inner The inner variable amount
          */
         public WrappedVariableAmount(VariableAmount inner) {

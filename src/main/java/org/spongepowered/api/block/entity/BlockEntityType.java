@@ -47,4 +47,3 @@ public interface BlockEntityType extends DefaultedRegistryValue {
      */
     boolean isValidBlock(BlockState block);
 }
-
