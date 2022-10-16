@@ -33,6 +33,7 @@ dependencies {
     val junitVersion: String by project
     val mockitoVersion: String by project
     val pluginSpiVersion: String by project
+    val slf4jVersion: String by project
 
     // Directly tied to what's available from Minecraft
     api("org.apache.logging.log4j:log4j-api:$log4jVersion")
@@ -43,6 +44,7 @@ dependencies {
         exclude(group = "org.codehaus.mojo", module = "animal-sniffer-annotations")
     }
     api("com.google.code.gson:gson:2.8.0")
+    api("org.slf4j:slf4j-api:$slf4jVersion") // technically only included starting in 1.17, but we'll backport the same version for consistency
 
     // Adventure
     api(platform("net.kyori:adventure-bom:$adventureVersion"))
@@ -59,6 +61,10 @@ dependencies {
     }
     api("net.kyori:adventure-text-minimessage") {
         exclude(group = "net.kyori", module = "adventure-api")
+    }
+    api("net.kyori:adventure-text-logger-slf4j") {
+        exclude(group = "net.kyori", module = "adventure-api")
+        exclude(group = "org.slf4j", module = "slf4j-api")
     }
 
     // Dependency injection
