@@ -261,6 +261,9 @@ indra {
 
 indraCrossdoc {
     baseUrl(providers.gradleProperty("javadocPublishRoot"))
+    nameBasedDocumentationUrlProvider {
+        lowercaseProjectName.set(true)
+    }
 }
 
 spotless {
