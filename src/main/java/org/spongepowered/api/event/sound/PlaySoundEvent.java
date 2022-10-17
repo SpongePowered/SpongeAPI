@@ -97,7 +97,7 @@ public interface PlaySoundEvent extends Event, Cancellable {
     /**
      * Fired when a record is inserted into a Jukebox
      */
-    interface Record extends PlaySoundEvent {
+    interface FromJukebox extends PlaySoundEvent {
 
         /**
          * Gets the {@link Jukebox} associated with this event.
@@ -116,12 +116,12 @@ public interface PlaySoundEvent extends Event, Cancellable {
         /**
          * Fired when a record starts playing.
          */
-        interface Start extends Record {}
+        interface Start extends FromJukebox {}
 
         /**
          * Fired when a record stops playing.
          */
-        interface Stop extends Record {}
+        interface Stop extends FromJukebox {}
 
     }
 
