@@ -26,6 +26,8 @@ package org.spongepowered.api.event;
 
 import org.spongepowered.plugin.PluginContainer;
 
+import java.lang.invoke.MethodHandles;
+
 /**
  * Manages the registration of event listeners and the dispatching of events.
  */
@@ -51,6 +53,22 @@ public interface EventManager {
      * @return This manager, for fluency
      */
     EventManager registerListeners(PluginContainer plugin, Object obj);
+
+    /**
+     * Registers {@link Event} methods annotated with @{@link Listener} in the
+     * specified object.
+     *
+     * <p>This will not include any methods declared in supertypes, but will
+     * test for private and package-private listener methods.</p>
+     *
+     * <p>The provided lookup will be used for privileged access to the listener object.</p>
+     *
+     * @param plugin The plugin container
+     * @param obj The object
+     * @param lookup The lookup with which to access the listener object
+     * @return This manager, for fluency
+     */
+    EventManager registerListeners(PluginContainer plugin, Object obj, MethodHandles.Lookup lookup);
 
     /**
      * Un-registers an object from receiving {@link Event}s.
