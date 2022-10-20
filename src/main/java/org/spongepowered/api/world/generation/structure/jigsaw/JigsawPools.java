@@ -197,6 +197,8 @@ public final class JigsawPools {
 
     public static final DefaultedRegistryReference<JigsawPool> VILLAGE_COMMON_WELL_BOTTOMS = JigsawPools.key(ResourceKey.minecraft("village/common/well_bottoms"));
 
+    public static final DefaultedRegistryReference<JigsawPool> VILLAGE_DESERT_CAMEL = JigsawPools.key(ResourceKey.minecraft("village/desert/camel"));
+
     public static final DefaultedRegistryReference<JigsawPool> VILLAGE_DESERT_DECOR = JigsawPools.key(ResourceKey.minecraft("village/desert/decor"));
 
     public static final DefaultedRegistryReference<JigsawPool> VILLAGE_DESERT_HOUSES = JigsawPools.key(ResourceKey.minecraft("village/desert/houses"));

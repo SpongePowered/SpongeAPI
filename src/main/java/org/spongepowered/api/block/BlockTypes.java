@@ -49,6 +49,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> ACACIA_FENCE_GATE = BlockTypes.key(ResourceKey.minecraft("acacia_fence_gate"));
 
+    public static final DefaultedRegistryReference<BlockType> ACACIA_HANGING_SIGN = BlockTypes.key(ResourceKey.minecraft("acacia_hanging_sign"));
+
     public static final DefaultedRegistryReference<BlockType> ACACIA_LEAVES = BlockTypes.key(ResourceKey.minecraft("acacia_leaves"));
 
     public static final DefaultedRegistryReference<BlockType> ACACIA_LOG = BlockTypes.key(ResourceKey.minecraft("acacia_log"));
@@ -66,6 +68,8 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> ACACIA_STAIRS = BlockTypes.key(ResourceKey.minecraft("acacia_stairs"));
 
     public static final DefaultedRegistryReference<BlockType> ACACIA_TRAPDOOR = BlockTypes.key(ResourceKey.minecraft("acacia_trapdoor"));
+
+    public static final DefaultedRegistryReference<BlockType> ACACIA_WALL_HANGING_SIGN = BlockTypes.key(ResourceKey.minecraft("acacia_wall_hanging_sign"));
 
     public static final DefaultedRegistryReference<BlockType> ACACIA_WALL_SIGN = BlockTypes.key(ResourceKey.minecraft("acacia_wall_sign"));
 
@@ -105,7 +109,39 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> BAMBOO = BlockTypes.key(ResourceKey.minecraft("bamboo"));
 
+    public static final DefaultedRegistryReference<BlockType> BAMBOO_BUTTON = BlockTypes.key(ResourceKey.minecraft("bamboo_button"));
+
+    public static final DefaultedRegistryReference<BlockType> BAMBOO_DOOR = BlockTypes.key(ResourceKey.minecraft("bamboo_door"));
+
+    public static final DefaultedRegistryReference<BlockType> BAMBOO_FENCE = BlockTypes.key(ResourceKey.minecraft("bamboo_fence"));
+
+    public static final DefaultedRegistryReference<BlockType> BAMBOO_FENCE_GATE = BlockTypes.key(ResourceKey.minecraft("bamboo_fence_gate"));
+
+    public static final DefaultedRegistryReference<BlockType> BAMBOO_HANGING_SIGN = BlockTypes.key(ResourceKey.minecraft("bamboo_hanging_sign"));
+
+    public static final DefaultedRegistryReference<BlockType> BAMBOO_MOSAIC = BlockTypes.key(ResourceKey.minecraft("bamboo_mosaic"));
+
+    public static final DefaultedRegistryReference<BlockType> BAMBOO_MOSAIC_SLAB = BlockTypes.key(ResourceKey.minecraft("bamboo_mosaic_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> BAMBOO_MOSAIC_STAIRS = BlockTypes.key(ResourceKey.minecraft("bamboo_mosaic_stairs"));
+
+    public static final DefaultedRegistryReference<BlockType> BAMBOO_PLANKS = BlockTypes.key(ResourceKey.minecraft("bamboo_planks"));
+
+    public static final DefaultedRegistryReference<BlockType> BAMBOO_PRESSURE_PLATE = BlockTypes.key(ResourceKey.minecraft("bamboo_pressure_plate"));
+
     public static final DefaultedRegistryReference<BlockType> BAMBOO_SAPLING = BlockTypes.key(ResourceKey.minecraft("bamboo_sapling"));
+
+    public static final DefaultedRegistryReference<BlockType> BAMBOO_SIGN = BlockTypes.key(ResourceKey.minecraft("bamboo_sign"));
+
+    public static final DefaultedRegistryReference<BlockType> BAMBOO_SLAB = BlockTypes.key(ResourceKey.minecraft("bamboo_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> BAMBOO_STAIRS = BlockTypes.key(ResourceKey.minecraft("bamboo_stairs"));
+
+    public static final DefaultedRegistryReference<BlockType> BAMBOO_TRAPDOOR = BlockTypes.key(ResourceKey.minecraft("bamboo_trapdoor"));
+
+    public static final DefaultedRegistryReference<BlockType> BAMBOO_WALL_HANGING_SIGN = BlockTypes.key(ResourceKey.minecraft("bamboo_wall_hanging_sign"));
+
+    public static final DefaultedRegistryReference<BlockType> BAMBOO_WALL_SIGN = BlockTypes.key(ResourceKey.minecraft("bamboo_wall_sign"));
 
     public static final DefaultedRegistryReference<BlockType> BARREL = BlockTypes.key(ResourceKey.minecraft("barrel"));
 
@@ -137,6 +173,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> BIRCH_FENCE_GATE = BlockTypes.key(ResourceKey.minecraft("birch_fence_gate"));
 
+    public static final DefaultedRegistryReference<BlockType> BIRCH_HANGING_SIGN = BlockTypes.key(ResourceKey.minecraft("birch_hanging_sign"));
+
     public static final DefaultedRegistryReference<BlockType> BIRCH_LEAVES = BlockTypes.key(ResourceKey.minecraft("birch_leaves"));
 
     public static final DefaultedRegistryReference<BlockType> BIRCH_LOG = BlockTypes.key(ResourceKey.minecraft("birch_log"));
@@ -154,6 +192,8 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> BIRCH_STAIRS = BlockTypes.key(ResourceKey.minecraft("birch_stairs"));
 
     public static final DefaultedRegistryReference<BlockType> BIRCH_TRAPDOOR = BlockTypes.key(ResourceKey.minecraft("birch_trapdoor"));
+
+    public static final DefaultedRegistryReference<BlockType> BIRCH_WALL_HANGING_SIGN = BlockTypes.key(ResourceKey.minecraft("birch_wall_hanging_sign"));
 
     public static final DefaultedRegistryReference<BlockType> BIRCH_WALL_SIGN = BlockTypes.key(ResourceKey.minecraft("birch_wall_sign"));
 
@@ -329,6 +369,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> CHIPPED_ANVIL = BlockTypes.key(ResourceKey.minecraft("chipped_anvil"));
 
+    public static final DefaultedRegistryReference<BlockType> CHISELED_BOOKSHELF = BlockTypes.key(ResourceKey.minecraft("chiseled_bookshelf"));
+
     public static final DefaultedRegistryReference<BlockType> CHISELED_DEEPSLATE = BlockTypes.key(ResourceKey.minecraft("chiseled_deepslate"));
 
     public static final DefaultedRegistryReference<BlockType> CHISELED_NETHER_BRICKS = BlockTypes.key(ResourceKey.minecraft("chiseled_nether_bricks"));
@@ -415,6 +457,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> CRIMSON_FUNGUS = BlockTypes.key(ResourceKey.minecraft("crimson_fungus"));
 
+    public static final DefaultedRegistryReference<BlockType> CRIMSON_HANGING_SIGN = BlockTypes.key(ResourceKey.minecraft("crimson_hanging_sign"));
+
     public static final DefaultedRegistryReference<BlockType> CRIMSON_HYPHAE = BlockTypes.key(ResourceKey.minecraft("crimson_hyphae"));
 
     public static final DefaultedRegistryReference<BlockType> CRIMSON_NYLIUM = BlockTypes.key(ResourceKey.minecraft("crimson_nylium"));
@@ -434,6 +478,8 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> CRIMSON_STEM = BlockTypes.key(ResourceKey.minecraft("crimson_stem"));
 
     public static final DefaultedRegistryReference<BlockType> CRIMSON_TRAPDOOR = BlockTypes.key(ResourceKey.minecraft("crimson_trapdoor"));
+
+    public static final DefaultedRegistryReference<BlockType> CRIMSON_WALL_HANGING_SIGN = BlockTypes.key(ResourceKey.minecraft("crimson_wall_hanging_sign"));
 
     public static final DefaultedRegistryReference<BlockType> CRIMSON_WALL_SIGN = BlockTypes.key(ResourceKey.minecraft("crimson_wall_sign"));
 
@@ -493,6 +539,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> DARK_OAK_FENCE_GATE = BlockTypes.key(ResourceKey.minecraft("dark_oak_fence_gate"));
 
+    public static final DefaultedRegistryReference<BlockType> DARK_OAK_HANGING_SIGN = BlockTypes.key(ResourceKey.minecraft("dark_oak_hanging_sign"));
+
     public static final DefaultedRegistryReference<BlockType> DARK_OAK_LEAVES = BlockTypes.key(ResourceKey.minecraft("dark_oak_leaves"));
 
     public static final DefaultedRegistryReference<BlockType> DARK_OAK_LOG = BlockTypes.key(ResourceKey.minecraft("dark_oak_log"));
@@ -510,6 +558,8 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> DARK_OAK_STAIRS = BlockTypes.key(ResourceKey.minecraft("dark_oak_stairs"));
 
     public static final DefaultedRegistryReference<BlockType> DARK_OAK_TRAPDOOR = BlockTypes.key(ResourceKey.minecraft("dark_oak_trapdoor"));
+
+    public static final DefaultedRegistryReference<BlockType> DARK_OAK_WALL_HANGING_SIGN = BlockTypes.key(ResourceKey.minecraft("dark_oak_wall_hanging_sign"));
 
     public static final DefaultedRegistryReference<BlockType> DARK_OAK_WALL_SIGN = BlockTypes.key(ResourceKey.minecraft("dark_oak_wall_sign"));
 
@@ -839,6 +889,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> JUNGLE_FENCE_GATE = BlockTypes.key(ResourceKey.minecraft("jungle_fence_gate"));
 
+    public static final DefaultedRegistryReference<BlockType> JUNGLE_HANGING_SIGN = BlockTypes.key(ResourceKey.minecraft("jungle_hanging_sign"));
+
     public static final DefaultedRegistryReference<BlockType> JUNGLE_LEAVES = BlockTypes.key(ResourceKey.minecraft("jungle_leaves"));
 
     public static final DefaultedRegistryReference<BlockType> JUNGLE_LOG = BlockTypes.key(ResourceKey.minecraft("jungle_log"));
@@ -856,6 +908,8 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> JUNGLE_STAIRS = BlockTypes.key(ResourceKey.minecraft("jungle_stairs"));
 
     public static final DefaultedRegistryReference<BlockType> JUNGLE_TRAPDOOR = BlockTypes.key(ResourceKey.minecraft("jungle_trapdoor"));
+
+    public static final DefaultedRegistryReference<BlockType> JUNGLE_WALL_HANGING_SIGN = BlockTypes.key(ResourceKey.minecraft("jungle_wall_hanging_sign"));
 
     public static final DefaultedRegistryReference<BlockType> JUNGLE_WALL_SIGN = BlockTypes.key(ResourceKey.minecraft("jungle_wall_sign"));
 
@@ -1023,6 +1077,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> MANGROVE_FENCE_GATE = BlockTypes.key(ResourceKey.minecraft("mangrove_fence_gate"));
 
+    public static final DefaultedRegistryReference<BlockType> MANGROVE_HANGING_SIGN = BlockTypes.key(ResourceKey.minecraft("mangrove_hanging_sign"));
+
     public static final DefaultedRegistryReference<BlockType> MANGROVE_LEAVES = BlockTypes.key(ResourceKey.minecraft("mangrove_leaves"));
 
     public static final DefaultedRegistryReference<BlockType> MANGROVE_LOG = BlockTypes.key(ResourceKey.minecraft("mangrove_log"));
@@ -1042,6 +1098,8 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> MANGROVE_STAIRS = BlockTypes.key(ResourceKey.minecraft("mangrove_stairs"));
 
     public static final DefaultedRegistryReference<BlockType> MANGROVE_TRAPDOOR = BlockTypes.key(ResourceKey.minecraft("mangrove_trapdoor"));
+
+    public static final DefaultedRegistryReference<BlockType> MANGROVE_WALL_HANGING_SIGN = BlockTypes.key(ResourceKey.minecraft("mangrove_wall_hanging_sign"));
 
     public static final DefaultedRegistryReference<BlockType> MANGROVE_WALL_SIGN = BlockTypes.key(ResourceKey.minecraft("mangrove_wall_sign"));
 
@@ -1127,6 +1185,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> OAK_FENCE_GATE = BlockTypes.key(ResourceKey.minecraft("oak_fence_gate"));
 
+    public static final DefaultedRegistryReference<BlockType> OAK_HANGING_SIGN = BlockTypes.key(ResourceKey.minecraft("oak_hanging_sign"));
+
     public static final DefaultedRegistryReference<BlockType> OAK_LEAVES = BlockTypes.key(ResourceKey.minecraft("oak_leaves"));
 
     public static final DefaultedRegistryReference<BlockType> OAK_LOG = BlockTypes.key(ResourceKey.minecraft("oak_log"));
@@ -1144,6 +1204,8 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> OAK_STAIRS = BlockTypes.key(ResourceKey.minecraft("oak_stairs"));
 
     public static final DefaultedRegistryReference<BlockType> OAK_TRAPDOOR = BlockTypes.key(ResourceKey.minecraft("oak_trapdoor"));
+
+    public static final DefaultedRegistryReference<BlockType> OAK_WALL_HANGING_SIGN = BlockTypes.key(ResourceKey.minecraft("oak_wall_hanging_sign"));
 
     public static final DefaultedRegistryReference<BlockType> OAK_WALL_SIGN = BlockTypes.key(ResourceKey.minecraft("oak_wall_sign"));
 
@@ -1619,6 +1681,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> SPRUCE_FENCE_GATE = BlockTypes.key(ResourceKey.minecraft("spruce_fence_gate"));
 
+    public static final DefaultedRegistryReference<BlockType> SPRUCE_HANGING_SIGN = BlockTypes.key(ResourceKey.minecraft("spruce_hanging_sign"));
+
     public static final DefaultedRegistryReference<BlockType> SPRUCE_LEAVES = BlockTypes.key(ResourceKey.minecraft("spruce_leaves"));
 
     public static final DefaultedRegistryReference<BlockType> SPRUCE_LOG = BlockTypes.key(ResourceKey.minecraft("spruce_log"));
@@ -1636,6 +1700,8 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> SPRUCE_STAIRS = BlockTypes.key(ResourceKey.minecraft("spruce_stairs"));
 
     public static final DefaultedRegistryReference<BlockType> SPRUCE_TRAPDOOR = BlockTypes.key(ResourceKey.minecraft("spruce_trapdoor"));
+
+    public static final DefaultedRegistryReference<BlockType> SPRUCE_WALL_HANGING_SIGN = BlockTypes.key(ResourceKey.minecraft("spruce_wall_hanging_sign"));
 
     public static final DefaultedRegistryReference<BlockType> SPRUCE_WALL_SIGN = BlockTypes.key(ResourceKey.minecraft("spruce_wall_sign"));
 
@@ -1763,6 +1829,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> WARPED_FUNGUS = BlockTypes.key(ResourceKey.minecraft("warped_fungus"));
 
+    public static final DefaultedRegistryReference<BlockType> WARPED_HANGING_SIGN = BlockTypes.key(ResourceKey.minecraft("warped_hanging_sign"));
+
     public static final DefaultedRegistryReference<BlockType> WARPED_HYPHAE = BlockTypes.key(ResourceKey.minecraft("warped_hyphae"));
 
     public static final DefaultedRegistryReference<BlockType> WARPED_NYLIUM = BlockTypes.key(ResourceKey.minecraft("warped_nylium"));
@@ -1782,6 +1850,8 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> WARPED_STEM = BlockTypes.key(ResourceKey.minecraft("warped_stem"));
 
     public static final DefaultedRegistryReference<BlockType> WARPED_TRAPDOOR = BlockTypes.key(ResourceKey.minecraft("warped_trapdoor"));
+
+    public static final DefaultedRegistryReference<BlockType> WARPED_WALL_HANGING_SIGN = BlockTypes.key(ResourceKey.minecraft("warped_wall_hanging_sign"));
 
     public static final DefaultedRegistryReference<BlockType> WARPED_WALL_SIGN = BlockTypes.key(ResourceKey.minecraft("warped_wall_sign"));
 

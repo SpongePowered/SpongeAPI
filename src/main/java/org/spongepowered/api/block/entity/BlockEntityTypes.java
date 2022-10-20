@@ -61,6 +61,8 @@ public final class BlockEntityTypes {
 
     public static final DefaultedRegistryReference<BlockEntityType> CHEST = BlockEntityTypes.key(ResourceKey.minecraft("chest"));
 
+    public static final DefaultedRegistryReference<BlockEntityType> CHISELED_BOOKSHELF = BlockEntityTypes.key(ResourceKey.minecraft("chiseled_bookshelf"));
+
     public static final DefaultedRegistryReference<BlockEntityType> COMMAND_BLOCK = BlockEntityTypes.key(ResourceKey.minecraft("command_block"));
 
     public static final DefaultedRegistryReference<BlockEntityType> COMPARATOR = BlockEntityTypes.key(ResourceKey.minecraft("comparator"));
@@ -82,6 +84,8 @@ public final class BlockEntityTypes {
     public static final DefaultedRegistryReference<BlockEntityType> ENDER_CHEST = BlockEntityTypes.key(ResourceKey.minecraft("ender_chest"));
 
     public static final DefaultedRegistryReference<BlockEntityType> FURNACE = BlockEntityTypes.key(ResourceKey.minecraft("furnace"));
+
+    public static final DefaultedRegistryReference<BlockEntityType> HANGING_SIGN = BlockEntityTypes.key(ResourceKey.minecraft("hanging_sign"));
 
     public static final DefaultedRegistryReference<BlockEntityType> HOPPER = BlockEntityTypes.key(ResourceKey.minecraft("hopper"));
 

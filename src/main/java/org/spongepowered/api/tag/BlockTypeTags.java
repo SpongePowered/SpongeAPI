@@ -172,6 +172,8 @@ public final class BlockTypeTags {
 
     public static final Tag<BlockType> INSIDE_STEP_SOUND_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("inside_step_sound_blocks"));
 
+    public static final Tag<BlockType> INVALID_SPAWN_INSIDE = BlockTypeTags.key(ResourceKey.minecraft("invalid_spawn_inside"));
+
     public static final Tag<BlockType> IRON_ORES = BlockTypeTags.key(ResourceKey.minecraft("iron_ores"));
 
     public static final Tag<BlockType> JUNGLE_LOGS = BlockTypeTags.key(ResourceKey.minecraft("jungle_logs"));
@@ -293,6 +295,8 @@ public final class BlockTypeTags {
     public static final Tag<BlockType> STONE_PRESSURE_PLATES = BlockTypeTags.key(ResourceKey.minecraft("stone_pressure_plates"));
 
     public static final Tag<BlockType> STRIDER_WARM_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("strider_warm_blocks"));
+
+    public static final Tag<BlockType> STRIPPED_LOGS = BlockTypeTags.key(ResourceKey.minecraft("stripped_logs"));
 
     public static final Tag<BlockType> TALL_FLOWERS = BlockTypeTags.key(ResourceKey.minecraft("tall_flowers"));
 

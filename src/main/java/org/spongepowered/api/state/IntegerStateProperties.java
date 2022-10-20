@@ -69,6 +69,10 @@ public final class IntegerStateProperties {
         return IntegerStateProperty.of("BITES");
     }
 
+    public static IntegerStateProperty property_BOOKS_STORED() {
+        return IntegerStateProperty.of("BOOKS_STORED");
+    }
+
     public static IntegerStateProperty property_CANDLES() {
         return IntegerStateProperty.of("CANDLES");
     }
@@ -87,6 +91,10 @@ public final class IntegerStateProperties {
 
     public static IntegerStateProperty property_HATCH() {
         return IntegerStateProperty.of("HATCH");
+    }
+
+    public static IntegerStateProperty property_LAST_INTERACTION_BOOK_SLOT() {
+        return IntegerStateProperty.of("LAST_INTERACTION_BOOK_SLOT");
     }
 
     public static IntegerStateProperty property_LAYERS() {

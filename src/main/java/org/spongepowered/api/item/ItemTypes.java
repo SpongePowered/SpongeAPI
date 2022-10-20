@@ -53,6 +53,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> ACACIA_FENCE_GATE = ItemTypes.key(ResourceKey.minecraft("acacia_fence_gate"));
 
+    public static final DefaultedRegistryReference<ItemType> ACACIA_HANGING_SIGN = ItemTypes.key(ResourceKey.minecraft("acacia_hanging_sign"));
+
     public static final DefaultedRegistryReference<ItemType> ACACIA_LEAVES = ItemTypes.key(ResourceKey.minecraft("acacia_leaves"));
 
     public static final DefaultedRegistryReference<ItemType> ACACIA_LOG = ItemTypes.key(ResourceKey.minecraft("acacia_log"));
@@ -119,6 +121,38 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> BAMBOO = ItemTypes.key(ResourceKey.minecraft("bamboo"));
 
+    public static final DefaultedRegistryReference<ItemType> BAMBOO_BUTTON = ItemTypes.key(ResourceKey.minecraft("bamboo_button"));
+
+    public static final DefaultedRegistryReference<ItemType> BAMBOO_CHEST_RAFT = ItemTypes.key(ResourceKey.minecraft("bamboo_chest_raft"));
+
+    public static final DefaultedRegistryReference<ItemType> BAMBOO_DOOR = ItemTypes.key(ResourceKey.minecraft("bamboo_door"));
+
+    public static final DefaultedRegistryReference<ItemType> BAMBOO_FENCE = ItemTypes.key(ResourceKey.minecraft("bamboo_fence"));
+
+    public static final DefaultedRegistryReference<ItemType> BAMBOO_FENCE_GATE = ItemTypes.key(ResourceKey.minecraft("bamboo_fence_gate"));
+
+    public static final DefaultedRegistryReference<ItemType> BAMBOO_HANGING_SIGN = ItemTypes.key(ResourceKey.minecraft("bamboo_hanging_sign"));
+
+    public static final DefaultedRegistryReference<ItemType> BAMBOO_MOSAIC = ItemTypes.key(ResourceKey.minecraft("bamboo_mosaic"));
+
+    public static final DefaultedRegistryReference<ItemType> BAMBOO_MOSAIC_SLAB = ItemTypes.key(ResourceKey.minecraft("bamboo_mosaic_slab"));
+
+    public static final DefaultedRegistryReference<ItemType> BAMBOO_MOSAIC_STAIRS = ItemTypes.key(ResourceKey.minecraft("bamboo_mosaic_stairs"));
+
+    public static final DefaultedRegistryReference<ItemType> BAMBOO_PLANKS = ItemTypes.key(ResourceKey.minecraft("bamboo_planks"));
+
+    public static final DefaultedRegistryReference<ItemType> BAMBOO_PRESSURE_PLATE = ItemTypes.key(ResourceKey.minecraft("bamboo_pressure_plate"));
+
+    public static final DefaultedRegistryReference<ItemType> BAMBOO_RAFT = ItemTypes.key(ResourceKey.minecraft("bamboo_raft"));
+
+    public static final DefaultedRegistryReference<ItemType> BAMBOO_SIGN = ItemTypes.key(ResourceKey.minecraft("bamboo_sign"));
+
+    public static final DefaultedRegistryReference<ItemType> BAMBOO_SLAB = ItemTypes.key(ResourceKey.minecraft("bamboo_slab"));
+
+    public static final DefaultedRegistryReference<ItemType> BAMBOO_STAIRS = ItemTypes.key(ResourceKey.minecraft("bamboo_stairs"));
+
+    public static final DefaultedRegistryReference<ItemType> BAMBOO_TRAPDOOR = ItemTypes.key(ResourceKey.minecraft("bamboo_trapdoor"));
+
     public static final DefaultedRegistryReference<ItemType> BARREL = ItemTypes.key(ResourceKey.minecraft("barrel"));
 
     public static final DefaultedRegistryReference<ItemType> BARRIER = ItemTypes.key(ResourceKey.minecraft("barrier"));
@@ -160,6 +194,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> BIRCH_FENCE = ItemTypes.key(ResourceKey.minecraft("birch_fence"));
 
     public static final DefaultedRegistryReference<ItemType> BIRCH_FENCE_GATE = ItemTypes.key(ResourceKey.minecraft("birch_fence_gate"));
+
+    public static final DefaultedRegistryReference<ItemType> BIRCH_HANGING_SIGN = ItemTypes.key(ResourceKey.minecraft("birch_hanging_sign"));
 
     public static final DefaultedRegistryReference<ItemType> BIRCH_LEAVES = ItemTypes.key(ResourceKey.minecraft("birch_leaves"));
 
@@ -335,6 +371,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> CALCITE = ItemTypes.key(ResourceKey.minecraft("calcite"));
 
+    public static final DefaultedRegistryReference<ItemType> CAMEL_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("camel_spawn_egg"));
+
     public static final DefaultedRegistryReference<ItemType> CAMPFIRE = ItemTypes.key(ResourceKey.minecraft("campfire"));
 
     public static final DefaultedRegistryReference<ItemType> CANDLE = ItemTypes.key(ResourceKey.minecraft("candle"));
@@ -376,6 +414,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> CHICKEN_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("chicken_spawn_egg"));
 
     public static final DefaultedRegistryReference<ItemType> CHIPPED_ANVIL = ItemTypes.key(ResourceKey.minecraft("chipped_anvil"));
+
+    public static final DefaultedRegistryReference<ItemType> CHISELED_BOOKSHELF = ItemTypes.key(ResourceKey.minecraft("chiseled_bookshelf"));
 
     public static final DefaultedRegistryReference<ItemType> CHISELED_DEEPSLATE = ItemTypes.key(ResourceKey.minecraft("chiseled_deepslate"));
 
@@ -503,6 +543,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> CRIMSON_FUNGUS = ItemTypes.key(ResourceKey.minecraft("crimson_fungus"));
 
+    public static final DefaultedRegistryReference<ItemType> CRIMSON_HANGING_SIGN = ItemTypes.key(ResourceKey.minecraft("crimson_hanging_sign"));
+
     public static final DefaultedRegistryReference<ItemType> CRIMSON_HYPHAE = ItemTypes.key(ResourceKey.minecraft("crimson_hyphae"));
 
     public static final DefaultedRegistryReference<ItemType> CRIMSON_NYLIUM = ItemTypes.key(ResourceKey.minecraft("crimson_nylium"));
@@ -582,6 +624,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> DARK_OAK_FENCE = ItemTypes.key(ResourceKey.minecraft("dark_oak_fence"));
 
     public static final DefaultedRegistryReference<ItemType> DARK_OAK_FENCE_GATE = ItemTypes.key(ResourceKey.minecraft("dark_oak_fence_gate"));
+
+    public static final DefaultedRegistryReference<ItemType> DARK_OAK_HANGING_SIGN = ItemTypes.key(ResourceKey.minecraft("dark_oak_hanging_sign"));
 
     public static final DefaultedRegistryReference<ItemType> DARK_OAK_LEAVES = ItemTypes.key(ResourceKey.minecraft("dark_oak_leaves"));
 
@@ -1091,6 +1135,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> JUNGLE_FENCE_GATE = ItemTypes.key(ResourceKey.minecraft("jungle_fence_gate"));
 
+    public static final DefaultedRegistryReference<ItemType> JUNGLE_HANGING_SIGN = ItemTypes.key(ResourceKey.minecraft("jungle_hanging_sign"));
+
     public static final DefaultedRegistryReference<ItemType> JUNGLE_LEAVES = ItemTypes.key(ResourceKey.minecraft("jungle_leaves"));
 
     public static final DefaultedRegistryReference<ItemType> JUNGLE_LOG = ItemTypes.key(ResourceKey.minecraft("jungle_log"));
@@ -1291,6 +1337,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> MANGROVE_FENCE_GATE = ItemTypes.key(ResourceKey.minecraft("mangrove_fence_gate"));
 
+    public static final DefaultedRegistryReference<ItemType> MANGROVE_HANGING_SIGN = ItemTypes.key(ResourceKey.minecraft("mangrove_hanging_sign"));
+
     public static final DefaultedRegistryReference<ItemType> MANGROVE_LEAVES = ItemTypes.key(ResourceKey.minecraft("mangrove_leaves"));
 
     public static final DefaultedRegistryReference<ItemType> MANGROVE_LOG = ItemTypes.key(ResourceKey.minecraft("mangrove_log"));
@@ -1470,6 +1518,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> OAK_FENCE = ItemTypes.key(ResourceKey.minecraft("oak_fence"));
 
     public static final DefaultedRegistryReference<ItemType> OAK_FENCE_GATE = ItemTypes.key(ResourceKey.minecraft("oak_fence_gate"));
+
+    public static final DefaultedRegistryReference<ItemType> OAK_HANGING_SIGN = ItemTypes.key(ResourceKey.minecraft("oak_hanging_sign"));
 
     public static final DefaultedRegistryReference<ItemType> OAK_LEAVES = ItemTypes.key(ResourceKey.minecraft("oak_leaves"));
 
@@ -1991,6 +2041,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> SPRUCE_FENCE_GATE = ItemTypes.key(ResourceKey.minecraft("spruce_fence_gate"));
 
+    public static final DefaultedRegistryReference<ItemType> SPRUCE_HANGING_SIGN = ItemTypes.key(ResourceKey.minecraft("spruce_hanging_sign"));
+
     public static final DefaultedRegistryReference<ItemType> SPRUCE_LEAVES = ItemTypes.key(ResourceKey.minecraft("spruce_leaves"));
 
     public static final DefaultedRegistryReference<ItemType> SPRUCE_LOG = ItemTypes.key(ResourceKey.minecraft("spruce_log"));
@@ -2182,6 +2234,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> WARPED_FUNGUS = ItemTypes.key(ResourceKey.minecraft("warped_fungus"));
 
     public static final DefaultedRegistryReference<ItemType> WARPED_FUNGUS_ON_A_STICK = ItemTypes.key(ResourceKey.minecraft("warped_fungus_on_a_stick"));
+
+    public static final DefaultedRegistryReference<ItemType> WARPED_HANGING_SIGN = ItemTypes.key(ResourceKey.minecraft("warped_hanging_sign"));
 
     public static final DefaultedRegistryReference<ItemType> WARPED_HYPHAE = ItemTypes.key(ResourceKey.minecraft("warped_hyphae"));
 

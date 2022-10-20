@@ -162,6 +162,8 @@ public final class ItemTypeTags {
 
     public static final Tag<ItemType> STONE_TOOL_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("stone_tool_materials"));
 
+    public static final Tag<ItemType> STRIPPED_LOGS = ItemTypeTags.key(ResourceKey.minecraft("stripped_logs"));
+
     public static final Tag<ItemType> TALL_FLOWERS = ItemTypeTags.key(ResourceKey.minecraft("tall_flowers"));
 
     public static final Tag<ItemType> TERRACOTTA = ItemTypeTags.key(ResourceKey.minecraft("terracotta"));

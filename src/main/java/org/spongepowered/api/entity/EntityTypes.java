@@ -54,6 +54,7 @@ import org.spongepowered.api.entity.living.animal.cow.Cow;
 import org.spongepowered.api.entity.living.animal.cow.Mooshroom;
 import org.spongepowered.api.entity.living.animal.frog.Frog;
 import org.spongepowered.api.entity.living.animal.frog.Tadpole;
+import org.spongepowered.api.entity.living.animal.horse.Camel;
 import org.spongepowered.api.entity.living.animal.horse.Donkey;
 import org.spongepowered.api.entity.living.animal.horse.Horse;
 import org.spongepowered.api.entity.living.animal.horse.Mule;
@@ -169,6 +170,8 @@ public final class EntityTypes {
     public static final DefaultedRegistryReference<EntityType<Blaze>> BLAZE = EntityTypes.key(ResourceKey.minecraft("blaze"));
 
     public static final DefaultedRegistryReference<EntityType<Boat>> BOAT = EntityTypes.key(ResourceKey.minecraft("boat"));
+
+    public static final DefaultedRegistryReference<EntityType<Camel>> CAMEL = EntityTypes.key(ResourceKey.minecraft("camel"));
 
     public static final DefaultedRegistryReference<EntityType<Cat>> CAT = EntityTypes.key(ResourceKey.minecraft("cat"));
 
