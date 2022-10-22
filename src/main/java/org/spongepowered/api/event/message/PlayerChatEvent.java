@@ -47,7 +47,7 @@ public interface PlayerChatEvent extends MessageEvent {
      *
      * @return The player sending the message
      */
-    ServerPlayer player();
+    Optional<ServerPlayer> player();
 
     /**
      * Fired when a message is sent by a player.
