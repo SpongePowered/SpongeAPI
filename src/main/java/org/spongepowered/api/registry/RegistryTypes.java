@@ -326,7 +326,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<Difficulty> DIFFICULTY = RegistryTypes.spongeKeyInGame("difficulty");
 
-    public static final DefaultedRegistryType<DismountType> DISMOUNT_TYPE = RegistryTypes.minecraftKeyInGame("dismount_type");
+    public static final DefaultedRegistryType<DismountType> DISMOUNT_TYPE = RegistryTypes.spongeKeyInGame("dismount_type");
 
     public static final DefaultedRegistryType<DisplaySlot> DISPLAY_SLOT = RegistryTypes.spongeKeyInGame("display_slot");
 
