@@ -44,6 +44,10 @@ public final class Triggers {
 
     // SORTFIELDS:ON
 
+    public static final DefaultedRegistryReference<Trigger<?>> AVOID_VIBRATION = Triggers.key(ResourceKey.minecraft("avoid_vibration"));
+
+    public static final DefaultedRegistryReference<Trigger<?>> ALLAY_DROP_ITEM_ON_BLOCK = Triggers.key(ResourceKey.minecraft("allay_drop_item_on_block"));
+
     public static final DefaultedRegistryReference<Trigger<?>> BAD_OMEN = Triggers.key(ResourceKey.minecraft("voluntary_exile"));
 
     public static final DefaultedRegistryReference<Trigger<?>> BEE_NEST_DESTROYED = Triggers.key(ResourceKey.minecraft("bee_nest_destroyed"));
@@ -72,6 +76,8 @@ public final class Triggers {
 
     public static final DefaultedRegistryReference<Trigger<?>> ENTITY_KILLED_PLAYER = Triggers.key(ResourceKey.minecraft("entity_killed_player"));
 
+    public static final DefaultedRegistryReference<Trigger<?>> FALL_FROM_HEIGHT = Triggers.key(ResourceKey.minecraft("fall_from_height"));
+
     public static final DefaultedRegistryReference<Trigger<?>> FILLED_BUCKET = Triggers.key(ResourceKey.minecraft("filled_bucket"));
 
     public static final DefaultedRegistryReference<Trigger<?>> FISHING_ROD_HOOKED = Triggers.key(ResourceKey.minecraft("fishing_rod_hooked"));
@@ -88,11 +94,17 @@ public final class Triggers {
 
     public static final DefaultedRegistryReference<Trigger<?>> ITEM_PICKED_UP_BY_ENTITY = Triggers.key(ResourceKey.minecraft("thrown_item_picked_up_by_entity"));
 
+    public static final DefaultedRegistryReference<Trigger<?>> ITEM_PICKED_UP_BY_PLAYER = Triggers.key(ResourceKey.minecraft("thrown_item_picked_up_by_player"));
+
     public static final DefaultedRegistryReference<Trigger<?>> ITEM_USED_ON_BLOCK = Triggers.key(ResourceKey.minecraft("item_used_on_block"));
 
     public static final DefaultedRegistryReference<Trigger<?>> KILLED_BY_CROSSBOW = Triggers.key(ResourceKey.minecraft("killed_by_crossbow"));
 
+    public static final DefaultedRegistryReference<Trigger<?>> KILL_MOB_NEAR_SCULK_CATALYST = Triggers.key(ResourceKey.minecraft("kill_mob_near_sculk_catalyst"));
+
     public static final DefaultedRegistryReference<Trigger<?>> LEVITATION = Triggers.key(ResourceKey.minecraft("levitation"));
+
+    public static final DefaultedRegistryReference<Trigger<?>> LIGHTNING_STRIKE = Triggers.key(ResourceKey.minecraft("lightning_strike"));
 
     public static final DefaultedRegistryReference<Trigger<?>> LOCATION = Triggers.key(ResourceKey.minecraft("location"));
 
@@ -110,9 +122,13 @@ public final class Triggers {
 
     public static final DefaultedRegistryReference<Trigger<?>> RECIPE_UNLOCKED = Triggers.key(ResourceKey.minecraft("recipe_unlocked"));
 
+    public static final DefaultedRegistryReference<Trigger<?>> RIDE_ENTITY_IN_LAVA_TRIGGER = Triggers.key(ResourceKey.minecraft("ride_entity_in_lava"));
+
     public static final DefaultedRegistryReference<Trigger<?>> SHOT_CROSSBOW = Triggers.key(ResourceKey.minecraft("shot_crossbow"));
 
     public static final DefaultedRegistryReference<Trigger<?>> SLEPT_IN_BED = Triggers.key(ResourceKey.minecraft("slept_in_bed"));
+
+    public static final DefaultedRegistryReference<Trigger<?>> START_RIDING_TRIGGER = Triggers.key(ResourceKey.minecraft("started_riding"));
 
     public static final DefaultedRegistryReference<Trigger<?>> SUMMONED_ENTITY = Triggers.key(ResourceKey.minecraft("summoned_entity"));
 
@@ -126,6 +142,7 @@ public final class Triggers {
 
     public static final DefaultedRegistryReference<Trigger<?>> USED_TOTEM = Triggers.key(ResourceKey.minecraft("used_totem"));
 
+    public static final DefaultedRegistryReference<Trigger<?>> USING_ITEM = Triggers.key(ResourceKey.minecraft("using_item"));
     public static final DefaultedRegistryReference<Trigger<?>> VILLAGER_TRADE = Triggers.key(ResourceKey.minecraft("villager_trade"));
 
     // SORTFIELDS:OFF
