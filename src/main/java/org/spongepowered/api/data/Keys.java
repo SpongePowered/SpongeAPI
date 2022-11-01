@@ -238,6 +238,7 @@ import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.orientation.Orientation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.util.weighted.WeightedTable;
+import org.spongepowered.api.world.DefaultWorldKeys;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.WorldTypeEffect;
@@ -712,7 +713,8 @@ public final class Keys {
     public static final Key<Value<Double>> COORDINATE_MULTIPLIER = Keys.key(ResourceKey.sponge("coordinate_multiplier"), Double.class);
 
     /**
-     * Whether a {@link WorldType} allows the {@link EnderDragon dragon} fight mechanic to spawn.
+     * Overrides whether a {@link WorldType} allows the {@link EnderDragon dragon} fight mechanic to spawn.
+     * <p>By default, the dragon only spawns in the {@link DefaultWorldKeys#THE_END} world with {@link WorldTypes#THE_END} world type.</p>
      * Readonly
      */
     public static final Key<Value<Boolean>> CREATE_DRAGON_FIGHT = Keys.key(ResourceKey.sponge("create_dragon_fight"), Boolean.class);
