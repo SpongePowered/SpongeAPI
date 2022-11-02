@@ -2977,7 +2977,7 @@ public final class Keys {
     public static final Key<Value<Boolean>> TRACKS_OUTPUT = Keys.key(ResourceKey.sponge("tracks_output"), Boolean.class);
 
     /**
-     * The {@link TradeOffer}s offered by a {@link Trader}.
+     * The {@link TradeOffer}s offered by a {@link Trader} or a {@link org.spongepowered.api.item.inventory.type.ViewableInventory.Custom}
      */
     public static final Key<ListValue<TradeOffer>> TRADE_OFFERS = Keys.listKey(ResourceKey.sponge("trade_offers"), TradeOffer.class);
 
