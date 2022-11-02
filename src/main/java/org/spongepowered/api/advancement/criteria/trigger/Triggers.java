@@ -40,13 +40,9 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class Triggers {
 
-    // @formatter:off
-
-    // SORTFIELDS:ON
+    public static final DefaultedRegistryReference<Trigger<?>> ALLAY_DROP_ITEM_ON_BLOCK = Triggers.key(ResourceKey.minecraft("allay_drop_item_on_block"));
 
     public static final DefaultedRegistryReference<Trigger<?>> AVOID_VIBRATION = Triggers.key(ResourceKey.minecraft("avoid_vibration"));
-
-    public static final DefaultedRegistryReference<Trigger<?>> ALLAY_DROP_ITEM_ON_BLOCK = Triggers.key(ResourceKey.minecraft("allay_drop_item_on_block"));
 
     public static final DefaultedRegistryReference<Trigger<?>> BAD_OMEN = Triggers.key(ResourceKey.minecraft("voluntary_exile"));
 
@@ -94,8 +90,6 @@ public final class Triggers {
 
     public static final DefaultedRegistryReference<Trigger<?>> ITEM_PICKED_UP_BY_ENTITY = Triggers.key(ResourceKey.minecraft("thrown_item_picked_up_by_entity"));
 
-    public static final DefaultedRegistryReference<Trigger<?>> ITEM_PICKED_UP_BY_PLAYER = Triggers.key(ResourceKey.minecraft("thrown_item_picked_up_by_player"));
-
     public static final DefaultedRegistryReference<Trigger<?>> ITEM_USED_ON_BLOCK = Triggers.key(ResourceKey.minecraft("item_used_on_block"));
 
     public static final DefaultedRegistryReference<Trigger<?>> KILLED_BY_CROSSBOW = Triggers.key(ResourceKey.minecraft("killed_by_crossbow"));
@@ -122,19 +116,21 @@ public final class Triggers {
 
     public static final DefaultedRegistryReference<Trigger<?>> RECIPE_UNLOCKED = Triggers.key(ResourceKey.minecraft("recipe_unlocked"));
 
-    public static final DefaultedRegistryReference<Trigger<?>> RIDE_ENTITY_IN_LAVA_TRIGGER = Triggers.key(ResourceKey.minecraft("ride_entity_in_lava"));
+    public static final DefaultedRegistryReference<Trigger<?>> RIDE_ENTITY_IN_LAVA = Triggers.key(ResourceKey.minecraft("ride_entity_in_lava"));
 
     public static final DefaultedRegistryReference<Trigger<?>> SHOT_CROSSBOW = Triggers.key(ResourceKey.minecraft("shot_crossbow"));
 
     public static final DefaultedRegistryReference<Trigger<?>> SLEPT_IN_BED = Triggers.key(ResourceKey.minecraft("slept_in_bed"));
 
-    public static final DefaultedRegistryReference<Trigger<?>> START_RIDING_TRIGGER = Triggers.key(ResourceKey.minecraft("started_riding"));
+    public static final DefaultedRegistryReference<Trigger<?>> STARTED_RIDING = Triggers.key(ResourceKey.minecraft("started_riding"));
 
     public static final DefaultedRegistryReference<Trigger<?>> SUMMONED_ENTITY = Triggers.key(ResourceKey.minecraft("summoned_entity"));
 
     public static final DefaultedRegistryReference<Trigger<?>> TAME_ANIMAL = Triggers.key(ResourceKey.minecraft("tame_animal"));
 
     public static final DefaultedRegistryReference<Trigger<?>> TARGET_BLOCK_HIT = Triggers.key(ResourceKey.minecraft("target_hit"));
+
+    public static final DefaultedRegistryReference<Trigger<?>> THROWN_ITEM_PICKED_UP_BY_PLAYER = Triggers.key(ResourceKey.minecraft("thrown_item_picked_up_by_player"));
 
     public static final DefaultedRegistryReference<Trigger<?>> TICK = Triggers.key(ResourceKey.minecraft("tick"));
 
@@ -143,11 +139,8 @@ public final class Triggers {
     public static final DefaultedRegistryReference<Trigger<?>> USED_TOTEM = Triggers.key(ResourceKey.minecraft("used_totem"));
 
     public static final DefaultedRegistryReference<Trigger<?>> USING_ITEM = Triggers.key(ResourceKey.minecraft("using_item"));
+
     public static final DefaultedRegistryReference<Trigger<?>> VILLAGER_TRADE = Triggers.key(ResourceKey.minecraft("villager_trade"));
-
-    // SORTFIELDS:OFF
-
-    // @formatter:on
 
     private Triggers() {
     }
