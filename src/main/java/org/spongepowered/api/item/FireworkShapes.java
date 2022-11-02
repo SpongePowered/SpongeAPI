@@ -40,23 +40,15 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class FireworkShapes {
 
-    // @formatter:off
-
-    // SORTFIELDS:ON
-
-    public static final DefaultedRegistryReference<FireworkShape> SMALL_BALL = FireworkShapes.key(ResourceKey.sponge("small_ball"));
-
     public static final DefaultedRegistryReference<FireworkShape> BURST = FireworkShapes.key(ResourceKey.sponge("burst"));
 
     public static final DefaultedRegistryReference<FireworkShape> CREEPER = FireworkShapes.key(ResourceKey.sponge("creeper"));
 
     public static final DefaultedRegistryReference<FireworkShape> LARGE_BALL = FireworkShapes.key(ResourceKey.sponge("large_ball"));
 
+    public static final DefaultedRegistryReference<FireworkShape> SMALL_BALL = FireworkShapes.key(ResourceKey.sponge("small_ball"));
+
     public static final DefaultedRegistryReference<FireworkShape> STAR = FireworkShapes.key(ResourceKey.sponge("star"));
-
-    // SORTFIELDS:OFF
-
-    // @formatter:on
 
     private FireworkShapes() {
     }
