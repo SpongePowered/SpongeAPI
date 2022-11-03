@@ -24,6 +24,10 @@ repositories {
     }
 }
 
+java {
+    modularity.inferModulePath.set(false)
+}
+
 val ap by sourceSets.registering {
     compileClasspath += sourceSets.main.get().compileClasspath + sourceSets.main.get().output
 }
@@ -31,6 +35,7 @@ val ap by sourceSets.registering {
 // Project dependencies
 val adventureVersion: String by project
 val configurateVersion: String by project
+val geantyrefVersion: String by project
 val gsonVersion: String by project
 val guavaVersion: String by project
 val log4jVersion: String by project
@@ -113,6 +118,9 @@ dependencies {
         exclude(group = "com.google.inject", module = "guice")
     }
 
+    // Generic type reflection + capture library (used by Configurate, we bump the version for a module name)
+    api("io.leangen.geantyref:geantyref:$geantyrefVersion")
+
     // Compile-time static analysis
     compileOnly("com.google.errorprone:error_prone_annotations:$errorproneVersion")
     errorprone("com.google.errorprone:error_prone_core:$errorproneVersion")
@@ -170,6 +178,10 @@ tasks {
             compilerArgs.addAll(listOf("-Xlint:-path"))
             isDeprecation = false
         }
+
+        doFirst {
+            options.compilerArgs.addAll(listOf("--module-path", classpath.asPath))
+        }
     }
 
     javadoc {
@@ -188,6 +200,10 @@ tasks {
                 }
                 addBooleanOption("quiet", true)
             }
+        }
+
+        doFirst {
+            options.modulePath(classpath.toList())
         }
     }
 

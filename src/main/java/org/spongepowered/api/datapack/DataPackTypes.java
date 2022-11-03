@@ -65,7 +65,7 @@ public final class DataPackTypes {
 
     public static final DataPackType<TagTemplate<ItemType>> ITEM_TAG = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).tag(RegistryTypes.ITEM_TYPE);
 
-    public static final DataPackType<TagTemplate<EntityType<?>>> ENTITY_TAG = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).tag((RegistryType<EntityType<?>>) RegistryTypes.ENTITY_TYPE);
+    public static final DataPackType<TagTemplate<EntityType<?>>> ENTITY_TAG = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).tag((RegistryType<EntityType<?>>) (RegistryType) RegistryTypes.ENTITY_TYPE);
 
     public static final DataPackType<TagTemplate<Biome>> BIOME_TAG = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).tag(RegistryTypes.BIOME);
 
