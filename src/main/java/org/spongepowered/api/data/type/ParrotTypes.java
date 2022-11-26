@@ -50,9 +50,9 @@ public final class ParrotTypes {
 
     public static final DefaultedRegistryReference<ParrotType> GREEN = ParrotTypes.key(ResourceKey.sponge("green"));
 
-    public static final DefaultedRegistryReference<ParrotType> RED_AND_BLUE = ParrotTypes.key(ResourceKey.sponge("red_and_blue"));
+    public static final DefaultedRegistryReference<ParrotType> RED_BLUE = ParrotTypes.key(ResourceKey.sponge("red_blue"));
 
-    public static final DefaultedRegistryReference<ParrotType> YELLOW_AND_BLUE = ParrotTypes.key(ResourceKey.sponge("yellow_and_blue"));
+    public static final DefaultedRegistryReference<ParrotType> YELLOW_BLUE = ParrotTypes.key(ResourceKey.sponge("yellow_blue"));
 
     // SORTFIELDS:OFF
 

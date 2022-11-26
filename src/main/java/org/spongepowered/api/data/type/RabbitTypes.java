@@ -46,15 +46,15 @@ public final class RabbitTypes {
 
     public static final DefaultedRegistryReference<RabbitType> BLACK = RabbitTypes.key(ResourceKey.sponge("black"));
 
-    public static final DefaultedRegistryReference<RabbitType> BLACK_AND_WHITE = RabbitTypes.key(ResourceKey.sponge("black_and_white"));
+    public static final DefaultedRegistryReference<RabbitType> WHITE_SPLOTCHED = RabbitTypes.key(ResourceKey.sponge("white_splotched"));
 
     public static final DefaultedRegistryReference<RabbitType> BROWN = RabbitTypes.key(ResourceKey.sponge("brown"));
 
     public static final DefaultedRegistryReference<RabbitType> GOLD = RabbitTypes.key(ResourceKey.sponge("gold"));
 
-    public static final DefaultedRegistryReference<RabbitType> KILLER = RabbitTypes.key(ResourceKey.sponge("killer"));
+    public static final DefaultedRegistryReference<RabbitType> EVIL = RabbitTypes.key(ResourceKey.sponge("evil"));
 
-    public static final DefaultedRegistryReference<RabbitType> SALT_AND_PEPPER = RabbitTypes.key(ResourceKey.sponge("salt_and_pepper"));
+    public static final DefaultedRegistryReference<RabbitType> SALT = RabbitTypes.key(ResourceKey.sponge("salt"));
 
     public static final DefaultedRegistryReference<RabbitType> WHITE = RabbitTypes.key(ResourceKey.sponge("white"));
 
