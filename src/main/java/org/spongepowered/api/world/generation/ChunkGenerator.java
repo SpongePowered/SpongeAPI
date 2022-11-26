@@ -30,7 +30,6 @@ import org.spongepowered.api.world.WorldTypes;
 import org.spongepowered.api.world.biome.provider.BiomeProvider;
 import org.spongepowered.api.world.generation.config.flat.FlatGeneratorConfig;
 import org.spongepowered.api.world.generation.config.noise.NoiseGeneratorConfig;
-import org.spongepowered.api.world.generation.structure.StructureSet;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.server.WorldTemplate;
 
@@ -78,13 +77,6 @@ public interface ChunkGenerator {
      * @return The biome provider
      */
     BiomeProvider biomeProvider();
-
-    /**
-     * Returns the list of structure sets.
-     *
-     * @return The list of structure sets
-     */
-    List<StructureSet> structureSets();
 
     interface Factory {
 
