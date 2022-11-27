@@ -59,6 +59,10 @@ public final class MapDecorationTypes {
 
     public static final DefaultedRegistryReference<MapDecorationType> RED_MARKER = MapDecorationTypes.key(ResourceKey.sponge("red_marker"));
 
+    public static final DefaultedRegistryReference<MapDecorationType> RED_X = MapDecorationTypes.key(ResourceKey.sponge("red_x"));
+
+    public static final DefaultedRegistryReference<MapDecorationType> TARGET_X = MapDecorationTypes.key(ResourceKey.sponge("target_x"));
+
     public static final DefaultedRegistryReference<MapDecorationType> TARGET_POINT = MapDecorationTypes.key(ResourceKey.sponge("target_point"));
 
     public static final DefaultedRegistryReference<MapDecorationType> BANNER_WHITE = MapDecorationTypes.key(ResourceKey.sponge("banner_white"));

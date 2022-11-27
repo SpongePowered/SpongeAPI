@@ -53,9 +53,13 @@ public final class MusicDiscs {
 
     public static final DefaultedRegistryReference<MusicDisc> MELLOHI = MusicDiscs.key(ResourceKey.sponge("mellohi"));
 
+    public static final DefaultedRegistryReference<MusicDisc> MUSIC_DISC_5 = MusicDiscs.key(ResourceKey.sponge("5"));
+
     public static final DefaultedRegistryReference<MusicDisc> MUSIC_DISC_11 = MusicDiscs.key(ResourceKey.sponge("11"));
 
     public static final DefaultedRegistryReference<MusicDisc> MUSIC_DISC_13 = MusicDiscs.key(ResourceKey.sponge("13"));
+
+    public static final DefaultedRegistryReference<MusicDisc> OTHERSIDE = MusicDiscs.key(ResourceKey.sponge("otherside"));
 
     public static final DefaultedRegistryReference<MusicDisc> PIGSTEP = MusicDiscs.key(ResourceKey.sponge("pigstep"));
 
