@@ -26,7 +26,6 @@ package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
@@ -43,14 +42,7 @@ public final class ContainerTypes {
 
     // @formatter:off
 
-    // SORTFIELDS:ON
-
     // Containers backed by an inventory.
-
-    // TODO check container creation in 1.14 code especially merchant/horse
-
-
-    // TODO add new inventories
 
     public static final DefaultedRegistryReference<ContainerType> BLAST_FURNACE = ContainerTypes.key(ResourceKey.minecraft("blast_furnace"));
 
@@ -133,14 +125,12 @@ public final class ContainerTypes {
 
     public static final DefaultedRegistryReference<ContainerType> STONECUTTER = ContainerTypes.key(ResourceKey.minecraft("stonecutter"));
 
-    // Containers that cannot be opened on their own. Create an Entity to open the container instead.
+    // Containers that require additional data
 
     /**
-     * Create a {@link Villager} Entity instead of using this ContainerType.
+     * Offer {@link org.spongepowered.api.data.Keys#TRADE_OFFERS} to the resulting inventory before opening.
      */
     public static final DefaultedRegistryReference<ContainerType> MERCHANT = ContainerTypes.key(ResourceKey.minecraft("merchant"));
-
-    // SORTFIELDS:OFF
 
     // @formatter:on
 

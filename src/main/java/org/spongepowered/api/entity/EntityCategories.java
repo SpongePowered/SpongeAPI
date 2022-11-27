@@ -32,25 +32,21 @@ import org.spongepowered.api.registry.RegistryTypes;
 
 public final class EntityCategories {
 
-    //@formatter:off
+    public static final DefaultedRegistryReference<EntityCategory> AMBIENT = EntityCategories.key(ResourceKey.sponge("ambient"));
 
-    public static final DefaultedRegistryReference<EntityCategory> MONSTER = EntityCategories.key(ResourceKey.sponge("monster"));
+    public static final DefaultedRegistryReference<EntityCategory> AXOLOTLS = EntityCategories.key(ResourceKey.sponge("axolotls"));
 
     public static final DefaultedRegistryReference<EntityCategory> CREATURE = EntityCategories.key(ResourceKey.sponge("creature"));
 
-    public static final DefaultedRegistryReference<EntityCategory> AMBIENT = EntityCategories.key(ResourceKey.sponge("ambient"));
+    public static final DefaultedRegistryReference<EntityCategory> MISC = EntityCategories.key(ResourceKey.sponge("misc"));
 
-    public static final DefaultedRegistryReference<EntityCategory> WATER_CREATURE = EntityCategories.key(ResourceKey.sponge("water_creature"));
+    public static final DefaultedRegistryReference<EntityCategory> MONSTER = EntityCategories.key(ResourceKey.sponge("monster"));
 
-    // TODO UNDERGROUND_WATER_CREATURE
+    public static final DefaultedRegistryReference<EntityCategory> UNDERGROUND_WATER_CREATURE = EntityCategories.key(ResourceKey.sponge("underground_water_creature"));
 
     public static final DefaultedRegistryReference<EntityCategory> WATER_AMBIENT = EntityCategories.key(ResourceKey.sponge("water_ambient"));
 
-    public static final DefaultedRegistryReference<EntityCategory> MISCELLANEOUS = EntityCategories.key(ResourceKey.sponge("misc"));
-
-    // TODO AXOLOTLS
-
-    //@formatter:on
+    public static final DefaultedRegistryReference<EntityCategory> WATER_CREATURE = EntityCategories.key(ResourceKey.sponge("water_creature"));
 
     private EntityCategories() {
         throw new AssertionError("You should not be attempting to instantiate this class.");

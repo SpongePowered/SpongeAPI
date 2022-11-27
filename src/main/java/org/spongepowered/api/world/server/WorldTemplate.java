@@ -128,6 +128,10 @@ public interface WorldTemplate extends ResourceKeyed, DataPackEntry<WorldTemplat
         return this.get(Keys.SEED);
     }
 
+    default Optional<Boolean> createDragonFight() {
+        return this.get(Keys.CREATE_DRAGON_FIGHT);
+    }
+
     default Builder asBuilder() {
         return Sponge.game().builderProvider().provide(Builder.class).from(this);
     }

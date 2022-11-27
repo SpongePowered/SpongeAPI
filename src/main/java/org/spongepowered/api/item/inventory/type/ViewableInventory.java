@@ -25,6 +25,7 @@
 package org.spongepowered.api.item.inventory.type;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
@@ -76,6 +77,13 @@ public interface ViewableInventory extends Inventory {
      * @return The new InventoryMenu
      */
     InventoryMenu asMenu();
+
+    /**
+     * A custom {@link ViewableInventory} created using the {@link #builder()}
+     */
+    interface Custom extends ViewableInventory, DataHolder.Mutable {
+
+    }
 
     /**
      * Creates a new {@link Builder} to build an {@link ViewableInventory}.
@@ -282,7 +290,7 @@ public interface ViewableInventory extends Inventory {
              * @return the new inventory.
              */
             @Override
-            ViewableInventory build();
+            ViewableInventory.Custom build();
         }
 
     }

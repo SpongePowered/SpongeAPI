@@ -38,9 +38,7 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class ItemRarities {
 
     // @formatter:off
-
     // SORTFIELDS:ON
-
     public static final DefaultedRegistryReference<ItemRarity> COMMON = ItemRarities.key(ResourceKey.sponge("common"));
 
     public static final DefaultedRegistryReference<ItemRarity> EPIC = ItemRarities.key(ResourceKey.sponge("epic"));
@@ -50,9 +48,7 @@ public final class ItemRarities {
     public static final DefaultedRegistryReference<ItemRarity> UNCOMMON = ItemRarities.key(ResourceKey.sponge("uncommon"));
 
     // SORTFIELDS:OFF
-
     // @formatter:on
-
     private ItemRarities() {
     }
 
