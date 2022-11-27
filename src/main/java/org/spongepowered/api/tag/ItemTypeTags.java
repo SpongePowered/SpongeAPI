@@ -76,6 +76,8 @@ public final class ItemTypeTags {
 
     public static final Tag<ItemType> CREEPER_DROP_MUSIC_DISCS = ItemTypeTags.key(ResourceKey.minecraft("creeper_drop_music_discs"));
 
+    public static final Tag<ItemType> CREEPER_IGNITERS = ItemTypeTags.key(ResourceKey.minecraft("creeper_igniters"));
+
     public static final Tag<ItemType> CRIMSON_STEMS = ItemTypeTags.key(ResourceKey.minecraft("crimson_stems"));
 
     public static final Tag<ItemType> DAMPENS_VIBRATIONS = ItemTypeTags.key(ResourceKey.minecraft("dampens_vibrations"));
@@ -89,6 +91,8 @@ public final class ItemTypeTags {
     public static final Tag<ItemType> DOORS = ItemTypeTags.key(ResourceKey.minecraft("doors"));
 
     public static final Tag<ItemType> EMERALD_ORES = ItemTypeTags.key(ResourceKey.minecraft("emerald_ores"));
+
+    public static final Tag<ItemType> FENCE_GATES = ItemTypeTags.key(ResourceKey.minecraft("fence_gates"));
 
     public static final Tag<ItemType> FENCES = ItemTypeTags.key(ResourceKey.minecraft("fences"));
 
@@ -126,8 +130,6 @@ public final class ItemTypeTags {
 
     public static final Tag<ItemType> OAK_LOGS = ItemTypeTags.key(ResourceKey.minecraft("oak_logs"));
 
-    public static final Tag<ItemType> OVERWORLD_NATURAL_LOGS = ItemTypeTags.key(ResourceKey.minecraft("overworld_natural_logs"));
-
     public static final Tag<ItemType> PIGLIN_FOOD = ItemTypeTags.key(ResourceKey.minecraft("piglin_food"));
 
     public static final Tag<ItemType> PIGLIN_LOVED = ItemTypeTags.key(ResourceKey.minecraft("piglin_loved"));
@@ -161,8 +163,6 @@ public final class ItemTypeTags {
     public static final Tag<ItemType> STONE_CRAFTING_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("stone_crafting_materials"));
 
     public static final Tag<ItemType> STONE_TOOL_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("stone_tool_materials"));
-
-    public static final Tag<ItemType> STRIPPED_LOGS = ItemTypeTags.key(ResourceKey.minecraft("stripped_logs"));
 
     public static final Tag<ItemType> TALL_FLOWERS = ItemTypeTags.key(ResourceKey.minecraft("tall_flowers"));
 

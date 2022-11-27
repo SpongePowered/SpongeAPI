@@ -40,6 +40,8 @@ public final class BlockTypeTags {
     // @formatter:off
     public static final Tag<BlockType> ACACIA_LOGS = BlockTypeTags.key(ResourceKey.minecraft("acacia_logs"));
 
+    public static final Tag<BlockType> ALL_SIGNS = BlockTypeTags.key(ResourceKey.minecraft("all_signs"));
+
     public static final Tag<BlockType> ANCIENT_CITY_REPLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("ancient_city_replaceable"));
 
     public static final Tag<BlockType> ANIMALS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("animals_spawnable_on"));
@@ -218,8 +220,6 @@ public final class BlockTypeTags {
 
     public static final Tag<BlockType> NETHER_CARVER_REPLACEABLES = BlockTypeTags.key(ResourceKey.minecraft("nether_carver_replaceables"));
 
-    public static final Tag<BlockType> NON_FLAMMABLE_WOOD = BlockTypeTags.key(ResourceKey.minecraft("non_flammable_wood"));
-
     public static final Tag<BlockType> NYLIUM = BlockTypeTags.key(ResourceKey.minecraft("nylium"));
 
     public static final Tag<BlockType> OAK_LOGS = BlockTypeTags.key(ResourceKey.minecraft("oak_logs"));
@@ -295,8 +295,6 @@ public final class BlockTypeTags {
     public static final Tag<BlockType> STONE_PRESSURE_PLATES = BlockTypeTags.key(ResourceKey.minecraft("stone_pressure_plates"));
 
     public static final Tag<BlockType> STRIDER_WARM_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("strider_warm_blocks"));
-
-    public static final Tag<BlockType> STRIPPED_LOGS = BlockTypeTags.key(ResourceKey.minecraft("stripped_logs"));
 
     public static final Tag<BlockType> TALL_FLOWERS = BlockTypeTags.key(ResourceKey.minecraft("tall_flowers"));
 

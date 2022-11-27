@@ -109,6 +109,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> BAMBOO = BlockTypes.key(ResourceKey.minecraft("bamboo"));
 
+    public static final DefaultedRegistryReference<BlockType> BAMBOO_BLOCK = BlockTypes.key(ResourceKey.minecraft("bamboo_block"));
+
     public static final DefaultedRegistryReference<BlockType> BAMBOO_BUTTON = BlockTypes.key(ResourceKey.minecraft("bamboo_button"));
 
     public static final DefaultedRegistryReference<BlockType> BAMBOO_DOOR = BlockTypes.key(ResourceKey.minecraft("bamboo_door"));
@@ -1267,6 +1269,10 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> PETRIFIED_OAK_SLAB = BlockTypes.key(ResourceKey.minecraft("petrified_oak_slab"));
 
+    public static final DefaultedRegistryReference<BlockType> PIGLIN_HEAD = BlockTypes.key(ResourceKey.minecraft("piglin_head"));
+
+    public static final DefaultedRegistryReference<BlockType> PIGLIN_WALL_HEAD = BlockTypes.key(ResourceKey.minecraft("piglin_wall_head"));
+
     public static final DefaultedRegistryReference<BlockType> PINK_BANNER = BlockTypes.key(ResourceKey.minecraft("pink_banner"));
 
     public static final DefaultedRegistryReference<BlockType> PINK_BED = BlockTypes.key(ResourceKey.minecraft("pink_bed"));
@@ -1732,6 +1738,8 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> STRIPPED_ACACIA_LOG = BlockTypes.key(ResourceKey.minecraft("stripped_acacia_log"));
 
     public static final DefaultedRegistryReference<BlockType> STRIPPED_ACACIA_WOOD = BlockTypes.key(ResourceKey.minecraft("stripped_acacia_wood"));
+
+    public static final DefaultedRegistryReference<BlockType> STRIPPED_BAMBOO_BLOCK = BlockTypes.key(ResourceKey.minecraft("stripped_bamboo_block"));
 
     public static final DefaultedRegistryReference<BlockType> STRIPPED_BIRCH_LOG = BlockTypes.key(ResourceKey.minecraft("stripped_birch_log"));
 

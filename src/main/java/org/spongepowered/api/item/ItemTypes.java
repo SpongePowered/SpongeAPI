@@ -121,6 +121,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> BAMBOO = ItemTypes.key(ResourceKey.minecraft("bamboo"));
 
+    public static final DefaultedRegistryReference<ItemType> BAMBOO_BLOCK = ItemTypes.key(ResourceKey.minecraft("bamboo_block"));
+
     public static final DefaultedRegistryReference<ItemType> BAMBOO_BUTTON = ItemTypes.key(ResourceKey.minecraft("bamboo_button"));
 
     public static final DefaultedRegistryReference<ItemType> BAMBOO_CHEST_RAFT = ItemTypes.key(ResourceKey.minecraft("bamboo_chest_raft"));
@@ -825,6 +827,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> ENDER_CHEST = ItemTypes.key(ResourceKey.minecraft("ender_chest"));
 
+    public static final DefaultedRegistryReference<ItemType> ENDER_DRAGON_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("ender_dragon_spawn_egg"));
+
     public static final DefaultedRegistryReference<ItemType> ENDER_EYE = ItemTypes.key(ResourceKey.minecraft("ender_eye"));
 
     public static final DefaultedRegistryReference<ItemType> ENDER_PEARL = ItemTypes.key(ResourceKey.minecraft("ender_pearl"));
@@ -1092,6 +1096,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> IRON_CHESTPLATE = ItemTypes.key(ResourceKey.minecraft("iron_chestplate"));
 
     public static final DefaultedRegistryReference<ItemType> IRON_DOOR = ItemTypes.key(ResourceKey.minecraft("iron_door"));
+
+    public static final DefaultedRegistryReference<ItemType> IRON_GOLEM_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("iron_golem_spawn_egg"));
 
     public static final DefaultedRegistryReference<ItemType> IRON_HELMET = ItemTypes.key(ResourceKey.minecraft("iron_helmet"));
 
@@ -1615,6 +1621,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> PIGLIN_BRUTE_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("piglin_brute_spawn_egg"));
 
+    public static final DefaultedRegistryReference<ItemType> PIGLIN_HEAD = ItemTypes.key(ResourceKey.minecraft("piglin_head"));
+
     public static final DefaultedRegistryReference<ItemType> PIGLIN_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("piglin_spawn_egg"));
 
     public static final DefaultedRegistryReference<ItemType> PILLAGER_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("pillager_spawn_egg"));
@@ -2003,6 +2011,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> SNOW_BLOCK = ItemTypes.key(ResourceKey.minecraft("snow_block"));
 
+    public static final DefaultedRegistryReference<ItemType> SNOW_GOLEM_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("snow_golem_spawn_egg"));
+
     public static final DefaultedRegistryReference<ItemType> SNOWBALL = ItemTypes.key(ResourceKey.minecraft("snowball"));
 
     public static final DefaultedRegistryReference<ItemType> SOUL_CAMPFIRE = ItemTypes.key(ResourceKey.minecraft("soul_campfire"));
@@ -2110,6 +2120,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> STRIPPED_ACACIA_LOG = ItemTypes.key(ResourceKey.minecraft("stripped_acacia_log"));
 
     public static final DefaultedRegistryReference<ItemType> STRIPPED_ACACIA_WOOD = ItemTypes.key(ResourceKey.minecraft("stripped_acacia_wood"));
+
+    public static final DefaultedRegistryReference<ItemType> STRIPPED_BAMBOO_BLOCK = ItemTypes.key(ResourceKey.minecraft("stripped_bamboo_block"));
 
     public static final DefaultedRegistryReference<ItemType> STRIPPED_BIRCH_LOG = ItemTypes.key(ResourceKey.minecraft("stripped_birch_log"));
 
@@ -2344,6 +2356,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> WITHER_SKELETON_SKULL = ItemTypes.key(ResourceKey.minecraft("wither_skeleton_skull"));
 
     public static final DefaultedRegistryReference<ItemType> WITHER_SKELETON_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("wither_skeleton_spawn_egg"));
+
+    public static final DefaultedRegistryReference<ItemType> WITHER_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("wither_spawn_egg"));
 
     public static final DefaultedRegistryReference<ItemType> WOLF_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("wolf_spawn_egg"));
 

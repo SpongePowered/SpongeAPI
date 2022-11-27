@@ -191,6 +191,16 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_BAMBOO_WOOD_FENCE_GATE_OPEN = SoundTypes.key(ResourceKey.minecraft("block.bamboo_wood_fence_gate.open"));
 
+    public static final DefaultedRegistryReference<SoundType> BLOCK_BAMBOO_WOOD_HANGING_SIGN_BREAK = SoundTypes.key(ResourceKey.minecraft("block.bamboo_wood_hanging_sign.break"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_BAMBOO_WOOD_HANGING_SIGN_FALL = SoundTypes.key(ResourceKey.minecraft("block.bamboo_wood_hanging_sign.fall"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_BAMBOO_WOOD_HANGING_SIGN_HIT = SoundTypes.key(ResourceKey.minecraft("block.bamboo_wood_hanging_sign.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_BAMBOO_WOOD_HANGING_SIGN_PLACE = SoundTypes.key(ResourceKey.minecraft("block.bamboo_wood_hanging_sign.place"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_BAMBOO_WOOD_HANGING_SIGN_STEP = SoundTypes.key(ResourceKey.minecraft("block.bamboo_wood_hanging_sign.step"));
+
     public static final DefaultedRegistryReference<SoundType> BLOCK_BAMBOO_WOOD_PRESSURE_PLATE_CLICK_OFF = SoundTypes.key(ResourceKey.minecraft("block.bamboo_wood_pressure_plate.click_off"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_BAMBOO_WOOD_PRESSURE_PLATE_CLICK_ON = SoundTypes.key(ResourceKey.minecraft("block.bamboo_wood_pressure_plate.click_on"));
@@ -328,6 +338,24 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> BLOCK_CHEST_LOCKED = SoundTypes.key(ResourceKey.minecraft("block.chest.locked"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_CHEST_OPEN = SoundTypes.key(ResourceKey.minecraft("block.chest.open"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_CHISELED_BOOKSHELF_BREAK = SoundTypes.key(ResourceKey.minecraft("block.chiseled_bookshelf.break"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_CHISELED_BOOKSHELF_FALL = SoundTypes.key(ResourceKey.minecraft("block.chiseled_bookshelf.fall"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_CHISELED_BOOKSHELF_HIT = SoundTypes.key(ResourceKey.minecraft("block.chiseled_bookshelf.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_CHISELED_BOOKSHELF_INSERT = SoundTypes.key(ResourceKey.minecraft("block.chiseled_bookshelf.insert"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_CHISELED_BOOKSHELF_INSERT_ENCHANTED = SoundTypes.key(ResourceKey.minecraft("block.chiseled_bookshelf.insert.enchanted"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_CHISELED_BOOKSHELF_PICKUP = SoundTypes.key(ResourceKey.minecraft("block.chiseled_bookshelf.pickup"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_CHISELED_BOOKSHELF_PICKUP_ENCHANTED = SoundTypes.key(ResourceKey.minecraft("block.chiseled_bookshelf.pickup.enchanted"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_CHISELED_BOOKSHELF_PLACE = SoundTypes.key(ResourceKey.minecraft("block.chiseled_bookshelf.place"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_CHISELED_BOOKSHELF_STEP = SoundTypes.key(ResourceKey.minecraft("block.chiseled_bookshelf.step"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_CHORUS_FLOWER_DEATH = SoundTypes.key(ResourceKey.minecraft("block.chorus_flower.death"));
 
@@ -754,6 +782,16 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> BLOCK_NETHER_WOOD_FENCE_GATE_CLOSE = SoundTypes.key(ResourceKey.minecraft("block.nether_wood_fence_gate.close"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_NETHER_WOOD_FENCE_GATE_OPEN = SoundTypes.key(ResourceKey.minecraft("block.nether_wood_fence_gate.open"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_NETHER_WOOD_HANGING_SIGN_BREAK = SoundTypes.key(ResourceKey.minecraft("block.nether_wood_hanging_sign.break"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_NETHER_WOOD_HANGING_SIGN_FALL = SoundTypes.key(ResourceKey.minecraft("block.nether_wood_hanging_sign.fall"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_NETHER_WOOD_HANGING_SIGN_HIT = SoundTypes.key(ResourceKey.minecraft("block.nether_wood_hanging_sign.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_NETHER_WOOD_HANGING_SIGN_PLACE = SoundTypes.key(ResourceKey.minecraft("block.nether_wood_hanging_sign.place"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_NETHER_WOOD_HANGING_SIGN_STEP = SoundTypes.key(ResourceKey.minecraft("block.nether_wood_hanging_sign.step"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_NETHER_WOOD_PRESSURE_PLATE_CLICK_OFF = SoundTypes.key(ResourceKey.minecraft("block.nether_wood_pressure_plate.click_off"));
 
