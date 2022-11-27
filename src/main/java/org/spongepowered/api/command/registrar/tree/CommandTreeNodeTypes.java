@@ -68,8 +68,6 @@ public final class CommandTreeNodeTypes {
 
     public static final DefaultedRegistryReference<CommandTreeNodeType<CommandTreeNode.Basic>> ENTITY_ANCHOR = CommandTreeNodeTypes.key(ResourceKey.minecraft("entity_anchor"));
 
-    public static final DefaultedRegistryReference<CommandTreeNodeType<CommandTreeNode.Basic>> ENTITY_SUMMON = CommandTreeNodeTypes.key(ResourceKey.minecraft("entity_summon"));
-
     public static final DefaultedRegistryReference<CommandTreeNodeType<CommandTreeNode.Range<Float>>> FLOAT = CommandTreeNodeTypes.key(ResourceKey.brigadier("float"));
 
     public static final DefaultedRegistryReference<CommandTreeNodeType<CommandTreeNode.Basic>> FLOAT_RANGE = CommandTreeNodeTypes.key(ResourceKey.minecraft("float_range"));
@@ -82,8 +80,6 @@ public final class CommandTreeNodeTypes {
 
     public static final DefaultedRegistryReference<CommandTreeNodeType<CommandTreeNode.Basic>> INT_RANGE = CommandTreeNodeTypes.key(ResourceKey.minecraft("int_range"));
 
-    public static final DefaultedRegistryReference<CommandTreeNodeType<CommandTreeNode.Basic>> ITEM_ENCHANTMENT = CommandTreeNodeTypes.key(ResourceKey.minecraft("item_enchantment"));
-
     public static final DefaultedRegistryReference<CommandTreeNodeType<CommandTreeNode.Basic>> ITEM_PREDICATE = CommandTreeNodeTypes.key(ResourceKey.minecraft("item_predicate"));
 
     public static final DefaultedRegistryReference<CommandTreeNodeType<CommandTreeNode.Basic>> ITEM_SLOT = CommandTreeNodeTypes.key(ResourceKey.minecraft("item_slot"));
@@ -93,8 +89,6 @@ public final class CommandTreeNodeTypes {
     public static final DefaultedRegistryReference<CommandTreeNodeType<CommandTreeNode.Range<Long>>> LONG = CommandTreeNodeTypes.key(ResourceKey.brigadier("long"));
 
     public static final DefaultedRegistryReference<CommandTreeNodeType<CommandTreeNode.Basic>> MESSAGE = CommandTreeNodeTypes.key(ResourceKey.minecraft("message"));
-
-    public static final DefaultedRegistryReference<CommandTreeNodeType<CommandTreeNode.Basic>> MOB_EFFECT = CommandTreeNodeTypes.key(ResourceKey.minecraft("mob_effect"));
 
     public static final DefaultedRegistryReference<CommandTreeNodeType<CommandTreeNode.Basic>> NBT_COMPOUND_TAG = CommandTreeNodeTypes.key(ResourceKey.minecraft("nbt_compound_tag"));
 
