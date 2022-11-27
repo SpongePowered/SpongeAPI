@@ -58,6 +58,7 @@ import org.spongepowered.api.data.type.DoorHinge;
 import org.spongepowered.api.data.type.DripstoneSegment;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.type.FoxType;
+import org.spongepowered.api.data.type.FrogType;
 import org.spongepowered.api.data.type.HandPreference;
 import org.spongepowered.api.data.type.HandType;
 import org.spongepowered.api.data.type.HorseColor;
@@ -347,6 +348,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<FlatGeneratorConfig> FLAT_GENERATOR_CONFIG = RegistryTypes.spongeKeyInGame("flat_generator_config");
 
     public static final DefaultedRegistryType<FoxType> FOX_TYPE = RegistryTypes.spongeKeyInGame("fox_type");
+
+    public static final DefaultedRegistryType<FrogType> FROG_TYPE = RegistryTypes.spongeKeyInGame("frog_type");
 
     public static final DefaultedRegistryType<GameMode> GAME_MODE = RegistryTypes.spongeKeyInGame("game_mode");
 
