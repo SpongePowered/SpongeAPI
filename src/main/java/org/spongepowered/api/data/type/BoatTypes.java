@@ -41,10 +41,10 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class BoatTypes {
 
     // @formatter:off
-
     // SORTFIELDS:ON
-
     public static final DefaultedRegistryReference<BoatType> ACACIA = BoatTypes.key(ResourceKey.sponge("acacia"));
+
+    public static final DefaultedRegistryReference<BoatType> BAMBOO = BoatTypes.key(ResourceKey.sponge("bamboo"));
 
     public static final DefaultedRegistryReference<BoatType> BIRCH = BoatTypes.key(ResourceKey.sponge("birch"));
 
@@ -52,14 +52,14 @@ public final class BoatTypes {
 
     public static final DefaultedRegistryReference<BoatType> JUNGLE = BoatTypes.key(ResourceKey.sponge("jungle"));
 
+    public static final DefaultedRegistryReference<BoatType> MANGROVE = BoatTypes.key(ResourceKey.sponge("mangrove"));
+
     public static final DefaultedRegistryReference<BoatType> OAK = BoatTypes.key(ResourceKey.sponge("oak"));
 
     public static final DefaultedRegistryReference<BoatType> SPRUCE = BoatTypes.key(ResourceKey.sponge("spruce"));
 
     // SORTFIELDS:OFF
-
     // @formatter:on
-
     private BoatTypes() {
     }
 
