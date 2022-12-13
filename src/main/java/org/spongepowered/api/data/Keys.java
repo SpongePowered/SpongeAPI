@@ -947,7 +947,7 @@ public final class Keys {
     public static final Key<Value<Ticks>> FUSE_DURATION = Keys.key(ResourceKey.sponge("fuse_duration"), Ticks.class);
 
     /**
-     * The {@link GameMode} a {@link Humanoid} has.
+     * The {@link GameMode} a {@link ServerPlayer} has.
      */
     public static final Key<Value<GameMode>> GAME_MODE = Keys.key(ResourceKey.sponge("game_mode"), GameMode.class);
 
@@ -2205,6 +2205,11 @@ public final class Keys {
      * {@link BlockTypes#LIGHT_WEIGHTED_PRESSURE_PLATE} etc.</p>
      */
     public static final Key<Value<Integer>> POWER = Keys.key(ResourceKey.sponge("power"), Integer.class);
+
+    /**
+     * The previous {@link GameMode} of a {@link ServerPlayer}. Readonly.
+     */
+    public static final Key<Value<GameMode>> PREVIOUS_GAME_MODE = Keys.key(ResourceKey.sponge("previous_game_mode"), GameMode.class);
 
     /**
      * A {@link Beacon}'s primary effect.
