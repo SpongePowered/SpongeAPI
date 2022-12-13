@@ -69,7 +69,7 @@ public final class CommandCompletionProviders {
      * vanilla {@code /summon} command.
      *
      * <p>This provider is intended for use with
-     * {@link CommandTreeNodeTypes#ENTITY_SUMMON}</p>
+     * {@link CommandTreeNodeTypes#RESOURCE_LOCATION}</p> <!-- TODO: review command node types -->
      */
     public static final DefaultedRegistryReference<CommandCompletionProvider> SUMMONABLE_ENTITIES = CommandCompletionProviders.key(ResourceKey.minecraft("summonable_entities"));
 

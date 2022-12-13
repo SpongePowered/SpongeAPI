@@ -845,6 +845,18 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_NOTE_BLOCK_HAT = SoundTypes.key(ResourceKey.minecraft("block.note_block.hat"));
 
+    public static final DefaultedRegistryReference<SoundType> BLOCK_NOTE_BLOCK_IMITATE_CREEPER = SoundTypes.key(ResourceKey.minecraft("block.note_block.imitate.creeper"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_NOTE_BLOCK_IMITATE_ENDER_DRAGON = SoundTypes.key(ResourceKey.minecraft("block.note_block.imitate.ender_dragon"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_NOTE_BLOCK_IMITATE_PIGLIN = SoundTypes.key(ResourceKey.minecraft("block.note_block.imitate.piglin"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_NOTE_BLOCK_IMITATE_SKELETON = SoundTypes.key(ResourceKey.minecraft("block.note_block.imitate.skeleton"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_NOTE_BLOCK_IMITATE_WITHER_SKELETON = SoundTypes.key(ResourceKey.minecraft("block.note_block.imitate.wither_skeleton"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_NOTE_BLOCK_IMITATE_ZOMBIE = SoundTypes.key(ResourceKey.minecraft("block.note_block.imitate.zombie"));
+
     public static final DefaultedRegistryReference<SoundType> BLOCK_NOTE_BLOCK_IRON_XYLOPHONE = SoundTypes.key(ResourceKey.minecraft("block.note_block.iron_xylophone"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_NOTE_BLOCK_PLING = SoundTypes.key(ResourceKey.minecraft("block.note_block.pling"));
