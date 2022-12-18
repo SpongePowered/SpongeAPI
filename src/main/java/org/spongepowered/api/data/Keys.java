@@ -237,7 +237,6 @@ import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.orientation.Orientation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
-import org.spongepowered.api.util.weighted.WeightedTable;
 import org.spongepowered.api.world.DefaultWorldKeys;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.WorldType;
@@ -2460,10 +2459,14 @@ public final class Keys {
     public static final Key<Value<Integer>> POWER = Keys.key(ResourceKey.sponge("power"), Integer.class);
 
     /**
-     * The {@link Precipitation} type of a {@link Biome}.
-     * Readonly
+     * The {@link Precipitation} type of a {@link Biome}. Readonly.
      */
     public static final Key<Value<Precipitation>> PRECIPITATION = Keys.key(ResourceKey.sponge("precipitation"), Precipitation.class);
+
+    /**
+     * The previous {@link GameMode} of a {@link ServerPlayer}. Readonly.
+     */
+    public static final Key<Value<GameMode>> PREVIOUS_GAME_MODE = Keys.key(ResourceKey.sponge("previous_game_mode"), GameMode.class);
 
     /**
      * A {@link Beacon}'s primary effect.

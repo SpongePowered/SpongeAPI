@@ -329,6 +329,15 @@ public interface ServerPlayer extends Player, Subject {
     }
 
     /**
+     * {@link Keys#PREVIOUS_GAME_MODE}
+     *
+     * @return The previous game mode of the player
+     */
+    default Value<GameMode> previousGameMode() {
+        return this.requireValue(Keys.PREVIOUS_GAME_MODE);
+    }
+
+    /**
      * {@link Keys#STATISTICS}
      *
      * @return The statistics of the player
