@@ -2,7 +2,7 @@ import net.ltgt.gradle.errorprone.errorprone
 
 buildscript {
     dependencies {
-        classpath("fr.inria.gforge.spoon:spoon-core:10.0.0") // bump for EIG
+        classpath("fr.inria.gforge.spoon:spoon-core:10.2.0") // bump for EIG
     }
 }
 
