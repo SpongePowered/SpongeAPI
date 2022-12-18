@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.entity.living.player.chat;
 
-import net.kyori.adventure.audience.MessageType;
 import net.kyori.adventure.text.ComponentLike;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -36,11 +35,16 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 public interface ChatVisibility extends DefaultedRegistryValue, ComponentLike {
 
     /**
-     * Tests whether the given chat type will be visible to a player's chat.
+     * Tests whether system messages will be visible with this visibility
      *
-     * @param type The {@link MessageType} to test
      * @return Whether or not it's visible with this {@link ChatVisibility}
      */
-    boolean isVisible(MessageType type);
+    boolean isSystemVisible();
 
+    /**
+     * Tests whether chat messages will be visible with this visibility
+     *
+     * @return Whether or not it's visible with this {@link ChatVisibility}
+     */
+    boolean isChatVisible();
 }

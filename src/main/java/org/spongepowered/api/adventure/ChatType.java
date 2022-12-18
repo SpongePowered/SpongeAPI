@@ -31,9 +31,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * A type of chat
  */
 @CatalogedBy(ChatTypes.class)
-public interface ChatType {
-    // TODO extend adventure ChatType when updated
-    // based on https://github.com/KyoriPowered/adventure/pull/777/
+public interface ChatType extends net.kyori.adventure.chat.ChatType {
 
     String translationKey();
 
