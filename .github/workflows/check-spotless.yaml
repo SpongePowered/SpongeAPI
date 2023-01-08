@@ -9,4 +9,6 @@ on:
 jobs:
   call-check:
     uses: SpongePowered/.github/.github/workflows/shared-check-spotless.yaml@master
+    with:
+      runtime_version: 17
     secrets: inherit
