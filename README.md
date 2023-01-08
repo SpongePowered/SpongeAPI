@@ -1,4 +1,4 @@
-SpongeAPI [![Build Status](https://travis-ci.org/SpongePowered/SpongeAPI.svg?branch=master)](https://travis-ci.org/SpongePowered/SpongeAPI)
+SpongeAPI ![Build Status](https://github.com/SpongePowered/SpongeAPI/actions/workflows/ci.yaml/badge.svg?branch=api-10)
 =============
 A mature Minecraft plugin API (not including an implementation), licensed under the [MIT License]. 
 
@@ -11,7 +11,7 @@ A mature Minecraft plugin API (not including an implementation), licensed under 
 * [Discord] `#plugins`
 
 ## Prerequisites
-* [Java] 8 (JDK 16 recommended for development)
+* [Java] 17
 
 ## Clone
 The following steps will ensure your project is cloned properly.  
@@ -24,7 +24,7 @@ __Note:__ If you do not have [Gradle] installed then use ./gradlew for Unix syst
 
 In order to build SpongeAPI you simply need to run the `gradle` command. You can find the compiled JAR file in `./build/libs` labeled similarly to 'spongeapi-x.x.x-SNAPSHOT.jar'.
 
-Sponge will use a javac version of *at least* 11. If an older JDK is used to launch Gradle, JDK 11 will be downloaded automatically.
+Sponge will use a javac version of *at least* 17. If an older JDK is used to launch Gradle, JDK 17 will be downloaded automatically.
 
 ## Contributing
 Are you a talented programmer looking to contribute some code? We'd love the help!
@@ -37,9 +37,9 @@ Are you a talented programmer looking to contribute some code? We'd love the hel
 [IntelliJ]: https://www.jetbrains.com/idea/
 [Issues]: https://github.com/SpongePowered/SpongeAPI/issues
 [Documentation]: https://docs.spongepowered.org/
-[Java]: http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+[Java]: https://adoptium.net/temurin/releases/
 [Source]: https://github.com/SpongePowered/SpongeAPI/
 [MIT License]: https://www.tldrlegal.com/license/mit-license
-[Discord]: https://discord.gg/PtaGRAs
+[Discord]: https://discord.gg/sponge
 [Preparing for Development]: https://docs.spongepowered.org/stable/en/preparing/
 [Javadocs]: https://jd.spongepowered.org
