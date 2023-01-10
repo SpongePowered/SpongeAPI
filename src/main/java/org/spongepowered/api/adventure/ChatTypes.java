@@ -46,9 +46,9 @@ public final class ChatTypes {
     public static final DefaultedRegistryReference<ChatType> CHAT = ChatTypes.key(ResourceKey.minecraft("chat"));
 
     /**
-     * The default vanilla chat type for say command messages
+     * The default vanilla chat type for the emote command
      */
-    public static final DefaultedRegistryReference<ChatType> SAY_COMMAND = ChatTypes.key(ResourceKey.minecraft("say_command"));
+    public static final DefaultedRegistryReference<ChatType> EMOTE_COMMAND = ChatTypes.key(ResourceKey.minecraft("emote_command"));
 
     /**
      * The default vanilla chat type for incoming command messages
@@ -61,6 +61,11 @@ public final class ChatTypes {
     public static final DefaultedRegistryReference<ChatType> MSG_COMMAND_OUTGOING = ChatTypes.key(ResourceKey.minecraft("msg_command_outgoing"));
 
     /**
+     * The default vanilla chat type for say command messages
+     */
+    public static final DefaultedRegistryReference<ChatType> SAY_COMMAND = ChatTypes.key(ResourceKey.minecraft("say_command"));
+
+    /**
      * The default vanilla chat type for incoming team command messages
      */
     public static final DefaultedRegistryReference<ChatType> TEAM_MSG_COMMAND_INCOMING = ChatTypes.key(ResourceKey.minecraft("team_msg_command_incoming"));
@@ -69,11 +74,6 @@ public final class ChatTypes {
      * The default vanilla chat type for outgoing team command messages
      */
     public static final DefaultedRegistryReference<ChatType> TEAM_MSG_COMMAND_OUTGOING = ChatTypes.key(ResourceKey.minecraft("team_msg_command_outgoing"));
-
-    /**
-     * The default vanilla chat type for the emote command
-     */
-    public static final DefaultedRegistryReference<ChatType> EMOTE_COMMAND = ChatTypes.key(ResourceKey.minecraft("emote_command"));
 
     /**
      * Sponge provided custom chat type using {@code %s%s} ({@code sender}, {@code content}) for formatting.
