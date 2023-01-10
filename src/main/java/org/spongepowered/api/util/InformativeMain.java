@@ -34,12 +34,23 @@ import javax.swing.JOptionPane;
  */
 public class InformativeMain {
 
-    private static final String ERROR = "\n\nOh dear... You have just attempted to run the SpongeAPI jar file.\n\nPlease Note: This is the binary for"
-                                        + " the API **ONLY** and running it has absolutely no\npurpose nor effect. If you wish to use Sponge you will"
-                                        + " need to locate the correct\nimplementation for the platform you wish to run Sponge on.\n\nFor information"
-                                        + " on the correct process for running sponge please see the documentation:\n\n\t\tSponge Documentation: http"
-                                        + "s://docs.spongepowered.org/\n\nFor more general information on the Sponge project please see the FAQ:\n\n"
-                                        + "\t\tSponge FAQ: https://docs.spongepowered.org/en/faq.html\n";
+    private static final String ERROR = """
+
+
+        Oh dear... You have just attempted to run the SpongeAPI jar file.
+
+        Please Note: This is the binary for the API **ONLY** and running it has absolutely no
+        purpose nor effect. If you wish to use Sponge you will need to locate the correct
+        implementation for the platform you wish to run Sponge on.
+
+        For information on the correct process for running sponge please see the documentation:
+
+        \t\tSponge Documentation: https://docs.spongepowered.org/
+
+        For more general information on the Sponge project please see the FAQ:
+
+        \t\tSponge FAQ: https://docs.spongepowered.org/en/faq.html
+        """;
 
     /**
      * The main method which throws a {@link PEBKACException} with some basic
