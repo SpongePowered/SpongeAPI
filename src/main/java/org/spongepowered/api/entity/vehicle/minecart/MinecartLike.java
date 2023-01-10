@@ -24,13 +24,10 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
-import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.math.vector.Vector3d;
-
-import java.util.Optional;
 
 /**
  * An abstract representation of a Minecart.

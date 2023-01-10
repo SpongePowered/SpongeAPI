@@ -38,7 +38,6 @@ import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Objects;
-import java.util.function.Supplier;
 
 /**
  * A Viewer is something that sees effects.

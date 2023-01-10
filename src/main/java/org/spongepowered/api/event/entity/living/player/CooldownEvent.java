@@ -32,7 +32,6 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.util.Ticks;
 
 import java.util.Optional;
-import java.util.OptionalInt;
 
 /**
  * An event which handles items in a {@link ServerPlayer player's} {@link CooldownTracker}

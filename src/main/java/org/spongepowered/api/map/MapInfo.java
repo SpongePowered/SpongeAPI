@@ -31,7 +31,6 @@ import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.map.decoration.MapDecoration;
 import org.spongepowered.api.util.Identifiable;
-import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.server.ServerLocation;
 
 /**

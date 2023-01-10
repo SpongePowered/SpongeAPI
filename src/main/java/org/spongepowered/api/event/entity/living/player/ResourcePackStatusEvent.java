@@ -26,7 +26,6 @@ package org.spongepowered.api.event.entity.living.player;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Server;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.resourcepack.ResourcePack;

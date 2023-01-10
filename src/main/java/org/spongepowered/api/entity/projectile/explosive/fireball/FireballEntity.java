@@ -24,10 +24,7 @@
  */
 package org.spongepowered.api.entity.projectile.explosive.fireball;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
-import org.spongepowered.math.vector.Vector3d;
 
 /**
  * Represents an abstract fireball, such as {@link SmallFireball}.

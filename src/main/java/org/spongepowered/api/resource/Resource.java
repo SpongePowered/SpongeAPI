@@ -28,7 +28,6 @@ import org.spongepowered.api.util.annotation.DoNotStore;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Optional;
 
 /**
  * A resource can represent any kind of loaded data. It can be a file on the

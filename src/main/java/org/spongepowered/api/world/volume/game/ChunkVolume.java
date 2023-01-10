@@ -32,7 +32,6 @@ import org.spongepowered.api.world.chunk.Chunk;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.storage.ChunkLayout;
 import org.spongepowered.api.world.volume.Volume;
-import org.spongepowered.api.world.volume.block.BlockVolume;
 import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Objects;

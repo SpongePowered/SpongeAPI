@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.map;
 
-import org.spongepowered.api.map.MapInfo;
-
 import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;

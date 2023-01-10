@@ -24,12 +24,10 @@
  */
 package org.spongepowered.api.command.parameter.managed;
 
-import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.CommandCompletion;
 import org.spongepowered.api.command.parameter.CommandContext;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Defines the completions for a parameter.

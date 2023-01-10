@@ -26,8 +26,6 @@ package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.Ageable;
-import org.spongepowered.api.entity.living.player.Player;
 
 /**
  * Represents an Ocelot.

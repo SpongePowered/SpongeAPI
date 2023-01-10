@@ -28,8 +28,6 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.effect.potion.PotionEffect;
 
-import java.util.Optional;
-
 /**
  * An arrow generally "tipped" with one or more potion effects.
  */

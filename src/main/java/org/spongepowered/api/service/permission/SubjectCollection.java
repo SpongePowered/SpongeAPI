@@ -25,7 +25,6 @@
 package org.spongepowered.api.service.permission;
 
 import org.spongepowered.api.event.Cause;
-import org.spongepowered.api.service.context.Context;
 
 import java.util.Collection;
 import java.util.Map;

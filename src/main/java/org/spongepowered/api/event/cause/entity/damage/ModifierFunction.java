@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.event.cause.entity.damage;
 
-import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
-
 import java.util.function.DoubleUnaryOperator;
 
 /**

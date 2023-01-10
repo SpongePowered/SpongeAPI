@@ -26,15 +26,12 @@ package org.spongepowered.api.map.color;
 
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.map.decoration.MapDecorationType;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.registry.RegistryTypes;
-
-import java.util.function.Supplier;
 
 /**
  * A pseudo-enum of supported {@link MapShade}s for a {@link MapColor}.

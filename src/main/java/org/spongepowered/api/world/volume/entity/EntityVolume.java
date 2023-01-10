@@ -38,7 +38,6 @@ import org.spongepowered.api.world.volume.MutableVolume;
 import org.spongepowered.api.world.volume.UnmodifiableVolume;
 import org.spongepowered.api.world.volume.Volume;
 import org.spongepowered.api.world.volume.block.BlockVolume;
-import org.spongepowered.api.world.volume.block.BlockVolumeFactory;
 import org.spongepowered.api.world.volume.stream.StreamOptions;
 import org.spongepowered.api.world.volume.stream.VolumeStream;
 import org.spongepowered.math.vector.Vector3d;

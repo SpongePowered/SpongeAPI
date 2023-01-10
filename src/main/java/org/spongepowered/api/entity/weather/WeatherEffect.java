@@ -29,8 +29,6 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.Ticks;
 
-import java.time.Duration;
-
 /**
  * Represents weather, such as {@link LightningBolt}.
  */

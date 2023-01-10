@@ -25,7 +25,6 @@
 package org.spongepowered.api.state;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.function.Predicate;

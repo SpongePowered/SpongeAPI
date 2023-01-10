@@ -25,7 +25,6 @@
 package org.spongepowered.api.resource.pack;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.Nameable;
 
 public interface PackType {
 

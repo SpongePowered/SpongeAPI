@@ -27,10 +27,8 @@ package org.spongepowered.api.network.channel.raw.handshake;
 import org.spongepowered.api.network.channel.ChannelBuf;
 import org.spongepowered.api.network.channel.ChannelException;
 import org.spongepowered.api.network.channel.NoResponseException;
-import org.spongepowered.api.network.channel.packet.Packet;
 
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 /**
  * Represents a callback for the response of a request payload.

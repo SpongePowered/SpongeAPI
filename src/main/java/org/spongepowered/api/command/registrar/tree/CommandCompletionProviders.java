@@ -33,7 +33,6 @@ import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.world.biome.Biome;
 
 /**
  * The {@link CommandCompletionProvider completion providers} available to raw

@@ -25,12 +25,8 @@
 package org.spongepowered.api.world.generation.feature;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.persistence.DataView;
-import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.datapack.DataPackEntry;
 import org.spongepowered.api.util.DataPackEntryBuilder;
-
-import java.io.IOException;
 
 /**
  * A template for {@link PlacedFeature placed features}

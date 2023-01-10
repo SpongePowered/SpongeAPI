@@ -29,8 +29,6 @@ import org.spongepowered.api.data.type.SpellType;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.monster.raider.illager.Illager;
 
-import java.util.Optional;
-
 public interface Spellcaster extends Illager {
 
     /**

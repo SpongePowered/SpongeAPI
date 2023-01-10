@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.util.orientation;
 
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.Angle;
 import org.spongepowered.api.util.annotation.CatalogedBy;

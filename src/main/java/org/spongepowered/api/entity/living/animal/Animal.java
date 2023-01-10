@@ -30,7 +30,6 @@ import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.Ageable;
 import org.spongepowered.api.entity.living.animal.cow.Cow;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.util.Ticks;
 
 import java.util.Optional;
 import java.util.UUID;

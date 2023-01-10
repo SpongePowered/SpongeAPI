@@ -27,7 +27,6 @@ package org.spongepowered.api.event.entity;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.event.impl.entity.AbstractSpawnEntityEvent;
-import org.spongepowered.api.event.network.ServerSideConnectionEvent;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
 

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.command.exception;
 
-import com.google.common.base.Strings;
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.command.parameter.Parameter;

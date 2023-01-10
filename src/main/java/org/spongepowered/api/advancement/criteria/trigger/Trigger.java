@@ -38,7 +38,6 @@ import org.spongepowered.api.event.advancement.CriterionEvent;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.scoreboard.criteria.Criterion;
 import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.util.Nameable;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.configurate.ConfigurationOptions;

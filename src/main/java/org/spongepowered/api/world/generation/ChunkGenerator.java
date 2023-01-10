@@ -34,7 +34,6 @@ import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.server.WorldTemplate;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Objects;
 
 /**

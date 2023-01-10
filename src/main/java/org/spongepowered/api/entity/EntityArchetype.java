@@ -33,8 +33,6 @@ import org.spongepowered.api.data.persistence.Queries;
 import org.spongepowered.api.world.Archetype;
 import org.spongepowered.api.world.schematic.Schematic;
 
-import java.util.function.Supplier;
-
 public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
 
     /**

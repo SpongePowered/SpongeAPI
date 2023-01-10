@@ -27,7 +27,6 @@ package org.spongepowered.api.world.volume.game;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.world.BlockChangeFlag;
-import org.spongepowered.api.world.LightType;
 import org.spongepowered.math.vector.Vector3i;
 
 public interface MutableGameVolume {

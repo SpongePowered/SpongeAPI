@@ -25,9 +25,6 @@
 package org.spongepowered.api.event.action;
 
 import org.spongepowered.api.event.Event;
-import org.spongepowered.math.vector.Vector3d;
-
-import java.util.Optional;
 
 /**
  * Base event for all interactions.

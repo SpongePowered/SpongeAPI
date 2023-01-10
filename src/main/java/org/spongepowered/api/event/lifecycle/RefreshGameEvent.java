@@ -25,7 +25,6 @@
 package org.spongepowered.api.event.lifecycle;
 
 import org.spongepowered.api.Game;
-import org.spongepowered.api.event.Event;
 
 /**
  * Fired when something within a {@link Game} triggers a refresh of

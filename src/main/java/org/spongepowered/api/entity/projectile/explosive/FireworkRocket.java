@@ -27,11 +27,9 @@ package org.spongepowered.api.entity.projectile.explosive;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.data.value.Value.Mutable;
 import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
 import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.item.FireworkEffect;
-import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.util.Ticks;
 
 import java.util.Optional;

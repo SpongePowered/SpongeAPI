@@ -25,7 +25,6 @@
 package org.spongepowered.api.service.economy.account;
 
 import net.kyori.adventure.text.Component;
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.event.Cause;

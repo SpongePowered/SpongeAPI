@@ -25,7 +25,6 @@
 package org.spongepowered.api.world;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.block.BlockTypes;
 
 /**
  * An enumeration of the possible {@link BlockChangeFlag}s.

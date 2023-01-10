@@ -34,7 +34,6 @@ import org.spongepowered.api.entity.living.golem.SnowGolem;
 import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.annotation.CatalogedBy;
-import org.spongepowered.api.util.weighted.WeightedTable;
 import org.spongepowered.api.world.biome.ambient.ParticleConfig;
 import org.spongepowered.api.world.biome.ambient.SoundConfig;
 import org.spongepowered.api.world.biome.climate.GrassColorModifier;
