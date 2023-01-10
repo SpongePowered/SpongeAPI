@@ -56,6 +56,7 @@ public interface StructureTemplate extends DataPackEntry<StructureTemplate> {
          * @param structure The structure
          * @return This builder, for chaining
          */
+        @Override
         Builder fromValue(Structure structure);
 
         /**
@@ -65,6 +66,7 @@ public interface StructureTemplate extends DataPackEntry<StructureTemplate> {
          * @param datapack The data pack data
          * @return This builder, for chaining
          */
+        @Override
         Builder fromDataPack(DataView datapack) throws IOException;
 
         /**
@@ -73,6 +75,7 @@ public interface StructureTemplate extends DataPackEntry<StructureTemplate> {
          * @param pack The data pack
          * @return This builder, for chaining
          */
+        @Override
         Builder pack(DataPack<StructureTemplate> pack);
     }
 }
