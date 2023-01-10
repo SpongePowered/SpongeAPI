@@ -84,7 +84,7 @@ public interface ValueParameter<T> extends DefaultedRegistryValue, ValueComplete
         /**
          * This should not be overridden by implementations of this class. If
          * you wish to do so, implement {@link ValueParameter} instead.
-         *
+         * <p>
          * {@inheritDoc}
          */
         @Override
@@ -109,7 +109,7 @@ public interface ValueParameter<T> extends DefaultedRegistryValue, ValueComplete
         /**
          * This should not be overridden by implementations of this class. If
          * you wish to do so, implement {@link ValueParameter} instead.
-         *
+         * <p>
          * {@inheritDoc}
          */
         @Override

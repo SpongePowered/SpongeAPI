@@ -87,9 +87,8 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
     /**
      * Gets if multiple {@link ServerWorld worlds} will be loaded by the server.
      *
-     * <p>If false, no calls to loading worlds via the {@link WorldManager world manager} or otherwise will
-     * load a world</p>
-     *
+     * @implNote If false, no calls to loading worlds via the {@link WorldManager world manager} or otherwise will
+     * load a world
      * @return True if enabled, false if not
      */
     boolean isMultiWorldEnabled();
@@ -140,8 +139,7 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
     /**
      * Gets the player idle timeout, in minutes.
      *
-     * <p>A value of {@code 0} means the timeout is disabled</p>
-     *
+     * @implNote A value of {@code 0} means the timeout is disabled
      * @return The player idle timeout
      */
     int playerIdleTimeout();
@@ -169,7 +167,7 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
 
     /**
      * Gets if {@link ServerPlayer players} will have their {@link GameMode game mode} set to the default.
-     *
+     * <p>
      * {@link Server#gameMode()}
      *
      * @return True if enforced, false if not
@@ -244,12 +242,11 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
 
     /**
      * Gets a {@link ServerPlayer} by their name.
+     * <p>
+     * This only works for online players.
      *
-     * <p>This only works for online players.</p>
-     *
-     * <p><b>Note: Do not use names for persistent storage, the
-     * Notch of today may not be the Notch of yesterday.</b></p>
-     *
+     * @implNote Do not use names for persistent storage, the
+     * Notch of today may not be the Notch of yesterday.
      * @param name The name to get the player from
      * @return The {@link ServerPlayer} or empty if not found
      */
@@ -258,14 +255,13 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
     /**
      * Gets the 'server' scoreboard. In Vanilla, this is the scoreboard of
      * dimension 0 (the overworld).
+     * <p>
+     * The server scoreboard is used with the Vanilla /scoreboard command,
+     * automatic score updating through criteria, and other things.
      *
-     * <p>The server scoreboard is used with the Vanilla /scoreboard command,
-     * automatic score updating through criteria, and other things.</p>
-     *
-     * <p>The server scoreboard may not be available if dimension 0
+     * @implNote The server scoreboard may not be available if dimension 0
      * is not yet loaded. In Vanilla, this will only occur when the
-     * server is first starting, as dimension 0 is normally always loaded.</p>
-     *
+     * server is first starting, as dimension 0 is normally always loaded.
      * @return the server scoreboard, if available.
      */
     Optional<? extends Scoreboard> serverScoreboard();
@@ -282,9 +278,8 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      * Gets the time, in ticks, since this server began running for the current
      * session.
      *
-     * <p>This value is not persisted across server restarts, it is set to zero
-     * each time the server starts.</p>
-     *
+     * @implNote This value is not persisted across server restarts, it is set to zero
+     * each time the server starts.
      * @return The number of ticks since this server started running
      */
     Ticks runningTimeTicks();
@@ -322,8 +317,8 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      * Shuts down the server, and kicks all players with the default kick
      * message.
      *
-     * <p>For the Sponge implementation on the client, this will trigger the
-     * Integrated Server to shutdown a tick later.</p>
+     * @implNote For the Sponge implementation on the client, this will trigger the
+     * Integrated Server to shutdown a tick later.
      */
     void shutdown();
 
@@ -358,8 +353,8 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
 
     /**
      * Gets the target ticks per second for this server.
-     *
-     * <p>This is dependent on the implementation.</p>
+     * <p>
+     * This is dependent on the implementation.
      *
      * @return The target tick per second rate.
      */
@@ -368,8 +363,7 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
     /**
      * Sets the player idle timeout, in minutes.
      *
-     * <p>A value of {@code 0} disables the player idle timeout.</p>
-     *
+     * @implNote A value of {@code 0} disables the player idle timeout.
      * @param timeout The player idle timeout
      */
     void setPlayerIdleTimeout(int timeout);
@@ -379,19 +373,18 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      * services that plugins may provide. Services provided here are
      * scoped to the lifetime of this Server.
      *
-     * <p>The provider will not be available during plugin construction and will
+     * @implNote The provider will not be available during plugin construction and will
      * throw an {@link IllegalStateException} if there is an attempt to access
-     * this before the provider is ready.</p>
-     *
+     * this before the provider is ready.
      * @return The service manager
      */
     ServiceProvider.ServerScoped serviceProvider();
 
     /**
      * Gets the {@link CommandManager} for executing and inspecting commands.
-     *
-     * <p>Commands must be registered by listening to the
-     * {@link RegisterCommandEvent} instead.</p>
+     * <p>
+     * Commands must be registered by listening to the
+     * {@link RegisterCommandEvent} instead.
      *
      * @return The {@link CommandManager} instance.
      */
@@ -399,9 +392,9 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
 
     /**
      * Gets the map storage for this server
-     *
-     * <p>This allows for control over the server's maps,
-     * including obtaining and creating them</p>
+     * <p>
+     * This allows for control over the server's maps,
+     * including obtaining and creating them
      *
      * @return MapStorage
      */

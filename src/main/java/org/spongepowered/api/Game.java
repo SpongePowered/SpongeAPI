@@ -195,10 +195,9 @@ public interface Game extends RegistryHolder {
      * services that plugins may provide. Services provided here are
      * scoped to the lifetime of the Game.
      *
-     * <p>The provider will not be available during plugin construction and will
+     * @implNote The provider will not be available during plugin construction and will
      * throw an {@link IllegalStateException} if there is an attempt to access
-     * this before the provider is ready.</p>
-     *
+     * this before the provider is ready.
      * @return The service manager
      */
     ServiceProvider.GameScoped serviceProvider();

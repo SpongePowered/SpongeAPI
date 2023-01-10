@@ -39,11 +39,11 @@ import java.util.Objects;
 
 /**
  * A chunk generator.
- *
+ * <p>
  * Vanilla builtin generators include
  * - configurable flat generator see {@link FlatGeneratorConfig}
  * - configurable noise generator see {@link NoiseGeneratorConfig}.
- *
+ * <p>
  * Other chunk generators may be provided by third parties and may be obtained from
  * - {@link ServerWorld#generator()}
  * - {@link WorldTemplate#generator()}

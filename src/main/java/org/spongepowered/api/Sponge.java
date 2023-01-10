@@ -128,10 +128,9 @@ public final class Sponge {
     /**
      * Gets the {@link Server} instance from the {@link Game} instance.
      *
-     * <p>Note: During various {@link LifecycleEvent events}, a {@link Server} instance
+     * @implNote During various {@link LifecycleEvent events}, a {@link Server} instance
      * may <strong>NOT</strong> be available. Calling {@link Game#server()} during one
-     * will throw an exception. To double check, call {@link #isServerAvailable()}</p>
-     *
+     * will throw an exception. To double check, call {@link #isServerAvailable()}
      * @see Game#server()
      * @see Game#isServerAvailable()
      * @return The server instance
@@ -154,9 +153,8 @@ public final class Sponge {
     /**
      * Gets the {@link Client} instance from the {@link Game} instance.
      *
-     * <p>Note: Not all implementations support a client, consult your
-     * vendor for further information.</p>
-     *
+     * @implNote Not all implementations support a client, consult your
+     * vendor for further information.
      * @see Game#client()
      * @see Game#isClientAvailable()
      * @return The client instance
@@ -207,9 +205,9 @@ public final class Sponge {
     /**
      * Gets the {@link Game} scoped {@link ServiceProvider} for providing
      * services.
-     *
-     * <p>{@link Engine} scoped services, if they exist, can be found on the
-     * respective engine.</p>
+     * <p>
+     * {@link Engine} scoped services, if they exist, can be found on the
+     * respective engine.
      *
      * @return The service provider.
      */

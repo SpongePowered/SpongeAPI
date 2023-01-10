@@ -82,8 +82,7 @@ public interface Engine extends RegistryHolder {
     /**
      * Rediscovers all {@link Resource resources} within all {@link Pack pack's} {@link PackContents contents}.
      *
-     * <p>On the server, the future will always be completed.</p>
-     *
+     * @implNote On the server, the future will always be completed.
      * @return A future that completes when reloading is complete
      */
     CompletableFuture<Void> reloadResources();

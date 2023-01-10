@@ -75,9 +75,9 @@ public final class EventContextKeys {
 
     /**
      * Used when a {@link World} block event is being processed.
-     * 
+     * <p>
      * For example, a piston head retracting and extending.
-     * 
+     * <p>
      * Note: This represents vanilla's block event.
      * Note: This occurs at the end of a world tick after
      *  {@link #BLOCK_EVENT_QUEUE}.
@@ -86,10 +86,10 @@ public final class EventContextKeys {
 
     /**
      * Used to queue a block event to be processed in a {@link World}.
-     * 
+     * <p>
      * For example, a piston will queue retract/extend movements using this
      * event.
-     * 
+     * <p>
      * Note: This represents vanilla's block event.
      */
     public static final EventContextKey<LocatableBlock> BLOCK_EVENT_QUEUE = EventContextKeys.key(ResourceKey.sponge("block_event_queue"), LocatableBlock.class);
@@ -127,7 +127,7 @@ public final class EventContextKeys {
 
     /**
      * Represents the target {@link Entity}.
-     * 
+     * <p>
      * Used when an entity, such as a Player, targets an entity via an
      * interaction.
      */
@@ -135,7 +135,7 @@ public final class EventContextKeys {
 
     /**
      * Represents a fake player responsible for an action.
-     * 
+     * <p>
      * Note: This is normally only used with mods.
      */
     public static final EventContextKey<Player> FAKE_PLAYER = EventContextKeys.key(ResourceKey.sponge("fake_player"), Player.class);

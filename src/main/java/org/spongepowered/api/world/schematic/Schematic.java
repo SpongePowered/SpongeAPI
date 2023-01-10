@@ -95,7 +95,6 @@ public interface Schematic extends ArchetypeVolume, LocationBaseDataHolder.Mutab
          * also affecting {@link #blockEntities(BlockEntityVolume) the block
          * entity volume}.
          *
-         *
          * @param volume The archetype volume
          * @return This builder, for chaining
          */

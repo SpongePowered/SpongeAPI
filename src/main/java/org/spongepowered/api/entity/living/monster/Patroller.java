@@ -62,7 +62,7 @@ public interface Patroller extends Monster {
 
     /**
      * Instructs the patroller to find a new patrol target.
-     *
+     * <p>
      * {@link Keys#TARGET_POSITION}
      */
     void findPatrolTarget();

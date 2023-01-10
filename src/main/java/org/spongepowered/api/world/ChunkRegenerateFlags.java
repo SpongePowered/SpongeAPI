@@ -61,7 +61,7 @@ public final class ChunkRegenerateFlags {
 
     /**
      * A flag that defines whether a chunk should preserve entities.
-     * 
+     * <p>
      * Note: It is up to the implementation to decide whether this will
      * include moving entities to safe locations.
      */

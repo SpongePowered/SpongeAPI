@@ -60,7 +60,7 @@ public interface QueryServerEvent extends Event {
          * Gets the GameType to respond with.
          *
          * <p>By default, this is <code>SMP</code>.
-         *
+         * <p>
          * If setting the string causes the message to go over the
          * maximum size, the message will be automatically truncated.</p>
          *
@@ -101,7 +101,7 @@ public interface QueryServerEvent extends Event {
          * Gets the player count to respond with.
          *
          * <p>By default, this is the number of players present on the server.
-         *
+         * <p>
          * If setting the string causes the message to go over the
          * maximum size, the message will be automatically truncated.</p>
          *
