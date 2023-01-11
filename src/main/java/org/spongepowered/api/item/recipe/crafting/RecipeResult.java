@@ -50,7 +50,6 @@ public final class RecipeResult {
      * @param remainingItems The remaining items to leave in the
      *     crafting window
      */
-    @SuppressWarnings("ConstantConditions")
     public RecipeResult(ItemStackSnapshot result, List<ItemStackSnapshot> remainingItems) {
         Objects.requireNonNull(result, "result");
         if (result.isEmpty()) {

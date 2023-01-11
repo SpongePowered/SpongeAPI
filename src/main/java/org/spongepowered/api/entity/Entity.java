@@ -76,7 +76,6 @@ import java.util.function.UnaryOperator;
  *
  * <p>Blocks and items (when they are in inventories) are not entities.</p>
  */
-@SuppressWarnings("deprecation")
 @DoNotStore
 public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEntity>, Locatable, EntityProjectileSource, Sound.Emitter,
         SerializableDataHolder.Mutable, RandomProvider {

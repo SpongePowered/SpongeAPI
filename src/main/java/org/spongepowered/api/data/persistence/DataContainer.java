@@ -30,7 +30,6 @@ import org.spongepowered.api.Sponge;
  * Represents a data structure that contains data. A DataContainer is
  * an object that can be considered a root {@link DataView}.
  */
-@SuppressWarnings("deprecation")
 public interface DataContainer extends DataView {
 
     /**

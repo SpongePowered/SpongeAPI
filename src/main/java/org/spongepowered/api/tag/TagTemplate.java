@@ -47,7 +47,6 @@ public interface TagTemplate<T extends Taggable<T>> extends DataPackEntry<TagTem
      * @param pack The {@link DataPack} of the builder
      * @return The builder.
      */
-    @SuppressWarnings("unchecked")
     static <T extends Taggable<T>> Builder<T> builder(final DataPack<TagTemplate<T>> pack) {
         return Sponge.game().factoryProvider().provide(Factory.class).builder(pack);
     }

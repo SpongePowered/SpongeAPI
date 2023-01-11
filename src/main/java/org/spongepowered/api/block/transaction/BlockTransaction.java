@@ -71,7 +71,6 @@ public final class BlockTransaction extends Transaction<BlockSnapshot> {
         return Objects.hash(super.hashCode(), this.operation);
     }
 
-    @SuppressWarnings("rawtypes")
     @Override
     public boolean equals(final Object obj) {
         if (this == obj) {

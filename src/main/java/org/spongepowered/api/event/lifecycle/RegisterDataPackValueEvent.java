@@ -29,6 +29,7 @@ import org.spongepowered.api.datapack.DataPackType;
 import org.spongepowered.api.event.GenericEvent;
 import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
 
+@SuppressWarnings("rawtypes")
 @NoFactoryMethod
 public interface RegisterDataPackValueEvent<T extends DataPackEntry> extends LifecycleEvent, GenericEvent<T> {
 

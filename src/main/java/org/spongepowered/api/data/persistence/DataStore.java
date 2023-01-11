@@ -243,7 +243,6 @@ public interface DataStore {
              *
              * @return this builder for chaining
              */
-            @SuppressWarnings("unchecked")
             Builder.EndStep keys(final Key<?> key, final Key<?>... moreKeys);
 
             /**

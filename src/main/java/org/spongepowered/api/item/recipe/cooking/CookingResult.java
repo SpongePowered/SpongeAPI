@@ -45,7 +45,6 @@ public final class CookingResult {
      * @param result The result of the cooking recipe
      * @param experience The experience that should be created from this result
      */
-    @SuppressWarnings("ConstantConditions")
     public CookingResult(final ItemStackSnapshot result, final double experience) {
         Objects.requireNonNull(result, "result");
         if (result.isEmpty()) {
