@@ -197,24 +197,23 @@ public interface PermissionService {
             return Collections.emptySet();
         }
 
-        return Collections.unmodifiableSet(globalSubj.get()
-                .transientSubjectData().parents(SubjectData.GLOBAL_CONTEXT).stream()
-                .map(SubjectReference::resolve)
-                .map(CompletableFuture::join)
-                .map(it -> {
-                    final String[] name = it.identifier().split(":", 2);
-                    if (name.length < 2) {
-                        return null;
-                    }
+        return globalSubj.get()
+            .transientSubjectData().parents(SubjectData.GLOBAL_CONTEXT).stream()
+            .map(SubjectReference::resolve)
+            .map(CompletableFuture::join)
+            .map(it -> {
+                final String[] name = it.identifier().split(":", 2);
+                if (name.length < 2) {
+                    return null;
+                }
 
-                    final Optional<PluginContainer> container = Sponge.pluginManager().plugin(name[0]);
-                    if (!container.isPresent()) {
-                        return null;
-                    }
+                final Optional<PluginContainer> container = Sponge.pluginManager().plugin(name[0]);
+                if (!container.isPresent()) {
+                    return null;
+                }
 
-                    return new AbstractMap.SimpleImmutableEntry<>(container.get(), it.transientSubjectData());
-                }).filter(Objects::nonNull)
-                .collect(Collectors.toSet()));
+                return new AbstractMap.SimpleImmutableEntry<>(container.get(), it.transientSubjectData());
+            }).filter(Objects::nonNull).collect(Collectors.toUnmodifiableSet());
 
     }
 
