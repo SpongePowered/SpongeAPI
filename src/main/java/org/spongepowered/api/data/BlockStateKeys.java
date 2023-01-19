@@ -31,14 +31,17 @@ import org.spongepowered.api.data.type.BellAttachmentType;
 import org.spongepowered.api.data.type.ChestAttachmentType;
 import org.spongepowered.api.data.type.ComparatorMode;
 import org.spongepowered.api.data.type.DoorHinge;
+import org.spongepowered.api.data.type.DripstoneSegment;
 import org.spongepowered.api.data.type.InstrumentType;
 import org.spongepowered.api.data.type.JigsawBlockOrientation;
 import org.spongepowered.api.data.type.PistonType;
 import org.spongepowered.api.data.type.PortionType;
 import org.spongepowered.api.data.type.RailDirection;
+import org.spongepowered.api.data.type.SculkSensorState;
 import org.spongepowered.api.data.type.SlabPortion;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
+import org.spongepowered.api.data.type.Tilt;
 import org.spongepowered.api.data.type.WallConnectionState;
 import org.spongepowered.api.data.type.WireAttachmentType;
 import org.spongepowered.api.data.value.Value;
@@ -61,6 +64,8 @@ public final class BlockStateKeys {
 
     public static final Key<Value<Integer>> AGE_3 = BlockStateKeys.key(ResourceKey.minecraft("property/age"), Integer.class);
 
+    public static final Key<Value<Integer>> AGE_4 = BlockStateKeys.key(ResourceKey.minecraft("property/age"), Integer.class);
+
     public static final Key<Value<Integer>> AGE_5 = BlockStateKeys.key(ResourceKey.minecraft("property/age"), Integer.class);
 
     public static final Key<Value<Integer>> AGE_7 = BlockStateKeys.key(ResourceKey.minecraft("property/age"), Integer.class);
@@ -77,11 +82,31 @@ public final class BlockStateKeys {
 
     public static final Key<Value<BellAttachmentType>> BELL_ATTACHMENT = BlockStateKeys.key(ResourceKey.minecraft("property/attachment"), BellAttachmentType.class);
 
+    public static final Key<Value<Boolean>> BERRIES = BlockStateKeys.key(ResourceKey.minecraft("property/berries"), Boolean.class);
+
     public static final Key<Value<Integer>> BITES = BlockStateKeys.key(ResourceKey.minecraft("property/bites"), Integer.class);
+
+    public static final Key<Value<Boolean>> BLOOM = BlockStateKeys.key(ResourceKey.minecraft("property/bloom"), Boolean.class);
 
     public static final Key<Value<Boolean>> BOTTOM = BlockStateKeys.key(ResourceKey.minecraft("property/bottom"), Boolean.class);
 
+    public static final Key<Value<Integer>> CANDLES = BlockStateKeys.key(ResourceKey.minecraft("property/candles"), Integer.class);
+
+    public static final Key<Value<Boolean>> CAN_SUMMON = BlockStateKeys.key(ResourceKey.minecraft("property/can_summon"), Boolean.class);
+
     public static final Key<Value<ChestAttachmentType>> CHEST_TYPE = BlockStateKeys.key(ResourceKey.minecraft("property/type"), ChestAttachmentType.class);
+
+    public static final Key<Value<Boolean>> CHISELED_BOOKSHELF_SLOT_0_OCCUPIED = BlockStateKeys.key(ResourceKey.minecraft("property/slot_0_occupied"), Boolean.class);
+
+    public static final Key<Value<Boolean>> CHISELED_BOOKSHELF_SLOT_1_OCCUPIED = BlockStateKeys.key(ResourceKey.minecraft("property/slot_1_occupied"), Boolean.class);
+
+    public static final Key<Value<Boolean>> CHISELED_BOOKSHELF_SLOT_2_OCCUPIED = BlockStateKeys.key(ResourceKey.minecraft("property/slot_2_occupied"), Boolean.class);
+
+    public static final Key<Value<Boolean>> CHISELED_BOOKSHELF_SLOT_3_OCCUPIED = BlockStateKeys.key(ResourceKey.minecraft("property/slot_3_occupied"), Boolean.class);
+
+    public static final Key<Value<Boolean>> CHISELED_BOOKSHELF_SLOT_4_OCCUPIED = BlockStateKeys.key(ResourceKey.minecraft("property/slot_4_occupied"), Boolean.class);
+
+    public static final Key<Value<Boolean>> CHISELED_BOOKSHELF_SLOT_5_OCCUPIED = BlockStateKeys.key(ResourceKey.minecraft("property/slot_5_occupied"), Boolean.class);
 
     public static final Key<Value<Boolean>> CONDITIONAL = BlockStateKeys.key(ResourceKey.minecraft("property/conditional"), Boolean.class);
 
@@ -98,6 +123,8 @@ public final class BlockStateKeys {
     public static final Key<Value<Boolean>> DOWN = BlockStateKeys.key(ResourceKey.minecraft("property/down"), Boolean.class);
 
     public static final Key<Value<Boolean>> DRAG = BlockStateKeys.key(ResourceKey.minecraft("property/drag"), Boolean.class);
+
+    public static final Key<Value<DripstoneSegment>> DRIPSTONE_THICKNESS = BlockStateKeys.key(ResourceKey.minecraft("property/thickness"), DripstoneSegment.class);
 
     public static final Key<Value<Boolean>> EAST = BlockStateKeys.key(ResourceKey.minecraft("property/east"), Boolean.class);
 
@@ -197,7 +224,11 @@ public final class BlockStateKeys {
 
     public static final Key<Value<Integer>> ROTATION_16 = BlockStateKeys.key(ResourceKey.minecraft("property/rotation"), Integer.class);
 
+    public static final Key<Value<SculkSensorState>> SCULK_SENSOR_PHASE = BlockStateKeys.key(ResourceKey.minecraft("property/sculk_sensor_phase"), SculkSensorState.class);
+
     public static final Key<Value<Boolean>> SHORT = BlockStateKeys.key(ResourceKey.minecraft("property/short"), Boolean.class);
+
+    public static final Key<Value<Boolean>> SHRIEKING = BlockStateKeys.key(ResourceKey.minecraft("property/shrieking"), Boolean.class);
 
     public static final Key<Value<Boolean>> SIGNAL_FIRE = BlockStateKeys.key(ResourceKey.minecraft("property/signal_fire"), Boolean.class);
 
@@ -219,11 +250,15 @@ public final class BlockStateKeys {
 
     public static final Key<Value<StructureMode>> STRUCTUREBLOCK_MODE = BlockStateKeys.key(ResourceKey.minecraft("property/mode"), StructureMode.class);
 
+    public static final Key<Value<Tilt>> TILT = BlockStateKeys.key(ResourceKey.minecraft("property/tilt"), Tilt.class);
+
     public static final Key<Value<Boolean>> TRIGGERED = BlockStateKeys.key(ResourceKey.minecraft("property/triggered"), Boolean.class);
 
     public static final Key<Value<Boolean>> UNSTABLE = BlockStateKeys.key(ResourceKey.minecraft("property/unstable"), Boolean.class);
 
     public static final Key<Value<Boolean>> UP = BlockStateKeys.key(ResourceKey.minecraft("property/up"), Boolean.class);
+
+    public static final Key<Value<Direction>> VERTICAL_DIRECTION = BlockStateKeys.key(ResourceKey.minecraft("property/vertical_direction"), Direction.class);
 
     public static final Key<Value<Boolean>> VINE_END = BlockStateKeys.key(ResourceKey.minecraft("property/vine_end"), Boolean.class);
 
