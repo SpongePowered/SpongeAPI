@@ -1,21 +1,18 @@
 import net.ltgt.gradle.errorprone.errorprone
+import org.jetbrains.gradle.ext.delegateActions
+import org.jetbrains.gradle.ext.settings
+import org.jetbrains.gradle.ext.taskTriggers
 
 plugins {
     eclipse
-    id("org.spongepowered.gradle.sponge.dev")
-    id("net.kyori.indra.checkstyle")
-    id("net.kyori.indra.crossdoc")
-    id("net.kyori.indra.publishing")
-    id("net.kyori.indra.publishing.sonatype")
-    id("org.spongepowered.gradle.event-impl-gen")
-    id("org.jetbrains.gradle.plugin.idea-ext")
-    id("net.ltgt.errorprone")
-}
-
-repositories {
-    maven("https://repo.spongepowered.org/repository/maven-public/") {
-        name = "sponge"
-    }
+    alias(libs.plugins.spongeConvention)
+    alias(libs.plugins.indra.checkstyle)
+    alias(libs.plugins.indra.crossdoc)
+    alias(libs.plugins.indra.publishing)
+    alias(libs.plugins.indra.publishing.sonatype)
+    alias(libs.plugins.eventImplGen)
+    alias(libs.plugins.ideaExt)
+    alias(libs.plugins.errorProne)
 }
 
 val ap by sourceSets.registering {
@@ -23,101 +20,91 @@ val ap by sourceSets.registering {
 }
 
 // Project dependencies
-val adventureVersion: String by project
-val configurateVersion: String by project
-val log4jVersion: String by project
-val mathVersion: String by project
 dependencies {
-    val caffeineVersion: String by project
-    val errorproneVersion: String by project
-    val junitVersion: String by project
-    val mockitoVersion: String by project
-    val pluginSpiVersion: String by project
-
     // Directly tied to what's available from Minecraft
-    api("org.apache.logging.log4j:log4j-api:$log4jVersion")
-    api("com.google.guava:guava:21.0") {
+    api(libs.log4j.api)
+    api(libs.guava) {
         exclude(group ="com.google.code.findbugs", module = "jsr305") // We don't want to use jsr305, use checkerframework
         exclude(group = "org.checkerframework", module = "checker-qual") // We use our own version
         exclude(group = "com.google.j2objc", module = "j2objc-annotations")
         exclude(group = "org.codehaus.mojo", module = "animal-sniffer-annotations")
     }
-    api("com.google.code.gson:gson:2.8.0")
+    api(libs.gson)
 
     // Adventure
-    api(platform("net.kyori:adventure-bom:$adventureVersion"))
-    api("net.kyori:adventure-api")
-    api("net.kyori:adventure-text-serializer-gson") {
+    api(platform(libs.adventure.bom))
+    api(libs.adventure.api)
+    api(libs.adventure.textSerializer.gson) {
         exclude(group = "com.google.code.gson", module = "gson")
         exclude(group = "net.kyori", module = "adventure-api")
     }
-    api("net.kyori:adventure-text-serializer-legacy") {
+    api(libs.adventure.textSerializer.legacy) {
         exclude(group = "net.kyori", module = "adventure-api")
     }
-    api("net.kyori:adventure-text-serializer-plain") {
+    api(libs.adventure.textSerializer.plain) {
         exclude(group = "net.kyori", module = "adventure-api")
     }
-    api("net.kyori:adventure-text-minimessage") {
+    api(libs.adventure.miniMessage) {
         exclude(group = "net.kyori", module = "adventure-api")
     }
 
     // Dependency injection
-    api("com.google.inject:guice:5.0.1") {
-        exclude(group ="com.google.code.findbugs", module = "jsr305") // We don't want to use jsr305, use checkerframework
+    api(libs.guice) {
+        exclude(group = "com.google.code.findbugs", module = "jsr305") // We don't want to use jsr305, use checkerframework
         exclude(group = "javax.inject", module = "javax.inject")
         exclude(group = "com.google.guava", module = "guava") // We use an older version than Guice does
     }
 
     // High performance cache + guava - shaded guava
-    api("com.github.ben-manes.caffeine:caffeine:$caffeineVersion") {
+    api(libs.caffeine) {
         exclude(group= "org.checkerframework", module = "checker-qual")
         exclude(group = "com.google.errorprone", module = "error_prone_annotations")
     }
-    implementation("com.github.ben-manes.caffeine:guava:$caffeineVersion") {
+    implementation(libs.caffeine.guava) {
         exclude(group = "com.google.guava", module = "guava")
         exclude(group= "org.checkerframework", module = "checker-qual")
         exclude(group = "com.google.errorprone", module = "error_prone_annotations")
     }
 
     // Plugin spi, includes plugin-meta
-    api("org.spongepowered:plugin-spi:$pluginSpiVersion")
+    api(libs.pluginSpi)
 
     // Configurate
-    api(platform("org.spongepowered:configurate-bom:$configurateVersion"))
-    api("org.spongepowered:configurate-core") {
+    api(platform(libs.configurate.bom))
+    api(libs.configurate.core) {
         exclude(group = "org.checkerframework", module = "checker-qual") // We use our own version
     }
-    api("org.spongepowered:configurate-hocon") {
+    api(libs.configurate.hocon) {
         exclude(group = "org.spongepowered", module = "configurate-core")
         exclude(group= "org.checkerframework", module = "checker-qual")
 
     }
-    api("org.spongepowered:configurate-gson") {
+    api(libs.configurate.gson) {
         exclude(group = "org.spongepowered", module = "configurate-core")
         exclude(group = "com.google.code.gson", module = "gson") // We have the same version technically, but use the gson we provide.
         exclude(group= "org.checkerframework", module = "checker-qual")
     }
-    api("org.spongepowered:configurate-yaml") {
+    api(libs.configurate.yaml) {
         exclude(group = "org.spongepowered", module = "configurate-core")
         exclude(group= "org.checkerframework", module = "checker-qual")
     }
-    api("org.spongepowered:configurate-extra-guice") {
+    api(libs.configurate.extraGuice) {
         exclude(group = "com.google.inject", module = "guice")
     }
 
     // Compile-time static analysis
-    compileOnly("com.google.errorprone:error_prone_annotations:$errorproneVersion")
-    errorprone("com.google.errorprone:error_prone_core:$errorproneVersion")
+    compileOnly(libs.errorProne.annotations)
+    errorprone(libs.errorProne)
 
     // Math library
-    api("org.spongepowered:math:$mathVersion")
+    api(libs.math)
 
-    testImplementation(platform("org.junit:junit-bom:$junitVersion"))
-    testImplementation("org.junit.jupiter:junit-jupiter-api")
-    testImplementation("org.junit.jupiter:junit-jupiter-params")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
-    testImplementation("org.hamcrest:hamcrest:2.2")
-    testImplementation("org.mockito:mockito-core:$mockitoVersion")
+    testImplementation(platform(libs.junit.bom))
+    testImplementation(libs.junit.api)
+    testImplementation(libs.junit.params)
+    testRuntimeOnly(libs.junit.engine)
+    testImplementation(libs.hamcrest)
+    testImplementation(libs.mockito)
 }
 tasks {
     genEventImpl {
@@ -167,15 +154,15 @@ tasks {
         options {
             (this as? StandardJavadocDocletOptions)?.apply {
                 links(
-                    "https://logging.apache.org/log4j/log4j-$log4jVersion/log4j-api/apidocs/",
-                    "https://google.github.io/guice/api-docs/5.0.1/javadoc/",
-                    "https://guava.dev/releases/21.0/api/docs/",
-                    "https://configurate.aoeu.xyz/$configurateVersion/apidocs/",
-                    "https://www.javadoc.io/doc/com.google.code.gson/gson/2.8.0/",
-                    "https://jd.spongepowered.org/math/$mathVersion"
+                    "https://logging.apache.org/log4j/log4j-${libs.versions.log4j.get()}/log4j-api/apidocs/",
+                    "https://google.github.io/guice/api-docs/${libs.versions.guice.get()}/javadoc/",
+                    "https://guava.dev/releases/${libs.versions.guava.get()}/api/docs/",
+                    "https://configurate.aoeu.xyz/${libs.versions.configurate.get()}/apidocs/",
+                    "https://www.javadoc.io/doc/com.google.code.gson/gson/${libs.versions.gson.get()}/",
+                    "https://jd.spongepowered.org/math/${libs.versions.math.get()}"
                 )
                 sequenceOf("api", "key", "text-serializer-gson", "text-serializer-legacy", "text-serializer-plain").forEach {
-                    links("https://jd.adventure.kyori.net/$it/$adventureVersion/")
+                    links("https://jd.adventure.kyori.net/$it/${libs.versions.adventure.get()}/")
                 }
                 addStringOption("-quiet")
             }
@@ -206,14 +193,12 @@ tasks {
 
 idea {
     if (project != null) {
-        (project as ExtensionAware).extensions["settings"].run {
-            require(this is ExtensionAware)
-
-            this.extensions.getByType(org.jetbrains.gradle.ext.ActionDelegationConfig::class).run {
+        project.settings {
+            delegateActions {
                 delegateBuildRunToGradle = false
                 testRunner = org.jetbrains.gradle.ext.ActionDelegationConfig.TestRunner.PLATFORM
             }
-            this.extensions.getByType(org.jetbrains.gradle.ext.TaskTriggersConfig::class).run {
+            taskTriggers {
                 beforeBuild(tasks.genEventImpl)
             }
         }
@@ -243,12 +228,10 @@ spongeConvention {
 }
 
 indra {
-    val checkstyleVersion: String by project
-
     javaVersions {
         testWith(8, 11, 17)
     }
-    checkstyle(checkstyleVersion)
+    checkstyle(libs.versions.checkstyle.get())
 
     configurePublications {
         artifactId = project.name.toLowerCase()

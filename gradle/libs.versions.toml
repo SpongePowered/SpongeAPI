@@ -1,0 +1,69 @@
+[metadata]
+version = "1.0"
+
+[versions]
+adventure = "4.12.0"
+configurate = "4.1.2"
+checkstyle = "10.5.0"
+caffeine = "2.9.3"
+errorprone = "2.16"
+errorproneGradle = "3.0.1"
+eventImplGen = "7.0.0"
+gson = "2.8.0"
+guava = "21.0"
+guice = "5.0.1"
+hamcrest = "2.2"
+ideaExt = "1.1.7"
+indra = "3.0.1"
+junit = "5.9.1"
+log4j = "2.8.1"
+math = "2.0.1"
+mockito = "4.8.0"
+pluginSpi = "0.3.0"
+spongeGradle = "2.1.1"
+
+[libraries]
+# Versions from Minecraft
+log4j-api = { module = "org.apache.logging.log4j:log4j-api", version.ref = "log4j" }
+guava = { module = "com.google.guava:guava", version.ref = "guava" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+
+# API Libraries
+adventure-bom = { module = "net.kyori:adventure-bom", version.ref = "adventure" }
+adventure-api = { module = "net.kyori:adventure-api" }
+adventure-miniMessage = { module = "net.kyori:adventure-text-minimessage" }
+adventure-textSerializer-gson = { module = "net.kyori:adventure-text-serializer-gson" }
+adventure-textSerializer-legacy = { module = "net.kyori:adventure-text-serializer-legacy" }
+adventure-textSerializer-plain = { module = "net.kyori:adventure-text-serializer-plain" }
+caffeine = { module = "com.github.ben-manes.caffeine:caffeine", version.ref = "caffeine" }
+caffeine-guava = { module = "com.github.ben-manes.caffeine:guava", version.ref = "caffeine" }
+configurate-bom = { module = "org.spongepowered:configurate-bom", version.ref = "configurate" }
+configurate-core = { module = "org.spongepowered:configurate-core" }
+configurate-extraGuice = { module = "org.spongepowered:configurate-extra-guice" }
+configurate-gson = { module = "org.spongepowered:configurate-gson" }
+configurate-hocon = { module = "org.spongepowered:configurate-hocon" }
+configurate-jackson = { module = "org.spongepowered:configurate-jackson" }
+configurate-yaml = { module = "org.spongepowered:configurate-yaml" }
+guice = { module = "com.google.inject:guice", version.ref = "guice" }
+math = { module = "org.spongepowered:math", version.ref = "math" }
+pluginSpi = { module = "org.spongepowered:plugin-spi", version.ref = "pluginSpi" }
+
+# Build-time deps
+errorProne = { module = "com.google.errorprone:error_prone_core", version.ref = "errorprone" }
+errorProne-annotations = { module = "com.google.errorprone:error_prone_annotations", version.ref = "errorprone" }
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+junit-api = { module = "org.junit.jupiter:junit-jupiter-api" }
+junit-params = { module = "org.junit.jupiter:junit-jupiter-params" }
+junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine" }
+hamcrest = { module = "org.hamcrest:hamcrest", version.ref = "hamcrest" }
+mockito = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+
+[plugins]
+errorProne = { id = "net.ltgt.errorprone", version.ref = "errorproneGradle" }
+eventImplGen = { id = "org.spongepowered.gradle.event-impl-gen", version.ref = "eventImplGen" }
+ideaExt = { id = "org.jetbrains.gradle.plugin.idea-ext", version.ref = "ideaExt" }
+indra-checkstyle = { id = "net.kyori.indra.checkstyle", version.ref = "indra" }
+indra-crossdoc = { id = "net.kyori.indra.crossdoc", version.ref = "indra" }
+indra-publishing = { id = "net.kyori.indra.publishing", version.ref = "indra" }
+indra-publishing-sonatype = { id = "net.kyori.indra.publishing.sonatype", version.ref = "indra" }
+spongeConvention = { id = "org.spongepowered.gradle.sponge.dev", version.ref = "spongeGradle" }
