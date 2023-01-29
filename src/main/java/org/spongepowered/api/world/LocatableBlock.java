@@ -66,7 +66,7 @@ public interface LocatableBlock extends SerializableDataHolder.Immutable<Locatab
          * @param blockState The block state
          * @return This builder, for chaining
          */
-        Builder state(BlockState blockState);
+        Builder block(BlockState blockState);
 
         /**
          * Sets the {@link FluidState} for this builder.
