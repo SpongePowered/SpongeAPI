@@ -28,7 +28,6 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.persistence.DataBuilder;
-import org.spongepowered.api.fluid.FluidState;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
@@ -52,11 +51,6 @@ public interface LocatableBlock extends SerializableDataHolder.Immutable<Locatab
      */
     BlockState blockState();
 
-    /**
-     * Gets the {@link FluidState} for this locatable block.
-     */
-    FluidState fluidState();
-
     interface Builder extends org.spongepowered.api.util.Builder<LocatableBlock, Builder>, CopyableBuilder<LocatableBlock, Builder>,
             DataBuilder<LocatableBlock> {
 
@@ -67,11 +61,6 @@ public interface LocatableBlock extends SerializableDataHolder.Immutable<Locatab
          * @return This builder, for chaining
          */
         Builder state(BlockState blockState);
-
-        /**
-         * Sets the {@link FluidState} for this builder.
-         */
-        Builder fluid(FluidState fluid);
 
         /**
          * Sets the {@link BlockState} and {@link Vector3i position} for this
