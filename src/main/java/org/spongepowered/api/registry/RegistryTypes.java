@@ -509,4 +509,3 @@ public final class RegistryTypes {
         return RegistryType.of(RegistryRoots.SPONGE, ResourceKey.sponge(Objects.requireNonNull(key, "key"))).asDefaultedType(Sponge::game);
     }
 }
-
