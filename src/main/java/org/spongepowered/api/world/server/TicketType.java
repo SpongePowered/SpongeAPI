@@ -24,8 +24,14 @@
  */
 package org.spongepowered.api.world.server;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.annotation.CatalogedBy;
+
+import java.util.Comparator;
 
 /**
  * Represents a type of {@link Ticket chunk loading ticket} that can be obtained
@@ -35,7 +41,18 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  *      type.
  */
 @CatalogedBy(TicketTypes.class)
-public interface TicketType<T> {
+public interface TicketType<T>  {
+
+    static <U> Builder<U> builder() {
+        return Sponge.game().builderProvider().provide(Builder.class);
+    }
+
+    /**
+     * The name of this type.
+     *
+     * @return The name
+     */
+    String name();
 
     /**
      * Gets the lifetime of any {@link Ticket tickets} of this type.
@@ -45,4 +62,49 @@ public interface TicketType<T> {
      */
     Ticks lifetime();
 
+    interface Builder<T> extends ResettableBuilder<T, Builder<T>> {
+
+        /**
+         * Sets the name of the {@link TicketType type}.
+         *
+         * @param name The name
+         * @return The builder, for chaining
+         */
+        Builder<T> name(@NonNull String name);
+
+        /**
+         * Sets the {@link Comparator comparator} used by requested {@link Ticket tickets}
+         * of this type used to determine the appropriate ticket to be used during collisions.
+         * <p>
+         * If this call is omitted, it is up to the implementation on how the comparison is handled.
+         * In the official implementation, the resulting comparison value is '0'.
+         *
+         * @param comparator The comparator
+         * @return The builder, for chaining
+         */
+        Builder<T> comparator(@Nullable Comparator<T> comparator);
+
+        /**
+         * Sets the lifetime of the {@link TicketType type}.
+         *
+         * @param lifetime The lifetime
+         * @return The builder, for chaining
+         */
+        Builder<T> lifetime(Ticks lifetime);
+
+        /**
+         * Sets the lifetime of the {@link TicketType type} to never expire.
+         *
+         * @return The builder, for chaining
+         */
+        Builder<T> neverExpires();
+
+        /**
+         * Builds a new {@link TicketType type}.
+         *
+         * @throws IllegalStateException If no name or lifetime have been specified
+         * @return The type
+         */
+        TicketType<T> build();
+    }
 }

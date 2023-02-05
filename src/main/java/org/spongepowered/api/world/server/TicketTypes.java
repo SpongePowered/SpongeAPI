@@ -24,14 +24,8 @@
  */
 package org.spongepowered.api.world.server;
 
-import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registry;
-import org.spongepowered.api.registry.RegistryKey;
-import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.world.chunk.WorldChunk;
 import org.spongepowered.api.world.portal.Portal;
 import org.spongepowered.math.vector.Vector3i;
@@ -47,19 +41,6 @@ public final class TicketTypes {
     // SORTFIELDS:ON
 
     /**
-     * Represents {@link Ticket tickets} that ensures the target
-     * {@link WorldChunk chunks} are loaded, but are not guaranteed to be loaded at
-     * any time in the future, that is, the lifetime of such a ticket is
-     * effectively one {@link Ticks tick}.
-     *
-     * <p>The position represented by the {@link Vector3i} is a <strong>chunk
-     * position</strong>, not a block position, so when requesting a ticket
-     * using {@link ChunkManager#requestTicket( TicketType, Vector3i, Object, int)},
-     * the second and third parameter should be the same.</p>
-     */
-    public static final DefaultedRegistryReference<TicketType<Vector3i>> STANDARD = TicketTypes.key(ResourceKey.sponge("standard"));
-
-    /**
      * Represents {@link Ticket tickets} that are intended to ensure that the
      * target {@link WorldChunk chunks} around a {@link Portal} are loaded, ready to
      * accept {@link Entity entities} that travel through it.
@@ -71,14 +52,14 @@ public final class TicketTypes {
      * the second parameter represents a chunk position, the third parameter
      * represents a block position.</p>
      */
-    public static final DefaultedRegistryReference<TicketType<Vector3i>> PORTAL = TicketTypes.key(ResourceKey.sponge("portal"));
+    public static final TicketType<Vector3i> PORTAL = Sponge.game().factoryProvider().provide(Factory.class).portal();
 
     /**
      * Represents {@link Ticket tickets} that are intended to ensure that the
      * target {@link WorldChunk chunks} around an {@link Entity} are loaded after
      * teleportation.
      */
-    public static final DefaultedRegistryReference<TicketType<Entity>> POST_TELEPORT = TicketTypes.key(ResourceKey.sponge("post_teleport"));
+    public static final TicketType<Entity> POST_TELEPORT = Sponge.game().factoryProvider().provide(Factory.class).postTeleport();
 
     // SORTFIELDS:OFF
 
@@ -87,12 +68,10 @@ public final class TicketTypes {
     private TicketTypes() {
     }
 
-    public static Registry<TicketType<?>> registry() {
-        return Sponge.game().registry(RegistryTypes.TICKET_TYPE);
-    }
+    interface Factory {
 
-    private static <T> DefaultedRegistryReference<TicketType<T>> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.TICKET_TYPE, location).asDefaultedReference(Sponge::game);
-    }
+        TicketType<Vector3i> portal();
 
+        TicketType<Entity> postTeleport();
+    }
 }
