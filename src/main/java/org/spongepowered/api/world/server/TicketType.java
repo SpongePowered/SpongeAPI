@@ -40,7 +40,6 @@ import java.util.Comparator;
  * @param <T> The type of value that is associated with a {@link Ticket} of this
  *      type.
  */
-@CatalogedBy(TicketTypes.class)
 public interface TicketType<T>  {
 
     static <U> Builder<U> builder() {
