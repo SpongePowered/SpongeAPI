@@ -2697,12 +2697,9 @@ public final class Keys {
     public static final Key<SetValue<SkinPart>> SKIN_PARTS = Keys.setKey(ResourceKey.sponge("skin_parts"), SkinPart.class);
 
     /**
-     * The skin of a {@link Humanoid}.
+     * The skin of a {@link Humanoid} or {@link ServerPlayer}.
      *
-     * <p>Skins can only be manipulated by supplying the UUID of a player
-     * having that skin. The binary skin data is signed by Mojang so fully
-     * customized skins are not possible.</p>
-     * Readonly (Player)
+     * <p>Usable with {@link ProfileProperty#TEXTURES}</p>
      */
     public static final Key<Value<ProfileProperty>> SKIN_PROFILE_PROPERTY = Keys.key(ResourceKey.sponge("skin_profile_property"), ProfileProperty.class);
 
