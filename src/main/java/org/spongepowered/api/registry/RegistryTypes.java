@@ -189,7 +189,7 @@ public final class RegistryTypes {
 
     // @formatter:off
 
-    public static final DefaultedRegistryType<ArtType> ART_TYPE = RegistryTypes.minecraftKeyInGame("motive");
+    public static final DefaultedRegistryType<ArtType> ART_TYPE = RegistryTypes.minecraftKeyInGame("painting_variant");
 
     public static final DefaultedRegistryType<AttributeType> ATTRIBUTE_TYPE = RegistryTypes.minecraftKeyInGame("attribute");
 
@@ -281,7 +281,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<BanType> BAN_TYPE = RegistryTypes.spongeKeyInGame("ban_type");
 
-    public static final DefaultedRegistryType<BannerPatternShape> BANNER_PATTERN_SHAPE = RegistryTypes.spongeKeyInGame("banner_pattern_shape");
+    public static final DefaultedRegistryType<BannerPatternShape> BANNER_PATTERN_SHAPE = RegistryTypes.minecraftKeyInGame("banner_pattern");
 
     public static final DefaultedRegistryType<BellAttachmentType> BELL_ATTACHMENT_TYPE = RegistryTypes.spongeKeyInGame("bell_attachment_type");
 
@@ -289,7 +289,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<BodyPart> BODY_PART = RegistryTypes.spongeKeyInGame("body_part");
 
-    public static final DefaultedRegistryType<CatType> CAT_TYPE = RegistryTypes.spongeKeyInGame("cat_type");
+    public static final DefaultedRegistryType<CatType> CAT_TYPE = RegistryTypes.minecraftKeyInGame("cat_variant");
 
     public static final DefaultedRegistryType<CarvingStep> CARVING_STEP = RegistryTypes.spongeKeyInGame("carving_step");
 
@@ -349,7 +349,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<FoxType> FOX_TYPE = RegistryTypes.spongeKeyInGame("fox_type");
 
-    public static final DefaultedRegistryType<FrogType> FROG_TYPE = RegistryTypes.spongeKeyInGame("frog_type");
+    public static final DefaultedRegistryType<FrogType> FROG_TYPE = RegistryTypes.minecraftKeyInGame("frog_variant");
 
     public static final DefaultedRegistryType<GameMode> GAME_MODE = RegistryTypes.spongeKeyInGame("game_mode");
 
