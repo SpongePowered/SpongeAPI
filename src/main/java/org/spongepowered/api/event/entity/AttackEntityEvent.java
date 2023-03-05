@@ -40,9 +40,7 @@ import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierTypes;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
-import org.spongepowered.api.event.cause.entity.damage.source.BlockDamageSource;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
-import org.spongepowered.api.event.cause.entity.damage.source.EntityDamageSource;
 import org.spongepowered.api.event.impl.entity.AbstractAttackEntityEvent;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -218,9 +216,9 @@ public interface AttackEntityEvent extends Event, Cancellable {
      */
     String CREATOR = "Creator";
     /**
-     * For use with a {@link DamageSource} where it is either a
-     * {@link BlockDamageSource} or {@link EntityDamageSource} such that
-     * it was last "notified" by the object represented in the cause.
+     * For use with a {@link DamageSource} with a {@link DamageSource#source() entity} or
+     * {@link DamageSource#blockSnapshot()} such that it was last "notified" by the object
+     * represented in the cause.
      *
      * <p>Usually this is used where a {@link Player} interacted with the
      * now {@link DamageSource} such that they </p>

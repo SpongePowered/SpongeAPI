@@ -22,44 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.damage.source;
+package org.spongepowered.api.event.cause.entity.damage;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-public interface IndirectEntityDamageSource extends EntityDamageSource {
 
-    /**
-     * Creates a new {@link Builder} for constructing
-     * {@link IndirectEntityDamageSource}s.
-     *
-     * @return A new builder
-     */
-    static Builder builder() {
-        return Sponge.game().builderProvider().provide(Builder.class);
-    }
+@CatalogedBy(DamageScalings.class)
+public interface DamageScaling extends DefaultedRegistryValue {
 
-    /**
-     * Gets the {@link Entity} that is indirectly using the {@link #source()}
-     * to cause damage.
-     *
-     * @return The indirect source
-     */
-    Entity indirectSource();
-
-    interface Builder extends AbstractBuilder<IndirectEntityDamageSource, Builder> {
-
-    }
-
-    interface AbstractBuilder<T extends IndirectEntityDamageSource, B extends AbstractBuilder<T, B>> extends EntityDamageSourceBuilder<T, B> {
-
-        /**
-         * Sets the {@link Entity} that is indirectly damaging.
-         *
-         * @param proxy The indirect entity
-         * @return This builder, for chaining
-         */
-        B proxySource(Entity proxy);
-
-    }
 }

@@ -31,7 +31,7 @@ import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.effect.potion.PotionEffectTypes;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.cause.entity.damage.source.FallingBlockDamageSource;
+import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.enchantment.EnchantmentType;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -112,7 +112,7 @@ public final class DamageModifierTypes {
 
     /**
      * Represents the {@link DamageModifier} that will modify damage from
-     * a {@link FallingBlockDamageSource}.
+     * a {@link DamageSource#source()} that is a {@link org.spongepowered.api.entity.FallingBlock}.
      *
      * <p>Usually, within the {@link DamageModifier#cause ()} will reside
      * an {@link ItemStackSnapshot} and an {@link Enchantment} signifying

@@ -22,42 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.damage.source;
+package org.spongepowered.api.event.cause.entity.damage;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-public interface EntityDamageSource extends DamageSource {
 
-    /**
-     * Creates a new {@link Builder} for building an {@link EntityDamageSource}.
-     *
-     * @return A new builder
-     */
-    static Builder builder() {
-        return Sponge.game().builderProvider().provide(Builder.class);
-    }
+@CatalogedBy(DamageEffects.class)
+public interface DamageEffect extends DefaultedRegistryValue {
 
-    /**
-     * Gets the {@link Entity} that is the source.
-     *
-     * @return The entity source
-     */
-    Entity source();
-
-    interface Builder extends EntityDamageSourceBuilder<EntityDamageSource, Builder> {
-
-    }
-
-    interface EntityDamageSourceBuilder<T extends EntityDamageSource, B extends EntityDamageSourceBuilder<T, B>> extends DamageSourceBuilder<T, B> {
-
-        /**
-         * Sets the {@link Entity} as the damage "source".
-         *
-         * @param entity The entity
-         * @return This builder, for chaining
-         */
-        B entity(Entity entity);
-
-    }
 }
