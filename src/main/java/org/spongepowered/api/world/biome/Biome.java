@@ -81,12 +81,22 @@ public interface Biome extends DataHolder, Taggable<Biome> {
     }
 
     /**
-     * Gets the type of precipitation in this biome.
+     * Gets the default type of precipitation in this biome.
+     * <p>This is determined by {@link Keys#HAS_PRECIPITATION} and {@link Keys#BIOME_TEMPERATURE}</p>
      *
      * @return The type of precipitation
      */
     default Precipitation precipitation() {
         return this.require(Keys.PRECIPITATION);
+    }
+
+    /**
+     * Gets the type of precipitation in this biome.
+     *
+     * @return The type of precipitation
+     */
+    default boolean hasPrecipitation() {
+        return this.require(Keys.HAS_PRECIPITATION);
     }
 
     /**

@@ -2459,9 +2459,14 @@ public final class Keys {
     public static final Key<Value<Integer>> POWER = Keys.key(ResourceKey.sponge("power"), Integer.class);
 
     /**
-     * The {@link Precipitation} type of a {@link Biome}. Readonly.
+     * The default {@link Precipitation} type of a {@link Biome}. Readonly.
      */
     public static final Key<Value<Precipitation>> PRECIPITATION = Keys.key(ResourceKey.sponge("precipitation"), Precipitation.class);
+
+    /**
+     * Whether a {@link Biome} has {@link Precipitation}. Readonly.
+     */
+    public static final Key<Value<Boolean>> HAS_PRECIPITATION = Keys.key(ResourceKey.sponge("has_precipitation"), Boolean.class);
 
     /**
      * The previous {@link GameMode} of a {@link ServerPlayer}. Readonly.
