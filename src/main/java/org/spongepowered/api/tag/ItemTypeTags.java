@@ -44,6 +44,8 @@ public final class ItemTypeTags {
 
     public static final Tag<ItemType> ARROWS = ItemTypeTags.key(ResourceKey.minecraft("arrows"));
 
+    public static final Tag<ItemType> AXES = ItemTypeTags.key(ResourceKey.minecraft("axes"));
+
     public static final Tag<ItemType> AXOLOTL_TEMPT_ITEMS = ItemTypeTags.key(ResourceKey.minecraft("axolotl_tempt_items"));
 
     public static final Tag<ItemType> BANNERS = ItemTypeTags.key(ResourceKey.minecraft("banners"));
@@ -106,6 +108,8 @@ public final class ItemTypeTags {
 
     public static final Tag<ItemType> GOLD_ORES = ItemTypeTags.key(ResourceKey.minecraft("gold_ores"));
 
+    public static final Tag<ItemType> HOES = ItemTypeTags.key(ResourceKey.minecraft("hoes"));
+
     public static final Tag<ItemType> IGNORED_BY_PIGLIN_BABIES = ItemTypeTags.key(ResourceKey.minecraft("ignored_by_piglin_babies"));
 
     public static final Tag<ItemType> IRON_ORES = ItemTypeTags.key(ResourceKey.minecraft("iron_ores"));
@@ -130,6 +134,8 @@ public final class ItemTypeTags {
 
     public static final Tag<ItemType> OAK_LOGS = ItemTypeTags.key(ResourceKey.minecraft("oak_logs"));
 
+    public static final Tag<ItemType> PICKAXES = ItemTypeTags.key(ResourceKey.minecraft("pickaxes"));
+
     public static final Tag<ItemType> PIGLIN_FOOD = ItemTypeTags.key(ResourceKey.minecraft("piglin_food"));
 
     public static final Tag<ItemType> PIGLIN_LOVED = ItemTypeTags.key(ResourceKey.minecraft("piglin_loved"));
@@ -146,11 +152,15 @@ public final class ItemTypeTags {
 
     public static final Tag<ItemType> SAPLINGS = ItemTypeTags.key(ResourceKey.minecraft("saplings"));
 
+    public static final Tag<ItemType> SHOVELS = ItemTypeTags.key(ResourceKey.minecraft("shovels"));
+
     public static final Tag<ItemType> SIGNS = ItemTypeTags.key(ResourceKey.minecraft("signs"));
 
     public static final Tag<ItemType> SLABS = ItemTypeTags.key(ResourceKey.minecraft("slabs"));
 
     public static final Tag<ItemType> SMALL_FLOWERS = ItemTypeTags.key(ResourceKey.minecraft("small_flowers"));
+
+    public static final Tag<ItemType> SMELTS_TO_GLASS = ItemTypeTags.key(ResourceKey.minecraft("smelts_to_glass"));
 
     public static final Tag<ItemType> SOUL_FIRE_BASE_BLOCKS = ItemTypeTags.key(ResourceKey.minecraft("soul_fire_base_blocks"));
 
@@ -164,9 +174,13 @@ public final class ItemTypeTags {
 
     public static final Tag<ItemType> STONE_TOOL_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("stone_tool_materials"));
 
+    public static final Tag<ItemType> SWORDS = ItemTypeTags.key(ResourceKey.minecraft("swords"));
+
     public static final Tag<ItemType> TALL_FLOWERS = ItemTypeTags.key(ResourceKey.minecraft("tall_flowers"));
 
     public static final Tag<ItemType> TERRACOTTA = ItemTypeTags.key(ResourceKey.minecraft("terracotta"));
+
+    public static final Tag<ItemType> TOOLS = ItemTypeTags.key(ResourceKey.minecraft("tools"));
 
     public static final Tag<ItemType> TRAPDOORS = ItemTypeTags.key(ResourceKey.minecraft("trapdoors"));
 

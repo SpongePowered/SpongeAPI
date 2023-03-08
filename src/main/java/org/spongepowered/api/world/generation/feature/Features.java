@@ -77,6 +77,10 @@ public final class Features {
 
     public static final DefaultedRegistryReference<Feature> CAVE_VINE_IN_MOSS = Features.key(ResourceKey.minecraft("cave_vine_in_moss"));
 
+    public static final DefaultedRegistryReference<Feature> CHERRY = Features.key(ResourceKey.minecraft("cherry"));
+
+    public static final DefaultedRegistryReference<Feature> CHERRY_BEES_005 = Features.key(ResourceKey.minecraft("cherry_bees_005"));
+
     public static final DefaultedRegistryReference<Feature> CHORUS_PLANT = Features.key(ResourceKey.minecraft("chorus_plant"));
 
     public static final DefaultedRegistryReference<Feature> CLAY_POOL_WITH_DRIPLEAVES = Features.key(ResourceKey.minecraft("clay_pool_with_dripleaves"));
@@ -128,6 +132,8 @@ public final class Features {
     public static final DefaultedRegistryReference<Feature> FANCY_OAK_BEES_002 = Features.key(ResourceKey.minecraft("fancy_oak_bees_002"));
 
     public static final DefaultedRegistryReference<Feature> FANCY_OAK_BEES_005 = Features.key(ResourceKey.minecraft("fancy_oak_bees_005"));
+
+    public static final DefaultedRegistryReference<Feature> FLOWER_CHERRY = Features.key(ResourceKey.minecraft("flower_cherry"));
 
     public static final DefaultedRegistryReference<Feature> FLOWER_DEFAULT = Features.key(ResourceKey.minecraft("flower_default"));
 

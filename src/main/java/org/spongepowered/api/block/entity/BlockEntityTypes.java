@@ -71,6 +71,8 @@ public final class BlockEntityTypes {
 
     public static final DefaultedRegistryReference<BlockEntityType> DAYLIGHT_DETECTOR = BlockEntityTypes.key(ResourceKey.minecraft("daylight_detector"));
 
+    public static final DefaultedRegistryReference<BlockEntityType> DECORATED_POT = BlockEntityTypes.key(ResourceKey.minecraft("decorated_pot"));
+
     public static final DefaultedRegistryReference<BlockEntityType> DISPENSER = BlockEntityTypes.key(ResourceKey.minecraft("dispenser"));
 
     public static final DefaultedRegistryReference<BlockEntityType> DROPPER = BlockEntityTypes.key(ResourceKey.minecraft("dropper"));
@@ -114,6 +116,8 @@ public final class BlockEntityTypes {
     public static final DefaultedRegistryReference<BlockEntityType> SMOKER = BlockEntityTypes.key(ResourceKey.minecraft("smoker"));
 
     public static final DefaultedRegistryReference<BlockEntityType> STRUCTURE_BLOCK = BlockEntityTypes.key(ResourceKey.minecraft("structure_block"));
+
+    public static final DefaultedRegistryReference<BlockEntityType> SUSPICIOUS_SAND = BlockEntityTypes.key(ResourceKey.minecraft("suspicious_sand"));
 
     public static final DefaultedRegistryReference<BlockEntityType> TRAPPED_CHEST = BlockEntityTypes.key(ResourceKey.minecraft("trapped_chest"));
 

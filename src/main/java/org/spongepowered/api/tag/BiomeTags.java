@@ -108,6 +108,8 @@ public final class BiomeTags {
 
     public static final Tag<Biome> HAS_STRUCTURE_WOODLAND_MANSION = BiomeTags.key(ResourceKey.minecraft("has_structure/woodland_mansion"));
 
+    public static final Tag<Biome> INCREASED_FIRE_BURNOUT = BiomeTags.key(ResourceKey.minecraft("increased_fire_burnout"));
+
     public static final Tag<Biome> IS_BADLANDS = BiomeTags.key(ResourceKey.minecraft("is_badlands"));
 
     public static final Tag<Biome> IS_BEACH = BiomeTags.key(ResourceKey.minecraft("is_beach"));
@@ -140,8 +142,6 @@ public final class BiomeTags {
 
     public static final Tag<Biome> MORE_FREQUENT_DROWNED_SPAWNS = BiomeTags.key(ResourceKey.minecraft("more_frequent_drowned_spawns"));
 
-    public static final Tag<Biome> ONLY_ALLOWS_SNOW_AND_GOLD_RABBITS = BiomeTags.key(ResourceKey.minecraft("only_allows_snow_and_gold_rabbits"));
-
     public static final Tag<Biome> PLAYS_UNDERWATER_MUSIC = BiomeTags.key(ResourceKey.minecraft("plays_underwater_music"));
 
     public static final Tag<Biome> POLAR_BEARS_SPAWN_ON_ALTERNATE_BLOCKS = BiomeTags.key(ResourceKey.minecraft("polar_bears_spawn_on_alternate_blocks"));
@@ -152,9 +152,17 @@ public final class BiomeTags {
 
     public static final Tag<Biome> REQUIRED_OCEAN_MONUMENT_SURROUNDING = BiomeTags.key(ResourceKey.minecraft("required_ocean_monument_surrounding"));
 
+    public static final Tag<Biome> SNOW_GOLEM_MELTS = BiomeTags.key(ResourceKey.minecraft("snow_golem_melts"));
+
     public static final Tag<Biome> SPAWNS_COLD_VARIANT_FROGS = BiomeTags.key(ResourceKey.minecraft("spawns_cold_variant_frogs"));
 
+    public static final Tag<Biome> SPAWNS_GOLD_RABBITS = BiomeTags.key(ResourceKey.minecraft("spawns_gold_rabbits"));
+
+    public static final Tag<Biome> SPAWNS_SNOW_FOXES = BiomeTags.key(ResourceKey.minecraft("spawns_snow_foxes"));
+
     public static final Tag<Biome> SPAWNS_WARM_VARIANT_FROGS = BiomeTags.key(ResourceKey.minecraft("spawns_warm_variant_frogs"));
+
+    public static final Tag<Biome> SPAWNS_WHITE_RABBITS = BiomeTags.key(ResourceKey.minecraft("spawns_white_rabbits"));
 
     public static final Tag<Biome> STRONGHOLD_BIASED_TO = BiomeTags.key(ResourceKey.minecraft("stronghold_biased_to"));
 

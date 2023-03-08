@@ -81,6 +81,10 @@ public final class PlacedFeatures {
 
     public static final DefaultedRegistryReference<PlacedFeature> CAVE_VINES = PlacedFeatures.key(ResourceKey.minecraft("cave_vines"));
 
+    public static final DefaultedRegistryReference<PlacedFeature> CHERRY_BEES_005 = PlacedFeatures.key(ResourceKey.minecraft("cherry_bees_005"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> CHERRY_CHECKED = PlacedFeatures.key(ResourceKey.minecraft("cherry_checked"));
+
     public static final DefaultedRegistryReference<PlacedFeature> CHORUS_PLANT = PlacedFeatures.key(ResourceKey.minecraft("chorus_plant"));
 
     public static final DefaultedRegistryReference<PlacedFeature> CLASSIC_VINES_CAVE_FEATURE = PlacedFeatures.key(ResourceKey.minecraft("classic_vines_cave_feature"));
@@ -120,6 +124,8 @@ public final class PlacedFeatures {
     public static final DefaultedRegistryReference<PlacedFeature> FANCY_OAK_BEES_002 = PlacedFeatures.key(ResourceKey.minecraft("fancy_oak_bees_002"));
 
     public static final DefaultedRegistryReference<PlacedFeature> FANCY_OAK_CHECKED = PlacedFeatures.key(ResourceKey.minecraft("fancy_oak_checked"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> FLOWER_CHERRY = PlacedFeatures.key(ResourceKey.minecraft("flower_cherry"));
 
     public static final DefaultedRegistryReference<PlacedFeature> FLOWER_DEFAULT = PlacedFeatures.key(ResourceKey.minecraft("flower_default"));
 
@@ -444,6 +450,8 @@ public final class PlacedFeatures {
     public static final DefaultedRegistryReference<PlacedFeature> TREES_BIRCH = PlacedFeatures.key(ResourceKey.minecraft("trees_birch"));
 
     public static final DefaultedRegistryReference<PlacedFeature> TREES_BIRCH_AND_OAK = PlacedFeatures.key(ResourceKey.minecraft("trees_birch_and_oak"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> TREES_CHERRY = PlacedFeatures.key(ResourceKey.minecraft("trees_cherry"));
 
     public static final DefaultedRegistryReference<PlacedFeature> TREES_FLOWER_FOREST = PlacedFeatures.key(ResourceKey.minecraft("trees_flower_forest"));
 
