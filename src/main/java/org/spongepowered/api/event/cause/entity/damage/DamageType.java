@@ -28,6 +28,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.tag.Tag;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.Nameable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -38,16 +39,8 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * can damage an {@link Entity} with varying {@link DamageType}s depending on the circumstances.
  */
 @CatalogedBy(DamageTypes.class)
-public interface DamageType extends DefaultedRegistryValue, Nameable {
+public interface DamageType extends DefaultedRegistryValue, Nameable, Taggable<DamageType> {
 
-    /**
-     * Creates a new {@link Builder builder} to build a {@link DamageType}.
-     *
-     * @return A new builder
-     */
-    static Builder builder() {
-        return Sponge.game().builderProvider().provide(Builder.class);
-    }
 
     /**
      * Gets the amount of exhaustion this {@link DamageType} will add to the entity, generally only to players.
