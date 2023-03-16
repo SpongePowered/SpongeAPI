@@ -367,6 +367,40 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> CHAIN_COMMAND_BLOCK = BlockTypes.key(ResourceKey.minecraft("chain_command_block"));
 
+    public static final DefaultedRegistryReference<BlockType> CHERRY_BUTTON = BlockTypes.key(ResourceKey.minecraft("cherry_button"));
+
+    public static final DefaultedRegistryReference<BlockType> CHERRY_DOOR = BlockTypes.key(ResourceKey.minecraft("cherry_door"));
+
+    public static final DefaultedRegistryReference<BlockType> CHERRY_FENCE = BlockTypes.key(ResourceKey.minecraft("cherry_fence"));
+
+    public static final DefaultedRegistryReference<BlockType> CHERRY_FENCE_GATE = BlockTypes.key(ResourceKey.minecraft("cherry_fence_gate"));
+
+    public static final DefaultedRegistryReference<BlockType> CHERRY_HANGING_SIGN = BlockTypes.key(ResourceKey.minecraft("cherry_hanging_sign"));
+
+    public static final DefaultedRegistryReference<BlockType> CHERRY_LEAVES = BlockTypes.key(ResourceKey.minecraft("cherry_leaves"));
+
+    public static final DefaultedRegistryReference<BlockType> CHERRY_LOG = BlockTypes.key(ResourceKey.minecraft("cherry_log"));
+
+    public static final DefaultedRegistryReference<BlockType> CHERRY_PLANKS = BlockTypes.key(ResourceKey.minecraft("cherry_planks"));
+
+    public static final DefaultedRegistryReference<BlockType> CHERRY_PRESSURE_PLATE = BlockTypes.key(ResourceKey.minecraft("cherry_pressure_plate"));
+
+    public static final DefaultedRegistryReference<BlockType> CHERRY_SAPLING = BlockTypes.key(ResourceKey.minecraft("cherry_sapling"));
+
+    public static final DefaultedRegistryReference<BlockType> CHERRY_SIGN = BlockTypes.key(ResourceKey.minecraft("cherry_sign"));
+
+    public static final DefaultedRegistryReference<BlockType> CHERRY_SLAB = BlockTypes.key(ResourceKey.minecraft("cherry_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> CHERRY_STAIRS = BlockTypes.key(ResourceKey.minecraft("cherry_stairs"));
+
+    public static final DefaultedRegistryReference<BlockType> CHERRY_TRAPDOOR = BlockTypes.key(ResourceKey.minecraft("cherry_trapdoor"));
+
+    public static final DefaultedRegistryReference<BlockType> CHERRY_WALL_HANGING_SIGN = BlockTypes.key(ResourceKey.minecraft("cherry_wall_hanging_sign"));
+
+    public static final DefaultedRegistryReference<BlockType> CHERRY_WALL_SIGN = BlockTypes.key(ResourceKey.minecraft("cherry_wall_sign"));
+
+    public static final DefaultedRegistryReference<BlockType> CHERRY_WOOD = BlockTypes.key(ResourceKey.minecraft("cherry_wood"));
+
     public static final DefaultedRegistryReference<BlockType> CHEST = BlockTypes.key(ResourceKey.minecraft("chest"));
 
     public static final DefaultedRegistryReference<BlockType> CHIPPED_ANVIL = BlockTypes.key(ResourceKey.minecraft("chipped_anvil"));
@@ -616,6 +650,8 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> DEAD_TUBE_CORAL_FAN = BlockTypes.key(ResourceKey.minecraft("dead_tube_coral_fan"));
 
     public static final DefaultedRegistryReference<BlockType> DEAD_TUBE_CORAL_WALL_FAN = BlockTypes.key(ResourceKey.minecraft("dead_tube_coral_wall_fan"));
+
+    public static final DefaultedRegistryReference<BlockType> DECORATED_POT = BlockTypes.key(ResourceKey.minecraft("decorated_pot"));
 
     public static final DefaultedRegistryReference<BlockType> DEEPSLATE = BlockTypes.key(ResourceKey.minecraft("deepslate"));
 
@@ -1289,6 +1325,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> PINK_GLAZED_TERRACOTTA = BlockTypes.key(ResourceKey.minecraft("pink_glazed_terracotta"));
 
+    public static final DefaultedRegistryReference<BlockType> PINK_PETALS = BlockTypes.key(ResourceKey.minecraft("pink_petals"));
+
     public static final DefaultedRegistryReference<BlockType> PINK_SHULKER_BOX = BlockTypes.key(ResourceKey.minecraft("pink_shulker_box"));
 
     public static final DefaultedRegistryReference<BlockType> PINK_STAINED_GLASS = BlockTypes.key(ResourceKey.minecraft("pink_stained_glass"));
@@ -1385,6 +1423,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> POTTED_CACTUS = BlockTypes.key(ResourceKey.minecraft("potted_cactus"));
 
+    public static final DefaultedRegistryReference<BlockType> POTTED_CHERRY_SAPLING = BlockTypes.key(ResourceKey.minecraft("potted_cherry_sapling"));
+
     public static final DefaultedRegistryReference<BlockType> POTTED_CORNFLOWER = BlockTypes.key(ResourceKey.minecraft("potted_cornflower"));
 
     public static final DefaultedRegistryReference<BlockType> POTTED_CRIMSON_FUNGUS = BlockTypes.key(ResourceKey.minecraft("potted_crimson_fungus"));
@@ -1422,6 +1462,8 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> POTTED_RED_TULIP = BlockTypes.key(ResourceKey.minecraft("potted_red_tulip"));
 
     public static final DefaultedRegistryReference<BlockType> POTTED_SPRUCE_SAPLING = BlockTypes.key(ResourceKey.minecraft("potted_spruce_sapling"));
+
+    public static final DefaultedRegistryReference<BlockType> POTTED_TORCHFLOWER = BlockTypes.key(ResourceKey.minecraft("potted_torchflower"));
 
     public static final DefaultedRegistryReference<BlockType> POTTED_WARPED_FUNGUS = BlockTypes.key(ResourceKey.minecraft("potted_warped_fungus"));
 
@@ -1745,6 +1787,10 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> STRIPPED_BIRCH_WOOD = BlockTypes.key(ResourceKey.minecraft("stripped_birch_wood"));
 
+    public static final DefaultedRegistryReference<BlockType> STRIPPED_CHERRY_LOG = BlockTypes.key(ResourceKey.minecraft("stripped_cherry_log"));
+
+    public static final DefaultedRegistryReference<BlockType> STRIPPED_CHERRY_WOOD = BlockTypes.key(ResourceKey.minecraft("stripped_cherry_wood"));
+
     public static final DefaultedRegistryReference<BlockType> STRIPPED_CRIMSON_HYPHAE = BlockTypes.key(ResourceKey.minecraft("stripped_crimson_hyphae"));
 
     public static final DefaultedRegistryReference<BlockType> STRIPPED_CRIMSON_STEM = BlockTypes.key(ResourceKey.minecraft("stripped_crimson_stem"));
@@ -1781,6 +1827,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> SUNFLOWER = BlockTypes.key(ResourceKey.minecraft("sunflower"));
 
+    public static final DefaultedRegistryReference<BlockType> SUSPICIOUS_SAND = BlockTypes.key(ResourceKey.minecraft("suspicious_sand"));
+
     public static final DefaultedRegistryReference<BlockType> SWEET_BERRY_BUSH = BlockTypes.key(ResourceKey.minecraft("sweet_berry_bush"));
 
     public static final DefaultedRegistryReference<BlockType> TALL_GRASS = BlockTypes.key(ResourceKey.minecraft("tall_grass"));
@@ -1796,6 +1844,10 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> TNT = BlockTypes.key(ResourceKey.minecraft("tnt"));
 
     public static final DefaultedRegistryReference<BlockType> TORCH = BlockTypes.key(ResourceKey.minecraft("torch"));
+
+    public static final DefaultedRegistryReference<BlockType> TORCHFLOWER = BlockTypes.key(ResourceKey.minecraft("torchflower"));
+
+    public static final DefaultedRegistryReference<BlockType> TORCHFLOWER_CROP = BlockTypes.key(ResourceKey.minecraft("torchflower_crop"));
 
     public static final DefaultedRegistryReference<BlockType> TRAPPED_CHEST = BlockTypes.key(ResourceKey.minecraft("trapped_chest"));
 

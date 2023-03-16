@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.event.cause.entity.damage;
 
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
@@ -33,43 +33,28 @@ import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.registry.RegistryTypes;
 
-/**
- * An enumeration of vanilla {@link BoatType}s.
- */
 @SuppressWarnings("unused")
 @RegistryScopes(scopes = RegistryScope.GAME)
-public final class BoatTypes {
+public final class DamageScalings {
 
     // @formatter:off
     // SORTFIELDS:ON
-    public static final DefaultedRegistryReference<BoatType> ACACIA = BoatTypes.key(ResourceKey.sponge("acacia"));
+    public static final DefaultedRegistryReference<DamageScaling> ALWAYS = DamageScalings.key(ResourceKey.sponge("always"));
 
-    public static final DefaultedRegistryReference<BoatType> BAMBOO = BoatTypes.key(ResourceKey.sponge("bamboo"));
+    public static final DefaultedRegistryReference<DamageScaling> NEVER = DamageScalings.key(ResourceKey.sponge("never"));
 
-    public static final DefaultedRegistryReference<BoatType> BIRCH = BoatTypes.key(ResourceKey.sponge("birch"));
-
-    public static final DefaultedRegistryReference<BoatType> CHERRY = BoatTypes.key(ResourceKey.sponge("cherry"));
-
-    public static final DefaultedRegistryReference<BoatType> DARK_OAK = BoatTypes.key(ResourceKey.sponge("dark_oak"));
-
-    public static final DefaultedRegistryReference<BoatType> JUNGLE = BoatTypes.key(ResourceKey.sponge("jungle"));
-
-    public static final DefaultedRegistryReference<BoatType> MANGROVE = BoatTypes.key(ResourceKey.sponge("mangrove"));
-
-    public static final DefaultedRegistryReference<BoatType> OAK = BoatTypes.key(ResourceKey.sponge("oak"));
-
-    public static final DefaultedRegistryReference<BoatType> SPRUCE = BoatTypes.key(ResourceKey.sponge("spruce"));
+    public static final DefaultedRegistryReference<DamageScaling> WHEN_CAUSED_BY_LIVING_NON_PLAYER = DamageScalings.key(ResourceKey.sponge("when_caused_by_living_non_player"));
 
     // SORTFIELDS:OFF
     // @formatter:on
-    private BoatTypes() {
+    private DamageScalings() {
     }
 
-    public static Registry<BoatType> registry() {
-        return Sponge.game().registry(RegistryTypes.BOAT_TYPE);
+    public static Registry<DamageScaling> registry() {
+        return Sponge.game().registry(RegistryTypes.DAMAGE_SCALING);
     }
 
-    private static DefaultedRegistryReference<BoatType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.BOAT_TYPE, location).asDefaultedReference(Sponge::game);
+    private static DefaultedRegistryReference<DamageScaling> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.DAMAGE_SCALING, location).asDefaultedReference(Sponge::game);
     }
 }

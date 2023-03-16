@@ -29,6 +29,8 @@ import org.spongepowered.api.advancement.AdvancementTemplate;
 import org.spongepowered.api.adventure.ChatTypeTemplate;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.event.cause.entity.damage.DamageType;
+import org.spongepowered.api.event.cause.entity.damage.DamageTypeTemplate;
 import org.spongepowered.api.fluid.FluidType;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
@@ -98,6 +100,9 @@ public final class DataPackTypes {
     public static final DataPackType<JigsawPoolTemplate> JIGSAW_POOL = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).jigsawPool();
 
     public static final DataPackType<ChatTypeTemplate> CHAT_TYPE = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).chatType();
+
+    public static final DataPackType<DamageTypeTemplate> DAMAGE_TYPE = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).damageType();
+    public static final DataPackType<TagTemplate<DamageType>> DAMAGE_TYPE_TAG = Sponge.game().factoryProvider().provide(DataPackType.Factory.class).tag(RegistryTypes.DAMAGE_TYPE);
 
     // SORTFIELDS:OFF
 

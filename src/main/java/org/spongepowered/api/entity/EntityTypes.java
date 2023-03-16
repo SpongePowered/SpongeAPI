@@ -169,6 +169,8 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<Blaze>> BLAZE = EntityTypes.key(ResourceKey.minecraft("blaze"));
 
+    // public static final DefaultedRegistryReference<FixMe> BLOCK_DISPLAY = EntityTypes.key(ResourceKey.minecraft("block_display"));
+
     public static final DefaultedRegistryReference<EntityType<Boat>> BOAT = EntityTypes.key(ResourceKey.minecraft("boat"));
 
     public static final DefaultedRegistryReference<EntityType<Camel>> CAMEL = EntityTypes.key(ResourceKey.minecraft("camel"));
@@ -261,9 +263,13 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<Illusioner>> ILLUSIONER = EntityTypes.key(ResourceKey.minecraft("illusioner"));
 
+    // public static final DefaultedRegistryReference<FixMe> INTERACTION = EntityTypes.key(ResourceKey.minecraft("interaction"));
+
     public static final DefaultedRegistryReference<EntityType<IronGolem>> IRON_GOLEM = EntityTypes.key(ResourceKey.minecraft("iron_golem"));
 
     public static final DefaultedRegistryReference<EntityType<Item>> ITEM = EntityTypes.key(ResourceKey.minecraft("item"));
+
+    // public static final DefaultedRegistryReference<FixMe> ITEM_DISPLAY = EntityTypes.key(ResourceKey.minecraft("item_display"));
 
     public static final DefaultedRegistryReference<EntityType<ItemFrame>> ITEM_FRAME = EntityTypes.key(ResourceKey.minecraft("item_frame"));
 
@@ -333,6 +339,8 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<SmallFireball>> SMALL_FIREBALL = EntityTypes.key(ResourceKey.minecraft("small_fireball"));
 
+    // public static final DefaultedRegistryReference<FixMe> SNIFFER = EntityTypes.key(ResourceKey.minecraft("sniffer"));
+
     public static final DefaultedRegistryReference<EntityType<Snowball>> SNOWBALL = EntityTypes.key(ResourceKey.minecraft("snowball"));
 
     public static final DefaultedRegistryReference<EntityType<SnowGolem>> SNOW_GOLEM = EntityTypes.key(ResourceKey.minecraft("snow_golem"));
@@ -350,6 +358,8 @@ public final class EntityTypes {
     public static final DefaultedRegistryReference<EntityType<Strider>> STRIDER = EntityTypes.key(ResourceKey.minecraft("strider"));
 
     public static final DefaultedRegistryReference<EntityType<Tadpole>> TADPOLE = EntityTypes.key(ResourceKey.minecraft("tadpole"));
+
+    // public static final DefaultedRegistryReference<FixMe> TEXT_DISPLAY = EntityTypes.key(ResourceKey.minecraft("text_display"));
 
     public static final DefaultedRegistryReference<EntityType<PrimedTNT>> TNT = EntityTypes.key(ResourceKey.minecraft("tnt"));
 

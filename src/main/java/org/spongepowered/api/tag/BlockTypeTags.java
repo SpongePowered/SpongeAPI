@@ -270,6 +270,8 @@ public final class BlockTypeTags {
 
     public static final Tag<BlockType> SMALL_FLOWERS = BlockTypeTags.key(ResourceKey.minecraft("small_flowers"));
 
+    public static final Tag<BlockType> SMELTS_TO_GLASS = BlockTypeTags.key(ResourceKey.minecraft("smelts_to_glass"));
+
     public static final Tag<BlockType> SNAPS_GOAT_HORN = BlockTypeTags.key(ResourceKey.minecraft("snaps_goat_horn"));
 
     public static final Tag<BlockType> SNOW = BlockTypeTags.key(ResourceKey.minecraft("snow"));

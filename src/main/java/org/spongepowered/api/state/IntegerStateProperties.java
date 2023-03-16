@@ -81,8 +81,16 @@ public final class IntegerStateProperties {
         return IntegerStateProperty.of("DISTANCE");
     }
 
+    public static IntegerStateProperty property_DUSTED() {
+        return IntegerStateProperty.of("DUSTED");
+    }
+
     public static IntegerStateProperty property_EGGS() {
         return IntegerStateProperty.of("EGGS");
+    }
+
+    public static IntegerStateProperty property_FLOWER_AMOUNT() {
+        return IntegerStateProperty.of("FLOWER_AMOUNT");
     }
 
     public static IntegerStateProperty property_HATCH() {

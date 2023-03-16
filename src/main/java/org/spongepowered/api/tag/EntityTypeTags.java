@@ -46,6 +46,10 @@ public final class EntityTypeTags {
 
     public static final Tag<EntityType<?>> BEEHIVE_INHABITORS = EntityTypeTags.key(ResourceKey.minecraft("beehive_inhabitors"));
 
+    public static final Tag<EntityType<?>> DISMOUNTS_UNDERWATER = EntityTypeTags.key(ResourceKey.minecraft("dismounts_underwater"));
+
+    public static final Tag<EntityType<?>> FALL_DAMAGE_IMMUNE = EntityTypeTags.key(ResourceKey.minecraft("fall_damage_immune"));
+
     public static final Tag<EntityType<?>> FREEZE_HURTS_EXTRA_TYPES = EntityTypeTags.key(ResourceKey.minecraft("freeze_hurts_extra_types"));
 
     public static final Tag<EntityType<?>> FREEZE_IMMUNE_ENTITY_TYPES = EntityTypeTags.key(ResourceKey.minecraft("freeze_immune_entity_types"));

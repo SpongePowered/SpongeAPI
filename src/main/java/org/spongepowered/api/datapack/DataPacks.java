@@ -28,6 +28,8 @@ import org.spongepowered.api.advancement.AdvancementTemplate;
 import org.spongepowered.api.adventure.ChatTypeTemplate;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.event.cause.entity.damage.DamageType;
+import org.spongepowered.api.event.cause.entity.damage.DamageTypeTemplate;
 import org.spongepowered.api.fluid.FluidType;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
@@ -94,6 +96,9 @@ public final class DataPacks {
 
     public static final DataPack<JigsawPoolTemplate> JIGSAW_POOL = DataPackTypes.JIGSAW_POOL.pack("plugin_worldgen", "Sponge plugin provided jigsaw pools");
     public static final DataPack<ChatTypeTemplate> CHAT_TYPE = DataPackTypes.CHAT_TYPE.pack("plugin_chat_types", "Sponge plugin provided chat types");
+
+    public static final DataPack<DamageTypeTemplate> DAMAGE_TYPE = DataPackTypes.DAMAGE_TYPE.pack("plugin_damage_types", "Sponge plugin provided damage types");
+    public static final DataPack<TagTemplate<DamageType>> DAMAGE_TYPE_TAG = DataPackTypes.DAMAGE_TYPE_TAG.pack("plugin_damage_types", "Sponge plugin provided damage type tags");
 
     // SORTFIELDS:ON
 

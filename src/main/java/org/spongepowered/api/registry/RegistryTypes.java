@@ -109,7 +109,9 @@ import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.event.cause.entity.DismountType;
 import org.spongepowered.api.event.cause.entity.MovementType;
 import org.spongepowered.api.event.cause.entity.SpawnType;
+import org.spongepowered.api.event.cause.entity.damage.DamageEffect;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
+import org.spongepowered.api.event.cause.entity.damage.DamageScaling;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.fluid.FluidType;
 import org.spongepowered.api.item.FireworkShape;
@@ -319,7 +321,9 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<DamageModifierType> DAMAGE_MODIFIER_TYPE = RegistryTypes.spongeKeyInGame("damage_modifier_type");
 
-    public static final DefaultedRegistryType<DamageType> DAMAGE_TYPE = RegistryTypes.spongeKeyInGame("damage_type");
+    public static final DefaultedRegistryType<DamageType> DAMAGE_TYPE = RegistryTypes.minecraftKeyInServer("damage_type");
+    public static final DefaultedRegistryType<DamageScaling> DAMAGE_SCALING = RegistryTypes.spongeKeyInGame("damage_scaling");
+    public static final DefaultedRegistryType<DamageEffect> DAMAGE_EFFECT = RegistryTypes.spongeKeyInGame("damage_effect");
 
     public static final DefaultedRegistryType<DataFormat> DATA_FORMAT = RegistryTypes.spongeKeyInGame("data_format");
 

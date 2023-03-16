@@ -26,6 +26,7 @@ package org.spongepowered.api.datapack;
 
 import org.spongepowered.api.advancement.AdvancementTemplate;
 import org.spongepowered.api.adventure.ChatTypeTemplate;
+import org.spongepowered.api.event.cause.entity.damage.DamageTypeTemplate;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.registry.RegistryType;
 import org.spongepowered.api.tag.TagTemplate;
@@ -96,5 +97,7 @@ public interface DataPackType<T> {
         DataPackType<JigsawPoolTemplate> jigsawPool();
 
         DataPackType<ChatTypeTemplate> chatType();
+
+        DataPackType<DamageTypeTemplate> damageType();
     }
 }
