@@ -39,28 +39,28 @@ public final class DamageEffects {
 
     // @formatter:off
     // SORTFIELDS:ON
-    public static final DefaultedRegistryReference<DamageScaling> BURNING = DamageEffects.key(ResourceKey.sponge("burning"));
+    public static final DefaultedRegistryReference<DamageEffect> BURNING = DamageEffects.key(ResourceKey.sponge("burning"));
 
-    public static final DefaultedRegistryReference<DamageScaling> DROWNING = DamageEffects.key(ResourceKey.sponge("drowning"));
+    public static final DefaultedRegistryReference<DamageEffect> DROWNING = DamageEffects.key(ResourceKey.sponge("drowning"));
 
-    public static final DefaultedRegistryReference<DamageScaling> FREEZING = DamageEffects.key(ResourceKey.sponge("freezing"));
+    public static final DefaultedRegistryReference<DamageEffect> FREEZING = DamageEffects.key(ResourceKey.sponge("freezing"));
 
-    public static final DefaultedRegistryReference<DamageScaling> HURT = DamageEffects.key(ResourceKey.sponge("hurt"));
+    public static final DefaultedRegistryReference<DamageEffect> HURT = DamageEffects.key(ResourceKey.sponge("hurt"));
 
-    public static final DefaultedRegistryReference<DamageScaling> POKING = DamageEffects.key(ResourceKey.sponge("poking"));
+    public static final DefaultedRegistryReference<DamageEffect> POKING = DamageEffects.key(ResourceKey.sponge("poking"));
 
-    public static final DefaultedRegistryReference<DamageScaling> THORNS = DamageEffects.key(ResourceKey.sponge("thorns"));
+    public static final DefaultedRegistryReference<DamageEffect> THORNS = DamageEffects.key(ResourceKey.sponge("thorns"));
 
     // SORTFIELDS:OFF
     // @formatter:on
     private DamageEffects() {
     }
 
-    public static Registry<DamageScaling> registry() {
-        return Sponge.game().registry(RegistryTypes.DAMAGE_SCALING);
+    public static Registry<DamageEffect> registry() {
+        return Sponge.game().registry(RegistryTypes.DAMAGE_EFFECT);
     }
 
-    private static DefaultedRegistryReference<DamageScaling> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.DAMAGE_SCALING, location).asDefaultedReference(Sponge::game);
+    private static DefaultedRegistryReference<DamageEffect> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.DAMAGE_EFFECT, location).asDefaultedReference(Sponge::game);
     }
 }
