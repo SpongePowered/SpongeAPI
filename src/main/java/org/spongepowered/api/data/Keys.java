@@ -113,6 +113,10 @@ import org.spongepowered.api.entity.ExperienceOrb;
 import org.spongepowered.api.entity.FallingBlock;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.ai.goal.GoalExecutorTypes;
+import org.spongepowered.api.entity.display.BillboardType;
+import org.spongepowered.api.entity.display.DisplayEntity;
+import org.spongepowered.api.entity.display.ItemDisplayType;
+import org.spongepowered.api.entity.display.TextDisplay;
 import org.spongepowered.api.entity.explosive.EndCrystal;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
@@ -478,6 +482,11 @@ public final class Keys {
     public static final Key<Value<Boolean>> BEDS_USABLE = Keys.key(ResourceKey.sponge("beds_usable"), Boolean.class);
 
     /**
+     * The {@link BillboardType} of a {@link DisplayEntity}.
+     */
+    public static final Key<Value<BillboardType>> BILLBOARD_TYPE = Keys.key(ResourceKey.sponge("billboard_type"), BillboardType.class);
+
+    /**
      * The default temperature of a {@link Biome} or the biome at a specific {@link ServerLocation}.
      * For the exact block temperature see {@link #BLOCK_TEMPERATURE}.
      * Readonly
@@ -810,6 +819,7 @@ public final class Keys {
      * <p>On an {@link ItemStack}, this represents the {@link Keys#CUSTOM_NAME} or if not set the {@link ItemType}s translation.
      * <p>On a {@link BlockEntity}, this usually represents the name displayed in its {@link org.spongepowered.api.item.inventory.Container}
      * <p>On a {@link WorldTemplate} or {@link ServerWorldProperties}, this represents the display name of the corresponding {@link ServerWorld}</p>
+     * <p>On a {@link TextDisplay} this is modifiable.</p>
      */
     public static final Key<Value<Component>> DISPLAY_NAME = Keys.key(ResourceKey.sponge("display_name"), Component.class);
 
@@ -1953,6 +1963,11 @@ public final class Keys {
      * Readonly(Entity.class) except Wolf
      */
     public static final Key<Value<Boolean>> IS_WET = Keys.key(ResourceKey.sponge("is_wet"), Boolean.class);
+
+    /**
+     * The {@link ItemDisplayType display type} of a {@link org.spongepowered.api.entity.display.ItemDisplay}.
+     */
+    public static final Key<Value<ItemDisplayType>> ITEM_DISPLAY_TYPE = Keys.key(ResourceKey.sponge("item_display_type"), ItemDisplayType.class);
 
     /**
      * The durability of an {@link ItemStack}. {@link #MAX_DURABILITY}

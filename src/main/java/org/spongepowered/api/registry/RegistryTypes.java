@@ -103,6 +103,8 @@ import org.spongepowered.api.entity.ai.goal.GoalExecutorType;
 import org.spongepowered.api.entity.ai.goal.GoalType;
 import org.spongepowered.api.entity.attribute.AttributeOperation;
 import org.spongepowered.api.entity.attribute.type.AttributeType;
+import org.spongepowered.api.entity.display.BillboardType;
+import org.spongepowered.api.entity.display.ItemDisplayType;
 import org.spongepowered.api.entity.living.monster.boss.dragon.phase.DragonPhaseType;
 import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
@@ -287,6 +289,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<BellAttachmentType> BELL_ATTACHMENT_TYPE = RegistryTypes.spongeKeyInGame("bell_attachment_type");
 
+    public static final DefaultedRegistryType<BillboardType> BILLBOARD_TYPE = RegistryTypes.spongeKeyInGame("billboard_type");
+
     public static final DefaultedRegistryType<BoatType> BOAT_TYPE = RegistryTypes.spongeKeyInGame("boat_type");
 
     public static final DefaultedRegistryType<BodyPart> BODY_PART = RegistryTypes.spongeKeyInGame("body_part");
@@ -380,6 +384,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<ItemRarity> ITEM_RARITY = RegistryTypes.spongeKeyInGame("item_rarity");
 
     public static final DefaultedRegistryType<ItemTier> ITEM_TIER = RegistryTypes.spongeKeyInGame("item_tier");
+
+    public static final DefaultedRegistryType<ItemDisplayType> ITEM_DISPLAY_TYPE = RegistryTypes.spongeKeyInGame("item_display_type");
 
     public static final DefaultedRegistryType<JigsawBlockOrientation> JIGSAW_BLOCK_ORIENTATION = RegistryTypes.spongeKeyInGame("jigsaw_block_orientation");
 

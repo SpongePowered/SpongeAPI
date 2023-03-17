@@ -24,34 +24,10 @@
  */
 package org.spongepowered.api.entity.display;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-public interface DisplayEntity extends Entity {
-
-    // TODO rotation/transformation?
-
-    // TODO interpolation?
-
-    default BillboardType billboardType() {
-        return this.require(Keys.BILLBOARD_TYPE);
-    }
-//
-//    default int skyLight() {
-//        // TODO impl
-//        return this.require(Keys.SKY_LIGHT);
-//    }
-//
-//    default int blockLight() {
-//        // TODO impl
-//        return this.require(Keys.BLOCK_LIGHT);
-//    }
-
-    // TODO view_range float/double
-
-    // TODO shadow radius float/double 0=noshadow
-    // TODO shadow strength float/double 1=default
-    // TODO bounding box (maybe BASE_SIZE if this is not smth. else in the entity)
-    // TODO glow_color_override -1 = use team color
+@CatalogedBy(ItemDisplayTypes.class)
+public interface ItemDisplayType extends DefaultedRegistryValue {
 
 }

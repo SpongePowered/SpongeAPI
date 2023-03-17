@@ -40,4 +40,13 @@ public interface ItemDisplay extends DisplayEntity {
         return this.require(Keys.ITEM_STACK_SNAPSHOT);
     }
 
+    /**
+     * Returns the {@link ItemDisplayType display type}.
+     *
+     * @return the display type
+     */
+    default ItemDisplayType displayType() {
+        return this.require(Keys.ITEM_DISPLAY_TYPE);
+    }
+
 }
