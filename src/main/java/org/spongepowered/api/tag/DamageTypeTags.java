@@ -58,6 +58,8 @@ public final class DamageTypeTags {
 
     public static final Tag<DamageType> BYPASSES_RESISTANCE = DamageTypeTags.key(ResourceKey.minecraft("bypasses_resistance"));
 
+    public static final Tag<DamageType> BYPASSES_SHIELD = DamageTypeTags.key(ResourceKey.minecraft("bypasses_shield"));
+
     public static final Tag<DamageType> DAMAGES_HELMET = DamageTypeTags.key(ResourceKey.minecraft("damages_helmet"));
 
     public static final Tag<DamageType> IGNITES_ARMOR_STANDS = DamageTypeTags.key(ResourceKey.minecraft("ignites_armor_stands"));
