@@ -45,7 +45,7 @@ import java.util.function.Supplier;
 /**
  * Represents a {@link Cause} for damage on the {@link Entity} being
  * damaged. Usually the {@link DamageSource} will have different properties
- * based on the {@link DamageType} and its ascociated {@link org.spongepowered.api.tag.Tag<DamageType> tags}
+ * based on the {@link DamageType} and its associated {@link org.spongepowered.api.tag.Tag tags}
  *
  * <p>Almost always, the {@link DamageSource} will be the first element in
  * the {@link Cause} of the event. Any additional modifiers that "aid" the
@@ -77,7 +77,7 @@ public interface DamageSource {
      */
     @Deprecated
     default boolean isAbsolute() {
-        return this.type().is(DamageTypeTags.BYPASSES_EFFECTS) && this.type().is(DamageTypeTags.BYPASSES_ENCHANTMENTS) ;
+        return this.type().is(DamageTypeTags.BYPASSES_EFFECTS) && this.type().is(DamageTypeTags.BYPASSES_ENCHANTMENTS);
     }
 
     /**
@@ -153,9 +153,10 @@ public interface DamageSource {
      *
      * @return The increase in exhaustion
      */
-    default double exhaustion(){
+    default double exhaustion() {
         return this.type().exhaustion();
     }
+
     /**
      * Gets the {@link Entity} that is the source.
      * <p>
