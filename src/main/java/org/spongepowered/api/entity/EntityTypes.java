@@ -26,6 +26,9 @@ package org.spongepowered.api.entity;
 
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.display.BlockDisplay;
+import org.spongepowered.api.entity.display.ItemDisplay;
+import org.spongepowered.api.entity.display.TextDisplay;
 import org.spongepowered.api.entity.explosive.EndCrystal;
 import org.spongepowered.api.entity.explosive.fused.PrimedTNT;
 import org.spongepowered.api.entity.hanging.ItemFrame;
@@ -48,6 +51,7 @@ import org.spongepowered.api.entity.living.animal.Pig;
 import org.spongepowered.api.entity.living.animal.PolarBear;
 import org.spongepowered.api.entity.living.animal.Rabbit;
 import org.spongepowered.api.entity.living.animal.Sheep;
+import org.spongepowered.api.entity.living.animal.Sniffer;
 import org.spongepowered.api.entity.living.animal.Turtle;
 import org.spongepowered.api.entity.living.animal.Wolf;
 import org.spongepowered.api.entity.living.animal.cow.Cow;
@@ -146,6 +150,7 @@ import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.util.annotation.Experimental;
 
 @SuppressWarnings("unused")
 @RegistryScopes(scopes = RegistryScope.GAME)
@@ -169,7 +174,7 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<Blaze>> BLAZE = EntityTypes.key(ResourceKey.minecraft("blaze"));
 
-    // public static final DefaultedRegistryReference<FixMe> BLOCK_DISPLAY = EntityTypes.key(ResourceKey.minecraft("block_display"));
+    public static final DefaultedRegistryReference<EntityType<BlockDisplay>> BLOCK_DISPLAY = EntityTypes.key(ResourceKey.minecraft("block_display"));
 
     public static final DefaultedRegistryReference<EntityType<Boat>> BOAT = EntityTypes.key(ResourceKey.minecraft("boat"));
 
@@ -263,13 +268,13 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<Illusioner>> ILLUSIONER = EntityTypes.key(ResourceKey.minecraft("illusioner"));
 
-    // public static final DefaultedRegistryReference<FixMe> INTERACTION = EntityTypes.key(ResourceKey.minecraft("interaction"));
+    public static final DefaultedRegistryReference<EntityType<Interaction>> INTERACTION = EntityTypes.key(ResourceKey.minecraft("interaction"));
 
     public static final DefaultedRegistryReference<EntityType<IronGolem>> IRON_GOLEM = EntityTypes.key(ResourceKey.minecraft("iron_golem"));
 
     public static final DefaultedRegistryReference<EntityType<Item>> ITEM = EntityTypes.key(ResourceKey.minecraft("item"));
 
-    // public static final DefaultedRegistryReference<FixMe> ITEM_DISPLAY = EntityTypes.key(ResourceKey.minecraft("item_display"));
+    public static final DefaultedRegistryReference<EntityType<ItemDisplay>> ITEM_DISPLAY = EntityTypes.key(ResourceKey.minecraft("item_display"));
 
     public static final DefaultedRegistryReference<EntityType<ItemFrame>> ITEM_FRAME = EntityTypes.key(ResourceKey.minecraft("item_frame"));
 
@@ -339,7 +344,8 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<SmallFireball>> SMALL_FIREBALL = EntityTypes.key(ResourceKey.minecraft("small_fireball"));
 
-    // public static final DefaultedRegistryReference<FixMe> SNIFFER = EntityTypes.key(ResourceKey.minecraft("sniffer"));
+    @Experimental("update_1_20")
+    public static final DefaultedRegistryReference<EntityType<Sniffer>> SNIFFER = EntityTypes.key(ResourceKey.minecraft("sniffer"));
 
     public static final DefaultedRegistryReference<EntityType<Snowball>> SNOWBALL = EntityTypes.key(ResourceKey.minecraft("snowball"));
 
@@ -359,7 +365,7 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<Tadpole>> TADPOLE = EntityTypes.key(ResourceKey.minecraft("tadpole"));
 
-    // public static final DefaultedRegistryReference<FixMe> TEXT_DISPLAY = EntityTypes.key(ResourceKey.minecraft("text_display"));
+    public static final DefaultedRegistryReference<EntityType<TextDisplay>> TEXT_DISPLAY = EntityTypes.key(ResourceKey.minecraft("text_display"));
 
     public static final DefaultedRegistryReference<EntityType<PrimedTNT>> TNT = EntityTypes.key(ResourceKey.minecraft("tnt"));
 
