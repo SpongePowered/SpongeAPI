@@ -105,6 +105,7 @@ import org.spongepowered.api.entity.attribute.AttributeOperation;
 import org.spongepowered.api.entity.attribute.type.AttributeType;
 import org.spongepowered.api.entity.display.BillboardType;
 import org.spongepowered.api.entity.display.ItemDisplayType;
+import org.spongepowered.api.entity.display.TextAlignment;
 import org.spongepowered.api.entity.living.monster.boss.dragon.phase.DragonPhaseType;
 import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
@@ -482,6 +483,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<TaskPriority> TASK_PRIORITY = RegistryTypes.spongeKeyInGame("task_priority");
 
     public static final DefaultedRegistryType<TeleportHelperFilter> TELEPORT_HELPER_FILTER = RegistryTypes.spongeKeyInGame("teleport_helper_filter");
+
+    public static final DefaultedRegistryType<TextAlignment> TEXT_ALIGNMENT = RegistryTypes.spongeKeyInGame("text_alignment");
 
     public static final DefaultedRegistryType<TicketType<?>> TICKET_TYPE = RegistryTypes.spongeKeyInGame("ticket_type");
 

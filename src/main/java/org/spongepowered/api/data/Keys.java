@@ -116,6 +116,7 @@ import org.spongepowered.api.entity.ai.goal.GoalExecutorTypes;
 import org.spongepowered.api.entity.display.BillboardType;
 import org.spongepowered.api.entity.display.DisplayEntity;
 import org.spongepowered.api.entity.display.ItemDisplayType;
+import org.spongepowered.api.entity.display.TextAlignment;
 import org.spongepowered.api.entity.display.TextDisplay;
 import org.spongepowered.api.entity.explosive.EndCrystal;
 import org.spongepowered.api.entity.explosive.Explosive;
@@ -505,6 +506,9 @@ public final class Keys {
      * <p>In vanilla minecraft is this value in steps of 1/15 from 0 to 1.</p>
      * <p>For the skylight see {@link #SKY_LIGHT}.</p>
      * Readonly
+     * <p>
+     * Or the blocklight override for a {@link DisplayEntity}.
+     * </p>
      */
     public static final Key<Value<Integer>> BLOCK_LIGHT = Keys.key(ResourceKey.sponge("block_light"), Integer.class);
 
@@ -1186,6 +1190,11 @@ public final class Keys {
     public static final Key<Value<Boolean>> HAS_CHEST = Keys.key(ResourceKey.sponge("has_chest"), Boolean.class);
 
     /**
+     * Whether the {@link TextDisplay} has a default background.
+     */
+    public static final Key<Value<Boolean>> HAS_DEFAULT_BACKGROUND = Keys.key(ResourceKey.sponge("has_default_background"), Boolean.class);
+
+    /**
      *Whether a {@link Turtle} currently has an egg.
      */
     public static final Key<Value<Boolean>> HAS_EGG = Keys.key(ResourceKey.sponge("has_egg"), Boolean.class);
@@ -1253,6 +1262,11 @@ public final class Keys {
      * Readonly
      */
     public static final Key<Value<Boolean>> HAS_SKYLIGHT = Keys.key(ResourceKey.sponge("has_skylight"), Boolean.class);
+
+    /**
+     * Whether the {@link TextDisplay} has a shadow.
+     */
+    public static final Key<Value<Boolean>> HAS_TEXT_SHADOW = Keys.key(ResourceKey.sponge("has_text_shadow"), Boolean.class);
 
     /**
      * Whether a server player has viewed the credits.
@@ -2068,6 +2082,11 @@ public final class Keys {
     public static final Key<Value<Integer>> LIGHT_EMISSION = Keys.key(ResourceKey.sponge("light_emission"), Integer.class);
 
     /**
+     * The maximum line width of a {@link TextDisplay}.
+     */
+    public static final Key<Value<Integer>> LINE_WIDTH = Keys.key(ResourceKey.sponge("line_width"), Integer.class);
+
+    /**
      * A {@link Llama}'s {@link LlamaType}.
      */
     public static final Key<Value<LlamaType>> LLAMA_TYPE = Keys.key(ResourceKey.sponge("llama_type"), LlamaType.class);
@@ -2330,6 +2349,11 @@ public final class Keys {
      * Readonly
      */
     public static final Key<Value<Boolean>> ON_GROUND = Keys.key(ResourceKey.sponge("on_ground"), Boolean.class);
+
+    /**
+     * The opacity of a {@link TextDisplay}. 0 to 255
+     */
+    public static final Key<Value<Byte>> OPACITY = Keys.key(ResourceKey.sponge("opacity"), Byte.class);
 
     /**
      * The {@link Orientation} of an {@link ItemFrame}.
@@ -2682,6 +2706,11 @@ public final class Keys {
     public static final Key<Value<Long>> SEED = Keys.key(ResourceKey.sponge("structure_seed"), Long.class);
 
     /**
+     * Whether {@link TextDisplay} are visible through blocks.
+     */
+    public static final Key<Value<Boolean>> SEE_THROUGH_BLOCKS = Keys.key(ResourceKey.sponge("see_through_blocks"), Boolean.class);
+
+    /**
      * The {@link SerializationBehavior} of a {@link WorldTemplate} or {@link ServerWorldProperties}
      * Readonly
      */
@@ -2740,6 +2769,9 @@ public final class Keys {
      * The skylight value at a {@link ServerLocation}.
      * For the blocklight see {@link #BLOCK_LIGHT}.
      * Readonly
+     * <p>
+     * Or the skylight override for a {@link DisplayEntity}.
+     * </p>
      */
     public static final Key<Value<Integer>> SKY_LIGHT = Keys.key(ResourceKey.sponge("sky_light"), Integer.class);
 
@@ -2968,6 +3000,16 @@ public final class Keys {
      * Readonly
      */
     public static final Key<Value<TemperatureModifier>> TEMPERATURE_MODIFIER = Keys.key(ResourceKey.sponge("temperature_modifier"), TemperatureModifier.class);
+
+    /**
+     * The {@link TextAlignment} of a {@link TextDisplay}.
+     */
+    public static final Key<Value<TextAlignment>> TEXT_ALIGNMENT = Keys.key(ResourceKey.sponge("text_alignment"), TextAlignment.class);
+
+    /**
+     * The background {@link java.awt.Color} of a {@link TextDisplay}.
+     */
+    public static final Key<Value<java.awt.Color>> TEXT_BACKGROUND_COLOR = Keys.key(ResourceKey.sponge("text_background_color"), java.awt.Color.class);
 
     /**
      * The remaining fuse time in ticks of a {@link FusedExplosive}.

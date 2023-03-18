@@ -27,6 +27,8 @@ package org.spongepowered.api.entity.display;
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.data.Keys;
 
+import java.awt.Color;
+
 public interface TextDisplay extends DisplayEntity {
 
     /**
@@ -36,6 +38,70 @@ public interface TextDisplay extends DisplayEntity {
      */
     default Component displayedText() {
         return this.require(Keys.DISPLAY_NAME);
+    }
+
+    /**
+     * Gets the maximum line width used to split lines of text.
+     *
+     * @return The maximum line width used to split lines of text
+     */
+    default int lineWidth() {
+        return this.require(Keys.LINE_WIDTH);
+    }
+
+    /**
+     * Gets the opacity of the displayed text.
+     *
+     * @return The opacity of the displayed text
+     */
+    default int textOpacity() {
+        return this.require(Keys.OPACITY);
+    }
+
+    /**
+     * Checks if the displayed text is visible through blocks.
+     *
+     * @return True if the displayed text is visible through blocks, false otherwise
+     */
+    default boolean canSeeThroughBlocks() {
+        return this.require(Keys.SEE_THROUGH_BLOCKS);
+    }
+
+    /**
+     * Checks if the displayed text has a shadow.
+     *
+     * @return True if the displayed text has a shadow, false otherwise
+     */
+    default boolean hasShadow() {
+        return this.require(Keys.HAS_TEXT_SHADOW);
+    }
+
+    /**
+     * Gets the background color of the displayed text.
+     * Note that this supports alpha values.
+     *
+     * @return The background color of the displayed text
+     */
+    default Color backgroundColor() {
+        return this.require(Keys.TEXT_BACKGROUND_COLOR);
+    }
+
+    /**
+     * Gets the background color of the displayed text.
+     *
+     * @return The background color of the displayed text
+     */
+    default boolean defaultBackground() {
+        return this.require(Keys.HAS_DEFAULT_BACKGROUND);
+    }
+
+    /**
+     * Gets the alignment direction of the displayed text.
+     *
+     * @return The alignment direction of the displayed text
+     */
+    default TextAlignment textAlignment() {
+        return this.require(Keys.TEXT_ALIGNMENT);
     }
 
 }
