@@ -240,6 +240,7 @@ import org.spongepowered.api.util.MinecraftDayTime;
 import org.spongepowered.api.util.Range;
 import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.util.Ticks;
+import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.util.orientation.Orientation;
 import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.world.DefaultWorldKeys;
@@ -3051,6 +3052,11 @@ public final class Keys {
      *   If the entity type says that it is transient, then this key dictates the current state.
      */
     public static final Key<Value<Boolean>> TRANSIENT = Keys.key(ResourceKey.sponge("transient"), Boolean.class);
+
+    /**
+     * The {@link Transform} of a {@link DisplayEntity}
+     */
+    public static final Key<Value<Transform>> TRANSFORM = Keys.key(ResourceKey.sponge("transform"), Transform.class);
 
     /**
      * A {@link TropicalFish}'s shape.
