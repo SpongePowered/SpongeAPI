@@ -1423,6 +1423,16 @@ public final class Keys {
     public static final Key<Value<InstrumentType>> INSTRUMENT_TYPE = Keys.key(ResourceKey.sponge("instrument_type"), InstrumentType.class);
 
     /**
+     * The interpolation delay of a {@link DisplayEntity}
+     */
+    public static final Key<Value<Ticks>> INTERPOLATION_DELAY = Keys.key(ResourceKey.sponge("interpolation_delay"), Ticks.class);
+
+    /**
+     * The interpolation duration of a {@link DisplayEntity}
+     */
+    public static final Key<Value<Ticks>> INTERPOLATION_DURATION = Keys.key(ResourceKey.sponge("interpolation_duration"), Ticks.class);
+
+    /**
      * Whether a {@link BlockTypes#DAYLIGHT_DETECTOR} {@link BlockState} is inverted.
      */
     public static final Key<Value<Boolean>> INVERTED = Keys.key(ResourceKey.sponge("inverted"), Boolean.class);
@@ -2718,6 +2728,16 @@ public final class Keys {
     public static final Key<Value<SerializationBehavior>> SERIALIZATION_BEHAVIOR = Keys.key(ResourceKey.sponge("serialization_behavior"), SerializationBehavior.class);
 
     /**
+     * The shadow radius of a {@link DisplayEntity}
+     */
+    public static final Key<Value<Double>> SHADOW_RADIUS = Keys.key(ResourceKey.sponge("shadow_radius"), Double.class);
+
+    /**
+     * The shadow strength duration of a {@link DisplayEntity}
+     */
+    public static final Key<Value<Double>> SHADOW_STRENGTH = Keys.key(ResourceKey.sponge("shadow_strength"), Double.class);
+
+    /**
      * The shooter of a {@link Projectile}.
      */
     public static final Key<Value<ProjectileSource>> SHOOTER = Keys.key(ResourceKey.sponge("shooter"), ProjectileSource.class);
@@ -3131,6 +3151,11 @@ public final class Keys {
      * Readonly
      */
     public static final Key<Value<Integer>> VIEW_DISTANCE = Keys.key(ResourceKey.sponge("view_distance"), Integer.class);
+
+    /**
+     * The view range of a {@link DisplayEntity}
+     */
+    public static final Key<Value<Double>> VIEW_RANGE = Keys.key(ResourceKey.sponge("view_range"), Double.class);
 
     /**
      * The type of a {@link Villager} or {@link ZombieVillager}.

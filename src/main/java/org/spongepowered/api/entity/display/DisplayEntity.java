@@ -26,14 +26,42 @@ package org.spongepowered.api.entity.display;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.Ticks;
+import org.spongepowered.api.util.Transform;
 
 import java.util.Optional;
 
 public interface DisplayEntity extends Entity {
 
-    // TODO rotation/transformation?
+    /**
+     * Returns the transform.
+     * <p>
+     * Supports interpolation.
+     * </p>
+     *
+     * @return the transform
+     */
+    default Transform transform() {
+        return this.require(Keys.TRANSFORM);
+    }
 
-    // TODO interpolation? textopacity/backgroundcolor
+    /**
+     * Returns the duration of the interpolation
+     *
+     * @return the duration of the interpolation
+     */
+    default Ticks interpolationDuration() {
+        return this.require(Keys.INTERPOLATION_DURATION);
+    }
+
+    /**
+     * Returns the delay to the start of the interpolation
+     *
+     * @return the delay to the start of the interpolation
+     */
+    default Ticks interpolationDelay() {
+        return this.require(Keys.INTERPOLATION_DELAY);
+    }
 
     default BillboardType billboardType() {
         return this.require(Keys.BILLBOARD_TYPE);
@@ -57,10 +85,36 @@ public interface DisplayEntity extends Entity {
         return this.get(Keys.BLOCK_LIGHT);
     }
 
-    // TODO view_range float/double
 
-    // TODO shadow radius float/double 0=noshadow
-    // TODO shadow strength float/double 1=default
+    /**
+     * Returns the shadow radius.
+     *
+     * @return the shadow radius.
+     */
+    default Double shadowRadius() {
+        return this.require(Keys.SHADOW_RADIUS);
+    }
+
+    /**
+     * Returns the shadow strength or darkness.
+     * <p>Vanilla defaults to 1</p>
+     *
+     * @return the shadow strength.
+     */
+    default Double shadowStrength() {
+        return this.require(Keys.SHADOW_STRENGTH);
+    }
+
+
+    /**
+     * Returns the range at which the display entity is rendered.
+     *
+     * @return the view range
+     */
+    default Double viewRange() {
+        return this.require(Keys.VIEW_RANGE);
+    }
+
     // TODO bounding box (maybe BASE_SIZE if this is not smth. else in the entity)
     // TODO glow_color_override -1 = use team color
 
