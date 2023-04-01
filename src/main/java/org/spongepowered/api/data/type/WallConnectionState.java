@@ -30,7 +30,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 /**
  * Represents the type of wall BlockStates
  */
-@CatalogedBy(WallTypes.class)
-public interface WallType extends DefaultedRegistryValue, Comparable<WallType> {
+@CatalogedBy(WallConnectionStates.class)
+public interface WallConnectionState extends DefaultedRegistryValue, Comparable<WallConnectionState> {
 
 }
