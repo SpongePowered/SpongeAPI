@@ -30,7 +30,7 @@ import org.spongepowered.api.data.type.DyeColor;
  * An extension of {@link MapDecorationType} that represents a banner, and provides
  * the {@link org.spongepowered.api.data.type.DyeColor} of the banner it
  * represents.
- *
+ * <p>
  * Not all {@link MapDecorationType MapDecorationTypes} are {@link MapDecorationBannerType}.
  */
 public interface MapDecorationBannerType extends MapDecorationType {

@@ -30,14 +30,14 @@ import org.spongepowered.api.util.locale.LocaleSource;
 
 /**
  * Represents the "super user" of the game.
- *
- * <p>The {@link SystemSubject} is intended to be the {@link Subject} that
+ * <p>
+ * The {@link SystemSubject} is intended to be the {@link Subject} that
  * represents server actions. This subject may represent an interaction
- * through a console.</p>
- *
- * <p>This object is also a {@link LocaleSource}. Any message sent here
+ * through a console.
+ * <p>
+ * This object is also a {@link LocaleSource}. Any message sent here
  * should be directed to a system visible location, such as a log or a
- * console.</p>
+ * console.
  */
 public interface SystemSubject extends Subject, Audience, LocaleSource {
 

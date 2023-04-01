@@ -42,11 +42,8 @@ public interface Client extends Engine, LocaleSource {
      * Gets the {@link ClientPlayer player} responsible
      * for controlling this client.
      *
-     * <p>
-     *     A client may not always have a local player if browsing menus prior to joining a
-     *     world or server.
-     * </p>
-     *
+     * @implNote A client may not always have a local player if browsing menus prior to joining a
+     * world or server.
      * @return The local player or {@link Optional#empty()} if it is not found
      */
     Optional<LocalPlayer> player();
@@ -55,10 +52,7 @@ public interface Client extends Engine, LocaleSource {
      * Gets the {@link LocalServer server} that powers a local SinglePlayer game instance
      * of a typical Minecraft client.
      *
-     * <p>
-     *     A client will not have a local server if it is outside of SinglePlayer
-     * </p>
-     *
+     * @implNote A client will not have a local server if it is outside of SinglePlayer
      * @return The local server or {@link Optional#empty()} if it is not found
      */
     Optional<LocalServer> server();
@@ -67,10 +61,7 @@ public interface Client extends Engine, LocaleSource {
      * Gets the {@link ClientWorld world} that a typical Minecraft client will be viewing
      * while in some game instance (local or remote).
      *
-     * <p>
-     *     A client will not have a client world if it is browsing the main menus
-     * </p>
-     *
+     * @implNote A client will not have a client world if it is browsing the main menus
      * @return The client world or {@link Optional#empty()}} if it is not found
      */
     Optional<ClientWorld> world();

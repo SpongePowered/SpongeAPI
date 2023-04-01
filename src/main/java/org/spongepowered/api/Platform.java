@@ -46,10 +46,9 @@ public interface Platform {
     /**
      * Retrieves the current {@link Type} the platform is executing on.
      *
-     * <p>A Minecraft instance will have a client and server thread. If the
+     * @implNote A Minecraft instance will have a client and server thread. If the
      * server is executing, this will return {@linkplain Type#SERVER} but
-     * {@link Platform#type()} would return {@linkplain Type#CLIENT}.</p>
-     *
+     * {@link Platform#type()} would return {@linkplain Type#CLIENT}.
      * @return The execution type
      */
     Type executionType();
@@ -72,25 +71,23 @@ public interface Platform {
 
     /**
      * Returns this platform instance, as a key-value map.
+     * <p>
+     * This mechanism allows for platform-specific information like Forge
+     * version.
      *
-     * <p>The returned map instance is connected directly to this platform
+     * @implNote The returned map instance is connected directly to this platform
      * instance. Existing keys like name and version are not modifiable, but
      * new keys are stored in this instance and are shared between any
-     * references to a map obtained through the retrieved map.</p>
-     *
-     * <p>This mechanism allows for platform-specific information like Forge
-     * version.</p>
-     *
+     * references to a map obtained through the retrieved map.
      * @return This platform as a map
      */
     Map<String, Object> asMap();
 
     /**
      * The type of the platform, or where the game is currently running.
-     *
-     * <p>A side is what part of Minecraft this is being run on. The client, or
+     * <p>
+     * A side is what part of Minecraft this is being run on. The client, or
      * the server. The internal server is also treated like a dedicated server.
-     * </p>
      */
     enum Type {
 

@@ -46,10 +46,10 @@ import java.util.UUID;
  *
  * <p>Accounts come in two varieties: {@link UniqueAccount user accounts}
  * and {@link VirtualAccount} virtual accounts.
- *
+ * <p>
  * Unique accounts are bound to a {@link UUID}, usually of a particular
  * {@link User}'s {@link GameProfile}.
- *
+ * <p>
  * Virtual accounts are identified by a String identifier, which may have any
  * value. They are not tied to any {@link Entity}, player or otherwise. Virtual
  * accounts may be used for purposes such as bank accounts, non-player

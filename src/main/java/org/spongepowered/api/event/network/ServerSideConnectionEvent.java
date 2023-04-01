@@ -124,7 +124,7 @@ public interface ServerSideConnectionEvent extends Event {
      * {@link MessageEvent#setMessage(Component)}. No action on the part
      * of the registered {@link BanService} or {@link WhitelistService} is
      * required for this to occur.
-     *
+     * <p>
      * Plugins may uncancel the event to allow a client to join, regardless of
      * its ban/whitelist status.</p>
      */

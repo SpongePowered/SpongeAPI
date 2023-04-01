@@ -90,7 +90,7 @@ public interface WorldType extends DefaultedRegistryValue, ContextSource, DataHo
     /**
      * Gets the coordinate scale applied to the coordinates of a {@link ServerPlayer player}
      * traveling in a {@link ServerWorld world} of this type.
-     *
+     * <p>
      * Best seen when transferring that player from one world to another (as the player's
      * coordinates will adjust to the scale of the destination world's).
      *

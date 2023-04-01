@@ -48,12 +48,12 @@ import java.util.function.Supplier;
  * <p>With the exception of {@link #nameTagVisibility()} (which is handled client-side),
  * all of the team options require players to have the same team object (and by
  * extension, the same scoreboard).
- *
+ * <p>
  * For example, consider two players who each have different scoreboards set.
  * Each scoreboard has a team registered with identical names, each containing
  * the same players. Both players would always be able to attack each other,
  * regardless of the value of {@link #allowFriendlyFire()}.
- *
+ * <p>
  * For it to work, both players must have the same scoreboard, and be on a team
  * registered to said scoreboard.</p>
  */

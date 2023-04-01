@@ -37,7 +37,7 @@ import java.util.Objects;
 /**
  * An object representation of a location or pointer to resources.
  * The key can be represented as a {@link String} by {@link Object#toString()}.
- *
+ * <p>
  * The key is built with two parts:
  * <ol>
  *     <li>The Namespace</li>
@@ -134,9 +134,8 @@ public interface ResourceKey extends Key {
     /**
      * Resolves a resource key from a string.
      *
-     * <p>If no namespace is found in {@code formatted} then
-     * {@link #MINECRAFT_NAMESPACE} will be the namespace.</p>
-     *
+     * @implNote If no namespace is found in {@code formatted} then
+     * {@link #MINECRAFT_NAMESPACE} will be the namespace.
      * @param formatted The formatted string to parse
      * @return A new resource key
      */
@@ -146,10 +145,10 @@ public interface ResourceKey extends Key {
 
     /**
      * Gets this key as a formatted value.
-     *
-     * <p>It is up to the implementation to determine the formatting. In
+     * <p>
+     * It is up to the implementation to determine the formatting. In
      * vanilla Minecraft, keys are formatted as "namespace:value". For example,
-     * "minecraft:carrot".</p>
+     * "minecraft:carrot".
      *
      * @return The key, formatted
      */
@@ -174,11 +173,11 @@ public interface ResourceKey extends Key {
 
         /**
          * Sets the key's namespace.
-         *
-         * <p>If using a {@link #MINECRAFT_NAMESPACE} or
+         * <p>
+         * If using a {@link #MINECRAFT_NAMESPACE} or
          * {@link #SPONGE_NAMESPACE}, it is preferable to use
          * {@link ResourceKey#minecraft(String)} or
-         * {@link ResourceKey#sponge(String)} instead.</p>
+         * {@link ResourceKey#sponge(String)} instead.
          *
          * @param namespace The namespace to use
          * @return This builder, for chaining

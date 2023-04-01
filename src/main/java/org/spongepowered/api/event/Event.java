@@ -45,7 +45,7 @@ public interface Event {
      * So, when investigating the Cause of the event a common
      * idiom is to use operations (functions) on the result
      * of cause as follows:
-     *
+     * <p>
      * Use-case: Getting the Player (if any) responsible:
      * {@code Optional<Player> optPlayer = event.cause().first(Player.class);}
      *

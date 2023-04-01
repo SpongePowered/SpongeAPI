@@ -37,12 +37,9 @@ public interface MinecraftVersion extends Comparable<MinecraftVersion> {
     /**
      * Gets the name of this Minecraft version.
      *
-     * <p>
-     * <strong>Note:</strong> The returned name does not necessarily represent
+     * @implNote The returned name does not necessarily represent
      * the name of a Minecraft version. Depending on the client and
      * implementation, this may also just return a numeric value.
-     * </p>
-     *
      * @return The version name
      */
     String name();
@@ -52,10 +49,8 @@ public interface MinecraftVersion extends Comparable<MinecraftVersion> {
      * all of the features in {@link StatusResponse}. These versions are only
      * supported for the {@link ClientPingServerEvent}, normally they should not be
      * able to join the server.
-     * <p>
-     * For Vanilla, this returns {@code true} for all clients older than 1.7.
-     * </p>
      *
+     * @implNote For Vanilla, this returns {@code true} for all clients older than 1.7.
      * @return {@code True} if this version is a legacy version
      */
     boolean isLegacy();
@@ -63,10 +58,7 @@ public interface MinecraftVersion extends Comparable<MinecraftVersion> {
     /**
      * Gets the data version of this Minecraft version.
      *
-     * <p>
- *     <strong>Note:</strong> The data version will not be available in a status response.
-     * </p>
-     *
+     * @implNote The data version will not be available in a status response.
      * @return The data version
      */
     OptionalInt dataVersion();
