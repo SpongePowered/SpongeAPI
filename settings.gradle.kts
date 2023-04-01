@@ -21,7 +21,3 @@ pluginManagement {
 plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version ("0.3.0")
 }
-
-if (JavaVersion.current() < JavaVersion.VERSION_17) {
-    throw GradleException("SpongeAPI requires at least Java 17 to build, but you have ${JavaVersion.current()}.")
-}
