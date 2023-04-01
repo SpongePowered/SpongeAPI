@@ -39,6 +39,7 @@ public abstract class AbstractEntityDamageSource implements EntityDamageSource {
     private final boolean explosive;
     private final boolean magic;
     private final boolean creative;
+    private final boolean fire;
     private final double exhaustion;
     private final Entity source;
 
@@ -50,6 +51,7 @@ public abstract class AbstractEntityDamageSource implements EntityDamageSource {
         this.explosive = builder.explosion;
         this.magic = builder.magical;
         this.creative = builder.creative;
+        this.fire = builder.fire;
         if (builder.exhaustion != null) {
             this.exhaustion = builder.exhaustion;
         } else if (this.absolute || this.bypassesArmor) {
@@ -98,6 +100,11 @@ public abstract class AbstractEntityDamageSource implements EntityDamageSource {
     @Override
     public boolean doesAffectCreative() {
         return this.creative;
+    }
+
+    @Override
+    public boolean isFire() {
+        return this.fire;
     }
 
     @Override
