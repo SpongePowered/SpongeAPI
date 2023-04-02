@@ -24,8 +24,7 @@
  */
 package org.spongepowered.api.util.weighted;
 
-import com.google.common.collect.Lists;
-
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -159,7 +158,7 @@ public class WeightedTable<T> extends RandomObjectTable<T> {
 
     @Override
     public List<T> get(RandomGenerator rand) {
-        final List<T> results = Lists.newArrayList();
+        final List<T> results = new ArrayList<>();
         if (this.entries.isEmpty()) {
             return results;
         }

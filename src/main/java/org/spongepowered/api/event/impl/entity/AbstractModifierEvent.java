@@ -24,15 +24,13 @@
  */
 package org.spongepowered.api.event.impl.entity;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
 import org.spongepowered.api.event.cause.entity.damage.ModifierFunction;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.impl.AbstractEvent;
 import org.spongepowered.api.util.Tuple;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,13 +46,13 @@ public abstract class AbstractModifierEvent<T extends ModifierFunction<M>, M> ex
     protected double originalFinalAmount;
     protected List<Tuple<M, Double>> originalModifiers;
     protected Map<M, Double> originalModifierMap;
-    protected final LinkedHashMap<M, Double> modifiers = Maps.newLinkedHashMap();
+    protected final LinkedHashMap<M, Double> modifiers = new LinkedHashMap<>();
     protected final List<T> modifierFunctions = new ArrayList<>();
 
-    protected ImmutableList<T> init(double originalValue, List<T> originalFunctions) {
-        final ImmutableList.Builder<Tuple<M, Double>> modifierMapBuilder = ImmutableList.builder();
-        final ImmutableList.Builder<T> functionListBuilder = ImmutableList.builder();
-        final ImmutableMap.Builder<M, Double> mapBuilder = ImmutableMap.builder();
+    protected List<T> init(double originalValue, List<T> originalFunctions) {
+        final List<Tuple<M, Double>> modifierMapBuilder = new ArrayList<>(originalFunctions.size());
+        final List<T> functionListBuilder = new ArrayList<>(originalFunctions.size());
+        final Map<M, Double> mapBuilder = new HashMap<>(originalFunctions.size());
         double finalDamage = originalValue;
         for (T tuple : originalFunctions) {
             this.modifierFunctions.add(this.convertTuple(tuple.modifier(), tuple.function()));
@@ -66,9 +64,9 @@ public abstract class AbstractModifierEvent<T extends ModifierFunction<M>, M> ex
             functionListBuilder.add(this.convertTuple(tuple.modifier(), tuple.function()));
         }
         this.originalFinalAmount = finalDamage;
-        this.originalModifiers = modifierMapBuilder.build();
-        this.originalModifierMap = mapBuilder.build();
-        return functionListBuilder.build();
+        this.originalModifiers = List.copyOf(modifierMapBuilder);
+        this.originalModifierMap = Map.copyOf(mapBuilder);
+        return List.copyOf(functionListBuilder);
     }
 
     protected abstract T convertTuple(M obj, DoubleUnaryOperator function);
@@ -107,10 +105,6 @@ public abstract class AbstractModifierEvent<T extends ModifierFunction<M>, M> ex
      * @return The list of modifiers
      */
     public List<T> modifiers() {
-        final ImmutableList.Builder<T> builder = ImmutableList.builder();
-        for (T entry : this.modifierFunctions) {
-            builder.add(entry);
-        }
-        return builder.build();
+        return List.copyOf(this.modifierFunctions);
     }
 }

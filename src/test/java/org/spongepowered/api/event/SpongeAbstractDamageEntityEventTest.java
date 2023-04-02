@@ -28,7 +28,6 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.aMapWithSize;
 import static org.hamcrest.Matchers.closeTo;
 
-import com.google.common.collect.Lists;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
@@ -38,6 +37,8 @@ import org.spongepowered.api.event.cause.entity.damage.DamageFunction;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.function.DoubleUnaryOperator;
@@ -52,7 +53,7 @@ class SpongeAbstractDamageEntityEventTest {
         final int originalDamage = 5;
 
         final DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.of(EventContext.empty(), "none"),
-            targetEntity, Lists.newArrayList(), originalDamage);
+            targetEntity, new ArrayList<>(), originalDamage);
 
         MatcherAssert.assertThat(event.originalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
         MatcherAssert.assertThat(event.originalFinalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
@@ -67,7 +68,7 @@ class SpongeAbstractDamageEntityEventTest {
         final int originalDamage = 5;
 
         final DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.of(EventContext.empty(), "none"),
-            targetEntity, Lists.newArrayList(), originalDamage);
+            targetEntity, new ArrayList<>(), originalDamage);
 
         MatcherAssert.assertThat(event.originalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
         MatcherAssert.assertThat(event.originalFinalDamage(), is(closeTo(originalDamage, SpongeAbstractDamageEntityEventTest.ERROR)));
@@ -94,7 +95,7 @@ class SpongeAbstractDamageEntityEventTest {
         final DamageModifier firstModifer = this.mockParam(DamageModifier.class);
         final DamageModifier secondModifier = this.mockParam(DamageModifier.class);
 
-        final List<DamageFunction> originalFunctions = Lists.newArrayList(DamageFunction.of(firstModifer, p -> p * 2),
+        final List<DamageFunction> originalFunctions = Arrays.asList(DamageFunction.of(firstModifer, p -> p * 2),
             DamageFunction.of(secondModifier, p -> p * 5));
 
         final DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.of(EventContext.empty(), "none"),
@@ -139,7 +140,7 @@ class SpongeAbstractDamageEntityEventTest {
         final DamageModifier firstModifer = this.mockParam(DamageModifier.class);
         final DamageModifier secondModifier = this.mockParam(DamageModifier.class);
 
-        final List<DamageFunction> originalFunctions = Lists.newArrayList(DamageFunction.of(firstModifer, p -> p * 2), DamageFunction.of(secondModifier,
+        final List<DamageFunction> originalFunctions = Arrays.asList(DamageFunction.of(firstModifer, p -> p * 2), DamageFunction.of(secondModifier,
             p -> p * 5));
 
         final DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.of(EventContext.empty(), "none"),
@@ -166,7 +167,7 @@ class SpongeAbstractDamageEntityEventTest {
         MatcherAssert.assertThat(event.originalFunctions(), is(Matchers.equalTo(originalFunctions)));
 
         MatcherAssert.assertThat(event.modifiers(),
-            is(Matchers.equalTo(Lists.newArrayList(DamageFunction.of(firstModifer, newFunction), originalFunctions.get(1)))));
+            is(Matchers.equalTo(Arrays.asList(DamageFunction.of(firstModifer, newFunction), originalFunctions.get(1)))));
     }
 
     @Test
@@ -190,9 +191,9 @@ class SpongeAbstractDamageEntityEventTest {
         final DoubleUnaryOperator thirdFunction = p -> p;
 
         final List<DamageFunction>
-                originalFunctions = Lists.newArrayList(DamageFunction.of(firstModifier, p -> p * 2), DamageFunction.of(secondModifier, p -> p * 5));
+                originalFunctions = Arrays.asList(DamageFunction.of(firstModifier, p -> p * 2), DamageFunction.of(secondModifier, p -> p * 5));
 
-        final List<DamageFunction> newFunctions = Lists.newArrayList(originalFunctions);
+        final List<DamageFunction> newFunctions = new ArrayList<>(originalFunctions);
         newFunctions.add(DamageFunction.of(thirdModifier, thirdFunction));
 
         final DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.of(EventContext.empty(), "none"), targetEntity,
@@ -230,7 +231,7 @@ class SpongeAbstractDamageEntityEventTest {
         final DamageModifier secondModifier = this.mockParam(DamageModifier.class);
 
         final List<DamageFunction>
-                originalFunctions = Lists.newArrayList(DamageFunction.of(firstModifer, p -> p), DamageFunction.of(secondModifier, p -> p));
+                originalFunctions = Arrays.asList(DamageFunction.of(firstModifer, p -> p), DamageFunction.of(secondModifier, p -> p));
 
         final DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.of(EventContext.empty(), "none"), targetEntity,
             originalFunctions, 0);
@@ -243,7 +244,7 @@ class SpongeAbstractDamageEntityEventTest {
     @Test
     void testNotApplicableModifer() {
         final DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.of(EventContext.empty(), "none"), this.mockParam(Entity.class),
-            Lists.newArrayList(), 0);
+            new ArrayList<>(), 0);
 
         final DamageModifier modifier = this.mockParam(DamageModifier.class);
 

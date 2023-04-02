@@ -28,7 +28,6 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 
-import com.google.common.collect.ImmutableList;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
 import org.spongepowered.api.data.persistence.DataQuery;
@@ -110,7 +109,7 @@ class DataQueryTest {
         final DataQuery part2 = DataQuery.of("test");
         final DataQuery part3 = DataQuery.of("query");
         final List<DataQuery> parts = full.queryParts();
-        final List<DataQuery> built = ImmutableList.of(part1, part2, part3);
+        final List<DataQuery> built = List.of(part1, part2, part3);
         MatcherAssert.assertThat(parts, equalTo(built));
         MatcherAssert.assertThat(built, equalTo(parts));
         MatcherAssert.assertThat(built.containsAll(parts), is(true));

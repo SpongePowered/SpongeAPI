@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.item.inventory;
 
-import com.google.common.collect.Lists;
 import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
@@ -33,6 +32,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -66,7 +66,7 @@ public interface AffectItemStackEvent extends Event, Cancellable {
      *     <code>false</code>
      */
     default List<? extends  Transaction<ItemStackSnapshot>> filter(Predicate<ItemStack> predicate) {
-        final List<Transaction<ItemStackSnapshot>> invalidatedTransactions = Lists.newArrayList();
+        final List<Transaction<ItemStackSnapshot>> invalidatedTransactions = new ArrayList<>();
         this.transactions().stream().filter(transaction -> !predicate.test(transaction.finalReplacement().createStack())).forEach(transaction -> {
             transaction.setValid(false);
             invalidatedTransactions.add(transaction);

@@ -24,8 +24,7 @@
  */
 package org.spongepowered.api.util.weighted;
 
-import com.google.common.collect.Lists;
-
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.random.RandomGenerator;
@@ -57,7 +56,7 @@ public class ChanceTable<T> extends RandomObjectTable<T> {
 
     @Override
     public List<T> get(RandomGenerator rand) {
-        final List<T> results = Lists.newArrayList();
+        final List<T> results = new ArrayList<>();
         if (this.entries.isEmpty()) {
             return results;
         }

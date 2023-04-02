@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.impl.entity;
 
-import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.event.Order;
@@ -35,6 +34,7 @@ import org.spongepowered.api.util.annotation.eventgen.UseField;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public abstract class AbstractAffectEntityEvent extends AbstractEvent implements AffectEntityEvent {
 
@@ -47,11 +47,7 @@ public abstract class AbstractAffectEntityEvent extends AbstractEvent implements
     public List<EntitySnapshot> entitySnapshots() {
         if (this.entitySnapshots == null) {
             if (this.currentOrder == Order.PRE) {
-                final ImmutableList.Builder<EntitySnapshot> builder = ImmutableList.builder();
-                for (Entity entity : this.entities) {
-                    builder.add(entity.createSnapshot());
-                }
-                this.entitySnapshots = builder.build();
+                this.entitySnapshots = this.entities.stream().map(Entity::createSnapshot).collect(Collectors.toUnmodifiableList());
             } else {
                 throw new IllegalStateException("Can't initialize entity snapshots after PRE!");
             }

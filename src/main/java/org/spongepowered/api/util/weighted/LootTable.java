@@ -24,9 +24,6 @@
  */
 package org.spongepowered.api.util.weighted;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -84,7 +81,7 @@ public class LootTable<T> {
      * @return The tables
      */
     public List<RandomObjectTable<T>> tables() {
-        return ImmutableList.copyOf(this.pool);
+        return List.copyOf(this.pool);
     }
 
     /**
@@ -101,7 +98,7 @@ public class LootTable<T> {
      * @return The retrieved entries
      */
     public List<T> get(final RandomGenerator rand) {
-        final List<T> results = Lists.newArrayList();
+        final List<T> results = new ArrayList<>();
         for (final RandomObjectTable<T> pool : this.pool) {
             results.addAll(pool.get(rand));
         }

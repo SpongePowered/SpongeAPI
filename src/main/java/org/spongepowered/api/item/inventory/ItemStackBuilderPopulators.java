@@ -27,8 +27,6 @@ package org.spongepowered.api.item.inventory;
 import static org.spongepowered.api.util.weighted.VariableAmount.baseWithRandomAddition;
 import static org.spongepowered.api.util.weighted.VariableAmount.fixed;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.Keys;
@@ -52,6 +50,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * A factory for generating {@link BiConsumer}s to apply to an
@@ -137,7 +136,7 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an item stack builder
      */
     public static BiConsumer<ItemStack.Builder, Random> items(final ItemType itemType, final ItemType... itemTypes) {
-        return ItemStackBuilderPopulators.items(ImmutableList.<ItemType>builder().add(itemType).addAll(Arrays.asList(itemTypes)).build());
+        return ItemStackBuilderPopulators.items(Stream.concat(Stream.of(itemType), Arrays.stream(itemTypes)).collect(Collectors.toUnmodifiableList()));
     }
 
     /**
@@ -148,7 +147,7 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static BiConsumer<ItemStack.Builder, Random> items(final Collection<ItemType> itemTypes) {
-        final ImmutableList<ItemType> copiedItemTypes = ImmutableList.copyOf(itemTypes);
+        final List<ItemType> copiedItemTypes = List.copyOf(itemTypes);
         return (builder, random) -> builder.itemType(copiedItemTypes.get(random.nextInt(copiedItemTypes.size())));
     }
 
@@ -303,7 +302,7 @@ public final class ItemStackBuilderPopulators {
     public static <E> BiConsumer<ItemStack.Builder, Random> listValues(final Key<? extends ListValue.Mutable<E>> key, final WeightedTable<E> weightedTable) {
         Objects.requireNonNull(weightedTable, "Weighted table cannot be null!");
         Objects.requireNonNull(key, "Key cannot be null!");
-        return ItemStackBuilderPopulators.setValue(key, random -> ImmutableList.copyOf(weightedTable.get(random)));
+        return ItemStackBuilderPopulators.setValue(key, random -> List.copyOf(weightedTable.get(random)));
 
     }
 
@@ -426,7 +425,7 @@ public final class ItemStackBuilderPopulators {
         if (weightedTable.isEmpty()) {
             throw new IllegalArgumentException("WeightedTable cannot be empty!");
         }
-        return ItemStackBuilderPopulators.setValue(key, random -> ImmutableSet.copyOf(weightedTable.get(random)));
+        return ItemStackBuilderPopulators.setValue(key, random -> Set.copyOf(weightedTable.get(random)));
     }
 
     /*Note : This is used internally only, no validation is performed.*/
@@ -496,7 +495,7 @@ public final class ItemStackBuilderPopulators {
     public static BiConsumer<ItemStack.Builder, Random> values(final Collection<Value.Immutable<?>> manipulators, final VariableAmount rolls) {
         Objects.requireNonNull(manipulators, "Manipulators cannot be null!");
         Objects.requireNonNull(rolls, "VariableAmount cannot be null!");
-        final ImmutableList<Value.Immutable<?>> copied = ImmutableList.copyOf(manipulators);
+        final List<Value.Immutable<?>> copied = List.copyOf(manipulators);
         final WeightedTable<Value.Immutable<?>> table = new WeightedTable<>();
         table.setRolls(rolls);
         copied.forEach(manipulator1 -> table.add(manipulator1, 1));
@@ -541,7 +540,7 @@ public final class ItemStackBuilderPopulators {
     public static BiConsumer<ItemStack.Builder, Random> enchantment(final VariableAmount level, final EnchantmentType enchantmentType) {
         Objects.requireNonNull(level, "VariableAmount cannot be null!");
         Objects.requireNonNull(enchantmentType, "EnchantmentType cannot be null!");
-        return ItemStackBuilderPopulators.enchantments(fixed(1), ImmutableList.of(new Tuple<>(enchantmentType, level)));
+        return ItemStackBuilderPopulators.enchantments(fixed(1), List.of(new Tuple<>(enchantmentType, level)));
     }
 
     /**
@@ -554,7 +553,7 @@ public final class ItemStackBuilderPopulators {
      * @return The new biconsumer to apply to an itemstack builder
      */
     public static BiConsumer<ItemStack.Builder, Random> enchantmentsWithVanillaLevelVariance(final Collection<EnchantmentType> enchantmentTypes) {
-        return ItemStackBuilderPopulators.enchantmentsWithVanillaLevelVariance(fixed(1), ImmutableList.copyOf(enchantmentTypes));
+        return ItemStackBuilderPopulators.enchantmentsWithVanillaLevelVariance(fixed(1), List.copyOf(enchantmentTypes));
     }
 
     /**
@@ -570,7 +569,7 @@ public final class ItemStackBuilderPopulators {
     public static BiConsumer<ItemStack.Builder, Random> enchantmentsWithVanillaLevelVariance(final VariableAmount amount, final EnchantmentType enchantmentType,
             final EnchantmentType... enchantmentTypes) {
         return ItemStackBuilderPopulators.enchantmentsWithVanillaLevelVariance(amount,
-                ImmutableList.<EnchantmentType>builder().add(enchantmentType).addAll(Arrays.asList(enchantmentTypes)).build());
+                Stream.concat(Stream.of(enchantmentType), Arrays.stream(enchantmentTypes)).collect(Collectors.toUnmodifiableList()));
     }
 
     /**
