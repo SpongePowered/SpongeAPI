@@ -126,6 +126,8 @@ public final class BlockStateKeys {
 
     public static final Key<Value<DripstoneSegment>> DRIPSTONE_THICKNESS = BlockStateKeys.key(ResourceKey.minecraft("property/thickness"), DripstoneSegment.class);
 
+    public static final Key<Value<Integer>> DUSTED = BlockStateKeys.key(ResourceKey.minecraft("property/dusted"), Integer.class);
+
     public static final Key<Value<Boolean>> EAST = BlockStateKeys.key(ResourceKey.minecraft("property/east"), Boolean.class);
 
     public static final Key<Value<WireAttachmentType>> EAST_REDSTONE = BlockStateKeys.key(ResourceKey.minecraft("property/east"), WireAttachmentType.class);
@@ -145,6 +147,8 @@ public final class BlockStateKeys {
     public static final Key<Value<Direction>> FACING_HOPPER = BlockStateKeys.key(ResourceKey.minecraft("property/facing"), Direction.class);
 
     public static final Key<Value<Boolean>> FALLING = BlockStateKeys.key(ResourceKey.minecraft("property/falling"), Boolean.class);
+
+    public static final Key<Value<Integer>> FLOWER_AMOUNT = BlockStateKeys.key(ResourceKey.minecraft("property/flower_amount"), Integer.class);
 
     public static final Key<Value<PortionType>> HALF = BlockStateKeys.key(ResourceKey.minecraft("property/half"), PortionType.class);
 
@@ -259,8 +263,6 @@ public final class BlockStateKeys {
     public static final Key<Value<Boolean>> UP = BlockStateKeys.key(ResourceKey.minecraft("property/up"), Boolean.class);
 
     public static final Key<Value<Direction>> VERTICAL_DIRECTION = BlockStateKeys.key(ResourceKey.minecraft("property/vertical_direction"), Direction.class);
-
-    public static final Key<Value<Boolean>> VINE_END = BlockStateKeys.key(ResourceKey.minecraft("property/vine_end"), Boolean.class);
 
     public static final Key<Value<Boolean>> WATERLOGGED = BlockStateKeys.key(ResourceKey.minecraft("property/waterlogged"), Boolean.class);
 
