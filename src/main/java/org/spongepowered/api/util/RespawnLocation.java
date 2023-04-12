@@ -40,6 +40,7 @@ import org.spongepowered.math.vector.Vector3d;
 
 import java.util.Objects;
 import java.util.Optional;
+import java.util.StringJoiner;
 
 /**
  * Represents a position for a player to respawn in in a particular world.
@@ -144,11 +145,11 @@ public final class RespawnLocation implements DataSerializable {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this)
-                .add("world", this.world)
-                .add("position", this.position)
-                .add("forced", this.forced)
-                .toString();
+        return new StringJoiner(", ", RespawnLocation.class.getSimpleName() + "[", "]")
+            .add("world=" + this.world)
+            .add("position=" + this.position)
+            .add("forced=" + this.forced)
+            .toString();
     }
 
     /**

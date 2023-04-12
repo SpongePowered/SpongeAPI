@@ -93,11 +93,7 @@ public interface ResourcePack {
     Component prompt();
 
     /**
-     * If this resource pack was initialized through
-     * {@link #fromUri(URI)}, the hash, as calculated with
-     * <code>com.google.common.hash.Hashing.sha1().hashBytes(
-     *      com.google.common.io.Files.toByteArray(resourcepackfile)
-     *      ).toString();</code>.
+     * Gets the hash of this resource pack.
      *
      * @return The hash of this pack, if present
      */

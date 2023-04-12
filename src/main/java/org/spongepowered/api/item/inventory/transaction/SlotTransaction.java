@@ -30,6 +30,7 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
 
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class SlotTransaction extends Transaction<ItemStackSnapshot> {
 
@@ -70,13 +71,13 @@ public class SlotTransaction extends Transaction<ItemStackSnapshot> {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this)
-                .add("slot", this.slot)
-                .add("original", this.original())
-                .add("default", this.defaultReplacement())
-                .add("custom", this.custom())
-                .add("valid", this.isValid())
-                .toString();
+        return new StringJoiner(", ", SlotTransaction.class.getSimpleName() + "[", "]")
+            .add("slot=" + this.slot)
+            .add("original=" + this.original())
+            .add("default=" + this.defaultReplacement())
+            .add("custom=" + this.custom())
+            .add("valid=" + this.isValid())
+            .toString();
     }
 
 }

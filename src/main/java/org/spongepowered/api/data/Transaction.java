@@ -33,6 +33,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.StringJoiner;
 
 public class Transaction<T extends DataSerializable> implements DataSerializable {
 
@@ -191,12 +192,12 @@ public class Transaction<T extends DataSerializable> implements DataSerializable
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this)
-                .add("original", this.original)
-                .add("default", this.defaultReplacement)
-                .add("custom", this.custom)
-                .add("valid", this.valid)
-                .toString();
+        return new StringJoiner(", ", Transaction.class.getSimpleName() + "[", "]")
+            .add("original=" + this.original)
+            .add("default=" + this.defaultReplacement)
+            .add("custom=" + this.custom)
+            .add("valid=" + this.valid)
+            .toString();
     }
 
     @Override

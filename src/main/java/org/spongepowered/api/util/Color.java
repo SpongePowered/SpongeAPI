@@ -39,6 +39,7 @@ import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Objects;
 import java.util.Optional;
+import java.util.StringJoiner;
 
 public final class Color implements DataSerializable, RGBLike {
 
@@ -355,10 +356,10 @@ public final class Color implements DataSerializable, RGBLike {
 
     @Override
     public String toString() {
-        return com.google.common.base.MoreObjects.toStringHelper(this)
-            .add("red", this.red())
-            .add("green", this.green())
-            .add("blue", this.blue())
+        return new StringJoiner(", ", Color.class.getSimpleName() + "[", "]")
+            .add("red=" + this.red())
+            .add("green=" + this.green())
+            .add("blue=" + this.blue())
             .toString();
     }
 
