@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.value;
 
-import com.google.common.collect.ImmutableSet;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataManipulator;
@@ -210,7 +209,7 @@ public interface ValueContainer {
      * Gets all applicable {@link Key}s for this {@link ValueContainer}.
      * Changes can not be made to the set to alter the {@link ValueContainer},
      * nor can the {@link Value}s be changed with the provided
-     * {@link ImmutableSet}.
+     * {@link Set}.
      *
      * @return An immutable set of known {@link Key}s
      */

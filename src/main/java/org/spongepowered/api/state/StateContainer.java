@@ -24,14 +24,13 @@
  */
 package org.spongepowered.api.state;
 
-import com.google.common.collect.ImmutableList;
-
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 public interface StateContainer<S extends State<S>> {
 
-    ImmutableList<S> validStates();
+    List<S> validStates();
 
     S defaultState();
 

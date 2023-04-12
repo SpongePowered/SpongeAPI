@@ -24,13 +24,11 @@
  */
 package org.spongepowered.api.event;
 
-
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.DoNotStore;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -46,7 +44,7 @@ import java.util.function.Supplier;
 @DoNotStore
 public final class EventContext {
 
-    private static final EventContext EMPTY_CONTEXT = new EventContext(ImmutableMap.of());
+    private static final EventContext EMPTY_CONTEXT = new EventContext(Map.of());
 
     /**
      * Gets an empty context.
@@ -83,7 +81,7 @@ public final class EventContext {
     private final Map<EventContextKey<?>, Object> entries;
 
     EventContext(Map<EventContextKey<?>, Object> values) {
-        this.entries = ImmutableMap.copyOf(values);
+        this.entries = Map.copyOf(values);
     }
 
     /**
@@ -226,7 +224,7 @@ public final class EventContext {
     public static final class Builder implements org.spongepowered.api.util.Builder<EventContext, Builder>, CopyableBuilder<EventContext,
         Builder> {
 
-        private final Map<EventContextKey<?>, Object> entries = Maps.newHashMap();
+        private final Map<EventContextKey<?>, Object> entries = new HashMap<>();
 
         Builder() {
 

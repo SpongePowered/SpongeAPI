@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event;
 
-import com.google.common.collect.ImmutableList;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.DoNotStore;
@@ -37,6 +36,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 /**
  * A cause represents the reason or initiator of an event.
@@ -116,7 +116,7 @@ public final class Cause implements Iterable<Object> {
     private final EventContext context;
 
     // lazy load
-    @Nullable private ImmutableList<Object> immutableCauses;
+    @Nullable private List<Object> immutableCauses;
 
     /**
      * Constructs a new cause.
@@ -281,7 +281,7 @@ public final class Cause implements Iterable<Object> {
     }
 
     /**
-     * Gets an {@link ImmutableList} of all objects that are instances of the
+     * Gets an immutable {@link List} of all objects that are instances of the
      * given {@link Class} type <code>T</code>.
      *
      * @param <T> The type of objects to query for
@@ -289,13 +289,7 @@ public final class Cause implements Iterable<Object> {
      * @return An immutable list of the objects queried
      */
     public <T> List<T> allOf(final Class<T> target) {
-        final ImmutableList.Builder<T> builder = ImmutableList.builder();
-        for (final Object aCause : this.cause) {
-            if (target.isInstance(aCause)) {
-                builder.add((T) aCause);
-            }
-        }
-        return builder.build();
+        return Arrays.stream(this.cause).filter(target::isInstance).map(entry -> (T) entry).collect(Collectors.toUnmodifiableList());
     }
 
     /**
@@ -306,13 +300,7 @@ public final class Cause implements Iterable<Object> {
      * @return The list of objects not an instance of the provided class
      */
     public List<Object> noneOf(final Class<?> ignoredClass) {
-        final ImmutableList.Builder<Object> builder = ImmutableList.builder();
-        for (final Object cause : this.cause) {
-            if (!ignoredClass.isInstance(cause)) {
-                builder.add(cause);
-            }
-        }
-        return builder.build();
+        return Arrays.stream(this.cause).filter(entry -> !ignoredClass.isInstance(entry)).collect(Collectors.toUnmodifiableList());
     }
 
     /**
@@ -322,7 +310,7 @@ public final class Cause implements Iterable<Object> {
      */
     public List<Object> all() {
         if (this.immutableCauses == null) {
-            this.immutableCauses = ImmutableList.copyOf(this.cause);
+            this.immutableCauses = List.of(this.cause);
         }
         return this.immutableCauses;
     }

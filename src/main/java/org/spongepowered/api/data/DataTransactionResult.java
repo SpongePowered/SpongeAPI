@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.data;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.data.value.Value;
@@ -79,7 +77,7 @@ public final class DataTransactionResult {
 
         @Override
         public Set<Characteristics> characteristics() {
-            return ImmutableSet.of();
+            return Set.of();
         }
     };
 
@@ -281,26 +279,26 @@ public final class DataTransactionResult {
     }
 
     final Type type;
-    private final ImmutableList<Value.Immutable<?>> rejected;
-    private final ImmutableList<Value.Immutable<?>> replaced;
-    private final ImmutableList<Value.Immutable<?>> success;
+    private final List<Value.Immutable<?>> rejected;
+    private final List<Value.Immutable<?>> replaced;
+    private final List<Value.Immutable<?>> success;
 
     DataTransactionResult(final Builder builder) {
         this.type = builder.resultType;
         if (builder.rejected != null) {
-            this.rejected = ImmutableList.copyOf(builder.rejected);
+            this.rejected = List.copyOf(builder.rejected);
         } else {
-            this.rejected = ImmutableList.of();
+            this.rejected = List.of();
         }
         if (builder.replaced != null) {
-            this.replaced = ImmutableList.copyOf(builder.replaced);
+            this.replaced = List.copyOf(builder.replaced);
         } else {
-            this.replaced = ImmutableList.of();
+            this.replaced = List.of();
         }
         if (builder.successful != null) {
-            this.success = ImmutableList.copyOf(builder.successful);
+            this.success = List.copyOf(builder.successful);
         } else {
-            this.success = ImmutableList.of();
+            this.success = List.of();
         }
     }
 

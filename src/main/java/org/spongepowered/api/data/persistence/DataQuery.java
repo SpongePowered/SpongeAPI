@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data.persistence;
 
-import com.google.common.collect.ImmutableList;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 
 import java.util.Iterator;
@@ -34,6 +33,8 @@ import java.util.Spliterator;
 import java.util.StringJoiner;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Represents a query that can be done on views. Queries do not depend on
@@ -46,9 +47,9 @@ public final class DataQuery implements Iterable<String> {
     /**
      * The parts that make up this query.
      */
-    private final ImmutableList<String> parts;
+    private final List<String> parts;
 
-    private @MonotonicNonNull ImmutableList<DataQuery> queryParts; //lazy loaded
+    private @MonotonicNonNull List<DataQuery> queryParts; //lazy loaded
 
     /**
      * Constructs a query using the given separator character and path.
@@ -70,7 +71,7 @@ public final class DataQuery implements Iterable<String> {
      * @param parts The parts
      */
     private DataQuery(final String... parts) {
-        this.parts = ImmutableList.copyOf(parts);
+        this.parts = List.of(parts);
     }
 
     /**
@@ -79,7 +80,7 @@ public final class DataQuery implements Iterable<String> {
      * @param parts The parts
      */
     private DataQuery(final List<String> parts) {
-        this.parts = ImmutableList.copyOf(parts);
+        this.parts = List.copyOf(parts);
     }
 
     /**
@@ -151,12 +152,8 @@ public final class DataQuery implements Iterable<String> {
      * @return The constructed query
      */
     public DataQuery then(final DataQuery that) {
-        final ImmutableList.Builder<String> builder = new ImmutableList.Builder<>();
-
-        builder.addAll(this.parts);
-        builder.addAll(that.parts);
-
-        return new DataQuery(builder.build());
+        final var parts = Stream.concat(this.parts.stream(), that.parts.stream()).collect(Collectors.toUnmodifiableList());
+        return new DataQuery(parts);
     }
 
     /**
@@ -167,13 +164,8 @@ public final class DataQuery implements Iterable<String> {
      * @return The constructed query
      */
     public DataQuery then(final String that) {
-        final ImmutableList.Builder<String> builder =
-            new ImmutableList.Builder<>();
-
-        builder.addAll(this.parts);
-        builder.add(that);
-
-        return new DataQuery(builder.build());
+        final var parts = Stream.concat(this.parts.stream(), Stream.of(that)).collect(Collectors.toUnmodifiableList());
+        return new DataQuery(parts);
     }
 
     /**
@@ -184,11 +176,7 @@ public final class DataQuery implements Iterable<String> {
      */
     public List<DataQuery> queryParts() {
         if (this.queryParts == null) {
-            final ImmutableList.Builder<DataQuery> builder = ImmutableList.builder();
-            for (final String part : this.parts()) {
-                builder.add(new DataQuery(part));
-            }
-            this.queryParts = builder.build();
+            this.queryParts = this.parts().stream().map(DataQuery::new).collect(Collectors.toUnmodifiableList());
         }
         return this.queryParts;
     }
@@ -204,11 +192,8 @@ public final class DataQuery implements Iterable<String> {
         if (this.parts.size() <= 1) {
             return DataQuery.of();
         }
-        final ImmutableList.Builder<String> builder = ImmutableList.builder();
-        for (int i = 0; i < this.parts.size() - 1; i++) {
-            builder.add(this.parts.get(i));
-        }
-        return new DataQuery(builder.build());
+        final var parts = this.parts.stream().limit(this.parts.size() - 1L).collect(Collectors.toUnmodifiableList());
+        return new DataQuery(parts);
     }
 
     /**
@@ -222,11 +207,8 @@ public final class DataQuery implements Iterable<String> {
         if (this.parts.size() <= 1) {
             return DataQuery.of();
         }
-        final ImmutableList.Builder<String> builder = ImmutableList.builder();
-        for (int i = 1; i < this.parts.size(); i++) {
-            builder.add(this.parts.get(i));
-        }
-        return new DataQuery(builder.build());
+        final var parts = this.parts.stream().skip(1L).collect(Collectors.toUnmodifiableList());
+        return new DataQuery(parts);
     }
 
     /**

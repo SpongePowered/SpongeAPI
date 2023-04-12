@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.event.item.inventory;
 
-import com.google.common.collect.Lists;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.transaction.SlotTransaction;
 import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -39,7 +39,7 @@ public interface AffectSlotEvent extends AffectItemStackEvent {
 
     @Override
     default List<SlotTransaction> filter(Predicate<ItemStack> predicate) {
-        final List<SlotTransaction> invalidatedTransactions = Lists.newArrayList();
+        final List<SlotTransaction> invalidatedTransactions = new ArrayList<>();
         this.transactions().stream().filter(transaction -> !predicate.test(transaction.finalReplacement().createStack())).forEach(transaction -> {
             transaction.setValid(false);
             invalidatedTransactions.add(transaction);

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.world.volume.game;
 
-import com.google.common.collect.ImmutableSet;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataManipulator;
@@ -672,7 +671,7 @@ public interface LocationBaseDataHolder {
     }
 
     /**
-     * Gets an {@link ImmutableSet} of {@link Key}s for the block at the given
+     * Gets an immutable {@link Set} of {@link Key}s for the block at the given
      * location.
      *
      * @param position The position of the block
@@ -683,7 +682,7 @@ public interface LocationBaseDataHolder {
     }
 
     /**
-     * Gets an {@link ImmutableSet} of {@link Key}s for the block at the given
+     * Gets an immutable {@link Set} of {@link Key}s for the block at the given
      * location.
      *
      * @param x The X position
@@ -694,7 +693,7 @@ public interface LocationBaseDataHolder {
     Set<Key<?>> keys(int x, int y, int z);
 
     /**
-     * Gets an {@link ImmutableSet} of {@link org.spongepowered.api.data.value.Value.Immutable}s for the block at
+     * Gets an immutable {@link Set} of {@link org.spongepowered.api.data.value.Value.Immutable}s for the block at
      * the given location.
      *
      * @param position The position of the block
@@ -705,7 +704,7 @@ public interface LocationBaseDataHolder {
     }
 
     /**
-     * Gets an {@link ImmutableSet} of {@link org.spongepowered.api.data.value.Value.Immutable}s for the block at
+     * Gets an immutable {@link Set} of {@link org.spongepowered.api.data.value.Value.Immutable}s for the block at
      * the given location.
      *
      * @param x The X position

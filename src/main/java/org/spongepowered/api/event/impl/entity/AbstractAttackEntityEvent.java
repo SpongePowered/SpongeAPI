@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.impl.entity;
 
-import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.event.cause.entity.damage.DamageFunction;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
@@ -39,6 +38,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.function.DoubleUnaryOperator;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public abstract class AbstractAttackEntityEvent extends AbstractModifierEvent<DamageFunction, DamageModifier> implements AttackEntityEvent {
 
@@ -182,14 +183,12 @@ public abstract class AbstractAttackEntityEvent extends AbstractModifierEvent<Da
 
     @Override
     public List<DamageFunction> modifiers() {
-        final ImmutableList.Builder<DamageFunction> builder = ImmutableList.builder();
-        for (final ModifierFunction<DamageModifier> entry : this.modifierFunctions) {
+        return this.modifierFunctions.stream().map((Function<ModifierFunction<DamageModifier>, DamageFunction>) entry -> {
             if (entry instanceof DamageFunction) {
-                builder.add((DamageFunction) entry);
+                return (DamageFunction) entry;
             } else {
-                builder.add(new DamageFunction(entry.modifier(), entry.function()));
+                return new DamageFunction(entry.modifier(), entry.function());
             }
-        }
-        return builder.build();
+        }).collect(Collectors.toUnmodifiableList());
     }
 }

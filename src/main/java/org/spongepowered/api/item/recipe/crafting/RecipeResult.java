@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.item.recipe.crafting;
 
-import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
 
@@ -62,7 +61,7 @@ public final class RecipeResult {
         }
 
         this.result = result;
-        this.remainingItems = ImmutableList.copyOf(remainingItems);
+        this.remainingItems = List.copyOf(remainingItems);
     }
 
     /**

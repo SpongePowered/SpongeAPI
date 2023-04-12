@@ -32,7 +32,6 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.core.Is.is;
 
-import com.google.common.collect.ImmutableList;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -114,7 +113,7 @@ class CauseTest {
 
     @Test
     void testListedArray() {
-        final List<String> fooList = ImmutableList.of("foo", "bar", "baz", "floof");
+        final List<String> fooList = List.of("foo", "bar", "baz", "floof");
         final Cause cause = Cause.builder().append("foo").append("bar").append("baz").append("floof").build(EventContext.empty());
         final List<String> stringList = cause.allOf(String.class);
         MatcherAssert.assertThat(stringList, is(not(empty())));

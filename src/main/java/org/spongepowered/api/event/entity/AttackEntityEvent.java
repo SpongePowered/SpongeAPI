@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.entity;
 
-import com.google.common.collect.ImmutableMap;
 import org.spongepowered.api.block.entity.carrier.Dispenser;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.entity.Entity;
@@ -252,7 +251,7 @@ public interface AttackEntityEvent extends Event, Cancellable {
     double originalFinalDamage();
 
     /**
-     * Gets an {@link ImmutableMap} of all original {@link DamageModifier}s
+     * Gets an immutable {@link Map} of all original {@link DamageModifier}s
      * and their associated "modified" damage. Note that ordering is not
      * retained.
      *

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.data;
 
-import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.value.CopyableValueContainer;
 import org.spongepowered.api.data.value.MergeFunction;
@@ -34,11 +33,14 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.annotation.eventgen.TransformWith;
 import org.spongepowered.api.world.World;
 
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Represents a changelist of data that can be applied to a {@link DataHolder.Mutable}.
@@ -367,7 +369,7 @@ public interface DataManipulator extends CopyableValueContainer {
          *           given {@link ValueContainer}
          */
         default Mutable copyFrom(final ValueContainer valueContainer, final MergeFunction overlap, final Key<?> first, final Key<?>... more) {
-            return this.copyFrom(valueContainer, overlap, ImmutableList.<Key<?>>builder().add(first).add(more).build());
+            return this.copyFrom(valueContainer, overlap, Stream.concat(Stream.of(first), Arrays.stream(more)).collect(Collectors.toUnmodifiableList()));
         }
 
         /**
