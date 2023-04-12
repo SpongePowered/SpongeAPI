@@ -277,11 +277,12 @@ indraCrossdoc {
 
 spotless {
     java {
+        toggleOffOn("@formatter:off", "@formatter:on")
         endWithNewline()
         indentWithSpaces(4)
         trimTrailingWhitespace()
-        toggleOffOn("@formatter:off", "@formatter:on")
         formatAnnotations()
+        removeUnusedImports()
         importOrderFile(rootProject.file("extra/eclipse/sponge_eclipse.importorder"))
     }
     kotlinGradle {
