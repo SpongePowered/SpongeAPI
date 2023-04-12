@@ -184,7 +184,7 @@ tasks {
                     "https://jd.spongepowered.org/math/$mathVersion"
                 )
                 sequenceOf("api", "key", "text-serializer-gson", "text-serializer-legacy", "text-serializer-plain").forEach {
-                    links("https://jd.adventure.kyori.net/$it/$adventureVersion/")
+                    links("https://jd.advntr.dev/$it/$adventureVersion/")
                 }
                 addBooleanOption("quiet", true)
             }
