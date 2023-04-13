@@ -180,7 +180,7 @@ public interface CommandTreeNode<T extends CommandTreeNode<T>> {
      * @param completionProvider The provider this node should use
      * @return This, for chaining
      */
-    default T completions(@Nullable final DefaultedRegistryReference<CommandCompletionProvider> completionProvider) {
+    default T completions(final @Nullable DefaultedRegistryReference<CommandCompletionProvider> completionProvider) {
         if (completionProvider == null) {
             return this.completions((CommandCompletionProvider) null);
         }

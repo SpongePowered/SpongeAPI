@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.util.weighted;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
+
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -250,7 +252,7 @@ public class UnmodifiableWeightedTable<T> extends WeightedTable<T> {
     }
 
     @Override
-    public boolean equals(final Object o) {
+    public boolean equals(final @Nullable Object o) {
         if (this == o) {
             return true;
         }

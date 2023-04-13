@@ -100,7 +100,7 @@ public class ListenerProcessor extends AbstractProcessor {
                     this.error("Event listener method must return void", method);
                 }
                 final List<? extends VariableElement> parameters = method.getParameters();
-                @Nullable final DeclaredType eventType;
+                final @Nullable DeclaredType eventType;
                 if (parameters.isEmpty() || !this.isTypeSubclass(parameters.get(0), ListenerProcessor.EVENT_CLASS)) {
                     this.error("Event listener method must have an Event as its first parameter", method);
                     eventType = null;

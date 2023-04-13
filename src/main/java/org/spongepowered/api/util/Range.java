@@ -42,7 +42,7 @@ public interface Range<T extends Number> {
      * @param max The maximum, or {@code null} for no maximum
      * @return The range.
      */
-    static Range<Float> floatRange(@Nullable final Float min, @Nullable final Float max) {
+    static Range<Float> floatRange(final @Nullable Float min, final @Nullable Float max) {
         return Sponge.game().factoryProvider().provide(Factory.class).floatRange(min, max);
     }
 
@@ -54,7 +54,7 @@ public interface Range<T extends Number> {
      * @return The range.
      * @throws IllegalArgumentException if min is smaller than max
      */
-    static Range<Integer> intRange(@Nullable final Integer min, @Nullable final Integer max) {
+    static Range<Integer> intRange(final @Nullable Integer min, final @Nullable Integer max) {
         return Sponge.game().factoryProvider().provide(Factory.class).intRange(min, max);
     }
 
@@ -65,7 +65,7 @@ public interface Range<T extends Number> {
      * @param max The maximum, or {@code null} for no maximum
      * @return The range.
      */
-    static Range<Double> doubleRange(@Nullable final Double min, @Nullable final Double max) {
+    static Range<Double> doubleRange(final @Nullable Double min, final @Nullable Double max) {
         return Sponge.game().factoryProvider().provide(Factory.class).doubleRange(min, max);
     }
 

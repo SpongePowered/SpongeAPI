@@ -43,7 +43,7 @@ public class CommandException extends ComponentMessageException {
      *
      * @param message The detail message
      */
-    public CommandException(@Nullable final Component message) {
+    public CommandException(final @Nullable Component message) {
         this(message, false);
     }
 
@@ -54,7 +54,7 @@ public class CommandException extends ComponentMessageException {
      * @param message The detail message
      * @param cause The cause
      */
-    public CommandException(@Nullable final Component message, final Throwable cause) {
+    public CommandException(final @Nullable Component message, final Throwable cause) {
         this(message, cause, false);
     }
 
@@ -64,7 +64,7 @@ public class CommandException extends ComponentMessageException {
      * @param message The detail message
      * @param includeUsage Whether to include usage in the exception
      */
-    public CommandException(@Nullable final Component message, final boolean includeUsage) {
+    public CommandException(final @Nullable Component message, final boolean includeUsage) {
         super(message);
         this.includeUsage = includeUsage;
     }
@@ -77,7 +77,7 @@ public class CommandException extends ComponentMessageException {
      * @param cause The cause
      * @param includeUsage Whether to include the usage in the exception
      */
-    public CommandException(@Nullable final Component message, final Throwable cause, final boolean includeUsage) {
+    public CommandException(final @Nullable Component message, final Throwable cause, final boolean includeUsage) {
         super(message, cause);
         this.includeUsage = includeUsage;
     }

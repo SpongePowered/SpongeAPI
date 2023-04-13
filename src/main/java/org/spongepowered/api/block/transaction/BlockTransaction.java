@@ -55,7 +55,7 @@ public final class BlockTransaction extends Transaction<BlockSnapshot> {
     }
 
     public BlockTransaction(final BlockSnapshot original, final BlockSnapshot defaultReplacement,
-        @Nullable final List<? extends BlockSnapshot> intermediary,
+        final @Nullable List<? extends BlockSnapshot> intermediary,
         final Operation operation
     ) {
         super(original, defaultReplacement, intermediary);

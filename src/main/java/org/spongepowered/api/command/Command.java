@@ -509,7 +509,7 @@ public interface Command {
          *                            for no description.
          * @return This builder, for chaining
          */
-        default Builder extendedDescription(@Nullable final Component extendedDescription) {
+        default Builder extendedDescription(final @Nullable Component extendedDescription) {
             // Done outside the lambda so that we don't have to recreate the object each time.
             final Optional<Component> text = Optional.ofNullable(extendedDescription);
             return this.extendedDescription((cause) -> text);
@@ -543,7 +543,7 @@ public interface Command {
          *                    description
          * @return This builder, for chaining
          */
-        default Builder shortDescription(@Nullable final Component description) {
+        default Builder shortDescription(final @Nullable Component description) {
             // Done outside the lambda so that we don't have to recreate the object each time.
             final Optional<Component> text = Optional.ofNullable(description);
             return this.shortDescription((cause) -> text);

@@ -34,6 +34,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
@@ -384,7 +385,7 @@ public final class Cause implements Iterable<Object> {
     }
 
     @Override
-    public boolean equals(@Nullable final Object object) {
+    public boolean equals(final @Nullable Object object) {
         if (object instanceof Cause) {
             final Cause cause = ((Cause) object);
             return Arrays.equals(this.cause, cause.cause);
