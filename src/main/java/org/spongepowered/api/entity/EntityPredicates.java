@@ -25,6 +25,7 @@
 package org.spongepowered.api.entity;
 
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.math.vector.Vector3d;
@@ -41,7 +42,7 @@ public final class EntityPredicates {
 
     public static final Predicate<? super Entity> STILL_ALIVE = entity -> !entity.isRemoved() && entity.get(Keys.HEALTH).map(hp -> hp > 0).orElse(false);
 
-    public static Predicate<? super Entity> withinDistance(double x, double y, double z, double distance) {
+    public static Predicate<? super @Nullable Entity> withinDistance(double x, double y, double z, double distance) {
         final double distSqrd = distance * distance;
         return entity -> {
             if (entity == null) {

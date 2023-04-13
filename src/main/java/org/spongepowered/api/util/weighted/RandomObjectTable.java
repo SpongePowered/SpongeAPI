@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.util.weighted;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -121,9 +123,9 @@ public abstract class RandomObjectTable<T> implements Collection<TableEntry<T>> 
     }
 
     @Override
-    public boolean addAll(Collection<? extends TableEntry<T>> c) {
+    public boolean addAll(Collection<? extends @Nullable TableEntry<T>> c) {
         boolean flag = false;
-        for (TableEntry<T> e : c) {
+        for (@Nullable TableEntry<T> e : c) {
             if (e != null) {
                 this.add(e);
                 flag = true;

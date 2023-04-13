@@ -79,7 +79,7 @@ public interface Ingredient extends Predicate<ItemStack> {
      * @param itemTypes The items
      * @return The new ingredient
      */
-    static Ingredient of(@Nullable ItemType... itemTypes) {
+    static Ingredient of(ItemType @Nullable ... itemTypes) {
         if (itemTypes == null || itemTypes.length == 0) {
             return Ingredient.empty();
         }
@@ -92,7 +92,7 @@ public interface Ingredient extends Predicate<ItemStack> {
      * @param items The items
      * @return The new ingredient
      */
-    static Ingredient of(@Nullable ItemStack... items) {
+    static Ingredient of(ItemStack @Nullable ... items) {
         if (items == null || items.length == 0) {
             return Ingredient.empty();
         }
@@ -105,7 +105,7 @@ public interface Ingredient extends Predicate<ItemStack> {
      * @param items The item
      * @return The new ingredient
      */
-    static Ingredient of(@Nullable ItemStackSnapshot... items) {
+    static Ingredient of(ItemStackSnapshot @Nullable ... items) {
         if (items == null) {
             return Ingredient.empty();
         }
@@ -119,7 +119,7 @@ public interface Ingredient extends Predicate<ItemStack> {
      * @return The new ingredient
      */
     @SafeVarargs
-    static Ingredient of(@Nullable DefaultedRegistryReference<? extends ItemType>... itemTypes) {
+    static Ingredient of(DefaultedRegistryReference<? extends ItemType> @Nullable ... itemTypes) {
         if (itemTypes == null || itemTypes.length == 0) {
             return Ingredient.empty();
         }

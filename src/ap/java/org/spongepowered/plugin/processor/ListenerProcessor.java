@@ -26,6 +26,7 @@ package org.spongepowered.plugin.processor;
 
 import static javax.tools.Diagnostic.Kind.ERROR;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.filter.IsCancelled;
@@ -99,7 +100,7 @@ public class ListenerProcessor extends AbstractProcessor {
                     this.error("Event listener method must return void", method);
                 }
                 final List<? extends VariableElement> parameters = method.getParameters();
-                final DeclaredType eventType;
+                @Nullable final DeclaredType eventType;
                 if (parameters.isEmpty() || !this.isTypeSubclass(parameters.get(0), ListenerProcessor.EVENT_CLASS)) {
                     this.error("Event listener method must have an Event as its first parameter", method);
                     eventType = null;
