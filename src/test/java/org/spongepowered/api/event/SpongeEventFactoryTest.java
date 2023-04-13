@@ -65,6 +65,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.Set;
@@ -101,7 +102,7 @@ class SpongeEventFactoryTest {
         final Type returnType = GenericTypeReflector.getExactReturnType(invoc.getMethod(),
                 Mockito.mockingDetails(invoc.getMock()).getMockCreationSettings().getTypeToMock()
         );
-        return SpongeEventFactoryTest.mockParam(returnType);
+        return Objects.requireNonNull(SpongeEventFactoryTest.mockParam(returnType));
     };
 
     static boolean isExcludedEvent(final Class<?> eventClass) {
@@ -132,7 +133,7 @@ class SpongeEventFactoryTest {
             Type[] paramTypes = method.getGenericParameterTypes();
             Object[] params = new Object[paramTypes.length];
             for (int i = 0; i < paramTypes.length; i++) {
-                params[i] = SpongeEventFactoryTest.mockParam(paramTypes[i]);
+                params[i] = Objects.requireNonNull(SpongeEventFactoryTest.mockParam(paramTypes[i]));
             }
             final Object testEvent = method.invoke(null, params);
             for (final Method eventMethod : testEvent.getClass().getMethods()) {
@@ -148,7 +149,7 @@ class SpongeEventFactoryTest {
                     paramTypes = eventMethod.getGenericParameterTypes();
                     params = new Object[paramTypes.length];
                     for (int i = 0; i < paramTypes.length; i++) {
-                        params[i] = SpongeEventFactoryTest.mockParam(paramTypes[i]);
+                        params[i] = Objects.requireNonNull(SpongeEventFactoryTest.mockParam(paramTypes[i]));
                     }
 
                     if (eventMethod.getReturnType() != void.class) {
@@ -238,7 +239,7 @@ class SpongeEventFactoryTest {
         } else if (GenericTypeReflector.isSuperType(Enum.class, paramType)) {
             return erasedType.getEnumConstants()[0];
         } else if (GenericTypeReflector.isSuperType(ServerLocation.class, paramType)) {
-            final ServerWorld world = (ServerWorld) SpongeEventFactoryTest.mockParam(ServerWorld.class);
+            final ServerWorld world = (ServerWorld) Objects.requireNonNull(SpongeEventFactoryTest.mockParam(ServerWorld.class));
             // Make sure we keep a reference to the World,
             // as Location stores a weak reference
             SpongeEventFactoryTest.worlds.add(world);

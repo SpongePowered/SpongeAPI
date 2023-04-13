@@ -41,6 +41,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.DoubleUnaryOperator;
 
 class SpongeAbstractDamageEntityEventTest {
@@ -255,7 +256,7 @@ class SpongeAbstractDamageEntityEventTest {
 
     @SuppressWarnings("unchecked")
     private <T> T mockParam(Class<T> clazz) {
-        return (T) SpongeEventFactoryTest.mockParam(clazz);
+        return (T) Objects.requireNonNull(SpongeEventFactoryTest.mockParam(clazz));
     }
 
 }

@@ -33,6 +33,8 @@ import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 
+import java.util.Objects;
+
 class SpongeAbstractEventTest {
 
 //    @Test
@@ -56,6 +58,6 @@ class SpongeAbstractEventTest {
 
     @SuppressWarnings("unchecked")
     private <T> T mockParam(Class<T> clazz) {
-        return (T) SpongeEventFactoryTest.mockParam(clazz);
+        return (T) Objects.requireNonNull(SpongeEventFactoryTest.mockParam(clazz));
     }
 }

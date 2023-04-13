@@ -141,7 +141,7 @@ public interface PlaceholderContext {
          *
          * @see #associatedObject()
          */
-        Builder associatedObject(@Nullable Supplier<Object> supplier);
+        Builder associatedObject(@Nullable Supplier<@Nullable Object> supplier);
 
         /**
          * Sets a string that represents variables for the supplied token.

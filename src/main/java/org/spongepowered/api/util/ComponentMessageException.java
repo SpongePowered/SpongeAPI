@@ -52,7 +52,7 @@ public class ComponentMessageException extends Exception implements ComponentMes
      *
      * @param message The detail message
      */
-    public ComponentMessageException(final Component message) {
+    public ComponentMessageException(@Nullable final Component message) {
         this.message = message;
     }
 
@@ -63,7 +63,7 @@ public class ComponentMessageException extends Exception implements ComponentMes
      * @param message The detail message
      * @param throwable The cause
      */
-    public ComponentMessageException(final Component message, final Throwable throwable) {
+    public ComponentMessageException(@Nullable final Component message, final Throwable throwable) {
         super(throwable);
         this.message = message;
     }
@@ -80,7 +80,7 @@ public class ComponentMessageException extends Exception implements ComponentMes
 
     @Override
     public @Nullable String getMessage() {
-        final /* @Nullable */ Component message = this.componentMessage();
+        final @Nullable Component message = this.componentMessage();
         return message == null ? null : PlainTextComponentSerializer.plainText().serialize(message);
     }
 
