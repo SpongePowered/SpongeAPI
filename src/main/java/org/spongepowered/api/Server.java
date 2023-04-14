@@ -38,7 +38,6 @@ import org.spongepowered.api.item.recipe.RecipeManager;
 import org.spongepowered.api.map.MapStorage;
 import org.spongepowered.api.network.ServerSideConnection;
 import org.spongepowered.api.profile.GameProfileManager;
-import org.spongepowered.api.registry.RegistryEntry;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.service.ServiceProvider;
