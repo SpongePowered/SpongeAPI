@@ -124,7 +124,7 @@ public interface RawPlayDataChannel {
      * @param payload A consumer to write the data to
      */
     default void sendToAllPlayers(final Consumer<ChannelBuf> payload) {
-        Sponge.server().onlinePlayers().forEach(player -> this.sendTo(player, payload));
+        Sponge.server().streamOnlinePlayers().forEach(player -> this.sendTo(player, payload));
     }
 
     /**

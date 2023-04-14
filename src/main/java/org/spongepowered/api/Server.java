@@ -38,6 +38,7 @@ import org.spongepowered.api.item.recipe.RecipeManager;
 import org.spongepowered.api.map.MapStorage;
 import org.spongepowered.api.network.ServerSideConnection;
 import org.spongepowered.api.profile.GameProfileManager;
+import org.spongepowered.api.registry.RegistryEntry;
 import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.service.ServiceProvider;
@@ -57,6 +58,7 @@ import java.net.InetSocketAddress;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 /**
  * Represents a typical Minecraft Server.
@@ -224,6 +226,13 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
      * @return The teleport helper
      */
     TeleportHelper teleportHelper();
+
+    /**
+     * Gets a {@link Stream} of all the {@link ServerPlayer}s currently online.
+     *
+     * @return The stream of online players
+     */
+    Stream<ServerPlayer> streamOnlinePlayers();
 
     /**
      * Gets the {@link ServerPlayer}s currently online.
