@@ -239,7 +239,6 @@ public interface DataRegistration {
          *     in this registration
          * @throws IllegalStateException If there are no {@link DataProvider}s
          *     or {@link DataStore}s, resulting in the keys being dynamic
-         * @throws DataAlreadyRegisteredException If a key has already been claimed by another registration
          */
         @Override
         DataRegistration build();
