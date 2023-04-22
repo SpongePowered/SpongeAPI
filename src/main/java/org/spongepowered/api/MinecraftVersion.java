@@ -45,6 +45,16 @@ public interface MinecraftVersion extends Comparable<MinecraftVersion> {
     String name();
 
     /**
+     * Gets the protocol version of this Minecraft version.
+     *
+     * @implNote This should be interpreted together with {@link #isLegacy()},
+     * since legacy clients use a different protocol version numbering scheme.
+     * @return The protocol version
+     * @see <a href="https://minecraft.fandom.com/wiki/Protocol_version">Protocol version (Minecraft Wiki)</a>
+     */
+    int protocolVersion();
+
+    /**
      * Returns whether this version is an older version that doesn't support
      * all of the features in {@link StatusResponse}. These versions are only
      * supported for the {@link ClientPingServerEvent}, normally they should not be
@@ -62,4 +72,13 @@ public interface MinecraftVersion extends Comparable<MinecraftVersion> {
      * @return The data version
      */
     OptionalInt dataVersion();
+
+    @Override
+    default int compareTo(MinecraftVersion o) {
+        final int result = Boolean.compare(this.isLegacy(), o.isLegacy());
+        if (result != 0) {
+            return result;
+        }
+        return this.protocolVersion() - o.protocolVersion();
+    }
 }

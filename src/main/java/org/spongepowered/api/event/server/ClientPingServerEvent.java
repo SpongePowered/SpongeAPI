@@ -26,6 +26,7 @@ package org.spongepowered.api.event.server;
 
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.spongepowered.api.MinecraftVersion;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.network.status.Favicon;
@@ -92,6 +93,9 @@ public interface ClientPingServerEvent extends Event, Cancellable {
          */
         void setHidePlayers(boolean hide);
 
+        @Override
+        Version version();
+
         /**
          * Sets the {@link Favicon} to display on the client.
          *
@@ -129,6 +133,33 @@ public interface ClientPingServerEvent extends Event, Cancellable {
              */
             @Override
             List<GameProfile> profiles();
+        }
+
+        /**
+         * Represents the information about the version of the server, sent
+         * after the {@link ClientPingServerEvent}.
+         */
+        @NoFactoryMethod
+        interface Version extends MinecraftVersion {
+
+            /**
+             * Sets the name of the version of the server. This is usually
+             * displayed on the client if the server is using an incompatible
+             * protocol version.
+             *
+             * @param name The new display name of the server version
+             */
+            void setName(String name);
+
+            /**
+             * Sets the server protocol version reported to the client.
+             * Modifying this will change if the client sees the server as
+             * incompatible or not, forcing it to display the {@link #name()}.
+             *
+             * @param protocolVersion The new server protocol version
+             * @see <a href="https://minecraft.fandom.com/wiki/Protocol_version">Protocol version (Minecraft Wiki)</a>
+             */
+            void setProtocolVersion(int protocolVersion);
         }
     }
 
