@@ -630,7 +630,7 @@ public final class Keys {
      * The carvers of a {@link Biome} used during world generation.
      * Readonly
      */
-    public static final Key<MapValue<CarvingStep, List<Carver>>> CARVERS = Keys.mapKey(ResourceKey.sponge("is_placing_disabled"), TypeToken.get(CarvingStep.class), new TypeToken<List<Carver>>() {});
+    public static final Key<MapValue<CarvingStep, List<Carver>>> CARVERS = Keys.mapKey(ResourceKey.sponge("carvers"), TypeToken.get(CarvingStep.class), new TypeToken<List<Carver>>() {});
 
     /**
      * The current casting time of a {@link Spellcaster}.
@@ -994,7 +994,7 @@ public final class Keys {
      * The features to place during decoration steps during world generation for a {@link Biome}
      * Readonly
      */
-    public static final Key<MapValue<DecorationStep, List<PlacedFeature>>> FEATURES = Keys.mapKey(ResourceKey.sponge("is_placing_disabled"), TypeToken.get(DecorationStep.class), new TypeToken<List<PlacedFeature>>() {});
+    public static final Key<MapValue<DecorationStep, List<PlacedFeature>>> FEATURES = Keys.mapKey(ResourceKey.sponge("features"), TypeToken.get(DecorationStep.class), new TypeToken<List<PlacedFeature>>() {});
 
     /**
      * The {@link FireworkEffect}s of a
