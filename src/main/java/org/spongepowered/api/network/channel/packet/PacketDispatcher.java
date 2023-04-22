@@ -58,7 +58,7 @@ public interface PacketDispatcher {
      * @param packet The packet to send
      */
     default void sendToAllPlayers(final Packet packet) {
-        Sponge.server().onlinePlayers().forEach(player -> this.sendTo(player, packet));
+        Sponge.server().streamOnlinePlayers().forEach(player -> this.sendTo(player, packet));
     }
 
     /**
