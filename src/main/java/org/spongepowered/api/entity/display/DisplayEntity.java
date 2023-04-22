@@ -41,6 +41,7 @@ public interface DisplayEntity extends Entity {
      *
      * @return the transform
      */
+    @Override
     default Transform transform() {
         return this.require(Keys.TRANSFORM);
     }

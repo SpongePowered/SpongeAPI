@@ -60,6 +60,7 @@ public interface DamageType extends DefaultedRegistryValue, Nameable, Taggable<D
      * @param tag The tag to check.
      * @return true if this damage type matches the damage type tag.
      */
+    @Override
     boolean is(Tag<DamageType> tag);
 
     /**

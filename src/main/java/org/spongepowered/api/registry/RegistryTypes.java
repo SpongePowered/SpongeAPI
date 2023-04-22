@@ -506,10 +506,6 @@ public final class RegistryTypes {
 
     // @formatter:on
 
-    private static <V> RegistryType<V> minecraftKey(final String key) {
-        return RegistryType.of(RegistryRoots.MINECRAFT, ResourceKey.minecraft(Objects.requireNonNull(key, "key")));
-    }
-
     private static <V> DefaultedRegistryType<V> minecraftKeyInGame(final String key) {
         return RegistryType.of(RegistryRoots.MINECRAFT, ResourceKey.minecraft(Objects.requireNonNull(key, "key"))).asDefaultedType(Sponge::game);
     }
