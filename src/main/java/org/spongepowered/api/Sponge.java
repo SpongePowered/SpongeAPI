@@ -43,7 +43,7 @@ import org.spongepowered.api.util.metric.MetricsConfigManager;
  */
 public final class Sponge {
 
-    @Inject private @Nullable static Game game;
+    @Inject private static @Nullable Game game;
 
     /**
      * Gets the {@link Game} instance. There is ever only going

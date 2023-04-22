@@ -384,7 +384,7 @@ public final class Cause implements Iterable<Object> {
     }
 
     @Override
-    public boolean equals(@Nullable final Object object) {
+    public boolean equals(final @Nullable Object object) {
         if (object instanceof Cause) {
             final Cause cause = ((Cause) object);
             return Arrays.equals(this.cause, cause.cause);

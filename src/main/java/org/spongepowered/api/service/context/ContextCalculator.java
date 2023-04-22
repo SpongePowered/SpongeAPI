@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.service.context;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cause;
 
@@ -76,11 +77,11 @@ public interface ContextCalculator {
      *                      if the value returned is null.
      * @return The resultant calculator
      */
-    static ContextCalculator forSingleContext(final String key, final Function<Cause, String> valueFunction) {
+    static ContextCalculator forSingleContext(final String key, final Function<Cause, @Nullable String> valueFunction) {
         Objects.requireNonNull(key, "key");
         Objects.requireNonNull(valueFunction, "valueFunction");
         return (target, accumulator) -> {
-            final String value = valueFunction.apply(target);
+            final @Nullable String value = valueFunction.apply(target);
             if (value != null) {
                 accumulator.accept(new Context(key, value));
             }

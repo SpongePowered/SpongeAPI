@@ -26,6 +26,7 @@ package org.spongepowered.api.util.test;
 
 import static org.mockito.Mockito.mock;
 
+import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.Sponge;
 
@@ -34,7 +35,7 @@ import java.lang.reflect.Modifier;
 
 public final class TestHooks {
 
-    private static Field gameField;
+    private static @MonotonicNonNull Field gameField;
 
     private TestHooks() {
     }

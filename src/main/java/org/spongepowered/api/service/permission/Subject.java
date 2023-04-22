@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.service.permission;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.event.EventContext;
 import org.spongepowered.api.event.EventContextKeys;
@@ -136,7 +137,7 @@ public interface Subject extends Contextual {
 
     @Override
     default Cause contextCause() {
-        final /* @Nullable */ Object associated = this.associatedObject().orElse(null);
+        final @Nullable Object associated = this.associatedObject().orElse(null);
         if (associated != null) {
             return Cause.of(EventContext.builder().add(EventContextKeys.SUBJECT, this).build(), associated);
         } else {

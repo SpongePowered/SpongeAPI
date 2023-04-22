@@ -114,7 +114,7 @@ public interface EntityVolume extends Volume {
     }
 
     default Optional<? extends Player> nearestPlayer(double x, double y, double z, double distance, @Nullable Predicate<? super Entity> predicate) {
-        Player nearest = null;
+        @Nullable Player nearest = null;
         double closest = -1.0D;
         for (Player player : this.players()) {
             if (predicate == null || predicate.test(player)) {

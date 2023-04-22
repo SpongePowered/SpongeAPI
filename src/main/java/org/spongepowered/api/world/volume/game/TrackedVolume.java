@@ -90,7 +90,7 @@ public interface TrackedVolume extends BlockVolume, LocationBaseDataHolder.Mutab
      * @param pos The block position where the user data should be applied
      * @param uuid The {@link UUID} to set as creator
      */
-    default void setCreator(final Vector3i pos, @Nullable final UUID uuid) {
+    default void setCreator(final Vector3i pos, final @Nullable UUID uuid) {
         this.setCreator(pos.x(), pos.y(), pos.z(), uuid);
     }
 
@@ -103,7 +103,7 @@ public interface TrackedVolume extends BlockVolume, LocationBaseDataHolder.Mutab
      * @param z The z coordinate where the user data should be applied
      * @param uuid The {@link UUID} to set as creator
      */
-    default void setCreator(final int x, final int y, final int z, @Nullable final UUID uuid) {
+    default void setCreator(final int x, final int y, final int z, final @Nullable UUID uuid) {
         if (uuid == null) {
             this.remove(x, y, z, Keys.CREATOR);
         } else {
@@ -118,7 +118,7 @@ public interface TrackedVolume extends BlockVolume, LocationBaseDataHolder.Mutab
      * @param pos The block position where the user data should be applied
      * @param uuid The {@link UUID} to set as notifier
      */
-    default void setNotifier(final Vector3i pos, @Nullable final UUID uuid) {
+    default void setNotifier(final Vector3i pos, final @Nullable UUID uuid) {
         this.setNotifier(pos.x(), pos.y(), pos.z(), uuid);
     }
 
@@ -131,7 +131,7 @@ public interface TrackedVolume extends BlockVolume, LocationBaseDataHolder.Mutab
      * @param z The z coordinate where the user data should be applied
      * @param uuid The {@link UUID} to set as notifier
      */
-    default void setNotifier(final int x, final int y, final int z, @Nullable final UUID uuid) {
+    default void setNotifier(final int x, final int y, final int z, final @Nullable UUID uuid) {
         if (uuid == null) {
             this.remove(x, y, z, Keys.NOTIFIER);
         } else {
