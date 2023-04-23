@@ -29,6 +29,7 @@ package org.spongepowered.api.network;
  *
  * @param <C> The type of the engine connection instance which applies to the side
  */
+@SuppressWarnings("UnusedTypeParameter")
 public final class EngineConnectionSide<C extends EngineConnection> {
 
     /**
