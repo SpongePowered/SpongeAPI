@@ -25,6 +25,7 @@
 package org.spongepowered.api.block.entity;
 
 import net.kyori.adventure.text.Component;
+import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.Value;
@@ -52,4 +53,36 @@ public interface Sign extends BlockEntity, Nameable {
         return this.requireValue(Keys.GLOWING_TEXT).asMutable();
     }
 
+    default Value.Mutable<Boolean> waxed() {
+        return this.requireValue(Keys.SIGN_WAXED).asMutable();
+    }
+
+    default SignText backText() {
+        return this.require(Keys.SIGN_BACK_TEXT);
+    }
+
+    default SignText frontText() {
+        return this.require(Keys.SIGN_FRONT_TEXT);
+    }
+
+    interface SignText extends DataHolder.Mutable {
+        /**
+         * Gets the {@link org.spongepowered.api.data.value.ListValue.Mutable} of {@link Component} for the {@link Sign}
+         * to show.
+         *
+         * @return The list of text lines
+         */
+        default ListValue.Mutable<Component> lines() {
+            return this.requireValue(Keys.SIGN_LINES).asMutable();
+        }
+
+        /**
+         * {@return Whether this sign has glowing text}.
+         */
+        default Value.Mutable<Boolean> glowingText() {
+            return this.requireValue(Keys.GLOWING_TEXT).asMutable();
+        }
+
+        // TODO color?
+    }
 }

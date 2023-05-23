@@ -1143,8 +1143,8 @@ public final class Keys {
     public static final Key<Value<GrassColorModifier>> GRASS_COLOR_MODIFIER = Keys.key(ResourceKey.sponge("grass_color_modifier"), GrassColorModifier.class);
 
     /**
-     * Whether a {@link Sign} has glowing text (from dying
-     * with {@link ItemTypes#GLOW_INK_SAC}).
+     * Whether a {@link org.spongepowered.api.block.entity.Sign.SignText} has glowing text (from dying
+     * with {@link ItemTypes#GLOW_INK_SAC}). When using it on {@link Sign} this refers to the {@link #SIGN_FRONT_TEXT} only.
      */
     public static final Key<Value<Boolean>> GLOWING_TEXT = Keys.key(ResourceKey.sponge("glowing_text"), Boolean.class);
 
@@ -2749,9 +2749,15 @@ public final class Keys {
     public static final Key<Value<Boolean>> SHOW_BOTTOM = Keys.key(ResourceKey.sponge("show_bottom"), Boolean.class);
 
     /**
-     * The lines displayed on a {@link Sign}.
+     * The lines of a {@link org.spongepowered.api.block.entity.Sign.SignText}.
+     * When using it on {@link Sign} this refers to the {@link #SIGN_FRONT_TEXT} only.
      */
     public static final Key<ListValue<Component>> SIGN_LINES = Keys.listKey(ResourceKey.sponge("sign_lines"), Component.class);
+
+    public static final Key<Value<Sign.SignText>> SIGN_BACK_TEXT = Keys.key(ResourceKey.sponge("sign_back_text"), Sign.SignText.class);
+    public static final Key<Value<Sign.SignText>> SIGN_FRONT_TEXT = Keys.key(ResourceKey.sponge("sign_front_text"), Sign.SignText.class);
+
+    public static final Key<Value<Boolean>> SIGN_WAXED = Keys.key(ResourceKey.sponge("sign_waxed"), Boolean.class);
 
     /**
      * The size of a {@link Slime}.
