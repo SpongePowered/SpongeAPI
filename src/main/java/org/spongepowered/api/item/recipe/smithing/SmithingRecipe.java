@@ -58,34 +58,67 @@ public interface SmithingRecipe extends Recipe {
      */
     interface Builder extends ResourceKeyedBuilder<RecipeRegistration, Builder> {
 
-        /**
-         * Sets the base ingredient and returns this builder.
-         *
-         * @param ingredient The ingredient
-         *
-         * @return This builder, for chaining
-         */
-        AdditionStep base(ItemType ingredient);
+        // TODO Trim recipe?
 
         /**
-         * Sets the base ingredient and returns this builder.
+         * Sets the template ingredient and returns this builder.
          *
          * @param ingredient The ingredient
          *
          * @return This builder, for chaining
          */
-        default AdditionStep base(Supplier<? extends ItemType> ingredient) {
-            return this.base(ingredient.get());
+        BaseStep template(ItemType ingredient);
+
+        /**
+         * Sets the template ingredient and returns this builder.
+         *
+         * @param ingredient The ingredient
+         *
+         * @return This builder, for chaining
+         */
+        default BaseStep template(Supplier<? extends ItemType> ingredient) {
+            return this.template(ingredient.get());
         }
 
         /**
-         * Sets the base ingredient and returns this builder.
+         * Sets the template ingredient and returns this builder.
          *
          * @param ingredient The ingredient
          *
          * @return This builder, for chaining
          */
-        AdditionStep base(Ingredient ingredient);
+        BaseStep template(Ingredient ingredient);
+
+        interface BaseStep extends SmithingRecipe.Builder {
+            /**
+             * Sets the base ingredient and returns this builder.
+             *
+             * @param ingredient The ingredient
+             *
+             * @return This builder, for chaining
+             */
+            AdditionStep base(ItemType ingredient);
+
+            /**
+             * Sets the base ingredient and returns this builder.
+             *
+             * @param ingredient The ingredient
+             *
+             * @return This builder, for chaining
+             */
+            default AdditionStep base(Supplier<? extends ItemType> ingredient) {
+                return this.base(ingredient.get());
+            }
+
+            /**
+             * Sets the base ingredient and returns this builder.
+             *
+             * @param ingredient The ingredient
+             *
+             * @return This builder, for chaining
+             */
+            AdditionStep base(Ingredient ingredient);
+        }
 
         interface AdditionStep extends SmithingRecipe.Builder {
             /**
