@@ -95,6 +95,8 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_AMETHYST_BLOCK_PLACE = SoundTypes.key(ResourceKey.minecraft("block.amethyst_block.place"));
 
+    public static final DefaultedRegistryReference<SoundType> BLOCK_AMETHYST_BLOCK_RESONATE = SoundTypes.key(ResourceKey.minecraft("block.amethyst_block.resonate"));
+
     public static final DefaultedRegistryReference<SoundType> BLOCK_AMETHYST_BLOCK_STEP = SoundTypes.key(ResourceKey.minecraft("block.amethyst_block.step"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_AMETHYST_CLUSTER_BREAK = SoundTypes.key(ResourceKey.minecraft("block.amethyst_cluster.break"));
@@ -1145,6 +1147,8 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_SHULKER_BOX_OPEN = SoundTypes.key(ResourceKey.minecraft("block.shulker_box.open"));
 
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SIGN_WAXED_INTERACT_FAIL = SoundTypes.key(ResourceKey.minecraft("block.sign.waxed_interact_fail"));
+
     public static final DefaultedRegistryReference<SoundType> BLOCK_SLIME_BLOCK_BREAK = SoundTypes.key(ResourceKey.minecraft("block.slime_block.break"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_SLIME_BLOCK_FALL = SoundTypes.key(ResourceKey.minecraft("block.slime_block.fall"));
@@ -1172,6 +1176,12 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> BLOCK_SMITHING_TABLE_USE = SoundTypes.key(ResourceKey.minecraft("block.smithing_table.use"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_SMOKER_SMOKE = SoundTypes.key(ResourceKey.minecraft("block.smoker.smoke"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SNIFFER_EGG_CRACK = SoundTypes.key(ResourceKey.minecraft("block.sniffer_egg.crack"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SNIFFER_EGG_HATCH = SoundTypes.key(ResourceKey.minecraft("block.sniffer_egg.hatch"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SNIFFER_EGG_PLOP = SoundTypes.key(ResourceKey.minecraft("block.sniffer_egg.plop"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_SNOW_BREAK = SoundTypes.key(ResourceKey.minecraft("block.snow.break"));
 
@@ -1240,6 +1250,16 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> BLOCK_STONE_PRESSURE_PLATE_CLICK_OFF = SoundTypes.key(ResourceKey.minecraft("block.stone_pressure_plate.click_off"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_STONE_PRESSURE_PLATE_CLICK_ON = SoundTypes.key(ResourceKey.minecraft("block.stone_pressure_plate.click_on"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SUSPICIOUS_GRAVEL_BREAK = SoundTypes.key(ResourceKey.minecraft("block.suspicious_gravel.break"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SUSPICIOUS_GRAVEL_FALL = SoundTypes.key(ResourceKey.minecraft("block.suspicious_gravel.fall"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SUSPICIOUS_GRAVEL_HIT = SoundTypes.key(ResourceKey.minecraft("block.suspicious_gravel.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SUSPICIOUS_GRAVEL_PLACE = SoundTypes.key(ResourceKey.minecraft("block.suspicious_gravel.place"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SUSPICIOUS_GRAVEL_STEP = SoundTypes.key(ResourceKey.minecraft("block.suspicious_gravel.step"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_SUSPICIOUS_SAND_BREAK = SoundTypes.key(ResourceKey.minecraft("block.suspicious_sand.break"));
 
@@ -2723,9 +2743,15 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ITEM_BOTTLE_FILL_DRAGONBREATH = SoundTypes.key(ResourceKey.minecraft("item.bottle.fill_dragonbreath"));
 
-    public static final DefaultedRegistryReference<SoundType> ITEM_BRUSH_BRUSH_SAND_COMPLETED = SoundTypes.key(ResourceKey.minecraft("item.brush.brush_sand_completed"));
+    public static final DefaultedRegistryReference<SoundType> ITEM_BRUSH_BRUSHING_GENERIC = SoundTypes.key(ResourceKey.minecraft("item.brush.brushing.generic"));
 
-    public static final DefaultedRegistryReference<SoundType> ITEM_BRUSH_BRUSHING = SoundTypes.key(ResourceKey.minecraft("item.brush.brushing"));
+    public static final DefaultedRegistryReference<SoundType> ITEM_BRUSH_BRUSHING_GRAVEL = SoundTypes.key(ResourceKey.minecraft("item.brush.brushing.gravel"));
+
+    public static final DefaultedRegistryReference<SoundType> ITEM_BRUSH_BRUSHING_GRAVEL_COMPLETE = SoundTypes.key(ResourceKey.minecraft("item.brush.brushing.gravel.complete"));
+
+    public static final DefaultedRegistryReference<SoundType> ITEM_BRUSH_BRUSHING_SAND = SoundTypes.key(ResourceKey.minecraft("item.brush.brushing.sand"));
+
+    public static final DefaultedRegistryReference<SoundType> ITEM_BRUSH_BRUSHING_SAND_COMPLETE = SoundTypes.key(ResourceKey.minecraft("item.brush.brushing.sand.complete"));
 
     public static final DefaultedRegistryReference<SoundType> ITEM_BUCKET_EMPTY = SoundTypes.key(ResourceKey.minecraft("item.bucket.empty"));
 
@@ -2867,11 +2893,21 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> MUSIC_NETHER_WARPED_FOREST = SoundTypes.key(ResourceKey.minecraft("music.nether.warped_forest"));
 
+    public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_BADLANDS = SoundTypes.key(ResourceKey.minecraft("music.overworld.badlands"));
+
+    public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_BAMBOO_JUNGLE = SoundTypes.key(ResourceKey.minecraft("music.overworld.bamboo_jungle"));
+
     public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_CHERRY_GROVE = SoundTypes.key(ResourceKey.minecraft("music.overworld.cherry_grove"));
 
     public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_DEEP_DARK = SoundTypes.key(ResourceKey.minecraft("music.overworld.deep_dark"));
 
+    public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_DESERT = SoundTypes.key(ResourceKey.minecraft("music.overworld.desert"));
+
     public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_DRIPSTONE_CAVES = SoundTypes.key(ResourceKey.minecraft("music.overworld.dripstone_caves"));
+
+    public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_FLOWER_FOREST = SoundTypes.key(ResourceKey.minecraft("music.overworld.flower_forest"));
+
+    public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_FOREST = SoundTypes.key(ResourceKey.minecraft("music.overworld.forest"));
 
     public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_FROZEN_PEAKS = SoundTypes.key(ResourceKey.minecraft("music.overworld.frozen_peaks"));
 
@@ -2879,7 +2915,7 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_JAGGED_PEAKS = SoundTypes.key(ResourceKey.minecraft("music.overworld.jagged_peaks"));
 
-    public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_JUNGLE_AND_FOREST = SoundTypes.key(ResourceKey.minecraft("music.overworld.jungle_and_forest"));
+    public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_JUNGLE = SoundTypes.key(ResourceKey.minecraft("music.overworld.jungle"));
 
     public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_LUSH_CAVES = SoundTypes.key(ResourceKey.minecraft("music.overworld.lush_caves"));
 
@@ -2888,6 +2924,8 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_OLD_GROWTH_TAIGA = SoundTypes.key(ResourceKey.minecraft("music.overworld.old_growth_taiga"));
 
     public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_SNOWY_SLOPES = SoundTypes.key(ResourceKey.minecraft("music.overworld.snowy_slopes"));
+
+    public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_SPARSE_JUNGLE = SoundTypes.key(ResourceKey.minecraft("music.overworld.sparse_jungle"));
 
     public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_STONY_PEAKS = SoundTypes.key(ResourceKey.minecraft("music.overworld.stony_peaks"));
 
@@ -2916,6 +2954,8 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_OTHERSIDE = SoundTypes.key(ResourceKey.minecraft("music_disc.otherside"));
 
     public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_PIGSTEP = SoundTypes.key(ResourceKey.minecraft("music_disc.pigstep"));
+
+    public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_RELIC = SoundTypes.key(ResourceKey.minecraft("music_disc.relic"));
 
     public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_STAL = SoundTypes.key(ResourceKey.minecraft("music_disc.stal"));
 

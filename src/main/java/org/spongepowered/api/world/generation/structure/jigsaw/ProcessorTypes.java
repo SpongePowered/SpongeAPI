@@ -49,6 +49,8 @@ public final class ProcessorTypes {
 
     public static final DefaultedRegistryReference<ProcessorType> BLOCK_ROT = ProcessorTypes.key(ResourceKey.minecraft("block_rot"));
 
+    public static final DefaultedRegistryReference<ProcessorType> CAPPED = ProcessorTypes.key(ResourceKey.minecraft("capped"));
+
     public static final DefaultedRegistryReference<ProcessorType> GRAVITY = ProcessorTypes.key(ResourceKey.minecraft("gravity"));
 
     public static final DefaultedRegistryReference<ProcessorType> JIGSAW_REPLACEMENT = ProcessorTypes.key(ResourceKey.minecraft("jigsaw_replacement"));

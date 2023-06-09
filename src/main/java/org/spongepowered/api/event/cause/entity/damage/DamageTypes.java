@@ -75,6 +75,8 @@ public final class DamageTypes {
 
     public static final DefaultedRegistryReference<DamageType> GENERIC = DamageTypes.key(ResourceKey.minecraft("generic"));
 
+    public static final DefaultedRegistryReference<DamageType> GENERIC_KILL = DamageTypes.key(ResourceKey.minecraft("generic_kill"));
+
     public static final DefaultedRegistryReference<DamageType> HOT_FLOOR = DamageTypes.key(ResourceKey.minecraft("hot_floor"));
 
     public static final DefaultedRegistryReference<DamageType> IN_FIRE = DamageTypes.key(ResourceKey.minecraft("in_fire"));
@@ -98,6 +100,8 @@ public final class DamageTypes {
     public static final DefaultedRegistryReference<DamageType> ON_FIRE = DamageTypes.key(ResourceKey.minecraft("on_fire"));
 
     public static final DefaultedRegistryReference<DamageType> OUT_OF_WORLD = DamageTypes.key(ResourceKey.minecraft("out_of_world"));
+
+    public static final DefaultedRegistryReference<DamageType> OUTSIDE_BORDER = DamageTypes.key(ResourceKey.minecraft("outside_border"));
 
     public static final DefaultedRegistryReference<DamageType> PLAYER_ATTACK = DamageTypes.key(ResourceKey.minecraft("player_attack"));
 

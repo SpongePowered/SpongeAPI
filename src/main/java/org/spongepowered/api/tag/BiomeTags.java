@@ -96,6 +96,8 @@ public final class BiomeTags {
 
     public static final Tag<Biome> HAS_STRUCTURE_SWAMP_HUT = BiomeTags.key(ResourceKey.minecraft("has_structure/swamp_hut"));
 
+    public static final Tag<Biome> HAS_STRUCTURE_TRAIL_RUINS = BiomeTags.key(ResourceKey.minecraft("has_structure/trail_ruins"));
+
     public static final Tag<Biome> HAS_STRUCTURE_VILLAGE_DESERT = BiomeTags.key(ResourceKey.minecraft("has_structure/village_desert"));
 
     public static final Tag<Biome> HAS_STRUCTURE_VILLAGE_PLAINS = BiomeTags.key(ResourceKey.minecraft("has_structure/village_plains"));

@@ -57,6 +57,10 @@ public final class BlockEntityTypes {
 
     public static final DefaultedRegistryReference<BlockEntityType> BREWING_STAND = BlockEntityTypes.key(ResourceKey.minecraft("brewing_stand"));
 
+    public static final DefaultedRegistryReference<BlockEntityType> BRUSHABLE_BLOCK = BlockEntityTypes.key(ResourceKey.minecraft("brushable_block"));
+
+    public static final DefaultedRegistryReference<BlockEntityType> CALIBRATED_SCULK_SENSOR = BlockEntityTypes.key(ResourceKey.minecraft("calibrated_sculk_sensor"));
+
     public static final DefaultedRegistryReference<BlockEntityType> CAMPFIRE = BlockEntityTypes.key(ResourceKey.minecraft("campfire"));
 
     public static final DefaultedRegistryReference<BlockEntityType> CHEST = BlockEntityTypes.key(ResourceKey.minecraft("chest"));
@@ -116,8 +120,6 @@ public final class BlockEntityTypes {
     public static final DefaultedRegistryReference<BlockEntityType> SMOKER = BlockEntityTypes.key(ResourceKey.minecraft("smoker"));
 
     public static final DefaultedRegistryReference<BlockEntityType> STRUCTURE_BLOCK = BlockEntityTypes.key(ResourceKey.minecraft("structure_block"));
-
-    public static final DefaultedRegistryReference<BlockEntityType> SUSPICIOUS_SAND = BlockEntityTypes.key(ResourceKey.minecraft("suspicious_sand"));
 
     public static final DefaultedRegistryReference<BlockEntityType> TRAPPED_CHEST = BlockEntityTypes.key(ResourceKey.minecraft("trapped_chest"));
 

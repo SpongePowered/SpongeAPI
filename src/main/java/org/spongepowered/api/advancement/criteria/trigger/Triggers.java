@@ -114,6 +114,8 @@ public final class Triggers {
 
     public static final DefaultedRegistryReference<Trigger<?>> RAID_WIN = Triggers.key(ResourceKey.minecraft("hero_of_the_village"));
 
+    public static final DefaultedRegistryReference<Trigger<?>> RECIPE_CRAFTED = Triggers.key(ResourceKey.minecraft("recipe_crafted"));
+
     public static final DefaultedRegistryReference<Trigger<?>> RECIPE_UNLOCKED = Triggers.key(ResourceKey.minecraft("recipe_unlocked"));
 
     public static final DefaultedRegistryReference<Trigger<?>> RIDE_ENTITY_IN_LAVA = Triggers.key(ResourceKey.minecraft("ride_entity_in_lava"));

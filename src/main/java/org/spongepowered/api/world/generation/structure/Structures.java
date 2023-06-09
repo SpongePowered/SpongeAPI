@@ -95,6 +95,8 @@ public final class Structures {
 
     public static final DefaultedRegistryReference<Structure> SWAMP_HUT = Structures.key(ResourceKey.minecraft("swamp_hut"));
 
+    public static final DefaultedRegistryReference<Structure> TRAIL_RUINS = Structures.key(ResourceKey.minecraft("trail_ruins"));
+
     public static final DefaultedRegistryReference<Structure> VILLAGE_DESERT = Structures.key(ResourceKey.minecraft("village_desert"));
 
     public static final DefaultedRegistryReference<Structure> VILLAGE_PLAINS = Structures.key(ResourceKey.minecraft("village_plains"));

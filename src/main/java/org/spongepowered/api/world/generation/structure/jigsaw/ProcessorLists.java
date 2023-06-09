@@ -101,6 +101,12 @@ public final class ProcessorLists {
 
     public static final DefaultedRegistryReference<ProcessorList> STREET_SNOWY_OR_TAIGA = ProcessorLists.key(ResourceKey.minecraft("street_snowy_or_taiga"));
 
+    public static final DefaultedRegistryReference<ProcessorList> TRAIL_RUINS_HOUSES_ARCHAEOLOGY = ProcessorLists.key(ResourceKey.minecraft("trail_ruins_houses_archaeology"));
+
+    public static final DefaultedRegistryReference<ProcessorList> TRAIL_RUINS_ROADS_ARCHAEOLOGY = ProcessorLists.key(ResourceKey.minecraft("trail_ruins_roads_archaeology"));
+
+    public static final DefaultedRegistryReference<ProcessorList> TRAIL_RUINS_TOWER_TOP_ARCHAEOLOGY = ProcessorLists.key(ResourceKey.minecraft("trail_ruins_tower_top_archaeology"));
+
     public static final DefaultedRegistryReference<ProcessorList> TREASURE_ROOMS = ProcessorLists.key(ResourceKey.minecraft("treasure_rooms"));
 
     public static final DefaultedRegistryReference<ProcessorList> ZOMBIE_DESERT = ProcessorLists.key(ResourceKey.minecraft("zombie_desert"));

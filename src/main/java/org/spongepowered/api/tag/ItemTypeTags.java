@@ -48,6 +48,8 @@ public final class ItemTypeTags {
 
     public static final Tag<ItemType> AXOLOTL_TEMPT_ITEMS = ItemTypeTags.key(ResourceKey.minecraft("axolotl_tempt_items"));
 
+    public static final Tag<ItemType> BAMBOO_BLOCKS = ItemTypeTags.key(ResourceKey.minecraft("bamboo_blocks"));
+
     public static final Tag<ItemType> BANNERS = ItemTypeTags.key(ResourceKey.minecraft("banners"));
 
     public static final Tag<ItemType> BEACON_PAYMENT_ITEMS = ItemTypeTags.key(ResourceKey.minecraft("beacon_payment_items"));
@@ -58,9 +60,15 @@ public final class ItemTypeTags {
 
     public static final Tag<ItemType> BOATS = ItemTypeTags.key(ResourceKey.minecraft("boats"));
 
+    public static final Tag<ItemType> BOOKSHELF_BOOKS = ItemTypeTags.key(ResourceKey.minecraft("bookshelf_books"));
+
+    public static final Tag<ItemType> BREAKS_DECORATED_POTS = ItemTypeTags.key(ResourceKey.minecraft("breaks_decorated_pots"));
+
     public static final Tag<ItemType> BUTTONS = ItemTypeTags.key(ResourceKey.minecraft("buttons"));
 
     public static final Tag<ItemType> CANDLES = ItemTypeTags.key(ResourceKey.minecraft("candles"));
+
+    public static final Tag<ItemType> CHERRY_LOGS = ItemTypeTags.key(ResourceKey.minecraft("cherry_logs"));
 
     public static final Tag<ItemType> CHEST_BOATS = ItemTypeTags.key(ResourceKey.minecraft("chest_boats"));
 
@@ -86,6 +94,10 @@ public final class ItemTypeTags {
 
     public static final Tag<ItemType> DARK_OAK_LOGS = ItemTypeTags.key(ResourceKey.minecraft("dark_oak_logs"));
 
+    public static final Tag<ItemType> DECORATED_POT_INGREDIENTS = ItemTypeTags.key(ResourceKey.minecraft("decorated_pot_ingredients"));
+
+    public static final Tag<ItemType> DECORATED_POT_SHERDS = ItemTypeTags.key(ResourceKey.minecraft("decorated_pot_sherds"));
+
     public static final Tag<ItemType> DIAMOND_ORES = ItemTypeTags.key(ResourceKey.minecraft("diamond_ores"));
 
     public static final Tag<ItemType> DIRT = ItemTypeTags.key(ResourceKey.minecraft("dirt"));
@@ -107,6 +119,8 @@ public final class ItemTypeTags {
     public static final Tag<ItemType> FREEZE_IMMUNE_WEARABLES = ItemTypeTags.key(ResourceKey.minecraft("freeze_immune_wearables"));
 
     public static final Tag<ItemType> GOLD_ORES = ItemTypeTags.key(ResourceKey.minecraft("gold_ores"));
+
+    public static final Tag<ItemType> HANGING_SIGNS = ItemTypeTags.key(ResourceKey.minecraft("hanging_signs"));
 
     public static final Tag<ItemType> HOES = ItemTypeTags.key(ResourceKey.minecraft("hoes"));
 
@@ -131,6 +145,8 @@ public final class ItemTypeTags {
     public static final Tag<ItemType> MUSIC_DISCS = ItemTypeTags.key(ResourceKey.minecraft("music_discs"));
 
     public static final Tag<ItemType> NON_FLAMMABLE_WOOD = ItemTypeTags.key(ResourceKey.minecraft("non_flammable_wood"));
+
+    public static final Tag<ItemType> NOTEBLOCK_TOP_INSTRUMENTS = ItemTypeTags.key(ResourceKey.minecraft("noteblock_top_instruments"));
 
     public static final Tag<ItemType> OAK_LOGS = ItemTypeTags.key(ResourceKey.minecraft("oak_logs"));
 
@@ -162,6 +178,8 @@ public final class ItemTypeTags {
 
     public static final Tag<ItemType> SMELTS_TO_GLASS = ItemTypeTags.key(ResourceKey.minecraft("smelts_to_glass"));
 
+    public static final Tag<ItemType> SNIFFER_FOOD = ItemTypeTags.key(ResourceKey.minecraft("sniffer_food"));
+
     public static final Tag<ItemType> SOUL_FIRE_BASE_BLOCKS = ItemTypeTags.key(ResourceKey.minecraft("soul_fire_base_blocks"));
 
     public static final Tag<ItemType> SPRUCE_LOGS = ItemTypeTags.key(ResourceKey.minecraft("spruce_logs"));
@@ -169,6 +187,8 @@ public final class ItemTypeTags {
     public static final Tag<ItemType> STAIRS = ItemTypeTags.key(ResourceKey.minecraft("stairs"));
 
     public static final Tag<ItemType> STONE_BRICKS = ItemTypeTags.key(ResourceKey.minecraft("stone_bricks"));
+
+    public static final Tag<ItemType> STONE_BUTTONS = ItemTypeTags.key(ResourceKey.minecraft("stone_buttons"));
 
     public static final Tag<ItemType> STONE_CRAFTING_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("stone_crafting_materials"));
 
@@ -183,6 +203,14 @@ public final class ItemTypeTags {
     public static final Tag<ItemType> TOOLS = ItemTypeTags.key(ResourceKey.minecraft("tools"));
 
     public static final Tag<ItemType> TRAPDOORS = ItemTypeTags.key(ResourceKey.minecraft("trapdoors"));
+
+    public static final Tag<ItemType> TRIM_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("trim_materials"));
+
+    public static final Tag<ItemType> TRIM_TEMPLATES = ItemTypeTags.key(ResourceKey.minecraft("trim_templates"));
+
+    public static final Tag<ItemType> TRIMMABLE_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("trimmable_armor"));
+
+    public static final Tag<ItemType> VILLAGER_PLANTABLE_SEEDS = ItemTypeTags.key(ResourceKey.minecraft("villager_plantable_seeds"));
 
     public static final Tag<ItemType> WALLS = ItemTypeTags.key(ResourceKey.minecraft("walls"));
 

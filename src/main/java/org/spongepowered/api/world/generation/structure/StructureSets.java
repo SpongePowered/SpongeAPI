@@ -73,6 +73,8 @@ public final class StructureSets {
 
     public static final DefaultedRegistryReference<StructureSet> SWAMP_HUTS = StructureSets.key(ResourceKey.minecraft("swamp_huts"));
 
+    public static final DefaultedRegistryReference<StructureSet> TRAIL_RUINS = StructureSets.key(ResourceKey.minecraft("trail_ruins"));
+
     public static final DefaultedRegistryReference<StructureSet> VILLAGES = StructureSets.key(ResourceKey.minecraft("villages"));
 
     public static final DefaultedRegistryReference<StructureSet> WOODLAND_MANSIONS = StructureSets.key(ResourceKey.minecraft("woodland_mansions"));

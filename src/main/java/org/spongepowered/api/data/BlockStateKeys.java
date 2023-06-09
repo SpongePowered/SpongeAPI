@@ -110,6 +110,8 @@ public final class BlockStateKeys {
 
     public static final Key<Value<Boolean>> CONDITIONAL = BlockStateKeys.key(ResourceKey.minecraft("property/conditional"), Boolean.class);
 
+    public static final Key<Value<Boolean>> CRACKED = BlockStateKeys.key(ResourceKey.minecraft("property/cracked"), Boolean.class);
+
     public static final Key<Value<Integer>> DELAY = BlockStateKeys.key(ResourceKey.minecraft("property/delay"), Integer.class);
 
     public static final Key<Value<Boolean>> DISARMED = BlockStateKeys.key(ResourceKey.minecraft("property/disarmed"), Boolean.class);

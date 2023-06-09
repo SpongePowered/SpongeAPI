@@ -81,6 +81,10 @@ public final class BooleanStateProperties {
         return BooleanStateProperty.of("CONDITIONAL");
     }
 
+    public static BooleanStateProperty property_CRACKED() {
+        return BooleanStateProperty.of("CRACKED");
+    }
+
     public static BooleanStateProperty property_DISARMED() {
         return BooleanStateProperty.of("DISARMED");
     }

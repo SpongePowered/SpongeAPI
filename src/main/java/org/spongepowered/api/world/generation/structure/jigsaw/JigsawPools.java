@@ -185,6 +185,20 @@ public final class JigsawPools {
 
     public static final DefaultedRegistryReference<JigsawPool> PILLAGER_OUTPOST_TOWERS = JigsawPools.key(ResourceKey.minecraft("pillager_outpost/towers"));
 
+    public static final DefaultedRegistryReference<JigsawPool> TRAIL_RUINS_BUILDINGS = JigsawPools.key(ResourceKey.minecraft("trail_ruins/buildings"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRAIL_RUINS_BUILDINGS_GROUPED = JigsawPools.key(ResourceKey.minecraft("trail_ruins/buildings/grouped"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRAIL_RUINS_DECOR = JigsawPools.key(ResourceKey.minecraft("trail_ruins/decor"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRAIL_RUINS_ROADS = JigsawPools.key(ResourceKey.minecraft("trail_ruins/roads"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRAIL_RUINS_TOWER = JigsawPools.key(ResourceKey.minecraft("trail_ruins/tower"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRAIL_RUINS_TOWER_ADDITIONS = JigsawPools.key(ResourceKey.minecraft("trail_ruins/tower/additions"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRAIL_RUINS_TOWER_TOWER_TOP = JigsawPools.key(ResourceKey.minecraft("trail_ruins/tower/tower_top"));
+
     public static final DefaultedRegistryReference<JigsawPool> VILLAGE_COMMON_ANIMALS = JigsawPools.key(ResourceKey.minecraft("village/common/animals"));
 
     public static final DefaultedRegistryReference<JigsawPool> VILLAGE_COMMON_BUTCHER_ANIMALS = JigsawPools.key(ResourceKey.minecraft("village/common/butcher_animals"));

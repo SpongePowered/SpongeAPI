@@ -40,6 +40,8 @@ public final class BlockTypeTags {
     // @formatter:off
     public static final Tag<BlockType> ACACIA_LOGS = BlockTypeTags.key(ResourceKey.minecraft("acacia_logs"));
 
+    public static final Tag<BlockType> ALL_HANGING_SIGNS = BlockTypeTags.key(ResourceKey.minecraft("all_hanging_signs"));
+
     public static final Tag<BlockType> ALL_SIGNS = BlockTypeTags.key(ResourceKey.minecraft("all_signs"));
 
     public static final Tag<BlockType> ANCIENT_CITY_REPLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("ancient_city_replaceable"));
@@ -53,6 +55,8 @@ public final class BlockTypeTags {
     public static final Tag<BlockType> AZALEA_GROWS_ON = BlockTypeTags.key(ResourceKey.minecraft("azalea_grows_on"));
 
     public static final Tag<BlockType> AZALEA_ROOT_REPLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("azalea_root_replaceable"));
+
+    public static final Tag<BlockType> BAMBOO_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("bamboo_blocks"));
 
     public static final Tag<BlockType> BAMBOO_PLANTABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("bamboo_plantable_on"));
 
@@ -86,9 +90,15 @@ public final class BlockTypeTags {
 
     public static final Tag<BlockType> CAVE_VINES = BlockTypeTags.key(ResourceKey.minecraft("cave_vines"));
 
+    public static final Tag<BlockType> CEILING_HANGING_SIGNS = BlockTypeTags.key(ResourceKey.minecraft("ceiling_hanging_signs"));
+
+    public static final Tag<BlockType> CHERRY_LOGS = BlockTypeTags.key(ResourceKey.minecraft("cherry_logs"));
+
     public static final Tag<BlockType> CLIMBABLE = BlockTypeTags.key(ResourceKey.minecraft("climbable"));
 
     public static final Tag<BlockType> COAL_ORES = BlockTypeTags.key(ResourceKey.minecraft("coal_ores"));
+
+    public static final Tag<BlockType> COMBINATION_STEP_SOUND_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("combination_step_sound_blocks"));
 
     public static final Tag<BlockType> COMPLETES_FIND_TREE_TUTORIAL = BlockTypeTags.key(ResourceKey.minecraft("completes_find_tree_tutorial"));
 
@@ -129,6 +139,10 @@ public final class BlockTypeTags {
     public static final Tag<BlockType> DRIPSTONE_REPLACEABLE_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("dripstone_replaceable_blocks"));
 
     public static final Tag<BlockType> EMERALD_ORES = BlockTypeTags.key(ResourceKey.minecraft("emerald_ores"));
+
+    public static final Tag<BlockType> ENCHANTMENT_POWER_PROVIDER = BlockTypeTags.key(ResourceKey.minecraft("enchantment_power_provider"));
+
+    public static final Tag<BlockType> ENCHANTMENT_POWER_TRANSMITTER = BlockTypeTags.key(ResourceKey.minecraft("enchantment_power_transmitter"));
 
     public static final Tag<BlockType> ENDERMAN_HOLDABLE = BlockTypeTags.key(ResourceKey.minecraft("enderman_holdable"));
 
@@ -192,6 +206,8 @@ public final class BlockTypeTags {
 
     public static final Tag<BlockType> LUSH_GROUND_REPLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("lush_ground_replaceable"));
 
+    public static final Tag<BlockType> MAINTAINS_FARMLAND = BlockTypeTags.key(ResourceKey.minecraft("maintains_farmland"));
+
     public static final Tag<BlockType> MANGROVE_LOGS = BlockTypeTags.key(ResourceKey.minecraft("mangrove_logs"));
 
     public static final Tag<BlockType> MANGROVE_LOGS_CAN_GROW_THROUGH = BlockTypeTags.key(ResourceKey.minecraft("mangrove_logs_can_grow_through"));
@@ -250,7 +266,9 @@ public final class BlockTypeTags {
 
     public static final Tag<BlockType> REDSTONE_ORES = BlockTypeTags.key(ResourceKey.minecraft("redstone_ores"));
 
-    public static final Tag<BlockType> REPLACEABLE_PLANTS = BlockTypeTags.key(ResourceKey.minecraft("replaceable_plants"));
+    public static final Tag<BlockType> REPLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("replaceable"));
+
+    public static final Tag<BlockType> REPLACEABLE_BY_TREES = BlockTypeTags.key(ResourceKey.minecraft("replaceable_by_trees"));
 
     public static final Tag<BlockType> SAND = BlockTypeTags.key(ResourceKey.minecraft("sand"));
 
@@ -274,6 +292,10 @@ public final class BlockTypeTags {
 
     public static final Tag<BlockType> SNAPS_GOAT_HORN = BlockTypeTags.key(ResourceKey.minecraft("snaps_goat_horn"));
 
+    public static final Tag<BlockType> SNIFFER_DIGGABLE_BLOCK = BlockTypeTags.key(ResourceKey.minecraft("sniffer_diggable_block"));
+
+    public static final Tag<BlockType> SNIFFER_EGG_HATCH_BOOST = BlockTypeTags.key(ResourceKey.minecraft("sniffer_egg_hatch_boost"));
+
     public static final Tag<BlockType> SNOW = BlockTypeTags.key(ResourceKey.minecraft("snow"));
 
     public static final Tag<BlockType> SNOW_LAYER_CAN_SURVIVE_ON = BlockTypeTags.key(ResourceKey.minecraft("snow_layer_can_survive_on"));
@@ -292,15 +314,21 @@ public final class BlockTypeTags {
 
     public static final Tag<BlockType> STONE_BRICKS = BlockTypeTags.key(ResourceKey.minecraft("stone_bricks"));
 
+    public static final Tag<BlockType> STONE_BUTTONS = BlockTypeTags.key(ResourceKey.minecraft("stone_buttons"));
+
     public static final Tag<BlockType> STONE_ORE_REPLACEABLES = BlockTypeTags.key(ResourceKey.minecraft("stone_ore_replaceables"));
 
     public static final Tag<BlockType> STONE_PRESSURE_PLATES = BlockTypeTags.key(ResourceKey.minecraft("stone_pressure_plates"));
 
     public static final Tag<BlockType> STRIDER_WARM_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("strider_warm_blocks"));
 
+    public static final Tag<BlockType> SWORD_EFFICIENT = BlockTypeTags.key(ResourceKey.minecraft("sword_efficient"));
+
     public static final Tag<BlockType> TALL_FLOWERS = BlockTypeTags.key(ResourceKey.minecraft("tall_flowers"));
 
     public static final Tag<BlockType> TERRACOTTA = BlockTypeTags.key(ResourceKey.minecraft("terracotta"));
+
+    public static final Tag<BlockType> TRAIL_RUINS_REPLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("trail_ruins_replaceable"));
 
     public static final Tag<BlockType> TRAPDOORS = BlockTypeTags.key(ResourceKey.minecraft("trapdoors"));
 
@@ -310,7 +338,11 @@ public final class BlockTypeTags {
 
     public static final Tag<BlockType> VALID_SPAWN = BlockTypeTags.key(ResourceKey.minecraft("valid_spawn"));
 
+    public static final Tag<BlockType> VIBRATION_RESONATORS = BlockTypeTags.key(ResourceKey.minecraft("vibration_resonators"));
+
     public static final Tag<BlockType> WALL_CORALS = BlockTypeTags.key(ResourceKey.minecraft("wall_corals"));
+
+    public static final Tag<BlockType> WALL_HANGING_SIGNS = BlockTypeTags.key(ResourceKey.minecraft("wall_hanging_signs"));
 
     public static final Tag<BlockType> WALL_POST_OVERRIDE = BlockTypeTags.key(ResourceKey.minecraft("wall_post_override"));
 

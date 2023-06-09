@@ -51,6 +51,8 @@ public final class Biomes {
 
     public static final RegistryReference<Biome> BIRCH_FOREST = Biomes.key(ResourceKey.minecraft("birch_forest"));
 
+    public static final RegistryReference<Biome> CHERRY_GROVE = Biomes.key(ResourceKey.minecraft("cherry_grove"));
+
     public static final RegistryReference<Biome> COLD_OCEAN = Biomes.key(ResourceKey.minecraft("cold_ocean"));
 
     public static final RegistryReference<Biome> CRIMSON_FOREST = Biomes.key(ResourceKey.minecraft("crimson_forest"));

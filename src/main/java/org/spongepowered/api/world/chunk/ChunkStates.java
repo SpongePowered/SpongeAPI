@@ -79,12 +79,7 @@ public final class ChunkStates {
      */
     public static final DefaultedRegistryReference<ChunkState> FULL = ChunkStates.key(ResourceKey.minecraft("full"));
 
-    /**
-     * A {@link Chunk} state that is "cleaning" up remnant objects of a
-     * chunk in process of world generation. Generally, height maps are being
-     * calculated at this point as entity spawning can affect block placement.
-     */
-    public static final DefaultedRegistryReference<ChunkState> HEIGHTMAPS = ChunkStates.key(ResourceKey.minecraft("heightmaps"));
+    public static final DefaultedRegistryReference<ChunkState> INITIALIZE_LIGHT = ChunkStates.key(ResourceKey.minecraft("initialize_light"));
 
     /**
      * A {@link Chunk} state that has yet been processed with lighting in
@@ -93,12 +88,6 @@ public final class ChunkStates {
      * as ready for being added to a {@link World}.
      */
     public static final DefaultedRegistryReference<ChunkState> LIGHT = ChunkStates.key(ResourceKey.minecraft("light"));
-
-    /**
-     * A {@link Chunk} state that is being "carved" with liquid cave
-     * features, such as underwater ravines, underwater caves, etc.
-     */
-    public static final DefaultedRegistryReference<ChunkState> LIQUID_CARVERS = ChunkStates.key(ResourceKey.minecraft("liquid_carvers"));
 
     /**
      * A {@link Chunk} where the {@link BlockState block states} are being

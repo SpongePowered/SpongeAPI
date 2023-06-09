@@ -61,6 +61,8 @@ public final class ParticleTypes {
 
     public static final DefaultedRegistryReference<ParticleType> CAMPFIRE_SIGNAL_SMOKE = ParticleTypes.key(ResourceKey.minecraft("campfire_signal_smoke"));
 
+    public static final DefaultedRegistryReference<ParticleType> CHERRY_LEAVES = ParticleTypes.key(ResourceKey.minecraft("cherry_leaves"));
+
     public static final DefaultedRegistryReference<ParticleType> CLOUD = ParticleTypes.key(ResourceKey.minecraft("cloud"));
 
     public static final DefaultedRegistryReference<ParticleType> COMPOSTER = ParticleTypes.key(ResourceKey.minecraft("composter"));
@@ -76,8 +78,6 @@ public final class ParticleTypes {
     public static final DefaultedRegistryReference<ParticleType> DOLPHIN = ParticleTypes.key(ResourceKey.minecraft("dolphin"));
 
     public static final DefaultedRegistryReference<ParticleType> DRAGON_BREATH = ParticleTypes.key(ResourceKey.minecraft("dragon_breath"));
-
-    public static final DefaultedRegistryReference<ParticleType> DRIPPING_CHERRY_LEAVES = ParticleTypes.key(ResourceKey.minecraft("dripping_cherry_leaves"));
 
     public static final DefaultedRegistryReference<ParticleType> DRIPPING_DRIPSTONE_LAVA = ParticleTypes.key(ResourceKey.minecraft("dripping_dripstone_lava"));
 
@@ -97,6 +97,8 @@ public final class ParticleTypes {
 
     public static final DefaultedRegistryReference<ParticleType> EFFECT = ParticleTypes.key(ResourceKey.minecraft("effect"));
 
+    public static final DefaultedRegistryReference<ParticleType> EGG_CRACK = ParticleTypes.key(ResourceKey.minecraft("egg_crack"));
+
     public static final DefaultedRegistryReference<ParticleType> ELDER_GUARDIAN = ParticleTypes.key(ResourceKey.minecraft("elder_guardian"));
 
     public static final DefaultedRegistryReference<ParticleType> ELECTRIC_SPARK = ParticleTypes.key(ResourceKey.minecraft("electric_spark"));
@@ -112,8 +114,6 @@ public final class ParticleTypes {
     public static final DefaultedRegistryReference<ParticleType> EXPLOSION = ParticleTypes.key(ResourceKey.minecraft("explosion"));
 
     public static final DefaultedRegistryReference<ParticleType> EXPLOSION_EMITTER = ParticleTypes.key(ResourceKey.minecraft("explosion_emitter"));
-
-    public static final DefaultedRegistryReference<ParticleType> FALLING_CHERRY_LEAVES = ParticleTypes.key(ResourceKey.minecraft("falling_cherry_leaves"));
 
     public static final DefaultedRegistryReference<ParticleType> FALLING_DRIPSTONE_LAVA = ParticleTypes.key(ResourceKey.minecraft("falling_dripstone_lava"));
 
@@ -156,8 +156,6 @@ public final class ParticleTypes {
     public static final DefaultedRegistryReference<ParticleType> ITEM_SLIME = ParticleTypes.key(ResourceKey.minecraft("item_slime"));
 
     public static final DefaultedRegistryReference<ParticleType> ITEM_SNOWBALL = ParticleTypes.key(ResourceKey.minecraft("item_snowball"));
-
-    public static final DefaultedRegistryReference<ParticleType> LANDING_CHERRY_LEAVES = ParticleTypes.key(ResourceKey.minecraft("landing_cherry_leaves"));
 
     public static final DefaultedRegistryReference<ParticleType> LANDING_HONEY = ParticleTypes.key(ResourceKey.minecraft("landing_honey"));
 
