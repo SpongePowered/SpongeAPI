@@ -53,4 +53,11 @@ public interface ChangeSignEvent extends Event, Cancellable {
      */
     ListValue.Mutable<Component> text();
 
+    /**
+     * Gets whether this event is for the front side or back side of the sign.
+     *
+     * @return true if this event fired for the front side.
+     */
+    boolean isFrontSide();
+
 }
