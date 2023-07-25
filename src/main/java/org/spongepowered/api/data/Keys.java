@@ -1093,6 +1093,11 @@ public final class Keys {
     public static final Key<Value<FoxType>> FOX_TYPE = Keys.key(ResourceKey.sponge("fox_type"), FoxType.class);
 
     /**
+     * The time (in ticks) an {@link Entity} is frozen.
+     */
+    public static final Key<Value<Ticks>> FROZEN_TIME = Keys.key(ResourceKey.sponge("frozen_time"), Ticks.class);
+
+    /**
      * Represents the {@link Key} for the amount of fuel left in a {@link BrewingStand} or {@link FurnaceBlockEntity} or {@link FurnaceMinecart}
      *
      * <p>One {@link ItemTypes#BLAZE_POWDER} adds 20 fuel to the brewing stand.</p>
@@ -2241,6 +2246,13 @@ public final class Keys {
      * @see Keys#FOOD_LEVEL
      */
     public static final Key<Value<Integer>> MAX_FOOD_LEVEL = Keys.key(ResourceKey.sponge("max_food_level"), Integer.class);
+
+    /**
+     * The frozen time after which an {@link Entity} is completely frozen. Readonly.
+     *
+     * @see Keys#FROZEN_TIME
+     */
+    public static final Key<Value<Ticks>> MAX_FROZEN_TIME = Keys.key(ResourceKey.sponge("max_frozen_time"), Ticks.class);
 
     /**
      * The maximum health of a {@link Living}.
