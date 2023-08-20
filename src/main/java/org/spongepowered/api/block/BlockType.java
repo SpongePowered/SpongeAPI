@@ -97,4 +97,11 @@ public interface BlockType extends DefaultedRegistryValue, ComponentLike, StateC
      */
     boolean isAnyOf(BlockType... types);
 
+    /**
+     * Returns true if this type will have a block entity when placed in the world
+     *
+     * @return true if this type will have a block entity when placed in the world
+     */
+    boolean hasBlockEntity();
+
 }
