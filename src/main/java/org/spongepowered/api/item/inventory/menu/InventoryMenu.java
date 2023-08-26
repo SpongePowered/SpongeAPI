@@ -72,7 +72,7 @@ public interface InventoryMenu {
 
     /**
      * Sets the title of this menu.
-     * <p>Any open menus are closed and reopened with the new title.</p>
+     * <p>Any open menus are updated with the new title.</p>
      *
      * @param title the new title.
      */
