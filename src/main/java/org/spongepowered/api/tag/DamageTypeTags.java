@@ -82,6 +82,8 @@ public final class DamageTypeTags {
 
     public static final Tag<DamageType> NO_IMPACT = DamageTypeTags.key(ResourceKey.minecraft("no_impact"));
 
+    public static final Tag<DamageType> NO_KNOCKBACK = DamageTypeTags.key(ResourceKey.minecraft("no_knockback"));
+
     public static final Tag<DamageType> WITCH_RESISTANT_TO = DamageTypeTags.key(ResourceKey.minecraft("witch_resistant_to"));
 
     public static final Tag<DamageType> WITHER_IMMUNE_TO = DamageTypeTags.key(ResourceKey.minecraft("wither_immune_to"));

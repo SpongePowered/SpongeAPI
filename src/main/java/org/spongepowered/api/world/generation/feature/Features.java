@@ -245,6 +245,8 @@ public final class Features {
 
     public static final DefaultedRegistryReference<Feature> ORE_DIAMOND_LARGE = Features.key(ResourceKey.minecraft("ore_diamond_large"));
 
+    public static final DefaultedRegistryReference<Feature> ORE_DIAMOND_MEDIUM = Features.key(ResourceKey.minecraft("ore_diamond_medium"));
+
     public static final DefaultedRegistryReference<Feature> ORE_DIAMOND_SMALL = Features.key(ResourceKey.minecraft("ore_diamond_small"));
 
     public static final DefaultedRegistryReference<Feature> ORE_DIORITE = Features.key(ResourceKey.minecraft("ore_diorite"));

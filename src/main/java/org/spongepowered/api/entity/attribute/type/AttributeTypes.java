@@ -59,6 +59,8 @@ public final class AttributeTypes {
 
     public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_LUCK = AttributeTypes.key(ResourceKey.minecraft("generic.luck"));
 
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_MAX_ABSORPTION = AttributeTypes.key(ResourceKey.minecraft("generic.max_absorption"));
+
     public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_MAX_HEALTH = AttributeTypes.key(ResourceKey.minecraft("generic.max_health"));
 
     public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_MOVEMENT_SPEED = AttributeTypes.key(ResourceKey.minecraft("generic.movement_speed"));

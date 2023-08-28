@@ -241,6 +241,8 @@ public final class PlacedFeatures {
 
     public static final DefaultedRegistryReference<PlacedFeature> ORE_DIAMOND_LARGE = PlacedFeatures.key(ResourceKey.minecraft("ore_diamond_large"));
 
+    public static final DefaultedRegistryReference<PlacedFeature> ORE_DIAMOND_MEDIUM = PlacedFeatures.key(ResourceKey.minecraft("ore_diamond_medium"));
+
     public static final DefaultedRegistryReference<PlacedFeature> ORE_DIORITE_LOWER = PlacedFeatures.key(ResourceKey.minecraft("ore_diorite_lower"));
 
     public static final DefaultedRegistryReference<PlacedFeature> ORE_DIORITE_UPPER = PlacedFeatures.key(ResourceKey.minecraft("ore_diorite_upper"));

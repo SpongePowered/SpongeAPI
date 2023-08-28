@@ -1213,6 +1213,18 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_SOUL_SOIL_STEP = SoundTypes.key(ResourceKey.minecraft("block.soul_soil.step"));
 
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SPONGE_ABSORB = SoundTypes.key(ResourceKey.minecraft("block.sponge.absorb"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SPONGE_BREAK = SoundTypes.key(ResourceKey.minecraft("block.sponge.break"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SPONGE_FALL = SoundTypes.key(ResourceKey.minecraft("block.sponge.fall"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SPONGE_HIT = SoundTypes.key(ResourceKey.minecraft("block.sponge.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SPONGE_PLACE = SoundTypes.key(ResourceKey.minecraft("block.sponge.place"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SPONGE_STEP = SoundTypes.key(ResourceKey.minecraft("block.sponge.step"));
+
     public static final DefaultedRegistryReference<SoundType> BLOCK_SPORE_BLOSSOM_BREAK = SoundTypes.key(ResourceKey.minecraft("block.spore_blossom.break"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_SPORE_BLOSSOM_FALL = SoundTypes.key(ResourceKey.minecraft("block.spore_blossom.fall"));
@@ -1336,6 +1348,16 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> BLOCK_WET_GRASS_PLACE = SoundTypes.key(ResourceKey.minecraft("block.wet_grass.place"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_WET_GRASS_STEP = SoundTypes.key(ResourceKey.minecraft("block.wet_grass.step"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_WET_SPONGE_BREAK = SoundTypes.key(ResourceKey.minecraft("block.wet_sponge.break"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_WET_SPONGE_FALL = SoundTypes.key(ResourceKey.minecraft("block.wet_sponge.fall"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_WET_SPONGE_HIT = SoundTypes.key(ResourceKey.minecraft("block.wet_sponge.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_WET_SPONGE_PLACE = SoundTypes.key(ResourceKey.minecraft("block.wet_sponge.place"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_WET_SPONGE_STEP = SoundTypes.key(ResourceKey.minecraft("block.wet_sponge.step"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_WOOD_BREAK = SoundTypes.key(ResourceKey.minecraft("block.wood.break"));
 

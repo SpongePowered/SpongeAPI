@@ -80,6 +80,8 @@ public final class BlockTypeTags {
 
     public static final Tag<BlockType> BUTTONS = BlockTypeTags.key(ResourceKey.minecraft("buttons"));
 
+    public static final Tag<BlockType> CAMEL_SAND_STEP_SOUND_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("camel_sand_step_sound_blocks"));
+
     public static final Tag<BlockType> CAMPFIRES = BlockTypeTags.key(ResourceKey.minecraft("campfires"));
 
     public static final Tag<BlockType> CANDLE_CAKES = BlockTypeTags.key(ResourceKey.minecraft("candle_cakes"));
@@ -101,6 +103,8 @@ public final class BlockTypeTags {
     public static final Tag<BlockType> COMBINATION_STEP_SOUND_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("combination_step_sound_blocks"));
 
     public static final Tag<BlockType> COMPLETES_FIND_TREE_TUTORIAL = BlockTypeTags.key(ResourceKey.minecraft("completes_find_tree_tutorial"));
+
+    public static final Tag<BlockType> CONCRETE_POWDER = BlockTypeTags.key(ResourceKey.minecraft("concrete_powder"));
 
     public static final Tag<BlockType> CONVERTABLE_TO_MUD = BlockTypeTags.key(ResourceKey.minecraft("convertable_to_mud"));
 

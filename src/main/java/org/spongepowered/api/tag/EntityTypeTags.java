@@ -58,6 +58,8 @@ public final class EntityTypeTags {
 
     public static final Tag<EntityType<?>> IMPACT_PROJECTILES = EntityTypeTags.key(ResourceKey.minecraft("impact_projectiles"));
 
+    public static final Tag<EntityType<?>> NON_CONTROLLING_RIDER = EntityTypeTags.key(ResourceKey.minecraft("non_controlling_rider"));
+
     public static final Tag<EntityType<?>> POWDER_SNOW_WALKABLE_MOBS = EntityTypeTags.key(ResourceKey.minecraft("powder_snow_walkable_mobs"));
 
     public static final Tag<EntityType<?>> RAIDERS = EntityTypeTags.key(ResourceKey.minecraft("raiders"));
