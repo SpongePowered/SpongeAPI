@@ -37,6 +37,25 @@ import org.spongepowered.api.item.ItemType;
 public interface SerializableDataHolder extends DataSerializable, CopyableDataHolder {
 
     /**
+     * Returns the raw extra data of this {@link SerializableDataHolder}.
+     *
+     * <p>The format of the {@link DataView}'s contained data is dependent on the type
+     * of {@link DataHolder.Mutable} this is. In some cases, the format is specified
+     * based on a more specific type, such as for {@link EntityType}s, or
+     * {@link ItemType}s.</p>
+     * <p>The data can be modified and set back using
+     * {@link Mutable#setRawData(DataView)} or {@link Immutable#withRawData(DataView)}
+     * methods.</p>
+     * <p><b>Warning:</b> Be aware of the safety mode of the returned container.
+     * The container may contain mutable values, such as arrays, that may not be
+     * cloned, and thus changing them may inadvertently change the internal state
+     * of the {@link DataHolder}.</p>
+     *
+     * @return The raw data
+     */
+    DataContainer rawData();
+
+    /**
      * Validates the container with known data required to set the raw data to
      * this {@link SerializableDataHolder}. If the container is incomplete or contains
      * invalid data, <code>false</code> is returned.
@@ -58,12 +77,11 @@ public interface SerializableDataHolder extends DataSerializable, CopyableDataHo
 
         /**
          * Attempts to set all data of this {@link DataHolder} according to the
-         * {@link DataView}'s held information. Using this to modify known to be
-         * {@link Key}s provided dynamically through {@link DataProvider}s is
-         * unsupported. The format of the {@link DataView}'s contained data is
-         * dependent on the type of {@link DataHolder.Mutable} this is. In some cases, the
-         * format is specified based on a more specific type, such as for
-         * {@link EntityType}s, or {@link ItemType}s.
+         * {@link DataView}'s held information. Using this to modify unknown data
+         * that is not supported by Data API. The format of the {@link DataView}'s
+         * contained data is dependent on the type of {@link DataHolder.Mutable}
+         * this is. In some cases, the format is specified based on a more specific
+         * type, such as for {@link EntityType}s, or {@link ItemType}s.
          *
          * <p>This setter is used to provide setting custom data that is not
          * represented by the Data API, including forge mods and other
@@ -77,6 +95,7 @@ public interface SerializableDataHolder extends DataSerializable, CopyableDataHo
          *     data holder
          * @throws InvalidDataException If the container is missing or has invalid
          *     data that this holder will refuse
+         * @see SerializableDataHolder#rawData()
          */
         void setRawData(DataView container) throws InvalidDataException;
 
@@ -88,12 +107,11 @@ public interface SerializableDataHolder extends DataSerializable, CopyableDataHo
 
         /**
          * Attempts to set all data of this {@link DataHolder} according to the
-         * {@link DataView}'s held information. Using this to modify known to be
-         * {@link Key}s provided dynamically through {@link DataProvider}s is
-         * unsupported. The format of the {@link DataView}'s contained data is
-         * dependent on the type of {@link DataHolder.Mutable} this is. In some cases, the
-         * format is specified based on a more specific type, such as for
-         * {@link EntityType}s, or {@link ItemType}s.
+         * {@link DataView}'s held information. Using this to modify unknown data
+         * that is not supported by Data API. The format of the {@link DataView}'s
+         * contained data is dependent on the type of {@link DataHolder.Immutable}
+         * this is. In some cases, the format is specified based on a more specific
+         * type, such as for {@link EntityType}s, or {@link ItemType}s.
          *
          * <p>This setter is used to provide setting custom data that is not
          * represented by the Data API, including forge mods and other
@@ -108,6 +126,7 @@ public interface SerializableDataHolder extends DataSerializable, CopyableDataHo
          * @return The new immutable data holder containing the raw data
          * @throws InvalidDataException If the container is missing or has invalid
          *     data that this holder will refuse
+         * @see SerializableDataHolder#rawData()
          */
         I withRawData(DataView container) throws InvalidDataException;
 
