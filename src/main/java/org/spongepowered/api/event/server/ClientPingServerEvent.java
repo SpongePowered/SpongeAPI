@@ -157,7 +157,7 @@ public interface ClientPingServerEvent extends Event, Cancellable {
              * incompatible or not, forcing it to display the {@link #name()}.
              *
              * @param protocolVersion The new server protocol version
-             * @see <a href="https://minecraft.fandom.com/wiki/Protocol_version">Protocol version (Minecraft Wiki)</a>
+             * @see <a href="https://minecraft.wiki/w/Protocol_version">Protocol version (Minecraft Wiki)</a>
              */
             void setProtocolVersion(int protocolVersion);
         }

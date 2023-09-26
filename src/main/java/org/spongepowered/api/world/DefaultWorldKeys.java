@@ -36,17 +36,17 @@ public final class DefaultWorldKeys {
     /**
      * The default "world" of a running game session. Typically, the Overworld.
      * <p>
-     * Refer to: <a href="https://minecraft.fandom.com/wiki/Overworld">Overworld</a>
+     * Refer to: <a href="https://minecraft.wiki/w/Overworld">Overworld</a>
      */
     public static final ResourceKey DEFAULT = Sponge.game().factoryProvider().provide(DefaultWorldKeys.Factory.class).defaultWorld();
 
     /**
-     * Refer to: <a href="https://minecraft.fandom.com/wiki/The_Nether">The Nether</a>
+     * Refer to: <a href="https://minecraft.wiki/w/The_Nether">The Nether</a>
      */
     public static final ResourceKey THE_NETHER = Sponge.game().factoryProvider().provide(DefaultWorldKeys.Factory.class).theNether();
 
     /**
-     * Refer to: <a href="https://minecraft.fandom.com/wiki/The_End">The End</a>
+     * Refer to: <a href="https://minecraft.wiki/w/The_End">The End</a>
      */
     public static final ResourceKey THE_END = Sponge.game().factoryProvider().provide(DefaultWorldKeys.Factory.class).theEnd();
 
