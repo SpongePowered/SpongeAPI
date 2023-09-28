@@ -45,13 +45,6 @@ public interface FilteredTrigger<C extends FilteredTriggerConfiguration> {
     }
 
     /**
-     * Gets the {@link Trigger}.
-     *
-     * @return The type
-     */
-    Trigger<C> type();
-
-    /**
      * Gets the {@link FilteredTriggerConfiguration} of this trigger.
      *
      * @return The trigger configuration
@@ -67,21 +60,12 @@ public interface FilteredTrigger<C extends FilteredTriggerConfiguration> {
             CopyableBuilder<FilteredTrigger<C>, Builder<C>> {
 
         /**
-         * Sets the {@link Trigger}.
-         *
-         * @param type The trigger type
-         * @param <T> The configuration type
-         * @return This builder, for chaining
-         */
-        <T extends FilteredTriggerConfiguration> Builder<T> type(Trigger<T> type);
-
-        /**
          * Sets the {@link FilteredTriggerConfiguration}.
          *
          * @param config The configuration
          * @return This builder, for chaining
          */
-        Builder<C> config(C config);
+        <T extends FilteredTriggerConfiguration> Builder<T> config(T config);
 
         /**
          * Builds the {@link FilteredTrigger}.

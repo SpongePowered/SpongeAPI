@@ -27,7 +27,7 @@ package org.spongepowered.api.advancement;
 import org.spongepowered.math.vector.Vector2d;
 
 /**
- * Represents a element in the {@link TreeLayout}.
+ * Represents a layout element in the {@link AdvancementTree}.
  */
 public interface TreeLayoutElement {
 

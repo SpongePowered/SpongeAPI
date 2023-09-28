@@ -26,7 +26,6 @@ package org.spongepowered.api.advancement.criteria.trigger;
 
 import com.google.gson.Gson;
 import io.leangen.geantyref.TypeToken;
-import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.config.ConfigManager;
@@ -37,8 +36,8 @@ import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.event.advancement.CriterionEvent;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.scoreboard.criteria.Criterion;
+import org.spongepowered.api.util.Builder;
 import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.util.ResourceKeyedBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.configurate.ConfigurationOptions;
 import org.spongepowered.configurate.serialize.TypeSerializer;
@@ -55,7 +54,7 @@ import java.util.function.UnaryOperator;
  */
 @SuppressWarnings("unchecked")
 @CatalogedBy(Triggers.class)
-public interface Trigger<C extends FilteredTriggerConfiguration> extends DefaultedRegistryValue, ResourceKeyed {
+public interface Trigger<C extends FilteredTriggerConfiguration> extends DefaultedRegistryValue {
 
     /**
      * Creates a new {@link Builder} which can be used to create
@@ -103,7 +102,7 @@ public interface Trigger<C extends FilteredTriggerConfiguration> extends Default
      *
      * @param <C> The configuration type
      */
-    interface Builder<C extends FilteredTriggerConfiguration> extends ResourceKeyedBuilder<Trigger<C>, Builder<C>>,
+    interface Builder<C extends FilteredTriggerConfiguration> extends org.spongepowered.api.util.Builder<Trigger<C>, Builder<C>>,
             CopyableBuilder<Trigger<C>, Builder<C>> {
 
         /**

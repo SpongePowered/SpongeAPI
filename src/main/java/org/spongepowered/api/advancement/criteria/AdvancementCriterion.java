@@ -27,6 +27,8 @@ package org.spongepowered.api.advancement.criteria;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.criteria.trigger.FilteredTrigger;
+import org.spongepowered.api.advancement.criteria.trigger.FilteredTriggerConfiguration;
+import org.spongepowered.api.advancement.criteria.trigger.Trigger;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.Nameable;
 
@@ -128,6 +130,13 @@ public interface AdvancementCriterion extends Nameable {
     Optional<FilteredTrigger<?>> trigger();
 
     /**
+     * Gets the {@link Trigger} of this {@link AdvancementCriterion}, if present.
+     *
+     * @return The trigger
+     */
+    Optional<Trigger<?>> type();
+
+    /**
      * A builder to create {@link AdvancementCriterion}s.
      */
     interface Builder extends BaseBuilder<AdvancementCriterion, Builder> {
@@ -142,10 +151,11 @@ public interface AdvancementCriterion extends Nameable {
         /**
          * Sets the {@link FilteredTrigger}.
          *
+         * @param type The trigger type
          * @param trigger The filtered trigger
          * @return This builder, for chaining
          */
-        B trigger(FilteredTrigger<?> trigger);
+        <C extends FilteredTriggerConfiguration> B trigger(Trigger<C> type, FilteredTrigger<C> trigger);
 
         /**
          * Sets the name of the {@link AdvancementCriterion}. Names can be

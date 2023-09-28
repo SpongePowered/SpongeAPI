@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.item.inventory;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.event.item.inventory.container.ClickContainerEvent;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
@@ -50,6 +51,8 @@ public interface CraftItemEvent extends ChangeInventoryEvent {
      * @return The recipe
      */
     Optional<CraftingRecipe> recipe();
+
+    Optional<ResourceKey> recipeKey();
 
     /**
      * This event is fired before the item is taken out of the

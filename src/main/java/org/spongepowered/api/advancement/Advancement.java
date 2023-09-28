@@ -26,34 +26,17 @@ package org.spongepowered.api.advancement;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.ComponentLike;
-import org.spongepowered.api.ResourceKeyed;
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.data.persistence.DataSerializable;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
 /**
  * An advancement.
  */
-public interface Advancement extends ComponentLike, ResourceKeyed, DataSerializable {
-
-    /**
-     * Gets the {@link AdvancementTree} this advancement is located in,
-     * will only be present if the root advancement was used to create
-     * a {@link AdvancementTree}.
-     *
-     * @return The advancement tree
-     */
-    Optional<AdvancementTree> tree();
-
-    /**
-     * Gets all the children {@link Advancement}s.
-     *
-     * @return The children advancements
-     */
-    Collection<Advancement> children();
+public interface Advancement extends ComponentLike, DataSerializable {
 
     /**
      * Gets all the {@link AdvancementCriterion} that should be achieved
@@ -72,7 +55,7 @@ public interface Advancement extends ComponentLike, ResourceKeyed, DataSerializa
      *
      * @return The parent advancement, if present
      */
-    Optional<Advancement> parent();
+    Optional<ResourceKey> parent();
 
     /**
      * Gets the {@link DisplayInfo} of this advancement, if present.

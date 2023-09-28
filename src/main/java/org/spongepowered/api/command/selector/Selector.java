@@ -26,6 +26,7 @@ package org.spongepowered.api.command.selector;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.Advancement;
+import org.spongepowered.api.advancement.AdvancementTemplate;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.data.persistence.DataView;
@@ -204,7 +205,7 @@ public interface Selector {
          * @param advancement The advancement that players must have.
          * @return This builder, for chaining
          */
-        Builder addAdvancement(Advancement advancement);
+        Builder addAdvancement(AdvancementTemplate advancement);
 
         /**
          * Adds an {@link Advancement} constraint to this selector, requiring
@@ -213,7 +214,7 @@ public interface Selector {
          * @param advancement The advancement that players must not have.
          * @return This builder, for chaining
          */
-        Builder addNotAdvancement(Advancement advancement);
+        Builder addNotAdvancement(AdvancementTemplate advancement);
 
         /**
          * Adds an {@link AdvancementCriterion} constraint to this selector,
@@ -224,7 +225,7 @@ public interface Selector {
          * @param criterion The criterion the player must have
          * @return This builder, for chaining
          */
-        Builder addAdvancementCriterion(Advancement advancement, AdvancementCriterion criterion);
+        Builder addAdvancementCriterion(AdvancementTemplate advancement, AdvancementCriterion criterion);
 
         /**
          * Adds an {@link AdvancementCriterion} constraint to this selector,
@@ -235,7 +236,7 @@ public interface Selector {
          * @param criterion The criterion the player must not have
          * @return This builder, for chaining
          */
-        Builder addNotAdvancementCriterion(Advancement advancement, AdvancementCriterion criterion);
+        Builder addNotAdvancementCriterion(AdvancementTemplate advancement, AdvancementCriterion criterion);
 
         /**
          * Adds an {@link DataView} as an NBT style constraint.

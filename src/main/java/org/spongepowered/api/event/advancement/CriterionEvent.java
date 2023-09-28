@@ -28,6 +28,7 @@ import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.advancement.criteria.ScoreAdvancementCriterion;
 import org.spongepowered.api.advancement.criteria.trigger.FilteredTrigger;
 import org.spongepowered.api.advancement.criteria.trigger.FilteredTriggerConfiguration;
+import org.spongepowered.api.advancement.criteria.trigger.Trigger;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.event.GenericEvent;
@@ -128,6 +129,14 @@ public interface CriterionEvent extends AdvancementEvent {
          * @return The trigger
          */
         FilteredTrigger<C> trigger();
+
+        /**
+         * Gets the {@link FilteredTrigger}
+         * that is being processed.
+         *
+         * @return The trigger
+         */
+        org.spongepowered.api.advancement.criteria.trigger.Trigger<C> type();
 
         /**
          * Gets the result of the trigger event.

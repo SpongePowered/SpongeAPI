@@ -25,7 +25,6 @@
 package org.spongepowered.api.event.advancement;
 
 import org.spongepowered.api.advancement.AdvancementTree;
-import org.spongepowered.api.advancement.TreeLayout;
 import org.spongepowered.api.event.Event;
 
 /**
@@ -43,16 +42,10 @@ public interface AdvancementTreeEvent extends Event {
     /**
      * Is called when the layout of a {@link AdvancementTree} gets
      * updated, this is done after the vanilla game generates the
-     * layout. You can safely move elements in the {@link TreeLayout}
+     * layout. You can safely move layout elements in the {@link AdvancementTree}
      * within this event.
      */
     interface GenerateLayout extends AdvancementTreeEvent {
 
-        /**
-         * Gets the {@link TreeLayout} that got generated.
-         *
-         * @return The tree layout
-         */
-        TreeLayout layout();
     }
 }

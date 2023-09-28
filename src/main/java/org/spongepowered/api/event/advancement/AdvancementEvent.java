@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.advancement;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
@@ -51,6 +52,13 @@ public interface AdvancementEvent extends Event {
      * @return The advancement
      */
     Advancement advancement();
+
+    /**
+     * Gets the {@link Advancement} that is being targeted.
+     *
+     * @return The advancement
+     */
+    ResourceKey advancementKey();
 
     /**
      * Is called when a {@link Advancement} is granted/unlocked.

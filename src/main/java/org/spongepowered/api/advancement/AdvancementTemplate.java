@@ -31,6 +31,8 @@ import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.datapack.DataPackEntry;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
 
+import java.util.Optional;
+
 /**
  * A template for an {@link Advancement}.
  */
@@ -53,18 +55,35 @@ public interface AdvancementTemplate extends DataPackEntry<AdvancementTemplate> 
     Advancement advancement();
 
     /**
+     * Gets the {@link AdvancementTree} of this advancement
+     * will only be present if it is a root advancement.
+     *
+     * @return The advancement tree
+     */
+    Optional<AdvancementTree> tree();
+
+    /**
      * A builder to create {@link Advancement}s.
      */
     interface Builder extends ResourceKeyedBuilder<AdvancementTemplate, Builder> {
 
         /**
-         * Sets the parent {@link Advancement}.
+         * Sets the parent {@link Advancement} template.
          * <p>For the root advancement use {@link #root}</p>
          *
          * @param parent The parent advancement
          * @return This builder, for chaining
          */
-        Builder parent(Advancement parent);
+        Builder parent(AdvancementTemplate parent);
+
+        /**
+         * Sets the parent {@link Advancement} key.
+         * <p>For the root advancement use {@link #root}</p>
+         *
+         * @param parent The parent advancement
+         * @return This builder, for chaining
+         */
+        Builder parent(ResourceKey parent);
 
         /**
          * Sets this advancement as root.

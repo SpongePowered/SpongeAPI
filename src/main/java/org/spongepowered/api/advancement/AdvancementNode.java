@@ -24,37 +24,29 @@
  */
 package org.spongepowered.api.advancement;
 
+import org.spongepowered.api.ResourceKeyed;
+import org.spongepowered.api.entity.living.player.Player;
+
 import java.util.Collection;
-import java.util.Optional;
 
 /**
- * Represents the tree (tab) layout of a {@link AdvancementTree}.
+ * A node in a {@link AdvancementTree}
+ * visible to a {@link Player} once the root {@link Advancement} gets achieved.
  */
-public interface TreeLayout {
+public interface AdvancementNode extends ResourceKeyed {
 
     /**
-     * Gets the {@link AdvancementTree} this layout is assigned to.
+     * Gets the root {@link Advancement}.
      *
-     * @return The tree
+     * @return The root advancement
      */
-    AdvancementTree tree();
+    Advancement rootAdvancement();
 
     /**
-     * Gets all the {@link TreeLayoutElement}s that are
-     * present in this layout.
+     * Gets all the children {@link Advancement}s.
      *
-     * @return The tree layout elements
+     * @return The children advancements
      */
-    Collection<TreeLayoutElement> elements();
-
-    /**
-     * Gets the {@link TreeLayoutElement} for the specified {@link Advancement},
-     * {@link Optional#empty()} will be returned if the advancement is not present
-     * in the tree or if there is no {@link DisplayInfo} present.
-     *
-     * @param advancement The advancement
-     * @return The tree layout element
-     */
-    Optional<TreeLayoutElement> element(Advancement advancement);
+    Collection<AdvancementNode> children();
 
 }

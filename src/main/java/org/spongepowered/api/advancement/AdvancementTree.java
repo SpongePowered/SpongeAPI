@@ -27,20 +27,14 @@ package org.spongepowered.api.advancement;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.entity.living.player.Player;
 
+import java.util.Collection;
 import java.util.Optional;
 
 /**
  * Represents a {@link Advancement} tree or tab menu. The tree will become
- * visible to a {@link Player} once the root {@link Advancement} gets achieved.
+ * visible to a {@link Player} once the {@link #rootAdvancement() root advancement} gets achieved.
  */
-public interface AdvancementTree  {
-
-    /**
-     * Gets the root {@link Advancement}.
-     *
-     * @return The root advancement
-     */
-    Advancement rootAdvancement();
+public interface AdvancementTree extends AdvancementNode {
 
     /**
      * Gets the background texture of this tree.
@@ -48,5 +42,34 @@ public interface AdvancementTree  {
      * @return The background texture
      */
     Optional<ResourceKey> backgroundPath();
+
+    /**
+     * Gets all the {@link TreeLayoutElement}s that are
+     * present in this layout.
+     *
+     * @return The tree layout elements
+     */
+    Collection<TreeLayoutElement> layoutElements();
+
+    /**
+     * Gets the {@link TreeLayoutElement} for the specified {@link Advancement},
+     * {@link Optional#empty()} will be returned if the advancement is not present
+     * in the tree or if there is no {@link DisplayInfo} present.
+     *
+     * @param advancement The advancement
+     * @return The tree layout element
+     */
+    Optional<TreeLayoutElement> layoutElement(AdvancementTemplate advancement);
+
+
+    /**
+     * Gets the {@link TreeLayoutElement} for the specified {@link Advancement},
+     * {@link Optional#empty()} will be returned if the advancement is not present
+     * in the tree or if there is no {@link DisplayInfo} present.
+     *
+     * @param advancementKey The advancement key
+     * @return The tree layout element
+     */
+    Optional<TreeLayoutElement> layoutElement(ResourceKey advancementKey);
 
 }

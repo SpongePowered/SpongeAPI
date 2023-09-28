@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.block.entity;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
@@ -61,6 +62,8 @@ public interface CookingEvent extends Event {
      * @return The recipe
      */
     Optional<CookingRecipe> recipe();
+
+    Optional<ResourceKey> recipeKey();
 
     /**
      * The first tick of an item cooking.
