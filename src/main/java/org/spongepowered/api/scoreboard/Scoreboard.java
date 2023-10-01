@@ -44,7 +44,7 @@ import java.util.function.Supplier;
  * The server has a default scoreboard, but each {@link Player}
  * can have their own scoreboard.
  *
- * @see <a href="http://minecraft.gamepedia.com/Scoreboard">Scoreboards on the Minecraft Wiki</a>
+ * @see <a href="http://minecraft.wiki/w/Scoreboard">Scoreboards on the Minecraft Wiki</a>
  */
 public interface Scoreboard {
 
