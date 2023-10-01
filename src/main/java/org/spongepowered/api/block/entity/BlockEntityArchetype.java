@@ -76,7 +76,7 @@ public interface BlockEntityArchetype extends Archetype<BlockSnapshot, BlockEnti
      * generated block entity. Note that this is a copied container.
      *
      * <p>The format used for this container follows the
-     * <a href="https://minecraft.gamepedia.com/Chunk_format#Block_entity_format">Mojang ChunkFormat for BlockEntities.</a>,
+     * <a href="https://minecraft.wiki/w/Chunk_format#Block_entity_format">Mojang ChunkFormat for BlockEntities.</a>,
      * and can be customized based on the origination of the {@link BlockEntity}.
      * If the block entity originates from a content-adding mod, the format could
      * vary based on it's implementation and may change at any time.
@@ -92,7 +92,7 @@ public interface BlockEntityArchetype extends Archetype<BlockSnapshot, BlockEnti
      * values are not used as those are dependent on usage.
      *
      * <p>The format used for this container follows the
-     * <a href="https://minecraft.gamepedia.com/Chunk_format#Block_entity_format">Mojang ChunkFormat for BlockEntities.</a>,
+     * <a href="https://minecraft.wiki/w/Chunk_format#Block_entity_format">Mojang ChunkFormat for BlockEntities.</a>,
      * and can be customized based on the origination of the {@link BlockEntity}.
      * If the block entity originates from a content-adding mod, the format could
      * vary based on it's implementation and may change at any time.
@@ -165,7 +165,7 @@ public interface BlockEntityArchetype extends Archetype<BlockSnapshot, BlockEnti
          * is called.
          *
          * <p>The format used for this container follows the
-         * <a href="https://minecraft.gamepedia.com/Chunk_format#Block_entity_format">Mojang ChunkFormat for BlockEntities.</a>,
+         * <a href="https://minecraft.wiki/w/Chunk_format#Block_entity_format">Mojang ChunkFormat for BlockEntities.</a>,
          * and can be customized based on the origination of the {@link BlockEntity}.
          * If the block entity originates from a content-adding mod, the format could
          * vary based on it's implementation and may change at any time.

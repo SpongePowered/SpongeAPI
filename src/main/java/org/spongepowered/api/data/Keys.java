@@ -1698,7 +1698,7 @@ public final class Keys {
     /**
      * Whether a {@link Vindicator} is exhibiting "johnny" behavior.
      *
-     * @see <a href="https://minecraft.gamepedia.com/Vindicator#Behavior">
+     * @see <a href="https://minecraft.wiki/w/Vindicator#Behavior">
      * The Minecraft Wiki for more information about "johnny" behavior</a>
      */
     public static final Key<Value<Boolean>> IS_JOHNNY = Keys.key(ResourceKey.sponge("is_johnny"), Boolean.class);
@@ -2163,14 +2163,14 @@ public final class Keys {
      * By default this is false.
      * Can be used in combination with {@link Keys#MAP_CANVAS} to create
      * custom static map.
-     * See <a href="https://minecraft.gamepedia.com/Map#Locking">Minecraft Wiki - Map Locking</a>
+     * See <a href="https://minecraft.wiki/w/Map#Locking">Minecraft Wiki - Map Locking</a>
      */
     public static final Key<Value<Boolean>> MAP_LOCKED = Keys.key(ResourceKey.sponge("map_locked"), Boolean.class);
 
     /**
      * Represents the {@link Key} for the scale of a map
      * for a {@link MapInfo}.
-     * @see <a href="https://minecraft.gamepedia.com/Map#Zoom_details">Minecraft Wiki - Zoom Details</a>
+     * @see <a href="https://minecraft.wiki/w/Map#Zoom_details">Minecraft Wiki - Zoom Details</a>
      */
     public static final Key<Value<Integer>> MAP_SCALE = Keys.key(ResourceKey.sponge("map_scale"), Integer.class);
 
@@ -2685,8 +2685,8 @@ public final class Keys {
     /**
      * The scoreboard tags applied to an {@link Entity}.
      *
-     * @see <a href="https://minecraft.gamepedia.com/Scoreboard#Tags">
-     * https://minecraft.gamepedia.com/Scoreboard#Tags</a>
+     * @see <a href="https://minecraft.wiki/w/Scoreboard#Tags">
+     * https://minecraft.wiki/w/Scoreboard#Tags</a>
      */
     public static final Key<SetValue<String>> SCOREBOARD_TAGS = Keys.setKey(ResourceKey.sponge("scoreboard_tags"), String.class);
 

@@ -45,7 +45,7 @@ public final class AdvancementTypes {
     /**
      * Represents the challenge completion advancement type.
      *
-     * @see <a href="https://minecraft.gamepedia.com/File:ChallengeComplete.png">
+     * @see <a href="https://minecraft.wiki/w/File:ChallengeComplete.png">
      *     the Minecraft Wiki for an example of this advancement type</a>
      */
     public static final DefaultedRegistryReference<AdvancementType> CHALLENGE = AdvancementTypes.key(ResourceKey.sponge("challenge"));
@@ -53,7 +53,7 @@ public final class AdvancementTypes {
     /**
      * Represents the goal reached advancement type.
      *
-     * @see <a href="https://minecraft.gamepedia.com/File:GoalReached.png">
+     * @see <a href="https://minecraft.wiki/w/File:GoalReached.png">
      *     the Minecraft Wiki for an example of this advancement type</a>
      */
     public static final DefaultedRegistryReference<AdvancementType> GOAL = AdvancementTypes.key(ResourceKey.sponge("goal"));
@@ -61,7 +61,7 @@ public final class AdvancementTypes {
     /**
      * Represents the advancement made advancement type.
      *
-     * @see <a href="https://minecraft.gamepedia.com/File:AdvancementMade.png">
+     * @see <a href="https://minecraft.wiki/w/File:AdvancementMade.png">
      *     the Minecraft Wiki for an example of this advancement type</a>
      */
     public static final DefaultedRegistryReference<AdvancementType> TASK = AdvancementTypes.key(ResourceKey.sponge("task"));

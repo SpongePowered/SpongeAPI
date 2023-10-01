@@ -146,7 +146,7 @@ public interface TradeOffer extends DataSerializable {
      * price.</p>
      *
      * @return the price growth multiplier
-     * @see <a href="https://minecraft.gamepedia.com/Trading#Economics">the
+     * @see <a href="https://minecraft.wiki/w/Trading#Economics">the
      * Minecraft Wiki for more detail on how the price growth multiplier applies
      * to trade offers</a>
      */
@@ -238,7 +238,7 @@ public interface TradeOffer extends DataSerializable {
          *
          * @param priceGrowthMultiplier The offer's rate of price growth
          * @return This builder
-         * @see <a href="https://minecraft.gamepedia.com/Trading#Economics">the
+         * @see <a href="https://minecraft.wiki/w/Trading#Economics">the
          * Minecraft Wiki for more detail on how the price growth multiplier
          * applies to trade offers</a>
          */
