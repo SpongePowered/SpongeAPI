@@ -24,9 +24,9 @@
  */
 package org.spongepowered.api.command.selector;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.Advancement;
-import org.spongepowered.api.advancement.AdvancementTemplate;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.data.persistence.DataView;
@@ -202,41 +202,41 @@ public interface Selector {
          * Adds an {@link Advancement} constraint to this selector, requiring
          * that the advancement must be granted to be selected.
          *
-         * @param advancement The advancement that players must have.
+         * @param advancement The key of the advancement that players must have.
          * @return This builder, for chaining
          */
-        Builder addAdvancement(AdvancementTemplate advancement);
+        Builder addAdvancement(ResourceKey advancement);
 
         /**
          * Adds an {@link Advancement} constraint to this selector, requiring
          * that the advancement must NOT be granted to be selected.
          *
-         * @param advancement The advancement that players must not have.
+         * @param advancement The key of the advancement that players must not have.
          * @return This builder, for chaining
          */
-        Builder addNotAdvancement(AdvancementTemplate advancement);
+        Builder addNotAdvancement(ResourceKey advancement);
 
         /**
          * Adds an {@link AdvancementCriterion} constraint to this selector,
          * requiring that the criterion on the given {@link Advancement} must
          * be granted to be selected.
          *
-         * @param advancement The advancement
+         * @param advancement The key of the advancement
          * @param criterion The criterion the player must have
          * @return This builder, for chaining
          */
-        Builder addAdvancementCriterion(AdvancementTemplate advancement, AdvancementCriterion criterion);
+        Builder addAdvancementCriterion(ResourceKey advancement, AdvancementCriterion criterion);
 
         /**
          * Adds an {@link AdvancementCriterion} constraint to this selector,
          * requiring that the criterion on the given {@link Advancement} must
          * not be granted to be selected.
          *
-         * @param advancement The advancement
+         * @param advancement The key of the advancement
          * @param criterion The criterion the player must not have
          * @return This builder, for chaining
          */
-        Builder addNotAdvancementCriterion(AdvancementTemplate advancement, AdvancementCriterion criterion);
+        Builder addNotAdvancementCriterion(ResourceKey advancement, AdvancementCriterion criterion);
 
         /**
          * Adds an {@link DataView} as an NBT style constraint.
