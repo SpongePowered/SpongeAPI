@@ -1093,6 +1093,11 @@ public final class Keys {
     public static final Key<Value<FoxType>> FOX_TYPE = Keys.key(ResourceKey.sponge("fox_type"), FoxType.class);
 
     /**
+     * The time (in ticks) an {@link Entity} is frozen.
+     */
+    public static final Key<Value<Ticks>> FROZEN_TIME = Keys.key(ResourceKey.sponge("frozen_time"), Ticks.class);
+
+    /**
      * Represents the {@link Key} for the amount of fuel left in a {@link BrewingStand} or {@link FurnaceBlockEntity} or {@link FurnaceMinecart}
      *
      * <p>One {@link ItemTypes#BLAZE_POWDER} adds 20 fuel to the brewing stand.</p>
@@ -1698,7 +1703,7 @@ public final class Keys {
     /**
      * Whether a {@link Vindicator} is exhibiting "johnny" behavior.
      *
-     * @see <a href="https://minecraft.gamepedia.com/Vindicator#Behavior">
+     * @see <a href="https://minecraft.wiki/w/Vindicator#Behavior">
      * The Minecraft Wiki for more information about "johnny" behavior</a>
      */
     public static final Key<Value<Boolean>> IS_JOHNNY = Keys.key(ResourceKey.sponge("is_johnny"), Boolean.class);
@@ -2163,14 +2168,14 @@ public final class Keys {
      * By default this is false.
      * Can be used in combination with {@link Keys#MAP_CANVAS} to create
      * custom static map.
-     * See <a href="https://minecraft.gamepedia.com/Map#Locking">Minecraft Wiki - Map Locking</a>
+     * See <a href="https://minecraft.wiki/w/Map#Locking">Minecraft Wiki - Map Locking</a>
      */
     public static final Key<Value<Boolean>> MAP_LOCKED = Keys.key(ResourceKey.sponge("map_locked"), Boolean.class);
 
     /**
      * Represents the {@link Key} for the scale of a map
      * for a {@link MapInfo}.
-     * @see <a href="https://minecraft.gamepedia.com/Map#Zoom_details">Minecraft Wiki - Zoom Details</a>
+     * @see <a href="https://minecraft.wiki/w/Map#Zoom_details">Minecraft Wiki - Zoom Details</a>
      */
     public static final Key<Value<Integer>> MAP_SCALE = Keys.key(ResourceKey.sponge("map_scale"), Integer.class);
 
@@ -2241,6 +2246,13 @@ public final class Keys {
      * @see Keys#FOOD_LEVEL
      */
     public static final Key<Value<Integer>> MAX_FOOD_LEVEL = Keys.key(ResourceKey.sponge("max_food_level"), Integer.class);
+
+    /**
+     * The frozen time after which an {@link Entity} is completely frozen. Readonly.
+     *
+     * @see Keys#FROZEN_TIME
+     */
+    public static final Key<Value<Ticks>> MAX_FROZEN_TIME = Keys.key(ResourceKey.sponge("max_frozen_time"), Ticks.class);
 
     /**
      * The maximum health of a {@link Living}.
@@ -2685,8 +2697,8 @@ public final class Keys {
     /**
      * The scoreboard tags applied to an {@link Entity}.
      *
-     * @see <a href="https://minecraft.gamepedia.com/Scoreboard#Tags">
-     * https://minecraft.gamepedia.com/Scoreboard#Tags</a>
+     * @see <a href="https://minecraft.wiki/w/Scoreboard#Tags">
+     * https://minecraft.wiki/w/Scoreboard#Tags</a>
      */
     public static final Key<SetValue<String>> SCOREBOARD_TAGS = Keys.setKey(ResourceKey.sponge("scoreboard_tags"), String.class);
 

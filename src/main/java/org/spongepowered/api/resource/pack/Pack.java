@@ -30,7 +30,7 @@ import org.spongepowered.api.Engine;
 /**
  * The physical representation of game assets that may or may not be loaded in an {@link Engine}.
  *
- * @see <a href=http://minecraft.gamepedia.com/Resource_pack#Contents>
+ * @see <a href=http://minecraft.wiki/w/Resource_pack#Contents>
  * Minecraft Wiki/Resource Packs
  * </a>
  */

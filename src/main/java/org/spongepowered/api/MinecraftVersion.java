@@ -50,7 +50,7 @@ public interface MinecraftVersion extends Comparable<MinecraftVersion> {
      * @implNote This should be interpreted together with {@link #isLegacy()},
      * since legacy clients use a different protocol version numbering scheme.
      * @return The protocol version
-     * @see <a href="https://minecraft.fandom.com/wiki/Protocol_version">Protocol version (Minecraft Wiki)</a>
+     * @see <a href="https://minecraft.wiki/w/Protocol_version">Protocol version (Minecraft Wiki)</a>
      */
     int protocolVersion();
 

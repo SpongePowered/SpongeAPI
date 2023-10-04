@@ -356,6 +356,15 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
     }
 
     /**
+     * {@link Keys#FROZEN_TIME}
+     *
+     * @return The frozen time
+     */
+    default Value.Mutable<Ticks> frozenTime() {
+        return this.requireValue(Keys.FROZEN_TIME).asMutable();
+    }
+
+    /**
      * {@link Keys#PASSENGERS}
      *
      * @return The list of passengers that may be riding this entity
@@ -587,6 +596,15 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      */
     default Value.Mutable<Integer> maxAir() {
         return this.requireValue(Keys.MAX_AIR).asMutable();
+    }
+
+    /**
+     * {@link Keys#MAX_FROZEN_TIME}
+     *
+     * @return The max frozen time
+     */
+    default Value.Mutable<Ticks> maxFrozenTime() {
+        return this.requireValue(Keys.MAX_FROZEN_TIME).asMutable();
     }
 
     /**
