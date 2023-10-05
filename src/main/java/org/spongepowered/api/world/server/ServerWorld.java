@@ -50,6 +50,7 @@ import java.util.Collection;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identifiable, InteractableVolume,
         ServerLocationCreator, WeatherUniverse.Mutable {
@@ -234,5 +235,16 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
      * @return The chunk manager.
      */
     ChunkManager chunkManager();
+
+    /**
+     * Returns a stream of existing chunk positions for this world.
+     * <p>
+     *     Note that consuming the stream may be slow.
+     *     The stream must be closed or fully consumed otherwise file handles may stay open.
+     * </p>
+     *
+     * @return The stream of existing chunk positions.
+     */
+    Stream<Vector3i> chunkPositions();
 
 }
