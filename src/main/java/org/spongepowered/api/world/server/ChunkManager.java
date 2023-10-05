@@ -30,9 +30,12 @@ import org.spongepowered.api.util.annotation.DoNotStore;
 import org.spongepowered.api.world.ChunkRegenerateFlag;
 import org.spongepowered.api.world.ChunkRegenerateFlags;
 import org.spongepowered.api.world.chunk.WorldChunk;
+import org.spongepowered.math.vector.Vector2i;
 import org.spongepowered.math.vector.Vector3i;
 
+import java.nio.file.Path;
 import java.util.Collection;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -246,4 +249,65 @@ public interface ChunkManager {
      */
     CompletableFuture<Boolean> regenerateChunk(int cx, int cy, int cz, ChunkRegenerateFlag flag);
 
+    /**
+     * Returns the path of the directory where region files are stored.
+     *
+     * @return The path of the region directory
+     */
+    Path regionDirPath();
+
+    /**
+     * Returns the path of the region file containing the given {@link WorldChunk}.
+     *
+     * @param chunk The {@link WorldChunk} for which to acquire the region file path
+     * @return The path of the region file for the given chunk
+     */
+    Path regionFilePath(WorldChunk chunk);
+
+    /**
+     * Calculates the maximum chunk coordinates for a given region coordinates (x, z) in a world.
+     *
+     * @param rx The x-coordinate of the region
+     * @param rz The z-coordinate of the region
+     * @return A {@link Vector3i} containing the maximum chunk coordinates for the given region coordinates
+     */
+    Vector3i maxChunkFromRegion(int rx, int rz);
+
+    /**
+     * Calculates the maximum chunk coordinates for a given region coordinates (x, z) in a world.
+     *
+     * @param regionCoordinate The coordinate of the region
+     * @return A {@link Vector3i} containing the maximum chunk coordinates for the given region coordinates
+     */
+    default Vector3i maxChunkFromRegion(Vector2i regionCoordinate) {
+        Objects.requireNonNull(regionCoordinate, "regionCoordinate");
+        return this.maxChunkFromRegion(regionCoordinate.x(), regionCoordinate.y());
+    }
+
+    /**
+     * Calculates the minimum chunk coordinates for a given region coordinates (x, z) in a world.
+     *
+     * @param rx The x-coordinate of the region
+     * @param rz The z-coordinate of the region
+     * @return A {@link Vector3i} containing the minimum chunk coordinates for the given region coordinates
+     */
+    Vector3i minChunkFromRegion(int rx, int rz);
+
+    /**
+     * Calculates the maximum chunk coordinates for a given region coordinates (x, z) in a world.
+     *
+     * @param regionCoordinate The coordinate of the region
+     * @return A {@link Vector3i} containing the maximum chunk coordinates for the given region coordinates
+     */
+    default Vector3i minChunkFromRegion(Vector2i regionCoordinate) {
+        Objects.requireNonNull(regionCoordinate, "regionCoordinate");
+        return this.minChunkFromRegion(regionCoordinate.x(), regionCoordinate.y());
+    }
+
+    /**
+     * Returns the region coordinates and file paths of existing regions.
+     *
+     * @return the region coordinates and their file paths.
+     */
+    Map<Vector2i, Path> regionFiles();
 }
