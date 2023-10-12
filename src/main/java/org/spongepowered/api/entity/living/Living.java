@@ -34,7 +34,6 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.attribute.Attribute;
 import org.spongepowered.api.entity.attribute.AttributeHolder;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.scoreboard.TeamMember;
 import org.spongepowered.math.imaginary.Quaterniond;
 import org.spongepowered.math.vector.Vector3d;
 
@@ -44,10 +43,9 @@ import java.util.Optional;
  * Represents an entity that is living, and therefor can be damaged.
  *
  * <p>Living entities can have {@link PotionEffect}s, breathing air
- * under water, custom names, be meaningfully added to teams, hold {@link Attribute}s, and become
- * invisible.</p>
+ * under water, custom names, hold {@link Attribute}s, and become invisible.</p>
  */
-public interface Living extends AttributeHolder, Entity, TeamMember {
+public interface Living extends AttributeHolder, Entity {
 
     /**
      * {@link Keys#ABSORPTION}
