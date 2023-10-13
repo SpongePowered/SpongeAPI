@@ -36,6 +36,7 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.effect.VanishState;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.projectile.source.EntityProjectileSource;
+import org.spongepowered.api.scoreboard.TeamMember;
 import org.spongepowered.api.util.AABB;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.RandomProvider;
@@ -78,7 +79,7 @@ import java.util.function.UnaryOperator;
  */
 @DoNotStore
 public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEntity>, Locatable, EntityProjectileSource, Sound.Emitter,
-        SerializableDataHolder.Mutable, RandomProvider {
+        SerializableDataHolder.Mutable, RandomProvider, TeamMember {
 
     /**
      * Gets the {@link EntityType}.

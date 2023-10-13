@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
+import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.block.entity.CommandBlock;
 import org.spongepowered.api.data.Keys;
@@ -36,7 +37,7 @@ import java.util.Optional;
 /**
  * Represents a {@link Minecart} with a {@link CommandBlock} inside it.
  */
-public interface CommandBlockMinecart extends BlockOccupiedMinecart, LocaleSource, Subject {
+public interface CommandBlockMinecart extends BlockOccupiedMinecart, LocaleSource, Subject, Audience {
 
     /**
      * Gets the currently stored command.

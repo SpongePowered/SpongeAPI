@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.block.entity;
 
+import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
@@ -36,7 +37,7 @@ import java.util.Optional;
 /**
  * Represents a Command Block.
  */
-public interface CommandBlock extends BlockEntity, Subject, LocaleSource, Nameable {
+public interface CommandBlock extends BlockEntity, Subject, LocaleSource, Nameable, Audience {
 
     /**
      * Executes the currently stored command.
