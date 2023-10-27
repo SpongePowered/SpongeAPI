@@ -1903,6 +1903,26 @@ public final class Keys {
     public static final Key<Value<UUID>> SKIN_UNIQUE_ID = DummyObjectProvider.createExtendedFor(Key.class,"SKIN_UNIQUE_ID");
 
     /**
+     * Represents the {@link Key} for the skin texture of a {@link Humanoid}.
+     *
+     * <p>Skins can be manipulated by supplying the texture string
+     * such as those stored in player heads</p>
+     *
+     * @see SkinTextureData#skinTexture()
+     */
+    public static final Key<Value<String>> SKIN_TEXTURE = DummyObjectProvider.createExtendedFor(Key.class,"SKIN_TEXTURE");
+
+    /**
+     * Represents the {@link Key} for the skin signature of a {@link Humanoid}.
+     *
+     * <p>Skins can be manipulated by supplying the signature string
+     * such as those stored in player heads</p>
+     *
+     * @see SkinSignatureData#skinSignature()
+     */
+    public static final Key<Value<String>> SKIN_SIGNATURE = DummyObjectProvider.createExtendedFor(Key.class,"SKIN_SIGNATURE");
+
+    /**
      * Represents the {@link Key} for the type of skull a block or item stack
      * has.
      *
