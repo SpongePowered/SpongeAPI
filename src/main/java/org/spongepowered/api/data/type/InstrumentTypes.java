@@ -41,14 +41,12 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class InstrumentTypes {
 
     // @formatter:off
-
     // SORTFIELDS:ON
-
     public static final DefaultedRegistryReference<InstrumentType> BANJO = InstrumentTypes.key(ResourceKey.sponge("banjo"));
 
-    public static final DefaultedRegistryReference<InstrumentType> BASS = InstrumentTypes.key(ResourceKey.sponge("bass"));
-
     public static final DefaultedRegistryReference<InstrumentType> BASE_DRUM = InstrumentTypes.key(ResourceKey.sponge("basedrum"));
+
+    public static final DefaultedRegistryReference<InstrumentType> BASS = InstrumentTypes.key(ResourceKey.sponge("bass"));
 
     public static final DefaultedRegistryReference<InstrumentType> BELL = InstrumentTypes.key(ResourceKey.sponge("bell"));
 
@@ -58,7 +56,13 @@ public final class InstrumentTypes {
 
     public static final DefaultedRegistryReference<InstrumentType> COW_BELL = InstrumentTypes.key(ResourceKey.sponge("cow_bell"));
 
+    public static final DefaultedRegistryReference<InstrumentType> CREEPER = InstrumentTypes.key(ResourceKey.sponge("creeper"));
+
+    public static final DefaultedRegistryReference<InstrumentType> CUSTOM_HEAD = InstrumentTypes.key(ResourceKey.sponge("custom_head"));
+
     public static final DefaultedRegistryReference<InstrumentType> DIDGERIDOO = InstrumentTypes.key(ResourceKey.sponge("didgeridoo"));
+
+    public static final DefaultedRegistryReference<InstrumentType> DRAGON = InstrumentTypes.key(ResourceKey.sponge("dragon"));
 
     public static final DefaultedRegistryReference<InstrumentType> FLUTE = InstrumentTypes.key(ResourceKey.sponge("flute"));
 
@@ -70,16 +74,22 @@ public final class InstrumentTypes {
 
     public static final DefaultedRegistryReference<InstrumentType> IRON_XYLOPHONE = InstrumentTypes.key(ResourceKey.sponge("iron_xylophone"));
 
+    public static final DefaultedRegistryReference<InstrumentType> PIGLIN = InstrumentTypes.key(ResourceKey.sponge("piglin"));
+
     public static final DefaultedRegistryReference<InstrumentType> PLING = InstrumentTypes.key(ResourceKey.sponge("pling"));
+
+    public static final DefaultedRegistryReference<InstrumentType> SKELETON = InstrumentTypes.key(ResourceKey.sponge("skeleton"));
 
     public static final DefaultedRegistryReference<InstrumentType> SNARE = InstrumentTypes.key(ResourceKey.sponge("snare"));
 
+    public static final DefaultedRegistryReference<InstrumentType> WITHER_SKELETON = InstrumentTypes.key(ResourceKey.sponge("wither_skeleton"));
+
     public static final DefaultedRegistryReference<InstrumentType> XYLOPHONE = InstrumentTypes.key(ResourceKey.sponge("xylophone"));
 
+    public static final DefaultedRegistryReference<InstrumentType> ZOMBIE = InstrumentTypes.key(ResourceKey.sponge("zombie"));
+
     // SORTFIELDS:OFF
-
     // @formatter:on
-
     private InstrumentTypes() {
     }
 
