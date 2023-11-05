@@ -38,15 +38,13 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class BambooLeavesTypes {
 
     // @formatter:off
+    public static final DefaultedRegistryReference<BambooLeavesType> LARGE = BambooLeavesTypes.key(ResourceKey.sponge("large"));
 
     public static final DefaultedRegistryReference<BambooLeavesType> NONE = BambooLeavesTypes.key(ResourceKey.sponge("none"));
 
     public static final DefaultedRegistryReference<BambooLeavesType> SMALL = BambooLeavesTypes.key(ResourceKey.sponge("small"));
 
-    public static final DefaultedRegistryReference<BambooLeavesType> LARGE = BambooLeavesTypes.key(ResourceKey.sponge("large"));
-
     // @formatter:on
-
     private BambooLeavesTypes() {
     }
 
