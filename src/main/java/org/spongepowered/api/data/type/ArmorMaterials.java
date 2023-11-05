@@ -38,9 +38,7 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class ArmorMaterials {
 
     // @formatter:off
-
     // SORTFIELDS:ON
-
     public static final DefaultedRegistryReference<ArmorMaterial> CHAINMAIL = ArmorMaterials.key(ResourceKey.sponge("chainmail"));
 
     public static final DefaultedRegistryReference<ArmorMaterial> DIAMOND = ArmorMaterials.key(ResourceKey.sponge("diamond"));
@@ -51,12 +49,12 @@ public final class ArmorMaterials {
 
     public static final DefaultedRegistryReference<ArmorMaterial> LEATHER = ArmorMaterials.key(ResourceKey.sponge("leather"));
 
+    public static final DefaultedRegistryReference<ArmorMaterial> NETHERITE = ArmorMaterials.key(ResourceKey.sponge("netherite"));
+
     public static final DefaultedRegistryReference<ArmorMaterial> TURTLE = ArmorMaterials.key(ResourceKey.sponge("turtle"));
 
     // SORTFIELDS:OFF
-
     // @formatter:on
-
     private ArmorMaterials() {
     }
 
