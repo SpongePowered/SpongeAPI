@@ -41,9 +41,7 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class HorseColors {
 
     // @formatter:off
-
     // SORTFIELDS:ON
-
     public static final DefaultedRegistryReference<HorseColor> BLACK = HorseColors.key(ResourceKey.sponge("black"));
 
     public static final DefaultedRegistryReference<HorseColor> BROWN = HorseColors.key(ResourceKey.sponge("brown"));
@@ -59,9 +57,7 @@ public final class HorseColors {
     public static final DefaultedRegistryReference<HorseColor> WHITE = HorseColors.key(ResourceKey.sponge("white"));
 
     // SORTFIELDS:OFF
-
     // @formatter:on
-
     private HorseColors() {
     }
 

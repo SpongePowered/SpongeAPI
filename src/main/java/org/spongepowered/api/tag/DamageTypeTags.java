@@ -40,6 +40,8 @@ public final class DamageTypeTags {
     // @formatter:off
     public static final Tag<DamageType> ALWAYS_HURTS_ENDER_DRAGONS = DamageTypeTags.key(ResourceKey.minecraft("always_hurts_ender_dragons"));
 
+    public static final Tag<DamageType> ALWAYS_KILLS_ARMOR_STANDS = DamageTypeTags.key(ResourceKey.minecraft("always_kills_armor_stands"));
+
     public static final Tag<DamageType> ALWAYS_MOST_SIGNIFICANT_FALL = DamageTypeTags.key(ResourceKey.minecraft("always_most_significant_fall"));
 
     public static final Tag<DamageType> ALWAYS_TRIGGERS_SILVERFISH = DamageTypeTags.key(ResourceKey.minecraft("always_triggers_silverfish"));

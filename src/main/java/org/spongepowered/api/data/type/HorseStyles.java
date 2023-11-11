@@ -41,23 +41,19 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class HorseStyles {
 
     // @formatter:off
-
     // SORTFIELDS:ON
-
     public static final DefaultedRegistryReference<HorseStyle> BLACK_DOTS = HorseStyles.key(ResourceKey.sponge("black_dots"));
 
     public static final DefaultedRegistryReference<HorseStyle> NONE = HorseStyles.key(ResourceKey.sponge("none"));
 
     public static final DefaultedRegistryReference<HorseStyle> WHITE = HorseStyles.key(ResourceKey.sponge("white"));
 
-    public static final DefaultedRegistryReference<HorseStyle> WHITE_FIELD = HorseStyles.key(ResourceKey.sponge("white_field"));
-
     public static final DefaultedRegistryReference<HorseStyle> WHITE_DOTS = HorseStyles.key(ResourceKey.sponge("white_dots"));
 
+    public static final DefaultedRegistryReference<HorseStyle> WHITE_FIELD = HorseStyles.key(ResourceKey.sponge("white_field"));
+
     // SORTFIELDS:OFF
-
     // @formatter:on
-
     private HorseStyles() {
     }
 

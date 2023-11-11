@@ -41,17 +41,13 @@ import org.spongepowered.api.registry.RegistryTypes;
 public final class FoxTypes {
 
     // @formatter:off
-
     // SORTFIELDS:ON
-
     public static final DefaultedRegistryReference<FoxType> RED = FoxTypes.key(ResourceKey.sponge("red"));
 
     public static final DefaultedRegistryReference<FoxType> SNOW = FoxTypes.key(ResourceKey.sponge("snow"));
 
     // SORTFIELDS:OFF
-
     // @formatter:on
-
     private FoxTypes() {
     }
 
