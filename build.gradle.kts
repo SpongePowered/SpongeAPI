@@ -64,19 +64,19 @@ dependencies {
 
     // Dependency injection
     api("com.google.inject:guice:5.0.1") {
-        exclude(group ="com.google.code.findbugs", module = "jsr305") // We don't want to use jsr305, use checkerframework
+        exclude(group = "com.google.code.findbugs", module = "jsr305") // We don't want to use jsr305, use checkerframework
         exclude(group = "javax.inject", module = "javax.inject")
         exclude(group = "com.google.guava", module = "guava") // We use an older version than Guice does
     }
 
     // High performance cache + guava - shaded guava
     api("com.github.ben-manes.caffeine:caffeine:$caffeineVersion") {
-        exclude(group= "org.checkerframework", module = "checker-qual")
+        exclude(group = "org.checkerframework", module = "checker-qual")
         exclude(group = "com.google.errorprone", module = "error_prone_annotations")
     }
     implementation("com.github.ben-manes.caffeine:guava:$caffeineVersion") {
         exclude(group = "com.google.guava", module = "guava")
-        exclude(group= "org.checkerframework", module = "checker-qual")
+        exclude(group = "org.checkerframework", module = "checker-qual")
         exclude(group = "com.google.errorprone", module = "error_prone_annotations")
     }
 
@@ -90,17 +90,17 @@ dependencies {
     }
     api("org.spongepowered:configurate-hocon") {
         exclude(group = "org.spongepowered", module = "configurate-core")
-        exclude(group= "org.checkerframework", module = "checker-qual")
+        exclude(group = "org.checkerframework", module = "checker-qual")
 
     }
     api("org.spongepowered:configurate-gson") {
         exclude(group = "org.spongepowered", module = "configurate-core")
         exclude(group = "com.google.code.gson", module = "gson") // We have the same version technically, but use the gson we provide.
-        exclude(group= "org.checkerframework", module = "checker-qual")
+        exclude(group = "org.checkerframework", module = "checker-qual")
     }
     api("org.spongepowered:configurate-yaml") {
         exclude(group = "org.spongepowered", module = "configurate-core")
-        exclude(group= "org.checkerframework", module = "checker-qual")
+        exclude(group = "org.checkerframework", module = "checker-qual")
     }
     api("org.spongepowered:configurate-extra-guice") {
         exclude(group = "com.google.inject", module = "guice")
@@ -246,7 +246,7 @@ indra {
     checkstyle(checkstyleVersion)
 
     configurePublications {
-        artifactId = project.name.toLowerCase()
+        artifactId = project.name.lowercase()
         pom {
             this.url.set(projectUrl)
             this.description.set(projectDescription)
