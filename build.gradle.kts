@@ -32,7 +32,6 @@ val ap by sourceSets.registering {
 val adventureVersion: String by project
 val configurateVersion: String by project
 val gsonVersion: String by project
-val guavaVersion: String by project
 val log4jVersion: String by project
 val mathVersion: String by project
 dependencies {
@@ -44,12 +43,6 @@ dependencies {
 
     // Directly tied to what's available from Minecraft
     api("org.apache.logging.log4j:log4j-api:$log4jVersion")
-    api("com.google.guava:guava:$guavaVersion") {
-        exclude(group ="com.google.code.findbugs", module = "jsr305") // We don't want to use jsr305, use checkerframework
-        exclude(group = "org.checkerframework", module = "checker-qual") // We use our own version
-        exclude(group = "com.google.j2objc", module = "j2objc-annotations")
-        exclude(group = "org.codehaus.mojo", module = "animal-sniffer-annotations")
-    }
     api("com.google.code.gson:gson:$gsonVersion")
 
     // Adventure
@@ -178,7 +171,6 @@ tasks {
                 links(
                     "https://logging.apache.org/log4j/log4j-$log4jVersion/log4j-api/apidocs/",
                     "https://google.github.io/guice/api-docs/5.0.1/javadoc/",
-                    "https://guava.dev/releases/$guavaVersion/api/docs/",
                     "https://configurate.aoeu.xyz/$configurateVersion/apidocs/",
                     "https://www.javadoc.io/doc/com.google.code.gson/gson/$gsonVersion/",
                     "https://jd.spongepowered.org/math/$mathVersion"
