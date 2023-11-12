@@ -40,6 +40,7 @@ dependencies {
     val junitVersion: String by project
     val mockitoVersion: String by project
     val pluginSpiVersion: String by project
+    val checkerVersion: String by project
 
     // Directly tied to what's available from Minecraft
     api("org.apache.logging.log4j:log4j-api:$log4jVersion")
@@ -47,7 +48,9 @@ dependencies {
 
     // Adventure
     api(platform("net.kyori:adventure-bom:$adventureVersion"))
-    api("net.kyori:adventure-api")
+    api("net.kyori:adventure-api") {
+        exclude(group = "org.jetbrains", module = "annotations")
+    }
     api("net.kyori:adventure-text-serializer-gson") {
         exclude(group = "com.google.code.gson", module = "gson")
         exclude(group = "net.kyori", module = "adventure-api")
@@ -67,16 +70,25 @@ dependencies {
         exclude(group = "com.google.code.findbugs", module = "jsr305") // We don't want to use jsr305, use checkerframework
         exclude(group = "javax.inject", module = "javax.inject")
         exclude(group = "com.google.guava", module = "guava") // We use an older version than Guice does
+        exclude(group = "org.ow2.asm", module = "asm")
     }
 
     // High performance cache + guava - shaded guava
     api("com.github.ben-manes.caffeine:caffeine:$caffeineVersion") {
         exclude(group = "org.checkerframework", module = "checker-qual")
         exclude(group = "com.google.errorprone", module = "error_prone_annotations")
+        exclude(group = "org.junit", module = "junit-bom")
+        exclude(group = "org.yaml", module = "snakeyaml")
+        exclude(group = "com.fasterxml.jackson", module = "jackson-bom")
+        exclude(group = "org.ow2.asm", module = "asm-bom")
     }
 
     // Plugin spi, includes plugin-meta
-    api("org.spongepowered:plugin-spi:$pluginSpiVersion")
+    api("org.spongepowered:plugin-spi:$pluginSpiVersion") {
+        exclude(group = "org.checkerframework", module = "checker-qual")
+        exclude(group = "com.google.code.gson", module = "gson")
+        exclude(group = "org.apache.logging.log4j", module = "log4j-api")
+    }
 
     // Configurate
     api(platform("org.spongepowered:configurate-bom:$configurateVersion"))
@@ -106,7 +118,11 @@ dependencies {
     errorprone("com.google.errorprone:error_prone_core:$errorproneVersion")
 
     // Math library
-    api("org.spongepowered:math:$mathVersion")
+    api("org.spongepowered:math:$mathVersion") {
+        exclude(group = "com.google.errorprone", module = "error_prone_annotations")
+    }
+
+    compileOnlyApi("org.checkerframework:checker-qual:$checkerVersion")
 
     testImplementation(platform("org.junit:junit-bom:$junitVersion"))
     testImplementation("org.junit.jupiter:junit-jupiter-api")
