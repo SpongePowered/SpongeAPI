@@ -150,7 +150,6 @@ import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.util.annotation.Experimental;
 
 @SuppressWarnings("unused")
 @RegistryScopes(scopes = RegistryScope.GAME)
@@ -344,7 +343,6 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<SmallFireball>> SMALL_FIREBALL = EntityTypes.key(ResourceKey.minecraft("small_fireball"));
 
-    @Experimental("update_1_20")
     public static final DefaultedRegistryReference<EntityType<Sniffer>> SNIFFER = EntityTypes.key(ResourceKey.minecraft("sniffer"));
 
     public static final DefaultedRegistryReference<EntityType<Snowball>> SNOWBALL = EntityTypes.key(ResourceKey.minecraft("snowball"));
