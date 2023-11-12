@@ -24,11 +24,6 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
-import org.jetbrains.annotations.ApiStatus;
-import org.spongepowered.api.util.annotation.Experimental;
-
-@ApiStatus.Experimental
-@Experimental("update_1_20")
 public interface Sniffer extends Animal {
 
 }
