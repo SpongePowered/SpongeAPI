@@ -84,8 +84,12 @@ public interface BlockEntityArchetype extends Archetype<BlockSnapshot, BlockEnti
      *
      *
      * @return The copied container of the block entity
+     * @deprecated Use unified {@link BlockEntityArchetype#rawData()}
      */
-    DataContainer blockEntityData();
+    @Deprecated
+    default DataContainer blockEntityData() {
+        return rawData();
+    }
 
     /**
      * Sets the raw data for the desired {@link BlockEntity}. Note that position
