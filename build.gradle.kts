@@ -74,11 +74,6 @@ dependencies {
         exclude(group = "org.checkerframework", module = "checker-qual")
         exclude(group = "com.google.errorprone", module = "error_prone_annotations")
     }
-    implementation("com.github.ben-manes.caffeine:guava:$caffeineVersion") {
-        exclude(group = "com.google.guava", module = "guava")
-        exclude(group = "org.checkerframework", module = "checker-qual")
-        exclude(group = "com.google.errorprone", module = "error_prone_annotations")
-    }
 
     // Plugin spi, includes plugin-meta
     api("org.spongepowered:plugin-spi:$pluginSpiVersion")
