@@ -496,11 +496,7 @@ public interface DataManipulator extends CopyableValueContainer {
          */
         default Mutable set(final Value<?>... values) {
             for (final Value<?> value : Objects.requireNonNull(values)) {
-                try {
-                    this.set(Objects.requireNonNull(value, "A null value was provided!"));
-                } catch (final IllegalArgumentException e) {
-                    e.printStackTrace();
-                }
+                this.set(Objects.requireNonNull(value, "A null value was provided!"));
             }
             return this;
         }
@@ -518,11 +514,7 @@ public interface DataManipulator extends CopyableValueContainer {
          */
         default Mutable set(final Iterable<? extends Value<?>> values) {
             for (final Value<?> value : Objects.requireNonNull(values)) {
-                try {
-                    this.set(Objects.requireNonNull(value, "A null value was provided!"));
-                } catch (final IllegalArgumentException e) {
-                    e.printStackTrace();
-                }
+                this.set(Objects.requireNonNull(value, "A null value was provided!"));
             }
             return this;
         }
