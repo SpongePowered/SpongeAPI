@@ -37,6 +37,7 @@ import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.Direction;
+import org.spongepowered.api.util.Ticks;
 import org.spongepowered.math.vector.Vector3d;
 
 /**
@@ -75,19 +76,19 @@ public final class ParticleOptions {
     public static final DefaultedRegistryReference<ParticleOption<Color>> COLOR = ParticleOptions.key(ResourceKey.sponge("color"));
 
     /**
+     * This option will affect the delay of particles that are spawned.
+     * The only vanilla {@link ParticleType}s this option isn't applicable to are:
+     *
+     * <ul>
+     *   <li>{@link ParticleTypes#SHRIEK}</li>
+     * </ul>
+     */
+    public static final DefaultedRegistryReference<ParticleOption<Integer>> DELAY = ParticleOptions.key(ResourceKey.sponge("delay"));
+
+    /**
      * This option will change the direction of a particle.
      */
     public static final DefaultedRegistryReference<ParticleOption<Direction>> DIRECTION = ParticleOptions.key(ResourceKey.sponge("direction"));
-
-//    /** TODO
-//     * This option will modify the color of a particle. The only vanilla
-//     * {@link ParticleType}s this option is applicable to is
-//     * {@link ParticleTypes#FIREWORKS}.
-//     *
-//     * <p>The {@link List} may never be empty. Or a {@link IllegalArgumentException}
-//     * will be thrown when applying.</p>
-//     */
-//    public static final Supplier<ParticleOption<List<FireworkEffect>>> FIREWORK_EFFECTS = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "firework_effects");
 
     /**
      * This option will affect the appearance of a particle. The only vanilla
@@ -100,13 +101,6 @@ public final class ParticleOptions {
      * </ul>
      */
     public static final DefaultedRegistryReference<ParticleOption<ItemStackSnapshot>> ITEM_STACK_SNAPSHOT = ParticleOptions.key(ResourceKey.sponge("item_stack_snapshot"));
-
-//    /** TODO
-//     * This option will affect the appearance of a particle. The only vanilla
-//     * {@link ParticleType} this option is applicable to is
-//     * {@link ParticleTypes#NOTE}.
-//     */
-//    public static final Supplier<ParticleOption<NotePitch>> NOTE = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "note");
 
     /**
      * This option will affect how all the particles are spread.
@@ -135,6 +129,16 @@ public final class ParticleOptions {
     public static final DefaultedRegistryReference<ParticleOption<Integer>> QUANTITY = ParticleOptions.key(ResourceKey.sponge("quantity"));
 
     /**
+     * This option will change the roll of a particle. The only
+     * vanilla {@link ParticleType}s this option is applicable to is:
+     *
+     * <ul>
+     *   <li>{@link ParticleTypes#SCULK_CHARGE}</li>
+     * </ul>
+     */
+    public static final DefaultedRegistryReference<ParticleOption<Double>> ROLL = ParticleOptions.key(ResourceKey.sponge("roll"));
+
+    /**
      * This option will change the scale of a particle. The only
      * vanilla {@link ParticleType}s this option is applicable to is:
      *
@@ -147,21 +151,25 @@ public final class ParticleOptions {
      */
     public static final DefaultedRegistryReference<ParticleOption<Double>> SCALE = ParticleOptions.key(ResourceKey.sponge("scale"));
 
-//    /** TODO
-//     * This option will affect whether a particle type will have a lower
-//     * velocity in the horizontal plane. The only vanilla {@link ParticleType}s
-//     * that this option will affect are:
-//     *
-//     * <ul>
-//     *   <li>{@link ParticleTypes#EFFECT}</li>
-//     *   <li>{@link ParticleTypes#INSTANT_EFFECT}</li>
-//     *   <li>{@link ParticleTypes#WITCH_MAGIC}</li>
-//     * </ul>
-//     *
-//     * <p>These particle types don't have a configurable velocity (through
-//     * {@link #VELOCITY}) in the horizontal plane.</p>
-//     */
-//    public static final Supplier<ParticleOption<Boolean>> SLOW_HORIZONTAL_VELOCITY = Sponge.getRegistry().getCatalogRegistry().provideSupplier(ParticleOption.class, "slow_horizontal_velocity");
+    /**
+     * This option will change the color the transition particle will change to.
+     * The only vanilla {@link ParticleType}s this option is applicable to is:
+     *
+     * <ul>
+     *   <li>{@link ParticleTypes#DUST_COLOR_TRANSITION}</li>
+     * </ul>
+     */
+    public static final DefaultedRegistryReference<ParticleOption<Color>> TO_COLOR = ParticleOptions.key(ResourceKey.sponge("to_color"));
+
+    /**
+     * This option will change the travel time of a particle.
+     * The only vanilla {@link ParticleType}s this option is applicable to is:
+     *
+     * <ul>
+     *   <li>{@link ParticleTypes#VIBRATION}</li>
+     * </ul>
+     */
+    public static final DefaultedRegistryReference<ParticleOption<Ticks>> TRAVEL_TIME = ParticleOptions.key(ResourceKey.sponge("travel_time"));
 
     /**
      * This option will affect how most particles are moving.
