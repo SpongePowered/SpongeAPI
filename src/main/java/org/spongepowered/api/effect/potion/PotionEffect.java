@@ -61,7 +61,7 @@ public interface PotionEffect extends DataSerializable {
      * @param amplifier The zero-indexed amplifier
      * @param duration The duration in ticks
      * @return The potion effect
-     * @throws IllegalArgumentException If the amplifier is negative or the duration is not positive
+     * @throws IllegalArgumentException If the duration is not positive
      */
     static PotionEffect of(final PotionEffectType type, final int amplifier, final Ticks duration) throws IllegalArgumentException {
         return PotionEffect.builder().potionType(type).amplifier(amplifier).duration(duration).build();
@@ -76,7 +76,7 @@ public interface PotionEffect extends DataSerializable {
      * @param amplifier The amplifier
      * @param duration The duration in ticks
      * @return The potion effect
-     * @throws IllegalArgumentException If the amplifier is negative or the duration is not positive
+     * @throws IllegalArgumentException If the duration is not positive
      */
     static PotionEffect of(final Supplier<? extends PotionEffectType> type, final int amplifier, final Ticks duration) throws IllegalArgumentException {
         return PotionEffect.builder().potionType(type).amplifier(amplifier).duration(duration).build();
@@ -172,15 +172,14 @@ public interface PotionEffect extends DataSerializable {
         /**
          * Sets the amplifier power of the potion effect.
          *
-         * <p>Amplifiers must be greater than or equal to zero. See
+         * <p>See
          * {@link #amplifier()} for an explanation of what the amplifier means.
          * </p>
          *
          * @param amplifier The amplifier power
          * @return This builder, for chaining
-         * @throws IllegalArgumentException If the amplifier is less than zero
          */
-        Builder amplifier(int amplifier) throws IllegalArgumentException;
+        Builder amplifier(int amplifier);
 
         /**
          * Sets whether the potion effect is ambient.
