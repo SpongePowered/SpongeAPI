@@ -266,6 +266,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<StructureType> STRUCTURE_TYPE = RegistryTypes.minecraftKeyInGame("worldgen/structure_type");
 
+    public static final DefaultedRegistryType<Trigger<@NonNull ?>> TRIGGER = RegistryTypes.minecraftKeyInGame("trigger_type");
+
     public static final DefaultedRegistryType<VillagerType> VILLAGER_TYPE = RegistryTypes.minecraftKeyInGame("villager_type");
 
     public static final DefaultedRegistryType<WorldType> WORLD_TYPE = RegistryTypes.minecraftKeyInServer("dimension_type");
@@ -489,8 +491,6 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<TicketType<?>> TICKET_TYPE = RegistryTypes.spongeKeyInGame("ticket_type");
 
     public static final DefaultedRegistryType<TransactionType> TRANSACTION_TYPE = RegistryTypes.spongeKeyInGame("transaction_type");
-
-    public static final DefaultedRegistryType<Trigger<@NonNull ?>> TRIGGER = RegistryTypes.spongeKeyInGame("trigger");
 
     public static final DefaultedRegistryType<TropicalFishShape> TROPICAL_FISH_SHAPE = RegistryTypes.spongeKeyInGame("tropical_fish_shape");
 
