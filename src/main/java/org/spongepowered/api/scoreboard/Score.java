@@ -25,8 +25,10 @@
 package org.spongepowered.api.scoreboard;
 
 import net.kyori.adventure.text.Component;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.scoreboard.objective.Objective;
 
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -39,7 +41,7 @@ public interface Score {
      *
      * @return The name of this score
      */
-    Component name();
+    String name();
 
     /**
      * Gets the current score value.
@@ -68,6 +70,36 @@ public interface Score {
      * @param locked True to lock this score
      */
     void setLocked(boolean locked);
+
+    // TODO javadocs
+
+    /**
+     * Sets this score display
+     *
+     * @param display the display
+     */
+    void setDisplay(@Nullable Component display);
+
+    /**
+     * Returns this score display
+     *
+     * @return the display
+     */
+    Optional<Component> display();
+
+    /**
+     * Sets the score number format
+     *
+     * @param format the number format
+     */
+    void setNumberFormat(@Nullable ScoreFormat format);
+
+    /**
+     * Returns the score number format
+     *
+     * @return the number format
+     */
+    Optional<ScoreFormat> numberFormat();
 
     /**
      * Returns a {@link Set} of parent {@link Objective}s this {@link Score} is

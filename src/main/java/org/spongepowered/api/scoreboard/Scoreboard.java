@@ -193,7 +193,7 @@ public interface Scoreboard {
      * @param name The name whose scores are being retrieved
      * @return A set of all scores for the name
      */
-    Set<Score> scores(Component name);
+    Set<Score> scores(String name);
 
     /**
      * Removes all scores with the specified name on this scoreboard,
@@ -201,7 +201,7 @@ public interface Scoreboard {
      *
      * @param name The name to remove all scores for
      */
-    void removeScores(Component name);
+    void removeScores(String name);
 
     /**
      * Gets a {@link Team} by name on this scoreboard.
