@@ -27,6 +27,7 @@ package org.spongepowered.api.event.lifecycle;
 import org.spongepowered.api.Engine;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.event.GenericEvent;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryType;
 
 public interface RegisterRegistryValueEvent extends LifecycleEvent {
@@ -36,6 +37,11 @@ public interface RegisterRegistryValueEvent extends LifecycleEvent {
     interface RegistryStep<T> {
 
         RegistryStep<T> register(ResourceKey key, T value);
+    }
+
+    interface BuiltIn<T extends DefaultedRegistryValue> extends LifecycleEvent {
+
+        RegistryStep<T> registry(RegistryType<T> registryType);
     }
 
     interface GameScoped extends RegisterRegistryValueEvent {
