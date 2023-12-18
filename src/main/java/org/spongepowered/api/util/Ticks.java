@@ -124,6 +124,15 @@ public interface Ticks {
     }
 
     /**
+     * Represents infinite ticks.
+     *
+     * @return A {@link Ticks}
+     */
+    static Ticks infinite() {
+        return Sponge.game().factoryProvider().provide(Ticks.Factory.class).infinite();
+    }
+
+    /**
      * Returns a {@link Ticks} that represents the supplied number of ticks.
      *
      * <p>This is platform and potentially {@link Engine} dependent - consult
@@ -295,6 +304,7 @@ public interface Ticks {
      *
      * @param engine The {@link Engine} to get the {@link Duration} for
      * @return The effective {@link Duration}.
+     * @throws IllegalStateException If {@see isInfinite} is true.
      */
     Duration expectedDuration(final Engine engine);
 
@@ -306,6 +316,7 @@ public interface Ticks {
      * session.</p>
      *
      * @return The number of ticks that this represents.
+     * @throws IllegalStateException If {@see isInfinite} is true.
      */
     long ticks();
 
@@ -321,6 +332,7 @@ public interface Ticks {
      *
      * @param engine The {@link Engine} to calculate the duration for.
      * @return The approximate number of in-game seconds
+     * @throws IllegalStateException If {@see isInfinite} is true.
      */
     long minecraftSeconds(final Engine engine);
 
@@ -333,8 +345,18 @@ public interface Ticks {
      *
      * @param engine The {@link Engine} to calculate the duration for.
      * @return A duration representing the in game time.
+     * @throws IllegalStateException If {@see isInfinite} is true.
      */
     Duration minecraftDayTimeDuration(final Engine engine);
+
+    /**
+     * Whether this represents infinite ticks.
+     *
+     * <p>When this is true all other methods throw {@link IllegalStateException}.</p>
+     *
+     * @return True if this represents infinite ticks.
+     */
+    boolean isInfinite();
 
     /**
      * Produces {@link Ticks} objects.
@@ -407,6 +429,13 @@ public interface Ticks {
          * @return A {@link Ticks}
          */
         Ticks minecraftDay();
+
+        /**
+         * @see Ticks#infinite()
+         *
+         * @return A {@link Ticks}
+         */
+        Ticks infinite();
 
     }
 

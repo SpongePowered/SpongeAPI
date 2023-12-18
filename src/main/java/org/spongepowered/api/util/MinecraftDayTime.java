@@ -131,7 +131,7 @@ public interface MinecraftDayTime {
      * @param engine The {@link Engine} to calculate the time for.
      * @param ticks The {@link Ticks} since the Minecraft Epoch.
      * @return The {@link MinecraftDayTime}
-     * @throws IllegalArgumentException if the tick count is negative
+     * @throws IllegalArgumentException if the tick count is negative or infinite
      */
     static MinecraftDayTime of(final Engine engine, final Ticks ticks) {
         return Sponge.game().factoryProvider().provide(MinecraftDayTime.Factory.class).of(engine, ticks);
@@ -164,6 +164,7 @@ public interface MinecraftDayTime {
      *
      * @param ticks The {@link Ticks} to add.
      * @return A new {@link MinecraftDayTime}
+     * @throws IllegalArgumentException if the ticks is infinite
      */
     MinecraftDayTime add(final Ticks ticks);
 
@@ -185,7 +186,7 @@ public interface MinecraftDayTime {
      *
      * @param ticks The {@link Ticks} to subtract.
      * @return A new {@link MinecraftDayTime}
-     * @throws IllegalArgumentException if the result would be a negative time.
+     * @throws IllegalArgumentException if ticks is infinite or the result would be a negative time.
      */
     MinecraftDayTime subtract(final Ticks ticks);
 
@@ -272,7 +273,7 @@ public interface MinecraftDayTime {
          * @param engine The {@link Engine} to calculate the time for.
          * @param ticks The {@link Ticks} since the Minecraft Epoch.
          * @return The {@link MinecraftDayTime}
-         * @throws IllegalArgumentException if the tick count is negative
+         * @throws IllegalArgumentException if the tick count is negative or infinite
          */
         MinecraftDayTime of(Engine engine, Ticks ticks);
 
