@@ -25,6 +25,14 @@ val ap by sourceSets.registering {
     compileClasspath += sourceSets.main.get().compileClasspath + sourceSets.main.get().output
 }
 
+configurations {
+    sequenceOf(apiElements, runtimeElements).forEach {
+       it.configure {
+           exclude(group = "org.jetbrains",  module = "annotations")
+       }
+    }
+}
+
 // Project dependencies
 dependencies {
     // Directly tied to what's available from Minecraft
@@ -33,9 +41,7 @@ dependencies {
 
     // Adventure
     api(platform(libs.adventure.bom))
-    api(libs.adventure.api) {
-        exclude(group = "org.jetbrains", module = "annotations")
-    }
+    api(libs.adventure.api)
     api(libs.adventure.textSerializer.gson) {
         exclude(group = "com.google.code.gson", module = "gson")
         exclude(group = "net.kyori", module = "adventure-api")
@@ -120,7 +126,7 @@ dependencies {
 
 tasks {
     genEventImpl {
-        sourceCompatibility = "16"
+        sourceCompatibility = "17"
         destinationDir = project.layout.buildDirectory.dir("generated/event-factory").get().asFile
 
         outputFactory = "org.spongepowered.api.event.SpongeEventFactory"
