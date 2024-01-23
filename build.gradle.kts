@@ -18,12 +18,6 @@ plugins {
     alias(libs.plugins.errorprone)
 }
 
-repositories {
-    maven("https://repo.spongepowered.org/repository/maven-public/") {
-        name = "sponge"
-    }
-}
-
 val ap by sourceSets.registering {
     compileClasspath += sourceSets.main.get().compileClasspath + sourceSets.main.get().output
 }
