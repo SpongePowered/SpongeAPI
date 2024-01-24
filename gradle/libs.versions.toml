@@ -10,6 +10,7 @@ configurate = "4.1.2"
 errorprone = "2.24.1"
 gson = "2.10.1"
 guice = "5.0.1"
+ideaExt = "1.1.7"
 indra = "3.1.3"
 junit = "5.10.1"
 log4j = "2.19.0"
@@ -57,7 +58,7 @@ mockito = { module = "org.mockito:mockito-core", version.ref = "mockito" }
 [plugins]
 errorprone = { id = "net.ltgt.errorprone", version = "3.1.0" }
 eventImplGen = { id = "org.spongepowered.gradle.event-impl-gen", version = "7.1.0" }
-ideaExt = { id = "org.jetbrains.gradle.plugin.idea-ext", version = "1.1.7" }
+ideaExt = { id = "org.jetbrains.gradle.plugin.idea-ext", version.ref = "ideaExt" }
 indra-checkstyle = { id = "net.kyori.indra.checkstyle", version.ref = "indra" }
 indra-crossdoc = { id = "net.kyori.indra.crossdoc", version.ref = "indra" }
 indra-publishing = { id = "net.kyori.indra.publishing", version.ref = "indra" }
