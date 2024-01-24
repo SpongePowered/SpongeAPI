@@ -19,6 +19,7 @@ plugins {
     alias(libs.plugins.eventImplGen)
     alias(libs.plugins.ideaExt)
     alias(libs.plugins.errorprone)
+    alias(libs.plugins.nexusPublish)
 }
 
 val ap by sourceSets.registering {
@@ -127,7 +128,7 @@ dependencies {
 tasks {
     genEventImpl {
         sourceCompatibility = "17"
-        destinationDir = project.layout.buildDirectory.dir("generated/event-factory").get().asFile
+        destinationDirectory = project.layout.buildDirectory.dir("generated/event-factory")
 
         outputFactory = "org.spongepowered.api.event.SpongeEventFactory"
         include("org/spongepowered/api/event/*/**/*")
