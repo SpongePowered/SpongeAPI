@@ -22,6 +22,7 @@ plugins {
     alias(libs.plugins.nexusPublish)
 }
 
+val javaTarget: String by project
 val ap by sourceSets.registering {
     compileClasspath += sourceSets.main.get().compileClasspath + sourceSets.main.get().output
 }
@@ -127,7 +128,7 @@ dependencies {
 
 tasks {
     genEventImpl {
-        sourceCompatibility = "17"
+        sourceCompatibility = javaTarget
         destinationDirectory = project.layout.buildDirectory.dir("generated/event-factory")
 
         outputFactory = "org.spongepowered.api.event.SpongeEventFactory"
@@ -241,7 +242,7 @@ spongeConvention {
 
 indra {
     javaVersions {
-        target(17)
+        target(javaTarget.toInt())
     }
     checkstyle(libs.versions.checkstyle.get())
 
