@@ -22,15 +22,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.item.recipe;
+package org.spongepowered.api.scoreboard;
 
-import org.spongepowered.api.datapack.DataPackEntry;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.Style;
+import org.spongepowered.api.Sponge;
 
 /**
- * A registration of a {@link Recipe} by an API consumer.
- *
- * <p>All registrations through the API will generate into the Vanilla data pack system</p>
+ * A Score Number Format
  */
-public interface RecipeRegistration extends DataPackEntry<RecipeRegistration> {
-    Recipe recipe();
+public interface ScoreFormat {
+
+    static ScoreFormat blank() {
+        return Sponge.game().factoryProvider().provide(Factory.class).blank();
+    }
+
+    static ScoreFormat fixed(Component component) {
+        return Sponge.game().factoryProvider().provide(Factory.class).fixed(component);
+    }
+
+    static ScoreFormat styled(Style style) {
+        return Sponge.game().factoryProvider().provide(Factory.class).styled(style);
+    }
+
+    interface Factory {
+
+        /**
+         * Blank score formatting.
+         *
+         * @return the format
+         */
+        ScoreFormat blank();
+
+        /**
+         * Fixed score formatting
+         *
+         * @param component the fixed component
+         *
+         * @return the format
+         */
+        ScoreFormat fixed(Component component);
+
+        /**
+         * Styled number formatting
+         *
+         * @param style the style
+         *
+         * @return the format
+         */
+        ScoreFormat styled(Style style);
+    }
+
 }

@@ -26,6 +26,8 @@ package org.spongepowered.api.scoreboard.objective;
 
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.scoreboard.Score;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.scoreboard.criteria.Criterion;
@@ -103,7 +105,7 @@ public interface Objective {
      *
      * @return The set of {@link Score}s for this objective
      */
-    Map<Component, Score> scores();
+    Map<String, Score> scores();
 
     /**
      * Returns whether this objective has a {@link Score} with the given name.
@@ -111,7 +113,25 @@ public interface Objective {
      * @param name The name of the {@link Score} to check for.
      * @return Whether this objective has a {@link Score} with the given name.
      */
-    boolean hasScore(Component name);
+    boolean hasScore(String name);
+
+
+    /**
+     * Returns whether this objective has a {@link Score} with the given entity.
+     *
+     * @param entity The entity of the {@link Score} to check for.
+     * @return Whether this objective has a {@link Score} with the given entity.
+     */
+    boolean hasScore(Entity entity);
+
+
+    /**
+     * Returns whether this objective has a {@link Score} with the given profile.
+     *
+     * @param profile The profile of the {@link Score} to check for.
+     * @return Whether this objective has a {@link Score} with the given profile.
+     */
+    boolean hasScore(GameProfile profile);
 
     /**
      * Adds the specified {@link Score} to this objective.
@@ -125,9 +145,9 @@ public interface Objective {
      * Gets an entry's {@link Score} for this objective, if it exists.
      *
      * @param name The name of the {@link Score} to get.
-     * @return The {@link Score} for te specified {@link Component}, if it exists.
+     * @return The {@link Score} for the specified name, if it exists.
      */
-    default Optional<Score> findScore(final Component name) {
+    default Optional<Score> findScore(final String name) {
         if (!this.hasScore(name)) {
             return Optional.empty();
         }
@@ -140,9 +160,79 @@ public interface Objective {
      * <p>If the {@link Score} does not exist, it will be created.</p>
      *
      * @param name The name of the {@link Score} to get
-     * @return The {@link Score} for the specified {@link Component}
+     * @return The {@link Score} for the specified name
      */
-    Score findOrCreateScore(Component name);
+    Score findOrCreateScore(String name);
+
+    /**
+     * Removes the {@link Score} with the specified name from this objective, if present.
+     *
+     * @param name The name of the {@link Score} to remove.
+     * @return Whether the score existed on this objective
+     */
+    boolean removeScore(String name);
+
+    /**
+     * Gets an entry's {@link Score} for this objective, if it exists.
+     *
+     * @param entity The entity of the {@link Score} to get.
+     * @return The {@link Score} for the specified entity, if it exists.
+     */
+    default Optional<Score> findScore(final Entity entity) {
+        if (!this.hasScore(entity)) {
+            return Optional.empty();
+        }
+        return Optional.of(this.findOrCreateScore(entity));
+    }
+
+    /**
+     * Gets an entry's {@link Score} for this objective.
+     *
+     * <p>If the {@link Score} does not exist, it will be created.</p>
+     *
+     * @param entity The name of the {@link Score} to get
+     * @return The {@link Score} for the specified entity
+     */
+    Score findOrCreateScore(Entity entity);
+
+    /**
+     * Removes the {@link Score} with the specified entity from this objective, if present.
+     *
+     * @param entity The entity of the {@link Score} to remove.
+     * @return Whether the score existed on this objective
+     */
+    boolean removeScore(Entity entity);
+
+    /**
+     * Gets an entry's {@link Score} for this objective, if it exists.
+     *
+     * @param profile The profile of the {@link Score} to get.
+     * @return The {@link Score} for the specified profile, if it exists.
+     */
+    default Optional<Score> findScore(final GameProfile profile) {
+        if (!this.hasScore(profile)) {
+            return Optional.empty();
+        }
+        return Optional.of(this.findOrCreateScore(profile));
+    }
+
+    /**
+     * Gets an entry's {@link Score} for this objective.
+     *
+     * <p>If the {@link Score} does not exist, it will be created.</p>
+     *
+     * @param profile The profile of the {@link Score} to get
+     * @return The {@link Score} for the specified profile
+     */
+    Score findOrCreateScore(GameProfile profile);
+
+    /**
+     * Removes the {@link Score} with the specified profile from this objective, if present.
+     *
+     * @param profile The profile of the {@link Score} to remove.
+     * @return Whether the score existed on this objective
+     */
+    boolean removeScore(GameProfile profile);
 
     /**
      * Removes the specified {@link Score} from this objective, if present.
@@ -151,14 +241,6 @@ public interface Objective {
      * @return Whether the score existed on this objective
      */
     boolean removeScore(Score score);
-
-    /**
-     * Removes the {@link Score} with the specified name from this objective, if present.
-     *
-     * @param name The name of the {@link Score} to remove.
-     * @return Whether the score existed on this objective
-     */
-    boolean removeScore(Component name);
 
     /**
      * Returns a {@link Set} of parent {@link Scoreboard}s this
