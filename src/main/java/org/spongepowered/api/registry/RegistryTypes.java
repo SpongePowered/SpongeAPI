@@ -196,6 +196,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<ArtType> ART_TYPE = RegistryTypes.minecraftKeyInGame("painting_variant");
 
+    public static final DefaultedRegistryType<ArmorMaterial> ARMOR_MATERIAL = RegistryTypes.minecraftKeyInGame("armor_material");
+
     public static final DefaultedRegistryType<AttributeType> ATTRIBUTE_TYPE = RegistryTypes.minecraftKeyInGame("attribute");
 
     public static final DefaultedRegistryType<Biome> BIOME = RegistryTypes.minecraftKeyInServer("worldgen/biome");
@@ -278,7 +280,6 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<AdvancementType> ADVANCEMENT_TYPE = RegistryTypes.spongeKeyInGame("advancement_type");
 
-    public static final DefaultedRegistryType<ArmorMaterial> ARMOR_MATERIAL = RegistryTypes.spongeKeyInGame("armor_material");
 
     public static final DefaultedRegistryType<AttachmentSurface> ATTACHMENT_SURFACE = RegistryTypes.spongeKeyInGame("attachment_surface");
 
