@@ -70,7 +70,7 @@ public interface VolumeElement<V extends Volume, T> {
                 if (o == null || this.getClass() != o.getClass()) {
                     return false;
                 }
-                final VolumeElement<@NonNull ?, ?> that = (VolumeElement<@NonNull ?, ?>) o;
+                final VolumeElement<? extends @NonNull Object, ?> that = (VolumeElement<? extends @NonNull Object, ?>) o;
                 return volume.get().equals(that.volume())
                     && type.get().equals(that.type())
                     && position.equals(that.position());

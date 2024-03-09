@@ -35,13 +35,13 @@ public interface BiomeVolumeFactory {
 
     BiomeVolume.Mutable empty(Palette<Biome, Biome> palette, RegistryReference<Biome> defaultBiome, Vector3i min, Vector3i max);
 
-    BiomeVolume.Mutable copyFromRange(BiomeVolume.Streamable<@NonNull ?> existing, Vector3i newMin, Vector3i newMax);
+    BiomeVolume.Mutable copyFromRange(BiomeVolume.Streamable<? extends @NonNull Object> existing, Vector3i newMin, Vector3i newMax);
 
-    BiomeVolume.Mutable copy(BiomeVolume.Streamable<@NonNull ?> existing);
+    BiomeVolume.Mutable copy(BiomeVolume.Streamable<? extends @NonNull Object> existing);
 
-    BiomeVolume.Immutable immutableOf(BiomeVolume.Streamable<@NonNull ?> existing);
+    BiomeVolume.Immutable immutableOf(BiomeVolume.Streamable<? extends @NonNull Object> existing);
 
-    BiomeVolume.Immutable immutableOf(BiomeVolume.Streamable<@NonNull ?> existing, Vector3i newMin, Vector3i newMax);
+    BiomeVolume.Immutable immutableOf(BiomeVolume.Streamable<? extends @NonNull Object> existing, Vector3i newMin, Vector3i newMax);
 
     UnrealizedBiomeVolume.Mutable empty(Vector3i min, Vector3i max);
 

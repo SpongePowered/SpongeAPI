@@ -220,7 +220,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<EntityCategory> ENTITY_CATEGORY = RegistryTypes.spongeKeyInGame("mob_category");
 
-    public static final DefaultedRegistryType<EntityType<@NonNull ? extends Entity>> ENTITY_TYPE = RegistryTypes.minecraftKeyInGame("entity_type");
+    public static final DefaultedRegistryType<EntityType<? extends @NonNull Entity>> ENTITY_TYPE = RegistryTypes.minecraftKeyInGame("entity_type");
 
     public static final DefaultedRegistryType<Feature> FEATURE = RegistryTypes.minecraftKeyInServer("worldgen/configured_feature");
 
@@ -252,7 +252,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<PotionType> POTION_TYPE = RegistryTypes.minecraftKeyInGame("potion");
 
-    public static final DefaultedRegistryType<RecipeType<@NonNull ? extends Recipe>> RECIPE_TYPE = RegistryTypes.minecraftKeyInGame("recipe_type");
+    public static final DefaultedRegistryType<RecipeType<? extends @NonNull Recipe>> RECIPE_TYPE = RegistryTypes.minecraftKeyInGame("recipe_type");
 
     public static final DefaultedRegistryType<SoundType> SOUND_TYPE = RegistryTypes.minecraftKeyInGame("sound_event");
 
@@ -266,7 +266,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<StructureType> STRUCTURE_TYPE = RegistryTypes.minecraftKeyInGame("worldgen/structure_type");
 
-    public static final DefaultedRegistryType<Trigger<@NonNull ?>> TRIGGER = RegistryTypes.minecraftKeyInGame("trigger_type");
+    public static final DefaultedRegistryType<Trigger<? extends @NonNull Object>> TRIGGER = RegistryTypes.minecraftKeyInGame("trigger_type");
 
     public static final DefaultedRegistryType<VillagerType> VILLAGER_TYPE = RegistryTypes.minecraftKeyInGame("villager_type");
 
@@ -318,7 +318,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<CommandRegistrarType<?>> COMMAND_REGISTRAR_TYPE = RegistryTypes.spongeKeyInGame("command_registrar_type");
 
-    public static final DefaultedRegistryType<CommandTreeNodeType<@NonNull ?>> COMMAND_TREE_NODE_TYPE = RegistryTypes.spongeKeyInGame("command_tree_node_type");
+    public static final DefaultedRegistryType<CommandTreeNodeType<? extends @NonNull Object>> COMMAND_TREE_NODE_TYPE = RegistryTypes.spongeKeyInGame("command_tree_node_type");
 
     public static final DefaultedRegistryType<ComparatorMode> COMPARATOR_MODE = RegistryTypes.spongeKeyInGame("comparator_mode");
 

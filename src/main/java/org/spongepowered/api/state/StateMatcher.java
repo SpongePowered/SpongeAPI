@@ -141,7 +141,7 @@ public interface StateMatcher<S extends State<S>> extends Predicate<S> {
          * @param stateProperty The state property
          * @return This builder, for chaining
          */
-        Builder<S, T> supportsStateProperty(StateProperty<@NonNull ?> stateProperty);
+        Builder<S, T> supportsStateProperty(StateProperty<? extends @NonNull Object> stateProperty);
 
         /**
          * Adds a {@link StateProperty} that needs to be present
@@ -154,7 +154,7 @@ public interface StateMatcher<S extends State<S>> extends Predicate<S> {
          * @param stateProperty The state property
          * @return This builder, for chaining
          */
-        default Builder<S, T> supportsStateProperty(final Supplier<? extends StateProperty<@NonNull ?>> stateProperty) {
+        default Builder<S, T> supportsStateProperty(final Supplier<? extends StateProperty<? extends @NonNull Object>> stateProperty) {
             return this.supportsStateProperty(stateProperty.get());
         }
 
