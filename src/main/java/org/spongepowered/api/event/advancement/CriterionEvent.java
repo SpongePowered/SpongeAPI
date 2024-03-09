@@ -28,7 +28,6 @@ import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.advancement.criteria.ScoreAdvancementCriterion;
 import org.spongepowered.api.advancement.criteria.trigger.FilteredTrigger;
 import org.spongepowered.api.advancement.criteria.trigger.FilteredTriggerConfiguration;
-import org.spongepowered.api.advancement.criteria.trigger.Trigger;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.event.GenericEvent;

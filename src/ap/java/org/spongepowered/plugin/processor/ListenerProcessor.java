@@ -24,8 +24,6 @@
  */
 package org.spongepowered.plugin.processor;
 
-import static javax.tools.Diagnostic.Kind.ERROR;
-
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.Listener;
@@ -57,6 +55,7 @@ import javax.lang.model.type.TypeKind;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
+import javax.tools.Diagnostic;
 
 @SupportedAnnotationTypes(ListenerProcessor.LISTENER_ANNOTATION_CLASS)
 @SupportedSourceVersion(SourceVersion.RELEASE_17)
@@ -82,7 +81,7 @@ public class ListenerProcessor extends AbstractProcessor {
         if (ProcessorUtils.contains(annotations, Listener.class)) {
             for (final Element e : roundEnv.getElementsAnnotatedWith(Listener.class)) {
                 if (e.getKind() != ElementKind.METHOD) {
-                    this.processingEnv.getMessager().printMessage(ERROR, "Invalid element of type " + e.getKind() + " annotated with @Listener", e);
+                    this.processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, "Invalid element of type " + e.getKind() + " annotated with @Listener", e);
                     continue;
                 }
                 final ExecutableElement method = (ExecutableElement) e;
@@ -183,11 +182,11 @@ public class ListenerProcessor extends AbstractProcessor {
     // Error collection
 
     private void error(final CharSequence message, final Element element) {
-        this.processingEnv.getMessager().printMessage(ERROR, message, element);
+        this.processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, message, element);
     }
 
     private void error(final CharSequence message, final Element element, final AnnotationMirror annotation, final AnnotationValue value) {
-        this.processingEnv.getMessager().printMessage(ERROR, message, element, annotation, value);
+        this.processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, message, element, annotation, value);
     }
 
 }

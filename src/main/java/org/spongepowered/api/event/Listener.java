@@ -24,17 +24,16 @@
  */
 package org.spongepowered.api.event;
 
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
  * Used to annotate a method as an {@link EventListener}.
  */
-@Retention(RUNTIME)
-@Target(METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
 public @interface Listener {
 
     /**
