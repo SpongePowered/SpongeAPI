@@ -30,6 +30,6 @@ import org.spongepowered.api.world.volume.MutableVolume;
 @FunctionalInterface
 public interface VolumeApplicator<M extends MutableVolume, T, R> {
 
-    R apply(M volume, VolumeElement<@NonNull ?, T> element);
+    R apply(M volume, VolumeElement<? extends @NonNull Object, T> element);
 
 }

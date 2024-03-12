@@ -67,7 +67,7 @@ public interface ChunkVolume extends Volume {
      * @param z The z coordinate
      * @return The chunk, may be empty
      */
-    Chunk<@NonNull ?> chunk(int x, int y, int z);
+    Chunk<? extends @NonNull Object> chunk(int x, int y, int z);
 
     /**
      * Gets the loaded chunk at the given chunk coordinate position. The position
@@ -81,7 +81,7 @@ public interface ChunkVolume extends Volume {
      * @param chunkPosition The position
      * @return The chunk, if available
      */
-    default Chunk<@NonNull ?> chunk(final Vector3i chunkPosition) {
+    default Chunk<? extends @NonNull Object> chunk(final Vector3i chunkPosition) {
         Objects.requireNonNull(chunkPosition, "chunkPosition");
         return this.chunk(chunkPosition.x(), chunkPosition.y(), chunkPosition.z());
     }
@@ -92,7 +92,7 @@ public interface ChunkVolume extends Volume {
      * @param blockPosition The position
      * @return The chunk, if available
      */
-    default Chunk<@NonNull ?> chunkAtBlock(final Vector3i blockPosition) {
+    default Chunk<? extends @NonNull Object> chunkAtBlock(final Vector3i blockPosition) {
         Objects.requireNonNull(blockPosition, "blockPosition");
         return this.chunkAtBlock(blockPosition.x(), blockPosition.y(), blockPosition.z());
     }
@@ -109,7 +109,7 @@ public interface ChunkVolume extends Volume {
      * @param bz The z coordinate
      * @return The chunk, if available
      */
-    Chunk<@NonNull ?> chunkAtBlock(final int bx, final int by, final int bz);
+    Chunk<? extends @NonNull Object> chunkAtBlock(final int bx, final int by, final int bz);
 
     /**
      * Gets whether a {@link Chunk} is loaded at the particular chunk

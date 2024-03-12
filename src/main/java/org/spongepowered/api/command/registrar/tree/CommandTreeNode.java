@@ -85,7 +85,7 @@ public interface CommandTreeNode<T extends CommandTreeNode<T>> {
      * @return This, for chaining.
      * @see CommandTreeNodeTypes for the node types that can be created
      */
-    T child(final String key, final CommandTreeNode.Argument<@NonNull ?> childNode);
+    T child(final String key, final CommandTreeNode.Argument<? extends @NonNull Object> childNode);
 
     /**
      * Creates a child of this node with the given key that accepts a
@@ -150,7 +150,7 @@ public interface CommandTreeNode<T extends CommandTreeNode<T>> {
      * @param redirectTarget The node to redirect to
      * @return This, for chaining
      */
-    T redirect(CommandTreeNode<@NonNull ?> redirectTarget);
+    T redirect(CommandTreeNode<? extends @NonNull Object> redirectTarget);
 
     /**
      * Declares that this element can only be parsed by those with the given

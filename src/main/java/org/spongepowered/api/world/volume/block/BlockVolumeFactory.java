@@ -35,12 +35,12 @@ public interface BlockVolumeFactory {
 
     BlockVolume.Mutable empty(Palette<BlockState, BlockType> palette, RegistryReference<BlockType> defaultState, Vector3i min, Vector3i max);
 
-    BlockVolume.Mutable copyFromRange(BlockVolume.Streamable<@NonNull ?> existing, Vector3i newMin, Vector3i newMax);
+    BlockVolume.Mutable copyFromRange(BlockVolume.Streamable<? extends @NonNull Object> existing, Vector3i newMin, Vector3i newMax);
 
-    BlockVolume.Mutable copy(BlockVolume.Streamable<@NonNull ?> existing);
+    BlockVolume.Mutable copy(BlockVolume.Streamable<? extends @NonNull Object> existing);
 
-    BlockVolume.Immutable immutableOf(BlockVolume.Streamable<@NonNull ?> existing);
+    BlockVolume.Immutable immutableOf(BlockVolume.Streamable<? extends @NonNull Object> existing);
 
-    BlockVolume.Immutable immutableOf(BlockVolume.Streamable<@NonNull ?> existing, Vector3i newMin, Vector3i newMax);
+    BlockVolume.Immutable immutableOf(BlockVolume.Streamable<? extends @NonNull Object> existing, Vector3i newMin, Vector3i newMax);
 
 }

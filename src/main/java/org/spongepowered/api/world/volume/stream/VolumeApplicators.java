@@ -168,7 +168,7 @@ public final class VolumeApplicators {
      * @return A volume applicator that applies block entity archetypes
      */
     @SuppressWarnings({"unchecked"})
-    public static <M extends BlockEntityVolume.Modifiable<M> & LocationCreator<@NonNull ?, ? extends ServerLocation>> VolumeApplicator<M, BlockEntityArchetype, Optional<? extends BlockEntity>> applyBlockEntityArchetype() {
+    public static <M extends BlockEntityVolume.Modifiable<M> & LocationCreator<? extends @NonNull Object, ? extends ServerLocation>> VolumeApplicator<M, BlockEntityArchetype, Optional<? extends BlockEntity>> applyBlockEntityArchetype() {
         return (volume, element) -> element.type().apply(volume.location(element.position().round()));
     }
 
@@ -212,7 +212,7 @@ public final class VolumeApplicators {
     }
 
     @SuppressWarnings("unchecked")
-    public static <M extends EntityVolume.Modifiable<M> & LocationCreator<@NonNull ?, ? extends ServerLocation>> VolumeApplicator<M, EntityArchetype, Optional<? extends Entity>> applyEntityArchetype() {
+    public static <M extends EntityVolume.Modifiable<M> & LocationCreator<? extends @NonNull Object, ? extends ServerLocation>> VolumeApplicator<M, EntityArchetype, Optional<? extends Entity>> applyEntityArchetype() {
         return (volume, element) -> element.type().apply(volume.location(element.position()));
     }
 
