@@ -62,6 +62,7 @@ public interface CooldownTracker {
      * @param ticks The amount of ticks to set the item type on cooldown for
      * @return False if setting the cooldown failed, possibly due to the event
      *     being cancelled
+     * @throws IllegalArgumentException if the ticks is infinite
      */
     boolean setCooldown(ItemType type, Ticks ticks);
 

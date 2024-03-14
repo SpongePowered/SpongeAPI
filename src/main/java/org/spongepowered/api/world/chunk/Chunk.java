@@ -120,6 +120,7 @@ public interface Chunk<P extends Chunk<P>> extends
      *
      * @see #inhabitedTime()
      * @param newInhabitedTime The {@link Ticks} to set this value to
+     * @throws IllegalArgumentException If the inhabited time is infinite
      */
     void setInhabitedTime(Ticks newInhabitedTime);
 

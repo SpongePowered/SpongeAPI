@@ -77,6 +77,7 @@ public interface RangedAttackAgainstAgentGoal extends Goal<Ranger> {
      *
      * @param delay The delay, in ticks
      * @return This goal, for chaining
+     * @throws IllegalArgumentException if the delay is infinite
      */
     RangedAttackAgainstAgentGoal setDelayBetweenAttacks(Ticks delay);
 

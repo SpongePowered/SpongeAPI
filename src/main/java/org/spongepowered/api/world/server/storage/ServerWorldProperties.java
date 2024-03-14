@@ -280,6 +280,7 @@ public interface ServerWorldProperties extends WorldProperties, Nameable, Identi
      * Sets the delay before a {@link WanderingTrader} will be spawned.
      *
      * @param delay The delay, in ticks
+     * @throws IllegalArgumentException if the delay is infinite
      */
     void setWanderingTraderSpawnDelay(Ticks delay);
 

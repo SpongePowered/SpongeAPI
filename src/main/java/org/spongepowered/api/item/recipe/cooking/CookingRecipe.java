@@ -239,6 +239,7 @@ public interface CookingRecipe extends Recipe {
              * @param ticks the cookingTime
              *
              * @return This builder, for chaining
+             * @throws IllegalArgumentException if the ticks is infinite
              */
             EndStep cookingTime(Ticks ticks);
 

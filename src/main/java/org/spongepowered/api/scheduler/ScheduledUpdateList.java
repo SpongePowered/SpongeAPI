@@ -196,6 +196,7 @@ public interface ScheduledUpdateList<T> {
      * @param ticks The delay, in {@link Ticks}
      * @param priority The priority of the scheduled update
      * @return The scheduled update
+     * @throws IllegalArgumentException if the delay is infinite
      */
     default ScheduledUpdate<T> schedule(
             final int x, final int y, final int z, final T target, final Ticks ticks, final DefaultedRegistryReference<? extends TaskPriority> priority) {
@@ -210,6 +211,7 @@ public interface ScheduledUpdateList<T> {
      * @param target The target
      * @param delay The delay
      * @return The scheduled update
+     * @throws IllegalArgumentException if the delay is infinite
      */
     default ScheduledUpdate<T> schedule(int x, int y, int z, final T target, final Ticks delay) {
         return this.schedule(x, y, z, target, delay, TaskPriorities.NORMAL.get());
@@ -221,6 +223,7 @@ public interface ScheduledUpdateList<T> {
      * @param target The target
      * @param delay The delay
      * @return The scheduled update
+     * @throws IllegalArgumentException if the delay is infinite
      */
     default ScheduledUpdate<T> schedule(final Vector3i pos, final T target, final Ticks delay) {
         return this.schedule(pos.x(), pos.y(), pos.z(), target, delay, TaskPriorities.NORMAL.get());
@@ -233,6 +236,7 @@ public interface ScheduledUpdateList<T> {
      * @param delay The delay
      * @param priority The priority of the scheduled update
      * @return The scheduled update
+     * @throws IllegalArgumentException if the delay is infinite
      */
     default ScheduledUpdate<T> schedule(final Vector3i pos, final T target, final Ticks delay, final TaskPriority priority) {
         return this.schedule(pos.x(), pos.y(), pos.z(), target, delay, priority);
@@ -263,6 +267,7 @@ public interface ScheduledUpdateList<T> {
      * @param delay The delay, in {@link Ticks}
      * @param priority The priority of the scheduled update
      * @return The scheduled update
+     * @throws IllegalArgumentException if the delay is infinite
      */
     ScheduledUpdate<T> schedule(int x, int y, int z, T target, Ticks delay, TaskPriority priority);
 

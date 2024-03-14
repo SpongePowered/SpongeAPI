@@ -53,6 +53,7 @@ public interface WeatherUniverse {
          *
          * @param type The weather that should be switched to
          * @param ticks The specified tick duration
+         * @throws IllegalArgumentException if the duration is infinite
          */
         void setWeather(WeatherType type, Ticks ticks);
     }

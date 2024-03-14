@@ -126,7 +126,7 @@ public interface Task {
          *
          * @param ticks The delay in ticks
          * @return This builder, for chaining
-         * @throws IllegalArgumentException If the delay is below 0
+         * @throws IllegalArgumentException If the delay is below 0 or infinite
          */
         Builder delay(final Ticks ticks);
 
@@ -203,7 +203,7 @@ public interface Task {
          *
          * @param ticks The {@link Ticks} between runs.
          * @return This builder, for chaining
-         * @throws IllegalArgumentException If the interval is below 0
+         * @throws IllegalArgumentException If the interval is below 0 or infinite
          */
         Builder interval(final Ticks ticks);
 

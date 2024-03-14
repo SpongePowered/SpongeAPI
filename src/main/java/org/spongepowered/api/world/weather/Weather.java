@@ -72,6 +72,7 @@ public interface Weather extends DataSerializable {
      * @param duration The weather remaining duration
      *
      * @return The new weather
+     * @throws IllegalArgumentException if the duration is infinite
      */
     static Weather of(Supplier<WeatherType> type, Ticks duration) {
         return Sponge.game().factoryProvider().provide(Factory.class).of(type.get(), duration, Ticks.of(0));
@@ -96,6 +97,7 @@ public interface Weather extends DataSerializable {
      * @param duration The weather remaining duration
      *
      * @return The new weather
+     * @throws IllegalArgumentException if the duration is infinite
      */
     static Weather of(WeatherType type, Ticks duration) {
         return Sponge.game().factoryProvider().provide(Factory.class).of(type, duration, Ticks.of(0));
