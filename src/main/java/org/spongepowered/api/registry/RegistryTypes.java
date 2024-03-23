@@ -234,6 +234,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<JigsawPool> JIGSAW_POOL = RegistryTypes.minecraftKeyInServer("worldgen/template_pool");
 
+    public static final DefaultedRegistryType<MapDecorationType> MAP_DECORATION_TYPE = RegistryTypes.minecraftKeyInGame("map_decoration_type");
+
     public static final DefaultedRegistryType<NoiseGeneratorConfig> NOISE_GENERATOR_CONFIG = RegistryTypes.minecraftKeyInServer("worldgen/noise_settings");
 
     public static final DefaultedRegistryType<Noise> NOISE = RegistryTypes.minecraftKeyInServer("worldgen/noise");
@@ -400,8 +402,6 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<MapColorType> MAP_COLOR_TYPE = RegistryTypes.spongeKeyInGame("map_color_type");
 
     public static final DefaultedRegistryType<MapDecorationOrientation> MAP_DECORATION_ORIENTATION = RegistryTypes.spongeKeyInGame("map_decoration_orientation");
-
-    public static final DefaultedRegistryType<MapDecorationType> MAP_DECORATION_TYPE = RegistryTypes.spongeKeyInGame("map_decoration_type");
 
     public static final DefaultedRegistryType<MapShade> MAP_SHADE = RegistryTypes.spongeKeyInGame("map_shade");
 
