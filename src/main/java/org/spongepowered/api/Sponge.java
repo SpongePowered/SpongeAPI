@@ -34,7 +34,6 @@ import org.spongepowered.api.network.channel.ChannelManager;
 import org.spongepowered.api.plugin.PluginManager;
 import org.spongepowered.api.scheduler.Scheduler;
 import org.spongepowered.api.service.ServiceProvider;
-import org.spongepowered.api.sql.SqlManager;
 import org.spongepowered.api.util.metric.MetricsConfigManager;
 
 /**
@@ -191,15 +190,6 @@ public final class Sponge {
      */
     public static Scheduler asyncScheduler() {
         return Sponge.game().asyncScheduler();
-    }
-
-    /**
-     * Gets the {@link SqlManager} for grabbing sql data sources.
-     *
-     * @return The {@link SqlManager} instance.
-     */
-    public static SqlManager sqlManager() {
-        return Sponge.game().sqlManager();
     }
 
     /**
