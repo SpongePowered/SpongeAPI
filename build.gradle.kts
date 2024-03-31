@@ -87,23 +87,28 @@ dependencies {
     api(platform(libs.configurate.bom))
     api(libs.configurate.core) {
         exclude(group = "org.checkerframework", module = "checker-qual") // We use our own version
+        exclude(group = "com.google.errorprone", module = "error_prone_annotations")
     }
     api(libs.configurate.hocon) {
         exclude(group = "org.spongepowered", module = "configurate-core")
         exclude(group = "org.checkerframework", module = "checker-qual")
+        exclude(group = "com.google.errorprone", module = "error_prone_annotations")
 
     }
     api(libs.configurate.gson) {
         exclude(group = "org.spongepowered", module = "configurate-core")
         exclude(group = "com.google.code.gson", module = "gson") // We have the same version technically, but use the gson we provide.
         exclude(group = "org.checkerframework", module = "checker-qual")
+        exclude(group = "com.google.errorprone", module = "error_prone_annotations")
     }
     api(libs.configurate.yaml) {
         exclude(group = "org.spongepowered", module = "configurate-core")
         exclude(group = "org.checkerframework", module = "checker-qual")
+        exclude(group = "com.google.errorprone", module = "error_prone_annotations")
     }
     api(libs.configurate.extraGuice) {
         exclude(group = "com.google.inject", module = "guice")
+        exclude(group = "com.google.errorprone", module = "error_prone_annotations")
     }
 
     // Compile-time static analysis
