@@ -59,6 +59,13 @@ public interface WorldTypeTemplate extends DataPackEntry<WorldTypeTemplate>, Wor
         return Sponge.game().builderProvider().provide(Builder.class).reset();
     }
 
+    /**
+     * Returns the world type.
+     *
+     * @return The world type
+     */
+    WorldType worldType();
+
     interface Builder extends DataPackEntryBuilder<WorldType, WorldTypeTemplate, Builder> {
 
         <V> Builder add(Key<? extends Value<V>> key, V value);
