@@ -24,18 +24,8 @@
  */
 package org.spongepowered.api.event;
 
-import static org.hamcrest.Matchers.containsInAnyOrder;
-import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.emptyString;
-import static org.hamcrest.Matchers.equalToObject;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.not;
-import static org.hamcrest.core.Is.is;
-
-import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.spongepowered.api.matcher.SpongeMatchers;
 
 import java.util.List;
 import java.util.Optional;
@@ -56,9 +46,10 @@ class CauseTest {
     void testWithCause() {
         final Cause old = Cause.of(EventContext.empty(), "foo");
         final Cause newCause = old.with("bar");
-        MatcherAssert.assertThat(old, is(not(newCause)));
+        Assertions.assertNotEquals(old, newCause);
         final List<?> list = newCause.all();
-        MatcherAssert.assertThat(list, containsInAnyOrder("foo", "bar"));
+        Assertions.assertTrue(list.contains("foo"));
+        Assertions.assertTrue(list.contains("bar"));
     }
 
     @Test
@@ -71,44 +62,44 @@ class CauseTest {
     void testToString() {
         final Cause cause = Cause.builder().append("foo").append("bar").append(1).append(2).build(EventContext.empty());
         final String causeString = cause.toString();
-        MatcherAssert.assertThat(causeString, not(emptyString()));
+        Assertions.assertFalse(causeString.isEmpty());
     }
 
     @Test
     void testBefore() {
         final Cause cause = Cause.builder().append("foo").append(1).append(2).build(EventContext.empty());
         final Optional<?> optional = cause.before(Integer.class);
-        MatcherAssert.assertThat(optional, is(SpongeMatchers.present()));
-        MatcherAssert.assertThat(optional, SpongeMatchers.valueIs(equalToObject("foo")));
+        Assertions.assertTrue(optional.isPresent());
+        Assertions.assertEquals(optional.get(), "foo");
     }
 
     @Test
     void testAfter() {
         final Cause cause = Cause.builder().append("foo").append(1).append(2).build(EventContext.empty());
         final Optional<?> optional = cause.after(Integer.class);
-        MatcherAssert.assertThat(optional, is(SpongeMatchers.present()));
-        MatcherAssert.assertThat(optional, SpongeMatchers.valueIs(equalToObject(2)));
+        Assertions.assertTrue(optional.isPresent());
+        Assertions.assertEquals(optional.get(), 2);
     }
 
     @Test
     void testNoneAfter() {
         final Cause cause = Cause.builder().append("foo").append(1).build(EventContext.empty());
         final Optional<?> optional = cause.after(Integer.class);
-        MatcherAssert.assertThat(optional, is(not(SpongeMatchers.present())));
+        Assertions.assertTrue(optional.isEmpty());
     }
 
     @Test
     void testNoneBefore() {
         final Cause cause = Cause.builder().append("foo").append(1).build(EventContext.empty());
         final Optional<?> optional = cause.before(String.class);
-        MatcherAssert.assertThat(optional, is(not(SpongeMatchers.present())));
+        Assertions.assertTrue(optional.isEmpty());
     }
 
     @Test
     void testNoneOf() {
         final Cause cause = Cause.builder().append("foo").append(1).append(2).append(3).build(EventContext.empty());
-        MatcherAssert.assertThat(cause.noneOf(Integer.class), hasSize(1));
-        MatcherAssert.assertThat(cause.noneOf(Integer.class).get(0), is("foo"));
+        Assertions.assertEquals(cause.noneOf(Integer.class).size(), 1);
+        Assertions.assertEquals(cause.noneOf(Integer.class).get(0), "foo");
     }
 
     @Test
@@ -116,8 +107,8 @@ class CauseTest {
         final List<String> fooList = List.of("foo", "bar", "baz", "floof");
         final Cause cause = Cause.builder().append("foo").append("bar").append("baz").append("floof").build(EventContext.empty());
         final List<String> stringList = cause.allOf(String.class);
-        MatcherAssert.assertThat(stringList, is(not(empty())));
-        MatcherAssert.assertThat(stringList, is(fooList));
+        Assertions.assertFalse(stringList.isEmpty());
+        Assertions.assertEquals(stringList, fooList);
     }
 
 }

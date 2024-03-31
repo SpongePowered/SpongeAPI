@@ -47,7 +47,6 @@ spoon = { module = "fr.inria.gforge.spoon:spoon-core", version = "10.4.2" } # bu
 
 # testing
 
-hamcrest = { module = "org.hamcrest:hamcrest", version = "2.2" }
 junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
 junit-api = { module = "org.junit.jupiter:junit-jupiter-api" }
 junit-params = { module = "org.junit.jupiter:junit-jupiter-params" }
