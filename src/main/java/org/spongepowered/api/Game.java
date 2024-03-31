@@ -37,7 +37,6 @@ import org.spongepowered.api.registry.FactoryProvider;
 import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.scheduler.Scheduler;
 import org.spongepowered.api.service.ServiceProvider;
-import org.spongepowered.api.sql.SqlManager;
 import org.spongepowered.api.util.metric.MetricsConfigManager;
 
 import java.nio.file.Path;
@@ -182,13 +181,6 @@ public interface Game extends RegistryHolder {
      * @return The {@link MetricsConfigManager} instance
      */
     MetricsConfigManager metricsConfigManager();
-
-    /**
-     * Gets the {@link SqlManager} for grabbing sql data sources.
-     *
-     * @return The {@link SqlManager} instance.
-     */
-    SqlManager sqlManager();
 
     /**
      * Gets the {@link ServiceProvider.GameScoped}, used to provide Sponge
