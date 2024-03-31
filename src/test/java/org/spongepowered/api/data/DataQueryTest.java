@@ -24,11 +24,7 @@
  */
 package org.spongepowered.api.data;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
-
-import org.hamcrest.MatcherAssert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.spongepowered.api.data.persistence.DataQuery;
 
@@ -55,12 +51,12 @@ class DataQueryTest {
         final DataQuery second = DataQuery.of(',', "this,test,equals");
         final DataQuery complex = DataQuery.of('蒂', "this蒂test蒂equals");
         final DataQuery test = DataQuery.of("this", "test", "equals");
-        MatcherAssert.assertThat(first, is(equalTo(test)));
-        MatcherAssert.assertThat(first, is(equalTo(second)));
-        MatcherAssert.assertThat(first, is(equalTo(complex)));
-        MatcherAssert.assertThat(second, is(equalTo(complex)));
-        MatcherAssert.assertThat(second, is(equalTo(first)));
-        MatcherAssert.assertThat(second, is(equalTo(test)));
+        Assertions.assertEquals(first, test);
+        Assertions.assertEquals(first, second);
+        Assertions.assertEquals(first, complex);
+        Assertions.assertEquals(second, complex);
+        Assertions.assertEquals(second, first);
+        Assertions.assertEquals(second, test);
     }
 
     /**
@@ -70,8 +66,8 @@ class DataQueryTest {
     void testOfParts() {
         final DataQuery first = DataQuery.of("this", "parts", "equal");
         final DataQuery second = DataQuery.of('.', "this.parts.equal");
-        MatcherAssert.assertThat(first, is(equalTo(second)));
-        MatcherAssert.assertThat(second, is(equalTo(first)));
+        Assertions.assertEquals(first, second);
+        Assertions.assertEquals(second, first);
     }
 
     /**
@@ -84,7 +80,7 @@ class DataQueryTest {
         parts.add("this");
         parts.add("parts");
         parts.add("test");
-        MatcherAssert.assertThat(query.parts(), is(equalTo(parts)));
+        Assertions.assertEquals(query.parts(), parts);
     }
 
     /**
@@ -95,8 +91,8 @@ class DataQueryTest {
         final DataQuery query = DataQuery.of("this", "testing");
         final DataQuery other = DataQuery.of("this");
         final DataQuery test = other.then(DataQuery.of("testing"));
-        MatcherAssert.assertThat(query, is(equalTo(test)));
-        MatcherAssert.assertThat(test, is(equalTo(query)));
+        Assertions.assertEquals(query, test);
+        Assertions.assertEquals(test, query);
     }
 
     /**
@@ -110,10 +106,10 @@ class DataQueryTest {
         final DataQuery part3 = DataQuery.of("query");
         final List<DataQuery> parts = full.queryParts();
         final List<DataQuery> built = List.of(part1, part2, part3);
-        MatcherAssert.assertThat(parts, equalTo(built));
-        MatcherAssert.assertThat(built, equalTo(parts));
-        MatcherAssert.assertThat(built.containsAll(parts), is(true));
-        MatcherAssert.assertThat(parts.containsAll(built), is(true));
+        Assertions.assertEquals(parts, built);
+        Assertions.assertEquals(built, parts);
+        Assertions.assertTrue(built.containsAll(parts));
+        Assertions.assertTrue(parts.containsAll(built));
     }
 
     /**
@@ -123,13 +119,13 @@ class DataQueryTest {
     void testPop() {
         final DataQuery prePopped = DataQuery.of("this", "test", "query");
         final DataQuery expected = DataQuery.of("this", "test");
-        MatcherAssert.assertThat(prePopped.pop(), equalTo(expected));
+        Assertions.assertEquals(prePopped.pop(), expected);
         final DataQuery empty = DataQuery.of();
         final DataQuery emptyPopped = empty.pop();
-        MatcherAssert.assertThat(emptyPopped, equalTo(empty));
+        Assertions.assertEquals(emptyPopped, empty);
 
         final DataQuery single = DataQuery.of("single");
-        MatcherAssert.assertThat(single.pop(), equalTo(empty));
+        Assertions.assertEquals(single.pop(), empty);
     }
 
     /**
@@ -139,8 +135,8 @@ class DataQueryTest {
     void testLast() {
         final DataQuery full = DataQuery.of("first", "test");
         final DataQuery lastExpected = DataQuery.of("test");
-        MatcherAssert.assertThat(full.last(), equalTo(lastExpected));
-        MatcherAssert.assertThat(lastExpected, equalTo(full.last()));
+        Assertions.assertEquals(full.last(), lastExpected);
+        Assertions.assertEquals(lastExpected, full.last());
     }
 
     /**
@@ -151,9 +147,9 @@ class DataQueryTest {
         final DataQuery query1 = DataQuery.of("test");
         final DataQuery query2 = DataQuery.of("test");
         final DataQuery nonEqual = DataQuery.of("nope");
-        MatcherAssert.assertThat(query1, equalTo(query1));
-        MatcherAssert.assertThat(query1, equalTo(query2));
-        MatcherAssert.assertThat(query1, is(not(nonEqual)));
+        Assertions.assertEquals(query1, query1);
+        Assertions.assertEquals(query1, query2);
+        Assertions.assertNotEquals(query1, nonEqual);
     }
 
 }

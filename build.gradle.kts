@@ -127,7 +127,6 @@ dependencies {
     testImplementation(libs.junit.params)
     testRuntimeOnly(libs.junit.engine)
     testRuntimeOnly(libs.junit.launcher)
-    testImplementation(libs.hamcrest)
     testImplementation(libs.mockito)
 }
 

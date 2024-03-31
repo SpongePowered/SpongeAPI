@@ -24,10 +24,7 @@
  */
 package org.spongepowered.api.event;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-
-import org.hamcrest.MatcherAssert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
@@ -48,12 +45,12 @@ class SpongeAbstractEventTest {
         final DataTransactionResult modified = DataTransactionResult.successNoData();
 
         final ChangeDataHolderEvent.ValueChange event = SpongeEventFactory.createChangeDataHolderEventValueChange(
-            Cause.of(EventContext.empty(), "none"), original, this.mockParam(DataHolder.Mutable.class));
+                Cause.of(EventContext.empty(), "none"), original, this.mockParam(DataHolder.Mutable.class));
 
-        MatcherAssert.assertThat(event.originalChanges(), is(equalTo(original)));
+        Assertions.assertEquals(event.originalChanges(), original);
 
         event.proposeChanges(modified);
-        MatcherAssert.assertThat(event.endResult(), is(equalTo(modified)));
+        Assertions.assertEquals(event.endResult(), modified);
     }
 
     @SuppressWarnings("unchecked")
