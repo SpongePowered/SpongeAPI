@@ -27,6 +27,7 @@ package org.spongepowered.api.world;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.audience.ForwardingAudience;
 import org.spongepowered.api.Server;
+import org.spongepowered.api.data.DataPerspective;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
@@ -59,7 +60,8 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends
     Viewer,
     ArchetypeVolumeCreator,
     WeatherUniverse,
-    RegistryHolder {
+    RegistryHolder,
+    DataPerspective {
 
     /**
      * Gets the {@link WorldProperties properties}.

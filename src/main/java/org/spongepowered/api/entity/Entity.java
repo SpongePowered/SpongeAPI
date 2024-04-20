@@ -28,6 +28,7 @@ import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.event.HoverEventSource;
+import org.spongepowered.api.data.DataPerspective;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.value.ListValue;
@@ -79,7 +80,7 @@ import java.util.function.UnaryOperator;
  */
 @DoNotStore
 public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEntity>, Locatable, EntityProjectileSource, Sound.Emitter,
-        SerializableDataHolder.Mutable, RandomProvider, TeamMember {
+        SerializableDataHolder.Mutable, RandomProvider, TeamMember, DataPerspective {
 
     /**
      * Gets the {@link EntityType}.
