@@ -29,12 +29,17 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
+import org.spongepowered.api.event.CompositeEvent;
 import org.spongepowered.api.event.action.InteractEvent;
+import org.spongepowered.api.event.entity.SpawnEntityEvent;
+import org.spongepowered.api.event.item.inventory.ChangeInventoryEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.Tristate;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.math.vector.Vector3d;
+
+import java.util.Optional;
 
 /**
  * Base event for all interactions involving a {@link BlockSnapshot} at a
@@ -101,7 +106,7 @@ public interface InteractBlockEvent extends InteractEvent {
      *
      * <p>This is usually right-click.</p>
      */
-    interface Secondary extends InteractBlockEvent, Cancellable {
+    interface Secondary extends InteractBlockEvent {
 
         Tristate originalUseItemResult();
 
@@ -144,42 +149,46 @@ public interface InteractBlockEvent extends InteractEvent {
         Tristate useBlockResult();
 
         /**
-         * Sets whether the {@link Player#itemInHand} should be used.
-         *
-         * <ul>
-         * <li>FALSE: The {@link ItemStack} will never be used.</li>
-         * <li>UNDEFINED: The {@link ItemStack} will be used if the block fails.
-         * </li>
-         * <li>TRUE: The {@link ItemStack} will always be used.</li>
-         * </ul>
-         *
-         * <p>Note: These results may differ depending on implementation.</p>
-         *
-         * @param result Whether the {@link Player#itemInHand} should be used
-         */
-        void setUseItemResult(Tristate result);
-
-        /**
-         * Sets whether the interacted {@link BlockSnapshot} should be used.
-         *
-         * <ul>
-         * <li>FALSE: {@link BlockSnapshot} will never be used.</li>
-         * <li>UNDEFINED: {@link BlockSnapshot} will be used as normal.</li>
-         * <li>TRUE: {@link BlockSnapshot} will always be used.</li>
-         * </ul>
-         *
-         * <p>Note: These results may differ depending on implementation.</p>
-         *
-         * @param result Whether the interacted {@link BlockSnapshot} should be
-         *     used
-         */
-        void setUseBlockResult(Tristate result);
-
-        /**
          * Gets the point of interaction where the interaction occurred as a {@link Vector3d}.
          *
          * @return The interaction point
          */
         Vector3d interactionPoint();
+
+        interface Pre extends Secondary, Cancellable {
+
+            /**
+             * Sets whether the {@link Player#itemInHand} should be used.
+             *
+             * <ul>
+             * <li>FALSE: The {@link ItemStack} will never be used.</li>
+             * <li>UNDEFINED: The {@link ItemStack} will be used if the block fails.
+             * </li>
+             * <li>TRUE: The {@link ItemStack} will always be used.</li>
+             * </ul>
+             *
+             * <p>Note: These results may differ depending on implementation.</p>
+             *
+             * @param result Whether the {@link Player#itemInHand} should be used
+             */
+            void setUseItemResult(Tristate result);
+
+            /**
+             * Sets whether the interacted {@link BlockSnapshot} should be used.
+             *
+             * <ul>
+             * <li>FALSE: {@link BlockSnapshot} will never be used.</li>
+             * <li>UNDEFINED: {@link BlockSnapshot} will be used as normal.</li>
+             * <li>TRUE: {@link BlockSnapshot} will always be used.</li>
+             * </ul>
+             *
+             * <p>Note: These results may differ depending on implementation.</p>
+             *
+             * @param result Whether the interacted {@link BlockSnapshot} should be
+             *     used
+             */
+            void setUseBlockResult(Tristate result);
+        }
+
     }
 }

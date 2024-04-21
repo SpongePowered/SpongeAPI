@@ -26,6 +26,7 @@ package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.Cause;
+import org.spongepowered.api.event.impl.entity.AbstractAffectEntityEvent;
 import org.spongepowered.api.event.impl.entity.AbstractSpawnEntityEvent;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
@@ -51,7 +52,8 @@ public interface SpawnEntityEvent extends AffectEntityEvent {
      * will result in no awareness to the client that the entity was being
      * spawned and later cancelled.
      */
-    interface Pre extends SpawnEntityEvent {}
+    @ImplementedBy(value = AbstractAffectEntityEvent.class, priority = 2)
+    interface Pre extends AffectEntityEvent {}
 
     interface Custom extends SpawnEntityEvent {}
 }
