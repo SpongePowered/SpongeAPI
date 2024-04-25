@@ -29,7 +29,9 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.chunk.BlockChunk;
 import org.spongepowered.api.world.chunk.Chunk;
+import org.spongepowered.api.world.chunk.EntityChunk;
 import org.spongepowered.api.world.chunk.WorldChunk;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3i;
@@ -64,6 +66,108 @@ public interface ChunkEvent extends Event {
     }
 
     /**
+     * Called when a {@link WorldChunk chunk} is performing a block related operation.
+     */
+    interface Blocks extends WorldScoped {
+
+        /**
+         * Called when a block data of {@link WorldChunk chunk} is loaded.
+         * This can be called outside the {@link World#engine() main} {@link Thread}.
+         * It is NOT safe to perform modifications to the {@link World} or via
+         * {@link org.spongepowered.api.world.server.ServerLocation} as this could
+         * result in a deadlock.
+         */
+        interface Load extends Blocks {
+
+            /**
+             * Gets the {@link WorldChunk chunk} block volume.
+             *
+             * @return The block volume
+             */
+            BlockChunk blockVolume();
+        }
+
+        /**
+         * Called when a {@link WorldChunk chunk} is performing a block related save.
+         */
+        interface Save extends Blocks {
+
+            /**
+             * Called before the {@link WorldChunk chunk} block data is saved. Cancelling this
+             * will prevent any of the chunk's block data being written to it's storage container.
+             */
+            interface Pre extends Save, Cancellable {
+
+                /**
+                 * Gets the {@link WorldChunk chunk} block volume.
+                 *
+                 * @return The block volume
+                 */
+                BlockChunk blockVolume();
+            }
+
+            /**
+             * Called after the {@link WorldChunk chunk} block data is saved.
+             * Guaranteed to exist in the chunk's block storage container.
+             * <p>
+             * Depending on the implementation, this event may be called off-thread.
+             */
+            interface Post extends Save {}
+        }
+    }
+
+    /**
+     * Called when a {@link WorldChunk chunk} is performing a entity related operation.
+     */
+    interface Entities extends WorldScoped {
+
+        /**
+         * Called when an entity data of {@link WorldChunk chunk} is loaded.
+         * This can be called outside the {@link World#engine() main} {@link Thread}.
+         * It is NOT safe to perform modifications to the {@link World} or via
+         * {@link org.spongepowered.api.world.server.ServerLocation} as this could
+         * result in a deadlock.
+         */
+        interface Load extends Entities {
+
+            /**
+             * Gets the {@link WorldChunk chunk} entity volume.
+             *
+             * @return The entity volume
+             */
+            EntityChunk entityVolume();
+        }
+
+        /**
+         * Called when a {@link WorldChunk chunk} is performing a entity related save.
+         */
+        interface Save extends Entities {
+
+            /**
+             * Called before the {@link WorldChunk chunk} entity data is saved. Cancelling this
+             * will prevent any of the chunk's entity data being written to it's storage container.
+             */
+            interface Pre extends Save, Cancellable {
+
+                /**
+                 * Gets the {@link WorldChunk chunk} entity volume.
+                 *
+                 * @return The entity volume
+                 */
+                EntityChunk entityVolume();
+            }
+
+            /**
+             * Called after the {@link WorldChunk chunk} entity data is saved.
+             * Guaranteed to exist in the chunk's entity storage container.
+             * <p>
+             * Depending on the implementation, this event may be called off-thread.
+             */
+            interface Post extends Save {}
+        }
+    }
+
+    /**
      * Called when a {@link WorldChunk chunk} was unloaded.
      */
     interface Unload extends WorldScoped {
@@ -90,35 +194,6 @@ public interface ChunkEvent extends Event {
     }
 
     /**
-     * Called when a {@link WorldChunk chunk} is performing a save.
-     */
-    interface Save extends WorldScoped {
-
-        /**
-         * Called before the {@link WorldChunk chunk} is saved. Cancelling this will prevent any of
-         * the chunk's data being written to it's storage container.
-         */
-        interface Pre extends Save, Cancellable {
-
-            /**
-             * Gets the {@link WorldChunk chunk} being changed.
-             *
-             * @return The chunk
-             */
-            WorldChunk chunk();
-
-        }
-
-        /**
-         * Called after the {@link WorldChunk chunk} is saved. Guaranteed to exist in the chunk's
-         * storage container.
-         * <p>
-         * Depending on the implementation, this event may be called off-thread.
-         */
-        interface Post extends Save {}
-    }
-
-    /**
      * Called when a new {@link WorldChunk chunk} was generated.
      */
     interface Generated extends WorldScoped {
@@ -126,11 +201,8 @@ public interface ChunkEvent extends Event {
     }
 
     /**
-     * Called when a {@link WorldChunk chunk} is loaded. This can be called
-     * outside the {@link World#engine() main} {@link Thread}. It is NOT safe
-     * to perform modifications to the {@link World} or via
-     * {@link org.spongepowered.api.world.server.ServerLocation} as this could
-     * result in a deadlock.
+     * Called when a {@link WorldChunk chunk} is loaded. This is called
+     * from the main thread when the chunk is fully loaded and ready to tick.
      */
     interface Load extends WorldScoped {
 
