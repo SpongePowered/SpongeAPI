@@ -151,6 +151,23 @@ public interface TabListEntry {
     TabListEntry setGameMode(GameMode gameMode);
 
     /**
+     * Gets whatever this entry is shown in the tab list.
+     * The entry is still sent to the client, however.
+     *
+     * @return Whatever this entry is listed
+     */
+    boolean listed();
+
+    /**
+     * Sets whatever this entry is listed in the tab list.
+     * The entry is still sent to the client, however.
+     *
+     * @param listed Whatever to list this entry
+     * @return This entry, for chaining
+     */
+    TabListEntry setListed(boolean listed);
+
+    /**
      * Represents a builder class to create mutable {@link TabListEntry}s.
      *
      * @see TabListEntry
@@ -202,6 +219,16 @@ public interface TabListEntry {
          * @see TabListEntry#setGameMode(GameMode)
          */
         Builder gameMode(GameMode gameMode);
+
+        /**
+         * Sets whatever this entry is listed in the tab list.
+         * The entry is still sent to the client, however.
+         *
+         * @param listed Whatever to list this entry
+         * @return The builder
+         * @see TabListEntry#setListed(boolean)
+         */
+        Builder listed(boolean listed);
 
         /**
          * Builds an entry based off the values of this builder.
