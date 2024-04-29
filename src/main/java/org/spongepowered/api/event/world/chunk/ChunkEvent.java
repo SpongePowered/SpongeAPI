@@ -82,9 +82,9 @@ public interface ChunkEvent extends Event {
             /**
              * Gets the {@link WorldChunk chunk} block volume.
              *
-             * @return The block volume
+             * @return The block chunk
              */
-            BlockChunk blockVolume();
+            BlockChunk chunk();
         }
 
         /**
@@ -96,14 +96,14 @@ public interface ChunkEvent extends Event {
              * Called before the {@link WorldChunk chunk} block data is saved. Cancelling this
              * will prevent any of the chunk's block data being written to it's storage container.
              */
-            interface Pre extends Save, Cancellable {
+            interface Pre extends Blocks.Save, Cancellable {
 
                 /**
                  * Gets the {@link WorldChunk chunk} block volume.
                  *
-                 * @return The block volume
+                 * @return The block chunk
                  */
-                BlockChunk blockVolume();
+                BlockChunk chunk();
             }
 
             /**
@@ -112,7 +112,7 @@ public interface ChunkEvent extends Event {
              * <p>
              * Depending on the implementation, this event may be called off-thread.
              */
-            interface Post extends Save {}
+            interface Post extends Blocks.Save {}
         }
     }
 
@@ -133,9 +133,9 @@ public interface ChunkEvent extends Event {
             /**
              * Gets the {@link WorldChunk chunk} entity volume.
              *
-             * @return The entity volume
+             * @return The entity chunk
              */
-            EntityChunk entityVolume();
+            EntityChunk chunk();
         }
 
         /**
@@ -147,14 +147,14 @@ public interface ChunkEvent extends Event {
              * Called before the {@link WorldChunk chunk} entity data is saved. Cancelling this
              * will prevent any of the chunk's entity data being written to it's storage container.
              */
-            interface Pre extends Save, Cancellable {
+            interface Pre extends Entities.Save, Cancellable {
 
                 /**
                  * Gets the {@link WorldChunk chunk} entity volume.
                  *
-                 * @return The entity volume
+                 * @return The entity chunk
                  */
-                EntityChunk entityVolume();
+                EntityChunk chunk();
             }
 
             /**
@@ -163,7 +163,7 @@ public interface ChunkEvent extends Event {
              * <p>
              * Depending on the implementation, this event may be called off-thread.
              */
-            interface Post extends Save {}
+            interface Post extends Entities.Save {}
         }
     }
 
