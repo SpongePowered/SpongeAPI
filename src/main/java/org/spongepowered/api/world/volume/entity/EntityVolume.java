@@ -167,7 +167,7 @@ public interface EntityVolume extends Volume {
 
     }
 
-    interface Modifiable<M extends Modifiable<M>> extends Streamable<M>, MutableVolume, BlockVolume.Modifiable<M> {
+    interface Modifiable<M extends Modifiable<M>> extends Streamable<M>, MutableVolume {
 
         /**
          * Create an entity instance at the given position.
