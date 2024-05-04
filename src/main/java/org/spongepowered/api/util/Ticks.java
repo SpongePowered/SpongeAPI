@@ -304,7 +304,7 @@ public interface Ticks {
      *
      * @param engine The {@link Engine} to get the {@link Duration} for
      * @return The effective {@link Duration}.
-     * @throws IllegalStateException If {@see isInfinite} is true.
+     * @throws IllegalStateException If {@link Ticks#isInfinite()} is true.
      */
     Duration expectedDuration(final Engine engine);
 
@@ -316,7 +316,7 @@ public interface Ticks {
      * session.</p>
      *
      * @return The number of ticks that this represents.
-     * @throws IllegalStateException If {@see isInfinite} is true.
+     * @throws IllegalStateException If {@link Ticks#isInfinite()} is true.
      */
     long ticks();
 
@@ -332,7 +332,7 @@ public interface Ticks {
      *
      * @param engine The {@link Engine} to calculate the duration for.
      * @return The approximate number of in-game seconds
-     * @throws IllegalStateException If {@see isInfinite} is true.
+     * @throws IllegalStateException If {@link Ticks#isInfinite()} is true.
      */
     long minecraftSeconds(final Engine engine);
 
@@ -345,7 +345,7 @@ public interface Ticks {
      *
      * @param engine The {@link Engine} to calculate the duration for.
      * @return A duration representing the in game time.
-     * @throws IllegalStateException If {@see isInfinite} is true.
+     * @throws IllegalStateException If {@link Ticks#isInfinite()} is true.
      */
     Duration minecraftDayTimeDuration(final Engine engine);
 

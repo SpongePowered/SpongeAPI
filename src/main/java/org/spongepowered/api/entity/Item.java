@@ -53,24 +53,6 @@ public interface Item extends Entity {
     }
 
     /**
-     * {@link Keys#INFINITE_DESPAWN_DELAY}
-     *
-     * @return Whether the item will not despawn for an infinite time
-     */
-    default Value.Mutable<Boolean> infiniteDespawnDelay() {
-        return this.requireValue(Keys.INFINITE_DESPAWN_DELAY).asMutable();
-    }
-
-    /**
-     * {@link Keys#INFINITE_PICKUP_DELAY}
-     *
-     * @return Whether the item has an infinite pickup delay
-     */
-    default Value.Mutable<Boolean> infinitePickupDelay() {
-        return this.requireValue(Keys.INFINITE_PICKUP_DELAY).asMutable();
-    }
-
-    /**
      * {@link Keys#PICKUP_DELAY}
      *
      * @return The pickup delay (in ticks) of the item
