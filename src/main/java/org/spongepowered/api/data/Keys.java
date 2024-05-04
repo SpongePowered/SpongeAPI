@@ -1135,7 +1135,7 @@ public final class Keys {
 
     /**
      * The color override for grass in a {@link Biome}.
-     * <p>Such as {@link BlockTypes#GRASS_BLOCK}, {@link BlockTypes#GRASS}, {@link BlockTypes#TALL_GRASS}, {@link BlockTypes#FERN}, {@link BlockTypes#LARGE_FERN}, {@link BlockTypes#SUGAR_CANE}</p>
+     * <p>Such as {@link BlockTypes#GRASS_BLOCK}, {@link BlockTypes#SHORT_GRASS}, {@link BlockTypes#TALL_GRASS}, {@link BlockTypes#FERN}, {@link BlockTypes#LARGE_FERN}, {@link BlockTypes#SUGAR_CANE}</p>
      * <p>If not present grass color is instead determined by {@link #BIOME_TEMPERATURE} and {@link #HUMIDITY}</p>
      * Readonly
      */
