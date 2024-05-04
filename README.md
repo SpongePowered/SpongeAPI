@@ -1,4 +1,4 @@
-SpongeAPI ![Build Status](https://github.com/SpongePowered/SpongeAPI/actions/workflows/ci.yaml/badge.svg?branch=api-10)
+SpongeAPI ![Build Status](https://github.com/SpongePowered/SpongeAPI/actions/workflows/ci.yaml/badge.svg?branch=api-11)
 =============
 A mature Minecraft plugin API (not including an implementation), licensed under the [MIT License]. 
 
