@@ -40,7 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class Statistics {
 
-    //@formatter:off
     public static final DefaultedRegistryReference<Statistic> ANIMALS_BRED = Statistics.key(ResourceKey.minecraft("animals_bred"));
 
     public static final DefaultedRegistryReference<Statistic> AVIATE_ONE_CM = Statistics.key(ResourceKey.minecraft("aviate_one_cm"));
@@ -191,7 +190,6 @@ public final class Statistics {
 
     public static final DefaultedRegistryReference<Statistic> WALK_UNDER_WATER_ONE_CM = Statistics.key(ResourceKey.minecraft("walk_under_water_one_cm"));
 
-    //@formatter:on
     private Statistics() {
     }
 

@@ -40,7 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class BlockEntityTypes {
 
-    //@formatter:off
     public static final DefaultedRegistryReference<BlockEntityType> BANNER = BlockEntityTypes.key(ResourceKey.minecraft("banner"));
 
     public static final DefaultedRegistryReference<BlockEntityType> BARREL = BlockEntityTypes.key(ResourceKey.minecraft("barrel"));
@@ -127,7 +126,6 @@ public final class BlockEntityTypes {
 
     public static final DefaultedRegistryReference<BlockEntityType> TRIAL_SPAWNER = BlockEntityTypes.key(ResourceKey.minecraft("trial_spawner"));
 
-    //@formatter:on
     private BlockEntityTypes() {
     }
 

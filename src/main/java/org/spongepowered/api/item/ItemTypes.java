@@ -40,7 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class ItemTypes {
 
-    //@formatter:off
     public static final DefaultedRegistryReference<ItemType> ACACIA_BOAT = ItemTypes.key(ResourceKey.minecraft("acacia_boat"));
 
     public static final DefaultedRegistryReference<ItemType> ACACIA_BUTTON = ItemTypes.key(ResourceKey.minecraft("acacia_button"));
@@ -2665,7 +2664,6 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> ZOMBIFIED_PIGLIN_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("zombified_piglin_spawn_egg"));
 
-    //@formatter:on
     private ItemTypes() {
     }
 

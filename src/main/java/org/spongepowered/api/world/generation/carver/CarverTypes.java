@@ -40,14 +40,12 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class CarverTypes {
 
-    //@formatter:off
     public static final DefaultedRegistryReference<CarverType> CANYON = CarverTypes.key(ResourceKey.minecraft("canyon"));
 
     public static final DefaultedRegistryReference<CarverType> CAVE = CarverTypes.key(ResourceKey.minecraft("cave"));
 
     public static final DefaultedRegistryReference<CarverType> NETHER_CAVE = CarverTypes.key(ResourceKey.minecraft("nether_cave"));
 
-    //@formatter:on
     private CarverTypes() {
     }
 

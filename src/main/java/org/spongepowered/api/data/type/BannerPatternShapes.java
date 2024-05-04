@@ -40,7 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class BannerPatternShapes {
 
-    //@formatter:off
     public static final DefaultedRegistryReference<BannerPatternShape> BASE = BannerPatternShapes.key(ResourceKey.minecraft("base"));
 
     public static final DefaultedRegistryReference<BannerPatternShape> BORDER = BannerPatternShapes.key(ResourceKey.minecraft("border"));
@@ -123,7 +122,6 @@ public final class BannerPatternShapes {
 
     public static final DefaultedRegistryReference<BannerPatternShape> TRIANGLES_TOP = BannerPatternShapes.key(ResourceKey.minecraft("triangles_top"));
 
-    //@formatter:on
     private BannerPatternShapes() {
     }
 

@@ -40,7 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class AttributeTypes {
 
-    //@formatter:off
     public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ARMOR = AttributeTypes.key(ResourceKey.minecraft("generic.armor"));
 
     public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ARMOR_TOUGHNESS = AttributeTypes.key(ResourceKey.minecraft("generic.armor_toughness"));
@@ -69,7 +68,6 @@ public final class AttributeTypes {
 
     public static final DefaultedRegistryReference<RangedAttributeType> ZOMBIE_SPAWN_REINFORCEMENTS = AttributeTypes.key(ResourceKey.minecraft("zombie.spawn_reinforcements"));
 
-    //@formatter:on
     private AttributeTypes() {
     }
 

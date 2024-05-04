@@ -37,7 +37,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class EntityTypeTags {
 
-    //@formatter:off
     public static final Tag<EntityType<?>> ARROWS = EntityTypeTags.key(ResourceKey.minecraft("arrows"));
 
     public static final Tag<EntityType<?>> AXOLOTL_ALWAYS_HOSTILES = EntityTypeTags.key(ResourceKey.minecraft("axolotl_always_hostiles"));
@@ -72,7 +71,6 @@ public final class EntityTypeTags {
 
     public static final Tag<EntityType<?>> ZOMBIES = EntityTypeTags.key(ResourceKey.minecraft("zombies"));
 
-    //@formatter:on
     private EntityTypeTags() {
     }
 

@@ -40,7 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class BlockTypes {
 
-    //@formatter:off
     public static final DefaultedRegistryReference<BlockType> ACACIA_BUTTON = BlockTypes.key(ResourceKey.minecraft("acacia_button"));
 
     public static final DefaultedRegistryReference<BlockType> ACACIA_DOOR = BlockTypes.key(ResourceKey.minecraft("acacia_door"));
@@ -2157,7 +2156,6 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> ZOMBIE_WALL_HEAD = BlockTypes.key(ResourceKey.minecraft("zombie_wall_head"));
 
-    //@formatter:on
     private BlockTypes() {
     }
 

@@ -40,7 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class SoundTypes {
 
-    //@formatter:off
     public static final DefaultedRegistryReference<SoundType> AMBIENT_BASALT_DELTAS_ADDITIONS = SoundTypes.key(ResourceKey.minecraft("ambient.basalt_deltas.additions"));
 
     public static final DefaultedRegistryReference<SoundType> AMBIENT_BASALT_DELTAS_LOOP = SoundTypes.key(ResourceKey.minecraft("ambient.basalt_deltas.loop"));
@@ -3119,7 +3118,6 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> WEATHER_RAIN_ABOVE = SoundTypes.key(ResourceKey.minecraft("weather.rain.above"));
 
-    //@formatter:on
     private SoundTypes() {
     }
 

@@ -40,7 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class ProfessionTypes {
 
-    //@formatter:off
     public static final DefaultedRegistryReference<ProfessionType> ARMORER = ProfessionTypes.key(ResourceKey.minecraft("armorer"));
 
     public static final DefaultedRegistryReference<ProfessionType> BUTCHER = ProfessionTypes.key(ResourceKey.minecraft("butcher"));
@@ -71,7 +70,6 @@ public final class ProfessionTypes {
 
     public static final DefaultedRegistryReference<ProfessionType> WEAPONSMITH = ProfessionTypes.key(ResourceKey.minecraft("weaponsmith"));
 
-    //@formatter:on
     private ProfessionTypes() {
     }
 
