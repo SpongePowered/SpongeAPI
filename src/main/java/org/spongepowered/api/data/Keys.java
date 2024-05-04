@@ -3047,9 +3047,9 @@ public final class Keys {
     public static final Key<Value<TextAlignment>> TEXT_ALIGNMENT = Keys.key(ResourceKey.sponge("text_alignment"), TextAlignment.class);
 
     /**
-     * The background {@link java.awt.Color} of a {@link TextDisplay}.
+     * The background {@link Color} of a {@link TextDisplay}.
      */
-    public static final Key<Value<java.awt.Color>> TEXT_BACKGROUND_COLOR = Keys.key(ResourceKey.sponge("text_background_color"), java.awt.Color.class);
+    public static final Key<Value<Color>> TEXT_BACKGROUND_COLOR = Keys.key(ResourceKey.sponge("text_background_color"), Color.class);
 
     /**
      * The remaining fuse time in ticks of a {@link FusedExplosive}.

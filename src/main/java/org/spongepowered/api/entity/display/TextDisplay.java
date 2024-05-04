@@ -26,8 +26,7 @@ package org.spongepowered.api.entity.display;
 
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.data.Keys;
-
-import java.awt.Color;
+import org.spongepowered.api.util.Color;
 
 public interface TextDisplay extends DisplayEntity {
 
