@@ -40,7 +40,7 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.ENGINE)
 public final class PlacementModifierTypes {
 
-    // @formatter:off
+    //@formatter:off
     public static final DefaultedRegistryReference<PlacementModifierType> BIOME = PlacementModifierTypes.key(ResourceKey.minecraft("biome"));
 
     public static final DefaultedRegistryReference<PlacementModifierType> BLOCK_PREDICATE_FILTER = PlacementModifierTypes.key(ResourceKey.minecraft("block_predicate_filter"));
@@ -71,7 +71,7 @@ public final class PlacementModifierTypes {
 
     public static final DefaultedRegistryReference<PlacementModifierType> SURFACE_WATER_DEPTH_FILTER = PlacementModifierTypes.key(ResourceKey.minecraft("surface_water_depth_filter"));
 
-    // @formatter:on
+    //@formatter:on
     private PlacementModifierTypes() {
     }
 

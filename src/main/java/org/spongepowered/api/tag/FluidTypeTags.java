@@ -37,12 +37,12 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class FluidTypeTags {
 
-    // @formatter:off
+    //@formatter:off
     public static final Tag<FluidType> LAVA = FluidTypeTags.key(ResourceKey.minecraft("lava"));
 
     public static final Tag<FluidType> WATER = FluidTypeTags.key(ResourceKey.minecraft("water"));
 
-    // @formatter:on
+    //@formatter:on
     private FluidTypeTags() {
     }
 

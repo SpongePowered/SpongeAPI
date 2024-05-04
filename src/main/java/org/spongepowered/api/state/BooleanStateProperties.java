@@ -85,6 +85,10 @@ public final class BooleanStateProperties {
         return BooleanStateProperty.of("CRACKED");
     }
 
+    public static BooleanStateProperty property_CRAFTING() {
+        return BooleanStateProperty.of("CRAFTING");
+    }
+
     public static BooleanStateProperty property_DISARMED() {
         return BooleanStateProperty.of("DISARMED");
     }

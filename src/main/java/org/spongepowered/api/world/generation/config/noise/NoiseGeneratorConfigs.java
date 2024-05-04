@@ -40,7 +40,7 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.ENGINE)
 public final class NoiseGeneratorConfigs {
 
-    // @formatter:off
+    //@formatter:off
     public static final DefaultedRegistryReference<NoiseGeneratorConfig> AMPLIFIED = NoiseGeneratorConfigs.key(ResourceKey.minecraft("amplified"));
 
     public static final DefaultedRegistryReference<NoiseGeneratorConfig> CAVES = NoiseGeneratorConfigs.key(ResourceKey.minecraft("caves"));
@@ -55,7 +55,7 @@ public final class NoiseGeneratorConfigs {
 
     public static final DefaultedRegistryReference<NoiseGeneratorConfig> OVERWORLD = NoiseGeneratorConfigs.key(ResourceKey.minecraft("overworld"));
 
-    // @formatter:on
+    //@formatter:on
     private NoiseGeneratorConfigs() {
     }
 

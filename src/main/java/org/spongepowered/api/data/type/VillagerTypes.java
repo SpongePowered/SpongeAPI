@@ -40,7 +40,7 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class VillagerTypes {
 
-    // @formatter:off
+    //@formatter:off
     public static final DefaultedRegistryReference<VillagerType> DESERT = VillagerTypes.key(ResourceKey.minecraft("desert"));
 
     public static final DefaultedRegistryReference<VillagerType> JUNGLE = VillagerTypes.key(ResourceKey.minecraft("jungle"));
@@ -55,7 +55,7 @@ public final class VillagerTypes {
 
     public static final DefaultedRegistryReference<VillagerType> TAIGA = VillagerTypes.key(ResourceKey.minecraft("taiga"));
 
-    // @formatter:on
+    //@formatter:on
     private VillagerTypes() {
     }
 

@@ -40,7 +40,7 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.ENGINE)
 public final class PlacedFeatures {
 
-    // @formatter:off
+    //@formatter:off
     public static final DefaultedRegistryReference<PlacedFeature> ACACIA = PlacedFeatures.key(ResourceKey.minecraft("acacia"));
 
     public static final DefaultedRegistryReference<PlacedFeature> ACACIA_CHECKED = PlacedFeatures.key(ResourceKey.minecraft("acacia_checked"));
@@ -505,7 +505,7 @@ public final class PlacedFeatures {
 
     public static final DefaultedRegistryReference<PlacedFeature> WEEPING_VINES = PlacedFeatures.key(ResourceKey.minecraft("weeping_vines"));
 
-    // @formatter:on
+    //@formatter:on
     private PlacedFeatures() {
     }
 

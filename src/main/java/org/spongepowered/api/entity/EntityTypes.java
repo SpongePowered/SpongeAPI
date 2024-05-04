@@ -177,6 +177,8 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<Boat>> BOAT = EntityTypes.key(ResourceKey.minecraft("boat"));
 
+    public static final DefaultedRegistryReference<FixMe> BREEZE = EntityTypes.key(ResourceKey.minecraft("breeze"));
+
     public static final DefaultedRegistryReference<EntityType<Camel>> CAMEL = EntityTypes.key(ResourceKey.minecraft("camel"));
 
     public static final DefaultedRegistryReference<EntityType<Cat>> CAT = EntityTypes.key(ResourceKey.minecraft("cat"));
@@ -386,6 +388,8 @@ public final class EntityTypes {
     public static final DefaultedRegistryReference<EntityType<WanderingTrader>> WANDERING_TRADER = EntityTypes.key(ResourceKey.minecraft("wandering_trader"));
 
     public static final DefaultedRegistryReference<EntityType<Warden>> WARDEN = EntityTypes.key(ResourceKey.minecraft("warden"));
+
+    public static final DefaultedRegistryReference<FixMe> WIND_CHARGE = EntityTypes.key(ResourceKey.minecraft("wind_charge"));
 
     public static final DefaultedRegistryReference<EntityType<Witch>> WITCH = EntityTypes.key(ResourceKey.minecraft("witch"));
 

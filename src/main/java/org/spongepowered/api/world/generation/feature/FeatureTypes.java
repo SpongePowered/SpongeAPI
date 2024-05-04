@@ -40,7 +40,7 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.ENGINE)
 public final class FeatureTypes {
 
-    // @formatter:off
+    //@formatter:off
     public static final DefaultedRegistryReference<FeatureType> BAMBOO = FeatureTypes.key(ResourceKey.minecraft("bamboo"));
 
     public static final DefaultedRegistryReference<FeatureType> BASALT_COLUMNS = FeatureTypes.key(ResourceKey.minecraft("basalt_columns"));
@@ -163,7 +163,7 @@ public final class FeatureTypes {
 
     public static final DefaultedRegistryReference<FeatureType> WEEPING_VINES = FeatureTypes.key(ResourceKey.minecraft("weeping_vines"));
 
-    // @formatter:on
+    //@formatter:on
     private FeatureTypes() {
     }
 

@@ -40,7 +40,7 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.ENGINE)
 public final class JigsawPools {
 
-    // @formatter:off
+    //@formatter:off
     public static final DefaultedRegistryReference<JigsawPool> ANCIENT_CITY_CITY_ENTRANCE = JigsawPools.key(ResourceKey.minecraft("ancient_city/city/entrance"));
 
     public static final DefaultedRegistryReference<JigsawPool> ANCIENT_CITY_CITY_CENTER = JigsawPools.key(ResourceKey.minecraft("ancient_city/city_center"));
@@ -323,7 +323,7 @@ public final class JigsawPools {
 
     public static final DefaultedRegistryReference<JigsawPool> VILLAGE_TAIGA_ZOMBIE_VILLAGERS = JigsawPools.key(ResourceKey.minecraft("village/taiga/zombie/villagers"));
 
-    // @formatter:on
+    //@formatter:on
     private JigsawPools() {
     }
 

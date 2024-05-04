@@ -40,7 +40,7 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.ENGINE)
 public final class ProcessorLists {
 
-    // @formatter:off
+    //@formatter:off
     public static final DefaultedRegistryReference<ProcessorList> ANCIENT_CITY_GENERIC_DEGRADATION = ProcessorLists.key(ResourceKey.minecraft("ancient_city_generic_degradation"));
 
     public static final DefaultedRegistryReference<ProcessorList> ANCIENT_CITY_START_DEGRADATION = ProcessorLists.key(ResourceKey.minecraft("ancient_city_start_degradation"));
@@ -119,7 +119,7 @@ public final class ProcessorLists {
 
     public static final DefaultedRegistryReference<ProcessorList> ZOMBIE_TAIGA = ProcessorLists.key(ResourceKey.minecraft("zombie_taiga"));
 
-    // @formatter:on
+    //@formatter:on
     private ProcessorLists() {
     }
 

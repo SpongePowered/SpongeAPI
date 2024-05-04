@@ -37,7 +37,7 @@ import org.spongepowered.api.world.biome.Biome;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class BiomeTags {
 
-    // @formatter:off
+    //@formatter:off
     public static final Tag<Biome> ALLOWS_SURFACE_SLIME_SPAWNS = BiomeTags.key(ResourceKey.minecraft("allows_surface_slime_spawns"));
 
     public static final Tag<Biome> ALLOWS_TROPICAL_FISH_SPAWNS_AT_ANY_HEIGHT = BiomeTags.key(ResourceKey.minecraft("allows_tropical_fish_spawns_at_any_height"));
@@ -176,7 +176,7 @@ public final class BiomeTags {
 
     public static final Tag<Biome> WITHOUT_ZOMBIE_SIEGES = BiomeTags.key(ResourceKey.minecraft("without_zombie_sieges"));
 
-    // @formatter:on
+    //@formatter:on
     private BiomeTags() {
     }
 

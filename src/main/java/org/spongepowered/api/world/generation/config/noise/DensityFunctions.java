@@ -40,7 +40,7 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.ENGINE)
 public final class DensityFunctions {
 
-    // @formatter:off
+    //@formatter:off
     public static final DefaultedRegistryReference<DensityFunction> END_BASE_3D_NOISE = DensityFunctions.key(ResourceKey.minecraft("end/base_3d_noise"));
 
     public static final DefaultedRegistryReference<DensityFunction> END_SLOPED_CHEESE = DensityFunctions.key(ResourceKey.minecraft("end/sloped_cheese"));
@@ -111,7 +111,7 @@ public final class DensityFunctions {
 
     public static final DefaultedRegistryReference<DensityFunction> ZERO = DensityFunctions.key(ResourceKey.minecraft("zero"));
 
-    // @formatter:on
+    //@formatter:on
     private DensityFunctions() {
     }
 
