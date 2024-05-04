@@ -1409,16 +1409,6 @@ public final class Keys {
     public static final Key<Value<Tag<BlockType>>> INFINIBURN = Keys.key(ResourceKey.sponge("infiniburn"), new TypeToken<Tag<BlockType>>() {});
 
     /**
-     * Whether an {@link Item} will not despawn for an infinite time.
-     */
-    public static final Key<Value<Boolean>> INFINITE_DESPAWN_DELAY = Keys.key(ResourceKey.sponge("infinite_despawn_delay"), Boolean.class);
-
-    /**
-     * Whether an {@link Item} has an infinite pickup delay.
-     */
-    public static final Key<Value<Boolean>> INFINITE_PICKUP_DELAY = Keys.key(ResourceKey.sponge("infinite_pickup_delay"), Boolean.class);
-
-    /**
      * Whether a world of a {@link ServerWorldProperties} was initialized.
      */
     public static final Key<Value<Boolean>> INITIALIZED = Keys.key(ResourceKey.sponge("initialized"), Boolean.class);
@@ -2087,8 +2077,7 @@ public final class Keys {
      * <p>When this value hits 0 or lower, the Vex will receive damage and
      * then the value will set back to 20 until the Vex dies.</p>
      *
-     * <p>If the Vex was summoned by a player, this value will be pegged at 0
-     * and the Vex will not take any damage.</p>
+     * <p>If the Vex was summoned by a player, this value will be {@link Ticks#infinite()}</p>
      */
     public static final Key<Value<Ticks>> LIFE_TICKS = Keys.key(ResourceKey.sponge("life_ticks"), Ticks.class);
 

@@ -268,6 +268,7 @@ public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDat
      *              should be processed
      * @param priority The priority of the scheduled update
      * @return The newly created scheduled update
+     * @throws IllegalArgumentException if the delay is infinite
      */
     ScheduledUpdate<BlockType> scheduleBlockUpdate(Ticks delay, TaskPriority priority);
 
@@ -287,6 +288,7 @@ public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDat
      * @param delay The delay, in {@link Ticks}, before the scheduled update
      *              should be processed
      * @return The newly created scheduled update
+     * @throws IllegalArgumentException if the delay is infinite
      */
     ScheduledUpdate<BlockType> scheduleBlockUpdate(Ticks delay);
 
@@ -339,6 +341,7 @@ public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDat
      * @param ticks The delay, in {@link Ticks}, before the scheduled update
      *              should be processed
      * @return The newly created scheduled update
+     * @throws IllegalArgumentException if the delay is infinite
      */
     ScheduledUpdate<FluidType> scheduleFluidUpdate(Ticks ticks);
 
@@ -349,6 +352,7 @@ public interface ServerLocation extends DataHolder.Mutable, DirectionRelativeDat
      *              should be processed
      * @param priority The priority of the scheduled update
      * @return The newly created scheduled update
+     * @throws IllegalArgumentException if the delay is infinite
      */
     ScheduledUpdate<FluidType> scheduleFluidUpdate(Ticks ticks, TaskPriority priority);
 
