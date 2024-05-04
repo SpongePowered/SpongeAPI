@@ -26,7 +26,6 @@ package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.living.aquatic.fish.school.TropicalFish;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
