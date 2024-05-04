@@ -104,6 +104,8 @@ public final class GameRules {
 
     public static final DefaultedRegistryReference<GameRule<Integer>> MAX_COMMAND_CHAIN_LENGTH = GameRules.key(ResourceKey.sponge("max_command_chain_length"));
 
+    public static final DefaultedRegistryReference<GameRule<Integer>> MAX_COMMAND_FORK_COUNT = GameRules.key(ResourceKey.sponge("max_command_fork_count"));
+
     public static final DefaultedRegistryReference<GameRule<Integer>> MAX_ENTITY_CRAMMING = GameRules.key(ResourceKey.sponge("max_entity_cramming"));
 
     public static final DefaultedRegistryReference<GameRule<Boolean>> MOB_EXPLOSION_DROP_DECAY = GameRules.key(ResourceKey.sponge("mob_explosion_drop_decay"));
@@ -112,7 +114,13 @@ public final class GameRules {
 
     public static final DefaultedRegistryReference<GameRule<Boolean>> NATURAL_REGENERATION = GameRules.key(ResourceKey.sponge("natural_regeneration"));
 
+    public static final DefaultedRegistryReference<GameRule<Integer>> PLAYERS_NETHER_PORTAL_CREATIVE_DELAY = GameRules.key(ResourceKey.sponge("players_nether_portal_creative_delay"));
+
+    public static final DefaultedRegistryReference<GameRule<Integer>> PLAYERS_NETHER_PORTAL_DEFAULT_DELAY = GameRules.key(ResourceKey.sponge("players_nether_portal_default_delay"));
+
     public static final DefaultedRegistryReference<GameRule<Integer>> PLAYERS_SLEEPING_PERCENTAGE = GameRules.key(ResourceKey.sponge("players_sleeping_percentage"));
+
+    public static final DefaultedRegistryReference<GameRule<Boolean>> PROJECTILES_CAN_BREAK_BLOCKS = GameRules.key(ResourceKey.sponge("projectiles_can_break_blocks"));
 
     public static final DefaultedRegistryReference<GameRule<Integer>> RANDOM_TICK_SPEED = GameRules.key(ResourceKey.sponge("random_tick_speed"));
 

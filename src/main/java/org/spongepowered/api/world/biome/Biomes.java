@@ -40,7 +40,7 @@ import org.spongepowered.api.world.server.ServerWorld;
 @RegistryScopes(scopes = RegistryScope.WORLD)
 public final class Biomes {
 
-    // @formatter:off
+    //@formatter:off
     public static final RegistryReference<Biome> BADLANDS = Biomes.key(ResourceKey.minecraft("badlands"));
 
     public static final RegistryReference<Biome> BAMBOO_JUNGLE = Biomes.key(ResourceKey.minecraft("bamboo_jungle"));
@@ -169,7 +169,7 @@ public final class Biomes {
 
     public static final RegistryReference<Biome> WOODED_BADLANDS = Biomes.key(ResourceKey.minecraft("wooded_badlands"));
 
-    // @formatter:on
+    //@formatter:on
     private Biomes() {
     }
 

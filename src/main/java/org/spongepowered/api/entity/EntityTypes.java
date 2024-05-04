@@ -90,6 +90,7 @@ import org.spongepowered.api.entity.living.monster.Warden;
 import org.spongepowered.api.entity.living.monster.Zoglin;
 import org.spongepowered.api.entity.living.monster.boss.Wither;
 import org.spongepowered.api.entity.living.monster.boss.dragon.EnderDragon;
+import org.spongepowered.api.entity.living.monster.breeze.Breeze;
 import org.spongepowered.api.entity.living.monster.guardian.ElderGuardian;
 import org.spongepowered.api.entity.living.monster.guardian.Guardian;
 import org.spongepowered.api.entity.living.monster.hoglin.Hoglin;
@@ -126,6 +127,7 @@ import org.spongepowered.api.entity.projectile.LlamaSpit;
 import org.spongepowered.api.entity.projectile.Potion;
 import org.spongepowered.api.entity.projectile.ShulkerBullet;
 import org.spongepowered.api.entity.projectile.Snowball;
+import org.spongepowered.api.entity.projectile.WindCharge;
 import org.spongepowered.api.entity.projectile.arrow.Arrow;
 import org.spongepowered.api.entity.projectile.arrow.SpectralArrow;
 import org.spongepowered.api.entity.projectile.arrow.Trident;
@@ -176,6 +178,8 @@ public final class EntityTypes {
     public static final DefaultedRegistryReference<EntityType<BlockDisplay>> BLOCK_DISPLAY = EntityTypes.key(ResourceKey.minecraft("block_display"));
 
     public static final DefaultedRegistryReference<EntityType<Boat>> BOAT = EntityTypes.key(ResourceKey.minecraft("boat"));
+
+    public static final DefaultedRegistryReference<EntityType<Breeze>> BREEZE = EntityTypes.key(ResourceKey.minecraft("breeze"));
 
     public static final DefaultedRegistryReference<EntityType<Camel>> CAMEL = EntityTypes.key(ResourceKey.minecraft("camel"));
 
@@ -386,6 +390,8 @@ public final class EntityTypes {
     public static final DefaultedRegistryReference<EntityType<WanderingTrader>> WANDERING_TRADER = EntityTypes.key(ResourceKey.minecraft("wandering_trader"));
 
     public static final DefaultedRegistryReference<EntityType<Warden>> WARDEN = EntityTypes.key(ResourceKey.minecraft("warden"));
+
+    public static final DefaultedRegistryReference<EntityType<WindCharge>> WIND_CHARGE = EntityTypes.key(ResourceKey.minecraft("wind_charge"));
 
     public static final DefaultedRegistryReference<EntityType<Witch>> WITCH = EntityTypes.key(ResourceKey.minecraft("witch"));
 

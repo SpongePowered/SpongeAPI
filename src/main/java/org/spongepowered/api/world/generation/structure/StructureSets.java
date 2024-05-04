@@ -40,7 +40,7 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.ENGINE)
 public final class StructureSets {
 
-    // @formatter:off
+    //@formatter:off
     public static final DefaultedRegistryReference<StructureSet> ANCIENT_CITIES = StructureSets.key(ResourceKey.minecraft("ancient_cities"));
 
     public static final DefaultedRegistryReference<StructureSet> BURIED_TREASURES = StructureSets.key(ResourceKey.minecraft("buried_treasures"));
@@ -79,7 +79,7 @@ public final class StructureSets {
 
     public static final DefaultedRegistryReference<StructureSet> WOODLAND_MANSIONS = StructureSets.key(ResourceKey.minecraft("woodland_mansions"));
 
-    // @formatter:on
+    //@formatter:on
     private StructureSets() {
     }
 

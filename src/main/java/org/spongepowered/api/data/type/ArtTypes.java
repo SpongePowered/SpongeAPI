@@ -40,7 +40,7 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class ArtTypes {
 
-    // @formatter:off
+    //@formatter:off
     public static final DefaultedRegistryReference<ArtType> ALBAN = ArtTypes.key(ResourceKey.minecraft("alban"));
 
     public static final DefaultedRegistryReference<ArtType> AZTEC = ArtTypes.key(ResourceKey.minecraft("aztec"));
@@ -101,7 +101,7 @@ public final class ArtTypes {
 
     public static final DefaultedRegistryReference<ArtType> WITHER = ArtTypes.key(ResourceKey.minecraft("wither"));
 
-    // @formatter:on
+    //@formatter:on
     private ArtTypes() {
     }
 

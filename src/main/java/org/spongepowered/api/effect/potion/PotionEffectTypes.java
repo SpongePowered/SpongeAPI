@@ -40,7 +40,7 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class PotionEffectTypes {
 
-    // @formatter:off
+    //@formatter:off
     public static final DefaultedRegistryReference<PotionEffectType> ABSORPTION = PotionEffectTypes.key(ResourceKey.minecraft("absorption"));
 
     public static final DefaultedRegistryReference<PotionEffectType> BAD_OMEN = PotionEffectTypes.key(ResourceKey.minecraft("bad_omen"));
@@ -107,7 +107,7 @@ public final class PotionEffectTypes {
 
     public static final DefaultedRegistryReference<PotionEffectType> WITHER = PotionEffectTypes.key(ResourceKey.minecraft("wither"));
 
-    // @formatter:on
+    //@formatter:on
     private PotionEffectTypes() {
     }
 

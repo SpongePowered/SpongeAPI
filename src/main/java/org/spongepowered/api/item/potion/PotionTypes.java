@@ -40,7 +40,7 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class PotionTypes {
 
-    // @formatter:off
+    //@formatter:off
     public static final DefaultedRegistryReference<PotionType> AWKWARD = PotionTypes.key(ResourceKey.minecraft("awkward"));
 
     public static final DefaultedRegistryReference<PotionType> EMPTY = PotionTypes.key(ResourceKey.minecraft("empty"));
@@ -127,7 +127,7 @@ public final class PotionTypes {
 
     public static final DefaultedRegistryReference<PotionType> WEAKNESS = PotionTypes.key(ResourceKey.minecraft("weakness"));
 
-    // @formatter:on
+    //@formatter:on
     private PotionTypes() {
     }
 

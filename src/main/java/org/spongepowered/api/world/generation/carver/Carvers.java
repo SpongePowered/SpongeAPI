@@ -40,7 +40,7 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.ENGINE)
 public final class Carvers {
 
-    // @formatter:off
+    //@formatter:off
     public static final DefaultedRegistryReference<Carver> CANYON = Carvers.key(ResourceKey.minecraft("canyon"));
 
     public static final DefaultedRegistryReference<Carver> CAVE = Carvers.key(ResourceKey.minecraft("cave"));
@@ -49,7 +49,7 @@ public final class Carvers {
 
     public static final DefaultedRegistryReference<Carver> NETHER_CAVE = Carvers.key(ResourceKey.minecraft("nether_cave"));
 
-    // @formatter:on
+    //@formatter:on
     private Carvers() {
     }
 

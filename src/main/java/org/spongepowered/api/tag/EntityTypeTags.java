@@ -37,7 +37,7 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class EntityTypeTags {
 
-    // @formatter:off
+    //@formatter:off
     public static final Tag<EntityType<?>> ARROWS = EntityTypeTags.key(ResourceKey.minecraft("arrows"));
 
     public static final Tag<EntityType<?>> AXOLOTL_ALWAYS_HOSTILES = EntityTypeTags.key(ResourceKey.minecraft("axolotl_always_hostiles"));
@@ -45,6 +45,8 @@ public final class EntityTypeTags {
     public static final Tag<EntityType<?>> AXOLOTL_HUNT_TARGETS = EntityTypeTags.key(ResourceKey.minecraft("axolotl_hunt_targets"));
 
     public static final Tag<EntityType<?>> BEEHIVE_INHABITORS = EntityTypeTags.key(ResourceKey.minecraft("beehive_inhabitors"));
+
+    public static final Tag<EntityType<?>> CAN_BREATHE_UNDER_WATER = EntityTypeTags.key(ResourceKey.minecraft("can_breathe_under_water"));
 
     public static final Tag<EntityType<?>> DISMOUNTS_UNDERWATER = EntityTypeTags.key(ResourceKey.minecraft("dismounts_underwater"));
 
@@ -66,7 +68,11 @@ public final class EntityTypeTags {
 
     public static final Tag<EntityType<?>> SKELETONS = EntityTypeTags.key(ResourceKey.minecraft("skeletons"));
 
-    // @formatter:on
+    public static final Tag<EntityType<?>> UNDEAD = EntityTypeTags.key(ResourceKey.minecraft("undead"));
+
+    public static final Tag<EntityType<?>> ZOMBIES = EntityTypeTags.key(ResourceKey.minecraft("zombies"));
+
+    //@formatter:on
     private EntityTypeTags() {
     }
 
