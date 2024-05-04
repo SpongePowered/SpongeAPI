@@ -40,8 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class AdvancementTypes {
 
-    // @formatter:off
-    // SORTFIELDS:ON
     /**
      * Represents the challenge completion advancement type.
      *
@@ -66,8 +64,6 @@ public final class AdvancementTypes {
      */
     public static final DefaultedRegistryReference<AdvancementType> TASK = AdvancementTypes.key(ResourceKey.sponge("task"));
 
-    // SORTFIELDS:OFF
-    // @formatter:on
     private AdvancementTypes() {
     }
 

@@ -40,16 +40,12 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class DamageScalings {
 
-    // @formatter:off
-    // SORTFIELDS:ON
     public static final DefaultedRegistryReference<DamageScaling> ALWAYS = DamageScalings.key(ResourceKey.sponge("always"));
 
     public static final DefaultedRegistryReference<DamageScaling> NEVER = DamageScalings.key(ResourceKey.sponge("never"));
 
     public static final DefaultedRegistryReference<DamageScaling> WHEN_CAUSED_BY_LIVING_NON_PLAYER = DamageScalings.key(ResourceKey.sponge("when_caused_by_living_non_player"));
 
-    // SORTFIELDS:OFF
-    // @formatter:on
     private DamageScalings() {
     }
 

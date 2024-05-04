@@ -41,8 +41,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class TropicalFishShapes {
 
-    // @formatter:off
-    // SORTFIELDS:ON
     public static final DefaultedRegistryReference<TropicalFishShape> BETTY = TropicalFishShapes.key(ResourceKey.sponge("betty"));
 
     public static final DefaultedRegistryReference<TropicalFishShape> BLOCKFISH = TropicalFishShapes.key(ResourceKey.sponge("blockfish"));
@@ -67,8 +65,6 @@ public final class TropicalFishShapes {
 
     public static final DefaultedRegistryReference<TropicalFishShape> SUNSTREAK = TropicalFishShapes.key(ResourceKey.sponge("sunstreak"));
 
-    // SORTFIELDS:OFF
-    // @formatter:on
     private TropicalFishShapes() {
     }
 

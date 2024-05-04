@@ -40,8 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class DyeColors {
 
-    // @formatter:off
-    // SORTFIELDS:ON
     public static final DefaultedRegistryReference<DyeColor> BLACK = DyeColors.key(ResourceKey.sponge("black"));
 
     public static final DefaultedRegistryReference<DyeColor> BLUE = DyeColors.key(ResourceKey.sponge("blue"));
@@ -74,8 +72,6 @@ public final class DyeColors {
 
     public static final DefaultedRegistryReference<DyeColor> YELLOW = DyeColors.key(ResourceKey.sponge("yellow"));
 
-    // SORTFIELDS:OFF
-    // @formatter:on
     private DyeColors() {
     }
 

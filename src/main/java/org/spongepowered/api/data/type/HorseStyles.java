@@ -40,8 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class HorseStyles {
 
-    // @formatter:off
-    // SORTFIELDS:ON
     public static final DefaultedRegistryReference<HorseStyle> BLACK_DOTS = HorseStyles.key(ResourceKey.sponge("black_dots"));
 
     public static final DefaultedRegistryReference<HorseStyle> NONE = HorseStyles.key(ResourceKey.sponge("none"));
@@ -52,8 +50,6 @@ public final class HorseStyles {
 
     public static final DefaultedRegistryReference<HorseStyle> WHITE_FIELD = HorseStyles.key(ResourceKey.sponge("white_field"));
 
-    // SORTFIELDS:OFF
-    // @formatter:on
     private HorseStyles() {
     }
 

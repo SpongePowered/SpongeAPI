@@ -40,8 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class ItemDisplayTypes {
 
-    // @formatter:off
-    // SORTFIELDS:OFF
     public static final DefaultedRegistryReference<ItemDisplayType> FIRSTPERSON_LEFTHAND = ItemDisplayTypes.key(ResourceKey.sponge("firstperson_lefthand"));
 
     public static final DefaultedRegistryReference<ItemDisplayType> FIRSTPERSON_RIGHTHAND = ItemDisplayTypes.key(ResourceKey.sponge("firstperson_righthand"));
@@ -60,8 +58,6 @@ public final class ItemDisplayTypes {
 
     public static final DefaultedRegistryReference<ItemDisplayType> THIRDPERSON_RIGHTHAND = ItemDisplayTypes.key(ResourceKey.sponge("thirdperson_righthand"));
 
-    // SORTFIELDS:OFF
-    // @formatter:on
     private ItemDisplayTypes() {
     }
 

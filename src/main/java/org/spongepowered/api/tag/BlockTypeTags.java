@@ -37,7 +37,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class BlockTypeTags {
 
-    //@formatter:off
     public static final Tag<BlockType> ACACIA_LOGS = BlockTypeTags.key(ResourceKey.minecraft("acacia_logs"));
 
     public static final Tag<BlockType> ALL_HANGING_SIGNS = BlockTypeTags.key(ResourceKey.minecraft("all_hanging_signs"));
@@ -382,7 +381,6 @@ public final class BlockTypeTags {
 
     public static final Tag<BlockType> WOOL_CARPETS = BlockTypeTags.key(ResourceKey.minecraft("wool_carpets"));
 
-    //@formatter:on
     private BlockTypeTags() {
     }
 

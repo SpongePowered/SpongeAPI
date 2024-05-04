@@ -37,7 +37,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class ItemTypeTags {
 
-    //@formatter:off
     public static final Tag<ItemType> ACACIA_LOGS = ItemTypeTags.key(ResourceKey.minecraft("acacia_logs"));
 
     public static final Tag<ItemType> ANVIL = ItemTypeTags.key(ResourceKey.minecraft("anvil"));
@@ -236,7 +235,6 @@ public final class ItemTypeTags {
 
     public static final Tag<ItemType> WOOL_CARPETS = ItemTypeTags.key(ResourceKey.minecraft("wool_carpets"));
 
-    //@formatter:on
     private ItemTypeTags() {
     }
 

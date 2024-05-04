@@ -40,8 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class BoatTypes {
 
-    // @formatter:off
-    // SORTFIELDS:ON
     public static final DefaultedRegistryReference<BoatType> ACACIA = BoatTypes.key(ResourceKey.sponge("acacia"));
 
     public static final DefaultedRegistryReference<BoatType> BAMBOO = BoatTypes.key(ResourceKey.sponge("bamboo"));
@@ -60,8 +58,6 @@ public final class BoatTypes {
 
     public static final DefaultedRegistryReference<BoatType> SPRUCE = BoatTypes.key(ResourceKey.sponge("spruce"));
 
-    // SORTFIELDS:OFF
-    // @formatter:on
     private BoatTypes() {
     }
 

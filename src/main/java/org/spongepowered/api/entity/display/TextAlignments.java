@@ -40,16 +40,12 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class TextAlignments {
 
-    // @formatter:off
-    // SORTFIELDS:ON
     public static final DefaultedRegistryReference<TextAlignment> CENTER = TextAlignments.key(ResourceKey.sponge("center"));
 
     public static final DefaultedRegistryReference<TextAlignment> LEFT = TextAlignments.key(ResourceKey.sponge("left"));
 
     public static final DefaultedRegistryReference<TextAlignment> RIGHT = TextAlignments.key(ResourceKey.sponge("right"));
 
-    // SORTFIELDS:OFF
-    // @formatter:on
     private TextAlignments() {
     }
 

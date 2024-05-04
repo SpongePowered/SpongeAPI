@@ -40,8 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class DamageEffects {
 
-    // @formatter:off
-    // SORTFIELDS:ON
     public static final DefaultedRegistryReference<DamageEffect> BURNING = DamageEffects.key(ResourceKey.sponge("burning"));
 
     public static final DefaultedRegistryReference<DamageEffect> DROWNING = DamageEffects.key(ResourceKey.sponge("drowning"));
@@ -54,8 +52,6 @@ public final class DamageEffects {
 
     public static final DefaultedRegistryReference<DamageEffect> THORNS = DamageEffects.key(ResourceKey.sponge("thorns"));
 
-    // SORTFIELDS:OFF
-    // @formatter:on
     private DamageEffects() {
     }
 

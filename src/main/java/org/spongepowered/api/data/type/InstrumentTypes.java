@@ -40,8 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class InstrumentTypes {
 
-    // @formatter:off
-    // SORTFIELDS:ON
     public static final DefaultedRegistryReference<InstrumentType> BANJO = InstrumentTypes.key(ResourceKey.sponge("banjo"));
 
     public static final DefaultedRegistryReference<InstrumentType> BASE_DRUM = InstrumentTypes.key(ResourceKey.sponge("basedrum"));
@@ -88,8 +86,6 @@ public final class InstrumentTypes {
 
     public static final DefaultedRegistryReference<InstrumentType> ZOMBIE = InstrumentTypes.key(ResourceKey.sponge("zombie"));
 
-    // SORTFIELDS:OFF
-    // @formatter:on
     private InstrumentTypes() {
     }
 

@@ -40,14 +40,12 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class BambooLeavesTypes {
 
-    // @formatter:off
     public static final DefaultedRegistryReference<BambooLeavesType> LARGE = BambooLeavesTypes.key(ResourceKey.sponge("large"));
 
     public static final DefaultedRegistryReference<BambooLeavesType> NONE = BambooLeavesTypes.key(ResourceKey.sponge("none"));
 
     public static final DefaultedRegistryReference<BambooLeavesType> SMALL = BambooLeavesTypes.key(ResourceKey.sponge("small"));
 
-    // @formatter:on
     private BambooLeavesTypes() {
     }
 

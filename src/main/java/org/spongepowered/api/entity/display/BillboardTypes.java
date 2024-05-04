@@ -39,8 +39,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class BillboardTypes {
 
-    // @formatter:off
-    // SORTFIELDS:ON
     public static final DefaultedRegistryReference<BillboardType> CENTER = BillboardTypes.key(ResourceKey.sponge("center"));
 
     public static final DefaultedRegistryReference<BillboardType> FIXED = BillboardTypes.key(ResourceKey.sponge("fixed"));
@@ -49,8 +47,6 @@ public final class BillboardTypes {
 
     public static final DefaultedRegistryReference<BillboardType> VERTICAL = BillboardTypes.key(ResourceKey.sponge("vertical"));
 
-    // SORTFIELDS:OFF
-    // @formatter:on
     private BillboardTypes() {
     }
 

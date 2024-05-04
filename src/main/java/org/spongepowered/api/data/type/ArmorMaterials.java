@@ -40,8 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class ArmorMaterials {
 
-    // @formatter:off
-    // SORTFIELDS:ON
     public static final DefaultedRegistryReference<ArmorMaterial> CHAINMAIL = ArmorMaterials.key(ResourceKey.sponge("chainmail"));
 
     public static final DefaultedRegistryReference<ArmorMaterial> DIAMOND = ArmorMaterials.key(ResourceKey.sponge("diamond"));
@@ -56,8 +54,6 @@ public final class ArmorMaterials {
 
     public static final DefaultedRegistryReference<ArmorMaterial> TURTLE = ArmorMaterials.key(ResourceKey.sponge("turtle"));
 
-    // SORTFIELDS:OFF
-    // @formatter:on
     private ArmorMaterials() {
     }
 

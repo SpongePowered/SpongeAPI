@@ -37,7 +37,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class DamageTypeTags {
 
-    //@formatter:off
     public static final Tag<DamageType> ALWAYS_HURTS_ENDER_DRAGONS = DamageTypeTags.key(ResourceKey.minecraft("always_hurts_ender_dragons"));
 
     public static final Tag<DamageType> ALWAYS_KILLS_ARMOR_STANDS = DamageTypeTags.key(ResourceKey.minecraft("always_kills_armor_stands"));
@@ -92,7 +91,6 @@ public final class DamageTypeTags {
 
     public static final Tag<DamageType> WITHER_IMMUNE_TO = DamageTypeTags.key(ResourceKey.minecraft("wither_immune_to"));
 
-    //@formatter:on
     private DamageTypeTags() {
     }
 
