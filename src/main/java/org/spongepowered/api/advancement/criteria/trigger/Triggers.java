@@ -40,7 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class Triggers {
 
-    //@formatter:off
     public static final DefaultedRegistryReference<Trigger<?>> ALLAY_DROP_ITEM_ON_BLOCK = Triggers.key(ResourceKey.minecraft("allay_drop_item_on_block"));
 
     public static final DefaultedRegistryReference<Trigger<?>> AVOID_VIBRATION = Triggers.key(ResourceKey.minecraft("avoid_vibration"));
@@ -145,7 +144,6 @@ public final class Triggers {
 
     public static final DefaultedRegistryReference<Trigger<?>> VOLUNTARY_EXILE = Triggers.key(ResourceKey.minecraft("voluntary_exile"));
 
-    //@formatter:on
     private Triggers() {
     }
 

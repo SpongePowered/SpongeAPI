@@ -40,7 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.ENGINE)
 public final class Noises {
 
-    //@formatter:off
     public static final DefaultedRegistryReference<Noise> AQUIFER_BARRIER = Noises.key(ResourceKey.minecraft("aquifer_barrier"));
 
     public static final DefaultedRegistryReference<Noise> AQUIFER_FLUID_LEVEL_FLOODEDNESS = Noises.key(ResourceKey.minecraft("aquifer_fluid_level_floodedness"));
@@ -161,7 +160,6 @@ public final class Noises {
 
     public static final DefaultedRegistryReference<Noise> VEGETATION_LARGE = Noises.key(ResourceKey.minecraft("vegetation_large"));
 
-    //@formatter:on
     private Noises() {
     }
 

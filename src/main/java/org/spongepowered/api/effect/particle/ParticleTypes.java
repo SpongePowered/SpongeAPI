@@ -40,7 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class ParticleTypes {
 
-    //@formatter:off
     public static final DefaultedRegistryReference<ParticleType> AMBIENT_ENTITY_EFFECT = ParticleTypes.key(ResourceKey.minecraft("ambient_entity_effect"));
 
     public static final DefaultedRegistryReference<ParticleType> ANGRY_VILLAGER = ParticleTypes.key(ResourceKey.minecraft("angry_villager"));
@@ -243,7 +242,6 @@ public final class ParticleTypes {
 
     public static final DefaultedRegistryReference<ParticleType> WITCH = ParticleTypes.key(ResourceKey.minecraft("witch"));
 
-    //@formatter:on
     private ParticleTypes() {
     }
 
