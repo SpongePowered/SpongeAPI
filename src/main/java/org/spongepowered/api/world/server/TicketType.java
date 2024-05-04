@@ -40,9 +40,10 @@ import java.util.Comparator;
  * @param <T> The type of value that is associated with a {@link Ticket} of this
  *      type.
  */
+@SuppressWarnings("unchecked")
 public interface TicketType<T>  {
 
-    static <U> Builder<U> builder() {
+    static <T> Builder<T> builder() {
         return Sponge.game().builderProvider().provide(Builder.class);
     }
 
@@ -92,16 +93,8 @@ public interface TicketType<T>  {
         Builder<T> lifetime(Ticks lifetime);
 
         /**
-         * Sets the lifetime of the {@link TicketType type} to never expire.
-         *
-         * @return The builder, for chaining
-         */
-        Builder<T> neverExpires();
-
-        /**
          * Builds a new {@link TicketType type}.
          *
-         * @throws IllegalStateException If no name or lifetime have been specified
          * @return The type
          */
         TicketType<T> build();
