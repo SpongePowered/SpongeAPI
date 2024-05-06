@@ -69,12 +69,17 @@ public interface ServerSideConnectionEvent extends Event {
     ServerSideConnection connection();
 
     /**
-     * Gets the {@link GameProfile} of the client attempting to connect.
-     *
-     * @return The client's profile
+     * Called asynchronously when the client attempts to connect to
+     * the server.
      */
-    default GameProfile profile() {
-        return this.connection().profile();
+    interface Intent extends ServerSideConnectionEvent, MessageEvent, Cancellable {
+
+        /**
+         * Gets if the user is intending to connect due to being transferred.
+         *
+         * @return If the user is transferring.
+         */
+        boolean isTransfer();
     }
 
     /**

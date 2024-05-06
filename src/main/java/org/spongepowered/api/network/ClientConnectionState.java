@@ -24,18 +24,5 @@
  */
 package org.spongepowered.api.network;
 
-import org.spongepowered.api.entity.living.player.Player;
-
-/**
- * Represents a connection of a client to the server where
- * the {@link Player} has successfully joined.
- */
-public interface PlayerConnection extends EngineConnection {
-
-    /**
-     * Gets the associated {@link Player player} for this connection.
-     *
-     * @return The associated player
-     */
-    Player player();
+public interface ClientConnectionState extends EngineConnectionState {
 }

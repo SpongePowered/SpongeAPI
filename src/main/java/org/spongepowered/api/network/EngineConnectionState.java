@@ -24,26 +24,16 @@
  */
 package org.spongepowered.api.network;
 
-import org.spongepowered.api.entity.living.player.server.ServerPlayer;
-
 /**
- * Represents a connection of a client to the server where
- * the {@link ServerPlayer} has successfully joined.
+ * Represents the current state of the connection.
  */
-public interface ServerPlayerConnection extends PlayerConnection, ServerSideConnection {
+public interface EngineConnectionState {
 
     /**
-     * Gets the associated {@link ServerPlayer player} for this connection.
+     * Gets whatever the connection was established because
+     * the client was transferred.
      *
-     * @return The associated player
+     * @return Whatever the client was transferred.
      */
-    @Override
-    ServerPlayer player();
-
-    /**
-     * Gets the connection latency. This is constantly calculated by the server.
-     *
-     * @return The latency
-     */
-    int latency();
+    boolean transferred();
 }

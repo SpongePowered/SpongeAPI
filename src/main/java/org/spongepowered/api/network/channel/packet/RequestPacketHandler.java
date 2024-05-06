@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.network.channel.packet;
 
-import org.spongepowered.api.network.EngineConnection;
+import org.spongepowered.api.network.EngineConnectionState;
 import org.spongepowered.api.network.RemoteConnection;
 import org.spongepowered.api.network.channel.ChannelException;
 
@@ -33,10 +33,10 @@ import org.spongepowered.api.network.channel.ChannelException;
  *
  * @param <P> The request packet type
  * @param <R> The response packet type
- * @param <C> The connection type
+ * @param <S> The connection state
  */
 @FunctionalInterface
-public interface RequestPacketHandler<P extends Packet, R extends Packet, C extends EngineConnection> {
+public interface RequestPacketHandler<P extends Packet, R extends Packet, S extends EngineConnectionState> {
 
     /**
      * Handles the {@link RequestPacket} which was send by a specific
@@ -53,8 +53,8 @@ public interface RequestPacketHandler<P extends Packet, R extends Packet, C exte
      * take minutes.</p>
      *
      * @param requestPacket The received request packet
-     * @param connection The connection that sent the packet
+     * @param state The state that sent the packet
      * @param response The response which should be completed
      */
-    void handleRequest(P requestPacket, C connection, RequestPacketResponse<R> response);
+    void handleRequest(P requestPacket, S state, RequestPacketResponse<R> response);
 }

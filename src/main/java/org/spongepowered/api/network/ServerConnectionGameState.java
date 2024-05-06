@@ -24,38 +24,22 @@
  */
 package org.spongepowered.api.network;
 
-import net.kyori.adventure.text.Component;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 
-/**
- * Represents a connection on the server or client engine.
- */
-public interface EngineConnection extends RemoteConnection {
+public interface ServerConnectionGameState extends EngineConnectionGameState, ServerConnectionState {
 
     /**
-     * Gets the side this connection is on.
+     * Gets the associated {@link ServerPlayer player} for this connection state.
      *
-     * @return The side
-     */
-    EngineConnectionSide<? extends EngineConnection> side();
-
-    /**
-     * Gets the state this connection is on.
-     *
-     * @return The state
-     */
-    EngineConnectionState state();
-
-    /**
-     * Closes the connection, showing the default disconnect reason.
-     * (the translation key {@code disconnect.disconnected})
+     * @return The associated player
      */
     @Override
-    void close();
+    ServerPlayer player();
 
     /**
-     * Closes the connection with the given reason.
+     * Gets the connection latency. This is constantly calculated by the server.
      *
-     * @param reason The reason for the disconnection
+     * @return The latency
      */
-    void close(Component reason);
+    int latency();
 }

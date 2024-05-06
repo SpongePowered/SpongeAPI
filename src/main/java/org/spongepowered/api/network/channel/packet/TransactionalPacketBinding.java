@@ -26,6 +26,7 @@ package org.spongepowered.api.network.channel.packet;
 
 import org.spongepowered.api.network.EngineConnection;
 import org.spongepowered.api.network.EngineConnectionSide;
+import org.spongepowered.api.network.EngineConnectionState;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -61,29 +62,16 @@ public interface TransactionalPacketBinding<P extends RequestPacket<R>, R extend
 
     /**
      * Sets the {@link RequestPacketHandler} to handle a {@link RequestPacket}
-     * on a specific connection side. The difference with a normal {@link PacketHandler}
-     * is that it requires a response {@link Packet} as return value.
-     *
-     * @param side The side the request packet should be handled on
-     * @param handler The handler of the request packet
-     * @param <C> The connection type
-     * @return This packet binding, for chaining
-     */
-    <C extends EngineConnection> TransactionalPacketBinding<P, R> setRequestHandler(
-            EngineConnectionSide<C> side, RequestPacketHandler<? super P, ? extends R, ? super C> handler);
-
-    /**
-     * Sets the {@link RequestPacketHandler} to handle a {@link RequestPacket}
      * for a specific connection type. The difference with a normal {@link PacketHandler}
      * is that it requires a response {@link Packet} as return value.
      *
      * @param connectionType The connection type the request packet should be handled by
      * @param handler The handler of the request packet
-     * @param <C> The connection type
+     * @param <S> The connection state
      * @return This packet binding, for chaining
      */
-    <C extends EngineConnection> TransactionalPacketBinding<P, R> setRequestHandler(
-            Class<C> connectionType, RequestPacketHandler<? super P, ? extends R, ? super C> handler);
+    <S extends EngineConnectionState> TransactionalPacketBinding<P, R> setRequestHandler(
+            Class<S> connectionType, RequestPacketHandler<? super P, ? extends R, ? super S> handler);
 
     /**
      * Sets the {@link RequestPacketHandler} to handle a {@link RequestPacket}
@@ -93,7 +81,7 @@ public interface TransactionalPacketBinding<P extends RequestPacket<R>, R extend
      * @param handler The handler of the request packet
      * @return This packet binding, for chaining
      */
-    TransactionalPacketBinding<P, R> setRequestHandler(RequestPacketHandler<? super P, ? extends R, EngineConnection> handler);
+    TransactionalPacketBinding<P, R> setRequestHandler(RequestPacketHandler<? super P, ? extends R, EngineConnectionState> handler);
 
     /**
      * Adds a {@link PacketHandler} to handle a response {@link Packet}

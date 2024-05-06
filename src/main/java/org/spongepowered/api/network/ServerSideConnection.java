@@ -24,8 +24,6 @@
  */
 package org.spongepowered.api.network;
 
-import org.spongepowered.api.profile.GameProfile;
-
 /**
  * Represents a connection between a minecraft client and server.
  */
@@ -36,10 +34,4 @@ public interface ServerSideConnection extends EngineConnection {
         return EngineConnectionSide.SERVER;
     }
 
-    /**
-     * Gets the profile of the client.
-     *
-     * @return The client's profile
-     */
-    GameProfile profile();
 }
