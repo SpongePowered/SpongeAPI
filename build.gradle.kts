@@ -137,6 +137,7 @@ tasks {
 
         outputFactory = "org.spongepowered.api.event.SpongeEventFactory"
         include("org/spongepowered/api/event/*/**/*")
+        include("org/spongepowered/api/event/CompositeEvent.java")
         exclude("org/spongepowered/api/event/action/InteractEvent.java")
         exclude("org/spongepowered/api/event/cause/")
         exclude("org/spongepowered/api/event/entity/AffectEntityEvent.java")

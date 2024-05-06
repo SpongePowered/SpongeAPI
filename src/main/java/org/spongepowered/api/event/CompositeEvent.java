@@ -1,6 +1,11 @@
 package org.spongepowered.api.event;
 
+import org.spongepowered.api.event.impl.AbstractCompositeEvent;
+import org.spongepowered.api.event.impl.entity.AbstractDamageEntityEvent;
+import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
+import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
 import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
+import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -16,7 +21,8 @@ import java.util.function.Consumer;
  * <p>Using {@link #setCancelled(boolean)} will perform a best effort cancellation
  * on each of the children events.
  */
-@NoFactoryMethod
+@GenerateFactoryMethod
+@ImplementedBy(AbstractCompositeEvent.class)
 public interface CompositeEvent<E extends Event> extends Event, Cancellable {
 
     E baseEvent();
@@ -46,6 +52,7 @@ public interface CompositeEvent<E extends Event> extends Event, Cancellable {
      *
      * @param cancel The new cancelled state
      */
+    @PropertySettings(generateMethods = false)
     @Override
     void setCancelled(boolean cancel);
 }

@@ -29,17 +29,13 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.CompositeEvent;
 import org.spongepowered.api.event.action.InteractEvent;
-import org.spongepowered.api.event.entity.SpawnEntityEvent;
-import org.spongepowered.api.event.item.inventory.ChangeInventoryEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.Tristate;
+import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.math.vector.Vector3d;
-
-import java.util.Optional;
 
 /**
  * Base event for all interactions involving a {@link BlockSnapshot} at a
@@ -106,6 +102,7 @@ public interface InteractBlockEvent extends InteractEvent {
      *
      * <p>This is usually right-click.</p>
      */
+    @GenerateFactoryMethod
     interface Secondary extends InteractBlockEvent {
 
         Tristate originalUseItemResult();
