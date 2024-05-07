@@ -26,14 +26,18 @@ package org.spongepowered.api.world;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Key;
+import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.datapack.DataPackEntry;
 import org.spongepowered.api.util.DataPackEntryBuilder;
+
+import java.io.IOException;
 
 /**
  * A template for a {@link WorldType}.
  */
-public interface WorldTypeTemplate extends DataPackEntry<WorldTypeTemplate> {
+public interface WorldTypeTemplate extends DataPackEntry<WorldTypeTemplate>, WorldTypeDataFetcher {
 
     static WorldTypeTemplate.Builder overworld() {
         return WorldTypeTemplate.builder().fromValue(WorldTypes.OVERWORLD.get());
@@ -66,6 +70,18 @@ public interface WorldTypeTemplate extends DataPackEntry<WorldTypeTemplate> {
 
         <V> Builder add(Key<? extends Value<V>> key, V value);
 
+        /**
+         * Creates a world template based on the given data view.
+         * <p>The given data must be equivalent to a data-pack for world-templates (dimension)</p>
+         *
+         * @param pack The data
+         * @return This builder, for chaining
+         */
+        Builder fromDataPack(DataView pack) throws IOException;
+
+        Builder from(WorldType type);
+
+        Builder pack(DataPack<WorldTypeTemplate> pack);
     }
 
 }
