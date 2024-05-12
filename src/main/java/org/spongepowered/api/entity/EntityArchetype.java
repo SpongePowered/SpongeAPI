@@ -71,8 +71,12 @@ public interface EntityArchetype extends Archetype<EntitySnapshot, Entity> {
      * </p>
      *
      * @return The copied container of the entity
+     * @deprecated Use unified {@link EntityArchetype#rawData()}
      */
-    DataContainer entityData();
+    @Deprecated
+    default DataContainer entityData() {
+        return rawData();
+    }
 
     @Override
     void setRawData(DataView container) throws InvalidDataException;
