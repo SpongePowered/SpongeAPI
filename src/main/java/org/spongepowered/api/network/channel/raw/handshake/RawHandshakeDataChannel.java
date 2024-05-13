@@ -25,7 +25,7 @@
 package org.spongepowered.api.network.channel.raw.handshake;
 
 import org.spongepowered.api.network.EngineConnection;
-import org.spongepowered.api.network.EngineConnectionSide;
+import org.spongepowered.api.network.EngineConnectionState;
 import org.spongepowered.api.network.channel.ChannelBuf;
 import org.spongepowered.api.network.channel.NoResponseException;
 import org.spongepowered.api.network.channel.raw.RawDataChannel;
@@ -47,22 +47,13 @@ public interface RawHandshakeDataChannel {
     RawDataChannel parent();
 
     /**
-     * Sets the {@link RawHandshakeDataRequestHandler} on the given connection side.
-     *
-     * @param side The connection side the handler should be set on
-     * @param handler The handler to set
-     * @param <C> The connection type
-     */
-    <C extends EngineConnection> void setRequestHandler(EngineConnectionSide<C> side, RawHandshakeDataRequestHandler<? super C> handler);
-
-    /**
      * Sets the {@link RawHandshakeDataRequestHandler} for the given connection type.
      *
-     * @param connectionType The connection type the handler should be used by
+     * @param connectionState The connection state the handler should be used by
      * @param handler The handler to set
-     * @param <C> The connection type
+     * @param <S> The connection state
      */
-    <C extends EngineConnection> void setRequestHandler(Class<C> connectionType, RawHandshakeDataRequestHandler<? super C> handler);
+    <S extends EngineConnectionState> void setRequestHandler(Class<S> connectionState, RawHandshakeDataRequestHandler<? super S> handler);
 
     /**
      * Sets the {@link RawHandshakeDataRequestHandler} on the
@@ -70,7 +61,7 @@ public interface RawHandshakeDataChannel {
      *
      * @param handler The handler to set
      */
-    void setRequestHandler(RawHandshakeDataRequestHandler<EngineConnection> handler);
+    void setRequestHandler(RawHandshakeDataRequestHandler<EngineConnectionState> handler);
 
     /**
      * Sends a request message {@link ChannelBuf} to

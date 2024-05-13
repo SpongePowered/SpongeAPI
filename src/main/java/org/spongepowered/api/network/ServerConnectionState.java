@@ -38,7 +38,7 @@ public interface ServerConnectionState extends EngineConnectionState {
     }
 
     /**
-     * Represents a authenicated state between a minecraft client and server.
+     * Represents an authenicated state between a minecraft client and server.
      */
     interface Authenticated extends EngineConnectionState.Authenticated, ServerConnectionState {
     }
