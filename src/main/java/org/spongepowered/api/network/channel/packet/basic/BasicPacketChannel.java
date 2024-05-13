@@ -36,6 +36,7 @@ import org.spongepowered.api.network.channel.packet.TransactionalPacketRegistry;
  *
  * <p>There are a few limitations with using this channel. Request/response
  * packets may only be used during the handshake phase using {@link #handshake}.
+ * Packets can't be send during the configuration phase.
  * Normal packets may only be send during the play phase.</p>
  */
 public interface BasicPacketChannel extends Channel, TransactionalPacketRegistry {

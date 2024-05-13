@@ -24,5 +24,54 @@
  */
 package org.spongepowered.api.network;
 
+import org.spongepowered.api.entity.living.player.client.LocalPlayer;
+
+/**
+ * Represents the state of the connection
+ * from the client to the server on the client side.
+ */
 public interface ClientConnectionState extends EngineConnectionState {
+
+    /**
+     * Represents the intent state of the connection
+     * from the client to the server on the client side.
+     */
+    interface Intent extends EngineConnectionState.Intent, ClientConnectionState {
+    }
+
+    /**
+     * Represents the authenticated state of the connection
+     * from the client to the server on the client side.
+     */
+    interface Authenticated extends EngineConnectionState.Authenticated, ClientConnectionState {
+    }
+
+    /**
+     * Represents the login state of the connection
+     * from the client to the server on the client side.
+     */
+    interface Login extends EngineConnectionState.Login, Authenticated {
+    }
+
+    /**
+     * Represents the configuration state of the connection
+     * from the client to the server on the client side.
+     */
+    interface Configuration extends EngineConnectionState.Configuration, Authenticated {
+    }
+
+    /**
+     * Represents the game state of the connection
+     * from the client to the server on the client side.
+     */
+    interface Game extends EngineConnectionState.Game, Authenticated {
+
+        /**
+         * Gets the associated {@link LocalPlayer player} for this connection state.
+         *
+         * @return The associated player
+         */
+        @Override
+        LocalPlayer player();
+    }
 }

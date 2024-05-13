@@ -24,8 +24,12 @@
  */
 package org.spongepowered.api.network;
 
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.profile.GameProfile;
+
 /**
- * Represents the current state of the connection.
+ * Represents the current state of the connection
+ * on the server or client engine.
  */
 public interface EngineConnectionState {
 
@@ -33,7 +37,56 @@ public interface EngineConnectionState {
      * Gets whatever the connection was established because
      * the client was transferred.
      *
-     * @return Whatever the client was transferred.
+     * @return {@code true} if the client was transferred.
      */
     boolean transferred();
+
+    /**
+     * Represents the intent state of the connection
+     * on the server or client engine.
+     */
+    interface Intent extends EngineConnectionState {
+    }
+
+    /**
+     * Represents the authenticated state of the connection
+     * on the server or client engine.
+     */
+    interface Authenticated extends EngineConnectionState {
+
+        /**
+         * Gets the associated {@link GameProfile profile} for this connection state.
+         *
+         * @return The associated profile
+         */
+        GameProfile profile();
+    }
+
+    /**
+     * Represents the login state of the connection
+     * on the server or client engine.
+     */
+    interface Login extends Authenticated {
+    }
+
+    /**
+     * Represents the connection state of the connection
+     * on the server or client engine.
+     */
+    interface Configuration extends Authenticated {
+    }
+
+    /**
+     * Represents the game state of the connection
+     * on the server or client engine.
+     */
+    interface Game extends Authenticated {
+
+        /**
+         * Gets the associated {@link Player player} for this connection state.
+         *
+         * @return The associated player
+         */
+        Player player();
+    }
 }

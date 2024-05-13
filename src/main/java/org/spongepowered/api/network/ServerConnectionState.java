@@ -24,5 +24,55 @@
  */
 package org.spongepowered.api.network;
 
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
+
+/**
+ * Represents a connection state between a minecraft client and server.
+ */
 public interface ServerConnectionState extends EngineConnectionState {
+
+    /**
+     * Represents a intent state between a minecraft client and server.
+     */
+    interface Intent extends EngineConnectionState.Intent, ServerConnectionState {
+    }
+
+    /**
+     * Represents a authenicated state between a minecraft client and server.
+     */
+    interface Authenticated extends EngineConnectionState.Authenticated, ServerConnectionState {
+    }
+
+    /**
+     * Represents a login state between a minecraft client and server.
+     */
+    interface Login extends EngineConnectionState.Login, Authenticated {
+    }
+
+    /**
+     * Represents a configuration state between a minecraft client and server.
+     */
+    interface Configuration extends EngineConnectionState.Configuration, Authenticated {
+    }
+
+    /**
+     * Represents a game state between a minecraft client and server.
+     */
+    interface Game extends EngineConnectionState.Game, Authenticated {
+
+        /**
+         * Gets the associated {@link ServerPlayer player} for this connection state.
+         *
+         * @return The associated player
+         */
+        @Override
+        ServerPlayer player();
+
+        /**
+         * Gets the connection latency. This is constantly calculated by the server.
+         *
+         * @return The latency
+         */
+        int latency();
+    }
 }

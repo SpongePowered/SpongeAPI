@@ -31,7 +31,7 @@ import org.spongepowered.api.network.channel.packet.basic.BasicPacketChannel;
 /**
  * Represents an advanced channel binding that sends and receives packets. An
  * advantage over using a {@link BasicPacketChannel} is that it also supports
- * request/response packets.
+ * request/response packets and the configuration phase.
  *
  * <p>However this channel is NOT compatible with the forge opcode based packet
  * channels. If you want to remain compatible, use {@link BasicPacketChannel}

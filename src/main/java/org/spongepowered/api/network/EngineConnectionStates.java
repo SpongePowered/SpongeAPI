@@ -32,39 +32,54 @@ public final class EngineConnectionStates {
     /**
      * The supertype of all the known connection states.
      */
-    public static final Class<EngineConnectionStates> ALL = EngineConnectionStates.class;
+    public static final Class<EngineConnectionState> ALL = EngineConnectionState.class;
 
-    public static final Class<EngineConnectionIntentState> INTENT = EngineConnectionIntentState.class;
+    public static final Class<EngineConnectionState.Intent> INTENT = EngineConnectionState.Intent.class;
 
-    public static final Class<EngineConnectionLoginState> LOGIN = EngineConnectionLoginState.class;
+    /**
+     * The supertype of all the connection states where the connection is authenticated.
+     */
+    public static final Class<EngineConnectionState.Authenticated> AUTHENTICATED = EngineConnectionState.Authenticated.class;
 
-    public static final Class<EngineConnectionConfigurationState> CONFIGURATION = EngineConnectionConfigurationState.class;
+    public static final Class<EngineConnectionState.Login> LOGIN = EngineConnectionState.Login.class;
 
-    public static final Class<EngineConnectionGameState> GAME = EngineConnectionGameState.class;
+    public static final Class<EngineConnectionState.Configuration> CONFIGURATION = EngineConnectionState.Configuration.class;
+
+    public static final Class<EngineConnectionState.Game> GAME = EngineConnectionState.Game.class;
 
     /**
      * The supertype of all the known client connection states.
      */
     public static final Class<ClientConnectionState> CLIENT_SIDE = ClientConnectionState.class;
 
-    public static final Class<ClientConnectionIntentState> CLIENT_INTENT = ClientConnectionIntentState.class;
+    public static final Class<ClientConnectionState.Intent> CLIENT_INTENT = ClientConnectionState.Intent.class;
 
-    public static final Class<ClientConnectionLoginState> CLIENT_LOGIN = ClientConnectionLoginState.class;
+    /**
+     * The supertype of all the connection states where the client is authenticated.
+     */
+    public static final Class<ClientConnectionState.Authenticated> CLIENT_AUTHENTICATED = ClientConnectionState.Authenticated.class;
 
-    public static final Class<ClientConnectionConfigurationState> CLIENT_CONFIGURATION = ClientConnectionConfigurationState.class;
+    public static final Class<ClientConnectionState.Login> CLIENT_LOGIN = ClientConnectionState.Login.class;
 
-    public static final Class<ClientConnectionGameState> CLIENT_GAME = ClientConnectionGameState.class;
+    public static final Class<ClientConnectionState.Configuration> CLIENT_CONFIGURATION = ClientConnectionState.Configuration.class;
+
+    public static final Class<ClientConnectionState.Game> CLIENT_GAME = ClientConnectionState.Game.class;
 
     /**
      * The supertype of all the known server connection states.
      */
     public static final Class<ServerConnectionState> SERVER_SIDE = ServerConnectionState.class;
 
-    public static final Class<ServerConnectionIntentState> SERVER_INTENT = ServerConnectionIntentState.class;
+    public static final Class<ServerConnectionState.Intent> SERVER_INTENT = ServerConnectionState.Intent.class;
 
-    public static final Class<ServerConnectionLoginState> SERVER_LOGIN = ServerConnectionLoginState.class;
+    /**
+     * The supertype of all the connection states where the client is authenticated.
+     */
+    public static final Class<ServerConnectionState.Authenticated> SERVER_AUTHENTICATED = ServerConnectionState.Authenticated.class;
 
-    public static final Class<ServerConnectionConfigurationState> SERVER_CONFIGURATION = ServerConnectionConfigurationState.class;
+    public static final Class<ServerConnectionState.Login> SERVER_LOGIN = ServerConnectionState.Login.class;
 
-    public static final Class<ServerConnectionGameState> SERVER_GAME = ServerConnectionGameState.class;
+    public static final Class<ServerConnectionState.Configuration> SERVER_CONFIGURATION = ServerConnectionState.Configuration.class;
+
+    public static final Class<ServerConnectionState.Game> SERVER_GAME = ServerConnectionState.Game.class;
 }
