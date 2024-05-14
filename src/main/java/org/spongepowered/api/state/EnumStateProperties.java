@@ -183,6 +183,10 @@ public final class EnumStateProperties {
         return EnumStateProperty.of("TRIAL_SPAWNER_STATE");
     }
 
+    public static EnumStateProperty<?> property_VAULT_STATE() {
+        return EnumStateProperty.of("VAULT_STATE");
+    }
+
     public static EnumStateProperty<Direction> property_VERTICAL_DIRECTION() {
         return EnumStateProperty.of("VERTICAL_DIRECTION");
     }

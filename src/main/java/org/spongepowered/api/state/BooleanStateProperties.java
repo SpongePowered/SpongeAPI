@@ -165,6 +165,10 @@ public final class BooleanStateProperties {
         return BooleanStateProperty.of("OCCUPIED");
     }
 
+    public static BooleanStateProperty property_OMINOUS() {
+        return BooleanStateProperty.of("OMINOUS");
+    }
+
     public static BooleanStateProperty property_OPEN() {
         return BooleanStateProperty.of("OPEN");
     }

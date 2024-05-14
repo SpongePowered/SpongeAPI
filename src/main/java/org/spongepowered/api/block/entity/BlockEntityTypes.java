@@ -126,6 +126,8 @@ public final class BlockEntityTypes {
 
     public static final DefaultedRegistryReference<BlockEntityType> TRIAL_SPAWNER = BlockEntityTypes.key(ResourceKey.minecraft("trial_spawner"));
 
+    public static final DefaultedRegistryReference<BlockEntityType> VAULT = BlockEntityTypes.key(ResourceKey.minecraft("vault"));
+
     private BlockEntityTypes() {
     }
 

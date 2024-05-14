@@ -40,19 +40,21 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class ArmorMaterials {
 
-    public static final DefaultedRegistryReference<ArmorMaterial> CHAINMAIL = ArmorMaterials.key(ResourceKey.sponge("chainmail"));
+    public static final DefaultedRegistryReference<ArmorMaterial> ARMADILLO = ArmorMaterials.key(ResourceKey.minecraft("armadillo"));
 
-    public static final DefaultedRegistryReference<ArmorMaterial> DIAMOND = ArmorMaterials.key(ResourceKey.sponge("diamond"));
+    public static final DefaultedRegistryReference<ArmorMaterial> CHAINMAIL = ArmorMaterials.key(ResourceKey.minecraft("chainmail"));
 
-    public static final DefaultedRegistryReference<ArmorMaterial> GOLD = ArmorMaterials.key(ResourceKey.sponge("gold"));
+    public static final DefaultedRegistryReference<ArmorMaterial> DIAMOND = ArmorMaterials.key(ResourceKey.minecraft("diamond"));
 
-    public static final DefaultedRegistryReference<ArmorMaterial> IRON = ArmorMaterials.key(ResourceKey.sponge("iron"));
+    public static final DefaultedRegistryReference<ArmorMaterial> GOLD = ArmorMaterials.key(ResourceKey.minecraft("gold"));
 
-    public static final DefaultedRegistryReference<ArmorMaterial> LEATHER = ArmorMaterials.key(ResourceKey.sponge("leather"));
+    public static final DefaultedRegistryReference<ArmorMaterial> IRON = ArmorMaterials.key(ResourceKey.minecraft("iron"));
 
-    public static final DefaultedRegistryReference<ArmorMaterial> NETHERITE = ArmorMaterials.key(ResourceKey.sponge("netherite"));
+    public static final DefaultedRegistryReference<ArmorMaterial> LEATHER = ArmorMaterials.key(ResourceKey.minecraft("leather"));
 
-    public static final DefaultedRegistryReference<ArmorMaterial> TURTLE = ArmorMaterials.key(ResourceKey.sponge("turtle"));
+    public static final DefaultedRegistryReference<ArmorMaterial> NETHERITE = ArmorMaterials.key(ResourceKey.minecraft("netherite"));
+
+    public static final DefaultedRegistryReference<ArmorMaterial> TURTLE = ArmorMaterials.key(ResourceKey.minecraft("turtle"));
 
     private ArmorMaterials() {
     }
