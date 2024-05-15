@@ -94,9 +94,9 @@ public interface Container extends Inventory {
     /**
      * Returns the {@link ContainerType} of this container.
      *
-     * @return the ContainerType of this container.
+     * @return the ContainerType of this container if present.
      */
-    ContainerType type();
+    Optional<ContainerType> type();
 
     /**
      * Returns the {@link InventoryMenu} if this container has been opened by one.
