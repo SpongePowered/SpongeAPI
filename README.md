@@ -1,4 +1,4 @@
-SpongeAPI ![Build Status](https://github.com/SpongePowered/SpongeAPI/actions/workflows/ci.yaml/badge.svg?branch=api-10)
+SpongeAPI ![Build Status](https://github.com/SpongePowered/SpongeAPI/actions/workflows/ci.yaml/badge.svg?branch=api-11)
 =============
 A mature Minecraft plugin API (not including an implementation), licensed under the [MIT License]. 
 
@@ -11,7 +11,7 @@ A mature Minecraft plugin API (not including an implementation), licensed under 
 * [Discord] `#plugins`
 
 ## Prerequisites
-* [Java] 17
+* [Java] 21
 
 ## Clone
 The following steps will ensure your project is cloned properly.  
@@ -24,7 +24,7 @@ __Note:__ If you do not have [Gradle] installed then use ./gradlew for Unix syst
 
 In order to build SpongeAPI you simply need to run the `gradle` command. You can find the compiled JAR file in `./build/libs` labeled similarly to 'spongeapi-x.x.x-SNAPSHOT.jar'.
 
-Sponge will use a javac version of *at least* 17. If an older JDK is used to launch Gradle, JDK 17 will be downloaded automatically.
+Sponge will use a javac version of *at least* 21. If an older JDK is used to launch Gradle, JDK 21 will be downloaded automatically.
 
 ## Contributing
 Are you a talented programmer looking to contribute some code? We'd love the help!

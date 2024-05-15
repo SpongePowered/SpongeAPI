@@ -40,8 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class ParticleTypes {
 
-    public static final DefaultedRegistryReference<ParticleType> AMBIENT_ENTITY_EFFECT = ParticleTypes.key(ResourceKey.minecraft("ambient_entity_effect"));
-
     public static final DefaultedRegistryReference<ParticleType> ANGRY_VILLAGER = ParticleTypes.key(ResourceKey.minecraft("angry_villager"));
 
     public static final DefaultedRegistryReference<ParticleType> ASH = ParticleTypes.key(ResourceKey.minecraft("ash"));
@@ -93,6 +91,8 @@ public final class ParticleTypes {
     public static final DefaultedRegistryReference<ParticleType> DUST = ParticleTypes.key(ResourceKey.minecraft("dust"));
 
     public static final DefaultedRegistryReference<ParticleType> DUST_COLOR_TRANSITION = ParticleTypes.key(ResourceKey.minecraft("dust_color_transition"));
+
+    public static final DefaultedRegistryReference<ParticleType> DUST_PILLAR = ParticleTypes.key(ResourceKey.minecraft("dust_pillar"));
 
     public static final DefaultedRegistryReference<ParticleType> DUST_PLUME = ParticleTypes.key(ResourceKey.minecraft("dust_plume"));
 
@@ -148,17 +148,21 @@ public final class ParticleTypes {
 
     public static final DefaultedRegistryReference<ParticleType> GUST = ParticleTypes.key(ResourceKey.minecraft("gust"));
 
-    public static final DefaultedRegistryReference<ParticleType> GUST_DUST = ParticleTypes.key(ResourceKey.minecraft("gust_dust"));
+    public static final DefaultedRegistryReference<ParticleType> GUST_EMITTER_LARGE = ParticleTypes.key(ResourceKey.minecraft("gust_emitter_large"));
 
-    public static final DefaultedRegistryReference<ParticleType> GUST_EMITTER = ParticleTypes.key(ResourceKey.minecraft("gust_emitter"));
+    public static final DefaultedRegistryReference<ParticleType> GUST_EMITTER_SMALL = ParticleTypes.key(ResourceKey.minecraft("gust_emitter_small"));
 
     public static final DefaultedRegistryReference<ParticleType> HAPPY_VILLAGER = ParticleTypes.key(ResourceKey.minecraft("happy_villager"));
 
     public static final DefaultedRegistryReference<ParticleType> HEART = ParticleTypes.key(ResourceKey.minecraft("heart"));
 
+    public static final DefaultedRegistryReference<ParticleType> INFESTED = ParticleTypes.key(ResourceKey.minecraft("infested"));
+
     public static final DefaultedRegistryReference<ParticleType> INSTANT_EFFECT = ParticleTypes.key(ResourceKey.minecraft("instant_effect"));
 
     public static final DefaultedRegistryReference<ParticleType> ITEM = ParticleTypes.key(ResourceKey.minecraft("item"));
+
+    public static final DefaultedRegistryReference<ParticleType> ITEM_COBWEB = ParticleTypes.key(ResourceKey.minecraft("item_cobweb"));
 
     public static final DefaultedRegistryReference<ParticleType> ITEM_SLIME = ParticleTypes.key(ResourceKey.minecraft("item_slime"));
 
@@ -180,9 +184,13 @@ public final class ParticleTypes {
 
     public static final DefaultedRegistryReference<ParticleType> NOTE = ParticleTypes.key(ResourceKey.minecraft("note"));
 
+    public static final DefaultedRegistryReference<ParticleType> OMINOUS_SPAWNING = ParticleTypes.key(ResourceKey.minecraft("ominous_spawning"));
+
     public static final DefaultedRegistryReference<ParticleType> POOF = ParticleTypes.key(ResourceKey.minecraft("poof"));
 
     public static final DefaultedRegistryReference<ParticleType> PORTAL = ParticleTypes.key(ResourceKey.minecraft("portal"));
+
+    public static final DefaultedRegistryReference<ParticleType> RAID_OMEN = ParticleTypes.key(ResourceKey.minecraft("raid_omen"));
 
     public static final DefaultedRegistryReference<ParticleType> RAIN = ParticleTypes.key(ResourceKey.minecraft("rain"));
 
@@ -199,6 +207,8 @@ public final class ParticleTypes {
     public static final DefaultedRegistryReference<ParticleType> SHRIEK = ParticleTypes.key(ResourceKey.minecraft("shriek"));
 
     public static final DefaultedRegistryReference<ParticleType> SMALL_FLAME = ParticleTypes.key(ResourceKey.minecraft("small_flame"));
+
+    public static final DefaultedRegistryReference<ParticleType> SMALL_GUST = ParticleTypes.key(ResourceKey.minecraft("small_gust"));
 
     public static final DefaultedRegistryReference<ParticleType> SMOKE = ParticleTypes.key(ResourceKey.minecraft("smoke"));
 
@@ -224,9 +234,15 @@ public final class ParticleTypes {
 
     public static final DefaultedRegistryReference<ParticleType> TOTEM_OF_UNDYING = ParticleTypes.key(ResourceKey.minecraft("totem_of_undying"));
 
+    public static final DefaultedRegistryReference<ParticleType> TRIAL_OMEN = ParticleTypes.key(ResourceKey.minecraft("trial_omen"));
+
     public static final DefaultedRegistryReference<ParticleType> TRIAL_SPAWNER_DETECTION = ParticleTypes.key(ResourceKey.minecraft("trial_spawner_detection"));
 
+    public static final DefaultedRegistryReference<ParticleType> TRIAL_SPAWNER_DETECTION_OMINOUS = ParticleTypes.key(ResourceKey.minecraft("trial_spawner_detection_ominous"));
+
     public static final DefaultedRegistryReference<ParticleType> UNDERWATER = ParticleTypes.key(ResourceKey.minecraft("underwater"));
+
+    public static final DefaultedRegistryReference<ParticleType> VAULT_CONNECTION = ParticleTypes.key(ResourceKey.minecraft("vault_connection"));
 
     public static final DefaultedRegistryReference<ParticleType> VIBRATION = ParticleTypes.key(ResourceKey.minecraft("vibration"));
 

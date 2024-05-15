@@ -27,7 +27,7 @@ package org.spongepowered.api.network.channel.raw.play;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.network.EngineConnection;
-import org.spongepowered.api.network.EngineConnectionSide;
+import org.spongepowered.api.network.EngineConnectionState;
 import org.spongepowered.api.network.channel.ChannelBuf;
 import org.spongepowered.api.network.channel.packet.Packet;
 import org.spongepowered.api.network.channel.packet.PacketChannel;
@@ -71,45 +71,26 @@ public interface RawPlayDataChannel {
      *
      * @param handler The handler
      */
-    void addHandler(RawPlayDataHandler<EngineConnection> handler);
+    void addHandler(RawPlayDataHandler<EngineConnectionState> handler);
 
     /**
      * Adds a listener to this channel that is invoked every time data is
      * sent to it on the given connection side.
      *
-     * @param side The connection side the data will be handled for
+     * @param connectionState The connection state the data will be handled for
      * @param handler The handler
-     * @param <C> The connection type
+     * @param <S> The connection state
      */
-    <C extends EngineConnection> void addHandler(EngineConnectionSide<C> side, RawPlayDataHandler<? super C> handler);
-
-    /**
-     * Adds a listener to this channel that is invoked every time data is
-     * sent to it on the given connection side.
-     *
-     * @param connectionType The connection type the data will be handled for
-     * @param handler The handler
-     * @param <C> The connection type
-     */
-    <C extends EngineConnection> void addHandler(Class<C> connectionType, RawPlayDataHandler<? super C> handler);
+    <S extends EngineConnectionState> void addHandler(Class<S> connectionState, RawPlayDataHandler<? super S> handler);
 
     /**
      * Removes the handler from handling data.
      *
-     * @param side The side to remove the handler from
+     * @param connectionState The connection state to remove the handler from
      * @param handler The handler
-     * @param <C> The connection type
+     * @param <S> The connection state
      */
-    <C extends EngineConnection> void removeHandler(EngineConnectionSide<C> side, RawPlayDataHandler<? super C> handler);
-
-    /**
-     * Removes the handler from handling data.
-     *
-     * @param connectionType The connection type to remove the handler from
-     * @param handler The handler
-     * @param <C> The connection type
-     */
-    <C extends EngineConnection> void removeHandler(Class<C> connectionType, RawPlayDataHandler<? super C> handler);
+    <S extends EngineConnectionState> void removeHandler(Class<S> connectionState, RawPlayDataHandler<? super S> handler);
 
     /**
      * Removes the handler from handling data.

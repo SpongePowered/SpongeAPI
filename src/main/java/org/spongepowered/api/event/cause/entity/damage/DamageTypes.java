@@ -108,6 +108,8 @@ public final class DamageTypes {
 
     public static final DefaultedRegistryReference<DamageType> SONIC_BOOM = DamageTypes.key(ResourceKey.minecraft("sonic_boom"));
 
+    public static final DefaultedRegistryReference<DamageType> SPIT = DamageTypes.key(ResourceKey.minecraft("spit"));
+
     public static final DefaultedRegistryReference<DamageType> STALAGMITE = DamageTypes.key(ResourceKey.minecraft("stalagmite"));
 
     public static final DefaultedRegistryReference<DamageType> STARVE = DamageTypes.key(ResourceKey.minecraft("starve"));

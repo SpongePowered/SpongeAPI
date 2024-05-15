@@ -42,13 +42,13 @@ public final class PotionTypes {
 
     public static final DefaultedRegistryReference<PotionType> AWKWARD = PotionTypes.key(ResourceKey.minecraft("awkward"));
 
-    public static final DefaultedRegistryReference<PotionType> EMPTY = PotionTypes.key(ResourceKey.minecraft("empty"));
-
     public static final DefaultedRegistryReference<PotionType> FIRE_RESISTANCE = PotionTypes.key(ResourceKey.minecraft("fire_resistance"));
 
     public static final DefaultedRegistryReference<PotionType> HARMING = PotionTypes.key(ResourceKey.minecraft("harming"));
 
     public static final DefaultedRegistryReference<PotionType> HEALING = PotionTypes.key(ResourceKey.minecraft("healing"));
+
+    public static final DefaultedRegistryReference<PotionType> INFESTED = PotionTypes.key(ResourceKey.minecraft("infested"));
 
     public static final DefaultedRegistryReference<PotionType> INVISIBILITY = PotionTypes.key(ResourceKey.minecraft("invisibility"));
 
@@ -85,6 +85,8 @@ public final class PotionTypes {
     public static final DefaultedRegistryReference<PotionType> MUNDANE = PotionTypes.key(ResourceKey.minecraft("mundane"));
 
     public static final DefaultedRegistryReference<PotionType> NIGHT_VISION = PotionTypes.key(ResourceKey.minecraft("night_vision"));
+
+    public static final DefaultedRegistryReference<PotionType> OOZING = PotionTypes.key(ResourceKey.minecraft("oozing"));
 
     public static final DefaultedRegistryReference<PotionType> POISON = PotionTypes.key(ResourceKey.minecraft("poison"));
 
@@ -125,6 +127,10 @@ public final class PotionTypes {
     public static final DefaultedRegistryReference<PotionType> WATER_BREATHING = PotionTypes.key(ResourceKey.minecraft("water_breathing"));
 
     public static final DefaultedRegistryReference<PotionType> WEAKNESS = PotionTypes.key(ResourceKey.minecraft("weakness"));
+
+    public static final DefaultedRegistryReference<PotionType> WEAVING = PotionTypes.key(ResourceKey.minecraft("weaving"));
+
+    public static final DefaultedRegistryReference<PotionType> WIND_CHARGED = PotionTypes.key(ResourceKey.minecraft("wind_charged"));
 
     private PotionTypes() {
     }

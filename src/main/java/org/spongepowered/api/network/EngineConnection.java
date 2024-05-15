@@ -26,6 +26,8 @@ package org.spongepowered.api.network;
 
 import net.kyori.adventure.text.Component;
 
+import java.util.Optional;
+
 /**
  * Represents a connection on the server or client engine.
  */
@@ -37,6 +39,14 @@ public interface EngineConnection extends RemoteConnection {
      * @return The side
      */
     EngineConnectionSide<? extends EngineConnection> side();
+
+    /**
+     * Gets the state this connection is on.
+     *
+     * @return The state, or {@link Optional#empty()} if the connection
+     * has been closed.
+     */
+    Optional<EngineConnectionState> state();
 
     /**
      * Closes the connection, showing the default disconnect reason.

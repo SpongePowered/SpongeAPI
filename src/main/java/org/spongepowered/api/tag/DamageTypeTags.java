@@ -61,6 +61,8 @@ public final class DamageTypeTags {
 
     public static final Tag<DamageType> BYPASSES_SHIELD = DamageTypeTags.key(ResourceKey.minecraft("bypasses_shield"));
 
+    public static final Tag<DamageType> BYPASSES_WOLF_ARMOR = DamageTypeTags.key(ResourceKey.minecraft("bypasses_wolf_armor"));
+
     public static final Tag<DamageType> CAN_BREAK_ARMOR_STAND = DamageTypeTags.key(ResourceKey.minecraft("can_break_armor_stand"));
 
     public static final Tag<DamageType> DAMAGES_HELMET = DamageTypeTags.key(ResourceKey.minecraft("damages_helmet"));
@@ -78,6 +80,8 @@ public final class DamageTypeTags {
     public static final Tag<DamageType> IS_FREEZING = DamageTypeTags.key(ResourceKey.minecraft("is_freezing"));
 
     public static final Tag<DamageType> IS_LIGHTNING = DamageTypeTags.key(ResourceKey.minecraft("is_lightning"));
+
+    public static final Tag<DamageType> IS_PLAYER_ATTACK = DamageTypeTags.key(ResourceKey.minecraft("is_player_attack"));
 
     public static final Tag<DamageType> IS_PROJECTILE = DamageTypeTags.key(ResourceKey.minecraft("is_projectile"));
 

@@ -132,7 +132,7 @@ dependencies {
 
 tasks {
     genEventImpl {
-        sourceCompatibility = javaTarget
+        sourceCompatibility = "17" // TODO use javaTarget here
         destinationDirectory = project.layout.buildDirectory.dir("generated/event-factory")
 
         outputFactory = "org.spongepowered.api.event.SpongeEventFactory"

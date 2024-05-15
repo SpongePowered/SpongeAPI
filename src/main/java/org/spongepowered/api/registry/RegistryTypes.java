@@ -196,6 +196,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<ArtType> ART_TYPE = RegistryTypes.minecraftKeyInGame("painting_variant");
 
+    public static final DefaultedRegistryType<ArmorMaterial> ARMOR_MATERIAL = RegistryTypes.minecraftKeyInGame("armor_material");
+
     public static final DefaultedRegistryType<AttributeType> ATTRIBUTE_TYPE = RegistryTypes.minecraftKeyInGame("attribute");
 
     public static final DefaultedRegistryType<Biome> BIOME = RegistryTypes.minecraftKeyInServer("worldgen/biome");
@@ -231,6 +233,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<ItemType> ITEM_TYPE = RegistryTypes.minecraftKeyInGame("item");
 
     public static final DefaultedRegistryType<JigsawPool> JIGSAW_POOL = RegistryTypes.minecraftKeyInServer("worldgen/template_pool");
+
+    public static final DefaultedRegistryType<MapDecorationType> MAP_DECORATION_TYPE = RegistryTypes.minecraftKeyInGame("map_decoration_type");
 
     public static final DefaultedRegistryType<NoiseGeneratorConfig> NOISE_GENERATOR_CONFIG = RegistryTypes.minecraftKeyInServer("worldgen/noise_settings");
 
@@ -278,7 +282,6 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<AdvancementType> ADVANCEMENT_TYPE = RegistryTypes.spongeKeyInGame("advancement_type");
 
-    public static final DefaultedRegistryType<ArmorMaterial> ARMOR_MATERIAL = RegistryTypes.spongeKeyInGame("armor_material");
 
     public static final DefaultedRegistryType<AttachmentSurface> ATTACHMENT_SURFACE = RegistryTypes.spongeKeyInGame("attachment_surface");
 
@@ -399,8 +402,6 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<MapColorType> MAP_COLOR_TYPE = RegistryTypes.spongeKeyInGame("map_color_type");
 
     public static final DefaultedRegistryType<MapDecorationOrientation> MAP_DECORATION_ORIENTATION = RegistryTypes.spongeKeyInGame("map_decoration_orientation");
-
-    public static final DefaultedRegistryType<MapDecorationType> MAP_DECORATION_TYPE = RegistryTypes.spongeKeyInGame("map_decoration_type");
 
     public static final DefaultedRegistryType<MapShade> MAP_SHADE = RegistryTypes.spongeKeyInGame("map_shade");
 
