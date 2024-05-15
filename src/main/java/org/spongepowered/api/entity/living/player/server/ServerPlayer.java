@@ -46,6 +46,7 @@ import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.tab.TabList;
 import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.item.inventory.Container;
+import org.spongepowered.api.item.inventory.ContainerType;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.network.ServerPlayerConnection;
 import org.spongepowered.api.resourcepack.ResourcePack;
@@ -59,6 +60,7 @@ import org.spongepowered.plugin.PluginContainer;
 import java.time.Instant;
 import java.util.Collection;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 public interface ServerPlayer extends Player, Subject {
 
@@ -116,6 +118,31 @@ public interface ServerPlayer extends Player, Subject {
      * @return The opened Container if the inventory was opened, otherwise {@link Optional#empty()}
      */
     Optional<Container> openInventory(Inventory inventory, Component displayName);
+
+    /**
+     * Constructs Container from a given type and opens it for player to view.
+     *
+     * @param type The container type to construct and view
+     * @return The opened Container if it was constructed and opened, otherwise {@link Optional#empty()}
+     */
+    Optional<Container> openInventory(ContainerType type);
+
+    default Optional<Container> openInventory(Supplier<ContainerType> type) {
+        return this.openInventory(type.get());
+    }
+
+    /**
+     * Constructs Container from a given type and opens it for player to view with a custom displayName.
+     *
+     * @param type The container type to construct and view
+     * @param displayName The display name to set
+     * @return The opened Container if it was constructed and opened, otherwise {@link Optional#empty()}
+     */
+    Optional<Container> openInventory(ContainerType type, Component displayName);
+
+    default Optional<Container> openInventory(Supplier<ContainerType> type, Component displayName) {
+        return this.openInventory(type.get(), displayName);
+    }
 
     /**
      * Closes the currently viewed entity of this player, if it is currently
