@@ -30,7 +30,6 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.registry.DefaultedRegistryReference;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -119,7 +118,7 @@ public interface Ingredient extends Predicate<ItemStack> {
      * @return The new ingredient
      */
     @SafeVarargs
-    static Ingredient of(DefaultedRegistryReference<? extends ItemType> @Nullable ... itemTypes) {
+    static Ingredient of(Supplier<? extends ItemType> @Nullable ... itemTypes) {
         if (itemTypes == null || itemTypes.length == 0) {
             return Ingredient.empty();
         }
