@@ -61,6 +61,8 @@ public final class ContainerTypes {
      */
     public static final DefaultedRegistryReference<ContainerType> GENERIC_3X3 = ContainerTypes.key(ResourceKey.minecraft("generic_3x3"));
 
+    public static final DefaultedRegistryReference<ContainerType> CRAFTER_3X3 = ContainerTypes.key(ResourceKey.minecraft("crafter_3x3"));
+
     public static final DefaultedRegistryReference<ContainerType> GENERIC_9X1 = ContainerTypes.key(ResourceKey.minecraft("generic_9x1"));
 
     public static final DefaultedRegistryReference<ContainerType> GENERIC_9X2 = ContainerTypes.key(ResourceKey.minecraft("generic_9x2"));
