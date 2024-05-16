@@ -46,6 +46,17 @@ import org.spongepowered.math.vector.Vector3i;
 
 public interface BlockVolume extends Volume {
 
+    /**
+     * Gets the {@link Palette} in use for this particular {@link Volume}.
+     * It is not guaranteed that the palette is the same across smaller
+     * {@link Volume Volumes} that may be contained within this volume.
+     * An example can be the difference between a {@link org.spongepowered.api.world.chunk.Chunk}
+     * and {@link org.spongepowered.api.world.World}'s palette.
+     *
+     * @return The block palette in use for this volume
+     */
+    Palette<BlockState, BlockType> blockPalette();
+
     BlockState block(int x, int y, int z);
 
     default BlockState block(final Vector3i vector3i) {
