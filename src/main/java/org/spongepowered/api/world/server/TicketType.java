@@ -29,7 +29,6 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.Ticks;
-import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Comparator;
 
