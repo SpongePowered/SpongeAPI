@@ -48,7 +48,6 @@ import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.network.ServerSideConnection;
-import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.statistic.Statistic;
@@ -185,13 +184,6 @@ public interface ServerPlayer extends Player, Subject {
      * @return The connection
      */
     ServerSideConnection connection();
-
-    /**
-     * Sends a given {@link ResourcePack} to this player.
-     *
-     * @param pack The ResourcePack to send
-     */
-    void sendResourcePack(ResourcePack pack);
 
     /**
      * Gets this player's {@link TabList}.

@@ -170,6 +170,7 @@ public interface ServerSideConnectionEvent extends Event {
      * can be terminated by calling {@link ServerSideConnection#close(Component)}.</p>
      */
     interface Configuration extends ProfileScoped {
+
     }
 
     /**

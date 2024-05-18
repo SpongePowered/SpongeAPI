@@ -26,6 +26,7 @@ package org.spongepowered.api;
 
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.audience.ForwardingAudience;
+import net.kyori.adventure.resource.ResourcePackRequest;
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.block.entity.CommandBlock;
 import org.spongepowered.api.command.manager.CommandManager;
@@ -38,7 +39,6 @@ import org.spongepowered.api.item.recipe.RecipeManager;
 import org.spongepowered.api.map.MapStorage;
 import org.spongepowered.api.network.ServerSideConnection;
 import org.spongepowered.api.profile.GameProfileManager;
-import org.spongepowered.api.resourcepack.ResourcePack;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.service.ServiceProvider;
 import org.spongepowered.api.user.UserManager;
@@ -131,11 +131,11 @@ public interface Server extends ForwardingAudience, Engine, LocaleSource {
     Component motd();
 
     /**
-     * Gets the {@link ResourcePack pack} sent to clients when they join.
+     * Gets the {@link ResourcePackRequest pack} sent to clients when they join.
      *
      * @return The resource pack
      */
-    Optional<ResourcePack> resourcePack();
+    Optional<ResourcePackRequest> resourcePack();
 
     /**
      * Gets the player idle timeout, in minutes.
