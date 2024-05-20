@@ -31,7 +31,6 @@ import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.data.type.BannerPatternShape;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.RegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.function.Supplier;
@@ -49,7 +48,7 @@ public interface BannerPatternLayer extends DataSerializable {
      * @param color The color
      * @return The new pattern layer
      */
-    static BannerPatternLayer of(RegistryReference<? extends BannerPatternShape> shape, DefaultedRegistryReference<? extends DyeColor> color) {
+    static BannerPatternLayer of(DefaultedRegistryReference<? extends BannerPatternShape> shape, DefaultedRegistryReference<? extends DyeColor> color) {
         return BannerPatternLayer.of(shape.get(), color.get());
     }
 
@@ -61,7 +60,7 @@ public interface BannerPatternLayer extends DataSerializable {
      * @param color The color
      * @return The new pattern layer
      */
-    static BannerPatternLayer of(RegistryReference<? extends BannerPatternShape> shape, DyeColor color) {
+    static BannerPatternLayer of(DefaultedRegistryReference<? extends BannerPatternShape> shape, DyeColor color) {
         return BannerPatternLayer.of(shape.get(), color);
     }
 
