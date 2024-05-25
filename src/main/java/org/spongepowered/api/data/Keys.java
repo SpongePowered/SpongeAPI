@@ -2376,6 +2376,12 @@ public final class Keys {
     public static final Key<Value<NotePitch>> NOTE_PITCH = Keys.key(ResourceKey.sponge("note_pitch"), NotePitch.class);
 
     /**
+     * The sound played by a {@link ItemTypes#PLAYER_HEAD} {@link ItemStack} on a {@link BlockTypes#NOTE_BLOCK}.
+     * Value is the key of a {@link SoundType}.
+     */
+    public static final Key<Value<ResourceKey>> NOTE_BLOCK_SOUND = Keys.key(ResourceKey.sponge("note_block_sound"), ResourceKey.class);
+
+    /**
      * The notifier, usually of an {@link Entity}. It is up to the implementation to define.
      */
     public static final Key<Value<UUID>> NOTIFIER = Keys.key(ResourceKey.sponge("notifier"), UUID.class);
