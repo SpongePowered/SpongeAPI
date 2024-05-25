@@ -22,10 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.projectile;
+package org.spongepowered.api.entity.projectile.windcharge;
 
-/**
- * Represents a WindCharge.
- */
-public interface WindCharge extends DamagingProjectile {
+import org.spongepowered.api.entity.projectile.DamagingProjectile;
+
+public interface WindChargeLike extends DamagingProjectile {
 }
