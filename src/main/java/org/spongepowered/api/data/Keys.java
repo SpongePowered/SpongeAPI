@@ -2612,6 +2612,11 @@ public final class Keys {
     public static final Key<Value<Ticks>> REMAINING_SPAWN_DELAY = Keys.key(ResourceKey.sponge("remaining_spawn_delay"), Ticks.class);
 
     /**
+     * The additional experience cost required to modify an {@link ItemStack} in an {@link BlockTypes#ANVIL}.
+     */
+    public static final Key<Value<Integer>> REPAIR_COST = Keys.key(ResourceKey.sponge("repair_cost"), Integer.class);
+
+    /**
      * The amount of food a food {@link ItemStack} restores when eaten.
      * Readonly
      */
