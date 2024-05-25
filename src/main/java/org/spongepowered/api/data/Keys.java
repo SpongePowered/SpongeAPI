@@ -1452,6 +1452,11 @@ public final class Keys {
     public static final Key<Value<Ticks>> INTERPOLATION_DURATION = Keys.key(ResourceKey.sponge("interpolation_duration"), Ticks.class);
 
     /**
+     * The {@link Inventory} held in an {@link ItemStack} such as {@link ItemTypes#SHULKER_BOX}.
+     */
+    public static final Key<Value<Inventory>> INVENTORY = Keys.key(ResourceKey.sponge("inventory"), Inventory.class);
+
+    /**
      * Whether a {@link BlockTypes#DAYLIGHT_DETECTOR} {@link BlockState} is inverted.
      */
     public static final Key<Value<Boolean>> INVERTED = Keys.key(ResourceKey.sponge("inverted"), Boolean.class);
