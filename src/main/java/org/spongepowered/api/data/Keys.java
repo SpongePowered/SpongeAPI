@@ -1370,6 +1370,11 @@ public final class Keys {
     public static final Key<Value<Boolean>> HIDE_MISCELLANEOUS = Keys.key(ResourceKey.sponge("hide_miscellaneous"), Boolean.class);
 
     /**
+     * Whether the {@link #STORED_ENCHANTMENTS} of an {@link ItemStack} are hidden.
+     */
+    public static final Key<Value<Boolean>> HIDE_STORED_ENCHANTMENTS = Keys.key(ResourceKey.sponge("hide_stored_enchantments"), Boolean.class);
+
+    /**
      * Whether {@link #IS_UNBREAKABLE} state of an {@link ItemStack} is hidden.
      */
     public static final Key<Value<Boolean>> HIDE_UNBREAKABLE = Keys.key(ResourceKey.sponge("hide_unbreakable"), Boolean.class);
