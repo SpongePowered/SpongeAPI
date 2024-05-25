@@ -1386,6 +1386,11 @@ public final class Keys {
     public static final Key<Value<Boolean>> HIDE_STORED_ENCHANTMENTS = Keys.key(ResourceKey.sponge("hide_stored_enchantments"), Boolean.class);
 
     /**
+     * Whether the tooltip of an {@link ItemStack} is hidden.
+     */
+    public static final Key<Value<Boolean>> HIDE_TOOLTIP = Keys.key(ResourceKey.sponge("hide_tooltip"), Boolean.class);
+
+    /**
      * Whether {@link #IS_UNBREAKABLE} state of an {@link ItemStack} is hidden.
      */
     public static final Key<Value<Boolean>> HIDE_UNBREAKABLE = Keys.key(ResourceKey.sponge("hide_unbreakable"), Boolean.class);
