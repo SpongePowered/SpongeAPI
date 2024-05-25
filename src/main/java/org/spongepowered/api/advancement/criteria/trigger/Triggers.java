@@ -94,9 +94,9 @@ public final class Triggers {
 
     public static final DefaultedRegistryReference<Trigger<?>> ITEM_USED_ON_BLOCK = Triggers.key(ResourceKey.minecraft("item_used_on_block"));
 
-    public static final DefaultedRegistryReference<Trigger<?>> KILL_MOB_NEAR_SCULK_CATALYST = Triggers.key(ResourceKey.minecraft("kill_mob_near_sculk_catalyst"));
-
     public static final DefaultedRegistryReference<Trigger<?>> KILLED_BY_CROSSBOW = Triggers.key(ResourceKey.minecraft("killed_by_crossbow"));
+
+    public static final DefaultedRegistryReference<Trigger<?>> KILL_MOB_NEAR_SCULK_CATALYST = Triggers.key(ResourceKey.minecraft("kill_mob_near_sculk_catalyst"));
 
     public static final DefaultedRegistryReference<Trigger<?>> LEVITATION = Triggers.key(ResourceKey.minecraft("levitation"));
 

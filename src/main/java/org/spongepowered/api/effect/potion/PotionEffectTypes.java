@@ -96,9 +96,9 @@ public final class PotionEffectTypes {
 
     public static final DefaultedRegistryReference<PotionEffectType> SATURATION = PotionEffectTypes.key(ResourceKey.minecraft("saturation"));
 
-    public static final DefaultedRegistryReference<PotionEffectType> SLOW_FALLING = PotionEffectTypes.key(ResourceKey.minecraft("slow_falling"));
-
     public static final DefaultedRegistryReference<PotionEffectType> SLOWNESS = PotionEffectTypes.key(ResourceKey.minecraft("slowness"));
+
+    public static final DefaultedRegistryReference<PotionEffectType> SLOW_FALLING = PotionEffectTypes.key(ResourceKey.minecraft("slow_falling"));
 
     public static final DefaultedRegistryReference<PotionEffectType> SPEED = PotionEffectTypes.key(ResourceKey.minecraft("speed"));
 

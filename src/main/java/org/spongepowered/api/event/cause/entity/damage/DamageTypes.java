@@ -80,11 +80,11 @@ public final class DamageTypes {
 
     public static final DefaultedRegistryReference<DamageType> HOT_FLOOR = DamageTypes.key(ResourceKey.minecraft("hot_floor"));
 
+    public static final DefaultedRegistryReference<DamageType> INDIRECT_MAGIC = DamageTypes.key(ResourceKey.minecraft("indirect_magic"));
+
     public static final DefaultedRegistryReference<DamageType> IN_FIRE = DamageTypes.key(ResourceKey.minecraft("in_fire"));
 
     public static final DefaultedRegistryReference<DamageType> IN_WALL = DamageTypes.key(ResourceKey.minecraft("in_wall"));
-
-    public static final DefaultedRegistryReference<DamageType> INDIRECT_MAGIC = DamageTypes.key(ResourceKey.minecraft("indirect_magic"));
 
     public static final DefaultedRegistryReference<DamageType> LAVA = DamageTypes.key(ResourceKey.minecraft("lava"));
 
@@ -100,9 +100,9 @@ public final class DamageTypes {
 
     public static final DefaultedRegistryReference<DamageType> ON_FIRE = DamageTypes.key(ResourceKey.minecraft("on_fire"));
 
-    public static final DefaultedRegistryReference<DamageType> OUT_OF_WORLD = DamageTypes.key(ResourceKey.minecraft("out_of_world"));
-
     public static final DefaultedRegistryReference<DamageType> OUTSIDE_BORDER = DamageTypes.key(ResourceKey.minecraft("outside_border"));
+
+    public static final DefaultedRegistryReference<DamageType> OUT_OF_WORLD = DamageTypes.key(ResourceKey.minecraft("out_of_world"));
 
     public static final DefaultedRegistryReference<DamageType> PLAYER_ATTACK = DamageTypes.key(ResourceKey.minecraft("player_attack"));
 

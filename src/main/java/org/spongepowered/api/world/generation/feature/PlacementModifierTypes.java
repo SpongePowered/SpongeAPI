@@ -54,9 +54,9 @@ public final class PlacementModifierTypes {
 
     public static final DefaultedRegistryReference<PlacementModifierType> FIXED_PLACEMENT = PlacementModifierTypes.key(ResourceKey.minecraft("fixed_placement"));
 
-    public static final DefaultedRegistryReference<PlacementModifierType> HEIGHT_RANGE = PlacementModifierTypes.key(ResourceKey.minecraft("height_range"));
-
     public static final DefaultedRegistryReference<PlacementModifierType> HEIGHTMAP = PlacementModifierTypes.key(ResourceKey.minecraft("heightmap"));
+
+    public static final DefaultedRegistryReference<PlacementModifierType> HEIGHT_RANGE = PlacementModifierTypes.key(ResourceKey.minecraft("height_range"));
 
     public static final DefaultedRegistryReference<PlacementModifierType> IN_SQUARE = PlacementModifierTypes.key(ResourceKey.minecraft("in_square"));
 

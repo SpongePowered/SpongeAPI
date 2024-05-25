@@ -38,7 +38,7 @@ import org.spongepowered.api.registry.RegistryTypes;
  * Types of rendering that can be applied to components.
  */
 @RegistryScopes(scopes = RegistryScope.GAME)
-public class ResolveOperations {
+public final class ResolveOperations {
 
     // @formatter:off
     // SORTFIELDS:ON

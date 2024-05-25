@@ -156,21 +156,21 @@ public final class Features {
 
     public static final DefaultedRegistryReference<Feature> FREEZE_TOP_LAYER = Features.key(ResourceKey.minecraft("freeze_top_layer"));
 
-    public static final DefaultedRegistryReference<Feature> GLOW_LICHEN = Features.key(ResourceKey.minecraft("glow_lichen"));
-
     public static final DefaultedRegistryReference<Feature> GLOWSTONE_EXTRA = Features.key(ResourceKey.minecraft("glowstone_extra"));
+
+    public static final DefaultedRegistryReference<Feature> GLOW_LICHEN = Features.key(ResourceKey.minecraft("glow_lichen"));
 
     public static final DefaultedRegistryReference<Feature> HUGE_BROWN_MUSHROOM = Features.key(ResourceKey.minecraft("huge_brown_mushroom"));
 
     public static final DefaultedRegistryReference<Feature> HUGE_RED_MUSHROOM = Features.key(ResourceKey.minecraft("huge_red_mushroom"));
 
-    public static final DefaultedRegistryReference<Feature> ICE_PATCH = Features.key(ResourceKey.minecraft("ice_patch"));
-
-    public static final DefaultedRegistryReference<Feature> ICE_SPIKE = Features.key(ResourceKey.minecraft("ice_spike"));
-
     public static final DefaultedRegistryReference<Feature> ICEBERG_BLUE = Features.key(ResourceKey.minecraft("iceberg_blue"));
 
     public static final DefaultedRegistryReference<Feature> ICEBERG_PACKED = Features.key(ResourceKey.minecraft("iceberg_packed"));
+
+    public static final DefaultedRegistryReference<Feature> ICE_PATCH = Features.key(ResourceKey.minecraft("ice_patch"));
+
+    public static final DefaultedRegistryReference<Feature> ICE_SPIKE = Features.key(ResourceKey.minecraft("ice_spike"));
 
     public static final DefaultedRegistryReference<Feature> JUNGLE_BUSH = Features.key(ResourceKey.minecraft("jungle_bush"));
 
@@ -346,8 +346,6 @@ public final class Features {
 
     public static final DefaultedRegistryReference<Feature> SCULK_VEIN = Features.key(ResourceKey.minecraft("sculk_vein"));
 
-    public static final DefaultedRegistryReference<Feature> SEA_PICKLE = Features.key(ResourceKey.minecraft("sea_pickle"));
-
     public static final DefaultedRegistryReference<Feature> SEAGRASS_MID = Features.key(ResourceKey.minecraft("seagrass_mid"));
 
     public static final DefaultedRegistryReference<Feature> SEAGRASS_SHORT = Features.key(ResourceKey.minecraft("seagrass_short"));
@@ -357,6 +355,8 @@ public final class Features {
     public static final DefaultedRegistryReference<Feature> SEAGRASS_SLIGHTLY_LESS_SHORT = Features.key(ResourceKey.minecraft("seagrass_slightly_less_short"));
 
     public static final DefaultedRegistryReference<Feature> SEAGRASS_TALL = Features.key(ResourceKey.minecraft("seagrass_tall"));
+
+    public static final DefaultedRegistryReference<Feature> SEA_PICKLE = Features.key(ResourceKey.minecraft("sea_pickle"));
 
     public static final DefaultedRegistryReference<Feature> SINGLE_PIECE_OF_GRASS = Features.key(ResourceKey.minecraft("single_piece_of_grass"));
 

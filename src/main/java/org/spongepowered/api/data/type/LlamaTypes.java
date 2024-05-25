@@ -40,8 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class LlamaTypes {
 
-    // @formatter:off
-    // SORTFIELDS:ON
     public static final DefaultedRegistryReference<LlamaType> BROWN = LlamaTypes.key(ResourceKey.sponge("brown"));
 
     public static final DefaultedRegistryReference<LlamaType> CREAMY = LlamaTypes.key(ResourceKey.sponge("creamy"));
@@ -50,8 +48,6 @@ public final class LlamaTypes {
 
     public static final DefaultedRegistryReference<LlamaType> WHITE = LlamaTypes.key(ResourceKey.sponge("white"));
 
-    // SORTFIELDS:OFF
-    // @formatter:on
     private LlamaTypes() {
     }
 

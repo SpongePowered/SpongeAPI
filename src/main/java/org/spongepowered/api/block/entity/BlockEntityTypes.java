@@ -84,11 +84,11 @@ public final class BlockEntityTypes {
 
     public static final DefaultedRegistryReference<BlockEntityType> ENCHANTING_TABLE = BlockEntityTypes.key(ResourceKey.minecraft("enchanting_table"));
 
+    public static final DefaultedRegistryReference<BlockEntityType> ENDER_CHEST = BlockEntityTypes.key(ResourceKey.minecraft("ender_chest"));
+
     public static final DefaultedRegistryReference<BlockEntityType> END_GATEWAY = BlockEntityTypes.key(ResourceKey.minecraft("end_gateway"));
 
     public static final DefaultedRegistryReference<BlockEntityType> END_PORTAL = BlockEntityTypes.key(ResourceKey.minecraft("end_portal"));
-
-    public static final DefaultedRegistryReference<BlockEntityType> ENDER_CHEST = BlockEntityTypes.key(ResourceKey.minecraft("ender_chest"));
 
     public static final DefaultedRegistryReference<BlockEntityType> FURNACE = BlockEntityTypes.key(ResourceKey.minecraft("furnace"));
 

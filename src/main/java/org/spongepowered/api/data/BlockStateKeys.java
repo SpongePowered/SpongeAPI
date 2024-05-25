@@ -42,6 +42,8 @@ import org.spongepowered.api.data.type.SlabPortion;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
 import org.spongepowered.api.data.type.Tilt;
+import org.spongepowered.api.data.type.TrialSpawnerState;
+import org.spongepowered.api.data.type.VaultState;
 import org.spongepowered.api.data.type.WallConnectionState;
 import org.spongepowered.api.data.type.WireAttachmentType;
 import org.spongepowered.api.data.value.Value;
@@ -210,6 +212,8 @@ public final class BlockStateKeys {
 
     public static final Key<Value<Boolean>> OCCUPIED = BlockStateKeys.key(ResourceKey.minecraft("property/occupied"), Boolean.class);
 
+    public static final Key<Value<Boolean>> OMINOUS = BlockStateKeys.key(ResourceKey.minecraft("property/ominous"), Boolean.class);
+
     public static final Key<Value<Boolean>> OPEN = BlockStateKeys.key(ResourceKey.minecraft("property/open"), Boolean.class);
 
     public static final Key<Value<JigsawBlockOrientation>> ORIENTATION = BlockStateKeys.key(ResourceKey.minecraft("property/orientation"), JigsawBlockOrientation.class);
@@ -260,11 +264,15 @@ public final class BlockStateKeys {
 
     public static final Key<Value<Tilt>> TILT = BlockStateKeys.key(ResourceKey.minecraft("property/tilt"), Tilt.class);
 
+    public static final Key<Value<TrialSpawnerState>> TRIAL_SPAWNER_STATE = BlockStateKeys.key(ResourceKey.minecraft("property/trial_spawner_state"), TrialSpawnerState.class);
+
     public static final Key<Value<Boolean>> TRIGGERED = BlockStateKeys.key(ResourceKey.minecraft("property/triggered"), Boolean.class);
 
     public static final Key<Value<Boolean>> UNSTABLE = BlockStateKeys.key(ResourceKey.minecraft("property/unstable"), Boolean.class);
 
     public static final Key<Value<Boolean>> UP = BlockStateKeys.key(ResourceKey.minecraft("property/up"), Boolean.class);
+
+    public static final Key<Value<VaultState>> VAULT_STATE = BlockStateKeys.key(ResourceKey.minecraft("property/vault_state"), VaultState.class);
 
     public static final Key<Value<Direction>> VERTICAL_DIRECTION = BlockStateKeys.key(ResourceKey.minecraft("property/vertical_direction"), Direction.class);
 

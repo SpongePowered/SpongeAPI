@@ -38,6 +38,9 @@ public final class VaultStates {
     public static final DefaultedRegistryReference<VaultState> UNLOCKING = VaultStates.key(ResourceKey.sponge("unlocking"));
     public static final DefaultedRegistryReference<VaultState> EJECTING = VaultStates.key(ResourceKey.sponge("ejecting"));
 
+    private VaultStates() {
+    }
+
     public static Registry<VaultState> registry() {
         return Sponge.game().registry(RegistryTypes.VAULT_STATE);
     }
