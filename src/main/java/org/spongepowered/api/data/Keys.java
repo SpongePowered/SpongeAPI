@@ -2141,6 +2141,11 @@ public final class Keys {
     public static final Key<Value<ServerLocation>> LODESTONE = Keys.key(ResourceKey.sponge("lodestone"), ServerLocation.class);
 
     /**
+     * Whether to remove the {@link #LODESTONE target location} when the {@link BlockTypes#LODESTONE} at that location is removed.
+     */
+    public static final Key<Value<Boolean>> LODESTONE_TRACKED = Keys.key(ResourceKey.sponge("lodestone_tracked"), Boolean.class);
+
+    /**
      * The displayed description ("lore") text of an {@link ItemStack}.
      *
      * <p>The lore text is usually displayed when the player hovers his cursor
