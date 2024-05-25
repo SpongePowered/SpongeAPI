@@ -643,6 +643,11 @@ public final class Keys {
     public static final Key<Value<CatType>> CAT_TYPE = Keys.key(ResourceKey.sponge("cat_type"), CatType.class);
 
     /**
+     * The projectiles stored in an {@link ItemTypes#CROSSBOW}.
+     */
+    public static final Key<ListValue<ItemStackSnapshot>> CHARGED_PROJECTILES = Keys.listKey(ResourceKey.sponge("charged_projectiles"), ItemStackSnapshot.class);
+
+    /**
      * Whether a {@link ServerPlayer} can will see colours sent in messages.
      */
     public static final Key<Value<Boolean>> CHAT_COLORS_ENABLED = Keys.key(ResourceKey.sponge("chat_colors_enabled"), Boolean.class);
