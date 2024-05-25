@@ -894,6 +894,12 @@ public final class Keys {
     public static final Key<Value<Ticks>> EGG_TIME = Keys.key(ResourceKey.sponge("egg_time"), Ticks.class);
 
     /**
+     * Whether the glint effect on an {@link ItemStack} is shown.
+     * This overrides the default behaviour when {@link #APPLIED_ENCHANTMENTS} or {@link #STORED_ENCHANTMENTS} are present.
+     */
+    public static final Key<Value<Boolean>> ENCHANTMENT_GLINT_OVERRIDE = Keys.key(ResourceKey.sponge("enchantment_glint_override"), Boolean.class);
+
+    /**
      * The age (in ticks) of an {@link EndGateway}
      */
     public static final Key<Value<Ticks>> END_GATEWAY_AGE = Keys.key(ResourceKey.sponge("end_gateway_age"), Ticks.class);
