@@ -1435,6 +1435,13 @@ public final class Keys {
     public static final Key<Value<InstrumentType>> INSTRUMENT_TYPE = Keys.key(ResourceKey.sponge("instrument_type"), InstrumentType.class);
 
     /**
+     * Whether a projectile {@link ItemStack} would be intangible when fired.
+     * Intangible {@link Projectile projectiles} have {@link org.spongepowered.api.data.type.PickupRules#CREATIVE_ONLY}.
+     * See {@link Keys#PICKUP_RULE}.
+     */
+    public static final Key<Value<Boolean>> INTANGIBLE_PROJECTILE = Keys.key(ResourceKey.sponge("intangible_projectile"), Boolean.class);
+
+    /**
      * The interpolation delay of a {@link DisplayEntity}
      */
     public static final Key<Value<Ticks>> INTERPOLATION_DELAY = Keys.key(ResourceKey.sponge("interpolation_delay"), Ticks.class);
