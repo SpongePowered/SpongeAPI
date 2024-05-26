@@ -2256,7 +2256,6 @@ public final class Keys {
 
     /**
      * The maximum durability of an {@link ItemStack}. {@link #ITEM_DURABILITY}
-     * Readonly
      */
     public static final Key<Value<Integer>> MAX_DURABILITY = Keys.key(ResourceKey.sponge("max_durability"), Integer.class);
 
