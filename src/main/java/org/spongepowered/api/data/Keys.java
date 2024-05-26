@@ -380,7 +380,6 @@ public final class Keys {
 
     /**
      * The set of {@link PotionEffect}s applied on use of an {@link ItemStack}.
-     * Readonly
      */
     public static final Key<WeightedCollectionValue<PotionEffect>> APPLICABLE_POTION_EFFECTS = Keys.weightedKey(ResourceKey.sponge("applicable_potion_effects"), PotionEffect.class);
 
@@ -568,6 +567,11 @@ public final class Keys {
      * Readonly
      */
     public static final Key<Value<Integer>> BURN_TIME = Keys.key(ResourceKey.sponge("burn_time"), Integer.class);
+
+    /**
+     * Whether an {@link ItemStack} can always be eaten.
+     */
+    public static final Key<Value<Boolean>> CAN_ALWAYS_EAT = Keys.key(ResourceKey.sponge("can_always_eat"), Boolean.class);
 
     /**
      * Whether an {@link Animal} can breed.
@@ -876,7 +880,8 @@ public final class Keys {
     public static final Key<Value<DyeColor>> DYE_COLOR = Keys.key(ResourceKey.sponge("dye_color"), DyeColor.class);
 
     /**
-     * The time a {@link Panda} has been eating (in ticks)
+     * The time a {@link Panda} has been eating (in ticks) or
+     * the time an {@link ItemStack} takes to eat.
      */
     public static final Key<Value<Ticks>> EATING_TIME = Keys.key(ResourceKey.sponge("eating_time"), Ticks.class);
 
@@ -2662,13 +2667,11 @@ public final class Keys {
 
     /**
      * The amount of food a food {@link ItemStack} restores when eaten.
-     * Readonly
      */
     public static final Key<Value<Integer>> REPLENISHED_FOOD = Keys.key(ResourceKey.sponge("replenished_food"), Integer.class);
 
     /**
      * The amount of saturation a food {@link ItemStack} provides when eaten.
-     * Readonly
      */
     public static final Key<Value<Double>> REPLENISHED_SATURATION = Keys.key(ResourceKey.sponge("replenished_saturation"), Double.class);
 
