@@ -87,6 +87,7 @@ import org.spongepowered.api.data.type.SpellTypes;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
 import org.spongepowered.api.data.type.Tilt;
+import org.spongepowered.api.data.type.ToolRule;
 import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.type.WallConnectionState;
@@ -600,7 +601,8 @@ public final class Keys {
     public static final Key<Value<Boolean>> CAN_GRIEF = Keys.key(ResourceKey.sponge("can_grief"), Boolean.class);
 
     /**
-     * The set of harvestable {@link BlockType}s with an {@link ItemStack}. {@link #EFFICIENCY}
+     * The set of harvestable {@link BlockType}s with an {@link ItemStack}.
+     * See {@link #TOOL_RULES} for the rules resulting in this set.
      * Readonly
      */
     public static final Key<SetValue<BlockType>> CAN_HARVEST = Keys.setKey(ResourceKey.sponge("can_harvest"), BlockType.class);
@@ -887,6 +889,7 @@ public final class Keys {
 
     /**
      * The efficiency of an {@link ItemStack} tool. Affects mining speed of supported materials. {@link #CAN_HARVEST}
+     * Removing this from a tool makes it no longer a tool.
      */
     public static final Key<Value<Double>> EFFICIENCY = Keys.key(ResourceKey.sponge("efficiency"), Double.class);
 
@@ -3118,6 +3121,12 @@ public final class Keys {
      * The {@link #ITEM_DURABILITY} damage an {@link ItemStack} tool takes per block.
      */
     public static final Key<Value<Integer>> TOOL_DAMAGE_PER_BLOCK = Keys.key(ResourceKey.sponge("tool_damage_per_block"), Integer.class);
+
+    /**
+     * The {@link ToolRule rules} of an {@link ItemStack} tool.
+     * See {@link #CAN_HARVEST} for a list of {@link BlockType block types}.
+     */
+    public static final Key<ListValue<ToolRule>> TOOL_RULES = Keys.listKey(ResourceKey.sponge("tool_rules"), ToolRule.class);
 
     /**
      * The {@link ItemTier} of an {@link ItemStack} tool.
