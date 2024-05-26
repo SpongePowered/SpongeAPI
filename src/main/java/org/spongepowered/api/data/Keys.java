@@ -1036,6 +1036,11 @@ public final class Keys {
     public static final Key<Value<Ticks>> FIRE_DAMAGE_DELAY = Keys.key(ResourceKey.sponge("fire_damage_delay"), Ticks.class);
 
     /**
+     * Whether an {@link ItemStack} will burn in fire.
+     */
+    public static final Key<Value<Boolean>> FIRE_RESISTANT = Keys.key(ResourceKey.sponge("fire_resistant"), Boolean.class);
+
+    /**
      * The amount of ticks an {@link Entity} is still burning.
      */
     public static final Key<Value<Ticks>> FIRE_TICKS = Keys.key(ResourceKey.sponge("fire_ticks"), Ticks.class);
