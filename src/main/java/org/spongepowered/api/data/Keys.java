@@ -2039,6 +2039,12 @@ public final class Keys {
     public static final Key<Value<Integer>> ITEM_DURABILITY = Keys.key(ResourceKey.sponge("item_durability"), Integer.class);
 
     /**
+     * The default item name of an {@link ItemStack}.
+     * <p>May be overridden by {@link #CUSTOM_NAME}</p>
+     */
+    public static final Key<Value<Component>> ITEM_NAME = Keys.key(ResourceKey.sponge("item_name"), Component.class);
+
+    /**
      * The rarity of an item.
      */
     public static final Key<Value<ItemRarity>> ITEM_RARITY = Keys.key(ResourceKey.sponge("item_rarity"), ItemRarity.class);
