@@ -887,7 +887,6 @@ public final class Keys {
 
     /**
      * The efficiency of an {@link ItemStack} tool. Affects mining speed of supported materials. {@link #CAN_HARVEST}
-     * Readonly
      */
     public static final Key<Value<Double>> EFFICIENCY = Keys.key(ResourceKey.sponge("efficiency"), Double.class);
 
@@ -3114,6 +3113,11 @@ public final class Keys {
      * player motion.
      */
     public static final Key<Value<Tilt>> TILT = Keys.key(ResourceKey.sponge("tilt"), Tilt.class);
+
+    /**
+     * The {@link #ITEM_DURABILITY} damage an {@link ItemStack} tool takes per block.
+     */
+    public static final Key<Value<Integer>> TOOL_DAMAGE_PER_BLOCK = Keys.key(ResourceKey.sponge("tool_damage_per_block"), Integer.class);
 
     /**
      * The {@link ItemTier} of an {@link ItemStack} tool.
