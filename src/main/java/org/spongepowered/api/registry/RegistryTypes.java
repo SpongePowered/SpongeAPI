@@ -418,7 +418,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<MovementType> MOVEMENT_TYPE = RegistryTypes.spongeKeyInGame("movement_type");
 
-    public static final DefaultedRegistryType<MusicDisc> MUSIC_DISC = RegistryTypes.spongeKeyInGame("music_disc");
+    public static final DefaultedRegistryType<MusicDisc> MUSIC_DISC = RegistryTypes.minecraftKeyInGame("jukebox_playable");
 
     public static final DefaultedRegistryType<NoiseConfig> NOISE_CONFIG = RegistryTypes.spongeKeyInGame("noise_config");
 
