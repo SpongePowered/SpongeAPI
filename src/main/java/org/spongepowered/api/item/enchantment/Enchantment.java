@@ -195,15 +195,6 @@ public interface Enchantment extends DataSerializable {
         RandomListBuilder level(int level);
 
         /**
-         * Sets whether to include treasure enchantments or not
-         *
-         * @param treasure whether to include treasure enchantments or not
-         *
-         * @return The modified builder, for chaining
-         */
-        RandomListBuilder treasure(boolean treasure);
-
-        /**
          * Sets a fixed pool for the random enchantments to pick from.
          * <p>If empty a pool will be calculated based on the other values instead.</p>
          *
