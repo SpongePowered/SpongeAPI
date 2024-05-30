@@ -182,7 +182,6 @@ import org.spongepowered.api.world.generation.structure.StructureType;
 import org.spongepowered.api.world.generation.structure.jigsaw.JigsawPool;
 import org.spongepowered.api.world.generation.structure.jigsaw.ProcessorList;
 import org.spongepowered.api.world.generation.structure.jigsaw.ProcessorType;
-import org.spongepowered.api.world.portal.PortalType;
 import org.spongepowered.api.world.schematic.PaletteType;
 import org.spongepowered.api.world.server.TicketType;
 import org.spongepowered.api.world.teleport.TeleportHelperFilter;
@@ -447,8 +446,6 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<PistonType> PISTON_TYPE = RegistryTypes.spongeKeyInGame("piston_type");
 
     public static final DefaultedRegistryType<PlaceholderParser> PLACEHOLDER_PARSER = RegistryTypes.spongeKeyInGame("placeholder_parser");
-
-    public static final DefaultedRegistryType<PortalType> PORTAL_TYPE = RegistryTypes.spongeKeyInGame("portal_type");
 
     public static final DefaultedRegistryType<PortionType> PORTION_TYPE = RegistryTypes.spongeKeyInGame("portion_type");
 

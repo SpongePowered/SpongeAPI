@@ -268,8 +268,8 @@ import org.spongepowered.api.world.generation.carver.CarvingStep;
 import org.spongepowered.api.world.generation.config.WorldGenerationConfig;
 import org.spongepowered.api.world.generation.feature.DecorationStep;
 import org.spongepowered.api.world.generation.feature.PlacedFeature;
-import org.spongepowered.api.world.portal.PortalType;
-import org.spongepowered.api.world.portal.PortalTypes;
+import org.spongepowered.api.world.portal.Portal;
+import org.spongepowered.api.world.portal.PortalLogic;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.server.WorldTemplate;
@@ -2406,7 +2406,7 @@ public final class Keys {
      * Whether a {@link WorldType} is considered natural.
      * <p>Natural worlds allow
      * sleeping in beds and setting the respawn point,
-     * {@link PortalTypes#NETHER} portals to spawn {@link ZombifiedPiglin} and
+     * {@link BlockTypes#NETHER_PORTAL} portals to spawn {@link ZombifiedPiglin} and
      * {@link ItemTypes#COMPASS} to work</p>
      * Readonly
      */
@@ -2560,6 +2560,18 @@ public final class Keys {
      * See {@link #HAS_PORES_UP}, {@link #HAS_PORES_DOWN}, {@link #HAS_PORES_NORTH}, {@link #HAS_PORES_EAST}, {@link #HAS_PORES_SOUTH}, {@link #HAS_PORES_WEST}.
      */
     public static final Key<SetValue<Direction>> PORES = Keys.setKey(ResourceKey.sponge("pores"), Direction.class);
+
+    /**
+     * The {@link PortalLogic} an {@link Entity} is currently in.
+     */
+    public static final Key<Value<PortalLogic>> PORTAL_LOGIC = Keys.key(ResourceKey.sponge("portal"), PortalLogic.class);
+
+    /**
+     * The {@link Portal} an {@link Entity} is currently in.
+     * <p>To modify this set the {@link #PORTAL_LOGIC} to use instead</p>
+     * Readonly
+     */
+    public static final Key<Value<Portal>> PORTAL = Keys.key(ResourceKey.sponge("portal"), Portal.class);
 
     /**
      * The {@link PortionType} of a {@link BlockState}.
@@ -3393,7 +3405,7 @@ public final class Keys {
 
     /**
      * The logical height of a {@link WorldType}
-     * <p>Restricts teleportation via {@link ItemTypes#CHORUS_FRUIT} or {@link PortalType portal types}
+     * <p>Restricts teleportation via {@link ItemTypes#CHORUS_FRUIT} or {@link PortalLogic portal types}
      * or portal generation
      * to below the logical height.</p>
      * Readonly

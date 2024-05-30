@@ -50,6 +50,7 @@ import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.portal.Portal;
+import org.spongepowered.api.world.portal.PortalLogic;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3d;
@@ -219,6 +220,11 @@ public final class EventContextKeys {
      * Represents a {@link Portal}.
      */
     public static final EventContextKey<Portal> PORTAL = EventContextKeys.key(ResourceKey.sponge("portal"), Portal.class);
+
+    /**
+     * Represents a {@link PortalLogic}.
+     */
+    public static final EventContextKey<PortalLogic> PORTAL_LOGIC = EventContextKeys.key(ResourceKey.sponge("portal_logic"), PortalLogic.class);
 
     /**
      * Represents a {@link ProjectileSource}.

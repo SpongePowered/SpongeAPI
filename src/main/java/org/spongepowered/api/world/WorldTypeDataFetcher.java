@@ -40,8 +40,7 @@ import org.spongepowered.api.raid.Raid;
 import org.spongepowered.api.tag.Tag;
 import org.spongepowered.api.util.MinecraftDayTime;
 import org.spongepowered.api.util.Range;
-import org.spongepowered.api.world.portal.PortalType;
-import org.spongepowered.api.world.portal.PortalTypes;
+import org.spongepowered.api.world.portal.PortalLogic;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 
@@ -74,7 +73,7 @@ public interface WorldTypeDataFetcher extends DataHolder {
      * Gets if the world type is considered natural.
      * <p>Natural worlds allow
      * sleeping in beds and setting the respawn point,
-     * {@link PortalTypes#NETHER} portals to spawn {@link ZombifiedPiglin} and
+     * {@link BlockTypes#NETHER_PORTAL} portals to spawn {@link ZombifiedPiglin} and
      * {@link ItemTypes#COMPASS} to work</p>
      *
      * @return True if natural, false if not
@@ -205,7 +204,7 @@ public interface WorldTypeDataFetcher extends DataHolder {
 
     /**
      * Gets the maximum height that teleportation logic performed via
-     * {@link ItemTypes#CHORUS_FRUIT} or {@link PortalType portal types} may use to determine
+     * {@link ItemTypes#CHORUS_FRUIT} or {@link PortalLogic portal types} may use to determine
      * the exit {@link ServerLocation location} of the teleport or the generation of a portal
      * itself.
      *
