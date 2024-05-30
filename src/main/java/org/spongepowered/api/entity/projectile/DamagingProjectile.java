@@ -26,7 +26,6 @@ package org.spongepowered.api.entity.projectile;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.math.vector.Vector3d;
 
 /**
  * Represents a {@link Projectile} that inflicts damage.
@@ -38,7 +37,7 @@ public interface DamagingProjectile extends Projectile {
      *
      * @return The acceleration of the damaging projectile
      */
-    default Value.Mutable<Vector3d> acceleration() {
+    default Value.Mutable<Double> acceleration() {
         return this.requireValue(Keys.ACCELERATION).asMutable();
     }
 

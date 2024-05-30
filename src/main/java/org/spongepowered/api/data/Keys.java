@@ -306,7 +306,7 @@ public final class Keys {
     /**
      * The acceleration of a {@link DamagingProjectile}.
      */
-    public static final Key<Value<Vector3d>> ACCELERATION = Keys.key(ResourceKey.sponge("acceleration"), Vector3d.class);
+    public static final Key<Value<Double>> ACCELERATION = Keys.key(ResourceKey.sponge("acceleration"), Double.class);
 
     /**
      * The item a {@link Living} entity is currently using.
