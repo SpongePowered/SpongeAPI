@@ -3089,6 +3089,11 @@ public final class Keys {
     public static final Key<Value<Vector3i>> TARGET_POSITION = Keys.key(ResourceKey.sponge("target_position"), Vector3i.class);
 
     /**
+     * The teleport duration of a {@link DisplayEntity}
+     */
+    public static final Key<Value<Ticks>> TELEPORT_DURATION = Keys.key(ResourceKey.sponge("teleport_duration"), Ticks.class);
+
+    /**
      * The {@link TemperatureModifier} of a {@link Biome}.
      * Readonly
      */
