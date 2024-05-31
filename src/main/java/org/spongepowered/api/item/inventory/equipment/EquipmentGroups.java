@@ -45,6 +45,8 @@ public final class EquipmentGroups {
 
     public static final DefaultedRegistryReference<EquipmentGroup> WORN = EquipmentGroups.key(ResourceKey.sponge("worn"));
 
+    public static final DefaultedRegistryReference<EquipmentGroup> ANIMAL_ARMOR = EquipmentGroups.key(ResourceKey.sponge("animal_armor"));
+
     // SORTFIELDS:OFF
 
     // @formatter:on
