@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.entity.attribute;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.entity.attribute.type.AttributeType;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 import java.util.Collection;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.function.Supplier;
 
 /**
@@ -111,13 +111,12 @@ public interface Attribute {
     boolean hasModifier(AttributeModifier modifier);
 
     /**
-     * Gets an attribute modifier by its unique id.
+     * Gets an attribute modifier by its key
      *
-     * @param uniqueId The unique id
-     * @return The attribute modifier, if present, {@link Optional#empty()}
-     *     otherwise
+     * @param key The key
+     * @return The attribute modifier, if present, {@link Optional#empty()} otherwise
      */
-    Optional<AttributeModifier> modifier(UUID uniqueId);
+    Optional<AttributeModifier> modifier(ResourceKey key);
 
     /**
      * Adds a modifier to this attribute.
@@ -134,9 +133,9 @@ public interface Attribute {
     void removeModifier(AttributeModifier modifier);
 
     /**
-     * Removes a modifier from this attribute using it's unique id.
+     * Removes a modifier from this attribute using it's key
      *
-     * @param uniqueId The unique id of the modifier.
+     * @param key The key of the modifier.
      */
-    void removeModifier(UUID uniqueId);
+    void removeModifier(ResourceKey key);
 }

@@ -24,11 +24,10 @@
  */
 package org.spongepowered.api.entity.attribute;
 
+import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.util.Identifiable;
 
-import java.util.UUID;
 import java.util.function.Supplier;
 
 /**
@@ -37,7 +36,7 @@ import java.util.function.Supplier;
  *
  * <p>Modifiers are usually found on {@link ItemStack}s.</p>
  */
-public interface AttributeModifier extends Identifiable {
+public interface AttributeModifier extends ResourceKeyed {
 
     /**
      * Creates a new {@link Builder} to create an {@link AttributeModifier}.
@@ -47,13 +46,6 @@ public interface AttributeModifier extends Identifiable {
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class);
     }
-
-    /**
-     * Gets the attribute name.
-     *
-     * @return The name
-     */
-    String name();
 
     /**
      * Gets this modifier's operation.
@@ -74,38 +66,7 @@ public interface AttributeModifier extends Identifiable {
      *
      * @see AttributeModifier
      */
-    interface Builder extends org.spongepowered.api.util.Builder<AttributeModifier, Builder> {
-
-        /**
-         * Sets the id of this attribute modifier.
-         *
-         * @param id The id
-         * @return This builder
-         */
-        Builder id(UUID id);
-
-        /**
-         * Sets this attribute modifier to have a random id.
-         *
-         * @return This builder
-         */
-        default Builder randomId() {
-            return this.id(UUID.randomUUID());
-        }
-
-        /**
-         * Sets the name of this attribute modifier.
-         *
-         * <p>The name of an attribute modifier corresponds to the translation
-         * displayed when listing all the modifiers on an item.</p>
-         *
-         * <p>The format of the translations is
-         * <code>attribute.name.yournamehere</code>.</p>
-         *
-         * @param name The name
-         * @return This builder
-         */
-        Builder name(String name);
+    interface Builder extends org.spongepowered.api.util.ResourceKeyedBuilder<AttributeModifier, Builder> {
 
         /**
          * Sets the operation of this attribute modifier.
