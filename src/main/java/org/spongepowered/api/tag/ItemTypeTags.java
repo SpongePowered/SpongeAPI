@@ -143,6 +143,8 @@ public final class ItemTypeTags {
 
     public static final Tag<ItemType> ENCHANTABLE_LEG_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("enchantable/leg_armor"));
 
+    public static final Tag<ItemType> ENCHANTABLE_MACE = ItemTypeTags.key(ResourceKey.minecraft("enchantable/mace"));
+
     public static final Tag<ItemType> ENCHANTABLE_MINING = ItemTypeTags.key(ResourceKey.minecraft("enchantable/mining"));
 
     public static final Tag<ItemType> ENCHANTABLE_MINING_LOOT = ItemTypeTags.key(ResourceKey.minecraft("enchantable/mining_loot"));
@@ -214,8 +216,6 @@ public final class ItemTypeTags {
     public static final Tag<ItemType> MANGROVE_LOGS = ItemTypeTags.key(ResourceKey.minecraft("mangrove_logs"));
 
     public static final Tag<ItemType> MEAT = ItemTypeTags.key(ResourceKey.minecraft("meat"));
-
-    public static final Tag<ItemType> MUSIC_DISCS = ItemTypeTags.key(ResourceKey.minecraft("music_discs"));
 
     public static final Tag<ItemType> NON_FLAMMABLE_WOOD = ItemTypeTags.key(ResourceKey.minecraft("non_flammable_wood"));
 

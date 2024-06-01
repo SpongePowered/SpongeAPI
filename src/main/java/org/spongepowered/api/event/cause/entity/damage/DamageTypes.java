@@ -46,6 +46,8 @@ public final class DamageTypes {
 
     public static final DefaultedRegistryReference<DamageType> CACTUS = DamageTypes.key(ResourceKey.minecraft("cactus"));
 
+    public static final DefaultedRegistryReference<DamageType> CAMPFIRE = DamageTypes.key(ResourceKey.minecraft("campfire"));
+
     public static final DefaultedRegistryReference<DamageType> CRAMMING = DamageTypes.key(ResourceKey.minecraft("cramming"));
 
     public static final DefaultedRegistryReference<DamageType> DRAGON_BREATH = DamageTypes.key(ResourceKey.minecraft("dragon_breath"));
@@ -125,6 +127,8 @@ public final class DamageTypes {
     public static final DefaultedRegistryReference<DamageType> TRIDENT = DamageTypes.key(ResourceKey.minecraft("trident"));
 
     public static final DefaultedRegistryReference<DamageType> UNATTRIBUTED_FIREBALL = DamageTypes.key(ResourceKey.minecraft("unattributed_fireball"));
+
+    public static final DefaultedRegistryReference<DamageType> WIND_CHARGE = DamageTypes.key(ResourceKey.minecraft("wind_charge"));
 
     public static final DefaultedRegistryReference<DamageType> WITHER = DamageTypes.key(ResourceKey.minecraft("wither"));
 

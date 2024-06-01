@@ -114,6 +114,8 @@ public final class PlacedFeatures {
 
     public static final DefaultedRegistryReference<PlacedFeature> END_ISLAND_DECORATED = PlacedFeatures.key(ResourceKey.minecraft("end_island_decorated"));
 
+    public static final DefaultedRegistryReference<PlacedFeature> END_PLATFORM = PlacedFeatures.key(ResourceKey.minecraft("end_platform"));
+
     public static final DefaultedRegistryReference<PlacedFeature> END_SPIKE = PlacedFeatures.key(ResourceKey.minecraft("end_spike"));
 
     public static final DefaultedRegistryReference<PlacedFeature> FANCY_OAK_BEES = PlacedFeatures.key(ResourceKey.minecraft("fancy_oak_bees"));

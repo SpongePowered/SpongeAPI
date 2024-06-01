@@ -47,6 +47,8 @@ public final class DamageTypeTags {
 
     public static final Tag<DamageType> AVOIDS_GUARDIAN_THORNS = DamageTypeTags.key(ResourceKey.minecraft("avoids_guardian_thorns"));
 
+    public static final Tag<DamageType> BURN_FROM_STEPPING = DamageTypeTags.key(ResourceKey.minecraft("burn_from_stepping"));
+
     public static final Tag<DamageType> BURNS_ARMOR_STANDS = DamageTypeTags.key(ResourceKey.minecraft("burns_armor_stands"));
 
     public static final Tag<DamageType> BYPASSES_ARMOR = DamageTypeTags.key(ResourceKey.minecraft("bypasses_armor"));
@@ -90,6 +92,10 @@ public final class DamageTypeTags {
     public static final Tag<DamageType> NO_IMPACT = DamageTypeTags.key(ResourceKey.minecraft("no_impact"));
 
     public static final Tag<DamageType> NO_KNOCKBACK = DamageTypeTags.key(ResourceKey.minecraft("no_knockback"));
+
+    public static final Tag<DamageType> PANIC_CAUSES = DamageTypeTags.key(ResourceKey.minecraft("panic_causes"));
+
+    public static final Tag<DamageType> PANIC_ENVIRONMENTAL_CAUSES = DamageTypeTags.key(ResourceKey.minecraft("panic_environmental_causes"));
 
     public static final Tag<DamageType> WITCH_RESISTANT_TO = DamageTypeTags.key(ResourceKey.minecraft("witch_resistant_to"));
 

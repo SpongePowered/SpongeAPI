@@ -51,6 +51,10 @@ public final class EntityTypeTags {
 
     public static final Tag<EntityType<?>> CAN_BREATHE_UNDER_WATER = EntityTypeTags.key(ResourceKey.minecraft("can_breathe_under_water"));
 
+    public static final Tag<EntityType<?>> CAN_TURN_IN_BOATS = EntityTypeTags.key(ResourceKey.minecraft("can_turn_in_boats"));
+
+    public static final Tag<EntityType<?>> DEFLECTS_PROJECTILES = EntityTypeTags.key(ResourceKey.minecraft("deflects_projectiles"));
+
     public static final Tag<EntityType<?>> DISMOUNTS_UNDERWATER = EntityTypeTags.key(ResourceKey.minecraft("dismounts_underwater"));
 
     public static final Tag<EntityType<?>> FALL_DAMAGE_IMMUNE = EntityTypeTags.key(ResourceKey.minecraft("fall_damage_immune"));
@@ -67,9 +71,15 @@ public final class EntityTypeTags {
 
     public static final Tag<EntityType<?>> ILLAGER_FRIENDS = EntityTypeTags.key(ResourceKey.minecraft("illager_friends"));
 
+    public static final Tag<EntityType<?>> IMMUNE_TO_INFESTED = EntityTypeTags.key(ResourceKey.minecraft("immune_to_infested"));
+
+    public static final Tag<EntityType<?>> IMMUNE_TO_OOZING = EntityTypeTags.key(ResourceKey.minecraft("immune_to_oozing"));
+
     public static final Tag<EntityType<?>> IMPACT_PROJECTILES = EntityTypeTags.key(ResourceKey.minecraft("impact_projectiles"));
 
     public static final Tag<EntityType<?>> INVERTED_HEALING_AND_HARM = EntityTypeTags.key(ResourceKey.minecraft("inverted_healing_and_harm"));
+
+    public static final Tag<EntityType<?>> NO_ANGER_FROM_WIND_CHARGE = EntityTypeTags.key(ResourceKey.minecraft("no_anger_from_wind_charge"));
 
     public static final Tag<EntityType<?>> NON_CONTROLLING_RIDER = EntityTypeTags.key(ResourceKey.minecraft("non_controlling_rider"));
 

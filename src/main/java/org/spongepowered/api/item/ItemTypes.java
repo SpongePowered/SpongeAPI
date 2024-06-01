@@ -1560,6 +1560,10 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> MUSIC_DISC_CHIRP = ItemTypes.key(ResourceKey.minecraft("music_disc_chirp"));
 
+    public static final DefaultedRegistryReference<ItemType> MUSIC_DISC_CREATOR = ItemTypes.key(ResourceKey.minecraft("music_disc_creator"));
+
+    public static final DefaultedRegistryReference<ItemType> MUSIC_DISC_CREATOR_MUSIC_BOX = ItemTypes.key(ResourceKey.minecraft("music_disc_creator_music_box"));
+
     public static final DefaultedRegistryReference<ItemType> MUSIC_DISC_FAR = ItemTypes.key(ResourceKey.minecraft("music_disc_far"));
 
     public static final DefaultedRegistryReference<ItemType> MUSIC_DISC_MALL = ItemTypes.key(ResourceKey.minecraft("music_disc_mall"));
@@ -1569,6 +1573,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> MUSIC_DISC_OTHERSIDE = ItemTypes.key(ResourceKey.minecraft("music_disc_otherside"));
 
     public static final DefaultedRegistryReference<ItemType> MUSIC_DISC_PIGSTEP = ItemTypes.key(ResourceKey.minecraft("music_disc_pigstep"));
+
+    public static final DefaultedRegistryReference<ItemType> MUSIC_DISC_PRECIPICE = ItemTypes.key(ResourceKey.minecraft("music_disc_precipice"));
 
     public static final DefaultedRegistryReference<ItemType> MUSIC_DISC_RELIC = ItemTypes.key(ResourceKey.minecraft("music_disc_relic"));
 

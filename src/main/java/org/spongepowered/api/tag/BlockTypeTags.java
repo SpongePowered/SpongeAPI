@@ -39,6 +39,8 @@ public final class BlockTypeTags {
 
     public static final Tag<BlockType> ACACIA_LOGS = BlockTypeTags.key(ResourceKey.minecraft("acacia_logs"));
 
+    public static final Tag<BlockType> AIR = BlockTypeTags.key(ResourceKey.minecraft("air"));
+
     public static final Tag<BlockType> ALL_HANGING_SIGNS = BlockTypeTags.key(ResourceKey.minecraft("all_hanging_signs"));
 
     public static final Tag<BlockType> ALL_SIGNS = BlockTypeTags.key(ResourceKey.minecraft("all_signs"));
@@ -80,6 +82,8 @@ public final class BlockTypeTags {
     public static final Tag<BlockType> BIG_DRIPLEAF_PLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("big_dripleaf_placeable"));
 
     public static final Tag<BlockType> BIRCH_LOGS = BlockTypeTags.key(ResourceKey.minecraft("birch_logs"));
+
+    public static final Tag<BlockType> BLOCKS_WIND_CHARGE_EXPLOSIONS = BlockTypeTags.key(ResourceKey.minecraft("blocks_wind_charge_explosions"));
 
     public static final Tag<BlockType> BUTTONS = BlockTypeTags.key(ResourceKey.minecraft("buttons"));
 
@@ -242,6 +246,8 @@ public final class BlockTypeTags {
     public static final Tag<BlockType> MINEABLE_PICKAXE = BlockTypeTags.key(ResourceKey.minecraft("mineable/pickaxe"));
 
     public static final Tag<BlockType> MINEABLE_SHOVEL = BlockTypeTags.key(ResourceKey.minecraft("mineable/shovel"));
+
+    public static final Tag<BlockType> MOB_INTERACTABLE_DOORS = BlockTypeTags.key(ResourceKey.minecraft("mob_interactable_doors"));
 
     public static final Tag<BlockType> MOOSHROOMS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("mooshrooms_spawnable_on"));
 

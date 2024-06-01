@@ -62,6 +62,8 @@ public final class BannerPatternShapes {
 
     public static final DefaultedRegistryReference<BannerPatternShape> DIAGONAL_UP_RIGHT = BannerPatternShapes.key(ResourceKey.minecraft("diagonal_up_right"));
 
+    public static final DefaultedRegistryReference<BannerPatternShape> FLOW = BannerPatternShapes.key(ResourceKey.minecraft("flow"));
+
     public static final DefaultedRegistryReference<BannerPatternShape> FLOWER = BannerPatternShapes.key(ResourceKey.minecraft("flower"));
 
     public static final DefaultedRegistryReference<BannerPatternShape> GLOBE = BannerPatternShapes.key(ResourceKey.minecraft("globe"));
@@ -69,6 +71,8 @@ public final class BannerPatternShapes {
     public static final DefaultedRegistryReference<BannerPatternShape> GRADIENT = BannerPatternShapes.key(ResourceKey.minecraft("gradient"));
 
     public static final DefaultedRegistryReference<BannerPatternShape> GRADIENT_UP = BannerPatternShapes.key(ResourceKey.minecraft("gradient_up"));
+
+    public static final DefaultedRegistryReference<BannerPatternShape> GUSTER = BannerPatternShapes.key(ResourceKey.minecraft("guster"));
 
     public static final DefaultedRegistryReference<BannerPatternShape> HALF_HORIZONTAL = BannerPatternShapes.key(ResourceKey.minecraft("half_horizontal"));
 

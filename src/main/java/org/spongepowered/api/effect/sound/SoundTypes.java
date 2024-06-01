@@ -1364,11 +1364,9 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_TRIAL_SPAWNER_AMBIENT = SoundTypes.key(ResourceKey.minecraft("block.trial_spawner.ambient"));
 
-    public static final DefaultedRegistryReference<SoundType> BLOCK_TRIAL_SPAWNER_AMBIENT_CHARGED = SoundTypes.key(ResourceKey.minecraft("block.trial_spawner.ambient_charged"));
+    public static final DefaultedRegistryReference<SoundType> BLOCK_TRIAL_SPAWNER_AMBIENT_OMINOUS = SoundTypes.key(ResourceKey.minecraft("block.trial_spawner.ambient_ominous"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_TRIAL_SPAWNER_BREAK = SoundTypes.key(ResourceKey.minecraft("block.trial_spawner.break"));
-
-    public static final DefaultedRegistryReference<SoundType> BLOCK_TRIAL_SPAWNER_CHARGE_ACTIVATE = SoundTypes.key(ResourceKey.minecraft("block.trial_spawner.charge_activate"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_TRIAL_SPAWNER_CLOSE_SHUTTER = SoundTypes.key(ResourceKey.minecraft("block.trial_spawner.close_shutter"));
 
@@ -1379,6 +1377,8 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> BLOCK_TRIAL_SPAWNER_FALL = SoundTypes.key(ResourceKey.minecraft("block.trial_spawner.fall"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_TRIAL_SPAWNER_HIT = SoundTypes.key(ResourceKey.minecraft("block.trial_spawner.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_TRIAL_SPAWNER_OMINOUS_ACTIVATE = SoundTypes.key(ResourceKey.minecraft("block.trial_spawner.ominous_activate"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_TRIAL_SPAWNER_OPEN_SHUTTER = SoundTypes.key(ResourceKey.minecraft("block.trial_spawner.open_shutter"));
 
@@ -1443,6 +1443,8 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> BLOCK_VAULT_OPEN_SHUTTER = SoundTypes.key(ResourceKey.minecraft("block.vault.open_shutter"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_VAULT_PLACE = SoundTypes.key(ResourceKey.minecraft("block.vault.place"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_VAULT_REJECT_REWARDED_PLAYER = SoundTypes.key(ResourceKey.minecraft("block.vault.reject_rewarded_player"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_VAULT_STEP = SoundTypes.key(ResourceKey.minecraft("block.vault.step"));
 
@@ -3210,6 +3212,10 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_CHIRP = SoundTypes.key(ResourceKey.minecraft("music_disc.chirp"));
 
+    public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_CREATOR = SoundTypes.key(ResourceKey.minecraft("music_disc.creator"));
+
+    public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_CREATOR_MUSIC_BOX = SoundTypes.key(ResourceKey.minecraft("music_disc.creator_music_box"));
+
     public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_FAR = SoundTypes.key(ResourceKey.minecraft("music_disc.far"));
 
     public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_MALL = SoundTypes.key(ResourceKey.minecraft("music_disc.mall"));
@@ -3219,6 +3225,8 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_OTHERSIDE = SoundTypes.key(ResourceKey.minecraft("music_disc.otherside"));
 
     public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_PIGSTEP = SoundTypes.key(ResourceKey.minecraft("music_disc.pigstep"));
+
+    public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_PRECIPICE = SoundTypes.key(ResourceKey.minecraft("music_disc.precipice"));
 
     public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_RELIC = SoundTypes.key(ResourceKey.minecraft("music_disc.relic"));
 

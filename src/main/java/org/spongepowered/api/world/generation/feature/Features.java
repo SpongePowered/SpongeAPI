@@ -120,6 +120,8 @@ public final class Features {
 
     public static final DefaultedRegistryReference<Feature> END_ISLAND = Features.key(ResourceKey.minecraft("end_island"));
 
+    public static final DefaultedRegistryReference<Feature> END_PLATFORM = Features.key(ResourceKey.minecraft("end_platform"));
+
     public static final DefaultedRegistryReference<Feature> END_SPIKE = Features.key(ResourceKey.minecraft("end_spike"));
 
     public static final DefaultedRegistryReference<Feature> FANCY_OAK = Features.key(ResourceKey.minecraft("fancy_oak"));

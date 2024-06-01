@@ -74,6 +74,8 @@ public final class FeatureTypes {
 
     public static final DefaultedRegistryReference<FeatureType> END_ISLAND = FeatureTypes.key(ResourceKey.minecraft("end_island"));
 
+    public static final DefaultedRegistryReference<FeatureType> END_PLATFORM = FeatureTypes.key(ResourceKey.minecraft("end_platform"));
+
     public static final DefaultedRegistryReference<FeatureType> END_SPIKE = FeatureTypes.key(ResourceKey.minecraft("end_spike"));
 
     public static final DefaultedRegistryReference<FeatureType> FILL_LAYER = FeatureTypes.key(ResourceKey.minecraft("fill_layer"));

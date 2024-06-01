@@ -108,6 +108,8 @@ public final class ProcessorLists {
 
     public static final DefaultedRegistryReference<ProcessorList> TREASURE_ROOMS = ProcessorLists.key(ResourceKey.minecraft("treasure_rooms"));
 
+    public static final DefaultedRegistryReference<ProcessorList> TRIAL_CHAMBERS_COPPER_BULB_DEGRADATION = ProcessorLists.key(ResourceKey.minecraft("trial_chambers_copper_bulb_degradation"));
+
     public static final DefaultedRegistryReference<ProcessorList> ZOMBIE_DESERT = ProcessorLists.key(ResourceKey.minecraft("zombie_desert"));
 
     public static final DefaultedRegistryReference<ProcessorList> ZOMBIE_PLAINS = ProcessorLists.key(ResourceKey.minecraft("zombie_plains"));

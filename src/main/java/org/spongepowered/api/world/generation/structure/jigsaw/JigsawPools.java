@@ -198,6 +198,96 @@ public final class JigsawPools {
 
     public static final DefaultedRegistryReference<JigsawPool> TRAIL_RUINS_TOWER_TOWER_TOP = JigsawPools.key(ResourceKey.minecraft("trail_ruins/tower/tower_top"));
 
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_ATRIUM = JigsawPools.key(ResourceKey.minecraft("trial_chambers/atrium"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CHAMBER_ADDON = JigsawPools.key(ResourceKey.minecraft("trial_chambers/chamber/addon"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CHAMBER_ASSEMBLY = JigsawPools.key(ResourceKey.minecraft("trial_chambers/chamber/assembly"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CHAMBER_END = JigsawPools.key(ResourceKey.minecraft("trial_chambers/chamber/end"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CHAMBER_ENTRANCE_CAP = JigsawPools.key(ResourceKey.minecraft("trial_chambers/chamber/entrance_cap"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CHAMBER_ERUPTION = JigsawPools.key(ResourceKey.minecraft("trial_chambers/chamber/eruption"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CHAMBER_PEDESTAL = JigsawPools.key(ResourceKey.minecraft("trial_chambers/chamber/pedestal"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CHAMBER_SLANTED = JigsawPools.key(ResourceKey.minecraft("trial_chambers/chamber/slanted"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CHAMBERS_END = JigsawPools.key(ResourceKey.minecraft("trial_chambers/chambers/end"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CHESTS_CONTENTS_SUPPLY = JigsawPools.key(ResourceKey.minecraft("trial_chambers/chests/contents/supply"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CHESTS_SUPPLY = JigsawPools.key(ResourceKey.minecraft("trial_chambers/chests/supply"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CORRIDOR = JigsawPools.key(ResourceKey.minecraft("trial_chambers/corridor"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CORRIDOR_SLICES = JigsawPools.key(ResourceKey.minecraft("trial_chambers/corridor/slices"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CORRIDORS_ADDON_LOWER = JigsawPools.key(ResourceKey.minecraft("trial_chambers/corridors/addon/lower"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CORRIDORS_ADDON_MIDDLE = JigsawPools.key(ResourceKey.minecraft("trial_chambers/corridors/addon/middle"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CORRIDORS_ADDON_MIDDLE_UPPER = JigsawPools.key(ResourceKey.minecraft("trial_chambers/corridors/addon/middle_upper"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_DECOR = JigsawPools.key(ResourceKey.minecraft("trial_chambers/decor"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_DECOR_CHAMBER = JigsawPools.key(ResourceKey.minecraft("trial_chambers/decor/chamber"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_DISPENSERS_CHAMBER = JigsawPools.key(ResourceKey.minecraft("trial_chambers/dispensers/chamber"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_ENTRANCE = JigsawPools.key(ResourceKey.minecraft("trial_chambers/entrance"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_HALLWAY = JigsawPools.key(ResourceKey.minecraft("trial_chambers/hallway"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_HALLWAY_FALLBACK = JigsawPools.key(ResourceKey.minecraft("trial_chambers/hallway/fallback"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_REWARD_ALL = JigsawPools.key(ResourceKey.minecraft("trial_chambers/reward/all"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_REWARD_CONTENTS_DEFAULT = JigsawPools.key(ResourceKey.minecraft("trial_chambers/reward/contents/default"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_REWARD_OMINOUS_VAULT = JigsawPools.key(ResourceKey.minecraft("trial_chambers/reward/ominous_vault"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_SPAWNER_ALL = JigsawPools.key(ResourceKey.minecraft("trial_chambers/spawner/all"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_SPAWNER_BREEZE = JigsawPools.key(ResourceKey.minecraft("trial_chambers/spawner/breeze"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_SPAWNER_CONTENTS_BREEZE = JigsawPools.key(ResourceKey.minecraft("trial_chambers/spawner/contents/breeze"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_SPAWNER_MELEE = JigsawPools.key(ResourceKey.minecraft("trial_chambers/spawner/melee"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_SPAWNER_MELEE_HUSK = JigsawPools.key(ResourceKey.minecraft("trial_chambers/spawner/melee/husk"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_SPAWNER_MELEE_SPIDER = JigsawPools.key(ResourceKey.minecraft("trial_chambers/spawner/melee/spider"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_SPAWNER_MELEE_ZOMBIE = JigsawPools.key(ResourceKey.minecraft("trial_chambers/spawner/melee/zombie"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_SPAWNER_RANGED = JigsawPools.key(ResourceKey.minecraft("trial_chambers/spawner/ranged"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_SPAWNER_RANGED_POISON_SKELETON = JigsawPools.key(ResourceKey.minecraft("trial_chambers/spawner/ranged/poison_skeleton"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_SPAWNER_RANGED_SKELETON = JigsawPools.key(ResourceKey.minecraft("trial_chambers/spawner/ranged/skeleton"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_SPAWNER_RANGED_STRAY = JigsawPools.key(ResourceKey.minecraft("trial_chambers/spawner/ranged/stray"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_SPAWNER_SLOW_RANGED = JigsawPools.key(ResourceKey.minecraft("trial_chambers/spawner/slow_ranged"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_SPAWNER_SLOW_RANGED_POISON_SKELETON = JigsawPools.key(ResourceKey.minecraft("trial_chambers/spawner/slow_ranged/poison_skeleton"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_SPAWNER_SLOW_RANGED_SKELETON = JigsawPools.key(ResourceKey.minecraft("trial_chambers/spawner/slow_ranged/skeleton"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_SPAWNER_SLOW_RANGED_STRAY = JigsawPools.key(ResourceKey.minecraft("trial_chambers/spawner/slow_ranged/stray"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_SPAWNER_SMALL_MELEE = JigsawPools.key(ResourceKey.minecraft("trial_chambers/spawner/small_melee"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_SPAWNER_SMALL_MELEE_BABY_ZOMBIE = JigsawPools.key(ResourceKey.minecraft("trial_chambers/spawner/small_melee/baby_zombie"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_SPAWNER_SMALL_MELEE_CAVE_SPIDER = JigsawPools.key(ResourceKey.minecraft("trial_chambers/spawner/small_melee/cave_spider"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_SPAWNER_SMALL_MELEE_SILVERFISH = JigsawPools.key(ResourceKey.minecraft("trial_chambers/spawner/small_melee/silverfish"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_SPAWNER_SMALL_MELEE_SLIME = JigsawPools.key(ResourceKey.minecraft("trial_chambers/spawner/small_melee/slime"));
+
     public static final DefaultedRegistryReference<JigsawPool> VILLAGE_COMMON_ANIMALS = JigsawPools.key(ResourceKey.minecraft("village/common/animals"));
 
     public static final DefaultedRegistryReference<JigsawPool> VILLAGE_COMMON_BUTCHER_ANIMALS = JigsawPools.key(ResourceKey.minecraft("village/common/butcher_animals"));
