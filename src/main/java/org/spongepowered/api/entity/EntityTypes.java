@@ -38,6 +38,7 @@ import org.spongepowered.api.entity.living.ArmorStand;
 import org.spongepowered.api.entity.living.Bat;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.living.animal.Allay;
+import org.spongepowered.api.entity.living.animal.Armadillo;
 import org.spongepowered.api.entity.living.animal.Axolotl;
 import org.spongepowered.api.entity.living.animal.Bee;
 import org.spongepowered.api.entity.living.animal.Cat;
@@ -102,6 +103,7 @@ import org.spongepowered.api.entity.living.monster.raider.illager.Pillager;
 import org.spongepowered.api.entity.living.monster.raider.illager.Vindicator;
 import org.spongepowered.api.entity.living.monster.raider.illager.spellcaster.Evoker;
 import org.spongepowered.api.entity.living.monster.raider.illager.spellcaster.Illusioner;
+import org.spongepowered.api.entity.living.monster.skeleton.Bogged;
 import org.spongepowered.api.entity.living.monster.skeleton.Skeleton;
 import org.spongepowered.api.entity.living.monster.skeleton.Stray;
 import org.spongepowered.api.entity.living.monster.skeleton.WitherSkeleton;
@@ -127,7 +129,6 @@ import org.spongepowered.api.entity.projectile.LlamaSpit;
 import org.spongepowered.api.entity.projectile.Potion;
 import org.spongepowered.api.entity.projectile.ShulkerBullet;
 import org.spongepowered.api.entity.projectile.Snowball;
-import org.spongepowered.api.entity.projectile.WindCharge;
 import org.spongepowered.api.entity.projectile.arrow.Arrow;
 import org.spongepowered.api.entity.projectile.arrow.SpectralArrow;
 import org.spongepowered.api.entity.projectile.arrow.Trident;
@@ -136,6 +137,8 @@ import org.spongepowered.api.entity.projectile.explosive.WitherSkull;
 import org.spongepowered.api.entity.projectile.explosive.fireball.DragonFireball;
 import org.spongepowered.api.entity.projectile.explosive.fireball.ExplosiveFireball;
 import org.spongepowered.api.entity.projectile.explosive.fireball.SmallFireball;
+import org.spongepowered.api.entity.projectile.windcharge.BreezeWindCharge;
+import org.spongepowered.api.entity.projectile.windcharge.WindCharge;
 import org.spongepowered.api.entity.vehicle.Boat;
 import org.spongepowered.api.entity.vehicle.ChestBoat;
 import org.spongepowered.api.entity.vehicle.minecart.CommandBlockMinecart;
@@ -164,6 +167,8 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<AreaEffectCloud>> AREA_EFFECT_CLOUD = EntityTypes.key(ResourceKey.minecraft("area_effect_cloud"));
 
+    public static final DefaultedRegistryReference<EntityType<Armadillo>> ARMADILLO = EntityTypes.key(ResourceKey.minecraft("armadillo"));
+
     public static final DefaultedRegistryReference<EntityType<ArmorStand>> ARMOR_STAND = EntityTypes.key(ResourceKey.minecraft("armor_stand"));
 
     public static final DefaultedRegistryReference<EntityType<Arrow>> ARROW = EntityTypes.key(ResourceKey.minecraft("arrow"));
@@ -180,7 +185,11 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<Boat>> BOAT = EntityTypes.key(ResourceKey.minecraft("boat"));
 
+    public static final DefaultedRegistryReference<EntityType<Bogged>> BOGGED = EntityTypes.key(ResourceKey.minecraft("bogged"));
+
     public static final DefaultedRegistryReference<EntityType<Breeze>> BREEZE = EntityTypes.key(ResourceKey.minecraft("breeze"));
+
+    public static final DefaultedRegistryReference<EntityType<BreezeWindCharge>> BREEZE_WIND_CHARGE = EntityTypes.key(ResourceKey.minecraft("breeze_wind_charge"));
 
     public static final DefaultedRegistryReference<EntityType<Camel>> CAMEL = EntityTypes.key(ResourceKey.minecraft("camel"));
 
@@ -301,6 +310,8 @@ public final class EntityTypes {
     public static final DefaultedRegistryReference<EntityType<Mule>> MULE = EntityTypes.key(ResourceKey.minecraft("mule"));
 
     public static final DefaultedRegistryReference<EntityType<Ocelot>> OCELOT = EntityTypes.key(ResourceKey.minecraft("ocelot"));
+
+    public static final DefaultedRegistryReference<EntityType<OminousItemSpawner>> OMINOUS_ITEM_SPAWNER = EntityTypes.key(ResourceKey.minecraft("ominous_item_spawner"));
 
     public static final DefaultedRegistryReference<EntityType<Painting>> PAINTING = EntityTypes.key(ResourceKey.minecraft("painting"));
 
