@@ -40,7 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.ENGINE)
 public final class WorldTypes {
 
-    // @formatter:off
     public static final DefaultedRegistryReference<WorldType> OVERWORLD = WorldTypes.key(ResourceKey.minecraft("overworld"));
 
     public static final DefaultedRegistryReference<WorldType> OVERWORLD_CAVES = WorldTypes.key(ResourceKey.minecraft("overworld_caves"));
@@ -49,7 +48,6 @@ public final class WorldTypes {
 
     public static final DefaultedRegistryReference<WorldType> THE_NETHER = WorldTypes.key(ResourceKey.minecraft("the_nether"));
 
-    // @formatter:on
     private WorldTypes() {
     }
 

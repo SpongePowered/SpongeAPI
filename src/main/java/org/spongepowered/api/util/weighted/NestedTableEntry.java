@@ -61,6 +61,15 @@ public class NestedTableEntry<T> extends TableEntry<T> {
         return this.table.get(rand);
     }
 
+    /**
+     * Returns the nested table
+     *
+     * @return The nested table
+     */
+    public RandomObjectTable<T> getNestedTable() {
+        return this.table;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (o == this) {

@@ -37,14 +37,19 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class EntityTypeTags {
 
-    // @formatter:off
+    public static final Tag<EntityType<?>> AQUATIC = EntityTypeTags.key(ResourceKey.minecraft("aquatic"));
+
     public static final Tag<EntityType<?>> ARROWS = EntityTypeTags.key(ResourceKey.minecraft("arrows"));
+
+    public static final Tag<EntityType<?>> ARTHROPOD = EntityTypeTags.key(ResourceKey.minecraft("arthropod"));
 
     public static final Tag<EntityType<?>> AXOLOTL_ALWAYS_HOSTILES = EntityTypeTags.key(ResourceKey.minecraft("axolotl_always_hostiles"));
 
     public static final Tag<EntityType<?>> AXOLOTL_HUNT_TARGETS = EntityTypeTags.key(ResourceKey.minecraft("axolotl_hunt_targets"));
 
     public static final Tag<EntityType<?>> BEEHIVE_INHABITORS = EntityTypeTags.key(ResourceKey.minecraft("beehive_inhabitors"));
+
+    public static final Tag<EntityType<?>> CAN_BREATHE_UNDER_WATER = EntityTypeTags.key(ResourceKey.minecraft("can_breathe_under_water"));
 
     public static final Tag<EntityType<?>> DISMOUNTS_UNDERWATER = EntityTypeTags.key(ResourceKey.minecraft("dismounts_underwater"));
 
@@ -56,17 +61,40 @@ public final class EntityTypeTags {
 
     public static final Tag<EntityType<?>> FROG_FOOD = EntityTypeTags.key(ResourceKey.minecraft("frog_food"));
 
+    public static final Tag<EntityType<?>> IGNORES_POISON_AND_REGEN = EntityTypeTags.key(ResourceKey.minecraft("ignores_poison_and_regen"));
+
+    public static final Tag<EntityType<?>> ILLAGER = EntityTypeTags.key(ResourceKey.minecraft("illager"));
+
+    public static final Tag<EntityType<?>> ILLAGER_FRIENDS = EntityTypeTags.key(ResourceKey.minecraft("illager_friends"));
+
     public static final Tag<EntityType<?>> IMPACT_PROJECTILES = EntityTypeTags.key(ResourceKey.minecraft("impact_projectiles"));
 
+    public static final Tag<EntityType<?>> INVERTED_HEALING_AND_HARM = EntityTypeTags.key(ResourceKey.minecraft("inverted_healing_and_harm"));
+
     public static final Tag<EntityType<?>> NON_CONTROLLING_RIDER = EntityTypeTags.key(ResourceKey.minecraft("non_controlling_rider"));
+
+    public static final Tag<EntityType<?>> NOT_SCARY_FOR_PUFFERFISH = EntityTypeTags.key(ResourceKey.minecraft("not_scary_for_pufferfish"));
 
     public static final Tag<EntityType<?>> POWDER_SNOW_WALKABLE_MOBS = EntityTypeTags.key(ResourceKey.minecraft("powder_snow_walkable_mobs"));
 
     public static final Tag<EntityType<?>> RAIDERS = EntityTypeTags.key(ResourceKey.minecraft("raiders"));
 
+    public static final Tag<EntityType<?>> REDIRECTABLE_PROJECTILE = EntityTypeTags.key(ResourceKey.minecraft("redirectable_projectile"));
+
+    public static final Tag<EntityType<?>> SENSITIVE_TO_BANE_OF_ARTHROPODS = EntityTypeTags.key(ResourceKey.minecraft("sensitive_to_bane_of_arthropods"));
+
+    public static final Tag<EntityType<?>> SENSITIVE_TO_IMPALING = EntityTypeTags.key(ResourceKey.minecraft("sensitive_to_impaling"));
+
+    public static final Tag<EntityType<?>> SENSITIVE_TO_SMITE = EntityTypeTags.key(ResourceKey.minecraft("sensitive_to_smite"));
+
     public static final Tag<EntityType<?>> SKELETONS = EntityTypeTags.key(ResourceKey.minecraft("skeletons"));
 
-    // @formatter:on
+    public static final Tag<EntityType<?>> UNDEAD = EntityTypeTags.key(ResourceKey.minecraft("undead"));
+
+    public static final Tag<EntityType<?>> WITHER_FRIENDS = EntityTypeTags.key(ResourceKey.minecraft("wither_friends"));
+
+    public static final Tag<EntityType<?>> ZOMBIES = EntityTypeTags.key(ResourceKey.minecraft("zombies"));
+
     private EntityTypeTags() {
     }
 

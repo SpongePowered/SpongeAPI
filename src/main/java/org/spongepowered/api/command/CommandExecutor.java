@@ -27,6 +27,7 @@ package org.spongepowered.api.command;
 import org.spongepowered.api.command.exception.CommandException;
 import org.spongepowered.api.command.parameter.CommandContext;
 
+
 /**
  * Interface containing the method directing how a certain command will
  * be executed.

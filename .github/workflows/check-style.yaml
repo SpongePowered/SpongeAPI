@@ -10,5 +10,5 @@ jobs:
   call-check:
     uses: SpongePowered/.github/.github/workflows/shared-check-style.yaml@master
     with:
-      runtime_version: 17
+      runtime_version: 21
     secrets: inherit

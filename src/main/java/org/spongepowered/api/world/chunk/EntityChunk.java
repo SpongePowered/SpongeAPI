@@ -22,22 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.map.decoration;
+package org.spongepowered.api.world.chunk;
 
-import org.spongepowered.api.data.type.DyeColor;
+import org.spongepowered.api.world.volume.entity.EntityVolume;
 
 /**
- * An extension of {@link MapDecorationType} that represents a banner, and provides
- * the {@link org.spongepowered.api.data.type.DyeColor} of the banner it
- * represents.
- * <p>
- * Not all {@link MapDecorationType MapDecorationTypes} are {@link MapDecorationBannerType}.
+ * An entity chunk is a portion of a {@link WorldChunk}.
  */
-public interface MapDecorationBannerType extends MapDecorationType {
-    /**
-     * Gets the corresponding {@link DyeColor} that this banner decoration type is.
-     *
-     * @return The {@link DyeColor} that this banner decoration type is.
-     */
-    DyeColor bannerColor();
+public interface EntityChunk extends EntityVolume.Modifiable<EntityChunk> {
 }

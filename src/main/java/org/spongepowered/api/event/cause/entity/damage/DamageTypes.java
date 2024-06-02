@@ -40,7 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.ENGINE)
 public final class DamageTypes {
 
-    // @formatter:off
     public static final DefaultedRegistryReference<DamageType> ARROW = DamageTypes.key(ResourceKey.minecraft("arrow"));
 
     public static final DefaultedRegistryReference<DamageType> BAD_RESPAWN_POINT = DamageTypes.key(ResourceKey.minecraft("bad_respawn_point"));
@@ -109,6 +108,8 @@ public final class DamageTypes {
 
     public static final DefaultedRegistryReference<DamageType> SONIC_BOOM = DamageTypes.key(ResourceKey.minecraft("sonic_boom"));
 
+    public static final DefaultedRegistryReference<DamageType> SPIT = DamageTypes.key(ResourceKey.minecraft("spit"));
+
     public static final DefaultedRegistryReference<DamageType> STALAGMITE = DamageTypes.key(ResourceKey.minecraft("stalagmite"));
 
     public static final DefaultedRegistryReference<DamageType> STARVE = DamageTypes.key(ResourceKey.minecraft("starve"));
@@ -129,7 +130,6 @@ public final class DamageTypes {
 
     public static final DefaultedRegistryReference<DamageType> WITHER_SKULL = DamageTypes.key(ResourceKey.minecraft("wither_skull"));
 
-    // @formatter:on
     private DamageTypes() {
     }
 

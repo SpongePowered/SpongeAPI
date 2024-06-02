@@ -40,7 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class FluidTypes {
 
-    // @formatter:off
     public static final DefaultedRegistryReference<FluidType> EMPTY = FluidTypes.key(ResourceKey.minecraft("empty"));
 
     public static final DefaultedRegistryReference<FluidType> FLOWING_LAVA = FluidTypes.key(ResourceKey.minecraft("flowing_lava"));
@@ -51,7 +50,6 @@ public final class FluidTypes {
 
     public static final DefaultedRegistryReference<FluidType> WATER = FluidTypes.key(ResourceKey.minecraft("water"));
 
-    // @formatter:on
     private FluidTypes() {
     }
 

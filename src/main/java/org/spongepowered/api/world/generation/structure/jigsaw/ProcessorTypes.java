@@ -40,7 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class ProcessorTypes {
 
-    // @formatter:off
     public static final DefaultedRegistryReference<ProcessorType> BLACKSTONE_REPLACE = ProcessorTypes.key(ResourceKey.minecraft("blackstone_replace"));
 
     public static final DefaultedRegistryReference<ProcessorType> BLOCK_AGE = ProcessorTypes.key(ResourceKey.minecraft("block_age"));
@@ -63,7 +62,6 @@ public final class ProcessorTypes {
 
     public static final DefaultedRegistryReference<ProcessorType> RULE = ProcessorTypes.key(ResourceKey.minecraft("rule"));
 
-    // @formatter:on
     private ProcessorTypes() {
     }
 

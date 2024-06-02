@@ -40,14 +40,12 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class FrogTypes {
 
-    // @formatter:off
     public static final DefaultedRegistryReference<FrogType> COLD = FrogTypes.key(ResourceKey.minecraft("cold"));
 
     public static final DefaultedRegistryReference<FrogType> TEMPERATE = FrogTypes.key(ResourceKey.minecraft("temperate"));
 
     public static final DefaultedRegistryReference<FrogType> WARM = FrogTypes.key(ResourceKey.minecraft("warm"));
 
-    // @formatter:on
     private FrogTypes() {
     }
 

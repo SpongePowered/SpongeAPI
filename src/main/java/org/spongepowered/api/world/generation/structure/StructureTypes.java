@@ -40,7 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class StructureTypes {
 
-    // @formatter:off
     public static final DefaultedRegistryReference<StructureType> BURIED_TREASURE = StructureTypes.key(ResourceKey.minecraft("buried_treasure"));
 
     public static final DefaultedRegistryReference<StructureType> DESERT_PYRAMID = StructureTypes.key(ResourceKey.minecraft("desert_pyramid"));
@@ -73,7 +72,6 @@ public final class StructureTypes {
 
     public static final DefaultedRegistryReference<StructureType> WOODLAND_MANSION = StructureTypes.key(ResourceKey.minecraft("woodland_mansion"));
 
-    // @formatter:on
     private StructureTypes() {
     }
 

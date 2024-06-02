@@ -24,22 +24,22 @@
  */
 package org.spongepowered.api.network.channel.raw.play;
 
-import org.spongepowered.api.network.EngineConnection;
+import org.spongepowered.api.network.EngineConnectionState;
 import org.spongepowered.api.network.channel.ChannelBuf;
 
 /**
  * Represents a listener for data being sent to a raw channel.
  *
- * @param <C> The connection type
+ * @param <S> The connection state
  */
 @FunctionalInterface
-public interface RawPlayDataHandler<C extends EngineConnection> {
+public interface RawPlayDataHandler<S extends EngineConnectionState> {
 
     /**
      * Handles the given {@link ChannelBuf} data sent by a remote connection.
      *
      * @param data The raw data
-     * @param connection The remote connection
+     * @param state The remote state
      */
-    void handlePayload(ChannelBuf data, C connection);
+    void handlePayload(ChannelBuf data, S state);
 }

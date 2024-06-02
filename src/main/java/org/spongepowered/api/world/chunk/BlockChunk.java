@@ -22,5 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
-package org.spongepowered.api.resourcepack;
+package org.spongepowered.api.world.chunk;
+
+import org.spongepowered.api.world.volume.block.BlockVolume;
+
+public interface BlockChunk extends BlockVolume {
+}

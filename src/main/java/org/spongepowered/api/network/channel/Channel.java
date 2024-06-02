@@ -25,7 +25,7 @@
 package org.spongepowered.api.network.channel;
 
 import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.network.EngineConnection;
+import org.spongepowered.api.network.EngineConnectionState;
 
 /**
  * Represents a network channel bound to a {@link ChannelManager}. The channel
@@ -55,5 +55,5 @@ public interface Channel {
      *
      * @param handler The channel exception handler
      */
-    void setExceptionHandler(ChannelExceptionHandler<EngineConnection> handler);
+    void setExceptionHandler(ChannelExceptionHandler<EngineConnectionState> handler);
 }

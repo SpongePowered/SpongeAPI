@@ -48,7 +48,7 @@ public interface BannerPatternLayer extends DataSerializable {
      * @param color The color
      * @return The new pattern layer
      */
-    static BannerPatternLayer of(Supplier<? extends BannerPatternShape> shape, DefaultedRegistryReference<? extends DyeColor> color) {
+    static BannerPatternLayer of(DefaultedRegistryReference<? extends BannerPatternShape> shape, DefaultedRegistryReference<? extends DyeColor> color) {
         return BannerPatternLayer.of(shape.get(), color.get());
     }
 
@@ -60,7 +60,7 @@ public interface BannerPatternLayer extends DataSerializable {
      * @param color The color
      * @return The new pattern layer
      */
-    static BannerPatternLayer of(Supplier<? extends BannerPatternShape> shape, DyeColor color) {
+    static BannerPatternLayer of(DefaultedRegistryReference<? extends BannerPatternShape> shape, DyeColor color) {
         return BannerPatternLayer.of(shape.get(), color);
     }
 

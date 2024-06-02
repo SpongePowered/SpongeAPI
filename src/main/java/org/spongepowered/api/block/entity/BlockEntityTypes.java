@@ -40,7 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class BlockEntityTypes {
 
-    // @formatter:off
     public static final DefaultedRegistryReference<BlockEntityType> BANNER = BlockEntityTypes.key(ResourceKey.minecraft("banner"));
 
     public static final DefaultedRegistryReference<BlockEntityType> BARREL = BlockEntityTypes.key(ResourceKey.minecraft("barrel"));
@@ -72,6 +71,8 @@ public final class BlockEntityTypes {
     public static final DefaultedRegistryReference<BlockEntityType> COMPARATOR = BlockEntityTypes.key(ResourceKey.minecraft("comparator"));
 
     public static final DefaultedRegistryReference<BlockEntityType> CONDUIT = BlockEntityTypes.key(ResourceKey.minecraft("conduit"));
+
+    public static final DefaultedRegistryReference<BlockEntityType> CRAFTER = BlockEntityTypes.key(ResourceKey.minecraft("crafter"));
 
     public static final DefaultedRegistryReference<BlockEntityType> DAYLIGHT_DETECTOR = BlockEntityTypes.key(ResourceKey.minecraft("daylight_detector"));
 
@@ -123,7 +124,10 @@ public final class BlockEntityTypes {
 
     public static final DefaultedRegistryReference<BlockEntityType> TRAPPED_CHEST = BlockEntityTypes.key(ResourceKey.minecraft("trapped_chest"));
 
-    // @formatter:on
+    public static final DefaultedRegistryReference<BlockEntityType> TRIAL_SPAWNER = BlockEntityTypes.key(ResourceKey.minecraft("trial_spawner"));
+
+    public static final DefaultedRegistryReference<BlockEntityType> VAULT = BlockEntityTypes.key(ResourceKey.minecraft("vault"));
+
     private BlockEntityTypes() {
     }
 

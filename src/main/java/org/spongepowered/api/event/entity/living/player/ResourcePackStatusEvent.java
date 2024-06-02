@@ -24,35 +24,53 @@
  */
 package org.spongepowered.api.event.entity.living.player;
 
-import org.checkerframework.checker.nullness.qual.Nullable;
+import net.kyori.adventure.resource.ResourcePackInfo;
+import net.kyori.adventure.resource.ResourcePackStatus;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.resourcepack.ResourcePack;
+import org.spongepowered.api.network.ServerSideConnection;
+import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
 
 import java.util.Optional;
 
 /**
- * Called when a {@link ServerPlayer player} notifies the {@link Server} of the
+ * Called when a {@link ServerSideConnection connection} notifies the {@link Server} of the
  * status of a resource pack change request.
  */
 @GenerateFactoryMethod
 public interface ResourcePackStatusEvent extends Event {
 
     /**
-     * Get the {@link ServerPlayer player}.
+     * Gets the {@link ServerSideConnection connection}.
      *
-     * @return The player
+     * @return The connection
      */
-    ServerPlayer player();
+    ServerSideConnection connection();
+
+    /**
+     * Gets the {@link GameProfile profile} associated
+     * with this connection.
+     *
+     * @return The profile
+     */
+    GameProfile profile();
+
+    /**
+     * Gets the {@link ServerPlayer player}.
+     *
+     * @return The player, or {@link Optional#empty()} if the
+     * player is in the configuration state.
+     */
+    Optional<ServerPlayer> player();
 
     /**
      * Gets the pack that this status corresponds to.
      *
      * @return The pack that this status corresponds to.
      */
-    ResourcePack pack();
+    ResourcePackInfo pack();
 
     /**
      * Gets the status of the sent pack.
@@ -60,54 +78,4 @@ public interface ResourcePackStatusEvent extends Event {
      * @return The status of the sent pack.
      */
     ResourcePackStatus status();
-
-    /**
-     * The different possible responses the client can have.
-     */
-    enum ResourcePackStatus {
-
-        /**
-         * The client is attempting to download the pack.
-         */
-        ACCEPTED(null),
-
-        /**
-         * The client declined to download the pack.
-         */
-        DECLINED(false),
-
-        /**
-         * The client failed to download the resource pack.
-         *
-         * <p>In some client versions, such as 1.8.0, this may only be sent when
-         * the resource pack URL does not end in {@code .zip}. Otherwise,
-         * {@link #SUCCESSFULLY_LOADED} will be sent.</p>
-         */
-        FAILED(false),
-
-        /**
-         * The pack URI was successfully loaded. This does not mean that pack
-         * was loaded, as the vanilla client sends this even when encountering a
-         * 404 or similar.
-         */
-        SUCCESSFULLY_LOADED(true);
-
-        @Nullable private final Boolean success;
-
-        ResourcePackStatus(@Nullable Boolean success) {
-            this.success = success;
-        }
-
-        /**
-         * Gets if this status indicates that the pack was successfully set.
-         *
-         * @return true if it was successful, false if it was not, and
-         *         Optional.empty() if it cannot be determined at this time.
-         */
-        public Optional<Boolean> wasSuccessful() {
-            return Optional.ofNullable(this.success);
-        }
-
-    }
-
 }

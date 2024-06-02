@@ -47,8 +47,7 @@ import org.spongepowered.api.entity.living.player.tab.TabList;
 import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.Inventory;
-import org.spongepowered.api.network.ServerPlayerConnection;
-import org.spongepowered.api.resourcepack.ResourcePack;
+import org.spongepowered.api.network.ServerSideConnection;
 import org.spongepowered.api.scoreboard.Scoreboard;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.statistic.Statistic;
@@ -179,19 +178,12 @@ public interface ServerPlayer extends Player, Subject {
     }
 
     /**
-     * Gets the appropriate {@link ServerPlayerConnection} linking this player to a
+     * Gets the appropriate {@link ServerSideConnection} linking this player to a
      * client.
      *
      * @return The connection
      */
-    ServerPlayerConnection connection();
-
-    /**
-     * Sends a given {@link ResourcePack} to this player.
-     *
-     * @param pack The ResourcePack to send
-     */
-    void sendResourcePack(ResourcePack pack);
+    ServerSideConnection connection();
 
     /**
      * Gets this player's {@link TabList}.

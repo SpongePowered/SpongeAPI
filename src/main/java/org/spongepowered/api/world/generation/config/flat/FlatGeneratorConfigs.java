@@ -40,7 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class FlatGeneratorConfigs {
 
-    // @formatter:off
     public static final DefaultedRegistryReference<FlatGeneratorConfig> BOTTOMLESS_PIT = FlatGeneratorConfigs.key(ResourceKey.minecraft("bottomless_pit"));
 
     public static final DefaultedRegistryReference<FlatGeneratorConfig> CLASSIC_FLAT = FlatGeneratorConfigs.key(ResourceKey.minecraft("classic_flat"));
@@ -59,7 +58,6 @@ public final class FlatGeneratorConfigs {
 
     public static final DefaultedRegistryReference<FlatGeneratorConfig> WATER_WORLD = FlatGeneratorConfigs.key(ResourceKey.minecraft("water_world"));
 
-    // @formatter:on
     private FlatGeneratorConfigs() {
     }
 

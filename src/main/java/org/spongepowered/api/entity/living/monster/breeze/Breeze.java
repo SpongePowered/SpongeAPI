@@ -22,21 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network;
+package org.spongepowered.api.entity.living.monster.breeze;
 
-import org.spongepowered.api.entity.living.player.client.LocalPlayer;
+import org.spongepowered.api.entity.living.Monster;
 
 /**
- * Represents a connection of a client to the server where
- * the client {@link LocalPlayer player} has successfully joined.
+ * Represents a Breeze.
  */
-public interface LocalPlayerConnection extends PlayerConnection, ClientSideConnection {
-
-    /**
-     * Gets the associated {@link LocalPlayer player} for this connection.
-     *
-     * @return The associated player
-     */
-    @Override
-    LocalPlayer player();
+public interface Breeze extends Monster {
 }

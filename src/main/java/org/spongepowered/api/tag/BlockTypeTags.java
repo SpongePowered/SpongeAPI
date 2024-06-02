@@ -37,7 +37,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class BlockTypeTags {
 
-    // @formatter:off
     public static final Tag<BlockType> ACACIA_LOGS = BlockTypeTags.key(ResourceKey.minecraft("acacia_logs"));
 
     public static final Tag<BlockType> ALL_HANGING_SIGNS = BlockTypeTags.key(ResourceKey.minecraft("all_hanging_signs"));
@@ -50,11 +49,15 @@ public final class BlockTypeTags {
 
     public static final Tag<BlockType> ANVIL = BlockTypeTags.key(ResourceKey.minecraft("anvil"));
 
+    public static final Tag<BlockType> ARMADILLO_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("armadillo_spawnable_on"));
+
     public static final Tag<BlockType> AXOLOTLS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("axolotls_spawnable_on"));
 
     public static final Tag<BlockType> AZALEA_GROWS_ON = BlockTypeTags.key(ResourceKey.minecraft("azalea_grows_on"));
 
     public static final Tag<BlockType> AZALEA_ROOT_REPLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("azalea_root_replaceable"));
+
+    public static final Tag<BlockType> BADLANDS_TERRACOTTA = BlockTypeTags.key(ResourceKey.minecraft("badlands_terracotta"));
 
     public static final Tag<BlockType> BAMBOO_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("bamboo_blocks"));
 
@@ -134,6 +137,8 @@ public final class BlockTypeTags {
 
     public static final Tag<BlockType> DIRT = BlockTypeTags.key(ResourceKey.minecraft("dirt"));
 
+    public static final Tag<BlockType> DOES_NOT_BLOCK_HOPPERS = BlockTypeTags.key(ResourceKey.minecraft("does_not_block_hoppers"));
+
     public static final Tag<BlockType> DOORS = BlockTypeTags.key(ResourceKey.minecraft("doors"));
 
     public static final Tag<BlockType> DRAGON_IMMUNE = BlockTypeTags.key(ResourceKey.minecraft("dragon_immune"));
@@ -183,6 +188,18 @@ public final class BlockTypeTags {
     public static final Tag<BlockType> ICE = BlockTypeTags.key(ResourceKey.minecraft("ice"));
 
     public static final Tag<BlockType> IMPERMEABLE = BlockTypeTags.key(ResourceKey.minecraft("impermeable"));
+
+    public static final Tag<BlockType> INCORRECT_FOR_DIAMOND_TOOL = BlockTypeTags.key(ResourceKey.minecraft("incorrect_for_diamond_tool"));
+
+    public static final Tag<BlockType> INCORRECT_FOR_GOLD_TOOL = BlockTypeTags.key(ResourceKey.minecraft("incorrect_for_gold_tool"));
+
+    public static final Tag<BlockType> INCORRECT_FOR_IRON_TOOL = BlockTypeTags.key(ResourceKey.minecraft("incorrect_for_iron_tool"));
+
+    public static final Tag<BlockType> INCORRECT_FOR_NETHERITE_TOOL = BlockTypeTags.key(ResourceKey.minecraft("incorrect_for_netherite_tool"));
+
+    public static final Tag<BlockType> INCORRECT_FOR_STONE_TOOL = BlockTypeTags.key(ResourceKey.minecraft("incorrect_for_stone_tool"));
+
+    public static final Tag<BlockType> INCORRECT_FOR_WOODEN_TOOL = BlockTypeTags.key(ResourceKey.minecraft("incorrect_for_wooden_tool"));
 
     public static final Tag<BlockType> INFINIBURN_END = BlockTypeTags.key(ResourceKey.minecraft("infiniburn_end"));
 
@@ -382,7 +399,6 @@ public final class BlockTypeTags {
 
     public static final Tag<BlockType> WOOL_CARPETS = BlockTypeTags.key(ResourceKey.minecraft("wool_carpets"));
 
-    // @formatter:on
     private BlockTypeTags() {
     }
 

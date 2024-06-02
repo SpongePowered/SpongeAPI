@@ -24,8 +24,7 @@
  */
 package org.spongepowered.api.network.channel.packet;
 
-import org.spongepowered.api.network.EngineConnection;
-import org.spongepowered.api.network.EngineConnectionSide;
+import org.spongepowered.api.network.EngineConnectionState;
 
 /**
  * A packet binding that allows the registration of {@link PacketHandler}s.
@@ -37,26 +36,14 @@ public interface HandlerPacketBinding<P extends Packet> extends PacketBinding<P>
     /**
      * Adds a {@link PacketHandler} to handle the packets of type
      * {@link P}. The handler is invoked every time the packet is
-     * sent to the given side.
-     *
-     * @param side The side the handler should be used on
-     * @param handler The handler to add
-     * @param <C> The connection type
-     * @return This binding, for chaining
-     */
-    <C extends EngineConnection> PacketBinding<P> addHandler(EngineConnectionSide<C> side, PacketHandler<? super P, ? super C> handler);
-
-    /**
-     * Adds a {@link PacketHandler} to handle the packets of type
-     * {@link P}. The handler is invoked every time the packet is
      * received by the given connection type.
      *
-     * @param connectionType The connection type the handler should be used by
+     * @param connectionState The connection type the handler should be used by
      * @param handler The handler to add
-     * @param <C> The connection type
+     * @param <S> The connection state
      * @return This binding, for chaining
      */
-    <C extends EngineConnection> PacketBinding<P> addHandler(Class<C> connectionType, PacketHandler<? super P, ? super C> handler);
+    <S extends EngineConnectionState> PacketBinding<P> addHandler(Class<S> connectionState, PacketHandler<? super P, ? super S> handler);
 
     /**
      * Adds a {@link PacketHandler} to handle the packets of type
@@ -66,27 +53,17 @@ public interface HandlerPacketBinding<P extends Packet> extends PacketBinding<P>
      * @param handler The handler to add
      * @return This binding, for chaining
      */
-    PacketBinding<P> addHandler(PacketHandler<? super P, EngineConnection> handler);
-
-    /**
-     * Removes the {@link PacketHandler} for the given side.
-     *
-     * @param side The side the handler should be removes from
-     * @param handler The handler to remove
-     * @param <C> The connection type
-     * @return This binding, for chaining
-     */
-    <C extends EngineConnection> PacketBinding<P> removeHandler(EngineConnectionSide<C> side, PacketHandler<? super P, ? super C> handler);
+    PacketBinding<P> addHandler(PacketHandler<? super P, EngineConnectionState> handler);
 
     /**
      * Removes the {@link PacketHandler} for the given connection type.
      *
-     * @param connectionType The connection type the handler should be removes from
+     * @param connectionState The connection state the handler should be removes from
      * @param handler The handler to remove
-     * @param <C> The connection type
+     * @param <S> The connection state
      * @return This binding, for chaining
      */
-    <C extends EngineConnection> PacketBinding<P> removeHandler(Class<C> connectionType, PacketHandler<? super P, ? super C> handler);
+    <S extends EngineConnectionState> PacketBinding<P> removeHandler(Class<S> connectionState, PacketHandler<? super P, ? super S> handler);
 
     /**
      * Removes the {@link PacketHandler}.

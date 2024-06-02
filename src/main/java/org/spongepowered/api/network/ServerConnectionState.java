@@ -27,23 +27,52 @@ package org.spongepowered.api.network;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 
 /**
- * Represents a connection of a client to the server where
- * the {@link ServerPlayer} has successfully joined.
+ * Represents a connection state between a minecraft client and server.
  */
-public interface ServerPlayerConnection extends PlayerConnection, ServerSideConnection {
+public interface ServerConnectionState extends EngineConnectionState {
 
     /**
-     * Gets the associated {@link ServerPlayer player} for this connection.
-     *
-     * @return The associated player
+     * Represents a intent state between a minecraft client and server.
      */
-    @Override
-    ServerPlayer player();
+    interface Intent extends EngineConnectionState.Intent, ServerConnectionState {
+    }
 
     /**
-     * Gets the connection latency. This is constantly calculated by the server.
-     *
-     * @return The latency
+     * Represents an authenicated state between a minecraft client and server.
      */
-    int latency();
+    interface Authenticated extends EngineConnectionState.Authenticated, ServerConnectionState {
+    }
+
+    /**
+     * Represents a login state between a minecraft client and server.
+     */
+    interface Login extends EngineConnectionState.Login, Authenticated {
+    }
+
+    /**
+     * Represents a configuration state between a minecraft client and server.
+     */
+    interface Configuration extends EngineConnectionState.Configuration, Authenticated {
+    }
+
+    /**
+     * Represents a game state between a minecraft client and server.
+     */
+    interface Game extends EngineConnectionState.Game, Authenticated {
+
+        /**
+         * Gets the associated {@link ServerPlayer player} for this connection state.
+         *
+         * @return The associated player
+         */
+        @Override
+        ServerPlayer player();
+
+        /**
+         * Gets the connection latency. This is constantly calculated by the server.
+         *
+         * @return The latency
+         */
+        int latency();
+    }
 }

@@ -40,7 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class CatTypes {
 
-    // @formatter:off
     public static final DefaultedRegistryReference<CatType> ALL_BLACK = CatTypes.key(ResourceKey.minecraft("all_black"));
 
     public static final DefaultedRegistryReference<CatType> BLACK = CatTypes.key(ResourceKey.minecraft("black"));
@@ -63,7 +62,6 @@ public final class CatTypes {
 
     public static final DefaultedRegistryReference<CatType> WHITE = CatTypes.key(ResourceKey.minecraft("white"));
 
-    // @formatter:on
     private CatTypes() {
     }
 

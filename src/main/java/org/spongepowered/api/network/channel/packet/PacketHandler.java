@@ -24,21 +24,21 @@
  */
 package org.spongepowered.api.network.channel.packet;
 
-import org.spongepowered.api.network.EngineConnection;
+import org.spongepowered.api.network.EngineConnectionState;
 
 /**
  * Represents a handler for a packet that was received over the network.
  *
- * @param <C> The connection type
+ * @param <S> The connection state
  */
 @FunctionalInterface
-public interface PacketHandler<P extends Packet, C extends EngineConnection> {
+public interface PacketHandler<P extends Packet, S extends EngineConnectionState> {
 
     /**
      * Handles the {@link Packet} sent by a remote connection.
      *
      * @param packet The packet received
-     * @param connection The connection that sent the packet
+     * @param state The state that sent the packet
      */
-    void handle(P packet, C connection);
+    void handle(P packet, S state);
 }

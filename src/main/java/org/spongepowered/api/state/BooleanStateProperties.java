@@ -85,6 +85,10 @@ public final class BooleanStateProperties {
         return BooleanStateProperty.of("CRACKED");
     }
 
+    public static BooleanStateProperty property_CRAFTING() {
+        return BooleanStateProperty.of("CRAFTING");
+    }
+
     public static BooleanStateProperty property_DISARMED() {
         return BooleanStateProperty.of("DISARMED");
     }
@@ -159,6 +163,10 @@ public final class BooleanStateProperties {
 
     public static BooleanStateProperty property_OCCUPIED() {
         return BooleanStateProperty.of("OCCUPIED");
+    }
+
+    public static BooleanStateProperty property_OMINOUS() {
+        return BooleanStateProperty.of("OMINOUS");
     }
 
     public static BooleanStateProperty property_OPEN() {

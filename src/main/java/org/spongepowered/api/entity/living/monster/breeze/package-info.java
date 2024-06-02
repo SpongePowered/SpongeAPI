@@ -22,39 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network;
-
-import java.net.InetSocketAddress;
-
-public interface RemoteConnection {
-
-    /***
-     * Gets whatever the connection is open.
-     *
-     * @return {@code true} if the connection is open.
-     */
-    boolean active();
-
-    /**
-     * Gets the {@link InetSocketAddress} of this connection.
-     *
-     * @return The address
-     */
-    InetSocketAddress address();
-
-    /**
-     * Gets the host name the connection is connecting to the server with.
-     *
-     * <p>Examples include: If a player is connecting to `mc.example.com`,
-     * the hostname will show `mc.example.com`. This is NOT the originating
-     * hostname of the client.</p>
-     *
-     * @return The host name
-     */
-    InetSocketAddress virtualHost();
-
-    /**
-     * Closes the connection.
-     */
-    void close();
-}
+@org.checkerframework.framework.qual.DefaultQualifier(org.checkerframework.checker.nullness.qual.NonNull.class)
+package org.spongepowered.api.entity.living.monster.breeze;

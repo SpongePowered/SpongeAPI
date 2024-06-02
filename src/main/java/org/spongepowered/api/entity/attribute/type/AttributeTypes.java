@@ -40,7 +40,6 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class AttributeTypes {
 
-    // @formatter:off
     public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ARMOR = AttributeTypes.key(ResourceKey.minecraft("generic.armor"));
 
     public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ARMOR_TOUGHNESS = AttributeTypes.key(ResourceKey.minecraft("generic.armor_toughness"));
@@ -51,9 +50,15 @@ public final class AttributeTypes {
 
     public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ATTACK_SPEED = AttributeTypes.key(ResourceKey.minecraft("generic.attack_speed"));
 
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_FALL_DAMAGE_MULTIPLIER = AttributeTypes.key(ResourceKey.minecraft("generic.fall_damage_multiplier"));
+
     public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_FLYING_SPEED = AttributeTypes.key(ResourceKey.minecraft("generic.flying_speed"));
 
     public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_FOLLOW_RANGE = AttributeTypes.key(ResourceKey.minecraft("generic.follow_range"));
+
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_GRAVITY = AttributeTypes.key(ResourceKey.minecraft("generic.gravity"));
+
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_JUMP_STRENGTH = AttributeTypes.key(ResourceKey.minecraft("generic.jump_strength"));
 
     public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_KNOCKBACK_RESISTANCE = AttributeTypes.key(ResourceKey.minecraft("generic.knockback_resistance"));
 
@@ -65,11 +70,20 @@ public final class AttributeTypes {
 
     public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_MOVEMENT_SPEED = AttributeTypes.key(ResourceKey.minecraft("generic.movement_speed"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> HORSE_JUMP_STRENGTH = AttributeTypes.key(ResourceKey.minecraft("horse.jump_strength"));
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_SAFE_FALL_DISTANCE = AttributeTypes.key(ResourceKey.minecraft("generic.safe_fall_distance"));
+
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_SCALE = AttributeTypes.key(ResourceKey.minecraft("generic.scale"));
+
+    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_STEP_HEIGHT = AttributeTypes.key(ResourceKey.minecraft("generic.step_height"));
+
+    public static final DefaultedRegistryReference<RangedAttributeType> PLAYER_BLOCK_BREAK_SPEED = AttributeTypes.key(ResourceKey.minecraft("player.block_break_speed"));
+
+    public static final DefaultedRegistryReference<RangedAttributeType> PLAYER_BLOCK_INTERACTION_RANGE = AttributeTypes.key(ResourceKey.minecraft("player.block_interaction_range"));
+
+    public static final DefaultedRegistryReference<RangedAttributeType> PLAYER_ENTITY_INTERACTION_RANGE = AttributeTypes.key(ResourceKey.minecraft("player.entity_interaction_range"));
 
     public static final DefaultedRegistryReference<RangedAttributeType> ZOMBIE_SPAWN_REINFORCEMENTS = AttributeTypes.key(ResourceKey.minecraft("zombie.spawn_reinforcements"));
 
-    // @formatter:on
     private AttributeTypes() {
     }
 

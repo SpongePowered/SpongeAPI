@@ -25,16 +25,17 @@
 package org.spongepowered.api.network.channel.raw.handshake;
 
 import org.spongepowered.api.network.EngineConnection;
+import org.spongepowered.api.network.EngineConnectionState;
 import org.spongepowered.api.network.channel.ChannelBuf;
 import org.spongepowered.api.network.channel.NoResponseException;
 
 /**
  * Handles a raw handshake data request.
  *
- * @param <C> The connection type
+ * @param <S> The connection state
  */
 @FunctionalInterface
-public interface RawHandshakeDataRequestHandler<C extends EngineConnection> {
+public interface RawHandshakeDataRequestHandler<S extends EngineConnectionState> {
 
     /**
      * Handles the request data {@link ChannelBuf} for the given
@@ -50,8 +51,8 @@ public interface RawHandshakeDataRequestHandler<C extends EngineConnection> {
      * take minutes.</p>
      *
      * @param request The request channel buf
-     * @param connection The connection that received the request data
+     * @param state The state that received the request data
      * @param response The response which should be completed
      */
-    void handleRequest(ChannelBuf request, C connection, RawHandshakeDataRequestResponse response);
+    void handleRequest(ChannelBuf request, S state, RawHandshakeDataRequestResponse response);
 }
