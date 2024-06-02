@@ -2299,6 +2299,13 @@ public final class Keys {
     public static final Key<Value<Ticks>> MAX_FROZEN_TIME = Keys.key(ResourceKey.sponge("max_frozen_time"), Ticks.class);
 
     /**
+     * The max growth stage of a {@link BlockState}.
+     * e.g. {@link BlockTypes#CACTUS} or {@link BlockTypes#WHEAT} etc.
+     * Readonly
+     */
+    public static final Key<Value<Integer>> MAX_GROWTH_STAGE = Keys.key(ResourceKey.sponge("max_growth_stage"), Integer.class);
+
+    /**
      * The maximum health of a {@link Living}.
      *
      * <p>The maximum health set here may affect the attribute increasing
