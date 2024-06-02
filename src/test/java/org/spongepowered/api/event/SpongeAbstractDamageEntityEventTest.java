@@ -34,7 +34,6 @@ import org.spongepowered.api.event.entity.DamageEntityEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.DoubleUnaryOperator;
 
@@ -84,14 +83,16 @@ class SpongeAbstractDamageEntityEventTest {
         final int originalDamage = 1;
         final int originalFinalDamage = 18;
 
-        final int firstModifierDamage = 2;
-        final int secondModifierDamage = 15;
+        final int firstModifierDamage = 3;
+        final int secondModifierDamage = 18;
 
         final DamageModifier firstModifer = this.mockParam(DamageModifier.class);
         final DamageModifier secondModifier = this.mockParam(DamageModifier.class);
 
-        final List<DamageFunction> originalFunctions = Arrays.asList(DamageFunction.of(firstModifer, p -> p * 2),
-            DamageFunction.of(secondModifier, p -> p * 5));
+        final var firstDamageFunction = DamageFunction.of(firstModifer, p -> p + p * 2);
+        final var secondDamageFunction = DamageFunction.of(secondModifier, p -> p + p * 5);
+
+        final List<DamageFunction> originalFunctions = Arrays.asList(firstDamageFunction, secondDamageFunction);
 
         final DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.of(EventContext.empty(), "none"),
             targetEntity, originalFunctions, originalDamage);
@@ -102,15 +103,15 @@ class SpongeAbstractDamageEntityEventTest {
         Assertions.assertEquals(event.originalDamage(), originalDamage, SpongeAbstractDamageEntityEventTest.ERROR);
         Assertions.assertEquals(event.originalFinalDamage(), originalFinalDamage, SpongeAbstractDamageEntityEventTest.ERROR);
 
-        final Map<DamageModifier, Double> originalDamages = event.originalDamages();
+        final var originalDamages = event.originalDamages();
 
         Assertions.assertEquals(originalDamages.size(), originalFunctions.size());
 
-        Assertions.assertEquals(originalDamages.get(firstModifer), firstModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR);
-        Assertions.assertEquals(originalDamages.get(secondModifier), secondModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR);
+        Assertions.assertEquals(originalDamages.get(firstModifer).second(), firstModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR);
+        Assertions.assertEquals(originalDamages.get(secondModifier).second(), secondModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR);
 
-        Assertions.assertEquals(event.originalModifierDamage(firstModifer), firstModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR);
-        Assertions.assertEquals(event.originalModifierDamage(secondModifier), secondModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR);
+        Assertions.assertEquals(event.originalModifierDamage(firstModifer).second(), firstModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR);
+        Assertions.assertEquals(event.originalModifierDamage(secondModifier).second(), secondModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR);
 
         Assertions.assertEquals(event.originalFunctions(), originalFunctions);
     }
@@ -122,34 +123,35 @@ class SpongeAbstractDamageEntityEventTest {
         final int originalDamage = 1;
         final int originalFinalDamage = 18;
 
-        final int firstModifierDamage = 2;
-        final int secondModifierDamage = 15;
+        final int firstModifierDamage = 3;
+        final int secondModifierDamage = 18;
 
         final int firstChangedDamage = 1;
-        final int secondChangedDamage = 10;
+        final int secondChangedDamage = 6;
 
-        final int modifiedFinalDamage = 12;
+        final int modifiedFinalDamage = 6;
 
         final DamageModifier firstModifer = this.mockParam(DamageModifier.class);
         final DamageModifier secondModifier = this.mockParam(DamageModifier.class);
 
-        final List<DamageFunction> originalFunctions = Arrays.asList(DamageFunction.of(firstModifer, p -> p * 2), DamageFunction.of(secondModifier,
-            p -> p * 5));
+
+        final var firstDamageFunction = DamageFunction.of(firstModifer, p -> p + p * 2);
+        final DoubleUnaryOperator newFirstDamageFunction = p -> p;
+        final var secondDamageFunction = DamageFunction.of(secondModifier, p -> p + p * 5);
+        final List<DamageFunction> originalFunctions = Arrays.asList(firstDamageFunction, secondDamageFunction);
 
         final DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.of(EventContext.empty(), "none"),
             targetEntity, originalFunctions, originalDamage);
 
         Assertions.assertEquals(event.originalFunctions(), originalFunctions);
 
-        final DoubleUnaryOperator newFunction = p -> p;
+        event.setDamage(firstModifer, newFirstDamageFunction);
 
-        event.setDamage(firstModifer, newFunction);
+        Assertions.assertEquals(event.damage(firstModifer).second(), firstChangedDamage, SpongeAbstractDamageEntityEventTest.ERROR);
+        Assertions.assertEquals(event.damage(secondModifier).second(), secondChangedDamage, SpongeAbstractDamageEntityEventTest.ERROR);
 
-        Assertions.assertEquals(event.damage(firstModifer), firstChangedDamage, SpongeAbstractDamageEntityEventTest.ERROR);
-        Assertions.assertEquals(event.damage(secondModifier), secondChangedDamage, SpongeAbstractDamageEntityEventTest.ERROR);
-
-        Assertions.assertEquals(event.originalModifierDamage(firstModifer), firstModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR);
-        Assertions.assertEquals(event.originalModifierDamage(secondModifier), secondModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR);
+        Assertions.assertEquals(event.originalModifierDamage(firstModifer).second(), firstModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR);
+        Assertions.assertEquals(event.originalModifierDamage(secondModifier).second(), secondModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR);
 
         Assertions.assertEquals(event.originalDamage(), originalDamage, SpongeAbstractDamageEntityEventTest.ERROR);
         Assertions.assertEquals(event.originalFinalDamage(), originalFinalDamage, SpongeAbstractDamageEntityEventTest.ERROR);
@@ -157,7 +159,7 @@ class SpongeAbstractDamageEntityEventTest {
 
         Assertions.assertEquals(event.originalFunctions(), originalFunctions);
 
-        Assertions.assertEquals(event.modifiers(), Arrays.asList(DamageFunction.of(firstModifer, newFunction), originalFunctions.get(1)));
+        Assertions.assertEquals(event.modifiers(), Arrays.asList(DamageFunction.of(firstModifer, newFirstDamageFunction), originalFunctions.get(1)));
     }
 
     @Test
@@ -167,24 +169,24 @@ class SpongeAbstractDamageEntityEventTest {
         final int originalDamage = 1;
         final int originalFinalDamage = 18;
 
-        final int firstModifierDamage = 2;
-        final int secondModifierDamage = 15;
+        final int firstModifierDamage = 3;
+        final int secondModifierDamage = 18;
 
         final int modifiedFinalDamage = 36;
 
-        final int thirdDamage = 18;
+        final int thirdDamage = 36;
 
         final DamageModifier firstModifier = this.mockParam(DamageModifier.class);
         final DamageModifier secondModifier = this.mockParam(DamageModifier.class);
         final DamageModifier thirdModifier = this.mockParam(DamageModifier.class);
 
-        final DoubleUnaryOperator thirdFunction = p -> p;
+        final var firstDamageFunction = DamageFunction.of(firstModifier, p -> p + p * 2);
+        final var secondDamageFunction = DamageFunction.of(secondModifier, p -> p + p * 5);
+        final DoubleUnaryOperator thirdDamageFunction = p -> p + p;
 
-        final List<DamageFunction>
-            originalFunctions = Arrays.asList(DamageFunction.of(firstModifier, p -> p * 2), DamageFunction.of(secondModifier, p -> p * 5));
-
+        final List<DamageFunction> originalFunctions = Arrays.asList(firstDamageFunction, secondDamageFunction);
         final List<DamageFunction> newFunctions = new ArrayList<>(originalFunctions);
-        newFunctions.add(DamageFunction.of(thirdModifier, thirdFunction));
+        newFunctions.add(DamageFunction.of(thirdModifier, thirdDamageFunction));
 
         final DamageEntityEvent event = SpongeEventFactory.createDamageEntityEvent(Cause.of(EventContext.empty(), "none"), targetEntity,
             originalFunctions, originalDamage);
@@ -193,14 +195,14 @@ class SpongeAbstractDamageEntityEventTest {
 
         Assertions.assertFalse(event.isModifierApplicable(thirdModifier));
 
-        event.setDamage(thirdModifier, thirdFunction);
+        event.setDamage(thirdModifier, thirdDamageFunction);
 
-        Assertions.assertEquals(event.damage(firstModifier), firstModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR);
-        Assertions.assertEquals(event.damage(secondModifier), secondModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR);
-        Assertions.assertEquals(event.damage(thirdModifier), thirdDamage, SpongeAbstractDamageEntityEventTest.ERROR);
+        Assertions.assertEquals(event.damage(firstModifier).second(), firstModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR);
+        Assertions.assertEquals(event.damage(secondModifier).second(), secondModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR);
+        Assertions.assertEquals(event.damage(thirdModifier).second(), thirdDamage, SpongeAbstractDamageEntityEventTest.ERROR);
 
-        Assertions.assertEquals(event.originalModifierDamage(firstModifier), firstModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR);
-        Assertions.assertEquals(event.originalModifierDamage(secondModifier), secondModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR);
+        Assertions.assertEquals(event.originalModifierDamage(firstModifier).second(), firstModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR);
+        Assertions.assertEquals(event.originalModifierDamage(secondModifier).second(), secondModifierDamage, SpongeAbstractDamageEntityEventTest.ERROR);
 
         Assertions.assertEquals(event.originalDamage(), originalDamage, SpongeAbstractDamageEntityEventTest.ERROR);
         Assertions.assertEquals(event.originalFinalDamage(), originalFinalDamage, SpongeAbstractDamageEntityEventTest.ERROR);

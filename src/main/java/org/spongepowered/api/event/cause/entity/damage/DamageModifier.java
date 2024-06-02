@@ -64,6 +64,14 @@ public interface DamageModifier {
     DamageModifierType type();
 
     /**
+     * Returns the damage modifier group.
+     * <p>Grouped modifiers calculate their damage independently from each other</p>
+     *
+     * @return The damage modifier group
+     */
+    String group();
+
+    /**
      * Gets the cause of this {@link DamageModifier}.
      *
      * @return The cause of this damage modifier
@@ -92,6 +100,7 @@ public interface DamageModifier {
 
         @Nullable DamageModifierType type;
         @Nullable Cause cause;
+        @Nullable String group;
         @Nullable ItemStackSnapshot snapshot;
 
         Builder() {
@@ -118,6 +127,38 @@ public interface DamageModifier {
          */
         public Builder type(final DamageModifierType damageModifierType) {
             this.type = java.util.Objects.requireNonNull(damageModifierType);
+            return this;
+        }
+
+        /**
+         * The main attack damage calculated for an {@link org.spongepowered.api.event.entity.AttackEntityEvent}
+         *
+         * @return This builder, for chaining
+         */
+        public Builder attackDamageGroup() {
+            return this.group("minecraft:attack_damage");
+        }
+
+        /**
+         * The enchantment attack damage calculated for an {@link org.spongepowered.api.event.entity.AttackEntityEvent}
+         *
+         * @return This builder, for chaining
+         */
+        public Builder attackEnchantmentGroup() {
+            return this.group("minecraft:attack_enchantment");
+        }
+
+        /**
+         * The damage calculated for an {@link org.spongepowered.api.event.entity.DamageEntityEvent}
+         *
+         * @return This builder, for chaining
+         */
+        public Builder damageReductionGroup() {
+            return this.group("minecraft:damage_reduction");
+        }
+
+        public Builder group(final String group) {
+            this.group = group;
             return this;
         }
 
@@ -179,10 +220,12 @@ public interface DamageModifier {
             private final DamageModifierType type;
             private final Cause cause;
             @Nullable private final ItemStackSnapshot snapshot;
+            private final String group;
 
             ImplementedDamageModifier(final Builder builder) {
                 this.type = java.util.Objects.requireNonNull(builder.type, "DamageType is null!");
                 this.cause = java.util.Objects.requireNonNull(builder.cause, "Cause is null!");
+                this.group = java.util.Objects.requireNonNull(builder.group, "Group is null!");
                 this.snapshot = builder.snapshot;
             }
 
@@ -199,6 +242,11 @@ public interface DamageModifier {
             @Override
             public Optional<ItemStackSnapshot> contributingItem() {
                 return Optional.ofNullable(this.snapshot);
+            }
+
+            @Override
+            public String group() {
+                return group;
             }
 
             @Override

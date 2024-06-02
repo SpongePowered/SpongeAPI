@@ -56,9 +56,9 @@ public abstract class AbstractDamageEntityEvent extends AbstractModifierEvent<Da
     }
 
     @Override
-    public final double originalModifierDamage(DamageModifier damageModifier) {
+    public final Tuple<Double, Double>  originalModifierDamage(DamageModifier damageModifier) {
         Objects.requireNonNull(damageModifier, "The damage modifier cannot be null!");
-        for (Tuple<DamageModifier, Double> tuple : this.originalModifiers) {
+        for (var tuple : this.originalModifiers) {
             if (tuple.first().equals(damageModifier)) {
                 return tuple.second();
             }
@@ -72,7 +72,7 @@ public abstract class AbstractDamageEntityEvent extends AbstractModifierEvent<Da
     }
 
     @Override
-    public final Map<DamageModifier, Double> originalDamages() {
+    public final Map<DamageModifier, Tuple<Double, Double>> originalDamages() {
 
         return this.originalModifierMap;
     }
@@ -88,9 +88,9 @@ public abstract class AbstractDamageEntityEvent extends AbstractModifierEvent<Da
     }
 
     @Override
-    public final double damage(DamageModifier damageModifier) {
+    public final Tuple<Double, Double> damage(DamageModifier damageModifier) {
         if (!this.modifiers.containsKey(Objects.requireNonNull(damageModifier, "Damage Modifier cannot be null!"))) {
-            throw new IllegalArgumentException("The provided damage modifier is not applicable: " + damageModifier.toString());
+            throw new IllegalArgumentException("The provided damage modifier is not applicable: " + damageModifier);
         }
         return this.modifiers.get(Objects.requireNonNull(damageModifier));
     }
@@ -115,7 +115,7 @@ public abstract class AbstractDamageEntityEvent extends AbstractModifierEvent<Da
         } else {
             this.modifierFunctions.add(indexToAddTo, new DamageFunction(damageModifier, function));
         }
-        this.recalculateDamages(this.baseDamage);
+        this.recalculate(this.baseDamage);
     }
 
     @Override
@@ -139,7 +139,7 @@ public abstract class AbstractDamageEntityEvent extends AbstractModifierEvent<Da
         } else {
             this.modifierFunctions.add(indexToAddBefore, new DamageFunction(damageModifier, function));
         }
-        this.recalculateDamages(this.baseDamage);
+        this.recalculate(this.baseDamage);
     }
 
     @Override
@@ -163,7 +163,7 @@ public abstract class AbstractDamageEntityEvent extends AbstractModifierEvent<Da
         } else {
             this.modifierFunctions.add(indexToAddAfter + 1, new DamageFunction(damageModifier, function));
         }
-        this.recalculateDamages(this.baseDamage);
+        this.recalculate(this.baseDamage);
     }
 
     @Override
@@ -190,7 +190,7 @@ public abstract class AbstractDamageEntityEvent extends AbstractModifierEvent<Da
     @Override
     public final void setBaseDamage(double baseDamage) {
         this.baseDamage = baseDamage;
-        this.recalculateDamages(this.baseDamage);
+        this.recalculate(this.baseDamage);
     }
 
     @Override

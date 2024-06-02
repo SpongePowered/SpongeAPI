@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.impl.entity;
 
+import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.cause.entity.damage.ModifierFunction;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.impl.AbstractEvent;
@@ -44,59 +45,53 @@ import java.util.function.DoubleUnaryOperator;
 public abstract class AbstractModifierEvent<T extends ModifierFunction<M>, M> extends AbstractEvent {
 
     protected double originalFinalAmount;
-    protected List<Tuple<M, Double>> originalModifiers;
-    protected Map<M, Double> originalModifierMap;
-    protected final LinkedHashMap<M, Double> modifiers = new LinkedHashMap<>();
+    protected List<Tuple<M, Tuple<Double, Double>>> originalModifiers;
+    protected Map<M, Tuple<Double, Double>> originalModifierMap;
+    protected final LinkedHashMap<M, Tuple<Double, Double>> modifiers = new LinkedHashMap<>();
     protected final List<T> modifierFunctions = new ArrayList<>();
 
-    protected List<T> init(double originalValue, List<T> originalFunctions) {
-        final List<Tuple<M, Double>> modifierMapBuilder = new ArrayList<>(originalFunctions.size());
-        final List<T> functionListBuilder = new ArrayList<>(originalFunctions.size());
-        final Map<M, Double> mapBuilder = new HashMap<>(originalFunctions.size());
-        double finalDamage = originalValue;
-        for (T tuple : originalFunctions) {
-            this.modifierFunctions.add(this.convertTuple(tuple.modifier(), tuple.function()));
-            final double tempDamage = tuple.function().applyAsDouble(finalDamage);
-            finalDamage += tempDamage;
-            modifierMapBuilder.add(new Tuple<>(tuple.modifier(), tempDamage));
-            mapBuilder.put(tuple.modifier(), tempDamage);
-            this.modifiers.put(tuple.modifier(), tempDamage);
-            functionListBuilder.add(this.convertTuple(tuple.modifier(), tuple.function()));
-        }
-        this.originalFinalAmount = finalDamage;
-        this.originalModifiers = List.copyOf(modifierMapBuilder);
-        this.originalModifierMap = Map.copyOf(mapBuilder);
-        return List.copyOf(functionListBuilder);
+    protected List<T> init(double baseAmount, List<T> functions) {
+        functions.stream().map(entry -> this.convertTuple(entry.modifier(), entry.function())).forEach(this.modifierFunctions::add);
+        this.originalFinalAmount = this.recalculate(baseAmount);
+        this.originalModifiers = this.modifiers.entrySet().stream().map(e -> new Tuple<>(e.getKey(), e.getValue())).toList();
+        this.originalModifierMap = Map.copyOf(this.modifiers);
+        return functions.stream().map(entry -> this.convertTuple(entry.modifier(), entry.function())).toList();
     }
 
     protected abstract T convertTuple(M obj, DoubleUnaryOperator function);
 
-    protected void recalculateDamages(final double baseAmount) {
-        double tempAmount = baseAmount;
-        this.modifiers.clear();
-        for (T entry : this.modifierFunctions) {
-            final double modifierAmount = entry.function().applyAsDouble(tempAmount);
-            if (this.modifiers.containsKey(entry.modifier())) {
-                final double oldAmount = this.modifiers.get(entry.modifier());
-                final double difference = oldAmount - modifierAmount;
-                if (oldAmount > 0) {
-                    this.modifiers.put(entry.modifier(), Math.max(0, oldAmount - difference));
-                } else {
-                    this.modifiers.put(entry.modifier(), Math.min(0, oldAmount - difference));
-                }
-            } else {
-                this.modifiers.put(entry.modifier(), modifierAmount);
+    protected double recalculate(final double baseAmount) {
+        final var amounts = AbstractModifierEvent.recalculate(this.modifierFunctions, baseAmount, this.modifiers);
+        return amounts.values().stream().mapToDouble(Double::doubleValue).sum();
+    }
+
+    private static <T extends ModifierFunction<M>, M> Map<String, Double> recalculate(final List<T> functions, final double baseAmount, final Map<M, Tuple<Double, Double>> into) {
+        into.clear();
+        final var defaultGroup = "default";
+        final Map<String, Double> amounts = new HashMap<>();
+        for (T func : functions) {
+            var group = defaultGroup;
+            if (func.modifier() instanceof DamageModifier damageModifier) {
+                group = damageModifier.group();
             }
-            tempAmount += modifierAmount;
+            final var oldAmount = amounts.getOrDefault(group, baseAmount);
+            final var newAmount = func.function().applyAsDouble(oldAmount);
+            amounts.put(group, newAmount);
+            into.put(func.modifier(), new Tuple<>(oldAmount, newAmount));
         }
+        if (amounts.isEmpty()) {
+            amounts.put(defaultGroup, baseAmount);
+        }
+        return amounts;
     }
 
     protected double finalAmount(final double baseAmount) {
-        double damage = baseAmount;
-        for (final T entry : this.modifierFunctions) {
-            damage += entry.function().applyAsDouble(damage);
-        }
-        return damage;
+        final var amounts = AbstractModifierEvent.finalAmounts(baseAmount, this.modifierFunctions);
+        return amounts.values().stream().mapToDouble(Double::doubleValue).sum();
+    }
+
+    public static <T extends ModifierFunction<M>, M> Map<String, Double> finalAmounts(final double baseAmount, final List<T> modifiers) {
+        return AbstractModifierEvent.recalculate(modifiers, baseAmount, new LinkedHashMap<>());
     }
 
     /**

@@ -119,6 +119,7 @@ import java.util.function.DoubleUnaryOperator;
  * return damage;
  * }</pre></blockquote>
  *
+ * TODO explain groups
  * <p>After which, the "final" damage is simply the summation of the
  * "base" damage and all "modified damage" for each {@link DamageModifier}
  * provided in this event.</p>
@@ -134,6 +135,7 @@ import java.util.function.DoubleUnaryOperator;
  * the provided pairing will be added at the
  * "end" of the list for "modifying" the "base" damage.</p>
  *
+ * TODO this is wrong?
  * <p>Note that this event is intended for processing incoming damage to
  * an {@link Entity} prior to any {@link DamageModifier}s associated with
  * the {@link #entity()}. The {@link DamageEntityEvent} is used
@@ -177,7 +179,7 @@ public interface DamageEntityEvent extends Event, Cancellable {
      * @return An immutable map of the original modified damages
      */
     @PropertySettings(requiredParameter = false, generateMethods = false)
-    Map<DamageModifier, Double> originalDamages();
+    Map<DamageModifier, Tuple<Double, Double>> originalDamages();
 
     /**
      * Gets the original damage for the provided {@link DamageModifier}. If
@@ -188,7 +190,7 @@ public interface DamageEntityEvent extends Event, Cancellable {
      * @param damageModifier The original damage modifier
      * @return The original damage change
      */
-    double originalModifierDamage(DamageModifier damageModifier);
+    Tuple<Double, Double> originalModifierDamage(DamageModifier damageModifier);
 
     /**
      * Gets the original {@link List} of {@link DamageModifier} to
@@ -246,7 +248,7 @@ public interface DamageEntityEvent extends Event, Cancellable {
      * @param damageModifier The damage modifier to get the damage for
      * @return The modifier
      */
-    double damage(DamageModifier damageModifier);
+    Tuple<Double, Double>  damage(DamageModifier damageModifier);
 
     /**
      * Sets the provided {@link DamageFunction} to be used for the given

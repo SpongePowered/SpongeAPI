@@ -87,6 +87,12 @@ public final class DamageModifierTypes {
     public static final DefaultedRegistryReference<DamageModifierType> ATTACK_COOLDOWN = DamageModifierTypes.key(ResourceKey.sponge("attack_cooldown"));
 
     /**
+     * Represents a {@link DamageModifier} that will modify damage from the attacks strength.
+     * <p>For vanilla this only reduces damage when repeating attacks too quickly</p>
+     */
+    public static final DefaultedRegistryReference<DamageModifierType> ATTACK_STRENGTH = DamageModifierTypes.key(ResourceKey.sponge("attack_strength"));
+
+    /**
      * Represents the {@link DamageModifier} that will modify damage output
      * based on the fact that the attacking source is critically hitting the
      * target.
@@ -109,6 +115,13 @@ public final class DamageModifierTypes {
      * current {@link Difficulty} of the {@link World}.
      */
     public static final DefaultedRegistryReference<DamageModifierType> DIFFICULTY = DamageModifierTypes.key(ResourceKey.sponge("difficulty"));
+
+    /**
+     * Represents a {@link DamageModifier} that will modify freezing damage.
+     * E.g. {@link org.spongepowered.api.entity.living.monster.Blaze} take more damage from freezing sources.
+     */
+    public static final DefaultedRegistryReference<DamageModifierType> FREEZING_BONUS = DamageModifierTypes.key(ResourceKey.sponge("freezing_bonus"));
+
 
     /**
      * Represents the {@link DamageModifier} that will modify damage from
@@ -144,16 +157,19 @@ public final class DamageModifierTypes {
     public static final DefaultedRegistryReference<DamageModifierType> OFFENSIVE_POTION_EFFECT = DamageModifierTypes.key(ResourceKey.sponge("offensive_potion_effect"));
 
     /**
-     * Represents a {@link DamageModifier} that will reduce damage due to
-     * using a shield.
+     * Represents a {@link DamageModifier} that will reduce damage due to using a shield.
      */
     public static final DefaultedRegistryReference<DamageModifierType> SHIELD = DamageModifierTypes.key(ResourceKey.sponge("shield"));
 
     /**
-     * Represents a {@link DamageModifier} that is applied for a sweeping
-     * attack.
+     * Represents a {@link DamageModifier} that is applied for a sweeping attack.
      */
     public static final DefaultedRegistryReference<DamageModifierType> SWEEPING = DamageModifierTypes.key(ResourceKey.sponge("sweeping"));
+
+    /**
+     * Represents a {@link DamageModifier} that will add bonus damage based on the weapon used.
+     */
+    public static final DefaultedRegistryReference<DamageModifierType> WEAPON_BONUS = DamageModifierTypes.key(ResourceKey.sponge("weapon_bonus"));
 
     /**
      * Represents the {@link DamageModifier} that will modify damage from

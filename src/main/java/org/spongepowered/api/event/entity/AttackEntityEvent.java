@@ -122,6 +122,7 @@ import java.util.function.Function;
  * return damage;
  * }</pre></blockquote>
  *
+ * TODO explain groups
  * <p>After which, the "final" damage is simply the summation of the
  * "base" damage and all "modified damage" for each {@link DamageModifier}
  * provided in this event.</p>
@@ -258,7 +259,7 @@ public interface AttackEntityEvent extends Event, Cancellable {
      * @return An immutable map of the original modified damages
      */
     @PropertySettings(requiredParameter = false, generateMethods = false)
-    Map<DamageModifier, Double> originalDamages();
+    Map<DamageModifier, Tuple<Double, Double>> originalDamages();
 
     /**
      * Gets the original damage for the provided {@link DamageModifier}. If
@@ -269,7 +270,7 @@ public interface AttackEntityEvent extends Event, Cancellable {
      * @param damageModifier The original damage modifier
      * @return The original damage change
      */
-    double originalModifierDamage(DamageModifier damageModifier);
+    Tuple<Double, Double> originalModifierDamage(DamageModifier damageModifier);
 
     /**
      * Gets the original {@link List} of {@link DamageModifier} to
@@ -327,7 +328,7 @@ public interface AttackEntityEvent extends Event, Cancellable {
      * @param damageModifier The damage modifier to get the damage for
      * @return The modifier
      */
-    double outputDamage(DamageModifier damageModifier);
+    Tuple<Double, Double> outputDamage(DamageModifier damageModifier);
 
     /**
      * Sets the provided {@link Function} to be used for the given
