@@ -51,6 +51,7 @@ public interface JigsawPoolElement {
 
     /**
      * Places the element at given location without structure blocks
+     * and with water logging enabled
      *
      * @param location The location
      * @return true if the element was successfully placed
@@ -58,7 +59,7 @@ public interface JigsawPoolElement {
     boolean place(ServerLocation location);
 
     /**
-     * Places the element at given location.
+     * Places the element at given location with water logging enabled
      *
      * @param location The location
      * @param withStructureBlocks Whether to place the element with structure blocks
@@ -66,6 +67,17 @@ public interface JigsawPoolElement {
      * @return true if the element was successfully placed
      */
     boolean place(ServerLocation location, boolean withStructureBlocks);
+
+    /**
+     * Places the element at given location.
+     *
+     * @param location The location
+     * @param withStructureBlocks Whether to place the element with structure blocks
+     * @param waterLogging Whether to apply water logging when placing the element in a liquid
+     *
+     * @return true if the element was successfully placed
+     */
+    boolean place(ServerLocation location, boolean withStructureBlocks, boolean waterLogging);
 
     /**
      * The projection for {@link JigsawPoolElement elements} in a {@link JigsawPool}.
