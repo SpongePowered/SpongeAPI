@@ -727,6 +727,11 @@ public final class Keys {
     public static final Key<Value<ItemType>> CONTAINER_ITEM = Keys.key(ResourceKey.sponge("container_item"), ItemType.class);
 
     /**
+     * The {@link ItemStack} a food {@link ItemStack} converts to when eaten.
+     */
+    public static final Key<Value<ItemStack>> FOOD_CONVERTS_TO = Keys.key(ResourceKey.sponge("food_converts_to"), ItemStack.class);
+
+    /**
      * The amount of ticks a {@link Hopper} has to wait before transferring the next item. (in Vanilla this is 8 ticks)
      * or
      * The amount of ticks a {@link EndGateway} has to wait for the next teleportation.
