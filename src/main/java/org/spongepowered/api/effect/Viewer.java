@@ -171,7 +171,7 @@ public interface Viewer extends Audience {
      * @param position The position
      * @param progress The breaking progress from 0 to 1
      */
-    default void sendBlockProgress(final Vector3i position, final float progress) {
+    default void sendBlockProgress(final Vector3i position, final double progress) {
         Objects.requireNonNull(position, "position");
         this.sendBlockProgress(position.x(), position.y(), position.z(), progress);
     }
@@ -188,7 +188,7 @@ public interface Viewer extends Audience {
      * @param z The z position
      * @param progress The breaking progress from 0 to 1
      */
-    void sendBlockProgress(int x, int y, int z, float progress);
+    void sendBlockProgress(int x, int y, int z, double progress);
 
     /**
      * Resets the client's view of the provided position to actual
