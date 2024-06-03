@@ -169,7 +169,7 @@ public interface Viewer extends Audience {
      * Sent breaking progress expires on client 400 ticks after receiving.</p>
      *
      * @param position The position
-     * @param progress The breaking progress from 0 to 1 (1 excluded)
+     * @param progress The breaking progress from 0 to 1
      */
     default void sendBlockProgress(final Vector3i position, final float progress) {
         Objects.requireNonNull(position, "position");
@@ -186,7 +186,7 @@ public interface Viewer extends Audience {
      * @param x The x position
      * @param y The y position
      * @param z The z position
-     * @param progress The breaking progress from 0 to 1 (1 excluded)
+     * @param progress The breaking progress from 0 to 1
      */
     void sendBlockProgress(int x, int y, int z, float progress);
 
