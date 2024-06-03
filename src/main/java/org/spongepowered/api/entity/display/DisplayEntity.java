@@ -55,14 +55,9 @@ public interface DisplayEntity extends Entity {
         return this.require(Keys.TELEPORT_DURATION);
     }
 
-    /**
-     * Returns the duration of the interpolation
-     *
-     * @return the duration of the interpolation
-     */
-    default Ticks interpolationDuration() {
-        return this.require(Keys.INTERPOLATION_DURATION);
-    }
+    Ticks bridge$getTeleportDuration();
+
+    boolean bridge$setTeleportDuration(Ticks duration);
 
     /**
      * Returns the delay to the start of the interpolation
