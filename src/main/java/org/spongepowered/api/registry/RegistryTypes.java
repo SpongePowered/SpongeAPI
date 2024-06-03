@@ -77,6 +77,7 @@ import org.spongepowered.api.data.type.PickupRule;
 import org.spongepowered.api.data.type.PistonType;
 import org.spongepowered.api.data.type.PortionType;
 import org.spongepowered.api.data.type.ProfessionType;
+import org.spongepowered.api.data.type.PushReaction;
 import org.spongepowered.api.data.type.RabbitType;
 import org.spongepowered.api.data.type.RaidStatus;
 import org.spongepowered.api.data.type.RailDirection;
@@ -253,6 +254,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<ProcessorType> PROCESSOR_TYPE = RegistryTypes.minecraftKeyInGame("worldgen/structure_processor");
 
     public static final DefaultedRegistryType<ProfessionType> PROFESSION_TYPE = RegistryTypes.minecraftKeyInGame("villager_profession");
+
+    public static final DefaultedRegistryType<PushReaction> PUSH_REACTION = RegistryTypes.spongeKeyInGame("push_reaction");
 
     public static final DefaultedRegistryType<PotionType> POTION_TYPE = RegistryTypes.minecraftKeyInGame("potion");
 

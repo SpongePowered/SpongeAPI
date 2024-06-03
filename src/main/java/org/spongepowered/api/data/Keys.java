@@ -77,6 +77,7 @@ import org.spongepowered.api.data.type.PickupRule;
 import org.spongepowered.api.data.type.PistonType;
 import org.spongepowered.api.data.type.PortionType;
 import org.spongepowered.api.data.type.ProfessionType;
+import org.spongepowered.api.data.type.PushReaction;
 import org.spongepowered.api.data.type.RabbitType;
 import org.spongepowered.api.data.type.RailDirection;
 import org.spongepowered.api.data.type.SculkSensorState;
@@ -2607,6 +2608,12 @@ public final class Keys {
      * The {@link Villager} or {@link ZombieVillager}'s {@link ProfessionType} level.
      */
     public static final Key<Value<Integer>> PROFESSION_LEVEL = Keys.key(ResourceKey.sponge("profession_level"), Integer.class);
+
+    /**
+     * The {@link Entity} or {@link BlockState} push reaction when a {@link Piston} pushes it.
+     * Readonly
+     */
+    public static final Key<Value<PushReaction>> PUSH_REACTION = Keys.key(ResourceKey.sponge("push_reaction"), PushReaction.class);
 
     /**
      * Whether pvp combat is enabled in a world of a {@link WorldTemplate} or {@link ServerWorldProperties}
