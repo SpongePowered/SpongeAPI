@@ -46,14 +46,9 @@ public interface DisplayEntity extends Entity {
         return this.require(Keys.TRANSFORM);
     }
 
-    /**
-     * Returns the duration of the teleport
-     *
-     * @return the duration of the teleport
-     */
-    default Ticks teleportDuration() {
-        return this.require(Keys.TELEPORT_DURATION);
-    }
+    Ticks bridge$getTeleportDuration();
+
+    boolean bridge$setTeleportDuration(Ticks duration);
 
     /**
      * Returns the duration of the interpolation
