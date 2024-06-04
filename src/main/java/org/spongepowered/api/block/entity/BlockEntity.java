@@ -63,7 +63,7 @@ public interface BlockEntity extends SerializableDataHolder.Mutable, Locatable {
     boolean isRemoved();
 
     /**
-     * Removes this block entity from world
+     * Removes this block entity from the world and its corresponding block.
      */
     void remove();
 
