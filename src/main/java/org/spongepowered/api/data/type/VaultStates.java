@@ -22,26 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.state;
+package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.type.StringRepresentable;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryTypes;
 
-/**
- * Represents a type of {@link StateProperty} that accepts an unknown {@link Enum}
- * set of values. Due to type erasure and implementation, most all enum types
- * may not be exposed in the API.
- */
-@CatalogedBy(EnumStateProperties.class)
-public interface EnumStateProperty<E extends Comparable<E> & StringRepresentable> extends StateProperty<E> {
+public final class VaultStates {
 
-    static <E extends Comparable<E> & StringRepresentable> EnumStateProperty<E> of(String name) {
-        return Sponge.game().factoryProvider().provide(Factory.class).of(name);
+    public static final DefaultedRegistryReference<VaultState> INACTIVE = VaultStates.key(ResourceKey.sponge("inactive"));
+    public static final DefaultedRegistryReference<VaultState> ACTIVE = VaultStates.key(ResourceKey.sponge("active"));
+    public static final DefaultedRegistryReference<VaultState> UNLOCKING = VaultStates.key(ResourceKey.sponge("unlocking"));
+    public static final DefaultedRegistryReference<VaultState> EJECTING = VaultStates.key(ResourceKey.sponge("ejecting"));
+
+    public static Registry<VaultState> registry() {
+        return Sponge.game().registry(RegistryTypes.VAULT_STATE);
     }
 
-    interface Factory {
-
-        <E extends Comparable<E> & StringRepresentable> EnumStateProperty<E> of(String name);
+    private static DefaultedRegistryReference<VaultState> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.VAULT_STATE, location).asDefaultedReference(Sponge::game);
     }
+
 }

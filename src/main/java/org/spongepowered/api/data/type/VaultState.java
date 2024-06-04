@@ -22,26 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.state;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.type.StringRepresentable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-/**
- * Represents a type of {@link StateProperty} that accepts an unknown {@link Enum}
- * set of values. Due to type erasure and implementation, most all enum types
- * may not be exposed in the API.
- */
-@CatalogedBy(EnumStateProperties.class)
-public interface EnumStateProperty<E extends Comparable<E> & StringRepresentable> extends StateProperty<E> {
+@CatalogedBy(VaultStates.class)
+public interface VaultState extends Comparable<VaultState>, StringRepresentable {
 
-    static <E extends Comparable<E> & StringRepresentable> EnumStateProperty<E> of(String name) {
-        return Sponge.game().factoryProvider().provide(Factory.class).of(name);
-    }
-
-    interface Factory {
-
-        <E extends Comparable<E> & StringRepresentable> EnumStateProperty<E> of(String name);
-    }
 }
