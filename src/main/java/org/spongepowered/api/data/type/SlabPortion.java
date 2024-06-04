@@ -33,6 +33,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * example {@link BlockTypes#STONE_SLAB}.
  */
 @CatalogedBy(SlabPortions.class)
-public interface SlabPortion extends DefaultedRegistryValue, Comparable<SlabPortion> {
+public interface SlabPortion extends DefaultedRegistryValue, Comparable<SlabPortion>, StringRepresentable {
 
 }

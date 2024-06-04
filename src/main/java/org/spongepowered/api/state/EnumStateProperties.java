@@ -41,6 +41,8 @@ import org.spongepowered.api.data.type.SlabPortion;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
 import org.spongepowered.api.data.type.Tilt;
+import org.spongepowered.api.data.type.TrialSpawnerState;
+import org.spongepowered.api.data.type.VaultState;
 import org.spongepowered.api.data.type.WallConnectionState;
 import org.spongepowered.api.data.type.WireAttachmentType;
 import org.spongepowered.api.util.Axis;
@@ -179,11 +181,11 @@ public final class EnumStateProperties {
         return EnumStateProperty.of("TILT");
     }
 
-    public static EnumStateProperty<?> property_TRIAL_SPAWNER_STATE() {
+    public static EnumStateProperty<TrialSpawnerState> property_TRIAL_SPAWNER_STATE() {
         return EnumStateProperty.of("TRIAL_SPAWNER_STATE");
     }
 
-    public static EnumStateProperty<?> property_VAULT_STATE() {
+    public static EnumStateProperty<VaultState> property_VAULT_STATE() {
         return EnumStateProperty.of("VAULT_STATE");
     }
 

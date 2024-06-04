@@ -25,6 +25,7 @@
 package org.spongepowered.api.util;
 
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
+import org.spongepowered.api.data.type.StringRepresentable;
 import org.spongepowered.math.GenericMath;
 import org.spongepowered.math.TrigMath;
 import org.spongepowered.math.vector.Vector3d;
@@ -42,7 +43,7 @@ import org.spongepowered.math.vector.Vector3i;
  * <li>{@link #DOWN}  targeting towards -Y</li>
  * </ul>
  */
-public enum Direction {
+public enum Direction implements StringRepresentable {
     NORTH(new Vector3d(0, 0, -1), Division.CARDINAL),
     NORTH_NORTHEAST(new Vector3d(C.S8, 0, -C.C8), Division.SECONDARY_ORDINAL),
     NORTHEAST(new Vector3d(1, 0, -1), Division.ORDINAL),
@@ -339,6 +340,11 @@ public enum Direction {
      */
     public Vector3i asBlockOffset() {
         return this.blockOffset;
+    }
+
+    @Override
+    public String serializationString() {
+        return this.name();
     }
 
     private interface C {

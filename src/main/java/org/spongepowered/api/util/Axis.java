@@ -24,12 +24,13 @@
  */
 package org.spongepowered.api.util;
 
+import org.spongepowered.api.data.type.StringRepresentable;
 import org.spongepowered.math.vector.Vector3d;
 
 /**
  * Represents a three dimensional cartesian axis.
  */
-public enum Axis implements Cycleable<Axis> {
+public enum Axis implements Cycleable<Axis>, StringRepresentable {
 
     X(new Vector3d(1, 0, 0)),
     Y(new Vector3d(0, 1, 0)),
@@ -142,4 +143,10 @@ public enum Axis implements Cycleable<Axis> {
         }
         return Axis.X;
     }
+
+    @Override
+    public String serializationString() {
+        return this.name();
+    }
+
 }
