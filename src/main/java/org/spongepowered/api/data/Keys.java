@@ -788,6 +788,11 @@ public final class Keys {
     public static final Key<Value<Component>> CUSTOM_NAME = Keys.key(ResourceKey.sponge("custom_name"), Component.class);
 
     /**
+     * The custom potion effects that are stored on an {@link ItemStack}.
+     */
+    public static final Key<ListValue<PotionEffect>> CUSTOM_POTION_EFFECTS = Keys.listKey(ResourceKey.sponge("custom_potion_effects"), PotionEffect.class);
+
+    /**
      * The damage absorbed by an armor {@link ItemStack}.
      * Readonly
      */
