@@ -564,6 +564,12 @@ public final class Keys {
     public static final Key<Value<Ticks>> BREEDING_COOLDOWN = Keys.key(ResourceKey.sponge("breeding_cooldown"), Ticks.class);
 
     /**
+     * Whether a {@link BlockState} can be lit on fire by things like spreading lava,
+     * or sometimes a {@link ServerLocation} to be directionally specific.
+     */
+    public static final Key<Value<Boolean>> BURNABLE = Keys.key(ResourceKey.sponge("burnable"), Boolean.class);
+
+    /**
      * The burntime of an {@link ItemStack} fuel in a furnace.
      * See {@link #FUEL} for the time
      * Readonly

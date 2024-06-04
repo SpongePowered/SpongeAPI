@@ -88,7 +88,9 @@ import org.spongepowered.api.data.type.SpellType;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
 import org.spongepowered.api.data.type.Tilt;
+import org.spongepowered.api.data.type.TrialSpawnerState;
 import org.spongepowered.api.data.type.TropicalFishShape;
+import org.spongepowered.api.data.type.VaultState;
 import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.type.WallConnectionState;
 import org.spongepowered.api.data.type.WireAttachmentType;
@@ -496,9 +498,13 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<TransactionType> TRANSACTION_TYPE = RegistryTypes.spongeKeyInGame("transaction_type");
 
+    public static final DefaultedRegistryType<TrialSpawnerState> TRIAL_SPAWNER_STATE = RegistryTypes.spongeKeyInGame("trial_spawner_state");
+
     public static final DefaultedRegistryType<TropicalFishShape> TROPICAL_FISH_SHAPE = RegistryTypes.spongeKeyInGame("tropical_fish_shape");
 
     public static final DefaultedRegistryType<Tilt> TILT = RegistryTypes.spongeKeyInGame("tilt");
+
+    public static final RegistryType<VaultState> VAULT_STATE = RegistryTypes.spongeKeyInGame("vault_state");
 
     public static final DefaultedRegistryType<Visibility> VISIBILITY = RegistryTypes.spongeKeyInGame("visibility");
 

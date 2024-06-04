@@ -32,6 +32,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a mode that a {@link StructureBlock} may be in.
  */
 @CatalogedBy(StructureModes.class)
-public interface StructureMode extends DefaultedRegistryValue, Comparable<StructureMode> {
+public interface StructureMode extends DefaultedRegistryValue, Comparable<StructureMode>, StringRepresentable {
 
 }

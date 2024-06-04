@@ -25,6 +25,7 @@
 package org.spongepowered.api.state;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.type.StringRepresentable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -33,7 +34,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * may not be exposed in the API.
  */
 @CatalogedBy(EnumStateProperties.class)
-public interface EnumStateProperty<E extends Comparable<E>> extends StateProperty<E> {
+public interface EnumStateProperty<E extends Comparable<E> & StringRepresentable> extends StateProperty<E> {
 
     static <E extends Comparable<E>> EnumStateProperty<E> of(String name) {
         return Sponge.game().factoryProvider().provide(Factory.class).of(name);

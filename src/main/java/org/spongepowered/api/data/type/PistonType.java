@@ -31,6 +31,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a "type" of piston.
  */
 @CatalogedBy(PistonTypes.class)
-public interface PistonType extends DefaultedRegistryValue, Comparable<PistonType> {
+public interface PistonType extends DefaultedRegistryValue, Comparable<PistonType>, StringRepresentable {
 
 }

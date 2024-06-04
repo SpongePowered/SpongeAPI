@@ -32,6 +32,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents the type of leaves of a {@link BlockTypes#BAMBOO} block.
  */
 @CatalogedBy(BambooLeavesTypes.class)
-public interface BambooLeavesType extends DefaultedRegistryValue, Comparable<BambooLeavesType> {
+public interface BambooLeavesType extends DefaultedRegistryValue, Comparable<BambooLeavesType>, StringRepresentable {
 
 }

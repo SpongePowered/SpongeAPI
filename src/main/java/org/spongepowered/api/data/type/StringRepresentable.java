@@ -24,10 +24,14 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.registry.DefaultedRegistryValue;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+/**
+ * Represents a type that has a stable string representation, usually an enumerated
+ * set of values, like most catalog types:
+ * {@link org.spongepowered.api.data.type.ArtType},
+ * {@link RabbitType}, {@link RailDirection}, etc.
+ */
+public interface StringRepresentable {
 
-@CatalogedBy(ComparatorModes.class)
-public interface ComparatorMode extends DefaultedRegistryValue, Comparable<ComparatorMode>, StringRepresentable {
+    String serializationString();
 
 }
