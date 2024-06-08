@@ -24,5 +24,11 @@
  */
 package org.spongepowered.api.block.entity.carrier;
 
+import org.spongepowered.api.item.recipe.crafting.RecipeInput;
+
+import java.util.List;
+
 public interface Campfire extends CarrierBlockEntity {
+
+    List<RecipeInput.Single> recipeInputs();
 }

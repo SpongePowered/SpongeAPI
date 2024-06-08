@@ -24,11 +24,12 @@
  */
 package org.spongepowered.api.item.recipe;
 
+import org.spongepowered.api.item.recipe.crafting.RecipeInput;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(RecipeTypes.class)
-public interface RecipeType<T extends Recipe> extends DefaultedRegistryValue {
+public interface RecipeType<T extends Recipe<? extends RecipeInput>> extends DefaultedRegistryValue {
 
 
 }

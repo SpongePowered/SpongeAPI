@@ -28,13 +28,13 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.item.recipe.RecipeType;
 import org.spongepowered.api.item.recipe.crafting.Ingredient;
+import org.spongepowered.api.item.recipe.crafting.RecipeInput;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
 import org.spongepowered.api.util.Ticks;
 
@@ -45,7 +45,7 @@ import java.util.function.Supplier;
 /**
  * A general interface for cooking-type/furnace recipes.
  */
-public interface CookingRecipe extends Recipe {
+public interface CookingRecipe extends Recipe<RecipeInput.Single> {
 
     /**
      * Builds a cooking recipe.
@@ -210,7 +210,7 @@ public interface CookingRecipe extends Recipe {
              *
              * @return The builder
              */
-            EndStep result(final Function<Inventory, ItemStack> resultFunction, final org.spongepowered.api.item.inventory.ItemStack exemplaryResult);
+            EndStep result(final Function<RecipeInput.Single, ItemStack> resultFunction, final ItemStack exemplaryResult);
         }
 
         interface EndStep extends Builder,

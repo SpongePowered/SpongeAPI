@@ -30,7 +30,6 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
 
@@ -216,7 +215,7 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
              *
              * @return This builder, for chaining
              */
-            ResultStep remainingItems(Function<CraftingGridInventory, List<ItemStack>> remainingItemsFunction);
+            ResultStep remainingItems(Function<RecipeInput.Crafting, List<ItemStack>> remainingItemsFunction);
 
             /**
              * Sets the resultant {@link ItemStackSnapshot} for when this shaped
@@ -247,7 +246,7 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
              *
              * @return The builder
              */
-            EndStep result(Function<CraftingGridInventory, ItemStack> resultFunction, ItemStack exemplaryResult);
+            EndStep result(Function<RecipeInput.Crafting, ItemStack> resultFunction, ItemStack exemplaryResult);
         }
 
         /**

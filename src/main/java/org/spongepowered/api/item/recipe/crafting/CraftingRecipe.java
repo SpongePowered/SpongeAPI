@@ -38,7 +38,7 @@ import java.util.Optional;
  * <p>{@link ShapedCraftingRecipe} for recipes with simple ingredients/result in a pattern in a {@link CraftingInventory}</p>
  * <p>{@link SpecialCraftingRecipe} for recipes with complex ingredients and result in a {@link CraftingInventory}</p>
  */
-public interface CraftingRecipe extends Recipe {
+public interface CraftingRecipe extends Recipe<RecipeInput.Crafting> {
 
     @Override
     RecipeType<? extends CraftingRecipe> type();

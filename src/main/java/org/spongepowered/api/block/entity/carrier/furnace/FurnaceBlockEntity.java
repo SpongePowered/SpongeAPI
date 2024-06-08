@@ -28,6 +28,7 @@ import org.spongepowered.api.block.entity.carrier.NameableCarrierBlockEntity;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.recipe.Recipe;
+import org.spongepowered.api.item.recipe.crafting.RecipeInput;
 import org.spongepowered.api.util.Ticks;
 
 /**
@@ -81,5 +82,7 @@ public interface FurnaceBlockEntity extends NameableCarrierBlockEntity {
     default Value.Mutable<Ticks> maxCookTime() {
         return this.requireValue(Keys.MAX_COOK_TIME).asMutable();
     }
+
+    RecipeInput.Single asRecipeInput();
 
 }

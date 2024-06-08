@@ -25,10 +25,9 @@
 package org.spongepowered.api.item.recipe;
 
 import org.spongepowered.api.ResourceKey;
-import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.cooking.CookingRecipe;
-import org.spongepowered.api.item.recipe.crafting.RecipeResult;
+import org.spongepowered.api.item.recipe.crafting.RecipeInput;
 import org.spongepowered.api.world.server.ServerWorld;
 
 import java.util.Collection;
@@ -50,14 +49,14 @@ public interface RecipeManager {
      *
      * @return The recipe if available
      */
-    Optional<Recipe> byKey(ResourceKey key);
+    Optional<Recipe<?>> byKey(ResourceKey key);
 
     /**
      * Gets all registered recipes.
      *
      * @return All registered recipes.
      */
-    Collection<Recipe> all();
+    Collection<Recipe<?>> all();
 
     /**
      * Returns all registered recipes of given type
@@ -65,7 +64,7 @@ public interface RecipeManager {
      *
      * @return All recipes of given type
      */
-    <T extends Recipe> Collection<T> allOfType(RecipeType<T> type);
+    <T extends Recipe<?>> Collection<T> allOfType(RecipeType<T> type);
 
     /**
      * Returns all registered recipes of given type
@@ -73,7 +72,7 @@ public interface RecipeManager {
      *
      * @return All recipes of given type
      */
-    default <T extends Recipe> Collection<T> allOfType(Supplier<? extends RecipeType<T>> supplier) {
+    default <T extends Recipe<?>> Collection<T> allOfType(Supplier<? extends RecipeType<T>> supplier) {
         return this.allOfType(supplier.get());
     }
 
@@ -85,7 +84,7 @@ public interface RecipeManager {
      *
      * @return The recipes resulting in given item.
      */
-    <T extends Recipe> Collection<T> findByResult(RecipeType<T> type, ItemStackSnapshot result);
+    <T extends Recipe<?>> Collection<T> findByResult(RecipeType<T> type, ItemStackSnapshot result);
 
     /**
      * Gets all recipes with given item as a result.
@@ -94,43 +93,32 @@ public interface RecipeManager {
      *
      * @return All recipes resulting in given item.
      */
-    default <T extends Recipe> Collection<T> findByResult(Supplier<? extends RecipeType<T>> supplier, ItemStackSnapshot result) {
+    default <T extends Recipe<?>> Collection<T> findByResult(Supplier<? extends RecipeType<T>> supplier, ItemStackSnapshot result) {
         return this.findByResult(supplier.get(), result);
     }
 
     /**
-     * Finds a matching recipe for given inventory and world.
-     *
-     * @param inventory The input inventory
-     * @param world The world
-     *
-     * @return The found {@link Recipe}, or {@link Optional#empty()}
-     *         if no recipe was found for this configuration
-     */
-    Optional<Recipe> findMatchingRecipe(Inventory inventory, ServerWorld world);
-
-    /**
-     * Finds a matching recipe for given type, inventory and world
+     * Finds a matching recipe for given type, recipe input and world
      *
      * @param type The recipe type
-     * @param inventory The input inventory
+     * @param input The recipe input
      * @param world The world
      *
      * @return The matching recipes.
      */
-    <T extends Recipe> Optional<T> findMatchingRecipe(RecipeType<T> type, Inventory inventory, ServerWorld world);
+    <I extends RecipeInput, T extends Recipe<I>> Optional<T> findMatchingRecipe(RecipeType<T> type, I input, ServerWorld world);
 
     /**
-     * Finds a matching recipe for given type, inventory and world
+     * Finds a matching recipe for given type, recipe input and world
      *
      * @param supplier The recipe type
-     * @param inventory The input inventory
+     * @param input The recipe input
      * @param world The world
      *
      * @return The matching recipes.
      */
-    default <T extends Recipe> Optional<T> findMatchingRecipe(Supplier<? extends RecipeType<T>> supplier, Inventory inventory, ServerWorld world) {
-        return this.findMatchingRecipe(supplier.get(), inventory, world);
+    default <I extends RecipeInput, T extends Recipe<I>> Optional<T> findMatchingRecipe(Supplier<? extends RecipeType<T>> supplier, I input, ServerWorld world) {
+        return this.findMatchingRecipe(supplier.get(), input, world);
     }
 
     /**
@@ -155,17 +143,4 @@ public interface RecipeManager {
         return this.findCookingRecipe(supplier.get(), ingredient);
     }
 
-    /**
-     * Finds the matching recipe and creates the {@link RecipeResult},
-     * which is then returned.
-     *
-     * @param inventory The crafting grid
-     * @param world The world
-     * @return The {@link RecipeResult} if a recipe was found, or
-     *         {@link Optional#empty()} if not
-     */
-    default Optional<RecipeResult> result(Inventory inventory, ServerWorld world) {
-        return this.findMatchingRecipe(inventory, world)
-                .flatMap(recipe -> recipe.result(inventory, world));
-    }
 }

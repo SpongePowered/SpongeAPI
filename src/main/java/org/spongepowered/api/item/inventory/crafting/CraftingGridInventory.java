@@ -27,6 +27,7 @@ package org.spongepowered.api.item.inventory.crafting;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.type.GridInventory;
 import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
+import org.spongepowered.api.item.recipe.crafting.RecipeInput;
 import org.spongepowered.api.world.server.ServerWorld;
 
 import java.util.Optional;
@@ -50,4 +51,11 @@ public interface CraftingGridInventory extends Inventory {
      * @return the grid inventory
      */
     GridInventory asGrid();
+
+    /**
+     * Returns this inventory as a {@link RecipeInput.Crafting}.
+     *
+     * @return the recipe input
+     */
+    RecipeInput.Crafting asRecipeInput();
 }

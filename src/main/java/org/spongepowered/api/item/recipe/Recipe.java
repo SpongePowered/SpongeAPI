@@ -30,12 +30,12 @@ import org.spongepowered.api.block.entity.carrier.furnace.BlastFurnace;
 import org.spongepowered.api.block.entity.carrier.furnace.Furnace;
 import org.spongepowered.api.block.entity.carrier.furnace.Smoker;
 import org.spongepowered.api.item.ItemTypes;
-import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
 import org.spongepowered.api.item.recipe.cooking.CookingRecipe;
 import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
 import org.spongepowered.api.item.recipe.crafting.Ingredient;
+import org.spongepowered.api.item.recipe.crafting.RecipeInput;
 import org.spongepowered.api.item.recipe.crafting.RecipeResult;
 import org.spongepowered.api.item.recipe.crafting.ShapedCraftingRecipe;
 import org.spongepowered.api.item.recipe.crafting.ShapelessCraftingRecipe;
@@ -57,7 +57,7 @@ import java.util.Optional;
  * <p>{@link StoneCutterRecipe} for recipes in a {@link BlockTypes#STONECUTTER} block</p>
  * <p>{@link SmithingRecipe} for recipes in a {@link BlockTypes#SMITHING_TABLE} block</p>
  */
-public interface Recipe {
+public interface Recipe<T extends RecipeInput> {
 
     /**
      * Checks if the given inventory fits the required constraints to make a valid recipe
@@ -67,11 +67,11 @@ public interface Recipe {
      *
      * @return True if the given input matches this recipe's requirements
      */
-    boolean isValid(Inventory inventory, ServerWorld world);
+    boolean isValid(T inventory, ServerWorld world);
 
     /**
      * The result of this recipe. This method should only be called if
-     * {@link #isValid(Inventory, ServerWorld)} returns {@code true}.
+     * {@link #isValid(RecipeInput, ServerWorld)} returns {@code true}.
      *
      * <p>This method is preferred over the {@link CraftingRecipe#exemplaryResult()} method,
      * as it may customize the result further depending on the context.</p>
@@ -80,11 +80,11 @@ public interface Recipe {
      *
      * @return The result of this recipe
      */
-    ItemStackSnapshot result(Inventory inventory);
+    ItemStackSnapshot result(T inventory);
 
     /**
      * A general result of this recipe. This result may be customized depending on the context.
-     * See {@link #result(Inventory)}
+     * See {@link #result(RecipeInput)}
      *
      * @return The exemplary result of this recipe
      */
@@ -92,7 +92,7 @@ public interface Recipe {
 
     /**
      * The remaining items result of this recipe.
-     * This method should only be called if {@link #isValid(Inventory, ServerWorld)} returns {@code true}.
+     * This method should only be called if {@link #isValid(RecipeInput, ServerWorld)} returns {@code true}.
      *
      * <p>A list of items to be added to the inventory of the player when they craft the result.
      * For example, if a player crafts a {@link ItemTypes#CAKE}, the empty buckets are returned to
@@ -102,22 +102,22 @@ public interface Recipe {
      * @return The list of items to be added to the inventory of the player
      *         when the recipe has been fulfilled (possibly empty)
      */
-    List<ItemStackSnapshot> remainingItems(Inventory inventory);
+    List<ItemStackSnapshot> remainingItems(T inventory);
 
     /**
      * Returns the {@link RecipeResult} for the given inventory and world.
      *
      * <p>Returns {@link Optional#empty()} if the arguments do not satisfy
-     * {@link #isValid(Inventory, ServerWorld)}.</p>
+     * {@link #isValid(RecipeInput, ServerWorld)}.</p>
      *
      * @param inventory The input inventory
      * @param world The world this recipe would be used in
      *
      * @return A {@link RecipeResult} if the arguments satisfy
-     *     {@link #isValid(Inventory, ServerWorld)}, or
+     *     {@link #isValid(RecipeInput, ServerWorld)}, or
      *     {@link Optional#empty()} if not
      */
-    default Optional<RecipeResult> result(Inventory inventory, ServerWorld world) {
+    default Optional<RecipeResult> result(T inventory, ServerWorld world) {
         if (this.isValid(inventory, world)) {
             return Optional.of(new RecipeResult(this.result(inventory), this.remainingItems(inventory)));
         }
@@ -144,6 +144,6 @@ public interface Recipe {
      *
      * @return The recipe type.
      */
-    RecipeType<? extends Recipe> type();
+    RecipeType<? extends Recipe<?>> type();
 
 }

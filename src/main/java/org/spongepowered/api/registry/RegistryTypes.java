@@ -260,7 +260,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<PotionType> POTION_TYPE = RegistryTypes.minecraftKeyInGame("potion");
 
-    public static final DefaultedRegistryType<RecipeType<? extends @NonNull Recipe>> RECIPE_TYPE = RegistryTypes.minecraftKeyInGame("recipe_type");
+    public static final DefaultedRegistryType<RecipeType<? extends @NonNull Recipe<?>>> RECIPE_TYPE = RegistryTypes.minecraftKeyInGame("recipe_type");
 
     public static final DefaultedRegistryType<SoundType> SOUND_TYPE = RegistryTypes.minecraftKeyInGame("sound_event");
 

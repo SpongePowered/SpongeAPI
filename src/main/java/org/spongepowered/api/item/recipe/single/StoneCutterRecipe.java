@@ -29,13 +29,13 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.item.recipe.RecipeType;
 import org.spongepowered.api.item.recipe.crafting.Ingredient;
+import org.spongepowered.api.item.recipe.crafting.RecipeInput;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
 
 import java.util.function.Function;
@@ -44,7 +44,7 @@ import java.util.function.Supplier;
 /**
  * A StoneCutter Recipe.
  */
-public interface StoneCutterRecipe extends Recipe {
+public interface StoneCutterRecipe extends Recipe<RecipeInput.Single> {
 
     static StoneCutterRecipe.Builder builder() {
         return Sponge.game().builderProvider().provide(StoneCutterRecipe.Builder.class);
@@ -118,7 +118,7 @@ public interface StoneCutterRecipe extends Recipe {
              *
              * @return This builder, for chaining
              */
-            EndStep result(Function<Inventory, ItemStack> resultFunction, ItemStack exemplaryResult);
+            EndStep result(Function<RecipeInput.Single, ItemStack> resultFunction, ItemStack exemplaryResult);
 
         }
 

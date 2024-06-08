@@ -27,7 +27,6 @@ package org.spongepowered.api.item.recipe.crafting;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
 import org.spongepowered.api.world.server.ServerWorld;
@@ -60,7 +59,7 @@ public interface SpecialCraftingRecipe extends CraftingRecipe {
          *
          * @return This builder, for chaining
          */
-        Builder.ResultStep matching(BiPredicate<CraftingGridInventory, ServerWorld> biPredicate);
+        Builder.ResultStep matching(BiPredicate<RecipeInput.Crafting, ServerWorld> biPredicate);
 
         /**
          * In this Step set the result of the Recipe.
@@ -75,7 +74,7 @@ public interface SpecialCraftingRecipe extends CraftingRecipe {
              *
              * @return This builder, for chaining
              */
-            ResultStep remainingItems(Function<CraftingGridInventory, List<ItemStack>> remainingItemsFunction);
+            ResultStep remainingItems(Function<RecipeInput.Crafting, List<ItemStack>> remainingItemsFunction);
 
             /**
              * Sets the result function.
@@ -84,7 +83,7 @@ public interface SpecialCraftingRecipe extends CraftingRecipe {
              *
              * @return This builder, for chaining
              */
-            EndStep result(Function<CraftingGridInventory, ItemStack> resultFunction);
+            EndStep result(Function<RecipeInput.Crafting, ItemStack> resultFunction);
 
             /**
              * Sets the result
