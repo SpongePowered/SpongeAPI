@@ -28,11 +28,10 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.event.item.inventory.AffectItemStackEvent;
+import org.spongepowered.api.event.item.inventory.AffectSlotEvent;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.cooking.CookingRecipe;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -74,7 +73,7 @@ public interface CookingEvent extends Event {
      * Fires whenever fuel is consumed to refill the current burn time.
      * Canceling this event prevents fuel from being consumed in a furnace In the current burn time to 0.
      */
-    interface ConsumeFuel extends CookingEvent, AffectItemStackEvent {}
+    interface ConsumeFuel extends CookingEvent, AffectSlotEvent {}
 
     /**
      * The cooking timer ticking up or down.
@@ -95,13 +94,6 @@ public interface CookingEvent extends Event {
     interface Interrupt extends CookingEvent {
     }
 
-    interface Finish extends CookingEvent {
-        /**
-         * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the result of the cooking.
-         * Always exactly one item.
-         *
-         * @return The cooked items
-         */
-        List<ItemStackSnapshot> cookedItems();
+    interface Finish extends CookingEvent, AffectSlotEvent {
     }
 }
