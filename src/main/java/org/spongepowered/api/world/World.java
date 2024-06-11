@@ -24,9 +24,8 @@
  */
 package org.spongepowered.api.world;
 
-import net.kyori.adventure.audience.Audience;
-import net.kyori.adventure.audience.ForwardingAudience;
 import org.spongepowered.api.Server;
+import org.spongepowered.api.effect.ForwardingViewer;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.Player;
@@ -51,12 +50,11 @@ import java.util.function.Predicate;
  */
 @DoNotStore
 public interface World<W extends World<W, L>, L extends Location<W, L>> extends
-    ForwardingAudience,
+    ForwardingViewer,
     WorldLike<W>,
     LocationCreator<W, L>,
     PhysicsAwareMutableBlockVolume<W>,
     ContextSource,
-    Viewer,
     ArchetypeVolumeCreator,
     WeatherUniverse,
     RegistryHolder {
@@ -92,7 +90,7 @@ public interface World<W extends World<W, L>, L extends Location<W, L>> extends
     Collection<? extends Player> players();
 
     @Override
-    default Iterable<? extends Audience> audiences() {
+    default Iterable<? extends Viewer> audiences() {
         return this.players();
     }
 
