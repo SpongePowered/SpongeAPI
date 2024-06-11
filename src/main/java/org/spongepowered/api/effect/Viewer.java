@@ -41,54 +41,52 @@ import java.util.Objects;
 
 /**
  * A Viewer is something that sees effects.
- * The Viewer class contains methods for spawning particles and playing sound
- * effects.
+ * E.g. the Viewer class contains methods for spawning particles and playing
+ * sound effects.
  */
 public interface Viewer extends Audience {
 
     /**
-     * Sends the effect of being in a particular Vanilla world environment, such as the Nether,
+     * Sends the effect of being in a particular world environment, such as the Nether,
      * as an effect to the viewer.
      *
-     * <p>For example, specifying {@link WorldTypes#THE_NETHER} will create a red skybox and
-     * red hazy fog on the vanilla minecraft client</p>
+     * <p>For example, specifying {@link WorldTypes#THE_NETHER} will create an empty skybox
+     * and hazy fog on the vanilla minecraft client</p>
      *
      * @param worldType The world type
      */
     void sendWorldType(WorldType worldType);
 
     /**
-     * Spawn a {@link ParticleEffect} at a given position.
-     * All players within a default radius around the position will see the
-     * particles.
+     * Spawn the given {@link ParticleEffect} at the given position.
      *
      * @param particleEffect The particle effect to spawn
-     * @param position The position at which to spawn the particle effect
+     * @param position The position
      */
     default void spawnParticles(final ParticleEffect particleEffect, final Vector3d position) {
-        this.spawnParticles(Objects.requireNonNull(particleEffect, "particleEffect"), Objects.requireNonNull(position, "position"), Integer.MAX_VALUE);
+        Objects.requireNonNull(position, "position");
+        this.spawnParticles(particleEffect, position.x(), position.y(), position.z());
     }
 
     /**
-     * Spawn a {@link ParticleEffect} at a given position.
-     * All players within a given radius around the position will see the
-     * particles.
+     * Spawn the given {@link ParticleEffect} at the given position.
      *
      * @param particleEffect The particle effect to spawn
-     * @param position The position at which to spawn the particle effect
-     * @param radius The radius around the position where the particles can be
-     *            seen by players
+     * @param x The x position
+     * @param y The y position
+     * @param z The z position
      */
-    void spawnParticles(ParticleEffect particleEffect, Vector3d position, int radius);
+    void spawnParticles(ParticleEffect particleEffect, double x, double y, double z);
 
     /**
-     * Plays a sound.
+     * Plays the given {@link Sound} at the given position.
      *
-     * @param sound the sound
-     * @param pos the position to play the sound at
+     * @param sound The sound
+     * @param position The position
      */
-    default void playSound(final @NonNull Sound sound, final Vector3d pos) {
-        this.playSound(sound, pos.x(), pos.y(), pos.z());
+    default void playSound(final @NonNull Sound sound, final Vector3d position) {
+        Objects.requireNonNull(position, "position");
+        this.playSound(sound, position.x(), position.y(), position.z());
     }
 
     /**
@@ -98,16 +96,44 @@ public interface Viewer extends Audience {
      * position will cancel the currently playing one.
      *
      * @param position The position
-     * @param musicDiscType The music disc
+     * @param musicDisc The music disc
      */
-    void playMusicDisc(Vector3i position, MusicDisc musicDiscType);
+    default void playMusicDisc(final Vector3i position, final MusicDisc musicDisc) {
+        Objects.requireNonNull(position, "position");
+        this.playMusicDisc(position.x(), position.y(), position.z(), musicDisc);
+    }
+
+    /**
+     * Plays the given {@link MusicDisc} at the given position. The benefit of playing
+     * {@link MusicDisc} instead of a {@link SoundType} allows you to stop them through
+     * the {@link #stopMusicDisc(Vector3i)}. Playing a new {@link MusicDisc} at the same
+     * position will cancel the currently playing one.
+     *
+     * @param x The x position
+     * @param y The y position
+     * @param z The z position
+     * @param musicDisc The music disc
+     */
+    void playMusicDisc(int x, int y, int z, MusicDisc musicDisc);
 
     /**
      * Stops the {@link MusicDisc} that is playing at the given position.
      *
      * @param position The position
      */
-    void stopMusicDisc(Vector3i position);
+    default void stopMusicDisc(final Vector3i position) {
+        Objects.requireNonNull(position, "position");
+        this.stopMusicDisc(position.x(), position.y(), position.z());
+    }
+
+    /**
+     * Stops the {@link MusicDisc} that is playing at the given position.
+     *
+     * @param x The x position
+     * @param y The y position
+     * @param z The z position
+     */
+    void stopMusicDisc(int x, int y, int z);
 
     /**
      * Sends a client-only block change.
@@ -119,7 +145,7 @@ public interface Viewer extends Audience {
      */
     default void sendBlockChange(final Vector3i position, final BlockState state) {
         Objects.requireNonNull(position, "position");
-        this.sendBlockChange(position.x(), position.y(), position.z(), Objects.requireNonNull(state, "state"));
+        this.sendBlockChange(position.x(), position.y(), position.z(), state);
     }
 
     /**
