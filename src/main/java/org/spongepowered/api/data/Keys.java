@@ -2088,7 +2088,7 @@ public final class Keys {
     public static final Key<Value<ItemStackSnapshot>> ITEM_STACK_SNAPSHOT = Keys.key(ResourceKey.sponge("item_stack_snapshot"), ItemStackSnapshot.class);
 
     /**
-     * The knockback strength applied by an {@link ArrowEntity}.
+     * The custom knockback strength applied by an {@link ArrowEntity}.
      *
      * <p>For the knockback provided by hits with a weapon according to the
      * enchantment of the same name, see {@link #APPLIED_ENCHANTMENTS}.</p>
