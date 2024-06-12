@@ -423,10 +423,22 @@ public final class Keys {
     public static final Key<Value<Ticks>> ATTACK_TIME = Keys.key(ResourceKey.sponge("attack_time"), Ticks.class);
 
     /**
+     * The attack damage of the auto spin attack a {@link Living} is doing.
+     * @see #IS_AUTO_SPIN_ATTACK
+     */
+    public static final Key<Value<Double>> AUTO_SPIN_ATTACK_DAMAGE = Keys.key(ResourceKey.sponge("auto_spin_attack_damage"), Double.class);
+
+    /**
      * Remaining ticks of the auto spin attack a {@link Living} is doing.
      * @see #IS_AUTO_SPIN_ATTACK
      */
     public static final Key<Value<Ticks>> AUTO_SPIN_ATTACK_TICKS = Keys.key(ResourceKey.sponge("auto_spin_attack_ticks"), Ticks.class);
+
+    /**
+     * The ItemStack of the auto spin attack a {@link Living} is doing.
+     * @see #IS_AUTO_SPIN_ATTACK
+     */
+    public static final Key<Value<ItemStackSnapshot>> AUTO_SPIN_ATTACK_WEAPON = Keys.key(ResourceKey.sponge("auto_spin_attack_weapon"), ItemStackSnapshot.class);
 
     /**
      * The author of a {@link ItemTypes#WRITTEN_BOOK} {@link ItemStack}.
