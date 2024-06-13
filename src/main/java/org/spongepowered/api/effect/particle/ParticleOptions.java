@@ -27,7 +27,6 @@ package org.spongepowered.api.effect.particle;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.registry.Registry;
@@ -36,8 +35,8 @@ import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.Color;
-import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.Ticks;
+import org.spongepowered.api.world.PositionSource;
 import org.spongepowered.math.vector.Vector3d;
 
 /**
@@ -57,8 +56,9 @@ public final class ParticleOptions {
      *
      * <ul>
      *   <li>{@link ParticleTypes#BLOCK}</li>
+     *   <li>{@link ParticleTypes#BLOCK_MARKER}</li>
+     *   <li>{@link ParticleTypes#DUST_PILLAR}</li>
      *   <li>{@link ParticleTypes#FALLING_DUST}</li>
-     *   <li>{@link ParticleTypes#ITEM}</li>
      * </ul>
      */
     public static final DefaultedRegistryReference<ParticleOption<BlockState>> BLOCK_STATE = ParticleOptions.key(ResourceKey.sponge("block_state"));
@@ -70,13 +70,14 @@ public final class ParticleOptions {
      * <ul>
      *   <li>{@link ParticleTypes#ENTITY_EFFECT}</li>
      *   <li>{@link ParticleTypes#DUST}</li>
+     *   <li>{@link ParticleTypes#DUST_COLOR_TRANSITION}</li>
      * </ul>
      */
     public static final DefaultedRegistryReference<ParticleOption<Color>> COLOR = ParticleOptions.key(ResourceKey.sponge("color"));
 
     /**
      * This option will affect the delay of particles that are spawned.
-     * The only vanilla {@link ParticleType}s this option isn't applicable to are:
+     * The only vanilla {@link ParticleType} this option is applicable to is:
      *
      * <ul>
      *   <li>{@link ParticleTypes#SHRIEK}</li>
@@ -85,19 +86,25 @@ public final class ParticleOptions {
     public static final DefaultedRegistryReference<ParticleOption<Integer>> DELAY = ParticleOptions.key(ResourceKey.sponge("delay"));
 
     /**
-     * This option will change the direction of a particle.
+     * This option will affect the destination of a particle.
+     * The only vanilla {@link ParticleType} this option is applicable to is:
+     *
+     * <ul>
+     *   <li>{@link ParticleTypes#VIBRATION}</li>
+     * </ul>
      */
-    public static final DefaultedRegistryReference<ParticleOption<Direction>> DIRECTION = ParticleOptions.key(ResourceKey.sponge("direction"));
+    public static final DefaultedRegistryReference<ParticleOption<PositionSource>> DESTINATION = ParticleOptions.key(ResourceKey.sponge("destination"));
 
     /**
      * This option will affect the appearance of a particle. The only vanilla
-     * {@link ParticleType} this option is applicable to are:
+     * {@link ParticleType} this option is applicable to is:
      *
      * <ul>
-     *   <li>{@link ParticleTypes#BLOCK}</li>
-     *   <li>{@link ParticleTypes#FALLING_DUST}</li>
      *   <li>{@link ParticleTypes#ITEM}</li>
      * </ul>
+     *
+     * <p>The item stack snapshot may never be empty, or a {@link IllegalArgumentException}
+     * will be thrown when applying</p>
      */
     public static final DefaultedRegistryReference<ParticleOption<ItemStackSnapshot>> ITEM_STACK_SNAPSHOT = ParticleOptions.key(ResourceKey.sponge("item_stack_snapshot"));
 
@@ -107,20 +114,20 @@ public final class ParticleOptions {
     public static final DefaultedRegistryReference<ParticleOption<Vector3d>> OFFSET = ParticleOptions.key(ResourceKey.sponge("offset"));
 
     /**
-     * This option will change the potion type of a particle. The only vanilla
-     * {@link ParticleType}s this option is applicable to is
-     */
-    public static final DefaultedRegistryReference<ParticleOption<PotionEffectType>> POTION_EFFECT_TYPE = ParticleOptions.key(ResourceKey.sponge("potion_effect_type"));
-
-    /**
-     * This option will affect the amount of particles that are spawned. The
-     * minimum amount of particles is 1. The only vanilla {@link ParticleType}s
-     * this option isn't applicable to are:
+     * This option will affect the opacity of a particle.
+     * The only vanilla {@link ParticleType} this option is applicable to is:
      *
      * <ul>
-     *   <li>{@link ParticleTypes#BLOCK}</li>
-     *   <li>{@link ParticleTypes#FIREWORK}</li>
+     *   <li>{@link ParticleTypes#ENTITY_EFFECT}</li>
      * </ul>
+     *
+     * <p>The opacity must be between 0 and 1, or a {@link IllegalArgumentException}
+     * will be thrown when applying.</p>
+     */
+    public static final DefaultedRegistryReference<ParticleOption<Double>> OPACITY = ParticleOptions.key(ResourceKey.sponge("opacity"));
+
+    /**
+     * This option will affect the amount of particles that are spawned.
      *
      * <p>The quantity must be at least 1, or a {@link IllegalArgumentException}
      * will be thrown when applying.</p>
@@ -129,7 +136,7 @@ public final class ParticleOptions {
 
     /**
      * This option will change the roll of a particle. The only
-     * vanilla {@link ParticleType}s this option is applicable to is:
+     * vanilla {@link ParticleType} this option is applicable to is:
      *
      * <ul>
      *   <li>{@link ParticleTypes#SCULK_CHARGE}</li>
@@ -139,10 +146,11 @@ public final class ParticleOptions {
 
     /**
      * This option will change the scale of a particle. The only
-     * vanilla {@link ParticleType}s this option is applicable to is:
+     * vanilla {@link ParticleType}s this option is applicable to are:
      *
      * <ul>
      *   <li>{@link ParticleTypes#DUST}</li>
+     *   <li>{@link ParticleTypes#DUST_COLOR_TRANSITION}</li>
      * </ul>
      *
      * <p>The scale may never be negative, or a {@link IllegalArgumentException}
@@ -152,7 +160,7 @@ public final class ParticleOptions {
 
     /**
      * This option will change the color the transition particle will change to.
-     * The only vanilla {@link ParticleType}s this option is applicable to is:
+     * The only vanilla {@link ParticleType} this option is applicable to is:
      *
      * <ul>
      *   <li>{@link ParticleTypes#DUST_COLOR_TRANSITION}</li>
@@ -162,7 +170,7 @@ public final class ParticleOptions {
 
     /**
      * This option will change the travel time of a particle.
-     * The only vanilla {@link ParticleType}s this option is applicable to is:
+     * The only vanilla {@link ParticleType} this option is applicable to is:
      *
      * <ul>
      *   <li>{@link ParticleTypes#VIBRATION}</li>
