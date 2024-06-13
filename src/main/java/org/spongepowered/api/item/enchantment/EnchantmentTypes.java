@@ -280,10 +280,10 @@ public final class EnchantmentTypes {
     }
 
     public static Registry<EnchantmentType> registry() {
-        return Sponge.game().registry(RegistryTypes.ENCHANTMENT_TYPE);
+        return Sponge.server().registry(RegistryTypes.ENCHANTMENT_TYPE);
     }
 
     private static DefaultedRegistryReference<EnchantmentType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.ENCHANTMENT_TYPE, location).asDefaultedReference(Sponge::game);
+        return RegistryKey.of(RegistryTypes.ENCHANTMENT_TYPE, location).asDefaultedReference(Sponge::server);
     }
 }

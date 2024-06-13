@@ -220,7 +220,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<DensityFunction> DENSITY_FUNCTION = RegistryTypes.minecraftKeyInServer("worldgen/density_function");
 
-    public static final DefaultedRegistryType<EnchantmentType> ENCHANTMENT_TYPE = RegistryTypes.minecraftKeyInGame("enchantment");
+    public static final DefaultedRegistryType<EnchantmentType> ENCHANTMENT_TYPE = RegistryTypes.minecraftKeyInServer("enchantment");
 
     public static final DefaultedRegistryType<EntityCategory> ENTITY_CATEGORY = RegistryTypes.spongeKeyInGame("mob_category");
 
