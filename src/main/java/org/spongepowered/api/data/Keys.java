@@ -41,9 +41,11 @@ import org.spongepowered.api.block.entity.MobSpawner;
 import org.spongepowered.api.block.entity.Piston;
 import org.spongepowered.api.block.entity.Sign;
 import org.spongepowered.api.block.entity.StructureBlock;
+import org.spongepowered.api.block.entity.TrialSpawner;
 import org.spongepowered.api.block.entity.carrier.Beacon;
 import org.spongepowered.api.block.entity.carrier.BrewingStand;
 import org.spongepowered.api.block.entity.carrier.CarrierBlockEntity;
+import org.spongepowered.api.block.entity.carrier.Crafter;
 import org.spongepowered.api.block.entity.carrier.Hopper;
 import org.spongepowered.api.block.entity.carrier.furnace.FurnaceBlockEntity;
 import org.spongepowered.api.data.meta.BannerPatternLayer;
@@ -245,7 +247,6 @@ import org.spongepowered.api.util.RespawnLocation;
 import org.spongepowered.api.util.Ticks;
 import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.util.orientation.Orientation;
-import org.spongepowered.api.util.weighted.WeightedSerializableObject;
 import org.spongepowered.api.world.DefaultWorldKeys;
 import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.WorldType;
@@ -747,6 +748,8 @@ public final class Keys {
      * The amount of ticks a {@link Hopper} has to wait before transferring the next item. (in Vanilla this is 8 ticks)
      * or
      * The amount of ticks a {@link EndGateway} has to wait for the next teleportation.
+     * or
+     * The amount of ticks a {@link Crafter} has to wait for the next craft.
      */
     public static final Key<Value<Ticks>> COOLDOWN = Keys.key(ResourceKey.sponge("cooldown"), Ticks.class);
 
@@ -2344,9 +2347,9 @@ public final class Keys {
     public static final Key<Value<Double>> MAX_HEALTH = Keys.key(ResourceKey.sponge("max_health"), Double.class);
 
     /**
-     * The maximum number of entities around a {@link MobSpawner}.
-     * A spawner will not spawn entities if there are more
-     * entities around than this value permits.
+     * The maximum number of entities tracked by a {@link MobSpawner} or {@link TrialSpawner}
+     * <p>A spawner will not spawn entities if there are more
+     * entities tracked than this value permits.</p>
      */
     public static final Key<Value<Integer>> MAX_NEARBY_ENTITIES = Keys.key(ResourceKey.sponge("max_nearby_entities"), Integer.class);
 
@@ -2359,7 +2362,7 @@ public final class Keys {
 
     /**
      * The maximum amount of ticks between two
-     * batches of entities spawned by a {@link MobSpawner}.
+     * batches of entities spawned by a {@link MobSpawner} or {@link TrialSpawner}
      */
     public static final Key<Value<Ticks>> MAX_SPAWN_DELAY = Keys.key(ResourceKey.sponge("max_spawn_delay"), Ticks.class);
 
@@ -2381,7 +2384,7 @@ public final class Keys {
 
     /**
      * The minimum amount of ticks between two
-     * batches of entities spawned by a {@link MobSpawner}.
+     * batches of entities spawned by a {@link MobSpawner} or {@link TrialSpawner}
      */
     public static final Key<Value<Ticks>> MIN_SPAWN_DELAY = Keys.key(ResourceKey.sponge("min_spawn_delay"), Ticks.class);
 
@@ -2425,13 +2428,13 @@ public final class Keys {
     public static final Key<Value<Boolean>> NATURAL_WORLD_TYPE = Keys.key(ResourceKey.sponge("natural_world_type"), Boolean.class);
 
     /**
-     * The next entity that will be spawned by a {@link MobSpawner}.
+     * The next entity that will be spawned by a {@link MobSpawner} or {@link TrialSpawner}
      *
      * <p>Normally the entities to be spawned are determined by a random value
      * applied to the {@link #SPAWNABLE_ENTITIES} weighted collection. If this
      * value exists, it will override the random spawn with a definite one.</p>
      */
-    public static final Key<Value<WeightedSerializableObject<EntityArchetype>>> NEXT_ENTITY_TO_SPAWN = Keys.key(ResourceKey.sponge("next_entity_to_spawn"), new TypeToken<WeightedSerializableObject<EntityArchetype>>() {});
+    public static final Key<Value<EntityArchetype>> NEXT_ENTITY_TO_SPAWN = Keys.key(ResourceKey.sponge("next_entity_to_spawn"), EntityArchetype.class);
 
     /**
      * The pitch of a {@link BlockTypes#NOTE_BLOCK} {@link BlockState}.
@@ -2722,7 +2725,8 @@ public final class Keys {
 
     /**
      * Represents the {@link Key} for the remaining number of ticks to pass
-     * before another attempt to spawn entities is made by a {@link MobSpawner}.
+     * before another attempt to spawn entities is made by a {@link MobSpawner}
+     * or {@link TrialSpawner}
      */
     public static final Key<Value<Ticks>> REMAINING_SPAWN_DELAY = Keys.key(ResourceKey.sponge("remaining_spawn_delay"), Ticks.class);
 
@@ -2967,7 +2971,7 @@ public final class Keys {
     public static final Key<Value<Ticks>> SNEEZING_TIME = Keys.key(ResourceKey.sponge("sneezing_time"), Ticks.class);
 
     /**
-     * The list of {@link EntityArchetype}s able to be spawned by a {@link MobSpawner}.
+     * The list of {@link EntityArchetype}s able to be spawned by a {@link MobSpawner} or {@link TrialSpawner}
      */
     public static final Key<WeightedCollectionValue<EntityArchetype>> SPAWNABLE_ENTITIES = Keys.weightedKey(ResourceKey.sponge("spawnable_entities"), EntityArchetype.class);
 
@@ -2980,7 +2984,7 @@ public final class Keys {
     public static final Key<Value<Double>> SPAWN_CHANCE = Keys.key(ResourceKey.sponge("spawn_chance"), Double.class);
 
     /**
-     * How many entities a {@link MobSpawner} has spawned so far.
+     * How many entities a {@link MobSpawner} spawns at once.
      */
     public static final Key<Value<Integer>> SPAWN_COUNT = Keys.key(ResourceKey.sponge("spawn_count"), Integer.class);
 
@@ -3001,7 +3005,8 @@ public final class Keys {
     public static final Key<Value<Vector3i>> SPAWN_POSITION = Keys.key(ResourceKey.sponge("spawn_position"), Vector3i.class);
 
     /**
-     * How far away from the {@link MobSpawner} the entities spawned by it may appear.
+     * How far away from the {@link MobSpawner} or {@link TrialSpawner}
+     * the entities spawned by it may appear.
      */
     public static final Key<Value<Double>> SPAWN_RANGE = Keys.key(ResourceKey.sponge("spawn_range"), Double.class);
 

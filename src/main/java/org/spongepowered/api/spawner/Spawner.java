@@ -129,7 +129,7 @@ public interface Spawner extends SerializableDataHolder.Mutable {
      *
      * @return The next possible entity to spawn
      */
-    default Value.Mutable<WeightedSerializableObject<EntityArchetype>> nextEntityToSpawn() {
+    default Value.Mutable<EntityArchetype> nextEntityToSpawn() {
         return this.requireValue(Keys.NEXT_ENTITY_TO_SPAWN).asMutable();
     }
 
