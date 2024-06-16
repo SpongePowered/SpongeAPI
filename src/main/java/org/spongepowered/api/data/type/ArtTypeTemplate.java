@@ -33,8 +33,11 @@ public interface ArtTypeTemplate extends DataPackEntry<ArtTypeTemplate> {
     ArtType type();
 
     interface Builder extends DataPackEntryBuilder<ArtType, ArtTypeTemplate, Builder> {
+
         Builder dimensions(int width, int height);
+
         Builder asset(ResourceKey assetId);
+
     }
 
 
