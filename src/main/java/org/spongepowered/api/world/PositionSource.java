@@ -28,6 +28,10 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.math.vector.Vector3i;
 
+/**
+ * In some particle implementations, they can "follow" a source that moves over
+ * several ticks such that a singular position is not enough information to follow.
+ */
 public interface PositionSource {
 
     /**
