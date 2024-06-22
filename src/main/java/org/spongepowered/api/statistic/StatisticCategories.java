@@ -64,8 +64,8 @@ public final class StatisticCategories {
     private StatisticCategories() {
     }
 
-    public static Registry<Statistic> registry() {
-        return Sponge.game().registry(RegistryTypes.STATISTIC);
+    public static Registry<StatisticCategory> registry() {
+        return Sponge.game().registry(RegistryTypes.STATISTIC_CATEGORY);
     }
 
     private static DefaultedRegistryReference<StatisticCategory> key(final ResourceKey location) {
