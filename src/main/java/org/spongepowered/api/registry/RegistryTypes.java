@@ -196,7 +196,7 @@ public final class RegistryTypes {
 
     // @formatter:off
 
-    public static final DefaultedRegistryType<ArtType> ART_TYPE = RegistryTypes.minecraftKeyInGame("painting_variant");
+    public static final DefaultedRegistryType<ArtType> ART_TYPE = RegistryTypes.minecraftKeyInServer("painting_variant");
 
     public static final DefaultedRegistryType<ArmorMaterial> ARMOR_MATERIAL = RegistryTypes.minecraftKeyInGame("armor_material");
 
@@ -210,7 +210,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<CarverType> CARVER_TYPE = RegistryTypes.minecraftKeyInGame("worldgen/carver");
 
-    public static final DefaultedRegistryType<Carver> CARVER = RegistryTypes.minecraftKeyInGame("worldgen/configured_carver");
+    public static final DefaultedRegistryType<Carver> CARVER = RegistryTypes.minecraftKeyInServer("worldgen/configured_carver");
 
     public static final DefaultedRegistryType<ChatType> CHAT_TYPE = RegistryTypes.minecraftKeyInServer("chat_type");
 
@@ -295,7 +295,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<BanType> BAN_TYPE = RegistryTypes.spongeKeyInGame("ban_type");
 
-    public static final DefaultedRegistryType<BannerPatternShape> BANNER_PATTERN_SHAPE = RegistryTypes.minecraftKeyInGame("banner_pattern");
+    public static final DefaultedRegistryType<BannerPatternShape> BANNER_PATTERN_SHAPE = RegistryTypes.minecraftKeyInServer("banner_pattern");
 
     public static final DefaultedRegistryType<BellAttachmentType> BELL_ATTACHMENT_TYPE = RegistryTypes.spongeKeyInGame("bell_attachment_type");
 
@@ -417,7 +417,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<MovementType> MOVEMENT_TYPE = RegistryTypes.spongeKeyInGame("movement_type");
 
-    public static final DefaultedRegistryType<MusicDisc> MUSIC_DISC = RegistryTypes.minecraftKeyInGame("jukebox_playable");
+    public static final DefaultedRegistryType<MusicDisc> MUSIC_DISC = RegistryTypes.minecraftKeyInServer("jukebox_song");
 
     public static final DefaultedRegistryType<NoiseConfig> NOISE_CONFIG = RegistryTypes.spongeKeyInGame("noise_config");
 
