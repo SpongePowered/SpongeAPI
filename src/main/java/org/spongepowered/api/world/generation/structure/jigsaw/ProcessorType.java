@@ -25,12 +25,14 @@
 package org.spongepowered.api.world.generation.structure.jigsaw;
 
 import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.io.IOException;
 
 /**
  * A type of {@link Processor}.
  */
+@CatalogedBy(ProcessorTypes.class)
 public interface ProcessorType {
 
     /**
