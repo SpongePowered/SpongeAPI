@@ -25,13 +25,12 @@
 package org.spongepowered.api.event.block.entity;
 
 import org.spongepowered.api.block.entity.carrier.BrewingStand;
-import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
+import org.spongepowered.api.event.item.inventory.AffectSlotEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
-import java.util.List;
 
 /**
  * Fires during the brewing process where {@link ItemStack}s are brewed into different {@link ItemStack}s
@@ -61,15 +60,7 @@ public interface BrewingEvent extends Event {
     /**
      * Fired when a fuel item is consumed to refill the fuel bar.
      */
-    interface ConsumeFuel extends BrewingEvent, Cancellable {
-
-        /**
-         * The consumed fuel transaction.
-         *
-         * @return The consumed fuel transaction.
-         */
-        Transaction<ItemStackSnapshot> fuel();
-
+    interface ConsumeFuel extends BrewingEvent, AffectSlotEvent, Cancellable {
     }
 
     /**
@@ -85,14 +76,6 @@ public interface BrewingEvent extends Event {
     /**
      * Fires when brewing finished.
      */
-    interface Finish extends BrewingEvent {
-
-        /**
-         * Gets an immutable {@link List} of {@link ItemStackSnapshot}s that are the result
-         * of the brew.
-         *
-         * @return The brewed items
-         */
-        List<ItemStackSnapshot> brewedItemStacks();
+    interface Finish extends BrewingEvent, AffectSlotEvent {
     }
 }

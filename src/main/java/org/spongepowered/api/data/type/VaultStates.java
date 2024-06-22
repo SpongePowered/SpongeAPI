@@ -24,10 +24,26 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.registry.DefaultedRegistryValue;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryTypes;
 
-@CatalogedBy(ComparatorModes.class)
-public interface ComparatorMode extends DefaultedRegistryValue, Comparable<ComparatorMode>, StringRepresentable {
+public final class VaultStates {
+
+    public static final DefaultedRegistryReference<VaultState> INACTIVE = VaultStates.key(ResourceKey.sponge("inactive"));
+    public static final DefaultedRegistryReference<VaultState> ACTIVE = VaultStates.key(ResourceKey.sponge("active"));
+    public static final DefaultedRegistryReference<VaultState> UNLOCKING = VaultStates.key(ResourceKey.sponge("unlocking"));
+    public static final DefaultedRegistryReference<VaultState> EJECTING = VaultStates.key(ResourceKey.sponge("ejecting"));
+
+    public static Registry<VaultState> registry() {
+        return Sponge.game().registry(RegistryTypes.VAULT_STATE);
+    }
+
+    private static DefaultedRegistryReference<VaultState> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.VAULT_STATE, location).asDefaultedReference(Sponge::game);
+    }
 
 }

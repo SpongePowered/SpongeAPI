@@ -22,12 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.item.inventory.slot;
 
-import org.spongepowered.api.registry.DefaultedRegistryValue;
-import org.spongepowered.api.util.annotation.CatalogedBy;
-
-@CatalogedBy(ComparatorModes.class)
-public interface ComparatorMode extends DefaultedRegistryValue, Comparable<ComparatorMode>, StringRepresentable {
-
+/**
+ * An inventory slot which can only contain potions.
+ * e.g. BrewingStand
+ */
+public interface PotionSlot extends FilteringSlot {
 }

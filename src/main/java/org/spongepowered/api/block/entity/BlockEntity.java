@@ -56,31 +56,16 @@ import java.util.function.Supplier;
 public interface BlockEntity extends SerializableDataHolder.Mutable, Locatable {
 
     /**
-     * Checks for whether the block entity is currently valid or not.
+     * Returns whether this block entity has been removed.
      *
-     * <p>Use this method to check if processing should be run on this
-     * {@link BlockEntity}. If it is valid, then processing can be run on it.
-     * If not, then processing should wait until it becomes valid or is
-     * destroyed.</p>
-     *
-     * @return True if the block entity is valid, false if not
+     * @return True if this block entity has been removed
      */
-    boolean isValid();
+    boolean isRemoved();
 
     /**
-     * Changes the validation of this block entity.
-     *
-     * <p>If the block entity is invalid, no processing will be done on this
-     * {@link BlockEntity} until it either becomes valid or is reset on the next
-     * tick.</p>
-     *
-     * <p>If the block entity is valid, then processing can continue and this
-     * {@link BlockEntity} will not be reset on the next tick.</p>
-     *
-     * @param valid True if the block entity should be validated, or false if
-     *     it should be invalidated
+     * Removes this block entity from the world and its corresponding block.
      */
-    void setValid(boolean valid);
+    void remove();
 
     /**
      * Gets the type of {@link BlockEntity} this is.

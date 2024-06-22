@@ -33,7 +33,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents the front and top orientation of {@link BlockTypes#JIGSAW} blocks.
  */
 @CatalogedBy(JigsawBlockOrientations.class)
-public interface JigsawBlockOrientation extends DefaultedRegistryValue, Comparable<JigsawBlockOrientation> {
+public interface JigsawBlockOrientation extends DefaultedRegistryValue, Comparable<JigsawBlockOrientation>, StringRepresentable {
 
     /**
      * The front facing direction of a jigsaw block.

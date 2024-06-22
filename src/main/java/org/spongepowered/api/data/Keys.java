@@ -77,6 +77,7 @@ import org.spongepowered.api.data.type.PickupRule;
 import org.spongepowered.api.data.type.PistonType;
 import org.spongepowered.api.data.type.PortionType;
 import org.spongepowered.api.data.type.ProfessionType;
+import org.spongepowered.api.data.type.PushReaction;
 import org.spongepowered.api.data.type.RabbitType;
 import org.spongepowered.api.data.type.RailDirection;
 import org.spongepowered.api.data.type.SculkSensorState;
@@ -563,6 +564,12 @@ public final class Keys {
     public static final Key<Value<Ticks>> BREEDING_COOLDOWN = Keys.key(ResourceKey.sponge("breeding_cooldown"), Ticks.class);
 
     /**
+     * Whether a {@link BlockState} can be lit on fire by things like spreading lava,
+     * or sometimes a {@link ServerLocation} to be directionally specific.
+     */
+    public static final Key<Value<Boolean>> BURNABLE = Keys.key(ResourceKey.sponge("burnable"), Boolean.class);
+
+    /**
      * The burntime of an {@link ItemStack} fuel in a furnace.
      * See {@link #FUEL} for the time
      * Readonly
@@ -779,6 +786,11 @@ public final class Keys {
      * <p>If no custom name is set the dataholder may still have a {@link Keys#DISPLAY_NAME}</p>
      */
     public static final Key<Value<Component>> CUSTOM_NAME = Keys.key(ResourceKey.sponge("custom_name"), Component.class);
+
+    /**
+     * The custom potion effects that are stored on an {@link ItemStack}.
+     */
+    public static final Key<ListValue<PotionEffect>> CUSTOM_POTION_EFFECTS = Keys.listKey(ResourceKey.sponge("custom_potion_effects"), PotionEffect.class);
 
     /**
      * The damage absorbed by an armor {@link ItemStack}.
@@ -2607,6 +2619,12 @@ public final class Keys {
      * The {@link Villager} or {@link ZombieVillager}'s {@link ProfessionType} level.
      */
     public static final Key<Value<Integer>> PROFESSION_LEVEL = Keys.key(ResourceKey.sponge("profession_level"), Integer.class);
+
+    /**
+     * The {@link Entity} or {@link BlockState} push reaction when a {@link Piston} pushes it.
+     * Readonly
+     */
+    public static final Key<Value<PushReaction>> PUSH_REACTION = Keys.key(ResourceKey.sponge("push_reaction"), PushReaction.class);
 
     /**
      * Whether pvp combat is enabled in a world of a {@link WorldTemplate} or {@link ServerWorldProperties}

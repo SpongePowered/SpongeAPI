@@ -24,10 +24,9 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-@CatalogedBy(ComparatorModes.class)
-public interface ComparatorMode extends DefaultedRegistryValue, Comparable<ComparatorMode>, StringRepresentable {
+@CatalogedBy(VaultStates.class)
+public interface VaultState extends Comparable<VaultState>, StringRepresentable {
 
 }
