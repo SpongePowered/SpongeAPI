@@ -187,4 +187,52 @@ public interface Viewer extends Audience {
      */
     void resetBlockChange(int x, int y, int z);
 
+    /**
+     * Sends a client-only block breaking progress.
+     *
+     * @param position The position
+     * @param progress The breaking progress from 0 to 1
+     */
+    default void sendBlockProgress(final Vector3i position, final double progress) {
+        Objects.requireNonNull(position, "position");
+        this.sendBlockProgress(position.x(), position.y(), position.z(), progress);
+    }
+
+    /**
+     * Sends a client-only block breaking progress.
+     *
+     * @param x The x position
+     * @param y The y position
+     * @param z The z position
+     * @param progress The breaking progress from 0 to 1
+     */
+    void sendBlockProgress(int x, int y, int z, double progress);
+
+    /**
+     * Resets the client's view of the provided position to actual
+     * breaking progress.
+     *
+     * <p>This is useful for resetting what the client sees
+     * after sending a {@link #sendBlockProgress block progress}.</p>
+     *
+     * @param position The position
+     */
+    default void resetBlockProgress(final Vector3i position) {
+        Objects.requireNonNull(position, "position");
+        this.resetBlockProgress(position.x(), position.y(), position.z());
+    }
+
+    /**
+     * Resets the client's view of the provided position to actual
+     * breaking progress.
+     *
+     * <p>This is useful for resetting what the client sees
+     * after sending a {@link #sendBlockProgress block progress}.</p>
+     *
+     * @param x The x position
+     * @param y The y position
+     * @param z The z position
+     */
+    void resetBlockProgress(int x, int y, int z);
+
 }
