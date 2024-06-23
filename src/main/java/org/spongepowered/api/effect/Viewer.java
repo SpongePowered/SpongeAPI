@@ -164,10 +164,6 @@ public interface Viewer extends Audience {
     /**
      * Sends a client-only block breaking progress.
      *
-     * <p>In vanilla breaking progress will not be rendered if player
-     * is further than 32 blocks from given position.<br>
-     * Sent breaking progress expires on client 400 ticks after receiving.</p>
-     *
      * @param position The position
      * @param progress The breaking progress from 0 to 1
      */
@@ -178,10 +174,6 @@ public interface Viewer extends Audience {
 
     /**
      * Sends a client-only block breaking progress.
-     *
-     * <p>In vanilla breaking progress will not be rendered if player
-     * is further than 32 blocks from given position.<br>
-     * Sent breaking progress expires on client 400 ticks after receiving.</p>
      *
      * @param x The x position
      * @param y The y position
