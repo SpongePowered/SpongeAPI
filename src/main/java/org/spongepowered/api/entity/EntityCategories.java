@@ -27,6 +27,7 @@ package org.spongepowered.api.entity;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryTypes;
 
@@ -53,6 +54,10 @@ public final class EntityCategories {
 
     private EntityCategories() {
         throw new AssertionError("You should not be attempting to instantiate this class.");
+    }
+
+    public static Registry<EntityCategory> registry() {
+        return Sponge.game().registry(RegistryTypes.ENTITY_CATEGORY);
     }
 
     private static DefaultedRegistryReference<EntityCategory> key(final ResourceKey location) {
