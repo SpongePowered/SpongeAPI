@@ -25,10 +25,12 @@
 package org.spongepowered.api.item;
 
 import net.kyori.adventure.text.format.TextColor;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * The rarity of an item.
  */
+@CatalogedBy(ItemRarities.class)
 public interface ItemRarity {
 
     /**
