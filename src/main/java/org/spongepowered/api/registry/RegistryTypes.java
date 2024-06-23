@@ -183,7 +183,6 @@ import org.spongepowered.api.world.generation.structure.jigsaw.JigsawPool;
 import org.spongepowered.api.world.generation.structure.jigsaw.ProcessorList;
 import org.spongepowered.api.world.generation.structure.jigsaw.ProcessorType;
 import org.spongepowered.api.world.schematic.PaletteType;
-import org.spongepowered.api.world.server.TicketType;
 import org.spongepowered.api.world.teleport.TeleportHelperFilter;
 import org.spongepowered.api.world.weather.WeatherType;
 
@@ -490,8 +489,6 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<TeleportHelperFilter> TELEPORT_HELPER_FILTER = RegistryTypes.spongeKeyInGame("teleport_helper_filter");
 
     public static final DefaultedRegistryType<TextAlignment> TEXT_ALIGNMENT = RegistryTypes.spongeKeyInGame("text_alignment");
-
-    public static final DefaultedRegistryType<TicketType<?>> TICKET_TYPE = RegistryTypes.spongeKeyInGame("ticket_type");
 
     public static final DefaultedRegistryType<TransactionType> TRANSACTION_TYPE = RegistryTypes.spongeKeyInGame("transaction_type");
 
