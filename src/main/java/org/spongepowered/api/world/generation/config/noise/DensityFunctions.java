@@ -46,6 +46,16 @@ public final class DensityFunctions {
 
     public static final DefaultedRegistryReference<DensityFunction> NETHER_BASE_3D_NOISE = DensityFunctions.key(ResourceKey.minecraft("nether/base_3d_noise"));
 
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_AMPLIFIED_DEPTH = DensityFunctions.key(ResourceKey.minecraft("overworld_amplified/depth"));
+
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_AMPLIFIED_FACTOR = DensityFunctions.key(ResourceKey.minecraft("overworld_amplified/factor"));
+
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_AMPLIFIED_JAGGEDNESS = DensityFunctions.key(ResourceKey.minecraft("overworld_amplified/jaggedness"));
+
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_AMPLIFIED_OFFSET = DensityFunctions.key(ResourceKey.minecraft("overworld_amplified/offset"));
+
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_AMPLIFIED_SLOPED_CHEESE = DensityFunctions.key(ResourceKey.minecraft("overworld_amplified/sloped_cheese"));
+
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_BASE_3D_NOISE = DensityFunctions.key(ResourceKey.minecraft("overworld/base_3d_noise"));
 
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_CAVES_ENTRANCES = DensityFunctions.key(ResourceKey.minecraft("overworld/caves/entrances"));
@@ -70,24 +80,6 @@ public final class DensityFunctions {
 
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_JAGGEDNESS = DensityFunctions.key(ResourceKey.minecraft("overworld/jaggedness"));
 
-    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_OFFSET = DensityFunctions.key(ResourceKey.minecraft("overworld/offset"));
-
-    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_RIDGES = DensityFunctions.key(ResourceKey.minecraft("overworld/ridges"));
-
-    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_RIDGES_FOLDED = DensityFunctions.key(ResourceKey.minecraft("overworld/ridges_folded"));
-
-    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_SLOPED_CHEESE = DensityFunctions.key(ResourceKey.minecraft("overworld/sloped_cheese"));
-
-    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_AMPLIFIED_DEPTH = DensityFunctions.key(ResourceKey.minecraft("overworld_amplified/depth"));
-
-    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_AMPLIFIED_FACTOR = DensityFunctions.key(ResourceKey.minecraft("overworld_amplified/factor"));
-
-    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_AMPLIFIED_JAGGEDNESS = DensityFunctions.key(ResourceKey.minecraft("overworld_amplified/jaggedness"));
-
-    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_AMPLIFIED_OFFSET = DensityFunctions.key(ResourceKey.minecraft("overworld_amplified/offset"));
-
-    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_AMPLIFIED_SLOPED_CHEESE = DensityFunctions.key(ResourceKey.minecraft("overworld_amplified/sloped_cheese"));
-
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_LARGE_BIOMES_CONTINENTS = DensityFunctions.key(ResourceKey.minecraft("overworld_large_biomes/continents"));
 
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_LARGE_BIOMES_DEPTH = DensityFunctions.key(ResourceKey.minecraft("overworld_large_biomes/depth"));
@@ -101,6 +93,14 @@ public final class DensityFunctions {
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_LARGE_BIOMES_OFFSET = DensityFunctions.key(ResourceKey.minecraft("overworld_large_biomes/offset"));
 
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_LARGE_BIOMES_SLOPED_CHEESE = DensityFunctions.key(ResourceKey.minecraft("overworld_large_biomes/sloped_cheese"));
+
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_OFFSET = DensityFunctions.key(ResourceKey.minecraft("overworld/offset"));
+
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_RIDGES = DensityFunctions.key(ResourceKey.minecraft("overworld/ridges"));
+
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_RIDGES_FOLDED = DensityFunctions.key(ResourceKey.minecraft("overworld/ridges_folded"));
+
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_SLOPED_CHEESE = DensityFunctions.key(ResourceKey.minecraft("overworld/sloped_cheese"));
 
     public static final DefaultedRegistryReference<DensityFunction> SHIFT_X = DensityFunctions.key(ResourceKey.minecraft("shift_x"));
 

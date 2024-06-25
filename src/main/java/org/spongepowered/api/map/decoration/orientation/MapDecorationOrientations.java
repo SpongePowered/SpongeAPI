@@ -38,7 +38,7 @@ import org.spongepowered.api.registry.RegistryTypes;
  * The {@link #NORTH} orientation is the upwards orientation on a map.
  */
 @RegistryScopes(scopes = RegistryScope.GAME)
-public class MapDecorationOrientations {
+public final class MapDecorationOrientations {
 
     // SORTFIELDS:ON
 

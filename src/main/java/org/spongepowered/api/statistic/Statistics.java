@@ -142,13 +142,13 @@ public final class Statistics {
 
     public static final DefaultedRegistryReference<Statistic> PIG_ONE_CM = Statistics.key(ResourceKey.minecraft("pig_one_cm"));
 
+    public static final DefaultedRegistryReference<Statistic> PLAYER_KILLS = Statistics.key(ResourceKey.minecraft("player_kills"));
+
     public static final DefaultedRegistryReference<Statistic> PLAY_NOTEBLOCK = Statistics.key(ResourceKey.minecraft("play_noteblock"));
 
     public static final DefaultedRegistryReference<Statistic> PLAY_RECORD = Statistics.key(ResourceKey.minecraft("play_record"));
 
     public static final DefaultedRegistryReference<Statistic> PLAY_TIME = Statistics.key(ResourceKey.minecraft("play_time"));
-
-    public static final DefaultedRegistryReference<Statistic> PLAYER_KILLS = Statistics.key(ResourceKey.minecraft("player_kills"));
 
     public static final DefaultedRegistryReference<Statistic> POT_FLOWER = Statistics.key(ResourceKey.minecraft("pot_flower"));
 
@@ -184,9 +184,9 @@ public final class Statistics {
 
     public static final DefaultedRegistryReference<Statistic> USE_CAULDRON = Statistics.key(ResourceKey.minecraft("use_cauldron"));
 
-    public static final DefaultedRegistryReference<Statistic> WALK_ON_WATER_ONE_CM = Statistics.key(ResourceKey.minecraft("walk_on_water_one_cm"));
-
     public static final DefaultedRegistryReference<Statistic> WALK_ONE_CM = Statistics.key(ResourceKey.minecraft("walk_one_cm"));
+
+    public static final DefaultedRegistryReference<Statistic> WALK_ON_WATER_ONE_CM = Statistics.key(ResourceKey.minecraft("walk_on_water_one_cm"));
 
     public static final DefaultedRegistryReference<Statistic> WALK_UNDER_WATER_ONE_CM = Statistics.key(ResourceKey.minecraft("walk_under_water_one_cm"));
 

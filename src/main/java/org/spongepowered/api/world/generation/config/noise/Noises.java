@@ -86,11 +86,11 @@ public final class Noises {
 
     public static final DefaultedRegistryReference<Noise> JAGGED = Noises.key(ResourceKey.minecraft("jagged"));
 
+    public static final DefaultedRegistryReference<Noise> NETHERRACK = Noises.key(ResourceKey.minecraft("netherrack"));
+
     public static final DefaultedRegistryReference<Noise> NETHER_STATE_SELECTOR = Noises.key(ResourceKey.minecraft("nether_state_selector"));
 
     public static final DefaultedRegistryReference<Noise> NETHER_WART = Noises.key(ResourceKey.minecraft("nether_wart"));
-
-    public static final DefaultedRegistryReference<Noise> NETHERRACK = Noises.key(ResourceKey.minecraft("netherrack"));
 
     public static final DefaultedRegistryReference<Noise> NOODLE = Noises.key(ResourceKey.minecraft("noodle"));
 
@@ -104,11 +104,11 @@ public final class Noises {
 
     public static final DefaultedRegistryReference<Noise> ORE_GAP = Noises.key(ResourceKey.minecraft("ore_gap"));
 
+    public static final DefaultedRegistryReference<Noise> ORE_VEININESS = Noises.key(ResourceKey.minecraft("ore_veininess"));
+
     public static final DefaultedRegistryReference<Noise> ORE_VEIN_A = Noises.key(ResourceKey.minecraft("ore_vein_a"));
 
     public static final DefaultedRegistryReference<Noise> ORE_VEIN_B = Noises.key(ResourceKey.minecraft("ore_vein_b"));
-
-    public static final DefaultedRegistryReference<Noise> ORE_VEININESS = Noises.key(ResourceKey.minecraft("ore_veininess"));
 
     public static final DefaultedRegistryReference<Noise> PACKED_ICE = Noises.key(ResourceKey.minecraft("packed_ice"));
 

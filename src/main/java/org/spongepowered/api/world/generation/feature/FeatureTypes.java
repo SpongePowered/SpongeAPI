@@ -98,9 +98,9 @@ public final class FeatureTypes {
 
     public static final DefaultedRegistryReference<FeatureType> HUGE_RED_MUSHROOM = FeatureTypes.key(ResourceKey.minecraft("huge_red_mushroom"));
 
-    public static final DefaultedRegistryReference<FeatureType> ICE_SPIKE = FeatureTypes.key(ResourceKey.minecraft("ice_spike"));
-
     public static final DefaultedRegistryReference<FeatureType> ICEBERG = FeatureTypes.key(ResourceKey.minecraft("iceberg"));
+
+    public static final DefaultedRegistryReference<FeatureType> ICE_SPIKE = FeatureTypes.key(ResourceKey.minecraft("ice_spike"));
 
     public static final DefaultedRegistryReference<FeatureType> KELP = FeatureTypes.key(ResourceKey.minecraft("kelp"));
 
@@ -112,9 +112,9 @@ public final class FeatureTypes {
 
     public static final DefaultedRegistryReference<FeatureType> MULTIFACE_GROWTH = FeatureTypes.key(ResourceKey.minecraft("multiface_growth"));
 
-    public static final DefaultedRegistryReference<FeatureType> NETHER_FOREST_VEGETATION = FeatureTypes.key(ResourceKey.minecraft("nether_forest_vegetation"));
-
     public static final DefaultedRegistryReference<FeatureType> NETHERRACK_REPLACE_BLOBS = FeatureTypes.key(ResourceKey.minecraft("netherrack_replace_blobs"));
+
+    public static final DefaultedRegistryReference<FeatureType> NETHER_FOREST_VEGETATION = FeatureTypes.key(ResourceKey.minecraft("nether_forest_vegetation"));
 
     public static final DefaultedRegistryReference<FeatureType> NO_BONEMEAL_FLOWER = FeatureTypes.key(ResourceKey.minecraft("no_bonemeal_flower"));
 
@@ -138,9 +138,9 @@ public final class FeatureTypes {
 
     public static final DefaultedRegistryReference<FeatureType> SCULK_PATCH = FeatureTypes.key(ResourceKey.minecraft("sculk_patch"));
 
-    public static final DefaultedRegistryReference<FeatureType> SEA_PICKLE = FeatureTypes.key(ResourceKey.minecraft("sea_pickle"));
-
     public static final DefaultedRegistryReference<FeatureType> SEAGRASS = FeatureTypes.key(ResourceKey.minecraft("seagrass"));
+
+    public static final DefaultedRegistryReference<FeatureType> SEA_PICKLE = FeatureTypes.key(ResourceKey.minecraft("sea_pickle"));
 
     public static final DefaultedRegistryReference<FeatureType> SIMPLE_BLOCK = FeatureTypes.key(ResourceKey.minecraft("simple_block"));
 

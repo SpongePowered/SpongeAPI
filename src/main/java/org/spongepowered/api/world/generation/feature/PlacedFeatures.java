@@ -154,21 +154,21 @@ public final class PlacedFeatures {
 
     public static final DefaultedRegistryReference<PlacedFeature> FREEZE_TOP_LAYER = PlacedFeatures.key(ResourceKey.minecraft("freeze_top_layer"));
 
-    public static final DefaultedRegistryReference<PlacedFeature> GLOW_LICHEN = PlacedFeatures.key(ResourceKey.minecraft("glow_lichen"));
-
     public static final DefaultedRegistryReference<PlacedFeature> GLOWSTONE = PlacedFeatures.key(ResourceKey.minecraft("glowstone"));
 
     public static final DefaultedRegistryReference<PlacedFeature> GLOWSTONE_EXTRA = PlacedFeatures.key(ResourceKey.minecraft("glowstone_extra"));
 
+    public static final DefaultedRegistryReference<PlacedFeature> GLOW_LICHEN = PlacedFeatures.key(ResourceKey.minecraft("glow_lichen"));
+
     public static final DefaultedRegistryReference<PlacedFeature> GRASS_BONEMEAL = PlacedFeatures.key(ResourceKey.minecraft("grass_bonemeal"));
-
-    public static final DefaultedRegistryReference<PlacedFeature> ICE_PATCH = PlacedFeatures.key(ResourceKey.minecraft("ice_patch"));
-
-    public static final DefaultedRegistryReference<PlacedFeature> ICE_SPIKE = PlacedFeatures.key(ResourceKey.minecraft("ice_spike"));
 
     public static final DefaultedRegistryReference<PlacedFeature> ICEBERG_BLUE = PlacedFeatures.key(ResourceKey.minecraft("iceberg_blue"));
 
     public static final DefaultedRegistryReference<PlacedFeature> ICEBERG_PACKED = PlacedFeatures.key(ResourceKey.minecraft("iceberg_packed"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> ICE_PATCH = PlacedFeatures.key(ResourceKey.minecraft("ice_patch"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> ICE_SPIKE = PlacedFeatures.key(ResourceKey.minecraft("ice_spike"));
 
     public static final DefaultedRegistryReference<PlacedFeature> JUNGLE_BUSH = PlacedFeatures.key(ResourceKey.minecraft("jungle_bush"));
 
@@ -398,8 +398,6 @@ public final class PlacedFeatures {
 
     public static final DefaultedRegistryReference<PlacedFeature> SCULK_VEIN = PlacedFeatures.key(ResourceKey.minecraft("sculk_vein"));
 
-    public static final DefaultedRegistryReference<PlacedFeature> SEA_PICKLE = PlacedFeatures.key(ResourceKey.minecraft("sea_pickle"));
-
     public static final DefaultedRegistryReference<PlacedFeature> SEAGRASS_COLD = PlacedFeatures.key(ResourceKey.minecraft("seagrass_cold"));
 
     public static final DefaultedRegistryReference<PlacedFeature> SEAGRASS_DEEP = PlacedFeatures.key(ResourceKey.minecraft("seagrass_deep"));
@@ -417,6 +415,8 @@ public final class PlacedFeatures {
     public static final DefaultedRegistryReference<PlacedFeature> SEAGRASS_SWAMP = PlacedFeatures.key(ResourceKey.minecraft("seagrass_swamp"));
 
     public static final DefaultedRegistryReference<PlacedFeature> SEAGRASS_WARM = PlacedFeatures.key(ResourceKey.minecraft("seagrass_warm"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> SEA_PICKLE = PlacedFeatures.key(ResourceKey.minecraft("sea_pickle"));
 
     public static final DefaultedRegistryReference<PlacedFeature> SMALL_BASALT_COLUMNS = PlacedFeatures.key(ResourceKey.minecraft("small_basalt_columns"));
 

@@ -118,13 +118,13 @@ public final class BannerPatternShapes {
 
     public static final DefaultedRegistryReference<BannerPatternShape> STRIPE_TOP = BannerPatternShapes.key(ResourceKey.minecraft("stripe_top"));
 
-    public static final DefaultedRegistryReference<BannerPatternShape> TRIANGLE_BOTTOM = BannerPatternShapes.key(ResourceKey.minecraft("triangle_bottom"));
-
-    public static final DefaultedRegistryReference<BannerPatternShape> TRIANGLE_TOP = BannerPatternShapes.key(ResourceKey.minecraft("triangle_top"));
-
     public static final DefaultedRegistryReference<BannerPatternShape> TRIANGLES_BOTTOM = BannerPatternShapes.key(ResourceKey.minecraft("triangles_bottom"));
 
     public static final DefaultedRegistryReference<BannerPatternShape> TRIANGLES_TOP = BannerPatternShapes.key(ResourceKey.minecraft("triangles_top"));
+
+    public static final DefaultedRegistryReference<BannerPatternShape> TRIANGLE_BOTTOM = BannerPatternShapes.key(ResourceKey.minecraft("triangle_bottom"));
+
+    public static final DefaultedRegistryReference<BannerPatternShape> TRIANGLE_TOP = BannerPatternShapes.key(ResourceKey.minecraft("triangle_top"));
 
     private BannerPatternShapes() {
     }

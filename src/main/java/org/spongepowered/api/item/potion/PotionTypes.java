@@ -66,9 +66,9 @@ public final class PotionTypes {
 
     public static final DefaultedRegistryReference<PotionType> LONG_REGENERATION = PotionTypes.key(ResourceKey.minecraft("long_regeneration"));
 
-    public static final DefaultedRegistryReference<PotionType> LONG_SLOW_FALLING = PotionTypes.key(ResourceKey.minecraft("long_slow_falling"));
-
     public static final DefaultedRegistryReference<PotionType> LONG_SLOWNESS = PotionTypes.key(ResourceKey.minecraft("long_slowness"));
+
+    public static final DefaultedRegistryReference<PotionType> LONG_SLOW_FALLING = PotionTypes.key(ResourceKey.minecraft("long_slow_falling"));
 
     public static final DefaultedRegistryReference<PotionType> LONG_STRENGTH = PotionTypes.key(ResourceKey.minecraft("long_strength"));
 
@@ -92,9 +92,9 @@ public final class PotionTypes {
 
     public static final DefaultedRegistryReference<PotionType> REGENERATION = PotionTypes.key(ResourceKey.minecraft("regeneration"));
 
-    public static final DefaultedRegistryReference<PotionType> SLOW_FALLING = PotionTypes.key(ResourceKey.minecraft("slow_falling"));
-
     public static final DefaultedRegistryReference<PotionType> SLOWNESS = PotionTypes.key(ResourceKey.minecraft("slowness"));
+
+    public static final DefaultedRegistryReference<PotionType> SLOW_FALLING = PotionTypes.key(ResourceKey.minecraft("slow_falling"));
 
     public static final DefaultedRegistryReference<PotionType> STRENGTH = PotionTypes.key(ResourceKey.minecraft("strength"));
 

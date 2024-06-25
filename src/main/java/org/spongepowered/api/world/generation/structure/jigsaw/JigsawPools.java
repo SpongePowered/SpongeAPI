@@ -40,11 +40,11 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.ENGINE)
 public final class JigsawPools {
 
-    public static final DefaultedRegistryReference<JigsawPool> ANCIENT_CITY_CITY_ENTRANCE = JigsawPools.key(ResourceKey.minecraft("ancient_city/city/entrance"));
-
     public static final DefaultedRegistryReference<JigsawPool> ANCIENT_CITY_CITY_CENTER = JigsawPools.key(ResourceKey.minecraft("ancient_city/city_center"));
 
     public static final DefaultedRegistryReference<JigsawPool> ANCIENT_CITY_CITY_CENTER_WALLS = JigsawPools.key(ResourceKey.minecraft("ancient_city/city_center/walls"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ANCIENT_CITY_CITY_ENTRANCE = JigsawPools.key(ResourceKey.minecraft("ancient_city/city/entrance"));
 
     public static final DefaultedRegistryReference<JigsawPool> ANCIENT_CITY_SCULK = JigsawPools.key(ResourceKey.minecraft("ancient_city/sculk"));
 
@@ -62,9 +62,9 @@ public final class JigsawPools {
 
     public static final DefaultedRegistryReference<JigsawPool> BASTION_BRIDGE_LEGS = JigsawPools.key(ResourceKey.minecraft("bastion/bridge/legs"));
 
-    public static final DefaultedRegistryReference<JigsawPool> BASTION_BRIDGE_RAMPART_PLATES = JigsawPools.key(ResourceKey.minecraft("bastion/bridge/rampart_plates"));
-
     public static final DefaultedRegistryReference<JigsawPool> BASTION_BRIDGE_RAMPARTS = JigsawPools.key(ResourceKey.minecraft("bastion/bridge/ramparts"));
+
+    public static final DefaultedRegistryReference<JigsawPool> BASTION_BRIDGE_RAMPART_PLATES = JigsawPools.key(ResourceKey.minecraft("bastion/bridge/rampart_plates"));
 
     public static final DefaultedRegistryReference<JigsawPool> BASTION_BRIDGE_STARTING_PIECES = JigsawPools.key(ResourceKey.minecraft("bastion/bridge/starting_pieces"));
 
@@ -80,9 +80,9 @@ public final class JigsawPools {
 
     public static final DefaultedRegistryReference<JigsawPool> BASTION_HOGLIN_STABLE_POSTS = JigsawPools.key(ResourceKey.minecraft("bastion/hoglin_stable/posts"));
 
-    public static final DefaultedRegistryReference<JigsawPool> BASTION_HOGLIN_STABLE_RAMPART_PLATES = JigsawPools.key(ResourceKey.minecraft("bastion/hoglin_stable/rampart_plates"));
-
     public static final DefaultedRegistryReference<JigsawPool> BASTION_HOGLIN_STABLE_RAMPARTS = JigsawPools.key(ResourceKey.minecraft("bastion/hoglin_stable/ramparts"));
+
+    public static final DefaultedRegistryReference<JigsawPool> BASTION_HOGLIN_STABLE_RAMPART_PLATES = JigsawPools.key(ResourceKey.minecraft("bastion/hoglin_stable/rampart_plates"));
 
     public static final DefaultedRegistryReference<JigsawPool> BASTION_HOGLIN_STABLE_SMALL_STABLES_INNER = JigsawPools.key(ResourceKey.minecraft("bastion/hoglin_stable/small_stables/inner"));
 
@@ -92,9 +92,9 @@ public final class JigsawPools {
 
     public static final DefaultedRegistryReference<JigsawPool> BASTION_HOGLIN_STABLE_STARTING_PIECES = JigsawPools.key(ResourceKey.minecraft("bastion/hoglin_stable/starting_pieces"));
 
-    public static final DefaultedRegistryReference<JigsawPool> BASTION_HOGLIN_STABLE_WALL_BASES = JigsawPools.key(ResourceKey.minecraft("bastion/hoglin_stable/wall_bases"));
-
     public static final DefaultedRegistryReference<JigsawPool> BASTION_HOGLIN_STABLE_WALLS = JigsawPools.key(ResourceKey.minecraft("bastion/hoglin_stable/walls"));
+
+    public static final DefaultedRegistryReference<JigsawPool> BASTION_HOGLIN_STABLE_WALL_BASES = JigsawPools.key(ResourceKey.minecraft("bastion/hoglin_stable/wall_bases"));
 
     public static final DefaultedRegistryReference<JigsawPool> BASTION_MOBS_HOGLIN = JigsawPools.key(ResourceKey.minecraft("bastion/mobs/hoglin"));
 
@@ -146,9 +146,9 @@ public final class JigsawPools {
 
     public static final DefaultedRegistryReference<JigsawPool> BASTION_UNITS_CENTER_PIECES = JigsawPools.key(ResourceKey.minecraft("bastion/units/center_pieces"));
 
-    public static final DefaultedRegistryReference<JigsawPool> BASTION_UNITS_EDGE_WALL_UNITS = JigsawPools.key(ResourceKey.minecraft("bastion/units/edge_wall_units"));
-
     public static final DefaultedRegistryReference<JigsawPool> BASTION_UNITS_EDGES = JigsawPools.key(ResourceKey.minecraft("bastion/units/edges"));
+
+    public static final DefaultedRegistryReference<JigsawPool> BASTION_UNITS_EDGE_WALL_UNITS = JigsawPools.key(ResourceKey.minecraft("bastion/units/edge_wall_units"));
 
     public static final DefaultedRegistryReference<JigsawPool> BASTION_UNITS_FILLERS_STAGE_0 = JigsawPools.key(ResourceKey.minecraft("bastion/units/fillers/stage_0"));
 
@@ -156,9 +156,9 @@ public final class JigsawPools {
 
     public static final DefaultedRegistryReference<JigsawPool> BASTION_UNITS_PATHWAYS = JigsawPools.key(ResourceKey.minecraft("bastion/units/pathways"));
 
-    public static final DefaultedRegistryReference<JigsawPool> BASTION_UNITS_RAMPART_PLATES = JigsawPools.key(ResourceKey.minecraft("bastion/units/rampart_plates"));
-
     public static final DefaultedRegistryReference<JigsawPool> BASTION_UNITS_RAMPARTS = JigsawPools.key(ResourceKey.minecraft("bastion/units/ramparts"));
+
+    public static final DefaultedRegistryReference<JigsawPool> BASTION_UNITS_RAMPART_PLATES = JigsawPools.key(ResourceKey.minecraft("bastion/units/rampart_plates"));
 
     public static final DefaultedRegistryReference<JigsawPool> BASTION_UNITS_STAGES_ROT_STAGE_1 = JigsawPools.key(ResourceKey.minecraft("bastion/units/stages/rot/stage_1"));
 
@@ -170,17 +170,17 @@ public final class JigsawPools {
 
     public static final DefaultedRegistryReference<JigsawPool> BASTION_UNITS_STAGES_STAGE_3 = JigsawPools.key(ResourceKey.minecraft("bastion/units/stages/stage_3"));
 
-    public static final DefaultedRegistryReference<JigsawPool> BASTION_UNITS_WALL_UNITS = JigsawPools.key(ResourceKey.minecraft("bastion/units/wall_units"));
-
     public static final DefaultedRegistryReference<JigsawPool> BASTION_UNITS_WALLS_WALL_BASES = JigsawPools.key(ResourceKey.minecraft("bastion/units/walls/wall_bases"));
+
+    public static final DefaultedRegistryReference<JigsawPool> BASTION_UNITS_WALL_UNITS = JigsawPools.key(ResourceKey.minecraft("bastion/units/wall_units"));
 
     public static final DefaultedRegistryReference<JigsawPool> EMPTY = JigsawPools.key(ResourceKey.minecraft("empty"));
 
     public static final DefaultedRegistryReference<JigsawPool> PILLAGER_OUTPOST_BASE_PLATES = JigsawPools.key(ResourceKey.minecraft("pillager_outpost/base_plates"));
 
-    public static final DefaultedRegistryReference<JigsawPool> PILLAGER_OUTPOST_FEATURE_PLATES = JigsawPools.key(ResourceKey.minecraft("pillager_outpost/feature_plates"));
-
     public static final DefaultedRegistryReference<JigsawPool> PILLAGER_OUTPOST_FEATURES = JigsawPools.key(ResourceKey.minecraft("pillager_outpost/features"));
+
+    public static final DefaultedRegistryReference<JigsawPool> PILLAGER_OUTPOST_FEATURE_PLATES = JigsawPools.key(ResourceKey.minecraft("pillager_outpost/feature_plates"));
 
     public static final DefaultedRegistryReference<JigsawPool> PILLAGER_OUTPOST_TOWERS = JigsawPools.key(ResourceKey.minecraft("pillager_outpost/towers"));
 
@@ -200,6 +200,8 @@ public final class JigsawPools {
 
     public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_ATRIUM = JigsawPools.key(ResourceKey.minecraft("trial_chambers/atrium"));
 
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CHAMBERS_END = JigsawPools.key(ResourceKey.minecraft("trial_chambers/chambers/end"));
+
     public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CHAMBER_ADDON = JigsawPools.key(ResourceKey.minecraft("trial_chambers/chamber/addon"));
 
     public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CHAMBER_ASSEMBLY = JigsawPools.key(ResourceKey.minecraft("trial_chambers/chamber/assembly"));
@@ -214,21 +216,19 @@ public final class JigsawPools {
 
     public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CHAMBER_SLANTED = JigsawPools.key(ResourceKey.minecraft("trial_chambers/chamber/slanted"));
 
-    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CHAMBERS_END = JigsawPools.key(ResourceKey.minecraft("trial_chambers/chambers/end"));
-
     public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CHESTS_CONTENTS_SUPPLY = JigsawPools.key(ResourceKey.minecraft("trial_chambers/chests/contents/supply"));
 
     public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CHESTS_SUPPLY = JigsawPools.key(ResourceKey.minecraft("trial_chambers/chests/supply"));
 
     public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CORRIDOR = JigsawPools.key(ResourceKey.minecraft("trial_chambers/corridor"));
 
-    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CORRIDOR_SLICES = JigsawPools.key(ResourceKey.minecraft("trial_chambers/corridor/slices"));
-
     public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CORRIDORS_ADDON_LOWER = JigsawPools.key(ResourceKey.minecraft("trial_chambers/corridors/addon/lower"));
 
     public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CORRIDORS_ADDON_MIDDLE = JigsawPools.key(ResourceKey.minecraft("trial_chambers/corridors/addon/middle"));
 
     public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CORRIDORS_ADDON_MIDDLE_UPPER = JigsawPools.key(ResourceKey.minecraft("trial_chambers/corridors/addon/middle_upper"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_CORRIDOR_SLICES = JigsawPools.key(ResourceKey.minecraft("trial_chambers/corridor/slices"));
 
     public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_DECOR = JigsawPools.key(ResourceKey.minecraft("trial_chambers/decor"));
 
