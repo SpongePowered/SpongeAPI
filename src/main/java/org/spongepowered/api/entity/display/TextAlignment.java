@@ -27,7 +27,7 @@ package org.spongepowered.api.entity.display;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-@CatalogedBy(ItemDisplayTypes.class)
+@CatalogedBy(TextAlignments.class)
 public interface TextAlignment extends DefaultedRegistryValue {
 
 }
