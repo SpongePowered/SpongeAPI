@@ -31,6 +31,7 @@ import org.spongepowered.api.entity.display.ItemDisplay;
 import org.spongepowered.api.entity.display.TextDisplay;
 import org.spongepowered.api.entity.explosive.EndCrystal;
 import org.spongepowered.api.entity.explosive.fused.PrimedTNT;
+import org.spongepowered.api.entity.hanging.GlowItemFrame;
 import org.spongepowered.api.entity.hanging.ItemFrame;
 import org.spongepowered.api.entity.hanging.LeashKnot;
 import org.spongepowered.api.entity.hanging.Painting;
@@ -261,7 +262,7 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<Giant>> GIANT = EntityTypes.key(ResourceKey.minecraft("giant"));
 
-    public static final DefaultedRegistryReference<EntityType<ItemFrame>> GLOW_ITEM_FRAME = EntityTypes.key(ResourceKey.minecraft("glow_item_frame"));
+    public static final DefaultedRegistryReference<EntityType<GlowItemFrame>> GLOW_ITEM_FRAME = EntityTypes.key(ResourceKey.minecraft("glow_item_frame"));
 
     public static final DefaultedRegistryReference<EntityType<GlowSquid>> GLOW_SQUID = EntityTypes.key(ResourceKey.minecraft("glow_squid"));
 
