@@ -199,7 +199,7 @@ import org.spongepowered.api.entity.projectile.arrow.Arrow;
 import org.spongepowered.api.entity.projectile.arrow.ArrowEntity;
 import org.spongepowered.api.entity.projectile.explosive.FireworkRocket;
 import org.spongepowered.api.entity.projectile.explosive.WitherSkull;
-import org.spongepowered.api.entity.projectile.explosive.fireball.FireballEntity;
+import org.spongepowered.api.entity.projectile.IgnitingProjectile;
 import org.spongepowered.api.entity.vehicle.Boat;
 import org.spongepowered.api.entity.vehicle.minecart.BlockOccupiedMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.CommandBlockMinecart;
@@ -615,7 +615,7 @@ public final class Keys {
     /**
      * Whether a {@link Living} entity may change blocks.
      * This mostly applies to {@link Enderman} or
-     * {@link Creeper}s, but also to some projectiles like {@link FireballEntity}s or {@link WitherSkull}.
+     * {@link Creeper}s, but also to some projectiles like {@link IgnitingProjectile}s or {@link WitherSkull}.
      */
     public static final Key<Value<Boolean>> CAN_GRIEF = Keys.key(ResourceKey.sponge("can_grief"), Boolean.class);
 
