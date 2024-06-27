@@ -27,12 +27,13 @@ package org.spongepowered.api.entity.vehicle.minecart;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.vehicle.Vehicle;
 import org.spongepowered.math.vector.Vector3d;
 
 /**
  * An abstract representation of a Minecart.
  */
-public interface MinecartLike extends Entity {
+public interface MinecartLike extends Vehicle {
 
     /**
      * {@link Keys#IS_ON_RAIL}

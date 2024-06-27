@@ -26,6 +26,9 @@ package org.spongepowered.api.entity.vehicle;
 
 import org.spongepowered.api.entity.Entity;
 
+/**
+ * An abstract representation of a Vehicle.
+ */
 public interface Vehicle extends Entity {
 
 }

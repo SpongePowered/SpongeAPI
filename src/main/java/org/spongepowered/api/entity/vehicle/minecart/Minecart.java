@@ -24,11 +24,9 @@
  */
 package org.spongepowered.api.entity.vehicle.minecart;
 
-import org.spongepowered.api.entity.vehicle.Vehicle;
-
 /**
  * Represents a Minecart.
  */
-public interface Minecart extends MinecartLike, Vehicle {
+public interface Minecart extends MinecartLike {
 
 }
