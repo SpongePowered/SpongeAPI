@@ -64,6 +64,15 @@ public interface DisplayEntity extends Entity {
         return this.require(Keys.INTERPOLATION_DELAY);
     }
 
+    /**
+     * Returns the duration of the teleportation
+     *
+     * @return the duration of the teleportation
+     */
+    default Ticks teleportDuration() {
+        return this.require(Keys.TELEPORT_DURATION);
+    }
+
     default BillboardType billboardType() {
         return this.require(Keys.BILLBOARD_TYPE);
     }
