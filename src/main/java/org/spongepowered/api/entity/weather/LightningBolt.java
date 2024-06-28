@@ -26,12 +26,13 @@ package org.spongepowered.api.entity.weather;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.util.Ticks;
 
 /**
  * Represents a Lighting Bolt.
  */
-public interface LightningBolt extends WeatherEffect {
+public interface LightningBolt extends Entity {
 
     /**
      * {@link Keys#DESPAWN_DELAY}
