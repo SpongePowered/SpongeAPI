@@ -208,7 +208,6 @@ import org.spongepowered.api.entity.vehicle.minecart.FurnaceMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.Minecart;
 import org.spongepowered.api.entity.vehicle.minecart.MinecartLike;
 import org.spongepowered.api.entity.weather.LightningBolt;
-import org.spongepowered.api.entity.weather.WeatherEffect;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSources;
 import org.spongepowered.api.fluid.FluidStackSnapshot;
 import org.spongepowered.api.fluid.FluidTypes;
@@ -1652,7 +1651,7 @@ public final class Keys {
     public static final Key<Value<Boolean>> IS_EATING = Keys.key(ResourceKey.sponge("is_eating"), Boolean.class);
 
     /**
-     * Whether a {@link WeatherEffect} like {@link LightningBolt} is harmful to other {@link Entity entities}.
+     * Whether a {@link LightningBolt} is harmful to other {@link Entity entities}.
      * Readonly
      */
     public static final Key<Value<Boolean>> IS_EFFECT_ONLY = Keys.key(ResourceKey.sponge("is_effect_only"), Boolean.class);
