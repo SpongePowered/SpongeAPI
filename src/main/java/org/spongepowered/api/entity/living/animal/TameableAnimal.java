@@ -26,20 +26,9 @@ package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.Ownable;
 
-import java.util.Optional;
-import java.util.UUID;
-
-public interface TameableAnimal extends Animal, Sittable {
-
-    /**
-     * {@link Keys#TAMER}
-     *
-     * @return The tamer of the animal
-     */
-    default Optional<Value.Mutable<UUID>> tamer() {
-        return this.getValue(Keys.TAMER).map(Value::asMutable);
-    }
+public interface TameableAnimal extends Animal, Ownable, Sittable {
 
     /**
      * {@link Keys#IS_TAMED}

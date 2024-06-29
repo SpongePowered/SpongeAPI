@@ -22,34 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.animal.horse;
+package org.spongepowered.api.entity;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.animal.TameableAnimal;
 
 import java.util.Optional;
 import java.util.UUID;
 
-public interface TameableHorse extends HorseLike, TameableAnimal {
+/**
+ * Represents an {@link Entity} which can be owned.
+ */
+public interface Ownable extends Entity {
 
     /**
-     * {@link Keys#TAMER}
+     * {@link Keys#OWNER}
      *
-     * @return The tamer of the horse
+     * @return The owner of the entity
      */
-    @Override
-    default Optional<Value.Mutable<UUID>> tamer() {
-        return this.getValue(Keys.TAMER).map(Value::asMutable);
-    }
-
-    /**
-     * {@link Keys#IS_TAMED}
-     *
-     * @return Whether the horse is currently tamed
-     */
-    @Override
-    default Value.Mutable<Boolean> tamed() {
-        return this.requireValue(Keys.IS_TAMED).asMutable();
+    default Optional<Value.Mutable<UUID>> owner() {
+        return this.getValue(Keys.OWNER).map(Value::asMutable);
     }
 }
