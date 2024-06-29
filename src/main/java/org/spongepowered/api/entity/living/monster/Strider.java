@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
+import org.spongepowered.api.entity.Saddleable;
 import org.spongepowered.api.entity.living.Monster;
 
 /**
  * Represents a Strider.
  */
-public interface Strider extends Monster {
+public interface Strider extends Monster, Saddleable {
 }

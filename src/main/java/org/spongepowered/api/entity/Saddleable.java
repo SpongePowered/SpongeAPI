@@ -22,13 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.animal;
+package org.spongepowered.api.entity;
 
-import org.spongepowered.api.entity.Saddleable;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
 
 /**
- * Represents a Pig.
+ * Represents an {@link Entity} which can be saddled.
  */
-public interface Pig extends Animal, Saddleable {
+public interface Saddleable extends Entity {
 
+    /**
+     * {@link Keys#IS_SADDLED}
+     *
+     * @return Whether the entity is saddled
+     */
+    default Value.Mutable<Boolean> saddled() {
+        return this.requireValue(Keys.IS_SADDLED).asMutable();
+    }
 }
