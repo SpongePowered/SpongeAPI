@@ -22,13 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster;
+package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.entity.Saddleable;
-import org.spongepowered.api.entity.living.Monster;
 
 /**
  * Represents a Strider.
  */
-public interface Strider extends Monster, Saddleable {
+public interface Strider extends Animal, Saddleable {
 }
