@@ -22,9 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.animal;
+package org.spongepowered.api.entity.living;
+
 /**
  * Represents an Allay.
  */
-public interface Allay extends Animal {
+public interface Allay extends Creature {
 }
