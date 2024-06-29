@@ -24,6 +24,11 @@
  */
 package org.spongepowered.api.entity.living.animal.horse;
 
-public interface Camel extends HorseLike {
+import org.spongepowered.api.entity.living.animal.Sittable;
+
+/**
+ * Represents a Camel.
+ */
+public interface Camel extends HorseLike, Sittable {
 
 }

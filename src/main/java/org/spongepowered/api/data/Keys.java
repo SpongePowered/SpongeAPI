@@ -117,6 +117,7 @@ import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.ExperienceOrb;
 import org.spongepowered.api.entity.FallingBlock;
 import org.spongepowered.api.entity.Item;
+import org.spongepowered.api.entity.Ownable;
 import org.spongepowered.api.entity.ai.goal.GoalExecutorTypes;
 import org.spongepowered.api.entity.display.BillboardType;
 import org.spongepowered.api.entity.display.DisplayEntity;
@@ -153,7 +154,6 @@ import org.spongepowered.api.entity.living.animal.Turtle;
 import org.spongepowered.api.entity.living.animal.Wolf;
 import org.spongepowered.api.entity.living.animal.cow.Mooshroom;
 import org.spongepowered.api.entity.living.animal.horse.Horse;
-import org.spongepowered.api.entity.living.animal.horse.HorseLike;
 import org.spongepowered.api.entity.living.animal.horse.PackHorse;
 import org.spongepowered.api.entity.living.animal.horse.llama.Llama;
 import org.spongepowered.api.entity.living.animal.horse.llama.TraderLlama;
@@ -2473,6 +2473,11 @@ public final class Keys {
     public static final Key<Value<Orientation>> ORIENTATION = Keys.key(ResourceKey.sponge("orientation"), Orientation.class);
 
     /**
+     * The owner of a {@link Ownable}.
+     */
+    public static final Key<Value<UUID>> OWNER = Keys.key(ResourceKey.sponge("owner"), UUID.class);
+
+    /**
      * The content of a {@link ItemTypes#WRITTEN_BOOK} {@link ItemStack}.
      *
      * <p>Use {@link Keys#PLAIN_PAGES} if you wish to inspect the contents
@@ -3119,11 +3124,6 @@ public final class Keys {
      * <p>This is equivalent to the magnitude of the {@link #VELOCITY} vector</p>
      */
     public static final Key<Value<Double>> SWIFTNESS = Keys.key(ResourceKey.sponge("swiftness"), Double.class);
-
-    /**
-     * The tamer of a {@link TameableAnimal} or {@link HorseLike}.
-     */
-    public static final Key<Value<UUID>> TAMER = Keys.key(ResourceKey.sponge("tamer"), UUID.class);
 
     /**
      * The targeted entity either by an {@link Agent} and it's

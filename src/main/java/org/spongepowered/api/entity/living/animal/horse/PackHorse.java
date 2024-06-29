@@ -27,12 +27,15 @@ package org.spongepowered.api.entity.living.animal.horse;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 
+/**
+ * Represents an {@link HorseLike} which can have a chest.
+ */
 public interface PackHorse extends HorseLike {
 
     /**
      * {@link Keys#HAS_CHEST}
      *
-     * @return Whether the horse is has a chest or not
+     * @return Whether the horse has a chest or not
      */
     default Value.Mutable<Boolean> hasChest() {
         return this.requireValue(Keys.HAS_CHEST).asMutable();

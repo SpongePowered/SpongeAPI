@@ -95,7 +95,7 @@ public interface Cat extends TameableAnimal {
      * {@link Keys#IS_BEGGING_FOR_FOOD}
      *
      * <p>In vanilla, a cat begs for food every so many ticks
-     * if {@link TameableAnimal#tamer()} returns {@link Optional#isPresent()}.</p>
+     * if {@link TameableAnimal#owner()} returns {@link Optional#isPresent()}.</p>
      *
      * @return Whether this cat is purring
      */
