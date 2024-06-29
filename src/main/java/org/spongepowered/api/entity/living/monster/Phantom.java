@@ -28,7 +28,6 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.PhantomPhase;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Aerial;
-import org.spongepowered.api.entity.living.Creature;
 
 public interface Phantom extends Aerial {
 
