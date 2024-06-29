@@ -22,24 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster.slime;
-
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.Monster;
+package org.spongepowered.api.entity.living.slime;
 
 /**
- * Represents a Slime.
+ * Represents a Magma Cube.
  */
-public interface Slime extends Monster {
-
-    /**
-     * {@link Keys#SIZE}
-     *
-     * @return The size of slime
-     */
-    default Value.Mutable<Integer> size() {
-        return this.requireValue(Keys.SIZE).asMutable();
-    }
+public interface MagmaCube extends Slime {
 
 }
