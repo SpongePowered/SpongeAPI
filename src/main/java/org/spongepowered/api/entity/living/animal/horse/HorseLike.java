@@ -27,6 +27,7 @@ package org.spongepowered.api.entity.living.animal.horse;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Ownable;
+import org.spongepowered.api.entity.Saddleable;
 import org.spongepowered.api.entity.living.animal.Animal;
 import org.spongepowered.api.item.inventory.Carrier;
 
@@ -34,7 +35,7 @@ import org.spongepowered.api.item.inventory.Carrier;
 /**
  * An abstract representation of a Horse.
  */
-public interface HorseLike extends Animal, Ownable, Carrier {
+public interface HorseLike extends Animal, Ownable, Saddleable, Carrier {
 
     /**
      * {@link Keys#IS_TAMED}
@@ -43,15 +44,6 @@ public interface HorseLike extends Animal, Ownable, Carrier {
      */
     default Value.Mutable<Boolean> tamed() {
         return this.requireValue(Keys.IS_TAMED).asMutable();
-    }
-
-    /**
-     * {@link Keys#IS_SADDLED}
-     *
-     * @return Whether the horse is saddled
-     */
-    default Value.Mutable<Boolean> saddled() {
-        return this.requireValue(Keys.IS_SADDLED).asMutable();
     }
 
 }
