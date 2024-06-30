@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.entity.living.trader;
 
+import org.spongepowered.api.entity.living.Ageable;
+import org.spongepowered.api.item.merchant.Merchant;
 
 /**
- * Represents a Wandering Trader.
+ * An abstract representation of a Villager.
  */
-public interface WanderingTrader extends VillagerLike {
-
+public interface VillagerLike extends Ageable, Merchant {
 }
