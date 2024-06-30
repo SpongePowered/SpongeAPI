@@ -24,9 +24,12 @@
  */
 package org.spongepowered.api.entity.living.trader;
 
+import org.spongepowered.api.entity.living.Ageable;
+import org.spongepowered.api.item.merchant.Merchant;
+
 /**
  * Represents a Wandering Trader.
  */
-public interface WanderingTrader extends Trader {
+public interface WanderingTrader extends Ageable, Merchant {
 
 }

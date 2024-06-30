@@ -30,11 +30,12 @@ import org.spongepowered.api.data.type.ProfessionTypes;
 import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Ageable;
+import org.spongepowered.api.item.merchant.Merchant;
 
 /**
  * Represents a Villager.
  */
-public interface Villager extends Trader, Ageable {
+public interface Villager extends Ageable, Merchant {
 
     /**
      * {@link Keys#VILLAGER_TYPE}

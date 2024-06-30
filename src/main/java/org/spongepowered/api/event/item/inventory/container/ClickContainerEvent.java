@@ -30,6 +30,7 @@ import org.spongepowered.api.event.item.inventory.DropItemEvent;
 import org.spongepowered.api.item.inventory.Container;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
+import org.spongepowered.api.item.merchant.Merchant;
 import org.spongepowered.api.item.merchant.TradeOffer;
 
 import java.util.Optional;
@@ -182,7 +183,7 @@ public interface ClickContainerEvent extends ChangeInventoryEvent, InteractConta
     }
 
     /**
-     * Fies when the client requests to select a trade from a {@link org.spongepowered.api.entity.living.trader.Trader}
+     * Fies when the client requests to select a trade from a {@link Merchant}
      */
     interface SelectTrade extends ClickContainerEvent {
 
