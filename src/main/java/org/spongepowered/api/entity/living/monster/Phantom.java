@@ -27,7 +27,7 @@ package org.spongepowered.api.entity.living.monster;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.PhantomPhase;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.Aerial;
+import org.spongepowered.api.entity.Aerial;
 import org.spongepowered.api.entity.living.Agent;
 
 public interface Phantom extends Agent, Aerial {

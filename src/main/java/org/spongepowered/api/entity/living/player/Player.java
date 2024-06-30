@@ -30,6 +30,7 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.HandPreference;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.effect.Viewer;
+import org.spongepowered.api.entity.Aerial;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.Inventory;
@@ -40,7 +41,7 @@ import org.spongepowered.api.util.locale.LocaleSource;
 /**
  * A Player is the representation of an actual unit playing the game.
  */
-public interface Player extends Humanoid, Identified, LocaleSource, Viewer, Carrier {
+public interface Player extends Humanoid, Identified, LocaleSource, Viewer, Carrier, Aerial {
 
     /**
      * Gets the associated {@link GameProfile} of this player.
@@ -153,15 +154,6 @@ public interface Player extends Humanoid, Identified, LocaleSource, Viewer, Carr
      */
     default Value.Mutable<Integer> foodLevel() {
         return this.requireValue(Keys.FOOD_LEVEL).asMutable();
-    }
-
-    /**
-     * {@link Keys#IS_FLYING}
-     *
-     * @return Whether the entity is flying
-     */
-    default Value.Mutable<Boolean> flying() {
-        return this.requireValue(Keys.IS_FLYING).asMutable();
     }
 
     /**

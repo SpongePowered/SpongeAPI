@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.entity.living.Aerial;
+import org.spongepowered.api.entity.Aerial;
 import org.spongepowered.api.entity.living.Hostile;
 import org.spongepowered.api.entity.living.Ranger;
 

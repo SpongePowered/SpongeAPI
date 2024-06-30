@@ -22,11 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
+package org.spongepowered.api.entity;
+
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
 
 /**
- * Represents an entity that flies, such as a bat.
+ * Represents an {@link Entity} which can fly.
  */
-public interface Aerial extends Agent {
+public interface Aerial extends Entity {
 
+    /**
+     * {@link Keys#IS_FLYING}
+     *
+     * @return Whether the entity is flying
+     */
+    default Value.Mutable<Boolean> flying() {
+        return this.requireValue(Keys.IS_FLYING).asMutable();
+    }
 }

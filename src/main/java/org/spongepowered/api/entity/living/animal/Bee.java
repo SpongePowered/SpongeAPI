@@ -24,8 +24,10 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
+import org.spongepowered.api.entity.Aerial;
+
 /**
  * Represents a Bee.
  */
-public interface Bee extends Animal {
+public interface Bee extends Animal, Aerial {
 }

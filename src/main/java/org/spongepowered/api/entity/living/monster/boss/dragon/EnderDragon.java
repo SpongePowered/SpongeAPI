@@ -26,8 +26,8 @@ package org.spongepowered.api.entity.living.monster.boss.dragon;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.Aerial;
 import org.spongepowered.api.entity.explosive.EndCrystal;
-import org.spongepowered.api.entity.living.Aerial;
 import org.spongepowered.api.entity.living.ComplexLiving;
 import org.spongepowered.api.entity.living.Monster;
 import org.spongepowered.api.entity.living.Ranger;
