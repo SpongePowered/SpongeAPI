@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
+package org.spongepowered.api.entity;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
@@ -31,28 +31,9 @@ import org.spongepowered.api.util.Ticks;
 import java.util.Optional;
 
 /**
- * Represents an {@link Agent} that produces offspring and grows into an adult
+ * Represents an {@link Entity} which can breed.
  */
-public interface Ageable extends Agent {
-
-    /**
-     * {@link Keys#IS_ADULT}
-     *
-     * @return Whether this entity is an adult or not
-     */
-    default Value.Mutable<Boolean> adult() {
-        return this.requireValue(Keys.IS_ADULT).asMutable();
-    }
-
-    /**
-     * {@link Keys#BABY_TICKS}
-     *
-     * @return The ticks until this entity turns into an adult
-     */
-    default Optional<Value.Mutable<Ticks>> babyTicks() {
-        return this.getValue(Keys.BABY_TICKS).map(Value::asMutable);
-    }
-
+public interface Breedable extends Entity {
     /**
      * {@link Keys#CAN_BREED}
      *
@@ -70,5 +51,4 @@ public interface Ageable extends Agent {
     default Optional<Value.Mutable<Ticks>> breedingCooldown() {
         return this.getValue(Keys.BREEDING_COOLDOWN).map(Value::asMutable);
     }
-
 }

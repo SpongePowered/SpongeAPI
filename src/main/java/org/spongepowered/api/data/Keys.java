@@ -109,6 +109,7 @@ import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.effect.potion.PotionEffectTypes;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.effect.sound.music.MusicDisc;
+import org.spongepowered.api.entity.Ageable;
 import org.spongepowered.api.entity.AreaEffectCloud;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
@@ -132,7 +133,6 @@ import org.spongepowered.api.entity.hanging.Hanging;
 import org.spongepowered.api.entity.hanging.ItemFrame;
 import org.spongepowered.api.entity.hanging.LeashKnot;
 import org.spongepowered.api.entity.hanging.Painting;
-import org.spongepowered.api.entity.living.Ageable;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.ArmorStand;
 import org.spongepowered.api.entity.living.Bat;
@@ -1533,7 +1533,7 @@ public final class Keys {
     public static final Key<Value<Boolean>> IN_WALL = Keys.key(ResourceKey.sponge("in_wall"), Boolean.class);
 
     /**
-     * Whether an {@link Ageable} is considered an adult.
+     * Whether a {@link Living} is considered an adult.
      */
     public static final Key<Value<Boolean>> IS_ADULT = Keys.key(ResourceKey.sponge("is_adult"), Boolean.class);
 

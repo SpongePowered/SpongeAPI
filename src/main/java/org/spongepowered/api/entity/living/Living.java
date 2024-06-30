@@ -75,6 +75,15 @@ public interface Living extends AttributeHolder, Entity {
     }
 
     /**
+     * {@link Keys#IS_ADULT}
+     *
+     * @return Whether this entity is an adult or not
+     */
+    default Value.Mutable<Boolean> adult() {
+        return this.requireValue(Keys.IS_ADULT).asMutable();
+    }
+
+    /**
      * {@link Keys#MAX_HEALTH}
      *
      * @return The maximum health value
