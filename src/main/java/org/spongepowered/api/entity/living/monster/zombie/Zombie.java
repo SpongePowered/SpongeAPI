@@ -26,11 +26,12 @@ package org.spongepowered.api.entity.living.monster.zombie;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.living.Monster;
 
 /**
  * Represents a Zombie.
  */
-public interface Zombie extends ZombieLike {
+public interface Zombie extends Monster {
 
     /**
      * {@link Keys#IS_ADULT}

@@ -24,6 +24,6 @@
  */
 package org.spongepowered.api.entity.living.monster.zombie;
 
-public interface Husk extends ZombieLike {
+public interface Husk extends Zombie {
 
 }
