@@ -30,7 +30,7 @@ import org.spongepowered.api.data.value.Value;
 /**
  * Represents a Zombie Pigman.
  */
-public interface ZombifiedPiglin extends ZombieLike {
+public interface ZombifiedPiglin extends Zombie {
 
     /**
      * {@link Keys#ANGER_LEVEL}
