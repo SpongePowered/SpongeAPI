@@ -26,12 +26,13 @@ package org.spongepowered.api.entity.living.monster.raider.illager;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.living.RangedAgent;
 import org.spongepowered.api.item.inventory.Carrier;
 
 /**
  * Represents a Pillager.
  */
-public interface Pillager extends Illager, Carrier {
+public interface Pillager extends Illager, RangedAgent, Carrier {
 
     /**
      * {@link Keys#IS_CHARGING_CROSSBOW}
