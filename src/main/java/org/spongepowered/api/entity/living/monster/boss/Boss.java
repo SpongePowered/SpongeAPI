@@ -27,13 +27,13 @@ package org.spongepowered.api.entity.living.monster.boss;
 import net.kyori.adventure.bossbar.BossBar;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.Hostile;
+import org.spongepowered.api.entity.Entity;
 
 /**
  * Represents a boss monster that may cause a boss health bar to show
  * on client interfaces.
  */
-public interface Boss extends Hostile {
+public interface Boss extends Entity {
 
     /**
      * {@link Keys#BOSS_BAR}

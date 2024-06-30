@@ -24,8 +24,10 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
+import org.spongepowered.api.entity.living.Hostile;
+
 /**
  * Represents a Hoglin.
  */
-public interface Hoglin extends Animal {
+public interface Hoglin extends Animal, Hostile {
 }

@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.entity.living;
 
-public interface Hostile extends Agent {
+import org.spongepowered.api.entity.Entity;
+
+public interface Hostile extends Entity {
 
 }
