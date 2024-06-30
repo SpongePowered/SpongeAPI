@@ -26,10 +26,10 @@ package org.spongepowered.api.entity.living.trader;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.Creature;
+import org.spongepowered.api.entity.living.PathfinderAgent;
 import org.spongepowered.api.item.merchant.Merchant;
 
-public interface Trader extends Creature, Merchant {
+public interface Trader extends PathfinderAgent, Merchant {
 
     /**
      * {@link Keys#IS_TRADING}

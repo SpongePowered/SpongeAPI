@@ -27,9 +27,9 @@ package org.spongepowered.api.entity.ai.goal;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.Agent;
-import org.spongepowered.api.entity.living.Creature;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.living.PathfinderAgent;
 import org.spongepowered.api.entity.living.animal.horse.Horse;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.registry.Registry;
@@ -62,7 +62,7 @@ public final class GoalTypes {
     public static final DefaultedRegistryReference<GoalType> LOOK_RANDOMLY = GoalTypes.key(ResourceKey.sponge("look_randomly"));
 
     /**
-     * {@link Goal} where {@link Creature}s walk around.
+     * {@link Goal} where {@link PathfinderAgent}s walk around.
      */
     public static final DefaultedRegistryReference<GoalType> RANDOM_WALKING = GoalTypes.key(ResourceKey.sponge("random_walking"));
 

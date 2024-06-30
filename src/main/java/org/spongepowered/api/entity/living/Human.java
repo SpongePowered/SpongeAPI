@@ -26,7 +26,7 @@ package org.spongepowered.api.entity.living;
 
 import java.util.UUID;
 
-public interface Human extends Humanoid, Creature, Ranger {
+public interface Human extends Humanoid, PathfinderAgent, Ranger {
 
     /**
      * Sets the appearance "skin" of this human to the appearance used by a real

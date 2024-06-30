@@ -28,12 +28,12 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.ai.goal.Goal;
 import org.spongepowered.api.entity.ai.goal.GoalBuilder;
 import org.spongepowered.api.entity.living.Agent;
-import org.spongepowered.api.entity.living.Creature;
 import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.living.PathfinderAgent;
 
 import java.util.function.Predicate;
 
-public interface AvoidLivingGoal extends Goal<Creature> {
+public interface AvoidLivingGoal extends Goal<PathfinderAgent> {
 
     /**
      * Creates a new {@link Builder} for creating a new {@link AvoidLivingGoal}.
@@ -118,7 +118,7 @@ public interface AvoidLivingGoal extends Goal<Creature> {
      */
     AvoidLivingGoal setFarRangeSpeed(double speed);
 
-    interface Builder extends GoalBuilder<Creature, AvoidLivingGoal, Builder> {
+    interface Builder extends GoalBuilder<PathfinderAgent, AvoidLivingGoal, Builder> {
 
         /**
          * Sets the {@link Predicate} for filtering which {@link Living} instances

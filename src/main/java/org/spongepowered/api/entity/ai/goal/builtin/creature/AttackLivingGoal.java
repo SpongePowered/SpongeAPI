@@ -29,9 +29,9 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.ai.goal.Goal;
 import org.spongepowered.api.entity.ai.goal.GoalBuilder;
 import org.spongepowered.api.entity.living.Agent;
-import org.spongepowered.api.entity.living.Creature;
+import org.spongepowered.api.entity.living.PathfinderAgent;
 
-public interface AttackLivingGoal extends Goal<Creature> {
+public interface AttackLivingGoal extends Goal<PathfinderAgent> {
 
     /**
      * Creates a new {@link Builder} to build a new
@@ -52,7 +52,7 @@ public interface AttackLivingGoal extends Goal<Creature> {
     double speed();
 
     /**
-     * Sets the movement speed modifier when the parent {@link Creature}
+     * Sets the movement speed modifier when the parent {@link PathfinderAgent}
      * is targeting an {@link Entity}.
      *
      * @param speed The speed
@@ -84,7 +84,7 @@ public interface AttackLivingGoal extends Goal<Creature> {
      */
     AttackLivingGoal setLongMemory(boolean longMemory);
 
-    interface Builder extends GoalBuilder<Creature, AttackLivingGoal, Builder> {
+    interface Builder extends GoalBuilder<PathfinderAgent, AttackLivingGoal, Builder> {
 
         /**
          * Sets the speed modifier at which the owning {@link Agent} will be
