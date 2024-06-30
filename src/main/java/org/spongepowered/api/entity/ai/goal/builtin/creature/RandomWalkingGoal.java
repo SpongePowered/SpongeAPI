@@ -28,9 +28,9 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.ai.goal.Goal;
 import org.spongepowered.api.entity.ai.goal.GoalBuilder;
-import org.spongepowered.api.entity.living.Creature;
+import org.spongepowered.api.entity.living.PathfinderAgent;
 
-public interface RandomWalkingGoal extends Goal<Creature> {
+public interface RandomWalkingGoal extends Goal<PathfinderAgent> {
 
     /**
      * Creates a new {@link Builder} to build a new
@@ -75,7 +75,7 @@ public interface RandomWalkingGoal extends Goal<Creature> {
      */
     RandomWalkingGoal setExecutionChance(int executionChance);
 
-    interface Builder extends GoalBuilder<Creature, RandomWalkingGoal, Builder> {
+    interface Builder extends GoalBuilder<PathfinderAgent, RandomWalkingGoal, Builder> {
 
         Builder speed(double speed);
 

@@ -27,5 +27,5 @@ package org.spongepowered.api.entity.living;
 /**
  * Represents an Allay.
  */
-public interface Allay extends Creature {
+public interface Allay extends PathfinderAgent {
 }
