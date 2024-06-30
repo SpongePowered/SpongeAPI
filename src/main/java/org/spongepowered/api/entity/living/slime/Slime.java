@@ -27,11 +27,12 @@ package org.spongepowered.api.entity.living.slime;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.entity.living.Hostile;
 
 /**
  * Represents a Slime.
  */
-public interface Slime extends Agent {
+public interface Slime extends Agent, Hostile {
 
     /**
      * {@link Keys#SIZE}
