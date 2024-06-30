@@ -26,6 +26,7 @@ package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.Aerial;
 
 /**
  * Represents a Bat.
