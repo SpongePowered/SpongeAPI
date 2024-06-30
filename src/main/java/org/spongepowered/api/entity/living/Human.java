@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.entity.living;
 
+import org.spongepowered.api.entity.Ranger;
+
 import java.util.UUID;
 
 public interface Human extends Humanoid, PathfinderAgent, Ranger {

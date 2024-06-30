@@ -30,12 +30,12 @@ import org.spongepowered.api.entity.Aerial;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
 import org.spongepowered.api.entity.living.Monster;
-import org.spongepowered.api.entity.living.Ranger;
+import org.spongepowered.api.entity.living.RangedAgent;
 
 /**
  * Represents the Wither.
  */
-public interface Wither extends Monster, Ranger, Boss, Aerial, FusedExplosive {
+public interface Wither extends Monster, RangedAgent, Boss, Aerial, FusedExplosive {
 
     /**
      * {@link Keys#WITHER_TARGETS}

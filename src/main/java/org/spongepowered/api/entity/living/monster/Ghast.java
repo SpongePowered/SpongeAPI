@@ -26,11 +26,11 @@ package org.spongepowered.api.entity.living.monster;
 
 import org.spongepowered.api.entity.Aerial;
 import org.spongepowered.api.entity.living.Hostile;
-import org.spongepowered.api.entity.living.Ranger;
+import org.spongepowered.api.entity.living.RangedAgent;
 
 /**
  * Represents a Ghast.
  */
-public interface Ghast extends Aerial, Hostile, Ranger {
+public interface Ghast extends Aerial, Hostile, RangedAgent {
 
 }

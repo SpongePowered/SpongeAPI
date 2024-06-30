@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.entity.living.monster.zombie;
 
-import org.spongepowered.api.entity.living.Ranger;
+import org.spongepowered.api.entity.living.RangedAgent;
 
-public interface Drowned extends Zombie, Ranger {
+public interface Drowned extends Zombie, RangedAgent {
 
 }

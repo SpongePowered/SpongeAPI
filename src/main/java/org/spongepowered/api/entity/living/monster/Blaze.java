@@ -28,12 +28,12 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Aerial;
 import org.spongepowered.api.entity.living.Monster;
-import org.spongepowered.api.entity.living.Ranger;
+import org.spongepowered.api.entity.living.RangedAgent;
 
 /**
  * Represents a Blaze.
  */
-public interface Blaze extends Monster, Aerial, Ranger {
+public interface Blaze extends Monster, Aerial, RangedAgent {
 
     /**
      * {@link Keys#IS_AFLAME}

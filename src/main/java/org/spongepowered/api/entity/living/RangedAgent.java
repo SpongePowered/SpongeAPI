@@ -22,12 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster.piglin;
+package org.spongepowered.api.entity.living;
 
-import org.spongepowered.api.entity.living.RangedAgent;
+import org.spongepowered.api.entity.Ranger;
+import org.spongepowered.api.entity.projectile.Projectile;
 
 /**
- * Represents a Piglin.
+ * An {@link Agent} who has AI explicitly to attack other entities with {@link Projectile}s.
  */
-public interface Piglin extends PiglinLike, RangedAgent {
+public interface RangedAgent extends Agent, Ranger {
 }

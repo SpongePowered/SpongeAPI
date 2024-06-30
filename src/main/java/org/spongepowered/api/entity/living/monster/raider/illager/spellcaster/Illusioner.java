@@ -24,9 +24,11 @@
  */
 package org.spongepowered.api.entity.living.monster.raider.illager.spellcaster;
 
+import org.spongepowered.api.entity.living.RangedAgent;
+
 /**
  * Represents an Illusioner.
  */
-public interface Illusioner extends Spellcaster {
+public interface Illusioner extends Spellcaster, RangedAgent {
 
 }

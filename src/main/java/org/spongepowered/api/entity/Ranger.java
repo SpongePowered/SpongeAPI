@@ -22,13 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
+package org.spongepowered.api.entity;
 
-import org.spongepowered.api.entity.projectile.Projectile;
-
-/**
- * An {@link Agent} who has AI explicitly to attack other entities with {@link Projectile}s.
- */
-public interface Ranger extends Agent {
+public interface Ranger extends Entity {
 
 }

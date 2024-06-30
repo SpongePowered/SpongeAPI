@@ -28,14 +28,14 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.ai.goal.Goal;
 import org.spongepowered.api.entity.ai.goal.GoalBuilder;
-import org.spongepowered.api.entity.living.Ranger;
+import org.spongepowered.api.entity.living.RangedAgent;
 import org.spongepowered.api.util.Ticks;
 
 /**
  * An {@link Goal} which uses the ranging aspect of the Ranger to attack
  * the target.
  */
-public interface RangedAttackAgainstAgentGoal extends Goal<Ranger> {
+public interface RangedAttackAgainstAgentGoal extends Goal<RangedAgent> {
 
     /**
      * Creates a new {@link Builder} to build a new {@link RangedAttackAgainstAgentGoal}.
@@ -72,7 +72,7 @@ public interface RangedAttackAgainstAgentGoal extends Goal<Ranger> {
     Ticks delayBetweenAttacks();
 
     /**
-     * The time, in ticks, this {@link Ranger} will wait before attacking
+     * The time, in ticks, this {@link RangedAgent} will wait before attacking
      * again.
      *
      * @param delay The delay, in ticks
@@ -81,7 +81,7 @@ public interface RangedAttackAgainstAgentGoal extends Goal<Ranger> {
     RangedAttackAgainstAgentGoal setDelayBetweenAttacks(Ticks delay);
 
     /**
-     * Gets the radius of which the owning {@link Ranger} will attempt to
+     * Gets the radius of which the owning {@link RangedAgent} will attempt to
      * attack a targeted {@link Entity}.
      *
      * @return The radius of which the owning entity will attempt to attack
@@ -89,7 +89,7 @@ public interface RangedAttackAgainstAgentGoal extends Goal<Ranger> {
     float attackRadius();
 
     /**
-     * Sets the radius of which the owning {@link Ranger} will attempt to
+     * Sets the radius of which the owning {@link RangedAgent} will attempt to
      * attack a targeted {@link Entity}.
      *
      * @param radius The radius of which the owning entity will attempt to
@@ -98,7 +98,7 @@ public interface RangedAttackAgainstAgentGoal extends Goal<Ranger> {
      */
     RangedAttackAgainstAgentGoal setAttackRadius(float radius);
 
-    interface Builder extends GoalBuilder<Ranger, RangedAttackAgainstAgentGoal, Builder> {
+    interface Builder extends GoalBuilder<RangedAgent, RangedAttackAgainstAgentGoal, Builder> {
 
         Builder moveSpeed(double speed);
 
