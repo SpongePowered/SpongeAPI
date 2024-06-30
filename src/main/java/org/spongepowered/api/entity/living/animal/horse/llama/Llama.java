@@ -34,7 +34,7 @@ import org.spongepowered.api.entity.living.animal.horse.PackHorse;
  * they can be ridden by players, but not controlled by players. Likewise, they
  * have colors and styles and can have storage "strength".
  */
-public interface Llama extends LlamaLike, PackHorse {
+public interface Llama extends PackHorse {
 
     /**
      * {@link Keys#LLAMA_TYPE}
