@@ -27,11 +27,11 @@ package org.spongepowered.api.entity.living.golem;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.Monster;
+import org.spongepowered.api.entity.living.Hostile;
 import org.spongepowered.api.entity.living.Ranger;
 import org.spongepowered.api.util.Direction;
 
-public interface Shulker extends Golem, Monster, Ranger {
+public interface Shulker extends Golem, Hostile, Ranger {
 
     /**
      * {@link Keys#DYE_COLOR}

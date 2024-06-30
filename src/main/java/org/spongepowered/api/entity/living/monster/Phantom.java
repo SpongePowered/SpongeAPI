@@ -29,8 +29,9 @@ import org.spongepowered.api.data.type.PhantomPhase;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Aerial;
 import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.entity.living.Hostile;
 
-public interface Phantom extends Agent, Aerial {
+public interface Phantom extends Agent, Hostile, Aerial {
 
     /**
      * {@link Keys#PHANTOM_PHASE}

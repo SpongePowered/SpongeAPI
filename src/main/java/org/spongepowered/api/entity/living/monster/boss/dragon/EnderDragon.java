@@ -28,8 +28,9 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Aerial;
 import org.spongepowered.api.entity.explosive.EndCrystal;
+import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.ComplexLiving;
-import org.spongepowered.api.entity.living.Monster;
+import org.spongepowered.api.entity.living.Hostile;
 import org.spongepowered.api.entity.living.Ranger;
 import org.spongepowered.api.entity.living.monster.boss.Boss;
 import org.spongepowered.api.entity.living.monster.boss.dragon.phase.DragonPhase;
@@ -40,7 +41,7 @@ import java.util.Optional;
 /**
  * Represents an Ender Dragon.
  */
-public interface EnderDragon extends ComplexLiving<EnderDragonPart>, Boss, Monster, Aerial, Ranger {
+public interface EnderDragon extends ComplexLiving<EnderDragonPart>, Boss, Agent, Hostile, Aerial, Ranger {
 
     /**
      * {@link Keys#HEALING_CRYSTAL}
