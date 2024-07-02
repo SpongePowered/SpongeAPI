@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world.server;
 
+import net.kyori.adventure.bossbar.BossBar;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.block.BlockSnapshot;
@@ -242,6 +243,13 @@ public interface ServerWorld extends World<ServerWorld, ServerLocation>, Identif
      * @return The raid at that location, if present
      */
     Optional<Raid> raidAt(Vector3i blockPosition);
+
+    /**
+     * Gets the {@link BossBar} of the ender dragon fight occurring in this {@link ServerWorld}.
+     *
+     * @return The dragon fight boss bar, if present
+     */
+    Optional<BossBar> dragonFightBossBar();
 
     /**
      * Gets the {@link ChunkManager} for this world.
