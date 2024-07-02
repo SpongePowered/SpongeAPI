@@ -51,13 +51,6 @@ public interface Raid {
     BossBar bossBar();
 
     /**
-     * Sets the {@link BossBar} being displayed to clients of this raid.
-     *
-     * @param bossBar The boss bar
-     */
-    void setBossBar(BossBar bossBar);
-
-    /**
      * Gets the {@link RaidStatus} of this raid.
      *
      * @return The raid status
