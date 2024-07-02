@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.living.player;
 
+import net.kyori.adventure.bossbar.BossBarViewer;
 import net.kyori.adventure.identity.Identified;
 import org.spongepowered.api.block.entity.EnderChest;
 import org.spongepowered.api.data.Keys;
@@ -41,7 +42,7 @@ import org.spongepowered.api.util.locale.LocaleSource;
 /**
  * A Player is the representation of an actual unit playing the game.
  */
-public interface Player extends Humanoid, Identified, LocaleSource, Viewer, Carrier, Aerial {
+public interface Player extends Humanoid, Identified, LocaleSource, Viewer, BossBarViewer, Carrier, Aerial {
 
     /**
      * Gets the associated {@link GameProfile} of this player.
