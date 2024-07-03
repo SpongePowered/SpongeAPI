@@ -25,11 +25,12 @@
 package org.spongepowered.api.entity.projectile.explosive.fireball;
 
 import org.spongepowered.api.entity.living.monster.Blaze;
+import org.spongepowered.api.entity.projectile.IgnitingProjectile;
 import org.spongepowered.api.entity.projectile.Projectile;
 
 /**
  * Represents a smaller fireball, such as {@link Projectile profectiles} launched by {@link Blaze blazes}.
  */
-public interface SmallFireball extends FireballEntity {
+public interface SmallFireball extends IgnitingProjectile {
 
 }

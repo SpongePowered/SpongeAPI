@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.entity.projectile.explosive.fireball;
 
-public interface DragonFireball extends FireballEntity {
+import org.spongepowered.api.entity.projectile.DamagingProjectile;
+
+public interface DragonFireball extends DamagingProjectile {
 
 }

@@ -26,11 +26,12 @@ package org.spongepowered.api.entity.projectile.explosive.fireball;
 
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.entity.living.monster.Ghast;
+import org.spongepowered.api.entity.projectile.IgnitingProjectile;
 import org.spongepowered.api.entity.projectile.Projectile;
 
 /**
  * Represents an explosive fireball, such as {@link Projectile profectiles} launched by {@link Ghast ghasts}.
  */
-public interface ExplosiveFireball extends FireballEntity, Explosive {
+public interface ExplosiveFireball extends IgnitingProjectile, Explosive {
 
 }
