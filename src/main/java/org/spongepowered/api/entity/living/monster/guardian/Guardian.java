@@ -35,7 +35,7 @@ import java.util.Optional;
 /**
  * Represents a Guardian.
  */
-public interface Guardian extends Aquatic, Monster {
+public interface Guardian extends Monster {
 
     /**
      * {@link Keys#BEAM_TARGET_ENTITY}

@@ -28,7 +28,7 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.entity.living.PathfinderAgent;
 
 /**
- * Represents an aquatic creature that may be found in {@link BlockTypes#WATER}
+ * Represents an aquatic creature that needs to stay in water to survive
  */
 public interface Aquatic extends PathfinderAgent {
 
