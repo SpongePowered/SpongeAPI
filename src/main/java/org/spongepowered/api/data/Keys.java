@@ -188,7 +188,6 @@ import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.entity.living.slime.Slime;
-import org.spongepowered.api.entity.living.trader.Trader;
 import org.spongepowered.api.entity.living.trader.Villager;
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
@@ -225,6 +224,7 @@ import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.inventory.slot.EquipmentSlot;
 import org.spongepowered.api.item.inventory.type.GridInventory;
+import org.spongepowered.api.item.merchant.Merchant;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.item.potion.PotionType;
 import org.spongepowered.api.map.MapCanvas;
@@ -810,6 +810,11 @@ public final class Keys {
      * The custom potion effects that are stored on an {@link ItemStack}.
      */
     public static final Key<ListValue<PotionEffect>> CUSTOM_POTION_EFFECTS = Keys.listKey(ResourceKey.sponge("custom_potion_effects"), PotionEffect.class);
+
+    /**
+     * The currently trading customer with this {@link Merchant}.
+     */
+    public static final Key<Value<Player>> CUSTOMER = Keys.key(ResourceKey.sponge("customer"), Player.class);
 
     /**
      * The damage absorbed by an armor {@link ItemStack}.
@@ -2021,12 +2026,6 @@ public final class Keys {
     public static final Key<Value<Boolean>> IS_TAMED = Keys.key(ResourceKey.sponge("is_tamed"), Boolean.class);
 
     /**
-     * Whether a {@link Trader} is currently trading with a {@link Player}.
-     * Readonly
-     */
-    public static final Key<Value<Boolean>> IS_TRADING = Keys.key(ResourceKey.sponge("is_trading"), Boolean.class);
-
-    /**
      * Whether a {@link Turtle} is currently traveling.
      */
     public static final Key<Value<Boolean>> IS_TRAVELING = Keys.key(ResourceKey.sponge("is_traveling"), Boolean.class);
@@ -3206,7 +3205,7 @@ public final class Keys {
     public static final Key<Value<Boolean>> TRACKS_OUTPUT = Keys.key(ResourceKey.sponge("tracks_output"), Boolean.class);
 
     /**
-     * The {@link TradeOffer}s offered by a {@link Trader} or a {@link org.spongepowered.api.item.inventory.type.ViewableInventory.Custom}
+     * The {@link TradeOffer}s offered by a {@link Merchant} or a {@link org.spongepowered.api.item.inventory.type.ViewableInventory.Custom}
      */
     public static final Key<ListValue<TradeOffer>> TRADE_OFFERS = Keys.listKey(ResourceKey.sponge("trade_offers"), TradeOffer.class);
 

@@ -24,19 +24,11 @@
  */
 package org.spongepowered.api.entity.living.trader;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.PathfinderAgent;
+import org.spongepowered.api.entity.living.Ageable;
 import org.spongepowered.api.item.merchant.Merchant;
 
-public interface Trader extends PathfinderAgent, Merchant {
-
-    /**
-     * {@link Keys#IS_TRADING}
-     *
-     * @return Whether this trader is currently trading with a player
-     */
-    default Value<Boolean> trading() {
-        return this.requireValue(Keys.IS_TRADING);
-    }
+/**
+ * An abstract representation of a Villager.
+ */
+public interface VillagerLike extends Ageable, Merchant {
 }

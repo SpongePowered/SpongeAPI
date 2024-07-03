@@ -24,9 +24,10 @@
  */
 package org.spongepowered.api.entity.living.trader;
 
+
 /**
  * Represents a Wandering Trader.
  */
-public interface WanderingTrader extends Trader {
+public interface WanderingTrader extends VillagerLike {
 
 }

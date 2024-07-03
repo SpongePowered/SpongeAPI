@@ -24,11 +24,11 @@
  */
 package org.spongepowered.api.item.merchant;
 
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.ListValue;
-import org.spongepowered.api.entity.living.Humanoid;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.world.Locatable;
 
@@ -40,28 +40,21 @@ import java.util.Optional;
 public interface Merchant extends DataHolder.Mutable, Carrier, Locatable {
 
     /**
-     * Gets the currently trading customer with this merchant.
-     *
-     * @return The currently trading customer if available
-     */
-    Optional<Humanoid> customer();
-
-    /**
-     * Sets the currently trading customer with this merchant.
-     * <p>If the humanoid is available, a new trading window may open
-     * with this merchant.</p>
-     *
-     * @param humanoid The humanoid to trade with
-     */
-    void setCustomer(@Nullable Humanoid humanoid);
-
-    /**
      * {@link Keys#TRADE_OFFERS}
      *
      * @return The trade offers offered by the merchant
      */
     default ListValue.Mutable<TradeOffer> tradeOffers() {
         return this.requireValue(Keys.TRADE_OFFERS).asMutable();
+    }
+
+    /**
+     * {@link Keys#CUSTOMER}
+     *
+     * @return Whether this trader is currently trading with a player
+     */
+    default Optional<Value.Mutable<Player>> customer() {
+        return this.getValue(Keys.CUSTOMER).map(Value::asMutable);
     }
 
 }
