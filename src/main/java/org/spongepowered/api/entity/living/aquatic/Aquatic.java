@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.entity.living.aquatic;
 
-import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.entity.living.PathfinderAgent;
 
 /**
