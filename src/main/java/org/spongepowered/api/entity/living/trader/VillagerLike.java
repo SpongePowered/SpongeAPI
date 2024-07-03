@@ -24,11 +24,13 @@
  */
 package org.spongepowered.api.entity.living.trader;
 
-import org.spongepowered.api.entity.living.Ageable;
+import org.spongepowered.api.entity.Ageable;
+import org.spongepowered.api.entity.Breedable;
+import org.spongepowered.api.entity.living.PathfinderAgent;
 import org.spongepowered.api.item.merchant.Merchant;
 
 /**
  * An abstract representation of a Villager.
  */
-public interface VillagerLike extends Ageable, Merchant {
+public interface VillagerLike extends PathfinderAgent, Ageable, Breedable, Merchant {
 }

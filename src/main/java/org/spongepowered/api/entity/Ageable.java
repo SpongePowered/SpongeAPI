@@ -22,48 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.entity;
+package org.spongepowered.api.entity;
 
-import org.spongepowered.api.entity.Ageable;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.animal.Animal;
-import org.spongepowered.api.event.Cancellable;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.event.TristateResult;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.util.Ticks;
 
-public interface BreedingEvent extends Event, Cancellable {
+import java.util.Optional;
 
-    /**
-     * Called when an {@link Animal} has made it known it is ready to breed.
-     */
-    interface ReadyToMate extends BreedingEvent {
-
-        Animal entity();
-    }
+/**
+ * Represents an {@link Entity} that can age
+ */
+public interface Ageable extends Entity {
 
     /**
-     * Called when an {@link Animal} finds an {@link Animal} to mate with.
+     * {@link Keys#BABY_TICKS}
+     *
+     * @return The ticks until this entity turns into an adult
      */
-    interface FindMate extends BreedingEvent, TristateResult {
-
-        /**
-         * Returns the {@link Animal} this entity will mate with.
-         *
-         * @return the mate
-         */
-        Animal matingEntity();
+    default Optional<Value.Mutable<Ticks>> babyTicks() {
+        return this.getValue(Keys.BABY_TICKS).map(Value::asMutable);
     }
 
-    /**
-     * Called when an {@link Animal} begins to breed with an {@link Animal}.
-     */
-    interface Breed extends BreedingEvent {
-
-        /**
-         * Gets the offspring {@link Entity}.
-         *
-         * @return the offspring
-         */
-        Ageable offspringEntity();
-    }
 }
