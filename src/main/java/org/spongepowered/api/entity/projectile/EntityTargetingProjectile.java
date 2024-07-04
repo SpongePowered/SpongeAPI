@@ -33,7 +33,7 @@ import java.util.Optional;
 /**
  * Represents a {@link Projectile} targeting an {@link Entity}
  */
-public interface EntityTargetingProjectile extends Projectile {
+public interface EntityTargetingProjectile extends Entity {
 
     /**
      * {@link Keys#TARGET_ENTITY}

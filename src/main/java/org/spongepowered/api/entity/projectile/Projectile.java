@@ -27,13 +27,13 @@ package org.spongepowered.api.entity.projectile;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.projectile.explosive.fireball.SmallFireball;
 import org.spongepowered.api.projectile.source.ProjectileSource;
 
 import java.util.Optional;
 
 /**
- * Represents entities that act as projectiles and can fly in the air.
- * For example, Arrows.
+ * Represents an abstract projectile.
  */
 public interface Projectile extends Entity {
 

@@ -27,6 +27,6 @@ package org.spongepowered.api.entity.projectile;
 /**
  * Represents a thrown experience bottle.
  */
-public interface ExperienceBottle extends Projectile {
+public interface ExperienceBottle extends ThrowableItemProjectile {
 
 }

@@ -27,6 +27,6 @@ package org.spongepowered.api.entity.projectile;
 /**
  * Represents a thrown egg.
  */
-public interface Egg extends DamagingProjectile {
+public interface Egg extends ThrowableItemProjectile {
 
 }

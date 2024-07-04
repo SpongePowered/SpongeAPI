@@ -32,7 +32,7 @@ import org.spongepowered.api.util.Direction;
 /**
  * A {@link ShulkerBullet} is the projectile {@link Shulker}s shoot.
  */
-public interface ShulkerBullet extends EntityTargetingProjectile, DamagingProjectile {
+public interface ShulkerBullet extends Projectile, EntityTargetingProjectile {
 
     /**
      * {@link Keys#DIRECTION}

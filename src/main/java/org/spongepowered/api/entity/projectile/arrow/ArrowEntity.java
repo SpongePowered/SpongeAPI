@@ -29,12 +29,12 @@ import org.spongepowered.api.data.type.PickupRule;
 import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.entity.projectile.DamagingProjectile;
+import org.spongepowered.api.entity.projectile.Projectile;
 
 /**
  * Represents an Arrow.
  */
-public interface ArrowEntity extends DamagingProjectile {
+public interface ArrowEntity extends Projectile {
 
     /**
      * {@link Keys#PICKUP_RULE}

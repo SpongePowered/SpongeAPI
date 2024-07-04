@@ -33,7 +33,7 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 /**
  * Represents a thrown potion.
  */
-public interface Potion extends Projectile {
+public interface Potion extends ThrowableItemProjectile {
 
     /**
      * {@link Keys#ITEM_STACK_SNAPSHOT}
