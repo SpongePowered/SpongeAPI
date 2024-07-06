@@ -197,7 +197,7 @@ import org.spongepowered.api.entity.projectile.Potion;
 import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.entity.projectile.ShulkerBullet;
 import org.spongepowered.api.entity.projectile.arrow.Arrow;
-import org.spongepowered.api.entity.projectile.arrow.ArrowEntity;
+import org.spongepowered.api.entity.projectile.arrow.ArrowLike;
 import org.spongepowered.api.entity.projectile.explosive.FireworkRocket;
 import org.spongepowered.api.entity.projectile.explosive.WitherSkull;
 import org.spongepowered.api.entity.vehicle.Boat;
@@ -413,7 +413,7 @@ public final class Keys {
     public static final Key<Value<AttachmentSurface>> ATTACHMENT_SURFACE = Keys.key(ResourceKey.sponge("attachment_surface"), AttachmentSurface.class);
 
     /**
-     * The damage dealt by an {@link ArrowEntity} on impact.
+     * The damage dealt by an {@link ArrowLike} on impact.
      */
     public static final Key<Value<Double>> ATTACK_DAMAGE = Keys.key(ResourceKey.sponge("attack_damage"), Double.class);
 
@@ -781,11 +781,11 @@ public final class Keys {
     public static final Key<Value<SpellType>> CURRENT_SPELL = Keys.key(ResourceKey.sponge("current_spell"), SpellType.class);
 
     /**
-     * The damage dealt towards entities of a specific {@link EntityType} by a {@link ArrowEntity}.
+     * The damage dealt towards entities of a specific {@link EntityType} by a {@link ArrowLike}.
      *
      * <p>Note that in events, the damage defined for the provided
      * {@link EntityType} will take priority over the "default" damage as
-     * defined from {@link ArrowEntity#attackDamage()}.</p>
+     * defined from {@link ArrowLike#attackDamage()}.</p>
      *
      * <p>Types not present in this mapping will be
      * dealt damage to according to {@link #ATTACK_DAMAGE}.</p>
@@ -2089,7 +2089,7 @@ public final class Keys {
     public static final Key<Value<ItemStackSnapshot>> ITEM_STACK_SNAPSHOT = Keys.key(ResourceKey.sponge("item_stack_snapshot"), ItemStackSnapshot.class);
 
     /**
-     * The custom knockback strength applied by an {@link ArrowEntity}.
+     * The custom knockback strength applied by an {@link ArrowLike}.
      *
      * <p>For the knockback provided by hits with a weapon according to the
      * enchantment of the same name, see {@link #APPLIED_ENCHANTMENTS}.</p>
@@ -2538,7 +2538,7 @@ public final class Keys {
     public static final Key<Value<Ticks>> PICKUP_DELAY = Keys.key(ResourceKey.sponge("pickup_delay"), Ticks.class);
 
     /**
-     * The {@link PickupRule} of an {@link ArrowEntity}.
+     * The {@link PickupRule} of an {@link ArrowLike}.
      */
     public static final Key<Value<PickupRule>> PICKUP_RULE = Keys.key(ResourceKey.sponge("pickup_rule"), PickupRule.class);
 
@@ -2605,7 +2605,7 @@ public final class Keys {
 
     /**
      * The potion effects that are present on an {@link Entity}
-     * <p>or applied by an {@link AreaEffectCloud} or {@link ArrowEntity}</p>
+     * <p>or applied by an {@link AreaEffectCloud} or {@link ArrowLike}</p>
      * <p>or stored on an {@link ItemStack}.</p>
      */
     public static final Key<ListValue<PotionEffect>> POTION_EFFECTS = Keys.listKey(ResourceKey.sponge("potion_effects"), PotionEffect.class);

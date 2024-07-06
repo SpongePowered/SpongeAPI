@@ -31,7 +31,7 @@ import org.spongepowered.api.effect.potion.PotionEffect;
 /**
  * An arrow generally "tipped" with one or more potion effects.
  */
-public interface Arrow extends ArrowEntity {
+public interface Arrow extends ArrowLike {
 
     /**
      * {@link Keys#POTION_EFFECTS}

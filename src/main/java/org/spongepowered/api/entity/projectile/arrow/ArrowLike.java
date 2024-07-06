@@ -32,9 +32,9 @@ import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.projectile.Projectile;
 
 /**
- * Represents an Arrow.
+ * An abstract representation of an Arrow.
  */
-public interface ArrowEntity extends Projectile {
+public interface ArrowLike extends Projectile {
 
     /**
      * {@link Keys#PICKUP_RULE}
