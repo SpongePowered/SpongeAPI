@@ -24,11 +24,12 @@
  */
 package org.spongepowered.api.entity.projectile;
 
+import org.spongepowered.api.entity.ItemRepresentable;
 import org.spongepowered.api.entity.projectile.explosive.fireball.SmallFireball;
 
 /**
  * Represents an abstract projectile that may ignite, such as {@link SmallFireball}.
  */
-public interface IgnitingProjectile extends DamagingProjectile, ItemSupplier {
+public interface IgnitingProjectile extends DamagingProjectile, ItemRepresentable {
 
 }

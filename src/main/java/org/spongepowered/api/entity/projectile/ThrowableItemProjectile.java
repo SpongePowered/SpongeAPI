@@ -24,5 +24,7 @@
  */
 package org.spongepowered.api.entity.projectile;
 
-public interface ThrowableItemProjectile extends Projectile, ItemSupplier {
+import org.spongepowered.api.entity.ItemRepresentable;
+
+public interface ThrowableItemProjectile extends Projectile, ItemRepresentable {
 }
