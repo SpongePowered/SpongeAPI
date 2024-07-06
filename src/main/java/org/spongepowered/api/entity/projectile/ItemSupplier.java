@@ -24,5 +24,19 @@
  */
 package org.spongepowered.api.entity.projectile;
 
-public interface ThrowableProjectile extends Projectile {
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+
+public interface ItemSupplier extends Entity {
+
+    /**
+     * {@link Keys#ITEM_STACK_SNAPSHOT}
+     *
+     * @return The potion item represented by this potion
+     */
+    default Value.Mutable<ItemStackSnapshot> item() {
+        return this.requireValue(Keys.ITEM_STACK_SNAPSHOT).asMutable();
+    }
 }

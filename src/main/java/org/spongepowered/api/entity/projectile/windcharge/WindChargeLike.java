@@ -25,6 +25,7 @@
 package org.spongepowered.api.entity.projectile.windcharge;
 
 import org.spongepowered.api.entity.projectile.DamagingProjectile;
+import org.spongepowered.api.entity.projectile.ItemSupplier;
 
-public interface WindChargeLike extends DamagingProjectile {
+public interface WindChargeLike extends DamagingProjectile, ItemSupplier {
 }

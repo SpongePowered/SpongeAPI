@@ -26,23 +26,12 @@ package org.spongepowered.api.entity.projectile;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.ListValue;
-import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.effect.potion.PotionEffect;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 /**
  * Represents a thrown potion.
  */
 public interface Potion extends ThrowableItemProjectile {
-
-    /**
-     * {@link Keys#ITEM_STACK_SNAPSHOT}
-     *
-     * @return The potion item represented by this potion
-     */
-    default Value.Mutable<ItemStackSnapshot> item() {
-        return this.requireValue(Keys.ITEM_STACK_SNAPSHOT).asMutable();
-    }
 
     /**
      * {@link Keys#POTION_EFFECTS}

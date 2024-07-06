@@ -32,7 +32,7 @@ import org.spongepowered.math.vector.Vector3d;
 /**
  * Represents an Eye of Ender.
  */
-public interface EyeOfEnder extends Projectile {
+public interface EyeOfEnder extends Projectile, ItemSupplier {
 
     /**
      * {@link Keys#DESPAWN_DELAY}
