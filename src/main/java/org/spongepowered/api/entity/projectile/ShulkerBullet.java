@@ -42,7 +42,7 @@ public interface ShulkerBullet extends Projectile {
      *
      * @return The direction of this bullet
      */
-    default Value.Mutable<Direction> hangingDirection() {
+    default Value.Mutable<Direction> flyingDirection() {
         return this.requireValue(Keys.DIRECTION).asMutable();
     }
 
