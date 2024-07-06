@@ -33,7 +33,7 @@ public interface ItemRepresentable extends Entity {
     /**
      * {@link Keys#ITEM_STACK_SNAPSHOT}
      *
-     * @return The potion item represented by this potion
+     * @return The item being represented by this entity
      */
     default Value.Mutable<ItemStackSnapshot> item() {
         return this.requireValue(Keys.ITEM_STACK_SNAPSHOT).asMutable();
