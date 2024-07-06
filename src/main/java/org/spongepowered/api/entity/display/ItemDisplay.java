@@ -26,7 +26,6 @@ package org.spongepowered.api.entity.display;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.entity.ItemRepresentable;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 /**
  * A ItemDisplay is an entity that displays a single item in the world.

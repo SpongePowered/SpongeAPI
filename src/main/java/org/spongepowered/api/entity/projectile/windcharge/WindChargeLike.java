@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.entity.projectile.windcharge;
 
-import org.spongepowered.api.entity.projectile.DamagingProjectile;
 import org.spongepowered.api.entity.ItemRepresentable;
+import org.spongepowered.api.entity.projectile.DamagingProjectile;
 
 public interface WindChargeLike extends DamagingProjectile, ItemRepresentable {
 }
