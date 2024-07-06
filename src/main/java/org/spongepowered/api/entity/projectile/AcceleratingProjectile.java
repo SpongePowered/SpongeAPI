@@ -26,21 +26,19 @@ package org.spongepowered.api.entity.projectile;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.Entity;
-
-import java.util.Optional;
 
 /**
- * Represents a {@link Projectile} targeting an {@link Entity}
+ * Represents a {@link Projectile} that can accelerate.
  */
-public interface EntityTargetingProjectile extends Projectile {
+public interface AcceleratingProjectile extends Projectile {
 
     /**
-     * {@link Keys#TARGET_ENTITY}
+     * {@link Keys#ACCELERATION}
      *
-     * @return The targeted entity, if available
+     * @return The acceleration of the damaging projectile
      */
-    default Optional<Value.Mutable<Entity>> targetEntity() {
-        return this.getValue(Keys.TARGET_ENTITY).map(Value::asMutable);
+    default Value.Mutable<Double> acceleration() {
+        return this.requireValue(Keys.ACCELERATION).asMutable();
     }
+
 }

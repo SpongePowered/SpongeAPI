@@ -27,6 +27,6 @@ package org.spongepowered.api.entity.projectile;
 /**
  * Represents a Snowball.
  */
-public interface Snowball extends DamagingProjectile {
+public interface Snowball extends ThrowableItemProjectile {
 
 }

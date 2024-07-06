@@ -25,20 +25,12 @@
 package org.spongepowered.api.entity.display;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.entity.ItemRepresentable;
 
 /**
  * A ItemDisplay is an entity that displays a single item in the world.
  */
-public interface ItemDisplay extends DisplayEntity {
-    /**
-     * Returns the {@link ItemStackSnapshot item} displayed.
-     *
-     * @return The item displayed
-     */
-    default ItemStackSnapshot displayedItem() {
-        return this.require(Keys.ITEM_STACK_SNAPSHOT);
-    }
+public interface ItemDisplay extends DisplayEntity, ItemRepresentable {
 
     /**
      * Returns the {@link ItemDisplayType display type}.

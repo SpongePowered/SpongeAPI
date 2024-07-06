@@ -32,8 +32,7 @@ import org.spongepowered.api.projectile.source.ProjectileSource;
 import java.util.Optional;
 
 /**
- * Represents entities that act as projectiles and can fly in the air.
- * For example, Arrows.
+ * Represents an abstract projectile.
  */
 public interface Projectile extends Entity {
 

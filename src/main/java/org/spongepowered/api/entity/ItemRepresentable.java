@@ -22,23 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.projectile;
+package org.spongepowered.api.entity;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
-/**
- * Represents a {@link Projectile} that inflicts damage.
- */
-public interface DamagingProjectile extends Projectile {
+public interface ItemRepresentable extends Entity {
 
     /**
-     * {@link Keys#ACCELERATION}
+     * {@link Keys#ITEM_STACK_SNAPSHOT}
      *
-     * @return The acceleration of the damaging projectile
+     * @return The item being represented by this entity
      */
-    default Value.Mutable<Double> acceleration() {
-        return this.requireValue(Keys.ACCELERATION).asMutable();
+    default Value.Mutable<ItemStackSnapshot> item() {
+        return this.requireValue(Keys.ITEM_STACK_SNAPSHOT).asMutable();
     }
-
 }
