@@ -26,13 +26,16 @@ package org.spongepowered.api.entity.projectile;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.golem.Shulker;
 import org.spongepowered.api.util.Direction;
+
+import java.util.Optional;
 
 /**
  * A {@link ShulkerBullet} is the projectile {@link Shulker}s shoot.
  */
-public interface ShulkerBullet extends Projectile, EntityTargetingProjectile {
+public interface ShulkerBullet extends Projectile {
 
     /**
      * {@link Keys#DIRECTION}
@@ -41,5 +44,14 @@ public interface ShulkerBullet extends Projectile, EntityTargetingProjectile {
      */
     default Value.Mutable<Direction> hangingDirection() {
         return this.requireValue(Keys.DIRECTION).asMutable();
+    }
+
+    /**
+     * {@link Keys#TARGET_ENTITY}
+     *
+     * @return The targeted entity, if available
+     */
+    default Optional<Value.Mutable<Entity>> targetEntity() {
+        return this.getValue(Keys.TARGET_ENTITY).map(Value::asMutable);
     }
 }
