@@ -28,9 +28,9 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 
 /**
- * Represents a {@link Projectile} that inflicts damage.
+ * Represents a {@link Projectile} that can accelerate.
  */
-public interface DamagingProjectile extends Projectile {
+public interface AcceleratingProjectile extends Projectile {
 
     /**
      * {@link Keys#ACCELERATION}

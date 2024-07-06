@@ -30,6 +30,6 @@ import org.spongepowered.api.entity.projectile.explosive.fireball.SmallFireball;
 /**
  * Represents an abstract projectile that may ignite, such as {@link SmallFireball}.
  */
-public interface IgnitingProjectile extends DamagingProjectile, ItemRepresentable {
+public interface IgnitingProjectile extends AcceleratingProjectile, ItemRepresentable {
 
 }

@@ -189,7 +189,7 @@ import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.entity.living.slime.Slime;
 import org.spongepowered.api.entity.living.trader.Villager;
-import org.spongepowered.api.entity.projectile.DamagingProjectile;
+import org.spongepowered.api.entity.projectile.AcceleratingProjectile;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
 import org.spongepowered.api.entity.projectile.FishingBobber;
 import org.spongepowered.api.entity.projectile.IgnitingProjectile;
@@ -304,7 +304,7 @@ public final class Keys {
     public static final Key<Value<Double>> ABSORPTION = Keys.key(ResourceKey.sponge("absorption"), Double.class);
 
     /**
-     * The acceleration of a {@link DamagingProjectile}.
+     * The acceleration of a {@link AcceleratingProjectile}.
      */
     public static final Key<Value<Double>> ACCELERATION = Keys.key(ResourceKey.sponge("acceleration"), Double.class);
 
