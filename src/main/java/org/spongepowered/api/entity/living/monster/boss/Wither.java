@@ -27,6 +27,7 @@ package org.spongepowered.api.entity.living.monster.boss;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.entity.Aerial;
+import org.spongepowered.api.entity.Chargeable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
 import org.spongepowered.api.entity.living.Monster;
@@ -35,7 +36,7 @@ import org.spongepowered.api.entity.living.RangedAgent;
 /**
  * Represents the Wither.
  */
-public interface Wither extends Monster, RangedAgent, Boss, Aerial, FusedExplosive {
+public interface Wither extends Monster, RangedAgent, Boss, Aerial, FusedExplosive, Chargeable {
 
     /**
      * {@link Keys#WITHER_TARGETS}

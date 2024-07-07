@@ -22,14 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster;
+package org.spongepowered.api.entity;
 
-import org.spongepowered.api.entity.Chargeable;
-import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
-import org.spongepowered.api.entity.living.Monster;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
 
-/**
- * Represents a Creeper.
- */
-public interface Creeper extends Monster, FusedExplosive, Chargeable {
+public interface Chargeable extends Entity {
+
+    /**
+     * {@link Keys#IS_CHARGED}
+     *
+     * @return Whether this entity is charged or not
+     */
+    default Value.Mutable<Boolean> charged() {
+        return this.requireValue(Keys.IS_CHARGED).asMutable();
+    }
 }
