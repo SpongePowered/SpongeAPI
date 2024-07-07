@@ -24,6 +24,19 @@
  */
 package org.spongepowered.api.entity;
 
-public interface Interaction extends Entity, Attackable, Targeting {
-    // TODO Data
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
+
+import java.util.Optional;
+
+public interface Targeting extends Entity {
+
+    /**
+     * {@link Keys#TARGET_ENTITY}
+     *
+     * @return The targeted entity, if available
+     */
+    default Optional<Value.Mutable<Entity>> targetEntity() {
+        return this.getValue(Keys.TARGET_ENTITY).map(Value::asMutable);
+    }
 }
