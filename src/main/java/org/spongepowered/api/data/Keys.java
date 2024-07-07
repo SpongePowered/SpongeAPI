@@ -110,6 +110,7 @@ import org.spongepowered.api.effect.potion.PotionEffectTypes;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.effect.sound.music.MusicDisc;
 import org.spongepowered.api.entity.Ageable;
+import org.spongepowered.api.entity.Angerable;
 import org.spongepowered.api.entity.AreaEffectCloud;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
@@ -372,7 +373,7 @@ public final class Keys {
     public static final Key<Value<SoundType>> AMBIENT_SOUND = Keys.key(ResourceKey.sponge("ambient_sound"), SoundType.class);
 
     /**
-     * The anger level of a {@link ZombifiedPiglin}.
+     * The anger level of a {@link Angerable}.
      *
      * <p>Unlike {@link Keys#IS_ANGRY}, the aggressiveness represented by this key may
      * fade over time and the entity will become peaceful again once its anger
@@ -1551,8 +1552,7 @@ public final class Keys {
     public static final Key<Value<Boolean>> IS_AI_ENABLED = Keys.key(ResourceKey.sponge("is_ai_enabled"), Boolean.class);
 
     /**
-     * Whether an entity is currently aggressive.
-     * e.g. {@link Wolf wolves} or {@link ZombifiedPiglin}
+     * Whether a {@link Angerable} is currently aggressive.
      */
     public static final Key<Value<Boolean>> IS_ANGRY = Keys.key(ResourceKey.sponge("is_angry"), Boolean.class);
 
