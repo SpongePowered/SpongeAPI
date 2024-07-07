@@ -27,10 +27,9 @@ package org.spongepowered.api.entity.living;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.HandPreference;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.Targeting;
 import org.spongepowered.api.entity.ai.goal.GoalExecutor;
 import org.spongepowered.api.entity.ai.goal.GoalExecutorType;
-import org.spongepowered.api.entity.ai.goal.builtin.creature.target.TargetGoal;
 import org.spongepowered.api.item.inventory.ArmorEquipable;
 
 import java.util.Optional;
@@ -39,17 +38,7 @@ import java.util.Optional;
  * An Agent represents a {@link Living} that has AI. In the future Sponge will
  * allow for custom AIs, but for now vanilla behavior can only be disabled.
  */
-public interface Agent extends Living, ArmorEquipable {
-
-    /**
-     * {@link Keys#TARGET_ENTITY}
-     *
-     * @return The targeted entity
-     * @see TargetGoal
-     */
-    default Optional<Value.Mutable<Entity>> targetEntity() {
-        return this.getValue(Keys.TARGET_ENTITY).map(Value::asMutable);
-    }
+public interface Agent extends Living, Targeting, ArmorEquipable {
 
     /**
      * {@link Keys#IS_AI_ENABLED}
