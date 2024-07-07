@@ -29,6 +29,9 @@ import org.spongepowered.api.data.value.Value;
 
 import java.util.Optional;
 
+/**
+ * Represents an {@link Entity} which can be leashed.
+ */
 public interface Leashable extends Entity {
 
     /**
