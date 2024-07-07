@@ -27,7 +27,7 @@ package org.spongepowered.api.entity;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 
-public interface Neutral extends Entity {
+public interface Angerable extends Entity {
 
     /**
      * {@link Keys#IS_ANGRY}

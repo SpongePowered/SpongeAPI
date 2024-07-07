@@ -26,13 +26,13 @@ package org.spongepowered.api.entity.living.monster;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.Neutral;
+import org.spongepowered.api.entity.Angerable;
 import org.spongepowered.api.entity.living.Monster;
 
 /**
  * Represents an Enderman.
  */
-public interface Enderman extends Monster, Neutral {
+public interface Enderman extends Monster, Angerable {
 
     /**
      * {@link Keys#IS_SCREAMING}.

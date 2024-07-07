@@ -26,12 +26,12 @@ package org.spongepowered.api.entity.living.golem;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.Neutral;
+import org.spongepowered.api.entity.Angerable;
 
 /**
  * Represents an Iron Golem.
  */
-public interface IronGolem extends Golem, Neutral {
+public interface IronGolem extends Golem, Angerable {
 
     /**
      * {@link Keys#IS_PLAYER_CREATED}

@@ -27,12 +27,12 @@ package org.spongepowered.api.entity.living.animal;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.Neutral;
+import org.spongepowered.api.entity.Angerable;
 
 /**
  * Represents a Wolf.
  */
-public interface Wolf extends TameableAnimal, Neutral {
+public interface Wolf extends TameableAnimal, Angerable {
 
     /**
      * {@link Keys#DYE_COLOR}

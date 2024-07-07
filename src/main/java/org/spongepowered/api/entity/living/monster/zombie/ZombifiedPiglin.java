@@ -24,10 +24,10 @@
  */
 package org.spongepowered.api.entity.living.monster.zombie;
 
-import org.spongepowered.api.entity.Neutral;
+import org.spongepowered.api.entity.Angerable;
 
 /**
  * Represents a Zombie Pigman.
  */
-public interface ZombifiedPiglin extends Zombie, Neutral {
+public interface ZombifiedPiglin extends Zombie, Angerable {
 }
