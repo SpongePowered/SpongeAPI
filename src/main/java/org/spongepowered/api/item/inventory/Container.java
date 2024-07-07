@@ -93,10 +93,11 @@ public interface Container extends Inventory {
 
     /**
      * Returns the {@link ContainerType} of this container.
+     * <p>Notably the players own inventory does not have a ContainerType</p>
      *
      * @return the ContainerType of this container.
      */
-    ContainerType type();
+    Optional<ContainerType> type();
 
     /**
      * Returns the {@link InventoryMenu} if this container has been opened by one.
