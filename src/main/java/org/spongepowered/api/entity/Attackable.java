@@ -24,6 +24,19 @@
  */
 package org.spongepowered.api.entity;
 
-public interface Interaction extends Entity, Attackable {
-    // TODO Data
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
+
+import java.util.Optional;
+
+public interface Attackable extends Entity {
+
+    /**
+     * {@link Keys#LAST_ATTACKER}
+     *
+     * @return The last attacker who attacked this entity
+     */
+    default Optional<Value.Mutable<Entity>> lastAttacker() {
+        return this.getValue(Keys.LAST_ATTACKER).map(Value::asMutable);
+    }
 }
