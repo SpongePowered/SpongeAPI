@@ -22,14 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster;
+package org.spongepowered.api.entity;
 
-import org.spongepowered.api.entity.Chargeable;
-import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
-import org.spongepowered.api.entity.living.Monster;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
+
+import java.util.Optional;
 
 /**
- * Represents a Creeper.
+ * Represents an {@link Entity} which can be leashed.
  */
-public interface Creeper extends Monster, FusedExplosive, Chargeable {
+public interface Leashable extends Entity {
+
+    /**
+     * {@link Keys#LEASH_HOLDER}
+     *
+     * @return The holder of the leashed entity
+     */
+    default Optional<Value.Mutable<Entity>> leashHolder() {
+        return this.getValue(Keys.LEASH_HOLDER).map(Value::asMutable);
+    }
 }
