@@ -22,44 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.animal;
+package org.spongepowered.api.entity;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.Neutral;
 
-/**
- * Represents a Wolf.
- */
-public interface Wolf extends TameableAnimal, Neutral {
+public interface Neutral extends Entity {
 
     /**
-     * {@link Keys#IS_ANGRY}
+     * {@link Keys#ANGER_LEVEL}
      *
-     * @return Whether this wolf is currently aggressive
+     * @return The anger level, decays over time
      */
-    default Value.Mutable<Boolean> angry() {
-        return this.requireValue(Keys.IS_ANGRY).asMutable();
-    }
-
-    /**
-     * {@link Keys#DYE_COLOR}
-     * @return The collar color
-     */
-    default Value.Mutable<DyeColor> collarColor() {
-        return this.requireValue(Keys.DYE_COLOR).asMutable();
-    }
-
-    /**
-     * {@link Keys#IS_BEGGING_FOR_FOOD}
-     *
-     * <p>In vanilla, a wolf begs when a player comes close
-     * with food. The head of the wolf will also tilt as a result.</p>
-     *
-     * @return Whether this wolf is begging for food
-     */
-    default Value.Mutable<Boolean> beggingForFood() {
-        return this.requireValue(Keys.IS_BEGGING_FOR_FOOD).asMutable();
+    default Value.Mutable<Integer> angerLevel() {
+        return this.requireValue(Keys.ANGER_LEVEL).asMutable();
     }
 }

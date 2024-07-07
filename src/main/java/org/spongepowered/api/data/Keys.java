@@ -118,6 +118,7 @@ import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.ExperienceOrb;
 import org.spongepowered.api.entity.FallingBlock;
 import org.spongepowered.api.entity.Item;
+import org.spongepowered.api.entity.Neutral;
 import org.spongepowered.api.entity.Ownable;
 import org.spongepowered.api.entity.ai.goal.GoalExecutorTypes;
 import org.spongepowered.api.entity.display.BillboardType;
@@ -372,7 +373,7 @@ public final class Keys {
     public static final Key<Value<SoundType>> AMBIENT_SOUND = Keys.key(ResourceKey.sponge("ambient_sound"), SoundType.class);
 
     /**
-     * The anger level of a {@link ZombifiedPiglin}.
+     * The anger level of a {@link Neutral}.
      *
      * <p>Unlike {@link Keys#IS_ANGRY}, the aggressiveness represented by this key may
      * fade over time and the entity will become peaceful again once its anger
