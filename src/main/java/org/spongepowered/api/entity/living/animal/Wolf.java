@@ -35,15 +35,6 @@ import org.spongepowered.api.entity.Neutral;
 public interface Wolf extends TameableAnimal, Neutral {
 
     /**
-     * {@link Keys#IS_ANGRY}
-     *
-     * @return Whether this wolf is currently aggressive
-     */
-    default Value.Mutable<Boolean> angry() {
-        return this.requireValue(Keys.IS_ANGRY).asMutable();
-    }
-
-    /**
      * {@link Keys#DYE_COLOR}
      * @return The collar color
      */

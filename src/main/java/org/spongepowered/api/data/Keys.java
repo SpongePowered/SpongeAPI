@@ -1552,8 +1552,7 @@ public final class Keys {
     public static final Key<Value<Boolean>> IS_AI_ENABLED = Keys.key(ResourceKey.sponge("is_ai_enabled"), Boolean.class);
 
     /**
-     * Whether an entity is currently aggressive.
-     * e.g. {@link Wolf wolves} or {@link ZombifiedPiglin}
+     * Whether a {@link Neutral} is currently aggressive.
      */
     public static final Key<Value<Boolean>> IS_ANGRY = Keys.key(ResourceKey.sponge("is_angry"), Boolean.class);
 

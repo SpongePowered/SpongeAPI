@@ -30,6 +30,15 @@ import org.spongepowered.api.data.value.Value;
 public interface Neutral extends Entity {
 
     /**
+     * {@link Keys#IS_ANGRY}
+     *
+     * @return Whether this entity is currently angry
+     */
+    default Value.Mutable<Boolean> angry() {
+        return this.requireValue(Keys.IS_ANGRY).asMutable();
+    }
+
+    /**
      * {@link Keys#ANGER_LEVEL}
      *
      * @return The anger level, decays over time

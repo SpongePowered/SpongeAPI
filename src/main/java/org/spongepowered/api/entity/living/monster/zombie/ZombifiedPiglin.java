@@ -24,22 +24,10 @@
  */
 package org.spongepowered.api.entity.living.monster.zombie;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Neutral;
 
 /**
  * Represents a Zombie Pigman.
  */
 public interface ZombifiedPiglin extends Zombie, Neutral {
-
-    /**
-     * {@link Keys#IS_ANGRY}
-     *
-     * @return Whether this zombified piglin is currently aggressive
-     */
-    default Value.Mutable<Boolean> angry() {
-        return this.requireValue(Keys.IS_ANGRY).asMutable();
-    }
-
 }
