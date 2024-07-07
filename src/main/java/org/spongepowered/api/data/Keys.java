@@ -2133,7 +2133,7 @@ public final class Keys {
     public static final Key<Value<Integer>> LAYER = Keys.key(ResourceKey.sponge("layer"), Integer.class);
 
     /**
-     * The holder of a leashed {@link Agent}
+     * The holder of a leashed {@link Entity}
      * e.g. a {@link Player} or {@link LeashKnot}.
      * <p>Usually, a {@link LeashKnot} will always exist so long as there is
      * a leashed {@link Entity} attached. If the leash is broken, the leash

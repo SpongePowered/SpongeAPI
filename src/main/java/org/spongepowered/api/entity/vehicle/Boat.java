@@ -27,11 +27,12 @@ package org.spongepowered.api.entity.vehicle;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.BoatType;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.Leashable;
 
 /**
  * Represents a Boat entity.
  */
-public interface Boat extends Vehicle {
+public interface Boat extends Vehicle, Leashable {
 
     /**
      * {@link Keys#BOAT_TYPE}
