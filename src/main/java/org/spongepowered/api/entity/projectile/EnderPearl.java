@@ -27,6 +27,6 @@ package org.spongepowered.api.entity.projectile;
 /**
  * Represents an Ender Pearl.
  */
-public interface EnderPearl extends DamagingProjectile {
+public interface EnderPearl extends ThrowableItemProjectile {
 
 }

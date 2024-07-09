@@ -24,8 +24,8 @@
  */
 package org.spongepowered.api.event.entity;
 
+import org.spongepowered.api.entity.Ageable;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.living.Ageable;
 import org.spongepowered.api.entity.living.animal.Animal;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;

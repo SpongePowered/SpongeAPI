@@ -22,13 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.projectile.explosive.fireball;
+package org.spongepowered.api.entity;
 
-import org.spongepowered.api.entity.projectile.DamagingProjectile;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
 
-/**
- * Represents an abstract fireball, such as {@link SmallFireball}.
- */
-public interface FireballEntity extends DamagingProjectile {
+import java.util.Optional;
 
+public interface Targeting extends Entity {
+
+    /**
+     * {@link Keys#TARGET_ENTITY}
+     *
+     * @return The targeted entity, if available
+     */
+    default Optional<Value.Mutable<Entity>> targetEntity() {
+        return this.getValue(Keys.TARGET_ENTITY).map(Value::asMutable);
+    }
 }

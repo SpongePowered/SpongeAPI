@@ -24,7 +24,21 @@
  */
 package org.spongepowered.api.entity.projectile;
 
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
 
-public interface EvokerFangs extends Entity {
+/**
+ * Represents a {@link Projectile} that can accelerate.
+ */
+public interface AcceleratingProjectile extends Projectile {
+
+    /**
+     * {@link Keys#ACCELERATION}
+     *
+     * @return The acceleration of the damaging projectile
+     */
+    default Value.Mutable<Double> acceleration() {
+        return this.requireValue(Keys.ACCELERATION).asMutable();
+    }
+
 }

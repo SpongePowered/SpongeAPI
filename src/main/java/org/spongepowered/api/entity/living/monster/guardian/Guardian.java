@@ -28,14 +28,13 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.Monster;
-import org.spongepowered.api.entity.living.aquatic.Aquatic;
 
 import java.util.Optional;
 
 /**
  * Represents a Guardian.
  */
-public interface Guardian extends Aquatic, Monster {
+public interface Guardian extends Monster {
 
     /**
      * {@link Keys#BEAM_TARGET_ENTITY}

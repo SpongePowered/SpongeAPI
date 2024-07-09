@@ -24,7 +24,12 @@
  */
 package org.spongepowered.api.entity.projectile;
 
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.ItemRepresentable;
+import org.spongepowered.api.entity.projectile.explosive.fireball.SmallFireball;
 
-public interface EvokerFangs extends Entity {
+/**
+ * Represents an abstract projectile that may ignite, such as {@link SmallFireball}.
+ */
+public interface IgnitingProjectile extends AcceleratingProjectile, ItemRepresentable {
+
 }

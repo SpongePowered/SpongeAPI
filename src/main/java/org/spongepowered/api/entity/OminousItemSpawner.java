@@ -24,5 +24,5 @@
  */
 package org.spongepowered.api.entity;
 
-public interface OminousItemSpawner extends Entity {
+public interface OminousItemSpawner extends Entity, ItemRepresentable {
 }

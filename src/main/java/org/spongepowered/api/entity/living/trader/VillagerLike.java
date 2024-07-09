@@ -22,9 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.projectile;
+package org.spongepowered.api.entity.living.trader;
 
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.Ageable;
+import org.spongepowered.api.entity.Breedable;
+import org.spongepowered.api.entity.living.PathfinderAgent;
+import org.spongepowered.api.item.merchant.Merchant;
 
-public interface EvokerFangs extends Entity {
+/**
+ * An abstract representation of a Villager.
+ */
+public interface VillagerLike extends PathfinderAgent, Ageable, Breedable, Merchant {
 }

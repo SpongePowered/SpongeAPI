@@ -109,6 +109,8 @@ import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.effect.potion.PotionEffectTypes;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.effect.sound.music.MusicDisc;
+import org.spongepowered.api.entity.Ageable;
+import org.spongepowered.api.entity.Angerable;
 import org.spongepowered.api.entity.AreaEffectCloud;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
@@ -132,7 +134,6 @@ import org.spongepowered.api.entity.hanging.Hanging;
 import org.spongepowered.api.entity.hanging.ItemFrame;
 import org.spongepowered.api.entity.hanging.LeashKnot;
 import org.spongepowered.api.entity.hanging.Painting;
-import org.spongepowered.api.entity.living.Ageable;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.ArmorStand;
 import org.spongepowered.api.entity.living.Bat;
@@ -188,19 +189,18 @@ import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.entity.living.slime.Slime;
-import org.spongepowered.api.entity.living.trader.Trader;
 import org.spongepowered.api.entity.living.trader.Villager;
-import org.spongepowered.api.entity.projectile.DamagingProjectile;
+import org.spongepowered.api.entity.projectile.AcceleratingProjectile;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
 import org.spongepowered.api.entity.projectile.FishingBobber;
+import org.spongepowered.api.entity.projectile.IgnitingProjectile;
 import org.spongepowered.api.entity.projectile.Potion;
 import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.entity.projectile.ShulkerBullet;
 import org.spongepowered.api.entity.projectile.arrow.Arrow;
-import org.spongepowered.api.entity.projectile.arrow.ArrowEntity;
+import org.spongepowered.api.entity.projectile.arrow.ArrowLike;
 import org.spongepowered.api.entity.projectile.explosive.FireworkRocket;
 import org.spongepowered.api.entity.projectile.explosive.WitherSkull;
-import org.spongepowered.api.entity.projectile.explosive.fireball.FireballEntity;
 import org.spongepowered.api.entity.vehicle.Boat;
 import org.spongepowered.api.entity.vehicle.minecart.BlockOccupiedMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.CommandBlockMinecart;
@@ -225,6 +225,7 @@ import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.inventory.slot.EquipmentSlot;
 import org.spongepowered.api.item.inventory.type.GridInventory;
+import org.spongepowered.api.item.merchant.Merchant;
 import org.spongepowered.api.item.merchant.TradeOffer;
 import org.spongepowered.api.item.potion.PotionType;
 import org.spongepowered.api.map.MapCanvas;
@@ -304,7 +305,7 @@ public final class Keys {
     public static final Key<Value<Double>> ABSORPTION = Keys.key(ResourceKey.sponge("absorption"), Double.class);
 
     /**
-     * The acceleration of a {@link DamagingProjectile}.
+     * The acceleration of a {@link AcceleratingProjectile}.
      */
     public static final Key<Value<Double>> ACCELERATION = Keys.key(ResourceKey.sponge("acceleration"), Double.class);
 
@@ -372,7 +373,7 @@ public final class Keys {
     public static final Key<Value<SoundType>> AMBIENT_SOUND = Keys.key(ResourceKey.sponge("ambient_sound"), SoundType.class);
 
     /**
-     * The anger level of a {@link ZombifiedPiglin}.
+     * The anger level of a {@link Angerable}.
      *
      * <p>Unlike {@link Keys#IS_ANGRY}, the aggressiveness represented by this key may
      * fade over time and the entity will become peaceful again once its anger
@@ -413,7 +414,7 @@ public final class Keys {
     public static final Key<Value<AttachmentSurface>> ATTACHMENT_SURFACE = Keys.key(ResourceKey.sponge("attachment_surface"), AttachmentSurface.class);
 
     /**
-     * The damage dealt by an {@link ArrowEntity} on impact.
+     * The damage dealt by an {@link ArrowLike} on impact.
      */
     public static final Key<Value<Double>> ATTACK_DAMAGE = Keys.key(ResourceKey.sponge("attack_damage"), Double.class);
 
@@ -615,7 +616,7 @@ public final class Keys {
     /**
      * Whether a {@link Living} entity may change blocks.
      * This mostly applies to {@link Enderman} or
-     * {@link Creeper}s, but also to some projectiles like {@link FireballEntity}s or {@link WitherSkull}.
+     * {@link Creeper}s, but also to some projectiles like {@link IgnitingProjectile}s or {@link WitherSkull}.
      */
     public static final Key<Value<Boolean>> CAN_GRIEF = Keys.key(ResourceKey.sponge("can_grief"), Boolean.class);
 
@@ -781,11 +782,11 @@ public final class Keys {
     public static final Key<Value<SpellType>> CURRENT_SPELL = Keys.key(ResourceKey.sponge("current_spell"), SpellType.class);
 
     /**
-     * The damage dealt towards entities of a specific {@link EntityType} by a {@link ArrowEntity}.
+     * The damage dealt towards entities of a specific {@link EntityType} by a {@link ArrowLike}.
      *
      * <p>Note that in events, the damage defined for the provided
      * {@link EntityType} will take priority over the "default" damage as
-     * defined from {@link ArrowEntity#attackDamage()}.</p>
+     * defined from {@link ArrowLike#attackDamage()}.</p>
      *
      * <p>Types not present in this mapping will be
      * dealt damage to according to {@link #ATTACK_DAMAGE}.</p>
@@ -810,6 +811,11 @@ public final class Keys {
      * The custom potion effects that are stored on an {@link ItemStack}.
      */
     public static final Key<ListValue<PotionEffect>> CUSTOM_POTION_EFFECTS = Keys.listKey(ResourceKey.sponge("custom_potion_effects"), PotionEffect.class);
+
+    /**
+     * The currently trading customer with this {@link Merchant}.
+     */
+    public static final Key<Value<Player>> CUSTOMER = Keys.key(ResourceKey.sponge("customer"), Player.class);
 
     /**
      * The damage absorbed by an armor {@link ItemStack}.
@@ -1528,7 +1534,7 @@ public final class Keys {
     public static final Key<Value<Boolean>> IN_WALL = Keys.key(ResourceKey.sponge("in_wall"), Boolean.class);
 
     /**
-     * Whether an {@link Ageable} is considered an adult.
+     * Whether a {@link Living} is considered an adult.
      */
     public static final Key<Value<Boolean>> IS_ADULT = Keys.key(ResourceKey.sponge("is_adult"), Boolean.class);
 
@@ -1546,8 +1552,7 @@ public final class Keys {
     public static final Key<Value<Boolean>> IS_AI_ENABLED = Keys.key(ResourceKey.sponge("is_ai_enabled"), Boolean.class);
 
     /**
-     * Whether an entity is currently aggressive.
-     * e.g. {@link Wolf wolves} or {@link ZombifiedPiglin}
+     * Whether a {@link Angerable} is currently aggressive.
      */
     public static final Key<Value<Boolean>> IS_ANGRY = Keys.key(ResourceKey.sponge("is_angry"), Boolean.class);
 
@@ -2021,12 +2026,6 @@ public final class Keys {
     public static final Key<Value<Boolean>> IS_TAMED = Keys.key(ResourceKey.sponge("is_tamed"), Boolean.class);
 
     /**
-     * Whether a {@link Trader} is currently trading with a {@link Player}.
-     * Readonly
-     */
-    public static final Key<Value<Boolean>> IS_TRADING = Keys.key(ResourceKey.sponge("is_trading"), Boolean.class);
-
-    /**
      * Whether a {@link Turtle} is currently traveling.
      */
     public static final Key<Value<Boolean>> IS_TRAVELING = Keys.key(ResourceKey.sponge("is_traveling"), Boolean.class);
@@ -2090,7 +2089,7 @@ public final class Keys {
     public static final Key<Value<ItemStackSnapshot>> ITEM_STACK_SNAPSHOT = Keys.key(ResourceKey.sponge("item_stack_snapshot"), ItemStackSnapshot.class);
 
     /**
-     * The custom knockback strength applied by an {@link ArrowEntity}.
+     * The custom knockback strength applied by an {@link ArrowLike}.
      *
      * <p>For the knockback provided by hits with a weapon according to the
      * enchantment of the same name, see {@link #APPLIED_ENCHANTMENTS}.</p>
@@ -2134,7 +2133,7 @@ public final class Keys {
     public static final Key<Value<Integer>> LAYER = Keys.key(ResourceKey.sponge("layer"), Integer.class);
 
     /**
-     * The holder of a leashed {@link Agent}
+     * The holder of a leashed {@link Entity}
      * e.g. a {@link Player} or {@link LeashKnot}.
      * <p>Usually, a {@link LeashKnot} will always exist so long as there is
      * a leashed {@link Entity} attached. If the leash is broken, the leash
@@ -2539,7 +2538,7 @@ public final class Keys {
     public static final Key<Value<Ticks>> PICKUP_DELAY = Keys.key(ResourceKey.sponge("pickup_delay"), Ticks.class);
 
     /**
-     * The {@link PickupRule} of an {@link ArrowEntity}.
+     * The {@link PickupRule} of an {@link ArrowLike}.
      */
     public static final Key<Value<PickupRule>> PICKUP_RULE = Keys.key(ResourceKey.sponge("pickup_rule"), PickupRule.class);
 
@@ -2606,7 +2605,7 @@ public final class Keys {
 
     /**
      * The potion effects that are present on an {@link Entity}
-     * <p>or applied by an {@link AreaEffectCloud} or {@link ArrowEntity}</p>
+     * <p>or applied by an {@link AreaEffectCloud} or {@link ArrowLike}</p>
      * <p>or stored on an {@link ItemStack}.</p>
      */
     public static final Key<ListValue<PotionEffect>> POTION_EFFECTS = Keys.listKey(ResourceKey.sponge("potion_effects"), PotionEffect.class);
@@ -3206,7 +3205,7 @@ public final class Keys {
     public static final Key<Value<Boolean>> TRACKS_OUTPUT = Keys.key(ResourceKey.sponge("tracks_output"), Boolean.class);
 
     /**
-     * The {@link TradeOffer}s offered by a {@link Trader} or a {@link org.spongepowered.api.item.inventory.type.ViewableInventory.Custom}
+     * The {@link TradeOffer}s offered by a {@link Merchant} or a {@link org.spongepowered.api.item.inventory.type.ViewableInventory.Custom}
      */
     public static final Key<ListValue<TradeOffer>> TRADE_OFFERS = Keys.listKey(ResourceKey.sponge("trade_offers"), TradeOffer.class);
 

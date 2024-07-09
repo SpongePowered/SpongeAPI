@@ -22,21 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.trader;
+package org.spongepowered.api.entity;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.PathfinderAgent;
-import org.spongepowered.api.item.merchant.Merchant;
 
-public interface Trader extends PathfinderAgent, Merchant {
+import java.util.Optional;
+
+/**
+ * Represents an {@link Entity} which can be leashed.
+ */
+public interface Leashable extends Entity {
 
     /**
-     * {@link Keys#IS_TRADING}
+     * {@link Keys#LEASH_HOLDER}
      *
-     * @return Whether this trader is currently trading with a player
+     * @return The holder of the leashed entity
      */
-    default Value<Boolean> trading() {
-        return this.requireValue(Keys.IS_TRADING);
+    default Optional<Value.Mutable<Entity>> leashHolder() {
+        return this.getValue(Keys.LEASH_HOLDER).map(Value::asMutable);
     }
 }

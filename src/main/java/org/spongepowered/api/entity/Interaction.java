@@ -24,6 +24,6 @@
  */
 package org.spongepowered.api.entity;
 
-public interface Interaction extends Entity {
+public interface Interaction extends Entity, Attackable, Targeting {
     // TODO Data
 }

@@ -22,9 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.projectile;
+package org.spongepowered.api.entity;
 
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
-public interface EvokerFangs extends Entity {
+public interface ItemRepresentable extends Entity {
+
+    /**
+     * {@link Keys#ITEM_STACK_SNAPSHOT}
+     *
+     * @return The item being represented by this entity
+     */
+    default Value.Mutable<ItemStackSnapshot> item() {
+        return this.requireValue(Keys.ITEM_STACK_SNAPSHOT).asMutable();
+    }
 }

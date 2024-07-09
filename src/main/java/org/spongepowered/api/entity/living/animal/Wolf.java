@@ -27,20 +27,12 @@ package org.spongepowered.api.entity.living.animal;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.Angerable;
 
 /**
  * Represents a Wolf.
  */
-public interface Wolf extends TameableAnimal {
-
-    /**
-     * {@link Keys#IS_ANGRY}
-     *
-     * @return Whether this wolf is currently aggressive
-     */
-    default Value.Mutable<Boolean> angry() {
-        return this.requireValue(Keys.IS_ANGRY).asMutable();
-    }
+public interface Wolf extends TameableAnimal, Angerable {
 
     /**
      * {@link Keys#DYE_COLOR}

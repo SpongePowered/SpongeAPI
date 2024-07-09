@@ -25,11 +25,11 @@
 package org.spongepowered.api.entity.projectile.explosive;
 
 import org.spongepowered.api.entity.explosive.Explosive;
-import org.spongepowered.api.entity.projectile.explosive.fireball.FireballEntity;
+import org.spongepowered.api.entity.projectile.AcceleratingProjectile;
 
 /**
  * Represents a Wither Skull.
  */
-public interface WitherSkull extends FireballEntity, Explosive {
+public interface WitherSkull extends AcceleratingProjectile, Explosive {
 
 }

@@ -27,6 +27,7 @@ package org.spongepowered.api.entity.projectile.explosive;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.ItemRepresentable;
 import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
 import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.item.FireworkEffect;
@@ -37,7 +38,7 @@ import java.util.Optional;
 /**
  * Represents a Firework.
  */
-public interface FireworkRocket extends Projectile, FusedExplosive {
+public interface FireworkRocket extends Projectile, FusedExplosive, ItemRepresentable {
 
     /**
      * {@link Keys#FIREWORK_EFFECTS}

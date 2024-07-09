@@ -22,23 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.projectile;
+package org.spongepowered.api.entity;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.util.Ticks;
+
+import java.util.Optional;
 
 /**
- * Represents a {@link Projectile} that inflicts damage.
+ * Represents an {@link Entity} which can breed.
  */
-public interface DamagingProjectile extends Projectile {
-
+public interface Breedable extends Entity {
     /**
-     * {@link Keys#ACCELERATION}
+     * {@link Keys#CAN_BREED}
      *
-     * @return The acceleration of the damaging projectile
+     * @return Whether the entity can breed
      */
-    default Value.Mutable<Double> acceleration() {
-        return this.requireValue(Keys.ACCELERATION).asMutable();
+    default Value.Mutable<Boolean> canBreed() {
+        return this.requireValue(Keys.CAN_BREED).asMutable();
     }
 
+    /**
+     * {@link Keys#BREEDING_COOLDOWN}
+     *
+     * @return The ticks until the entity can breed again
+     */
+    default Optional<Value.Mutable<Ticks>> breedingCooldown() {
+        return this.getValue(Keys.BREEDING_COOLDOWN).map(Value::asMutable);
+    }
 }

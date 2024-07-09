@@ -22,25 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.projectile;
+package org.spongepowered.api.entity;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.Entity;
 
 import java.util.Optional;
 
-/**
- * Represents a {@link Projectile} targeting an {@link Entity}
- */
-public interface EntityTargetingProjectile extends Projectile {
+public interface Attackable extends Entity {
 
     /**
-     * {@link Keys#TARGET_ENTITY}
+     * {@link Keys#LAST_ATTACKER}
      *
-     * @return The targeted entity, if available
+     * @return The last attacker who attacked this entity
      */
-    default Optional<Value.Mutable<Entity>> targetEntity() {
-        return this.getValue(Keys.TARGET_ENTITY).map(Value::asMutable);
+    default Optional<Value.Mutable<Entity>> lastAttacker() {
+        return this.getValue(Keys.LAST_ATTACKER).map(Value::asMutable);
     }
 }

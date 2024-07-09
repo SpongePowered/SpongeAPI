@@ -33,8 +33,8 @@ import org.spongepowered.api.entity.ExperienceOrb;
 import org.spongepowered.api.entity.FallingBlock;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.living.animal.Animal;
-import org.spongepowered.api.entity.living.trader.Trader;
 import org.spongepowered.api.entity.vehicle.minecart.SpawnerMinecart;
+import org.spongepowered.api.item.merchant.Merchant;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
@@ -93,7 +93,7 @@ public final class SpawnTypes {
 
     /**
      * When an {@link ExperienceOrb} is spawned as a result of a "reward" from
-     * an {@link Entity} granting experience for the kill, or a {@link Trader}
+     * an {@link Entity} granting experience for the kill, or a {@link Merchant}
      * granting experience for a successful trade, or a block being mined.
      */
     public static final DefaultedRegistryReference<SpawnType> EXPERIENCE = SpawnTypes.key(ResourceKey.sponge("experience"));

@@ -30,6 +30,7 @@ import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.effect.potion.PotionEffect;
+import org.spongepowered.api.entity.Attackable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.attribute.Attribute;
 import org.spongepowered.api.entity.attribute.AttributeHolder;
@@ -45,7 +46,7 @@ import java.util.Optional;
  * <p>Living entities can have {@link PotionEffect}s, breathing air
  * under water, custom names, hold {@link Attribute}s, and become invisible.</p>
  */
-public interface Living extends AttributeHolder, Entity {
+public interface Living extends AttributeHolder, Entity, Attackable {
 
     /**
      * {@link Keys#ABSORPTION}
@@ -75,21 +76,21 @@ public interface Living extends AttributeHolder, Entity {
     }
 
     /**
+     * {@link Keys#IS_ADULT}
+     *
+     * @return Whether this entity is an adult or not
+     */
+    default Value.Mutable<Boolean> adult() {
+        return this.requireValue(Keys.IS_ADULT).asMutable();
+    }
+
+    /**
      * {@link Keys#MAX_HEALTH}
      *
      * @return The maximum health value
      */
     default Value.Mutable<Double> maxHealth() {
         return this.requireValue(Keys.MAX_HEALTH).asMutable();
-    }
-
-    /**
-     * {@link Keys#LAST_ATTACKER}
-     *
-     * @return The last attacker who attacked this entity
-     */
-    default Optional<Value.Mutable<Entity>> lastAttacker() {
-        return this.getValue(Keys.LAST_ATTACKER).map(Value::asMutable);
     }
 
     /**

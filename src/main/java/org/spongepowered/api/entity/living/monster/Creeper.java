@@ -24,26 +24,12 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.Chargeable;
 import org.spongepowered.api.entity.explosive.fused.FusedExplosive;
 import org.spongepowered.api.entity.living.Monster;
 
 /**
  * Represents a Creeper.
  */
-public interface Creeper extends Monster, FusedExplosive {
-
-    /**
-     * {@link Keys#IS_CHARGED}
-     *
-     * <p>Note that "charged" creepers will likely
-     * cause larger than normal explosions.</p>
-     *
-     * @return Whether this creeper is charged or not
-     */
-    default Value.Mutable<Boolean> charged() {
-        return this.requireValue(Keys.IS_CHARGED).asMutable();
-    }
-
+public interface Creeper extends Monster, FusedExplosive, Chargeable {
 }

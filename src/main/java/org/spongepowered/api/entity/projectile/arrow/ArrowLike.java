@@ -22,53 +22,63 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living;
+package org.spongepowered.api.entity.projectile.arrow;
 
 import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.type.PickupRule;
+import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.util.Ticks;
-
-import java.util.Optional;
+import org.spongepowered.api.entity.EntityType;
+import org.spongepowered.api.entity.projectile.Projectile;
 
 /**
- * Represents an {@link Agent} that produces offspring and grows into an adult
+ * An abstract representation of an Arrow.
  */
-public interface Ageable extends Agent {
+public interface ArrowLike extends Projectile {
 
     /**
-     * {@link Keys#IS_ADULT}
+     * {@link Keys#PICKUP_RULE}
      *
-     * @return Whether this entity is an adult or not
+     * @return The pickup rule
+     * @see org.spongepowered.api.data.type.PickupRules
      */
-    default Value.Mutable<Boolean> adult() {
-        return this.requireValue(Keys.IS_ADULT).asMutable();
+    default Value.Mutable<PickupRule> pickupRule() {
+        return this.requireValue(Keys.PICKUP_RULE).asMutable();
     }
 
     /**
-     * {@link Keys#BABY_TICKS}
+     * {@link Keys#KNOCKBACK_STRENGTH}
      *
-     * @return The ticks until this entity turns into an adult
+     * @return The knockback strength
      */
-    default Optional<Value.Mutable<Ticks>> babyTicks() {
-        return this.getValue(Keys.BABY_TICKS).map(Value::asMutable);
+    default Value.Mutable<Double> knockbackStrength() {
+        return this.requireValue(Keys.KNOCKBACK_STRENGTH).asMutable();
     }
 
     /**
-     * {@link Keys#CAN_BREED}
+     * {@link Keys#ATTACK_DAMAGE}
      *
-     * @return Whether the entity can breed
+     * @return The attack damage
      */
-    default Value.Mutable<Boolean> canBreed() {
-        return this.requireValue(Keys.CAN_BREED).asMutable();
+    default Value.Mutable<Double> attackDamage() {
+        return this.requireValue(Keys.ATTACK_DAMAGE).asMutable();
     }
 
     /**
-     * {@link Keys#BREEDING_COOLDOWN}
+     * {@link Keys#CUSTOM_ATTACK_DAMAGE}
      *
-     * @return The ticks until the entity can breed again
+     * @return The attack damage per type
      */
-    default Optional<Value.Mutable<Ticks>> breedingCooldown() {
-        return this.getValue(Keys.BREEDING_COOLDOWN).map(Value::asMutable);
+    default MapValue.Mutable<EntityType<?>, Double> customAttackDamage() {
+        return this.requireValue(Keys.CUSTOM_ATTACK_DAMAGE).asMutable();
     }
 
+    /**
+     * {@link Keys#IS_CRITICAL_HIT}
+     *
+     * @return Whether the arrow will cause a critical hit
+     */
+    default Value.Mutable<Boolean> criticalHit() {
+        return this.requireValue(Keys.IS_CRITICAL_HIT).asMutable();
+    }
 }

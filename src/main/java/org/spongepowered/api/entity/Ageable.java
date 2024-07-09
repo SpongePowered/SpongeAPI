@@ -22,9 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.projectile;
+package org.spongepowered.api.entity;
 
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.util.Ticks;
 
-public interface EvokerFangs extends Entity {
+import java.util.Optional;
+
+/**
+ * Represents an {@link Entity} that can age
+ */
+public interface Ageable extends Entity {
+
+    /**
+     * {@link Keys#BABY_TICKS}
+     *
+     * @return The ticks until this entity turns into an adult
+     */
+    default Optional<Value.Mutable<Ticks>> babyTicks() {
+        return this.getValue(Keys.BABY_TICKS).map(Value::asMutable);
+    }
+
 }

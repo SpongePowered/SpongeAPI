@@ -22,9 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.projectile;
+package org.spongepowered.api.entity;
 
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
 
-public interface EvokerFangs extends Entity {
+public interface Angerable extends Entity {
+
+    /**
+     * {@link Keys#IS_ANGRY}
+     *
+     * @return Whether this entity is currently angry
+     */
+    default Value.Mutable<Boolean> angry() {
+        return this.requireValue(Keys.IS_ANGRY).asMutable();
+    }
+
+    /**
+     * {@link Keys#ANGER_LEVEL}
+     *
+     * @return The anger level, decays over time
+     */
+    default Value.Mutable<Integer> angerLevel() {
+        return this.requireValue(Keys.ANGER_LEVEL).asMutable();
+    }
 }

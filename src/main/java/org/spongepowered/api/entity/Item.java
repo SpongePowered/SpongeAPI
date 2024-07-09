@@ -26,22 +26,12 @@ package org.spongepowered.api.entity;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.Ticks;
 
 /**
  * Represents an Item.
  */
-public interface Item extends Entity {
-
-    /**
-     * {@link Keys#ITEM_STACK_SNAPSHOT}
-     *
-     * @return The item being represented by this entity
-     */
-    default Value.Mutable<ItemStackSnapshot> item() {
-        return this.requireValue(Keys.ITEM_STACK_SNAPSHOT).asMutable();
-    }
+public interface Item extends Entity, ItemRepresentable {
 
     /**
      * {@link Keys#DESPAWN_DELAY}

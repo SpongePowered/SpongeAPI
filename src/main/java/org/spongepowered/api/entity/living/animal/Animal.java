@@ -26,8 +26,10 @@ package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.Ageable;
+import org.spongepowered.api.entity.Breedable;
 import org.spongepowered.api.entity.EntityType;
-import org.spongepowered.api.entity.living.Ageable;
+import org.spongepowered.api.entity.living.PathfinderAgent;
 import org.spongepowered.api.entity.living.animal.cow.Cow;
 import org.spongepowered.api.item.inventory.ItemStack;
 
@@ -37,7 +39,7 @@ import java.util.UUID;
 /**
  * Represents an animal, such as a {@link Cow}.
  */
-public interface Animal extends Ageable {
+public interface Animal extends PathfinderAgent, Ageable, Breedable {
 
     /**
      * {@link Keys#BREEDER}

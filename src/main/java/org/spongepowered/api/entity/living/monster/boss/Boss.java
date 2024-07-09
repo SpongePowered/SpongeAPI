@@ -29,6 +29,8 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Entity;
 
+import java.util.Optional;
+
 /**
  * Represents a boss monster that may cause a boss health bar to show
  * on client interfaces.
@@ -40,7 +42,7 @@ public interface Boss extends Entity {
      *
      * @return The boss bar
      */
-    default Value<BossBar> bossBar() {
-        return this.requireValue(Keys.BOSS_BAR);
+    default Optional<Value<BossBar>> bossBar() {
+        return this.getValue(Keys.BOSS_BAR);
     }
 }
