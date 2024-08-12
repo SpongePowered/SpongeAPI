@@ -24,26 +24,19 @@
  */
 package org.spongepowered.api.item.inventory;
 
-import net.kyori.adventure.text.ComponentLike;
-import net.kyori.adventure.text.event.HoverEvent;
-import net.kyori.adventure.text.event.HoverEventSource;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.DataHolderBuilder;
-import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.persistence.DataView;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.entity.attribute.AttributeModifier;
 import org.spongepowered.api.entity.attribute.type.AttributeType;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 
-import java.util.Collection;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -52,14 +45,10 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 /**
- * Represents a stack of a specific {@link ItemType}. Supports serialization and
- * can be compared using the comparators listed in {@link ItemStackComparators}.
- *
- * <p>{@link ItemStack}s have a variety of properties and data. It is advised to
- * use {@link ValueContainer#get(Key)} in order to retrieve information regarding
- * this item stack.</p>
+ * Represents mutable {@link ItemStackLike}. Can be compared
+ * using the comparators listed in {@link ItemStackComparators}.
  */
-public interface ItemStack extends SerializableDataHolder.Mutable, ComponentLike, HoverEventSource<HoverEvent.ShowItem> {
+public interface ItemStack extends ItemStackLike, SerializableDataHolder.Mutable {
 
     /**
      * Returns an empty {@link ItemStack}.
@@ -124,22 +113,6 @@ public interface ItemStack extends SerializableDataHolder.Mutable, ComponentLike
     }
 
     /**
-     * Gets the {@link ItemType} of this {@link ItemStack}.
-     *
-     * @return The item type
-     */
-    ItemType type();
-
-    /**
-     * Gets the quantity of items in this stack. This may exceed the max stack
-     * size of the item, and if added to an inventory will then be divided by
-     * the max stack.
-     *
-     * @return Quantity of items
-     */
-    int quantity();
-
-    /**
      * Sets the quantity in this stack.
      *
      * @param quantity Quantity
@@ -147,24 +120,6 @@ public interface ItemStack extends SerializableDataHolder.Mutable, ComponentLike
      * {@link ItemStack#maxStackQuantity()}
      */
     void setQuantity(int quantity) throws IllegalArgumentException;
-
-    /**
-     * Gets the maximum quantity per stack. By default, returns
-     * {@link ItemType#maxStackQuantity()}, unless a
-     * different value has been set for this specific stack.
-     *
-     * @return Max stack quantity
-     */
-    int maxStackQuantity();
-
-    /**
-     * Gets the {@link ItemStackSnapshot} of this {@link ItemStack}. All
-     * known {@link Value}s existing on this {@link ItemStack} are added
-     * as copies to the {@link ItemStackSnapshot}.
-     *
-     * @return The newly created item stack snapshot
-     */
-    ItemStackSnapshot createSnapshot();
 
     /**
      * Returns true if the specified {@link ItemStack} has the same stack
@@ -178,66 +133,6 @@ public interface ItemStack extends SerializableDataHolder.Mutable, ComponentLike
      * @return True if this equals the ItemStack
      */
     boolean equalTo(ItemStack that);
-
-    /**
-     * Returns true if {@link #quantity()} is zero and therefore this
-     * ItemStack is empty.
-     *
-     * <p>In Vanilla empty ItemStacks are not rendered by the client.</p>
-     *
-     * @return True if this ItemStack is empty
-     */
-    boolean isEmpty();
-
-    /**
-     * Gets all {@link AttributeModifier}s on this item stack.
-     *
-     * @param attributeType The {@link AttributeType} of the modifier.
-     * @param equipmentType The {@link EquipmentType} this modifier is applied
-     * to.
-     *
-     * @return A collection of {@link AttributeModifier}s.
-     */
-    default Collection<AttributeModifier> attributeModifiers(Supplier<? extends AttributeType> attributeType, DefaultedRegistryReference<? extends EquipmentType> equipmentType) {
-        return this.attributeModifiers(attributeType.get(), equipmentType.get());
-    }
-
-    /**
-     * Gets all {@link AttributeModifier}s on this item stack.
-     *
-     * @param attributeType The {@link AttributeType} of the modifier.
-     * @param equipmentType The {@link EquipmentType} this modifier is applied
-     * to.
-     *
-     * @return A collection of {@link AttributeModifier}s.
-     */
-    default Collection<AttributeModifier> attributeModifiers(AttributeType attributeType, DefaultedRegistryReference<? extends EquipmentType> equipmentType) {
-        return this.attributeModifiers(attributeType, equipmentType.get());
-    }
-
-    /**
-     * Gets all {@link AttributeModifier}s on this item stack.
-     *
-     * @param attributeType The {@link AttributeType} of the modifier.
-     * @param equipmentType The {@link EquipmentType} this modifier is applied
-     * to.
-     *
-     * @return A collection of {@link AttributeModifier}s.
-     */
-    default Collection<AttributeModifier> attributeModifiers(Supplier<? extends AttributeType> attributeType, EquipmentType equipmentType) {
-        return this.attributeModifiers(attributeType.get(), equipmentType);
-    }
-
-    /**
-     * Gets all {@link AttributeModifier}s on this item stack.
-     *
-     * @param attributeType The {@link AttributeType} of the modifier.
-     * @param equipmentType The {@link EquipmentType} this modifier is applied
-     * to.
-     *
-     * @return A collection of {@link AttributeModifier}s.
-     */
-    Collection<AttributeModifier> attributeModifiers(AttributeType attributeType, EquipmentType equipmentType);
 
     /**
      * Adds an {@link AttributeModifier} to this item stack.
@@ -386,7 +281,7 @@ public interface ItemStack extends SerializableDataHolder.Mutable, ComponentLike
          * @return This builder, for chaining
          */
         default Builder fromSnapshot(final ItemStackSnapshot snapshot) {
-            return this.fromItemStack(snapshot.createStack());
+            return this.fromItemStack(snapshot.asMutable());
         }
 
         /**
