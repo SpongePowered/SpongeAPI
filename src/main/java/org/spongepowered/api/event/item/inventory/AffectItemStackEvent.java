@@ -67,7 +67,7 @@ public interface AffectItemStackEvent extends Event, Cancellable {
      */
     default List<? extends  Transaction<ItemStackSnapshot>> filter(Predicate<ItemStack> predicate) {
         final List<Transaction<ItemStackSnapshot>> invalidatedTransactions = new ArrayList<>();
-        this.transactions().stream().filter(transaction -> !predicate.test(transaction.finalReplacement().createStack())).forEach(transaction -> {
+        this.transactions().stream().filter(transaction -> !predicate.test(transaction.finalReplacement().asMutable())).forEach(transaction -> {
             transaction.setValid(false);
             invalidatedTransactions.add(transaction);
         });

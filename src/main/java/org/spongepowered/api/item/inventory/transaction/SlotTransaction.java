@@ -57,7 +57,7 @@ public class SlotTransaction extends Transaction<ItemStackSnapshot> {
      * @param stack The stack
      */
     public void setCustom(ItemStack stack) {
-        this.setCustom(Objects.requireNonNull(stack, "ItemStack was null").createSnapshot());
+        this.setCustom(Objects.requireNonNull(stack, "ItemStack was null").asImmutable());
     }
 
     /**

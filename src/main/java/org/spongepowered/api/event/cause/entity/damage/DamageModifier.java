@@ -163,7 +163,7 @@ public interface DamageModifier {
         }
 
         public Builder item(final ItemStack itemStack) {
-            this.item(java.util.Objects.requireNonNull(itemStack, "ItemStack").createSnapshot());
+            this.item(java.util.Objects.requireNonNull(itemStack, "ItemStack").asImmutable());
             return this;
         }
 

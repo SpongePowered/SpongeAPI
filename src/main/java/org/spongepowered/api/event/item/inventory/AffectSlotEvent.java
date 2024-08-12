@@ -40,7 +40,7 @@ public interface AffectSlotEvent extends AffectItemStackEvent {
     @Override
     default List<SlotTransaction> filter(Predicate<ItemStack> predicate) {
         final List<SlotTransaction> invalidatedTransactions = new ArrayList<>();
-        this.transactions().stream().filter(transaction -> !predicate.test(transaction.finalReplacement().createStack())).forEach(transaction -> {
+        this.transactions().stream().filter(transaction -> !predicate.test(transaction.finalReplacement().asMutable())).forEach(transaction -> {
             transaction.setValid(false);
             invalidatedTransactions.add(transaction);
         });

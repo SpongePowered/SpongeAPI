@@ -171,7 +171,7 @@ public interface DisplayInfo {
          * @return This builder, for chaining
          */
         default Builder icon(ItemStack itemStack) {
-            return this.icon(itemStack.createSnapshot());
+            return this.icon(itemStack.asImmutable());
         }
 
         /**
