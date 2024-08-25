@@ -42,7 +42,6 @@ import org.spongepowered.api.world.biome.climate.TemperatureModifier;
 import org.spongepowered.api.world.biome.spawner.NaturalSpawnCost;
 import org.spongepowered.api.world.biome.spawner.NaturalSpawner;
 import org.spongepowered.api.world.generation.carver.Carver;
-import org.spongepowered.api.world.generation.carver.CarvingStep;
 import org.spongepowered.api.world.generation.feature.DecorationStep;
 import org.spongepowered.api.world.generation.feature.PlacedFeature;
 
@@ -116,7 +115,7 @@ public interface Biome extends DataHolder, Taggable<Biome> {
      *
      * @return The carvers
      */
-    default Map<CarvingStep, List<Carver>> carvers() {
+    default List<Carver> carvers() {
         return this.require(Keys.CARVERS);
     }
 

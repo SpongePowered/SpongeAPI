@@ -38,6 +38,7 @@ public interface Zombie extends Monster {
      *
      * @return Whether this zombie is an adult or not
      */
+    @Override
     default Value.Mutable<Boolean> adult() {
         return this.requireValue(Keys.IS_ADULT).asMutable();
     }

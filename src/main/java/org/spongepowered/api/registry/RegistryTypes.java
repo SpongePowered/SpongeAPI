@@ -165,7 +165,6 @@ import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gamerule.GameRule;
 import org.spongepowered.api.world.generation.carver.Carver;
 import org.spongepowered.api.world.generation.carver.CarverType;
-import org.spongepowered.api.world.generation.carver.CarvingStep;
 import org.spongepowered.api.world.generation.config.flat.FlatGeneratorConfig;
 import org.spongepowered.api.world.generation.config.noise.DensityFunction;
 import org.spongepowered.api.world.generation.config.noise.Noise;
@@ -305,8 +304,6 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<BodyPart> BODY_PART = RegistryTypes.spongeKeyInGame("body_part");
 
     public static final DefaultedRegistryType<CatType> CAT_TYPE = RegistryTypes.minecraftKeyInGame("cat_variant");
-
-    public static final DefaultedRegistryType<CarvingStep> CARVING_STEP = RegistryTypes.spongeKeyInGame("carving_step");
 
     public static final DefaultedRegistryType<ChatVisibility> CHAT_VISIBILITY = RegistryTypes.spongeKeyInGame("chat_visibility");
 

@@ -265,7 +265,6 @@ import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.generation.ChunkGenerator;
 import org.spongepowered.api.world.generation.carver.Carver;
-import org.spongepowered.api.world.generation.carver.CarvingStep;
 import org.spongepowered.api.world.generation.config.WorldGenerationConfig;
 import org.spongepowered.api.world.generation.feature.DecorationStep;
 import org.spongepowered.api.world.generation.feature.PlacedFeature;
@@ -656,7 +655,7 @@ public final class Keys {
      * The carvers of a {@link Biome} used during world generation.
      * Readonly
      */
-    public static final Key<MapValue<CarvingStep, List<Carver>>> CARVERS = Keys.mapKey(ResourceKey.sponge("carvers"), TypeToken.get(CarvingStep.class), new TypeToken<List<Carver>>() {});
+    public static final Key<ListValue<Carver>> CARVERS = Keys.listKey(ResourceKey.sponge("carvers"), Carver.class);
 
     /**
      * The current casting time of a {@link Spellcaster}.
