@@ -1020,7 +1020,7 @@ public final class Keys {
      * determined randomly at the time of the explosion or computed from the
      * context in which the {@link Explosive} explodes.</p>
      */
-    public static final Key<Value<Integer>> EXPLOSION_RADIUS = Keys.key(ResourceKey.sponge("explosion_radius"), Integer.class);
+    public static final Key<Value<Float>> EXPLOSION_RADIUS = Keys.key(ResourceKey.sponge("explosion_radius"), Float.class);
 
     /**
      * The eye height of an {@link Entity}.

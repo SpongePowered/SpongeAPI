@@ -162,6 +162,7 @@ import org.spongepowered.api.world.biome.climate.Precipitation;
 import org.spongepowered.api.world.biome.climate.TemperatureModifier;
 import org.spongepowered.api.world.chunk.ChunkState;
 import org.spongepowered.api.world.difficulty.Difficulty;
+import org.spongepowered.api.world.explosion.ExplosionBlockInteraction;
 import org.spongepowered.api.world.gamerule.GameRule;
 import org.spongepowered.api.world.generation.carver.Carver;
 import org.spongepowered.api.world.generation.carver.CarverType;
@@ -356,6 +357,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<EquipmentGroup> EQUIPMENT_GROUP = RegistryTypes.spongeKeyInGame("equipment_group");
 
     public static final DefaultedRegistryType<EquipmentType> EQUIPMENT_TYPE = RegistryTypes.spongeKeyInGame("equipment_type");
+
+    public static final RegistryType<ExplosionBlockInteraction> EXPLOSION_BLOCK_INTERACTION = RegistryTypes.spongeKeyInGame("explosion_block_interaction");
 
     public static final DefaultedRegistryType<FireworkShape> FIREWORK_SHAPE = RegistryTypes.spongeKeyInGame("firework_shape");
 

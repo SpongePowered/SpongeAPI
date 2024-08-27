@@ -22,30 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.explosive;
+package org.spongepowered.api.world.explosion;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-import java.util.Optional;
+@CatalogedBy(ExplosionBlockInteractions.class)
+public interface ExplosionBlockInteraction {
+    // TODO mixin
 
-/**
- * Represents an explosive entity that explodes.
- */
-public interface Explosive extends Entity {
-
-    /**
-     * {@link Keys#EXPLOSION_RADIUS}
-     *
-     * @return The explosion radius
-     */
-    default Optional<Value.Mutable<Float>> explosionRadius() {
-        return this.getValue(Keys.EXPLOSION_RADIUS).map(Value::asMutable);
-    }
-
-    /**
-     * Instructs this explosive to detonate as soon as possible.
-     */
-    void detonate();
 }
