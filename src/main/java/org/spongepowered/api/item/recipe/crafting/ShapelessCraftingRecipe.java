@@ -45,6 +45,13 @@ import java.util.function.Supplier;
 public interface ShapelessCraftingRecipe extends CraftingRecipe {
 
     /**
+     * Gets the ingredients for this recipe.
+     *
+     * @return An unmodifiable list of the ingredients.
+     */
+    List<Ingredient> ingredients();
+
+    /**
      * Creates a new {@link Builder} to build a {@link ShapelessCraftingRecipe}.
      *
      * @return The new builder

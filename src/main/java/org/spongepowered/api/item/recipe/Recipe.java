@@ -34,7 +34,6 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
 import org.spongepowered.api.item.recipe.cooking.CookingRecipe;
 import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
-import org.spongepowered.api.item.recipe.crafting.Ingredient;
 import org.spongepowered.api.item.recipe.crafting.RecipeInput;
 import org.spongepowered.api.item.recipe.crafting.RecipeResult;
 import org.spongepowered.api.item.recipe.crafting.ShapedCraftingRecipe;
@@ -123,13 +122,6 @@ public interface Recipe<T extends RecipeInput> {
         }
         return Optional.empty();
     }
-
-    /**
-     * Gets the ingredients for this recipe.
-     *
-     * @return An unmodifiable list of the ingredients.
-     */
-    List<Ingredient> ingredients();
 
     /**
      * Returns true if the recipe is dynamic.

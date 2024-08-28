@@ -34,10 +34,12 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.item.recipe.RecipeType;
+import org.spongepowered.api.item.recipe.cooking.CookingRecipe;
 import org.spongepowered.api.item.recipe.crafting.Ingredient;
 import org.spongepowered.api.item.recipe.crafting.RecipeInput;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
 
+import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -49,6 +51,13 @@ public interface StoneCutterRecipe extends Recipe<RecipeInput.Single> {
     static StoneCutterRecipe.Builder builder() {
         return Sponge.game().builderProvider().provide(StoneCutterRecipe.Builder.class);
     }
+
+    /**
+     * Returns the {@link Ingredient} for this {@link StoneCutterRecipe}.
+     *
+     * @return The {@link Ingredient} for this {@link StoneCutterRecipe}.
+     */
+    Ingredient ingredient();
 
     @Override
     RecipeType<? extends StoneCutterRecipe> type();
