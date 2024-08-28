@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.entity.living.player;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.entity.living.player.CooldownTracker;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Cancellable;
@@ -47,11 +48,11 @@ public interface CooldownEvent extends Event {
     ServerPlayer player();
 
     /**
-     * Gets the associated item type whose cooldown is being set or removed.
+     * Gets the associated item group whose cooldown is being set or removed.
      *
      * @return The associated item type
      */
-    ItemType itemType();
+    ResourceKey group();
 
     /**
      * Handles an {@link ItemType} being given a cooldown for a {@link ServerPlayer player}.
