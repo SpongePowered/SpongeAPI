@@ -4,6 +4,7 @@
       <verify-metadata>true</verify-metadata>
       <verify-signatures>false</verify-signatures>
       <trusted-artifacts>
+         <trust group="org.spongepowered" name="plugin-meta" reason="SNAPSHOT"/>
          <trust group="org.spongepowered" name="plugin-spi" reason="SNAPSHOT"/>
       </trusted-artifacts>
    </configuration>
