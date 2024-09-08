@@ -52,6 +52,7 @@ public final class StatisticCategories {
 
     public static final DefaultedRegistryReference<StatisticCategory.Typed<EntityType>> KILLED = StatisticCategories.typedKey(ResourceKey.minecraft("killed"));
 
+    @SuppressWarnings("rawtypes")
     public static final DefaultedRegistryReference<StatisticCategory.Typed<EntityType>> KILLED_BY = StatisticCategories.typedKey(ResourceKey.minecraft("killed_by"));
 
     public static final DefaultedRegistryReference<StatisticCategory.Typed<BlockType>> MINED = StatisticCategories.typedKey(ResourceKey.minecraft("mined"));
