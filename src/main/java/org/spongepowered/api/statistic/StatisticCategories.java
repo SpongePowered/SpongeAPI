@@ -50,6 +50,7 @@ public final class StatisticCategories {
 
     public static final DefaultedRegistryReference<StatisticCategory.Typed<ItemType>> DROPPED = StatisticCategories.typedKey(ResourceKey.minecraft("dropped"));
 
+    @SuppressWarnings("rawtypes")
     public static final DefaultedRegistryReference<StatisticCategory.Typed<EntityType>> KILLED = StatisticCategories.typedKey(ResourceKey.minecraft("killed"));
 
     @SuppressWarnings("rawtypes")
