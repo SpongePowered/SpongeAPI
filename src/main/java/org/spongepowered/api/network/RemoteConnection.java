@@ -28,6 +28,13 @@ import java.net.InetSocketAddress;
 
 public interface RemoteConnection {
 
+    /***
+     * Gets whatever the connection is open.
+     *
+     * @return {@code true} if the connection is open.
+     */
+    boolean active();
+
     /**
      * Gets the {@link InetSocketAddress} of this connection.
      *

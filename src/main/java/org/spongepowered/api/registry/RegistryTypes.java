@@ -77,6 +77,7 @@ import org.spongepowered.api.data.type.PickupRule;
 import org.spongepowered.api.data.type.PistonType;
 import org.spongepowered.api.data.type.PortionType;
 import org.spongepowered.api.data.type.ProfessionType;
+import org.spongepowered.api.data.type.PushReaction;
 import org.spongepowered.api.data.type.RabbitType;
 import org.spongepowered.api.data.type.RaidStatus;
 import org.spongepowered.api.data.type.RailDirection;
@@ -87,7 +88,9 @@ import org.spongepowered.api.data.type.SpellType;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
 import org.spongepowered.api.data.type.Tilt;
+import org.spongepowered.api.data.type.TrialSpawnerState;
 import org.spongepowered.api.data.type.TropicalFishShape;
+import org.spongepowered.api.data.type.VaultState;
 import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.type.WallConnectionState;
 import org.spongepowered.api.data.type.WireAttachmentType;
@@ -196,6 +199,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<ArtType> ART_TYPE = RegistryTypes.minecraftKeyInGame("painting_variant");
 
+    public static final DefaultedRegistryType<ArmorMaterial> ARMOR_MATERIAL = RegistryTypes.minecraftKeyInGame("armor_material");
+
     public static final DefaultedRegistryType<AttributeType> ATTRIBUTE_TYPE = RegistryTypes.minecraftKeyInGame("attribute");
 
     public static final DefaultedRegistryType<Biome> BIOME = RegistryTypes.minecraftKeyInServer("worldgen/biome");
@@ -232,6 +237,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<JigsawPool> JIGSAW_POOL = RegistryTypes.minecraftKeyInServer("worldgen/template_pool");
 
+    public static final DefaultedRegistryType<MapDecorationType> MAP_DECORATION_TYPE = RegistryTypes.minecraftKeyInGame("map_decoration_type");
+
     public static final DefaultedRegistryType<NoiseGeneratorConfig> NOISE_GENERATOR_CONFIG = RegistryTypes.minecraftKeyInServer("worldgen/noise_settings");
 
     public static final DefaultedRegistryType<Noise> NOISE = RegistryTypes.minecraftKeyInServer("worldgen/noise");
@@ -249,6 +256,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<ProcessorType> PROCESSOR_TYPE = RegistryTypes.minecraftKeyInGame("worldgen/structure_processor");
 
     public static final DefaultedRegistryType<ProfessionType> PROFESSION_TYPE = RegistryTypes.minecraftKeyInGame("villager_profession");
+
+    public static final DefaultedRegistryType<PushReaction> PUSH_REACTION = RegistryTypes.spongeKeyInGame("push_reaction");
 
     public static final DefaultedRegistryType<PotionType> POTION_TYPE = RegistryTypes.minecraftKeyInGame("potion");
 
@@ -278,7 +287,6 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<AdvancementType> ADVANCEMENT_TYPE = RegistryTypes.spongeKeyInGame("advancement_type");
 
-    public static final DefaultedRegistryType<ArmorMaterial> ARMOR_MATERIAL = RegistryTypes.spongeKeyInGame("armor_material");
 
     public static final DefaultedRegistryType<AttachmentSurface> ATTACHMENT_SURFACE = RegistryTypes.spongeKeyInGame("attachment_surface");
 
@@ -400,8 +408,6 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<MapDecorationOrientation> MAP_DECORATION_ORIENTATION = RegistryTypes.spongeKeyInGame("map_decoration_orientation");
 
-    public static final DefaultedRegistryType<MapDecorationType> MAP_DECORATION_TYPE = RegistryTypes.spongeKeyInGame("map_decoration_type");
-
     public static final DefaultedRegistryType<MapShade> MAP_SHADE = RegistryTypes.spongeKeyInGame("map_shade");
 
     public static final DefaultedRegistryType<MatterType> MATTER_TYPE = RegistryTypes.spongeKeyInGame("matter_type");
@@ -492,9 +498,13 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<TransactionType> TRANSACTION_TYPE = RegistryTypes.spongeKeyInGame("transaction_type");
 
+    public static final DefaultedRegistryType<TrialSpawnerState> TRIAL_SPAWNER_STATE = RegistryTypes.spongeKeyInGame("trial_spawner_state");
+
     public static final DefaultedRegistryType<TropicalFishShape> TROPICAL_FISH_SHAPE = RegistryTypes.spongeKeyInGame("tropical_fish_shape");
 
     public static final DefaultedRegistryType<Tilt> TILT = RegistryTypes.spongeKeyInGame("tilt");
+
+    public static final RegistryType<VaultState> VAULT_STATE = RegistryTypes.spongeKeyInGame("vault_state");
 
     public static final DefaultedRegistryType<Visibility> VISIBILITY = RegistryTypes.spongeKeyInGame("visibility");
 

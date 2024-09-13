@@ -42,6 +42,8 @@ public final class Triggers {
 
     public static final DefaultedRegistryReference<Trigger<?>> ALLAY_DROP_ITEM_ON_BLOCK = Triggers.key(ResourceKey.minecraft("allay_drop_item_on_block"));
 
+    public static final DefaultedRegistryReference<Trigger<?>> ANY_BLOCK_USE = Triggers.key(ResourceKey.minecraft("any_block_use"));
+
     public static final DefaultedRegistryReference<Trigger<?>> AVOID_VIBRATION = Triggers.key(ResourceKey.minecraft("avoid_vibration"));
 
     public static final DefaultedRegistryReference<Trigger<?>> BEE_NEST_DESTROYED = Triggers.key(ResourceKey.minecraft("bee_nest_destroyed"));
@@ -58,7 +60,11 @@ public final class Triggers {
 
     public static final DefaultedRegistryReference<Trigger<?>> CONSUME_ITEM = Triggers.key(ResourceKey.minecraft("consume_item"));
 
+    public static final DefaultedRegistryReference<Trigger<?>> CRAFTER_RECIPE_CRAFTED = Triggers.key(ResourceKey.minecraft("crafter_recipe_crafted"));
+
     public static final DefaultedRegistryReference<Trigger<?>> CURED_ZOMBIE_VILLAGER = Triggers.key(ResourceKey.minecraft("cured_zombie_villager"));
+
+    public static final DefaultedRegistryReference<Trigger<?>> DEFAULT_BLOCK_USE = Triggers.key(ResourceKey.minecraft("default_block_use"));
 
     public static final DefaultedRegistryReference<Trigger<?>> EFFECTS_CHANGED = Triggers.key(ResourceKey.minecraft("effects_changed"));
 
@@ -69,6 +75,8 @@ public final class Triggers {
     public static final DefaultedRegistryReference<Trigger<?>> ENTITY_HURT_PLAYER = Triggers.key(ResourceKey.minecraft("entity_hurt_player"));
 
     public static final DefaultedRegistryReference<Trigger<?>> ENTITY_KILLED_PLAYER = Triggers.key(ResourceKey.minecraft("entity_killed_player"));
+
+    public static final DefaultedRegistryReference<Trigger<?>> FALL_AFTER_EXPLOSION = Triggers.key(ResourceKey.minecraft("fall_after_explosion"));
 
     public static final DefaultedRegistryReference<Trigger<?>> FALL_FROM_HEIGHT = Triggers.key(ResourceKey.minecraft("fall_from_height"));
 

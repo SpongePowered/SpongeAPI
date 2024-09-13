@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.network.channel.packet;
 
-import org.spongepowered.api.network.EngineConnection;
+import org.spongepowered.api.network.EngineConnectionState;
 import org.spongepowered.api.network.channel.ChannelException;
 import org.spongepowered.api.network.channel.NoResponseException;
 
@@ -33,19 +33,19 @@ import org.spongepowered.api.network.channel.NoResponseException;
  *
  * @param <P> The type of the request packet
  * @param <R> The type of the response packet
- * @param <C> The connection type
+ * @param <S> The connection state
  */
 @FunctionalInterface
-public interface ResponsePacketHandler<P extends Packet, R extends Packet, C extends EngineConnection> {
+public interface ResponsePacketHandler<P extends Packet, R extends Packet, S extends EngineConnectionState> {
 
     /**
      * Handles the response {@link Packet} sent by a client connection.
      *
      * @param responsePacket The response packet that was received
      * @param requestPacket The packet that was send to request the response
-     * @param connection The connection that sent the packet
+     * @param state The state that sent the packet
      */
-    void handleResponse(R responsePacket, P requestPacket, C connection);
+    void handleResponse(R responsePacket, P requestPacket, S state);
 
     /**
      * Handles the failure of a response {@link Packet}. The {@link ChannelException} which
@@ -54,8 +54,8 @@ public interface ResponsePacketHandler<P extends Packet, R extends Packet, C ext
      *
      * @param exception The exception that caused the failure
      * @param requestPacket The packet that was send to request the response
-     * @param connection The remote connection that received the failure
+     * @param state The remote state that received the failure
      */
-    default void handleFailure(ChannelException exception, P requestPacket, C connection) {
+    default void handleFailure(ChannelException exception, P requestPacket, S state) {
     }
 }

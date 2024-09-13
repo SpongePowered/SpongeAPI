@@ -68,7 +68,6 @@ public final class ParticleOptions {
      * {@link ParticleType}s this option is applicable to are:
      *
      * <ul>
-     *   <li>{@link ParticleTypes#AMBIENT_ENTITY_EFFECT}</li>
      *   <li>{@link ParticleTypes#ENTITY_EFFECT}</li>
      *   <li>{@link ParticleTypes#DUST}</li>
      * </ul>

@@ -32,6 +32,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents the attachment-type of a {@link BlockTypes#BELL} block.
  */
 @CatalogedBy(BellAttachmentTypes.class)
-public interface BellAttachmentType extends DefaultedRegistryValue, Comparable<BellAttachmentType> {
+public interface BellAttachmentType extends DefaultedRegistryValue, Comparable<BellAttachmentType>, StringRepresentable {
 
 }

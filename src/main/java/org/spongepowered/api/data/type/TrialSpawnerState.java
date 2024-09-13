@@ -22,20 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.network;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-/**
- * Represents a connection of a client to the server where
- * the {@link Player} has successfully joined.
- */
-public interface PlayerConnection extends EngineConnection {
+@CatalogedBy(TrialSpawnerStates.class)
+public interface TrialSpawnerState extends Comparable<TrialSpawnerState>, StringRepresentable {
 
-    /**
-     * Gets the associated {@link Player player} for this connection.
-     *
-     * @return The associated player
-     */
-    Player player();
 }

@@ -27,6 +27,7 @@ package org.spongepowered.api.network.channel;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.network.EngineConnection;
+import org.spongepowered.api.network.EngineConnectionState;
 
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
@@ -35,10 +36,10 @@ import java.util.concurrent.CompletableFuture;
  * Represents a handler for exceptions of {@link Channel}s. This handler
  * can be implemented by plugin developers.
  *
- * @param <C> The connection type
+ * @param <S> The connection state
  */
 @FunctionalInterface
-public interface ChannelExceptionHandler<C extends EngineConnection> {
+public interface ChannelExceptionHandler<S extends EngineConnectionState> {
 
     /**
      * Gets the {@link ChannelExceptionHandler} that will always log when a
@@ -51,7 +52,7 @@ public interface ChannelExceptionHandler<C extends EngineConnection> {
      *
      * @return The channel exception handler
      */
-    static ChannelExceptionHandler<EngineConnection> logEverything() {
+    static ChannelExceptionHandler<EngineConnectionState> logEverything() {
         return Sponge.game().factoryProvider().provide(Factory.class).logEverything();
     }
 
@@ -64,12 +65,12 @@ public interface ChannelExceptionHandler<C extends EngineConnection> {
      * this one <strong>must</strong> be completed when an exception occurs. The future is always
      * null when a request packet is being handled on the other side.</p>
      *
-     * @param connection The connection that the exception occurred for
+     * @param state The state that the exception occurred for
      * @param channel The channel the exception occurred on
      * @param exception The exception the occurred
      * @param future The future of the send operation or receive operation
      */
-    void handle(C connection, Channel channel, ChannelException exception, @Nullable CompletableFuture<?> future);
+    void handle(S state, Channel channel, ChannelException exception, @Nullable CompletableFuture<?> future);
 
     /**
      * Returns a new {@link ChannelExceptionHandler} that suppresses every {@link ChannelException}
@@ -80,8 +81,8 @@ public interface ChannelExceptionHandler<C extends EngineConnection> {
      *
      * @return The new channel exception handler
      */
-    default ChannelExceptionHandler<C> suppressAllIfFutureIsPresent() {
-        final ChannelExceptionHandler<C> original = this;
+    default ChannelExceptionHandler<S> suppressAllIfFutureIsPresent() {
+        final ChannelExceptionHandler<S> original = this;
         return (connection, channel, exception, future) -> {
             if (future != null) {
                 future.completeExceptionally(exception);
@@ -102,9 +103,9 @@ public interface ChannelExceptionHandler<C extends EngineConnection> {
      * @param exceptionType The exception type to suppress
      * @return The new channel exception handler
      */
-    default ChannelExceptionHandler<C> suppressIfFutureIsPresent(final Class<? extends ChannelException> exceptionType) {
+    default ChannelExceptionHandler<S> suppressIfFutureIsPresent(final Class<? extends ChannelException> exceptionType) {
         Objects.requireNonNull(exceptionType, "exceptionType");
-        final ChannelExceptionHandler<C> original = this;
+        final ChannelExceptionHandler<S> original = this;
         return (connection, channel, exception, future) -> {
             if (future != null && exceptionType.isInstance(exception)) {
                 future.completeExceptionally(exception);
@@ -127,9 +128,9 @@ public interface ChannelExceptionHandler<C extends EngineConnection> {
      * @param exceptionType The exception type to suppress
      * @return The new channel exception handler
      */
-    default ChannelExceptionHandler<C> suppress(final Class<? extends ChannelException> exceptionType) {
+    default ChannelExceptionHandler<S> suppress(final Class<? extends ChannelException> exceptionType) {
         Objects.requireNonNull(exceptionType, "exceptionType");
-        final ChannelExceptionHandler<C> original = this;
+        final ChannelExceptionHandler<S> original = this;
         return (connection, channel, exception, future) -> {
             if (exceptionType.isInstance(exception)) {
                 if (future != null) {
@@ -143,6 +144,6 @@ public interface ChannelExceptionHandler<C extends EngineConnection> {
 
     interface Factory {
 
-        ChannelExceptionHandler<EngineConnection> logEverything();
+        ChannelExceptionHandler<EngineConnectionState> logEverything();
     }
 }

@@ -28,6 +28,6 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(PortionTypes.class)
-public interface PortionType extends DefaultedRegistryValue, Comparable<PortionType> {
+public interface PortionType extends DefaultedRegistryValue, Comparable<PortionType>, StringRepresentable {
 
 }

@@ -896,6 +896,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> HAY_BLOCK = BlockTypes.key(ResourceKey.minecraft("hay_block"));
 
+    public static final DefaultedRegistryReference<BlockType> HEAVY_CORE = BlockTypes.key(ResourceKey.minecraft("heavy_core"));
+
     public static final DefaultedRegistryReference<BlockType> HEAVY_WEIGHTED_PRESSURE_PLATE = BlockTypes.key(ResourceKey.minecraft("heavy_weighted_pressure_plate"));
 
     public static final DefaultedRegistryReference<BlockType> HONEY_BLOCK = BlockTypes.key(ResourceKey.minecraft("honey_block"));
@@ -1939,6 +1941,8 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> TWISTING_VINES = BlockTypes.key(ResourceKey.minecraft("twisting_vines"));
 
     public static final DefaultedRegistryReference<BlockType> TWISTING_VINES_PLANT = BlockTypes.key(ResourceKey.minecraft("twisting_vines_plant"));
+
+    public static final DefaultedRegistryReference<BlockType> VAULT = BlockTypes.key(ResourceKey.minecraft("vault"));
 
     public static final DefaultedRegistryReference<BlockType> VERDANT_FROGLIGHT = BlockTypes.key(ResourceKey.minecraft("verdant_froglight"));
 

@@ -70,7 +70,11 @@ public final class EnchantmentTypes {
      */
     public static final DefaultedRegistryReference<EnchantmentType> BLAST_PROTECTION = EnchantmentTypes.key(ResourceKey.minecraft("blast_protection"));
 
+    public static final DefaultedRegistryReference<EnchantmentType> BREACH = EnchantmentTypes.key(ResourceKey.minecraft("breach"));
+
     public static final DefaultedRegistryReference<EnchantmentType> CHANNELING = EnchantmentTypes.key(ResourceKey.minecraft("channeling"));
+
+    public static final DefaultedRegistryReference<EnchantmentType> DENSITY = EnchantmentTypes.key(ResourceKey.minecraft("density"));
 
     /**
      * Increases underwater movement speed.
@@ -245,12 +249,7 @@ public final class EnchantmentTypes {
 
     public static final DefaultedRegistryReference<EnchantmentType> SOUL_SPEED = EnchantmentTypes.key(ResourceKey.minecraft("soul_speed"));
 
-    /**
-     * Increases the damage of the sweeping attack.
-     *
-     * <p>In vanilla the maximum level is 3.</p>
-     */
-    public static final DefaultedRegistryReference<EnchantmentType> SWEEPING = EnchantmentTypes.key(ResourceKey.minecraft("sweeping"));
+    public static final DefaultedRegistryReference<EnchantmentType> SWEEPING_EDGE = EnchantmentTypes.key(ResourceKey.minecraft("sweeping_edge"));
 
     public static final DefaultedRegistryReference<EnchantmentType> SWIFT_SNEAK = EnchantmentTypes.key(ResourceKey.minecraft("swift_sneak"));
 
@@ -274,6 +273,8 @@ public final class EnchantmentTypes {
      * <p>In vanilla the maximum level is 1.</p>
      */
     public static final DefaultedRegistryReference<EnchantmentType> VANISHING_CURSE = EnchantmentTypes.key(ResourceKey.minecraft("vanishing_curse"));
+
+    public static final DefaultedRegistryReference<EnchantmentType> WIND_BURST = EnchantmentTypes.key(ResourceKey.minecraft("wind_burst"));
 
     private EnchantmentTypes() {
     }

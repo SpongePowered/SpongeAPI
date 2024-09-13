@@ -58,7 +58,7 @@ import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
 
 @SupportedAnnotationTypes(ListenerProcessor.LISTENER_ANNOTATION_CLASS)
-@SupportedSourceVersion(SourceVersion.RELEASE_17)
+@SupportedSourceVersion(SourceVersion.RELEASE_21)
 public class ListenerProcessor extends AbstractProcessor {
 
     static final String LISTENER_ANNOTATION_CLASS = "org.spongepowered.api.event.Listener";

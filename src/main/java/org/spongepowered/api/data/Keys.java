@@ -77,6 +77,7 @@ import org.spongepowered.api.data.type.PickupRule;
 import org.spongepowered.api.data.type.PistonType;
 import org.spongepowered.api.data.type.PortionType;
 import org.spongepowered.api.data.type.ProfessionType;
+import org.spongepowered.api.data.type.PushReaction;
 import org.spongepowered.api.data.type.RabbitType;
 import org.spongepowered.api.data.type.RailDirection;
 import org.spongepowered.api.data.type.SculkSensorState;
@@ -87,6 +88,7 @@ import org.spongepowered.api.data.type.SpellTypes;
 import org.spongepowered.api.data.type.StairShape;
 import org.spongepowered.api.data.type.StructureMode;
 import org.spongepowered.api.data.type.Tilt;
+import org.spongepowered.api.data.type.ToolRule;
 import org.spongepowered.api.data.type.TropicalFishShape;
 import org.spongepowered.api.data.type.VillagerType;
 import org.spongepowered.api.data.type.WallConnectionState;
@@ -380,7 +382,6 @@ public final class Keys {
 
     /**
      * The set of {@link PotionEffect}s applied on use of an {@link ItemStack}.
-     * Readonly
      */
     public static final Key<WeightedCollectionValue<PotionEffect>> APPLICABLE_POTION_EFFECTS = Keys.weightedKey(ResourceKey.sponge("applicable_potion_effects"), PotionEffect.class);
 
@@ -563,11 +564,22 @@ public final class Keys {
     public static final Key<Value<Ticks>> BREEDING_COOLDOWN = Keys.key(ResourceKey.sponge("breeding_cooldown"), Ticks.class);
 
     /**
+     * Whether a {@link BlockState} can be lit on fire by things like spreading lava,
+     * or sometimes a {@link ServerLocation} to be directionally specific.
+     */
+    public static final Key<Value<Boolean>> BURNABLE = Keys.key(ResourceKey.sponge("burnable"), Boolean.class);
+
+    /**
      * The burntime of an {@link ItemStack} fuel in a furnace.
      * See {@link #FUEL} for the time
      * Readonly
      */
     public static final Key<Value<Integer>> BURN_TIME = Keys.key(ResourceKey.sponge("burn_time"), Integer.class);
+
+    /**
+     * Whether an {@link ItemStack} can always be eaten.
+     */
+    public static final Key<Value<Boolean>> CAN_ALWAYS_EAT = Keys.key(ResourceKey.sponge("can_always_eat"), Boolean.class);
 
     /**
      * Whether an {@link Animal} can breed.
@@ -596,7 +608,8 @@ public final class Keys {
     public static final Key<Value<Boolean>> CAN_GRIEF = Keys.key(ResourceKey.sponge("can_grief"), Boolean.class);
 
     /**
-     * The set of harvestable {@link BlockType}s with an {@link ItemStack}. {@link #EFFICIENCY}
+     * The set of harvestable {@link BlockType}s with an {@link ItemStack}.
+     * See {@link #TOOL_RULES} for the rules resulting in this set.
      * Readonly
      */
     public static final Key<SetValue<BlockType>> CAN_HARVEST = Keys.setKey(ResourceKey.sponge("can_harvest"), BlockType.class);
@@ -641,6 +654,11 @@ public final class Keys {
      * The type of a {@link Cat}.
      */
     public static final Key<Value<CatType>> CAT_TYPE = Keys.key(ResourceKey.sponge("cat_type"), CatType.class);
+
+    /**
+     * The projectiles stored in an {@link ItemTypes#CROSSBOW}.
+     */
+    public static final Key<ListValue<ItemStackSnapshot>> CHARGED_PROJECTILES = Keys.listKey(ResourceKey.sponge("charged_projectiles"), ItemStackSnapshot.class);
 
     /**
      * Whether a {@link ServerPlayer} can will see colours sent in messages.
@@ -770,6 +788,11 @@ public final class Keys {
     public static final Key<Value<Component>> CUSTOM_NAME = Keys.key(ResourceKey.sponge("custom_name"), Component.class);
 
     /**
+     * The custom potion effects that are stored on an {@link ItemStack}.
+     */
+    public static final Key<ListValue<PotionEffect>> CUSTOM_POTION_EFFECTS = Keys.listKey(ResourceKey.sponge("custom_potion_effects"), PotionEffect.class);
+
+    /**
      * The damage absorbed by an armor {@link ItemStack}.
      * Readonly
      */
@@ -871,13 +894,14 @@ public final class Keys {
     public static final Key<Value<DyeColor>> DYE_COLOR = Keys.key(ResourceKey.sponge("dye_color"), DyeColor.class);
 
     /**
-     * The time a {@link Panda} has been eating (in ticks)
+     * The time a {@link Panda} has been eating (in ticks) or
+     * the time an {@link ItemStack} takes to eat.
      */
     public static final Key<Value<Ticks>> EATING_TIME = Keys.key(ResourceKey.sponge("eating_time"), Ticks.class);
 
     /**
      * The efficiency of an {@link ItemStack} tool. Affects mining speed of supported materials. {@link #CAN_HARVEST}
-     * Readonly
+     * Removing this from a tool makes it no longer a tool.
      */
     public static final Key<Value<Double>> EFFICIENCY = Keys.key(ResourceKey.sponge("efficiency"), Double.class);
 
@@ -892,6 +916,12 @@ public final class Keys {
      * </p>
      */
     public static final Key<Value<Ticks>> EGG_TIME = Keys.key(ResourceKey.sponge("egg_time"), Ticks.class);
+
+    /**
+     * Whether the glint effect on an {@link ItemStack} is shown.
+     * This overrides the default behaviour when {@link #APPLIED_ENCHANTMENTS} or {@link #STORED_ENCHANTMENTS} are present.
+     */
+    public static final Key<Value<Boolean>> ENCHANTMENT_GLINT_OVERRIDE = Keys.key(ResourceKey.sponge("enchantment_glint_override"), Boolean.class);
 
     /**
      * The age (in ticks) of an {@link EndGateway}
@@ -1018,6 +1048,11 @@ public final class Keys {
      * The delay in ticks until the {@link Entity} will be damaged by the fire.
      */
     public static final Key<Value<Ticks>> FIRE_DAMAGE_DELAY = Keys.key(ResourceKey.sponge("fire_damage_delay"), Ticks.class);
+
+    /**
+     * Whether an {@link ItemStack} will burn in fire.
+     */
+    public static final Key<Value<Boolean>> FIRE_RESISTANT = Keys.key(ResourceKey.sponge("fire_resistant"), Boolean.class);
 
     /**
      * The amount of ticks an {@link Entity} is still burning.
@@ -1370,6 +1405,16 @@ public final class Keys {
     public static final Key<Value<Boolean>> HIDE_MISCELLANEOUS = Keys.key(ResourceKey.sponge("hide_miscellaneous"), Boolean.class);
 
     /**
+     * Whether the {@link #STORED_ENCHANTMENTS} of an {@link ItemStack} are hidden.
+     */
+    public static final Key<Value<Boolean>> HIDE_STORED_ENCHANTMENTS = Keys.key(ResourceKey.sponge("hide_stored_enchantments"), Boolean.class);
+
+    /**
+     * Whether the tooltip of an {@link ItemStack} is hidden.
+     */
+    public static final Key<Value<Boolean>> HIDE_TOOLTIP = Keys.key(ResourceKey.sponge("hide_tooltip"), Boolean.class);
+
+    /**
      * Whether {@link #IS_UNBREAKABLE} state of an {@link ItemStack} is hidden.
      */
     public static final Key<Value<Boolean>> HIDE_UNBREAKABLE = Keys.key(ResourceKey.sponge("hide_unbreakable"), Boolean.class);
@@ -1419,6 +1464,13 @@ public final class Keys {
     public static final Key<Value<InstrumentType>> INSTRUMENT_TYPE = Keys.key(ResourceKey.sponge("instrument_type"), InstrumentType.class);
 
     /**
+     * Whether a projectile {@link ItemStack} would be intangible when fired.
+     * Intangible {@link Projectile projectiles} have {@link org.spongepowered.api.data.type.PickupRules#CREATIVE_ONLY}.
+     * See {@link Keys#PICKUP_RULE}.
+     */
+    public static final Key<Value<Boolean>> INTANGIBLE_PROJECTILE = Keys.key(ResourceKey.sponge("intangible_projectile"), Boolean.class);
+
+    /**
      * The interpolation delay of a {@link DisplayEntity}
      */
     public static final Key<Value<Ticks>> INTERPOLATION_DELAY = Keys.key(ResourceKey.sponge("interpolation_delay"), Ticks.class);
@@ -1427,6 +1479,11 @@ public final class Keys {
      * The interpolation duration of a {@link DisplayEntity}
      */
     public static final Key<Value<Ticks>> INTERPOLATION_DURATION = Keys.key(ResourceKey.sponge("interpolation_duration"), Ticks.class);
+
+    /**
+     * The {@link Inventory} held in an {@link ItemStack} such as {@link ItemTypes#SHULKER_BOX}.
+     */
+    public static final Key<Value<Inventory>> INVENTORY = Keys.key(ResourceKey.sponge("inventory"), Inventory.class);
 
     /**
      * Whether a {@link BlockTypes#DAYLIGHT_DETECTOR} {@link BlockState} is inverted.
@@ -1996,6 +2053,12 @@ public final class Keys {
     public static final Key<Value<Integer>> ITEM_DURABILITY = Keys.key(ResourceKey.sponge("item_durability"), Integer.class);
 
     /**
+     * The default item name of an {@link ItemStack}.
+     * <p>May be overridden by {@link #CUSTOM_NAME}</p>
+     */
+    public static final Key<Value<Component>> ITEM_NAME = Keys.key(ResourceKey.sponge("item_name"), Component.class);
+
+    /**
      * The rarity of an item.
      */
     public static final Key<Value<ItemRarity>> ITEM_RARITY = Keys.key(ResourceKey.sponge("item_rarity"), ItemRarity.class);
@@ -2113,6 +2176,11 @@ public final class Keys {
     public static final Key<Value<ServerLocation>> LODESTONE = Keys.key(ResourceKey.sponge("lodestone"), ServerLocation.class);
 
     /**
+     * Whether to remove the {@link #LODESTONE target location} when the {@link BlockTypes#LODESTONE} at that location is removed.
+     */
+    public static final Key<Value<Boolean>> LODESTONE_TRACKED = Keys.key(ResourceKey.sponge("lodestone_tracked"), Boolean.class);
+
+    /**
      * The displayed description ("lore") text of an {@link ItemStack}.
      *
      * <p>The lore text is usually displayed when the player hovers his cursor
@@ -2213,7 +2281,6 @@ public final class Keys {
 
     /**
      * The maximum durability of an {@link ItemStack}. {@link #ITEM_DURABILITY}
-     * Readonly
      */
     public static final Key<Value<Integer>> MAX_DURABILITY = Keys.key(ResourceKey.sponge("max_durability"), Integer.class);
 
@@ -2242,6 +2309,13 @@ public final class Keys {
      * @see Keys#FROZEN_TIME
      */
     public static final Key<Value<Ticks>> MAX_FROZEN_TIME = Keys.key(ResourceKey.sponge("max_frozen_time"), Ticks.class);
+
+    /**
+     * The max growth stage of a {@link BlockState}.
+     * e.g. {@link BlockTypes#CACTUS} or {@link BlockTypes#WHEAT} etc.
+     * Readonly
+     */
+    public static final Key<Value<Integer>> MAX_GROWTH_STAGE = Keys.key(ResourceKey.sponge("max_growth_stage"), Integer.class);
 
     /**
      * The maximum health of a {@link Living}.
@@ -2346,6 +2420,12 @@ public final class Keys {
      * The pitch of a {@link BlockTypes#NOTE_BLOCK} {@link BlockState}.
      */
     public static final Key<Value<NotePitch>> NOTE_PITCH = Keys.key(ResourceKey.sponge("note_pitch"), NotePitch.class);
+
+    /**
+     * The sound played by a {@link ItemTypes#PLAYER_HEAD} {@link ItemStack} on a {@link BlockTypes#NOTE_BLOCK}.
+     * Value is the key of a {@link SoundType}.
+     */
+    public static final Key<Value<ResourceKey>> NOTE_BLOCK_SOUND = Keys.key(ResourceKey.sponge("note_block_sound"), ResourceKey.class);
 
     /**
      * The notifier, usually of an {@link Entity}. It is up to the implementation to define.
@@ -2541,6 +2621,12 @@ public final class Keys {
     public static final Key<Value<Integer>> PROFESSION_LEVEL = Keys.key(ResourceKey.sponge("profession_level"), Integer.class);
 
     /**
+     * The {@link Entity} or {@link BlockState} push reaction when a {@link Piston} pushes it.
+     * Readonly
+     */
+    public static final Key<Value<PushReaction>> PUSH_REACTION = Keys.key(ResourceKey.sponge("push_reaction"), PushReaction.class);
+
+    /**
      * Whether pvp combat is enabled in a world of a {@link WorldTemplate} or {@link ServerWorldProperties}
      * Readonly
      */
@@ -2612,14 +2698,17 @@ public final class Keys {
     public static final Key<Value<Ticks>> REMAINING_SPAWN_DELAY = Keys.key(ResourceKey.sponge("remaining_spawn_delay"), Ticks.class);
 
     /**
+     * The additional experience cost required to modify an {@link ItemStack} in an {@link BlockTypes#ANVIL}.
+     */
+    public static final Key<Value<Integer>> REPAIR_COST = Keys.key(ResourceKey.sponge("repair_cost"), Integer.class);
+
+    /**
      * The amount of food a food {@link ItemStack} restores when eaten.
-     * Readonly
      */
     public static final Key<Value<Integer>> REPLENISHED_FOOD = Keys.key(ResourceKey.sponge("replenished_food"), Integer.class);
 
     /**
      * The amount of saturation a food {@link ItemStack} provides when eaten.
-     * Readonly
      */
     public static final Key<Value<Double>> REPLENISHED_SATURATION = Keys.key(ResourceKey.sponge("replenished_saturation"), Double.class);
 
@@ -3025,6 +3114,11 @@ public final class Keys {
     public static final Key<Value<Vector3i>> TARGET_POSITION = Keys.key(ResourceKey.sponge("target_position"), Vector3i.class);
 
     /**
+     * The teleport duration of a {@link DisplayEntity}
+     */
+    public static final Key<Value<Ticks>> TELEPORT_DURATION = Keys.key(ResourceKey.sponge("teleport_duration"), Ticks.class);
+
+    /**
      * The {@link TemperatureModifier} of a {@link Biome}.
      * Readonly
      */
@@ -3052,6 +3146,17 @@ public final class Keys {
      * player motion.
      */
     public static final Key<Value<Tilt>> TILT = Keys.key(ResourceKey.sponge("tilt"), Tilt.class);
+
+    /**
+     * The {@link #ITEM_DURABILITY} damage an {@link ItemStack} tool takes per block.
+     */
+    public static final Key<Value<Integer>> TOOL_DAMAGE_PER_BLOCK = Keys.key(ResourceKey.sponge("tool_damage_per_block"), Integer.class);
+
+    /**
+     * The {@link ToolRule rules} of an {@link ItemStack} tool.
+     * See {@link #CAN_HARVEST} for a list of {@link BlockType block types}.
+     */
+    public static final Key<ListValue<ToolRule>> TOOL_RULES = Keys.listKey(ResourceKey.sponge("tool_rules"), ToolRule.class);
 
     /**
      * The {@link ItemTier} of an {@link ItemStack} tool.

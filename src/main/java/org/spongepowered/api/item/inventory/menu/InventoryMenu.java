@@ -27,6 +27,7 @@ package org.spongepowered.api.item.inventory.menu;
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.item.inventory.Container;
+import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.menu.handler.ClickHandler;
 import org.spongepowered.api.item.inventory.menu.handler.CloseHandler;
 import org.spongepowered.api.item.inventory.menu.handler.InventoryCallbackHandler;
@@ -148,6 +149,18 @@ public interface InventoryMenu {
      * @return this menu
      */
     InventoryMenu setReadOnly(boolean readOnly);
+
+    /**
+     * Sets the {@link Slot} readonly mode for this menu.
+     * By default, uses the menus current readonly mode.
+     * This can be used to override per slot.
+     *
+     * @param slot the slot which readonly mode is changed
+     * @param readOnly whether to make the slot readonly or not.
+     * @return this menu
+     * @throws IllegalArgumentException if the slot is not part of the menu
+     */
+    InventoryMenu setReadOnly(Slot slot, boolean readOnly);
 
     /**
      * Opens this menu for given {@link ServerPlayer player}.

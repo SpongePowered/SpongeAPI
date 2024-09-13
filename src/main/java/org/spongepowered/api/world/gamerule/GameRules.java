@@ -130,6 +130,8 @@ public final class GameRules {
 
     public static final DefaultedRegistryReference<GameRule<Integer>> SNOW_ACCUMULATION_HEIGHT = GameRules.key(ResourceKey.sponge("snow_accumulation_height"));
 
+    public static final DefaultedRegistryReference<GameRule<Integer>> SPAWN_CHUNK_RADIUS = GameRules.key(ResourceKey.sponge("spawn_chunk_radius"));
+
     public static final DefaultedRegistryReference<GameRule<Integer>> SPAWN_RADIUS = GameRules.key(ResourceKey.sponge("spawn_radius"));
 
     public static final DefaultedRegistryReference<GameRule<Boolean>> SPECTATORS_GENERATE_CHUNKS = GameRules.key(ResourceKey.sponge("spectators_generate_chunks"));

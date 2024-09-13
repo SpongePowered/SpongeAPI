@@ -22,22 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.map.decoration;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.data.type.DyeColor;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-/**
- * An extension of {@link MapDecorationType} that represents a banner, and provides
- * the {@link org.spongepowered.api.data.type.DyeColor} of the banner it
- * represents.
- * <p>
- * Not all {@link MapDecorationType MapDecorationTypes} are {@link MapDecorationBannerType}.
- */
-public interface MapDecorationBannerType extends MapDecorationType {
-    /**
-     * Gets the corresponding {@link DyeColor} that this banner decoration type is.
-     *
-     * @return The {@link DyeColor} that this banner decoration type is.
-     */
-    DyeColor bannerColor();
+@CatalogedBy(PushReactions.class)
+public interface PushReaction {
+
 }
