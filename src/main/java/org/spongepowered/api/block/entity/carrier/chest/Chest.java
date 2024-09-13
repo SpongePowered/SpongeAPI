@@ -64,7 +64,7 @@ public interface Chest extends NameableCarrierBlockEntity {
      * @return The attachment type of this chest.
      */
     default Value.Mutable<ChestAttachmentType> attachmentType() {
-        return this.block().requireValue(Keys.CHEST_ATTACHMENT_TYPE).asMutable();
+        return this.requireValue(Keys.CHEST_ATTACHMENT_TYPE).asMutable();
     }
 
 }
