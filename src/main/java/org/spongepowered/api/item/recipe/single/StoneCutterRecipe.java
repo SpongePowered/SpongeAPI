@@ -34,12 +34,10 @@ import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.item.recipe.RecipeType;
-import org.spongepowered.api.item.recipe.cooking.CookingRecipe;
 import org.spongepowered.api.item.recipe.crafting.Ingredient;
 import org.spongepowered.api.item.recipe.crafting.RecipeInput;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
 
-import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 

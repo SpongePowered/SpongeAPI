@@ -45,6 +45,7 @@ public interface CooldownTracker {
      * @return Whether or not the specified item type is cooldown
      */
     boolean hasCooldown(ItemStack stack);
+
     boolean hasCooldown(ResourceKey group);
 
     /**
@@ -56,6 +57,7 @@ public interface CooldownTracker {
      *     on cooldown
      */
     Optional<Ticks> cooldown(ItemStack stack);
+
     Optional<Ticks> cooldown(ResourceKey group);
 
     /**
@@ -68,6 +70,7 @@ public interface CooldownTracker {
      *     being cancelled
      */
     boolean setCooldown(ItemStack stack, Ticks ticks);
+
     boolean setCooldown(ResourceKey group, Ticks ticks);
 
     /**
@@ -79,6 +82,7 @@ public interface CooldownTracker {
      *     being cancelled
      */
     boolean resetCooldown(ItemStack stack);
+
     boolean resetCooldown(ResourceKey group);
 
     /**
@@ -92,6 +96,7 @@ public interface CooldownTracker {
      * @return The fraction of cooldown remaining for the specified item type
      */
     OptionalDouble fractionRemaining(ItemStack stack);
+
     OptionalDouble fractionRemaining(ResourceKey group);
 
 }
