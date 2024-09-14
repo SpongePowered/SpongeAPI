@@ -30,6 +30,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
@@ -90,35 +91,49 @@ public interface StoneCutterRecipe extends Recipe<RecipeInput.Single> {
         interface ResultStep extends StoneCutterRecipe.Builder {
 
             /**
+             * @deprecated Use {@link #result(ItemStackLike)} instead.
+             */
+            @Deprecated(forRemoval = true)
+            default EndStep result(ItemStackSnapshot result) {
+                return this.result((ItemStackLike) result);
+            }
+
+            /**
+             * @deprecated Use {@link #result(ItemStackLike)} instead.
+             */
+            @Deprecated(forRemoval = true)
+            default EndStep result(ItemStack result) {
+                return this.result((ItemStackLike) result);
+            }
+
+            /**
              * Changes the result and returns this builder. The result is the
-             * {@link ItemStack} created when the recipe is fulfilled.
+             * {@link ItemStackLike} created when the recipe is fulfilled.
              *
              * @param result The output of this recipe
              *
              * @return This builder, for chaining
              */
-            EndStep result(ItemStackSnapshot result);
+            EndStep result(ItemStackLike result);
 
             /**
-             * Changes the result and returns this builder. The result is the
-             * {@link ItemStack} created when the recipe is fulfilled.
-             *
-             * @param result The output of this recipe
-             *
-             * @return This builder, for chaining
+             * @deprecated Use {@link #result(Function, ItemStackLike)} instead.
              */
-            EndStep result(ItemStack result);
+            @Deprecated(forRemoval = true)
+            default EndStep result(Function<RecipeInput.Single, ItemStack> resultFunction, ItemStack exemplaryResult) {
+                return this.result(resultFunction, (ItemStackLike) exemplaryResult);
+            }
 
             /**
              * Changes the result and returns this builder. The result is the
-             * {@link ItemStack} created when the recipe is fulfilled.
+             * {@link ItemStackLike} created when the recipe is fulfilled.
              *
              * @param resultFunction The result function
              * @param exemplaryResult The exemplary output of this recipe
              *
              * @return This builder, for chaining
              */
-            EndStep result(Function<RecipeInput.Single, ItemStack> resultFunction, ItemStack exemplaryResult);
+            EndStep result(Function<RecipeInput.Single, ? extends ItemStackLike> resultFunction, ItemStackLike exemplaryResult);
 
         }
 

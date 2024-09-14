@@ -29,6 +29,7 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 
@@ -53,11 +54,19 @@ public interface Ingredient extends Predicate<ItemStack> {
         return Sponge.game().factoryProvider().provide(Factory.class).empty();
     }
 
+    /**
+     * @deprecated Use {@link #test(ItemStackLike)} instead.
+     */
+    @Deprecated(forRemoval = true)
     @Override
-    boolean test(ItemStack itemStack);
+    default boolean test(ItemStack itemStack) {
+        return this.test((ItemStackLike) itemStack);
+    }
+
+    boolean test(ItemStackLike item);
 
     /**
-     * Returns the list of {@link ItemStack}s used to display the ingredient in a recipe.
+     * Returns the list of {@link ItemStackSnapshot}s used to display the ingredient in a recipe.
      * These are not necessarily all the items that this Ingredient can match.
      *
      * @return The list of items to display the Ingredient in a recipe.
@@ -87,25 +96,28 @@ public interface Ingredient extends Predicate<ItemStack> {
     }
 
     /**
-     * Creates a new {@link Ingredient} for the provided {@link ItemStack}s.
-     *
-     * @param items The items
-     * @return The new ingredient
+     * @deprecated Use {@link #of(ItemStackLike...)} instead.
      */
+    @Deprecated(forRemoval = true)
     static Ingredient of(ItemStack @Nullable ... items) {
-        if (items == null || items.length == 0) {
-            return Ingredient.empty();
-        }
-        return Ingredient.builder().with(items).build();
+        return Ingredient.of((ItemStackLike[]) items);
     }
 
     /**
-     * Creates a new {@link Ingredient} for the provided {@link ItemStackSnapshot}s.
+     * @deprecated Use {@link #of(ItemStackLike...)} instead.
+     */
+    @Deprecated(forRemoval = true)
+    static Ingredient of(ItemStackSnapshot @Nullable ... items) {
+        return Ingredient.of((ItemStackLike[]) items);
+    }
+
+    /**
+     * Creates a new {@link Ingredient} for the provided {@link ItemStackLike}s.
      *
      * @param items The item
      * @return The new ingredient
      */
-    static Ingredient of(ItemStackSnapshot @Nullable ... items) {
+    static Ingredient of(ItemStackLike @Nullable ... items) {
         if (items == null) {
             return Ingredient.empty();
         }
@@ -127,7 +139,15 @@ public interface Ingredient extends Predicate<ItemStack> {
     }
 
     /**
-     * Creates a new {@link Ingredient} for the provided {@link Predicate} and exemplary {@link ItemStack}s.
+     * @deprecated Use {@link #of(ResourceKey, Predicate, ItemStackLike...)} instead.
+     */
+    @Deprecated(forRemoval = true)
+    static Ingredient of(ResourceKey key, Predicate<ItemStack> predicate, ItemStack... exemplaryStacks) {
+        return Ingredient.of(key, itemStack -> predicate.test(itemStack.asMutable()), (ItemStackLike[]) exemplaryStacks);
+    }
+
+    /**
+     * Creates a new {@link Ingredient} for the provided {@link Predicate} and exemplary {@link ItemStackLike}s.
      * <p>Note: Predicate ingredients may not be fully supported for all recipe types</p>
      *
      * @param key A unique resource key
@@ -136,7 +156,7 @@ public interface Ingredient extends Predicate<ItemStack> {
      *
      * @return The new ingredient
      */
-    static Ingredient of(ResourceKey key, Predicate<ItemStack> predicate, ItemStack... exemplaryStacks) {
+    static Ingredient of(ResourceKey key, Predicate<? super ItemStackLike> predicate, ItemStackLike... exemplaryStacks) {
         if (exemplaryStacks.length == 0) {
             throw new IllegalArgumentException("At least exemplary stack is required");
         }
@@ -178,12 +198,28 @@ public interface Ingredient extends Predicate<ItemStack> {
         Builder with(Supplier<? extends ItemType>... types);
 
         /**
-         * Sets one ore more ItemStack for matching the ingredient.
+         * @deprecated Use {@link #with(ItemStackLike...)} instead
+         */
+        @Deprecated(forRemoval = true)
+        default Builder with(ItemStack... types) {
+            return this.with((ItemStackLike[]) types);
+        }
+
+        /**
+         * Sets one or more ItemStackLike for matching the ingredient.
          *
          * @param types The items
          * @return This Builder, for chaining
          */
-        Builder with(ItemStack... types);
+        Builder with(ItemStackLike... types);
+
+        /**
+         * @deprecated Use {@link #with(ResourceKey, Predicate, ItemStackLike...)} instead.
+         */
+        @Deprecated(forRemoval = true)
+        default Builder with(ResourceKey resourceKey, Predicate<ItemStack> predicate, ItemStack... exemplaryTypes) {
+            return this.with(resourceKey, itemStack -> predicate.test(itemStack.asMutable()), (ItemStackLike[]) exemplaryTypes);
+        }
 
         /**
          * Sets a Predicate for matching the ingredient.
@@ -194,15 +230,15 @@ public interface Ingredient extends Predicate<ItemStack> {
          * @param exemplaryTypes The items
          * @return This Builder, for chaining
          */
-        Builder with(ResourceKey resourceKey, Predicate<ItemStack> predicate, ItemStack... exemplaryTypes);
+        Builder with(ResourceKey resourceKey, Predicate<? super ItemStackLike> predicate, ItemStackLike... exemplaryTypes);
 
         /**
-         * Sets one ItemStack for matching the ingredient.
-         *
-         * @param types The items
-         * @return This Builder, for chaining
+         * @deprecated Use {@link #with(ItemStackLike...)} instead
          */
-        Builder with(ItemStackSnapshot... types);
+        @Deprecated(forRemoval = true)
+        default Builder with(ItemStackSnapshot... types) {
+            return this.with((ItemStackLike[]) types);
+        }
 
         /**
          * Sets the item tag for matching the ingredient.

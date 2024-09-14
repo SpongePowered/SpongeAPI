@@ -29,6 +29,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
@@ -64,25 +65,41 @@ public interface CookingRecipe extends Recipe<RecipeInput.Single> {
     Ingredient ingredient();
 
     /**
-     * Checks if the given {@link ItemStackSnapshot} fits the required
+     * @deprecated Use {@link #isValid(ItemStackLike)} instead.
+     */
+    @Deprecated(forRemoval = true)
+    default boolean isValid(ItemStackSnapshot ingredient) {
+        return this.isValid((ItemStackLike) ingredient);
+    }
+
+    /**
+     * Checks if the given {@link ItemStackLike} fits the required
      * constraints to craft this {@link CookingRecipe}.
      *
      * @param ingredient The ingredient to check against
      *
      * @return Whether this ingredient can be used to craft the result
      */
-    boolean isValid(ItemStackSnapshot ingredient);
+    boolean isValid(ItemStackLike ingredient);
+
+    /**
+     * @deprecated Use {@link #result(ItemStackLike)} instead.
+     */
+    @Deprecated(forRemoval = true)
+    default Optional<CookingResult> result(ItemStackSnapshot ingredient) {
+        return this.result((ItemStackLike) ingredient);
+    }
 
     /**
      * <p>Returns the {@link CookingResult} containing the resulting
-     * {@link ItemStackSnapshot} and the amount of experience released.</p>
+     * {@link ItemStackLike} and the amount of experience released.</p>
      *
-     * @param ingredient The {@link ItemStackSnapshot} currently being cooked
+     * @param ingredient The {@link ItemStackLike} currently being cooked
      * @return The {@link CookingResult}, or {@link Optional#empty()}
      *         if the recipe is not valid according to
-     *         {@link #isValid(ItemStackSnapshot)}.
+     *         {@link #isValid(ItemStackLike)}.
      */
-    Optional<CookingResult> result(ItemStackSnapshot ingredient);
+    Optional<CookingResult> result(ItemStackLike ingredient);
 
     /**
      * Returns the cooking time in ticks.
@@ -183,24 +200,38 @@ public interface CookingRecipe extends Recipe<RecipeInput.Single> {
             }
 
             /**
-             * Changes the result and returns this builder. The result is the
-             * {@link ItemStack} created when the recipe is fulfilled.
-             *
-             * @param result The output of this recipe
-             *
-             * @return This builder, for chaining
+             * @deprecated Use {@link #result(ItemStackLike)} instead.
              */
-            EndStep result(ItemStack result);
+            @Deprecated(forRemoval = true)
+            default EndStep result(ItemStack result) {
+                return this.result((ItemStackLike) result);
+            }
+
+            /**
+             * @deprecated Use {@link #result(ItemStackLike)} instead.
+             */
+            @Deprecated(forRemoval = true)
+            default EndStep result(ItemStackSnapshot result) {
+                return this.result((ItemStackLike) result);
+            }
 
             /**
              * Changes the result and returns this builder. The result is the
-             * {@link ItemStack} created when the recipe is fulfilled.
+             * {@link ItemStackLike} created when the recipe is fulfilled.
              *
              * @param result The output of this recipe
              *
              * @return This builder, for chaining
              */
-            EndStep result(ItemStackSnapshot result);
+            EndStep result(ItemStackLike result);
+
+            /**
+             * @deprecated Use {@link #result(Function, ItemStackLike)} instead.
+             */
+            @Deprecated(forRemoval = true)
+            default EndStep result(final Function<RecipeInput.Single, ItemStack> resultFunction, final ItemStack exemplaryResult) {
+                return this.result(resultFunction, (ItemStackLike) exemplaryResult);
+            }
 
             /**
              * Sets the result function and an exemplary result.
@@ -210,7 +241,7 @@ public interface CookingRecipe extends Recipe<RecipeInput.Single> {
              *
              * @return The builder
              */
-            EndStep result(final Function<RecipeInput.Single, ItemStack> resultFunction, final ItemStack exemplaryResult);
+            EndStep result(final Function<RecipeInput.Single, ? extends ItemStackLike> resultFunction, final ItemStackLike exemplaryResult);
         }
 
         interface EndStep extends Builder,
