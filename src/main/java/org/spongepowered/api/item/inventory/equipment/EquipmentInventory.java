@@ -27,6 +27,7 @@ package org.spongepowered.api.item.inventory.equipment;
 import org.spongepowered.api.item.inventory.Equipable;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
 
@@ -89,16 +90,32 @@ public interface EquipmentInventory extends Inventory {
     }
 
     /**
+     * @deprecated Use {@link #set(EquipmentType, ItemStackLike)} instead.
+     */
+    @Deprecated(forRemoval = true)
+    default InventoryTransactionResult set(EquipmentType equipmentType, ItemStack stack) {
+        return this.set(equipmentType, (ItemStackLike) stack);
+    }
+
+    /**
      * Sets the item for the specified equipment type.
      *
-     * @see Slot#set(ItemStack)
+     * @see Slot#set(ItemStackLike)
      * @param equipmentType Type of equipment slot to set
      * @param stack stack to insert
      * @return operation result, for details see {@link Inventory#set}
      */
-    InventoryTransactionResult set(EquipmentType equipmentType, ItemStack stack);
+    InventoryTransactionResult set(EquipmentType equipmentType, ItemStackLike stack);
 
+    /**
+     * @deprecated Use {@link #set(Supplier, ItemStackLike)} instead.
+     */
+    @Deprecated(forRemoval = true)
     default InventoryTransactionResult set(final Supplier<? extends EquipmentType> equipmentType, final ItemStack stack) {
+        return this.set(equipmentType, (ItemStackLike) stack);
+    }
+
+    default InventoryTransactionResult set(final Supplier<? extends EquipmentType> equipmentType, final ItemStackLike stack) {
         return this.set(equipmentType.get(), stack);
     }
 
