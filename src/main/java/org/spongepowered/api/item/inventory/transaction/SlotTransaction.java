@@ -26,6 +26,7 @@ package org.spongepowered.api.item.inventory.transaction;
 
 import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
 
@@ -51,12 +52,20 @@ public class SlotTransaction extends Transaction<ItemStackSnapshot> {
     }
 
     /**
-     * Sets the custom {@link ItemStack} output of this
+     * @deprecated Use {@link #setCustom(ItemStackLike)} instead.
+     */
+    @Deprecated(forRemoval = true)
+    public void setCustom(ItemStack stack) {
+        this.setCustom((ItemStackLike) stack);
+    }
+
+    /**
+     * Sets the custom {@link ItemStackLike} output of this
      * {@link SlotTransaction}.
      *
      * @param stack The stack
      */
-    public void setCustom(ItemStack stack) {
+    public void setCustom(ItemStackLike stack) {
         this.setCustom(Objects.requireNonNull(stack, "ItemStack was null").asImmutable());
     }
 
