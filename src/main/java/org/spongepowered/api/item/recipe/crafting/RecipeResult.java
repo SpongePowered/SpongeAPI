@@ -31,7 +31,6 @@ import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
 import java.util.List;
 import java.util.Objects;
 import java.util.StringJoiner;
-import java.util.stream.Collectors;
 
 /**
  * The result of fulfilling a {@link CraftingRecipe}.
