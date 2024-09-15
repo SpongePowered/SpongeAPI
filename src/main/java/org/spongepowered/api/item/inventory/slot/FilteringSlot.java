@@ -26,6 +26,7 @@ package org.spongepowered.api.item.inventory.slot;
 
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.inventory.Slot;
 
 /**
@@ -34,14 +35,22 @@ import org.spongepowered.api.item.inventory.Slot;
 public interface FilteringSlot extends Slot {
 
     /**
+     * @deprecated Use {@link #isValidItem(ItemStackLike)} instead.
+     */
+    @Deprecated(forRemoval = true)
+    default boolean isValidItem(ItemStack stack) {
+        return this.isValidItem((ItemStackLike) stack);
+    }
+
+    /**
      * Check whether the supplied item can be inserted into this slot. Returning
      * false from this method implies that {@link #offer} <b>would always return
      * false</b> for this item.
      *
-     * @param stack ItemStack to check
+     * @param stack ItemStackLike to check
      * @return true if the stack is valid for this slot
      */
-    boolean isValidItem(ItemStack stack);
+    boolean isValidItem(ItemStackLike stack);
 
     /**
      * Check whether the supplied item can be inserted into this slot. Returning
