@@ -32,6 +32,7 @@ import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.ContainerType;
 import org.spongepowered.api.item.inventory.Inventory;
+import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.menu.InventoryMenu;
@@ -248,13 +249,21 @@ public interface ViewableInventory extends Inventory {
         interface DummyStep extends BuildingStep {
 
             /**
+             * @deprecated Use {@link #item(ItemStackLike)} instead.
+             */
+            @Deprecated(forRemoval = true)
+            default BuildingStep item(ItemStackSnapshot item) {
+                return this.item((ItemStackLike) item);
+            }
+
+            /**
              * Sets the default item for the dummy-slots.
              *
              * @param item the default item
              *
              * @return the building step
              */
-            BuildingStep item(ItemStackSnapshot item);
+            BuildingStep item(ItemStackLike item);
         }
 
         interface EndStep extends Builder {

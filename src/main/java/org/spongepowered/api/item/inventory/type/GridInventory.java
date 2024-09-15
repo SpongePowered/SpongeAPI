@@ -26,6 +26,7 @@ package org.spongepowered.api.item.inventory.type;
 
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
 import org.spongepowered.math.vector.Vector2i;
@@ -96,15 +97,23 @@ public interface GridInventory extends Inventory2D {
     Optional<ItemStack> peek(int x, int y);
 
     /**
+     * @deprecated Use {@link #set(int, int, ItemStackLike)} instead.
+     */
+    @Deprecated(forRemoval = true)
+    default InventoryTransactionResult set(int x, int y, ItemStack stack) {
+        return this.set(x, y, (ItemStackLike) stack);
+    }
+
+    /**
      * Sets the item in the specified slot.
      *
-     * @see Slot#set(ItemStack)
+     * @see Slot#set(ItemStackLike)
      * @param x x coordinate
      * @param y y coordinate
      * @param stack Item stack to insert
      * @return operation result
      */
-    InventoryTransactionResult set(int x, int y, ItemStack stack);
+    InventoryTransactionResult set(int x, int y, ItemStackLike stack);
 
     /**
      * Gets the {@link Slot} at the specified position.
