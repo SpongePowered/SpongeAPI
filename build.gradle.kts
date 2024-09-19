@@ -178,7 +178,7 @@ tasks {
         options {
             (this as? StandardJavadocDocletOptions)?.apply {
                 links(
-                    "https://logging.apache.org/log4j/log4j-${libs.versions.log4j.get()}/log4j-api/apidocs/",
+                    "https://logging.apache.org/log4j/2.x/javadoc/log4j-api/",
                     "https://google.github.io/guice/api-docs/${libs.versions.guice.get()}/javadoc/",
                     "https://configurate.aoeu.xyz/${libs.versions.configurate.get()}/apidocs/",
                     "https://www.javadoc.io/doc/com.google.code.gson/gson/${libs.versions.gson.get()}/",
