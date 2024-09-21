@@ -16,7 +16,7 @@ junit = "5.10.2"
 log4j = "2.22.1"
 math = "2.0.1"
 mockito = "5.11.0"
-pluginSpi = "0.3.0"
+pluginSpi = "0.4.0"
 
 [libraries]
 adventure-bom = { module = "net.kyori:adventure-bom", version.ref = "adventure" }
