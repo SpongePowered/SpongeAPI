@@ -82,11 +82,16 @@ public interface BlockEntity extends SerializableDataHolder.Mutable, Locatable {
     boolean isTicking();
 
     /**
-     * Sets if this block entity will naturally tick.
+     * Attempts to set if this block entity will naturally tick.
+     *
+     * <p>This will return <code>false</code>
+     * if {@link #isRemoved()} returns <code>true</code>
+     * or {@link #canTick()} returns <code>false</code></p>
      *
      * @param ticking The ticking state
+     * @return True if ticking state was successfully set
      */
-    void setTicking(boolean ticking);
+    boolean setTicking(boolean ticking);
 
     /**
      * Gets the type of {@link BlockEntity} this is.
