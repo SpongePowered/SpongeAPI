@@ -24,11 +24,9 @@
  */
 package org.spongepowered.api.entity.living;
 
-import org.spongepowered.api.entity.Ranger;
-
 import java.util.UUID;
 
-public interface Human extends Humanoid, PathfinderAgent, Ranger {
+public interface Human extends Humanoid, PathfinderAgent, RangedAgent {
 
     /**
      * Sets the appearance "skin" of this human to the appearance used by a real
