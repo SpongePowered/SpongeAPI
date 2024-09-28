@@ -68,6 +68,32 @@ public interface BlockEntity extends SerializableDataHolder.Mutable, Locatable {
     void remove();
 
     /**
+     * Returns whether this block entity can tick.
+     *
+     * @return True if this block entity can tick
+     */
+    boolean canTick();
+
+    /**
+     * Returns whether this block entity is ticking.
+     *
+     * @return True if this block entity is ticking
+     */
+    boolean isTicking();
+
+    /**
+     * Attempts to set if this block entity will naturally tick.
+     *
+     * <p>This will return <code>false</code>
+     * if {@link #isRemoved()} returns <code>true</code>
+     * or {@link #canTick()} returns <code>false</code></p>
+     *
+     * @param ticking The ticking state
+     * @return True if ticking state was successfully set
+     */
+    boolean setTicking(boolean ticking);
+
+    /**
      * Gets the type of {@link BlockEntity} this is.
      *
      * @return The type of block entity
