@@ -287,6 +287,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
+import java.util.function.Predicate;
 
 /**
  * An enumeration of known {@link Key}s used throughout the API.
@@ -2185,7 +2186,7 @@ public final class Keys {
     /**
      * The token used to lock a {@link CarrierBlockEntity}. Or the token on an {@link ItemStack} to unlock it.
      */
-    public static final Key<Value<String>> LOCK_TOKEN = Keys.key(ResourceKey.sponge("lock_token"), String.class);
+    public static final Key<Value<Predicate<ItemStack>>> LOCK_TOKEN = Keys.key(ResourceKey.sponge("lock_token"), new TypeToken<Predicate<ItemStack>>() {});
 
     /**
      * A lodestone location, used with {@link ItemTypes#COMPASS}.
