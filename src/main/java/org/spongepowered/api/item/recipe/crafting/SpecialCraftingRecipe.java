@@ -27,6 +27,7 @@ package org.spongepowered.api.item.recipe.crafting;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
 import org.spongepowered.api.world.server.ServerWorld;
@@ -74,7 +75,7 @@ public interface SpecialCraftingRecipe extends CraftingRecipe {
              *
              * @return This builder, for chaining
              */
-            ResultStep remainingItems(Function<RecipeInput.Crafting, List<ItemStack>> remainingItemsFunction);
+            ResultStep remainingItems(Function<RecipeInput.Crafting, ? extends List<? extends ItemStackLike>> remainingItemsFunction);
 
             /**
              * Sets the result function.
@@ -83,7 +84,15 @@ public interface SpecialCraftingRecipe extends CraftingRecipe {
              *
              * @return This builder, for chaining
              */
-            EndStep result(Function<RecipeInput.Crafting, ItemStack> resultFunction);
+            EndStep result(Function<RecipeInput.Crafting, ? extends ItemStackLike> resultFunction);
+
+            /**
+             * @deprecated Use {@link #result(ItemStackLike)} instead;
+             */
+            @Deprecated(forRemoval = true)
+            default EndStep result(ItemStack result) {
+                return this.result((ItemStackLike) result);
+            }
 
             /**
              * Sets the result
@@ -92,7 +101,7 @@ public interface SpecialCraftingRecipe extends CraftingRecipe {
              *
              * @return This builder, for chaining
              */
-            EndStep result(ItemStack result);
+            EndStep result(ItemStackLike result);
         }
 
         interface EndStep extends Builder, org.spongepowered.api.util.Builder<RecipeRegistration, Builder> {

@@ -39,6 +39,14 @@ public interface Slot extends Inventory {
     Slot viewedSlot();
 
     /**
+     * @deprecated Use {@link #set(ItemStackLike)} instead.
+     */
+    @Deprecated(forRemoval = true)
+    default InventoryTransactionResult set(ItemStack stack) {
+        return this.set((ItemStackLike) stack);
+    }
+
+    /**
      * Adds the ItemStack to this slot overwriting the existing item.
      *
      * <p>Stacks bigger than the max stack size will be partially rejected.</p>
@@ -48,5 +56,5 @@ public interface Slot extends Inventory {
      * @return A SUCCESS transaction-result if the entire stack was added and
      *           FAILURE when the stack was not or only partially added to the inventory.
      */
-    InventoryTransactionResult set(ItemStack stack);
+    InventoryTransactionResult set(ItemStackLike stack);
 }

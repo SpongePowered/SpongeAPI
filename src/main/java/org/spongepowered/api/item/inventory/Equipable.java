@@ -57,6 +57,14 @@ public interface Equipable {
     }
 
     /**
+     * @deprecated Use {@link #canEquip(EquipmentType, ItemStackLike)} instead.
+     */
+    @Deprecated(forRemoval = true)
+    default boolean canEquip(EquipmentType type, ItemStack equipment) {
+        return this.canEquip(type, (ItemStackLike) equipment);
+    }
+
+    /**
      * Gets whether this {@link Equipable} can equip the supplied equipment in its slot of
      * the specified type (eg. whether calling {@link #equip} with the specified
      * slot type and item will succeed)
@@ -65,9 +73,17 @@ public interface Equipable {
      * @param equipment The equipment to check for
      * @return true if can equip the supplied equipment
      */
-    boolean canEquip(EquipmentType type, ItemStack equipment);
+    boolean canEquip(EquipmentType type, ItemStackLike equipment);
 
+    /**
+     * @deprecated Use {@link #canEquip(Supplier, ItemStackLike)} instead.
+     */
+    @Deprecated(forRemoval = true)
     default boolean canEquip(final Supplier<? extends EquipmentType> type, final ItemStack equipment) {
+        return this.canEquip(type, (ItemStackLike) equipment);
+    }
+
+    default boolean canEquip(final Supplier<? extends EquipmentType> type, final ItemStackLike equipment) {
         return this.canEquip(type.get(), equipment);
     }
 
@@ -85,6 +101,14 @@ public interface Equipable {
     }
 
     /**
+     * @deprecated Use {@link #equip(EquipmentType, ItemStackLike)} instead.
+     */
+    @Deprecated(forRemoval = true)
+    default boolean equip(EquipmentType type, ItemStack equipment) {
+        return this.equip(type, (ItemStackLike) equipment);
+    }
+
+    /**
      * Sets the item currently equipped by the {@link Equipable} in the specified slot, if
      * the equipable has such a slot.
      *
@@ -95,9 +119,17 @@ public interface Equipable {
      *     specified equipment type or because the item was incompatible with
      *     the specified slot.
      */
-    boolean equip(EquipmentType type, ItemStack equipment);
+    boolean equip(EquipmentType type, ItemStackLike equipment);
 
+    /**
+     * @deprecated Use {@link #equip(Supplier, ItemStackLike)} instead.
+     */
+    @Deprecated(forRemoval = true)
     default boolean equip(final Supplier<? extends EquipmentType> type, final ItemStack equipment) {
+        return this.equip(type, (ItemStackLike) equipment);
+    }
+
+    default boolean equip(final Supplier<? extends EquipmentType> type, final ItemStackLike equipment) {
         return this.equip(type.get(), equipment);
     }
 }

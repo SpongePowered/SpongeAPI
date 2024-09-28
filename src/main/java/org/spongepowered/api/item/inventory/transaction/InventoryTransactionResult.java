@@ -27,6 +27,7 @@ package org.spongepowered.api.item.inventory.transaction;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.CopyableBuilder;
 
@@ -179,31 +180,47 @@ public interface InventoryTransactionResult {
         Builder type(final Type type);
 
         /**
-         * Adds the provided {@link ItemStack itemstacks} as stacks that have been
+         * @deprecated Use {@link #reject(ItemStackLike...)} instead.
+         */
+        @Deprecated(forRemoval = true)
+        default Builder reject(ItemStack... itemStacks) {
+            return this.reject((ItemStackLike[]) itemStacks);
+        }
+
+        /**
+         * Adds the provided {@link ItemStackLike itemstacks} as stacks that have been
          * "rejected".
          *
          * @param itemStacks The itemstacks being rejected
          * @return This builder, for chaining
          */
-        Builder reject(ItemStack... itemStacks);
+        Builder reject(ItemStackLike... itemStacks);
 
         /**
-         * Adds the provided {@link ItemStack itemstacks} as stacks that have been
+         * Adds the provided {@link ItemStackLike itemstacks} as stacks that have been
          * "rejected".
          *
          * @param itemStacks The itemstacks being rejected
          * @return This builder, for chaining
          */
-        Builder reject(Iterable<ItemStackSnapshot> itemStacks);
+        Builder reject(Iterable<? extends ItemStackLike> itemStacks);
 
         /**
-         * Sets the provided {@link ItemStackSnapshot} as the stack that has been polled from the inventory.
+         * @deprecated Use {@link #poll(ItemStackLike)} instead.
+         */
+        @Deprecated(forRemoval = true)
+        default Builder.PollBuilder poll(ItemStackSnapshot itemStack) {
+            return this.poll((ItemStackLike) itemStack);
+        }
+
+        /**
+         * Sets the provided {@link ItemStackLike} as the stack that has been polled from the inventory.
          *
          * @param itemStack The polled itemstack
          *
          * @return This builder, for chaining
          */
-        Builder.PollBuilder poll(ItemStackSnapshot itemStack);
+        Builder.PollBuilder poll(ItemStackLike itemStack);
 
         /**
          * Adds the provided {@link ItemStack itemstacks} as stacks that are

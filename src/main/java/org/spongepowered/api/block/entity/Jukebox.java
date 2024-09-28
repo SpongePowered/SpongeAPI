@@ -27,6 +27,7 @@ package org.spongepowered.api.block.entity;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 /**
@@ -60,9 +61,17 @@ public interface Jukebox extends BlockEntity {
     void eject();
 
     /**
+     * @deprecated Use {@link #insert(ItemStackLike)} instead.
+     */
+    @Deprecated(forRemoval = true)
+    default void insert(ItemStack disc) {
+        this.insert((ItemStackLike) disc);
+    }
+
+    /**
      * Ejects the current music disc item in this Jukebox and inserts the given one.
      *
      * @param disc The music disc item to insert
      */
-    void insert(ItemStack disc);
+    void insert(ItemStackLike disc);
 }

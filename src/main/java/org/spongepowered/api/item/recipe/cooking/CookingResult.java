@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.item.recipe.cooking;
 
+import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 import java.util.Objects;
@@ -38,6 +39,14 @@ public final class CookingResult {
     private final double experience;
 
     /**
+     * @deprecated Use {@link #CookingResult(ItemStackLike, double)} instead.
+     */
+    @Deprecated(forRemoval = true)
+    public CookingResult(final ItemStackSnapshot result, final double experience) {
+        this((ItemStackLike) result, experience);
+    }
+
+    /**
      * Creates a new {@link CookingResult}.
      *
      * <p>Note that this may be replaced with a static of method in the future.</p>
@@ -45,16 +54,16 @@ public final class CookingResult {
      * @param result The result of the cooking recipe
      * @param experience The experience that should be created from this result
      */
-    public CookingResult(final ItemStackSnapshot result, final double experience) {
+    public CookingResult(final ItemStackLike result, final double experience) {
         Objects.requireNonNull(result, "result");
         if (result.isEmpty()) {
-            throw new IllegalArgumentException("The resulting snapshot must not be empty");
+            throw new IllegalArgumentException("The result must not be empty");
         }
         if (experience < 0) {
             throw new IllegalArgumentException("The experience must be non-negative.");
         }
 
-        this.result = result;
+        this.result = result.asImmutable();
         this.experience = experience;
     }
 

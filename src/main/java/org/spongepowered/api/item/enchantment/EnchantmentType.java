@@ -27,6 +27,7 @@ package org.spongepowered.api.item.enchantment;
 import net.kyori.adventure.text.ComponentLike;
 import org.spongepowered.api.block.entity.EnchantmentTable;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.tag.EnchantmenTypeTags;
 import org.spongepowered.api.tag.Taggable;
@@ -82,22 +83,38 @@ public interface EnchantmentType extends DefaultedRegistryValue, ComponentLike, 
     int maximumEnchantabilityForLevel(int level);
 
     /**
-     * Test if this enchantment type can be applied to an {@link ItemStack}.
+     * @deprecated Use {@link #canBeAppliedToStack(ItemStackLike)} instead,
+     */
+    @Deprecated(forRemoval = true)
+    default boolean canBeAppliedToStack(ItemStack stack) {
+        return this.canBeAppliedToStack((ItemStackLike) stack);
+    }
+
+    /**
+     * Test if this enchantment type can be applied to an {@link ItemStackLike}.
      *
      * @param stack The item stack to check
      * @return Whether this enchantment type can be applied
      */
-    boolean canBeAppliedToStack(ItemStack stack);
+    boolean canBeAppliedToStack(ItemStackLike stack);
 
     /**
-     * Test if this enchantment type can be applied to an {@link ItemStack} by
+     * @deprecated Use {@link #canBeAppliedToStack(ItemStackLike)} instead,
+     */
+    @Deprecated(forRemoval = true)
+    default boolean canBeAppliedByTable(ItemStack stack) {
+        return this.canBeAppliedByTable((ItemStackLike) stack);
+    }
+
+    /**
+     * Test if this enchantment type can be applied to an {@link ItemStackLike} by
      * the {@link EnchantmentTable}.
      *
      * @param stack Te item stack to check
      * @return Whether this enchantment type can be applied by the
      *     enchantment table
      */
-    boolean canBeAppliedByTable(ItemStack stack);
+    boolean canBeAppliedByTable(ItemStackLike stack);
 
     /**
      * Test if this enchantment type can be applied along with

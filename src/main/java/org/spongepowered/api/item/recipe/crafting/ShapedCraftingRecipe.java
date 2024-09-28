@@ -29,6 +29,7 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
@@ -214,28 +215,44 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
              * @param remainingItemsFunction the remaining items function
              *
              * @return This builder, for chaining
+             * @deprecated Will be replaced with ItemStackLike variant
              */
-            ResultStep remainingItems(Function<RecipeInput.Crafting, List<ItemStack>> remainingItemsFunction);
+            @Deprecated
+            ResultStep remainingItems(Function<RecipeInput.Crafting, ? extends List<? extends ItemStackLike>> remainingItemsFunction);
 
             /**
-             * Sets the resultant {@link ItemStackSnapshot} for when this shaped
+             * @deprecated Use {@link #result(ItemStackLike)} instead.
+             */
+            @Deprecated(forRemoval = true)
+            default EndStep result(ItemStackSnapshot result) {
+                return this.result((ItemStackLike) result);
+            }
+
+            /**
+             * @deprecated Use {@link #result(ItemStackLike)} instead.
+             */
+            @Deprecated(forRemoval = true)
+            default EndStep result(ItemStack result) {
+                return this.result((ItemStackLike) result);
+            }
+
+            /**
+             * Sets the resultant {@link ItemStackLike} for when this shaped
              * recipe is correctly crafted.
              *
              * @param result The resultant snapshot
              *
              * @return The builder
              */
-            EndStep result(ItemStackSnapshot result);
+            EndStep result(ItemStackLike result);
 
             /**
-             * Sets the resultant {@link ItemStack} for when this shaped recipe
-             * is correctly crafted.
-             *
-             * @param result The resultant stack
-             *
-             * @return The builder
+             * @deprecated Use {@link #result(Function, ItemStackLike)} instead.
              */
-            EndStep result(ItemStack result);
+            @Deprecated(forRemoval = true)
+            default EndStep result(Function<RecipeInput.Crafting, ItemStack> resultFunction, ItemStack exemplaryResult) {
+                return this.result(resultFunction, (ItemStackLike) exemplaryResult);
+            }
 
             /**
              * Sets the result function and an exemplary result.
@@ -246,7 +263,7 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
              *
              * @return The builder
              */
-            EndStep result(Function<RecipeInput.Crafting, ItemStack> resultFunction, ItemStack exemplaryResult);
+            EndStep result(Function<RecipeInput.Crafting, ? extends ItemStackLike> resultFunction, ItemStackLike exemplaryResult);
         }
 
         /**
