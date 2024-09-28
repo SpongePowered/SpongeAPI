@@ -111,6 +111,8 @@ public interface DataRegistration {
      */
     Optional<DataStore> dataStore(Class<? extends DataHolder> token);
 
+    <V extends Value<E>, E> Optional<DataPerspectiveResolver<V, E>> dataPerspectiveResolverFor(Key<V> key);
+
     /**
      * Gets the registered {@link Key Keys} this controls. Note that each
      * {@link Key} can only be registered/owned by a single
@@ -180,6 +182,8 @@ public interface DataRegistration {
          *     for the key
          */
         Builder provider(DataProvider<?, ?> provider) throws DuplicateProviderException;
+
+        Builder perspectiveResolver(DataPerspectiveResolver<?, ?> resolver);
 
         /**
          * Gives the {@link Key} to this builder signifying the key is to be

@@ -27,6 +27,7 @@ package org.spongepowered.api.scoreboard;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.DataPerspective;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.util.CopyableBuilder;
 
@@ -57,7 +58,7 @@ import java.util.function.Supplier;
  * For it to work, both players must have the same scoreboard, and be on a team
  * registered to said scoreboard.</p>
  */
-public interface Team {
+public interface Team extends DataPerspective {
 
     /**
      * Creates a new {@link Builder} to build a {@link Team}.
