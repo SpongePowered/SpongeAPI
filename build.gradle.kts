@@ -16,7 +16,6 @@ plugins {
     alias(libs.plugins.indra.crossdoc)
     alias(libs.plugins.indra.publishing)
     alias(libs.plugins.indra.publishing.sonatype)
-    alias(libs.plugins.eventImplGen)
     alias(libs.plugins.ideaExt)
     alias(libs.plugins.errorprone)
     alias(libs.plugins.nexusPublish)
@@ -34,12 +33,30 @@ configurations {
        }
     }
 }
+tasks {
+    register("printSourceDirs") {
+        doLast {
+            sourceSets.forEach { set ->
+                println("SourceSet: ${set.name}")
+                println("Java Source Dirs: ${set.java.srcDirs}" )
+            }
+        }
+    }
+}
+
+sourceSets {
+    main {
+        java.srcDirs(layout.buildDirectory.dir("generated/sources/annotationProcessor/java/main"))
+    }
+}
 
 // Project dependencies
 dependencies {
     // Directly tied to what's available from Minecraft
     api(libs.log4j.api)
     api(libs.gson)
+    api(libs.eventImplGen.annotations)
+    annotationProcessor(libs.eventImplGen.processor)
 
     // Adventure
     api(platform(libs.adventure.bom))
@@ -131,28 +148,35 @@ dependencies {
 }
 
 tasks {
-    genEventImpl {
-        sourceCompatibility = "17" // TODO use javaTarget here
-        destinationDirectory = project.layout.buildDirectory.dir("generated/event-factory")
 
-        outputFactory = "org.spongepowered.api.event.SpongeEventFactory"
-        include("org/spongepowered/api/event/*/**/*")
-        include("org/spongepowered/api/event/CompositeEvent.java")
-        exclude("org/spongepowered/api/event/action/InteractEvent.java")
-        exclude("org/spongepowered/api/event/cause/")
-        exclude("org/spongepowered/api/event/entity/AffectEntityEvent.java")
-        exclude("org/spongepowered/api/event/filter/")
-        exclude("org/spongepowered/api/event/impl/")
-        exclude("org/spongepowered/api/event/lifecycle/ProvideServiceEvent.java")
-        exclude("org/spongepowered/api/event/lifecycle/RegisterBuilderEvent.java")
-        exclude("org/spongepowered/api/event/lifecycle/RegisterRegistryEvent.java")
-        exclude("org/spongepowered/api/event/lifecycle/RegisterRegistryValueEvent.java")
-        exclude("org/spongepowered/api/event/lifecycle/RegisterCommandEvent.java")
-        exclude("org/spongepowered/api/event/lifecycle/RegisterFactoryEvent.java")
-        exclude("org/spongepowered/api/event/lifecycle/RegisterWorldEvent.java")
-        inclusiveAnnotations = setOf("org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod")
-        exclusiveAnnotations = setOf("org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod")
+    compileJava {
+        options.compilerArgs.addAll(listOf(
+            "-AeventGenFactory=org.spongepowered.api.event.SpongeEventFactory",
+            "-AeventGenDebug=true",
+        ))
     }
+//    genEventImpl {
+//        sourceCompatibility = javaTarget
+//        destinationDirectory = project.layout.buildDirectory.dir("generated/event-factory")
+//
+//        outputFactory = "org.spongepowered.api.event.SpongeEventFactory"
+//        include("org/spongepowered/api/event/*/**/*")
+//        include("org/spongepowered/api/event/CompositeEvent.java")
+//        exclude("org/spongepowered/api/event/action/InteractEvent.java")
+//        exclude("org/spongepowered/api/event/cause/")
+//        exclude("org/spongepowered/api/event/entity/AffectEntityEvent.java")
+//        exclude("org/spongepowered/api/event/filter/")
+//        exclude("org/spongepowered/api/event/impl/")
+//        exclude("org/spongepowered/api/event/lifecycle/ProvideServiceEvent.java")
+//        exclude("org/spongepowered/api/event/lifecycle/RegisterBuilderEvent.java")
+//        exclude("org/spongepowered/api/event/lifecycle/RegisterRegistryEvent.java")
+//        exclude("org/spongepowered/api/event/lifecycle/RegisterRegistryValueEvent.java")
+//        exclude("org/spongepowered/api/event/lifecycle/RegisterCommandEvent.java")
+//        exclude("org/spongepowered/api/event/lifecycle/RegisterFactoryEvent.java")
+//        exclude("org/spongepowered/api/event/lifecycle/RegisterWorldEvent.java")
+//        inclusiveAnnotations = setOf("org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod")
+//        exclusiveAnnotations = setOf("org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod")
+//    }
 
     jar {
         from(ap.get().output)
@@ -217,14 +241,14 @@ idea {
                 testRunner = org.jetbrains.gradle.ext.ActionDelegationConfig.TestRunner.PLATFORM
             }
             taskTriggers {
-                beforeBuild(tasks.genEventImpl)
+//                beforeBuild(tasks.genEventImpl)
             }
         }
     }
 }
 
 eclipse {
-    synchronizationTasks(tasks.genEventImpl)
+//    synchronizationTasks(tasks.genEventImpl)
 }
 
 val organization: String by project

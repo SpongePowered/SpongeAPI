@@ -37,6 +37,8 @@ guice = { module = "com.google.inject:guice", version.ref = "guice" }
 log4j-api = { module = "org.apache.logging.log4j:log4j-api", version.ref = "log4j" }
 math = { module = "org.spongepowered:math", version.ref = "math" }
 pluginSpi = { module = "org.spongepowered:plugin-spi", version.ref = "pluginSpi" }
+eventImplGen-processor = {module = "org.spongepowered:event-impl-gen", version = "8.0.0-SNAPSHOT"}
+eventImplGen-annotations = { module = "org.spongepowered:event-impl-gen-annotations", version = "8.0.0-SNAPSHOT"}
 
 # build-time/annotations
 

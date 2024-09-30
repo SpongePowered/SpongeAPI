@@ -1,11 +1,9 @@
 package org.spongepowered.api.event;
 
 import org.spongepowered.api.event.impl.AbstractCompositeEvent;
-import org.spongepowered.api.event.impl.entity.AbstractDamageEntityEvent;
-import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
-import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
-import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
-import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
+import org.spongepowered.eventgen.annotations.GenerateFactoryMethod;
+import org.spongepowered.eventgen.annotations.ImplementedBy;
+import org.spongepowered.eventgen.annotations.PropertySettings;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -25,18 +23,19 @@ import java.util.function.Consumer;
 @ImplementedBy(AbstractCompositeEvent.class)
 public interface CompositeEvent<E extends Event> extends Event, Cancellable {
 
+    @PropertySettings(useInToString = false)
     E baseEvent();
 
     List<Event> children();
 
-    default <E extends Event> List<? extends E> event(Class<E> type) {
+    default <A extends Event> List<? extends A> event(Class<A> type) {
         return this.children().stream()
             .filter(type::isInstance)
             .map(type::cast)
             .toList();
     }
 
-    default <E extends Event> void applyTo(Class<E> type, Consumer<? super E> consumer) {
+    default <A extends Event> void applyTo(Class<A> type, Consumer<? super A> consumer) {
         this.children().stream()
             .filter(type::isInstance)
             .map(type::cast)
