@@ -27,7 +27,7 @@ package org.spongepowered.api.event.user;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.service.ban.Ban;
-import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
+import org.spongepowered.eventgen.annotations.GenerateFactoryMethod;
 
 /**
  * Occurs when a user is banned.

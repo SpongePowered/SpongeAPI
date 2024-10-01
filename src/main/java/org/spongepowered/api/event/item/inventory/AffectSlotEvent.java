@@ -26,7 +26,7 @@ package org.spongepowered.api.event.item.inventory;
 
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.transaction.SlotTransaction;
-import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
+import org.spongepowered.eventgen.annotations.NoFactoryMethod;
 
 import java.util.ArrayList;
 import java.util.List;

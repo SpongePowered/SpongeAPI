@@ -13,6 +13,9 @@ plugins {
 }
 
 dependencyResolutionManagement {
+    repositories {
+        mavenLocal()
+    }
     repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
     pluginManagement.repositories.forEach(repositories::add)
 }

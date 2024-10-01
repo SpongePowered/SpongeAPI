@@ -26,7 +26,7 @@ package org.spongepowered.api.event.lifecycle;
 
 import org.spongepowered.api.Engine;
 import org.spongepowered.api.event.GenericEvent;
-import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
+import org.spongepowered.eventgen.annotations.NoFactoryMethod;
 
 @NoFactoryMethod
 public interface EngineLifecycleEvent<E extends Engine> extends GenericEvent<E>, LifecycleEvent {

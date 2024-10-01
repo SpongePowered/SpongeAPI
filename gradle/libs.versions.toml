@@ -45,7 +45,6 @@ eventImplGen-annotations = { module = "org.spongepowered:event-impl-gen-annotati
 checkerQual = { module = "org.checkerframework:checker-qual", version.ref = "checker" }
 errorprone = { module = "com.google.errorprone:error_prone_core", version.ref = "errorprone" }
 errorprone-annotations = { module = "com.google.errorprone:error_prone_annotations", version.ref = "errorprone" }
-spoon = { module = "fr.inria.gforge.spoon:spoon-core", version = "10.4.2" } # bump for EIG
 
 # testing
 

@@ -3,12 +3,15 @@ package org.spongepowered.api.event.impl;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.CompositeEvent;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.util.annotation.eventgen.UseField;
+import org.spongepowered.eventgen.annotations.UseField;
 
 import java.util.Collections;
 import java.util.List;
 
 public abstract class AbstractCompositeEvent<E extends Event> extends AbstractEvent implements CompositeEvent<E> {
+
+    @UseField
+    protected E baseEvent;
 
     @UseField(overrideToString = true)
     protected List<Event> children;

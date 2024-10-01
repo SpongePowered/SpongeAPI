@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.event;
 
+import org.spongepowered.eventgen.annotations.NoFactoryMethod;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -34,6 +36,7 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
+@NoFactoryMethod
 public @interface Listener {
 
     /**
