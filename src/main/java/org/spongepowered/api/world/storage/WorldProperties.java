@@ -36,7 +36,7 @@ import org.spongepowered.math.vector.Vector3i;
 /**
  * Represents the properties of a {@link World} which are persisted across runtime instances.
  */
-public interface WorldProperties extends WeatherUniverse, GameRuleHolder, DataHolder.Mutable {
+public interface WorldProperties extends WeatherUniverse, DataHolder.Mutable {
 
     /**
      * Gets the default spawn position.
