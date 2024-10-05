@@ -46,23 +46,37 @@ import java.util.Map;
 public interface Structure extends DefaultedRegistryValue {
 
     /**
-     * Places the structure at given position and world
-     *
-     * @param world The world
-     * @param pos The position
-     *
-     * @return true when the feature was successfully placed
-     */
-    boolean place(ServerWorld world, Vector3i pos);
+    * Functional interface to handle block placement during structure generation.
+    */
+    @FunctionalInterface
+    interface BlockPlacerCallback {
+        /**
+            * Called when a block is being placed during structure generation.
+            * @param location The location of the block being placed
+            * @param block The block being placed
+            * @return True to allow the block placement, false to skip the block.
+            */
+        boolean onBlockPlace(ServerLocation location, Block block);
+    }
+
 
     /**
-     * Places the structure at given location
-     *
-     * @param location The location
-     *
-     * @return true when the feature was successfully placed
-     */
-    boolean place(ServerLocation location);
+        * Places the structure at given position and world using a callback for each block placed.
+        * @param world The world
+        * @param pos The position
+        * @param callback The callback for handling block placement.
+        * @return true if the structure was successfully placed
+        */
+    boolean place(ServerWorld world, Vector3i pos, BlockPlacerCallback callback);
+
+
+    /**
+        * Places the structure at given location using a callback for each block placed.
+        * @param location The location
+        * @param callback The callback for handling block placement.
+        * @return true if the structure was successfully placed
+        */
+    boolean place(ServerLocation location, BlockPlacerCallback callback);
 
     /**
      * Returns the biomes the structure is allowed in.

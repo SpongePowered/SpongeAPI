@@ -55,22 +55,35 @@ public interface Feature extends DefaultedRegistryValue {
     DataView toContainer();
 
     /**
-     * Places the feature at given position and world
-     *
-     * @param world The world
-     * @param pos The position
-     *
-     * @return true when the feature was successfully placed
-     */
-    boolean place(ServerWorld world, Vector3i pos);
+    * Functional interface to handle block placement during feature generation.
+    */
+   @FunctionalInterface
+   interface BlockPlacerCallback {
+       /**
+        * Called when a block is being placed during feature generation.
+        * @param location The location of the block being placed
+        * @param block The block being placed
+        * @return True to allow the block placement, false to skip the block.
+        */
+       boolean onBlockPlace(ServerLocation location, Block block);
+   }
 
-    /**
-     * Places the feature at given location
-     *
-     * @param location The location
-     *
-     * @return true when the feature was successfully placed
-     */
-    boolean place(ServerLocation location);
+   /**
+    * Places the feature at the given position in the world, using the provided callback for block placement.
+    * @param world The world where the feature will be placed
+    * @param pos The position where the feature will be placed
+    * @param callback The callback for handling block placement.
+    * @return true if the feature was successfully placed
+    */
+   boolean place(ServerWorld world, Vector3i pos, BlockPlacerCallback callback);
+
+
+   /**
+    * Places the feature at the given location, using the provided callback for block placement.
+    * @param location The location where the feature will be placed
+    * @param callback The callback for handling block placement.
+    * @return true if the feature was successfully placed
+    */
+   boolean place(ServerLocation location, BlockPlacerCallback callback);
 
 }
