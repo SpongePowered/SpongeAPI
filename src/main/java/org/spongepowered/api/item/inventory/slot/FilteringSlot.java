@@ -25,7 +25,6 @@
 package org.spongepowered.api.item.inventory.slot;
 
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.inventory.Slot;
 
@@ -33,14 +32,6 @@ import org.spongepowered.api.item.inventory.Slot;
  * An inventory slot which can only accept certain types of item.
  */
 public interface FilteringSlot extends Slot {
-
-    /**
-     * @deprecated Use {@link #isValidItem(ItemStackLike)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    default boolean isValidItem(ItemStack stack) {
-        return this.isValidItem((ItemStackLike) stack);
-    }
 
     /**
      * Check whether the supplied item can be inserted into this slot. Returning

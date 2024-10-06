@@ -165,22 +165,6 @@ public interface DisplayInfo {
         }
 
         /**
-         * @deprecated Use {@link #icon(ItemStackLike)} instead.
-         */
-        @Deprecated(forRemoval = true)
-        default Builder icon(ItemStack itemStack) {
-            return this.icon((ItemStackLike) itemStack);
-        }
-
-        /**
-         * @deprecated Use {@link #icon(ItemStackLike)} instead.
-         */
-        @Deprecated(forRemoval = true)
-        default Builder icon(ItemStackSnapshot itemStackSnapshot) {
-            return this.icon((ItemStackLike) itemStackSnapshot);
-        }
-
-        /**
          * Sets the icon of the advancement with the
          * specified {@link ItemStackLike}.
          *

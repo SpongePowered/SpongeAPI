@@ -28,9 +28,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackLike;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.item.recipe.RecipeType;
@@ -65,14 +63,6 @@ public interface CookingRecipe extends Recipe<RecipeInput.Single> {
     Ingredient ingredient();
 
     /**
-     * @deprecated Use {@link #isValid(ItemStackLike)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    default boolean isValid(ItemStackSnapshot ingredient) {
-        return this.isValid((ItemStackLike) ingredient);
-    }
-
-    /**
      * Checks if the given {@link ItemStackLike} fits the required
      * constraints to craft this {@link CookingRecipe}.
      *
@@ -81,14 +71,6 @@ public interface CookingRecipe extends Recipe<RecipeInput.Single> {
      * @return Whether this ingredient can be used to craft the result
      */
     boolean isValid(ItemStackLike ingredient);
-
-    /**
-     * @deprecated Use {@link #result(ItemStackLike)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    default Optional<CookingResult> result(ItemStackSnapshot ingredient) {
-        return this.result((ItemStackLike) ingredient);
-    }
 
     /**
      * <p>Returns the {@link CookingResult} containing the resulting
@@ -200,22 +182,6 @@ public interface CookingRecipe extends Recipe<RecipeInput.Single> {
             }
 
             /**
-             * @deprecated Use {@link #result(ItemStackLike)} instead.
-             */
-            @Deprecated(forRemoval = true)
-            default EndStep result(ItemStack result) {
-                return this.result((ItemStackLike) result);
-            }
-
-            /**
-             * @deprecated Use {@link #result(ItemStackLike)} instead.
-             */
-            @Deprecated(forRemoval = true)
-            default EndStep result(ItemStackSnapshot result) {
-                return this.result((ItemStackLike) result);
-            }
-
-            /**
              * Changes the result and returns this builder. The result is the
              * {@link ItemStackLike} created when the recipe is fulfilled.
              *
@@ -224,14 +190,6 @@ public interface CookingRecipe extends Recipe<RecipeInput.Single> {
              * @return This builder, for chaining
              */
             EndStep result(ItemStackLike result);
-
-            /**
-             * @deprecated Use {@link #result(Function, ItemStackLike)} instead.
-             */
-            @Deprecated(forRemoval = true)
-            default EndStep result(final Function<RecipeInput.Single, ItemStack> resultFunction, final ItemStack exemplaryResult) {
-                return this.result(resultFunction, (ItemStackLike) exemplaryResult);
-            }
 
             /**
              * Sets the result function and an exemplary result.

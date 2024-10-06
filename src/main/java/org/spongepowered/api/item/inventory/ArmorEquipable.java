@@ -47,14 +47,6 @@ public interface ArmorEquipable extends Equipable {
     ItemStack head();
 
     /**
-     * @deprecated Use {@link #setHead(ItemStackLike)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    default void setHead(ItemStack head) {
-        this.setHead((ItemStackLike) head);
-    }
-
-    /**
      * Sets the head.
      *
      * @param head The head
@@ -67,14 +59,6 @@ public interface ArmorEquipable extends Equipable {
      * @return The chest, if available
      */
     ItemStack chest();
-
-    /**
-     * @deprecated Use {@link #setChest(ItemStackLike)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    default void setChest(ItemStack chest) {
-        this.setChest((ItemStackLike) chest);
-    }
 
     /**
      * Sets the chest.
@@ -91,14 +75,6 @@ public interface ArmorEquipable extends Equipable {
     ItemStack legs();
 
     /**
-     * @deprecated Use {@link #setLegs(ItemStackLike)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    default void setLegs(ItemStack legs) {
-        this.setLegs((ItemStackLike) legs);
-    }
-
-    /**
      * Sets the legs.
      *
      * @param legs The legs
@@ -111,14 +87,6 @@ public interface ArmorEquipable extends Equipable {
      * @return The feet, if available
      */
     ItemStack feet();
-
-    /**
-     * @deprecated Use {@link #setFeet(ItemStackLike)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    default void setFeet(ItemStack feet) {
-        this.setFeet((ItemStackLike) feet);
-    }
 
     /**
      * Sets the feet.
@@ -146,14 +114,6 @@ public interface ArmorEquipable extends Equipable {
     ItemStack itemInHand(HandType handType);
 
     /**
-     * @deprecated Use {@link #setItemInHand(Supplier, ItemStackLike)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    default void setItemInHand(Supplier<? extends HandType> handType, ItemStack itemInHand) {
-        this.setItemInHand(handType, (ItemStackLike) itemInHand);
-    }
-
-    /**
      * Sets the equipped item in hand.
      *
      * @param handType The hand type to set to
@@ -161,14 +121,6 @@ public interface ArmorEquipable extends Equipable {
      */
     default void setItemInHand(Supplier<? extends HandType> handType, ItemStackLike itemInHand) {
         this.setItemInHand(handType.get(), itemInHand);
-    }
-
-    /**
-     * @deprecated Use {@link #setItemInHand(HandType, ItemStackLike)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    default void setItemInHand(HandType handType, ItemStack itemInHand) {
-        this.setItemInHand(handType, (ItemStackLike) itemInHand);
     }
 
     /**

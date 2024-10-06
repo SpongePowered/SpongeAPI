@@ -143,14 +143,6 @@ public interface Inventory extends ValueContainer {
     ItemStack peek();
 
     /**
-     * @deprecated Use {@link #offer(ItemStackLike...)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    default InventoryTransactionResult offer(ItemStack... stacks) {
-        return this.offer((ItemStackLike[]) stacks);
-    }
-
-    /**
      * Adds one or more ItemStacks to this inventory.
      *
      * @param stacks The stacks to add to this inventory.
@@ -159,14 +151,6 @@ public interface Inventory extends ValueContainer {
      *           FAILURE when at least one stack was not or only partially added to the inventory.
      */
     InventoryTransactionResult offer(ItemStackLike... stacks);
-
-    /**
-     * @deprecated Use {@link #canFit(ItemStackLike)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    default boolean canFit(ItemStack stack) {
-        return this.canFit((ItemStackLike) stack);
-    }
 
     /**
      * Returns true if the entire stack can fit in this inventory.
@@ -215,14 +199,6 @@ public interface Inventory extends ValueContainer {
     Optional<ItemStack> peekAt(int index);
 
     /**
-     * @deprecated Use {@link #offer(int, ItemStackLike)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    default InventoryTransactionResult offer(int index, ItemStack stack) {
-        return this.offer(index, (ItemStackLike) stack);
-    }
-
-    /**
      * Adds an ItemStack to the slot at given index.
      * Returns a {@link InventoryTransactionResult.Type#SUCCESS} only if the entire {@link ItemStackLike} fits the slot.
      *
@@ -233,14 +209,6 @@ public interface Inventory extends ValueContainer {
      *           FAILURE when the stack was not or only partially added to the inventory.
      */
     InventoryTransactionResult offer(int index, ItemStackLike stack);
-
-    /**
-     * @deprecated Use {@link #set(int, ItemStackLike)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    default InventoryTransactionResult set(int index, ItemStack stack) {
-        return this.set(index, (ItemStackLike) stack);
-    }
 
     /**
      * Adds the ItemStack to the slot at given index overwriting the existing item.
@@ -293,14 +261,6 @@ public interface Inventory extends ValueContainer {
     int capacity();
 
     /**
-     * @deprecated Use {@link #contains(ItemStackLike)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    default boolean contains(ItemStack stack) {
-        return this.contains((ItemStackLike) stack);
-    }
-
-    /**
      * Checks whether the stacks quantity or more of given stack is contained in this Inventory.
      * To check if an inventory contains any amount use {@link #containsAny(ItemStackLike)}.
      *
@@ -318,14 +278,6 @@ public interface Inventory extends ValueContainer {
      * @return True if at least one stack in this list has the given type
      */
     boolean contains(ItemType type);
-
-    /**
-     * @deprecated Use {@link #containsAny(ItemStackLike)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    default boolean containsAny(ItemStack stack) {
-        return this.containsAny((ItemStackLike) stack);
-    }
 
     /**
      * Checks whether the given stack is contained in this Inventory.

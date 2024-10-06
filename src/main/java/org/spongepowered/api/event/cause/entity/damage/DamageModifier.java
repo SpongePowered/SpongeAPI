@@ -163,22 +163,6 @@ public interface DamageModifier {
             return this;
         }
 
-        /**
-         * @deprecated Use {@link #item(ItemStackLike)} instead.
-         */
-        @Deprecated(forRemoval = true)
-        public Builder item(final ItemStack itemStack) {
-            return this.item((ItemStackLike) itemStack);
-        }
-
-        /**
-         * @deprecated Use {@link #item(ItemStackLike)} instead.
-         */
-        @Deprecated(forRemoval = true)
-        public Builder item(final ItemStackSnapshot snapshot) {
-            return this.item((ItemStackLike) snapshot);
-        }
-
         public Builder item(final ItemStackLike item) {
             this.snapshot = java.util.Objects.requireNonNull(item, "item").asImmutable();
             return this;
