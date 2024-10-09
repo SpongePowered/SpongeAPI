@@ -30,6 +30,7 @@ import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.CopyableBuilder;
 
@@ -162,13 +163,24 @@ public interface DamageModifier {
             return this;
         }
 
+        /**
+         * @deprecated Use {@link #item(ItemStackLike)} instead.
+         */
+        @Deprecated(forRemoval = true)
         public Builder item(final ItemStack itemStack) {
-            this.item(java.util.Objects.requireNonNull(itemStack, "ItemStack").createSnapshot());
-            return this;
+            return this.item((ItemStackLike) itemStack);
         }
 
+        /**
+         * @deprecated Use {@link #item(ItemStackLike)} instead.
+         */
+        @Deprecated(forRemoval = true)
         public Builder item(final ItemStackSnapshot snapshot) {
-            this.snapshot = java.util.Objects.requireNonNull(snapshot, "ItemStackSnapshot");
+            return this.item((ItemStackLike) snapshot);
+        }
+
+        public Builder item(final ItemStackLike item) {
+            this.snapshot = java.util.Objects.requireNonNull(item, "item").asImmutable();
             return this;
         }
 

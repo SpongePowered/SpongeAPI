@@ -26,6 +26,7 @@ package org.spongepowered.api.item.inventory.type;
 
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.transaction.InventoryTransactionResult;
@@ -74,14 +75,22 @@ public interface Inventory2D extends Inventory {
     }
 
     /**
+     * @deprecated Use {@link #set(Vector2i, ItemStackLike)} instead.
+     */
+    @Deprecated(forRemoval = true)
+    default InventoryTransactionResult set(Vector2i pos, ItemStack stack) {
+        return this.set(pos, (ItemStackLike) stack);
+    }
+
+    /**
      * Sets the item in the specified slot.
      *
-     * @see Slot#set(ItemStack)
+     * @see Slot#set(ItemStackLike)
      * @param pos Slot position to set
      * @param stack Stack to insert
      * @return matching stacks, as per the semantics of {@link Inventory#set}
      */
-    default InventoryTransactionResult set(Vector2i pos, ItemStack stack) {
+    default InventoryTransactionResult set(Vector2i pos, ItemStackLike stack) {
         return this.slot(pos).map(slot -> slot.set(stack)).orElse(InventoryTransactionResult.failNoTransactions());
     }
 

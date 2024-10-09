@@ -26,6 +26,7 @@ package org.spongepowered.api.item.inventory.slot;
 
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.util.Direction;
 
@@ -33,6 +34,14 @@ import org.spongepowered.api.util.Direction;
  * A slot which belongs to a particular side of a "sided" inventory.
  */
 public interface SidedSlot extends Slot {
+
+    /**
+     * @deprecated Use {@link #canAccept(ItemStackLike, Direction)} instead.
+     */
+    @Deprecated(forRemoval = true)
+    default boolean canAccept(ItemStack stack, Direction from) {
+        return this.canAccept((ItemStackLike) stack, from);
+    }
 
     /**
      * Gets whether this slot can accept the specified item from the specified
@@ -43,19 +52,35 @@ public interface SidedSlot extends Slot {
      * @return true if this inventory can accept the supplied stack from the
      *      specified direction
      */
-    boolean canAccept(ItemStack stack, Direction from);
+    boolean canAccept(ItemStackLike stack, Direction from);
+
+    /**
+     * @deprecated Use {@link #offer(ItemStackLike, Direction)} instead.
+     */
+    @Deprecated(forRemoval = true)
+    default boolean offer(ItemStack stack, Direction from) {
+        return this.offer((ItemStackLike) stack, from);
+    }
 
     /**
      * Attempts to insert the supplied stack into this inventory from the
      * specified direction.
      *
-     * @see Inventory#offer(ItemStack...)
+     * @see Inventory#offer(ItemStackLike...)
      * @param stack Stack to insert
      * @param from Direction to check for insertion from
      * @return true if this inventory can accept the supplied stack from the
      *      specified direction
      */
-    boolean offer(ItemStack stack, Direction from);
+    boolean offer(ItemStackLike stack, Direction from);
+
+    /**
+     * @deprecated Use {@link #canGet(ItemStackLike, Direction)} instead.
+     */
+    @Deprecated(forRemoval = true)
+    default boolean canGet(ItemStack stack, Direction from) {
+        return this.canGet((ItemStackLike) stack, from);
+    }
 
     /**
      * Gets whether automation can extract the specified item from the specified
@@ -66,6 +91,6 @@ public interface SidedSlot extends Slot {
      * @return true if automation can retrieve the supplied stack from the
      *      specified direction
      */
-    boolean canGet(ItemStack stack, Direction from);
+    boolean canGet(ItemStackLike stack, Direction from);
 
 }

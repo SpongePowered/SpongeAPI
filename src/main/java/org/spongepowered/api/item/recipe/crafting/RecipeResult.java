@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.item.recipe.crafting;
 
+import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
 
@@ -40,6 +41,14 @@ public final class RecipeResult {
     private final List<ItemStackSnapshot> remainingItems;
 
     /**
+     * @deprecated Use {@link #RecipeResult(ItemStackLike, List)} instead.
+     */
+    @Deprecated(forRemoval = true)
+    public RecipeResult(ItemStackSnapshot result, List<ItemStackSnapshot> remainingItems) {
+        this((ItemStackLike) result, (List<? extends ItemStackLike>) remainingItems);
+    }
+
+    /**
      * Creates a new {@link RecipeResult}.
      *
      * <p>Note that this may be replaced with a static of method in the
@@ -49,7 +58,7 @@ public final class RecipeResult {
      * @param remainingItems The remaining items to leave in the
      *     crafting window
      */
-    public RecipeResult(ItemStackSnapshot result, List<ItemStackSnapshot> remainingItems) {
+    public RecipeResult(ItemStackLike result, List<? extends ItemStackLike> remainingItems) {
         Objects.requireNonNull(result, "result");
         if (result.isEmpty()) {
             throw new IllegalArgumentException("The result must not be empty!");
@@ -60,8 +69,8 @@ public final class RecipeResult {
                 + " It should contain empty ItemStackSnapshot values for slots which should be cleared.");
         }
 
-        this.result = result;
-        this.remainingItems = List.copyOf(remainingItems);
+        this.result = result.asImmutable();
+        this.remainingItems = remainingItems.stream().map(ItemStackLike::asImmutable).toList();
     }
 
     /**

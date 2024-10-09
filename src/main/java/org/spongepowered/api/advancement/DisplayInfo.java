@@ -28,6 +28,7 @@ import net.kyori.adventure.text.Component;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.CopyableBuilder;
 
@@ -164,24 +165,29 @@ public interface DisplayInfo {
         }
 
         /**
-         * Sets the icon of the advancement with the
-         * specified {@link ItemStack}.
-         *
-         * @param itemStack The item stack
-         * @return This builder, for chaining
+         * @deprecated Use {@link #icon(ItemStackLike)} instead.
          */
+        @Deprecated(forRemoval = true)
         default Builder icon(ItemStack itemStack) {
-            return this.icon(itemStack.createSnapshot());
+            return this.icon((ItemStackLike) itemStack);
+        }
+
+        /**
+         * @deprecated Use {@link #icon(ItemStackLike)} instead.
+         */
+        @Deprecated(forRemoval = true)
+        default Builder icon(ItemStackSnapshot itemStackSnapshot) {
+            return this.icon((ItemStackLike) itemStackSnapshot);
         }
 
         /**
          * Sets the icon of the advancement with the
-         * specified {@link ItemStackSnapshot}.
+         * specified {@link ItemStackLike}.
          *
-         * @param itemStackSnapshot The item stack snapshot
+         * @param itemStack The item stack snapshot
          * @return This builder, for chaining
          */
-        Builder icon(ItemStackSnapshot itemStackSnapshot);
+        Builder icon(ItemStackLike itemStack);
 
         /**
          * Sets whether a toast should be shown. This is the notification

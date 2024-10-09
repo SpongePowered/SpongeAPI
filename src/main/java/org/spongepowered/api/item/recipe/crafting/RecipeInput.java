@@ -26,6 +26,7 @@ package org.spongepowered.api.item.recipe.crafting;
 
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.inventory.type.GridInventory;
 import org.spongepowered.api.item.recipe.cooking.CookingRecipe;
 import org.spongepowered.api.item.recipe.single.StoneCutterRecipe;
@@ -66,6 +67,14 @@ public interface RecipeInput extends Inventory {
     interface Factory {
 
         /**
+         * @deprecated Use {@link #single(ItemStackLike)} instead.
+         */
+        @Deprecated(forRemoval = true)
+        default RecipeInput.Single single(ItemStack stack) {
+            return this.single((ItemStackLike) stack);
+        }
+
+        /**
          * Creates a recipe input for
          * {@link CookingRecipe} and
          * {@link StoneCutterRecipe}
@@ -74,7 +83,15 @@ public interface RecipeInput extends Inventory {
          *
          * @return the recipe input
          */
-        RecipeInput.Single single(ItemStack stack);
+        RecipeInput.Single single(ItemStackLike stack);
+
+        /**
+         * @deprecated Use {@link #smithing(ItemStackLike, ItemStackLike, ItemStackLike)} instead.
+         */
+        @Deprecated(forRemoval = true)
+        default RecipeInput.Smithing smithing(ItemStack templateStack, ItemStack baseStack, ItemStack additionStack) {
+            return this.smithing((ItemStackLike) templateStack, (ItemStackLike) baseStack, (ItemStackLike) additionStack);
+        }
 
         /**
          * Creates a recipe input for {@link SmithingRecipe}
@@ -85,7 +102,7 @@ public interface RecipeInput extends Inventory {
          *
          * @return the recipe input
          */
-        RecipeInput.Smithing smithing(ItemStack templateStack, ItemStack baseStack, ItemStack additionStack);
+        RecipeInput.Smithing smithing(ItemStackLike templateStack, ItemStackLike baseStack, ItemStackLike additionStack);
 
         /**
          * Creates a recipe input for {@link CraftingRecipe}
