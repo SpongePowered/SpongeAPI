@@ -25,6 +25,8 @@
 package org.spongepowered.api.event.lifecycle;
 
 import org.spongepowered.api.Engine;
+import org.spongepowered.eventgen.annotations.GenerateFactoryMethod;
 
+@GenerateFactoryMethod
 public interface StoppingEngineEvent<E extends Engine> extends EngineLifecycleEvent<E> {
 }

@@ -219,9 +219,6 @@ idea {
                 delegateBuildRunToGradle = false
                 testRunner = org.jetbrains.gradle.ext.ActionDelegationConfig.TestRunner.PLATFORM
             }
-            taskTriggers {
-//                beforeBuild(tasks.genEventImpl)
-            }
         }
     }
 }

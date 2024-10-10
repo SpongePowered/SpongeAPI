@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.lifecycle;
 
 import org.spongepowered.api.Game;
+import org.spongepowered.eventgen.annotations.GenerateFactoryMethod;
 
 /**
  * Fired when something within a {@link Game} triggers a refresh of
@@ -37,6 +38,7 @@ import org.spongepowered.api.Game;
  *     plugin use.
  * </p>
  */
+@GenerateFactoryMethod
 public interface RefreshGameEvent extends LifecycleEvent {
 
 }

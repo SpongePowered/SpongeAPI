@@ -39,7 +39,6 @@ import java.util.function.Predicate;
  * Fired when sending a chat message.
  * To modify the message use {@link Decorate}.
  */
-@NoFactoryMethod(ignoreNested = true)
 public interface PlayerChatEvent extends MessageEvent {
 
     /**

@@ -35,6 +35,7 @@ import org.spongepowered.api.event.impl.AbstractCompositeEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.Tristate;
+import org.spongepowered.eventgen.annotations.GenerateFactoryMethod;
 import org.spongepowered.eventgen.annotations.ImplementedBy;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.math.vector.Vector3d;
@@ -104,6 +105,7 @@ public interface InteractBlockEvent extends InteractEvent {
      *
      * <p>This is usually right-click.</p>
      */
+    @GenerateFactoryMethod
     interface Secondary extends InteractBlockEvent {
 
         Tristate originalUseItemResult();

@@ -32,6 +32,7 @@ import org.spongepowered.api.event.entity.InteractEntityEvent;
 import org.spongepowered.api.event.entity.living.AnimateHandEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.eventgen.annotations.GenerateFactoryMethod;
 
 /**
  * Base event for all interactions with an {@link ItemStack} in hand.
@@ -65,6 +66,7 @@ public interface InteractItemEvent extends InteractEvent {
      *
      * <p>Vanilla minecraft does not call an event when interacting with an empty hand in air.</p>
      */
+    @GenerateFactoryMethod
     interface Secondary extends InteractItemEvent, Cancellable {
 
         interface Pre extends Secondary {

@@ -25,6 +25,7 @@
 package org.spongepowered.api.event.lifecycle;
 
 import org.spongepowered.api.Game;
+import org.spongepowered.eventgen.annotations.GenerateFactoryMethod;
 
 /**
  * This event is called at the end of a {@link Game} instance, after the game's
@@ -38,6 +39,7 @@ import org.spongepowered.api.Game;
  * <p>Most users will want to listen to {@link StoppingEngineEvent} instead, to
  * do operations tied to the lifecycle of one single engine.</p>
  */
+@GenerateFactoryMethod
 public interface StoppedGameEvent extends LifecycleEvent {
 
 }
