@@ -29,9 +29,7 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackLike;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.item.recipe.RecipeType;
@@ -178,22 +176,6 @@ public interface SmithingRecipe extends Recipe<RecipeInput.Smithing> {
         interface ResultStep extends SmithingRecipe.Builder {
 
             /**
-             * @deprecated Use {@link #result(ItemStackLike)} instead.
-             */
-            @Deprecated(forRemoval = true)
-            default EndStep result(ItemStackSnapshot result) {
-                return this.result((ItemStackLike) result);
-            }
-
-            /**
-             * @deprecated Use {@link #result(ItemStackLike)} instead.
-             */
-            @Deprecated(forRemoval = true)
-            default EndStep result(ItemStack result) {
-                return this.result((ItemStackLike) result);
-            }
-
-            /**
              * Changes the result and returns this builder. The result is the
              * {@link ItemStackLike} created when the recipe is fulfilled.
              *
@@ -202,14 +184,6 @@ public interface SmithingRecipe extends Recipe<RecipeInput.Smithing> {
              * @return This builder, for chaining
              */
             EndStep result(ItemStackLike result);
-
-            /**
-             * @deprecated Use {@link #result(Function, ItemStackLike)} instead.
-             */
-            @Deprecated(forRemoval = true)
-            default EndStep result(Function<RecipeInput.Smithing, ItemStack> resultFunction, ItemStack exemplaryResult) {
-                return this.result(resultFunction, (ItemStackLike) exemplaryResult);
-            }
 
             /**
              * Changes the result and returns this builder. The result is the

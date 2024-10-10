@@ -97,14 +97,6 @@ public interface GridInventory extends Inventory2D {
     Optional<ItemStack> peek(int x, int y);
 
     /**
-     * @deprecated Use {@link #set(int, int, ItemStackLike)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    default InventoryTransactionResult set(int x, int y, ItemStack stack) {
-        return this.set(x, y, (ItemStackLike) stack);
-    }
-
-    /**
      * Sets the item in the specified slot.
      *
      * @see Slot#set(ItemStackLike)

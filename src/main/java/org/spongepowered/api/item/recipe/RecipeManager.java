@@ -26,7 +26,6 @@ package org.spongepowered.api.item.recipe;
 
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.item.inventory.ItemStackLike;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.cooking.CookingRecipe;
 import org.spongepowered.api.item.recipe.crafting.RecipeInput;
 import org.spongepowered.api.world.server.ServerWorld;
@@ -78,14 +77,6 @@ public interface RecipeManager {
     }
 
     /**
-     * @deprecated Use {@link #findByResult(RecipeType, ItemStackLike)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    default <T extends Recipe<?>> Collection<T> findByResult(RecipeType<T> type, ItemStackSnapshot result) {
-        return this.findByResult(type, (ItemStackLike) result);
-    }
-
-    /**
      * Returns all registered recipes of given type and with given item as a result.
      *
      * @param type The recipe type
@@ -94,14 +85,6 @@ public interface RecipeManager {
      * @return The recipes resulting in given item.
      */
     <T extends Recipe<?>> Collection<T> findByResult(RecipeType<T> type, ItemStackLike result);
-
-    /**
-     * @deprecated Use {@link #findByResult(Supplier, ItemStackLike)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    default <T extends Recipe<?>> Collection<T> findByResult(Supplier<? extends RecipeType<T>> supplier, ItemStackSnapshot result) {
-        return this.findByResult(supplier, (ItemStackLike) result);
-    }
 
     /**
      * Gets all recipes with given item as a result.
@@ -139,14 +122,6 @@ public interface RecipeManager {
     }
 
     /**
-     * @deprecated Use {@link #findCookingRecipe(RecipeType, ItemStackLike)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    default <T extends CookingRecipe> Optional<T> findCookingRecipe(RecipeType<T> type, ItemStackSnapshot ingredient) {
-        return this.findCookingRecipe(type, (ItemStackLike) ingredient);
-    }
-
-    /**
      * Finds a matching cooking recipe for given type and ingredient
      *
      * @param type The recipe type
@@ -155,14 +130,6 @@ public interface RecipeManager {
      * @return The matching recipe.
      */
     <T extends CookingRecipe> Optional<T> findCookingRecipe(RecipeType<T> type, ItemStackLike ingredient);
-
-    /**
-     * @deprecated Use {@link #findCookingRecipe(Supplier, ItemStackLike)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    default <T extends CookingRecipe> Optional<T> findCookingRecipe(Supplier<? extends RecipeType<T>> supplier, ItemStackSnapshot ingredient) {
-        return this.findCookingRecipe(supplier, (ItemStackLike) ingredient);
-    }
 
     /**
      * Finds a matching cooking recipe for given type and ingredient

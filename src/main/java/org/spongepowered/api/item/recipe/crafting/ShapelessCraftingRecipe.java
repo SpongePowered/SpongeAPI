@@ -29,9 +29,7 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackLike;
-import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
 
@@ -109,22 +107,6 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
             ResultStep remainingItems(Function<RecipeInput.Crafting, ? extends List<? extends ItemStackLike>> remainingItemsFunction);
 
             /**
-             * @deprecated Use {@link #result(ItemStackLike)} instead.
-             */
-            @Deprecated(forRemoval = true)
-            default EndStep result(ItemStackSnapshot result) {
-                return this.result((ItemStackLike) result);
-            }
-
-            /**
-             * @deprecated Use {@link #result(ItemStackLike)} instead.
-             */
-            @Deprecated(forRemoval = true)
-            default EndStep result(ItemStack result) {
-                return this.result((ItemStackLike) result);
-            }
-
-            /**
              * Sets the result and returns this builder. The result is the
              * {@link ItemStackLike} created when the recipe is fulfilled.
              *
@@ -133,14 +115,6 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
              * @return This builder, for chaining
              */
             EndStep result(ItemStackLike result);
-
-            /**
-             * @deprecated Use {@link #result(Function, ItemStackLike)} instead.
-             */
-            @Deprecated(forRemoval = true)
-            default EndStep result(Function<RecipeInput.Crafting, ItemStack> resultFunction, ItemStack exemplaryResult) {
-                return this.result(resultFunction, (ItemStackLike) exemplaryResult);
-            }
 
             /**
              * Sets the result function and an exemplary result.

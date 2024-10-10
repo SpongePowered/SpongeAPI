@@ -122,14 +122,6 @@ public interface ItemStack extends ItemStackLike, SerializableDataHolder.Mutable
     void setQuantity(int quantity) throws IllegalArgumentException;
 
     /**
-     * @deprecated Use {@link #asImmutable()} instead.
-     */
-    @Deprecated(forRemoval = true)
-    default ItemStackSnapshot createSnapshot() {
-        return this.asImmutable();
-    }
-
-    /**
      * Returns true if the specified {@link ItemStack} has the same stack
      * size, {@link ItemType}, and data. Note that this method is not an
      * overrider of {@link Object#equals(Object)} in order to maintain

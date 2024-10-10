@@ -29,7 +29,6 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.util.MinecraftDayTime;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.difficulty.Difficulty;
-import org.spongepowered.api.world.gamerule.GameRuleHolder;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 import org.spongepowered.math.vector.Vector3i;
 

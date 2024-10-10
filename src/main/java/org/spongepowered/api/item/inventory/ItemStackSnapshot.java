@@ -45,14 +45,6 @@ public interface ItemStackSnapshot extends ItemStackLike, SerializableDataHolder
         return Sponge.game().factoryProvider().provide(Factory.class).empty();
     }
 
-    /**
-     * @deprecated Use {@link #asMutable()} or {@link #asMutableCopy()} instead.
-     */
-    @Deprecated(forRemoval = true)
-    default ItemStack createStack() {
-        return this.asMutable();
-    }
-
     interface Factory {
 
         ItemStackSnapshot empty();

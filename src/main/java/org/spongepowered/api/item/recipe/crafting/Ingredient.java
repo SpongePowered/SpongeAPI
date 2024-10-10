@@ -54,15 +54,6 @@ public interface Ingredient extends Predicate<ItemStack> {
         return Sponge.game().factoryProvider().provide(Factory.class).empty();
     }
 
-    /**
-     * @deprecated Use {@link #test(ItemStackLike)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    @Override
-    default boolean test(ItemStack itemStack) {
-        return this.test((ItemStackLike) itemStack);
-    }
-
     boolean test(ItemStackLike item);
 
     /**
@@ -96,35 +87,6 @@ public interface Ingredient extends Predicate<ItemStack> {
     }
 
     /**
-     * @deprecated Use {@link #of(ItemStackLike...)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    static Ingredient of(ItemStack @Nullable ... items) {
-        return Ingredient.of((ItemStackLike[]) items);
-    }
-
-    /**
-     * @deprecated Use {@link #of(ItemStackLike...)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    static Ingredient of(ItemStackSnapshot @Nullable ... items) {
-        return Ingredient.of((ItemStackLike[]) items);
-    }
-
-    /**
-     * Creates a new {@link Ingredient} for the provided {@link ItemStackLike}s.
-     *
-     * @param items The item
-     * @return The new ingredient
-     */
-    static Ingredient of(ItemStackLike @Nullable ... items) {
-        if (items == null) {
-            return Ingredient.empty();
-        }
-        return Ingredient.builder().with(items).build();
-    }
-
-    /**
      * Creates a new {@link Ingredient} for the provided {@link ItemType}s.
      *
      * @param itemTypes The items
@@ -139,11 +101,16 @@ public interface Ingredient extends Predicate<ItemStack> {
     }
 
     /**
-     * @deprecated Use {@link #of(ResourceKey, Predicate, ItemStackLike...)} instead.
+     * Creates a new {@link Ingredient} for the provided {@link ItemStackLike}s.
+     *
+     * @param items The item
+     * @return The new ingredient
      */
-    @Deprecated(forRemoval = true)
-    static Ingredient of(ResourceKey key, Predicate<ItemStack> predicate, ItemStack... exemplaryStacks) {
-        return Ingredient.of(key, itemStack -> predicate.test(itemStack.asMutable()), (ItemStackLike[]) exemplaryStacks);
+    static Ingredient of(ItemStackLike @Nullable ... items) {
+        if (items == null) {
+            return Ingredient.empty();
+        }
+        return Ingredient.builder().with(items).build();
     }
 
     /**
@@ -198,28 +165,12 @@ public interface Ingredient extends Predicate<ItemStack> {
         Builder with(Supplier<? extends ItemType>... types);
 
         /**
-         * @deprecated Use {@link #with(ItemStackLike...)} instead
-         */
-        @Deprecated(forRemoval = true)
-        default Builder with(ItemStack... types) {
-            return this.with((ItemStackLike[]) types);
-        }
-
-        /**
          * Sets one or more ItemStackLike for matching the ingredient.
          *
          * @param types The items
          * @return This Builder, for chaining
          */
         Builder with(ItemStackLike... types);
-
-        /**
-         * @deprecated Use {@link #with(ResourceKey, Predicate, ItemStackLike...)} instead.
-         */
-        @Deprecated(forRemoval = true)
-        default Builder with(ResourceKey resourceKey, Predicate<ItemStack> predicate, ItemStack... exemplaryTypes) {
-            return this.with(resourceKey, itemStack -> predicate.test(itemStack.asMutable()), (ItemStackLike[]) exemplaryTypes);
-        }
 
         /**
          * Sets a Predicate for matching the ingredient.
@@ -231,14 +182,6 @@ public interface Ingredient extends Predicate<ItemStack> {
          * @return This Builder, for chaining
          */
         Builder with(ResourceKey resourceKey, Predicate<? super ItemStackLike> predicate, ItemStackLike... exemplaryTypes);
-
-        /**
-         * @deprecated Use {@link #with(ItemStackLike...)} instead
-         */
-        @Deprecated(forRemoval = true)
-        default Builder with(ItemStackSnapshot... types) {
-            return this.with((ItemStackLike[]) types);
-        }
 
         /**
          * Sets the item tag for matching the ingredient.
