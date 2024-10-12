@@ -60,14 +60,6 @@ public interface Container extends Inventory {
     List<Inventory> viewed();
 
     /**
-     * @deprecated Use {@link #setCursor(ItemStackLike)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    default boolean setCursor(ItemStack item) {
-        return this.setCursor((ItemStackLike) item);
-    }
-
-    /**
      * Sets the viewing players cursor item.
      * <p>Returns false when the container is no longer open.</p>
      *

@@ -54,15 +54,6 @@ public interface Ingredient extends Predicate<ItemStack> {
         return Sponge.game().factoryProvider().provide(Factory.class).empty();
     }
 
-    /**
-     * @deprecated Use {@link #test(ItemStackLike)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    @Override
-    default boolean test(ItemStack itemStack) {
-        return this.test((ItemStackLike) itemStack);
-    }
-
     boolean test(ItemStackLike item);
 
     /**
@@ -198,28 +189,12 @@ public interface Ingredient extends Predicate<ItemStack> {
         Builder with(Supplier<? extends ItemType>... types);
 
         /**
-         * @deprecated Use {@link #with(ItemStackLike...)} instead
-         */
-        @Deprecated(forRemoval = true)
-        default Builder with(ItemStack... types) {
-            return this.with((ItemStackLike[]) types);
-        }
-
-        /**
          * Sets one or more ItemStackLike for matching the ingredient.
          *
          * @param types The items
          * @return This Builder, for chaining
          */
         Builder with(ItemStackLike... types);
-
-        /**
-         * @deprecated Use {@link #with(ResourceKey, Predicate, ItemStackLike...)} instead.
-         */
-        @Deprecated(forRemoval = true)
-        default Builder with(ResourceKey resourceKey, Predicate<ItemStack> predicate, ItemStack... exemplaryTypes) {
-            return this.with(resourceKey, itemStack -> predicate.test(itemStack.asMutable()), (ItemStackLike[]) exemplaryTypes);
-        }
 
         /**
          * Sets a Predicate for matching the ingredient.
@@ -231,14 +206,6 @@ public interface Ingredient extends Predicate<ItemStack> {
          * @return This Builder, for chaining
          */
         Builder with(ResourceKey resourceKey, Predicate<? super ItemStackLike> predicate, ItemStackLike... exemplaryTypes);
-
-        /**
-         * @deprecated Use {@link #with(ItemStackLike...)} instead
-         */
-        @Deprecated(forRemoval = true)
-        default Builder with(ItemStackSnapshot... types) {
-            return this.with((ItemStackLike[]) types);
-        }
 
         /**
          * Sets the item tag for matching the ingredient.

@@ -75,14 +75,6 @@ public interface Inventory2D extends Inventory {
     }
 
     /**
-     * @deprecated Use {@link #set(Vector2i, ItemStackLike)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    default InventoryTransactionResult set(Vector2i pos, ItemStack stack) {
-        return this.set(pos, (ItemStackLike) stack);
-    }
-
-    /**
      * Sets the item in the specified slot.
      *
      * @see Slot#set(ItemStackLike)

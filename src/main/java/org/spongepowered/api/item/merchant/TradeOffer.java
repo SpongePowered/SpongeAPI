@@ -28,7 +28,6 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.entity.living.Humanoid;
-import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.util.CopyableBuilder;
@@ -166,14 +165,6 @@ public interface TradeOffer extends DataSerializable {
     interface Builder extends org.spongepowered.api.util.Builder<TradeOffer, Builder>, CopyableBuilder<TradeOffer, Builder>, DataBuilder<TradeOffer> {
 
         /**
-         * @deprecated Use {@link #firstBuyingItem(ItemStackLike)} instead.
-         */
-        @Deprecated(forRemoval = true)
-        default Builder firstBuyingItem(ItemStack item) {
-            return this.firstBuyingItem((ItemStackLike) item);
-        }
-
-        /**
          * <p>Sets the first selling item of the trade offer to be
          * generated.</p>
          *
@@ -185,28 +176,12 @@ public interface TradeOffer extends DataSerializable {
         Builder firstBuyingItem(ItemStackLike item);
 
         /**
-         * @deprecated Use {@link #secondBuyingItem(ItemStackLike)} instead.
-         */
-        @Deprecated(forRemoval = true)
-        default Builder secondBuyingItem(ItemStack item) {
-            return this.secondBuyingItem((ItemStackLike) item);
-        }
-
-        /**
          * Sets the second selling item of the trade offer to be generated.
          *
          * @param item The second item to buy
          * @return This builder
          */
         Builder secondBuyingItem(ItemStackLike item);
-
-        /**
-         * @deprecated Use {@link #sellingItem(ItemStackLike)} instead.
-         */
-        @Deprecated(forRemoval = true)
-        default Builder sellingItem(ItemStack item) {
-            return this.sellingItem((ItemStackLike) item);
-        }
 
         /**
          * Sets the selling item of the trade offer to be generated.

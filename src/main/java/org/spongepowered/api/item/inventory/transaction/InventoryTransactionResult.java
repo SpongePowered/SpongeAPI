@@ -180,14 +180,6 @@ public interface InventoryTransactionResult {
         Builder type(final Type type);
 
         /**
-         * @deprecated Use {@link #reject(ItemStackLike...)} instead.
-         */
-        @Deprecated(forRemoval = true)
-        default Builder reject(ItemStack... itemStacks) {
-            return this.reject((ItemStackLike[]) itemStacks);
-        }
-
-        /**
          * Adds the provided {@link ItemStackLike itemstacks} as stacks that have been
          * "rejected".
          *
@@ -204,14 +196,6 @@ public interface InventoryTransactionResult {
          * @return This builder, for chaining
          */
         Builder reject(Iterable<? extends ItemStackLike> itemStacks);
-
-        /**
-         * @deprecated Use {@link #poll(ItemStackLike)} instead.
-         */
-        @Deprecated(forRemoval = true)
-        default Builder.PollBuilder poll(ItemStackSnapshot itemStack) {
-            return this.poll((ItemStackLike) itemStack);
-        }
 
         /**
          * Sets the provided {@link ItemStackLike} as the stack that has been polled from the inventory.
