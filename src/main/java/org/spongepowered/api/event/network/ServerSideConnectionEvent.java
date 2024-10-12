@@ -35,6 +35,7 @@ import org.spongepowered.api.event.message.MessageCancellable;
 import org.spongepowered.api.event.message.MessageEvent;
 import org.spongepowered.api.network.ServerSideConnection;
 import org.spongepowered.api.network.channel.Channel;
+import org.spongepowered.api.network.channel.raw.RawDataChannel;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.service.ban.BanService;
 import org.spongepowered.api.service.whitelist.WhitelistService;
@@ -80,6 +81,11 @@ public interface ServerSideConnectionEvent extends Event {
     /**
      * <p>Called asynchronously when the client attempts to connect to
      * the server.</p>
+     *
+     * <p>During this event, it's possible to use the {@link RawDataChannel}s to send
+     * requests to the client. As long as there's requests going to the client,
+     * the connection will stay in the intent phase and will not continue
+     * to the {@link Auth} event.</p>
      *
      * <p>After observing this event for particular {@link ServerSideConnection connection}
      * you are guaranteed to get #Disconnect for the same connection without
