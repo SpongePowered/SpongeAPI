@@ -50,6 +50,8 @@ public final class GameRules {
 
     public static final DefaultedRegistryReference<GameRule<Boolean>> DISABLE_ELYTRA_MOVEMENT_CHECK = GameRules.key(ResourceKey.sponge("disable_elytra_movement_check"));
 
+    public static final DefaultedRegistryReference<GameRule<Boolean>> DISABLE_PLAYER_MOVEMENT_CHECK = GameRules.key(ResourceKey.sponge("disable_player_movement_check"));
+
     public static final DefaultedRegistryReference<GameRule<Boolean>> DISABLE_RAIDS = GameRules.key(ResourceKey.sponge("disable_raids"));
 
     public static final DefaultedRegistryReference<GameRule<Boolean>> DO_DAYLIGHT_CYCLE = GameRules.key(ResourceKey.sponge("do_daylight_cycle"));
@@ -105,6 +107,8 @@ public final class GameRules {
     public static final DefaultedRegistryReference<GameRule<Integer>> MAX_COMMAND_FORK_COUNT = GameRules.key(ResourceKey.sponge("max_command_fork_count"));
 
     public static final DefaultedRegistryReference<GameRule<Integer>> MAX_ENTITY_CRAMMING = GameRules.key(ResourceKey.sponge("max_entity_cramming"));
+
+    public static final DefaultedRegistryReference<GameRule<Integer>> MINECART_MAX_SPEED = GameRules.key(ResourceKey.sponge("minecart_max_speed"));
 
     public static final DefaultedRegistryReference<GameRule<Boolean>> MOB_EXPLOSION_DROP_DECAY = GameRules.key(ResourceKey.sponge("mob_explosion_drop_decay"));
 

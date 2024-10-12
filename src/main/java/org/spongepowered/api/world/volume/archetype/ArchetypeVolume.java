@@ -29,6 +29,7 @@ import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.EventContextKeys;
 import org.spongepowered.api.event.cause.entity.SpawnType;
 import org.spongepowered.api.util.transformation.Transformation;
+import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.BlockChangeFlags;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.volume.archetype.block.entity.BlockEntityArchetypeVolume;
@@ -76,6 +77,24 @@ public interface ArchetypeVolume extends BlockVolume.Modifiable<ArchetypeVolume>
      * @param spawnContext The context value used for processing spawn entities.
      */
     default void applyToWorld(final ServerWorld target, final Vector3i placement, final Supplier<SpawnType> spawnContext) {
+        this.applyToWorld(target, placement, spawnContext, BlockChangeFlags.DEFAULT_PLACEMENT);
+    }
+
+    /**
+     * Attempts to apply all of the contents of this
+     * {@link ArchetypeVolume volume} onto the target {@link ServerWorld world}
+     * with a relative {@code placement}. This default implementation can be
+     * used as a guide for utilizing
+     * {@link org.spongepowered.api.world.volume.stream.VolumeStream VolumeStreams}
+     * and their companion types.
+     *
+     * @param target The target world
+     * @param placement The target origin, where the diff of relative position
+     *      compared to this volume's min position as the offset
+     * @param spawnContext The context value used for processing spawn entities.
+     * @param flag The various change flags controlling some interactions
+     */
+    default void applyToWorld(final ServerWorld target, final Vector3i placement, final Supplier<SpawnType> spawnContext, final BlockChangeFlag flag) {
         Objects.requireNonNull(target, "Target world cannot be null");
         Objects.requireNonNull(placement, "Target position cannot be null");
         try (final CauseStackManager.StackFrame frame = Sponge.server().causeStackManager().pushCauseFrame()) {
@@ -83,7 +102,7 @@ public interface ArchetypeVolume extends BlockVolume.Modifiable<ArchetypeVolume>
                 .apply(VolumeCollectors.of(
                     target,
                     VolumePositionTranslators.relativeTo(placement),
-                    VolumeApplicators.applyBlocks(BlockChangeFlags.DEFAULT_PLACEMENT)
+                    VolumeApplicators.applyBlocks(flag)
                 ));
 
             this.biomeStream(this.min(), this.max(), StreamOptions.lazily())
@@ -107,5 +126,4 @@ public interface ArchetypeVolume extends BlockVolume.Modifiable<ArchetypeVolume>
                 ));
         }
     }
-
 }

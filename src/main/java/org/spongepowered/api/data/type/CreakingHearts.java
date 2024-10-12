@@ -22,33 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.explosion;
+package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
-import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
 import org.spongepowered.api.registry.RegistryTypes;
 
-public final class ExplosionBlockInteractions {
+public final class CreakingHearts {
 
-    public static final DefaultedRegistryReference<ExplosionBlockInteraction> DESTROY = ExplosionBlockInteractions.key(ResourceKey.sponge("destroy"));
+    public static final DefaultedRegistryReference<CreakingHeart> ACTIVE = CreakingHearts.key(ResourceKey.sponge("active"));
 
-    public static final DefaultedRegistryReference<ExplosionBlockInteraction> DESTROY_WITH_DECAY = ExplosionBlockInteractions.key(ResourceKey.sponge("destroy_with_decay"));
+    public static final DefaultedRegistryReference<CreakingHeart> DISABLED = CreakingHearts.key(ResourceKey.sponge("disabled"));
 
-    public static final DefaultedRegistryReference<ExplosionBlockInteraction> KEEP = ExplosionBlockInteractions.key(ResourceKey.sponge("keep"));
+    public static final DefaultedRegistryReference<CreakingHeart> DORMANT = CreakingHearts.key(ResourceKey.sponge("dormant"));
 
-    public static final DefaultedRegistryReference<ExplosionBlockInteraction> TRIGGER_BLOCK = ExplosionBlockInteractions.key(ResourceKey.sponge("trigger_block"));
-
-    private ExplosionBlockInteractions() {
-    }
-
-    public static Registry<ExplosionBlockInteraction> registry() {
-        return Sponge.game().registry(RegistryTypes.EXPLOSION_BLOCK_INTERACTION);
-    }
-
-    private static DefaultedRegistryReference<ExplosionBlockInteraction> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.EXPLOSION_BLOCK_INTERACTION, location).asDefaultedReference(Sponge::game);
+    private static DefaultedRegistryReference<CreakingHeart> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.CREAKING_HEART, location).asDefaultedReference(Sponge::game);
     }
 }

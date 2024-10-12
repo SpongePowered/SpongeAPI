@@ -56,6 +56,8 @@ public final class DamageTypes {
 
     public static final DefaultedRegistryReference<DamageType> DRY_OUT = DamageTypes.key(ResourceKey.minecraft("dry_out"));
 
+    public static final DefaultedRegistryReference<DamageType> ENDER_PEARL = DamageTypes.key(ResourceKey.minecraft("ender_pearl"));
+
     public static final DefaultedRegistryReference<DamageType> EXPLOSION = DamageTypes.key(ResourceKey.minecraft("explosion"));
 
     public static final DefaultedRegistryReference<DamageType> FALL = DamageTypes.key(ResourceKey.minecraft("fall"));
@@ -89,6 +91,8 @@ public final class DamageTypes {
     public static final DefaultedRegistryReference<DamageType> LAVA = DamageTypes.key(ResourceKey.minecraft("lava"));
 
     public static final DefaultedRegistryReference<DamageType> LIGHTNING_BOLT = DamageTypes.key(ResourceKey.minecraft("lightning_bolt"));
+
+    public static final DefaultedRegistryReference<DamageType> MACE_SMASH = DamageTypes.key(ResourceKey.minecraft("mace_smash"));
 
     public static final DefaultedRegistryReference<DamageType> MAGIC = DamageTypes.key(ResourceKey.minecraft("magic"));
 

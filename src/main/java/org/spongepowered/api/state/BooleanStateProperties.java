@@ -201,6 +201,10 @@ public final class BooleanStateProperties {
         return BooleanStateProperty.of("SOUTH");
     }
 
+    public static BooleanStateProperty property_TIP() {
+        return BooleanStateProperty.of("TIP");
+    }
+
     public static BooleanStateProperty property_TRIGGERED() {
         return BooleanStateProperty.of("TRIGGERED");
     }

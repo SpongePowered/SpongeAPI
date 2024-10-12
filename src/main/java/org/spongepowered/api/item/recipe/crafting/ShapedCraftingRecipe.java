@@ -234,7 +234,6 @@ public interface ShapedCraftingRecipe extends CraftingRecipe {
              */
             EndStep result(ItemStackLike result);
 
-
             /**
              * Sets the result function and an exemplary result.
              * <p>Use {@link ItemStack#empty()} as exemplary result if the function returns different items.</p>

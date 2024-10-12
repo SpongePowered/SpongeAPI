@@ -87,6 +87,8 @@ public final class DamageTypeTags {
 
     public static final Tag<DamageType> IS_PROJECTILE = DamageTypeTags.key(ResourceKey.minecraft("is_projectile"));
 
+    public static final Tag<DamageType> MACE_SMASH = DamageTypeTags.key(ResourceKey.minecraft("mace_smash"));
+
     public static final Tag<DamageType> NO_ANGER = DamageTypeTags.key(ResourceKey.minecraft("no_anger"));
 
     public static final Tag<DamageType> NO_IMPACT = DamageTypeTags.key(ResourceKey.minecraft("no_impact"));

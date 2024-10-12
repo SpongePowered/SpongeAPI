@@ -54,6 +54,7 @@ import org.spongepowered.api.data.type.BodyPart;
 import org.spongepowered.api.data.type.CatType;
 import org.spongepowered.api.data.type.ChestAttachmentType;
 import org.spongepowered.api.data.type.ComparatorMode;
+import org.spongepowered.api.data.type.CreakingHeart;
 import org.spongepowered.api.data.type.DoorHinge;
 import org.spongepowered.api.data.type.DripstoneSegment;
 import org.spongepowered.api.data.type.DyeColor;
@@ -216,6 +217,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<ChunkState> CHUNK_STATE = RegistryTypes.minecraftKeyInGame("chunk_status");
 
     public static final DefaultedRegistryType<ContainerType> CONTAINER_TYPE = RegistryTypes.minecraftKeyInGame("menu");
+
+    public static final DefaultedRegistryType<CreakingHeart> CREAKING_HEART = RegistryTypes.minecraftKeyInGame("creaking_heart");
 
     public static final DefaultedRegistryType<DensityFunction> DENSITY_FUNCTION = RegistryTypes.minecraftKeyInServer("worldgen/density_function");
 

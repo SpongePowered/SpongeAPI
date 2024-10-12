@@ -99,7 +99,6 @@ public interface EquipmentInventory extends Inventory {
      */
     InventoryTransactionResult set(EquipmentType equipmentType, ItemStackLike stack);
 
-
     default InventoryTransactionResult set(final Supplier<? extends EquipmentType> equipmentType, final ItemStackLike stack) {
         return this.set(equipmentType.get(), stack);
     }

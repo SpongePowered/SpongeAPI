@@ -81,6 +81,7 @@ import org.spongepowered.api.entity.living.golem.IronGolem;
 import org.spongepowered.api.entity.living.golem.Shulker;
 import org.spongepowered.api.entity.living.golem.SnowGolem;
 import org.spongepowered.api.entity.living.monster.Blaze;
+import org.spongepowered.api.entity.living.monster.Creaking;
 import org.spongepowered.api.entity.living.monster.Creeper;
 import org.spongepowered.api.entity.living.monster.Enderman;
 import org.spongepowered.api.entity.living.monster.Endermite;
@@ -142,6 +143,7 @@ import org.spongepowered.api.entity.projectile.windcharge.BreezeWindCharge;
 import org.spongepowered.api.entity.projectile.windcharge.WindCharge;
 import org.spongepowered.api.entity.vehicle.Boat;
 import org.spongepowered.api.entity.vehicle.ChestBoat;
+import org.spongepowered.api.entity.vehicle.Raft;
 import org.spongepowered.api.entity.vehicle.minecart.CommandBlockMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.FurnaceMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.Minecart;
@@ -164,6 +166,10 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class EntityTypes {
 
+    public static final DefaultedRegistryReference<EntityType<Boat>> ACACIA_BOAT = EntityTypes.key(ResourceKey.minecraft("acacia_boat"));
+
+    public static final DefaultedRegistryReference<EntityType<ChestBoat>> ACACIA_CHEST_BOAT = EntityTypes.key(ResourceKey.minecraft("acacia_chest_boat"));
+
     public static final DefaultedRegistryReference<EntityType<Allay>> ALLAY = EntityTypes.key(ResourceKey.minecraft("allay"));
 
     public static final DefaultedRegistryReference<EntityType<AreaEffectCloud>> AREA_EFFECT_CLOUD = EntityTypes.key(ResourceKey.minecraft("area_effect_cloud"));
@@ -176,15 +182,21 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<Axolotl>> AXOLOTL = EntityTypes.key(ResourceKey.minecraft("axolotl"));
 
+    public static final DefaultedRegistryReference<EntityType<Raft>> BAMBOO_CHEST_RAFT = EntityTypes.key(ResourceKey.minecraft("bamboo_chest_raft"));
+
+    public static final DefaultedRegistryReference<EntityType<Raft>> BAMBOO_RAFT = EntityTypes.key(ResourceKey.minecraft("bamboo_raft"));
+
     public static final DefaultedRegistryReference<EntityType<Bat>> BAT = EntityTypes.key(ResourceKey.minecraft("bat"));
 
     public static final DefaultedRegistryReference<EntityType<Bee>> BEE = EntityTypes.key(ResourceKey.minecraft("bee"));
 
+    public static final DefaultedRegistryReference<EntityType<Boat>> BIRCH_BOAT = EntityTypes.key(ResourceKey.minecraft("birch_boat"));
+
+    public static final DefaultedRegistryReference<EntityType<ChestBoat>> BIRCH_CHEST_BOAT = EntityTypes.key(ResourceKey.minecraft("birch_chest_boat"));
+
     public static final DefaultedRegistryReference<EntityType<Blaze>> BLAZE = EntityTypes.key(ResourceKey.minecraft("blaze"));
 
     public static final DefaultedRegistryReference<EntityType<BlockDisplay>> BLOCK_DISPLAY = EntityTypes.key(ResourceKey.minecraft("block_display"));
-
-    public static final DefaultedRegistryReference<EntityType<Boat>> BOAT = EntityTypes.key(ResourceKey.minecraft("boat"));
 
     public static final DefaultedRegistryReference<EntityType<Bogged>> BOGGED = EntityTypes.key(ResourceKey.minecraft("bogged"));
 
@@ -198,7 +210,9 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<CaveSpider>> CAVE_SPIDER = EntityTypes.key(ResourceKey.minecraft("cave_spider"));
 
-    public static final DefaultedRegistryReference<EntityType<ChestBoat>> CHEST_BOAT = EntityTypes.key(ResourceKey.minecraft("chest_boat"));
+    public static final DefaultedRegistryReference<EntityType<Boat>> CHERRY_BOAT = EntityTypes.key(ResourceKey.minecraft("cherry_boat"));
+
+    public static final DefaultedRegistryReference<EntityType<ChestBoat>> CHERRY_CHEST_BOAT = EntityTypes.key(ResourceKey.minecraft("cherry_chest_boat"));
 
     public static final DefaultedRegistryReference<EntityType<ChestMinecart>> CHEST_MINECART = EntityTypes.key(ResourceKey.minecraft("chest_minecart"));
 
@@ -210,7 +224,15 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<Cow>> COW = EntityTypes.key(ResourceKey.minecraft("cow"));
 
+    public static final DefaultedRegistryReference<EntityType<Creaking>> CREAKING = EntityTypes.key(ResourceKey.minecraft("creaking"));
+
+    public static final DefaultedRegistryReference<EntityType<Creaking>> CREAKING_TRANSIENT = EntityTypes.key(ResourceKey.minecraft("creaking_transient"));
+
     public static final DefaultedRegistryReference<EntityType<Creeper>> CREEPER = EntityTypes.key(ResourceKey.minecraft("creeper"));
+
+    public static final DefaultedRegistryReference<EntityType<Boat>> DARK_OAK_BOAT = EntityTypes.key(ResourceKey.minecraft("dark_oak_boat"));
+
+    public static final DefaultedRegistryReference<EntityType<ChestBoat>> DARK_OAK_CHEST_BOAT = EntityTypes.key(ResourceKey.minecraft("dark_oak_chest_boat"));
 
     public static final DefaultedRegistryReference<EntityType<Dolphin>> DOLPHIN = EntityTypes.key(ResourceKey.minecraft("dolphin"));
 
@@ -292,6 +314,10 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<ItemFrame>> ITEM_FRAME = EntityTypes.key(ResourceKey.minecraft("item_frame"));
 
+    public static final DefaultedRegistryReference<EntityType<Boat>> JUNGLE_BOAT = EntityTypes.key(ResourceKey.minecraft("jungle_boat"));
+
+    public static final DefaultedRegistryReference<EntityType<ChestBoat>> JUNGLE_CHEST_BOAT = EntityTypes.key(ResourceKey.minecraft("jungle_chest_boat"));
+
     public static final DefaultedRegistryReference<EntityType<LeashKnot>> LEASH_KNOT = EntityTypes.key(ResourceKey.minecraft("leash_knot"));
 
     public static final DefaultedRegistryReference<EntityType<LightningBolt>> LIGHTNING_BOLT = EntityTypes.key(ResourceKey.minecraft("lightning_bolt"));
@@ -302,6 +328,10 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<MagmaCube>> MAGMA_CUBE = EntityTypes.key(ResourceKey.minecraft("magma_cube"));
 
+    public static final DefaultedRegistryReference<EntityType<Boat>> MANGROVE_BOAT = EntityTypes.key(ResourceKey.minecraft("mangrove_boat"));
+
+    public static final DefaultedRegistryReference<EntityType<ChestBoat>> MANGROVE_CHEST_BOAT = EntityTypes.key(ResourceKey.minecraft("mangrove_chest_boat"));
+
     public static final DefaultedRegistryReference<EntityType<Marker>> MARKER = EntityTypes.key(ResourceKey.minecraft("marker"));
 
     public static final DefaultedRegistryReference<EntityType<Minecart>> MINECART = EntityTypes.key(ResourceKey.minecraft("minecart"));
@@ -310,11 +340,19 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<Mule>> MULE = EntityTypes.key(ResourceKey.minecraft("mule"));
 
+    public static final DefaultedRegistryReference<EntityType<Boat>> OAK_BOAT = EntityTypes.key(ResourceKey.minecraft("oak_boat"));
+
+    public static final DefaultedRegistryReference<EntityType<ChestBoat>> OAK_CHEST_BOAT = EntityTypes.key(ResourceKey.minecraft("oak_chest_boat"));
+
     public static final DefaultedRegistryReference<EntityType<Ocelot>> OCELOT = EntityTypes.key(ResourceKey.minecraft("ocelot"));
 
     public static final DefaultedRegistryReference<EntityType<OminousItemSpawner>> OMINOUS_ITEM_SPAWNER = EntityTypes.key(ResourceKey.minecraft("ominous_item_spawner"));
 
     public static final DefaultedRegistryReference<EntityType<Painting>> PAINTING = EntityTypes.key(ResourceKey.minecraft("painting"));
+
+    public static final DefaultedRegistryReference<EntityType<Boat>> PALE_OAK_BOAT = EntityTypes.key(ResourceKey.minecraft("pale_oak_boat"));
+
+    public static final DefaultedRegistryReference<EntityType<ChestBoat>> PALE_OAK_CHEST_BOAT = EntityTypes.key(ResourceKey.minecraft("pale_oak_chest_boat"));
 
     public static final DefaultedRegistryReference<EntityType<Panda>> PANDA = EntityTypes.key(ResourceKey.minecraft("panda"));
 
@@ -371,6 +409,10 @@ public final class EntityTypes {
     public static final DefaultedRegistryReference<EntityType<SpectralArrow>> SPECTRAL_ARROW = EntityTypes.key(ResourceKey.minecraft("spectral_arrow"));
 
     public static final DefaultedRegistryReference<EntityType<Spider>> SPIDER = EntityTypes.key(ResourceKey.minecraft("spider"));
+
+    public static final DefaultedRegistryReference<EntityType<Boat>> SPRUCE_BOAT = EntityTypes.key(ResourceKey.minecraft("spruce_boat"));
+
+    public static final DefaultedRegistryReference<EntityType<ChestBoat>> SPRUCE_CHEST_BOAT = EntityTypes.key(ResourceKey.minecraft("spruce_chest_boat"));
 
     public static final DefaultedRegistryReference<EntityType<Squid>> SQUID = EntityTypes.key(ResourceKey.minecraft("squid"));
 
