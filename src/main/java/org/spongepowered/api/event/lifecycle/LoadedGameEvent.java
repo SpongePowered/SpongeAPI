@@ -25,11 +25,13 @@
 package org.spongepowered.api.event.lifecycle;
 
 import org.spongepowered.api.Game;
+import org.spongepowered.eventgen.annotations.GenerateFactoryMethod;
 
 /**
  * Called when the implementation signals that all the aspects of the
  * {@link Game} have completed loading.
  */
+@GenerateFactoryMethod
 public interface LoadedGameEvent extends LifecycleEvent {
 
 }

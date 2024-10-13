@@ -27,7 +27,7 @@ package org.spongepowered.api.event.world.chunk;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
+import org.spongepowered.eventgen.annotations.NoFactoryMethod;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.chunk.BlockChunk;
 import org.spongepowered.api.world.chunk.Chunk;

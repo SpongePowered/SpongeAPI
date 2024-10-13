@@ -30,8 +30,9 @@ import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.Order;
 import org.spongepowered.api.event.impl.entity.AbstractAffectEntityEvent;
-import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
-import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
+import org.spongepowered.eventgen.annotations.ImplementedBy;
+import org.spongepowered.eventgen.annotations.NoFactoryMethod;
+import org.spongepowered.eventgen.annotations.PropertySettings;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.server.ServerLocation;
 
@@ -48,6 +49,7 @@ import java.util.function.Predicate;
  * Other cases will be included as necessary.
  */
 @ImplementedBy(AbstractAffectEntityEvent.class)
+@NoFactoryMethod
 public interface AffectEntityEvent extends Event, Cancellable {
 
     /**

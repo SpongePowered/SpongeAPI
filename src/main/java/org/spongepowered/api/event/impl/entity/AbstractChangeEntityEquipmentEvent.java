@@ -28,7 +28,7 @@ import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.event.entity.ChangeEntityEquipmentEvent;
 import org.spongepowered.api.event.impl.AbstractEvent;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.util.annotation.eventgen.UseField;
+import org.spongepowered.eventgen.annotations.UseField;
 
 public abstract class AbstractChangeEntityEquipmentEvent extends AbstractEvent implements ChangeEntityEquipmentEvent {
 

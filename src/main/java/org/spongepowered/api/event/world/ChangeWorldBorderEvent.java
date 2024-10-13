@@ -27,7 +27,7 @@ package org.spongepowered.api.event.world;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
+import org.spongepowered.eventgen.annotations.NoFactoryMethod;
 import org.spongepowered.api.world.border.WorldBorder;
 import org.spongepowered.api.world.server.ServerWorld;
 

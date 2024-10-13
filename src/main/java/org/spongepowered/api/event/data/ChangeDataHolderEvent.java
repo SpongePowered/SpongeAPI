@@ -30,8 +30,8 @@ import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.impl.data.AbstractValueChangeEvent;
-import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
-import org.spongepowered.api.util.annotation.eventgen.PropertySettings;
+import org.spongepowered.eventgen.annotations.ImplementedBy;
+import org.spongepowered.eventgen.annotations.PropertySettings;
 
 /**
  * An event that is associated with a {@link org.spongepowered.api.data.DataHolder.Mutable} that may have some

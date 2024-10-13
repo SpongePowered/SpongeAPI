@@ -26,7 +26,7 @@ package org.spongepowered.api.event.impl.data;
 
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
-import org.spongepowered.api.util.annotation.eventgen.UseField;
+import org.spongepowered.eventgen.annotations.UseField;
 
 public abstract class AbstractValueChangeEvent implements ChangeDataHolderEvent.ValueChange {
 

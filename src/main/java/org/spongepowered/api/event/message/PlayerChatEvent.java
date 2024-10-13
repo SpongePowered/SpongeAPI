@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.registry.RegistryReference;
-import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
+import org.spongepowered.eventgen.annotations.NoFactoryMethod;
 
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -39,7 +39,6 @@ import java.util.function.Predicate;
  * Fired when sending a chat message.
  * To modify the message use {@link Decorate}.
  */
-@NoFactoryMethod
 public interface PlayerChatEvent extends MessageEvent {
 
     /**

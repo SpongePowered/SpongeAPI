@@ -28,7 +28,7 @@ import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.adventure.Audiences;
-import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
+import org.spongepowered.eventgen.annotations.NoFactoryMethod;
 
 import java.util.Optional;
 import java.util.function.Predicate;

@@ -29,7 +29,7 @@ import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.event.Order;
 import org.spongepowered.api.event.entity.AffectEntityEvent;
 import org.spongepowered.api.event.impl.AbstractEvent;
-import org.spongepowered.api.util.annotation.eventgen.UseField;
+import org.spongepowered.eventgen.annotations.UseField;
 
 import java.util.Collections;
 import java.util.List;

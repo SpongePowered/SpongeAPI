@@ -24,8 +24,10 @@
  */
 package org.spongepowered.api.event.lifecycle;
 
+import org.spongepowered.eventgen.annotations.GenerateFactoryMethod;
 import org.spongepowered.plugin.PluginContainer;
 
+@GenerateFactoryMethod
 public interface ConstructPluginEvent extends LifecycleEvent {
 
     PluginContainer plugin();

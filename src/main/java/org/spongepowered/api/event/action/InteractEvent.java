@@ -25,10 +25,12 @@
 package org.spongepowered.api.event.action;
 
 import org.spongepowered.api.event.Event;
+import org.spongepowered.eventgen.annotations.NoFactoryMethod;
 
 /**
  * Base event for all interactions.
  */
+@NoFactoryMethod
 public interface InteractEvent extends Event {
 
 }

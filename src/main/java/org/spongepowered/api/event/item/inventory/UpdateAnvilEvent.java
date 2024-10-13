@@ -30,7 +30,7 @@ import org.spongepowered.api.event.Event;
 import org.spongepowered.api.item.inventory.AnvilCost;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
-import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
+import org.spongepowered.eventgen.annotations.GenerateFactoryMethod;
 
 /**
  * Fires whenever the left and right slots of an anvil are filled and a new result is computed.

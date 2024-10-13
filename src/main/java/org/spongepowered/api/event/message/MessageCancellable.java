@@ -25,7 +25,7 @@
 package org.spongepowered.api.event.message;
 
 import net.kyori.adventure.text.Component;
-import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
+import org.spongepowered.eventgen.annotations.NoFactoryMethod;
 
 /**
  * Represents an event whose message can be cancelled.

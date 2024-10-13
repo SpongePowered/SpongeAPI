@@ -29,7 +29,9 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.event.GenericEvent;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryType;
+import org.spongepowered.eventgen.annotations.NoFactoryMethod;
 
+@NoFactoryMethod
 public interface RegisterRegistryValueEvent extends LifecycleEvent {
 
     <T> RegistryStep<T> registry(RegistryType<T> registryType);

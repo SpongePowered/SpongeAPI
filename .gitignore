@@ -4,6 +4,9 @@ MANIFEST.MF
 dependency-reduced-pom.xml
 .checkstyle
 !.checkstyle/
+# We exclude the generated events from git to avoid
+# temptation to edit said generated files.
+src/main/generated/
 
 # Compiled #
 ############

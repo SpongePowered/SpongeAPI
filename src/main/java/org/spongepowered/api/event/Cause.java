@@ -27,6 +27,7 @@ package org.spongepowered.api.event;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.DoNotStore;
+import org.spongepowered.eventgen.annotations.NoFactoryMethod;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,6 +55,7 @@ import java.util.stream.Collectors;
  */
 @DoNotStore
 @SuppressWarnings("unchecked")
+@NoFactoryMethod
 public final class Cause implements Iterable<Object> {
 
     /**

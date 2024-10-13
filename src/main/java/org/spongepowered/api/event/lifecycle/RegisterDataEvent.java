@@ -26,7 +26,7 @@ package org.spongepowered.api.event.lifecycle;
 
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.data.DataRegistration;
-import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
+import org.spongepowered.eventgen.annotations.NoFactoryMethod;
 
 /**
  * Lifecycle event for registering custom {@link DataRegistration data} within the {@link DataManager}.

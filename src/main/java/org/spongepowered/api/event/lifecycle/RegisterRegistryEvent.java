@@ -30,10 +30,12 @@ import org.spongepowered.api.event.GenericEvent;
 import org.spongepowered.api.registry.DuplicateRegistrationException;
 import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryType;
+import org.spongepowered.eventgen.annotations.NoFactoryMethod;
 
 import java.util.Map;
 import java.util.function.Supplier;
 
+@NoFactoryMethod
 public interface RegisterRegistryEvent extends LifecycleEvent {
 
     /**

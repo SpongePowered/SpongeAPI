@@ -26,7 +26,7 @@ package org.spongepowered.api.event.lifecycle;
 
 import org.spongepowered.api.Game;
 import org.spongepowered.api.event.Event;
-import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
+import org.spongepowered.eventgen.annotations.NoFactoryMethod;
 
 /**
  * An event called during the lifetime (start to stop) of a

@@ -32,7 +32,7 @@ import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
-import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
+import org.spongepowered.eventgen.annotations.GenerateFactoryMethod;
 
 /**
  * Called when an entity changes an equipped item. This can occur whenever

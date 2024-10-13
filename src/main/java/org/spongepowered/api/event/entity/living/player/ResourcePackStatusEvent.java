@@ -31,7 +31,7 @@ import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.network.ServerSideConnection;
 import org.spongepowered.api.profile.GameProfile;
-import org.spongepowered.api.util.annotation.eventgen.GenerateFactoryMethod;
+import org.spongepowered.eventgen.annotations.GenerateFactoryMethod;
 
 import java.util.Optional;
 

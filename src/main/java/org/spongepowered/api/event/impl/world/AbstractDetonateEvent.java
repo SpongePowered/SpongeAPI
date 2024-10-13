@@ -26,7 +26,7 @@ package org.spongepowered.api.event.impl.world;
 
 import org.spongepowered.api.event.impl.entity.AbstractAffectEntityEvent;
 import org.spongepowered.api.event.world.ExplosionEvent;
-import org.spongepowered.api.util.annotation.eventgen.UseField;
+import org.spongepowered.eventgen.annotations.UseField;
 import org.spongepowered.api.world.server.ServerLocation;
 
 import java.util.Collections;
