@@ -22,14 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.generation.carver;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryTypes;
 
-/**
- * A carving step for {@link Carver carvers}
- */
-@CatalogedBy(CarvingSteps.class)
-public interface CarvingStep {
+public final class CreakingHearts {
 
+    public static final DefaultedRegistryReference<CreakingHeart> ACTIVE = CreakingHearts.key(ResourceKey.sponge("active"));
+
+    public static final DefaultedRegistryReference<CreakingHeart> DISABLED = CreakingHearts.key(ResourceKey.sponge("disabled"));
+
+    public static final DefaultedRegistryReference<CreakingHeart> DORMANT = CreakingHearts.key(ResourceKey.sponge("dormant"));
+
+    private static DefaultedRegistryReference<CreakingHeart> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.CREAKING_HEART, location).asDefaultedReference(Sponge::game);
+    }
 }

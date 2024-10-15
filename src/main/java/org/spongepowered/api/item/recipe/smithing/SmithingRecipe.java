@@ -37,6 +37,7 @@ import org.spongepowered.api.item.recipe.crafting.Ingredient;
 import org.spongepowered.api.item.recipe.crafting.RecipeInput;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
 
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -48,6 +49,27 @@ public interface SmithingRecipe extends Recipe<RecipeInput.Smithing> {
     static SmithingRecipe.Builder builder() {
         return Sponge.game().builderProvider().provide(SmithingRecipe.Builder.class);
     }
+
+    /**
+     * Returns the smithing template {@link Ingredient} for this {@link SmithingRecipe}.
+     *
+     * @return The smithing template {@link Ingredient} for this {@link SmithingRecipe}.
+     */
+    Optional<Ingredient> templateIngredient();
+
+    /**
+     * Returns the base {@link Ingredient} for this {@link SmithingRecipe}.
+     *
+     * @return The base {@link Ingredient} for this {@link SmithingRecipe}.
+     */
+    Optional<Ingredient> baseIngredient();
+
+    /**
+     * Returns the additional {@link Ingredient} for this {@link SmithingRecipe}.
+     *
+     * @return The additional {@link Ingredient} for this {@link SmithingRecipe}.
+     */
+    Optional<Ingredient> additionalIngredient();
 
     @Override
     RecipeType<? extends SmithingRecipe> type();

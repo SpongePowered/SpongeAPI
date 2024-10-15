@@ -26,11 +26,12 @@ package org.spongepowered.api.entity.living.aquatic;
 
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.entity.Ageable;
 
 /**
  * Represents a Dolphin
  */
-public interface Dolphin extends Aquatic {
+public interface Dolphin extends Aquatic, Ageable {
 
     /**
      * {@link Keys#SKIN_MOISTURE}

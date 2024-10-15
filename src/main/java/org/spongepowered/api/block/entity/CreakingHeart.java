@@ -22,24 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster.zombie;
+package org.spongepowered.api.block.entity;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.Monster;
+import org.jetbrains.annotations.ApiStatus;
+import org.spongepowered.api.util.annotation.Experimental;
 
 /**
- * Represents a Zombie.
+ * Represents a CreakingHeart block entity.
+ *
+ * @see <a href="https://minecraft.wiki/Creaking_Heart">Creaking Heart</a>
  */
-public interface Zombie extends Monster {
+@Experimental("winter_drop")
+@ApiStatus.Experimental
+public interface CreakingHeart extends BlockEntity {
 
-    /**
-     * {@link Keys#IS_ADULT}
-     *
-     * @return Whether this zombie is an adult or not
-     */
-    @Override
-    default Value.Mutable<Boolean> adult() {
-        return this.requireValue(Keys.IS_ADULT).asMutable();
-    }
 }

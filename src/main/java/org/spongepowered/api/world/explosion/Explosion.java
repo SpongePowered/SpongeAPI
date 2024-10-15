@@ -184,12 +184,12 @@ public interface Explosion extends Locatable {
         Builder shouldPlaySmoke(boolean smoke);
 
         /**
-         * Sets whether the affected blocks should be destroyed on explosion.
+         * Sets the desired block interaction.
          *
-         * @param destroy Whether the affected blocks should be destroyed
+         * @param interaction the desired block interaction
          * @return The builder, for chaining
          */
-        Builder shouldBreakBlocks(boolean destroy);
+        Builder blockInteraction(ExplosionBlockInteraction interaction);
 
         /**
          * Sets the resolution of the explosion.
@@ -244,4 +244,5 @@ public interface Explosion extends Locatable {
         Explosion build() throws IllegalArgumentException;
 
     }
+
 }

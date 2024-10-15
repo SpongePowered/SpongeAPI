@@ -232,7 +232,11 @@ public final class JigsawPools {
 
     public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_DECOR = JigsawPools.key(ResourceKey.minecraft("trial_chambers/decor"));
 
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_DECOR_BED = JigsawPools.key(ResourceKey.minecraft("trial_chambers/decor/bed"));
+
     public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_DECOR_CHAMBER = JigsawPools.key(ResourceKey.minecraft("trial_chambers/decor/chamber"));
+
+    public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_DECOR_DISPOSAL = JigsawPools.key(ResourceKey.minecraft("trial_chambers/decor/disposal"));
 
     public static final DefaultedRegistryReference<JigsawPool> TRIAL_CHAMBERS_DISPENSERS_CHAMBER = JigsawPools.key(ResourceKey.minecraft("trial_chambers/dispensers/chamber"));
 

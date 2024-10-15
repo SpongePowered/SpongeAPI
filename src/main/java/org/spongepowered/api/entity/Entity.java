@@ -292,6 +292,10 @@ public interface Entity extends Identifiable, HoverEventSource<HoverEvent.ShowEn
      */
     boolean damage(double damage, DamageSource damageSource);
 
+    default void foo() {
+
+    }
+
     /**
      * Gets the nearby entities within the desired distance.
      *

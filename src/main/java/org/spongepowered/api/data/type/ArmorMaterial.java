@@ -26,11 +26,11 @@ package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
-import org.spongepowered.api.item.recipe.crafting.Ingredient;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * Represents a type of "armor", usually applicable to any
@@ -40,11 +40,10 @@ import java.util.Optional;
 public interface ArmorMaterial extends DefaultedRegistryValue {
 
     /**
-     * Gets the {@link ItemType} that can be used to
-     * "repair" the armor type.
+     * Gets the {@link ItemType} that can be used to "repair" the armor type.
      *
      * @return The item type considered to be used for repairing
      */
-    Optional<Ingredient> repairIngredient();
+    Predicate<ItemStack> repairIngredient();
 
 }

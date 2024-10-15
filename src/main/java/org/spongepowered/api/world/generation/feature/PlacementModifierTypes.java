@@ -44,8 +44,6 @@ public final class PlacementModifierTypes {
 
     public static final DefaultedRegistryReference<PlacementModifierType> BLOCK_PREDICATE_FILTER = PlacementModifierTypes.key(ResourceKey.minecraft("block_predicate_filter"));
 
-    public static final DefaultedRegistryReference<PlacementModifierType> CARVING_MASK = PlacementModifierTypes.key(ResourceKey.minecraft("carving_mask"));
-
     public static final DefaultedRegistryReference<PlacementModifierType> COUNT = PlacementModifierTypes.key(ResourceKey.minecraft("count"));
 
     public static final DefaultedRegistryReference<PlacementModifierType> COUNT_ON_EVERY_LAYER = PlacementModifierTypes.key(ResourceKey.minecraft("count_on_every_layer"));

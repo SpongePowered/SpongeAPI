@@ -40,67 +40,69 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class AttributeTypes {
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ARMOR = AttributeTypes.key(ResourceKey.minecraft("generic.armor"));
+    public static final DefaultedRegistryReference<RangedAttributeType> ARMOR = AttributeTypes.key(ResourceKey.minecraft("armor"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ARMOR_TOUGHNESS = AttributeTypes.key(ResourceKey.minecraft("generic.armor_toughness"));
+    public static final DefaultedRegistryReference<RangedAttributeType> ARMOR_TOUGHNESS = AttributeTypes.key(ResourceKey.minecraft("armor_toughness"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ATTACK_DAMAGE = AttributeTypes.key(ResourceKey.minecraft("generic.attack_damage"));
+    public static final DefaultedRegistryReference<RangedAttributeType> ATTACK_DAMAGE = AttributeTypes.key(ResourceKey.minecraft("attack_damage"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ATTACK_KNOCKBACK = AttributeTypes.key(ResourceKey.minecraft("generic.attack_knockback"));
+    public static final DefaultedRegistryReference<RangedAttributeType> ATTACK_KNOCKBACK = AttributeTypes.key(ResourceKey.minecraft("attack_knockback"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_ATTACK_SPEED = AttributeTypes.key(ResourceKey.minecraft("generic.attack_speed"));
+    public static final DefaultedRegistryReference<RangedAttributeType> ATTACK_SPEED = AttributeTypes.key(ResourceKey.minecraft("attack_speed"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_BURNING_TIME = AttributeTypes.key(ResourceKey.minecraft("generic.burning_time"));
+    public static final DefaultedRegistryReference<RangedAttributeType> BLOCK_BREAK_SPEED = AttributeTypes.key(ResourceKey.minecraft("block_break_speed"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_EXPLOSION_KNOCKBACK_RESISTANCE = AttributeTypes.key(ResourceKey.minecraft("generic.explosion_knockback_resistance"));
+    public static final DefaultedRegistryReference<RangedAttributeType> BLOCK_INTERACTION_RANGE = AttributeTypes.key(ResourceKey.minecraft("block_interaction_range"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_FALL_DAMAGE_MULTIPLIER = AttributeTypes.key(ResourceKey.minecraft("generic.fall_damage_multiplier"));
+    public static final DefaultedRegistryReference<RangedAttributeType> BURNING_TIME = AttributeTypes.key(ResourceKey.minecraft("burning_time"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_FLYING_SPEED = AttributeTypes.key(ResourceKey.minecraft("generic.flying_speed"));
+    public static final DefaultedRegistryReference<RangedAttributeType> ENTITY_INTERACTION_RANGE = AttributeTypes.key(ResourceKey.minecraft("entity_interaction_range"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_FOLLOW_RANGE = AttributeTypes.key(ResourceKey.minecraft("generic.follow_range"));
+    public static final DefaultedRegistryReference<RangedAttributeType> EXPLOSION_KNOCKBACK_RESISTANCE = AttributeTypes.key(ResourceKey.minecraft("explosion_knockback_resistance"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_GRAVITY = AttributeTypes.key(ResourceKey.minecraft("generic.gravity"));
+    public static final DefaultedRegistryReference<RangedAttributeType> FALL_DAMAGE_MULTIPLIER = AttributeTypes.key(ResourceKey.minecraft("fall_damage_multiplier"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_JUMP_STRENGTH = AttributeTypes.key(ResourceKey.minecraft("generic.jump_strength"));
+    public static final DefaultedRegistryReference<RangedAttributeType> FLYING_SPEED = AttributeTypes.key(ResourceKey.minecraft("flying_speed"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_KNOCKBACK_RESISTANCE = AttributeTypes.key(ResourceKey.minecraft("generic.knockback_resistance"));
+    public static final DefaultedRegistryReference<RangedAttributeType> FOLLOW_RANGE = AttributeTypes.key(ResourceKey.minecraft("follow_range"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_LUCK = AttributeTypes.key(ResourceKey.minecraft("generic.luck"));
+    public static final DefaultedRegistryReference<RangedAttributeType> GRAVITY = AttributeTypes.key(ResourceKey.minecraft("gravity"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_MAX_ABSORPTION = AttributeTypes.key(ResourceKey.minecraft("generic.max_absorption"));
+    public static final DefaultedRegistryReference<RangedAttributeType> JUMP_STRENGTH = AttributeTypes.key(ResourceKey.minecraft("jump_strength"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_MAX_HEALTH = AttributeTypes.key(ResourceKey.minecraft("generic.max_health"));
+    public static final DefaultedRegistryReference<RangedAttributeType> KNOCKBACK_RESISTANCE = AttributeTypes.key(ResourceKey.minecraft("knockback_resistance"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_MOVEMENT_EFFICIENCY = AttributeTypes.key(ResourceKey.minecraft("generic.movement_efficiency"));
+    public static final DefaultedRegistryReference<RangedAttributeType> LUCK = AttributeTypes.key(ResourceKey.minecraft("luck"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_MOVEMENT_SPEED = AttributeTypes.key(ResourceKey.minecraft("generic.movement_speed"));
+    public static final DefaultedRegistryReference<RangedAttributeType> MAX_ABSORPTION = AttributeTypes.key(ResourceKey.minecraft("max_absorption"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_OXYGEN_BONUS = AttributeTypes.key(ResourceKey.minecraft("generic.oxygen_bonus"));
+    public static final DefaultedRegistryReference<RangedAttributeType> MAX_HEALTH = AttributeTypes.key(ResourceKey.minecraft("max_health"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_SAFE_FALL_DISTANCE = AttributeTypes.key(ResourceKey.minecraft("generic.safe_fall_distance"));
+    public static final DefaultedRegistryReference<RangedAttributeType> MINING_EFFICIENCY = AttributeTypes.key(ResourceKey.minecraft("mining_efficiency"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_SCALE = AttributeTypes.key(ResourceKey.minecraft("generic.scale"));
+    public static final DefaultedRegistryReference<RangedAttributeType> MOVEMENT_EFFICIENCY = AttributeTypes.key(ResourceKey.minecraft("movement_efficiency"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_STEP_HEIGHT = AttributeTypes.key(ResourceKey.minecraft("generic.step_height"));
+    public static final DefaultedRegistryReference<RangedAttributeType> MOVEMENT_SPEED = AttributeTypes.key(ResourceKey.minecraft("movement_speed"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> GENERIC_WATER_MOVEMENT_EFFICIENCY = AttributeTypes.key(ResourceKey.minecraft("generic.water_movement_efficiency"));
+    public static final DefaultedRegistryReference<RangedAttributeType> OXYGEN_BONUS = AttributeTypes.key(ResourceKey.minecraft("oxygen_bonus"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> PLAYER_BLOCK_BREAK_SPEED = AttributeTypes.key(ResourceKey.minecraft("player.block_break_speed"));
+    public static final DefaultedRegistryReference<RangedAttributeType> SAFE_FALL_DISTANCE = AttributeTypes.key(ResourceKey.minecraft("safe_fall_distance"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> PLAYER_BLOCK_INTERACTION_RANGE = AttributeTypes.key(ResourceKey.minecraft("player.block_interaction_range"));
+    public static final DefaultedRegistryReference<RangedAttributeType> SCALE = AttributeTypes.key(ResourceKey.minecraft("scale"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> PLAYER_ENTITY_INTERACTION_RANGE = AttributeTypes.key(ResourceKey.minecraft("player.entity_interaction_range"));
+    public static final DefaultedRegistryReference<RangedAttributeType> SNEAKING_SPEED = AttributeTypes.key(ResourceKey.minecraft("sneaking_speed"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> PLAYER_MINING_EFFICIENCY = AttributeTypes.key(ResourceKey.minecraft("player.mining_efficiency"));
+    public static final DefaultedRegistryReference<RangedAttributeType> SPAWN_REINFORCEMENTS = AttributeTypes.key(ResourceKey.minecraft("spawn_reinforcements"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> PLAYER_SNEAKING_SPEED = AttributeTypes.key(ResourceKey.minecraft("player.sneaking_speed"));
+    public static final DefaultedRegistryReference<RangedAttributeType> STEP_HEIGHT = AttributeTypes.key(ResourceKey.minecraft("step_height"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> PLAYER_SUBMERGED_MINING_SPEED = AttributeTypes.key(ResourceKey.minecraft("player.submerged_mining_speed"));
+    public static final DefaultedRegistryReference<RangedAttributeType> SUBMERGED_MINING_SPEED = AttributeTypes.key(ResourceKey.minecraft("submerged_mining_speed"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> PLAYER_SWEEPING_DAMAGE_RATIO = AttributeTypes.key(ResourceKey.minecraft("player.sweeping_damage_ratio"));
+    public static final DefaultedRegistryReference<RangedAttributeType> SWEEPING_DAMAGE_RATIO = AttributeTypes.key(ResourceKey.minecraft("sweeping_damage_ratio"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> ZOMBIE_SPAWN_REINFORCEMENTS = AttributeTypes.key(ResourceKey.minecraft("zombie.spawn_reinforcements"));
+    public static final DefaultedRegistryReference<RangedAttributeType> TEMPT_RANGE = AttributeTypes.key(ResourceKey.minecraft("tempt_range"));
+
+    public static final DefaultedRegistryReference<RangedAttributeType> WATER_MOVEMENT_EFFICIENCY = AttributeTypes.key(ResourceKey.minecraft("water_movement_efficiency"));
 
     private AttributeTypes() {
     }

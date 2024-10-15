@@ -28,23 +28,11 @@ import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 
 import java.util.Objects;
-import java.util.StringJoiner;
 
 /**
  * The result of fulfilling a {@link CookingRecipe}.
  */
-public final class CookingResult {
-
-    private final ItemStackSnapshot result;
-    private final double experience;
-
-    /**
-     * @deprecated Use {@link #CookingResult(ItemStackLike, double)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    public CookingResult(final ItemStackSnapshot result, final double experience) {
-        this((ItemStackLike) result, experience);
-    }
+public record CookingResult(ItemStackSnapshot result, double experience) {
 
     /**
      * Creates a new {@link CookingResult}.
@@ -55,6 +43,18 @@ public final class CookingResult {
      * @param experience The experience that should be created from this result
      */
     public CookingResult(final ItemStackLike result, final double experience) {
+        this(Objects.requireNonNull(result, "result").asImmutable(), experience);
+    }
+
+    /**
+     * Creates a new {@link CookingResult}.
+     *
+     * <p>Note that this may be replaced with a static of method in the future.</p>
+     *
+     * @param result The result of the cooking recipe
+     * @param experience The experience that should be created from this result
+     */
+    public CookingResult {
         Objects.requireNonNull(result, "result");
         if (result.isEmpty()) {
             throw new IllegalArgumentException("The result must not be empty");
@@ -62,9 +62,6 @@ public final class CookingResult {
         if (experience < 0) {
             throw new IllegalArgumentException("The experience must be non-negative.");
         }
-
-        this.result = result.asImmutable();
-        this.experience = experience;
     }
 
     /**
@@ -92,28 +89,4 @@ public final class CookingResult {
         return this.experience;
     }
 
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof CookingResult)) {
-            return false;
-        }
-        final CookingResult that = (CookingResult) o;
-        return Double.compare(that.experience, this.experience) == 0 && Objects.equals(this.result, that.result);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(this.result, this.experience);
-    }
-
-    @Override
-    public String toString() {
-        return new StringJoiner(", ", CookingResult.class.getSimpleName() + "[", "]")
-            .add("result=" + this.result)
-            .add("experience=" + this.experience)
-            .toString();
-    }
 }

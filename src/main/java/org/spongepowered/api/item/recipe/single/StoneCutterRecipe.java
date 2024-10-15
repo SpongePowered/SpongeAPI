@@ -49,6 +49,13 @@ public interface StoneCutterRecipe extends Recipe<RecipeInput.Single> {
         return Sponge.game().builderProvider().provide(StoneCutterRecipe.Builder.class);
     }
 
+    /**
+     * Returns the {@link Ingredient} for this {@link StoneCutterRecipe}.
+     *
+     * @return The {@link Ingredient} for this {@link StoneCutterRecipe}.
+     */
+    Ingredient ingredient();
+
     @Override
     RecipeType<? extends StoneCutterRecipe> type();
 

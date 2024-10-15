@@ -30,6 +30,7 @@ import org.spongepowered.api.data.type.BambooLeavesType;
 import org.spongepowered.api.data.type.BellAttachmentType;
 import org.spongepowered.api.data.type.ChestAttachmentType;
 import org.spongepowered.api.data.type.ComparatorMode;
+import org.spongepowered.api.data.type.CreakingHeart;
 import org.spongepowered.api.data.type.DoorHinge;
 import org.spongepowered.api.data.type.DripstoneSegment;
 import org.spongepowered.api.data.type.InstrumentType;
@@ -115,6 +116,8 @@ public final class BlockStateKeys {
     public static final Key<Value<Boolean>> CRACKED = BlockStateKeys.key(ResourceKey.minecraft("property/cracked"), Boolean.class);
 
     public static final Key<Value<Boolean>> CRAFTING = BlockStateKeys.key(ResourceKey.minecraft("property/crafting"), Boolean.class);
+
+    public static final Key<Value<CreakingHeart>> CREAKING = BlockStateKeys.key(ResourceKey.minecraft("property/creaking"), CreakingHeart.class);
 
     public static final Key<Value<Integer>> DELAY = BlockStateKeys.key(ResourceKey.minecraft("property/delay"), Integer.class);
 
@@ -263,6 +266,8 @@ public final class BlockStateKeys {
     public static final Key<Value<StructureMode>> STRUCTUREBLOCK_MODE = BlockStateKeys.key(ResourceKey.minecraft("property/mode"), StructureMode.class);
 
     public static final Key<Value<Tilt>> TILT = BlockStateKeys.key(ResourceKey.minecraft("property/tilt"), Tilt.class);
+
+    public static final Key<Value<Boolean>> TIP = BlockStateKeys.key(ResourceKey.minecraft("property/tip"), Boolean.class);
 
     public static final Key<Value<TrialSpawnerState>> TRIAL_SPAWNER_STATE = BlockStateKeys.key(ResourceKey.minecraft("property/trial_spawner_state"), TrialSpawnerState.class);
 

@@ -41,14 +41,6 @@ public final class RecipeResult {
     private final List<ItemStackSnapshot> remainingItems;
 
     /**
-     * @deprecated Use {@link #RecipeResult(ItemStackLike, List)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    public RecipeResult(ItemStackSnapshot result, List<ItemStackSnapshot> remainingItems) {
-        this((ItemStackLike) result, (List<? extends ItemStackLike>) remainingItems);
-    }
-
-    /**
      * Creates a new {@link RecipeResult}.
      *
      * <p>Note that this may be replaced with a static of method in the

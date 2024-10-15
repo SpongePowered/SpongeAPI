@@ -54,6 +54,7 @@ import org.spongepowered.api.data.type.BodyPart;
 import org.spongepowered.api.data.type.CatType;
 import org.spongepowered.api.data.type.ChestAttachmentType;
 import org.spongepowered.api.data.type.ComparatorMode;
+import org.spongepowered.api.data.type.CreakingHeart;
 import org.spongepowered.api.data.type.DoorHinge;
 import org.spongepowered.api.data.type.DripstoneSegment;
 import org.spongepowered.api.data.type.DyeColor;
@@ -162,10 +163,10 @@ import org.spongepowered.api.world.biome.climate.Precipitation;
 import org.spongepowered.api.world.biome.climate.TemperatureModifier;
 import org.spongepowered.api.world.chunk.ChunkState;
 import org.spongepowered.api.world.difficulty.Difficulty;
+import org.spongepowered.api.world.explosion.ExplosionBlockInteraction;
 import org.spongepowered.api.world.gamerule.GameRule;
 import org.spongepowered.api.world.generation.carver.Carver;
 import org.spongepowered.api.world.generation.carver.CarverType;
-import org.spongepowered.api.world.generation.carver.CarvingStep;
 import org.spongepowered.api.world.generation.config.flat.FlatGeneratorConfig;
 import org.spongepowered.api.world.generation.config.noise.DensityFunction;
 import org.spongepowered.api.world.generation.config.noise.Noise;
@@ -216,6 +217,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<ChunkState> CHUNK_STATE = RegistryTypes.minecraftKeyInGame("chunk_status");
 
     public static final DefaultedRegistryType<ContainerType> CONTAINER_TYPE = RegistryTypes.minecraftKeyInGame("menu");
+
+    public static final DefaultedRegistryType<CreakingHeart> CREAKING_HEART = RegistryTypes.minecraftKeyInGame("creaking_heart");
 
     public static final DefaultedRegistryType<DensityFunction> DENSITY_FUNCTION = RegistryTypes.minecraftKeyInServer("worldgen/density_function");
 
@@ -306,8 +309,6 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<CatType> CAT_TYPE = RegistryTypes.minecraftKeyInGame("cat_variant");
 
-    public static final DefaultedRegistryType<CarvingStep> CARVING_STEP = RegistryTypes.spongeKeyInGame("carving_step");
-
     public static final DefaultedRegistryType<ChatVisibility> CHAT_VISIBILITY = RegistryTypes.spongeKeyInGame("chat_visibility");
 
     public static final DefaultedRegistryType<ChestAttachmentType> CHEST_ATTACHMENT_TYPE = RegistryTypes.spongeKeyInGame("chest_attachment_type");
@@ -359,6 +360,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<EquipmentGroup> EQUIPMENT_GROUP = RegistryTypes.spongeKeyInGame("equipment_group");
 
     public static final DefaultedRegistryType<EquipmentType> EQUIPMENT_TYPE = RegistryTypes.spongeKeyInGame("equipment_type");
+
+    public static final RegistryType<ExplosionBlockInteraction> EXPLOSION_BLOCK_INTERACTION = RegistryTypes.spongeKeyInGame("explosion_block_interaction");
 
     public static final DefaultedRegistryType<FireworkShape> FIREWORK_SHAPE = RegistryTypes.spongeKeyInGame("firework_shape");
 

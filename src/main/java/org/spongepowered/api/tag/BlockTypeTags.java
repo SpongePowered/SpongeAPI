@@ -71,6 +71,8 @@ public final class BlockTypeTags {
 
     public static final Tag<BlockType> BASE_STONE_OVERWORLD = BlockTypeTags.key(ResourceKey.minecraft("base_stone_overworld"));
 
+    public static final Tag<BlockType> BATS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("bats_spawnable_on"));
+
     public static final Tag<BlockType> BEACON_BASE_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("beacon_base_blocks"));
 
     public static final Tag<BlockType> BEDS = BlockTypeTags.key(ResourceKey.minecraft("beds"));

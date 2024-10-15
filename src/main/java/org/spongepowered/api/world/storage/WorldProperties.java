@@ -29,14 +29,13 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.util.MinecraftDayTime;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.difficulty.Difficulty;
-import org.spongepowered.api.world.gamerule.GameRuleHolder;
 import org.spongepowered.api.world.weather.WeatherUniverse;
 import org.spongepowered.math.vector.Vector3i;
 
 /**
  * Represents the properties of a {@link World} which are persisted across runtime instances.
  */
-public interface WorldProperties extends WeatherUniverse, GameRuleHolder, DataHolder.Mutable {
+public interface WorldProperties extends WeatherUniverse, DataHolder.Mutable {
 
     /**
      * Gets the default spawn position.

@@ -296,6 +296,12 @@ public final class PlacedFeatures {
 
     public static final DefaultedRegistryReference<PlacedFeature> ORE_TUFF = PlacedFeatures.key(ResourceKey.minecraft("ore_tuff"));
 
+    public static final DefaultedRegistryReference<PlacedFeature> PALE_GARDEN_VEGETATION = PlacedFeatures.key(ResourceKey.minecraft("pale_garden_vegetation"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> PALE_OAK_CHECKED = PlacedFeatures.key(ResourceKey.minecraft("pale_oak_checked"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> PALE_OAK_CREAKING_CHECKED = PlacedFeatures.key(ResourceKey.minecraft("pale_oak_creaking_checked"));
+
     public static final DefaultedRegistryReference<PlacedFeature> PATCH_BERRY_BUSH = PlacedFeatures.key(ResourceKey.minecraft("patch_berry_bush"));
 
     public static final DefaultedRegistryReference<PlacedFeature> PATCH_BERRY_COMMON = PlacedFeatures.key(ResourceKey.minecraft("patch_berry_common"));
@@ -409,8 +415,6 @@ public final class PlacedFeatures {
     public static final DefaultedRegistryReference<PlacedFeature> SEAGRASS_NORMAL = PlacedFeatures.key(ResourceKey.minecraft("seagrass_normal"));
 
     public static final DefaultedRegistryReference<PlacedFeature> SEAGRASS_RIVER = PlacedFeatures.key(ResourceKey.minecraft("seagrass_river"));
-
-    public static final DefaultedRegistryReference<PlacedFeature> SEAGRASS_SIMPLE = PlacedFeatures.key(ResourceKey.minecraft("seagrass_simple"));
 
     public static final DefaultedRegistryReference<PlacedFeature> SEAGRASS_SWAMP = PlacedFeatures.key(ResourceKey.minecraft("seagrass_swamp"));
 

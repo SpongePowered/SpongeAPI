@@ -49,6 +49,8 @@ public final class EntityTypeTags {
 
     public static final Tag<EntityType<?>> BEEHIVE_INHABITORS = EntityTypeTags.key(ResourceKey.minecraft("beehive_inhabitors"));
 
+    public static final Tag<EntityType<?>> BOAT = EntityTypeTags.key(ResourceKey.minecraft("boat"));
+
     public static final Tag<EntityType<?>> CAN_BREATHE_UNDER_WATER = EntityTypeTags.key(ResourceKey.minecraft("can_breathe_under_water"));
 
     public static final Tag<EntityType<?>> CAN_TURN_IN_BOATS = EntityTypeTags.key(ResourceKey.minecraft("can_turn_in_boats"));

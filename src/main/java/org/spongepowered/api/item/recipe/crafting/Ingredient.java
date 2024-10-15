@@ -87,35 +87,6 @@ public interface Ingredient extends Predicate<ItemStack> {
     }
 
     /**
-     * @deprecated Use {@link #of(ItemStackLike...)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    static Ingredient of(ItemStack @Nullable ... items) {
-        return Ingredient.of((ItemStackLike[]) items);
-    }
-
-    /**
-     * @deprecated Use {@link #of(ItemStackLike...)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    static Ingredient of(ItemStackSnapshot @Nullable ... items) {
-        return Ingredient.of((ItemStackLike[]) items);
-    }
-
-    /**
-     * Creates a new {@link Ingredient} for the provided {@link ItemStackLike}s.
-     *
-     * @param items The item
-     * @return The new ingredient
-     */
-    static Ingredient of(ItemStackLike @Nullable ... items) {
-        if (items == null) {
-            return Ingredient.empty();
-        }
-        return Ingredient.builder().with(items).build();
-    }
-
-    /**
      * Creates a new {@link Ingredient} for the provided {@link ItemType}s.
      *
      * @param itemTypes The items
@@ -130,11 +101,16 @@ public interface Ingredient extends Predicate<ItemStack> {
     }
 
     /**
-     * @deprecated Use {@link #of(ResourceKey, Predicate, ItemStackLike...)} instead.
+     * Creates a new {@link Ingredient} for the provided {@link ItemStackLike}s.
+     *
+     * @param items The item
+     * @return The new ingredient
      */
-    @Deprecated(forRemoval = true)
-    static Ingredient of(ResourceKey key, Predicate<ItemStack> predicate, ItemStack... exemplaryStacks) {
-        return Ingredient.of(key, itemStack -> predicate.test(itemStack.asMutable()), (ItemStackLike[]) exemplaryStacks);
+    static Ingredient of(ItemStackLike @Nullable ... items) {
+        if (items == null) {
+            return Ingredient.empty();
+        }
+        return Ingredient.builder().with(items).build();
     }
 
     /**

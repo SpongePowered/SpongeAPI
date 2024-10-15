@@ -288,6 +288,16 @@ public final class Features {
 
     public static final DefaultedRegistryReference<Feature> ORE_TUFF = Features.key(ResourceKey.minecraft("ore_tuff"));
 
+    public static final DefaultedRegistryReference<Feature> PALE_GARDEN_VEGETATION = Features.key(ResourceKey.minecraft("pale_garden_vegetation"));
+
+    public static final DefaultedRegistryReference<Feature> PALE_MOSS_PATCH_BONEMEAL = Features.key(ResourceKey.minecraft("pale_moss_patch_bonemeal"));
+
+    public static final DefaultedRegistryReference<Feature> PALE_MOSS_VEGETATION = Features.key(ResourceKey.minecraft("pale_moss_vegetation"));
+
+    public static final DefaultedRegistryReference<Feature> PALE_OAK = Features.key(ResourceKey.minecraft("pale_oak"));
+
+    public static final DefaultedRegistryReference<Feature> PALE_OAK_CREAKING = Features.key(ResourceKey.minecraft("pale_oak_creaking"));
+
     public static final DefaultedRegistryReference<Feature> PATCH_BERRY_BUSH = Features.key(ResourceKey.minecraft("patch_berry_bush"));
 
     public static final DefaultedRegistryReference<Feature> PATCH_BROWN_MUSHROOM = Features.key(ResourceKey.minecraft("patch_brown_mushroom"));
@@ -349,8 +359,6 @@ public final class Features {
     public static final DefaultedRegistryReference<Feature> SEAGRASS_MID = Features.key(ResourceKey.minecraft("seagrass_mid"));
 
     public static final DefaultedRegistryReference<Feature> SEAGRASS_SHORT = Features.key(ResourceKey.minecraft("seagrass_short"));
-
-    public static final DefaultedRegistryReference<Feature> SEAGRASS_SIMPLE = Features.key(ResourceKey.minecraft("seagrass_simple"));
 
     public static final DefaultedRegistryReference<Feature> SEAGRASS_SLIGHTLY_LESS_SHORT = Features.key(ResourceKey.minecraft("seagrass_slightly_less_short"));
 

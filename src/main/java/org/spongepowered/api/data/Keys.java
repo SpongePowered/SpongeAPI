@@ -34,6 +34,7 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.entity.Banner;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.block.entity.CommandBlock;
+import org.spongepowered.api.block.entity.CreakingHeart;
 import org.spongepowered.api.block.entity.EndGateway;
 import org.spongepowered.api.block.entity.Jukebox;
 import org.spongepowered.api.block.entity.Lectern;
@@ -163,6 +164,7 @@ import org.spongepowered.api.entity.living.aquatic.fish.school.TropicalFish;
 import org.spongepowered.api.entity.living.golem.IronGolem;
 import org.spongepowered.api.entity.living.golem.Shulker;
 import org.spongepowered.api.entity.living.monster.Blaze;
+import org.spongepowered.api.entity.living.monster.Creaking;
 import org.spongepowered.api.entity.living.monster.Creeper;
 import org.spongepowered.api.entity.living.monster.Enderman;
 import org.spongepowered.api.entity.living.monster.Endermite;
@@ -208,6 +210,7 @@ import org.spongepowered.api.entity.vehicle.minecart.FurnaceMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.Minecart;
 import org.spongepowered.api.entity.vehicle.minecart.MinecartLike;
 import org.spongepowered.api.entity.weather.LightningBolt;
+import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSources;
 import org.spongepowered.api.fluid.FluidStackSnapshot;
 import org.spongepowered.api.fluid.FluidTypes;
@@ -265,7 +268,6 @@ import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.generation.ChunkGenerator;
 import org.spongepowered.api.world.generation.carver.Carver;
-import org.spongepowered.api.world.generation.carver.CarvingStep;
 import org.spongepowered.api.world.generation.config.WorldGenerationConfig;
 import org.spongepowered.api.world.generation.feature.DecorationStep;
 import org.spongepowered.api.world.generation.feature.PlacedFeature;
@@ -656,7 +658,7 @@ public final class Keys {
      * The carvers of a {@link Biome} used during world generation.
      * Readonly
      */
-    public static final Key<MapValue<CarvingStep, List<Carver>>> CARVERS = Keys.mapKey(ResourceKey.sponge("carvers"), TypeToken.get(CarvingStep.class), new TypeToken<List<Carver>>() {});
+    public static final Key<ListValue<Carver>> CARVERS = Keys.listKey(ResourceKey.sponge("carvers"), Carver.class);
 
     /**
      * The current casting time of a {@link Spellcaster}.
@@ -763,6 +765,22 @@ public final class Keys {
      * Readonly
      */
     public static final Key<Value<Double>> COORDINATE_MULTIPLIER = Keys.key(ResourceKey.sponge("coordinate_multiplier"), Double.class);
+
+    /**
+     * The coordinates of where a {@link Creaking} has
+     * it's bonded {@link CreakingHeart home} set to. Can be
+     * overridden.
+     *
+     * When a {@link Creaking} is spawned, it can
+     * be considered linked to a heart or not.
+     */
+    public static final Key<Value<Vector3i>> CREAKING_HOME_POSITION = Keys.key(ResourceKey.sponge("creaking_home_position"), Vector3i.class);
+
+    /**
+     * Marks whether a {@link Creaking} is considered transient. When transient, it may be
+     * invulnerable to most all {@link DamageSource}s. Note that this is not mutable.
+     */
+    public static final Key<Value<Boolean>> CREAKING_IS_LINKED = Keys.key(ResourceKey.sponge("creaking_transient"), Boolean.class);
 
     /**
      * Overrides whether a {@link WorldType} allows the {@link EnderDragon dragon} fight mechanic to spawn.
@@ -1021,7 +1039,7 @@ public final class Keys {
      * determined randomly at the time of the explosion or computed from the
      * context in which the {@link Explosive} explodes.</p>
      */
-    public static final Key<Value<Integer>> EXPLOSION_RADIUS = Keys.key(ResourceKey.sponge("explosion_radius"), Integer.class);
+    public static final Key<Value<Float>> EXPLOSION_RADIUS = Keys.key(ResourceKey.sponge("explosion_radius"), Float.class);
 
     /**
      * The eye height of an {@link Entity}.

@@ -30,7 +30,9 @@ import org.spongepowered.api.entity.ai.goal.GoalBuilder;
 import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.PathfinderAgent;
+import org.spongepowered.api.world.server.ServerWorld;
 
+import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
 public interface AvoidLivingGoal extends Goal<PathfinderAgent> {
@@ -52,7 +54,7 @@ public interface AvoidLivingGoal extends Goal<PathfinderAgent> {
      *
      * @return The predicate used to filter which entities to avoid
      */
-    Predicate<Living> targetSelector();
+    BiPredicate<Living, ServerWorld> targetSelector();
 
     /**
      * Sets the {@link Predicate} for filtering which {@link Living} instances
@@ -61,7 +63,11 @@ public interface AvoidLivingGoal extends Goal<PathfinderAgent> {
      * @param predicate The predicate
      * @return This task, for chaining
      */
-    AvoidLivingGoal setTargetSelector(Predicate<Living> predicate);
+    default AvoidLivingGoal setTargetSelector(Predicate<Living> predicate) {
+        return this.setTargetSelector((entity, world) -> predicate.test(entity));
+    }
+
+    AvoidLivingGoal setTargetSelector(BiPredicate<Living, ServerWorld> predicate);
 
     /**
      * Gets the search distance at which any {@link Living} instances in a
