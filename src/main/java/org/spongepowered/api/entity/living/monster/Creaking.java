@@ -24,7 +24,25 @@
  */
 package org.spongepowered.api.entity.living.monster;
 
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Monster;
+import org.spongepowered.api.util.annotation.Experimental;
+import org.spongepowered.math.vector.Vector3i;
 
+import java.util.Optional;
+
+/**
+ * A Creaking is a type of monster that originates from the {@link org.spongepowered.api.world.biome.Biomes#PALE_GARDEN}
+ */
+@Experimental("winter_drop")
 public interface Creaking extends Monster {
+
+    default Optional<Value.Mutable<Vector3i>> homePosition() {
+        return this.getValue(Keys.CREAKING_HOME_POSITION).map(Value::asMutable);
+    }
+
+    default Value.Immutable<Boolean> isLinked() {
+        return this.requireValue(Keys.CREAKING_IS_LINKED).asImmutable();
+    }
 }

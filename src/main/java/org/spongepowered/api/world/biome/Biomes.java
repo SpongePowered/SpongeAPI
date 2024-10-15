@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world.biome;
 
+import org.jetbrains.annotations.ApiStatus;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
@@ -31,6 +32,7 @@ import org.spongepowered.api.registry.RegistryReference;
 import org.spongepowered.api.registry.RegistryScope;
 import org.spongepowered.api.registry.RegistryScopes;
 import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.util.annotation.Experimental;
 import org.spongepowered.api.world.server.ServerWorld;
 
 /**
@@ -117,6 +119,10 @@ public final class Biomes {
     public static final RegistryReference<Biome> OLD_GROWTH_PINE_TAIGA = Biomes.key(ResourceKey.minecraft("old_growth_pine_taiga"));
 
     public static final RegistryReference<Biome> OLD_GROWTH_SPRUCE_TAIGA = Biomes.key(ResourceKey.minecraft("old_growth_spruce_taiga"));
+
+    @Experimental("winter_drop")
+    @ApiStatus.Experimental
+    public static final RegistryReference<Biome> PALE_GARDEN = Biomes.key(ResourceKey.minecraft("pale_garden"));
 
     public static final RegistryReference<Biome> PLAINS = Biomes.key(ResourceKey.minecraft("plains"));
 
