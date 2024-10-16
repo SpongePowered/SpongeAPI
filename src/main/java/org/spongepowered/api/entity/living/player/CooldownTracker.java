@@ -58,6 +58,13 @@ public interface CooldownTracker {
      */
     Optional<Ticks> cooldown(ItemStack stack);
 
+    /**
+     * Gets the cooldown for the specified {@link ResourceKey group} in ticks
+     * for the player, or empty if the group is not on cooldown.
+     *
+     * @param group The group to get the cooldown for
+     * @return The cooldown remaining for this group in ticks, if not on cooldown
+     */
     Optional<Ticks> cooldown(ResourceKey group);
 
     /**

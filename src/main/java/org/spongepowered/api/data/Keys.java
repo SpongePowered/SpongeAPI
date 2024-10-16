@@ -100,6 +100,7 @@ import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.data.value.WeightedCollectionValue;
 import org.spongepowered.api.effect.VanishState;
 import org.spongepowered.api.effect.particle.ParticleEffect;
@@ -185,6 +186,7 @@ import org.spongepowered.api.entity.living.monster.raider.illager.spellcaster.Sp
 import org.spongepowered.api.entity.living.monster.spider.Spider;
 import org.spongepowered.api.entity.living.monster.zombie.ZombieVillager;
 import org.spongepowered.api.entity.living.monster.zombie.ZombifiedPiglin;
+import org.spongepowered.api.entity.living.player.CooldownTracker;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
@@ -223,6 +225,7 @@ import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.enchantment.EnchantmentTypes;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
@@ -239,6 +242,7 @@ import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.projectile.source.ProjectileSource;
 import org.spongepowered.api.raid.Raid;
 import org.spongepowered.api.raid.RaidWave;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.tag.Tag;
 import org.spongepowered.api.util.Axis;
@@ -752,8 +756,23 @@ public final class Keys {
      * The amount of ticks a {@link EndGateway} has to wait for the next teleportation.
      * or
      * The amount of ticks a {@link Crafter} has to wait for the next craft.
+     * or
+     * The amount of ticks an {@link ItemStack} has to wait before being used again, primarily in conjunction
+     * with {@link #COOLDOWN_GROUP} in a joined {@link ValueContainer} to be offered as a custom cooldown. Using
+     * a {@link DataManipulator#mutableOf( Iterable)} to set this value using {@link Value#mutableOf( Key, Object)}
+     * to join together a group is ideal.
      */
     public static final Key<Value<Ticks>> COOLDOWN = Keys.key(ResourceKey.sponge("cooldown"), Ticks.class);
+
+    /**
+     * The {@link ResourceKey group} of an {@link ItemStackLike ItemStack} that would apply a
+     * cooldown to the item when used. Note that this affects the {@link CooldownTracker} when
+     * a {@link Player} uses the item. Can be used in tandem with the {@link #COOLDOWN} key
+     * to apply a cooldown to said group. A group will differentiate a cooldown from the default
+     * {@link ItemStackLike ItemStack} cooldown based on the
+     * {@link ItemType#key(DefaultedRegistryType) ResourceKey}.
+     */
+    public static final Key<Value<ResourceKey>> COOLDOWN_GROUP = Keys.key(ResourceKey.sponge("cooldown_group"), ResourceKey.class);
 
     /**
      * The coordinate scale of a {@link WorldType} applied to the coordinates of a {@link ServerPlayer player}
