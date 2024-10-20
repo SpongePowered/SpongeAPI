@@ -29,13 +29,13 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * A type of {@link DamageModifier} that can apply a "grouping" so to speak
+ * A type of {@link DamageStep} that can apply a "grouping" so to speak
  * for the damage modifier. The use case is being able to differentiate between
- * various {@link DamageModifier}s based on the {@link DamageModifierType}
+ * various {@link DamageStep}s based on the {@link DamageStepType}
  * without digging through the {@link Cause} provided by
- * {@link DamageModifier#cause()}.
+ * {@link DamageStep#cause()}.
  */
-@CatalogedBy(DamageModifierTypes.class)
-public interface DamageModifierType extends DefaultedRegistryValue {
+@CatalogedBy(DamageStepTypes.class)
+public interface DamageStepType extends DefaultedRegistryValue {
 
 }

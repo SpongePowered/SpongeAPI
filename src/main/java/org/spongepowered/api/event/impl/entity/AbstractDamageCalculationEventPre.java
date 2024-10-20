@@ -22,31 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.damage;
+package org.spongepowered.api.event.impl.entity;
 
-import java.util.function.DoubleUnaryOperator;
+import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
+import org.spongepowered.api.event.cause.entity.damage.DamageStepType;
+import org.spongepowered.api.event.entity.DamageCalculationEvent;
+import org.spongepowered.api.event.impl.AbstractEvent;
 
-/**
- * A function associating a
- * {@link DamageModifier} with a {@link DoubleUnaryOperator} of the resultant
- * effect.
- *
- * @param <M> The modifier type
- */
-public interface ModifierFunction<M> {
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
-    /**
-     * Gets the modifier used by this modifier function.
-     *
-     * @return The modifier
-     */
-    M modifier();
+public abstract class AbstractDamageCalculationEventPre extends AbstractEvent implements DamageCalculationEvent.Pre {
+    private final Map<DamageStepType, List<DamageModifier>> modifiersBeforeMap = new HashMap<>();
+    private final Map<DamageStepType, List<DamageModifier>> modifiersAfterMap = new HashMap<>();
 
-    /**
-     * Gets the double unary operator used by this function.
-     *
-     * @return The unary operator
-     */
-    DoubleUnaryOperator function();
+    @Override
+    public List<DamageModifier> modifiersBefore(DamageStepType type) {
+        return this.modifiersBeforeMap.computeIfAbsent(type, k -> new LinkedList<>());
+    }
 
+    @Override
+    public List<DamageModifier> modifiersAfter(DamageStepType type) {
+        return this.modifiersAfterMap.computeIfAbsent(type, k -> new LinkedList<>());
+    }
 }
