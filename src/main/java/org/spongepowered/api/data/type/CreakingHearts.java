@@ -22,24 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster.zombie;
+package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.Monster;
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryReference;
+import org.spongepowered.api.registry.RegistryKey;
+import org.spongepowered.api.registry.RegistryTypes;
 
-/**
- * Represents a Zombie.
- */
-public interface Zombie extends Monster {
+public final class CreakingHearts {
 
-    /**
-     * {@link Keys#IS_ADULT}
-     *
-     * @return Whether this zombie is an adult or not
-     */
-    @Override
-    default Value.Mutable<Boolean> adult() {
-        return this.requireValue(Keys.IS_ADULT).asMutable();
+    public static final DefaultedRegistryReference<CreakingHeart> ACTIVE = CreakingHearts.key(ResourceKey.sponge("active"));
+
+    public static final DefaultedRegistryReference<CreakingHeart> DISABLED = CreakingHearts.key(ResourceKey.sponge("disabled"));
+
+    public static final DefaultedRegistryReference<CreakingHeart> DORMANT = CreakingHearts.key(ResourceKey.sponge("dormant"));
+
+    private static DefaultedRegistryReference<CreakingHeart> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.CREAKING_HEART, location).asDefaultedReference(Sponge::game);
     }
 }

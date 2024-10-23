@@ -43,6 +43,13 @@ import java.util.function.Function;
 public interface ShapedCraftingRecipe extends CraftingRecipe {
 
     /**
+     * Gets the ingredients for this recipe.
+     *
+     * @return An unmodifiable list of the ingredients.
+     */
+    List<Ingredient> ingredients();
+
+    /**
      * Creates a new {@link ShapedCraftingRecipe.Builder} to build a {@link ShapedCraftingRecipe}.
      *
      * @return The new builder

@@ -74,6 +74,8 @@ public final class BlockEntityTypes {
 
     public static final DefaultedRegistryReference<BlockEntityType> CRAFTER = BlockEntityTypes.key(ResourceKey.minecraft("crafter"));
 
+    public static final DefaultedRegistryReference<BlockEntityType> CREAKING_HEART = BlockEntityTypes.key(ResourceKey.minecraft("creaking_heart"));
+
     public static final DefaultedRegistryReference<BlockEntityType> DAYLIGHT_DETECTOR = BlockEntityTypes.key(ResourceKey.minecraft("daylight_detector"));
 
     public static final DefaultedRegistryReference<BlockEntityType> DECORATED_POT = BlockEntityTypes.key(ResourceKey.minecraft("decorated_pot"));

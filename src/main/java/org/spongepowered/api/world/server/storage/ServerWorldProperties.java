@@ -40,6 +40,7 @@ import org.spongepowered.api.world.SerializationBehavior;
 import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.border.WorldBorder;
 import org.spongepowered.api.world.difficulty.Difficulty;
+import org.spongepowered.api.world.gamerule.GameRuleHolder;
 import org.spongepowered.api.world.generation.config.WorldGenerationConfig;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.storage.WorldProperties;
@@ -50,7 +51,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface ServerWorldProperties extends WorldProperties, Nameable, Identifiable, ResourceKeyed, WeatherUniverse.Mutable {
+public interface ServerWorldProperties extends WorldProperties, GameRuleHolder, Nameable, Identifiable, ResourceKeyed, WeatherUniverse.Mutable {
 
     /**
      * Gets the {@link ServerWorld} that correlates to this properties, if available.

@@ -29,6 +29,7 @@ import org.spongepowered.api.data.type.BambooLeavesType;
 import org.spongepowered.api.data.type.BellAttachmentType;
 import org.spongepowered.api.data.type.ChestAttachmentType;
 import org.spongepowered.api.data.type.ComparatorMode;
+import org.spongepowered.api.data.type.CreakingHeart;
 import org.spongepowered.api.data.type.DoorHinge;
 import org.spongepowered.api.data.type.DripstoneSegment;
 import org.spongepowered.api.data.type.InstrumentType;
@@ -79,6 +80,10 @@ public final class EnumStateProperties {
 
     public static EnumStateProperty<ChestAttachmentType> property_CHEST_TYPE() {
         return EnumStateProperty.of("CHEST_TYPE");
+    }
+
+    public static EnumStateProperty<CreakingHeart> property_CREAKING() {
+        return EnumStateProperty.of("CREAKING");
     }
 
     public static EnumStateProperty<DoorHinge> property_DOOR_HINGE() {

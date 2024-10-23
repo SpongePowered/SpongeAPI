@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.entity.living.player;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.util.Ticks;
 
 import java.util.Optional;
@@ -39,41 +41,56 @@ public interface CooldownTracker {
      * Checks if the specified {@link ItemType} is currently on cooldown
      * for the player.
      *
-     * @param type The item type to check is on cooldown
+     * @param stack The item type to check is on cooldown
      * @return Whether or not the specified item type is cooldown
      */
-    boolean hasCooldown(ItemType type);
+    boolean hasCooldown(ItemStack stack);
+
+    boolean hasCooldown(ResourceKey group);
 
     /**
      * Gets the cooldown of the specified {@link ItemType} in ticks for the
      * player, or empty if the the item type is currently not on cooldown.
      *
-     * @param type The item type to get the cooldown for
+     * @param stack The item type to get the cooldown for
      * @return The cooldown remaining for this item type in ticks, if not
      *     on cooldown
      */
-    Optional<Ticks> cooldown(ItemType type);
+    Optional<Ticks> cooldown(ItemStack stack);
+
+    /**
+     * Gets the cooldown for the specified {@link ResourceKey group} in ticks
+     * for the player, or empty if the group is not on cooldown.
+     *
+     * @param group The group to get the cooldown for
+     * @return The cooldown remaining for this group in ticks, if not on cooldown
+     */
+    Optional<Ticks> cooldown(ResourceKey group);
 
     /**
      * Sets the cooldown for the specified {@link ItemType} for the
      * specified amount of ticks.
      *
-     * @param type The item type to set the cooldown for
+     * @param stack The item type to set the cooldown for
      * @param ticks The amount of ticks to set the item type on cooldown for
      * @return False if setting the cooldown failed, possibly due to the event
      *     being cancelled
      */
-    boolean setCooldown(ItemType type, Ticks ticks);
+    boolean setCooldown(ItemStack stack, Ticks ticks);
+
+    boolean setCooldown(ResourceKey group, Ticks ticks);
 
     /**
      * Resets the cooldown of the specified {@link ItemType} for the
      * player.
      *
-     * @param type The item type to reset the cooldown for
+     * @param stack The item type to reset the cooldown for
      * @return False if setting the cooldown failed, possibly due to the event
      *     being cancelled
      */
-    boolean resetCooldown(ItemType type);
+    boolean resetCooldown(ItemStack stack);
+
+    boolean resetCooldown(ResourceKey group);
 
     /**
      * Gets the fraction of the specified {@link ItemType}'s cooldown that
@@ -82,9 +99,11 @@ public interface CooldownTracker {
      *
      * <p>If present, this value will be between 0.0 and 1.0.</p>
      *
-     * @param type The item type to get the cooldown fraction remaining
+     * @param stack The item type to get the cooldown fraction remaining
      * @return The fraction of cooldown remaining for the specified item type
      */
-    OptionalDouble fractionRemaining(ItemType type);
+    OptionalDouble fractionRemaining(ItemStack stack);
+
+    OptionalDouble fractionRemaining(ResourceKey group);
 
 }

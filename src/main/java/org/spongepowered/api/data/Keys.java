@@ -34,6 +34,7 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.entity.Banner;
 import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.block.entity.CommandBlock;
+import org.spongepowered.api.block.entity.CreakingHeart;
 import org.spongepowered.api.block.entity.EndGateway;
 import org.spongepowered.api.block.entity.Jukebox;
 import org.spongepowered.api.block.entity.Lectern;
@@ -100,6 +101,7 @@ import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.data.value.WeightedCollectionValue;
 import org.spongepowered.api.effect.VanishState;
 import org.spongepowered.api.effect.particle.ParticleEffect;
@@ -165,6 +167,7 @@ import org.spongepowered.api.entity.living.aquatic.fish.school.TropicalFish;
 import org.spongepowered.api.entity.living.golem.IronGolem;
 import org.spongepowered.api.entity.living.golem.Shulker;
 import org.spongepowered.api.entity.living.monster.Blaze;
+import org.spongepowered.api.entity.living.monster.Creaking;
 import org.spongepowered.api.entity.living.monster.Creeper;
 import org.spongepowered.api.entity.living.monster.Enderman;
 import org.spongepowered.api.entity.living.monster.Endermite;
@@ -185,6 +188,7 @@ import org.spongepowered.api.entity.living.monster.raider.illager.spellcaster.Sp
 import org.spongepowered.api.entity.living.monster.spider.Spider;
 import org.spongepowered.api.entity.living.monster.zombie.ZombieVillager;
 import org.spongepowered.api.entity.living.monster.zombie.ZombifiedPiglin;
+import org.spongepowered.api.entity.living.player.CooldownTracker;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.entity.living.player.chat.ChatVisibility;
@@ -210,6 +214,7 @@ import org.spongepowered.api.entity.vehicle.minecart.FurnaceMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.Minecart;
 import org.spongepowered.api.entity.vehicle.minecart.MinecartLike;
 import org.spongepowered.api.entity.weather.LightningBolt;
+import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSources;
 import org.spongepowered.api.fluid.FluidStackSnapshot;
 import org.spongepowered.api.fluid.FluidTypes;
@@ -222,6 +227,7 @@ import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.enchantment.EnchantmentTypes;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
@@ -238,6 +244,7 @@ import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.projectile.source.ProjectileSource;
 import org.spongepowered.api.raid.Raid;
 import org.spongepowered.api.raid.RaidWave;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.tag.Tag;
 import org.spongepowered.api.util.Axis;
@@ -267,7 +274,6 @@ import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.generation.ChunkGenerator;
 import org.spongepowered.api.world.generation.carver.Carver;
-import org.spongepowered.api.world.generation.carver.CarvingStep;
 import org.spongepowered.api.world.generation.config.WorldGenerationConfig;
 import org.spongepowered.api.world.generation.feature.DecorationStep;
 import org.spongepowered.api.world.generation.feature.PlacedFeature;
@@ -658,7 +664,7 @@ public final class Keys {
      * The carvers of a {@link Biome} used during world generation.
      * Readonly
      */
-    public static final Key<MapValue<CarvingStep, List<Carver>>> CARVERS = Keys.mapKey(ResourceKey.sponge("carvers"), TypeToken.get(CarvingStep.class), new TypeToken<List<Carver>>() {});
+    public static final Key<ListValue<Carver>> CARVERS = Keys.listKey(ResourceKey.sponge("carvers"), Carver.class);
 
     /**
      * The current casting time of a {@link Spellcaster}.
@@ -752,8 +758,23 @@ public final class Keys {
      * The amount of ticks a {@link EndGateway} has to wait for the next teleportation.
      * or
      * The amount of ticks a {@link Crafter} has to wait for the next craft.
+     * or
+     * The amount of ticks an {@link ItemStack} has to wait before being used again, primarily in conjunction
+     * with {@link #COOLDOWN_GROUP} in a joined {@link ValueContainer} to be offered as a custom cooldown. Using
+     * a {@link DataManipulator#mutableOf( Iterable)} to set this value using {@link Value#mutableOf( Key, Object)}
+     * to join together a group is ideal.
      */
     public static final Key<Value<Ticks>> COOLDOWN = Keys.key(ResourceKey.sponge("cooldown"), Ticks.class);
+
+    /**
+     * The {@link ResourceKey group} of an {@link ItemStackLike ItemStack} that would apply a
+     * cooldown to the item when used. Note that this affects the {@link CooldownTracker} when
+     * a {@link Player} uses the item. Can be used in tandem with the {@link #COOLDOWN} key
+     * to apply a cooldown to said group. A group will differentiate a cooldown from the default
+     * {@link ItemStackLike ItemStack} cooldown based on the
+     * {@link ItemType#key(DefaultedRegistryType) ResourceKey}.
+     */
+    public static final Key<Value<ResourceKey>> COOLDOWN_GROUP = Keys.key(ResourceKey.sponge("cooldown_group"), ResourceKey.class);
 
     /**
      * The coordinate scale of a {@link WorldType} applied to the coordinates of a {@link ServerPlayer player}
@@ -765,6 +786,22 @@ public final class Keys {
      * Readonly
      */
     public static final Key<Value<Double>> COORDINATE_MULTIPLIER = Keys.key(ResourceKey.sponge("coordinate_multiplier"), Double.class);
+
+    /**
+     * The coordinates of where a {@link Creaking} has
+     * it's bonded {@link CreakingHeart home} set to. Can be
+     * overridden.
+     *
+     * When a {@link Creaking} is spawned, it can
+     * be considered linked to a heart or not.
+     */
+    public static final Key<Value<Vector3i>> CREAKING_HOME_POSITION = Keys.key(ResourceKey.sponge("creaking_home_position"), Vector3i.class);
+
+    /**
+     * Marks whether a {@link Creaking} is considered transient. When transient, it may be
+     * invulnerable to most all {@link DamageSource}s. Note that this is not mutable.
+     */
+    public static final Key<Value<Boolean>> CREAKING_IS_LINKED = Keys.key(ResourceKey.sponge("creaking_transient"), Boolean.class);
 
     /**
      * Overrides whether a {@link WorldType} allows the {@link EnderDragon dragon} fight mechanic to spawn.
@@ -1023,7 +1060,7 @@ public final class Keys {
      * determined randomly at the time of the explosion or computed from the
      * context in which the {@link Explosive} explodes.</p>
      */
-    public static final Key<Value<Integer>> EXPLOSION_RADIUS = Keys.key(ResourceKey.sponge("explosion_radius"), Integer.class);
+    public static final Key<Value<Float>> EXPLOSION_RADIUS = Keys.key(ResourceKey.sponge("explosion_radius"), Float.class);
 
     /**
      * The eye height of an {@link Entity}.

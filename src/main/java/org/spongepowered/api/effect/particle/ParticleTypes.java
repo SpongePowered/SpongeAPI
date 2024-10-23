@@ -46,6 +46,8 @@ public final class ParticleTypes {
 
     public static final DefaultedRegistryReference<ParticleType> BLOCK = ParticleTypes.key(ResourceKey.minecraft("block"));
 
+    public static final DefaultedRegistryReference<ParticleType> BLOCK_CRUMBLE = ParticleTypes.key(ResourceKey.minecraft("block_crumble"));
+
     public static final DefaultedRegistryReference<ParticleType> BLOCK_MARKER = ParticleTypes.key(ResourceKey.minecraft("block_marker"));
 
     public static final DefaultedRegistryReference<ParticleType> BUBBLE = ParticleTypes.key(ResourceKey.minecraft("bubble"));
@@ -233,6 +235,8 @@ public final class ParticleTypes {
     public static final DefaultedRegistryReference<ParticleType> SWEEP_ATTACK = ParticleTypes.key(ResourceKey.minecraft("sweep_attack"));
 
     public static final DefaultedRegistryReference<ParticleType> TOTEM_OF_UNDYING = ParticleTypes.key(ResourceKey.minecraft("totem_of_undying"));
+
+    public static final DefaultedRegistryReference<ParticleType> TRAIL = ParticleTypes.key(ResourceKey.minecraft("trail"));
 
     public static final DefaultedRegistryReference<ParticleType> TRIAL_OMEN = ParticleTypes.key(ResourceKey.minecraft("trial_omen"));
 

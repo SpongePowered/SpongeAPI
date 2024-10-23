@@ -22,24 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.monster.zombie;
+package org.spongepowered.api.world.explosion;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.Monster;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
-/**
- * Represents a Zombie.
- */
-public interface Zombie extends Monster {
+@CatalogedBy(ExplosionBlockInteractions.class)
+public interface ExplosionBlockInteraction {
+    // TODO mixin
 
-    /**
-     * {@link Keys#IS_ADULT}
-     *
-     * @return Whether this zombie is an adult or not
-     */
-    @Override
-    default Value.Mutable<Boolean> adult() {
-        return this.requireValue(Keys.IS_ADULT).asMutable();
-    }
 }

@@ -67,6 +67,7 @@ public interface Schematic extends ArchetypeVolume, LocationBaseDataHolder.Mutab
      *
      * @return The block palette
      */
+    @Override
     Palette<BlockState, BlockType> blockPalette();
 
     /**

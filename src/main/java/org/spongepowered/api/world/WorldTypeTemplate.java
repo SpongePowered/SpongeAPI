@@ -70,10 +70,12 @@ public interface WorldTypeTemplate extends DataPackEntry<WorldTypeTemplate>, Wor
          * @param pack The data
          * @return This builder, for chaining
          */
+        @Override
         Builder fromDataPack(DataView pack) throws IOException;
 
         Builder from(WorldType type);
 
+        @Override
         Builder pack(DataPack<WorldTypeTemplate> pack);
     }
 
