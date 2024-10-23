@@ -53,6 +53,7 @@ import org.spongepowered.api.world.portal.Portal;
 import org.spongepowered.api.world.portal.PortalLogic;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
+import org.spongepowered.eventgen.annotations.NoFactoryMethod;
 import org.spongepowered.math.vector.Vector3d;
 import org.spongepowered.plugin.PluginContainer;
 
@@ -62,6 +63,7 @@ import java.util.UUID;
  * Standard keys for use within {@link EventContext}s.
  */
 @SuppressWarnings("unused")
+@NoFactoryMethod
 public final class EventContextKeys {
 
     // @formatter:off

@@ -27,7 +27,7 @@ package org.spongepowered.api.event.lifecycle;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.network.channel.Channel;
 import org.spongepowered.api.registry.DuplicateRegistrationException;
-import org.spongepowered.api.util.annotation.eventgen.NoFactoryMethod;
+import org.spongepowered.eventgen.annotations.NoFactoryMethod;
 
 /**
  * Lifecycle event to indicate when network channels should be created and registered.

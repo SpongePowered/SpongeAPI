@@ -25,7 +25,9 @@
 package org.spongepowered.api.event.lifecycle;
 
 import org.spongepowered.api.registry.DuplicateRegistrationException;
+import org.spongepowered.eventgen.annotations.NoFactoryMethod;
 
+@NoFactoryMethod
 public interface RegisterFactoryEvent extends LifecycleEvent {
 
     /**

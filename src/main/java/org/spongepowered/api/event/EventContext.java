@@ -27,6 +27,7 @@ package org.spongepowered.api.event;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.DoNotStore;
+import org.spongepowered.eventgen.annotations.NoFactoryMethod;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,6 +43,7 @@ import java.util.function.Supplier;
  * in the event's {@link Cause}.
  */
 @DoNotStore
+@NoFactoryMethod
 public final class EventContext {
 
     private static final EventContext EMPTY_CONTEXT = new EventContext(Map.of());

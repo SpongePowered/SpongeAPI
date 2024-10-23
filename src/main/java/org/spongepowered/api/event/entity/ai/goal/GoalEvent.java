@@ -30,7 +30,7 @@ import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.impl.entity.ai.goal.AbstractGoalEvent;
-import org.spongepowered.api.util.annotation.eventgen.ImplementedBy;
+import org.spongepowered.eventgen.annotations.ImplementedBy;
 
 @ImplementedBy(AbstractGoalEvent.class)
 public interface GoalEvent extends Event, Cancellable {
