@@ -82,6 +82,8 @@ import org.spongepowered.api.data.type.PushReaction;
 import org.spongepowered.api.data.type.RabbitType;
 import org.spongepowered.api.data.type.RaidStatus;
 import org.spongepowered.api.data.type.RailDirection;
+import org.spongepowered.api.data.type.SalmonSize;
+import org.spongepowered.api.data.type.SalmonSizes;
 import org.spongepowered.api.data.type.SculkSensorState;
 import org.spongepowered.api.data.type.SkinPart;
 import org.spongepowered.api.data.type.SlabPortion;
@@ -468,6 +470,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<TemperatureModifier> TEMPERATURE_MODIFIER = RegistryTypes.spongeKeyInGame("temperature_modifier");
 
     public static final DefaultedRegistryType<Rotation> ROTATION = RegistryTypes.spongeKeyInGame("rotation");
+
+    public static final DefaultedRegistryType<SalmonSize> SALMON_SIZE = RegistryTypes.spongeKeyInGame("salmon_size");
 
     public static final DefaultedRegistryType<SculkSensorState> SCULK_SENSOR_STATE = RegistryTypes.spongeKeyInGame("sculk_sensor_state");
 
