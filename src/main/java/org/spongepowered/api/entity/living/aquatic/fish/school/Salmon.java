@@ -24,5 +24,14 @@
  */
 package org.spongepowered.api.entity.living.aquatic.fish.school;
 
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.type.SalmonSize;
+import org.spongepowered.api.data.value.Value;
+
 public interface Salmon extends SchoolingFish {
+
+    default Value.Mutable<SalmonSize> size() {
+        return this.requireValue(Keys.SALMON_SIZE).asMutable();
+    }
+
 }

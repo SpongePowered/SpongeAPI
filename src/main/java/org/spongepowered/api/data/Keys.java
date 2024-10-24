@@ -83,6 +83,7 @@ import org.spongepowered.api.data.type.ProfessionType;
 import org.spongepowered.api.data.type.PushReaction;
 import org.spongepowered.api.data.type.RabbitType;
 import org.spongepowered.api.data.type.RailDirection;
+import org.spongepowered.api.data.type.SalmonSize;
 import org.spongepowered.api.data.type.SculkSensorState;
 import org.spongepowered.api.data.type.SkinPart;
 import org.spongepowered.api.data.type.SlabPortion;
@@ -161,6 +162,7 @@ import org.spongepowered.api.entity.living.animal.horse.PackHorse;
 import org.spongepowered.api.entity.living.animal.horse.llama.Llama;
 import org.spongepowered.api.entity.living.animal.horse.llama.TraderLlama;
 import org.spongepowered.api.entity.living.aquatic.Dolphin;
+import org.spongepowered.api.entity.living.aquatic.fish.school.Salmon;
 import org.spongepowered.api.entity.living.aquatic.fish.school.TropicalFish;
 import org.spongepowered.api.entity.living.golem.IronGolem;
 import org.spongepowered.api.entity.living.golem.Shulker;
@@ -2826,6 +2828,11 @@ public final class Keys {
      * The time a {@link Ravager} is roaring.
      */
     public static final Key<Value<Ticks>> ROARING_TIME = Keys.key(ResourceKey.sponge("roaring_time"), Ticks.class);
+
+    /**
+     * The {@link SalmonSize} of a {@link Salmon} entity.
+     */
+    public static final Key<Value<SalmonSize>> SALMON_SIZE = Keys.key(ResourceKey.sponge("salmon_size"), SalmonSize.class);
 
     /**
      * The current saturation of a {@link Player}.
