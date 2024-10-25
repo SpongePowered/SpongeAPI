@@ -63,6 +63,7 @@ import org.spongepowered.api.data.type.DoorHinge;
 import org.spongepowered.api.data.type.DripstoneSegment;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.type.FoxType;
+import org.spongepowered.api.data.type.FrogType;
 import org.spongepowered.api.data.type.HandPreference;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
@@ -156,6 +157,7 @@ import org.spongepowered.api.entity.living.animal.TameableAnimal;
 import org.spongepowered.api.entity.living.animal.Turtle;
 import org.spongepowered.api.entity.living.animal.Wolf;
 import org.spongepowered.api.entity.living.animal.cow.Mooshroom;
+import org.spongepowered.api.entity.living.animal.frog.Frog;
 import org.spongepowered.api.entity.living.animal.horse.Horse;
 import org.spongepowered.api.entity.living.animal.horse.PackHorse;
 import org.spongepowered.api.entity.living.animal.horse.llama.Llama;
@@ -1188,6 +1190,11 @@ public final class Keys {
      * The type of a {@link Fox}.
      */
     public static final Key<Value<FoxType>> FOX_TYPE = Keys.key(ResourceKey.sponge("fox_type"), FoxType.class);
+
+    /**
+     * The type of a {@link Frog}.
+     */
+    public static final Key<Value<FrogType>> FROG_TYPE = Keys.key(ResourceKey.sponge("frog_type"), FrogType.class);
 
     /**
      * The time (in ticks) an {@link Entity} is frozen.
