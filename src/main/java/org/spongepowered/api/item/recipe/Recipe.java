@@ -34,7 +34,13 @@ import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
 import org.spongepowered.api.item.recipe.cooking.CookingRecipe;
-import org.spongepowered.api.item.recipe.crafting.*;
+import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
+import org.spongepowered.api.item.recipe.crafting.Ingredient;
+import org.spongepowered.api.item.recipe.crafting.RecipeInput;
+import org.spongepowered.api.item.recipe.crafting.RecipeResult;
+import org.spongepowered.api.item.recipe.crafting.ShapedCraftingRecipe;
+import org.spongepowered.api.item.recipe.crafting.ShapelessCraftingRecipe;
+import org.spongepowered.api.item.recipe.crafting.SpecialCraftingRecipe;
 import org.spongepowered.api.item.recipe.single.StoneCutterRecipe;
 import org.spongepowered.api.item.recipe.smithing.SmithingRecipe;
 import org.spongepowered.api.world.server.ServerWorld;
@@ -61,6 +67,7 @@ public interface Recipe<T extends RecipeInput> {
      *
      * @param inventory The inventory to check for validity
      * @param world     The world this recipe would be used in
+     *
      * @return True if the given input matches this recipe's requirements
      */
     boolean isValid(T inventory, ServerWorld world);
@@ -73,6 +80,7 @@ public interface Recipe<T extends RecipeInput> {
      * as it may customize the result further depending on the context.</p>
      *
      * @param inventory The input inventory
+     *
      * @return The result of this recipe
      */
     ItemStackSnapshot result(T inventory);
@@ -107,9 +115,10 @@ public interface Recipe<T extends RecipeInput> {
      *
      * @param inventory The input inventory
      * @param world     The world this recipe would be used in
+     *
      * @return A {@link RecipeResult} if the arguments satisfy
-     * {@link #isValid(RecipeInput, ServerWorld)}, or
-     * {@link Optional#empty()} if not
+     *     {@link #isValid(RecipeInput, ServerWorld)}, or
+     *     {@link Optional#empty()} if not
      */
     default Optional<RecipeResult> result(T inventory, ServerWorld world) {
         if (this.isValid(inventory, world)) {
