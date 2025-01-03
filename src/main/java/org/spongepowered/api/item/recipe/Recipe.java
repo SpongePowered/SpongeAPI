@@ -60,13 +60,18 @@ import java.util.Optional;
  */
 public interface Recipe<T extends RecipeInput> {
 
+    /**
+    * Provides the registered key for this recipe
+    *
+    * @return The key the recipe is registered with
+    */
     Optional<ResourceKey> key();
 
     /**
      * Checks if the given inventory fits the required constraints to make a valid recipe
      *
      * @param inventory The inventory to check for validity
-     * @param world     The world this recipe would be used in
+     * @param world The world this recipe would be used in
      *
      * @return True if the given input matches this recipe's requirements
      */
@@ -103,7 +108,7 @@ public interface Recipe<T extends RecipeInput> {
      *
      * @param inventory The input inventory
      * @return The list of items to be added to the inventory of the player
-     * when the recipe has been fulfilled (possibly empty)
+     *         when the recipe has been fulfilled (possibly empty)
      */
     List<ItemStackSnapshot> remainingItems(T inventory);
 
@@ -114,7 +119,7 @@ public interface Recipe<T extends RecipeInput> {
      * {@link #isValid(RecipeInput, ServerWorld)}.</p>
      *
      * @param inventory The input inventory
-     * @param world     The world this recipe would be used in
+     * @param world The world this recipe would be used in
      *
      * @return A {@link RecipeResult} if the arguments satisfy
      *     {@link #isValid(RecipeInput, ServerWorld)}, or
