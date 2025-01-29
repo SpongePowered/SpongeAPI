@@ -860,12 +860,32 @@ public final class Keys {
     public static final Key<MapValue<EntityType<?>, Double>> CUSTOM_ATTACK_DAMAGE = Keys.mapKey(ResourceKey.sponge("custom_attack_damage"), new TypeToken<EntityType<?>>() {}, TypeToken.get(Double.class));
 
     /**
-     * The resource pack model index of an {@link ItemStack}.
+     * List of floats used by items model definitions.
      *
-     * <p>Resource packs can use the same index in their files to replace the
-     * item model of an ItemStack.</p>
+     * @see <a href="https://minecraft.wiki/w/Items_model_definition">Items model definition</a>
      */
-    public static final Key<Value<Integer>> CUSTOM_MODEL_DATA = Keys.key(ResourceKey.sponge("custom_model_data"), Integer.class);
+    public static final Key<ListValue<Float>> CUSTOM_MODEL_DATA_FLOATS = Keys.listKey(ResourceKey.sponge("custom_model_data_floats"), Float.class);
+
+    /**
+     * List of booleans used by items model definitions.
+     *
+     * @see <a href="https://minecraft.wiki/w/Items_model_definition">Items model definition</a>
+     */
+    public static final Key<ListValue<Boolean>> CUSTOM_MODEL_DATA_FLAGS = Keys.listKey(ResourceKey.sponge("custom_model_data_flags"), Boolean.class);
+
+    /**
+     * List of strings used by items model definitions.
+     *
+     * @see <a href="https://minecraft.wiki/w/Items_model_definition">Items model definition</a>
+     */
+    public static final Key<ListValue<String>> CUSTOM_MODEL_DATA_STRINGS = Keys.listKey(ResourceKey.sponge("custom_model_data_strings"), String.class);
+
+    /**
+     * List of colors used by items model definitions.
+     *
+     * @see <a href="https://minecraft.wiki/w/Items_model_definition">Items model definition</a>
+     */
+    public static final Key<ListValue<Color>> CUSTOM_MODEL_DATA_COLORS = Keys.listKey(ResourceKey.sponge("custom_model_data_colors"), Color.class);
 
     /**
      * The custom name of an {@link Entity}, {@link ItemStack} or {@link BlockEntity}.
