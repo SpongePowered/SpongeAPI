@@ -24,18 +24,87 @@
  */
 package org.spongepowered.api.event.cause.entity.damage;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.event.CauseStackManager;
+
+import java.util.Optional;
+import java.util.function.Consumer;
+
 /**
- * A damage modifier that will be applied before or after a {@link DamageStep}.
+ * A damage modifier that will create a {@link DamageStep}.
  */
-@FunctionalInterface
 public interface DamageModifier {
 
     /**
-     * Modifies the damage.
+     * Gets the {@link DamageStepType} of this modifier.
      *
-     * @param step The damage step this modifier is associated with.
-     * @param damage The current damage value.
-     * @return The next damage value
+     * @return the step type
      */
-    double modify(DamageStep step, double damage);
+    DamageStepType type();
+
+    /**
+     * Gets the consumer that will modify the cause frame.
+     *
+     * @return The cause frame modifier
+     */
+    Optional<Consumer<CauseStackManager.StackFrame>> frame();
+
+    /**
+     * Gets the function that will modify the damage.
+     * The function may be absent if the sole purpose of this modifier is to apply children steps.
+     *
+     * @return the damage modifier
+     */
+    Optional<Function> damage();
+
+    @FunctionalInterface
+    interface Function {
+        /**
+         * Modifies the damage.
+         *
+         * @param step   The damage step this modifier is associated with.
+         * @param damage The current damage value.
+         * @return The next damage value
+         */
+        double modify(DamageStep step, double damage);
+    }
+
+    /**
+     * Creates a new {@link Builder} to create {@link DamageModifier}s.
+     *
+     * @return The new builder
+     */
+    static Builder builder() {
+        return Sponge.game().builderProvider().provide(Builder.class);
+    }
+
+    /**
+     * A builder to create {@link DamageModifier}s.
+     */
+    interface Builder extends org.spongepowered.api.util.Builder<DamageModifier, Builder> {
+
+        /**
+         * Sets the {@link DamageStepType} for this modifier.
+         *
+         * @param type The damage step type
+         * @return this builder for chaining
+         */
+        Builder type(DamageStepType type);
+
+        /**
+         * Sets the cause frame modifier.
+         *
+         * @param frameModifier The frame modifier
+         * @return this builder for chaining
+         */
+        Builder frame(Consumer<CauseStackManager.StackFrame> frameModifier);
+
+        /**
+         * Sets the {@link Function} for this modifier.
+         *
+         * @param function The damage function
+         * @return this builder for chaining
+         */
+        Builder damage(Function function);
+    }
 }

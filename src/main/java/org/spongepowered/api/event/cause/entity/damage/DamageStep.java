@@ -27,21 +27,25 @@ package org.spongepowered.api.event.cause.entity.damage;
 import org.spongepowered.api.event.Cause;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.OptionalDouble;
 
 /**
- * Represents a step in the damage calculation.
+ * A step represent an operation made by the platform (vanilla and mods) or modifiers added by plugins.
+ * Steps are structured as trees where children modify the input or output of the parent step.
+ * A damage calculation is made of multiple trees of steps.
  */
 public interface DamageStep {
 
     /**
-     * Gets the {@link DamageStepType} for this {@link DamageStep}.
+     * Gets the {@link DamageStepType} of this step.
      *
-     * @return The damage step type
+     * @return the step type
      */
     DamageStepType type();
 
     /**
-     * Gets the cause of this {@link DamageStep}.
+     * Gets the {@link Cause} of this step.
      *
      * @return The cause of this step
      */
@@ -49,8 +53,9 @@ public interface DamageStep {
 
     /**
      * Gets whether this step is skipped.
-     * When skipped, only the step and its side effects are ignored, modifiers are still applied.
-     * A modifier willing to ignore every previous modifiers should revert the damage to {@link #damageBeforeModifiers()}.
+     * When skipped, only the step itself and its side effects are ignored, children are still applied.
+     * A modifier willing to ignore every previous children should revert the damage to {@link #damageBeforeChildren()},
+     * or call {@link #skip} on each child.
      *
      * @return Whether this step is skipped
      */
@@ -75,47 +80,77 @@ public interface DamageStep {
     }
 
     /**
-     * The damage just before the modifiers of this step.
+     * The damage just before the children of this step.
+     * Returns empty if the value is not known yet.
      *
-     * @return The damage before this step
+     * @return The damage before the children of this step
      */
-    double damageBeforeModifiers();
+    OptionalDouble damageBeforeChildren();
 
     /**
      * The damage just before this step.
+     * Returns empty if the value is not known yet.
      *
      * @return The damage before this step
-     * @throws IllegalStateException if called before the "before" modifiers have finished.
      */
-    double damageBeforeStep();
+    OptionalDouble damageBeforeSelf();
 
     /**
      * The damage just after this step.
+     * Returns empty if the value is not known yet.
      *
      * @return The damage after this step
-     * @throws IllegalStateException if called before this step has finished
      */
-    double damageAfterStep();
+    OptionalDouble damageAfterSelf();
 
     /**
-     * The damage just after the modifiers of this step.
+     * The damage just after the children of this step.
+     * Returns empty if the value is not known yet.
      *
      * @return The damage after this step
-     * @throws IllegalStateException if called before the modifiers have finished.
      */
-    double damageAfterModifiers();
+    OptionalDouble damageAfterChildren();
 
     /**
-     * Gets an immutable list of all modifiers that applies just before this step.
+     * Gets the {@link DamageStepHistory} this step belongs to.
      *
-     * @return The list of modifiers
+     * @return The history containing this step.
      */
-    List<DamageModifier> modifiersBefore();
+    DamageStepHistory history();
 
     /**
-     * Gets an immutable list of all modifiers that applies just after this step.
+     * Gets the parent of this step.
+     * Returns empty if this step is the root of its tree.
      *
-     * @return The list of modifiers
+     * @return The parent of this step
      */
-    List<DamageModifier> modifiersAfter();
+    Optional<DamageStep> parent();
+
+    /**
+     * Gets the root of this step.
+     *
+     * @return The root of this step
+     */
+    default DamageStep root() {
+        DamageStep step = this;
+        Optional<DamageStep> parent;
+        while ((parent = step.parent()).isPresent()) {
+            step = parent.get();
+        }
+        return step;
+    }
+
+    /**
+     * Gets an immutable list of all children steps that applies just before this step.
+     *
+     * @return The list of children steps
+     */
+    List<DamageStep> childrenBefore();
+
+    /**
+     * Gets an immutable list of all children steps that applies just after this step.
+     *
+     * @return The list of children steps
+     */
+    List<DamageStep> childrenAfter();
 }

@@ -25,7 +25,6 @@
 package org.spongepowered.api.event.entity;
 
 import org.spongepowered.api.block.entity.carrier.Dispenser;
-import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.monster.skeleton.Skeleton;
 import org.spongepowered.api.entity.living.player.Player;
@@ -33,13 +32,14 @@ import org.spongepowered.api.entity.projectile.arrow.ArrowLike;
 import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
+import org.spongepowered.api.event.impl.entity.AbstractDamageEntityEventPost;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.difficulty.Difficulties;
 import org.spongepowered.api.world.difficulty.Difficulty;
-
-import java.util.Optional;
+import org.spongepowered.eventgen.annotations.ImplementedBy;
+import org.spongepowered.eventgen.annotations.PropertySettings;
 
 /**
  * Represents the base event for when an {@link Entity} is being "damaged".
@@ -85,6 +85,7 @@ public interface DamageEntityEvent extends DamageCalculationEvent {
     /**
      * Fires after the damage steps and their side effects have been applied.
      */
+    @ImplementedBy(AbstractDamageEntityEventPost.class)
     interface Post extends DamageEntityEvent, DamageCalculationEvent.Post {
 
         /**
@@ -93,9 +94,7 @@ public interface DamageEntityEvent extends DamageCalculationEvent {
          *
          * @return Whether the entity will die
          */
-        default boolean willCauseDeath() {
-            final Optional<Double> health = this.entity().get(Keys.HEALTH);
-            return health.isPresent() && health.get() - this.finalDamage() <= 0;
-        }
+        @PropertySettings(requiredParameter = false, generateMethods = false)
+        boolean willCauseDeath();
     }
 }

@@ -24,35 +24,20 @@
  */
 package org.spongepowered.api.event.cause.entity.damage;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import java.util.List;
 
 /**
- * Represents a type of {@link DamageStep}.
+ * Captures the root steps occurring during a damage calculation.
  */
-@CatalogedBy(DamageStepTypes.class)
-public interface DamageStepType extends DefaultedRegistryValue {
+public interface DamageStepHistory {
 
     /**
-     * Creates a new {@link DamageStepType}.
+     * Gets the list of the captured root steps during the damage calculation in the order they have been applied.
+     * Note that this list is not an exhaustive representation of all the operations applied,
+     * especially in a modded environment.
+     * The list is unmodifiable and will gradually grow during the damage calculation.
      *
-     * @return the new step type
+     * @return The root steps.
      */
-    static DamageStepType create() {
-        return Sponge.game().factoryProvider().provide(Factory.class).create();
-    }
-
-    /**
-     * A factory to create {@link DamageStepType}s.
-     */
-    interface Factory {
-
-        /**
-         * Creates a new {@link DamageStepType}.
-         *
-         * @return the new step type
-         */
-        DamageStepType create();
-    }
+    List<DamageStep> rootSteps();
 }

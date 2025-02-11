@@ -30,13 +30,16 @@ import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifier;
 import org.spongepowered.api.event.cause.entity.damage.DamageStep;
+import org.spongepowered.api.event.cause.entity.damage.DamageStepHistory;
 import org.spongepowered.api.event.cause.entity.damage.DamageStepType;
+import org.spongepowered.api.event.cause.entity.damage.DamageStepTypes;
 import org.spongepowered.api.event.impl.entity.AbstractDamageCalculationEventPre;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.eventgen.annotations.ImplementedBy;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 /**
  * The base event for when some damage is calculated,
@@ -48,7 +51,7 @@ import java.util.List;
  *
  * <p>Optimally, these steps can be traced to a
  * particular object, be it an {@link ItemStack}, {@link Difficulty}, or
- * simply an an attribute. Given that {@link Cause} has a unique capability of
+ * simply an attribute. Given that {@link Cause} has a unique capability of
  * storing any and every {@link Object} willing to be passed into it, we
  * can easily represent these "sources" of "steps" in a {@link Cause}.
  * Now, knowing the "source" will not provide enough information, so a
@@ -66,16 +69,9 @@ public interface DamageCalculationEvent extends Event, Cancellable {
     Entity entity();
 
     /**
-     * Gets the original base damage to deal to the targeted {@link Entity}.
-     *
-     * @see #baseDamage()
-     * @return The original base damage
-     */
-    double originalBaseDamage();
-
-    /**
      * Gets the base damage to deal to the targeted {@link Entity}.
      * The base damage is the value before the calculation and its {@link DamageStep}s.
+     * To modify the base damage, add a modifier to the step associated to {@link DamageStepTypes#START}.
      *
      * @return The base damage
      */
@@ -89,12 +85,14 @@ public interface DamageCalculationEvent extends Event, Cancellable {
     interface Pre extends DamageCalculationEvent {
 
         /**
-         * Sets the base damage to deal to the targeted {@link Entity}.
+         * Gets a mutable list of all modifiers that applies just before the step.
          *
-         * @see #baseDamage()
-         * @param baseDamage The base damage
+         * @param type The step type
+         * @return The list of modifiers
          */
-        void setBaseDamage(double baseDamage);
+        default List<DamageModifier> modifiersBefore(Supplier<DamageStepType> type) {
+            return this.modifiersBefore(type.get());
+        }
 
         /**
          * Gets a mutable list of all modifiers that applies just before the step.
@@ -103,6 +101,16 @@ public interface DamageCalculationEvent extends Event, Cancellable {
          * @return The list of modifiers
          */
         List<DamageModifier> modifiersBefore(DamageStepType type);
+
+        /**
+         * Gets a mutable list of all modifiers that applies just after the step.
+         *
+         * @param type The step type
+         * @return The list of modifiers
+         */
+        default List<DamageModifier> modifiersAfter(Supplier<DamageStepType> type) {
+            return this.modifiersAfter(type.get());
+        }
 
         /**
          * Gets a mutable list of all modifiers that applies just after the step.
@@ -121,37 +129,20 @@ public interface DamageCalculationEvent extends Event, Cancellable {
     interface Post extends DamageCalculationEvent {
 
         /**
-         * Gets the original final damage to deal to the targeted {@link Entity}.
-         *
-         * @see #finalDamage()
-         * @return The final amount of damage to originally deal
-         */
-        double originalFinalDamage();
-
-        /**
          * Gets the final damage to deal to the targeted {@link Entity}.
          * The final damage is the value after the calculation and its {@link DamageStep}s.
          * The final damage is the amount of health being lost by the {@link Entity}, if health is tracked.
+         * To modify the final damage, add a modifier to the step associated to {@link DamageStepTypes#END}.
          *
          * @return The final damage
          */
         double finalDamage();
 
         /**
-         * Sets the final damage to deal to the targeted {@link Entity}.
+         * Gets the {@link DamageStepHistory} of this damage calculation.
          *
-         * @see #finalDamage()
-         * @param finalDamage The base damage
+         * @return The history.
          */
-        void setFinalDamage(double finalDamage);
-
-        /**
-         * Gets the list of the captured steps during the damage calculation in the order they have been applied.
-         * Note that this list is not an exhaustive representation of all the operations applied,
-         * especially in a modded environment.
-         *
-         * @return The list of steps
-         */
-        List<DamageStep> steps();
+        DamageStepHistory history();
     }
 }

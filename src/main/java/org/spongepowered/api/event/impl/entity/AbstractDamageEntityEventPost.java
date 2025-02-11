@@ -22,37 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.damage;
+package org.spongepowered.api.event.impl.entity;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.event.entity.DamageEntityEvent;
+import org.spongepowered.api.event.impl.AbstractEvent;
 
-/**
- * Represents a type of {@link DamageStep}.
- */
-@CatalogedBy(DamageStepTypes.class)
-public interface DamageStepType extends DefaultedRegistryValue {
+import java.util.Optional;
 
-    /**
-     * Creates a new {@link DamageStepType}.
-     *
-     * @return the new step type
-     */
-    static DamageStepType create() {
-        return Sponge.game().factoryProvider().provide(Factory.class).create();
-    }
+public abstract class AbstractDamageEntityEventPost extends AbstractEvent implements DamageEntityEvent.Post {
 
-    /**
-     * A factory to create {@link DamageStepType}s.
-     */
-    interface Factory {
-
-        /**
-         * Creates a new {@link DamageStepType}.
-         *
-         * @return the new step type
-         */
-        DamageStepType create();
+    @Override
+    public boolean willCauseDeath() {
+        final Optional<Double> health = this.entity().get(Keys.HEALTH);
+        return health.isPresent() && health.get() - this.finalDamage() <= 0;
     }
 }

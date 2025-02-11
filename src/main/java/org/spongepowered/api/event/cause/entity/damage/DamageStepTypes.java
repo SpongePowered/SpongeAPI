@@ -109,6 +109,13 @@ public final class DamageStepTypes {
     public static final DefaultedRegistryReference<DamageStepType> ENCHANTMENT_COOLDOWN = DamageStepTypes.key(ResourceKey.sponge("enchantment_cooldown"));
 
     /**
+     * Represents the last {@link DamageStep} applied during a damage calculation.
+     * This step happens just before the {@link org.spongepowered.api.event.entity.DamageCalculationEvent.Post}.
+     * This step does nothing but can be used to add modifiers to the final damage.
+     */
+    public static final DefaultedRegistryReference<DamageStepType> END = DamageStepTypes.key(ResourceKey.sponge("end"));
+
+    /**
      * Represents a {@link DamageStep} that will modify freezing damage.
      * E.g. {@link org.spongepowered.api.entity.living.monster.Blaze} take more damage from freezing sources.
      */
@@ -151,6 +158,13 @@ public final class DamageStepTypes {
      * Represents a {@link DamageStep} that will reduce damage due to using a shield.
      */
     public static final DefaultedRegistryReference<DamageStepType> SHIELD = DamageStepTypes.key(ResourceKey.sponge("shield"));
+
+    /**
+     * Represents the first {@link DamageStep} applied during a damage calculation.
+     * This step happens just after the {@link org.spongepowered.api.event.entity.DamageCalculationEvent.Pre}.
+     * This step does nothing but can be used to add modifiers to the base damage.
+     */
+    public static final DefaultedRegistryReference<DamageStepType> START = DamageStepTypes.key(ResourceKey.sponge("start"));
 
     /**
      * Represents a {@link DamageStep} that is applied for a sweeping attack.
