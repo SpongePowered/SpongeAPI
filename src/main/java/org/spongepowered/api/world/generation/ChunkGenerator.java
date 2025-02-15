@@ -70,6 +70,10 @@ public interface ChunkGenerator {
         return Sponge.game().factoryProvider().provide(ChunkGenerator.Factory.class).theEnd();
     }
 
+    static ConfigurableChunkGenerator<NoiseGeneratorConfig> customVoid(final NoiseGeneratorConfig config) {
+        return Sponge.game().factoryProvider().provide(ChunkGenerator.Factory.class).customVoid(Objects.requireNonNull(config, "config"));
+    }
+
     /**
      * Returns the biome provider.
      *
@@ -126,5 +130,7 @@ public interface ChunkGenerator {
          * @return the created ChunkGenerator
          */
         ChunkGenerator fromDataPack(DataView pack) throws IOException;
+
+        ConfigurableChunkGenerator<NoiseGeneratorConfig> customVoid(NoiseGeneratorConfig config);
     }
 }
