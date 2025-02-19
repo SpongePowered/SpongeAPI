@@ -2502,7 +2502,7 @@ public final class Keys {
     public static final Key<Value<Boolean>> ON_GROUND = Keys.key(ResourceKey.sponge("on_ground"), Boolean.class);
 
     /**
-     * The opacity of a {@link TextDisplay}. 0 to 255
+     * The text opacity of a {@link TextDisplay}. 0 to 255
      */
     public static final Key<Value<Byte>> OPACITY = Keys.key(ResourceKey.sponge("opacity"), Byte.class);
 
@@ -3233,6 +3233,11 @@ public final class Keys {
      * The background {@link Color} of a {@link TextDisplay}.
      */
     public static final Key<Value<Color>> TEXT_BACKGROUND_COLOR = Keys.key(ResourceKey.sponge("text_background_color"), Color.class);
+
+    /**
+     * The background opacity of a {@link TextDisplay}. 0 to 255
+     */
+    public static final Key<Value<Byte>> TEXT_BACKGROUND_OPACITY = Keys.key(ResourceKey.sponge("text_background_opacity"), Byte.class);
 
     /**
      * The remaining fuse time in ticks of a {@link FusedExplosive}.
