@@ -28,7 +28,6 @@ import net.kyori.adventure.text.ComponentLike;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.event.HoverEventSource;
 import org.spongepowered.api.data.Key;
-import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
@@ -73,9 +72,7 @@ public interface ItemStackLike extends SerializableDataHolder, ComponentLike, Ho
      *
      * @return Max stack quantity
      */
-    default int maxStackQuantity() {
-        return this.require(Keys.MAX_STACK_SIZE);
-    }
+    int maxStackQuantity();
 
     /**
      * Returns true if {@link #quantity()} is zero and therefore this
