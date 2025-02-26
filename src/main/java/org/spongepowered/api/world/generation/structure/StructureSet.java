@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.world.generation.structure;
 
+import org.spongepowered.api.util.Builder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.util.weighted.WeightedTable;
 
@@ -47,4 +49,23 @@ public interface StructureSet {
      */
     StructurePlacement placement();
 
+    interface Builder extends org.spongepowered.api.util.Builder<StructureSet, Builder>, CopyableBuilder<StructureSet, Builder> {
+
+        /**
+         * Sets the structure placement.
+         *
+         * @param placement The placement
+         * @return This builder, for chaining
+         */
+        Builder placement(StructurePlacement placement);
+
+        /**
+         * Adds a structure with given weight.
+         *
+         * @param structure The structure
+         * @param weight The weight
+         * @return This builder, for chaining
+         */
+        Builder add(Structure structure, int weight);
+    }
 }

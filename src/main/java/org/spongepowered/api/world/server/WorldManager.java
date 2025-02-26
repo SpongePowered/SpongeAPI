@@ -118,17 +118,6 @@ public interface WorldManager {
     Collection<ServerWorld> worldsOfType(WorldType type);
 
     /**
-     * Loads a {@link ServerWorld world} from a {@link WorldTemplate template}.
-     *
-     * <p>If a world is already loaded by the {@link ResourceKey key} of the template,
-     * the world will be returned instead.</p>
-     *
-     * @param template The template
-     * @return The world
-     */
-    CompletableFuture<ServerWorld> loadWorld(WorldTemplate template);
-
-    /**
      * Loads a {@link ServerWorld world} by a {@link ResourceKey key}.
      *
      * <p>If a world with the given name is already loaded then it is returned instead.</p>

@@ -22,40 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.generation.structure;
+package org.spongepowered.api.datapack;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.datapack.DataPack;
-import org.spongepowered.api.datapack.DataPackEntry;
-import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.util.ResourceKeyedBuilder;
-import org.spongepowered.api.world.schematic.Schematic;
+import org.spongepowered.api.data.persistence.DataContainer;
 
-/**
- * The template for a vanilla structure schematic.
- */
-public interface SchematicTemplate extends DataPackEntry<SchematicTemplate> {
+import java.util.Optional;
 
-    static Builder builder() {
-        return Sponge.game().builderProvider().provide(Builder.class).reset();
-    }
+public interface DataPackSerializable {
 
-    /**
-     * Returns the schematic.
-     *
-     * @return The schematic
-     */
-    Schematic schematic();
-
-    interface Builder extends ResourceKeyedBuilder<SchematicTemplate, Builder>, CopyableBuilder<SchematicTemplate, Builder> {
-
-        /**
-         * Sets the data pack
-         *
-         * @param pack The data pack
-         * @return This builder, for chaining
-         */
-        Builder pack(DataPack<SchematicTemplate> pack);
-
-    }
+    Optional<DataContainer> toDataPack();
 }

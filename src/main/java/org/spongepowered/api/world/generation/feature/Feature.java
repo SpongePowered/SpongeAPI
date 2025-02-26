@@ -27,6 +27,8 @@ package org.spongepowered.api.world.generation.feature;
 
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.util.Builder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
@@ -73,4 +75,14 @@ public interface Feature extends DefaultedRegistryValue {
      */
     boolean place(ServerLocation location);
 
+    interface Builder extends org.spongepowered.api.util.Builder<Feature, Builder>, CopyableBuilder<Feature, Builder> {
+
+        /**
+         * Sets the given {@link FeatureType}.
+         *
+         * @param type The feature type
+         * @return The builder, for chaining
+         */
+        Builder type(FeatureType type);
+    }
 }

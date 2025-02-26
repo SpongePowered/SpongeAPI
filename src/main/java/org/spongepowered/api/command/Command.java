@@ -41,6 +41,7 @@ import org.spongepowered.api.command.registrar.tree.CommandTreeNodeTypes;
 import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.event.EventContext;
 import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
+import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.service.permission.PermissionDescription;
 import org.spongepowered.api.service.permission.Subject;
 
@@ -209,9 +210,9 @@ public interface Command {
          *
          * @return The tree.
          */
-        default CommandTreeNode.Root commandTree() {
+        default CommandTreeNode.Root commandTree(RegistryHolder registryHolder) {
             return CommandTreeNode.root().executable().child("arguments",
-                    CommandTreeNodeTypes.STRING.get().createNode().greedy().executable().customCompletions());
+                    CommandTreeNodeTypes.STRING.get(registryHolder).createNode().greedy().executable().customCompletions());
         }
 
     }

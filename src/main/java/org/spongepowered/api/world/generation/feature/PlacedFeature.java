@@ -25,6 +25,8 @@
 package org.spongepowered.api.world.generation.feature;
 
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.util.Builder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
@@ -72,4 +74,22 @@ public interface PlacedFeature extends DefaultedRegistryValue {
      */
     boolean place(ServerLocation location);
 
+    interface Builder extends org.spongepowered.api.util.Builder<PlacedFeature, Builder>, CopyableBuilder<PlacedFeature, Builder> {
+
+        /**
+         * Sets the {@link Feature}.
+         *
+         * @param feature The feature
+         * @return The builder, for chaining
+         */
+        Builder feature(Feature feature);
+
+        /**
+         * Adds a {@link PlacementModifier placement modifier}.
+         *
+         * @param modifier The placement modifier
+         * @return The builder, for chaining
+         */
+        Builder addModifier(PlacementModifier modifier);
+    }
 }

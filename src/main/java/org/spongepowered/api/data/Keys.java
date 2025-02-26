@@ -261,6 +261,7 @@ import org.spongepowered.api.util.Transform;
 import org.spongepowered.api.util.orientation.Orientation;
 import org.spongepowered.api.world.DefaultWorldKeys;
 import org.spongepowered.api.world.SerializationBehavior;
+import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.WorldTypeEffect;
 import org.spongepowered.api.world.WorldTypes;
@@ -284,7 +285,6 @@ import org.spongepowered.api.world.portal.Portal;
 import org.spongepowered.api.world.portal.PortalLogic;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
-import org.spongepowered.api.world.server.WorldTemplate;
 import org.spongepowered.api.world.server.storage.ServerWorldProperties;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.Weather;
@@ -729,7 +729,7 @@ public final class Keys {
     public static final Key<Value<Vector3d>> CHEST_ROTATION = Keys.key(ResourceKey.sponge("chest_rotation"), Vector3d.class);
 
     /**
-     * The chunk generator of a {@link WorldTemplate}
+     * The chunk generator of a {@link World}
      * Readonly
      */
     public static final Key<Value<ChunkGenerator>> CHUNK_GENERATOR = Keys.key(ResourceKey.sponge("chunk_generator"), ChunkGenerator.class);
@@ -749,7 +749,7 @@ public final class Keys {
     public static final Key<Value<String>> COMMAND = Keys.key(ResourceKey.sponge("command"), String.class);
 
     /**
-     * Whether commands can be run in a world of a {@link WorldTemplate} or {@link ServerWorldProperties}
+     * Whether commands can be run in a world of a {@link World} or {@link ServerWorldProperties}
      * Readonly
      */
     public static final Key<Value<Boolean>> COMMANDS = Keys.key(ResourceKey.sponge("commands"), Boolean.class);
@@ -958,7 +958,7 @@ public final class Keys {
      * <p>On an {@link Entity}, this represents a combination of {@link Keys#CUSTOM_NAME} (if set), scoreboard info, and any click data.</p>
      * <p>On an {@link ItemStack}, this represents the {@link Keys#CUSTOM_NAME} or if not set the {@link ItemType}s translation.
      * <p>On a {@link BlockEntity}, this usually represents the name displayed in its {@link org.spongepowered.api.item.inventory.Container}
-     * <p>On a {@link WorldTemplate} or {@link ServerWorldProperties}, this represents the display name of the corresponding {@link ServerWorld}</p>
+     * <p>On a {@link World} or {@link ServerWorldProperties}, this represents the display name of the corresponding {@link ServerWorld}</p>
      * <p>On a {@link TextDisplay} this is modifiable.</p>
      */
     public static final Key<Value<Component>> DISPLAY_NAME = Keys.key(ResourceKey.sponge("display_name"), Component.class);
@@ -1264,7 +1264,7 @@ public final class Keys {
     public static final Key<Value<Ticks>> FUSE_DURATION = Keys.key(ResourceKey.sponge("fuse_duration"), Ticks.class);
 
     /**
-     * The {@link GameMode} a {@link Humanoid} or {@link ServerWorldProperties} or {@link WorldTemplate} has.
+     * The {@link GameMode} a {@link Humanoid} or {@link ServerWorldProperties} or {@link World} has.
      */
     public static final Key<Value<GameMode>> GAME_MODE = Keys.key(ResourceKey.sponge("game_mode"), GameMode.class);
 
@@ -1311,7 +1311,7 @@ public final class Keys {
     public static final Key<Value<Integer>> GROWTH_STAGE = Keys.key(ResourceKey.sponge("growth_stage"), Integer.class);
 
     /**
-     * Whether world of a {@link WorldTemplate} or {@link WorldProperties} is in hardcore mode.
+     * Whether world of a {@link World} or {@link WorldProperties} is in hardcore mode.
      * Readonly
      */
     public static final Key<Value<Boolean>> HARDCORE = Keys.key(ResourceKey.sponge("hardcore"), Boolean.class);
@@ -1888,7 +1888,7 @@ public final class Keys {
     public static final Key<Value<Boolean>> IS_LIT = Keys.key(ResourceKey.sponge("is_lit"), Boolean.class);
 
     /**
-     * Whether a world of a {@link WorldTemplate} or {@link ServerWorldProperties} is supposed to be loaded at startup.
+     * Whether a world of a {@link World} or {@link ServerWorldProperties} is supposed to be loaded at startup.
      * Readonly
      */
     public static final Key<Value<Boolean>> IS_LOAD_ON_STARTUP = Keys.key(ResourceKey.sponge("is_load_on_startup"), Boolean.class);
@@ -2624,7 +2624,7 @@ public final class Keys {
     public static final Key<Value<DyeColor>> PATTERN_COLOR = Keys.key(ResourceKey.sponge("pattern_color"), DyeColor.class);
 
     /**
-     * Whether spawn logic is performed on a world of a {@link WorldTemplate} or {@link ServerWorldProperties}
+     * Whether spawn logic is performed on a world of a {@link World} or {@link ServerWorldProperties}
      * See {@link ServerWorldProperties#performsSpawnLogic()}.
      * Readonly
      */
@@ -2793,7 +2793,7 @@ public final class Keys {
     public static final Key<Value<PushReaction>> PUSH_REACTION = Keys.key(ResourceKey.sponge("push_reaction"), PushReaction.class);
 
     /**
-     * Whether pvp combat is enabled in a world of a {@link WorldTemplate} or {@link ServerWorldProperties}
+     * Whether pvp combat is enabled in a world of a {@link World} or {@link ServerWorldProperties}
      * Readonly
      */
     public static final Key<Value<Boolean>> PVP = Keys.key(ResourceKey.sponge("pvp"), Boolean.class);
@@ -2970,7 +2970,7 @@ public final class Keys {
     public static final Key<Value<UUID>> SECOND_TRUSTED = Keys.key(ResourceKey.sponge("second_trusted"), UUID.class);
 
     /**
-     * The seed of a {@link WorldTemplate}
+     * The seed of a {@link World}
      */
     public static final Key<Value<Long>> SEED = Keys.key(ResourceKey.sponge("structure_seed"), Long.class);
 
@@ -2980,7 +2980,7 @@ public final class Keys {
     public static final Key<Value<Boolean>> SEE_THROUGH_BLOCKS = Keys.key(ResourceKey.sponge("see_through_blocks"), Boolean.class);
 
     /**
-     * The {@link SerializationBehavior} of a {@link WorldTemplate} or {@link ServerWorldProperties}
+     * The {@link SerializationBehavior} of a {@link World} or {@link ServerWorldProperties}
      * Readonly
      */
     public static final Key<Value<SerializationBehavior>> SERIALIZATION_BEHAVIOR = Keys.key(ResourceKey.sponge("serialization_behavior"), SerializationBehavior.class);
@@ -3133,7 +3133,7 @@ public final class Keys {
     public static final Key<Value<Range<Integer>>> SPAWN_LIGHT_RANGE = Keys.key(ResourceKey.sponge("spawn_light_range"), new TypeToken<Range<Integer>>() {});
 
     /**
-     * The spawn position in a world of a {@link WorldTemplate} or {@link WorldProperties}
+     * The spawn position in a world of a {@link World} or {@link WorldProperties}
      * Readonly
      */
     public static final Key<Value<Vector3i>> SPAWN_POSITION = Keys.key(ResourceKey.sponge("spawn_position"), Vector3i.class);
@@ -3420,7 +3420,7 @@ public final class Keys {
 
     /**
      * The client view distance of a {@link ServerPlayer}
-     * <p>or the view distance in a world of a {@link WorldTemplate} or {@link ServerWorldProperties}</p>
+     * <p>or the view distance in a world of a {@link World} or {@link ServerWorldProperties}</p>
      *
      * <p>This value represents the radius (around the player) in
      * unit chunks.</p>
@@ -3531,7 +3531,7 @@ public final class Keys {
     public static final Key<Value<WorldBorder>> WORLD_BORDER = Keys.key(ResourceKey.sponge("world_border"), WorldBorder.class);
 
     /**
-     * The difficulty of a {@link WorldTemplate} or {@link WorldProperties}
+     * The difficulty of a {@link World} or {@link WorldProperties}
      * Readonly
      */
     public static final Key<Value<Difficulty>> WORLD_DIFFICULTY = Keys.key(ResourceKey.sponge("world_difficulty"), Difficulty.class);
@@ -3569,7 +3569,7 @@ public final class Keys {
     public static final Key<Value<Integer>> WORLD_LOGICAL_HEIGHT = Keys.key(ResourceKey.sponge("world_logical_height"), Integer.class);
 
     /**
-     * The {@link WorldType} of a {@link WorldTemplate} or {@link ServerWorldProperties}
+     * The {@link WorldType} of a {@link World} or {@link ServerWorldProperties}
      * Readonly
      */
     public static final Key<Value<WorldType>> WORLD_TYPE = Keys.key(ResourceKey.sponge("world_type"), WorldType.class);

@@ -27,7 +27,7 @@ package org.spongepowered.api.world.generation.structure.jigsaw;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.world.generation.feature.PlacedFeature;
-import org.spongepowered.api.world.generation.structure.SchematicTemplate;
+import org.spongepowered.api.world.schematic.Schematic;
 import org.spongepowered.api.world.server.ServerLocation;
 
 import java.util.List;
@@ -92,7 +92,7 @@ public interface JigsawPoolElement {
         /**
          * Returns a function providing a legacy element.
          *
-         * @param template The template key of a {@link SchematicTemplate}
+         * @param template The template key of a {@link Schematic}
          * @param processors The processor list
          * @return The function
          */
@@ -101,7 +101,7 @@ public interface JigsawPoolElement {
         /**
          * Returns a function providing a single element.
          *
-         * @param template The template key of a {@link SchematicTemplate}
+         * @param template The template key of a {@link Schematic}
          * @param processors The processor list
          * @return The function
          */

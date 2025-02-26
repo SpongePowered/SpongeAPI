@@ -25,17 +25,14 @@
 package org.spongepowered.api.item.recipe.single;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.recipe.Recipe;
-import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.item.recipe.RecipeType;
 import org.spongepowered.api.item.recipe.crafting.Ingredient;
 import org.spongepowered.api.item.recipe.crafting.RecipeInput;
-import org.spongepowered.api.util.ResourceKeyedBuilder;
+import org.spongepowered.api.util.Builder;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -62,7 +59,7 @@ public interface StoneCutterRecipe extends Recipe<RecipeInput.Single> {
     /**
      * Builds a simple stonecutter recipe
      */
-    interface Builder extends ResourceKeyedBuilder<RecipeRegistration, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<StoneCutterRecipe, Builder> {
 
         /**
          * Sets the ingredient and returns this builder.
@@ -119,7 +116,7 @@ public interface StoneCutterRecipe extends Recipe<RecipeInput.Single> {
         }
 
         interface EndStep extends StoneCutterRecipe.Builder,
-                org.spongepowered.api.util.Builder<RecipeRegistration, Builder> {
+                org.spongepowered.api.util.Builder<StoneCutterRecipe, Builder> {
 
             /**
              * Sets the group of the recipe.
@@ -131,23 +128,13 @@ public interface StoneCutterRecipe extends Recipe<RecipeInput.Single> {
             EndStep group(@Nullable String name);
 
             /**
-             * Sets the data pack for the recipe.
-             *
-             * @param pack The data pack
-             *
-             * @return This builder, for chaining
-             */
-            EndStep pack(DataPack<RecipeRegistration> pack);
-
-            /**
              * Builds the {@link StoneCutterRecipe}.
              *
              * @return The built stone cutter recipe
-             * @throws IllegalStateException If not all the recipe builder steps are completed
-             *                               or the {@link #key(ResourceKey)} isn't set.
+             * @throws IllegalStateException If not all the recipe builder steps are completed.
              */
             @Override
-            RecipeRegistration build() throws IllegalStateException;
+            StoneCutterRecipe build() throws IllegalStateException;
         }
     }
 }

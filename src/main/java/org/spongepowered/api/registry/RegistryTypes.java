@@ -27,6 +27,7 @@ package org.spongepowered.api.registry;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.AdvancementType;
 import org.spongepowered.api.advancement.criteria.trigger.Trigger;
 import org.spongepowered.api.adventure.ChatType;
@@ -518,6 +519,10 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<WireAttachmentType> WIRE_ATTACHMENT_TYPE = RegistryTypes.spongeKeyInGame("wire_attachment_type");
 
     // @formatter:on
+
+    public static final DefaultedRegistryType<Recipe<?>> RECIPE = RegistryTypes.spongeKeyInGame("recipe");
+
+    public static final DefaultedRegistryType<Advancement> ADVAN = RegistryTypes.spongeKeyInGame("wire_attachment_type");
 
     private static <V> DefaultedRegistryType<V> minecraftKeyInGame(final String key) {
         return RegistryType.of(RegistryRoots.MINECRAFT, ResourceKey.minecraft(Objects.requireNonNull(key, "key"))).asDefaultedType(Sponge::game);

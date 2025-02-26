@@ -25,10 +25,8 @@
 package org.spongepowered.api.item.recipe.crafting;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.item.inventory.ItemStackLike;
-import org.spongepowered.api.item.recipe.RecipeRegistration;
-import org.spongepowered.api.util.ResourceKeyedBuilder;
+import org.spongepowered.api.util.Builder;
 import org.spongepowered.api.world.server.ServerWorld;
 
 import java.util.List;
@@ -50,7 +48,7 @@ public interface SpecialCraftingRecipe extends CraftingRecipe {
         return Sponge.game().builderProvider().provide(Builder.class);
     }
 
-    interface Builder extends ResourceKeyedBuilder<RecipeRegistration, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<SpecialCraftingRecipe, Builder> {
 
         /**
          * Sets the recipe matcher.
@@ -95,16 +93,7 @@ public interface SpecialCraftingRecipe extends CraftingRecipe {
             EndStep result(ItemStackLike result);
         }
 
-        interface EndStep extends Builder, org.spongepowered.api.util.Builder<RecipeRegistration, Builder> {
-
-            /**
-             * Sets the data pack for the recipe.
-             *
-             * @param pack The data pack
-             *
-             * @return This builder, for chaining
-             */
-            EndStep pack(DataPack<RecipeRegistration> pack);
+        interface EndStep extends Builder, org.spongepowered.api.util.Builder<SpecialCraftingRecipe, Builder> {
 
             /**
              * Builds the {@link SpecialCraftingRecipe}.
@@ -113,7 +102,7 @@ public interface SpecialCraftingRecipe extends CraftingRecipe {
              * @throws IllegalStateException If not all the recipe builder steps are completed
              */
             @Override
-            RecipeRegistration build() throws IllegalStateException;
+            SpecialCraftingRecipe build() throws IllegalStateException;
         }
 
     }

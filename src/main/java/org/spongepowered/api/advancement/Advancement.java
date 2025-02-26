@@ -26,9 +26,13 @@ package org.spongepowered.api.advancement;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.ComponentLike;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
-import org.spongepowered.api.data.persistence.DataSerializable;
+import org.spongepowered.api.datapack.DataPackSerializable;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,7 +40,11 @@ import java.util.Optional;
 /**
  * An advancement.
  */
-public interface Advancement extends ComponentLike, DataSerializable {
+public interface Advancement extends DefaultedRegistryValue, ComponentLike, DataPackSerializable {
+
+    static Advancement.Builder builder() {
+        return Sponge.game().builderProvider().provide(Advancement.Builder.class);
+    }
 
     /**
      * Gets all the {@link AdvancementCriterion} that should be achieved
@@ -72,4 +80,57 @@ public interface Advancement extends ComponentLike, DataSerializable {
      */
     List<Component> toToastText();
 
+    /**
+     * A builder to create {@link Advancement}s.
+     */
+    interface Builder extends org.spongepowered.api.util.Builder<Advancement, Builder>, CopyableBuilder<Advancement, Builder> {
+
+        /**
+         * Sets the parent {@link Advancement} key.
+         * <p>For the root advancement use {@link #root}</p>
+         *
+         * @param parent The parent advancement
+         * @return This builder, for chaining
+         */
+        Builder parent(ResourceKey parent);
+
+        /**
+         * Sets this advancement as root.
+         *
+         * @return This builder, for chaining
+         */
+        Builder.RootStep root();
+
+        /**
+         * Define root advancement only parameters.
+         */
+        interface RootStep extends Builder {
+
+            /**
+             * Sets the background path..
+             *
+             * @param backgroundPath The {@link AdvancementTree}s background.
+             *
+             * @return This builder, for chaining
+             */
+            Builder background(ResourceKey backgroundPath);
+        }
+
+        /**
+         * Sets the {@link AdvancementCriterion} that should be used
+         * for the advancement. Defaults to {@link AdvancementCriterion#empty()}.
+         *
+         * @param criterion The criterion
+         * @return This builder, for chaining
+         */
+        Builder criterion(AdvancementCriterion criterion);
+
+        /**
+         * Sets the {@link DisplayInfo}. Defaults to {code null}.
+         *
+         * @param displayInfo The display info
+         * @return This builder, for chaining
+         */
+        Builder displayInfo(@Nullable DisplayInfo displayInfo);
+    }
 }

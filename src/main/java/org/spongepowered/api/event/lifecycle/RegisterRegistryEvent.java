@@ -29,10 +29,12 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.event.GenericEvent;
 import org.spongepowered.api.registry.DuplicateRegistrationException;
 import org.spongepowered.api.registry.Registry;
+import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.RegistryType;
 import org.spongepowered.eventgen.annotations.NoFactoryMethod;
 
 import java.util.Map;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 @NoFactoryMethod
@@ -56,6 +58,16 @@ public interface RegisterRegistryEvent extends LifecycleEvent {
      * @throws DuplicateRegistrationException If the type is already registered
      */
     <T> RegistryType<T> register(ResourceKey key, boolean isDynamic, Supplier<Map<ResourceKey, T>> defaultValues) throws DuplicateRegistrationException;
+
+    /**
+     * Registers a new {@link Registry}.
+     *
+     * @param key The key for the registry
+     * @param isDynamic If this registry will support additional registrations after the lifecycle
+     * @param defaultValues The values to populate the registry with
+     * @throws DuplicateRegistrationException If the type is already registered
+     */
+    <T> RegistryType<T> register(ResourceKey key, boolean isDynamic, Function<RegistryHolder, Map<ResourceKey, T>> defaultValues, RegistryType<?>... dependencies) throws DuplicateRegistrationException;
 
     interface GameScoped extends RegisterRegistryEvent {
     }

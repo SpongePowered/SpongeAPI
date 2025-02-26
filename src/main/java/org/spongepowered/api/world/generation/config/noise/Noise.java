@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.world.generation.config.noise;
 
+import org.spongepowered.api.util.Builder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.List;
@@ -47,4 +49,31 @@ public interface Noise {
      * @return The amplitudes
      */
     List<Double> amplitudes();
+
+    interface Builder extends org.spongepowered.api.util.Builder<Noise, Builder>, CopyableBuilder<Noise, Builder> {
+
+        /**
+         * Sets the octave.
+         *
+         * @param octave The octave.
+         * @return This builder, for chaining
+         */
+        Builder octave(int octave);
+
+        /**
+         * Sets the amplitudes.
+         *
+         * @param amplitudes The amplitudes
+         * @return This builder, for chaining
+         */
+        Builder amplitudes(double... amplitudes);
+
+        /**
+         * Sets the amplitudes.
+         *
+         * @param amplitudes The amplitudes
+         * @return This builder, for chaining
+         */
+        Builder amplitudes(List<Double> amplitudes);
+    }
 }

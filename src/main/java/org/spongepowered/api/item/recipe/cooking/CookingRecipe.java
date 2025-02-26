@@ -26,15 +26,13 @@ package org.spongepowered.api.item.recipe.cooking;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.recipe.Recipe;
-import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.item.recipe.RecipeType;
 import org.spongepowered.api.item.recipe.crafting.Ingredient;
 import org.spongepowered.api.item.recipe.crafting.RecipeInput;
-import org.spongepowered.api.util.ResourceKeyedBuilder;
+import org.spongepowered.api.util.Builder;
 import org.spongepowered.api.util.Ticks;
 
 import java.util.Optional;
@@ -100,7 +98,7 @@ public interface CookingRecipe extends Recipe<RecipeInput.Single> {
     /**
      * Builds a simple furnace recipe.
      */
-    interface Builder extends ResourceKeyedBuilder<RecipeRegistration, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<CookingRecipe, Builder> {
 
         /**
          * Sets the type of recipe
@@ -203,7 +201,7 @@ public interface CookingRecipe extends Recipe<RecipeInput.Single> {
         }
 
         interface EndStep extends Builder,
-                org.spongepowered.api.util.Builder<RecipeRegistration, Builder> {
+                org.spongepowered.api.util.Builder<CookingRecipe, Builder> {
 
             /**
              * Sets the group of the recipe.
@@ -230,16 +228,6 @@ public interface CookingRecipe extends Recipe<RecipeInput.Single> {
              * @return This builder, for chaining
              */
             EndStep cookingTime(Ticks ticks);
-
-
-            /**
-             * Sets the data pack for the recipe.
-             *
-             * @param pack The data pack
-             *
-             * @return This builder, for chaining
-             */
-            EndStep pack(DataPack<RecipeRegistration> pack);
 
         }
     }

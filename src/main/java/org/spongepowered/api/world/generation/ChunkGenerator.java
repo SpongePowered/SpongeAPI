@@ -25,15 +25,12 @@
 package org.spongepowered.api.world.generation;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.world.WorldTypes;
 import org.spongepowered.api.world.biome.provider.BiomeProvider;
 import org.spongepowered.api.world.generation.config.flat.FlatGeneratorConfig;
 import org.spongepowered.api.world.generation.config.noise.NoiseGeneratorConfig;
 import org.spongepowered.api.world.server.ServerWorld;
-import org.spongepowered.api.world.server.WorldTemplate;
 
-import java.io.IOException;
 import java.util.Objects;
 
 /**
@@ -45,8 +42,6 @@ import java.util.Objects;
  * <p>
  * Other chunk generators may be provided by third parties and may be obtained from
  * - {@link ServerWorld#generator()}
- * - {@link WorldTemplate#generator()}
- * - {@link ChunkGenerator.Factory#fromDataPack} using {@link WorldTemplate} data.
  */
 public interface ChunkGenerator {
 
@@ -116,15 +111,5 @@ public interface ChunkGenerator {
          * @return The new chunk generator
          */
         ConfigurableChunkGenerator<NoiseGeneratorConfig> theEnd();
-
-        /**
-         * Creates a chunk generator based on the given data view.
-         * <p>The data must be equivalent to a data-pack for {@link WorldTemplate}</p>
-         * see {@link WorldTemplate.Builder#fromDataPack}
-         *
-         * @param pack the data
-         * @return the created ChunkGenerator
-         */
-        ChunkGenerator fromDataPack(DataView pack) throws IOException;
     }
 }

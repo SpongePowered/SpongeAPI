@@ -32,6 +32,7 @@ import org.spongepowered.api.command.parameter.ArgumentReader;
 import org.spongepowered.api.command.parameter.CommandContext;
 import org.spongepowered.api.command.parameter.Parameter;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryHolder;
 
 import java.util.List;
 import java.util.Optional;
@@ -119,4 +120,8 @@ public interface ValueParameter<T> extends DefaultedRegistryValue, ValueComplete
 
     }
 
+    interface Bindable<T> extends ValueParameter<T> {
+
+        ValueParameter<T> bind(RegistryHolder registryHolder);
+    }
 }

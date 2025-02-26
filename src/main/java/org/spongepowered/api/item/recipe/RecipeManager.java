@@ -36,8 +36,7 @@ import java.util.function.Supplier;
 
 /**
  * Manages registered recipes.
- * Register new Recipes during {@link org.spongepowered.api.event.lifecycle.RegisterDataPackValueEvent}
- * using {@link RecipeRegistration}s.
+ * Register new Recipes during {@link org.spongepowered.api.event.lifecycle.RegisterRegistryValueEvent}.
  * To disable a recipe override it with an empty result.
  */
 public interface RecipeManager {

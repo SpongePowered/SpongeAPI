@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.world.generation.structure.jigsaw;
 
+import org.spongepowered.api.util.Builder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.List;
@@ -41,4 +43,14 @@ public interface ProcessorList {
      */
     List<Processor> processors();
 
+    interface Builder extends org.spongepowered.api.util.Builder<ProcessorList, Builder>, CopyableBuilder<ProcessorList, Builder> {
+
+        /**
+         * Sets the list of processors.
+         *
+         * @param processors The list of processors
+         * @return This builder, for chaining
+         */
+        Builder fromValues(List<Processor> processors);
+    }
 }

@@ -25,13 +25,10 @@
 package org.spongepowered.api.item.recipe.crafting;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStackLike;
-import org.spongepowered.api.item.recipe.RecipeRegistration;
-import org.spongepowered.api.util.ResourceKeyedBuilder;
+import org.spongepowered.api.util.Builder;
 
 import java.util.List;
 import java.util.function.Function;
@@ -62,7 +59,7 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
     /**
      * The Builder for {@link ShapelessCraftingRecipe}s.
      */
-    interface Builder extends ResourceKeyedBuilder<RecipeRegistration, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<ShapelessCraftingRecipe, Builder> {
 
         /**
          * Adds ingredients for this recipe.
@@ -133,7 +130,7 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
          * In this Step set the group of the Recipe and/or build it.
          */
         interface EndStep extends Builder,
-                org.spongepowered.api.util.Builder<RecipeRegistration, Builder> {
+                org.spongepowered.api.util.Builder<ShapelessCraftingRecipe, Builder> {
 
             /**
              * Sets the group of the recipe.
@@ -145,23 +142,13 @@ public interface ShapelessCraftingRecipe extends CraftingRecipe {
             EndStep group(@Nullable String name);
 
             /**
-             * Sets the data pack for the recipe.
-             *
-             * @param pack The data pack
-             *
-             * @return This builder, for chaining
-             */
-            EndStep pack(DataPack<RecipeRegistration> pack);
-
-            /**
              * Builds the {@link ShapelessCraftingRecipe}.
              *
              * @return The built shapeless crafting recipe
-             * @throws IllegalStateException If not all the recipe builder steps are completed
-             *                               or the {@link #key(ResourceKey)} isn't set.
+             * @throws IllegalStateException If not all the recipe builder steps are completed.
              */
             @Override
-            RecipeRegistration build() throws IllegalStateException;
+            ShapelessCraftingRecipe build() throws IllegalStateException;
         }
 
     }

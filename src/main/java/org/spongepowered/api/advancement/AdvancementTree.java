@@ -59,7 +59,7 @@ public interface AdvancementTree extends AdvancementNode {
      * @param advancement The advancement
      * @return The tree layout element
      */
-    Optional<TreeLayoutElement> layoutElement(AdvancementTemplate advancement);
+    Optional<TreeLayoutElement> layoutElement(Advancement advancement);
 
 
     /**

@@ -25,17 +25,14 @@
 package org.spongepowered.api.item.recipe.smithing;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.datapack.DataPack;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.recipe.Recipe;
-import org.spongepowered.api.item.recipe.RecipeRegistration;
 import org.spongepowered.api.item.recipe.RecipeType;
 import org.spongepowered.api.item.recipe.crafting.Ingredient;
 import org.spongepowered.api.item.recipe.crafting.RecipeInput;
-import org.spongepowered.api.util.ResourceKeyedBuilder;
+import org.spongepowered.api.util.Builder;
 
 import java.util.Optional;
 import java.util.function.Function;
@@ -77,7 +74,7 @@ public interface SmithingRecipe extends Recipe<RecipeInput.Smithing> {
     /**
      * Builds a simple smithing recipe
      */
-    interface Builder extends ResourceKeyedBuilder<RecipeRegistration, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<SmithingRecipe, Builder> {
 
         // TODO Trim recipe?
 
@@ -198,7 +195,7 @@ public interface SmithingRecipe extends Recipe<RecipeInput.Smithing> {
 
         }
 
-        interface EndStep extends SmithingRecipe.Builder, org.spongepowered.api.util.Builder<RecipeRegistration, Builder> {
+        interface EndStep extends SmithingRecipe.Builder, org.spongepowered.api.util.Builder<SmithingRecipe, Builder> {
 
             /**
              * Sets the group of the recipe.
@@ -210,23 +207,13 @@ public interface SmithingRecipe extends Recipe<RecipeInput.Smithing> {
             EndStep group(@Nullable String name);
 
             /**
-             * Sets the data pack for the recipe.
-             *
-             * @param pack The data pack
-             *
-             * @return This builder, for chaining
-             */
-            EndStep pack(DataPack<RecipeRegistration> pack);
-
-            /**
              * Builds the {@link SmithingRecipe}.
              *
              * @return The built stone cutter recipe
-             * @throws IllegalStateException If not all the recipe builder steps are completed
-             *                               or the {@link #key(ResourceKey)} isn't set.
+             * @throws IllegalStateException If not all the recipe builder steps are completed.
              */
             @Override
-            RecipeRegistration build() throws IllegalStateException;
+            SmithingRecipe build() throws IllegalStateException;
         }
     }
 }

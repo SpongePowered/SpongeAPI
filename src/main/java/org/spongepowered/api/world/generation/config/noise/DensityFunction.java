@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.world.generation.config.noise;
 
+import org.spongepowered.api.util.Builder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.math.vector.Vector3i;
 
@@ -60,4 +62,7 @@ public interface DensityFunction {
      */
     double compute(int x, int y, int z);
 
+    interface Builder extends org.spongepowered.api.util.Builder<DensityFunction, Builder>, CopyableBuilder<DensityFunction, Builder> {
+
+    }
 }

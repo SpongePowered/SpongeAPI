@@ -25,16 +25,62 @@
 package org.spongepowered.api.adventure;
 
 import net.kyori.adventure.text.format.Style;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.datapack.DataPackSerializable;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * A type of chat
  */
 @CatalogedBy(ChatTypes.class)
-public interface ChatType extends net.kyori.adventure.chat.ChatType {
+public interface ChatType extends net.kyori.adventure.chat.ChatType, DataPackSerializable {
+
+    static Builder builder() {
+        return Sponge.game().builderProvider().provide(Builder.class);
+    }
 
     String translationKey();
 
     Style style();
 
+    interface Builder extends org.spongepowered.api.util.Builder<ChatType, Builder>, CopyableBuilder<ChatType, Builder> {
+
+        /**
+         * Sets the translation key or custom format mask.
+         *
+         * @param translationKey The translation key or format mask
+         * @return this builder, for chaining
+         */
+        Builder translationKey(String translationKey);
+
+        /**
+         * Sets the style.
+         *
+         * @param style The style
+         * @return this builder, for chaining
+         */
+        Builder style(Style style);
+
+        /**
+         * Adds a sender parameter.
+         *
+         * @return this builder, for chaining
+         */
+        Builder addSender();
+
+        /**
+         * Adds a content parameter.
+         *
+         * @return this builder, for chaining
+         */
+        Builder addContent();
+
+        /**
+         * Adds a target parameter.
+         *
+         * @return this builder, for chaining
+         */
+        Builder addTarget();
+    }
 }

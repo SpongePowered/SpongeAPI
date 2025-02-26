@@ -24,11 +24,14 @@
  */
 package org.spongepowered.api.event.cause.entity.damage;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.tag.Tag;
 import org.spongepowered.api.tag.Taggable;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.Nameable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -39,8 +42,11 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * can damage an {@link Entity} with varying {@link DamageType}s depending on the circumstances.
  */
 @CatalogedBy(DamageTypes.class)
-public interface DamageType extends DefaultedRegistryValue, Nameable, Taggable<DamageType> {
+public interface DamageType extends DefaultedRegistryValue, Nameable, Taggable<DamageType>, DataPackSerializable {
 
+    static Builder builder() {
+        return Sponge.game().builderProvider().provide(Builder.class);
+    }
 
     /**
      * Gets the amount of exhaustion this {@link DamageType} will add to the entity, generally only to players.
@@ -77,4 +83,49 @@ public interface DamageType extends DefaultedRegistryValue, Nameable, Taggable<D
      */
     DamageEffect effect();
 
+    interface Builder extends org.spongepowered.api.util.Builder<DamageType, Builder>, CopyableBuilder<DamageType, Builder> {
+
+        /**
+         * Sets the name of the {@link DamageType}.
+         * Used as part of the death message translation key.
+         * TODO falling/intentional game design?
+         *
+         * @param name The name
+         *
+         * @return This builder, for chaining
+         */
+        Builder name(String name);
+
+        /**
+         * Sets damage scaling
+         *
+         * @param scaling the daamge scaling
+         *
+         * @return This builder
+         */
+        Builder scaling(DamageScaling scaling);
+
+        /**
+         * Sets damage effects
+         *
+         * @param effect the damage effect
+         *
+         * @return This builder
+         */
+        Builder effect(DamageEffect effect);
+
+        /**
+         * Sets the amount of exhaustion a {@link DamageSource} of this type will
+         * add to the entity, generally only to players.
+         *
+         * TODO check if this is still correct
+         * <p>In vanilla gameplay, the default is 0.1, unless if the damage
+         * is absolute or bypasses armor, where the exhaustion gets set to 0.
+         * </p>
+         *
+         * @param exhaustion The amount of exhaustion to add to the entity
+         * @return This builder
+         */
+        Builder exhaustion(double exhaustion);
+    }
 }

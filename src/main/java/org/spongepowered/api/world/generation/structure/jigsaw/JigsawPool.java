@@ -24,7 +24,11 @@
  */
 package org.spongepowered.api.world.generation.structure.jigsaw;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryReference;
+import org.spongepowered.api.util.Builder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.util.weighted.WeightedTable;
 import org.spongepowered.api.world.generation.structure.Structure;
@@ -50,4 +54,39 @@ public interface JigsawPool extends DefaultedRegistryValue {
      */
     WeightedTable<JigsawPoolElement> elements();
 
+    interface Builder extends org.spongepowered.api.util.Builder<JigsawPool, Builder>, CopyableBuilder<JigsawPool, Builder> {
+
+        /**
+         * Adds a jigsaw element with given weight.
+         *
+         * @param element The element
+         * @param weight The weight
+         * @return This builder, for chaining
+         */
+        Builder add(JigsawPoolElement element, int weight);
+
+        /**
+         * Sets the name of the jigsaw pool.
+         *
+         * @param name The name
+         * @return This builder, for chaining
+         */
+        Builder name(ResourceKey name);
+
+        /**
+         * Sets the fallback for the jigsaw pool.
+         *
+         * @param fallback The fallback jigsaw pool
+         * @return This builder, for chaining
+         */
+        Builder fallback(RegistryReference<JigsawPool> fallback);
+
+        /**
+         * Sets the fallback for the jigsaw pool.
+         *
+         * @param fallback the fallback jigsaw pool
+         * @return This builder, for chaining
+         */
+        Builder fallback(JigsawPool fallback);
+    }
 }

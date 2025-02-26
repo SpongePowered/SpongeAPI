@@ -27,6 +27,7 @@ package org.spongepowered.api.command.registrar;
 import io.leangen.geantyref.TypeToken;
 import org.spongepowered.api.command.manager.CommandManager;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryHolder;
 
 /**
  * A type of {@link CommandRegistrar}.
@@ -52,5 +53,5 @@ public interface CommandRegistrarType<T> extends DefaultedRegistryValue {
      *                of the {@link CommandRegistrar} associated with this type
      * @return the newly created registrar
      */
-    CommandRegistrar<T> create(final CommandManager.Mutable manager);
+    CommandRegistrar<T> create(final CommandManager.Mutable manager, RegistryHolder registryHolder);
 }

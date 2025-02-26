@@ -27,6 +27,8 @@ package org.spongepowered.api.world.generation.structure;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.entity.EntityCategory;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.util.Builder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.biome.Biome;
 import org.spongepowered.api.world.biome.spawner.NaturalSpawner;
@@ -115,5 +117,9 @@ public interface Structure extends DefaultedRegistryValue {
          * @return The list of spawners to use
          */
         List<NaturalSpawner> spawners();
+    }
+
+    interface Builder extends org.spongepowered.api.util.Builder<Structure, Builder>, CopyableBuilder<Structure, Builder> {
+
     }
 }

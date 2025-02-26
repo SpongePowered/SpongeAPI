@@ -58,6 +58,13 @@ public interface RegistryHolder {
     <T> Optional<Registry<T>> findRegistry(final RegistryType<T> type);
 
     /**
+     * Gets a {@link Stream} of the {@link Registry registries} in this holder.
+     *
+     * @return The stream
+     */
+    Stream<Registry<?>> streamRegistries();
+
+    /**
      * Gets a {@link Stream} of the {@link Registry registries} in this holder within a root.
      *
      * @param root The root to stream registries of

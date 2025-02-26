@@ -25,6 +25,8 @@
 package org.spongepowered.api.world.generation.carver;
 
 import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.util.Builder;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -47,4 +49,15 @@ public interface Carver {
      * @return The serialized carver configuration
      */
     DataView toContainer();
+
+    interface Builder extends org.spongepowered.api.util.Builder<Carver, Builder>, CopyableBuilder<Carver, Builder> {
+
+        /**
+         * Sets the {@link CarverType}
+         *
+         * @param type The carver type
+         * @return This builder, for chaining
+         */
+        Builder type(CarverType type);
+    }
 }

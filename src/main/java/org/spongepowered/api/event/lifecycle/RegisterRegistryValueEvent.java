@@ -27,23 +27,27 @@ package org.spongepowered.api.event.lifecycle;
 import org.spongepowered.api.Engine;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.event.GenericEvent;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.RegistryType;
 import org.spongepowered.eventgen.annotations.NoFactoryMethod;
+
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 @NoFactoryMethod
 public interface RegisterRegistryValueEvent extends LifecycleEvent {
 
-    <T> RegistryStep<T> registry(RegistryType<T> registryType);
+    default <T> void registry(RegistryType<T> registryType, Consumer<RegistryStep<T>> consumer) {
+        this.registry(registryType, (h, r) -> consumer.accept(r));
+    }
+
+    <T> void registry(RegistryType<T> registryType, BiConsumer<RegistryHolder, RegistryStep<T>> consumer);
+
+    <T> void registry(RegistryType<T> registryType, BiConsumer<RegistryHolder, RegistryStep<T>> consumer, final RegistryType<?>... dependencies);
 
     interface RegistryStep<T> {
 
         RegistryStep<T> register(ResourceKey key, T value);
-    }
-
-    interface BuiltIn<T extends DefaultedRegistryValue> extends LifecycleEvent {
-
-        RegistryStep<T> registry(RegistryType<T> registryType);
     }
 
     interface GameScoped extends RegisterRegistryValueEvent {

@@ -30,7 +30,6 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.AdvancementProgress;
-import org.spongepowered.api.advancement.AdvancementTemplate;
 import org.spongepowered.api.advancement.AdvancementTree;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.SkinPart;
@@ -273,7 +272,7 @@ public interface ServerPlayer extends Player, Subject {
      * @param advancement The advancement
      * @return The advancement progress
      */
-    AdvancementProgress progress(AdvancementTemplate advancement);
+    AdvancementProgress progress(Advancement advancement);
 
     /**
      * Gets all the {@link AdvancementTree}s that this
