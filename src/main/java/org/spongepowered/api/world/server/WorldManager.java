@@ -123,9 +123,20 @@ public interface WorldManager {
      * <p>If a world with the given name is already loaded then it is returned instead.</p>
      *
      * @param key The key
-     * @return The world
+     * @return The world, if found.
      */
-    CompletableFuture<ServerWorld> loadWorld(ResourceKey key);
+    CompletableFuture<Optional<ServerWorld>> loadWorld(ResourceKey key);
+
+    /**
+     * Loads a {@link ServerWorld world} by a {@link ResourceKey key}.
+     *
+     * <p>If a world with the given name is already loaded then it is returned instead.</p>
+     *
+     * @param key The key
+     * @param propertiesLoadOptions The options used to load the {@link ServerWorldProperties properties}.
+     * @return The world, if found.
+     */
+    CompletableFuture<Optional<ServerWorld>> loadWorld(ResourceKey key, ServerWorldProperties.LoadOptions propertiesLoadOptions);
 
     /**
      * Unloads a {@link ServerWorld world} by a {@link ResourceKey key}.
@@ -158,6 +169,17 @@ public interface WorldManager {
      * @return The properties
      */
     CompletableFuture<Optional<ServerWorldProperties>> loadProperties(ResourceKey key);
+
+    /**
+     * Loads an offline {@link ServerWorldProperties properties}.
+     *
+     * <p>It is left up to the implementation on what conditions cause a failure of loading properties.</p>
+     *
+     * @param key The key
+     * @param propertiesLoadOptions The options used to load the {@link ServerWorldProperties properties}.
+     * @return The properties
+     */
+    CompletableFuture<Optional<ServerWorldProperties>> loadProperties(ResourceKey key, ServerWorldProperties.LoadOptions propertiesLoadOptions);
 
     /**
      * Saves a {@link ServerWorldProperties properties}.

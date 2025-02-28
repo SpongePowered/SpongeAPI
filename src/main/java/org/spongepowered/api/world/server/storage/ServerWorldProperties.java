@@ -43,6 +43,7 @@ import org.spongepowered.api.world.difficulty.Difficulty;
 import org.spongepowered.api.world.gamerule.GameRuleHolder;
 import org.spongepowered.api.world.generation.config.WorldGenerationConfig;
 import org.spongepowered.api.world.server.ServerWorld;
+import org.spongepowered.api.world.server.WorldArchetypeType;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.WeatherUniverse;
@@ -50,6 +51,7 @@ import org.spongepowered.api.world.weather.WeatherUniverse;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Consumer;
 
 public interface ServerWorldProperties extends WorldProperties, GameRuleHolder, Nameable, Identifiable, ResourceKeyed, WeatherUniverse.Mutable {
 
@@ -372,5 +374,41 @@ public interface ServerWorldProperties extends WorldProperties, GameRuleHolder, 
     @Override
     default Weather weather() {
         return this.require(Keys.WEATHER);
+    }
+
+    interface LoadOptions {
+
+        FoundOptions foundOptions();
+
+        Optional<CreateOptions> createOptions();
+
+        interface FoundOptions {
+
+            Optional<Consumer<ServerWorldProperties>> loadCallback();
+        }
+
+        interface CreateOptions {
+
+            WorldArchetypeType worldArchetype();
+
+            Optional<Consumer<ServerWorldProperties>> initializeCallback();
+        }
+
+        interface Builder extends org.spongepowered.api.util.Builder<LoadOptions, Builder> {
+
+            Builder.LoadStep load();
+
+            Builder.CreateStep create(WorldArchetypeType worldArchetype);
+
+            interface LoadStep extends Builder {
+
+                LoadStep loadCallback(Consumer<ServerWorldProperties> loadCallback);
+            }
+
+            interface CreateStep extends Builder {
+
+                CreateStep initializeCallback(Consumer<ServerWorldProperties> initializeCallback);
+            }
+        }
     }
 }
