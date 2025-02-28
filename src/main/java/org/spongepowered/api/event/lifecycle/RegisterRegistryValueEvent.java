@@ -28,6 +28,7 @@ import org.spongepowered.api.Engine;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.event.GenericEvent;
 import org.spongepowered.api.registry.RegistryHolder;
+import org.spongepowered.api.registry.RegistryRegistrationSet;
 import org.spongepowered.api.registry.RegistryType;
 import org.spongepowered.eventgen.annotations.NoFactoryMethod;
 
@@ -44,6 +45,10 @@ public interface RegisterRegistryValueEvent extends LifecycleEvent {
     <T> void registry(RegistryType<T> registryType, BiConsumer<RegistryHolder, RegistryStep<T>> consumer);
 
     <T> void registry(RegistryType<T> registryType, BiConsumer<RegistryHolder, RegistryStep<T>> consumer, final RegistryType<?>... dependencies);
+
+    default <T> void register(RegistryRegistrationSet<T> registrationSet) {
+        this.registry(registrationSet.registryType(), r -> registrationSet.values().forEach(r::register));
+    }
 
     interface RegistryStep<T> {
 
