@@ -34,7 +34,7 @@ public interface RegistryRegistrationSet<T> {
 
     RegistryType<T> registryType();
 
-    Map<ResourceKey, T> values();
+    Map<ResourceKey, Supplier<T>> values();
 
     static <T> Builder<T> builder(RegistryType<T> registryType, Supplier<RegistryHolder> defaultHolder) {
         return Sponge.game().factoryProvider().provide(Factory.class).builder(registryType, defaultHolder);
@@ -42,7 +42,7 @@ public interface RegistryRegistrationSet<T> {
 
     interface Builder<T> extends org.spongepowered.api.util.Builder<RegistryRegistrationSet<T>, Builder<T>> {
 
-        DefaultedRegistryReference<T> register(ResourceKey key, T value);
+        <V extends T> DefaultedRegistryReference<V> register(ResourceKey key, Supplier<V> value);
     }
 
     interface Factory {

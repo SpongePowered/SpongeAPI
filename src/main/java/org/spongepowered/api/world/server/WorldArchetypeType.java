@@ -24,10 +24,26 @@
  */
 package org.spongepowered.api.world.server;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.datapack.DataPackSerializable;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.generation.ChunkGenerator;
 
-public interface WorldArchetypeType {
+@CatalogedBy(WorldArchetypeTypes.class)
+public interface WorldArchetypeType extends DefaultedRegistryValue, DataPackSerializable {
+
+    static WorldArchetypeType.Builder builder() {
+        return Sponge.game().builderProvider().provide(WorldArchetypeType.Builder.class);
+    }
+
+    static WorldArchetypeType of(WorldType worldType, ChunkGenerator chunkGenerator) {
+        return WorldArchetypeType.builder()
+            .worldType(worldType)
+            .chunkGenerator(chunkGenerator)
+            .build();
+    }
 
     WorldType worldType();
 

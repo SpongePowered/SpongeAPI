@@ -47,7 +47,7 @@ public interface RegisterRegistryValueEvent extends LifecycleEvent {
     <T> void registry(RegistryType<T> registryType, BiConsumer<RegistryHolder, RegistryStep<T>> consumer, final RegistryType<?>... dependencies);
 
     default <T> void register(RegistryRegistrationSet<T> registrationSet) {
-        this.registry(registrationSet.registryType(), r -> registrationSet.values().forEach(r::register));
+        this.registry(registrationSet.registryType(), r -> registrationSet.values().forEach((k, v) -> r.register(k, v.get())));
     }
 
     interface RegistryStep<T> {

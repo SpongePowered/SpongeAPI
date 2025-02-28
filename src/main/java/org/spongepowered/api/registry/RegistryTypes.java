@@ -187,6 +187,7 @@ import org.spongepowered.api.world.generation.structure.jigsaw.JigsawPool;
 import org.spongepowered.api.world.generation.structure.jigsaw.ProcessorList;
 import org.spongepowered.api.world.generation.structure.jigsaw.ProcessorType;
 import org.spongepowered.api.world.schematic.PaletteType;
+import org.spongepowered.api.world.server.WorldArchetypeType;
 import org.spongepowered.api.world.teleport.TeleportHelperFilter;
 import org.spongepowered.api.world.weather.WeatherType;
 
@@ -519,6 +520,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<WireAttachmentType> WIRE_ATTACHMENT_TYPE = RegistryTypes.spongeKeyInGame("wire_attachment_type");
 
     // @formatter:on
+
+    public static final DefaultedRegistryType<WorldArchetypeType> WORLD_ARCHETYPE_TYPE = RegistryTypes.spongeKeyInGame("wire_attachment_type");
 
     public static final DefaultedRegistryType<Recipe<?>> RECIPE = RegistryTypes.spongeKeyInGame("recipe");
 

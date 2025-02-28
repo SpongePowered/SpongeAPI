@@ -29,9 +29,11 @@ import net.kyori.adventure.key.KeyedValue;
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.ResourceKeyed;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.trader.WanderingTrader;
+import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.MinecraftDayTime;
 import org.spongepowered.api.util.Nameable;
@@ -378,7 +380,31 @@ public interface ServerWorldProperties extends WorldProperties, GameRuleHolder, 
 
     interface LoadOptions {
 
-        FoundOptions foundOptions();
+        static LoadOptions.Builder builder() {
+            return Sponge.game().builderProvider().provide(LoadOptions.Builder.class);
+        }
+
+        static LoadOptions load(Consumer<ServerWorldProperties> loadCallback) {
+            return LoadOptions.builder()
+                .load()
+                .loadCallback(loadCallback)
+                .build();
+        }
+
+        static LoadOptions create(WorldArchetypeType worldArchetype) {
+            return LoadOptions.builder()
+                .create(worldArchetype)
+                .build();
+        }
+
+        static LoadOptions create(WorldArchetypeType worldArchetype, Consumer<ServerWorldProperties> initializeCallback) {
+            return LoadOptions.builder()
+                .create(worldArchetype)
+                .initializeCallback(initializeCallback)
+                .build();
+        }
+
+        Optional<FoundOptions> foundOptions();
 
         Optional<CreateOptions> createOptions();
 
