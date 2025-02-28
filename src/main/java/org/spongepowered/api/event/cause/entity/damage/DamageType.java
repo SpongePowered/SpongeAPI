@@ -44,6 +44,11 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 @CatalogedBy(DamageTypes.class)
 public interface DamageType extends DefaultedRegistryValue, Nameable, Taggable<DamageType>, DataPackSerializable {
 
+    /**
+     * Creates a new {@link Builder} to create a {@link DamageType}.
+     *
+     * @return The new builder
+     */
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class);
     }
@@ -83,6 +88,9 @@ public interface DamageType extends DefaultedRegistryValue, Nameable, Taggable<D
      */
     DamageEffect effect();
 
+    /**
+     * A builder to create {@link DamageType}s.
+     */
     interface Builder extends org.spongepowered.api.util.Builder<DamageType, Builder>, CopyableBuilder<DamageType, Builder> {
 
         /**

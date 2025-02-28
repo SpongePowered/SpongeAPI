@@ -42,6 +42,11 @@ import java.util.Optional;
  */
 public interface Advancement extends DefaultedRegistryValue, ComponentLike, DataPackSerializable {
 
+    /**
+     * Creates a new {@link Builder} to create an {@link Advancement}.
+     *
+     * @return The new builder
+     */
     static Advancement.Builder builder() {
         return Sponge.game().builderProvider().provide(Advancement.Builder.class);
     }

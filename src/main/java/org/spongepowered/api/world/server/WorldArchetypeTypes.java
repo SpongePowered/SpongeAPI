@@ -1,5 +1,5 @@
 /*
- * The MIT License (MIT)
+ * This file is part of SpongeAPI, licensed under the MIT License (MIT).
  *
  * Copyright (c) SpongePowered <https://www.spongepowered.org>
  * Copyright (c) contributors
@@ -21,7 +21,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */package org.spongepowered.api.world.server;
+ */
+package org.spongepowered.api.world.server;
 
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;

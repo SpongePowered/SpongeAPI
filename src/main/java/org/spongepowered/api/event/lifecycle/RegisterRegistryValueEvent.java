@@ -27,6 +27,7 @@ package org.spongepowered.api.event.lifecycle;
 import org.spongepowered.api.Engine;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.event.GenericEvent;
+import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.RegistryRegistrationSet;
 import org.spongepowered.api.registry.RegistryType;
@@ -35,19 +36,79 @@ import org.spongepowered.eventgen.annotations.NoFactoryMethod;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
+/**
+ * Lifecycle event for registering entries to a {@link Registry}.
+ *
+ * <p>This event may be called multiple times for the same layer
+ * as the registry is being appended and as dependencies become
+ * available. Plugins should only execute code inside the consumers.</p>
+ *
+ * <p><strong>Note:</strong> Layers might be reloadable!</p>
+ */
 @NoFactoryMethod
 public interface RegisterRegistryValueEvent extends LifecycleEvent {
 
+    /**
+     * <p>Register new entries against a specific {@link Registry}.</p>
+     *
+     * <p>The consumer will be called if it matches the current set of
+     * registries being created.</p>
+     *
+     * @param registryType The registry type to append.
+     * @param consumer The consumer to be called if found.
+     */
     default <T> void registry(RegistryType<T> registryType, Consumer<RegistryStep<T>> consumer) {
         this.registry(registryType, (h, r) -> consumer.accept(r));
     }
 
+    /**
+     * <p>Register new entries against a specific {@link Registry}.</p>
+     *
+     * <p>The consumer will be called if it matches the current set of
+     * registries being created.</p>
+     *
+     * @param registryType The registry type to append.
+     * @param consumer The consumer to be called if found.
+     */
     <T> void registry(RegistryType<T> registryType, BiConsumer<RegistryHolder, RegistryStep<T>> consumer);
 
+    /**
+     * <p>Register new entries against a specific {@link Registry}.</p>
+     *
+     * <p>The consumer will be called if it matches the current set of
+     * registries being created.</p>
+     *
+     * @param registryType The registry type to append.
+     * @param consumer The consumer to be called if found.
+     * @param dependencies The list of registries to create before
+     *                     invoking the consumer.
+     */
     <T> void registry(RegistryType<T> registryType, BiConsumer<RegistryHolder, RegistryStep<T>> consumer, final RegistryType<?>... dependencies);
 
+    /**
+     * <p>Register new entries against a specific {@link Registry}.</p>
+     *
+     * <p>The {@link RegistryRegistrationSet registration set} will be
+     * appended if it matches the current set of registries being created.</p>
+     *
+     * @param registrationSet The registration set.
+     */
     default <T> void register(RegistryRegistrationSet<T> registrationSet) {
-        this.registry(registrationSet.registryType(), r -> registrationSet.values().forEach((k, v) -> r.register(k, v.get())));
+        this.registry(registrationSet.registryType(), (h, r) -> registrationSet.values().forEach((k, v) -> r.register(k, v.apply(h))));
+    }
+
+    /**
+     * <p>Register new entries against a specific {@link Registry}.</p>
+     *
+     * <p>The {@link RegistryRegistrationSet registration set} will be
+     * appended if it matches the current set of registries being created.</p>
+     *
+     * @param registrationSet The registration set.
+     * @param dependencies The list of registries to create before
+     *                     appending the registration set.
+     */
+    default <T> void register(RegistryRegistrationSet<T> registrationSet, final RegistryType<?>... dependencies) {
+        this.registry(registrationSet.registryType(), (h, r) -> registrationSet.values().forEach((k, v) -> r.register(k, v.apply(h))), dependencies);
     }
 
     interface RegistryStep<T> {

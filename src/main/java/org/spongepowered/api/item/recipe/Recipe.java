@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.item.recipe;
 
-import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.block.entity.carrier.Campfire;
 import org.spongepowered.api.block.entity.carrier.furnace.BlastFurnace;
 import org.spongepowered.api.block.entity.carrier.furnace.Furnace;
 import org.spongepowered.api.block.entity.carrier.furnace.Smoker;
+import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
@@ -42,6 +42,7 @@ import org.spongepowered.api.item.recipe.crafting.ShapelessCraftingRecipe;
 import org.spongepowered.api.item.recipe.crafting.SpecialCraftingRecipe;
 import org.spongepowered.api.item.recipe.single.StoneCutterRecipe;
 import org.spongepowered.api.item.recipe.smithing.SmithingRecipe;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.world.server.ServerWorld;
 
 import java.util.List;
@@ -57,7 +58,7 @@ import java.util.Optional;
  * <p>{@link StoneCutterRecipe} for recipes in a {@link BlockTypes#STONECUTTER} block</p>
  * <p>{@link SmithingRecipe} for recipes in a {@link BlockTypes#SMITHING_TABLE} block</p>
  */
-public interface Recipe<T extends RecipeInput> extends ResourceKeyed {
+public interface Recipe<T extends RecipeInput> extends DefaultedRegistryValue, DataPackSerializable {
 
     /**
      * Checks if the given inventory fits the required constraints to make a valid recipe

@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.world.generation.carver;
 
-import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.datapack.DataPackSerializable;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.Builder;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -33,7 +35,16 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * A carver used in world generation.
  */
 @CatalogedBy(Carvers.class)
-public interface Carver {
+public interface Carver extends DefaultedRegistryValue, DataPackSerializable {
+
+    /**
+     * Creates a new {@link Builder} to create a {@link Carver}.
+     *
+     * @return The new builder
+     */
+    static Carver.Builder builder() {
+        return Sponge.game().builderProvider().provide(Carver.Builder.class);
+    }
 
     /**
      * Returns the carver type
@@ -43,13 +54,8 @@ public interface Carver {
     CarverType type();
 
     /**
-     * Returns the serialized carver configuration.
-     * <p>Reconfigure a carver using {@link CarverType#configure(DataView)}</p>
-     *
-     * @return The serialized carver configuration
+     * A builder to create {@link Carver}s.
      */
-    DataView toContainer();
-
     interface Builder extends org.spongepowered.api.util.Builder<Carver, Builder>, CopyableBuilder<Carver, Builder> {
 
         /**

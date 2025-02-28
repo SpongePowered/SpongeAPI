@@ -208,6 +208,7 @@ public interface Command {
          * <p>Defaults to a command with an optional string argument string that
          * is greedy.</p>
          *
+         * @param registryHolder The owning {@link RegistryHolder registry holder}.
          * @return The tree.
          */
         default CommandTreeNode.Root commandTree(RegistryHolder registryHolder) {

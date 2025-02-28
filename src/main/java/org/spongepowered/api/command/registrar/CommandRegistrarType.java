@@ -51,6 +51,7 @@ public interface CommandRegistrarType<T> extends DefaultedRegistryValue {
      *
      * @param manager The {@link CommandManager} that has requested the creation
      *                of the {@link CommandRegistrar} associated with this type
+     * @param registryHolder The owning {@link RegistryHolder registry holder}.
      * @return the newly created registrar
      */
     CommandRegistrar<T> create(final CommandManager.Mutable manager, RegistryHolder registryHolder);

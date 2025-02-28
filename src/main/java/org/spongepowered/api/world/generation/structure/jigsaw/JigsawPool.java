@@ -25,6 +25,8 @@
 package org.spongepowered.api.world.generation.structure.jigsaw;
 
 import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryReference;
 import org.spongepowered.api.util.Builder;
@@ -37,7 +39,16 @@ import org.spongepowered.api.world.generation.structure.Structure;
  * A pool to generate {@link Structure structures} using jigsaw blocks.
  */
 @CatalogedBy(JigsawPools.class)
-public interface JigsawPool extends DefaultedRegistryValue {
+public interface JigsawPool extends DefaultedRegistryValue, DataPackSerializable {
+
+    /**
+     * Creates a new {@link Builder} to create a {@link JigsawPool}.
+     *
+     * @return The new builder
+     */
+    static JigsawPool.Builder builder() {
+        return Sponge.game().builderProvider().provide(JigsawPool.Builder.class);
+    }
 
     /**
      * Returns the fallback pool, used when the selec
@@ -54,6 +65,9 @@ public interface JigsawPool extends DefaultedRegistryValue {
      */
     WeightedTable<JigsawPoolElement> elements();
 
+    /**
+     * A builder to create {@link JigsawPool}s.
+     */
     interface Builder extends org.spongepowered.api.util.Builder<JigsawPool, Builder>, CopyableBuilder<JigsawPool, Builder> {
 
         /**

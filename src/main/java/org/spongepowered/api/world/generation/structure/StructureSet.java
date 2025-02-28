@@ -24,6 +24,9 @@
  */
 package org.spongepowered.api.world.generation.structure;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.datapack.DataPackSerializable;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.Builder;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -33,7 +36,16 @@ import org.spongepowered.api.util.weighted.WeightedTable;
  * A weighted list of {@link Structure structures}.
  */
 @CatalogedBy(StructureSets.class)
-public interface StructureSet {
+public interface StructureSet extends DefaultedRegistryValue, DataPackSerializable {
+
+    /**
+     * Creates a new {@link Builder} to create a {@link StructureSet}.
+     *
+     * @return The new builder
+     */
+    static StructureSet.Builder builder() {
+        return Sponge.game().builderProvider().provide(StructureSet.Builder.class);
+    }
 
     /**
      * Returns the structures included in the structure set.
@@ -49,6 +61,9 @@ public interface StructureSet {
      */
     StructurePlacement placement();
 
+    /**
+     * A builder to create {@link StructureSet}s.
+     */
     interface Builder extends org.spongepowered.api.util.Builder<StructureSet, Builder>, CopyableBuilder<StructureSet, Builder> {
 
         /**

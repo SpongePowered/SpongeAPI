@@ -24,7 +24,10 @@
  */
 package org.spongepowered.api.world.generation.config.noise;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.datapack.DataPackSerializable;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.Builder;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -40,7 +43,16 @@ import java.util.List;
  * Noise generator config used in {@link ConfigurableChunkGenerator configurable chunk generators}.
  */
 @CatalogedBy(NoiseGeneratorConfigs.class)
-public interface NoiseGeneratorConfig extends ChunkGeneratorConfig {
+public interface NoiseGeneratorConfig extends ChunkGeneratorConfig, DefaultedRegistryValue, DataPackSerializable {
+
+    /**
+     * Creates a new {@link Builder} to create a {@link NoiseGeneratorConfig}.
+     *
+     * @return The new builder
+     */
+    static NoiseGeneratorConfig.Builder builder() {
+        return Sponge.game().builderProvider().provide(NoiseGeneratorConfig.Builder.class);
+    }
 
     /**
      * The noise configuration parameters.
@@ -121,6 +133,9 @@ public interface NoiseGeneratorConfig extends ChunkGeneratorConfig {
      */
     boolean mobGeneration();
 
+    /**
+     * A builder to create {@link NoiseGeneratorConfig}s.
+     */
     interface Builder extends org.spongepowered.api.util.Builder<NoiseGeneratorConfig, Builder>, CopyableBuilder<NoiseGeneratorConfig, Builder> {
 
         /**

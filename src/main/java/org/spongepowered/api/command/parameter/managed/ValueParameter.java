@@ -120,8 +120,23 @@ public interface ValueParameter<T> extends DefaultedRegistryValue, ValueComplete
 
     }
 
+    /**
+     * A {@link ValueParameter} that relies on registry data
+     * and is unable to parse its results until it has been
+     * bound.
+     *
+     * @param <T> The type of object that is returned from the
+     *            {@link ValueParser} upon successful parsing.
+     */
     interface Bindable<T> extends ValueParameter<T> {
 
+        /**
+         * Creates a new {@link ValueParameter} that is bound to
+         * a specific {@link RegistryHolder registry holder}.
+         *
+         * @param registryHolder The owning {@link RegistryHolder registry holder}.
+         * @return The bound {@link ValueParameter}.
+         */
         ValueParameter<T> bind(RegistryHolder registryHolder);
     }
 }

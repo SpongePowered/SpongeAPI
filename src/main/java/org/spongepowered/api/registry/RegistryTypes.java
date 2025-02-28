@@ -200,6 +200,8 @@ public final class RegistryTypes {
 
     // @formatter:off
 
+    public static final DefaultedRegistryType<Advancement> ADVANCEMENT = RegistryTypes.spongeKeyInGame("advancement");
+
     public static final DefaultedRegistryType<ArtType> ART_TYPE = RegistryTypes.minecraftKeyInServer("painting_variant");
 
     public static final DefaultedRegistryType<ArmorMaterial> ARMOR_MATERIAL = RegistryTypes.spongeKeyInGame("armor_material");
@@ -467,6 +469,8 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<RailDirection> RAIL_DIRECTION = RegistryTypes.spongeKeyInGame("rail_direction");
 
+    public static final DefaultedRegistryType<Recipe<?>> RECIPE = RegistryTypes.spongeKeyInGame("recipe");
+
     public static final DefaultedRegistryType<ValueParameter<?>> REGISTRY_KEYED_VALUE_PARAMETER = RegistryTypes.spongeKeyInGame("value_parameter");
 
     public static final DefaultedRegistryType<ResolveOperation> RESOLVE_OPERATION = RegistryTypes.spongeKeyInGame("resolve_operation");
@@ -517,15 +521,11 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<WolfVariant> WOLF_VAIRANT = RegistryTypes.minecraftKeyInServer("wolf_vairant");
 
+    public static final DefaultedRegistryType<WorldArchetypeType> WORLD_ARCHETYPE_TYPE = RegistryTypes.spongeKeyInGame("world_archetype_type");
+
     public static final DefaultedRegistryType<WireAttachmentType> WIRE_ATTACHMENT_TYPE = RegistryTypes.spongeKeyInGame("wire_attachment_type");
 
     // @formatter:on
-
-    public static final DefaultedRegistryType<WorldArchetypeType> WORLD_ARCHETYPE_TYPE = RegistryTypes.spongeKeyInGame("wire_attachment_type");
-
-    public static final DefaultedRegistryType<Recipe<?>> RECIPE = RegistryTypes.spongeKeyInGame("recipe");
-
-    public static final DefaultedRegistryType<Advancement> ADVAN = RegistryTypes.spongeKeyInGame("wire_attachment_type");
 
     private static <V> DefaultedRegistryType<V> minecraftKeyInGame(final String key) {
         return RegistryType.of(RegistryRoots.MINECRAFT, ResourceKey.minecraft(Objects.requireNonNull(key, "key"))).asDefaultedType(Sponge::game);

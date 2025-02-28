@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.world.generation.structure;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.entity.EntityCategory;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.Builder;
@@ -45,7 +47,16 @@ import java.util.Map;
  * A structure used in world generation.
  */
 @CatalogedBy(Structures.class)
-public interface Structure extends DefaultedRegistryValue {
+public interface Structure extends DefaultedRegistryValue, DataPackSerializable {
+
+    /**
+     * Creates a new {@link Builder} to create a {@link Structure}.
+     *
+     * @return The new builder
+     */
+    static Structure.Builder builder() {
+        return Sponge.game().builderProvider().provide(Structure.Builder.class);
+    }
 
     /**
      * Places the structure at given position and world
@@ -119,6 +130,9 @@ public interface Structure extends DefaultedRegistryValue {
         List<NaturalSpawner> spawners();
     }
 
+    /**
+     * A builder to create {@link Structure}s.
+     */
     interface Builder extends org.spongepowered.api.util.Builder<Structure, Builder>, CopyableBuilder<Structure, Builder> {
 
     }

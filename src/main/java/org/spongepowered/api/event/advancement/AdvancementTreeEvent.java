@@ -48,6 +48,11 @@ public interface AdvancementTreeEvent extends Event {
      */
     interface GenerateLayout extends AdvancementTreeEvent {
 
+        /**
+         * Gets the owning {@link RegistryHolder registry holder}.
+         *
+         * @return The registry holder.
+         */
         RegistryHolder registryHolder();
     }
 }

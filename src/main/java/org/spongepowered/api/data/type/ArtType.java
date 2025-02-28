@@ -26,6 +26,7 @@ package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.entity.hanging.Painting;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.Builder;
@@ -36,7 +37,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a piece of art to be displayed by {@link Painting}s.
  */
 @CatalogedBy(ArtTypes.class)
-public interface ArtType extends DefaultedRegistryValue {
+public interface ArtType extends DefaultedRegistryValue, DataPackSerializable {
 
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class);

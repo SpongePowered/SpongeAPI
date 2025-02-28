@@ -28,7 +28,17 @@ import org.spongepowered.api.data.persistence.DataContainer;
 
 import java.util.Optional;
 
+/**
+ * Represents a type that can be serialized into a {@link DataContainer}
+ * and is a valid data pack entry.
+ */
 public interface DataPackSerializable {
 
+    /**
+     * Creates a serialized representation of this type
+     * if possible. Not all types have serializable representation.
+     *
+     * @return The serialized data container.
+     */
     Optional<DataContainer> toDataPack();
 }

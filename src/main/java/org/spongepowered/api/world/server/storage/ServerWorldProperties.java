@@ -33,7 +33,6 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.entity.living.trader.WanderingTrader;
-import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.util.Identifiable;
 import org.spongepowered.api.util.MinecraftDayTime;
 import org.spongepowered.api.util.Nameable;
@@ -378,12 +377,25 @@ public interface ServerWorldProperties extends WorldProperties, GameRuleHolder, 
         return this.require(Keys.WEATHER);
     }
 
+    /**
+     * Customize the load process of a {@link ServerWorldProperties}.
+     */
     interface LoadOptions {
 
         static LoadOptions.Builder builder() {
             return Sponge.game().builderProvider().provide(LoadOptions.Builder.class);
         }
 
+        /**
+         * Load existing {@link ServerWorldProperties} but do not
+         * create a new one if not found.
+         *
+         * <p>The operation fails if properties are not found.</p>
+         *
+         * @param loadCallback The consumer to call after successful
+         *                     load operation for additional configuration.
+         * @return The load options.
+         */
         static LoadOptions load(Consumer<ServerWorldProperties> loadCallback) {
             return LoadOptions.builder()
                 .load()
@@ -391,12 +403,101 @@ public interface ServerWorldProperties extends WorldProperties, GameRuleHolder, 
                 .build();
         }
 
+        /**
+         * Load existing {@link ServerWorldProperties} or create a new
+         * one with the given {@link WorldArchetypeType}.
+         *
+         * @param worldArchetype The archetype to use for creation.
+         * @return The load options.
+         */
+        static LoadOptions loadOrCreate(WorldArchetypeType worldArchetype) {
+            return LoadOptions.builder()
+                .load()
+                .create(worldArchetype)
+                .build();
+        }
+
+        /**
+         * Load existing {@link ServerWorldProperties} or create a new
+         * one with the given {@link WorldArchetypeType}.
+         *
+         * @param worldArchetype The archetype to use for creation.
+         * @param initializeCallback The consumer to call after successful
+         *                           creation for additional configuration.
+         * @return The load options.
+         */
+        static LoadOptions loadOrCreate(WorldArchetypeType worldArchetype, Consumer<ServerWorldProperties> initializeCallback) {
+            return LoadOptions.builder()
+                .load()
+                .create(worldArchetype)
+                .initializeCallback(initializeCallback)
+                .build();
+        }
+
+
+        /**
+         * Load existing {@link ServerWorldProperties} or create a new
+         * one with the given {@link WorldArchetypeType}.
+         *
+         * @param loadCallback The consumer to call after successful
+         *                     load operation for additional configuration.
+         * @param worldArchetype The archetype to use for creation.
+         * @return The load options.
+         */
+        static LoadOptions loadOrCreate(Consumer<ServerWorldProperties> loadCallback, WorldArchetypeType worldArchetype) {
+            return LoadOptions.builder()
+                .load()
+                .loadCallback(loadCallback)
+                .create(worldArchetype)
+                .build();
+        }
+
+        /**
+         * Load existing {@link ServerWorldProperties} or create a new
+         * one with the given {@link WorldArchetypeType}.
+         *
+         * @param loadCallback The consumer to call after successful
+         *                     load operation for additional configuration.
+         * @param worldArchetype The archetype to use for creation.
+         * @param initializeCallback The consumer to call after successful
+         *                           creation for additional configuration.
+         * @return The load options.
+         */
+        static LoadOptions loadOrCreate(Consumer<ServerWorldProperties> loadCallback, WorldArchetypeType worldArchetype, Consumer<ServerWorldProperties> initializeCallback) {
+            return LoadOptions.builder()
+                .load()
+                .loadCallback(loadCallback)
+                .create(worldArchetype)
+                .initializeCallback(initializeCallback)
+                .build();
+        }
+
+        /**
+         * Create a new {@link ServerWorldProperties} with the given
+         * {@link WorldArchetypeType} but do not load existing one.
+         *
+         * <p>The operation fails if existing properties are found.</p>
+         *
+         * @param worldArchetype The archetype to use.
+         * @return The load options.
+         */
         static LoadOptions create(WorldArchetypeType worldArchetype) {
             return LoadOptions.builder()
                 .create(worldArchetype)
                 .build();
         }
 
+        /**
+         * Create a new {@link ServerWorldProperties} with the given
+         * {@link WorldArchetypeType} but do not load existing one.
+         *
+         * <p>The operation fails if existing properties are found.</p>
+         *
+         * @param worldArchetype The archetype to use.
+         * @param initializeCallback The consumer to call after successful
+         *                           creation for additional configuration.
+         * @return The load options.
+         */
         static LoadOptions create(WorldArchetypeType worldArchetype, Consumer<ServerWorldProperties> initializeCallback) {
             return LoadOptions.builder()
                 .create(worldArchetype)
@@ -404,8 +505,22 @@ public interface ServerWorldProperties extends WorldProperties, GameRuleHolder, 
                 .build();
         }
 
+        /**
+         * Gets the {@link FoundOptions found options} for this load options.
+         *
+         * <p>If not present, the operation should fail on load.</p>
+         *
+         * @return The option when found, if present.
+         */
         Optional<FoundOptions> foundOptions();
 
+        /**
+         * Gets the {@link CreateOptions creation options} for this load.
+         *
+         * <p>If not present, the operation should fail on creation.</p>
+         *
+         * @return The options when created, if present.
+         */
         Optional<CreateOptions> createOptions();
 
         interface FoundOptions {

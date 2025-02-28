@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.world.generation.feature;
 
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.Builder;
 import org.spongepowered.api.util.CopyableBuilder;
@@ -39,7 +41,16 @@ import java.util.List;
  * <p>Modifiers can impact position, rarity, count and more.</p>
  */
 @CatalogedBy(PlacedFeatures.class)
-public interface PlacedFeature extends DefaultedRegistryValue {
+public interface PlacedFeature extends DefaultedRegistryValue, DataPackSerializable {
+
+    /**
+     * Creates a new {@link Builder} to create a {@link PlacedFeature}.
+     *
+     * @return The new builder
+     */
+    static PlacedFeature.Builder builder() {
+        return Sponge.game().builderProvider().provide(PlacedFeature.Builder.class);
+    }
 
     /**
      * Returns the feature.
@@ -74,6 +85,9 @@ public interface PlacedFeature extends DefaultedRegistryValue {
      */
     boolean place(ServerLocation location);
 
+    /**
+     * A builder to create {@link PlacedFeature}s.
+     */
     interface Builder extends org.spongepowered.api.util.Builder<PlacedFeature, Builder>, CopyableBuilder<PlacedFeature, Builder> {
 
         /**

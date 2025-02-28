@@ -25,7 +25,9 @@
 package org.spongepowered.api.world.generation.feature;
 
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.Builder;
 import org.spongepowered.api.util.CopyableBuilder;
@@ -39,7 +41,16 @@ import org.spongepowered.math.vector.Vector3i;
  * <p>Features are used in world generation as a part of {@link PlacedFeature placed features}</p>
  */
 @CatalogedBy(Features.class)
-public interface Feature extends DefaultedRegistryValue {
+public interface Feature extends DefaultedRegistryValue, DataPackSerializable {
+
+    /**
+     * Creates a new {@link Builder} to create a {@link Feature}.
+     *
+     * @return The new builder
+     */
+    static Feature.Builder builder() {
+        return Sponge.game().builderProvider().provide(Feature.Builder.class);
+    }
 
     /**
      * Returns the feature type.
@@ -75,6 +86,9 @@ public interface Feature extends DefaultedRegistryValue {
      */
     boolean place(ServerLocation location);
 
+    /**
+     * A builder to create {@link Feature}s.
+     */
     interface Builder extends org.spongepowered.api.util.Builder<Feature, Builder>, CopyableBuilder<Feature, Builder> {
 
         /**
