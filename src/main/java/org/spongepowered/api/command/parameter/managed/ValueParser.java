@@ -32,6 +32,7 @@ import org.spongepowered.api.command.parameter.Parameter;
 import org.spongepowered.api.command.parameter.managed.clientcompletion.ClientCompletionType;
 import org.spongepowered.api.command.parameter.managed.clientcompletion.ClientCompletionTypes;
 import org.spongepowered.api.event.Cause;
+import org.spongepowered.api.registry.RegistryHolder;
 
 import java.util.Collections;
 import java.util.List;
@@ -113,4 +114,14 @@ public interface ValueParser<T> {
         return Collections.emptyList();
     }
 
+    /**
+     * Creates a new {@link ValueParser} that is bound to
+     * a specific {@link RegistryHolder registry holder}.
+     *
+     * @param registryHolder The owning {@link RegistryHolder registry holder}.
+     * @return The bound {@link ValueParser}.
+     */
+    default ValueParser<T> bind(RegistryHolder registryHolder) {
+        return this;
+    }
 }

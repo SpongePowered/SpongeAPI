@@ -32,6 +32,7 @@ import org.spongepowered.api.command.exception.ArgumentParseException;
 import org.spongepowered.api.command.parameter.ArgumentReader;
 import org.spongepowered.api.command.parameter.CommandContext;
 import org.spongepowered.api.command.parameter.Parameter;
+import org.spongepowered.api.registry.RegistryHolder;
 
 import java.util.List;
 import java.util.Optional;
@@ -146,4 +147,14 @@ public interface ValueParameterModifier<T> {
         return exceptionMessage;
     }
 
+    /**
+     * Creates a new {@link ValueParameterModifier} that is bound to
+     * a specific {@link RegistryHolder registry holder}.
+     *
+     * @param registryHolder The owning {@link RegistryHolder registry holder}.
+     * @return The bound {@link ValueParameterModifier}.
+     */
+    default ValueParameterModifier<T> bind(RegistryHolder registryHolder) {
+        return this;
+    }
 }

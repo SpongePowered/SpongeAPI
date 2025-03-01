@@ -26,6 +26,7 @@ package org.spongepowered.api.command.parameter.managed;
 
 import org.spongepowered.api.command.CommandCompletion;
 import org.spongepowered.api.command.parameter.CommandContext;
+import org.spongepowered.api.registry.RegistryHolder;
 
 import java.util.List;
 
@@ -46,4 +47,14 @@ public interface ValueCompleter {
      */
     List<CommandCompletion> complete(CommandContext context, String currentInput);
 
+    /**
+     * Creates a new {@link ValueCompleter} that is bound to
+     * a specific {@link RegistryHolder registry holder}.
+     *
+     * @param registryHolder The owning {@link RegistryHolder registry holder}.
+     * @return The bound {@link ValueCompleter}.
+     */
+    default ValueCompleter bind(RegistryHolder registryHolder) {
+        return this;
+    }
 }

@@ -29,6 +29,7 @@ import org.spongepowered.api.command.manager.CommandFailedRegistrationException;
 import org.spongepowered.api.command.manager.CommandMapping;
 import org.spongepowered.api.command.registrar.CommandRegistrar;
 import org.spongepowered.api.event.GenericEvent;
+import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.eventgen.annotations.NoFactoryMethod;
 import org.spongepowered.plugin.PluginContainer;
 
@@ -63,6 +64,13 @@ import org.spongepowered.plugin.PluginContainer;
  */
 @NoFactoryMethod
 public interface RegisterCommandEvent<C> extends GenericEvent<C>, LifecycleEvent {
+
+    /**
+     * Gets the owning {@link RegistryHolder registry holder}.
+     *
+     * @return The registry holder.
+     */
+    RegistryHolder registryHolder();
 
     /**
      * Registers a command with the appropriate {@link CommandRegistrar}.
