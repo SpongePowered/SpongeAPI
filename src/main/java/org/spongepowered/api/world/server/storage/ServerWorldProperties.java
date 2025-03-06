@@ -662,7 +662,7 @@ public interface ServerWorldProperties extends WorldProperties, GameRuleHolder, 
          *
          * @return The option when found, if present.
          */
-        Optional<LoadOperation> loadOptions();
+        Optional<LoadOperation> loadOperation();
 
         /**
          * Gets the {@link CreateOperation creation operation} for this option.

@@ -24,25 +24,13 @@
  */
 package org.spongepowered.api.world.generation.config.noise;
 
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
-import org.spongepowered.api.util.Builder;
-import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.math.vector.Vector3i;
 
 @CatalogedBy(DensityFunctions.class)
 public interface DensityFunction extends DefaultedRegistryValue, DataPackSerializable {
-
-    /**
-     * Creates a new {@link Builder} to create a {@link DensityFunction}.
-     *
-     * @return The new builder
-     */
-    static DensityFunction.Builder builder() {
-        return Sponge.game().builderProvider().provide(DensityFunction.Builder.class);
-    }
 
     /**
      * Returns the minimum value possible.
@@ -73,11 +61,4 @@ public interface DensityFunction extends DefaultedRegistryValue, DataPackSeriali
      * @return The noise value at given position
      */
     double compute(int x, int y, int z);
-
-    /**
-     * A builder to create {@link DensityFunction}s.
-     */
-    interface Builder extends org.spongepowered.api.util.Builder<DensityFunction, Builder>, CopyableBuilder<DensityFunction, Builder> {
-
-    }
 }
