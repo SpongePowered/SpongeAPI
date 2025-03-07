@@ -43,7 +43,21 @@ import java.util.function.Consumer;
  * as the registry is being appended and as dependencies become
  * available. Plugins should only execute code inside the consumers.</p>
  *
- * <p><strong>Note:</strong> Layers might be reloadable!</p>
+ * <p><strong>Note:</strong> Layers might be reloadable! When a registry
+ * is being reloaded, this even is fired again for the relevant registries.
+ * The implementation does not keep a reference to the Consumer observed
+ * in the last stage and expects plugins to fill a new set of entries.</p>
+ *
+ * <p>Additionally, plugins may request to take a dependency on another
+ * registry in order to access registered entries early to enrich its
+ * own content. This can prove to be useful when both registries are in
+ * the same layer and would have no access to each other otherwise.</p>
+ *
+ * <p>The available registries and their content are not guaranteed to
+ * be accessible unless they have been added as a dependency. Plugins
+ * might observe registries they have not marked as a dependency due
+ * to the platform having natural dependency on them or due to the
+ * registries dependency graph.</p>
  */
 @NoFactoryMethod
 public interface RegisterRegistryValueEvent extends LifecycleEvent {
