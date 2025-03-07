@@ -25,6 +25,7 @@
 package org.spongepowered.api.datapack;
 
 import org.spongepowered.api.data.persistence.DataContainer;
+import org.spongepowered.api.registry.RegistryHolder;
 
 import java.util.Optional;
 
@@ -38,7 +39,8 @@ public interface DataPackSerializable {
      * Creates a serialized representation of this type
      * if possible. Not all types have serializable representation.
      *
+     * @param registryHolder The registry holder.
      * @return The serialized data container.
      */
-    Optional<DataContainer> toDataPack();
+    Optional<DataContainer> toDataPack(RegistryHolder registryHolder);
 }
