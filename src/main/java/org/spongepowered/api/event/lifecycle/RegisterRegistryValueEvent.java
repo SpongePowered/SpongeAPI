@@ -44,7 +44,7 @@ import java.util.function.Consumer;
  * available. Plugins should only execute code inside the consumers.</p>
  *
  * <p><strong>Note:</strong> Layers might be reloadable! When a registry
- * is being reloaded, this even is fired again for the relevant registries.
+ * is being reloaded, this event is fired again for the relevant registries.
  * The implementation does not keep a reference to the Consumer observed
  * in the last stage and expects plugins to fill a new set of entries.</p>
  *
