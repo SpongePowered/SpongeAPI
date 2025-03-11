@@ -29,6 +29,7 @@ import org.spongepowered.api.event.cause.entity.damage.DamageStepType;
 import org.spongepowered.api.event.entity.DamageCalculationEvent;
 import org.spongepowered.api.event.impl.AbstractEvent;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -38,13 +39,31 @@ public abstract class AbstractDamageCalculationEventPre extends AbstractEvent im
     private final Map<DamageStepType, List<DamageModifier>> modifiersBeforeMap = new HashMap<>();
     private final Map<DamageStepType, List<DamageModifier>> modifiersAfterMap = new HashMap<>();
 
+    private List<DamageModifier> getModifiersBefore(DamageStepType type) {
+        return this.modifiersBeforeMap.computeIfAbsent(type, k -> new LinkedList<>());
+    }
+
+    private List<DamageModifier> getModifiersAfter(DamageStepType type) {
+        return this.modifiersAfterMap.computeIfAbsent(type, k -> new LinkedList<>());
+    }
+
     @Override
     public List<DamageModifier> modifiersBefore(DamageStepType type) {
-        return this.modifiersBeforeMap.computeIfAbsent(type, k -> new LinkedList<>());
+        return Collections.unmodifiableList(this.getModifiersBefore(type));
     }
 
     @Override
     public List<DamageModifier> modifiersAfter(DamageStepType type) {
-        return this.modifiersAfterMap.computeIfAbsent(type, k -> new LinkedList<>());
+        return Collections.unmodifiableList(this.getModifiersAfter(type));
+    }
+
+    @Override
+    public void addModifierBefore(DamageStepType type, DamageModifier modifier) {
+        this.getModifiersBefore(type).addFirst(modifier);
+    }
+
+    @Override
+    public void addModifierAfter(DamageStepType type, DamageModifier modifier) {
+        this.getModifiersAfter(type).addLast(modifier);
     }
 }

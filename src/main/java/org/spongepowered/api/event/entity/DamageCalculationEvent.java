@@ -85,7 +85,7 @@ public interface DamageCalculationEvent extends Event, Cancellable {
     interface Pre extends DamageCalculationEvent {
 
         /**
-         * Gets a mutable list of all modifiers that applies just before the step.
+         * Gets an unmodifiable list of all modifiers that applies just before the step.
          *
          * @param type The step type
          * @return The list of modifiers
@@ -95,7 +95,7 @@ public interface DamageCalculationEvent extends Event, Cancellable {
         }
 
         /**
-         * Gets a mutable list of all modifiers that applies just before the step.
+         * Gets an unmodifiable list of all modifiers that applies just before the step.
          *
          * @param type The step type
          * @return The list of modifiers
@@ -103,7 +103,25 @@ public interface DamageCalculationEvent extends Event, Cancellable {
         List<DamageModifier> modifiersBefore(DamageStepType type);
 
         /**
-         * Gets a mutable list of all modifiers that applies just after the step.
+         * Adds a modifier that applies just before the step.
+         *
+         * @param type The step type
+         * @param modifier The modifier
+         */
+        default void addModifierBefore(Supplier<DamageStepType> type, DamageModifier modifier) {
+            this.addModifierBefore(type.get(), modifier);
+        }
+
+        /**
+         * Adds a modifier that applies just before the step.
+         *
+         * @param type The step type
+         * @param modifier The modifier
+         */
+        void addModifierBefore(DamageStepType type, DamageModifier modifier);
+
+        /**
+         * Gets an unmodifiable list of all modifiers that applies just after the step.
          *
          * @param type The step type
          * @return The list of modifiers
@@ -113,12 +131,30 @@ public interface DamageCalculationEvent extends Event, Cancellable {
         }
 
         /**
-         * Gets a mutable list of all modifiers that applies just after the step.
+         * Gets an unmodifiable list of all modifiers that applies just after the step.
          *
          * @param type The step type
          * @return The list of modifiers
          */
         List<DamageModifier> modifiersAfter(DamageStepType type);
+
+        /**
+         * Adds a modifier that applies just after the step.
+         *
+         * @param type The step type
+         * @param modifier The modifier
+         */
+        default void addModifierAfter(Supplier<DamageStepType> type, DamageModifier modifier) {
+            this.addModifierAfter(type.get(), modifier);
+        }
+
+        /**
+         * Adds a modifier that applies just after the step.
+         *
+         * @param type The step type
+         * @param modifier The modifier
+         */
+        void addModifierAfter(DamageStepType type, DamageModifier modifier);
     }
 
     /**
