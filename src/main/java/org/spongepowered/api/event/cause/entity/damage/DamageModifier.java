@@ -47,7 +47,7 @@ public interface DamageModifier {
      *
      * @return The cause frame modifier
      */
-    Optional<Consumer<CauseStackManager.StackFrame>> frame();
+    Optional<Consumer<CauseStackManager.StackFrame>> frameModifier();
 
     /**
      * Gets the function that will modify the damage.
@@ -55,7 +55,7 @@ public interface DamageModifier {
      *
      * @return the damage modifier
      */
-    Optional<Function> damage();
+    Optional<Function> damageFunction();
 
     @FunctionalInterface
     interface Function {
@@ -97,7 +97,7 @@ public interface DamageModifier {
          * @param frameModifier The frame modifier
          * @return this builder for chaining
          */
-        Builder frame(Consumer<CauseStackManager.StackFrame> frameModifier);
+        Builder frameModifier(Consumer<CauseStackManager.StackFrame> frameModifier);
 
         /**
          * Sets the {@link Function} for this modifier.
@@ -105,6 +105,6 @@ public interface DamageModifier {
          * @param function The damage function
          * @return this builder for chaining
          */
-        Builder damage(Function function);
+        Builder damageFunction(Function function);
     }
 }
