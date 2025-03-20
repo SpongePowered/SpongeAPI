@@ -26,9 +26,11 @@ package org.spongepowered.api.event.cause.entity.damage;
 
 import org.spongepowered.api.event.Cause;
 
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.OptionalDouble;
+import java.util.Set;
 
 /**
  * A step represent an operation made by the platform (vanilla and mods) or modifiers added by plugins.
@@ -77,6 +79,38 @@ public interface DamageStep {
      */
     default void skip() {
         this.setSkipped(true);
+    }
+
+    /**
+     * Sets whether parts of this step are skipped.
+     * This has no effect on steps already finished.
+     *
+     * @see #isSkipped()
+     */
+    default void trySetSkipped(Set<Part> parts, boolean skipped) {
+        if (parts.contains(Part.CHILDREN_BEFORE) && this.damageBeforeSelf().isEmpty()) {
+            for (DamageStep child : this.childrenBefore()) {
+                child.trySetSkipped(Part.ALL, skipped);
+            }
+        }
+        if (parts.contains(Part.SELF) && this.damageAfterSelf().isEmpty()) {
+            this.setSkipped(skipped);
+        }
+        if (parts.contains(Part.CHILDREN_AFTER) && this.damageAfterChildren().isEmpty()) {
+            for (DamageStep child : this.childrenAfter()) {
+                child.trySetSkipped(Part.ALL, skipped);
+            }
+        }
+    }
+
+    /**
+     * Skips parts of this step.
+     * This has no effect on steps already finished.
+     *
+     * @see #isSkipped()
+     */
+    default void trySkip(Set<Part> parts) {
+        this.trySetSkipped(parts, true);
     }
 
     /**
@@ -153,4 +187,13 @@ public interface DamageStep {
      * @return The list of children steps
      */
     List<DamageStep> childrenAfter();
+
+    /**
+     * The parts composing a step.
+     */
+    enum Part {
+        SELF, CHILDREN_BEFORE, CHILDREN_AFTER;
+
+        public static final EnumSet<Part> ALL = EnumSet.allOf(Part.class);
+    }
 }
