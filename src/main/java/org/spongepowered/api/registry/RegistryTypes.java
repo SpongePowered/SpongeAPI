@@ -538,7 +538,7 @@ public final class RegistryTypes {
     }
 
     private static <V> DefaultedRegistryType<V> minecraftKeyInServer(final String key) {
-        return RegistryType.of(RegistryRoots.MINECRAFT, ResourceKey.minecraft(Objects.requireNonNull(key, "key"))).asDefaultedType(Sponge::server);
+        return RegistryType.of(RegistryRoots.MINECRAFT, ResourceKey.minecraft(Objects.requireNonNull(key, "key"))).asScopedType();
     }
 
     private static <V> DefaultedRegistryType<V> spongeKeyInGame(final String key) {
@@ -546,6 +546,6 @@ public final class RegistryTypes {
     }
 
     private static <V> DefaultedRegistryType<V> spongeKeyInServer(final String key) {
-        return RegistryType.of(RegistryRoots.SPONGE, ResourceKey.sponge(Objects.requireNonNull(key, "key"))).asDefaultedType(Sponge::server);
+        return RegistryType.of(RegistryRoots.SPONGE, ResourceKey.sponge(Objects.requireNonNull(key, "key"))).asScopedType();
     }
 }

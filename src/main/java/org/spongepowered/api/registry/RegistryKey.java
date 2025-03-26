@@ -73,6 +73,14 @@ public interface RegistryKey<T> {
      */
     <V extends T> DefaultedRegistryReference<V> asDefaultedReference(final Supplier<RegistryHolder> defaultHolder);
 
+    /**
+     * Generates a utility {@link DefaultedRegistryReference reference} used to assist in querying a value from this key.
+     * This uses the current Cause to determine the {@link RegistryHolder}
+     *
+     * @return The reference
+     */
+    <V extends T> DefaultedRegistryReference<V> asScopedReference();
+
     interface Factory {
 
         <T> RegistryKey<T> of(RegistryType<T> registry, ResourceKey location);

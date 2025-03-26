@@ -134,6 +134,6 @@ public final class BannerPatternShapes {
     }
 
     private static DefaultedRegistryReference<BannerPatternShape> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.BANNER_PATTERN_SHAPE, location).asDefaultedReference(Sponge::server);
+        return RegistryKey.of(RegistryTypes.BANNER_PATTERN_SHAPE, location).asScopedReference();
     }
 }

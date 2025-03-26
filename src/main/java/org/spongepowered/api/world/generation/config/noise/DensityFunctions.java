@@ -118,6 +118,6 @@ public final class DensityFunctions {
     }
 
     private static DefaultedRegistryReference<DensityFunction> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.DENSITY_FUNCTION, location).asDefaultedReference(Sponge::server);
+        return RegistryKey.of(RegistryTypes.DENSITY_FUNCTION, location).asScopedReference();
     }
 }

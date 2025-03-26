@@ -48,6 +48,6 @@ public final class WorldArchetypeTypes {
     }
 
     private static DefaultedRegistryReference<WorldArchetypeType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.WORLD_ARCHETYPE_TYPE, location).asDefaultedReference(Sponge::server);
+        return RegistryKey.of(RegistryTypes.WORLD_ARCHETYPE_TYPE, location).asScopedReference();
     }
 }

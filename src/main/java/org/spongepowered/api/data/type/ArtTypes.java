@@ -148,6 +148,6 @@ public final class ArtTypes {
     }
 
     private static DefaultedRegistryReference<ArtType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.ART_TYPE, location).asDefaultedReference(Sponge::server);
+        return RegistryKey.of(RegistryTypes.ART_TYPE, location).asScopedReference();
     }
 }

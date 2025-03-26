@@ -146,6 +146,6 @@ public final class DamageTypes {
     }
 
     private static DefaultedRegistryReference<DamageType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.DAMAGE_TYPE, location).asDefaultedReference(Sponge::server);
+        return RegistryKey.of(RegistryTypes.DAMAGE_TYPE, location).asScopedReference();
     }
 }
