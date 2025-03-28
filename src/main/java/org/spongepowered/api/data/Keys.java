@@ -399,11 +399,6 @@ public final class Keys {
     public static final Key<Value<Integer>> ANGER_LEVEL = Keys.key(ResourceKey.sponge("anger_level"), Integer.class);
 
     /**
-     * The set of {@link PotionEffect}s applied on use of an {@link ItemStack}.
-     */
-    public static final Key<WeightedCollectionValue<PotionEffect>> APPLICABLE_POTION_EFFECTS = Keys.weightedKey(ResourceKey.sponge("applicable_potion_effects"), PotionEffect.class);
-
-    /**
      * The enchantments applied to an {@link ItemStack}.
      *
      * <p>This data is usually applicable to all types of armor, weapons and
