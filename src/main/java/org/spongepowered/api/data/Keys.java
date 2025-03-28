@@ -61,6 +61,7 @@ import org.spongepowered.api.data.type.BodyParts;
 import org.spongepowered.api.data.type.CatType;
 import org.spongepowered.api.data.type.ChestAttachmentType;
 import org.spongepowered.api.data.type.ComparatorMode;
+import org.spongepowered.api.data.type.ConsumeEffect;
 import org.spongepowered.api.data.type.DoorHinge;
 import org.spongepowered.api.data.type.DripstoneSegment;
 import org.spongepowered.api.data.type.DyeColor;
@@ -771,6 +772,11 @@ public final class Keys {
      * </p>
      */
     public static final Key<SetValue<Direction>> CONNECTED_DIRECTIONS = Keys.setKey(ResourceKey.sponge("connected_directions"), Direction.class);
+
+    /**
+     * The {@link ConsumeEffect}s an {@link ItemStack} will apply when consumed.
+     */
+    public static final Key<ListValue<ConsumeEffect>> CONSUME_EFFECTS = Keys.listKey(ResourceKey.sponge("consume_effects"), ConsumeEffect.class);
 
     /**
      * The container {@link ItemType} of an {@link ItemStack}.
