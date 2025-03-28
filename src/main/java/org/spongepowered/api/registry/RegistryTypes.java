@@ -376,7 +376,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<EquipmentType> EQUIPMENT_TYPE = RegistryTypes.spongeKeyInGame("equipment_type");
 
-    public static final RegistryType<ExplosionBlockInteraction> EXPLOSION_BLOCK_INTERACTION = RegistryTypes.spongeKeyInGame("explosion_block_interaction");
+    public static final DefaultedRegistryType<ExplosionBlockInteraction> EXPLOSION_BLOCK_INTERACTION = RegistryTypes.spongeKeyInGame("explosion_block_interaction");
 
     public static final DefaultedRegistryType<FireworkShape> FIREWORK_SHAPE = RegistryTypes.spongeKeyInGame("firework_shape");
 
@@ -520,7 +520,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<Tilt> TILT = RegistryTypes.spongeKeyInGame("tilt");
 
-    public static final RegistryType<VaultState> VAULT_STATE = RegistryTypes.spongeKeyInGame("vault_state");
+    public static final DefaultedRegistryType<VaultState> VAULT_STATE = RegistryTypes.spongeKeyInGame("vault_state");
 
     public static final DefaultedRegistryType<Visibility> VISIBILITY = RegistryTypes.spongeKeyInGame("visibility");
 
