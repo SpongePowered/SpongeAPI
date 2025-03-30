@@ -929,6 +929,11 @@ public final class Keys {
     public static final Key<Value<Double>> DAMAGE_PER_BLOCK = Keys.key(ResourceKey.sponge("damage_per_block"), Double.class);
 
     /**
+     * The {@link ConsumeEffect}s an {@link ItemStack} will apply on death.
+     */
+    public static final Key<ListValue<ConsumeEffect>> DEATH_PROTECTION_EFFECTS = Keys.listKey(ResourceKey.sponge("death_protection_effects"), ConsumeEffect.class);
+
+    /**
      * The distance at which a {@link BlockState} will decay.
      * This usually applies to leaves, for example {@link BlockTypes#OAK_LEAVES}.
      */
