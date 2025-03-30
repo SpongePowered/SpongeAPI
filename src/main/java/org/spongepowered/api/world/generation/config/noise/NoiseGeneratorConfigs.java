@@ -62,6 +62,6 @@ public final class NoiseGeneratorConfigs {
     }
 
     private static DefaultedRegistryReference<NoiseGeneratorConfig> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.NOISE_GENERATOR_CONFIG, location).asDefaultedReference(Sponge::server);
+        return RegistryKey.of(RegistryTypes.NOISE_GENERATOR_CONFIG, location).asScopedReference();
     }
 }

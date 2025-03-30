@@ -178,6 +178,6 @@ public final class Biomes {
     }
 
     private static DefaultedRegistryReference<Biome> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.BIOME, location).asDefaultedReference(Sponge::server);
+        return RegistryKey.of(RegistryTypes.BIOME, location).asScopedReference();
     }
 }

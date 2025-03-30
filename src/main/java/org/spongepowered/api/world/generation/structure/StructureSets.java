@@ -88,6 +88,6 @@ public final class StructureSets {
     }
 
     private static DefaultedRegistryReference<StructureSet> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.STRUCTURE_SET, location).asDefaultedReference(Sponge::server);
+        return RegistryKey.of(RegistryTypes.STRUCTURE_SET, location).asScopedReference();
     }
 }

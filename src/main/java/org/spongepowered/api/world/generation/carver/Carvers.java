@@ -56,6 +56,6 @@ public final class Carvers {
     }
 
     private static DefaultedRegistryReference<Carver> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.CARVER, location).asDefaultedReference(Sponge::server);
+        return RegistryKey.of(RegistryTypes.CARVER, location).asScopedReference();
     }
 }

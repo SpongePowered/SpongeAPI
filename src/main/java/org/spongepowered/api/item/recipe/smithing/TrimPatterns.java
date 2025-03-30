@@ -81,6 +81,6 @@ public final class TrimPatterns {
     }
 
     private static DefaultedRegistryReference<TrimPattern> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.TRIM_PATTERN, location).asDefaultedReference(Sponge::server);
+        return RegistryKey.of(RegistryTypes.TRIM_PATTERN, location).asScopedReference();
     }
 }

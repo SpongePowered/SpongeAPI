@@ -67,6 +67,6 @@ public final class TrimMaterials {
     }
 
     private static DefaultedRegistryReference<TrimMaterial> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.TRIM_MATERIAL, location).asDefaultedReference(Sponge::server);
+        return RegistryKey.of(RegistryTypes.TRIM_MATERIAL, location).asScopedReference();
     }
 }

@@ -98,6 +98,6 @@ public final class ChatTypes {
     }
 
     public static DefaultedRegistryReference<ChatType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.CHAT_TYPE, location).asDefaultedReference(Sponge::server);
+        return RegistryKey.of(RegistryTypes.CHAT_TYPE, location).asScopedReference();
     }
 }

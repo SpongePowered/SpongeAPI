@@ -168,6 +168,6 @@ public final class Noises {
     }
 
     private static DefaultedRegistryReference<Noise> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.NOISE, location).asDefaultedReference(Sponge::server);
+        return RegistryKey.of(RegistryTypes.NOISE, location).asScopedReference();
     }
 }

@@ -66,6 +66,6 @@ public final class FlatGeneratorConfigs {
     }
 
     private static DefaultedRegistryReference<FlatGeneratorConfig> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.FLAT_GENERATOR_CONFIG, location).asDefaultedReference(Sponge::server);
+        return RegistryKey.of(RegistryTypes.FLAT_GENERATOR_CONFIG, location).asScopedReference();
     }
 }

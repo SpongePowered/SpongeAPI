@@ -58,6 +58,8 @@ public interface RegistryType<T> {
      */
     <V extends T> DefaultedRegistryType<V> asDefaultedType(Supplier<RegistryHolder> defaultHolder);
 
+    <V> DefaultedRegistryType<V> asScopedType();
+
     interface Factory {
 
         <T> RegistryType<T> create(final ResourceKey root, ResourceKey location);

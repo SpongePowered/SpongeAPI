@@ -172,6 +172,6 @@ public final class FeatureTypes {
     }
 
     private static DefaultedRegistryReference<FeatureType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.FEATURE_TYPE, location).asDefaultedReference(Sponge::server);
+        return RegistryKey.of(RegistryTypes.FEATURE_TYPE, location).asScopedReference();
     }
 }

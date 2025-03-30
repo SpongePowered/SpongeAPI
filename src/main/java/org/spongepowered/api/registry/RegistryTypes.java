@@ -528,7 +528,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<WeatherType> WEATHER_TYPE = RegistryTypes.spongeKeyInGame("weather_type");
 
-    public static final DefaultedRegistryType<WolfVariant> WOLF_VAIRANT = RegistryTypes.minecraftKeyInServer("wolf_vairant");
+    public static final DefaultedRegistryType<WolfVariant> WOLF_VARIANT = RegistryTypes.minecraftKeyInServer("wolf_variant");
 
     public static final DefaultedRegistryType<WorldArchetypeType> WORLD_ARCHETYPE_TYPE = RegistryTypes.minecraftKeyInServer("dimension");
 
@@ -541,7 +541,7 @@ public final class RegistryTypes {
     }
 
     private static <V> DefaultedRegistryType<V> minecraftKeyInServer(final String key) {
-        return RegistryType.of(RegistryRoots.MINECRAFT, ResourceKey.minecraft(Objects.requireNonNull(key, "key"))).asDefaultedType(Sponge::server);
+        return RegistryType.of(RegistryRoots.MINECRAFT, ResourceKey.minecraft(Objects.requireNonNull(key, "key"))).asScopedType();
     }
 
     private static <V> DefaultedRegistryType<V> spongeKeyInGame(final String key) {
@@ -549,6 +549,6 @@ public final class RegistryTypes {
     }
 
     private static <V> DefaultedRegistryType<V> spongeKeyInServer(final String key) {
-        return RegistryType.of(RegistryRoots.SPONGE, ResourceKey.sponge(Objects.requireNonNull(key, "key"))).asDefaultedType(Sponge::server);
+        return RegistryType.of(RegistryRoots.SPONGE, ResourceKey.sponge(Objects.requireNonNull(key, "key"))).asScopedType();
     }
 }

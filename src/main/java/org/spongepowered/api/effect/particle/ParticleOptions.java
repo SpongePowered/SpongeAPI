@@ -59,6 +59,7 @@ public final class ParticleOptions {
      *   <li>{@link ParticleTypes#BLOCK_MARKER}</li>
      *   <li>{@link ParticleTypes#DUST_PILLAR}</li>
      *   <li>{@link ParticleTypes#FALLING_DUST}</li>
+     *   <li>{@link ParticleTypes#BLOCK_CRUMBLE}</li>
      * </ul>
      */
     public static final DefaultedRegistryReference<ParticleOption<BlockState>> BLOCK_STATE = ParticleOptions.key(ResourceKey.sponge("block_state"));
@@ -71,6 +72,7 @@ public final class ParticleOptions {
      *   <li>{@link ParticleTypes#ENTITY_EFFECT}</li>
      *   <li>{@link ParticleTypes#DUST}</li>
      *   <li>{@link ParticleTypes#DUST_COLOR_TRANSITION}</li>
+     *   <li>{@link ParticleTypes#TRAIL}</li>
      * </ul>
      */
     public static final DefaultedRegistryReference<ParticleOption<Color>> COLOR = ParticleOptions.key(ResourceKey.sponge("color"));
@@ -159,6 +161,16 @@ public final class ParticleOptions {
     public static final DefaultedRegistryReference<ParticleOption<Double>> SCALE = ParticleOptions.key(ResourceKey.sponge("scale"));
 
     /**
+     * This option will affect the target of a particle
+     * The only vanilla {@link ParticleType} this option is applicable to is:
+     *
+     * <ul>
+     *   <li>{@link ParticleTypes#TRAIL}</li>
+     * </ul>
+     */
+    public static final DefaultedRegistryReference<ParticleOption<Vector3d>> TARGET = ParticleOptions.key(ResourceKey.sponge("target"));
+
+    /**
      * This option will change the color the transition particle will change to.
      * The only vanilla {@link ParticleType} this option is applicable to is:
      *
@@ -174,6 +186,7 @@ public final class ParticleOptions {
      *
      * <ul>
      *   <li>{@link ParticleTypes#VIBRATION}</li>
+     *   <li>{@link ParticleTypes#TRAIL}</li>
      * </ul>
      */
     public static final DefaultedRegistryReference<ParticleOption<Ticks>> TRAVEL_TIME = ParticleOptions.key(ResourceKey.sponge("travel_time"));

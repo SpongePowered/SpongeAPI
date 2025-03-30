@@ -424,6 +424,6 @@ public final class JigsawPools {
     }
 
     private static DefaultedRegistryReference<JigsawPool> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.JIGSAW_POOL, location).asDefaultedReference(Sponge::server);
+        return RegistryKey.of(RegistryTypes.JIGSAW_POOL, location).asScopedReference();
     }
 }

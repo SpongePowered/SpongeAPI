@@ -128,6 +128,6 @@ public final class ProcessorLists {
     }
 
     private static DefaultedRegistryReference<ProcessorList> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.PROCESSOR_LIST, location).asDefaultedReference(Sponge::server);
+        return RegistryKey.of(RegistryTypes.PROCESSOR_LIST, location).asScopedReference();
     }
 }

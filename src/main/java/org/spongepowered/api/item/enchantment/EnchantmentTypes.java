@@ -284,6 +284,6 @@ public final class EnchantmentTypes {
     }
 
     private static DefaultedRegistryReference<EnchantmentType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.ENCHANTMENT_TYPE, location).asDefaultedReference(Sponge::server);
+        return RegistryKey.of(RegistryTypes.ENCHANTMENT_TYPE, location).asScopedReference();
     }
 }

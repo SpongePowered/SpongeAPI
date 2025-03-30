@@ -62,10 +62,10 @@ public final class WolfVariants {
     }
 
     public static Registry<WolfVariant> registry(final ServerWorld world) {
-        return world.registry(RegistryTypes.WOLF_VAIRANT);
+        return world.registry(RegistryTypes.WOLF_VARIANT);
     }
 
     private static RegistryReference<WolfVariant> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.WOLF_VAIRANT, location).asReference();
+        return RegistryKey.of(RegistryTypes.WOLF_VARIANT, location).asReference();
     }
 }

@@ -78,6 +78,6 @@ public final class PlacementModifierTypes {
     }
 
     private static DefaultedRegistryReference<PlacementModifierType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.PLACEMENT_MODIFIER, location).asDefaultedReference(Sponge::server);
+        return RegistryKey.of(RegistryTypes.PLACEMENT_MODIFIER, location).asScopedReference();
     }
 }
