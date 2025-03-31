@@ -59,11 +59,11 @@ public interface Viewer extends Audience {
     void sendWorldType(WorldType worldType);
 
     /**
-     * Sends the death protection effect with the given item.
+     * Plays a client-only death protection effect with the given item.
      *
      * @param stack The item to display
      */
-    void sendDeathProtection(ItemStackLike stack);
+    void playTotemOfUndyingEffect(ItemStackLike stack);
 
     /**
      * Spawn the given {@link ParticleEffect} at the given position.
