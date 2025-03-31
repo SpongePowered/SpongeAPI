@@ -26,25 +26,52 @@ package org.spongepowered.api.registry;
 
 import org.spongepowered.api.ResourceKey;
 
-import java.util.Objects;
 import java.util.Optional;
 
 /**
- * A Utility marker that assists in getting a {@link ResourceKey} for values that generally can be
- * within a {@link DefaultedRegistryType defaulted registry}.
+ * A {@link RegistryValue} that usually resides in a single {@link RegistryType}
+ * and such this registry can be considered as "default".
  */
-@SuppressWarnings("unchecked")
-public interface DefaultedRegistryValue {
+public interface DefaultedRegistryValue<T extends DefaultedRegistryValue<T>> extends RegistryValue<T> {
 
-    default <T> ResourceKey key(final DefaultedRegistryType<T> type) {
-        return Objects.requireNonNull(type, "type").get().valueKey((T) this);
+    /**
+     * Gets the default {@link RegistryType} for
+     * the type that implements this interface.
+     *
+     * @return The {@link RegistryType}
+     */
+    DefaultedRegistryType<T> registryType();
+
+    /**
+     * Returns the {@link ResourceKey} associated with
+     * this object in the default {@link #registryType()}.
+     *
+     * @return The {@link ResourceKey} associated with
+     * this object in the default {@link #registryType()}
+     */
+    default ResourceKey registryKey() {
+        return this.key(this.registryType());
     }
 
-    default <T> Optional<ResourceKey> findKey(final DefaultedRegistryType<T> type) {
-        return Objects.requireNonNull(type, "type").find().flatMap(r -> r.findValueKey((T) this));
+    /**
+     * Returns the {@link ResourceKey} associated with
+     * this object in the default {@link #registryType()}, if found.
+     *
+     * @return The {@link ResourceKey} associated with
+     * this object in the default {@link #registryType()}, if found
+     */
+    default Optional<ResourceKey> findRegistryKey() {
+        return this.findKey(this.registryType());
     }
 
-    default <T> DefaultedRegistryReference<T> asDefaultedReference(final DefaultedRegistryType<T> type) {
-        return RegistryKey.of(Objects.requireNonNull(type, "type"), this.key(type)).asDefaultedReference(type.defaultHolder());
+    /**
+     * Returns the {@link DefaultedRegistryReference} for
+     * this object in the default {@link #registryType()}.
+     *
+     * @return The {@link DefaultedRegistryReference} for
+     * this object in the default {@link #registryType()}
+     */
+    default DefaultedRegistryReference<T> asDefaultedReference() {
+        return this.asDefaultedReference(this.registryType());
     }
 }

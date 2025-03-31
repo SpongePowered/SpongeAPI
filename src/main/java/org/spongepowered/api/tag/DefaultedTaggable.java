@@ -24,38 +24,34 @@
  */
 package org.spongepowered.api.tag;
 
-import org.spongepowered.api.registry.DefaultedRegistryType;
-import org.spongepowered.api.registry.RegistryValue;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 
 import java.util.Collection;
 
 /**
- * A {@link RegistryValue} that may be included in one or more {@link Tag} collections.
+ * A {@link DefaultedRegistryValue} that may be included in one or more {@link Tag} collections.
  */
-@SuppressWarnings("unchecked")
-public interface Taggable<T extends Taggable<T>> extends RegistryValue<T> {
+public interface DefaultedTaggable<T extends DefaultedTaggable<T>> extends DefaultedRegistryValue<T>, Taggable<T> {
 
     /**
      * Gets all {@link Tag}s that have been associated
-     * with this object in the given registry.
+     * with this object in the default {@link #registryType()}.
      *
-     * @param type The registry type
      * @return THe {@link Collection} of {@link Tag}s
      */
-    default Collection<Tag<T>> tags(final DefaultedRegistryType<T> type) {
-        return type.get().tags().filter(tag -> this.is(type, tag)).toList();
+    default Collection<Tag<T>> tags() {
+        return this.tags(this.registryType());
     }
 
     /**
-     * Returns whether the given {@link Tag} is associated
-     * with this object in the given registry.
+     * Returns whether the given {@link Tag} is associated with
+     * this object in the default {@link #registryType()}.
      *
-     * @param type The registry type
      * @param tag The tag
-     * @return true if the given {@link Tag} is associated
-     * with this object in the given registry
+     * @return true if the given {@link Tag} is associated with
+     * this object in the default {@link #registryType()}
      */
-    default boolean is(final DefaultedRegistryType<T> type, final Tag<T> tag) {
-        return type.get().taggedValues(tag).contains((T) this);
+    default boolean is(final Tag<T> tag) {
+        return this.is(this.registryType(), tag);
     }
 }

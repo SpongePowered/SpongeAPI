@@ -22,40 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.tag;
+package org.spongepowered.api.registry;
 
-import org.spongepowered.api.registry.DefaultedRegistryType;
-import org.spongepowered.api.registry.RegistryValue;
+import org.spongepowered.api.ResourceKey;
 
-import java.util.Collection;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
- * A {@link RegistryValue} that may be included in one or more {@link Tag} collections.
+ * A Utility marker that assists in getting a {@link ResourceKey} for values that generally can be
+ * within a {@link DefaultedRegistryType defaulted registry}.
  */
 @SuppressWarnings("unchecked")
-public interface Taggable<T extends Taggable<T>> extends RegistryValue<T> {
+public interface RegistryValue<T extends RegistryValue<T>> {
 
-    /**
-     * Gets all {@link Tag}s that have been associated
-     * with this object in the given registry.
-     *
-     * @param type The registry type
-     * @return THe {@link Collection} of {@link Tag}s
-     */
-    default Collection<Tag<T>> tags(final DefaultedRegistryType<T> type) {
-        return type.get().tags().filter(tag -> this.is(type, tag)).toList();
+    default ResourceKey key(final DefaultedRegistryType<T> type) {
+        return Objects.requireNonNull(type, "type").get().valueKey((T) this);
     }
 
-    /**
-     * Returns whether the given {@link Tag} is associated
-     * with this object in the given registry.
-     *
-     * @param type The registry type
-     * @param tag The tag
-     * @return true if the given {@link Tag} is associated
-     * with this object in the given registry
-     */
-    default boolean is(final DefaultedRegistryType<T> type, final Tag<T> tag) {
-        return type.get().taggedValues(tag).contains((T) this);
+    default Optional<ResourceKey> findKey(final DefaultedRegistryType<T> type) {
+        return Objects.requireNonNull(type, "type").find().flatMap(r -> r.findValueKey((T) this));
+    }
+
+    default DefaultedRegistryReference<T> asDefaultedReference(final DefaultedRegistryType<T> type) {
+        return RegistryKey.of(Objects.requireNonNull(type, "type"), this.key(type)).asDefaultedReference(type.defaultHolder());
     }
 }
