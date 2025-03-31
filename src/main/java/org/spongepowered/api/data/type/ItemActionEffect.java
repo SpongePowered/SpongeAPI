@@ -109,46 +109,21 @@ public interface ItemActionEffect {
      * Tries to apply this effect and returns whether it was successfully applied.
      * The definition of success is purely left up to the implementation.
      *
-     * @param world The world to apply effect in
      * @param entity The entity to apply effect to
      * @param stack The item to apply effect with
      * @return true if effect was successfully applied
      */
-    boolean apply(World<?, ?> world, Living entity, ItemStackLike stack);
+    boolean apply(Living entity, ItemStackLike stack);
 
     /**
      * Applies this effect with {@link ItemStack#empty()}.
      *
-     * @param world The world to apply effect in
      * @param entity The entity to apply effect to
      * @return true if effect was successfully applied
-     * @see #apply(World, Living, ItemStackLike)
-     */
-    default boolean apply(final World<?, ?> world, final Living entity) {
-        return this.apply(world, entity, ItemStack.empty());
-    }
-
-    /**
-     * Applies this effect with {@link Living#world()}.
-     *
-     * @param entity The entity to apply effect to
-     * @param stack The item to apply effect with
-     * @return true if effect was successfully applied
-     * @see #apply(World, Living, ItemStackLike)
-     */
-    default boolean apply(final Living entity, final ItemStackLike stack) {
-        return this.apply(entity.world(), entity, stack);
-    }
-
-    /**
-     * Applies this effect with {@link Living#world()} and {@link ItemStack#empty()}.
-     *
-     * @param entity The entity to apply effect to
-     * @return true if effect was successfully applied
-     * @see #apply(World, Living, ItemStackLike)
+     * @see #apply(Living, ItemStackLike)
      */
     default boolean apply(final Living entity) {
-        return this.apply(entity.world(), entity, ItemStack.empty());
+        return this.apply(entity, ItemStack.empty());
     }
 
     /**
