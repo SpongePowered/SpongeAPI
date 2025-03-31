@@ -242,5 +242,4 @@ public interface Viewer extends Audience {
      * @param z The z position
      */
     void resetBlockProgress(int x, int y, int z);
-
 }
