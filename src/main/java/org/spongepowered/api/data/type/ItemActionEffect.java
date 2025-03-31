@@ -25,6 +25,7 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.effect.potion.PotionEffect;
 import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.effect.sound.SoundType;
@@ -32,7 +33,6 @@ import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.tag.Tag;
-import org.spongepowered.api.world.World;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -42,7 +42,10 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 /**
- * Represents an effect that can be applied on {@link ItemStack} consumption.
+ * Represents an effect an {@link ItemStack} can apply after some actions.
+ *
+ * @see Keys#CONSUME_EFFECTS
+ * @see Keys#DEATH_PROTECTION_EFFECTS
  */
 public interface ItemActionEffect {
 
