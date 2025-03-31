@@ -119,10 +119,28 @@ public final class SpongeComponents {
      * render each {@link Audience} their own version of
      * the received message.
      *
+     * @param apply The function invoked to render
+     *              {@link Audience} specific component.
      * @return The virtual component
      */
     public static VirtualComponent receiverVirtualComponent(final Function<Audience, ComponentLike> apply) {
-        return SpongeComponents.factory().receiverVirtualComponent(apply);
+        return SpongeComponents.receiverVirtualComponent(apply, "");
+    }
+
+    /**
+     * Creates a new {@link VirtualComponent} that will be used to
+     * render each {@link Audience} their own version of
+     * the received message.
+     *
+     * @param apply The function invoked to render
+     *              {@link Audience} specific component.
+     * @param fallbackValue The fallback value used when this
+     *                      component has been serialized without
+     *                      being rendered.
+     * @return The virtual component
+     */
+    public static VirtualComponent receiverVirtualComponent(final Function<Audience, ComponentLike> apply, final String fallbackValue) {
+        return SpongeComponents.factory().receiverVirtualComponent(apply, fallbackValue);
     }
 
     private static Factory factory() {
@@ -151,6 +169,6 @@ public final class SpongeComponents {
 
         ComponentFlattener flattener();
 
-        VirtualComponent receiverVirtualComponent(Function<Audience, ComponentLike> apply);
+        VirtualComponent receiverVirtualComponent(Function<Audience, ComponentLike> apply, String fallbackValue);
     }
 }
