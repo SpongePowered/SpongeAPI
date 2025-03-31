@@ -28,8 +28,8 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents a possible type of {@link ConsumeEffect}.
+ * Represents a possible type of {@link ItemActionEffect}.
  */
 @CatalogedBy(ConsumeEffectTypes.class)
-public interface ConsumeEffectType extends DefaultedRegistryValue {
+public interface ItemActionEffectType extends DefaultedRegistryValue {
 }

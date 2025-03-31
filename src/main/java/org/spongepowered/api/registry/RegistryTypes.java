@@ -56,7 +56,7 @@ import org.spongepowered.api.data.type.BodyPart;
 import org.spongepowered.api.data.type.CatType;
 import org.spongepowered.api.data.type.ChestAttachmentType;
 import org.spongepowered.api.data.type.ComparatorMode;
-import org.spongepowered.api.data.type.ConsumeEffectType;
+import org.spongepowered.api.data.type.ItemActionEffectType;
 import org.spongepowered.api.data.type.DoorHinge;
 import org.spongepowered.api.data.type.DripstoneSegment;
 import org.spongepowered.api.data.type.DyeColor;
@@ -227,7 +227,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<ChunkState> CHUNK_STATE = RegistryTypes.minecraftKeyInGame("chunk_status");
 
-    public static final DefaultedRegistryType<ConsumeEffectType> CONSUME_EFFECT_TYPE = RegistryTypes.minecraftKeyInGame("consume_effect_type");
+    public static final DefaultedRegistryType<ItemActionEffectType> ITEM_ACTION_EFFECT_TYPE = RegistryTypes.minecraftKeyInGame("consume_effect_type");
 
     public static final DefaultedRegistryType<ContainerType> CONTAINER_TYPE = RegistryTypes.minecraftKeyInGame("menu");
 

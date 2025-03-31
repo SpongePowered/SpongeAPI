@@ -61,7 +61,7 @@ import org.spongepowered.api.data.type.BodyParts;
 import org.spongepowered.api.data.type.CatType;
 import org.spongepowered.api.data.type.ChestAttachmentType;
 import org.spongepowered.api.data.type.ComparatorMode;
-import org.spongepowered.api.data.type.ConsumeEffect;
+import org.spongepowered.api.data.type.ItemActionEffect;
 import org.spongepowered.api.data.type.DoorHinge;
 import org.spongepowered.api.data.type.DripstoneSegment;
 import org.spongepowered.api.data.type.DyeColor;
@@ -774,9 +774,9 @@ public final class Keys {
     public static final Key<SetValue<Direction>> CONNECTED_DIRECTIONS = Keys.setKey(ResourceKey.sponge("connected_directions"), Direction.class);
 
     /**
-     * The {@link ConsumeEffect}s an {@link ItemStack} will apply when consumed.
+     * The {@link ItemActionEffect}s an {@link ItemStack} will apply when consumed.
      */
-    public static final Key<ListValue<ConsumeEffect>> CONSUME_EFFECTS = Keys.listKey(ResourceKey.sponge("consume_effects"), ConsumeEffect.class);
+    public static final Key<ListValue<ItemActionEffect>> CONSUME_EFFECTS = Keys.listKey(ResourceKey.sponge("consume_effects"), ItemActionEffect.class);
 
     /**
      * The container {@link ItemType} of an {@link ItemStack}.
@@ -929,9 +929,9 @@ public final class Keys {
     public static final Key<Value<Double>> DAMAGE_PER_BLOCK = Keys.key(ResourceKey.sponge("damage_per_block"), Double.class);
 
     /**
-     * The {@link ConsumeEffect}s an {@link ItemStack} will apply on death.
+     * The {@link ItemActionEffect}s an {@link ItemStack} will apply on death.
      */
-    public static final Key<ListValue<ConsumeEffect>> DEATH_PROTECTION_EFFECTS = Keys.listKey(ResourceKey.sponge("death_protection_effects"), ConsumeEffect.class);
+    public static final Key<ListValue<ItemActionEffect>> DEATH_PROTECTION_EFFECTS = Keys.listKey(ResourceKey.sponge("death_protection_effects"), ItemActionEffect.class);
 
     /**
      * The distance at which a {@link BlockState} will decay.
