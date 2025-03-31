@@ -68,6 +68,11 @@ public final class ResolveOperations {
      */
     public static final DefaultedRegistryReference<ResolveOperation> CUSTOM_TRANSLATIONS = ResolveOperations.key(ResourceKey.sponge("custom_translations"));
 
+    /**
+     * Resolves Sponge provided virtual components.
+     */
+    public static final DefaultedRegistryReference<ResolveOperation> VIRTUAL_COMPONENTS = ResolveOperations.key(ResourceKey.sponge("virtual_components"));
+
     // SORTFIELDS:OFF
     // @formatter:ON
 
