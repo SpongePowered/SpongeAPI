@@ -28,8 +28,9 @@ import net.kyori.adventure.text.ComponentLike;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
-import org.spongepowered.api.tag.Taggable;
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.DefaultedTaggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
@@ -39,7 +40,7 @@ import java.util.function.Supplier;
  * A type of item.
  */
 @CatalogedBy(ItemTypes.class)
-public interface ItemType extends DefaultedRegistryValue, ComponentLike, DataHolder.Immutable<ItemType>, Taggable<ItemType> {
+public interface ItemType extends DefaultedTaggable<ItemType>, ComponentLike, DataHolder.Immutable<ItemType> {
 
     /**
      * Gets the corresponding {@link BlockType} of this item if one exists.
@@ -89,4 +90,9 @@ public interface ItemType extends DefaultedRegistryValue, ComponentLike, DataHol
      * @return true if this type is any of the given item types
      */
     boolean isAnyOf(ItemType... types);
+
+    @Override
+    default DefaultedRegistryType<ItemType> registryType() {
+        return RegistryTypes.ITEM_TYPE;
+    }
 }

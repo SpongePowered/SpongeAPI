@@ -35,9 +35,9 @@ import org.spongepowered.api.entity.EntityCategories;
 import org.spongepowered.api.entity.EntityCategory;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.golem.SnowGolem;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
-import org.spongepowered.api.tag.Taggable;
-import org.spongepowered.api.util.Builder;
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.DefaultedTaggable;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -60,7 +60,7 @@ import java.util.Optional;
  * Represents a biome.
  */
 @CatalogedBy(Biomes.class)
-public interface Biome extends DefaultedRegistryValue, DataHolder, Taggable<Biome>, DataPackSerializable {
+public interface Biome extends DefaultedTaggable<Biome>, DataHolder, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link Biome}.
@@ -284,6 +284,11 @@ public interface Biome extends DefaultedRegistryValue, DataHolder, Taggable<Biom
      */
     default Optional<SoundConfig.BackgroundMusic> backgroundMusic() {
         return this.get(Keys.BACKGROUND_MUSIC);
+    }
+
+    @Override
+    default DefaultedRegistryType<Biome> registryType() {
+        return RegistryTypes.BIOME;
     }
 
     /**

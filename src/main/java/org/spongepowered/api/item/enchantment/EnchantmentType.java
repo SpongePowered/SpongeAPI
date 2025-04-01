@@ -27,16 +27,17 @@ package org.spongepowered.api.item.enchantment;
 import net.kyori.adventure.text.ComponentLike;
 import org.spongepowered.api.block.entity.EnchantmentTable;
 import org.spongepowered.api.item.inventory.ItemStackLike;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.DefaultedTaggable;
 import org.spongepowered.api.tag.EnchantmenTypeTags;
-import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a modifier on an item that has various effects.
  */
 @CatalogedBy(EnchantmentTypes.class)
-public interface EnchantmentType extends DefaultedRegistryValue, ComponentLike, Taggable<EnchantmentType> {
+public interface EnchantmentType extends DefaultedTaggable<EnchantmentType>, ComponentLike {
 
     /**
      * Gets the weight of this enchantment type.
@@ -130,4 +131,8 @@ public interface EnchantmentType extends DefaultedRegistryValue, ComponentLike, 
         return this.is(EnchantmenTypeTags.CURSE);
     }
 
+    @Override
+    default DefaultedRegistryType<EnchantmentType> registryType() {
+        return RegistryTypes.ENCHANTMENT_TYPE;
+    }
 }
