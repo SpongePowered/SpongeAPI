@@ -27,6 +27,9 @@ package org.spongepowered.api.effect.sound;
 import net.kyori.adventure.sound.Sound;
 import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.DefaultedTaggable;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -34,7 +37,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a sound that can be heard on clients.
  */
 @CatalogedBy(SoundTypes.class)
-public interface SoundType extends ResourceKeyed, Sound.Type {
+public interface SoundType extends DefaultedTaggable<SoundType>, ResourceKeyed, Sound.Type {
 
     /**
      * Creates a new {@link Builder} for building SoundTypes.
@@ -43,6 +46,11 @@ public interface SoundType extends ResourceKeyed, Sound.Type {
      */
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class);
+    }
+
+    @Override
+    default DefaultedRegistryType<SoundType> registryType() {
+        return RegistryTypes.SOUND_TYPE;
     }
 
     /**

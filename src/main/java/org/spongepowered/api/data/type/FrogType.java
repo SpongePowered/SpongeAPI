@@ -24,8 +24,16 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.DefaultedTaggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(FrogTypes.class)
-public interface FrogType {
+public interface FrogType extends DefaultedTaggable<FrogType> {
+
+    @Override
+    default DefaultedRegistryType<FrogType> registryType() {
+        return RegistryTypes.FROG_TYPE;
+    }
 }

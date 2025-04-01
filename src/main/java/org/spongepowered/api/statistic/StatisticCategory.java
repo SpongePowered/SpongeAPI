@@ -25,12 +25,15 @@
 package org.spongepowered.api.statistic;
 
 import io.leangen.geantyref.TypeToken;
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.DefaultedTaggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Collection;
 
 @CatalogedBy(StatisticCategories.class)
-public interface StatisticCategory {
+public interface StatisticCategory extends DefaultedTaggable<StatisticCategory> {
 
     /**
      * Gets all the {@link Statistic}s that are listed
@@ -39,6 +42,11 @@ public interface StatisticCategory {
      * @return The statistics
      */
     Collection<? extends Statistic> statistics();
+
+    @Override
+    default DefaultedRegistryType<StatisticCategory> registryType() {
+        return RegistryTypes.STATISTIC_CATEGORY;
+    }
 
     /**
      * Represents a {@link StatisticCategory} that owns

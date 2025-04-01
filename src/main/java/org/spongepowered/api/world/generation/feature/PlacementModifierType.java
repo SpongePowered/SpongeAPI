@@ -25,13 +25,16 @@
 package org.spongepowered.api.world.generation.feature;
 
 import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.DefaultedTaggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * A type of {@link PlacementModifier}.
  */
 @CatalogedBy(PlacementModifierTypes.class)
-public interface PlacementModifierType {
+public interface PlacementModifierType extends DefaultedTaggable<PlacementModifierType> {
 
     /**
      * Returns the placement modifier.
@@ -42,4 +45,9 @@ public interface PlacementModifierType {
      * @throws IllegalArgumentException when the configuration is not valid for this type of placement modifier
      */
     PlacementModifier configure(DataView config) throws IllegalArgumentException;
+
+    @Override
+    default DefaultedRegistryType<PlacementModifierType> registryType() {
+        return RegistryTypes.PLACEMENT_MODIFIER;
+    }
 }

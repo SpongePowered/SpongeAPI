@@ -25,6 +25,9 @@
 package org.spongepowered.api.world.generation.structure.jigsaw;
 
 import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.DefaultedTaggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.io.IOException;
@@ -33,7 +36,7 @@ import java.io.IOException;
  * A type of {@link Processor}.
  */
 @CatalogedBy(ProcessorTypes.class)
-public interface ProcessorType {
+public interface ProcessorType extends DefaultedTaggable<ProcessorType> {
 
     /**
      * Returns the configured processor.
@@ -42,4 +45,9 @@ public interface ProcessorType {
      * @return The configured processor
      */
     Processor configure(DataView config) throws IOException;
+
+    @Override
+    default DefaultedRegistryType<ProcessorType> registryType() {
+        return RegistryTypes.PROCESSOR_TYPE;
+    }
 }

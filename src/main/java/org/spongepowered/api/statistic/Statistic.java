@@ -24,7 +24,10 @@
  */
 package org.spongepowered.api.statistic;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.scoreboard.criteria.Criterion;
+import org.spongepowered.api.tag.DefaultedTaggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.text.NumberFormat;
@@ -34,7 +37,7 @@ import java.util.Optional;
  * Represents some statistic in minecraft.
  */
 @CatalogedBy(Statistics.class)
-public interface Statistic {
+public interface Statistic extends DefaultedTaggable<Statistic> {
 
     /**
      * Returns the objective {@link Criterion} for this statistic.
@@ -50,6 +53,11 @@ public interface Statistic {
      * @return Statistic's number format
      */
     NumberFormat format();
+
+    @Override
+    default DefaultedRegistryType<Statistic> registryType() {
+        return RegistryTypes.STATISTIC;
+    }
 
     /**
      * Represents a {@link Statistic} instance of a {@link StatisticCategory.Typed}.
