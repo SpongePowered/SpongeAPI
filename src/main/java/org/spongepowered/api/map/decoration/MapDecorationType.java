@@ -26,7 +26,9 @@ package org.spongepowered.api.map.decoration;
 
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.map.MapCanvas;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.DefaultedTaggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
@@ -35,7 +37,7 @@ import java.util.Optional;
  * Represents a symbol that may be used on a {@link MapCanvas} as part of a {@link MapDecoration}.
  */
 @CatalogedBy(MapDecorationTypes.class)
-public interface MapDecorationType extends DefaultedRegistryValue {
+public interface MapDecorationType extends DefaultedTaggable<MapDecorationType> {
 
     /**
      * Gets the corresponding {@link DyeColor} that this banner decoration type is.
@@ -43,4 +45,9 @@ public interface MapDecorationType extends DefaultedRegistryValue {
      * @return The {@link DyeColor} that this banner decoration type is.
      */
     Optional<DyeColor> bannerColor();
+
+    @Override
+    default DefaultedRegistryType<MapDecorationType> registryType() {
+        return RegistryTypes.MAP_DECORATION_TYPE;
+    }
 }

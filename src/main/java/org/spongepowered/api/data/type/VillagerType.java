@@ -24,10 +24,16 @@
  */
 package org.spongepowered.api.data.type;
 
-import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.DefaultedTaggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(VillagerTypes.class)
-public interface VillagerType extends DefaultedRegistryValue {
+public interface VillagerType extends DefaultedTaggable<VillagerType> {
 
+    @Override
+    default DefaultedRegistryType<VillagerType> registryType() {
+        return RegistryTypes.VILLAGER_TYPE;
+    }
 }

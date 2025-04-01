@@ -25,14 +25,16 @@
 package org.spongepowered.api.effect.potion;
 
 import net.kyori.adventure.text.ComponentLike;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.DefaultedTaggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a possible type of {@link PotionEffect}.
  */
 @CatalogedBy(PotionEffectTypes.class)
-public interface PotionEffectType extends DefaultedRegistryValue, ComponentLike {
+public interface PotionEffectType extends DefaultedTaggable<PotionEffectType>, ComponentLike {
 
     /**
      * Gets whether this potion effect is applied instantly or over time.
@@ -41,4 +43,8 @@ public interface PotionEffectType extends DefaultedRegistryValue, ComponentLike 
      */
     boolean isInstant();
 
+    @Override
+    default DefaultedRegistryType<PotionEffectType> registryType() {
+        return RegistryTypes.POTION_EFFECT_TYPE;
+    }
 }

@@ -25,14 +25,16 @@
 package org.spongepowered.api.entity.attribute.type;
 
 import org.spongepowered.api.entity.attribute.AttributeModifier;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.DefaultedTaggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents an attribute type that can apply effects or modify traits related to an entity.
  */
 @CatalogedBy(AttributeTypes.class)
-public interface AttributeType extends DefaultedRegistryValue {
+public interface AttributeType extends DefaultedTaggable<AttributeType> {
 
     /**
      * Gets the default value of this attribute type before any {@link AttributeModifier}s are applied.
@@ -48,4 +50,9 @@ public interface AttributeType extends DefaultedRegistryValue {
      * @return A value within this attribute type's bounds.
      */
     double clampValue(double value);
+
+    @Override
+    default DefaultedRegistryType<AttributeType> registryType() {
+        return RegistryTypes.ATTRIBUTE_TYPE;
+    }
 }

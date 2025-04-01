@@ -25,14 +25,16 @@
 package org.spongepowered.api.world.generation.structure;
 
 import org.spongepowered.api.data.persistence.DataView;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.DefaultedTaggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * A type of {@link Structure}
  */
 @CatalogedBy(StructureTypes.class)
-public interface StructureType extends DefaultedRegistryValue {
+public interface StructureType extends DefaultedTaggable<StructureType> {
 
     /**
      * Returns the configured structure
@@ -41,4 +43,9 @@ public interface StructureType extends DefaultedRegistryValue {
      * @return The configured structure
      */
     Structure configure(DataView config);
+
+    @Override
+    default DefaultedRegistryType<StructureType> registryType() {
+        return RegistryTypes.STRUCTURE_TYPE;
+    }
 }

@@ -27,9 +27,10 @@ package org.spongepowered.api.world.generation.structure.jigsaw;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPackSerializable;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryReference;
-import org.spongepowered.api.util.Builder;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.DefaultedTaggable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.util.weighted.WeightedTable;
@@ -39,7 +40,7 @@ import org.spongepowered.api.world.generation.structure.Structure;
  * A pool to generate {@link Structure structures} using jigsaw blocks.
  */
 @CatalogedBy(JigsawPools.class)
-public interface JigsawPool extends DefaultedRegistryValue, DataPackSerializable {
+public interface JigsawPool extends DefaultedTaggable<JigsawPool>, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link JigsawPool}.
@@ -48,6 +49,11 @@ public interface JigsawPool extends DefaultedRegistryValue, DataPackSerializable
      */
     static JigsawPool.Builder builder() {
         return Sponge.game().builderProvider().provide(JigsawPool.Builder.class);
+    }
+
+    @Override
+    default DefaultedRegistryType<JigsawPool> registryType() {
+        return RegistryTypes.JIGSAW_POOL;
     }
 
     /**

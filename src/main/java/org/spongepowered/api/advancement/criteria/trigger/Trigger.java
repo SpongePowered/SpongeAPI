@@ -34,8 +34,10 @@ import org.spongepowered.api.data.persistence.DataSerializable;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.event.advancement.CriterionEvent;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.scoreboard.criteria.Criterion;
+import org.spongepowered.api.tag.DefaultedTaggable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.configurate.ConfigurationOptions;
@@ -53,7 +55,7 @@ import java.util.function.UnaryOperator;
  */
 @SuppressWarnings("unchecked")
 @CatalogedBy(Triggers.class)
-public interface Trigger<C extends FilteredTriggerConfiguration> extends DefaultedRegistryValue {
+public interface Trigger<C extends FilteredTriggerConfiguration> extends DefaultedTaggable<Trigger<?>> {
 
     /**
      * Creates a new {@link Builder} which can be used to create
@@ -95,6 +97,11 @@ public interface Trigger<C extends FilteredTriggerConfiguration> extends Default
      * @param player The player to trigger for
      */
     void trigger(ServerPlayer player);
+
+    @Override
+    default DefaultedRegistryType<Trigger<?>> registryType() {
+        return RegistryTypes.TRIGGER;
+    }
 
     /**
      * A builder to create {@link Trigger}s.

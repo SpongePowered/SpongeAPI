@@ -27,8 +27,9 @@ package org.spongepowered.api.world.generation.config.noise;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.datapack.DataPackSerializable;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
-import org.spongepowered.api.util.Builder;
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.DefaultedTaggable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.biome.BiomeAttributes;
@@ -43,7 +44,7 @@ import java.util.List;
  * Noise generator config used in {@link ConfigurableChunkGenerator configurable chunk generators}.
  */
 @CatalogedBy(NoiseGeneratorConfigs.class)
-public interface NoiseGeneratorConfig extends ChunkGeneratorConfig, DefaultedRegistryValue, DataPackSerializable {
+public interface NoiseGeneratorConfig extends ChunkGeneratorConfig, DefaultedTaggable<NoiseGeneratorConfig>, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link NoiseGeneratorConfig}.
@@ -132,6 +133,11 @@ public interface NoiseGeneratorConfig extends ChunkGeneratorConfig, DefaultedReg
      * @return true when mobs spawn during generation.
      */
     boolean mobGeneration();
+
+    @Override
+    default DefaultedRegistryType<NoiseGeneratorConfig> registryType() {
+        return RegistryTypes.NOISE_GENERATOR_CONFIG;
+    }
 
     /**
      * A builder to create {@link NoiseGeneratorConfig}s.

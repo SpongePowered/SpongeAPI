@@ -24,12 +24,12 @@
  */
 package org.spongepowered.api.world.generation.feature;
 
-
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.datapack.DataPackSerializable;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
-import org.spongepowered.api.util.Builder;
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.DefaultedTaggable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.server.ServerLocation;
@@ -41,7 +41,7 @@ import org.spongepowered.math.vector.Vector3i;
  * <p>Features are used in world generation as a part of {@link PlacedFeature placed features}</p>
  */
 @CatalogedBy(Features.class)
-public interface Feature extends DefaultedRegistryValue, DataPackSerializable {
+public interface Feature extends DefaultedTaggable<Feature>, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link Feature}.
@@ -50,6 +50,11 @@ public interface Feature extends DefaultedRegistryValue, DataPackSerializable {
      */
     static Feature.Builder builder() {
         return Sponge.game().builderProvider().provide(Feature.Builder.class);
+    }
+
+    @Override
+    default DefaultedRegistryType<Feature> registryType() {
+        return RegistryTypes.FEATURE;
     }
 
     /**

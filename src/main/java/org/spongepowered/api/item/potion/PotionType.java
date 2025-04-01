@@ -25,7 +25,9 @@
 package org.spongepowered.api.item.potion;
 
 import org.spongepowered.api.effect.potion.PotionEffect;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.DefaultedTaggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.List;
@@ -34,7 +36,12 @@ import java.util.List;
  * Represents a type of potion with specific {@link PotionEffect}s.
  */
 @CatalogedBy(PotionTypes.class)
-public interface PotionType extends DefaultedRegistryValue {
+public interface PotionType extends DefaultedTaggable<PotionType> {
 
     List<PotionEffect> effects();
+
+    @Override
+    default DefaultedRegistryType<PotionType> registryType() {
+        return RegistryTypes.POTION_TYPE;
+    }
 }

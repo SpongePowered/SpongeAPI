@@ -27,7 +27,9 @@ package org.spongepowered.api.world.generation.structure;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.entity.EntityCategory;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.DefaultedTaggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.biome.Biome;
 import org.spongepowered.api.world.biome.spawner.NaturalSpawner;
@@ -44,7 +46,12 @@ import java.util.Map;
  * A structure used in world generation.
  */
 @CatalogedBy(Structures.class)
-public interface Structure extends DefaultedRegistryValue, DataPackSerializable {
+public interface Structure extends DefaultedTaggable<Structure>, DataPackSerializable {
+
+    @Override
+    default DefaultedRegistryType<Structure> registryType() {
+        return RegistryTypes.STRUCTURE;
+    }
 
     /**
      * Places the structure at given position and world

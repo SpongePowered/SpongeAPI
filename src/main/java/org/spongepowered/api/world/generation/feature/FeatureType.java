@@ -25,11 +25,13 @@
 package org.spongepowered.api.world.generation.feature;
 
 import org.spongepowered.api.data.persistence.DataView;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.DefaultedTaggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(FeatureTypes.class)
-public interface FeatureType extends DefaultedRegistryValue {
+public interface FeatureType extends DefaultedTaggable<FeatureType> {
 
     /**
      * Returns the configured feature
@@ -41,4 +43,8 @@ public interface FeatureType extends DefaultedRegistryValue {
      */
     Feature configure(DataView config) throws IllegalArgumentException;
 
+    @Override
+    default DefaultedRegistryType<FeatureType> registryType() {
+        return RegistryTypes.FEATURE_TYPE;
+    }
 }

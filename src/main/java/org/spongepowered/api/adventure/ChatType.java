@@ -27,7 +27,9 @@ package org.spongepowered.api.adventure;
 import net.kyori.adventure.text.format.Style;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPackSerializable;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.DefaultedTaggable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -35,7 +37,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * A type of chat
  */
 @CatalogedBy(ChatTypes.class)
-public interface ChatType extends DefaultedRegistryValue, net.kyori.adventure.chat.ChatType, DataPackSerializable {
+public interface ChatType extends DefaultedTaggable<ChatType>, net.kyori.adventure.chat.ChatType, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link ChatType}.
@@ -44,6 +46,11 @@ public interface ChatType extends DefaultedRegistryValue, net.kyori.adventure.ch
      */
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class);
+    }
+
+    @Override
+    default DefaultedRegistryType<ChatType> registryType() {
+        return RegistryTypes.CHAT_TYPE;
     }
 
     /**
