@@ -33,7 +33,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a type of mooshroom a mooshroom is.
  */
 @CatalogedBy(MooshroomTypes.class)
-public interface MooshroomType extends DefaultedRegistryValue<MooshroomType> {
+public interface MooshroomType extends DefaultedRegistryValue<MooshroomType>, StringRepresentable {
 
     @Override
     default DefaultedRegistryType<MooshroomType> registryType() {

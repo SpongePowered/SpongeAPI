@@ -25,6 +25,7 @@
 package org.spongepowered.api.world.difficulty;
 
 import net.kyori.adventure.text.ComponentLike;
+import org.spongepowered.api.data.type.StringRepresentable;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryTypes;
@@ -34,7 +35,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a possible difficulty setting.
  */
 @CatalogedBy(Difficulties.class)
-public interface Difficulty extends DefaultedRegistryValue<Difficulty>, ComponentLike {
+public interface Difficulty extends DefaultedRegistryValue<Difficulty>, ComponentLike, StringRepresentable {
 
     @Override
     default DefaultedRegistryType<Difficulty> registryType() {

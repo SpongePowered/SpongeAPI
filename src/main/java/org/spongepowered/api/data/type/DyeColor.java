@@ -34,7 +34,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a color of dye that can be used by various items and blocks.
  */
 @CatalogedBy(DyeColors.class)
-public interface DyeColor extends DefaultedRegistryValue<DyeColor> {
+public interface DyeColor extends DefaultedRegistryValue<DyeColor>, StringRepresentable {
 
     /**
      * Gets this dye color as a {@link Color} for easy translation.

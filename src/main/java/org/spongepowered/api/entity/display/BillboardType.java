@@ -24,13 +24,14 @@
  */
 package org.spongepowered.api.entity.display;
 
+import org.spongepowered.api.data.type.StringRepresentable;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(BillboardTypes.class)
-public interface BillboardType extends DefaultedRegistryValue<BillboardType> {
+public interface BillboardType extends DefaultedRegistryValue<BillboardType>, StringRepresentable {
 
     @Override
     default DefaultedRegistryType<BillboardType> registryType() {

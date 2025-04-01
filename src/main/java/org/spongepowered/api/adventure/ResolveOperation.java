@@ -24,12 +24,19 @@
  */
 package org.spongepowered.api.adventure;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * A type of rendering operation that can be performed on a component.
  */
 @CatalogedBy(ResolveOperations.class)
-public interface ResolveOperation {
+public interface ResolveOperation extends DefaultedRegistryValue<ResolveOperation> {
 
+    @Override
+    default DefaultedRegistryType<ResolveOperation> registryType() {
+        return RegistryTypes.RESOLVE_OPERATION;
+    }
 }

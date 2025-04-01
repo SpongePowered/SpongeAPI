@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.scoreboard.objective.displaymode;
 
+import org.spongepowered.api.data.type.StringRepresentable;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryTypes;
@@ -34,7 +35,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents the mode in which to display scores for an {@link Objective}.
  */
 @CatalogedBy(ObjectiveDisplayModes.class)
-public interface ObjectiveDisplayMode extends DefaultedRegistryValue<ObjectiveDisplayMode> {
+public interface ObjectiveDisplayMode extends DefaultedRegistryValue<ObjectiveDisplayMode>, StringRepresentable {
 
     @Override
     default DefaultedRegistryType<ObjectiveDisplayMode> registryType() {

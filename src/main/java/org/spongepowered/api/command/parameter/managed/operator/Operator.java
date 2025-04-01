@@ -25,6 +25,9 @@
 package org.spongepowered.api.command.parameter.managed.operator;
 
 import org.spongepowered.api.command.parameter.managed.standard.ResourceKeyedValueParameters;
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -33,7 +36,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * @see ResourceKeyedValueParameters#OPERATOR
  */
 @CatalogedBy(Operators.class)
-public interface Operator {
+public interface Operator extends DefaultedRegistryValue<Operator> {
 
     /**
      * The string representation of this operator
@@ -41,6 +44,11 @@ public interface Operator {
      * @return The representation
      */
     String asString();
+
+    @Override
+    default DefaultedRegistryType<Operator> registryType() {
+        return RegistryTypes.OPERATOR;
+    }
 
     /**
      * An operator that can operate on two numbers and return a number.

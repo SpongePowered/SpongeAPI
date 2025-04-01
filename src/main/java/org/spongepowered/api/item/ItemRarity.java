@@ -25,13 +25,17 @@
 package org.spongepowered.api.item;
 
 import net.kyori.adventure.text.format.TextColor;
+import org.spongepowered.api.data.type.StringRepresentable;
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * The rarity of an item.
  */
 @CatalogedBy(ItemRarities.class)
-public interface ItemRarity {
+public interface ItemRarity extends DefaultedRegistryValue<ItemRarity>, StringRepresentable {
 
     /**
      * Gets the {@link TextColor} used to decorate tooltips of items with this {@link ItemRarity}.
@@ -40,4 +44,8 @@ public interface ItemRarity {
      */
     TextColor color();
 
+    @Override
+    default DefaultedRegistryType<ItemRarity> registryType() {
+        return RegistryTypes.ITEM_RARITY;
+    }
 }

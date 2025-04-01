@@ -24,9 +24,16 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(VaultStates.class)
-public interface VaultState extends Comparable<VaultState>, StringRepresentable {
+public interface VaultState extends DefaultedRegistryValue<VaultState>, Comparable<VaultState>, StringRepresentable {
 
+    @Override
+    default DefaultedRegistryType<VaultState> registryType() {
+        return RegistryTypes.VAULT_STATE;
+    }
 }

@@ -30,7 +30,7 @@ import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(LlamaTypes.class)
-public interface LlamaType extends DefaultedRegistryValue<LlamaType> {
+public interface LlamaType extends DefaultedRegistryValue<LlamaType>, StringRepresentable {
 
     @Override
     default DefaultedRegistryType<LlamaType> registryType() {

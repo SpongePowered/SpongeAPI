@@ -24,9 +24,16 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(TrialSpawnerStates.class)
-public interface TrialSpawnerState extends Comparable<TrialSpawnerState>, StringRepresentable {
+public interface TrialSpawnerState extends DefaultedRegistryValue<TrialSpawnerState>, Comparable<TrialSpawnerState>, StringRepresentable {
 
+    @Override
+    default DefaultedRegistryType<TrialSpawnerState> registryType() {
+        return RegistryTypes.TRIAL_SPAWNER_STATE;
+    }
 }

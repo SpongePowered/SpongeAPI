@@ -26,7 +26,10 @@ package org.spongepowered.api.world.generation.config.flat;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryReference;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.biome.Biome;
@@ -41,7 +44,7 @@ import java.util.Optional;
  * See {@link FlatGeneratorConfigs} for the vanilla provided presets.
  */
 @CatalogedBy(FlatGeneratorConfigs.class)
-public interface FlatGeneratorConfig extends ChunkGeneratorConfig {
+public interface FlatGeneratorConfig extends ChunkGeneratorConfig, DefaultedRegistryValue<FlatGeneratorConfig> {
 
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class);
@@ -90,6 +93,11 @@ public interface FlatGeneratorConfig extends ChunkGeneratorConfig {
      * @return The list of structure sets
      */
     Optional<List<StructureSet>> structureSets();
+
+    @Override
+    default DefaultedRegistryType<FlatGeneratorConfig> registryType() {
+        return RegistryTypes.FLAT_GENERATOR_CONFIG;
+    }
 
     interface Builder extends org.spongepowered.api.util.Builder<FlatGeneratorConfig, Builder>, CopyableBuilder<FlatGeneratorConfig, Builder> {
 

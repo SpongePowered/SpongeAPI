@@ -24,6 +24,10 @@
  */
 package org.spongepowered.api.world.biome.climate;
 
+import org.spongepowered.api.data.type.StringRepresentable;
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.biome.Biome;
 
@@ -31,6 +35,10 @@ import org.spongepowered.api.world.biome.Biome;
  * A modifier for grass color in a {@link Biome}
  */
 @CatalogedBy(GrassColorModifiers.class)
-public interface GrassColorModifier {
+public interface GrassColorModifier extends DefaultedRegistryValue<GrassColorModifier>, StringRepresentable {
 
+    @Override
+    default DefaultedRegistryType<GrassColorModifier> registryType() {
+        return RegistryTypes.GRASS_COLOR_MODIFIER;
+    }
 }

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.cause.entity.damage;
 
+import org.spongepowered.api.data.type.StringRepresentable;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryTypes;
@@ -31,7 +32,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 
 
 @CatalogedBy(DamageScalings.class)
-public interface DamageScaling extends DefaultedRegistryValue<DamageScaling> {
+public interface DamageScaling extends DefaultedRegistryValue<DamageScaling>, StringRepresentable {
 
     @Override
     default DefaultedRegistryType<DamageScaling> registryType() {

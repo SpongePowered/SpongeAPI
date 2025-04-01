@@ -24,13 +24,14 @@
  */
 package org.spongepowered.api.util.mirror;
 
+import org.spongepowered.api.data.type.StringRepresentable;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(Mirrors.class)
-public interface Mirror extends DefaultedRegistryValue<Mirror> {
+public interface Mirror extends DefaultedRegistryValue<Mirror>, StringRepresentable {
 
     @Override
     default DefaultedRegistryType<Mirror> registryType() {

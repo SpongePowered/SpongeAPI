@@ -24,9 +24,16 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(PushReactions.class)
-public interface PushReaction {
+public interface PushReaction extends DefaultedRegistryValue<PushReaction>, StringRepresentable {
 
+    @Override
+    default DefaultedRegistryType<PushReaction> registryType() {
+        return RegistryTypes.PUSH_REACTION;
+    }
 }

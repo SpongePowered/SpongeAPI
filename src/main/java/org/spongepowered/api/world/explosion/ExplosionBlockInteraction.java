@@ -24,10 +24,16 @@
  */
 package org.spongepowered.api.world.explosion;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(ExplosionBlockInteractions.class)
-public interface ExplosionBlockInteraction {
-    // TODO mixin
+public interface ExplosionBlockInteraction extends DefaultedRegistryValue<ExplosionBlockInteraction> {
 
+    @Override
+    default DefaultedRegistryType<ExplosionBlockInteraction> registryType() {
+        return RegistryTypes.EXPLOSION_BLOCK_INTERACTION;
+    }
 }

@@ -35,7 +35,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * <p>The color of a horse is a genetic trait that can be inherited to a new born horse.</p>
  */
 @CatalogedBy(HorseColors.class)
-public interface HorseColor extends DefaultedRegistryValue<HorseColor> {
+public interface HorseColor extends DefaultedRegistryValue<HorseColor>, StringRepresentable {
 
     @Override
     default DefaultedRegistryType<HorseColor> registryType() {

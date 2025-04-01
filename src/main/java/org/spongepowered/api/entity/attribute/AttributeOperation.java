@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.attribute;
 
+import org.spongepowered.api.data.type.StringRepresentable;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryTypes;
@@ -34,7 +35,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * {@link Attribute}.
  */
 @CatalogedBy(AttributeOperations.class)
-public interface AttributeOperation extends DefaultedRegistryValue<AttributeOperation> {
+public interface AttributeOperation extends DefaultedRegistryValue<AttributeOperation>, StringRepresentable {
 
     @Override
     default DefaultedRegistryType<AttributeOperation> registryType() {
