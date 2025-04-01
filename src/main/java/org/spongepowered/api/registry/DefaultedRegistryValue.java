@@ -30,7 +30,7 @@ import java.util.Optional;
 
 /**
  * A {@link RegistryValue} that usually resides in a single {@link RegistryType}
- * and such this registry can be considered as "default".
+ * and therefore this registry can be considered as "default".
  */
 public interface DefaultedRegistryValue<T extends DefaultedRegistryValue<T>> extends RegistryValue<T> {
 
