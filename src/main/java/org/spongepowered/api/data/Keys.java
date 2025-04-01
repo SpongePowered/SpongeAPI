@@ -252,7 +252,6 @@ import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.projectile.source.ProjectileSource;
 import org.spongepowered.api.raid.Raid;
 import org.spongepowered.api.raid.RaidWave;
-import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.statistic.Statistic;
 import org.spongepowered.api.tag.Tag;
 import org.spongepowered.api.util.Axis;
@@ -809,7 +808,7 @@ public final class Keys {
      * a {@link Player} uses the item. Can be used in tandem with the {@link #COOLDOWN} key
      * to apply a cooldown to said group. A group will differentiate a cooldown from the default
      * {@link ItemStackLike ItemStack} cooldown based on the
-     * {@link ItemType#key(DefaultedRegistryType) ResourceKey}.
+     * {@link ItemType#registryKey() ResourceKey}.
      */
     public static final Key<Value<ResourceKey>> COOLDOWN_GROUP = Keys.key(ResourceKey.sponge("cooldown_group"), ResourceKey.class);
 

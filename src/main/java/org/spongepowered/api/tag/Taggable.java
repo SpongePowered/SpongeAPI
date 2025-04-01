@@ -25,11 +25,13 @@
 package org.spongepowered.api.tag;
 
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryHolder;
 
-import java.util.Collection;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 /**
- * A {@link DefaultedRegistryValue} that may be included in one or more {@link Tag} collections.
+ * A type that may be included in one or more {@link Tag} collections.
  */
 @SuppressWarnings("unchecked")
 public interface Taggable<T extends Taggable<T>> extends DefaultedRegistryValue<T> {
@@ -38,10 +40,21 @@ public interface Taggable<T extends Taggable<T>> extends DefaultedRegistryValue<
      * Gets all {@link Tag}s that have been associated
      * with this object in the default {@link #registryType()}.
      *
-     * @return THe {@link Collection} of {@link Tag}s
+     * @return THe {@link Stream} of {@link Tag}s
      */
-    default Collection<Tag<T>> tags() {
-        return this.registryType().get().tags().filter(this::is).toList();
+    default Stream<Tag<T>> tags() {
+        return this.registryType().get().tags().filter(this::is);
+    }
+
+    /**
+     * Gets all {@link Tag}s that have been associated
+     * with this object in the default {@link #registryType()}
+     * for the given {@link RegistryHolder}.
+     *
+     * @return THe {@link Stream} of {@link Tag}s
+     */
+    default Stream<Tag<T>> tags(final RegistryHolder holder) {
+        return Objects.requireNonNull(holder, "holder").registry(this.registryType()).tags().filter(tag -> this.is(holder, tag));
     }
 
     /**
@@ -54,5 +67,19 @@ public interface Taggable<T extends Taggable<T>> extends DefaultedRegistryValue<
      */
     default boolean is(final Tag<T> tag) {
         return this.registryType().get().taggedValues(tag).contains((T) this);
+    }
+
+    /**
+     * Returns whether the given {@link Tag} is associated with
+     * this object in the default {@link #registryType()}
+     * for the given {@link RegistryHolder}.
+     *
+     * @param tag The tag
+     * @return true if the given {@link Tag} is associated with
+     * this object in the default {@link #registryType()}
+     * for the given {@link RegistryHolder}
+     */
+    default boolean is(final RegistryHolder holder, final Tag<T> tag) {
+        return Objects.requireNonNull(holder, "holder").registry(this.registryType()).taggedValues(tag).contains((T) this);
     }
 }

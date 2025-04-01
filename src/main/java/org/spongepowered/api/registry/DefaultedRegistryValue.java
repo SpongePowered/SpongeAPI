@@ -26,13 +26,16 @@ package org.spongepowered.api.registry;
 
 import org.spongepowered.api.ResourceKey;
 
+import java.util.Objects;
 import java.util.Optional;
 
 /**
- * A {@link RegistryValue} that usually resides in a single {@link RegistryType}
+ * A Utility marker that assists in getting a {@link ResourceKey} for values
+ * that generally can be within a single {@link DefaultedRegistryType defaulted registry}
  * and therefore this registry can be considered as "default".
  */
-public interface DefaultedRegistryValue<T extends DefaultedRegistryValue<T>> extends RegistryValue<T> {
+@SuppressWarnings("unchecked")
+public interface DefaultedRegistryValue<T extends DefaultedRegistryValue<T>> {
 
     /**
      * Gets the default {@link RegistryType} for
@@ -50,7 +53,20 @@ public interface DefaultedRegistryValue<T extends DefaultedRegistryValue<T>> ext
      * this object in the default {@link #registryType()}
      */
     default ResourceKey registryKey() {
-        return this.key(this.registryType());
+        return this.registryType().get().valueKey((T) this);
+    }
+
+    /**
+     * Returns the {@link ResourceKey} associated with
+     * this object in the default {@link #registryType()}
+     * for the given {@link RegistryHolder}.
+     *
+     * @return The {@link ResourceKey} associated with
+     * this object in the default {@link #registryType()}
+     * for the given {@link RegistryHolder}
+     */
+    default ResourceKey registryKey(final RegistryHolder holder) {
+        return Objects.requireNonNull(holder, "holder").registry(this.registryType()).valueKey((T) this);
     }
 
     /**
@@ -61,7 +77,20 @@ public interface DefaultedRegistryValue<T extends DefaultedRegistryValue<T>> ext
      * this object in the default {@link #registryType()}, if found
      */
     default Optional<ResourceKey> findRegistryKey() {
-        return this.findKey(this.registryType());
+        return this.registryType().find().flatMap(r -> r.findValueKey((T) this));
+    }
+
+    /**
+     * Returns the {@link ResourceKey} associated with
+     * this object in the default {@link #registryType()}.
+     * for the given {@link RegistryHolder}, if found.
+     *
+     * @return The {@link ResourceKey} associated with
+     * this object in the default {@link #registryType()}
+     * for the given {@link RegistryHolder}, if found
+     */
+    default Optional<ResourceKey> findRegistryKey(final RegistryHolder holder) {
+        return Objects.requireNonNull(holder, "holder").findRegistry(this.registryType()).flatMap(r -> r.findValueKey((T) this));
     }
 
     /**
@@ -72,6 +101,20 @@ public interface DefaultedRegistryValue<T extends DefaultedRegistryValue<T>> ext
      * this object in the default {@link #registryType()}
      */
     default DefaultedRegistryReference<T> asDefaultedReference() {
-        return this.asDefaultedReference(this.registryType());
+        return RegistryKey.of(this.registryType(), this.registryKey()).asDefaultedReference(this.registryType().defaultHolder());
+    }
+
+    /**
+     * Returns the {@link DefaultedRegistryReference} for
+     * this object in the default {@link #registryType()}
+     * for the given {@link RegistryHolder}.
+     *
+     * @return The {@link DefaultedRegistryReference} for
+     * this object in the default {@link #registryType()}
+     * for the given {@link RegistryHolder}
+     */
+    default DefaultedRegistryReference<T> asDefaultedReference(final RegistryHolder holder) {
+        Objects.requireNonNull(holder, "holder");
+        return RegistryKey.of(this.registryType(), this.registryKey(holder)).asDefaultedReference(() -> holder);
     }
 }
