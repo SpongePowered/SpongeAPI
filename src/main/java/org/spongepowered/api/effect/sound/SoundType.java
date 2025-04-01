@@ -29,7 +29,7 @@ import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.tag.DefaultedTaggable;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.ResourceKeyedBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -37,7 +37,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a sound that can be heard on clients.
  */
 @CatalogedBy(SoundTypes.class)
-public interface SoundType extends DefaultedTaggable<SoundType>, ResourceKeyed, Sound.Type {
+public interface SoundType extends Taggable<SoundType>, ResourceKeyed, Sound.Type {
 
     /**
      * Creates a new {@link Builder} for building SoundTypes.

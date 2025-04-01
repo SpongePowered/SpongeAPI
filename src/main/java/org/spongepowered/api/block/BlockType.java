@@ -31,7 +31,7 @@ import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.state.StateContainer;
-import org.spongepowered.api.tag.DefaultedTaggable;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
@@ -45,7 +45,7 @@ import java.util.function.Supplier;
  * via {@link BlockEntity}.</p>
  */
 @CatalogedBy(BlockTypes.class)
-public interface BlockType extends DefaultedTaggable<BlockType>, ComponentLike, StateContainer<BlockState>, DataHolder.Immutable<BlockType> {
+public interface BlockType extends Taggable<BlockType>, ComponentLike, StateContainer<BlockState>, DataHolder.Immutable<BlockType> {
 
     /**
      * Return the {@link ItemType} that represents this block.

@@ -28,7 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.tag.DefaultedTaggable;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -38,7 +38,7 @@ import java.util.List;
  * Noise used in world generation
  */
 @CatalogedBy(Noises.class)
-public interface Noise extends DefaultedTaggable<Noise>, DataPackSerializable {
+public interface Noise extends Taggable<Noise>, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link Noise}.

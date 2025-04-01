@@ -27,11 +27,11 @@ package org.spongepowered.api.world.generation.feature;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.tag.DefaultedTaggable;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(FeatureTypes.class)
-public interface FeatureType extends DefaultedTaggable<FeatureType> {
+public interface FeatureType extends Taggable<FeatureType> {
 
     /**
      * Returns the configured feature

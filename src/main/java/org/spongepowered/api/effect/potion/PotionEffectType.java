@@ -27,14 +27,14 @@ package org.spongepowered.api.effect.potion;
 import net.kyori.adventure.text.ComponentLike;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.tag.DefaultedTaggable;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a possible type of {@link PotionEffect}.
  */
 @CatalogedBy(PotionEffectTypes.class)
-public interface PotionEffectType extends DefaultedTaggable<PotionEffectType>, ComponentLike {
+public interface PotionEffectType extends Taggable<PotionEffectType>, ComponentLike {
 
     /**
      * Gets whether this potion effect is applied instantly or over time.

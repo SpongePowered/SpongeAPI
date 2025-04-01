@@ -28,7 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.tag.DefaultedTaggable;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.server.ServerLocation;
@@ -42,7 +42,7 @@ import java.util.List;
  * <p>Modifiers can impact position, rarity, count and more.</p>
  */
 @CatalogedBy(PlacedFeatures.class)
-public interface PlacedFeature extends DefaultedTaggable<PlacedFeature>, DataPackSerializable {
+public interface PlacedFeature extends Taggable<PlacedFeature>, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link PlacedFeature}.

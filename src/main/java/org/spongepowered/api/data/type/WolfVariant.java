@@ -26,11 +26,11 @@ package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.tag.DefaultedTaggable;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(WolfVariants.class)
-public interface WolfVariant extends DefaultedTaggable<WolfVariant> {
+public interface WolfVariant extends Taggable<WolfVariant> {
 
     @Override
     default DefaultedRegistryType<WolfVariant> registryType() {

@@ -29,7 +29,7 @@ import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.tag.DefaultedTaggable;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.server.ServerLocation;
@@ -41,7 +41,7 @@ import org.spongepowered.math.vector.Vector3i;
  * <p>Features are used in world generation as a part of {@link PlacedFeature placed features}</p>
  */
 @CatalogedBy(Features.class)
-public interface Feature extends DefaultedTaggable<Feature>, DataPackSerializable {
+public interface Feature extends Taggable<Feature>, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link Feature}.

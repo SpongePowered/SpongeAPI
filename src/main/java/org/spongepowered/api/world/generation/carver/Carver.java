@@ -28,7 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.tag.DefaultedTaggable;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -36,7 +36,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * A carver used in world generation.
  */
 @CatalogedBy(Carvers.class)
-public interface Carver extends DefaultedTaggable<Carver>, DataPackSerializable {
+public interface Carver extends Taggable<Carver>, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link Carver}.

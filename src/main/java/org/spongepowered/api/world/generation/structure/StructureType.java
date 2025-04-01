@@ -27,14 +27,14 @@ package org.spongepowered.api.world.generation.structure;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.tag.DefaultedTaggable;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * A type of {@link Structure}
  */
 @CatalogedBy(StructureTypes.class)
-public interface StructureType extends DefaultedTaggable<StructureType> {
+public interface StructureType extends Taggable<StructureType> {
 
     /**
      * Returns the configured structure

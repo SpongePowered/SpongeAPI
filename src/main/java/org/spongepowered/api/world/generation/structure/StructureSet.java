@@ -28,7 +28,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.tag.DefaultedTaggable;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.util.weighted.WeightedTable;
@@ -37,7 +37,7 @@ import org.spongepowered.api.util.weighted.WeightedTable;
  * A weighted list of {@link Structure structures}.
  */
 @CatalogedBy(StructureSets.class)
-public interface StructureSet extends DefaultedTaggable<StructureSet>, DataPackSerializable {
+public interface StructureSet extends Taggable<StructureSet>, DataPackSerializable {
 
     @Override
     default DefaultedRegistryType<StructureSet> registryType() {

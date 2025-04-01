@@ -27,7 +27,7 @@ package org.spongepowered.api.statistic;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.scoreboard.criteria.Criterion;
-import org.spongepowered.api.tag.DefaultedTaggable;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.text.NumberFormat;
@@ -37,7 +37,7 @@ import java.util.Optional;
  * Represents some statistic in minecraft.
  */
 @CatalogedBy(Statistics.class)
-public interface Statistic extends DefaultedTaggable<Statistic> {
+public interface Statistic extends Taggable<Statistic> {
 
     /**
      * Returns the objective {@link Criterion} for this statistic.

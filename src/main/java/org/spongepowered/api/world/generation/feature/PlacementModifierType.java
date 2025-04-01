@@ -27,14 +27,14 @@ package org.spongepowered.api.world.generation.feature;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.tag.DefaultedTaggable;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * A type of {@link PlacementModifier}.
  */
 @CatalogedBy(PlacementModifierTypes.class)
-public interface PlacementModifierType extends DefaultedTaggable<PlacementModifierType> {
+public interface PlacementModifierType extends Taggable<PlacementModifierType> {
 
     /**
      * Returns the placement modifier.

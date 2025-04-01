@@ -30,7 +30,7 @@ import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.entity.hanging.Painting;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.tag.DefaultedTaggable;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -38,7 +38,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a piece of art to be displayed by {@link Painting}s.
  */
 @CatalogedBy(ArtTypes.class)
-public interface ArtType extends DefaultedTaggable<ArtType>, DataPackSerializable {
+public interface ArtType extends Taggable<ArtType>, DataPackSerializable {
 
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class);

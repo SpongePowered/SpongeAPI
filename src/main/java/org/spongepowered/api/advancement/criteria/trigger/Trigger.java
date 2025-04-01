@@ -37,7 +37,7 @@ import org.spongepowered.api.event.advancement.CriterionEvent;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.scoreboard.criteria.Criterion;
-import org.spongepowered.api.tag.DefaultedTaggable;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.configurate.ConfigurationOptions;
@@ -55,7 +55,7 @@ import java.util.function.UnaryOperator;
  */
 @SuppressWarnings("unchecked")
 @CatalogedBy(Triggers.class)
-public interface Trigger<C extends FilteredTriggerConfiguration> extends DefaultedTaggable<Trigger<?>> {
+public interface Trigger<C extends FilteredTriggerConfiguration> extends Taggable<Trigger<?>> {
 
     /**
      * Creates a new {@link Builder} which can be used to create

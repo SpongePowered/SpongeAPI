@@ -27,14 +27,14 @@ package org.spongepowered.api.block.entity;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.tag.DefaultedTaggable;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Describes a type of block entity.
  */
 @CatalogedBy(BlockEntityTypes.class)
-public interface BlockEntityType extends DefaultedTaggable<BlockEntityType> {
+public interface BlockEntityType extends Taggable<BlockEntityType> {
 
     /**
      * Determines if the provided block is considered valid by the {@link BlockEntity}.

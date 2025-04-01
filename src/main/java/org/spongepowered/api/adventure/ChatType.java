@@ -29,7 +29,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.tag.DefaultedTaggable;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -37,7 +37,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * A type of chat
  */
 @CatalogedBy(ChatTypes.class)
-public interface ChatType extends DefaultedTaggable<ChatType>, net.kyori.adventure.chat.ChatType, DataPackSerializable {
+public interface ChatType extends Taggable<ChatType>, net.kyori.adventure.chat.ChatType, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link ChatType}.

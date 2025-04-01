@@ -26,14 +26,14 @@ package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.tag.DefaultedTaggable;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents the type of cat a cat is.
  */
 @CatalogedBy(CatTypes.class)
-public interface CatType extends DefaultedTaggable<CatType> {
+public interface CatType extends Taggable<CatType> {
 
     @Override
     default DefaultedRegistryType<CatType> registryType() {

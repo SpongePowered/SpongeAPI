@@ -28,14 +28,14 @@ import net.kyori.adventure.text.ComponentLike;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.tag.DefaultedTaggable;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Describes a type of entity.
  */
 @CatalogedBy(EntityTypes.class)
-public interface EntityType<A extends Entity> extends DefaultedTaggable<EntityType<? extends Entity>>, ComponentLike {
+public interface EntityType<A extends Entity> extends Taggable<EntityType<? extends Entity>>, ComponentLike {
 
     /**
      * If true {@link Entity entities} of this type will not be saved to disk.

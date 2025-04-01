@@ -29,7 +29,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.tag.DefaultedTaggable;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.biome.BiomeAttributes;
@@ -44,7 +44,7 @@ import java.util.List;
  * Noise generator config used in {@link ConfigurableChunkGenerator configurable chunk generators}.
  */
 @CatalogedBy(NoiseGeneratorConfigs.class)
-public interface NoiseGeneratorConfig extends ChunkGeneratorConfig, DefaultedTaggable<NoiseGeneratorConfig>, DataPackSerializable {
+public interface NoiseGeneratorConfig extends ChunkGeneratorConfig, Taggable<NoiseGeneratorConfig>, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link NoiseGeneratorConfig}.

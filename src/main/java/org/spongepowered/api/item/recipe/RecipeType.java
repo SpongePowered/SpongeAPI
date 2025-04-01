@@ -27,11 +27,11 @@ package org.spongepowered.api.item.recipe;
 import org.spongepowered.api.item.recipe.crafting.RecipeInput;
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.tag.DefaultedTaggable;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(RecipeTypes.class)
-public interface RecipeType<T extends Recipe<? extends RecipeInput>> extends DefaultedTaggable<RecipeType<?>> {
+public interface RecipeType<T extends Recipe<? extends RecipeInput>> extends Taggable<RecipeType<?>> {
 
     @Override
     default DefaultedRegistryType<RecipeType<?>> registryType() {
