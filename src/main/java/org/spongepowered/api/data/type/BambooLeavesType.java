@@ -25,13 +25,19 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents the type of leaves of a {@link BlockTypes#BAMBOO} block.
  */
 @CatalogedBy(BambooLeavesTypes.class)
-public interface BambooLeavesType extends DefaultedRegistryValue, Comparable<BambooLeavesType>, StringRepresentable {
+public interface BambooLeavesType extends DefaultedRegistryValue<BambooLeavesType>, Comparable<BambooLeavesType>, StringRepresentable {
 
+    @Override
+    default DefaultedRegistryType<BambooLeavesType> registryType() {
+        return RegistryTypes.BAMBOO_LEAVES_TYPE;
+    }
 }

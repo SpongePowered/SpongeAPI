@@ -26,7 +26,9 @@ package org.spongepowered.api.scoreboard.displayslot;
 
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.scoreboard.Team;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -36,7 +38,7 @@ import java.util.Optional;
  * Represents an area to display an objective.
  */
 @CatalogedBy(DisplaySlots.class)
-public interface DisplaySlot extends DefaultedRegistryValue {
+public interface DisplaySlot extends DefaultedRegistryValue<DisplaySlot> {
 
     /**
      * Finds and retrieves the sidebar display slot for the specified
@@ -55,6 +57,11 @@ public interface DisplaySlot extends DefaultedRegistryValue {
      * @return The team color or {@link Optional#empty()} if not set
      */
     Optional<NamedTextColor> teamColor();
+
+    @Override
+    default DefaultedRegistryType<DisplaySlot> registryType() {
+        return RegistryTypes.DISPLAY_SLOT;
+    }
 
     /**
      * Used to support {@link #findByTeamColor(NamedTextColor)}

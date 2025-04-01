@@ -25,13 +25,19 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents the attachment-type of a {@link BlockTypes#BELL} block.
  */
 @CatalogedBy(BellAttachmentTypes.class)
-public interface BellAttachmentType extends DefaultedRegistryValue, Comparable<BellAttachmentType>, StringRepresentable {
+public interface BellAttachmentType extends DefaultedRegistryValue<BellAttachmentType>, Comparable<BellAttachmentType>, StringRepresentable {
 
+    @Override
+    default DefaultedRegistryType<BellAttachmentType> registryType() {
+        return RegistryTypes.BELL_ATTACHMENT_TYPE;
+    }
 }

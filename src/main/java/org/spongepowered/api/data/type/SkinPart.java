@@ -25,13 +25,19 @@
 package org.spongepowered.api.data.type;
 
 import net.kyori.adventure.text.ComponentLike;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a part of a player's skin.
  */
 @CatalogedBy(SkinParts.class)
-public interface SkinPart extends DefaultedRegistryValue, ComponentLike {
+public interface SkinPart extends DefaultedRegistryValue<SkinPart>, ComponentLike {
 
+    @Override
+    default DefaultedRegistryType<SkinPart> registryType() {
+        return RegistryTypes.SKIN_PART;
+    }
 }

@@ -24,10 +24,16 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(BodyParts.class)
-public interface BodyPart extends DefaultedRegistryValue {
+public interface BodyPart extends DefaultedRegistryValue<BodyPart> {
 
+    @Override
+    default DefaultedRegistryType<BodyPart> registryType() {
+        return RegistryTypes.BODY_PART;
+    }
 }

@@ -24,10 +24,16 @@
  */
 package org.spongepowered.api.entity.display;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(ItemDisplayTypes.class)
-public interface ItemDisplayType extends DefaultedRegistryValue {
+public interface ItemDisplayType extends DefaultedRegistryValue<ItemDisplayType> {
 
+    @Override
+    default DefaultedRegistryType<ItemDisplayType> registryType() {
+        return RegistryTypes.ITEM_DISPLAY_TYPE;
+    }
 }

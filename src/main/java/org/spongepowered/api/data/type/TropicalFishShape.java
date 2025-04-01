@@ -25,7 +25,9 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.entity.living.aquatic.fish.school.TropicalFish;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -34,7 +36,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * <p>A TropicalFishShape represents both a fish's appearance and size.</p>
  */
 @CatalogedBy(TropicalFishShapes.class)
-public interface TropicalFishShape extends DefaultedRegistryValue {
+public interface TropicalFishShape extends DefaultedRegistryValue<TropicalFishShape> {
 
     /**
      * Whether this shape represents a large {@link TropicalFish}.
@@ -43,4 +45,8 @@ public interface TropicalFishShape extends DefaultedRegistryValue {
      */
     boolean isLarge();
 
+    @Override
+    default DefaultedRegistryType<TropicalFishShape> registryType() {
+        return RegistryTypes.TROPICAL_FISH_SHAPE;
+    }
 }

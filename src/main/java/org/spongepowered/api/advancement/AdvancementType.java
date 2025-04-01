@@ -25,7 +25,9 @@
 package org.spongepowered.api.advancement;
 
 import net.kyori.adventure.text.format.TextColor;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -33,7 +35,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * also the appearance in the notifications.
  */
 @CatalogedBy(AdvancementTypes.class)
-public interface AdvancementType extends DefaultedRegistryValue {
+public interface AdvancementType extends DefaultedRegistryValue<AdvancementType> {
 
     /**
      * Gets the {@link TextColor} of the advancement type.
@@ -42,4 +44,8 @@ public interface AdvancementType extends DefaultedRegistryValue {
      */
     TextColor textColor();
 
+    @Override
+    default DefaultedRegistryType<AdvancementType> registryType() {
+        return RegistryTypes.ADVANCEMENT_TYPE;
+    }
 }

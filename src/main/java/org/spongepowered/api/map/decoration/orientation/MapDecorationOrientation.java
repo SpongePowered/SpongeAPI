@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.map.decoration.orientation;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -32,6 +34,10 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * pointing in on a {@link org.spongepowered.api.map.MapInfo}.
  */
 @CatalogedBy(MapDecorationOrientations.class)
-public interface MapDecorationOrientation extends DefaultedRegistryValue {
+public interface MapDecorationOrientation extends DefaultedRegistryValue<MapDecorationOrientation> {
 
+    @Override
+    default DefaultedRegistryType<MapDecorationOrientation> registryType() {
+        return RegistryTypes.MAP_DECORATION_ORIENTATION;
+    }
 }

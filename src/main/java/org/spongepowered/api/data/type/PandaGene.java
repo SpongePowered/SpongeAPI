@@ -24,14 +24,21 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents the type of panda a panda is.
  */
 @CatalogedBy(PandaGenes.class)
-public interface PandaGene extends DefaultedRegistryValue {
+public interface PandaGene extends DefaultedRegistryValue<PandaGene> {
 
     boolean isRecessive();
+
+    @Override
+    default DefaultedRegistryType<PandaGene> registryType() {
+        return RegistryTypes.PANDA_GENE;
+    }
 }

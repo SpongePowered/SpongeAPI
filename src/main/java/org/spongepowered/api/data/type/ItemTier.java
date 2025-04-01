@@ -25,11 +25,13 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.item.recipe.crafting.Ingredient;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(ItemTiers.class)
-public interface ItemTier extends DefaultedRegistryValue {
+public interface ItemTier extends DefaultedRegistryValue<ItemTier> {
 
     /**
      * Gets the {@link Ingredient} needed to repair this tool.
@@ -37,4 +39,9 @@ public interface ItemTier extends DefaultedRegistryValue {
      * @return The ingredient
      */
     Ingredient repairIngredient();
+
+    @Override
+    default DefaultedRegistryType<ItemTier> registryType() {
+        return RegistryTypes.ITEM_TIER;
+    }
 }

@@ -25,13 +25,19 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.block.entity.StructureBlock;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a mode that a {@link StructureBlock} may be in.
  */
 @CatalogedBy(StructureModes.class)
-public interface StructureMode extends DefaultedRegistryValue, Comparable<StructureMode>, StringRepresentable {
+public interface StructureMode extends DefaultedRegistryValue<StructureMode>, Comparable<StructureMode>, StringRepresentable {
 
+    @Override
+    default DefaultedRegistryType<StructureMode> registryType() {
+        return RegistryTypes.STRUCTURE_MODE;
+    }
 }

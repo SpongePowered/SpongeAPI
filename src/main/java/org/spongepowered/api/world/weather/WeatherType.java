@@ -24,13 +24,19 @@
  */
 package org.spongepowered.api.world.weather;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a type of weather.
  */
 @CatalogedBy(WeatherTypes.class)
-public interface WeatherType extends DefaultedRegistryValue {
+public interface WeatherType extends DefaultedRegistryValue<WeatherType> {
 
+    @Override
+    default DefaultedRegistryType<WeatherType> registryType() {
+        return RegistryTypes.WEATHER_TYPE;
+    }
 }

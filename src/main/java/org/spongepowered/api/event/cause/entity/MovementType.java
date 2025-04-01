@@ -24,10 +24,16 @@
  */
 package org.spongepowered.api.event.cause.entity;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(MovementTypes.class)
-public interface MovementType extends DefaultedRegistryValue {
+public interface MovementType extends DefaultedRegistryValue<MovementType> {
 
+    @Override
+    default DefaultedRegistryType<MovementType> registryType() {
+        return RegistryTypes.MOVEMENT_TYPE;
+    }
 }

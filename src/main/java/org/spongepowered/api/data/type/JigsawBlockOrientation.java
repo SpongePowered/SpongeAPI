@@ -25,7 +25,9 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -33,7 +35,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents the front and top orientation of {@link BlockTypes#JIGSAW} blocks.
  */
 @CatalogedBy(JigsawBlockOrientations.class)
-public interface JigsawBlockOrientation extends DefaultedRegistryValue, Comparable<JigsawBlockOrientation>, StringRepresentable {
+public interface JigsawBlockOrientation extends DefaultedRegistryValue<JigsawBlockOrientation>, Comparable<JigsawBlockOrientation>, StringRepresentable {
 
     /**
      * The front facing direction of a jigsaw block.
@@ -48,4 +50,9 @@ public interface JigsawBlockOrientation extends DefaultedRegistryValue, Comparab
      * @return the top facing direction
      */
     Direction topDirection();
+
+    @Override
+    default DefaultedRegistryType<JigsawBlockOrientation> registryType() {
+        return RegistryTypes.JIGSAW_BLOCK_ORIENTATION;
+    }
 }

@@ -24,11 +24,13 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(Tilts.class)
-public interface Tilt extends DefaultedRegistryValue, Comparable<Tilt>, StringRepresentable {
+public interface Tilt extends DefaultedRegistryValue<Tilt>, Comparable<Tilt>, StringRepresentable {
 
     /**
      * {@return Whether a block entering this tilt state will trigger any
@@ -36,4 +38,8 @@ public interface Tilt extends DefaultedRegistryValue, Comparable<Tilt>, StringRe
      */
     boolean triggersVibrations();
 
+    @Override
+    default DefaultedRegistryType<Tilt> registryType() {
+        return RegistryTypes.TILT;
+    }
 }

@@ -25,7 +25,9 @@
 package org.spongepowered.api.world.gamerule;
 
 import io.leangen.geantyref.TypeToken;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.Nameable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -37,7 +39,7 @@ import java.lang.reflect.Type;
  * @param <V> The type of the value
  */
 @CatalogedBy(GameRules.class)
-public interface GameRule<V> extends DefaultedRegistryValue, Nameable {
+public interface GameRule<V> extends DefaultedRegistryValue<GameRule<?>>, Nameable {
 
     /**
      * Gets the value {@link TypeToken type}.
@@ -54,6 +56,11 @@ public interface GameRule<V> extends DefaultedRegistryValue, Nameable {
     V defaultValue();
 
     // TODO: Command argument parser
+
+    @Override
+    default DefaultedRegistryType<GameRule<?>> registryType() {
+        return RegistryTypes.GAME_RULE;
+    }
 
     interface Builder<V> extends org.spongepowered.api.util.Builder<GameRule<V>, Builder<V>> {
 

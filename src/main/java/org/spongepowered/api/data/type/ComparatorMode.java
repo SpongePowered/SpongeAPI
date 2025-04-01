@@ -24,10 +24,16 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(ComparatorModes.class)
-public interface ComparatorMode extends DefaultedRegistryValue, Comparable<ComparatorMode>, StringRepresentable {
+public interface ComparatorMode extends DefaultedRegistryValue<ComparatorMode>, Comparable<ComparatorMode>, StringRepresentable {
 
+    @Override
+    default DefaultedRegistryType<ComparatorMode> registryType() {
+        return RegistryTypes.COMPARATOR_MODE;
+    }
 }

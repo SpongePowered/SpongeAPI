@@ -25,13 +25,19 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.entity.living.animal.Parrot;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents the type of a {@link Parrot}.
  */
 @CatalogedBy(ParrotTypes.class)
-public interface ParrotType extends DefaultedRegistryValue {
+public interface ParrotType extends DefaultedRegistryValue<ParrotType> {
 
+    @Override
+    default DefaultedRegistryType<ParrotType> registryType() {
+        return RegistryTypes.PARROT_TYPE;
+    }
 }

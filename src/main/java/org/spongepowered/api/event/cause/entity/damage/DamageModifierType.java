@@ -25,7 +25,9 @@
 package org.spongepowered.api.event.cause.entity.damage;
 
 import org.spongepowered.api.event.Cause;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -36,6 +38,10 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * {@link DamageModifier#cause()}.
  */
 @CatalogedBy(DamageModifierTypes.class)
-public interface DamageModifierType extends DefaultedRegistryValue {
+public interface DamageModifierType extends DefaultedRegistryValue<DamageModifierType> {
 
+    @Override
+    default DefaultedRegistryType<DamageModifierType> registryType() {
+        return RegistryTypes.DAMAGE_MODIFIER_TYPE;
+    }
 }

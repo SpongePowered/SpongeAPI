@@ -24,13 +24,19 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a type of mooshroom a mooshroom is.
  */
 @CatalogedBy(MooshroomTypes.class)
-public interface MooshroomType extends DefaultedRegistryValue {
+public interface MooshroomType extends DefaultedRegistryValue<MooshroomType> {
 
+    @Override
+    default DefaultedRegistryType<MooshroomType> registryType() {
+        return RegistryTypes.MOOSHROOM_TYPE;
+    }
 }

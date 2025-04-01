@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.command.selector;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -32,6 +34,10 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * will have a significant effect when limits are imposed on the selector.
  */
 @CatalogedBy(SelectorSortAlgorithms.class)
-public interface SelectorSortAlgorithm extends DefaultedRegistryValue {
+public interface SelectorSortAlgorithm extends DefaultedRegistryValue<SelectorSortAlgorithm> {
 
+    @Override
+    default DefaultedRegistryType<SelectorSortAlgorithm> registryType() {
+        return RegistryTypes.SELECTOR_SORT_ALGORITHM;
+    }
 }

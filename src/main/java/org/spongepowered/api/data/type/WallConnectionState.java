@@ -24,13 +24,19 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents the type of wall BlockStates
  */
 @CatalogedBy(WallConnectionStates.class)
-public interface WallConnectionState extends DefaultedRegistryValue, Comparable<WallConnectionState>, StringRepresentable {
+public interface WallConnectionState extends DefaultedRegistryValue<WallConnectionState>, Comparable<WallConnectionState>, StringRepresentable {
 
+    @Override
+    default DefaultedRegistryType<WallConnectionState> registryType() {
+        return RegistryTypes.WALL_CONNECTION_STATE;
+    }
 }

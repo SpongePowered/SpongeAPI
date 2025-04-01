@@ -25,14 +25,16 @@
 package org.spongepowered.api.entity.living.player.chat;
 
 import net.kyori.adventure.text.ComponentLike;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a visibility mode for a client's chat.
  */
 @CatalogedBy(ChatVisibilities.class)
-public interface ChatVisibility extends DefaultedRegistryValue, ComponentLike {
+public interface ChatVisibility extends DefaultedRegistryValue<ChatVisibility>, ComponentLike {
 
     /**
      * Tests whether system messages will be visible with this visibility
@@ -47,4 +49,9 @@ public interface ChatVisibility extends DefaultedRegistryValue, ComponentLike {
      * @return Whether or not it's visible with this {@link ChatVisibility}
      */
     boolean isChatVisible();
+
+    @Override
+    default DefaultedRegistryType<ChatVisibility> registryType() {
+        return RegistryTypes.CHAT_VISIBILITY;
+    }
 }

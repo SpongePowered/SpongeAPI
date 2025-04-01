@@ -27,7 +27,9 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.function.Predicate;
@@ -37,7 +39,7 @@ import java.util.function.Predicate;
  * {@link ItemTypes#DIAMOND_CHESTPLATE}.
  */
 @CatalogedBy(ArmorMaterials.class)
-public interface ArmorMaterial extends DefaultedRegistryValue {
+public interface ArmorMaterial extends DefaultedRegistryValue<ArmorMaterial> {
 
     /**
      * Gets the {@link ItemType} that can be used to "repair" the armor type.
@@ -46,4 +48,8 @@ public interface ArmorMaterial extends DefaultedRegistryValue {
      */
     Predicate<ItemStack> repairIngredient();
 
+    @Override
+    default DefaultedRegistryType<ArmorMaterial> registryType() {
+        return RegistryTypes.ARMOR_MATERIAL;
+    }
 }

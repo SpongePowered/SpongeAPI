@@ -41,11 +41,6 @@ public interface NoiseConfig extends DefaultedTaggable<NoiseConfig> {
         return Sponge.game().builderProvider().provide(Builder.class);
     }
 
-    @Override
-    default DefaultedRegistryType<NoiseConfig> registryType() {
-        return RegistryTypes.NOISE_CONFIG;
-    }
-
     /**
      * The minimum y coordinate where terrain starts generating.
      * <p>In vanilla the value is a multiple of 16 between -2048 and 2031.</p>
@@ -77,6 +72,11 @@ public interface NoiseConfig extends DefaultedTaggable<NoiseConfig> {
      * @return the vertical scaling of landmass.
      */
     int verticalSize();
+
+    @Override
+    default DefaultedRegistryType<NoiseConfig> registryType() {
+        return RegistryTypes.NOISE_CONFIG;
+    }
 
     interface Builder extends org.spongepowered.api.util.Builder<NoiseConfig, Builder>, CopyableBuilder<NoiseConfig, Builder> {
 

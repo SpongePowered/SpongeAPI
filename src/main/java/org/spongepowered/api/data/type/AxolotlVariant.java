@@ -24,9 +24,16 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(AxolotlVariants.class)
-public interface AxolotlVariant extends DefaultedRegistryValue, StringRepresentable {
+public interface AxolotlVariant extends DefaultedRegistryValue<AxolotlVariant>, StringRepresentable {
+
+    @Override
+    default DefaultedRegistryType<AxolotlVariant> registryType() {
+        return RegistryTypes.AXOLOTL_VARIANT;
+    }
 }

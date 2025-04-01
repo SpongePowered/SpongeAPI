@@ -25,7 +25,9 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.entity.living.animal.horse.Horse;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -33,6 +35,10 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * <p>The color of a horse is a genetic trait that can be inherited to a new born horse.</p>
  */
 @CatalogedBy(HorseColors.class)
-public interface HorseColor extends DefaultedRegistryValue {
+public interface HorseColor extends DefaultedRegistryValue<HorseColor> {
 
+    @Override
+    default DefaultedRegistryType<HorseColor> registryType() {
+        return RegistryTypes.HORSE_COLOR;
+    }
 }

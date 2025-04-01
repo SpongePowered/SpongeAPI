@@ -31,8 +31,10 @@ import org.spongepowered.api.command.exception.ArgumentParseException;
 import org.spongepowered.api.command.parameter.ArgumentReader;
 import org.spongepowered.api.command.parameter.CommandContext;
 import org.spongepowered.api.command.parameter.Parameter;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryHolder;
+import org.spongepowered.api.registry.RegistryTypes;
 
 import java.util.List;
 import java.util.Optional;
@@ -48,7 +50,7 @@ import java.util.Optional;
  * @see org.spongepowered.api.command.parameter.managed.ValueParser
  * @see org.spongepowered.api.command.parameter.managed.ValueUsage
  */
-public interface ValueParameter<T> extends DefaultedRegistryValue, ValueCompleter, ValueParser<T>, ValueUsage {
+public interface ValueParameter<T> extends DefaultedRegistryValue<ValueParameter<?>>, ValueCompleter, ValueParser<T>, ValueUsage {
 
     @Override
     default String usage(@NonNull final String key) {
@@ -58,6 +60,11 @@ public interface ValueParameter<T> extends DefaultedRegistryValue, ValueComplete
     @Override
     default ValueParameter<T> bind(RegistryHolder registryHolder) {
         return this;
+    }
+
+    @Override
+    default DefaultedRegistryType<ValueParameter<?>> registryType() {
+        return RegistryTypes.REGISTRY_KEYED_VALUE_PARAMETER;
     }
 
     /**

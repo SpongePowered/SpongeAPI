@@ -25,7 +25,9 @@
 package org.spongepowered.api.command.parameter.managed.clientcompletion;
 
 import org.spongepowered.api.command.parameter.managed.ValueParser;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -37,5 +39,10 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * types</p>
  */
 @CatalogedBy(ClientCompletionTypes.class)
-public interface ClientCompletionType extends DefaultedRegistryValue {
+public interface ClientCompletionType extends DefaultedRegistryValue<ClientCompletionType> {
+
+    @Override
+    default DefaultedRegistryType<ClientCompletionType> registryType() {
+        return RegistryTypes.CLIENT_COMPLETION_TYPE;
+    }
 }

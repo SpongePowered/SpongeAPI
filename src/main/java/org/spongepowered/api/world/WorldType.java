@@ -28,17 +28,23 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.datapack.DataPackSerializable;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.service.context.ContextSource;
-import org.spongepowered.api.util.Builder;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(WorldTypes.class)
-public interface WorldType extends DefaultedRegistryValue, ContextSource, WorldTypeDataFetcher, DataPackSerializable {
+public interface WorldType extends DefaultedRegistryValue<WorldType>, ContextSource, WorldTypeDataFetcher, DataPackSerializable {
 
     static WorldType.Builder builder() {
         return Sponge.game().builderProvider().provide(WorldType.Builder.class);
+    }
+
+    @Override
+    default DefaultedRegistryType<WorldType> registryType() {
+        return RegistryTypes.WORLD_TYPE;
     }
 
     interface Builder extends org.spongepowered.api.util.Builder<WorldType, Builder>, CopyableBuilder<WorldType, Builder> {

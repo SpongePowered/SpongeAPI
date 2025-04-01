@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -32,7 +34,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a color of dye that can be used by various items and blocks.
  */
 @CatalogedBy(DyeColors.class)
-public interface DyeColor extends DefaultedRegistryValue {
+public interface DyeColor extends DefaultedRegistryValue<DyeColor> {
 
     /**
      * Gets this dye color as a {@link Color} for easy translation.
@@ -40,4 +42,9 @@ public interface DyeColor extends DefaultedRegistryValue {
      * @return The color as a {@link Color}
      */
     Color color();
+
+    @Override
+    default DefaultedRegistryType<DyeColor> registryType() {
+        return RegistryTypes.DYE_COLOR;
+    }
 }

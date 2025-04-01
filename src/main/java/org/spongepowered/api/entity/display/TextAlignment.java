@@ -24,10 +24,16 @@
  */
 package org.spongepowered.api.entity.display;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(TextAlignments.class)
-public interface TextAlignment extends DefaultedRegistryValue {
+public interface TextAlignment extends DefaultedRegistryValue<TextAlignment> {
 
+    @Override
+    default DefaultedRegistryType<TextAlignment> registryType() {
+        return RegistryTypes.TEXT_ALIGNMENT;
+    }
 }

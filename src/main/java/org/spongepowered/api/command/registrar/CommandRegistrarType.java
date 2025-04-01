@@ -26,8 +26,10 @@ package org.spongepowered.api.command.registrar;
 
 import io.leangen.geantyref.TypeToken;
 import org.spongepowered.api.command.manager.CommandManager;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryHolder;
+import org.spongepowered.api.registry.RegistryTypes;
 
 /**
  * A type of {@link CommandRegistrar}.
@@ -37,7 +39,7 @@ import org.spongepowered.api.registry.RegistryHolder;
  *
  * @param <T> the handled command type
  */
-public interface CommandRegistrarType<T> extends DefaultedRegistryValue {
+public interface CommandRegistrarType<T> extends DefaultedRegistryValue<CommandRegistrarType<?>> {
 
     /**
      * Gets the type of command that this registrar handles.
@@ -55,4 +57,9 @@ public interface CommandRegistrarType<T> extends DefaultedRegistryValue {
      * @return the newly created registrar
      */
     CommandRegistrar<T> create(final CommandManager.Mutable manager, RegistryHolder registryHolder);
+
+    @Override
+    default DefaultedRegistryType<CommandRegistrarType<?>> registryType() {
+        return RegistryTypes.COMMAND_REGISTRAR_TYPE;
+    }
 }

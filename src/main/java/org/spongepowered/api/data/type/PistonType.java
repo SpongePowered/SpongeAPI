@@ -24,13 +24,19 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a "type" of piston.
  */
 @CatalogedBy(PistonTypes.class)
-public interface PistonType extends DefaultedRegistryValue, Comparable<PistonType>, StringRepresentable {
+public interface PistonType extends DefaultedRegistryValue<PistonType>, Comparable<PistonType>, StringRepresentable {
 
+    @Override
+    default DefaultedRegistryType<PistonType> registryType() {
+        return RegistryTypes.PISTON_TYPE;
+    }
 }

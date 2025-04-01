@@ -24,10 +24,16 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(SculkSensorStates.class)
-public interface SculkSensorState extends DefaultedRegistryValue, Comparable<SculkSensorState>, StringRepresentable {
+public interface SculkSensorState extends DefaultedRegistryValue<SculkSensorState>, Comparable<SculkSensorState>, StringRepresentable {
 
+    @Override
+    default DefaultedRegistryType<SculkSensorState> registryType() {
+        return RegistryTypes.SCULK_SENSOR_STATE;
+    }
 }

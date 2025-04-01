@@ -25,13 +25,19 @@
 package org.spongepowered.api.event.cause.entity;
 
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a type of "spawning" for a {@link SpawnEntityEvent}.
  */
 @CatalogedBy(SpawnTypes.class)
-public interface SpawnType extends DefaultedRegistryValue {
+public interface SpawnType extends DefaultedRegistryValue<SpawnType> {
 
+    @Override
+    default DefaultedRegistryType<SpawnType> registryType() {
+        return RegistryTypes.SPAWN_TYPE;
+    }
 }

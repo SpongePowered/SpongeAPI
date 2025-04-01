@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.data.persistence;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.io.IOException;
@@ -36,7 +38,7 @@ import java.io.OutputStream;
  * a DataContainer to/from a stream of the specific format.
  */
 @CatalogedBy(DataFormats.class)
-public interface DataFormat extends DefaultedRegistryValue {
+public interface DataFormat extends DefaultedRegistryValue<DataFormat> {
 
     /**
      * Creates a new {@link DataContainer} from the contents of the given
@@ -60,4 +62,8 @@ public interface DataFormat extends DefaultedRegistryValue {
      */
     void writeTo(OutputStream output, DataView data) throws IOException;
 
+    @Override
+    default DefaultedRegistryType<DataFormat> registryType() {
+        return RegistryTypes.DATA_FORMAT;
+    }
 }

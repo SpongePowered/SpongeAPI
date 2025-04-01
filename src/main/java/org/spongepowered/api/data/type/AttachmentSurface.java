@@ -24,13 +24,19 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a block surface.
  */
 @CatalogedBy(AttachmentSurfaces.class)
-public interface AttachmentSurface extends DefaultedRegistryValue, Comparable<AttachmentSurface>, StringRepresentable {
+public interface AttachmentSurface extends DefaultedRegistryValue<AttachmentSurface>, Comparable<AttachmentSurface>, StringRepresentable {
 
+    @Override
+    default DefaultedRegistryType<AttachmentSurface> registryType() {
+        return RegistryTypes.ATTACHMENT_SURFACE;
+    }
 }

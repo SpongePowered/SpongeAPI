@@ -24,10 +24,16 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(SpellTypes.class)
-public interface SpellType extends DefaultedRegistryValue {
+public interface SpellType extends DefaultedRegistryValue<SpellType> {
 
+    @Override
+    default DefaultedRegistryType<SpellType> registryType() {
+        return RegistryTypes.SPELL_TYPE;
+    }
 }

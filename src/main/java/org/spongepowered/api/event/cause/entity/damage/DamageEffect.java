@@ -24,11 +24,16 @@
  */
 package org.spongepowered.api.event.cause.entity.damage;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-
 @CatalogedBy(DamageEffects.class)
-public interface DamageEffect extends DefaultedRegistryValue {
+public interface DamageEffect extends DefaultedRegistryValue<DamageEffect> {
 
+    @Override
+    default DefaultedRegistryType<DamageEffect> registryType() {
+        return RegistryTypes.DAMAGE_EFFECT;
+    }
 }

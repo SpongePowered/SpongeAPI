@@ -24,10 +24,16 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(DripstoneSegments.class)
-public interface DripstoneSegment extends DefaultedRegistryValue, Comparable<DripstoneSegment>, StringRepresentable {
+public interface DripstoneSegment extends DefaultedRegistryValue<DripstoneSegment>, Comparable<DripstoneSegment>, StringRepresentable {
 
+    @Override
+    default DefaultedRegistryType<DripstoneSegment> registryType() {
+        return RegistryTypes.DRIPSTONE_SEGMENT;
+    }
 }

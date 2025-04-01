@@ -24,10 +24,16 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(RaidStatuses.class)
-public interface RaidStatus extends DefaultedRegistryValue {
+public interface RaidStatus extends DefaultedRegistryValue<RaidStatus> {
 
+    @Override
+    default DefaultedRegistryType<RaidStatus> registryType() {
+        return RegistryTypes.RAID_STATUS;
+    }
 }

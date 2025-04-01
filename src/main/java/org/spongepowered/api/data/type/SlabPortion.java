@@ -25,7 +25,9 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.block.BlockTypes;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -33,6 +35,10 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * example {@link BlockTypes#STONE_SLAB}.
  */
 @CatalogedBy(SlabPortions.class)
-public interface SlabPortion extends DefaultedRegistryValue, Comparable<SlabPortion>, StringRepresentable {
+public interface SlabPortion extends DefaultedRegistryValue<SlabPortion>, Comparable<SlabPortion>, StringRepresentable {
 
+    @Override
+    default DefaultedRegistryType<SlabPortion> registryType() {
+        return RegistryTypes.SLAB_PORTION;
+    }
 }

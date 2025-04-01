@@ -25,14 +25,16 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.effect.sound.SoundType;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a type of instrument.
  */
 @CatalogedBy(InstrumentTypes.class)
-public interface InstrumentType extends DefaultedRegistryValue, Comparable<InstrumentType>, StringRepresentable {
+public interface InstrumentType extends DefaultedRegistryValue<InstrumentType>, Comparable<InstrumentType>, StringRepresentable {
 
     /**
      * Gets the {@link SoundType} that is used by
@@ -41,4 +43,9 @@ public interface InstrumentType extends DefaultedRegistryValue, Comparable<Instr
      * @return The sound
      */
     SoundType sound();
+
+    @Override
+    default DefaultedRegistryType<InstrumentType> registryType() {
+        return RegistryTypes.INSTRUMENT_TYPE;
+    }
 }

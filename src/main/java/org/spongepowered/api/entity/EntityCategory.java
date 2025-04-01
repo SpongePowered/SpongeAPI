@@ -27,7 +27,9 @@ package org.spongepowered.api.entity;
 import org.spongepowered.api.entity.living.animal.Chicken;
 import org.spongepowered.api.entity.living.monster.Creeper;
 import org.spongepowered.api.entity.living.monster.zombie.Zombie;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -38,7 +40,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * may include {@link Chicken}.
  */
 @CatalogedBy(EntityCategories.class)
-public interface EntityCategory extends DefaultedRegistryValue {
+public interface EntityCategory extends DefaultedRegistryValue<EntityCategory> {
 
     /**
      * Whether this category of entities is considered "friendly".
@@ -60,5 +62,8 @@ public interface EntityCategory extends DefaultedRegistryValue {
      */
     int despawnDistance();
 
-
+    @Override
+    default DefaultedRegistryType<EntityCategory> registryType() {
+        return RegistryTypes.ENTITY_CATEGORY;
+    }
 }

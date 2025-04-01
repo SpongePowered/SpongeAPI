@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -32,7 +34,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * various tasks such as creating a chunk, or preserving entities.
  */
 @CatalogedBy(ChunkRegenerateFlags.class)
-public interface ChunkRegenerateFlag extends DefaultedRegistryValue {
+public interface ChunkRegenerateFlag extends DefaultedRegistryValue<ChunkRegenerateFlag> {
 
     /**
      * Gets whether this flag defines that a chunk should be created if it does
@@ -101,4 +103,8 @@ public interface ChunkRegenerateFlag extends DefaultedRegistryValue {
      */
     ChunkRegenerateFlag andNotFlag(ChunkRegenerateFlag flag);
 
+    @Override
+    default DefaultedRegistryType<ChunkRegenerateFlag> registryType() {
+        return RegistryTypes.CHUNK_REGENERATE_FLAG;
+    }
 }

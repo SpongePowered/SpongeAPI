@@ -24,10 +24,16 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(BoatTypes.class)
-public interface BoatType extends DefaultedRegistryValue {
+public interface BoatType extends DefaultedRegistryValue<BoatType> {
 
+    @Override
+    default DefaultedRegistryType<BoatType> registryType() {
+        return RegistryTypes.BOAT_TYPE;
+    }
 }

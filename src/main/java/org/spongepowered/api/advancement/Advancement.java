@@ -31,7 +31,9 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
 import org.spongepowered.api.datapack.DataPackSerializable;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.CopyableBuilder;
 
 import java.util.List;
@@ -40,7 +42,7 @@ import java.util.Optional;
 /**
  * An advancement.
  */
-public interface Advancement extends DefaultedRegistryValue, ComponentLike, DataPackSerializable {
+public interface Advancement extends DefaultedRegistryValue<Advancement>, ComponentLike, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create an {@link Advancement}.
@@ -84,6 +86,11 @@ public interface Advancement extends DefaultedRegistryValue, ComponentLike, Data
      * @return The text lines
      */
     List<Component> toToastText();
+
+    @Override
+    default DefaultedRegistryType<Advancement> registryType() {
+        return RegistryTypes.ADVANCEMENT;
+    }
 
     /**
      * A builder to create {@link Advancement}s.

@@ -24,10 +24,16 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(PortionTypes.class)
-public interface PortionType extends DefaultedRegistryValue, Comparable<PortionType>, StringRepresentable {
+public interface PortionType extends DefaultedRegistryValue<PortionType>, Comparable<PortionType>, StringRepresentable {
 
+    @Override
+    default DefaultedRegistryType<PortionType> registryType() {
+        return RegistryTypes.PORTION_TYPE;
+    }
 }

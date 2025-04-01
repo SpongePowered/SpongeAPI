@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.scoreboard.criteria;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.scoreboard.objective.displaymode.ObjectiveDisplayMode;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -33,7 +35,12 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * automatically updated.
  */
 @CatalogedBy(Criteria.class)
-public interface Criterion extends DefaultedRegistryValue {
+public interface Criterion extends DefaultedRegistryValue<Criterion> {
 
     ObjectiveDisplayMode displayMode();
+
+    @Override
+    default DefaultedRegistryType<Criterion> registryType() {
+        return RegistryTypes.CRITERION;
+    }
 }

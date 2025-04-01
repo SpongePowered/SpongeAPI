@@ -24,10 +24,16 @@
  */
 package org.spongepowered.api.scheduler;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(TaskPriorities.class)
-public interface TaskPriority extends DefaultedRegistryValue {
+public interface TaskPriority extends DefaultedRegistryValue<TaskPriority> {
 
+    @Override
+    default DefaultedRegistryType<TaskPriority> registryType() {
+        return RegistryTypes.TASK_PRIORITY;
+    }
 }

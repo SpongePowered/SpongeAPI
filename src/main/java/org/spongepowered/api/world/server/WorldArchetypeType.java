@@ -26,13 +26,15 @@ package org.spongepowered.api.world.server;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPackSerializable;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.generation.ChunkGenerator;
 
 @CatalogedBy(WorldArchetypeTypes.class)
-public interface WorldArchetypeType extends DefaultedRegistryValue, DataPackSerializable {
+public interface WorldArchetypeType extends DefaultedRegistryValue<WorldArchetypeType>, DataPackSerializable {
 
     static WorldArchetypeType.Builder builder() {
         return Sponge.game().builderProvider().provide(WorldArchetypeType.Builder.class);
@@ -48,6 +50,11 @@ public interface WorldArchetypeType extends DefaultedRegistryValue, DataPackSeri
     WorldType worldType();
 
     ChunkGenerator chunkGenerator();
+
+    @Override
+    default DefaultedRegistryType<WorldArchetypeType> registryType() {
+        return RegistryTypes.WORLD_ARCHETYPE_TYPE;
+    }
 
     interface Builder extends org.spongepowered.api.util.Builder<WorldArchetypeType, Builder> {
 

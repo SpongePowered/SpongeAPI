@@ -24,9 +24,16 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(SalmonSizes.class)
-public interface SalmonSize extends DefaultedRegistryValue, StringRepresentable {
+public interface SalmonSize extends DefaultedRegistryValue<SalmonSize>, StringRepresentable {
+
+    @Override
+    default DefaultedRegistryType<SalmonSize> registryType() {
+        return RegistryTypes.SALMON_SIZE;
+    }
 }

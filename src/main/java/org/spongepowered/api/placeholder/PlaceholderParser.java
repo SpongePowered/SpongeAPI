@@ -26,7 +26,9 @@ package org.spongepowered.api.placeholder;
 
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.function.Function;
@@ -35,7 +37,7 @@ import java.util.function.Function;
  * Provides the logic of how to parse a placeholder token.
  */
 @CatalogedBy(PlaceholderParsers.class)
-public interface PlaceholderParser extends DefaultedRegistryValue {
+public interface PlaceholderParser extends DefaultedRegistryValue<PlaceholderParser> {
 
     /**
      * Returns a {@link Builder} that allows for the creation of simple
@@ -58,6 +60,11 @@ public interface PlaceholderParser extends DefaultedRegistryValue {
      * @return The {@link Component}
      */
     Component parse(PlaceholderContext placeholderContext);
+
+    @Override
+    default DefaultedRegistryType<PlaceholderParser> registryType() {
+        return RegistryTypes.PLACEHOLDER_PARSER;
+    }
 
     /**
      * A builder that creates {@link PlaceholderParser}

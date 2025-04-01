@@ -25,17 +25,19 @@
 package org.spongepowered.api.world.schematic;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.RegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Optional;
 import java.util.function.BiFunction;
 
 @CatalogedBy(PaletteTypes.class)
-public interface PaletteType<T, R> extends DefaultedRegistryValue {
+public interface PaletteType<T, R> extends DefaultedRegistryValue<PaletteType<?, ?>> {
 
     @SuppressWarnings("unchecked")
     static <E, ER> Builder<E, ER> builder() {
@@ -51,6 +53,11 @@ public interface PaletteType<T, R> extends DefaultedRegistryValue {
     BiFunction<String, Registry<R>, Optional<T>> resolver();
 
     BiFunction<Registry<R>, T, String> stringifier();
+
+    @Override
+    default DefaultedRegistryType<PaletteType<?, ?>> registryType() {
+        return RegistryTypes.PALETTE_TYPE;
+    }
 
     interface Builder<T, R> extends org.spongepowered.api.util.Builder<PaletteType<T, R>, Builder<T, R>> {
 

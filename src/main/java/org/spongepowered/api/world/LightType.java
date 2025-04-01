@@ -24,12 +24,14 @@
  */
 package org.spongepowered.api.world;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.volume.game.EnvironmentalVolume;
 
 @CatalogedBy(LightTypes.class)
-public interface LightType extends DefaultedRegistryValue {
+public interface LightType extends DefaultedRegistryValue<LightType> {
 
     /**
      * Gets the default light value for this light type. Useful
@@ -40,4 +42,8 @@ public interface LightType extends DefaultedRegistryValue {
      */
     int defaultLightValue();
 
+    @Override
+    default DefaultedRegistryType<LightType> registryType() {
+        return RegistryTypes.LIGHT_TYPE;
+    }
 }

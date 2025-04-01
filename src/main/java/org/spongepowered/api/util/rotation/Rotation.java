@@ -24,13 +24,15 @@
  */
 package org.spongepowered.api.util.rotation;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.Angle;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.math.matrix.Matrix4d;
 
 @CatalogedBy(Rotations.class)
-public interface Rotation extends DefaultedRegistryValue {
+public interface Rotation extends DefaultedRegistryValue<Rotation> {
 
     Rotation and(final Rotation rotation);
 
@@ -74,4 +76,8 @@ public interface Rotation extends DefaultedRegistryValue {
         );
     }
 
+    @Override
+    default DefaultedRegistryType<Rotation> registryType() {
+        return RegistryTypes.ROTATION;
+    }
 }

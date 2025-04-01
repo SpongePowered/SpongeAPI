@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.entity.attribute;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -32,6 +34,10 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * {@link Attribute}.
  */
 @CatalogedBy(AttributeOperations.class)
-public interface AttributeOperation extends DefaultedRegistryValue {
+public interface AttributeOperation extends DefaultedRegistryValue<AttributeOperation> {
 
+    @Override
+    default DefaultedRegistryType<AttributeOperation> registryType() {
+        return RegistryTypes.ATTRIBUTE_OPERATION;
+    }
 }

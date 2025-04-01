@@ -24,14 +24,16 @@
  */
 package org.spongepowered.api.item.inventory.equipment;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a equipment type.
  */
 @CatalogedBy(EquipmentTypes.class)
-public interface EquipmentType extends DefaultedRegistryValue {
+public interface EquipmentType extends DefaultedRegistryValue<EquipmentType> {
 
     /**
      * Gets the {@link EquipmentGroup group} this equipment falls under.
@@ -39,4 +41,9 @@ public interface EquipmentType extends DefaultedRegistryValue {
      * @return The group
      */
     EquipmentGroup group();
+
+    @Override
+    default DefaultedRegistryType<EquipmentType> registryType() {
+        return RegistryTypes.EQUIPMENT_TYPE;
+    }
 }

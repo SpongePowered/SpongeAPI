@@ -24,10 +24,16 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(WireAttachmentTypes.class)
-public interface WireAttachmentType extends DefaultedRegistryValue, Comparable<WireAttachmentType>, StringRepresentable {
+public interface WireAttachmentType extends DefaultedRegistryValue<WireAttachmentType>, Comparable<WireAttachmentType>, StringRepresentable {
 
+    @Override
+    default DefaultedRegistryType<WireAttachmentType> registryType() {
+        return RegistryTypes.WIRE_ATTACHMENT_TYPE;
+    }
 }

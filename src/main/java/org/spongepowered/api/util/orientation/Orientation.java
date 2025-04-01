@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.util.orientation;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.Angle;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -34,7 +36,7 @@ import java.util.Optional;
  * Represents an orientation in relative for an ItemFrame as an example.
  */
 @CatalogedBy(Orientations.class)
-public interface Orientation extends DefaultedRegistryValue {
+public interface Orientation extends DefaultedRegistryValue<Orientation> {
 
     /**
      * Gets the {@link Orientation} that represents the provided {@link Angle}.
@@ -54,4 +56,8 @@ public interface Orientation extends DefaultedRegistryValue {
      */
     Angle angle();
 
+    @Override
+    default DefaultedRegistryType<Orientation> registryType() {
+        return RegistryTypes.ORIENTATION;
+    }
 }

@@ -24,13 +24,19 @@
  */
 package org.spongepowered.api.event.cause.entity;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Used to set the {@link org.spongepowered.api.event.EventContextKeys#DISMOUNT_TYPE} in {@link org.spongepowered.api.event.entity.RideEntityEvent.Dismount dismount events}.
  */
 @CatalogedBy(DismountTypes.class)
-public interface DismountType extends DefaultedRegistryValue {
+public interface DismountType extends DefaultedRegistryValue<DismountType> {
 
+    @Override
+    default DefaultedRegistryType<DismountType> registryType() {
+        return RegistryTypes.DISMOUNT_TYPE;
+    }
 }

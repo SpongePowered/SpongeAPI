@@ -25,7 +25,9 @@
 package org.spongepowered.api.service.economy;
 
 import net.kyori.adventure.text.Component;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 
 import java.math.BigDecimal;
 
@@ -40,7 +42,7 @@ import java.math.BigDecimal;
  *
  * <p>Depending on the provider of the {@link EconomyService}, more currencies may be available.</p>
  */
-public interface Currency extends DefaultedRegistryValue {
+public interface Currency extends DefaultedRegistryValue<Currency> {
 
     /**
      * The currency's display name, in singular form. Ex: Dollar.
@@ -104,4 +106,9 @@ public interface Currency extends DefaultedRegistryValue {
      * @return true if this is the default currency
      */
     boolean isDefault();
+
+    @Override
+    default DefaultedRegistryType<Currency> registryType() {
+        return RegistryTypes.CURRENCY;
+    }
 }

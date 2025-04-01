@@ -24,13 +24,19 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a stair shape.
  */
 @CatalogedBy(StairShapes.class)
-public interface StairShape extends DefaultedRegistryValue, Comparable<StairShape>, StringRepresentable {
+public interface StairShape extends DefaultedRegistryValue<StairShape>, Comparable<StairShape>, StringRepresentable {
 
+    @Override
+    default DefaultedRegistryType<StairShape> registryType() {
+        return RegistryTypes.STAIR_SHAPE;
+    }
 }

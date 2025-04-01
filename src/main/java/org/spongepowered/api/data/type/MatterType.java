@@ -24,10 +24,16 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(MatterTypes.class)
-public interface MatterType extends DefaultedRegistryValue {
+public interface MatterType extends DefaultedRegistryValue<MatterType> {
 
+    @Override
+    default DefaultedRegistryType<MatterType> registryType() {
+        return RegistryTypes.MATTER_TYPE;
+    }
 }

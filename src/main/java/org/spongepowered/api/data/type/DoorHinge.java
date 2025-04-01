@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.data.type;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.Cycleable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -32,6 +34,10 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a side of a hinge.
  */
 @CatalogedBy(DoorHinges.class)
-public interface DoorHinge extends DefaultedRegistryValue, Cycleable<DoorHinge>, Comparable<DoorHinge>, StringRepresentable {
+public interface DoorHinge extends DefaultedRegistryValue<DoorHinge>, Cycleable<DoorHinge>, Comparable<DoorHinge>, StringRepresentable {
 
+    @Override
+    default DefaultedRegistryType<DoorHinge> registryType() {
+        return RegistryTypes.DOOR_HINGE;
+    }
 }

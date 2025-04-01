@@ -24,7 +24,9 @@
  */
 package org.spongepowered.api.effect.particle;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -34,7 +36,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * @param <V> The type of the option value
  */
 @CatalogedBy(ParticleOptions.class)
-public interface ParticleOption<V> extends DefaultedRegistryValue {
+public interface ParticleOption<V> extends DefaultedRegistryValue<ParticleOption<?>> {
 
     /**
      * Gets the type of the value.
@@ -43,4 +45,8 @@ public interface ParticleOption<V> extends DefaultedRegistryValue {
      */
     Class<? extends V> valueType();
 
+    @Override
+    default DefaultedRegistryType<ParticleOption<?>> registryType() {
+        return RegistryTypes.PARTICLE_OPTION;
+    }
 }

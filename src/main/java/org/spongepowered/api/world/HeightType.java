@@ -25,13 +25,19 @@
 package org.spongepowered.api.world;
 
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.BlockReaderAwareMatcher;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(HeightTypes.class)
-public interface HeightType extends DefaultedRegistryValue {
+public interface HeightType extends DefaultedRegistryValue<HeightType> {
 
     BlockReaderAwareMatcher<BlockState> matcher();
 
+    @Override
+    default DefaultedRegistryType<HeightType> registryType() {
+        return RegistryTypes.HEIGHT_TYPE;
+    }
 }

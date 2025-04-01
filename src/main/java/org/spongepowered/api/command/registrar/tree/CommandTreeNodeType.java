@@ -27,7 +27,9 @@ package org.spongepowered.api.command.registrar.tree;
 import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.command.Command;
 import org.spongepowered.api.command.registrar.CommandRegistrarType;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -55,7 +57,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * displaying and completing command strings.</p>
  */
 @CatalogedBy(CommandTreeNodeTypes.class)
-public interface CommandTreeNodeType<T extends CommandTreeNode<T>> extends DefaultedRegistryValue, ResourceKeyed {
+public interface CommandTreeNodeType<T extends CommandTreeNode<T>> extends DefaultedRegistryValue<CommandTreeNodeType<?>>, ResourceKeyed {
 
     /**
      * Creates a {@link CommandTreeNode} that represents this
@@ -65,4 +67,8 @@ public interface CommandTreeNodeType<T extends CommandTreeNode<T>> extends Defau
      */
     T createNode();
 
+    @Override
+    default DefaultedRegistryType<CommandTreeNodeType<?>> registryType() {
+        return RegistryTypes.COMMAND_TREE_NODE_TYPE;
+    }
 }

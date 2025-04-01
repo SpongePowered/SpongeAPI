@@ -26,13 +26,19 @@ package org.spongepowered.api.entity.living.player.gamemode;
 
 import net.kyori.adventure.text.ComponentLike;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a game mode that a {@link Player} may have.
  */
 @CatalogedBy(GameModes.class)
-public interface GameMode extends DefaultedRegistryValue, ComponentLike {
+public interface GameMode extends DefaultedRegistryValue<GameMode>, ComponentLike {
 
+    @Override
+    default DefaultedRegistryType<GameMode> registryType() {
+        return RegistryTypes.GAME_MODE;
+    }
 }

@@ -24,11 +24,13 @@
  */
 package org.spongepowered.api.entity.ai.goal;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(GoalTypes.class)
-public interface GoalType extends DefaultedRegistryValue {
+public interface GoalType extends DefaultedRegistryValue<GoalType> {
 
     /**
      * Gets the {@link Goal} class that this type represents.
@@ -36,4 +38,9 @@ public interface GoalType extends DefaultedRegistryValue {
      * @return The goal class
      */
     Class<? extends Goal<?>> goalClass();
+
+    @Override
+    default DefaultedRegistryType<GoalType> registryType() {
+        return RegistryTypes.GOAL_TYPE;
+    }
 }

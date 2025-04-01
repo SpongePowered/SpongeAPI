@@ -24,13 +24,19 @@
  */
 package org.spongepowered.api.service.economy.transaction;
 
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents the type of a transaction.
  */
 @CatalogedBy(TransactionTypes.class)
-public interface TransactionType extends DefaultedRegistryValue {
+public interface TransactionType extends DefaultedRegistryValue<TransactionType> {
 
+    @Override
+    default DefaultedRegistryType<TransactionType> registryType() {
+        return RegistryTypes.TRANSACTION_TYPE;
+    }
 }

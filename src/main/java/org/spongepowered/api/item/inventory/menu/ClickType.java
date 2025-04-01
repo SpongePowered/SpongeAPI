@@ -25,7 +25,9 @@
 package org.spongepowered.api.item.inventory.menu;
 
 import org.spongepowered.api.item.inventory.Container;
+import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -34,6 +36,10 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * @param <T> The handler for the click type
  */
 @CatalogedBy(ClickTypes.class)
-public interface ClickType<T> extends DefaultedRegistryValue {
+public interface ClickType<T> extends DefaultedRegistryValue<ClickType<?>> {
 
+    @Override
+    default DefaultedRegistryType<ClickType<?>> registryType() {
+        return RegistryTypes.CLICK_TYPE;
+    }
 }
