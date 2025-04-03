@@ -29,9 +29,9 @@ import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.tag.Tag;
-import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.Nameable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -43,7 +43,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * can damage an {@link Entity} with varying {@link DamageType}s depending on the circumstances.
  */
 @CatalogedBy(DamageTypes.class)
-public interface DamageType extends Taggable<DamageType>, Nameable, DataPackSerializable {
+public interface DamageType extends DefaultedRegistryValue<DamageType>, Nameable, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link DamageType}.

@@ -27,8 +27,8 @@ package org.spongepowered.api.effect.sound.music;
 import org.spongepowered.api.block.entity.Jukebox;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -36,12 +36,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * played by a {@link Jukebox}.
  */
 @CatalogedBy(MusicDiscs.class)
-public interface MusicDisc extends Taggable<MusicDisc> {
-
-    @Override
-    default DefaultedRegistryType<MusicDisc> registryType() {
-        return RegistryTypes.MUSIC_DISC;
-    }
+public interface MusicDisc extends DefaultedRegistryValue<MusicDisc> {
 
     /**
      * Gets the {@link SoundType} that is used
@@ -50,4 +45,9 @@ public interface MusicDisc extends Taggable<MusicDisc> {
      * @return The sound type
      */
     SoundType sound();
+
+    @Override
+    default DefaultedRegistryType<MusicDisc> registryType() {
+        return RegistryTypes.MUSIC_DISC;
+    }
 }

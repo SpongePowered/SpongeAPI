@@ -28,8 +28,8 @@ import net.kyori.adventure.text.format.Style;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -37,7 +37,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * A type of chat
  */
 @CatalogedBy(ChatTypes.class)
-public interface ChatType extends Taggable<ChatType>, net.kyori.adventure.chat.ChatType, DataPackSerializable {
+public interface ChatType extends DefaultedRegistryValue<ChatType>, net.kyori.adventure.chat.ChatType, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link ChatType}.
@@ -46,11 +46,6 @@ public interface ChatType extends Taggable<ChatType>, net.kyori.adventure.chat.C
      */
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class);
-    }
-
-    @Override
-    default DefaultedRegistryType<ChatType> registryType() {
-        return RegistryTypes.CHAT_TYPE;
     }
 
     /**
@@ -68,6 +63,11 @@ public interface ChatType extends Taggable<ChatType>, net.kyori.adventure.chat.C
      * @return The style
      */
     Style style();
+
+    @Override
+    default DefaultedRegistryType<ChatType> registryType() {
+        return RegistryTypes.CHAT_TYPE;
+    }
 
     /**
      * A builder to create {@link ChatType}s.

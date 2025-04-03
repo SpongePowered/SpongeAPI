@@ -27,8 +27,8 @@ package org.spongepowered.api.world.generation.carver;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -36,7 +36,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * A carver used in world generation.
  */
 @CatalogedBy(Carvers.class)
-public interface Carver extends Taggable<Carver>, DataPackSerializable {
+public interface Carver extends DefaultedRegistryValue<Carver>, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link Carver}.
@@ -47,17 +47,17 @@ public interface Carver extends Taggable<Carver>, DataPackSerializable {
         return Sponge.game().builderProvider().provide(Carver.Builder.class);
     }
 
-    @Override
-    default DefaultedRegistryType<Carver> registryType() {
-        return RegistryTypes.CARVER;
-    }
-
     /**
      * Returns the carver type
      *
      * @return The carver type
      */
     CarverType type();
+
+    @Override
+    default DefaultedRegistryType<Carver> registryType() {
+        return RegistryTypes.CARVER;
+    }
 
     /**
      * A builder to create {@link Carver}s.

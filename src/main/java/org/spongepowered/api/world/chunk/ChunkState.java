@@ -25,8 +25,8 @@
 package org.spongepowered.api.world.chunk;
 
 import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.World;
 
@@ -39,7 +39,7 @@ import org.spongepowered.api.world.World;
  * </ul>
  */
 @CatalogedBy(ChunkStates.class)
-public interface ChunkState extends Taggable<ChunkState> {
+public interface ChunkState extends DefaultedRegistryValue<ChunkState> {
 
     /**
      * Checks whether this state is considered "after"

@@ -25,12 +25,12 @@
 package org.spongepowered.api.item.recipe.smithing;
 
 import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(TrimMaterials.class)
-public interface TrimMaterial extends Taggable<TrimMaterial> {
+public interface TrimMaterial extends DefaultedRegistryValue<TrimMaterial> {
 
     @Override
     default DefaultedRegistryType<TrimMaterial> registryType() {

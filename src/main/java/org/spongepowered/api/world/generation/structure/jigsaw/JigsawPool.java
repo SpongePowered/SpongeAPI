@@ -28,9 +28,9 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryReference;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.util.weighted.WeightedTable;
@@ -40,7 +40,7 @@ import org.spongepowered.api.world.generation.structure.Structure;
  * A pool to generate {@link Structure structures} using jigsaw blocks.
  */
 @CatalogedBy(JigsawPools.class)
-public interface JigsawPool extends Taggable<JigsawPool>, DataPackSerializable {
+public interface JigsawPool extends DefaultedRegistryValue<JigsawPool>, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link JigsawPool}.
@@ -49,11 +49,6 @@ public interface JigsawPool extends Taggable<JigsawPool>, DataPackSerializable {
      */
     static JigsawPool.Builder builder() {
         return Sponge.game().builderProvider().provide(JigsawPool.Builder.class);
-    }
-
-    @Override
-    default DefaultedRegistryType<JigsawPool> registryType() {
-        return RegistryTypes.JIGSAW_POOL;
     }
 
     /**
@@ -70,6 +65,11 @@ public interface JigsawPool extends Taggable<JigsawPool>, DataPackSerializable {
      * @return The weighted table of elements
      */
     WeightedTable<JigsawPoolElement> elements();
+
+    @Override
+    default DefaultedRegistryType<JigsawPool> registryType() {
+        return RegistryTypes.JIGSAW_POOL;
+    }
 
     /**
      * A builder to create {@link JigsawPool}s.

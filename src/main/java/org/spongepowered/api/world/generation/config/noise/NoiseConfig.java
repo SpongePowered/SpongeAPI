@@ -26,8 +26,8 @@ package org.spongepowered.api.world.generation.config.noise;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -35,7 +35,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Noise Parameters for world generation.
  */
 @CatalogedBy(NoiseConfigs.class)
-public interface NoiseConfig extends Taggable<NoiseConfig> {
+public interface NoiseConfig extends DefaultedRegistryValue<NoiseConfig> {
 
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class);
