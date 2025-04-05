@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.scoreboard.objective.displaymode;
 
+import org.spongepowered.api.data.type.StringRepresentable;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.scoreboard.objective.Objective;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -32,6 +33,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents the mode in which to display scores for an {@link Objective}.
  */
 @CatalogedBy(ObjectiveDisplayModes.class)
-public interface ObjectiveDisplayMode extends DefaultedRegistryValue {
+public interface ObjectiveDisplayMode extends DefaultedRegistryValue, StringRepresentable {
 
 }

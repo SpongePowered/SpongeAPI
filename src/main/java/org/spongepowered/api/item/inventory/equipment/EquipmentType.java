@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.item.inventory.equipment;
 
+import org.spongepowered.api.data.type.StringRepresentable;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -31,7 +32,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a equipment type.
  */
 @CatalogedBy(EquipmentTypes.class)
-public interface EquipmentType extends DefaultedRegistryValue {
+public interface EquipmentType extends DefaultedRegistryValue, StringRepresentable {
 
     /**
      * Gets the {@link EquipmentGroup group} this equipment falls under.

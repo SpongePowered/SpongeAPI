@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.attribute;
 
+import org.spongepowered.api.data.type.StringRepresentable;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -32,6 +33,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * {@link Attribute}.
  */
 @CatalogedBy(AttributeOperations.class)
-public interface AttributeOperation extends DefaultedRegistryValue {
+public interface AttributeOperation extends DefaultedRegistryValue, StringRepresentable {
 
 }

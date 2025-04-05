@@ -27,6 +27,6 @@ package org.spongepowered.api.data.type;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(PushReactions.class)
-public interface PushReaction {
+public interface PushReaction extends StringRepresentable {
 
 }
