@@ -48,7 +48,7 @@ import java.util.Optional;
  * @see org.spongepowered.api.command.parameter.managed.ValueParser
  * @see org.spongepowered.api.command.parameter.managed.ValueUsage
  */
-public interface ValueParameter<T> extends DefaultedRegistryValue, ValueCompleter, ValueParser<T>, ValueUsage {
+public interface ValueParameter<T> extends DefaultedRegistryValue<ValueParameter<?>>, ValueCompleter, ValueParser<T>, ValueUsage {
 
     @Override
     default String usage(@NonNull final String key) {

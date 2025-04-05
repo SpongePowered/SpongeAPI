@@ -31,6 +31,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents the type of a transaction.
  */
 @CatalogedBy(TransactionTypes.class)
-public interface TransactionType extends DefaultedRegistryValue {
+public interface TransactionType extends DefaultedRegistryValue<TransactionType> {
 
 }

@@ -36,6 +36,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * {@link DamageModifier#cause()}.
  */
 @CatalogedBy(DamageModifierTypes.class)
-public interface DamageModifierType extends DefaultedRegistryValue {
+public interface DamageModifierType extends DefaultedRegistryValue<DamageModifierType> {
 
 }

@@ -41,7 +41,7 @@ import java.util.List;
  * <p>Modifiers can impact position, rarity, count and more.</p>
  */
 @CatalogedBy(PlacedFeatures.class)
-public interface PlacedFeature extends DefaultedRegistryValue, DataPackSerializable {
+public interface PlacedFeature extends DefaultedRegistryValue<PlacedFeature>, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link PlacedFeature}.

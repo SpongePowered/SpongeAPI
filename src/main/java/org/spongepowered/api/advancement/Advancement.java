@@ -40,7 +40,7 @@ import java.util.Optional;
 /**
  * An advancement.
  */
-public interface Advancement extends DefaultedRegistryValue, ComponentLike, DataPackSerializable {
+public interface Advancement extends DefaultedRegistryValue<Advancement>, ComponentLike, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create an {@link Advancement}.

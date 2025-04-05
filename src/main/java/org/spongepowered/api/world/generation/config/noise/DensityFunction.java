@@ -30,7 +30,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.math.vector.Vector3i;
 
 @CatalogedBy(DensityFunctions.class)
-public interface DensityFunction extends DefaultedRegistryValue, DataPackSerializable {
+public interface DensityFunction extends DefaultedRegistryValue<DensityFunction>, DataPackSerializable {
 
     /**
      * Returns the minimum value possible.

@@ -33,7 +33,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a color that can be used when drawing on a {@link MapCanvas}.
  */
 @CatalogedBy(MapColorTypes.class)
-public interface MapColorType extends DefaultedRegistryValue {
+public interface MapColorType extends DefaultedRegistryValue<MapColorType> {
 
     /**
      * Gets the {@link Color} that this type represents.

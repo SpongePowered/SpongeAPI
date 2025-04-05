@@ -28,6 +28,6 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(SpellTypes.class)
-public interface SpellType extends DefaultedRegistryValue {
+public interface SpellType extends DefaultedRegistryValue<SpellType> {
 
 }

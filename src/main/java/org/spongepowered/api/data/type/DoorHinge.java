@@ -32,6 +32,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a side of a hinge.
  */
 @CatalogedBy(DoorHinges.class)
-public interface DoorHinge extends DefaultedRegistryValue, Cycleable<DoorHinge>, Comparable<DoorHinge>, StringRepresentable {
+public interface DoorHinge extends DefaultedRegistryValue<DoorHinge>, Cycleable<DoorHinge>, Comparable<DoorHinge>, StringRepresentable {
 
 }

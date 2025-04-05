@@ -32,7 +32,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a type of instrument.
  */
 @CatalogedBy(InstrumentTypes.class)
-public interface InstrumentType extends DefaultedRegistryValue, Comparable<InstrumentType>, StringRepresentable {
+public interface InstrumentType extends DefaultedRegistryValue<InstrumentType>, Comparable<InstrumentType>, StringRepresentable {
 
     /**
      * Gets the {@link SoundType} that is used by

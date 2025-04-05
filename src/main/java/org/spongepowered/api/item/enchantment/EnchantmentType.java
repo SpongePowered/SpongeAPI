@@ -36,7 +36,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a modifier on an item that has various effects.
  */
 @CatalogedBy(EnchantmentTypes.class)
-public interface EnchantmentType extends DefaultedRegistryValue, ComponentLike, Taggable<EnchantmentType> {
+public interface EnchantmentType extends DefaultedRegistryValue<EnchantmentType>, ComponentLike, Taggable<EnchantmentType> {
 
     /**
      * Gets the weight of this enchantment type.

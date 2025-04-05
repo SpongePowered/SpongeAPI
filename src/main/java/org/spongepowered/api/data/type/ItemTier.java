@@ -29,7 +29,7 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(ItemTiers.class)
-public interface ItemTier extends DefaultedRegistryValue {
+public interface ItemTier extends DefaultedRegistryValue<ItemTier> {
 
     /**
      * Gets the {@link Ingredient} needed to repair this tool.

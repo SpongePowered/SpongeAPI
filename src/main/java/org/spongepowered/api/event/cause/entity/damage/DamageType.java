@@ -42,7 +42,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * can damage an {@link Entity} with varying {@link DamageType}s depending on the circumstances.
  */
 @CatalogedBy(DamageTypes.class)
-public interface DamageType extends DefaultedRegistryValue, Nameable, Taggable<DamageType>, DataPackSerializable {
+public interface DamageType extends DefaultedRegistryValue<DamageType>, Nameable, Taggable<DamageType>, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link DamageType}.

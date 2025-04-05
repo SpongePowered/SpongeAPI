@@ -29,7 +29,7 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(RecipeTypes.class)
-public interface RecipeType<T extends Recipe<? extends RecipeInput>> extends DefaultedRegistryValue {
+public interface RecipeType<T extends Recipe<? extends RecipeInput>> extends DefaultedRegistryValue<RecipeType<?>> {
 
 
 }
