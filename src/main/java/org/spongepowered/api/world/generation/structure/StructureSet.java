@@ -27,8 +27,8 @@ package org.spongepowered.api.world.generation.structure;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.registry.DefaultedRegistryType;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.util.weighted.WeightedTable;
@@ -37,7 +37,12 @@ import org.spongepowered.api.util.weighted.WeightedTable;
  * A weighted list of {@link Structure structures}.
  */
 @CatalogedBy(StructureSets.class)
-public interface StructureSet extends DefaultedRegistryValue<StructureSet>, DataPackSerializable {
+public interface StructureSet extends Taggable<StructureSet>, DataPackSerializable {
+
+    @Override
+    default DefaultedRegistryType<StructureSet> registryType() {
+        return RegistryTypes.STRUCTURE_SET;
+    }
 
     /**
      * Creates a new {@link Builder} to create a {@link StructureSet}.
@@ -61,11 +66,6 @@ public interface StructureSet extends DefaultedRegistryValue<StructureSet>, Data
      * @return The structure placement
      */
     StructurePlacement placement();
-
-    @Override
-    default DefaultedRegistryType<StructureSet> registryType() {
-        return RegistryTypes.STRUCTURE_SET;
-    }
 
     /**
      * A builder to create {@link StructureSet}s.

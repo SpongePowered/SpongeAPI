@@ -31,9 +31,9 @@ import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.registry.DefaultedRegistryType;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.state.StateContainer;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -49,7 +49,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * than how vanilla implementations handle them.</p>
  */
 @CatalogedBy(FluidTypes.class)
-public interface FluidType extends DefaultedRegistryValue<FluidType>, StateContainer<FluidState>, DataHolder.Immutable<FluidType> {
+public interface FluidType extends Taggable<FluidType>, StateContainer<FluidState>, DataHolder.Immutable<FluidType> {
 
     @Override
     default DefaultedRegistryType<FluidType> registryType() {

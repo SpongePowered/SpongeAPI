@@ -27,8 +27,8 @@ package org.spongepowered.api.world.generation.feature;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.registry.DefaultedRegistryType;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.server.ServerLocation;
@@ -42,7 +42,7 @@ import java.util.List;
  * <p>Modifiers can impact position, rarity, count and more.</p>
  */
 @CatalogedBy(PlacedFeatures.class)
-public interface PlacedFeature extends DefaultedRegistryValue<PlacedFeature>, DataPackSerializable {
+public interface PlacedFeature extends Taggable<PlacedFeature>, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link PlacedFeature}.
@@ -51,6 +51,11 @@ public interface PlacedFeature extends DefaultedRegistryValue<PlacedFeature>, Da
      */
     static PlacedFeature.Builder builder() {
         return Sponge.game().builderProvider().provide(PlacedFeature.Builder.class);
+    }
+
+    @Override
+    default DefaultedRegistryType<PlacedFeature> registryType() {
+        return RegistryTypes.PLACED_FEATURE;
     }
 
     /**
@@ -85,11 +90,6 @@ public interface PlacedFeature extends DefaultedRegistryValue<PlacedFeature>, Da
      * @return true when the feature was successfully placed
      */
     boolean place(ServerLocation location);
-
-    @Override
-    default DefaultedRegistryType<PlacedFeature> registryType() {
-        return RegistryTypes.PLACED_FEATURE;
-    }
 
     /**
      * A builder to create {@link PlacedFeature}s.

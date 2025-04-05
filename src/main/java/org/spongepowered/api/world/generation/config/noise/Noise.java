@@ -27,8 +27,8 @@ package org.spongepowered.api.world.generation.config.noise;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.registry.DefaultedRegistryType;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -38,7 +38,7 @@ import java.util.List;
  * Noise used in world generation
  */
 @CatalogedBy(Noises.class)
-public interface Noise extends DefaultedRegistryValue<Noise>, DataPackSerializable {
+public interface Noise extends Taggable<Noise>, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link Noise}.
@@ -47,6 +47,11 @@ public interface Noise extends DefaultedRegistryValue<Noise>, DataPackSerializab
      */
     static Noise.Builder builder() {
         return Sponge.game().builderProvider().provide(Noise.Builder.class);
+    }
+
+    @Override
+    default DefaultedRegistryType<Noise> registryType() {
+        return RegistryTypes.NOISE;
     }
 
     /**
@@ -62,11 +67,6 @@ public interface Noise extends DefaultedRegistryValue<Noise>, DataPackSerializab
      * @return The amplitudes
      */
     List<Double> amplitudes();
-
-    @Override
-    default DefaultedRegistryType<Noise> registryType() {
-        return RegistryTypes.NOISE;
-    }
 
     /**
      * A builder to create {@link Noise}s.

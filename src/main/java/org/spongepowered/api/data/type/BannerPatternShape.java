@@ -25,15 +25,15 @@
 package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.registry.DefaultedRegistryType;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * A pattern shape which may be applied to a banner.
  */
 @CatalogedBy(BannerPatternShapes.class)
-public interface BannerPatternShape extends DefaultedRegistryValue<BannerPatternShape> {
+public interface BannerPatternShape extends Taggable<BannerPatternShape> {
 
     @Override
     default DefaultedRegistryType<BannerPatternShape> registryType() {

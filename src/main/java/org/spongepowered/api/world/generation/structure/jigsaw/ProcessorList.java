@@ -27,8 +27,8 @@ package org.spongepowered.api.world.generation.structure.jigsaw;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.registry.DefaultedRegistryType;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -38,7 +38,7 @@ import java.util.List;
  * A list of {@link Processor processors}.
  */
 @CatalogedBy(ProcessorLists.class)
-public interface ProcessorList extends DefaultedRegistryValue<ProcessorList>, DataPackSerializable {
+public interface ProcessorList extends Taggable<ProcessorList>, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link ProcessorList}.
@@ -49,17 +49,17 @@ public interface ProcessorList extends DefaultedRegistryValue<ProcessorList>, Da
         return Sponge.game().builderProvider().provide(ProcessorList.Builder.class);
     }
 
+    @Override
+    default DefaultedRegistryType<ProcessorList> registryType() {
+        return RegistryTypes.PROCESSOR_LIST;
+    }
+
     /**
      * Returns the list of processors
      *
      * @return The list of processors
      */
     List<Processor> processors();
-
-    @Override
-    default DefaultedRegistryType<ProcessorList> registryType() {
-        return RegistryTypes.PROCESSOR_LIST;
-    }
 
     /**
      * A builder to create {@link ProcessorList}s.

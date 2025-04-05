@@ -26,8 +26,8 @@ package org.spongepowered.api.item.inventory;
 
 import org.spongepowered.api.item.inventory.type.ViewableInventory;
 import org.spongepowered.api.registry.DefaultedRegistryType;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -35,7 +35,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * It defines what {@link Container} is displayed on the client side when the inventory is opened.
  */
 @CatalogedBy(ContainerTypes.class)
-public interface ContainerType extends DefaultedRegistryValue<ContainerType> {
+public interface ContainerType extends Taggable<ContainerType> {
 
     @Override
     default DefaultedRegistryType<ContainerType> registryType() {
