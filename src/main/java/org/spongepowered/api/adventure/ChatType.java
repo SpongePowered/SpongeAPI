@@ -48,11 +48,6 @@ public interface ChatType extends Taggable<ChatType>, net.kyori.adventure.chat.C
         return Sponge.game().builderProvider().provide(Builder.class);
     }
 
-    @Override
-    default DefaultedRegistryType<ChatType> registryType() {
-        return RegistryTypes.CHAT_TYPE;
-    }
-
     /**
      * Gets the translation key that would be used
      * to display the chat message.
@@ -68,6 +63,11 @@ public interface ChatType extends Taggable<ChatType>, net.kyori.adventure.chat.C
      * @return The style
      */
     Style style();
+
+    @Override
+    default DefaultedRegistryType<ChatType> registryType() {
+        return RegistryTypes.CHAT_TYPE;
+    }
 
     /**
      * A builder to create {@link ChatType}s.

@@ -44,11 +44,6 @@ public interface ArtType extends Taggable<ArtType>, DataPackSerializable {
         return Sponge.game().builderProvider().provide(Builder.class);
     }
 
-    @Override
-    default DefaultedRegistryType<ArtType> registryType() {
-        return RegistryTypes.ART_TYPE;
-    }
-
     /**
      * Gets the height in blocks this art piece spans.
      *
@@ -62,6 +57,11 @@ public interface ArtType extends Taggable<ArtType>, DataPackSerializable {
      * @return The width in blocks
      */
     int width();
+
+    @Override
+    default DefaultedRegistryType<ArtType> registryType() {
+        return RegistryTypes.ART_TYPE;
+    }
 
     interface Builder extends org.spongepowered.api.util.Builder<ArtType, Builder>, CopyableBuilder<ArtType, Builder> {
 

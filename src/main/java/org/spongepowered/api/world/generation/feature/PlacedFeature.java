@@ -53,11 +53,6 @@ public interface PlacedFeature extends Taggable<PlacedFeature>, DataPackSerializ
         return Sponge.game().builderProvider().provide(PlacedFeature.Builder.class);
     }
 
-    @Override
-    default DefaultedRegistryType<PlacedFeature> registryType() {
-        return RegistryTypes.PLACED_FEATURE;
-    }
-
     /**
      * Returns the feature.
      *
@@ -90,6 +85,11 @@ public interface PlacedFeature extends Taggable<PlacedFeature>, DataPackSerializ
      * @return true when the feature was successfully placed
      */
     boolean place(ServerLocation location);
+
+    @Override
+    default DefaultedRegistryType<PlacedFeature> registryType() {
+        return RegistryTypes.PLACED_FEATURE;
+    }
 
     /**
      * A builder to create {@link PlacedFeature}s.

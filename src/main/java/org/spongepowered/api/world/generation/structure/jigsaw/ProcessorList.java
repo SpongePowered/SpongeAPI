@@ -49,17 +49,17 @@ public interface ProcessorList extends Taggable<ProcessorList>, DataPackSerializ
         return Sponge.game().builderProvider().provide(ProcessorList.Builder.class);
     }
 
-    @Override
-    default DefaultedRegistryType<ProcessorList> registryType() {
-        return RegistryTypes.PROCESSOR_LIST;
-    }
-
     /**
      * Returns the list of processors
      *
      * @return The list of processors
      */
     List<Processor> processors();
+
+    @Override
+    default DefaultedRegistryType<ProcessorList> registryType() {
+        return RegistryTypes.PROCESSOR_LIST;
+    }
 
     /**
      * A builder to create {@link ProcessorList}s.

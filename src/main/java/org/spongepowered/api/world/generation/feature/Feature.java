@@ -52,11 +52,6 @@ public interface Feature extends Taggable<Feature>, DataPackSerializable {
         return Sponge.game().builderProvider().provide(Feature.Builder.class);
     }
 
-    @Override
-    default DefaultedRegistryType<Feature> registryType() {
-        return RegistryTypes.FEATURE;
-    }
-
     /**
      * Returns the feature type.
      *
@@ -90,6 +85,11 @@ public interface Feature extends Taggable<Feature>, DataPackSerializable {
      * @return true when the feature was successfully placed
      */
     boolean place(ServerLocation location);
+
+    @Override
+    default DefaultedRegistryType<Feature> registryType() {
+        return RegistryTypes.FEATURE;
+    }
 
     /**
      * A builder to create {@link Feature}s.

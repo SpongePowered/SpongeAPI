@@ -51,11 +51,6 @@ public interface JigsawPool extends Taggable<JigsawPool>, DataPackSerializable {
         return Sponge.game().builderProvider().provide(JigsawPool.Builder.class);
     }
 
-    @Override
-    default DefaultedRegistryType<JigsawPool> registryType() {
-        return RegistryTypes.JIGSAW_POOL;
-    }
-
     /**
      * Returns the fallback pool, used when the selec
      * e.g. {@link JigsawPools#EMPTY}
@@ -70,6 +65,11 @@ public interface JigsawPool extends Taggable<JigsawPool>, DataPackSerializable {
      * @return The weighted table of elements
      */
     WeightedTable<JigsawPoolElement> elements();
+
+    @Override
+    default DefaultedRegistryType<JigsawPool> registryType() {
+        return RegistryTypes.JIGSAW_POOL;
+    }
 
     /**
      * A builder to create {@link JigsawPool}s.

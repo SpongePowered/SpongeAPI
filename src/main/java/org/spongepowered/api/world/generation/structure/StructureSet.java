@@ -39,11 +39,6 @@ import org.spongepowered.api.util.weighted.WeightedTable;
 @CatalogedBy(StructureSets.class)
 public interface StructureSet extends Taggable<StructureSet>, DataPackSerializable {
 
-    @Override
-    default DefaultedRegistryType<StructureSet> registryType() {
-        return RegistryTypes.STRUCTURE_SET;
-    }
-
     /**
      * Creates a new {@link Builder} to create a {@link StructureSet}.
      *
@@ -66,6 +61,11 @@ public interface StructureSet extends Taggable<StructureSet>, DataPackSerializab
      * @return The structure placement
      */
     StructurePlacement placement();
+
+    @Override
+    default DefaultedRegistryType<StructureSet> registryType() {
+        return RegistryTypes.STRUCTURE_SET;
+    }
 
     /**
      * A builder to create {@link StructureSet}s.

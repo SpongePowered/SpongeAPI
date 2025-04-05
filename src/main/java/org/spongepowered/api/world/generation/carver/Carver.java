@@ -47,17 +47,17 @@ public interface Carver extends Taggable<Carver>, DataPackSerializable {
         return Sponge.game().builderProvider().provide(Carver.Builder.class);
     }
 
-    @Override
-    default DefaultedRegistryType<Carver> registryType() {
-        return RegistryTypes.CARVER;
-    }
-
     /**
      * Returns the carver type
      *
      * @return The carver type
      */
     CarverType type();
+
+    @Override
+    default DefaultedRegistryType<Carver> registryType() {
+        return RegistryTypes.CARVER;
+    }
 
     /**
      * A builder to create {@link Carver}s.

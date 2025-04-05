@@ -49,11 +49,6 @@ public interface Noise extends Taggable<Noise>, DataPackSerializable {
         return Sponge.game().builderProvider().provide(Noise.Builder.class);
     }
 
-    @Override
-    default DefaultedRegistryType<Noise> registryType() {
-        return RegistryTypes.NOISE;
-    }
-
     /**
      * Returns the first octave
      *
@@ -67,6 +62,11 @@ public interface Noise extends Taggable<Noise>, DataPackSerializable {
      * @return The amplitudes
      */
     List<Double> amplitudes();
+
+    @Override
+    default DefaultedRegistryType<Noise> registryType() {
+        return RegistryTypes.NOISE;
+    }
 
     /**
      * A builder to create {@link Noise}s.

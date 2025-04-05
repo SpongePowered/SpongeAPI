@@ -48,11 +48,6 @@ import java.util.Map;
 @CatalogedBy(Structures.class)
 public interface Structure extends Taggable<Structure>, DataPackSerializable {
 
-    @Override
-    default DefaultedRegistryType<Structure> registryType() {
-        return RegistryTypes.STRUCTURE;
-    }
-
     /**
      * Places the structure at given position and world
      *
@@ -107,6 +102,11 @@ public interface Structure extends Taggable<Structure>, DataPackSerializable {
      * @return The serialized structure configuration
      */
     DataView toContainer();
+
+    @Override
+    default DefaultedRegistryType<Structure> registryType() {
+        return RegistryTypes.STRUCTURE;
+    }
 
     interface StructureNaturalSpawner {
 

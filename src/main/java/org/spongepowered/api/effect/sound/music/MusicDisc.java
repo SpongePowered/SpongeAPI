@@ -38,11 +38,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 @CatalogedBy(MusicDiscs.class)
 public interface MusicDisc extends Taggable<MusicDisc> {
 
-    @Override
-    default DefaultedRegistryType<MusicDisc> registryType() {
-        return RegistryTypes.MUSIC_DISC;
-    }
-
     /**
      * Gets the {@link SoundType} that is used
      * by this {@link MusicDisc}.
@@ -50,4 +45,9 @@ public interface MusicDisc extends Taggable<MusicDisc> {
      * @return The sound type
      */
     SoundType sound();
+
+    @Override
+    default DefaultedRegistryType<MusicDisc> registryType() {
+        return RegistryTypes.MUSIC_DISC;
+    }
 }

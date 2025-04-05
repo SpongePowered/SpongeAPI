@@ -34,11 +34,6 @@ import org.spongepowered.math.vector.Vector3i;
 @CatalogedBy(DensityFunctions.class)
 public interface DensityFunction extends Taggable<DensityFunction>, DataPackSerializable {
 
-    @Override
-    default DefaultedRegistryType<DensityFunction> registryType() {
-        return RegistryTypes.DENSITY_FUNCTION;
-    }
-
     /**
      * Returns the minimum value possible.
      * @return The minimum value
@@ -68,4 +63,9 @@ public interface DensityFunction extends Taggable<DensityFunction>, DataPackSeri
      * @return The noise value at given position
      */
     double compute(int x, int y, int z);
+
+    @Override
+    default DefaultedRegistryType<DensityFunction> registryType() {
+        return RegistryTypes.DENSITY_FUNCTION;
+    }
 }
