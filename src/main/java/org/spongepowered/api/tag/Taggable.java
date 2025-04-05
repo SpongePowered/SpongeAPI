@@ -33,7 +33,7 @@ import java.util.Collection;
 /**
  * A type that may be included in one or more {@link Tag} collections.
  */
-public interface Taggable<T extends Taggable<T>> extends DefaultedRegistryValue {
+public interface Taggable<T extends Taggable<T>> extends DefaultedRegistryValue<T> {
 
     /**
      * Gets the {@link RegistryType} that holds the types of {@link Tag tags}

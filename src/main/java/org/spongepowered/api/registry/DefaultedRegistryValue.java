@@ -34,17 +34,17 @@ import java.util.Optional;
  * within a {@link DefaultedRegistryType defaulted registry}.
  */
 @SuppressWarnings("unchecked")
-public interface DefaultedRegistryValue {
+public interface DefaultedRegistryValue<T extends DefaultedRegistryValue<T>> {
 
-    default <T> ResourceKey key(final DefaultedRegistryType<T> type) {
+    default ResourceKey key(final DefaultedRegistryType<T> type) {
         return Objects.requireNonNull(type, "type").get().valueKey((T) this);
     }
 
-    default <T> Optional<ResourceKey> findKey(final DefaultedRegistryType<T> type) {
+    default Optional<ResourceKey> findKey(final DefaultedRegistryType<T> type) {
         return Objects.requireNonNull(type, "type").find().flatMap(r -> r.findValueKey((T) this));
     }
 
-    default <T> DefaultedRegistryReference<T> asDefaultedReference(final DefaultedRegistryType<T> type) {
+    default DefaultedRegistryReference<T> asDefaultedReference(final DefaultedRegistryType<T> type) {
         return RegistryKey.of(Objects.requireNonNull(type, "type"), this.key(type)).asDefaultedReference(type.defaultHolder());
     }
 }
