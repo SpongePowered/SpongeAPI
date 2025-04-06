@@ -37,76 +37,76 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class DamageTypeTags {
 
-    public static final Tag<DamageType> ALWAYS_HURTS_ENDER_DRAGONS = DamageTypeTags.key(ResourceKey.minecraft("always_hurts_ender_dragons"));
+    public static final DefaultedTag<DamageType> ALWAYS_HURTS_ENDER_DRAGONS = DamageTypeTags.key(ResourceKey.minecraft("always_hurts_ender_dragons"));
 
-    public static final Tag<DamageType> ALWAYS_KILLS_ARMOR_STANDS = DamageTypeTags.key(ResourceKey.minecraft("always_kills_armor_stands"));
+    public static final DefaultedTag<DamageType> ALWAYS_KILLS_ARMOR_STANDS = DamageTypeTags.key(ResourceKey.minecraft("always_kills_armor_stands"));
 
-    public static final Tag<DamageType> ALWAYS_MOST_SIGNIFICANT_FALL = DamageTypeTags.key(ResourceKey.minecraft("always_most_significant_fall"));
+    public static final DefaultedTag<DamageType> ALWAYS_MOST_SIGNIFICANT_FALL = DamageTypeTags.key(ResourceKey.minecraft("always_most_significant_fall"));
 
-    public static final Tag<DamageType> ALWAYS_TRIGGERS_SILVERFISH = DamageTypeTags.key(ResourceKey.minecraft("always_triggers_silverfish"));
+    public static final DefaultedTag<DamageType> ALWAYS_TRIGGERS_SILVERFISH = DamageTypeTags.key(ResourceKey.minecraft("always_triggers_silverfish"));
 
-    public static final Tag<DamageType> AVOIDS_GUARDIAN_THORNS = DamageTypeTags.key(ResourceKey.minecraft("avoids_guardian_thorns"));
+    public static final DefaultedTag<DamageType> AVOIDS_GUARDIAN_THORNS = DamageTypeTags.key(ResourceKey.minecraft("avoids_guardian_thorns"));
 
-    public static final Tag<DamageType> BURN_FROM_STEPPING = DamageTypeTags.key(ResourceKey.minecraft("burn_from_stepping"));
+    public static final DefaultedTag<DamageType> BURN_FROM_STEPPING = DamageTypeTags.key(ResourceKey.minecraft("burn_from_stepping"));
 
-    public static final Tag<DamageType> BURNS_ARMOR_STANDS = DamageTypeTags.key(ResourceKey.minecraft("burns_armor_stands"));
+    public static final DefaultedTag<DamageType> BURNS_ARMOR_STANDS = DamageTypeTags.key(ResourceKey.minecraft("burns_armor_stands"));
 
-    public static final Tag<DamageType> BYPASSES_ARMOR = DamageTypeTags.key(ResourceKey.minecraft("bypasses_armor"));
+    public static final DefaultedTag<DamageType> BYPASSES_ARMOR = DamageTypeTags.key(ResourceKey.minecraft("bypasses_armor"));
 
-    public static final Tag<DamageType> BYPASSES_EFFECTS = DamageTypeTags.key(ResourceKey.minecraft("bypasses_effects"));
+    public static final DefaultedTag<DamageType> BYPASSES_EFFECTS = DamageTypeTags.key(ResourceKey.minecraft("bypasses_effects"));
 
-    public static final Tag<DamageType> BYPASSES_ENCHANTMENTS = DamageTypeTags.key(ResourceKey.minecraft("bypasses_enchantments"));
+    public static final DefaultedTag<DamageType> BYPASSES_ENCHANTMENTS = DamageTypeTags.key(ResourceKey.minecraft("bypasses_enchantments"));
 
-    public static final Tag<DamageType> BYPASSES_INVULNERABILITY = DamageTypeTags.key(ResourceKey.minecraft("bypasses_invulnerability"));
+    public static final DefaultedTag<DamageType> BYPASSES_INVULNERABILITY = DamageTypeTags.key(ResourceKey.minecraft("bypasses_invulnerability"));
 
-    public static final Tag<DamageType> BYPASSES_RESISTANCE = DamageTypeTags.key(ResourceKey.minecraft("bypasses_resistance"));
+    public static final DefaultedTag<DamageType> BYPASSES_RESISTANCE = DamageTypeTags.key(ResourceKey.minecraft("bypasses_resistance"));
 
-    public static final Tag<DamageType> BYPASSES_SHIELD = DamageTypeTags.key(ResourceKey.minecraft("bypasses_shield"));
+    public static final DefaultedTag<DamageType> BYPASSES_SHIELD = DamageTypeTags.key(ResourceKey.minecraft("bypasses_shield"));
 
-    public static final Tag<DamageType> BYPASSES_WOLF_ARMOR = DamageTypeTags.key(ResourceKey.minecraft("bypasses_wolf_armor"));
+    public static final DefaultedTag<DamageType> BYPASSES_WOLF_ARMOR = DamageTypeTags.key(ResourceKey.minecraft("bypasses_wolf_armor"));
 
-    public static final Tag<DamageType> CAN_BREAK_ARMOR_STAND = DamageTypeTags.key(ResourceKey.minecraft("can_break_armor_stand"));
+    public static final DefaultedTag<DamageType> CAN_BREAK_ARMOR_STAND = DamageTypeTags.key(ResourceKey.minecraft("can_break_armor_stand"));
 
-    public static final Tag<DamageType> DAMAGES_HELMET = DamageTypeTags.key(ResourceKey.minecraft("damages_helmet"));
+    public static final DefaultedTag<DamageType> DAMAGES_HELMET = DamageTypeTags.key(ResourceKey.minecraft("damages_helmet"));
 
-    public static final Tag<DamageType> IGNITES_ARMOR_STANDS = DamageTypeTags.key(ResourceKey.minecraft("ignites_armor_stands"));
+    public static final DefaultedTag<DamageType> IGNITES_ARMOR_STANDS = DamageTypeTags.key(ResourceKey.minecraft("ignites_armor_stands"));
 
-    public static final Tag<DamageType> IS_DROWNING = DamageTypeTags.key(ResourceKey.minecraft("is_drowning"));
+    public static final DefaultedTag<DamageType> IS_DROWNING = DamageTypeTags.key(ResourceKey.minecraft("is_drowning"));
 
-    public static final Tag<DamageType> IS_EXPLOSION = DamageTypeTags.key(ResourceKey.minecraft("is_explosion"));
+    public static final DefaultedTag<DamageType> IS_EXPLOSION = DamageTypeTags.key(ResourceKey.minecraft("is_explosion"));
 
-    public static final Tag<DamageType> IS_FALL = DamageTypeTags.key(ResourceKey.minecraft("is_fall"));
+    public static final DefaultedTag<DamageType> IS_FALL = DamageTypeTags.key(ResourceKey.minecraft("is_fall"));
 
-    public static final Tag<DamageType> IS_FIRE = DamageTypeTags.key(ResourceKey.minecraft("is_fire"));
+    public static final DefaultedTag<DamageType> IS_FIRE = DamageTypeTags.key(ResourceKey.minecraft("is_fire"));
 
-    public static final Tag<DamageType> IS_FREEZING = DamageTypeTags.key(ResourceKey.minecraft("is_freezing"));
+    public static final DefaultedTag<DamageType> IS_FREEZING = DamageTypeTags.key(ResourceKey.minecraft("is_freezing"));
 
-    public static final Tag<DamageType> IS_LIGHTNING = DamageTypeTags.key(ResourceKey.minecraft("is_lightning"));
+    public static final DefaultedTag<DamageType> IS_LIGHTNING = DamageTypeTags.key(ResourceKey.minecraft("is_lightning"));
 
-    public static final Tag<DamageType> IS_PLAYER_ATTACK = DamageTypeTags.key(ResourceKey.minecraft("is_player_attack"));
+    public static final DefaultedTag<DamageType> IS_PLAYER_ATTACK = DamageTypeTags.key(ResourceKey.minecraft("is_player_attack"));
 
-    public static final Tag<DamageType> IS_PROJECTILE = DamageTypeTags.key(ResourceKey.minecraft("is_projectile"));
+    public static final DefaultedTag<DamageType> IS_PROJECTILE = DamageTypeTags.key(ResourceKey.minecraft("is_projectile"));
 
-    public static final Tag<DamageType> MACE_SMASH = DamageTypeTags.key(ResourceKey.minecraft("mace_smash"));
+    public static final DefaultedTag<DamageType> MACE_SMASH = DamageTypeTags.key(ResourceKey.minecraft("mace_smash"));
 
-    public static final Tag<DamageType> NO_ANGER = DamageTypeTags.key(ResourceKey.minecraft("no_anger"));
+    public static final DefaultedTag<DamageType> NO_ANGER = DamageTypeTags.key(ResourceKey.minecraft("no_anger"));
 
-    public static final Tag<DamageType> NO_IMPACT = DamageTypeTags.key(ResourceKey.minecraft("no_impact"));
+    public static final DefaultedTag<DamageType> NO_IMPACT = DamageTypeTags.key(ResourceKey.minecraft("no_impact"));
 
-    public static final Tag<DamageType> NO_KNOCKBACK = DamageTypeTags.key(ResourceKey.minecraft("no_knockback"));
+    public static final DefaultedTag<DamageType> NO_KNOCKBACK = DamageTypeTags.key(ResourceKey.minecraft("no_knockback"));
 
-    public static final Tag<DamageType> PANIC_CAUSES = DamageTypeTags.key(ResourceKey.minecraft("panic_causes"));
+    public static final DefaultedTag<DamageType> PANIC_CAUSES = DamageTypeTags.key(ResourceKey.minecraft("panic_causes"));
 
-    public static final Tag<DamageType> PANIC_ENVIRONMENTAL_CAUSES = DamageTypeTags.key(ResourceKey.minecraft("panic_environmental_causes"));
+    public static final DefaultedTag<DamageType> PANIC_ENVIRONMENTAL_CAUSES = DamageTypeTags.key(ResourceKey.minecraft("panic_environmental_causes"));
 
-    public static final Tag<DamageType> WITCH_RESISTANT_TO = DamageTypeTags.key(ResourceKey.minecraft("witch_resistant_to"));
+    public static final DefaultedTag<DamageType> WITCH_RESISTANT_TO = DamageTypeTags.key(ResourceKey.minecraft("witch_resistant_to"));
 
-    public static final Tag<DamageType> WITHER_IMMUNE_TO = DamageTypeTags.key(ResourceKey.minecraft("wither_immune_to"));
+    public static final DefaultedTag<DamageType> WITHER_IMMUNE_TO = DamageTypeTags.key(ResourceKey.minecraft("wither_immune_to"));
 
     private DamageTypeTags() {
     }
 
-    private static Tag<DamageType> key(final ResourceKey key) {
-        return Tag.of(RegistryTypes.DAMAGE_TYPE, key);
+    private static DefaultedTag<DamageType> key(final ResourceKey key) {
+        return DefaultedTag.of(RegistryTypes.DAMAGE_TYPE, key);
     }
 }

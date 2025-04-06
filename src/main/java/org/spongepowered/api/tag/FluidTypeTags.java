@@ -37,14 +37,14 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class FluidTypeTags {
 
-    public static final Tag<FluidType> LAVA = FluidTypeTags.key(ResourceKey.minecraft("lava"));
+    public static final DefaultedTag<FluidType> LAVA = FluidTypeTags.key(ResourceKey.minecraft("lava"));
 
-    public static final Tag<FluidType> WATER = FluidTypeTags.key(ResourceKey.minecraft("water"));
+    public static final DefaultedTag<FluidType> WATER = FluidTypeTags.key(ResourceKey.minecraft("water"));
 
     private FluidTypeTags() {
     }
 
-    private static Tag<FluidType> key(final ResourceKey key) {
-        return Tag.of(RegistryTypes.FLUID_TYPE, key);
+    private static DefaultedTag<FluidType> key(final ResourceKey key) {
+        return DefaultedTag.of(RegistryTypes.FLUID_TYPE, key);
     }
 }

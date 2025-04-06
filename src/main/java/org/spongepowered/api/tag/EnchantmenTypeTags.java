@@ -37,54 +37,54 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class EnchantmenTypeTags {
 
-    public static final Tag<EnchantmentType> CURSE = EnchantmenTypeTags.key(ResourceKey.minecraft("curse"));
+    public static final DefaultedTag<EnchantmentType> CURSE = EnchantmenTypeTags.key(ResourceKey.minecraft("curse"));
 
-    public static final Tag<EnchantmentType> DOUBLE_TRADE_PRICE = EnchantmenTypeTags.key(ResourceKey.minecraft("double_trade_price"));
+    public static final DefaultedTag<EnchantmentType> DOUBLE_TRADE_PRICE = EnchantmenTypeTags.key(ResourceKey.minecraft("double_trade_price"));
 
-    public static final Tag<EnchantmentType> EXCLUSIVE_SET_ARMOR = EnchantmenTypeTags.key(ResourceKey.minecraft("exclusive_set/armor"));
+    public static final DefaultedTag<EnchantmentType> EXCLUSIVE_SET_ARMOR = EnchantmenTypeTags.key(ResourceKey.minecraft("exclusive_set/armor"));
 
-    public static final Tag<EnchantmentType> EXCLUSIVE_SET_BOOTS = EnchantmenTypeTags.key(ResourceKey.minecraft("exclusive_set/boots"));
+    public static final DefaultedTag<EnchantmentType> EXCLUSIVE_SET_BOOTS = EnchantmenTypeTags.key(ResourceKey.minecraft("exclusive_set/boots"));
 
-    public static final Tag<EnchantmentType> EXCLUSIVE_SET_BOW = EnchantmenTypeTags.key(ResourceKey.minecraft("exclusive_set/bow"));
+    public static final DefaultedTag<EnchantmentType> EXCLUSIVE_SET_BOW = EnchantmenTypeTags.key(ResourceKey.minecraft("exclusive_set/bow"));
 
-    public static final Tag<EnchantmentType> EXCLUSIVE_SET_CROSSBOW = EnchantmenTypeTags.key(ResourceKey.minecraft("exclusive_set/crossbow"));
+    public static final DefaultedTag<EnchantmentType> EXCLUSIVE_SET_CROSSBOW = EnchantmenTypeTags.key(ResourceKey.minecraft("exclusive_set/crossbow"));
 
-    public static final Tag<EnchantmentType> EXCLUSIVE_SET_DAMAGE = EnchantmenTypeTags.key(ResourceKey.minecraft("exclusive_set/damage"));
+    public static final DefaultedTag<EnchantmentType> EXCLUSIVE_SET_DAMAGE = EnchantmenTypeTags.key(ResourceKey.minecraft("exclusive_set/damage"));
 
-    public static final Tag<EnchantmentType> EXCLUSIVE_SET_MINING = EnchantmenTypeTags.key(ResourceKey.minecraft("exclusive_set/mining"));
+    public static final DefaultedTag<EnchantmentType> EXCLUSIVE_SET_MINING = EnchantmenTypeTags.key(ResourceKey.minecraft("exclusive_set/mining"));
 
-    public static final Tag<EnchantmentType> EXCLUSIVE_SET_RIPTIDE = EnchantmenTypeTags.key(ResourceKey.minecraft("exclusive_set/riptide"));
+    public static final DefaultedTag<EnchantmentType> EXCLUSIVE_SET_RIPTIDE = EnchantmenTypeTags.key(ResourceKey.minecraft("exclusive_set/riptide"));
 
-    public static final Tag<EnchantmentType> IN_ENCHANTING_TABLE = EnchantmenTypeTags.key(ResourceKey.minecraft("in_enchanting_table"));
+    public static final DefaultedTag<EnchantmentType> IN_ENCHANTING_TABLE = EnchantmenTypeTags.key(ResourceKey.minecraft("in_enchanting_table"));
 
-    public static final Tag<EnchantmentType> NON_TREASURE = EnchantmenTypeTags.key(ResourceKey.minecraft("non_treasure"));
+    public static final DefaultedTag<EnchantmentType> NON_TREASURE = EnchantmenTypeTags.key(ResourceKey.minecraft("non_treasure"));
 
-    public static final Tag<EnchantmentType> ON_MOB_SPAWN_EQUIPMENT = EnchantmenTypeTags.key(ResourceKey.minecraft("on_mob_spawn_equipment"));
+    public static final DefaultedTag<EnchantmentType> ON_MOB_SPAWN_EQUIPMENT = EnchantmenTypeTags.key(ResourceKey.minecraft("on_mob_spawn_equipment"));
 
-    public static final Tag<EnchantmentType> ON_RANDOM_LOOT = EnchantmenTypeTags.key(ResourceKey.minecraft("on_random_loot"));
+    public static final DefaultedTag<EnchantmentType> ON_RANDOM_LOOT = EnchantmenTypeTags.key(ResourceKey.minecraft("on_random_loot"));
 
-    public static final Tag<EnchantmentType> ON_TRADED_EQUIPMENT = EnchantmenTypeTags.key(ResourceKey.minecraft("on_traded_equipment"));
+    public static final DefaultedTag<EnchantmentType> ON_TRADED_EQUIPMENT = EnchantmenTypeTags.key(ResourceKey.minecraft("on_traded_equipment"));
 
-    public static final Tag<EnchantmentType> PREVENTS_BEE_SPAWNS_WHEN_MINING = EnchantmenTypeTags.key(ResourceKey.minecraft("prevents_bee_spawns_when_mining"));
+    public static final DefaultedTag<EnchantmentType> PREVENTS_BEE_SPAWNS_WHEN_MINING = EnchantmenTypeTags.key(ResourceKey.minecraft("prevents_bee_spawns_when_mining"));
 
-    public static final Tag<EnchantmentType> PREVENTS_DECORATED_POT_SHATTERING = EnchantmenTypeTags.key(ResourceKey.minecraft("prevents_decorated_pot_shattering"));
+    public static final DefaultedTag<EnchantmentType> PREVENTS_DECORATED_POT_SHATTERING = EnchantmenTypeTags.key(ResourceKey.minecraft("prevents_decorated_pot_shattering"));
 
-    public static final Tag<EnchantmentType> PREVENTS_ICE_MELTING = EnchantmenTypeTags.key(ResourceKey.minecraft("prevents_ice_melting"));
+    public static final DefaultedTag<EnchantmentType> PREVENTS_ICE_MELTING = EnchantmenTypeTags.key(ResourceKey.minecraft("prevents_ice_melting"));
 
-    public static final Tag<EnchantmentType> PREVENTS_INFESTED_SPAWNS = EnchantmenTypeTags.key(ResourceKey.minecraft("prevents_infested_spawns"));
+    public static final DefaultedTag<EnchantmentType> PREVENTS_INFESTED_SPAWNS = EnchantmenTypeTags.key(ResourceKey.minecraft("prevents_infested_spawns"));
 
-    public static final Tag<EnchantmentType> SMELTS_LOOT = EnchantmenTypeTags.key(ResourceKey.minecraft("smelts_loot"));
+    public static final DefaultedTag<EnchantmentType> SMELTS_LOOT = EnchantmenTypeTags.key(ResourceKey.minecraft("smelts_loot"));
 
-    public static final Tag<EnchantmentType> TOOLTIP_ORDER = EnchantmenTypeTags.key(ResourceKey.minecraft("tooltip_order"));
+    public static final DefaultedTag<EnchantmentType> TOOLTIP_ORDER = EnchantmenTypeTags.key(ResourceKey.minecraft("tooltip_order"));
 
-    public static final Tag<EnchantmentType> TRADEABLE = EnchantmenTypeTags.key(ResourceKey.minecraft("tradeable"));
+    public static final DefaultedTag<EnchantmentType> TRADEABLE = EnchantmenTypeTags.key(ResourceKey.minecraft("tradeable"));
 
-    public static final Tag<EnchantmentType> TREASURE = EnchantmenTypeTags.key(ResourceKey.minecraft("treasure"));
+    public static final DefaultedTag<EnchantmentType> TREASURE = EnchantmenTypeTags.key(ResourceKey.minecraft("treasure"));
 
     private EnchantmenTypeTags() {
     }
 
-    private static Tag<EnchantmentType> key(final ResourceKey key) {
-        return Tag.of(RegistryTypes.ENCHANTMENT_TYPE, key);
+    private static DefaultedTag<EnchantmentType> key(final ResourceKey key) {
+        return DefaultedTag.of(RegistryTypes.ENCHANTMENT_TYPE, key);
     }
 }
