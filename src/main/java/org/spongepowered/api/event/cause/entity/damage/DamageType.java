@@ -29,7 +29,6 @@ import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
-import org.spongepowered.api.tag.Tag;
 import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.Nameable;
@@ -64,15 +63,6 @@ public interface DamageType extends DefaultedRegistryValue, Nameable, Taggable<D
      * @return The increase in exhaustion
      */
     double exhaustion();
-
-    /**
-     * Checks whether this damage types matches a damage type tag.
-     *
-     * @param tag The tag to check.
-     * @return true if this damage type matches the damage type tag.
-     */
-    @Override
-    boolean is(Tag<DamageType> tag);
 
     /**
      * Returns the damage scaling.
