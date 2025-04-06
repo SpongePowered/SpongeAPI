@@ -50,7 +50,7 @@ import java.util.function.Supplier;
  *     {@link BlockTypeTags#LOGS_THAT_BURN}</li>
  * </ul>
  */
-public interface Tag<T> extends ResourceKeyed {
+public interface Tag<T> extends ResourceKeyed, Comparable<Tag<?>> {
 
     static <T> Tag<T> of(final RegistryType<T> registryType, final ResourceKey key) {
         return Sponge.game().factoryProvider().provide(Tag.Factory.class).of(registryType, key);
@@ -62,6 +62,16 @@ public interface Tag<T> extends ResourceKeyed {
      * @return The location
      */
     RegistryType<T> registry();
+
+    @Override
+    default int compareTo(final Tag<?> tag) {
+        final int registry = this.registry().compareTo(tag.registry());
+        if (registry != 0) {
+            return registry;
+        }
+
+        return this.key().compareTo(tag.key());
+    }
 
     DefaultedTag<T> asDefaultedTag(Supplier<RegistryHolder> holder);
 

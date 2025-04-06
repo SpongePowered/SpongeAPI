@@ -37,7 +37,7 @@ import java.util.function.Supplier;
  *
  * @param <T> The type
  */
-public interface RegistryKey<T> {
+public interface RegistryKey<T> extends Comparable<RegistryKey<?>> {
 
     static <T> RegistryKey<T> of(final RegistryType<T> registry, final ResourceKey location) {
         return Sponge.game().factoryProvider().provide(Factory.class).of(Objects.requireNonNull(registry, "registry"),
@@ -58,6 +58,16 @@ public interface RegistryKey<T> {
      * @return The key
      */
     ResourceKey location();
+
+    @Override
+    default int compareTo(final RegistryKey<?> registryKey) {
+        final int registry = this.registry().compareTo(registryKey.registry());
+        if (registry != 0) {
+            return registry;
+        }
+
+        return this.location().compareTo(registryKey.location());
+    }
 
     /**
      * Generates a utility {@link RegistryReference reference} used to assist in querying a value from this key

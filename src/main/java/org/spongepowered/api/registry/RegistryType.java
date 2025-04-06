@@ -30,7 +30,7 @@ import org.spongepowered.api.Sponge;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-public interface RegistryType<T> {
+public interface RegistryType<T> extends Comparable<RegistryType<?>> {
 
     static <T> RegistryType<T> of(final ResourceKey root, final ResourceKey location) {
         return Sponge.game().factoryProvider().provide(Factory.class).create(Objects.requireNonNull(root, "root"),
@@ -47,6 +47,16 @@ public interface RegistryType<T> {
 
     default RegistryReference<T> referenced(final ResourceKey key) {
         return RegistryKey.of(this, Objects.requireNonNull(key, "key")).asReference();
+    }
+
+    @Override
+    default int compareTo(final RegistryType<?> registryType) {
+        final int root = this.root().compareTo(registryType.root());
+        if (root != 0) {
+            return root;
+        }
+
+        return this.location().compareTo(registryType.location());
     }
 
     /**
