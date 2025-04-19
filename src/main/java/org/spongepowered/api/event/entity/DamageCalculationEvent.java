@@ -79,7 +79,6 @@ public interface DamageCalculationEvent extends Event, Cancellable {
 
     /**
      * Fires before the damage steps and their side effects are applied.
-     * The final damage is still unknown.
      */
     @ImplementedBy(AbstractDamageCalculationEventPre.class)
     interface Pre extends DamageCalculationEvent {
@@ -160,7 +159,6 @@ public interface DamageCalculationEvent extends Event, Cancellable {
     /**
      * Fires after the damage steps and their side effects have been applied.
      * The steps have been captured and can't be changed.
-     * The final damage can still be changed.
      */
     interface Post extends DamageCalculationEvent {
 
