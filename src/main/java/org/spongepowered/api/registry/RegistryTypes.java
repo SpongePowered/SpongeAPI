@@ -161,6 +161,7 @@ import org.spongepowered.api.util.rotation.Rotation;
 import org.spongepowered.api.world.ChunkRegenerateFlag;
 import org.spongepowered.api.world.HeightType;
 import org.spongepowered.api.world.LightType;
+import org.spongepowered.api.world.SignalType;
 import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.biome.Biome;
 import org.spongepowered.api.world.biome.climate.GrassColorModifier;
@@ -490,6 +491,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<SelectorSortAlgorithm> SELECTOR_SORT_ALGORITHM = RegistryTypes.spongeKeyInGame("selector_sort_algorithm");
 
     public static final DefaultedRegistryType<SelectorType> SELECTOR_TYPE = RegistryTypes.spongeKeyInGame("selector_type");
+
+    public static final DefaultedRegistryType<SignalType> SIGNAL_TYPE = RegistryTypes.spongeKeyInGame("signal_type");
 
     public static final DefaultedRegistryType<SkinPart> SKIN_PART = RegistryTypes.spongeKeyInGame("skin_part");
 
