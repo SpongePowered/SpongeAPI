@@ -44,7 +44,7 @@ public final class SignalTypes {
     public static final DefaultedRegistryReference<SignalType> WEAK = SignalTypes.key(ResourceKey.sponge("weak"));
 
     /**
-     * Powers neighbours and goes through them powering their neighbours.
+     * Goes through neighbours powering their neighbours.
      */
     public static final DefaultedRegistryReference<SignalType> STRONG = SignalTypes.key(ResourceKey.sponge("strong"));
 
