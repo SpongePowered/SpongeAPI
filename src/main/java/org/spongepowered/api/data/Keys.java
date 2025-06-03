@@ -1125,6 +1125,13 @@ public final class Keys {
     public static final Key<Value<UUID>> FIRST_TRUSTED = Keys.key(ResourceKey.sponge("first_trusted"), UUID.class);
 
     /**
+     * Whether a {@link ItemFrame} is "fixed".
+     *
+     * <p>Fixed item frames can not have their contents modified.</p>
+     */
+    public static final Key<Value<Boolean>> FIXED = Keys.key(ResourceKey.sponge("fixed"), Boolean.class);
+
+    /**
      * The fixed time in a {@link ServerWorld world} of a {@link WorldType}.
      * <p>If set the time is fixed at a particular {@link MinecraftDayTime} otherwise time flows freely.</p>
      * Readonly
