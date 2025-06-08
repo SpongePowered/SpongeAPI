@@ -22,20 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.damage;
+package org.spongepowered.api.event.impl.entity;
 
-import org.spongepowered.api.event.Cause;
-import org.spongepowered.api.registry.DefaultedRegistryValue;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.event.entity.DamageEntityEvent;
+import org.spongepowered.api.event.impl.AbstractEvent;
 
-/**
- * A type of {@link DamageModifier} that can apply a "grouping" so to speak
- * for the damage modifier. The use case is being able to differentiate between
- * various {@link DamageModifier}s based on the {@link DamageModifierType}
- * without digging through the {@link Cause} provided by
- * {@link DamageModifier#cause()}.
- */
-@CatalogedBy(DamageModifierTypes.class)
-public interface DamageModifierType extends DefaultedRegistryValue<DamageModifierType> {
+import java.util.Optional;
 
+public abstract class AbstractDamageEntityEventPost extends AbstractEvent implements DamageEntityEvent.Post {
+
+    @Override
+    public boolean willCauseDeath() {
+        final Optional<Double> health = this.entity().get(Keys.HEALTH);
+        return health.isPresent() && health.get() - this.finalDamage() <= 0;
+    }
 }

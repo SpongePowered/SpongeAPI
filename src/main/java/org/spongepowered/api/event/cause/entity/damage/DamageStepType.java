@@ -24,29 +24,35 @@
  */
 package org.spongepowered.api.event.cause.entity.damage;
 
-import java.util.function.DoubleUnaryOperator;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * A function associating a
- * {@link DamageModifier} with a {@link DoubleUnaryOperator} of the resultant
- * effect.
- *
- * @param <M> The modifier type
+ * Represents a type of {@link DamageStep}.
  */
-public interface ModifierFunction<M> {
+@CatalogedBy(DamageStepTypes.class)
+public interface DamageStepType extends DefaultedRegistryValue {
 
     /**
-     * Gets the modifier used by this modifier function.
+     * Creates a new {@link DamageStepType}.
      *
-     * @return The modifier
+     * @return the new step type
      */
-    M modifier();
+    static DamageStepType create() {
+        return Sponge.game().factoryProvider().provide(Factory.class).create();
+    }
 
     /**
-     * Gets the double unary operator used by this function.
-     *
-     * @return The unary operator
+     * A factory to create {@link DamageStepType}s.
      */
-    DoubleUnaryOperator function();
+    interface Factory {
 
+        /**
+         * Creates a new {@link DamageStepType}.
+         *
+         * @return the new step type
+         */
+        DamageStepType create();
+    }
 }

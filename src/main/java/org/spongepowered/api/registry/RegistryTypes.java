@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.registry;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.Advancement;
@@ -103,7 +102,6 @@ import org.spongepowered.api.effect.particle.ParticleType;
 import org.spongepowered.api.effect.potion.PotionEffectType;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.effect.sound.music.MusicDisc;
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityCategory;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.ai.goal.GoalExecutorType;
@@ -120,8 +118,8 @@ import org.spongepowered.api.event.cause.entity.DismountType;
 import org.spongepowered.api.event.cause.entity.MovementType;
 import org.spongepowered.api.event.cause.entity.SpawnType;
 import org.spongepowered.api.event.cause.entity.damage.DamageEffect;
-import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;
 import org.spongepowered.api.event.cause.entity.damage.DamageScaling;
+import org.spongepowered.api.event.cause.entity.damage.DamageStepType;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.fluid.FluidType;
 import org.spongepowered.api.item.FireworkShape;
@@ -234,7 +232,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<EntityCategory> ENTITY_CATEGORY = RegistryTypes.spongeKeyInGame("mob_category");
 
-    public static final DefaultedRegistryType<EntityType<? extends @NonNull Entity>> ENTITY_TYPE = RegistryTypes.minecraftKeyInGame("entity_type");
+    public static final DefaultedRegistryType<EntityType<?>> ENTITY_TYPE = RegistryTypes.minecraftKeyInGame("entity_type");
 
     public static final DefaultedRegistryType<Feature> FEATURE = RegistryTypes.minecraftKeyInServer("worldgen/configured_feature");
 
@@ -270,7 +268,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<PotionType> POTION_TYPE = RegistryTypes.minecraftKeyInGame("potion");
 
-    public static final DefaultedRegistryType<RecipeType<? extends @NonNull Recipe<?>>> RECIPE_TYPE = RegistryTypes.minecraftKeyInGame("recipe_type");
+    public static final DefaultedRegistryType<RecipeType<?>> RECIPE_TYPE = RegistryTypes.minecraftKeyInGame("recipe_type");
 
     public static final DefaultedRegistryType<SoundType> SOUND_TYPE = RegistryTypes.minecraftKeyInGame("sound_event");
 
@@ -284,7 +282,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<StructureType> STRUCTURE_TYPE = RegistryTypes.minecraftKeyInGame("worldgen/structure_type");
 
-    public static final DefaultedRegistryType<Trigger<? extends @NonNull Object>> TRIGGER = RegistryTypes.minecraftKeyInGame("trigger_type");
+    public static final DefaultedRegistryType<Trigger<?>> TRIGGER = RegistryTypes.minecraftKeyInGame("trigger_type");
 
     public static final DefaultedRegistryType<TrimMaterial> TRIM_MATERIAL = RegistryTypes.minecraftKeyInServer("trim_material");
 
@@ -337,7 +335,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<CommandRegistrarType<?>> COMMAND_REGISTRAR_TYPE = RegistryTypes.spongeKeyInGame("command_registrar_type");
 
-    public static final DefaultedRegistryType<CommandTreeNodeType<? extends @NonNull Object>> COMMAND_TREE_NODE_TYPE = RegistryTypes.spongeKeyInServer("command_tree_node_type");
+    public static final DefaultedRegistryType<CommandTreeNodeType<?>> COMMAND_TREE_NODE_TYPE = RegistryTypes.spongeKeyInServer("command_tree_node_type");
 
     public static final DefaultedRegistryType<ComparatorMode> COMPARATOR_MODE = RegistryTypes.spongeKeyInGame("comparator_mode");
 
@@ -345,7 +343,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<Currency> CURRENCY = RegistryTypes.spongeKeyInGame("currency");
 
-    public static final DefaultedRegistryType<DamageModifierType> DAMAGE_MODIFIER_TYPE = RegistryTypes.spongeKeyInGame("damage_modifier_type");
+    public static final DefaultedRegistryType<DamageStepType> DAMAGE_STEP_TYPE = RegistryTypes.spongeKeyInGame("damage_step_type");
 
     public static final DefaultedRegistryType<DamageType> DAMAGE_TYPE = RegistryTypes.minecraftKeyInServer("damage_type");
 
