@@ -29,7 +29,6 @@ import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.ValueNotFoundException;
 
-import java.util.Objects;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
@@ -45,12 +44,12 @@ public interface DefaultedTag<T> extends Tag<T> {
     Supplier<RegistryHolder> defaultHolder();
 
     /**
-     * Returns the {@link Stream} of values tagged by this tag in the {@link #defaultHolder()}.
+     * Returns the {@link Stream} of values tagged by this tag.
      *
      * <p>Great care needs to be made in calling this method with any uncertainty as to
-     * if the {@link #registry()} will exist in the {@link #defaultHolder()}. Should the
-     * key lack a value, a {@link ValueNotFoundException} will be thrown. Therefore, it
-     * is advised to call {@link #findValues()} instead.</p>
+     * if the {@link #registry()} will exist in the holder. Should the key lack a value,
+     * a {@link ValueNotFoundException} will be thrown. Therefore, it is advised to call
+     * {@link #findValues()} instead.</p>
      *
      * @return The {@link Stream} of values
      */
@@ -59,7 +58,7 @@ public interface DefaultedTag<T> extends Tag<T> {
     }
 
     /**
-     * Returns the {@link Stream} of values tagged by this tag in the {@link #defaultHolder()}
+     * Returns the {@link Stream} of values tagged by this tag in the holder
      * if it contains this tag's {@link #registry()}, or {@link Stream#empty()} otherwise.
      *
      * @return The {@link Stream} of values
@@ -69,12 +68,10 @@ public interface DefaultedTag<T> extends Tag<T> {
     }
 
     /**
-     * Returns whether this tag is associated with the given value in the {@link #defaultHolder()}.
+     * Returns whether this tag is associated with the given value.
      *
      * @param value The value
-     * @return true if this tag is associated with the given value in the {@link #defaultHolder()}
+     * @return true if this tag is associated with the given value
      */
-    default boolean contains(final T value) {
-        return this.findValues().anyMatch(Objects.requireNonNull(value, "value")::equals);
-    }
+    boolean contains(T value);
 }

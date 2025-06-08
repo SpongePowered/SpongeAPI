@@ -26,16 +26,12 @@ package org.spongepowered.api.tag;
 
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
-import org.spongepowered.api.registry.Registry;
-import org.spongepowered.api.registry.RegistryHolder;
 
-import java.util.Objects;
 import java.util.stream.Stream;
 
 /**
  * A type that may be included in one or more {@link Tag} collections.
  */
-@SuppressWarnings("unchecked")
 public interface Taggable<T extends Taggable<T>> extends DefaultedRegistryValue {
 
     /**
@@ -43,30 +39,7 @@ public interface Taggable<T extends Taggable<T>> extends DefaultedRegistryValue 
      *
      * @return The {@link Stream} of {@link Tag}s.
      */
-    default Stream<Tag<T>> tags(final DefaultedRegistryType<T> registryType) {
-        final Registry<T> registry = Objects.requireNonNull(registryType, "registryType").get();
-        return registry.tags().filter(tag -> this.is(registry, tag));
-    }
-
-    /**
-     * Returns whether the given tag is associated with this object in the given registry holder.
-     *
-     * @param tag The tag
-     * @return true if the given tag is associated with this object in the given registry holder
-     */
-    default boolean is(final RegistryHolder registryHolder, final Tag<T> tag) {
-        return registryHolder.findRegistry(tag.registry()).map(r -> this.is(r, tag)).orElse(false);
-    }
-
-    /**
-     * Returns whether the given tag is associated with this object in the given registry.
-     *
-     * @param tag The tag
-     * @return true if the given tag is associated with this object in the given registry
-     */
-    default boolean is(final Registry<T> registry, final Tag<T> tag) {
-        return registry.taggedValues(tag).anyMatch(this::equals);
-    }
+    Stream<Tag<T>> tags(DefaultedRegistryType<T> registryType);
 
     /**
      * Returns whether the given tag is associated with this object.
@@ -74,7 +47,8 @@ public interface Taggable<T extends Taggable<T>> extends DefaultedRegistryValue 
      * @param tag The tag
      * @return true if the given tag is associated with this object
      */
-    default boolean is(final DefaultedTag<T> tag) {
+    @SuppressWarnings("unchecked")
+    default boolean is(DefaultedTag<T> tag) {
         return tag.contains((T) this);
     }
 }
