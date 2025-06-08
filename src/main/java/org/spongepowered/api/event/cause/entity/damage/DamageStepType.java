@@ -32,7 +32,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a type of {@link DamageStep}.
  */
 @CatalogedBy(DamageStepTypes.class)
-public interface DamageStepType extends DefaultedRegistryValue {
+public interface DamageStepType extends DefaultedRegistryValue<DamageStepType> {
 
     /**
      * Creates a new {@link DamageStepType}.
