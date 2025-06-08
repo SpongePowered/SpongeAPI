@@ -290,6 +290,8 @@ import org.spongepowered.api.world.portal.Portal;
 import org.spongepowered.api.world.portal.PortalLogic;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
+import org.spongepowered.api.world.server.WorldArchetype;
+import org.spongepowered.api.world.server.WorldArchetypeType;
 import org.spongepowered.api.world.server.storage.ServerWorldProperties;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.Weather;
@@ -3549,6 +3551,18 @@ public final class Keys {
      * spell being casted by an {@link Evoker}
      */
     public static final Key<Value<Sheep>> WOLOLO_TARGET = Keys.key(ResourceKey.sponge("wololo_target"), Sheep.class);
+
+    /**
+     * The {@link WorldArchetype} of a {@link World} or {@link ServerWorldProperties}
+     * Readonly
+     */
+    public static final Key<Value<WorldArchetype>> WORLD_ARCHETYPE = Keys.key(ResourceKey.sponge("world_archetype"), WorldArchetype.class);
+
+    /**
+     * The {@link WorldArchetypeType} of a {@link World} or {@link ServerWorldProperties}
+     * Readonly
+     */
+    public static final Key<Value<WorldArchetypeType>> WORLD_ARCHETYPE_TYPE = Keys.key(ResourceKey.sponge("world_archetype_type"), WorldArchetypeType.class);
 
     /**
      * The world border of {@link WorldProperties}

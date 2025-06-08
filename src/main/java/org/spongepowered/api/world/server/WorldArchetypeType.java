@@ -27,6 +27,7 @@ package org.spongepowered.api.world.server;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.generation.ChunkGenerator;
@@ -49,7 +50,7 @@ public interface WorldArchetypeType extends DefaultedRegistryValue, DataPackSeri
 
     ChunkGenerator chunkGenerator();
 
-    interface Builder extends org.spongepowered.api.util.Builder<WorldArchetypeType, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<WorldArchetypeType, Builder>, CopyableBuilder<WorldArchetypeType, Builder> {
 
         Builder worldType(WorldType worldType);
 

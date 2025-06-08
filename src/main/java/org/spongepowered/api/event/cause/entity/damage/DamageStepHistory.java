@@ -22,36 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.world.server;
+package org.spongepowered.api.event.cause.entity.damage;
 
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.util.CopyableBuilder;
-import org.spongepowered.api.world.generation.config.WorldGenerationConfig;
+import java.util.List;
 
-import java.util.Optional;
+/**
+ * Captures the root steps occurring during a damage calculation.
+ */
+public interface DamageStepHistory {
 
-public interface WorldArchetype {
-
-    static WorldArchetype.Builder builder() {
-        return Sponge.game().builderProvider().provide(WorldArchetype.Builder.class);
-    }
-
-    static WorldArchetype of(WorldArchetypeType type) {
-        return WorldArchetype.builder().type(type).build();
-    }
-
-    static WorldArchetype of(WorldArchetypeType type, WorldGenerationConfig generationConfig) {
-        return WorldArchetype.builder().type(type).generationConfig(generationConfig).build();
-    }
-
-    WorldArchetypeType type();
-
-    Optional<WorldGenerationConfig> generationConfig();
-
-    interface Builder extends org.spongepowered.api.util.Builder<WorldArchetype, Builder>, CopyableBuilder<WorldArchetype, Builder> {
-
-        Builder type(WorldArchetypeType type);
-
-        Builder generationConfig(WorldGenerationConfig generationConfig);
-    }
+    /**
+     * Gets the list of the captured root steps during the damage calculation in the order they have been applied.
+     * Note that this list is not an exhaustive representation of all the operations applied,
+     * especially in a modded environment.
+     * The list is unmodifiable and will gradually grow during the damage calculation.
+     *
+     * @return The root steps.
+     */
+    List<DamageStep> rootSteps();
 }

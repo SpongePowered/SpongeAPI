@@ -24,18 +24,35 @@
  */
 package org.spongepowered.api.event.cause.entity.damage;
 
-import org.spongepowered.api.event.Cause;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * A type of {@link DamageModifier} that can apply a "grouping" so to speak
- * for the damage modifier. The use case is being able to differentiate between
- * various {@link DamageModifier}s based on the {@link DamageModifierType}
- * without digging through the {@link Cause} provided by
- * {@link DamageModifier#cause()}.
+ * Represents a type of {@link DamageStep}.
  */
-@CatalogedBy(DamageModifierTypes.class)
-public interface DamageModifierType extends DefaultedRegistryValue {
+@CatalogedBy(DamageStepTypes.class)
+public interface DamageStepType extends DefaultedRegistryValue {
 
+    /**
+     * Creates a new {@link DamageStepType}.
+     *
+     * @return the new step type
+     */
+    static DamageStepType create() {
+        return Sponge.game().factoryProvider().provide(Factory.class).create();
+    }
+
+    /**
+     * A factory to create {@link DamageStepType}s.
+     */
+    interface Factory {
+
+        /**
+         * Creates a new {@link DamageStepType}.
+         *
+         * @return the new step type
+         */
+        DamageStepType create();
+    }
 }
