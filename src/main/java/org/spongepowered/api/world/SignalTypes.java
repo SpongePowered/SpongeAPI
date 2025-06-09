@@ -41,15 +41,15 @@ public final class SignalTypes {
     /**
      * Powers neighbours.
      */
-    public static final DefaultedRegistryReference<SignalType> WEAK = SignalTypes.key(ResourceKey.sponge("weak"));
+    public static final DefaultedRegistryReference<SignalType> DIRECT = SignalTypes.key(ResourceKey.sponge("direct"));
 
     /**
      * Goes through neighbours powering their neighbours.
      */
-    public static final DefaultedRegistryReference<SignalType> STRONG = SignalTypes.key(ResourceKey.sponge("strong"));
+    public static final DefaultedRegistryReference<SignalType> INDIRECT = SignalTypes.key(ResourceKey.sponge("indirect"));
 
     /**
-     * The combination of {@link #WEAK} and {@link #STRONG} signals.<br>
+     * The combination of {@link #DIRECT} and {@link #INDIRECT} signals.<br>
      * Usually depends on block properties to choose between these two signals
      * (e.g. if the block {@link SignalAwareVolume#canConductSignal(int, int, int)}).
      */
