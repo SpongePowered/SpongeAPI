@@ -37,356 +37,356 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class ItemTypeTags {
 
-    public static final Tag<ItemType> ACACIA_LOGS = ItemTypeTags.key(ResourceKey.minecraft("acacia_logs"));
+    public static final DefaultedTag<ItemType> ACACIA_LOGS = ItemTypeTags.key(ResourceKey.minecraft("acacia_logs"));
 
-    public static final Tag<ItemType> ANVIL = ItemTypeTags.key(ResourceKey.minecraft("anvil"));
+    public static final DefaultedTag<ItemType> ANVIL = ItemTypeTags.key(ResourceKey.minecraft("anvil"));
 
-    public static final Tag<ItemType> ARMADILLO_FOOD = ItemTypeTags.key(ResourceKey.minecraft("armadillo_food"));
+    public static final DefaultedTag<ItemType> ARMADILLO_FOOD = ItemTypeTags.key(ResourceKey.minecraft("armadillo_food"));
 
-    public static final Tag<ItemType> ARROWS = ItemTypeTags.key(ResourceKey.minecraft("arrows"));
+    public static final DefaultedTag<ItemType> ARROWS = ItemTypeTags.key(ResourceKey.minecraft("arrows"));
 
-    public static final Tag<ItemType> AXES = ItemTypeTags.key(ResourceKey.minecraft("axes"));
+    public static final DefaultedTag<ItemType> AXES = ItemTypeTags.key(ResourceKey.minecraft("axes"));
 
-    public static final Tag<ItemType> AXOLOTL_FOOD = ItemTypeTags.key(ResourceKey.minecraft("axolotl_food"));
+    public static final DefaultedTag<ItemType> AXOLOTL_FOOD = ItemTypeTags.key(ResourceKey.minecraft("axolotl_food"));
 
-    public static final Tag<ItemType> BAMBOO_BLOCKS = ItemTypeTags.key(ResourceKey.minecraft("bamboo_blocks"));
+    public static final DefaultedTag<ItemType> BAMBOO_BLOCKS = ItemTypeTags.key(ResourceKey.minecraft("bamboo_blocks"));
 
-    public static final Tag<ItemType> BANNERS = ItemTypeTags.key(ResourceKey.minecraft("banners"));
+    public static final DefaultedTag<ItemType> BANNERS = ItemTypeTags.key(ResourceKey.minecraft("banners"));
 
-    public static final Tag<ItemType> BEACON_PAYMENT_ITEMS = ItemTypeTags.key(ResourceKey.minecraft("beacon_payment_items"));
+    public static final DefaultedTag<ItemType> BEACON_PAYMENT_ITEMS = ItemTypeTags.key(ResourceKey.minecraft("beacon_payment_items"));
 
-    public static final Tag<ItemType> BEDS = ItemTypeTags.key(ResourceKey.minecraft("beds"));
+    public static final DefaultedTag<ItemType> BEDS = ItemTypeTags.key(ResourceKey.minecraft("beds"));
 
-    public static final Tag<ItemType> BEE_FOOD = ItemTypeTags.key(ResourceKey.minecraft("bee_food"));
+    public static final DefaultedTag<ItemType> BEE_FOOD = ItemTypeTags.key(ResourceKey.minecraft("bee_food"));
 
-    public static final Tag<ItemType> BIRCH_LOGS = ItemTypeTags.key(ResourceKey.minecraft("birch_logs"));
+    public static final DefaultedTag<ItemType> BIRCH_LOGS = ItemTypeTags.key(ResourceKey.minecraft("birch_logs"));
 
-    public static final Tag<ItemType> BOATS = ItemTypeTags.key(ResourceKey.minecraft("boats"));
+    public static final DefaultedTag<ItemType> BOATS = ItemTypeTags.key(ResourceKey.minecraft("boats"));
 
-    public static final Tag<ItemType> BOOKSHELF_BOOKS = ItemTypeTags.key(ResourceKey.minecraft("bookshelf_books"));
+    public static final DefaultedTag<ItemType> BOOKSHELF_BOOKS = ItemTypeTags.key(ResourceKey.minecraft("bookshelf_books"));
 
-    public static final Tag<ItemType> BREAKS_DECORATED_POTS = ItemTypeTags.key(ResourceKey.minecraft("breaks_decorated_pots"));
+    public static final DefaultedTag<ItemType> BREAKS_DECORATED_POTS = ItemTypeTags.key(ResourceKey.minecraft("breaks_decorated_pots"));
 
-    public static final Tag<ItemType> BREWING_FUEL = ItemTypeTags.key(ResourceKey.minecraft("brewing_fuel"));
+    public static final DefaultedTag<ItemType> BREWING_FUEL = ItemTypeTags.key(ResourceKey.minecraft("brewing_fuel"));
 
-    public static final Tag<ItemType> BUNDLES = ItemTypeTags.key(ResourceKey.minecraft("bundles"));
+    public static final DefaultedTag<ItemType> BUNDLES = ItemTypeTags.key(ResourceKey.minecraft("bundles"));
 
-    public static final Tag<ItemType> BUTTONS = ItemTypeTags.key(ResourceKey.minecraft("buttons"));
+    public static final DefaultedTag<ItemType> BUTTONS = ItemTypeTags.key(ResourceKey.minecraft("buttons"));
 
-    public static final Tag<ItemType> CAMEL_FOOD = ItemTypeTags.key(ResourceKey.minecraft("camel_food"));
+    public static final DefaultedTag<ItemType> CAMEL_FOOD = ItemTypeTags.key(ResourceKey.minecraft("camel_food"));
 
-    public static final Tag<ItemType> CANDLES = ItemTypeTags.key(ResourceKey.minecraft("candles"));
+    public static final DefaultedTag<ItemType> CANDLES = ItemTypeTags.key(ResourceKey.minecraft("candles"));
 
-    public static final Tag<ItemType> CAT_FOOD = ItemTypeTags.key(ResourceKey.minecraft("cat_food"));
+    public static final DefaultedTag<ItemType> CAT_FOOD = ItemTypeTags.key(ResourceKey.minecraft("cat_food"));
 
-    public static final Tag<ItemType> CHERRY_LOGS = ItemTypeTags.key(ResourceKey.minecraft("cherry_logs"));
+    public static final DefaultedTag<ItemType> CHERRY_LOGS = ItemTypeTags.key(ResourceKey.minecraft("cherry_logs"));
 
-    public static final Tag<ItemType> CHEST_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("chest_armor"));
+    public static final DefaultedTag<ItemType> CHEST_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("chest_armor"));
 
-    public static final Tag<ItemType> CHEST_BOATS = ItemTypeTags.key(ResourceKey.minecraft("chest_boats"));
+    public static final DefaultedTag<ItemType> CHEST_BOATS = ItemTypeTags.key(ResourceKey.minecraft("chest_boats"));
 
-    public static final Tag<ItemType> CHICKEN_FOOD = ItemTypeTags.key(ResourceKey.minecraft("chicken_food"));
+    public static final DefaultedTag<ItemType> CHICKEN_FOOD = ItemTypeTags.key(ResourceKey.minecraft("chicken_food"));
 
-    public static final Tag<ItemType> CLUSTER_MAX_HARVESTABLES = ItemTypeTags.key(ResourceKey.minecraft("cluster_max_harvestables"));
+    public static final DefaultedTag<ItemType> CLUSTER_MAX_HARVESTABLES = ItemTypeTags.key(ResourceKey.minecraft("cluster_max_harvestables"));
 
-    public static final Tag<ItemType> COAL_ORES = ItemTypeTags.key(ResourceKey.minecraft("coal_ores"));
+    public static final DefaultedTag<ItemType> COAL_ORES = ItemTypeTags.key(ResourceKey.minecraft("coal_ores"));
 
-    public static final Tag<ItemType> COALS = ItemTypeTags.key(ResourceKey.minecraft("coals"));
+    public static final DefaultedTag<ItemType> COALS = ItemTypeTags.key(ResourceKey.minecraft("coals"));
 
-    public static final Tag<ItemType> COMPASSES = ItemTypeTags.key(ResourceKey.minecraft("compasses"));
+    public static final DefaultedTag<ItemType> COMPASSES = ItemTypeTags.key(ResourceKey.minecraft("compasses"));
 
-    public static final Tag<ItemType> COMPLETES_FIND_TREE_TUTORIAL = ItemTypeTags.key(ResourceKey.minecraft("completes_find_tree_tutorial"));
+    public static final DefaultedTag<ItemType> COMPLETES_FIND_TREE_TUTORIAL = ItemTypeTags.key(ResourceKey.minecraft("completes_find_tree_tutorial"));
 
-    public static final Tag<ItemType> COPPER_ORES = ItemTypeTags.key(ResourceKey.minecraft("copper_ores"));
+    public static final DefaultedTag<ItemType> COPPER_ORES = ItemTypeTags.key(ResourceKey.minecraft("copper_ores"));
 
-    public static final Tag<ItemType> COW_FOOD = ItemTypeTags.key(ResourceKey.minecraft("cow_food"));
+    public static final DefaultedTag<ItemType> COW_FOOD = ItemTypeTags.key(ResourceKey.minecraft("cow_food"));
 
-    public static final Tag<ItemType> CREEPER_DROP_MUSIC_DISCS = ItemTypeTags.key(ResourceKey.minecraft("creeper_drop_music_discs"));
+    public static final DefaultedTag<ItemType> CREEPER_DROP_MUSIC_DISCS = ItemTypeTags.key(ResourceKey.minecraft("creeper_drop_music_discs"));
 
-    public static final Tag<ItemType> CREEPER_IGNITERS = ItemTypeTags.key(ResourceKey.minecraft("creeper_igniters"));
+    public static final DefaultedTag<ItemType> CREEPER_IGNITERS = ItemTypeTags.key(ResourceKey.minecraft("creeper_igniters"));
 
-    public static final Tag<ItemType> CRIMSON_STEMS = ItemTypeTags.key(ResourceKey.minecraft("crimson_stems"));
+    public static final DefaultedTag<ItemType> CRIMSON_STEMS = ItemTypeTags.key(ResourceKey.minecraft("crimson_stems"));
 
-    public static final Tag<ItemType> DAMPENS_VIBRATIONS = ItemTypeTags.key(ResourceKey.minecraft("dampens_vibrations"));
+    public static final DefaultedTag<ItemType> DAMPENS_VIBRATIONS = ItemTypeTags.key(ResourceKey.minecraft("dampens_vibrations"));
 
-    public static final Tag<ItemType> DARK_OAK_LOGS = ItemTypeTags.key(ResourceKey.minecraft("dark_oak_logs"));
+    public static final DefaultedTag<ItemType> DARK_OAK_LOGS = ItemTypeTags.key(ResourceKey.minecraft("dark_oak_logs"));
 
-    public static final Tag<ItemType> DECORATED_POT_INGREDIENTS = ItemTypeTags.key(ResourceKey.minecraft("decorated_pot_ingredients"));
+    public static final DefaultedTag<ItemType> DECORATED_POT_INGREDIENTS = ItemTypeTags.key(ResourceKey.minecraft("decorated_pot_ingredients"));
 
-    public static final Tag<ItemType> DECORATED_POT_SHERDS = ItemTypeTags.key(ResourceKey.minecraft("decorated_pot_sherds"));
+    public static final DefaultedTag<ItemType> DECORATED_POT_SHERDS = ItemTypeTags.key(ResourceKey.minecraft("decorated_pot_sherds"));
 
-    public static final Tag<ItemType> DIAMOND_ORES = ItemTypeTags.key(ResourceKey.minecraft("diamond_ores"));
+    public static final DefaultedTag<ItemType> DIAMOND_ORES = ItemTypeTags.key(ResourceKey.minecraft("diamond_ores"));
 
-    public static final Tag<ItemType> DIAMOND_TOOL_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("diamond_tool_materials"));
+    public static final DefaultedTag<ItemType> DIAMOND_TOOL_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("diamond_tool_materials"));
 
-    public static final Tag<ItemType> DIRT = ItemTypeTags.key(ResourceKey.minecraft("dirt"));
+    public static final DefaultedTag<ItemType> DIRT = ItemTypeTags.key(ResourceKey.minecraft("dirt"));
 
-    public static final Tag<ItemType> DOORS = ItemTypeTags.key(ResourceKey.minecraft("doors"));
+    public static final DefaultedTag<ItemType> DOORS = ItemTypeTags.key(ResourceKey.minecraft("doors"));
 
-    public static final Tag<ItemType> DROWNED_PREFERRED_WEAPONS = ItemTypeTags.key(ResourceKey.minecraft("drowned_preferred_weapons"));
+    public static final DefaultedTag<ItemType> DROWNED_PREFERRED_WEAPONS = ItemTypeTags.key(ResourceKey.minecraft("drowned_preferred_weapons"));
 
-    public static final Tag<ItemType> DUPLICATES_ALLAYS = ItemTypeTags.key(ResourceKey.minecraft("duplicates_allays"));
+    public static final DefaultedTag<ItemType> DUPLICATES_ALLAYS = ItemTypeTags.key(ResourceKey.minecraft("duplicates_allays"));
 
-    public static final Tag<ItemType> DYEABLE = ItemTypeTags.key(ResourceKey.minecraft("dyeable"));
+    public static final DefaultedTag<ItemType> DYEABLE = ItemTypeTags.key(ResourceKey.minecraft("dyeable"));
 
-    public static final Tag<ItemType> EMERALD_ORES = ItemTypeTags.key(ResourceKey.minecraft("emerald_ores"));
+    public static final DefaultedTag<ItemType> EMERALD_ORES = ItemTypeTags.key(ResourceKey.minecraft("emerald_ores"));
 
-    public static final Tag<ItemType> ENCHANTABLE_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("enchantable/armor"));
+    public static final DefaultedTag<ItemType> ENCHANTABLE_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("enchantable/armor"));
 
-    public static final Tag<ItemType> ENCHANTABLE_BOW = ItemTypeTags.key(ResourceKey.minecraft("enchantable/bow"));
+    public static final DefaultedTag<ItemType> ENCHANTABLE_BOW = ItemTypeTags.key(ResourceKey.minecraft("enchantable/bow"));
 
-    public static final Tag<ItemType> ENCHANTABLE_CHEST_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("enchantable/chest_armor"));
+    public static final DefaultedTag<ItemType> ENCHANTABLE_CHEST_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("enchantable/chest_armor"));
 
-    public static final Tag<ItemType> ENCHANTABLE_CROSSBOW = ItemTypeTags.key(ResourceKey.minecraft("enchantable/crossbow"));
+    public static final DefaultedTag<ItemType> ENCHANTABLE_CROSSBOW = ItemTypeTags.key(ResourceKey.minecraft("enchantable/crossbow"));
 
-    public static final Tag<ItemType> ENCHANTABLE_DURABILITY = ItemTypeTags.key(ResourceKey.minecraft("enchantable/durability"));
+    public static final DefaultedTag<ItemType> ENCHANTABLE_DURABILITY = ItemTypeTags.key(ResourceKey.minecraft("enchantable/durability"));
 
-    public static final Tag<ItemType> ENCHANTABLE_EQUIPPABLE = ItemTypeTags.key(ResourceKey.minecraft("enchantable/equippable"));
+    public static final DefaultedTag<ItemType> ENCHANTABLE_EQUIPPABLE = ItemTypeTags.key(ResourceKey.minecraft("enchantable/equippable"));
 
-    public static final Tag<ItemType> ENCHANTABLE_FIRE_ASPECT = ItemTypeTags.key(ResourceKey.minecraft("enchantable/fire_aspect"));
+    public static final DefaultedTag<ItemType> ENCHANTABLE_FIRE_ASPECT = ItemTypeTags.key(ResourceKey.minecraft("enchantable/fire_aspect"));
 
-    public static final Tag<ItemType> ENCHANTABLE_FISHING = ItemTypeTags.key(ResourceKey.minecraft("enchantable/fishing"));
+    public static final DefaultedTag<ItemType> ENCHANTABLE_FISHING = ItemTypeTags.key(ResourceKey.minecraft("enchantable/fishing"));
 
-    public static final Tag<ItemType> ENCHANTABLE_FOOT_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("enchantable/foot_armor"));
+    public static final DefaultedTag<ItemType> ENCHANTABLE_FOOT_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("enchantable/foot_armor"));
 
-    public static final Tag<ItemType> ENCHANTABLE_HEAD_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("enchantable/head_armor"));
+    public static final DefaultedTag<ItemType> ENCHANTABLE_HEAD_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("enchantable/head_armor"));
 
-    public static final Tag<ItemType> ENCHANTABLE_LEG_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("enchantable/leg_armor"));
+    public static final DefaultedTag<ItemType> ENCHANTABLE_LEG_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("enchantable/leg_armor"));
 
-    public static final Tag<ItemType> ENCHANTABLE_MACE = ItemTypeTags.key(ResourceKey.minecraft("enchantable/mace"));
+    public static final DefaultedTag<ItemType> ENCHANTABLE_MACE = ItemTypeTags.key(ResourceKey.minecraft("enchantable/mace"));
 
-    public static final Tag<ItemType> ENCHANTABLE_MINING = ItemTypeTags.key(ResourceKey.minecraft("enchantable/mining"));
+    public static final DefaultedTag<ItemType> ENCHANTABLE_MINING = ItemTypeTags.key(ResourceKey.minecraft("enchantable/mining"));
 
-    public static final Tag<ItemType> ENCHANTABLE_MINING_LOOT = ItemTypeTags.key(ResourceKey.minecraft("enchantable/mining_loot"));
+    public static final DefaultedTag<ItemType> ENCHANTABLE_MINING_LOOT = ItemTypeTags.key(ResourceKey.minecraft("enchantable/mining_loot"));
 
-    public static final Tag<ItemType> ENCHANTABLE_SHARP_WEAPON = ItemTypeTags.key(ResourceKey.minecraft("enchantable/sharp_weapon"));
+    public static final DefaultedTag<ItemType> ENCHANTABLE_SHARP_WEAPON = ItemTypeTags.key(ResourceKey.minecraft("enchantable/sharp_weapon"));
 
-    public static final Tag<ItemType> ENCHANTABLE_SWORD = ItemTypeTags.key(ResourceKey.minecraft("enchantable/sword"));
+    public static final DefaultedTag<ItemType> ENCHANTABLE_SWORD = ItemTypeTags.key(ResourceKey.minecraft("enchantable/sword"));
 
-    public static final Tag<ItemType> ENCHANTABLE_TRIDENT = ItemTypeTags.key(ResourceKey.minecraft("enchantable/trident"));
+    public static final DefaultedTag<ItemType> ENCHANTABLE_TRIDENT = ItemTypeTags.key(ResourceKey.minecraft("enchantable/trident"));
 
-    public static final Tag<ItemType> ENCHANTABLE_VANISHING = ItemTypeTags.key(ResourceKey.minecraft("enchantable/vanishing"));
+    public static final DefaultedTag<ItemType> ENCHANTABLE_VANISHING = ItemTypeTags.key(ResourceKey.minecraft("enchantable/vanishing"));
 
-    public static final Tag<ItemType> ENCHANTABLE_WEAPON = ItemTypeTags.key(ResourceKey.minecraft("enchantable/weapon"));
+    public static final DefaultedTag<ItemType> ENCHANTABLE_WEAPON = ItemTypeTags.key(ResourceKey.minecraft("enchantable/weapon"));
 
-    public static final Tag<ItemType> FENCE_GATES = ItemTypeTags.key(ResourceKey.minecraft("fence_gates"));
+    public static final DefaultedTag<ItemType> FENCE_GATES = ItemTypeTags.key(ResourceKey.minecraft("fence_gates"));
 
-    public static final Tag<ItemType> FENCES = ItemTypeTags.key(ResourceKey.minecraft("fences"));
+    public static final DefaultedTag<ItemType> FENCES = ItemTypeTags.key(ResourceKey.minecraft("fences"));
 
-    public static final Tag<ItemType> FISHES = ItemTypeTags.key(ResourceKey.minecraft("fishes"));
+    public static final DefaultedTag<ItemType> FISHES = ItemTypeTags.key(ResourceKey.minecraft("fishes"));
 
-    public static final Tag<ItemType> FOOT_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("foot_armor"));
+    public static final DefaultedTag<ItemType> FOOT_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("foot_armor"));
 
-    public static final Tag<ItemType> FOX_FOOD = ItemTypeTags.key(ResourceKey.minecraft("fox_food"));
+    public static final DefaultedTag<ItemType> FOX_FOOD = ItemTypeTags.key(ResourceKey.minecraft("fox_food"));
 
-    public static final Tag<ItemType> FREEZE_IMMUNE_WEARABLES = ItemTypeTags.key(ResourceKey.minecraft("freeze_immune_wearables"));
+    public static final DefaultedTag<ItemType> FREEZE_IMMUNE_WEARABLES = ItemTypeTags.key(ResourceKey.minecraft("freeze_immune_wearables"));
 
-    public static final Tag<ItemType> FROG_FOOD = ItemTypeTags.key(ResourceKey.minecraft("frog_food"));
+    public static final DefaultedTag<ItemType> FROG_FOOD = ItemTypeTags.key(ResourceKey.minecraft("frog_food"));
 
-    public static final Tag<ItemType> FURNACE_MINECART_FUEL = ItemTypeTags.key(ResourceKey.minecraft("furnace_minecart_fuel"));
+    public static final DefaultedTag<ItemType> FURNACE_MINECART_FUEL = ItemTypeTags.key(ResourceKey.minecraft("furnace_minecart_fuel"));
 
-    public static final Tag<ItemType> GAZE_DISGUISE_EQUIPMENT = ItemTypeTags.key(ResourceKey.minecraft("gaze_disguise_equipment"));
+    public static final DefaultedTag<ItemType> GAZE_DISGUISE_EQUIPMENT = ItemTypeTags.key(ResourceKey.minecraft("gaze_disguise_equipment"));
 
-    public static final Tag<ItemType> GOAT_FOOD = ItemTypeTags.key(ResourceKey.minecraft("goat_food"));
+    public static final DefaultedTag<ItemType> GOAT_FOOD = ItemTypeTags.key(ResourceKey.minecraft("goat_food"));
 
-    public static final Tag<ItemType> GOLD_ORES = ItemTypeTags.key(ResourceKey.minecraft("gold_ores"));
+    public static final DefaultedTag<ItemType> GOLD_ORES = ItemTypeTags.key(ResourceKey.minecraft("gold_ores"));
 
-    public static final Tag<ItemType> GOLD_TOOL_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("gold_tool_materials"));
+    public static final DefaultedTag<ItemType> GOLD_TOOL_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("gold_tool_materials"));
 
-    public static final Tag<ItemType> HANGING_SIGNS = ItemTypeTags.key(ResourceKey.minecraft("hanging_signs"));
+    public static final DefaultedTag<ItemType> HANGING_SIGNS = ItemTypeTags.key(ResourceKey.minecraft("hanging_signs"));
 
-    public static final Tag<ItemType> HEAD_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("head_armor"));
+    public static final DefaultedTag<ItemType> HEAD_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("head_armor"));
 
-    public static final Tag<ItemType> HOES = ItemTypeTags.key(ResourceKey.minecraft("hoes"));
+    public static final DefaultedTag<ItemType> HOES = ItemTypeTags.key(ResourceKey.minecraft("hoes"));
 
-    public static final Tag<ItemType> HOGLIN_FOOD = ItemTypeTags.key(ResourceKey.minecraft("hoglin_food"));
+    public static final DefaultedTag<ItemType> HOGLIN_FOOD = ItemTypeTags.key(ResourceKey.minecraft("hoglin_food"));
 
-    public static final Tag<ItemType> HORSE_FOOD = ItemTypeTags.key(ResourceKey.minecraft("horse_food"));
+    public static final DefaultedTag<ItemType> HORSE_FOOD = ItemTypeTags.key(ResourceKey.minecraft("horse_food"));
 
-    public static final Tag<ItemType> HORSE_TEMPT_ITEMS = ItemTypeTags.key(ResourceKey.minecraft("horse_tempt_items"));
+    public static final DefaultedTag<ItemType> HORSE_TEMPT_ITEMS = ItemTypeTags.key(ResourceKey.minecraft("horse_tempt_items"));
 
-    public static final Tag<ItemType> IGNORED_BY_PIGLIN_BABIES = ItemTypeTags.key(ResourceKey.minecraft("ignored_by_piglin_babies"));
+    public static final DefaultedTag<ItemType> IGNORED_BY_PIGLIN_BABIES = ItemTypeTags.key(ResourceKey.minecraft("ignored_by_piglin_babies"));
 
-    public static final Tag<ItemType> IRON_ORES = ItemTypeTags.key(ResourceKey.minecraft("iron_ores"));
+    public static final DefaultedTag<ItemType> IRON_ORES = ItemTypeTags.key(ResourceKey.minecraft("iron_ores"));
 
-    public static final Tag<ItemType> IRON_TOOL_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("iron_tool_materials"));
+    public static final DefaultedTag<ItemType> IRON_TOOL_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("iron_tool_materials"));
 
-    public static final Tag<ItemType> JUNGLE_LOGS = ItemTypeTags.key(ResourceKey.minecraft("jungle_logs"));
+    public static final DefaultedTag<ItemType> JUNGLE_LOGS = ItemTypeTags.key(ResourceKey.minecraft("jungle_logs"));
 
-    public static final Tag<ItemType> LAPIS_ORES = ItemTypeTags.key(ResourceKey.minecraft("lapis_ores"));
+    public static final DefaultedTag<ItemType> LAPIS_ORES = ItemTypeTags.key(ResourceKey.minecraft("lapis_ores"));
 
-    public static final Tag<ItemType> LEAVES = ItemTypeTags.key(ResourceKey.minecraft("leaves"));
+    public static final DefaultedTag<ItemType> LEAVES = ItemTypeTags.key(ResourceKey.minecraft("leaves"));
 
-    public static final Tag<ItemType> LECTERN_BOOKS = ItemTypeTags.key(ResourceKey.minecraft("lectern_books"));
+    public static final DefaultedTag<ItemType> LECTERN_BOOKS = ItemTypeTags.key(ResourceKey.minecraft("lectern_books"));
 
-    public static final Tag<ItemType> LEG_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("leg_armor"));
+    public static final DefaultedTag<ItemType> LEG_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("leg_armor"));
 
-    public static final Tag<ItemType> LLAMA_FOOD = ItemTypeTags.key(ResourceKey.minecraft("llama_food"));
+    public static final DefaultedTag<ItemType> LLAMA_FOOD = ItemTypeTags.key(ResourceKey.minecraft("llama_food"));
 
-    public static final Tag<ItemType> LLAMA_TEMPT_ITEMS = ItemTypeTags.key(ResourceKey.minecraft("llama_tempt_items"));
+    public static final DefaultedTag<ItemType> LLAMA_TEMPT_ITEMS = ItemTypeTags.key(ResourceKey.minecraft("llama_tempt_items"));
 
-    public static final Tag<ItemType> LOGS = ItemTypeTags.key(ResourceKey.minecraft("logs"));
+    public static final DefaultedTag<ItemType> LOGS = ItemTypeTags.key(ResourceKey.minecraft("logs"));
 
-    public static final Tag<ItemType> LOGS_THAT_BURN = ItemTypeTags.key(ResourceKey.minecraft("logs_that_burn"));
+    public static final DefaultedTag<ItemType> LOGS_THAT_BURN = ItemTypeTags.key(ResourceKey.minecraft("logs_that_burn"));
 
-    public static final Tag<ItemType> MANGROVE_LOGS = ItemTypeTags.key(ResourceKey.minecraft("mangrove_logs"));
+    public static final DefaultedTag<ItemType> MANGROVE_LOGS = ItemTypeTags.key(ResourceKey.minecraft("mangrove_logs"));
 
-    public static final Tag<ItemType> MAP_INVISIBILITY_EQUIPMENT = ItemTypeTags.key(ResourceKey.minecraft("map_invisibility_equipment"));
+    public static final DefaultedTag<ItemType> MAP_INVISIBILITY_EQUIPMENT = ItemTypeTags.key(ResourceKey.minecraft("map_invisibility_equipment"));
 
-    public static final Tag<ItemType> MEAT = ItemTypeTags.key(ResourceKey.minecraft("meat"));
+    public static final DefaultedTag<ItemType> MEAT = ItemTypeTags.key(ResourceKey.minecraft("meat"));
 
-    public static final Tag<ItemType> NETHERITE_TOOL_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("netherite_tool_materials"));
+    public static final DefaultedTag<ItemType> NETHERITE_TOOL_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("netherite_tool_materials"));
 
-    public static final Tag<ItemType> NON_FLAMMABLE_WOOD = ItemTypeTags.key(ResourceKey.minecraft("non_flammable_wood"));
+    public static final DefaultedTag<ItemType> NON_FLAMMABLE_WOOD = ItemTypeTags.key(ResourceKey.minecraft("non_flammable_wood"));
 
-    public static final Tag<ItemType> NOTEBLOCK_TOP_INSTRUMENTS = ItemTypeTags.key(ResourceKey.minecraft("noteblock_top_instruments"));
+    public static final DefaultedTag<ItemType> NOTEBLOCK_TOP_INSTRUMENTS = ItemTypeTags.key(ResourceKey.minecraft("noteblock_top_instruments"));
 
-    public static final Tag<ItemType> OAK_LOGS = ItemTypeTags.key(ResourceKey.minecraft("oak_logs"));
+    public static final DefaultedTag<ItemType> OAK_LOGS = ItemTypeTags.key(ResourceKey.minecraft("oak_logs"));
 
-    public static final Tag<ItemType> OCELOT_FOOD = ItemTypeTags.key(ResourceKey.minecraft("ocelot_food"));
+    public static final DefaultedTag<ItemType> OCELOT_FOOD = ItemTypeTags.key(ResourceKey.minecraft("ocelot_food"));
 
-    public static final Tag<ItemType> PALE_OAK_LOGS = ItemTypeTags.key(ResourceKey.minecraft("pale_oak_logs"));
+    public static final DefaultedTag<ItemType> PALE_OAK_LOGS = ItemTypeTags.key(ResourceKey.minecraft("pale_oak_logs"));
 
-    public static final Tag<ItemType> PANDA_EATS_FROM_GROUND = ItemTypeTags.key(ResourceKey.minecraft("panda_eats_from_ground"));
+    public static final DefaultedTag<ItemType> PANDA_EATS_FROM_GROUND = ItemTypeTags.key(ResourceKey.minecraft("panda_eats_from_ground"));
 
-    public static final Tag<ItemType> PANDA_FOOD = ItemTypeTags.key(ResourceKey.minecraft("panda_food"));
+    public static final DefaultedTag<ItemType> PANDA_FOOD = ItemTypeTags.key(ResourceKey.minecraft("panda_food"));
 
-    public static final Tag<ItemType> PARROT_FOOD = ItemTypeTags.key(ResourceKey.minecraft("parrot_food"));
+    public static final DefaultedTag<ItemType> PARROT_FOOD = ItemTypeTags.key(ResourceKey.minecraft("parrot_food"));
 
-    public static final Tag<ItemType> PARROT_POISONOUS_FOOD = ItemTypeTags.key(ResourceKey.minecraft("parrot_poisonous_food"));
+    public static final DefaultedTag<ItemType> PARROT_POISONOUS_FOOD = ItemTypeTags.key(ResourceKey.minecraft("parrot_poisonous_food"));
 
-    public static final Tag<ItemType> PICKAXES = ItemTypeTags.key(ResourceKey.minecraft("pickaxes"));
+    public static final DefaultedTag<ItemType> PICKAXES = ItemTypeTags.key(ResourceKey.minecraft("pickaxes"));
 
-    public static final Tag<ItemType> PIG_FOOD = ItemTypeTags.key(ResourceKey.minecraft("pig_food"));
+    public static final DefaultedTag<ItemType> PIG_FOOD = ItemTypeTags.key(ResourceKey.minecraft("pig_food"));
 
-    public static final Tag<ItemType> PIGLIN_FOOD = ItemTypeTags.key(ResourceKey.minecraft("piglin_food"));
+    public static final DefaultedTag<ItemType> PIGLIN_FOOD = ItemTypeTags.key(ResourceKey.minecraft("piglin_food"));
 
-    public static final Tag<ItemType> PIGLIN_LOVED = ItemTypeTags.key(ResourceKey.minecraft("piglin_loved"));
+    public static final DefaultedTag<ItemType> PIGLIN_LOVED = ItemTypeTags.key(ResourceKey.minecraft("piglin_loved"));
 
-    public static final Tag<ItemType> PIGLIN_PREFERRED_WEAPONS = ItemTypeTags.key(ResourceKey.minecraft("piglin_preferred_weapons"));
+    public static final DefaultedTag<ItemType> PIGLIN_PREFERRED_WEAPONS = ItemTypeTags.key(ResourceKey.minecraft("piglin_preferred_weapons"));
 
-    public static final Tag<ItemType> PIGLIN_REPELLENTS = ItemTypeTags.key(ResourceKey.minecraft("piglin_repellents"));
+    public static final DefaultedTag<ItemType> PIGLIN_REPELLENTS = ItemTypeTags.key(ResourceKey.minecraft("piglin_repellents"));
 
-    public static final Tag<ItemType> PIGLIN_SAFE_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("piglin_safe_armor"));
+    public static final DefaultedTag<ItemType> PIGLIN_SAFE_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("piglin_safe_armor"));
 
-    public static final Tag<ItemType> PILLAGER_PREFERRED_WEAPONS = ItemTypeTags.key(ResourceKey.minecraft("pillager_preferred_weapons"));
+    public static final DefaultedTag<ItemType> PILLAGER_PREFERRED_WEAPONS = ItemTypeTags.key(ResourceKey.minecraft("pillager_preferred_weapons"));
 
-    public static final Tag<ItemType> PLANKS = ItemTypeTags.key(ResourceKey.minecraft("planks"));
+    public static final DefaultedTag<ItemType> PLANKS = ItemTypeTags.key(ResourceKey.minecraft("planks"));
 
-    public static final Tag<ItemType> RABBIT_FOOD = ItemTypeTags.key(ResourceKey.minecraft("rabbit_food"));
+    public static final DefaultedTag<ItemType> RABBIT_FOOD = ItemTypeTags.key(ResourceKey.minecraft("rabbit_food"));
 
-    public static final Tag<ItemType> RAILS = ItemTypeTags.key(ResourceKey.minecraft("rails"));
+    public static final DefaultedTag<ItemType> RAILS = ItemTypeTags.key(ResourceKey.minecraft("rails"));
 
-    public static final Tag<ItemType> REDSTONE_ORES = ItemTypeTags.key(ResourceKey.minecraft("redstone_ores"));
+    public static final DefaultedTag<ItemType> REDSTONE_ORES = ItemTypeTags.key(ResourceKey.minecraft("redstone_ores"));
 
-    public static final Tag<ItemType> REPAIRS_CHAIN_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("repairs_chain_armor"));
+    public static final DefaultedTag<ItemType> REPAIRS_CHAIN_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("repairs_chain_armor"));
 
-    public static final Tag<ItemType> REPAIRS_DIAMOND_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("repairs_diamond_armor"));
+    public static final DefaultedTag<ItemType> REPAIRS_DIAMOND_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("repairs_diamond_armor"));
 
-    public static final Tag<ItemType> REPAIRS_GOLD_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("repairs_gold_armor"));
+    public static final DefaultedTag<ItemType> REPAIRS_GOLD_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("repairs_gold_armor"));
 
-    public static final Tag<ItemType> REPAIRS_IRON_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("repairs_iron_armor"));
+    public static final DefaultedTag<ItemType> REPAIRS_IRON_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("repairs_iron_armor"));
 
-    public static final Tag<ItemType> REPAIRS_LEATHER_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("repairs_leather_armor"));
+    public static final DefaultedTag<ItemType> REPAIRS_LEATHER_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("repairs_leather_armor"));
 
-    public static final Tag<ItemType> REPAIRS_NETHERITE_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("repairs_netherite_armor"));
+    public static final DefaultedTag<ItemType> REPAIRS_NETHERITE_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("repairs_netherite_armor"));
 
-    public static final Tag<ItemType> REPAIRS_TURTLE_HELMET = ItemTypeTags.key(ResourceKey.minecraft("repairs_turtle_helmet"));
+    public static final DefaultedTag<ItemType> REPAIRS_TURTLE_HELMET = ItemTypeTags.key(ResourceKey.minecraft("repairs_turtle_helmet"));
 
-    public static final Tag<ItemType> REPAIRS_WOLF_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("repairs_wolf_armor"));
+    public static final DefaultedTag<ItemType> REPAIRS_WOLF_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("repairs_wolf_armor"));
 
-    public static final Tag<ItemType> SAND = ItemTypeTags.key(ResourceKey.minecraft("sand"));
+    public static final DefaultedTag<ItemType> SAND = ItemTypeTags.key(ResourceKey.minecraft("sand"));
 
-    public static final Tag<ItemType> SAPLINGS = ItemTypeTags.key(ResourceKey.minecraft("saplings"));
+    public static final DefaultedTag<ItemType> SAPLINGS = ItemTypeTags.key(ResourceKey.minecraft("saplings"));
 
-    public static final Tag<ItemType> SHEEP_FOOD = ItemTypeTags.key(ResourceKey.minecraft("sheep_food"));
+    public static final DefaultedTag<ItemType> SHEEP_FOOD = ItemTypeTags.key(ResourceKey.minecraft("sheep_food"));
 
-    public static final Tag<ItemType> SHOVELS = ItemTypeTags.key(ResourceKey.minecraft("shovels"));
+    public static final DefaultedTag<ItemType> SHOVELS = ItemTypeTags.key(ResourceKey.minecraft("shovels"));
 
-    public static final Tag<ItemType> SHULKER_BOXES = ItemTypeTags.key(ResourceKey.minecraft("shulker_boxes"));
+    public static final DefaultedTag<ItemType> SHULKER_BOXES = ItemTypeTags.key(ResourceKey.minecraft("shulker_boxes"));
 
-    public static final Tag<ItemType> SIGNS = ItemTypeTags.key(ResourceKey.minecraft("signs"));
+    public static final DefaultedTag<ItemType> SIGNS = ItemTypeTags.key(ResourceKey.minecraft("signs"));
 
-    public static final Tag<ItemType> SKELETON_PREFERRED_WEAPONS = ItemTypeTags.key(ResourceKey.minecraft("skeleton_preferred_weapons"));
+    public static final DefaultedTag<ItemType> SKELETON_PREFERRED_WEAPONS = ItemTypeTags.key(ResourceKey.minecraft("skeleton_preferred_weapons"));
 
-    public static final Tag<ItemType> SKULLS = ItemTypeTags.key(ResourceKey.minecraft("skulls"));
+    public static final DefaultedTag<ItemType> SKULLS = ItemTypeTags.key(ResourceKey.minecraft("skulls"));
 
-    public static final Tag<ItemType> SLABS = ItemTypeTags.key(ResourceKey.minecraft("slabs"));
+    public static final DefaultedTag<ItemType> SLABS = ItemTypeTags.key(ResourceKey.minecraft("slabs"));
 
-    public static final Tag<ItemType> SMALL_FLOWERS = ItemTypeTags.key(ResourceKey.minecraft("small_flowers"));
+    public static final DefaultedTag<ItemType> SMALL_FLOWERS = ItemTypeTags.key(ResourceKey.minecraft("small_flowers"));
 
-    public static final Tag<ItemType> SMELTS_TO_GLASS = ItemTypeTags.key(ResourceKey.minecraft("smelts_to_glass"));
+    public static final DefaultedTag<ItemType> SMELTS_TO_GLASS = ItemTypeTags.key(ResourceKey.minecraft("smelts_to_glass"));
 
-    public static final Tag<ItemType> SNIFFER_FOOD = ItemTypeTags.key(ResourceKey.minecraft("sniffer_food"));
+    public static final DefaultedTag<ItemType> SNIFFER_FOOD = ItemTypeTags.key(ResourceKey.minecraft("sniffer_food"));
 
-    public static final Tag<ItemType> SOUL_FIRE_BASE_BLOCKS = ItemTypeTags.key(ResourceKey.minecraft("soul_fire_base_blocks"));
+    public static final DefaultedTag<ItemType> SOUL_FIRE_BASE_BLOCKS = ItemTypeTags.key(ResourceKey.minecraft("soul_fire_base_blocks"));
 
-    public static final Tag<ItemType> SPRUCE_LOGS = ItemTypeTags.key(ResourceKey.minecraft("spruce_logs"));
+    public static final DefaultedTag<ItemType> SPRUCE_LOGS = ItemTypeTags.key(ResourceKey.minecraft("spruce_logs"));
 
-    public static final Tag<ItemType> STAIRS = ItemTypeTags.key(ResourceKey.minecraft("stairs"));
+    public static final DefaultedTag<ItemType> STAIRS = ItemTypeTags.key(ResourceKey.minecraft("stairs"));
 
-    public static final Tag<ItemType> STONE_BRICKS = ItemTypeTags.key(ResourceKey.minecraft("stone_bricks"));
+    public static final DefaultedTag<ItemType> STONE_BRICKS = ItemTypeTags.key(ResourceKey.minecraft("stone_bricks"));
 
-    public static final Tag<ItemType> STONE_BUTTONS = ItemTypeTags.key(ResourceKey.minecraft("stone_buttons"));
+    public static final DefaultedTag<ItemType> STONE_BUTTONS = ItemTypeTags.key(ResourceKey.minecraft("stone_buttons"));
 
-    public static final Tag<ItemType> STONE_CRAFTING_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("stone_crafting_materials"));
+    public static final DefaultedTag<ItemType> STONE_CRAFTING_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("stone_crafting_materials"));
 
-    public static final Tag<ItemType> STONE_TOOL_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("stone_tool_materials"));
+    public static final DefaultedTag<ItemType> STONE_TOOL_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("stone_tool_materials"));
 
-    public static final Tag<ItemType> STRIDER_FOOD = ItemTypeTags.key(ResourceKey.minecraft("strider_food"));
+    public static final DefaultedTag<ItemType> STRIDER_FOOD = ItemTypeTags.key(ResourceKey.minecraft("strider_food"));
 
-    public static final Tag<ItemType> STRIDER_TEMPT_ITEMS = ItemTypeTags.key(ResourceKey.minecraft("strider_tempt_items"));
+    public static final DefaultedTag<ItemType> STRIDER_TEMPT_ITEMS = ItemTypeTags.key(ResourceKey.minecraft("strider_tempt_items"));
 
-    public static final Tag<ItemType> SWORDS = ItemTypeTags.key(ResourceKey.minecraft("swords"));
+    public static final DefaultedTag<ItemType> SWORDS = ItemTypeTags.key(ResourceKey.minecraft("swords"));
 
-    public static final Tag<ItemType> TERRACOTTA = ItemTypeTags.key(ResourceKey.minecraft("terracotta"));
+    public static final DefaultedTag<ItemType> TERRACOTTA = ItemTypeTags.key(ResourceKey.minecraft("terracotta"));
 
-    public static final Tag<ItemType> TRAPDOORS = ItemTypeTags.key(ResourceKey.minecraft("trapdoors"));
+    public static final DefaultedTag<ItemType> TRAPDOORS = ItemTypeTags.key(ResourceKey.minecraft("trapdoors"));
 
-    public static final Tag<ItemType> TRIM_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("trim_materials"));
+    public static final DefaultedTag<ItemType> TRIM_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("trim_materials"));
 
-    public static final Tag<ItemType> TRIMMABLE_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("trimmable_armor"));
+    public static final DefaultedTag<ItemType> TRIMMABLE_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("trimmable_armor"));
 
-    public static final Tag<ItemType> TURTLE_FOOD = ItemTypeTags.key(ResourceKey.minecraft("turtle_food"));
+    public static final DefaultedTag<ItemType> TURTLE_FOOD = ItemTypeTags.key(ResourceKey.minecraft("turtle_food"));
 
-    public static final Tag<ItemType> VILLAGER_PICKS_UP = ItemTypeTags.key(ResourceKey.minecraft("villager_picks_up"));
+    public static final DefaultedTag<ItemType> VILLAGER_PICKS_UP = ItemTypeTags.key(ResourceKey.minecraft("villager_picks_up"));
 
-    public static final Tag<ItemType> VILLAGER_PLANTABLE_SEEDS = ItemTypeTags.key(ResourceKey.minecraft("villager_plantable_seeds"));
+    public static final DefaultedTag<ItemType> VILLAGER_PLANTABLE_SEEDS = ItemTypeTags.key(ResourceKey.minecraft("villager_plantable_seeds"));
 
-    public static final Tag<ItemType> WALLS = ItemTypeTags.key(ResourceKey.minecraft("walls"));
+    public static final DefaultedTag<ItemType> WALLS = ItemTypeTags.key(ResourceKey.minecraft("walls"));
 
-    public static final Tag<ItemType> WARPED_STEMS = ItemTypeTags.key(ResourceKey.minecraft("warped_stems"));
+    public static final DefaultedTag<ItemType> WARPED_STEMS = ItemTypeTags.key(ResourceKey.minecraft("warped_stems"));
 
-    public static final Tag<ItemType> WART_BLOCKS = ItemTypeTags.key(ResourceKey.minecraft("wart_blocks"));
+    public static final DefaultedTag<ItemType> WART_BLOCKS = ItemTypeTags.key(ResourceKey.minecraft("wart_blocks"));
 
-    public static final Tag<ItemType> WITHER_SKELETON_DISLIKED_WEAPONS = ItemTypeTags.key(ResourceKey.minecraft("wither_skeleton_disliked_weapons"));
+    public static final DefaultedTag<ItemType> WITHER_SKELETON_DISLIKED_WEAPONS = ItemTypeTags.key(ResourceKey.minecraft("wither_skeleton_disliked_weapons"));
 
-    public static final Tag<ItemType> WOLF_FOOD = ItemTypeTags.key(ResourceKey.minecraft("wolf_food"));
+    public static final DefaultedTag<ItemType> WOLF_FOOD = ItemTypeTags.key(ResourceKey.minecraft("wolf_food"));
 
-    public static final Tag<ItemType> WOODEN_BUTTONS = ItemTypeTags.key(ResourceKey.minecraft("wooden_buttons"));
+    public static final DefaultedTag<ItemType> WOODEN_BUTTONS = ItemTypeTags.key(ResourceKey.minecraft("wooden_buttons"));
 
-    public static final Tag<ItemType> WOODEN_DOORS = ItemTypeTags.key(ResourceKey.minecraft("wooden_doors"));
+    public static final DefaultedTag<ItemType> WOODEN_DOORS = ItemTypeTags.key(ResourceKey.minecraft("wooden_doors"));
 
-    public static final Tag<ItemType> WOODEN_FENCES = ItemTypeTags.key(ResourceKey.minecraft("wooden_fences"));
+    public static final DefaultedTag<ItemType> WOODEN_FENCES = ItemTypeTags.key(ResourceKey.minecraft("wooden_fences"));
 
-    public static final Tag<ItemType> WOODEN_PRESSURE_PLATES = ItemTypeTags.key(ResourceKey.minecraft("wooden_pressure_plates"));
+    public static final DefaultedTag<ItemType> WOODEN_PRESSURE_PLATES = ItemTypeTags.key(ResourceKey.minecraft("wooden_pressure_plates"));
 
-    public static final Tag<ItemType> WOODEN_SLABS = ItemTypeTags.key(ResourceKey.minecraft("wooden_slabs"));
+    public static final DefaultedTag<ItemType> WOODEN_SLABS = ItemTypeTags.key(ResourceKey.minecraft("wooden_slabs"));
 
-    public static final Tag<ItemType> WOODEN_STAIRS = ItemTypeTags.key(ResourceKey.minecraft("wooden_stairs"));
+    public static final DefaultedTag<ItemType> WOODEN_STAIRS = ItemTypeTags.key(ResourceKey.minecraft("wooden_stairs"));
 
-    public static final Tag<ItemType> WOODEN_TOOL_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("wooden_tool_materials"));
+    public static final DefaultedTag<ItemType> WOODEN_TOOL_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("wooden_tool_materials"));
 
-    public static final Tag<ItemType> WOODEN_TRAPDOORS = ItemTypeTags.key(ResourceKey.minecraft("wooden_trapdoors"));
+    public static final DefaultedTag<ItemType> WOODEN_TRAPDOORS = ItemTypeTags.key(ResourceKey.minecraft("wooden_trapdoors"));
 
-    public static final Tag<ItemType> WOOL = ItemTypeTags.key(ResourceKey.minecraft("wool"));
+    public static final DefaultedTag<ItemType> WOOL = ItemTypeTags.key(ResourceKey.minecraft("wool"));
 
-    public static final Tag<ItemType> WOOL_CARPETS = ItemTypeTags.key(ResourceKey.minecraft("wool_carpets"));
+    public static final DefaultedTag<ItemType> WOOL_CARPETS = ItemTypeTags.key(ResourceKey.minecraft("wool_carpets"));
 
     private ItemTypeTags() {
     }
 
-    private static Tag<ItemType> key(final ResourceKey key) {
-        return Tag.of(RegistryTypes.ITEM_TYPE, key);
+    private static DefaultedTag<ItemType> key(final ResourceKey key) {
+        return DefaultedTag.of(RegistryTypes.ITEM_TYPE, key);
     }
 }

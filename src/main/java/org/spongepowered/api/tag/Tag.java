@@ -29,8 +29,10 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.registry.DefaultedRegistryType;
+import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.RegistryType;
+
+import java.util.function.Supplier;
 
 /**
  * A {@link ResourceKey resource keyed} collection of {@link Taggable} values
@@ -50,6 +52,10 @@ import org.spongepowered.api.registry.RegistryType;
  */
 public interface Tag<T> extends ResourceKeyed {
 
+    static <T> Tag<T> of(final RegistryType<T> registryType, final ResourceKey key) {
+        return Sponge.game().factoryProvider().provide(Tag.Factory.class).of(registryType, key);
+    }
+
     /**
      * Gets the {@link RegistryType location} defining the parent registry.
      *
@@ -57,19 +63,11 @@ public interface Tag<T> extends ResourceKeyed {
      */
     RegistryType<T> registry();
 
+    DefaultedTag<T> asDefaultedTag(Supplier<RegistryHolder> holder);
+
+    DefaultedTag<T> asScopedTag();
+
     interface Factory {
-        default <T> Tag<T> of(DefaultedRegistryType<T> registryType, ResourceKey key) {
-            return this.of((RegistryType<T>) registryType, key);
-        }
-
         <T> Tag<T> of(RegistryType<T> registryType, ResourceKey key);
-    }
-
-    static <T> Tag<T> of(DefaultedRegistryType<T> registryType, ResourceKey key) {
-        return Sponge.game().factoryProvider().provide(Tag.Factory.class).of(registryType, key);
-    }
-
-    static <T> Tag<T> of(RegistryType<T> registryType, ResourceKey key) {
-        return Sponge.game().factoryProvider().provide(Tag.Factory.class).of(registryType, key);
     }
 }

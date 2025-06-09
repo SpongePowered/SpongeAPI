@@ -28,6 +28,6 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(VillagerTypes.class)
-public interface VillagerType extends DefaultedRegistryValue {
+public interface VillagerType extends DefaultedRegistryValue<VillagerType> {
 
 }

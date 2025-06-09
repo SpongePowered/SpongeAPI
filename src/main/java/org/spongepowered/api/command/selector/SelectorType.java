@@ -31,7 +31,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a type of selector that Minecraft supplies.
  */
 @CatalogedBy(SelectorTypes.class)
-public interface SelectorType extends DefaultedRegistryValue {
+public interface SelectorType extends DefaultedRegistryValue<SelectorType> {
 
     /**
      * Gets the token that represents this selector type when used in commands.

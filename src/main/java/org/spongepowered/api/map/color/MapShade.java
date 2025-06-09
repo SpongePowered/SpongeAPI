@@ -32,5 +32,5 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * to form a {@link MapColor}
  */
 @CatalogedBy(MapShades.class)
-public interface MapShade extends DefaultedRegistryValue {
+public interface MapShade extends DefaultedRegistryValue<MapShade> {
 }

@@ -22,31 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.event.cause.entity.damage;
+package org.spongepowered.api.event.impl.entity;
 
-import java.util.function.DoubleUnaryOperator;
+import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.event.entity.DamageEntityEvent;
+import org.spongepowered.api.event.impl.AbstractEvent;
 
-/**
- * A function associating a
- * {@link DamageModifier} with a {@link DoubleUnaryOperator} of the resultant
- * effect.
- *
- * @param <M> The modifier type
- */
-public interface ModifierFunction<M> {
+import java.util.Optional;
 
-    /**
-     * Gets the modifier used by this modifier function.
-     *
-     * @return The modifier
-     */
-    M modifier();
+public abstract class AbstractDamageEntityEventPost extends AbstractEvent implements DamageEntityEvent.Post {
 
-    /**
-     * Gets the double unary operator used by this function.
-     *
-     * @return The unary operator
-     */
-    DoubleUnaryOperator function();
-
+    @Override
+    public boolean willCauseDeath() {
+        final Optional<Double> health = this.entity().get(Keys.HEALTH);
+        return health.isPresent() && health.get() - this.finalDamage() <= 0;
+    }
 }

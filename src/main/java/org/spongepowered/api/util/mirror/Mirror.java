@@ -28,6 +28,6 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(Mirrors.class)
-public interface Mirror extends DefaultedRegistryValue {
+public interface Mirror extends DefaultedRegistryValue<Mirror> {
 
 }

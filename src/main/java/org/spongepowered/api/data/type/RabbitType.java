@@ -32,6 +32,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a type of {@link Rabbit}.
  */
 @CatalogedBy(RabbitTypes.class)
-public interface RabbitType extends DefaultedRegistryValue {
+public interface RabbitType extends DefaultedRegistryValue<RabbitType> {
 
 }

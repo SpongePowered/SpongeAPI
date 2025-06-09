@@ -58,7 +58,7 @@ import java.util.Optional;
  * <p>{@link StoneCutterRecipe} for recipes in a {@link BlockTypes#STONECUTTER} block</p>
  * <p>{@link SmithingRecipe} for recipes in a {@link BlockTypes#SMITHING_TABLE} block</p>
  */
-public interface Recipe<T extends RecipeInput> extends DefaultedRegistryValue, DataPackSerializable {
+public interface Recipe<T extends RecipeInput> extends DefaultedRegistryValue<Recipe<?>>, DataPackSerializable {
 
     /**
      * Checks if the given inventory fits the required constraints to make a valid recipe

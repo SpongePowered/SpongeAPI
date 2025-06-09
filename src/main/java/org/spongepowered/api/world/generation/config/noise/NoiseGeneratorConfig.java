@@ -43,7 +43,7 @@ import java.util.List;
  * Noise generator config used in {@link ConfigurableChunkGenerator configurable chunk generators}.
  */
 @CatalogedBy(NoiseGeneratorConfigs.class)
-public interface NoiseGeneratorConfig extends ChunkGeneratorConfig, DefaultedRegistryValue, DataPackSerializable {
+public interface NoiseGeneratorConfig extends ChunkGeneratorConfig, DefaultedRegistryValue<NoiseGeneratorConfig>, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link NoiseGeneratorConfig}.

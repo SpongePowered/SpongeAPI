@@ -32,7 +32,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a possible type of operation for an {@link Inventory#query inventory query}.
  */
 @CatalogedBy(QueryTypes.class)
-public interface QueryType extends DefaultedRegistryValue {
+public interface QueryType extends DefaultedRegistryValue<QueryType> {
 
     /**
      * A type of query that requires no parameters. It can directly be used as a query.

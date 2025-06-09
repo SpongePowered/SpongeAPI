@@ -32,6 +32,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a type of "spawning" for a {@link SpawnEntityEvent}.
  */
 @CatalogedBy(SpawnTypes.class)
-public interface SpawnType extends DefaultedRegistryValue {
+public interface SpawnType extends DefaultedRegistryValue<SpawnType> {
 
 }

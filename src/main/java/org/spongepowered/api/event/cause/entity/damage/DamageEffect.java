@@ -29,6 +29,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 
 
 @CatalogedBy(DamageEffects.class)
-public interface DamageEffect extends DefaultedRegistryValue {
+public interface DamageEffect extends DefaultedRegistryValue<DamageEffect> {
 
 }

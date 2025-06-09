@@ -32,7 +32,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a possible type of {@link PotionEffect}.
  */
 @CatalogedBy(PotionEffectTypes.class)
-public interface PotionEffectType extends DefaultedRegistryValue, ComponentLike {
+public interface PotionEffectType extends DefaultedRegistryValue<PotionEffectType>, ComponentLike {
 
     /**
      * Gets whether this potion effect is applied instantly or over time.

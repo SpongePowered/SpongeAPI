@@ -36,7 +36,7 @@ import org.spongepowered.api.util.weighted.WeightedTable;
  * A weighted list of {@link Structure structures}.
  */
 @CatalogedBy(StructureSets.class)
-public interface StructureSet extends DefaultedRegistryValue, DataPackSerializable {
+public interface StructureSet extends DefaultedRegistryValue<StructureSet>, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link StructureSet}.

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.world.biome.climate;
 
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.biome.Biome;
 
@@ -31,6 +32,6 @@ import org.spongepowered.api.world.biome.Biome;
  * The type of precipitation in a {@link Biome}.
  */
 @CatalogedBy(Precipitations.class)
-public interface Precipitation {
+public interface Precipitation extends DefaultedRegistryValue<Precipitation> {
 
 }
