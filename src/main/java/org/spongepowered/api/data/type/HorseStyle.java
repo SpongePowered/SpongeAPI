@@ -34,6 +34,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * horse. The style can be inherited to new born child horses.</p>
  */
 @CatalogedBy(HorseStyles.class)
-public interface HorseStyle extends DefaultedRegistryValue {
+public interface HorseStyle extends DefaultedRegistryValue<HorseStyle> {
 
 }

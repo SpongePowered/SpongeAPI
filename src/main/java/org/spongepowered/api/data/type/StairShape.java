@@ -31,6 +31,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a stair shape.
  */
 @CatalogedBy(StairShapes.class)
-public interface StairShape extends DefaultedRegistryValue, Comparable<StairShape>, StringRepresentable {
+public interface StairShape extends DefaultedRegistryValue<StairShape>, Comparable<StairShape>, StringRepresentable {
 
 }

@@ -32,7 +32,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a equipment type.
  */
 @CatalogedBy(EquipmentTypes.class)
-public interface EquipmentType extends DefaultedRegistryValue, StringRepresentable {
+public interface EquipmentType extends DefaultedRegistryValue<EquipmentType>, StringRepresentable {
 
     /**
      * Gets the {@link EquipmentGroup group} this equipment falls under.

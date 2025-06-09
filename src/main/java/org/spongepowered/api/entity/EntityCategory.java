@@ -39,7 +39,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * may include {@link Chicken}.
  */
 @CatalogedBy(EntityCategories.class)
-public interface EntityCategory extends DefaultedRegistryValue, StringRepresentable {
+public interface EntityCategory extends DefaultedRegistryValue<EntityCategory>, StringRepresentable {
 
     /**
      * Whether this category of entities is considered "friendly".

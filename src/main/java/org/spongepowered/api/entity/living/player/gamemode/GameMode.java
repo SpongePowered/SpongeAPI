@@ -34,6 +34,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a game mode that a {@link Player} may have.
  */
 @CatalogedBy(GameModes.class)
-public interface GameMode extends DefaultedRegistryValue, ComponentLike, StringRepresentable {
+public interface GameMode extends DefaultedRegistryValue<GameMode>, ComponentLike, StringRepresentable {
 
 }

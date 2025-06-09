@@ -31,6 +31,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a type of fox a fox is.
  */
 @CatalogedBy(FoxTypes.class)
-public interface FoxType extends DefaultedRegistryValue, StringRepresentable {
+public interface FoxType extends DefaultedRegistryValue<FoxType>, StringRepresentable {
 
 }

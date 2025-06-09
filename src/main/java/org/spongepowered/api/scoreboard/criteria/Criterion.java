@@ -33,7 +33,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * automatically updated.
  */
 @CatalogedBy(Criteria.class)
-public interface Criterion extends DefaultedRegistryValue {
+public interface Criterion extends DefaultedRegistryValue<Criterion> {
 
     ObjectiveDisplayMode displayMode();
 }

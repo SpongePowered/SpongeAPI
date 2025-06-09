@@ -29,7 +29,7 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(FeatureTypes.class)
-public interface FeatureType extends DefaultedRegistryValue {
+public interface FeatureType extends DefaultedRegistryValue<FeatureType> {
 
     /**
      * Returns the configured feature

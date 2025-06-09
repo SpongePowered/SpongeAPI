@@ -35,6 +35,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * a {@link Team} collide with other entities.</p>
  */
 @CatalogedBy(CollisionRules.class)
-public interface CollisionRule extends DefaultedRegistryValue, ComponentLike {
+public interface CollisionRule extends DefaultedRegistryValue<CollisionRule>, ComponentLike {
 
 }

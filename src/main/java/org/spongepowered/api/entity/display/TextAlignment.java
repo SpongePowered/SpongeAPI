@@ -29,6 +29,6 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(TextAlignments.class)
-public interface TextAlignment extends DefaultedRegistryValue, StringRepresentable {
+public interface TextAlignment extends DefaultedRegistryValue<TextAlignment>, StringRepresentable {
 
 }

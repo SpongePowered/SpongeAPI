@@ -29,6 +29,6 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(DamageScalings.class)
-public interface DamageScaling extends DefaultedRegistryValue, StringRepresentable {
+public interface DamageScaling extends DefaultedRegistryValue<DamageScaling>, StringRepresentable {
 
 }

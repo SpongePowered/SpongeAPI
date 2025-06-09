@@ -37,7 +37,7 @@ import java.util.Optional;
  * Represents an area to display an objective.
  */
 @CatalogedBy(DisplaySlots.class)
-public interface DisplaySlot extends DefaultedRegistryValue, StringRepresentable {
+public interface DisplaySlot extends DefaultedRegistryValue<DisplaySlot>, StringRepresentable {
 
     /**
      * Finds and retrieves the sidebar display slot for the specified

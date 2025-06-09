@@ -37,7 +37,7 @@ import java.lang.reflect.Type;
  * @param <V> The type of the value
  */
 @CatalogedBy(GameRules.class)
-public interface GameRule<V> extends DefaultedRegistryValue, Nameable {
+public interface GameRule<V> extends DefaultedRegistryValue<GameRule<?>>, Nameable {
 
     /**
      * Gets the value {@link TypeToken type}.

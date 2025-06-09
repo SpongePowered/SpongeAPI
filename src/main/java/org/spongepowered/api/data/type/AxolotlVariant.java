@@ -28,5 +28,5 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(AxolotlVariants.class)
-public interface AxolotlVariant extends DefaultedRegistryValue, StringRepresentable {
+public interface AxolotlVariant extends DefaultedRegistryValue<AxolotlVariant>, StringRepresentable {
 }

@@ -30,7 +30,6 @@ import org.spongepowered.api.util.annotation.DoNotStore;
 
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Stream;
 
 /**
@@ -128,7 +127,7 @@ public interface Registry<T> {
      *
      * @return The registered types associated with given tag
      */
-    <V extends T> Set<V> taggedValues(Tag<T> tag);
+    <V extends T> Stream<V> taggedValues(Tag<T> tag);
 
     /**
      * Gets the tags associated with this registry.

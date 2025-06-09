@@ -37,5 +37,5 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * types</p>
  */
 @CatalogedBy(ClientCompletionTypes.class)
-public interface ClientCompletionType extends DefaultedRegistryValue {
+public interface ClientCompletionType extends DefaultedRegistryValue<ClientCompletionType> {
 }

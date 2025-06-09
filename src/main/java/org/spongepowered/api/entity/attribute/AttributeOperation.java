@@ -33,6 +33,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * {@link Attribute}.
  */
 @CatalogedBy(AttributeOperations.class)
-public interface AttributeOperation extends DefaultedRegistryValue, StringRepresentable {
+public interface AttributeOperation extends DefaultedRegistryValue<AttributeOperation>, StringRepresentable {
 
 }

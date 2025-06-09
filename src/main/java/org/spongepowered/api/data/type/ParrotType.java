@@ -32,6 +32,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents the type of a {@link Parrot}.
  */
 @CatalogedBy(ParrotTypes.class)
-public interface ParrotType extends DefaultedRegistryValue, StringRepresentable {
+public interface ParrotType extends DefaultedRegistryValue<ParrotType>, StringRepresentable {
 
 }

@@ -31,7 +31,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents the type of panda a panda is.
  */
 @CatalogedBy(PandaGenes.class)
-public interface PandaGene extends DefaultedRegistryValue, StringRepresentable {
+public interface PandaGene extends DefaultedRegistryValue<PandaGene>, StringRepresentable {
 
     boolean isRecessive();
 }

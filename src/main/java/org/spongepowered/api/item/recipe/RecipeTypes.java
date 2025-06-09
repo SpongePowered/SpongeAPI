@@ -61,7 +61,7 @@ public final class RecipeTypes {
     private RecipeTypes() {
     }
 
-    public static Registry<RecipeType<? extends Recipe<?>>> registry() {
+    public static Registry<RecipeType<?>> registry() {
         return Sponge.game().registry(RegistryTypes.RECIPE_TYPE);
     }
 

@@ -45,6 +45,7 @@ import org.spongepowered.api.world.gamerule.GameRuleHolder;
 import org.spongepowered.api.world.generation.config.WorldGenerationConfig;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.server.WorldArchetype;
+import org.spongepowered.api.world.server.WorldArchetypeType;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.WeatherUniverse;
@@ -375,6 +376,14 @@ public interface ServerWorldProperties extends WorldProperties, GameRuleHolder, 
     @Override
     default Weather weather() {
         return this.require(Keys.WEATHER);
+    }
+
+    default WorldArchetypeType worldArchetypeType() {
+        return this.require(Keys.WORLD_ARCHETYPE_TYPE);
+    }
+
+    default WorldArchetype worldArchetype() {
+        return this.require(Keys.WORLD_ARCHETYPE);
     }
 
     /**

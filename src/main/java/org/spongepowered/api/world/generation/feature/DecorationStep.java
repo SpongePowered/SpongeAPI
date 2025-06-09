@@ -25,6 +25,7 @@
 package org.spongepowered.api.world.generation.feature;
 
 import org.spongepowered.api.data.type.StringRepresentable;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.api.world.biome.Biome;
 
@@ -32,6 +33,6 @@ import org.spongepowered.api.world.biome.Biome;
  * A step in which {@link PlacedFeature features} are placed for a {@link Biome} during world generation.
  */
 @CatalogedBy(DecorationSteps.class)
-public interface DecorationStep extends StringRepresentable {
+public interface DecorationStep extends DefaultedRegistryValue<DecorationStep>, StringRepresentable {
 
 }

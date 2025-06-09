@@ -34,7 +34,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * also the appearance in the notifications.
  */
 @CatalogedBy(AdvancementTypes.class)
-public interface AdvancementType extends DefaultedRegistryValue, StringRepresentable {
+public interface AdvancementType extends DefaultedRegistryValue<AdvancementType>, StringRepresentable {
 
     /**
      * Gets the {@link TextColor} of the advancement type.

@@ -28,6 +28,6 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(MovementTypes.class)
-public interface MovementType extends DefaultedRegistryValue {
+public interface MovementType extends DefaultedRegistryValue<MovementType> {
 
 }

@@ -26,35 +26,29 @@ package org.spongepowered.api.tag;
 
 import org.spongepowered.api.registry.DefaultedRegistryType;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
-import org.spongepowered.api.registry.RegistryType;
 
-import java.util.Collection;
+import java.util.stream.Stream;
 
 /**
  * A type that may be included in one or more {@link Tag} collections.
  */
-public interface Taggable<T extends Taggable<T>> extends DefaultedRegistryValue {
+public interface Taggable<T extends Taggable<T>> extends DefaultedRegistryValue<T> {
 
     /**
-     * Gets the {@link RegistryType} that holds the types of {@link Tag tags}
-     * that can be associated with this object.
+     * Gets all {@link Tag}s that have been associated with this object in the given registry.
      *
-     * @return The {@link RegistryType}
+     * @return The {@link Stream} of {@link Tag}s.
      */
-    DefaultedRegistryType<T> registryType();
+    Stream<Tag<T>> tags(DefaultedRegistryType<T> registryType);
 
     /**
-     * Gets all {@link Tag tags} that have been associated with this object.
+     * Returns whether the given tag is associated with this object.
      *
-     * @return The {@link Collection} of {@link Tag}s.
-     */
-    Collection<Tag<T>> tags();
-
-    /**
-     * Returns true when given tag is associated with this object
      * @param tag The tag
-     * @return true when given tag is associated with this object
+     * @return true if the given tag is associated with this object
      */
-    boolean is(Tag<T> tag);
-
+    @SuppressWarnings("unchecked")
+    default boolean is(DefaultedTag<T> tag) {
+        return tag.contains((T) this);
+    }
 }

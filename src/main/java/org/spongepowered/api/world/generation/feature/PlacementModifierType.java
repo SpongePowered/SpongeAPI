@@ -25,13 +25,14 @@
 package org.spongepowered.api.world.generation.feature;
 
 import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * A type of {@link PlacementModifier}.
  */
 @CatalogedBy(PlacementModifierTypes.class)
-public interface PlacementModifierType {
+public interface PlacementModifierType extends DefaultedRegistryValue<PlacementModifierType> {
 
     /**
      * Returns the placement modifier.

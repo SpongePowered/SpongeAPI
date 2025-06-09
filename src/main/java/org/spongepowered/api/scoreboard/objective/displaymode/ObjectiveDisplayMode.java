@@ -33,6 +33,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents the mode in which to display scores for an {@link Objective}.
  */
 @CatalogedBy(ObjectiveDisplayModes.class)
-public interface ObjectiveDisplayMode extends DefaultedRegistryValue, StringRepresentable {
+public interface ObjectiveDisplayMode extends DefaultedRegistryValue<ObjectiveDisplayMode>, StringRepresentable {
 
 }

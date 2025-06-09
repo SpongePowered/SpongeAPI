@@ -28,6 +28,6 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(TaskPriorities.class)
-public interface TaskPriority extends DefaultedRegistryValue {
+public interface TaskPriority extends DefaultedRegistryValue<TaskPriority> {
 
 }

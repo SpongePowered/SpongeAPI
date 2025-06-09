@@ -28,5 +28,5 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(TrimPatterns.class)
-public interface TrimPattern extends DefaultedRegistryValue {
+public interface TrimPattern extends DefaultedRegistryValue<TrimPattern> {
 }

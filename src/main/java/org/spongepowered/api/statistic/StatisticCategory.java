@@ -25,12 +25,13 @@
 package org.spongepowered.api.statistic;
 
 import io.leangen.geantyref.TypeToken;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Collection;
 
 @CatalogedBy(StatisticCategories.class)
-public interface StatisticCategory {
+public interface StatisticCategory extends DefaultedRegistryValue<StatisticCategory> {
 
     /**
      * Gets all the {@link Statistic}s that are listed

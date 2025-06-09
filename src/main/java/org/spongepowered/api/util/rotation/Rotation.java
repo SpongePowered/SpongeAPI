@@ -31,7 +31,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
 import org.spongepowered.math.matrix.Matrix4d;
 
 @CatalogedBy(Rotations.class)
-public interface Rotation extends DefaultedRegistryValue, StringRepresentable {
+public interface Rotation extends DefaultedRegistryValue<Rotation>, StringRepresentable {
 
     Rotation and(final Rotation rotation);
 

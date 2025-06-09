@@ -34,7 +34,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * played by a {@link Jukebox}.
  */
 @CatalogedBy(MusicDiscs.class)
-public interface MusicDisc extends DefaultedRegistryValue {
+public interface MusicDisc extends DefaultedRegistryValue<MusicDisc> {
 
     /**
      * Gets the {@link SoundType} that is used
