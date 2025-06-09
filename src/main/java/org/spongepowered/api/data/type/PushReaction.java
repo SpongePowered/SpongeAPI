@@ -28,6 +28,6 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(PushReactions.class)
-public interface PushReaction extends DefaultedRegistryValue<PushReaction>, StringRepresentable {
+public interface PushReaction extends DefaultedRegistryValue<PushReaction> {
 
 }
