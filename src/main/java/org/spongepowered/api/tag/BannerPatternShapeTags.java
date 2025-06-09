@@ -37,32 +37,32 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class BannerPatternShapeTags {
 
-    public static final Tag<BannerPatternShape> NO_ITEM_REQUIRED = BannerPatternShapeTags.key(ResourceKey.minecraft("no_item_required"));
+    public static final DefaultedTag<BannerPatternShape> NO_ITEM_REQUIRED = BannerPatternShapeTags.key(ResourceKey.minecraft("no_item_required"));
 
-    public static final Tag<BannerPatternShape> PATTERN_ITEM_BORDURE_INDENTED = BannerPatternShapeTags.key(ResourceKey.minecraft("pattern_item/bordure_indented"));
+    public static final DefaultedTag<BannerPatternShape> PATTERN_ITEM_BORDURE_INDENTED = BannerPatternShapeTags.key(ResourceKey.minecraft("pattern_item/bordure_indented"));
 
-    public static final Tag<BannerPatternShape> PATTERN_ITEM_CREEPER = BannerPatternShapeTags.key(ResourceKey.minecraft("pattern_item/creeper"));
+    public static final DefaultedTag<BannerPatternShape> PATTERN_ITEM_CREEPER = BannerPatternShapeTags.key(ResourceKey.minecraft("pattern_item/creeper"));
 
-    public static final Tag<BannerPatternShape> PATTERN_ITEM_FIELD_MASONED = BannerPatternShapeTags.key(ResourceKey.minecraft("pattern_item/field_masoned"));
+    public static final DefaultedTag<BannerPatternShape> PATTERN_ITEM_FIELD_MASONED = BannerPatternShapeTags.key(ResourceKey.minecraft("pattern_item/field_masoned"));
 
-    public static final Tag<BannerPatternShape> PATTERN_ITEM_FLOW = BannerPatternShapeTags.key(ResourceKey.minecraft("pattern_item/flow"));
+    public static final DefaultedTag<BannerPatternShape> PATTERN_ITEM_FLOW = BannerPatternShapeTags.key(ResourceKey.minecraft("pattern_item/flow"));
 
-    public static final Tag<BannerPatternShape> PATTERN_ITEM_FLOWER = BannerPatternShapeTags.key(ResourceKey.minecraft("pattern_item/flower"));
+    public static final DefaultedTag<BannerPatternShape> PATTERN_ITEM_FLOWER = BannerPatternShapeTags.key(ResourceKey.minecraft("pattern_item/flower"));
 
-    public static final Tag<BannerPatternShape> PATTERN_ITEM_GLOBE = BannerPatternShapeTags.key(ResourceKey.minecraft("pattern_item/globe"));
+    public static final DefaultedTag<BannerPatternShape> PATTERN_ITEM_GLOBE = BannerPatternShapeTags.key(ResourceKey.minecraft("pattern_item/globe"));
 
-    public static final Tag<BannerPatternShape> PATTERN_ITEM_GUSTER = BannerPatternShapeTags.key(ResourceKey.minecraft("pattern_item/guster"));
+    public static final DefaultedTag<BannerPatternShape> PATTERN_ITEM_GUSTER = BannerPatternShapeTags.key(ResourceKey.minecraft("pattern_item/guster"));
 
-    public static final Tag<BannerPatternShape> PATTERN_ITEM_MOJANG = BannerPatternShapeTags.key(ResourceKey.minecraft("pattern_item/mojang"));
+    public static final DefaultedTag<BannerPatternShape> PATTERN_ITEM_MOJANG = BannerPatternShapeTags.key(ResourceKey.minecraft("pattern_item/mojang"));
 
-    public static final Tag<BannerPatternShape> PATTERN_ITEM_PIGLIN = BannerPatternShapeTags.key(ResourceKey.minecraft("pattern_item/piglin"));
+    public static final DefaultedTag<BannerPatternShape> PATTERN_ITEM_PIGLIN = BannerPatternShapeTags.key(ResourceKey.minecraft("pattern_item/piglin"));
 
-    public static final Tag<BannerPatternShape> PATTERN_ITEM_SKULL = BannerPatternShapeTags.key(ResourceKey.minecraft("pattern_item/skull"));
+    public static final DefaultedTag<BannerPatternShape> PATTERN_ITEM_SKULL = BannerPatternShapeTags.key(ResourceKey.minecraft("pattern_item/skull"));
 
     private BannerPatternShapeTags() {
     }
 
-    private static Tag<BannerPatternShape> key(final ResourceKey key) {
-        return Tag.of(RegistryTypes.BANNER_PATTERN_SHAPE, key);
+    private static DefaultedTag<BannerPatternShape> key(final ResourceKey key) {
+        return DefaultedTag.of(RegistryTypes.BANNER_PATTERN_SHAPE, key);
     }
 }

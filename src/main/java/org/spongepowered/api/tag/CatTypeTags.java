@@ -37,14 +37,14 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class CatTypeTags {
 
-    public static final Tag<CatType> DEFAULT_SPAWNS = CatTypeTags.key(ResourceKey.minecraft("default_spawns"));
+    public static final DefaultedTag<CatType> DEFAULT_SPAWNS = CatTypeTags.key(ResourceKey.minecraft("default_spawns"));
 
-    public static final Tag<CatType> FULL_MOON_SPAWNS = CatTypeTags.key(ResourceKey.minecraft("full_moon_spawns"));
+    public static final DefaultedTag<CatType> FULL_MOON_SPAWNS = CatTypeTags.key(ResourceKey.minecraft("full_moon_spawns"));
 
     private CatTypeTags() {
     }
 
-    private static Tag<CatType> key(final ResourceKey key) {
-        return Tag.of(RegistryTypes.CAT_TYPE, key);
+    private static DefaultedTag<CatType> key(final ResourceKey key) {
+        return DefaultedTag.of(RegistryTypes.CAT_TYPE, key);
     }
 }

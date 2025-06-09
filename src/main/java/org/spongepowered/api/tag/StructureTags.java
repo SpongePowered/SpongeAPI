@@ -37,36 +37,36 @@ import org.spongepowered.api.world.generation.structure.Structure;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class StructureTags {
 
-    public static final Tag<Structure> CATS_SPAWN_AS_BLACK = StructureTags.key(ResourceKey.minecraft("cats_spawn_as_black"));
+    public static final DefaultedTag<Structure> CATS_SPAWN_AS_BLACK = StructureTags.key(ResourceKey.minecraft("cats_spawn_as_black"));
 
-    public static final Tag<Structure> CATS_SPAWN_IN = StructureTags.key(ResourceKey.minecraft("cats_spawn_in"));
+    public static final DefaultedTag<Structure> CATS_SPAWN_IN = StructureTags.key(ResourceKey.minecraft("cats_spawn_in"));
 
-    public static final Tag<Structure> DOLPHIN_LOCATED = StructureTags.key(ResourceKey.minecraft("dolphin_located"));
+    public static final DefaultedTag<Structure> DOLPHIN_LOCATED = StructureTags.key(ResourceKey.minecraft("dolphin_located"));
 
-    public static final Tag<Structure> EYE_OF_ENDER_LOCATED = StructureTags.key(ResourceKey.minecraft("eye_of_ender_located"));
+    public static final DefaultedTag<Structure> EYE_OF_ENDER_LOCATED = StructureTags.key(ResourceKey.minecraft("eye_of_ender_located"));
 
-    public static final Tag<Structure> MINESHAFT = StructureTags.key(ResourceKey.minecraft("mineshaft"));
+    public static final DefaultedTag<Structure> MINESHAFT = StructureTags.key(ResourceKey.minecraft("mineshaft"));
 
-    public static final Tag<Structure> OCEAN_RUIN = StructureTags.key(ResourceKey.minecraft("ocean_ruin"));
+    public static final DefaultedTag<Structure> OCEAN_RUIN = StructureTags.key(ResourceKey.minecraft("ocean_ruin"));
 
-    public static final Tag<Structure> ON_OCEAN_EXPLORER_MAPS = StructureTags.key(ResourceKey.minecraft("on_ocean_explorer_maps"));
+    public static final DefaultedTag<Structure> ON_OCEAN_EXPLORER_MAPS = StructureTags.key(ResourceKey.minecraft("on_ocean_explorer_maps"));
 
-    public static final Tag<Structure> ON_TREASURE_MAPS = StructureTags.key(ResourceKey.minecraft("on_treasure_maps"));
+    public static final DefaultedTag<Structure> ON_TREASURE_MAPS = StructureTags.key(ResourceKey.minecraft("on_treasure_maps"));
 
-    public static final Tag<Structure> ON_TRIAL_CHAMBERS_MAPS = StructureTags.key(ResourceKey.minecraft("on_trial_chambers_maps"));
+    public static final DefaultedTag<Structure> ON_TRIAL_CHAMBERS_MAPS = StructureTags.key(ResourceKey.minecraft("on_trial_chambers_maps"));
 
-    public static final Tag<Structure> ON_WOODLAND_EXPLORER_MAPS = StructureTags.key(ResourceKey.minecraft("on_woodland_explorer_maps"));
+    public static final DefaultedTag<Structure> ON_WOODLAND_EXPLORER_MAPS = StructureTags.key(ResourceKey.minecraft("on_woodland_explorer_maps"));
 
-    public static final Tag<Structure> RUINED_PORTAL = StructureTags.key(ResourceKey.minecraft("ruined_portal"));
+    public static final DefaultedTag<Structure> RUINED_PORTAL = StructureTags.key(ResourceKey.minecraft("ruined_portal"));
 
-    public static final Tag<Structure> SHIPWRECK = StructureTags.key(ResourceKey.minecraft("shipwreck"));
+    public static final DefaultedTag<Structure> SHIPWRECK = StructureTags.key(ResourceKey.minecraft("shipwreck"));
 
-    public static final Tag<Structure> VILLAGE = StructureTags.key(ResourceKey.minecraft("village"));
+    public static final DefaultedTag<Structure> VILLAGE = StructureTags.key(ResourceKey.minecraft("village"));
 
     private StructureTags() {
     }
 
-    private static Tag<Structure> key(final ResourceKey key) {
-        return Tag.of(RegistryTypes.STRUCTURE, key);
+    private static DefaultedTag<Structure> key(final ResourceKey key) {
+        return DefaultedTag.of(RegistryTypes.STRUCTURE, key);
     }
 }

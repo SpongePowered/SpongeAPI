@@ -37,12 +37,12 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class ArtTypeTags {
 
-    public static final Tag<ArtType> PLACEABLE = ArtTypeTags.key(ResourceKey.minecraft("placeable"));
+    public static final DefaultedTag<ArtType> PLACEABLE = ArtTypeTags.key(ResourceKey.minecraft("placeable"));
 
     private ArtTypeTags() {
     }
 
-    private static Tag<ArtType> key(final ResourceKey key) {
-        return Tag.of(RegistryTypes.ART_TYPE, key);
+    private static DefaultedTag<ArtType> key(final ResourceKey key) {
+        return DefaultedTag.of(RegistryTypes.ART_TYPE, key);
     }
 }
