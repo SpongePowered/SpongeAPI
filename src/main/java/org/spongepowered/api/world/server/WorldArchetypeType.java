@@ -33,7 +33,7 @@ import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.generation.ChunkGenerator;
 
 @CatalogedBy(WorldArchetypeTypes.class)
-public interface WorldArchetypeType extends DefaultedRegistryValue, DataPackSerializable {
+public interface WorldArchetypeType extends DefaultedRegistryValue<WorldArchetypeType>, DataPackSerializable {
 
     static WorldArchetypeType.Builder builder() {
         return Sponge.game().builderProvider().provide(WorldArchetypeType.Builder.class);

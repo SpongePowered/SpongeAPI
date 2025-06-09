@@ -28,7 +28,7 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(GoalTypes.class)
-public interface GoalType extends DefaultedRegistryValue {
+public interface GoalType extends DefaultedRegistryValue<GoalType> {
 
     /**
      * Gets the {@link Goal} class that this type represents.

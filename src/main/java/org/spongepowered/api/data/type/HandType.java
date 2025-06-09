@@ -35,6 +35,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * preference.
  */
 @CatalogedBy(HandTypes.class)
-public interface HandType extends DefaultedRegistryValue {
+public interface HandType extends DefaultedRegistryValue<HandType> {
 
 }

@@ -34,7 +34,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * <p>A TropicalFishShape represents both a fish's appearance and size.</p>
  */
 @CatalogedBy(TropicalFishShapes.class)
-public interface TropicalFishShape extends DefaultedRegistryValue {
+public interface TropicalFishShape extends DefaultedRegistryValue<TropicalFishShape> {
 
     /**
      * Whether this shape represents a large {@link TropicalFish}.

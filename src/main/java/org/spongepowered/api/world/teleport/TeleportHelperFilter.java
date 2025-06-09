@@ -37,7 +37,7 @@ import org.spongepowered.math.vector.Vector3i;
  * location is a suitable candidate for teleporting to safely.
  */
 @CatalogedBy(TeleportHelperFilters.class)
-public interface TeleportHelperFilter extends DefaultedRegistryValue {
+public interface TeleportHelperFilter extends DefaultedRegistryValue<TeleportHelperFilter> {
 
     /**
      * Tests whether the location in question is valid, regardless of whether

@@ -31,6 +31,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a possible shape for a firework explosion.
  */
 @CatalogedBy(FireworkShapes.class)
-public interface FireworkShape extends DefaultedRegistryValue {
+public interface FireworkShape extends DefaultedRegistryValue<FireworkShape> {
 
 }

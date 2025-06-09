@@ -33,6 +33,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * trade offers a trader may offer to a player.
  */
 @CatalogedBy(ProfessionTypes.class)
-public interface ProfessionType extends DefaultedRegistryValue {
+public interface ProfessionType extends DefaultedRegistryValue<ProfessionType> {
 
 }

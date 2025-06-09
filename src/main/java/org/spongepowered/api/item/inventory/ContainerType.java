@@ -33,6 +33,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * It defines what {@link Container} is displayed on the client side when the inventory is opened.
  */
 @CatalogedBy(ContainerTypes.class)
-public interface ContainerType extends DefaultedRegistryValue {
+public interface ContainerType extends DefaultedRegistryValue<ContainerType> {
 
 }

@@ -28,6 +28,6 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(PhantomPhases.class)
-public interface PhantomPhase extends DefaultedRegistryValue {
+public interface PhantomPhase extends DefaultedRegistryValue<PhantomPhase> {
 
 }

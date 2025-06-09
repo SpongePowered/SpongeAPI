@@ -26,6 +26,7 @@ package org.spongepowered.api.world.generation.config.flat;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.registry.RegistryReference;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -41,7 +42,7 @@ import java.util.Optional;
  * See {@link FlatGeneratorConfigs} for the vanilla provided presets.
  */
 @CatalogedBy(FlatGeneratorConfigs.class)
-public interface FlatGeneratorConfig extends ChunkGeneratorConfig {
+public interface FlatGeneratorConfig extends ChunkGeneratorConfig, DefaultedRegistryValue<FlatGeneratorConfig> {
 
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class);

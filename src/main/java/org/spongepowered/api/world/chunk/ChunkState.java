@@ -37,7 +37,7 @@ import org.spongepowered.api.world.World;
  * </ul>
  */
 @CatalogedBy(ChunkStates.class)
-public interface ChunkState extends DefaultedRegistryValue {
+public interface ChunkState extends DefaultedRegistryValue<ChunkState> {
 
     /**
      * Checks whether this state is considered "after"

@@ -32,6 +32,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a possible difficulty setting.
  */
 @CatalogedBy(Difficulties.class)
-public interface Difficulty extends DefaultedRegistryValue, ComponentLike {
+public interface Difficulty extends DefaultedRegistryValue<Difficulty>, ComponentLike {
 
 }

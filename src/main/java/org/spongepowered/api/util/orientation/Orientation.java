@@ -34,7 +34,7 @@ import java.util.Optional;
  * Represents an orientation in relative for an ItemFrame as an example.
  */
 @CatalogedBy(Orientations.class)
-public interface Orientation extends DefaultedRegistryValue {
+public interface Orientation extends DefaultedRegistryValue<Orientation> {
 
     /**
      * Gets the {@link Orientation} that represents the provided {@link Angle}.

@@ -37,7 +37,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a piece of art to be displayed by {@link Painting}s.
  */
 @CatalogedBy(ArtTypes.class)
-public interface ArtType extends DefaultedRegistryValue, DataPackSerializable {
+public interface ArtType extends DefaultedRegistryValue<ArtType>, DataPackSerializable {
 
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class);

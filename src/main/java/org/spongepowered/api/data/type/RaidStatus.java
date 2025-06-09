@@ -28,6 +28,6 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(RaidStatuses.class)
-public interface RaidStatus extends DefaultedRegistryValue {
+public interface RaidStatus extends DefaultedRegistryValue<RaidStatus> {
 
 }

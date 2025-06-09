@@ -37,7 +37,7 @@ import java.util.List;
  * Noise used in world generation
  */
 @CatalogedBy(Noises.class)
-public interface Noise extends DefaultedRegistryValue, DataPackSerializable {
+public interface Noise extends DefaultedRegistryValue<Noise>, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link Noise}.

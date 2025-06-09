@@ -25,13 +25,14 @@
 package org.spongepowered.api.world.generation.carver;
 
 import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * A type of {@link Carver}.
  */
 @CatalogedBy(CarverTypes.class)
-public interface CarverType {
+public interface CarverType extends DefaultedRegistryValue<CarverType> {
 
     /**
      * Returns the configured carver

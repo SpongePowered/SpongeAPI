@@ -32,6 +32,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * will have a significant effect when limits are imposed on the selector.
  */
 @CatalogedBy(SelectorSortAlgorithms.class)
-public interface SelectorSortAlgorithm extends DefaultedRegistryValue {
+public interface SelectorSortAlgorithm extends DefaultedRegistryValue<SelectorSortAlgorithm> {
 
 }

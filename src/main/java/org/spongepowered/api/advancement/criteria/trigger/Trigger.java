@@ -53,7 +53,7 @@ import java.util.function.UnaryOperator;
  */
 @SuppressWarnings("unchecked")
 @CatalogedBy(Triggers.class)
-public interface Trigger<C extends FilteredTriggerConfiguration> extends DefaultedRegistryValue {
+public interface Trigger<C extends FilteredTriggerConfiguration> extends DefaultedRegistryValue<Trigger<?>> {
 
     /**
      * Creates a new {@link Builder} which can be used to create

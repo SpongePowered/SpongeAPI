@@ -33,6 +33,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a NotePitch which may be played by a {@link BlockTypes#NOTE_BLOCK}.
  */
 @CatalogedBy(NotePitches.class)
-public interface NotePitch extends DefaultedRegistryValue, Cycleable<NotePitch> {
+public interface NotePitch extends DefaultedRegistryValue<NotePitch>, Cycleable<NotePitch> {
 
 }

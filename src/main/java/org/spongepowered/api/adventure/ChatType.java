@@ -35,7 +35,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * A type of chat
  */
 @CatalogedBy(ChatTypes.class)
-public interface ChatType extends DefaultedRegistryValue, net.kyori.adventure.chat.ChatType, DataPackSerializable {
+public interface ChatType extends DefaultedRegistryValue<ChatType>, net.kyori.adventure.chat.ChatType, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link ChatType}.

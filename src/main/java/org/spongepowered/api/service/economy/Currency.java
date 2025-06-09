@@ -40,7 +40,7 @@ import java.math.BigDecimal;
  *
  * <p>Depending on the provider of the {@link EconomyService}, more currencies may be available.</p>
  */
-public interface Currency extends DefaultedRegistryValue {
+public interface Currency extends DefaultedRegistryValue<Currency> {
 
     /**
      * The currency's display name, in singular form. Ex: Dollar.

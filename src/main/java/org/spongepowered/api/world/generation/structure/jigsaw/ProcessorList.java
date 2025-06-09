@@ -37,7 +37,7 @@ import java.util.List;
  * A list of {@link Processor processors}.
  */
 @CatalogedBy(ProcessorLists.class)
-public interface ProcessorList extends DefaultedRegistryValue, DataPackSerializable {
+public interface ProcessorList extends DefaultedRegistryValue<ProcessorList>, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link ProcessorList}.

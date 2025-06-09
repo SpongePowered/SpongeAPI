@@ -34,6 +34,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * <p>Usages include nametags and death messages.</p>
  */
 @CatalogedBy(Visibilities.class)
-public interface Visibility extends DefaultedRegistryValue, ComponentLike {
+public interface Visibility extends DefaultedRegistryValue<Visibility>, ComponentLike {
 
 }

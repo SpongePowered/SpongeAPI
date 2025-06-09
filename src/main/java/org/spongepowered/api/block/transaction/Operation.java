@@ -34,5 +34,5 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * but holds no bearing on the order of a transaction taking place.
  */
 @CatalogedBy(Operations.class)
-public interface Operation extends DefaultedRegistryValue {
+public interface Operation extends DefaultedRegistryValue<Operation> {
 }

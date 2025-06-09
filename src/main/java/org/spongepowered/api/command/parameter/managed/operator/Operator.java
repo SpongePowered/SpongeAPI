@@ -25,6 +25,7 @@
 package org.spongepowered.api.command.parameter.managed.operator;
 
 import org.spongepowered.api.command.parameter.managed.standard.ResourceKeyedValueParameters;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
@@ -33,7 +34,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * @see ResourceKeyedValueParameters#OPERATOR
  */
 @CatalogedBy(Operators.class)
-public interface Operator {
+public interface Operator extends DefaultedRegistryValue<Operator> {
 
     /**
      * The string representation of this operator
