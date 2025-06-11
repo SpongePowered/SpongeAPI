@@ -142,7 +142,7 @@ public interface ArgumentReader {
         /**
          * Moves the cursor to the next character.
          */
-        void skip();
+        void skipChar();
 
         /**
          * Moves the cursor to the next non-whitespace character. The cursor
