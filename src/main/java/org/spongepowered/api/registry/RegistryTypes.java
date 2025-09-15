@@ -127,6 +127,7 @@ import org.spongepowered.api.item.ItemRarity;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.enchantment.EnchantmentType;
 import org.spongepowered.api.item.inventory.ContainerType;
+import org.spongepowered.api.item.inventory.equipment.EquipmentCondition;
 import org.spongepowered.api.item.inventory.equipment.EquipmentGroup;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.inventory.menu.ClickType;
@@ -368,6 +369,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<DripstoneSegment> DRIPSTONE_SEGMENT = RegistryTypes.spongeKeyInGame("dripstone_segment");
 
     public static final DefaultedRegistryType<DyeColor> DYE_COLOR = RegistryTypes.spongeKeyInGame("dye_color");
+
+    public static final DefaultedRegistryType<EquipmentCondition> EQUIPMENT_CONDITION = RegistryTypes.spongeKeyInGame("equipment_condition");
 
     public static final DefaultedRegistryType<EquipmentGroup> EQUIPMENT_GROUP = RegistryTypes.spongeKeyInGame("equipment_group");
 
