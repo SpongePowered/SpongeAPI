@@ -32,7 +32,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a visibility mode for a client's chat.
  */
 @CatalogedBy(ChatVisibilities.class)
-public interface ChatVisibility extends DefaultedRegistryValue, ComponentLike {
+public interface ChatVisibility extends DefaultedRegistryValue<ChatVisibility>, ComponentLike {
 
     /**
      * Tests whether system messages will be visible with this visibility

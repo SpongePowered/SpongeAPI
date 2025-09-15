@@ -35,7 +35,7 @@ import java.util.Optional;
 import java.util.function.BiFunction;
 
 @CatalogedBy(PaletteTypes.class)
-public interface PaletteType<T, R> extends DefaultedRegistryValue {
+public interface PaletteType<T, R> extends DefaultedRegistryValue<PaletteType<?, ?>> {
 
     @SuppressWarnings("unchecked")
     static <E, ER> Builder<E, ER> builder() {

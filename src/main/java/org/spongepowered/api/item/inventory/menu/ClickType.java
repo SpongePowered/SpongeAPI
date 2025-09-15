@@ -34,6 +34,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * @param <T> The handler for the click type
  */
 @CatalogedBy(ClickTypes.class)
-public interface ClickType<T> extends DefaultedRegistryValue {
+public interface ClickType<T> extends DefaultedRegistryValue<ClickType<?>> {
 
 }

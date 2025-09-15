@@ -37,7 +37,7 @@ import java.util.function.Predicate;
  * {@link ItemTypes#DIAMOND_CHESTPLATE}.
  */
 @CatalogedBy(ArmorMaterials.class)
-public interface ArmorMaterial extends DefaultedRegistryValue {
+public interface ArmorMaterial extends DefaultedRegistryValue<ArmorMaterial> {
 
     /**
      * Gets the {@link ItemType} that can be used to "repair" the armor type.

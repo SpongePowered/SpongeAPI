@@ -32,7 +32,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Describes a type of block entity.
  */
 @CatalogedBy(BlockEntityTypes.class)
-public interface BlockEntityType extends DefaultedRegistryValue {
+public interface BlockEntityType extends DefaultedRegistryValue<BlockEntityType> {
 
     /**
      * Determines if the provided block is considered valid by the {@link BlockEntity}.

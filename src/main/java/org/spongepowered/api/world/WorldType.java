@@ -35,7 +35,7 @@ import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(WorldTypes.class)
-public interface WorldType extends DefaultedRegistryValue, ContextSource, WorldTypeDataFetcher, DataPackSerializable {
+public interface WorldType extends DefaultedRegistryValue<WorldType>, ContextSource, WorldTypeDataFetcher, DataPackSerializable {
 
     static WorldType.Builder builder() {
         return Sponge.game().builderProvider().provide(WorldType.Builder.class);

@@ -41,7 +41,7 @@ import org.spongepowered.math.vector.Vector3i;
  * <p>Features are used in world generation as a part of {@link PlacedFeature placed features}</p>
  */
 @CatalogedBy(Features.class)
-public interface Feature extends DefaultedRegistryValue, DataPackSerializable {
+public interface Feature extends DefaultedRegistryValue<Feature>, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link Feature}.

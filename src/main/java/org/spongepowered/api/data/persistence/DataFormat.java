@@ -36,7 +36,7 @@ import java.io.OutputStream;
  * a DataContainer to/from a stream of the specific format.
  */
 @CatalogedBy(DataFormats.class)
-public interface DataFormat extends DefaultedRegistryValue {
+public interface DataFormat extends DefaultedRegistryValue<DataFormat> {
 
     /**
      * Creates a new {@link DataContainer} from the contents of the given

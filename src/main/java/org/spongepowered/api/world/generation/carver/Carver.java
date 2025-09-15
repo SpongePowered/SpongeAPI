@@ -35,7 +35,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * A carver used in world generation.
  */
 @CatalogedBy(Carvers.class)
-public interface Carver extends DefaultedRegistryValue, DataPackSerializable {
+public interface Carver extends DefaultedRegistryValue<Carver>, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link Carver}.

@@ -45,6 +45,7 @@ import org.spongepowered.api.world.gamerule.GameRuleHolder;
 import org.spongepowered.api.world.generation.config.WorldGenerationConfig;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.api.world.server.WorldArchetype;
+import org.spongepowered.api.world.server.WorldArchetypeType;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.WeatherUniverse;
@@ -377,8 +378,27 @@ public interface ServerWorldProperties extends WorldProperties, GameRuleHolder, 
         return this.require(Keys.WEATHER);
     }
 
+    default WorldArchetypeType worldArchetypeType() {
+        return this.require(Keys.WORLD_ARCHETYPE_TYPE);
+    }
+
+    default WorldArchetype worldArchetype() {
+        return this.require(Keys.WORLD_ARCHETYPE);
+    }
+
     /**
      * Customize the load process of a {@link ServerWorldProperties}.
+     *
+     * <p>Each {@link LoadOptions load options} can define
+     * multiple operations at once that will be exhausted
+     * until one of them succeeds.</p>
+     *
+     * <p>The operations will be consumed in the following order:</p>
+     * <ul>
+     *     <li>Get</li>
+     *     <li>Load</li>
+     *     <li>Create</li>
+     * </ul>
      */
     interface LoadOptions {
 
@@ -450,6 +470,7 @@ public interface ServerWorldProperties extends WorldProperties, GameRuleHolder, 
         static LoadOptions get(Consumer<ServerWorldProperties> getCallback) {
             return LoadOptions.builder()
                 .get()
+                .getCallback(getCallback)
                 .build();
         }
 
@@ -488,126 +509,6 @@ public interface ServerWorldProperties extends WorldProperties, GameRuleHolder, 
                 .getCallback(getCallback)
                 .load()
                 .loadCallback(loadCallback)
-                .build();
-        }
-
-        /**
-         * Load a new {@link ServerWorldProperties} from disk
-         * or create a new one with the provided {@link WorldArchetype}.
-         * Do not attempt to use the already loaded instance.
-         *
-         * <p>This operation fails if properties were already loaded.</p>
-         *
-         * @param worldArchetype The archetype to use for creation.
-         * @return The load options.
-         */
-        static LoadOptions loadOrCreate(WorldArchetype worldArchetype) {
-            return LoadOptions.builder()
-                .load()
-                .create(worldArchetype)
-                .build();
-        }
-
-        /**
-         * Load a new {@link ServerWorldProperties} from disk
-         * or create a new one with the provided {@link WorldArchetype}.
-         * Do not attempt to use the already loaded instance.
-         *
-         * <p>This operation fails if properties were already loaded.</p>
-         *
-         * @param worldArchetype The archetype to use for creation.
-         * @param createCallback The consumer to call after successful
-         *                       creation for additional configuration.
-         * @return The load options.
-         */
-        static LoadOptions loadOrCreate(WorldArchetype worldArchetype, Consumer<ServerWorldProperties> createCallback) {
-            return LoadOptions.builder()
-                .load()
-                .create(worldArchetype)
-                .createCallback(createCallback)
-                .build();
-        }
-
-        /**
-         * Load a new {@link ServerWorldProperties} from disk
-         * or create a new one with the provided {@link WorldArchetype}.
-         * Do not attempt to use the already loaded instance.
-         *
-         * <p>This operation fails if properties were already loaded.</p>
-         *
-         * @param loadCallback The consumer to call after successful
-         *                     load operation for additional configuration.
-         * @param worldArchetype The archetype to use for creation.
-         * @param createCallback The consumer to call after successful
-         *                       creation for additional configuration.
-         * @return The load options.
-         */
-        static LoadOptions loadOrCreate(Consumer<ServerWorldProperties> loadCallback, WorldArchetype worldArchetype, Consumer<ServerWorldProperties> createCallback) {
-            return LoadOptions.builder()
-                .load()
-                .loadCallback(loadCallback)
-                .create(worldArchetype)
-                .createCallback(createCallback)
-                .build();
-        }
-
-        /**
-         * Get the already loaded {@link ServerWorldProperties} or
-         * attempt to load it from disk. If not found, create a new one
-         * with the provided {@link WorldArchetype}.
-         *
-         * @param worldArchetype The archetype to use for creation.
-         * @return The load options.
-         */
-        static LoadOptions getLoadOrCreate(WorldArchetype worldArchetype) {
-            return LoadOptions.builder()
-                .get()
-                .load()
-                .create(worldArchetype)
-                .build();
-        }
-
-        /**
-         * Get the already loaded {@link ServerWorldProperties} or
-         * attempt to load it from disk. If not found, create a new one
-         * with the provided {@link WorldArchetype}.
-         *
-         * @param worldArchetype The archetype to use for creation.
-         * @param createCallback The consumer to call after successful
-         *                       creation for additional configuration.
-         * @return The load options.
-         */
-        static LoadOptions getLoadOrCreate(WorldArchetype worldArchetype, Consumer<ServerWorldProperties> createCallback) {
-            return LoadOptions.builder()
-                .get()
-                .load()
-                .create(worldArchetype)
-                .createCallback(createCallback)
-                .build();
-        }
-
-        /**
-         * Get the already loaded {@link ServerWorldProperties} or
-         * attempt to load it from disk. If not found, create a new one
-         * with the provided {@link WorldArchetype}.
-         *
-         * @param getCallback The consumer to call after successful
-         *                    get operation for additional configuration.
-         * @param loadCallback The consumer to call after successful
-         *                     load operation for additional configuration.
-         * @param worldArchetype The archetype to use for creation.
-         * @param createCallback The consumer to call after successful
-         *                       creation for additional configuration.
-         * @return The load options.
-         */
-        static LoadOptions getLoadOrCreate(Consumer<ServerWorldProperties> getCallback, Consumer<ServerWorldProperties> loadCallback, WorldArchetype worldArchetype, Consumer<ServerWorldProperties> createCallback) {
-            return LoadOptions.builder()
-                .get()
-                .getCallback(getCallback)
-                .load()
-                .loadCallback(loadCallback)
-                .create(worldArchetype)
-                .createCallback(createCallback)
                 .build();
         }
 
@@ -680,6 +581,10 @@ public interface ServerWorldProperties extends WorldProperties, GameRuleHolder, 
 
         interface LoadOperation {
 
+            Optional<WorldArchetype> overrideWorldArchetype();
+
+            Optional<WorldArchetype> fallbackWorldArchetype();
+
             Optional<Consumer<ServerWorldProperties>> loadCallback();
         }
 
@@ -690,12 +595,37 @@ public interface ServerWorldProperties extends WorldProperties, GameRuleHolder, 
             Optional<Consumer<ServerWorldProperties>> createCallback();
         }
 
+        /**
+         * A builder to create {@link LoadOptions}.
+         */
         interface Builder extends org.spongepowered.api.util.Builder<LoadOptions, Builder> {
 
+            /**
+             * Appends a get operation to this option
+             * which will attempt to find an already
+             * loaded instance.
+             *
+             * @return This builder, for chaining
+             */
             Builder.GetStep get();
 
+            /**
+             * Appends a load operation to this option
+             * which will attempt to load an existing
+             * world from the disk.
+             *
+             * @return This builder, for chaining
+             */
             Builder.LoadStep load();
 
+            /**
+             * Appends a create operation to this option
+             * which will attempt to create a new world
+             * with the given {@link WorldArchetype}.
+             *
+             * @param worldArchetype The archetype to use for world creation
+             * @return This builder, for chaining
+             */
             Builder.CreateStep create(WorldArchetype worldArchetype);
 
             interface GetStep extends Builder {
@@ -704,6 +634,32 @@ public interface ServerWorldProperties extends WorldProperties, GameRuleHolder, 
             }
 
             interface LoadStep extends Builder {
+
+                /**
+                 * Sets the {@link WorldArchetype} to use instead of the
+                 * one that was persisted on the disk.
+                 *
+                 * <p><strong>Note:</strong> This may impact world generation,
+                 * causing new terrain to not blend seamlessly with existing terrain.
+                 * Additionally, the world will be saved with the new {@link WorldArchetype}.</p>
+                 *
+                 * @param worldArchetype The new archetype
+                 * @return This builder, for chaining
+                 */
+                LoadStep overrideWorldArchetype(WorldArchetype worldArchetype);
+
+                /**
+                 * Sets the {@link WorldArchetype} that will be used as fallback
+                 * in case no valid archetype could be determined.
+                 *
+                 * <p><strong>Note:</strong> This may impact world generation,
+                 * causing new terrain to not blend seamlessly with existing terrain.
+                 * Additionally, the world will be saved with the new {@link WorldArchetype}.</p>
+                 *
+                 * @param worldArchetype The archetype to use as fallback
+                 * @return This builder, for chaining
+                 */
+                LoadStep fallbackWorldArchetype(WorldArchetype worldArchetype);
 
                 LoadStep loadCallback(Consumer<ServerWorldProperties> loadCallback);
             }

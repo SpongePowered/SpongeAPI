@@ -39,7 +39,7 @@ import org.spongepowered.api.world.generation.structure.Structure;
  * A pool to generate {@link Structure structures} using jigsaw blocks.
  */
 @CatalogedBy(JigsawPools.class)
-public interface JigsawPool extends DefaultedRegistryValue, DataPackSerializable {
+public interface JigsawPool extends DefaultedRegistryValue<JigsawPool>, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link JigsawPool}.

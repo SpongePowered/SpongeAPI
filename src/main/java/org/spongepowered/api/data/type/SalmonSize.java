@@ -28,5 +28,5 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(SalmonSizes.class)
-public interface SalmonSize extends DefaultedRegistryValue, StringRepresentable {
+public interface SalmonSize extends DefaultedRegistryValue<SalmonSize>, StringRepresentable {
 }

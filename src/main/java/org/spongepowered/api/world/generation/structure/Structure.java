@@ -44,7 +44,7 @@ import java.util.Map;
  * A structure used in world generation.
  */
 @CatalogedBy(Structures.class)
-public interface Structure extends DefaultedRegistryValue, DataPackSerializable {
+public interface Structure extends DefaultedRegistryValue<Structure>, DataPackSerializable {
 
     /**
      * Places the structure at given position and world

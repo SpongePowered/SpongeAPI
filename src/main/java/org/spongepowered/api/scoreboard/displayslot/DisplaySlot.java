@@ -26,6 +26,7 @@ package org.spongepowered.api.scoreboard.displayslot;
 
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.type.StringRepresentable;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.scoreboard.Team;
 import org.spongepowered.api.util.annotation.CatalogedBy;
@@ -36,7 +37,7 @@ import java.util.Optional;
  * Represents an area to display an objective.
  */
 @CatalogedBy(DisplaySlots.class)
-public interface DisplaySlot extends DefaultedRegistryValue {
+public interface DisplaySlot extends DefaultedRegistryValue<DisplaySlot>, StringRepresentable {
 
     /**
      * Finds and retrieves the sidebar display slot for the specified

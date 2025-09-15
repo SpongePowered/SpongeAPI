@@ -45,9 +45,7 @@ public class AxolotlVariants {
 
     public static final DefaultedRegistryReference<AxolotlVariant> WILD = AxolotlVariants.key(ResourceKey.sponge("wild"));
 
-
     private static DefaultedRegistryReference<AxolotlVariant> key(final ResourceKey location) {
         return RegistryKey.of(RegistryTypes.AXOLOTL_VARIANT, location).asDefaultedReference(Sponge::game);
     }
-
 }

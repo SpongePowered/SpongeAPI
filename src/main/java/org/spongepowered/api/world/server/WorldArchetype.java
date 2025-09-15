@@ -25,6 +25,7 @@
 package org.spongepowered.api.world.server;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.world.generation.config.WorldGenerationConfig;
 
 import java.util.Optional;
@@ -47,7 +48,7 @@ public interface WorldArchetype {
 
     Optional<WorldGenerationConfig> generationConfig();
 
-    interface Builder extends org.spongepowered.api.util.Builder<WorldArchetype, Builder> {
+    interface Builder extends org.spongepowered.api.util.Builder<WorldArchetype, Builder>, CopyableBuilder<WorldArchetype, Builder> {
 
         Builder type(WorldArchetypeType type);
 

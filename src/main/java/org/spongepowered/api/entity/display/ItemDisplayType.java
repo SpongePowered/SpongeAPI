@@ -24,10 +24,11 @@
  */
 package org.spongepowered.api.entity.display;
 
+import org.spongepowered.api.data.type.StringRepresentable;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(ItemDisplayTypes.class)
-public interface ItemDisplayType extends DefaultedRegistryValue {
+public interface ItemDisplayType extends DefaultedRegistryValue<ItemDisplayType>, StringRepresentable {
 
 }

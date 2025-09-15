@@ -32,6 +32,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a pickup rule used by {@link ArrowLike}s.
  */
 @CatalogedBy(PickupRules.class)
-public interface PickupRule extends DefaultedRegistryValue {
+public interface PickupRule extends DefaultedRegistryValue<PickupRule> {
 
 }
