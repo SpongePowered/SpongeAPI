@@ -70,7 +70,7 @@ import org.spongepowered.api.data.type.HandPreference;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.InstrumentType;
-import org.spongepowered.api.data.type.ItemActionEffect;
+import org.spongepowered.api.data.type.ItemAction;
 import org.spongepowered.api.data.type.ItemTier;
 import org.spongepowered.api.data.type.LlamaType;
 import org.spongepowered.api.data.type.MatterType;
@@ -774,9 +774,9 @@ public final class Keys {
     public static final Key<SetValue<Direction>> CONNECTED_DIRECTIONS = Keys.setKey(ResourceKey.sponge("connected_directions"), Direction.class);
 
     /**
-     * The {@link ItemActionEffect}s an {@link ItemStack} will apply when consumed.
+     * The {@link ItemAction}s an {@link ItemStack} will apply when consumed.
      */
-    public static final Key<ListValue<ItemActionEffect>> CONSUME_EFFECTS = Keys.listKey(ResourceKey.sponge("consume_effects"), ItemActionEffect.class);
+    public static final Key<ListValue<ItemAction>> CONSUME_ACTIONS = Keys.listKey(ResourceKey.sponge("consume_effects"), ItemAction.class);
 
     /**
      * The container {@link ItemType} of an {@link ItemStack}.
@@ -929,9 +929,9 @@ public final class Keys {
     public static final Key<Value<Double>> DAMAGE_PER_BLOCK = Keys.key(ResourceKey.sponge("damage_per_block"), Double.class);
 
     /**
-     * The {@link ItemActionEffect}s an {@link ItemStack} will apply on death.
+     * The {@link ItemAction}s an {@link ItemStack} will apply on death.
      */
-    public static final Key<ListValue<ItemActionEffect>> DEATH_PROTECTION_EFFECTS = Keys.listKey(ResourceKey.sponge("death_protection_effects"), ItemActionEffect.class);
+    public static final Key<ListValue<ItemAction>> DEATH_PROTECTION_ACTIONS = Keys.listKey(ResourceKey.sponge("death_protection_effects"), ItemAction.class);
 
     /**
      * The distance at which a {@link BlockState} will decay.

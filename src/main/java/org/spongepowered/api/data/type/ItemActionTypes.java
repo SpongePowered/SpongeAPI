@@ -38,26 +38,26 @@ import org.spongepowered.api.registry.RegistryTypes;
  */
 @SuppressWarnings("unused")
 @RegistryScopes(scopes = RegistryScope.GAME)
-public final class ConsumeEffectTypes {
+public final class ItemActionTypes {
 
-    public static final DefaultedRegistryReference<ItemActionEffectType> APPLY_EFFECTS = ConsumeEffectTypes.key(ResourceKey.minecraft("apply_effects"));
+    public static final DefaultedRegistryReference<ItemActionType> APPLY_EFFECTS = ItemActionTypes.key(ResourceKey.minecraft("apply_effects"));
 
-    public static final DefaultedRegistryReference<ItemActionEffectType> CLEAR_ALL_EFFECTS = ConsumeEffectTypes.key(ResourceKey.minecraft("clear_all_effects"));
+    public static final DefaultedRegistryReference<ItemActionType> CLEAR_ALL_EFFECTS = ItemActionTypes.key(ResourceKey.minecraft("clear_all_effects"));
 
-    public static final DefaultedRegistryReference<ItemActionEffectType> PLAY_SOUND = ConsumeEffectTypes.key(ResourceKey.minecraft("play_sound"));
+    public static final DefaultedRegistryReference<ItemActionType> PLAY_SOUND = ItemActionTypes.key(ResourceKey.minecraft("play_sound"));
 
-    public static final DefaultedRegistryReference<ItemActionEffectType> REMOVE_EFFECTS = ConsumeEffectTypes.key(ResourceKey.minecraft("remove_effects"));
+    public static final DefaultedRegistryReference<ItemActionType> REMOVE_EFFECTS = ItemActionTypes.key(ResourceKey.minecraft("remove_effects"));
 
-    public static final DefaultedRegistryReference<ItemActionEffectType> TELEPORT_RANDOMLY = ConsumeEffectTypes.key(ResourceKey.minecraft("teleport_randomly"));
+    public static final DefaultedRegistryReference<ItemActionType> TELEPORT_RANDOMLY = ItemActionTypes.key(ResourceKey.minecraft("teleport_randomly"));
 
-    private ConsumeEffectTypes() {
+    private ItemActionTypes() {
     }
 
-    public static Registry<ItemActionEffectType> registry() {
-        return Sponge.game().registry(RegistryTypes.ITEM_ACTION_EFFECT_TYPE);
+    public static Registry<ItemActionType> registry() {
+        return Sponge.game().registry(RegistryTypes.ITEM_ACTION_TYPE);
     }
 
-    private static DefaultedRegistryReference<ItemActionEffectType> key(final ResourceKey location) {
-        return RegistryKey.of(RegistryTypes.ITEM_ACTION_EFFECT_TYPE, location).asDefaultedReference(Sponge::game);
+    private static DefaultedRegistryReference<ItemActionType> key(final ResourceKey location) {
+        return RegistryKey.of(RegistryTypes.ITEM_ACTION_TYPE, location).asDefaultedReference(Sponge::game);
     }
 }

@@ -42,60 +42,60 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 /**
- * Represents an effect an {@link ItemStack} can apply after some actions.
+ * Represents an action an {@link ItemStack} can apply to {@link Living} in different circumstances.
  *
- * @see Keys#CONSUME_EFFECTS
- * @see Keys#DEATH_PROTECTION_EFFECTS
+ * @see Keys#CONSUME_ACTIONS
+ * @see Keys#DEATH_PROTECTION_ACTIONS
  */
-public interface ItemActionEffect {
+public interface ItemAction {
 
     static ApplyEffects applyEffects(final Collection<PotionEffect> effects) {
-        return ItemActionEffect.applyEffects(1.0D, effects);
+        return ItemAction.applyEffects(1.0D, effects);
     }
 
     static ApplyEffects applyEffects(final PotionEffect... effects) {
-        return ItemActionEffect.applyEffects(1.0D, effects);
+        return ItemAction.applyEffects(1.0D, effects);
     }
 
     static ApplyEffects applyEffects(final double chance, final Collection<PotionEffect> effects) {
-        return ItemActionEffect.factory().applyEffects(chance, List.copyOf(effects));
+        return ItemAction.factory().applyEffects(chance, List.copyOf(effects));
     }
 
     static ApplyEffects applyEffects(final double chance, final PotionEffect... effects) {
-        return ItemActionEffect.factory().applyEffects(chance, List.of(effects));
+        return ItemAction.factory().applyEffects(chance, List.of(effects));
     }
 
     static RemoveEffects removeEffects(final Collection<PotionEffectType> effectTypes) {
-        return ItemActionEffect.factory().removeEffects(Set.copyOf(effectTypes));
+        return ItemAction.factory().removeEffects(Set.copyOf(effectTypes));
     }
 
     static RemoveEffects removeEffects(final PotionEffectType... effectTypes) {
-        return ItemActionEffect.factory().removeEffects(Set.of(effectTypes));
+        return ItemAction.factory().removeEffects(Set.of(effectTypes));
     }
 
     @SafeVarargs
     static RemoveEffects removeEffects(final Supplier<PotionEffectType>... effectTypes) {
-        return ItemActionEffect.factory().removeEffects(Arrays.stream(effectTypes).map(Supplier::get).collect(Collectors.toSet()));
+        return ItemAction.factory().removeEffects(Arrays.stream(effectTypes).map(Supplier::get).collect(Collectors.toSet()));
     }
 
     static RemoveEffects removeEffects(final Tag<PotionEffectType> effectTypeTag) {
-        return ItemActionEffect.factory().removeEffects(effectTypeTag);
+        return ItemAction.factory().removeEffects(effectTypeTag);
     }
 
     static ClearEffects clearEffects() {
-        return ItemActionEffect.factory().clearEffects();
+        return ItemAction.factory().clearEffects();
     }
 
     static PlaySound playSound(final SoundType soundType) {
-        return ItemActionEffect.factory().playSound(soundType);
+        return ItemAction.factory().playSound(soundType);
     }
 
     static PlaySound playSound(final Supplier<SoundType> soundType) {
-        return ItemActionEffect.factory().playSound(soundType.get());
+        return ItemAction.factory().playSound(soundType.get());
     }
 
     static TeleportRandomly teleportRandomly(final double distance) {
-        return ItemActionEffect.factory().teleportRandomly(distance);
+        return ItemAction.factory().teleportRandomly(distance);
     }
 
     private static Factory factory() {
@@ -106,7 +106,7 @@ public interface ItemActionEffect {
      * Returns the type of this effect.
      * @return The type of this effect
      */
-    ItemActionEffectType type();
+    ItemActionType type();
 
     /**
      * Tries to apply this effect and returns whether it was successfully applied.
@@ -132,7 +132,7 @@ public interface ItemActionEffect {
     /**
      * Applies {@link PotionEffect}s with chance.
      */
-    interface ApplyEffects extends ItemActionEffect {
+    interface ApplyEffects extends ItemAction {
         /**
          * Returns the probability for effects to be applied.
          * @return The probability for effects to be applied
@@ -149,7 +149,7 @@ public interface ItemActionEffect {
     /**
      * Removes {@link PotionEffect}s with matching {@link PotionEffectType}s.
      */
-    interface RemoveEffects extends ItemActionEffect {
+    interface RemoveEffects extends ItemAction {
         /**
          * Returns {@link PotionEffectType}s that will be removed.
          * @return {@link PotionEffectType}s that will be removed
@@ -160,13 +160,13 @@ public interface ItemActionEffect {
     /**
      * Clears all {@link PotionEffect}s.
      */
-    interface ClearEffects extends ItemActionEffect {
+    interface ClearEffects extends ItemAction {
     }
 
     /**
      * Plays {@link SoundType}.
      */
-    interface PlaySound extends ItemActionEffect {
+    interface PlaySound extends ItemAction {
         /**
          * Returns the consumption {@link SoundType}.
          * @return The consumption {@link SoundType}
@@ -177,7 +177,7 @@ public interface ItemActionEffect {
     /**
      * Teleports randomly within maximum distance.
      */
-    interface TeleportRandomly extends ItemActionEffect {
+    interface TeleportRandomly extends ItemAction {
         /**
          * Returns the maximum distance entity can be teleported.
          * @return The maximum distance entity can be teleported
