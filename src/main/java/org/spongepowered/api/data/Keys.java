@@ -128,6 +128,7 @@ import org.spongepowered.api.entity.FallingBlock;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.Ownable;
 import org.spongepowered.api.entity.ai.goal.GoalExecutorTypes;
+import org.spongepowered.api.entity.attribute.ItemAttribute;
 import org.spongepowered.api.entity.display.BillboardType;
 import org.spongepowered.api.entity.display.DisplayEntity;
 import org.spongepowered.api.entity.display.ItemDisplayType;
@@ -2169,6 +2170,11 @@ public final class Keys {
      * Readonly(Entity.class) except Wolf
      */
     public static final Key<Value<Boolean>> IS_WET = Keys.key(ResourceKey.sponge("is_wet"), Boolean.class);
+
+    /**
+     * The {@link ItemAttribute}s an {@link ItemStack} can apply.
+     */
+    public static final Key<ListValue<ItemAttribute>> ITEM_ATTRIBUTES = Keys.listKey(ResourceKey.sponge("item_attributes"), ItemAttribute.class);
 
     /**
      * The {@link ItemDisplayType display type} of a {@link org.spongepowered.api.entity.display.ItemDisplay}.
