@@ -59,7 +59,7 @@ public interface Viewer extends Audience {
     void sendWorldType(WorldType worldType);
 
     /**
-     * Plays a client-only death protection effect with the given item.
+     * Plays a client-only death protection effect with <b>any</b> given item.
      *
      * @param stack The item to display
      */
