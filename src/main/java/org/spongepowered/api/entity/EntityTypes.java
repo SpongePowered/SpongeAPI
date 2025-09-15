@@ -469,7 +469,7 @@ public final class EntityTypes {
     private EntityTypes() {
     }
 
-    public static Registry<EntityType<? extends Entity>> registry() {
+    public static Registry<EntityType<?>> registry() {
         return Sponge.game().registry(RegistryTypes.ENTITY_TYPE);
     }
 

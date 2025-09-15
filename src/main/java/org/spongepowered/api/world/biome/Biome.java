@@ -60,7 +60,7 @@ import java.util.Optional;
  * Represents a biome.
  */
 @CatalogedBy(Biomes.class)
-public interface Biome extends DefaultedRegistryValue, DataHolder, Taggable<Biome>, DataPackSerializable {
+public interface Biome extends DefaultedRegistryValue<Biome>, DataHolder, Taggable<Biome>, DataPackSerializable {
 
     /**
      * Creates a new {@link Builder} to create a {@link Biome}.

@@ -140,6 +140,11 @@ public interface ArgumentReader {
     interface Mutable extends ArgumentReader {
 
         /**
+         * Moves the cursor to the next character.
+         */
+        void skipChar();
+
+        /**
          * Moves the cursor to the next non-whitespace character. The cursor
          * will not advance if it already refers to a non-whitespace character.
          */

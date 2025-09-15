@@ -35,7 +35,7 @@ import java.util.Optional;
  * Represents a symbol that may be used on a {@link MapCanvas} as part of a {@link MapDecoration}.
  */
 @CatalogedBy(MapDecorationTypes.class)
-public interface MapDecorationType extends DefaultedRegistryValue {
+public interface MapDecorationType extends DefaultedRegistryValue<MapDecorationType> {
 
     /**
      * Gets the corresponding {@link DyeColor} that this banner decoration type is.

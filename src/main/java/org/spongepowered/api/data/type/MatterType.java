@@ -28,6 +28,6 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(MatterTypes.class)
-public interface MatterType extends DefaultedRegistryValue {
+public interface MatterType extends DefaultedRegistryValue<MatterType> {
 
 }

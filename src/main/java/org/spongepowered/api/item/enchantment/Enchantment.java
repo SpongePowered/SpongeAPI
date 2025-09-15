@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.item.enchantment;
 
+import net.kyori.adventure.text.ComponentLike;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataBuilder;
 import org.spongepowered.api.data.persistence.DataSerializable;
@@ -42,7 +43,7 @@ import java.util.function.Supplier;
  * they will work properly outside of {@link EnchantmentType#minimumLevel()}
  * and {@link EnchantmentType#maximumLevel()}.</p>
  */
-public interface Enchantment extends DataSerializable {
+public interface Enchantment extends DataSerializable, ComponentLike {
 
     /**
      * Creates a new {@link Builder} to create an {@link Enchantment}.

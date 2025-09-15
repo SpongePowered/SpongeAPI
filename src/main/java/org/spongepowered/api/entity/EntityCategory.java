@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.data.type.StringRepresentable;
 import org.spongepowered.api.entity.living.animal.Chicken;
 import org.spongepowered.api.entity.living.monster.Creeper;
 import org.spongepowered.api.entity.living.monster.zombie.Zombie;
@@ -38,7 +39,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * may include {@link Chicken}.
  */
 @CatalogedBy(EntityCategories.class)
-public interface EntityCategory extends DefaultedRegistryValue {
+public interface EntityCategory extends DefaultedRegistryValue<EntityCategory>, StringRepresentable {
 
     /**
      * Whether this category of entities is considered "friendly".

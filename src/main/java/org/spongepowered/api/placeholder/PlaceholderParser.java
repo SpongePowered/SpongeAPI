@@ -35,7 +35,7 @@ import java.util.function.Function;
  * Provides the logic of how to parse a placeholder token.
  */
 @CatalogedBy(PlaceholderParsers.class)
-public interface PlaceholderParser extends DefaultedRegistryValue {
+public interface PlaceholderParser extends DefaultedRegistryValue<PlaceholderParser> {
 
     /**
      * Returns a {@link Builder} that allows for the creation of simple

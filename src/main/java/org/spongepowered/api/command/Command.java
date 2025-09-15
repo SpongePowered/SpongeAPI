@@ -212,7 +212,10 @@ public interface Command {
          * @return The tree.
          */
         default CommandTreeNode.Root commandTree(RegistryHolder registryHolder) {
-            return CommandTreeNode.root().executable().child("arguments",
+            return CommandTreeNode.root()
+                .executable()
+                .requires(this::canExecute)
+                .child("arguments",
                     CommandTreeNodeTypes.STRING.get(registryHolder).createNode().greedy().executable().customCompletions());
         }
 

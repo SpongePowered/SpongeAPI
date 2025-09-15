@@ -67,6 +67,12 @@ public final class ClientCompletionTypes {
     public static final DefaultedRegistryReference<ClientCompletionType> NONE = ClientCompletionTypes.key(ResourceKey.sponge("none"));
 
     /**
+     * Indicates to the client that the {@link ValueParser} is a greedy
+     * string.
+     */
+    public static final DefaultedRegistryReference<ClientCompletionType> REMAINING_JOINED_STRINGS = ClientCompletionTypes.key(ResourceKey.sponge("remaining_joined_strings"));
+
+    /**
      * Indicates to the client that the {@link ValueParser} is a
      * {@link ResourceKey}.
      */

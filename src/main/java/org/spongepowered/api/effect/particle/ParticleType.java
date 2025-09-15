@@ -35,7 +35,7 @@ import java.util.function.Supplier;
  * Represents a particle that can be sent on a Minecraft client.
  */
 @CatalogedBy(ParticleTypes.class)
-public interface ParticleType extends DefaultedRegistryValue {
+public interface ParticleType extends DefaultedRegistryValue<ParticleType> {
 
     /**
      * Gets the default value for the specified {@link ParticleOption}, it may

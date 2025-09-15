@@ -28,6 +28,6 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(WolfVariants.class)
-public interface WolfVariant extends DefaultedRegistryValue {
+public interface WolfVariant extends DefaultedRegistryValue<WolfVariant> {
 
 }

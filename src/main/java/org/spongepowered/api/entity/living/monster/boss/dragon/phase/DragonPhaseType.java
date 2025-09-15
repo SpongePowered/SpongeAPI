@@ -31,6 +31,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * An {@link DragonPhase} type.
  */
 @CatalogedBy(DragonPhaseTypes.class)
-public interface DragonPhaseType extends DefaultedRegistryValue {
+public interface DragonPhaseType extends DefaultedRegistryValue<DragonPhaseType> {
 
 }

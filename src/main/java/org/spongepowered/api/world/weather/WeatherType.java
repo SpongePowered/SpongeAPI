@@ -31,6 +31,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a type of weather.
  */
 @CatalogedBy(WeatherTypes.class)
-public interface WeatherType extends DefaultedRegistryValue {
+public interface WeatherType extends DefaultedRegistryValue<WeatherType> {
 
 }

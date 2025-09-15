@@ -28,6 +28,6 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(BodyParts.class)
-public interface BodyPart extends DefaultedRegistryValue {
+public interface BodyPart extends DefaultedRegistryValue<BodyPart> {
 
 }

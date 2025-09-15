@@ -290,6 +290,8 @@ import org.spongepowered.api.world.portal.Portal;
 import org.spongepowered.api.world.portal.PortalLogic;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
+import org.spongepowered.api.world.server.WorldArchetype;
+import org.spongepowered.api.world.server.WorldArchetypeType;
 import org.spongepowered.api.world.server.storage.ServerWorldProperties;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.weather.Weather;
@@ -1189,6 +1191,13 @@ public final class Keys {
      * A {@link Fox fox's} first trusted {@link UUID}, usually a {@link Player}.
      */
     public static final Key<Value<UUID>> FIRST_TRUSTED = Keys.key(ResourceKey.sponge("first_trusted"), UUID.class);
+
+    /**
+     * Whether a {@link ItemFrame} is "fixed".
+     *
+     * <p>Fixed item frames can not have their contents modified.</p>
+     */
+    public static final Key<Value<Boolean>> FIXED = Keys.key(ResourceKey.sponge("fixed"), Boolean.class);
 
     /**
      * The fixed time in a {@link ServerWorld world} of a {@link WorldType}.
@@ -3549,6 +3558,18 @@ public final class Keys {
      * spell being casted by an {@link Evoker}
      */
     public static final Key<Value<Sheep>> WOLOLO_TARGET = Keys.key(ResourceKey.sponge("wololo_target"), Sheep.class);
+
+    /**
+     * The {@link WorldArchetype} of a {@link World} or {@link ServerWorldProperties}
+     * Readonly
+     */
+    public static final Key<Value<WorldArchetype>> WORLD_ARCHETYPE = Keys.key(ResourceKey.sponge("world_archetype"), WorldArchetype.class);
+
+    /**
+     * The {@link WorldArchetypeType} of a {@link World} or {@link ServerWorldProperties}
+     * Readonly
+     */
+    public static final Key<Value<WorldArchetypeType>> WORLD_ARCHETYPE_TYPE = Keys.key(ResourceKey.sponge("world_archetype_type"), WorldArchetypeType.class);
 
     /**
      * The world border of {@link WorldProperties}

@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.statistic;
 
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.scoreboard.criteria.Criterion;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -34,7 +35,7 @@ import java.util.Optional;
  * Represents some statistic in minecraft.
  */
 @CatalogedBy(Statistics.class)
-public interface Statistic {
+public interface Statistic extends DefaultedRegistryValue<Statistic> {
 
     /**
      * Returns the objective {@link Criterion} for this statistic.

@@ -34,7 +34,7 @@ import java.util.List;
  * Represents a type of potion with specific {@link PotionEffect}s.
  */
 @CatalogedBy(PotionTypes.class)
-public interface PotionType extends DefaultedRegistryValue {
+public interface PotionType extends DefaultedRegistryValue<PotionType> {
 
     List<PotionEffect> effects();
 }

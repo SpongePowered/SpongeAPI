@@ -28,7 +28,7 @@ import net.kyori.adventure.text.ComponentLike;
 import org.spongepowered.api.block.entity.EnchantmentTable;
 import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
-import org.spongepowered.api.tag.EnchantmenTypeTags;
+import org.spongepowered.api.tag.EnchantmentTypeTags;
 import org.spongepowered.api.tag.Taggable;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
@@ -36,7 +36,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a modifier on an item that has various effects.
  */
 @CatalogedBy(EnchantmentTypes.class)
-public interface EnchantmentType extends DefaultedRegistryValue, ComponentLike, Taggable<EnchantmentType> {
+public interface EnchantmentType extends DefaultedRegistryValue<EnchantmentType>, ComponentLike, Taggable<EnchantmentType> {
 
     /**
      * Gets the weight of this enchantment type.
@@ -117,7 +117,7 @@ public interface EnchantmentType extends DefaultedRegistryValue, ComponentLike, 
      * @return Whether this enchantment type is a treasure enchantment type
      */
     default boolean isTreasure() {
-        return this.is(EnchantmenTypeTags.TREASURE);
+        return this.is(EnchantmentTypeTags.TREASURE);
     }
 
     /**
@@ -127,7 +127,7 @@ public interface EnchantmentType extends DefaultedRegistryValue, ComponentLike, 
      * @return Whether this enchantment type is a curse enchantment type
      */
     default boolean isCurse() {
-        return this.is(EnchantmenTypeTags.CURSE);
+        return this.is(EnchantmentTypeTags.CURSE);
     }
 
 }

@@ -32,7 +32,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * A type of {@link Structure}
  */
 @CatalogedBy(StructureTypes.class)
-public interface StructureType extends DefaultedRegistryValue {
+public interface StructureType extends DefaultedRegistryValue<StructureType> {
 
     /**
      * Returns the configured structure

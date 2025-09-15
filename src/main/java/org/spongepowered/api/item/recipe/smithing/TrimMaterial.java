@@ -28,6 +28,6 @@ import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(TrimMaterials.class)
-public interface TrimMaterial extends DefaultedRegistryValue {
+public interface TrimMaterial extends DefaultedRegistryValue<TrimMaterial> {
 
 }

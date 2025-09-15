@@ -37,7 +37,7 @@ import org.spongepowered.api.registry.RegistryHolder;
  *
  * @param <T> the handled command type
  */
-public interface CommandRegistrarType<T> extends DefaultedRegistryValue {
+public interface CommandRegistrarType<T> extends DefaultedRegistryValue<CommandRegistrarType<?>> {
 
     /**
      * Gets the type of command that this registrar handles.

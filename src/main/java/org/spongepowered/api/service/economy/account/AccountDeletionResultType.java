@@ -31,7 +31,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Indicates whether the deletion of an {@link Account} succeeded.
  */
 @CatalogedBy(AccountDeletionResultTypes.class)
-public interface AccountDeletionResultType extends DefaultedRegistryValue {
+public interface AccountDeletionResultType extends DefaultedRegistryValue<AccountDeletionResultType> {
 
     /**
      * Returns whether this result type represents a successful deletion.

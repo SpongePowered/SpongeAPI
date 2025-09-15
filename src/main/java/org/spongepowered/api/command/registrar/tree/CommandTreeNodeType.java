@@ -55,7 +55,7 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * displaying and completing command strings.</p>
  */
 @CatalogedBy(CommandTreeNodeTypes.class)
-public interface CommandTreeNodeType<T extends CommandTreeNode<T>> extends DefaultedRegistryValue, ResourceKeyed {
+public interface CommandTreeNodeType<T extends CommandTreeNode<T>> extends DefaultedRegistryValue<CommandTreeNodeType<?>>, ResourceKeyed {
 
     /**
      * Creates a {@link CommandTreeNode} that represents this

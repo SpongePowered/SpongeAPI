@@ -32,6 +32,6 @@ import org.spongepowered.api.util.annotation.CatalogedBy;
  * Represents a part of a player's skin.
  */
 @CatalogedBy(SkinParts.class)
-public interface SkinPart extends DefaultedRegistryValue, ComponentLike {
+public interface SkinPart extends DefaultedRegistryValue<SkinPart>, ComponentLike {
 
 }
