@@ -31,6 +31,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.effect.particle.ParticleEffect;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.effect.sound.music.MusicDisc;
+import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldType;
 import org.spongepowered.api.world.WorldTypes;
@@ -56,6 +57,13 @@ public interface Viewer extends Audience {
      * @param worldType The world type
      */
     void sendWorldType(WorldType worldType);
+
+    /**
+     * Plays the totem of undying effect with the texture of the given item.
+     *
+     * @param stack The item to display
+     */
+    void playTotemOfUndyingEffect(ItemStackLike stack);
 
     /**
      * Spawn the given {@link ParticleEffect} at the given position.
