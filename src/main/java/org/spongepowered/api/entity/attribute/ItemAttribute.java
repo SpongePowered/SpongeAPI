@@ -26,7 +26,7 @@ package org.spongepowered.api.entity.attribute;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.attribute.type.AttributeType;
-import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.item.inventory.ItemStackLike;
 import org.spongepowered.api.item.inventory.equipment.EquipmentCondition;
 
 import java.util.Objects;
@@ -34,7 +34,7 @@ import java.util.function.Supplier;
 
 /**
  * Represents an {@link AttributeModifier} for the specific {@link AttributeType}
- * an {@link ItemStack} can apply when the {@link EquipmentCondition} is met.
+ * an {@link ItemStackLike} can apply when the {@link EquipmentCondition} is met.
  */
 public interface ItemAttribute {
 

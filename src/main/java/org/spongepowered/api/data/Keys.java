@@ -2183,7 +2183,7 @@ public final class Keys {
     public static final Key<Value<Boolean>> IS_WET = Keys.key(ResourceKey.sponge("is_wet"), Boolean.class);
 
     /**
-     * The {@link ItemAttribute}s an {@link ItemStack} can apply.
+     * The {@link ItemAttribute}s an {@link ItemStackLike} can apply.
      */
     public static final Key<ListValue<ItemAttribute>> ITEM_ATTRIBUTES = Keys.listKey(ResourceKey.sponge("item_attributes"), ItemAttribute.class);
 
