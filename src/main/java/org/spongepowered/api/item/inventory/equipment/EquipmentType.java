@@ -40,4 +40,11 @@ public interface EquipmentType extends DefaultedRegistryValue<EquipmentType>, St
      * @return The group
      */
     EquipmentGroup group();
+
+    /**
+     * Gets the most specific {@link EquipmentCondition} for this equipment type.
+     *
+     * @return The condition
+     */
+    EquipmentCondition condition();
 }

@@ -25,13 +25,11 @@
 package org.spongepowered.api.item.inventory.equipment;
 
 import net.kyori.adventure.text.ComponentLike;
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.type.StringRepresentable;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 import java.util.Objects;
-import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 /**
@@ -39,26 +37,6 @@ import java.util.function.Supplier;
  */
 @CatalogedBy(EquipmentConditions.class)
 public interface EquipmentCondition extends DefaultedRegistryValue<EquipmentCondition>, StringRepresentable, ComponentLike {
-
-    /**
-     * Returns the most specific equipment condition for the given equipment type.
-     *
-     * @param type The equipment type
-     * @return The equipment condition
-     */
-    static EquipmentCondition byType(final Supplier<? extends EquipmentType> type) {
-        return EquipmentCondition.byType(Objects.requireNonNull(type, "type").get());
-    }
-
-    /**
-     * Returns the most specific equipment condition for the given equipment type.
-     *
-     * @param type The equipment type
-     * @return The equipment condition
-     */
-    static EquipmentCondition byType(final EquipmentType type) {
-        return Sponge.game().factoryProvider().provide(Factory.class).byType(type);
-    }
 
     /**
      * Tests whether the equipment type is suitable for this condition.
@@ -77,9 +55,4 @@ public interface EquipmentCondition extends DefaultedRegistryValue<EquipmentCond
      * @return True if the equipment type is suitable for this condition
      */
     boolean test(EquipmentType type);
-
-    interface Factory {
-
-        EquipmentCondition byType(EquipmentType type);
-    }
 }
