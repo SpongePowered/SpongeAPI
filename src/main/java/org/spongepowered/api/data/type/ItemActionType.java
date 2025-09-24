@@ -22,23 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.effect.potion;
+package org.spongepowered.api.data.type;
 
-import net.kyori.adventure.text.ComponentLike;
-import org.spongepowered.api.tag.Taggable;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
- * Represents a possible type of {@link PotionEffect}.
+ * Represents a possible type of {@link ItemAction}.
  */
-@CatalogedBy(PotionEffectTypes.class)
-public interface PotionEffectType extends Taggable<PotionEffectType>, ComponentLike {
-
-    /**
-     * Gets whether this potion effect is applied instantly or over time.
-     *
-     * @return If applied instantly.
-     */
-    boolean isInstant();
-
+@CatalogedBy(ItemActionTypes.class)
+public interface ItemActionType extends DefaultedRegistryValue {
 }

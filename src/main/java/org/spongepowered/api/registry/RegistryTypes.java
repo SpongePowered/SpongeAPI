@@ -65,6 +65,7 @@ import org.spongepowered.api.data.type.HandType;
 import org.spongepowered.api.data.type.HorseColor;
 import org.spongepowered.api.data.type.HorseStyle;
 import org.spongepowered.api.data.type.InstrumentType;
+import org.spongepowered.api.data.type.ItemActionType;
 import org.spongepowered.api.data.type.ItemTier;
 import org.spongepowered.api.data.type.JigsawBlockOrientation;
 import org.spongepowered.api.data.type.LlamaType;
@@ -224,6 +225,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<ChatType> CHAT_TYPE = RegistryTypes.minecraftKeyInServer("chat_type");
 
     public static final DefaultedRegistryType<ChunkState> CHUNK_STATE = RegistryTypes.minecraftKeyInGame("chunk_status");
+
+    public static final DefaultedRegistryType<ItemActionType> ITEM_ACTION_TYPE = RegistryTypes.minecraftKeyInGame("consume_effect_type");
 
     public static final DefaultedRegistryType<ContainerType> CONTAINER_TYPE = RegistryTypes.minecraftKeyInGame("menu");
 
