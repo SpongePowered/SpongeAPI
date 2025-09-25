@@ -3373,6 +3373,15 @@ public final class Keys {
     public static final Key<Value<ItemTier>> TOOL_TYPE = Keys.key(ResourceKey.sponge("tool_type"), ItemTier.class);
 
     /**
+     * For a given {@link ResourceKey}, the textures for the tooltip of an {@link ItemStack} will be looked up from the following locations in the
+     * active resource packs:
+     *
+     * <p>Background: {@literal /assets/<namespace>/textures/gui/sprites/tooltip/<id>_background}
+     * <p>Frame: {@literal /assets/<namespace>/textures/gui/sprites/tooltip/<id>_frame}
+     */
+    public static final Key<Value<ResourceKey>> TOOLTIP_STYLE = Keys.key(ResourceKey.sponge("tooltip_style"), ResourceKey.class);
+
+    /**
      * Whether a {@link CommandBlock} does track its output.
      *
      * <p>If this is set, the output of the most recent execution can be
