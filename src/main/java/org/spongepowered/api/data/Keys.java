@@ -3665,6 +3665,16 @@ public final class Keys {
      */
     public static final Key<Value<WorldTypeEffect>> WORLD_TYPE_EFFECT = Keys.key(ResourceKey.sponge("world_type_effect"), WorldTypeEffect.class);
 
+    /**
+     * The {@link #ITEM_DURABILITY} damage an {@link ItemStack} takes per attack.
+     */
+    public static final Key<Value<Integer>> WEAPON_DAMAGE_PER_ATTACK = Keys.key(ResourceKey.sponge("weapon_damage_per_attack"), Integer.class);
+
+    /**
+     * The amount of {@link Ticks} this {@link ItemStack} disables blocking for on successful attack.
+     */
+    public static final Key<Value<Ticks>> DISABLE_BLOCKING_TICKS = Keys.key(ResourceKey.sponge("disable_blocking_ticks"), Ticks.class);
+
     // SORTFIELDS:OFF
 
     // @formatter:on
