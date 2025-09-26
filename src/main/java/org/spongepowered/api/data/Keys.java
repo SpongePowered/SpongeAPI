@@ -90,6 +90,8 @@ import org.spongepowered.api.data.type.RabbitType;
 import org.spongepowered.api.data.type.RailDirection;
 import org.spongepowered.api.data.type.SalmonSize;
 import org.spongepowered.api.data.type.SculkSensorState;
+import org.spongepowered.api.data.type.ShieldDamageReduction;
+import org.spongepowered.api.data.type.ShieldItemDamageFunction;
 import org.spongepowered.api.data.type.SkinPart;
 import org.spongepowered.api.data.type.SlabPortion;
 import org.spongepowered.api.data.type.SpellType;
@@ -224,6 +226,7 @@ import org.spongepowered.api.entity.vehicle.minecart.FurnaceMinecart;
 import org.spongepowered.api.entity.vehicle.minecart.Minecart;
 import org.spongepowered.api.entity.vehicle.minecart.MinecartLike;
 import org.spongepowered.api.entity.weather.LightningBolt;
+import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSources;
 import org.spongepowered.api.fluid.FluidStackSnapshot;
@@ -3674,6 +3677,43 @@ public final class Keys {
      * The amount of {@link Ticks} this {@link ItemStack} disables blocking for on successful attack.
      */
     public static final Key<Value<Ticks>> DISABLE_BLOCKING_TICKS = Keys.key(ResourceKey.sponge("disable_blocking_ticks"), Ticks.class);
+
+    /**
+     * The amount of {@link Ticks} player must use this {@link ItemStack} for to block attacks successfully.
+     */
+    public static final Key<Value<Ticks>> BLOCK_DELAY_TICKS = Keys.key(ResourceKey.sponge("block_delay_ticks"), Ticks.class);
+
+    /**
+     * Multiplier applied to the cooldown during which blocking using this item is disabled.
+     *
+     * @see <a href="https://minecraft.wiki/w/Data_component_format#blocks_attacks">blocks_attacks</a>
+     */
+    public static final Key<Value<Float>> DISABLED_BLOCKING_COOLDOWN_SCALE = Keys.key(ResourceKey.sponge("disabled_blocking_cooldown_scale"), Float.class);
+
+    /**
+     * The amount of attack damage a shield-like {@link ItemStack} reduces for certain {@link DamageType}s
+     */
+    public static final Key<ListValue<ShieldDamageReduction>> SHIELD_DAMAGE_REDUCTIONS = Keys.listKey(ResourceKey.sponge("shield_damage_reductions"), ShieldDamageReduction.class);
+
+    /**
+     * Function for the amount of {@link Keys#ITEM_DURABILITY} damage a shield-like {@link ItemStack} takes when blocking an attack.
+     */
+    public static final Key<Value<ShieldItemDamageFunction>> SHIELD_ITEM_DAMAGE_FUNCTION = Keys.key(ResourceKey.sponge("shield_item_damage_function"), ShieldItemDamageFunction.class);
+
+    /**
+     * The {@link DamageType} tag that bypasses a shield-like {@link ItemStack}.
+     */
+    public static final Key<Value<Tag<DamageType>>> BYPASS_DAMAGE_TAG = Keys.key(ResourceKey.sponge("bypass_damage_tag"), new TypeToken<>() {});
+
+    /**
+     * The sound played when blocking an attack with a shield-like {@link ItemStack}.
+     */
+    public static final Key<Value<SoundType>> SHIELD_BLOCK_SOUND = Keys.key(ResourceKey.sponge("shield_block_sound"), SoundType.class);
+
+    /**
+     * The sound played when a shield-like {@link ItemStack} is disabled.
+     */
+    public static final Key<Value<SoundType>> SHIELD_DISABLE_SOUND = Keys.key(ResourceKey.sponge("shield_disable_sound"), SoundType.class);
 
     // SORTFIELDS:OFF
 
