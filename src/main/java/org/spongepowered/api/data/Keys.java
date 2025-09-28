@@ -3684,7 +3684,8 @@ public final class Keys {
     public static final Key<Value<Ticks>> SHIELD_DEPLOY_TICKS = Keys.key(ResourceKey.sponge("shield_deploy_ticks"), Ticks.class);
 
     /**
-     * Multiplier applied to the cooldown during which blocking using this shield-like {@link ItemStack} is disabled.
+     * The multiplier applied to the cooldown time during which blocking using this shield-like {@link ItemStack} is disabled.
+     * If set to 0, this item can never be disabled by attacks.
      *
      * @see <a href="https://minecraft.wiki/w/Data_component_format#blocks_attacks">blocks_attacks</a>
      */
