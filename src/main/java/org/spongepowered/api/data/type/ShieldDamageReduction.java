@@ -32,62 +32,81 @@ import org.spongepowered.api.util.ResettableBuilder;
 
 import java.util.Set;
 
+
 /**
  * Defines the amount of damage reduced when blocking with a shield-like {@link org.spongepowered.api.item.inventory.ItemStack}.
- * The final amount of blocked damage will be {@code constantReduction + fractionalReduction * damage}
  */
-public interface ShieldDamageReduction {
+public interface ShieldDamageReduction<T> {
 
     double resolve(DamageSource source, double damage, double angle);
 
-    static Builder builder() {
-        return Sponge.game().builderProvider().provide(Builder.class);
+    static ShieldDamageReduction<MultiplyAdd> of(MultiplyAdd config) {
+        return Sponge.game().factoryProvider().provide(Factory.class).create(config);
     }
 
-    interface Builder extends ResettableBuilder<ShieldDamageReduction, Builder> {
+    interface Factory {
 
-        /**
-         * Limits the {@link DamageType damage types} this reduction applies to.
-         *
-         * @param damageTypes the affected damage types
-         * @return This builder, for chaining
-         */
-        Builder damageTypes(Set<DamageType> damageTypes);
+        ShieldDamageReduction<MultiplyAdd> create(MultiplyAdd config);
 
-        /**
-         * Limits the {@link DamageType damage types} this reduction applies to.
-         *
-         * @param tag the tag defining affected damage types
-         * @return This builder, for chaining
-         */
-        Builder damageTypes(Tag<DamageType> tag);
+    }
 
-        /**
-         * Sets the maximum angle between the users facing direction and the direction of the incoming attack.
-         *
-         * @param angle the maximum angle
-         * @return This builder, for chaining
-         */
-        Builder horizontalBlockingAngle(double angle);
+    /**
+     * The final amount of blocked damage will be {@code constantReduction + fractionalReduction * damage}
+     */
+    interface MultiplyAdd {
 
-        /**
-         * Sets the constant amount of damage to be blocked.
-         *
-         * @param constant a constant amount of damage to block
-         * @return This builder, for chaining
-         */
-        Builder constantReduction(double constant);
+        double resolve(DamageSource source, double damage, double angle);
 
-        /**
-         * Sets fractional amount of damage to block, where a factor of 1 means that all damage is blocked,
-         * and a factor of 0 that no damage is blocked.
-         *
-         * @param fraction fractional amount of damage to block
-         * @return This builder, for chaining
-         */
-        Builder fractionalReduction(double fraction);
+        static Builder builder() {
+            return Sponge.game().builderProvider().provide(Builder.class);
+        }
 
-        ShieldDamageReduction build();
+        interface Builder extends ResettableBuilder<MultiplyAdd, Builder> {
+
+            /**
+             * Limits the {@link DamageType damage types} this reduction applies to.
+             *
+             * @param damageTypes the affected damage types
+             * @return This builder, for chaining
+             */
+            Builder damageTypes(Set<DamageType> damageTypes);
+
+            /**
+             * Limits the {@link DamageType damage types} this reduction applies to.
+             *
+             * @param tag the tag defining affected damage types
+             * @return This builder, for chaining
+             */
+            Builder damageTypes(Tag<DamageType> tag);
+
+            /**
+             * Sets the maximum angle between the users facing direction and the direction of the incoming attack.
+             *
+             * @param angle the maximum angle
+             * @return This builder, for chaining
+             */
+            Builder horizontalBlockingAngle(double angle);
+
+            /**
+             * Sets the constant amount of damage to be blocked.
+             *
+             * @param constant a constant amount of damage to block
+             * @return This builder, for chaining
+             */
+            Builder constantReduction(double constant);
+
+            /**
+             * Sets fractional amount of damage to block, where a factor of 1 means that all damage is blocked,
+             * and a factor of 0 that no damage is blocked.
+             *
+             * @param fraction fractional amount of damage to block
+             * @return This builder, for chaining
+             */
+            Builder fractionalReduction(double fraction);
+
+            MultiplyAdd build();
+
+        }
 
     }
 

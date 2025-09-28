@@ -30,44 +30,62 @@ import org.spongepowered.api.util.ResettableBuilder;
 /**
  * Defines the amount of {@link org.spongepowered.api.data.Keys#ITEM_DURABILITY} damage a shield-like
  * {@link org.spongepowered.api.item.inventory.ItemStack} takes, when blocking an attack.
- * The final amount of damage will be {@code constantDamage + fractionalDamage * attackDamage}
  */
-public interface ShieldItemDamageFunction {
+public interface ShieldItemDamageFunction<T> {
 
     double resolve(double damage);
 
-    static Builder builder() {
-        return Sponge.game().builderProvider().provide(Builder.class);
+    static ShieldItemDamageFunction<MultiplyAdd> of(MultiplyAdd config) {
+        return Sponge.game().factoryProvider().provide(Factory.class).create(config);
     }
 
-    interface Builder extends ResettableBuilder<ShieldItemDamageFunction, Builder> {
+    interface Factory {
 
-        /**
-         * Sets the minimum amount of damage blocked attack must have had, for the item to take damage at all.
-         *
-         * @param minDamage minimum attack damage required for any durability loss
-         * @return This builder, for chaining
-         */
-        Builder minAttackDamage(double minDamage);
+        ShieldItemDamageFunction<MultiplyAdd> create(MultiplyAdd config);
 
-        /**
-         * Sets the constant amount of damage taken.
-         *
-         * @param constantDamage a constant amount of damage to take
-         * @return This builder, for chaining
-         */
-        Builder constantDamage(double constantDamage);
+    }
 
-        /**
-         * Sets fractional amount of damage to take, where a factor of 1 means that the amount of durability lost is equal to attack damage,
-         * and a factor of 0 that no durability is lost.
-         *
-         * @param fractionalDamage fractional amount of damage to take
-         * @return This builder, for chaining
-         */
-        Builder fractionalDamage(double fractionalDamage);
+    /**
+     * The final amount of damage will be {@code constantDamage + fractionalDamage * attackDamage}
+     */
+    interface MultiplyAdd {
 
-        ShieldItemDamageFunction build();
+        double resolve(double damage);
+
+        static Builder builder() {
+            return Sponge.game().builderProvider().provide(Builder.class);
+        }
+
+        interface Builder extends ResettableBuilder<MultiplyAdd, Builder> {
+
+            /**
+             * Sets the minimum amount of damage blocked attack must have had, for the item to take damage at all.
+             *
+             * @param minDamage minimum attack damage required for any durability loss
+             * @return This builder, for chaining
+             */
+            Builder minAttackDamage(double minDamage);
+
+            /**
+             * Sets the constant amount of damage taken.
+             *
+             * @param constantDamage a constant amount of damage to take
+             * @return This builder, for chaining
+             */
+            Builder constantDamage(double constantDamage);
+
+            /**
+             * Sets fractional amount of damage to take, where a factor of 1 means that the amount of durability lost is equal to attack damage,
+             * and a factor of 0 that no durability is lost.
+             *
+             * @param fractionalDamage fractional amount of damage to take
+             * @return This builder, for chaining
+             */
+            Builder fractionalDamage(double fractionalDamage);
+
+            MultiplyAdd build();
+
+        }
 
     }
 
