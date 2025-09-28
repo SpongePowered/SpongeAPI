@@ -3674,21 +3674,21 @@ public final class Keys {
     public static final Key<Value<Integer>> WEAPON_DAMAGE_PER_ATTACK = Keys.key(ResourceKey.sponge("weapon_damage_per_attack"), Integer.class);
 
     /**
-     * The amount of {@link Ticks} this {@link ItemStack} disables blocking for on successful attack.
+     * The amount of {@link Ticks} this {@link ItemStack} disables blocking with a shield-like {@link ItemStack} on a successful attack.
      */
-    public static final Key<Value<Ticks>> DISABLE_BLOCKING_TICKS = Keys.key(ResourceKey.sponge("disable_blocking_ticks"), Ticks.class);
+    public static final Key<Value<Ticks>> DISABLE_SHIELD_TICKS = Keys.key(ResourceKey.sponge("disable_shield_ticks"), Ticks.class);
 
     /**
-     * The amount of {@link Ticks} player must use this {@link ItemStack} for to block attacks successfully.
+     * The amount of {@link Ticks} player must use this shield-like {@link ItemStack} for to block attacks successfully.
      */
-    public static final Key<Value<Ticks>> BLOCK_DEPLOY_TICKS = Keys.key(ResourceKey.sponge("block_deploy_ticks"), Ticks.class);
+    public static final Key<Value<Ticks>> SHIELD_DEPLOY_TICKS = Keys.key(ResourceKey.sponge("shield_deploy_ticks"), Ticks.class);
 
     /**
-     * Multiplier applied to the cooldown during which blocking using this item is disabled.
+     * Multiplier applied to the cooldown during which blocking using this shield-like {@link ItemStack} is disabled.
      *
      * @see <a href="https://minecraft.wiki/w/Data_component_format#blocks_attacks">blocks_attacks</a>
      */
-    public static final Key<Value<Double>> DISABLED_BLOCKING_COOLDOWN_SCALE = Keys.key(ResourceKey.sponge("disabled_blocking_cooldown_scale"), Double.class);
+    public static final Key<Value<Double>> DISABLE_SHIELD_TICKS_SCALE = Keys.key(ResourceKey.sponge("disable_shield_ticks_scale"), Double.class);
 
     /**
      * The amount of attack damage a shield-like {@link ItemStack} reduces for certain {@link DamageType}s
