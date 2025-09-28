@@ -3686,8 +3686,6 @@ public final class Keys {
     /**
      * The multiplier applied to the cooldown time during which blocking using this shield-like {@link ItemStack} is disabled.
      * If set to 0, this item can never be disabled by attacks.
-     *
-     * @see <a href="https://minecraft.wiki/w/Data_component_format#blocks_attacks">blocks_attacks</a>
      */
     public static final Key<Value<Double>> DISABLE_SHIELD_TICKS_SCALE = Keys.key(ResourceKey.sponge("disable_shield_ticks_scale"), Double.class);
 
