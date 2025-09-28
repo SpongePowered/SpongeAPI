@@ -30,6 +30,7 @@ import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.tag.Tag;
 import org.spongepowered.api.util.ResettableBuilder;
 
+import java.util.Optional;
 import java.util.Set;
 
 
@@ -38,11 +39,13 @@ import java.util.Set;
  */
 public interface ShieldDamageReduction<T> {
 
-    double resolve(DamageSource source, double damage, double angle);
-
     static ShieldDamageReduction<MultiplyAdd> of(MultiplyAdd config) {
         return Sponge.game().factoryProvider().provide(Factory.class).create(config);
     }
+
+    T configuration();
+
+    double resolve(DamageSource source, double damage, double angle);
 
     interface Factory {
 
@@ -55,11 +58,39 @@ public interface ShieldDamageReduction<T> {
      */
     interface MultiplyAdd {
 
-        double resolve(DamageSource source, double damage, double angle);
-
         static Builder builder() {
             return Sponge.game().builderProvider().provide(Builder.class);
         }
+
+        /**
+         * Returns the {@link DamageType damage types} this reduction applies to.
+         * {@link Optional#empty()} means this reduction is not restricted to any given damage type.
+         *
+         * @return the affected damage types
+         */
+        Optional<Set<DamageType>> damageTypes();
+
+        /**
+         * Returns the maximum angle between the users facing direction and the direction of the incoming attack.
+         *
+         * @return the maximum angle
+         */
+        double horizontalBlockingAngle();
+
+        /**
+         * Returns the constant amount of damage to be blocked.
+         *
+         * @return a constant amount of damage to block
+         */
+        double constantReduction();
+
+        /**
+         * Returns fractional amount of damage to block, where a factor of 1 means that all damage is blocked,
+         * and a factor of 0 that no damage is blocked.
+         *
+         * @return fractional amount of damage to block
+         */
+        double fractionalReduction();
 
         interface Builder extends ResettableBuilder<MultiplyAdd, Builder> {
 

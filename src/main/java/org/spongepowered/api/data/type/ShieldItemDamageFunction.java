@@ -33,11 +33,13 @@ import org.spongepowered.api.util.ResettableBuilder;
  */
 public interface ShieldItemDamageFunction<T> {
 
-    double resolve(double damage);
-
     static ShieldItemDamageFunction<MultiplyAdd> of(MultiplyAdd config) {
         return Sponge.game().factoryProvider().provide(Factory.class).create(config);
     }
+
+    T configuration();
+
+    double resolve(double damage);
 
     interface Factory {
 
@@ -50,11 +52,31 @@ public interface ShieldItemDamageFunction<T> {
      */
     interface MultiplyAdd {
 
-        double resolve(double damage);
-
         static Builder builder() {
             return Sponge.game().builderProvider().provide(Builder.class);
         }
+
+        /**
+         * Returns the minimum amount of damage blocked attack must have had, for the item to take damage at all.
+         *
+         * @return minimum attack damage required for any durability loss
+         */
+        double minAttackDamage();
+
+        /**
+         * Returns the constant amount of damage taken.
+         *
+         * @return a constant amount of damage to take
+         */
+        double constantDamage();
+
+        /**
+         * Returns fractional amount of damage to take, where a factor of 1 means that the amount of durability lost is equal to attack damage,
+         * and a factor of 0 that no durability is lost.
+         *
+         * @return fractional amount of damage to take
+         */
+        double fractionalDamage();
 
         interface Builder extends ResettableBuilder<MultiplyAdd, Builder> {
 
