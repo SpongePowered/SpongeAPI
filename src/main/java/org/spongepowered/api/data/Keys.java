@@ -3681,14 +3681,14 @@ public final class Keys {
     /**
      * The amount of {@link Ticks} player must use this {@link ItemStack} for to block attacks successfully.
      */
-    public static final Key<Value<Ticks>> BLOCK_DELAY_TICKS = Keys.key(ResourceKey.sponge("block_delay_ticks"), Ticks.class);
+    public static final Key<Value<Ticks>> BLOCK_DEPLOY_TICKS = Keys.key(ResourceKey.sponge("block_deploy_ticks"), Ticks.class);
 
     /**
      * Multiplier applied to the cooldown during which blocking using this item is disabled.
      *
      * @see <a href="https://minecraft.wiki/w/Data_component_format#blocks_attacks">blocks_attacks</a>
      */
-    public static final Key<Value<Float>> DISABLED_BLOCKING_COOLDOWN_SCALE = Keys.key(ResourceKey.sponge("disabled_blocking_cooldown_scale"), Float.class);
+    public static final Key<Value<Double>> DISABLED_BLOCKING_COOLDOWN_SCALE = Keys.key(ResourceKey.sponge("disabled_blocking_cooldown_scale"), Double.class);
 
     /**
      * The amount of attack damage a shield-like {@link ItemStack} reduces for certain {@link DamageType}s
