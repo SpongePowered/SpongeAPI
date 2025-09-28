@@ -3073,7 +3073,7 @@ public final class Keys {
     /**
      * The amount of attack damage a shield-like {@link ItemStack} reduces for certain {@link DamageType}s
      */
-    public static final Key<ListValue<ShieldDamageReduction>> SHIELD_DAMAGE_REDUCTIONS = Keys.listKey(ResourceKey.sponge("shield_damage_reductions"), ShieldDamageReduction.class);
+    public static final Key<ListValue<ShieldDamageReduction<?>>> SHIELD_DAMAGE_REDUCTIONS = Keys.listKey(ResourceKey.sponge("shield_damage_reductions"), ShieldDamageReduction.class);
 
     /**
      * The amount of {@link Ticks} player must use this shield-like {@link ItemStack} for to block attacks successfully.
@@ -3088,7 +3088,7 @@ public final class Keys {
     /**
      * Function for the amount of {@link Keys#ITEM_DURABILITY} damage a shield-like {@link ItemStack} takes when blocking an attack.
      */
-    public static final Key<Value<ShieldItemDamageFunction>> SHIELD_ITEM_DAMAGE_FUNCTION = Keys.key(ResourceKey.sponge("shield_item_damage_function"), ShieldItemDamageFunction.class);
+    public static final Key<Value<ShieldItemDamageFunction<?>>> SHIELD_ITEM_DAMAGE_FUNCTION = Keys.key(ResourceKey.sponge("shield_item_damage_function"), ShieldItemDamageFunction.class);
 
     /**
      * The shooter of a {@link Projectile}.
