@@ -26,10 +26,10 @@ package org.spongepowered.api.data.type;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
+import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.tag.Tag;
 import org.spongepowered.api.util.ResettableBuilder;
 
-import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -38,35 +38,7 @@ import java.util.Set;
  */
 public interface ShieldDamageReduction {
 
-    /**
-     * Returns the {@link DamageType damage types} this reduction applies to.
-     * {@link Optional#empty()} means this reduction is not restricted to any given damage type.
-     *
-     * @return the affected damage types
-     */
-    Optional<Set<DamageType>> damageTypes();
-
-    /**
-     * Returns the maximum angle between the users facing direction and the direction of the incoming attack.
-     *
-     * @return the maximum angle
-     */
-    double horizontalBlockingAngle();
-
-    /**
-     * Returns the constant amount of damage to be blocked.
-     *
-     * @return a constant amount of damage to block
-     */
-    double constantReduction();
-
-    /**
-     * Returns fractional amount of damage to block, where a factor of 1 means that all damage is blocked,
-     * and a factor of 0 that no damage is blocked.
-     *
-     * @return fractional amount of damage to block
-     */
-    double fractionalReduction();
+    double resolve(DamageSource source, double damage, double angle);
 
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class);
@@ -74,14 +46,45 @@ public interface ShieldDamageReduction {
 
     interface Builder extends ResettableBuilder<ShieldDamageReduction, Builder> {
 
+        /**
+         * Limits the {@link DamageType damage types} this reduction applies to.
+         *
+         * @param damageTypes the affected damage types
+         * @return This builder, for chaining
+         */
         Builder damageTypes(Set<DamageType> damageTypes);
 
+        /**
+         * Limits the {@link DamageType damage types} this reduction applies to.
+         *
+         * @param tag the tag defining affected damage types
+         * @return This builder, for chaining
+         */
         Builder damageTypes(Tag<DamageType> tag);
 
+        /**
+         * Sets the maximum angle between the users facing direction and the direction of the incoming attack.
+         *
+         * @param angle the maximum angle
+         * @return This builder, for chaining
+         */
         Builder horizontalBlockingAngle(double angle);
 
+        /**
+         * Sets the constant amount of damage to be blocked.
+         *
+         * @param constant a constant amount of damage to block
+         * @return This builder, for chaining
+         */
         Builder constantReduction(double constant);
 
+        /**
+         * Sets fractional amount of damage to block, where a factor of 1 means that all damage is blocked,
+         * and a factor of 0 that no damage is blocked.
+         *
+         * @param fraction fractional amount of damage to block
+         * @return This builder, for chaining
+         */
         Builder fractionalReduction(double fraction);
 
         ShieldDamageReduction build();

@@ -34,27 +34,7 @@ import org.spongepowered.api.util.ResettableBuilder;
  */
 public interface ShieldItemDamageFunction {
 
-    /**
-     * Returns the minimum amount of damage blocked attack must have had, for the item to take damage at all.
-     *
-     * @return minimum attack damage required for any durability loss
-     */
-    double minAttackDamage();
-
-    /**
-     * Returns the constant amount of damage taken.
-     *
-     * @return a constant amount of damage to take
-     */
-    double constantDamage();
-
-    /**
-     * Returns fractional amount of damage to take, where a factor of 1 means that the amount of durability lost is equal to attack damage,
-     * and a factor of 0 that no durability is lost.
-     *
-     * @return fractional amount of damage to take
-     */
-    double fractionalDamage();
+    double resolve(double damage);
 
     static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class);
@@ -62,10 +42,29 @@ public interface ShieldItemDamageFunction {
 
     interface Builder extends ResettableBuilder<ShieldItemDamageFunction, Builder> {
 
+        /**
+         * Sets the minimum amount of damage blocked attack must have had, for the item to take damage at all.
+         *
+         * @param minDamage minimum attack damage required for any durability loss
+         * @return This builder, for chaining
+         */
         Builder minAttackDamage(double minDamage);
 
+        /**
+         * Sets the constant amount of damage taken.
+         *
+         * @param constantDamage a constant amount of damage to take
+         * @return This builder, for chaining
+         */
         Builder constantDamage(double constantDamage);
 
+        /**
+         * Sets fractional amount of damage to take, where a factor of 1 means that the amount of durability lost is equal to attack damage,
+         * and a factor of 0 that no durability is lost.
+         *
+         * @param fractionalDamage fractional amount of damage to take
+         * @return This builder, for chaining
+         */
         Builder fractionalDamage(double fractionalDamage);
 
         ShieldItemDamageFunction build();
