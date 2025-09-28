@@ -3714,7 +3714,6 @@ public final class Keys {
      */
     public static final Key<Value<WorldTypeEffect>> WORLD_TYPE_EFFECT = Keys.key(ResourceKey.sponge("world_type_effect"), WorldTypeEffect.class);
 
-
     // SORTFIELDS:OFF
 
     // @formatter:on
