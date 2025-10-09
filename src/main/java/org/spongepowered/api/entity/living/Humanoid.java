@@ -25,16 +25,26 @@
 package org.spongepowered.api.entity.living;
 
 import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.data.type.HandPreference;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.Tamer;
+import org.spongepowered.api.entity.Mannequin;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.inventory.ArmorEquipable;
 import org.spongepowered.api.profile.property.ProfileProperty;
 
 /**
- * Represents a human-like entity in game, such as {@link Player} or {@link Human}s.
+ * Represents a human-like entity in game, such as {@link Player} or {@link Mannequin}s.
  */
-public interface Humanoid extends Living, ArmorEquipable, Tamer {
+public interface Humanoid extends Living, ArmorEquipable {
+
+    /**
+     * {@link Keys#DOMINANT_HAND}
+     *
+     * @return The dominant HandPreference of the humanoid
+     */
+    default Value.Mutable<HandPreference> dominantHand() {
+        return this.requireValue(Keys.DOMINANT_HAND).asMutable();
+    }
 
     /**
      * {@link Keys#SKIN_PROFILE_PROPERTY}

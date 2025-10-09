@@ -28,10 +28,10 @@ import net.kyori.adventure.bossbar.BossBarViewer;
 import net.kyori.adventure.identity.Identified;
 import org.spongepowered.api.block.entity.EnderChest;
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.type.HandPreference;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.effect.Viewer;
 import org.spongepowered.api.entity.Aerial;
+import org.spongepowered.api.entity.Tamer;
 import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.Inventory;
@@ -42,7 +42,7 @@ import org.spongepowered.api.util.locale.LocaleSource;
 /**
  * A Player is the representation of an actual unit playing the game.
  */
-public interface Player extends Humanoid, Identified, LocaleSource, Viewer, BossBarViewer, Carrier, Aerial {
+public interface Player extends Humanoid, Identified, LocaleSource, Viewer, BossBarViewer, Carrier, Tamer, Aerial {
 
     /**
      * Gets the associated {@link GameProfile} of this player.
@@ -83,15 +83,6 @@ public interface Player extends Humanoid, Identified, LocaleSource, Viewer, Boss
      */
     default Value.Mutable<Boolean> canFly() {
         return this.requireValue(Keys.CAN_FLY).asMutable();
-    }
-
-    /**
-     * {@link Keys#DOMINANT_HAND}
-     *
-     * @return The dominant HandPreference of the player
-     */
-    default Value.Mutable<HandPreference> dominantHand() {
-        return this.requireValue(Keys.DOMINANT_HAND).asMutable();
     }
 
     /**

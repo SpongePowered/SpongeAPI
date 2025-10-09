@@ -38,7 +38,6 @@ import org.spongepowered.api.entity.hanging.Painting;
 import org.spongepowered.api.entity.living.Allay;
 import org.spongepowered.api.entity.living.ArmorStand;
 import org.spongepowered.api.entity.living.Bat;
-import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.living.animal.Armadillo;
 import org.spongepowered.api.entity.living.animal.Axolotl;
 import org.spongepowered.api.entity.living.animal.Bee;
@@ -301,8 +300,6 @@ public final class EntityTypes {
     public static final DefaultedRegistryReference<EntityType<HopperMinecart>> HOPPER_MINECART = EntityTypes.key(ResourceKey.minecraft("hopper_minecart"));
 
     public static final DefaultedRegistryReference<EntityType<Horse>> HORSE = EntityTypes.key(ResourceKey.minecraft("horse"));
-
-    public static final DefaultedRegistryReference<EntityType<Human>> HUMAN = EntityTypes.key(ResourceKey.sponge("human"));
 
     public static final DefaultedRegistryReference<EntityType<Husk>> HUSK = EntityTypes.key(ResourceKey.minecraft("husk"));
 

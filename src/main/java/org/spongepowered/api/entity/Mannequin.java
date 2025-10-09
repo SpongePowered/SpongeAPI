@@ -24,19 +24,7 @@
  */
 package org.spongepowered.api.entity;
 
-import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.type.HandPreference;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.living.Humanoid;
 
-public interface Mannequin extends Living {
-
-    /**
-     * {@link Keys#DOMINANT_HAND}
-     *
-     * @return The dominant HandPreference of the player
-     */
-    default Value.Mutable<HandPreference> dominantHand() {
-        return this.requireValue(Keys.DOMINANT_HAND).asMutable();
-    }
+public interface Mannequin extends Humanoid {
 }
