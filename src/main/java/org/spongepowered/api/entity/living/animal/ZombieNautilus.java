@@ -22,14 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
-
-import org.spongepowered.api.registry.DefaultedRegistryValue;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+package org.spongepowered.api.entity.living.animal;
 
 /**
- * Represents a possible type of {@link ItemAction}.
+ * Represents a Zombie Nautilus.
+ * <p>
+ * See <a href="https://minecraft.wiki/w/Zombie_Nautilus">Minecraft Wiki</a>
  */
-@CatalogedBy(ItemActionTypes.class)
-public interface ItemActionType extends DefaultedRegistryValue<ItemActionType> {
+public interface ZombieNautilus extends NautilusLike {
+
 }

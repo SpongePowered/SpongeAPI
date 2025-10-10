@@ -53,6 +53,8 @@ public final class EntityTypeTags {
 
     public static final DefaultedTag<EntityType<?>> BOAT = EntityTypeTags.key(ResourceKey.minecraft("boat"));
 
+    public static final DefaultedTag<EntityType<?>> BURN_IN_DAYLIGHT = EntityTypeTags.key(ResourceKey.minecraft("burn_in_daylight"));
+
     public static final DefaultedTag<EntityType<?>> CAN_BREATHE_UNDER_WATER = EntityTypeTags.key(ResourceKey.minecraft("can_breathe_under_water"));
 
     public static final DefaultedTag<EntityType<?>> CAN_EQUIP_HARNESS = EntityTypeTags.key(ResourceKey.minecraft("can_equip_harness"));
@@ -62,6 +64,8 @@ public final class EntityTypeTags {
     public static final DefaultedTag<EntityType<?>> CAN_TURN_IN_BOATS = EntityTypeTags.key(ResourceKey.minecraft("can_turn_in_boats"));
 
     public static final DefaultedTag<EntityType<?>> CAN_WEAR_HORSE_ARMOR = EntityTypeTags.key(ResourceKey.minecraft("can_wear_horse_armor"));
+
+    public static final DefaultedTag<EntityType<?>> CAN_WEAR_NAUTILUS_ARMOR = EntityTypeTags.key(ResourceKey.minecraft("can_wear_nautilus_armor"));
 
     public static final DefaultedTag<EntityType<?>> CANDIDATE_FOR_IRON_GOLEM_GIFT = EntityTypeTags.key(ResourceKey.minecraft("candidate_for_iron_golem_gift"));
 
@@ -94,6 +98,8 @@ public final class EntityTypeTags {
     public static final DefaultedTag<EntityType<?>> IMPACT_PROJECTILES = EntityTypeTags.key(ResourceKey.minecraft("impact_projectiles"));
 
     public static final DefaultedTag<EntityType<?>> INVERTED_HEALING_AND_HARM = EntityTypeTags.key(ResourceKey.minecraft("inverted_healing_and_harm"));
+
+    public static final DefaultedTag<EntityType<?>> NAUTILUS_HOSTILES = EntityTypeTags.key(ResourceKey.minecraft("nautilus_hostiles"));
 
     public static final DefaultedTag<EntityType<?>> NO_ANGER_FROM_WIND_CHARGE = EntityTypeTags.key(ResourceKey.minecraft("no_anger_from_wind_charge"));
 

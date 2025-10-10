@@ -48,6 +48,7 @@ import org.spongepowered.api.entity.living.animal.Fox;
 import org.spongepowered.api.entity.living.animal.Goat;
 import org.spongepowered.api.entity.living.animal.HappyGhast;
 import org.spongepowered.api.entity.living.animal.Hoglin;
+import org.spongepowered.api.entity.living.animal.Nautilus;
 import org.spongepowered.api.entity.living.animal.Ocelot;
 import org.spongepowered.api.entity.living.animal.Panda;
 import org.spongepowered.api.entity.living.animal.Parrot;
@@ -59,6 +60,7 @@ import org.spongepowered.api.entity.living.animal.Sniffer;
 import org.spongepowered.api.entity.living.animal.Strider;
 import org.spongepowered.api.entity.living.animal.Turtle;
 import org.spongepowered.api.entity.living.animal.Wolf;
+import org.spongepowered.api.entity.living.animal.ZombieNautilus;
 import org.spongepowered.api.entity.living.animal.cow.Cow;
 import org.spongepowered.api.entity.living.animal.cow.Mooshroom;
 import org.spongepowered.api.entity.living.animal.frog.Frog;
@@ -348,6 +350,8 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<Mule>> MULE = EntityTypes.key(ResourceKey.minecraft("mule"));
 
+    public static final DefaultedRegistryReference<EntityType<Nautilus>> NAUTILUS = EntityTypes.key(ResourceKey.minecraft("nautilus"));
+
     public static final DefaultedRegistryReference<EntityType<Boat>> OAK_BOAT = EntityTypes.key(ResourceKey.minecraft("oak_boat"));
 
     public static final DefaultedRegistryReference<EntityType<ChestBoat>> OAK_CHEST_BOAT = EntityTypes.key(ResourceKey.minecraft("oak_chest_boat"));
@@ -471,6 +475,8 @@ public final class EntityTypes {
     public static final DefaultedRegistryReference<EntityType<Zombie>> ZOMBIE = EntityTypes.key(ResourceKey.minecraft("zombie"));
 
     public static final DefaultedRegistryReference<EntityType<ZombieHorse>> ZOMBIE_HORSE = EntityTypes.key(ResourceKey.minecraft("zombie_horse"));
+
+    public static final DefaultedRegistryReference<EntityType<ZombieNautilus>> ZOMBIE_NAUTILUS = EntityTypes.key(ResourceKey.minecraft("zombie_nautilus"));
 
     public static final DefaultedRegistryReference<EntityType<ZombieVillager>> ZOMBIE_VILLAGER = EntityTypes.key(ResourceKey.minecraft("zombie_villager"));
 

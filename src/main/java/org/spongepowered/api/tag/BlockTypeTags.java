@@ -99,6 +99,8 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> CAMPFIRES = BlockTypeTags.key(ResourceKey.minecraft("campfires"));
 
+    public static final DefaultedTag<BlockType> CAN_GLIDE_THROUGH = BlockTypeTags.key(ResourceKey.minecraft("can_glide_through"));
+
     public static final DefaultedTag<BlockType> CANDLE_CAKES = BlockTypeTags.key(ResourceKey.minecraft("candle_cakes"));
 
     public static final DefaultedTag<BlockType> CANDLES = BlockTypeTags.key(ResourceKey.minecraft("candles"));

@@ -1756,6 +1756,16 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_AXOLOTL_SWIM = SoundTypes.key(ResourceKey.minecraft("entity.axolotl.swim"));
 
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_NAUTILUS_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.baby_nautilus.ambient"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_NAUTILUS_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.baby_nautilus.death"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_NAUTILUS_EAT = SoundTypes.key(ResourceKey.minecraft("entity.baby_nautilus.eat"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_NAUTILUS_HURT = SoundTypes.key(ResourceKey.minecraft("entity.baby_nautilus.hurt"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_NAUTILUS_SWIM = SoundTypes.key(ResourceKey.minecraft("entity.baby_nautilus.swim"));
+
     public static final DefaultedRegistryReference<SoundType> ENTITY_BAT_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.bat.ambient"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_BAT_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.bat.death"));
@@ -2455,6 +2465,20 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> ENTITY_MULE_HURT = SoundTypes.key(ResourceKey.minecraft("entity.mule.hurt"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_MULE_JUMP = SoundTypes.key(ResourceKey.minecraft("entity.mule.jump"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_NAUTILUS_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.nautilus.ambient"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_NAUTILUS_DASH = SoundTypes.key(ResourceKey.minecraft("entity.nautilus.dash"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_NAUTILUS_DASH_READY = SoundTypes.key(ResourceKey.minecraft("entity.nautilus.dash_ready"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_NAUTILUS_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.nautilus.death"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_NAUTILUS_EAT = SoundTypes.key(ResourceKey.minecraft("entity.nautilus.eat"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_NAUTILUS_HURT = SoundTypes.key(ResourceKey.minecraft("entity.nautilus.hurt"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_NAUTILUS_SWIM = SoundTypes.key(ResourceKey.minecraft("entity.nautilus.swim"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_OCELOT_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.ocelot.ambient"));
 
@@ -3210,6 +3234,8 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_ZOMBIE_HORSE_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.zombie_horse.ambient"));
 
+    public static final DefaultedRegistryReference<SoundType> ENTITY_ZOMBIE_HORSE_ANGRY = SoundTypes.key(ResourceKey.minecraft("entity.zombie_horse.angry"));
+
     public static final DefaultedRegistryReference<SoundType> ENTITY_ZOMBIE_HORSE_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.zombie_horse.death"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_ZOMBIE_HORSE_HURT = SoundTypes.key(ResourceKey.minecraft("entity.zombie_horse.hurt"));
@@ -3217,6 +3243,20 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> ENTITY_ZOMBIE_HURT = SoundTypes.key(ResourceKey.minecraft("entity.zombie.hurt"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_ZOMBIE_INFECT = SoundTypes.key(ResourceKey.minecraft("entity.zombie.infect"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_ZOMBIE_NAUTILUS_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.zombie_nautilus.ambient"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_ZOMBIE_NAUTILUS_DASH = SoundTypes.key(ResourceKey.minecraft("entity.zombie_nautilus.dash"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_ZOMBIE_NAUTILUS_DASH_READY = SoundTypes.key(ResourceKey.minecraft("entity.zombie_nautilus.dash_ready"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_ZOMBIE_NAUTILUS_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.zombie_nautilus.death"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_ZOMBIE_NAUTILUS_EAT = SoundTypes.key(ResourceKey.minecraft("entity.zombie_nautilus.eat"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_ZOMBIE_NAUTILUS_HURT = SoundTypes.key(ResourceKey.minecraft("entity.zombie_nautilus.hurt"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_ZOMBIE_NAUTILUS_SWIM = SoundTypes.key(ResourceKey.minecraft("entity.zombie_nautilus.swim"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_ZOMBIE_STEP = SoundTypes.key(ResourceKey.minecraft("entity.zombie.step"));
 
@@ -3266,11 +3306,15 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ITEM_ARMOR_EQUIP_LEATHER = SoundTypes.key(ResourceKey.minecraft("item.armor.equip_leather"));
 
+    public static final DefaultedRegistryReference<SoundType> ITEM_ARMOR_EQUIP_NAUTILUS = SoundTypes.key(ResourceKey.minecraft("item.armor.equip_nautilus"));
+
     public static final DefaultedRegistryReference<SoundType> ITEM_ARMOR_EQUIP_NETHERITE = SoundTypes.key(ResourceKey.minecraft("item.armor.equip_netherite"));
 
     public static final DefaultedRegistryReference<SoundType> ITEM_ARMOR_EQUIP_TURTLE = SoundTypes.key(ResourceKey.minecraft("item.armor.equip_turtle"));
 
     public static final DefaultedRegistryReference<SoundType> ITEM_ARMOR_EQUIP_WOLF = SoundTypes.key(ResourceKey.minecraft("item.armor.equip_wolf"));
+
+    public static final DefaultedRegistryReference<SoundType> ITEM_ARMOR_UNEQUIP_NAUTILUS = SoundTypes.key(ResourceKey.minecraft("item.armor.unequip_nautilus"));
 
     public static final DefaultedRegistryReference<SoundType> ITEM_ARMOR_UNEQUIP_WOLF = SoundTypes.key(ResourceKey.minecraft("item.armor.unequip_wolf"));
 
@@ -3419,6 +3463,24 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> ITEM_SHIELD_BREAK = SoundTypes.key(ResourceKey.minecraft("item.shield.break"));
 
     public static final DefaultedRegistryReference<SoundType> ITEM_SHOVEL_FLATTEN = SoundTypes.key(ResourceKey.minecraft("item.shovel.flatten"));
+
+    public static final DefaultedRegistryReference<SoundType> ITEM_SPEAR_ATTACK = SoundTypes.key(ResourceKey.minecraft("item.spear.attack"));
+
+    public static final DefaultedRegistryReference<SoundType> ITEM_SPEAR_HIT = SoundTypes.key(ResourceKey.minecraft("item.spear.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> ITEM_SPEAR_LUNGE_1 = SoundTypes.key(ResourceKey.minecraft("item.spear.lunge_1"));
+
+    public static final DefaultedRegistryReference<SoundType> ITEM_SPEAR_LUNGE_2 = SoundTypes.key(ResourceKey.minecraft("item.spear.lunge_2"));
+
+    public static final DefaultedRegistryReference<SoundType> ITEM_SPEAR_LUNGE_3 = SoundTypes.key(ResourceKey.minecraft("item.spear.lunge_3"));
+
+    public static final DefaultedRegistryReference<SoundType> ITEM_SPEAR_USE = SoundTypes.key(ResourceKey.minecraft("item.spear.use"));
+
+    public static final DefaultedRegistryReference<SoundType> ITEM_SPEAR_WOOD_ATTACK = SoundTypes.key(ResourceKey.minecraft("item.spear_wood.attack"));
+
+    public static final DefaultedRegistryReference<SoundType> ITEM_SPEAR_WOOD_HIT = SoundTypes.key(ResourceKey.minecraft("item.spear_wood.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> ITEM_SPEAR_WOOD_USE = SoundTypes.key(ResourceKey.minecraft("item.spear_wood.use"));
 
     public static final DefaultedRegistryReference<SoundType> ITEM_SPYGLASS_STOP_USING = SoundTypes.key(ResourceKey.minecraft("item.spyglass.stop_using"));
 
