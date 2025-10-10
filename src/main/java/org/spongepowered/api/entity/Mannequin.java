@@ -24,7 +24,17 @@
  */
 package org.spongepowered.api.entity;
 
+import org.spongepowered.api.data.type.HandPreference;
+import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Humanoid;
+import org.spongepowered.api.entity.living.PathfinderAgent;
+import org.spongepowered.api.entity.living.RangedAgent;
 
-public interface Mannequin extends Humanoid {
+public interface Mannequin extends Humanoid, PathfinderAgent, RangedAgent {
+
+    // solve multiple inheritance
+    @Override
+    default Value.Mutable<HandPreference> dominantHand() {
+        return Humanoid.super.dominantHand();
+    }
 }
