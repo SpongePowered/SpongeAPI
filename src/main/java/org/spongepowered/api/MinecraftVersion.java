@@ -27,6 +27,7 @@ package org.spongepowered.api;
 import org.spongepowered.api.event.server.ClientPingServerEvent;
 import org.spongepowered.api.network.status.StatusResponse;
 
+import java.util.Optional;
 import java.util.OptionalInt;
 
 /**
@@ -43,6 +44,14 @@ public interface MinecraftVersion extends Comparable<MinecraftVersion> {
      * @return The version name
      */
     String name();
+
+    /**
+     * Gets the id of this Minecraft version.
+     *
+     * @implNote The version id will not be available in a status response.
+     * @return The version id
+     */
+    Optional<String> id();
 
     /**
      * Gets the protocol version of this Minecraft version.
