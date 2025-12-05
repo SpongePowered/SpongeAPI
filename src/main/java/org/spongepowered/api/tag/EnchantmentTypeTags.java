@@ -51,8 +51,6 @@ public final class EnchantmentTypeTags {
 
     public static final DefaultedTag<EnchantmentType> EXCLUSIVE_SET_DAMAGE = EnchantmentTypeTags.key(ResourceKey.minecraft("exclusive_set/damage"));
 
-    public static final DefaultedTag<EnchantmentType> EXCLUSIVE_SET_LUNGE = EnchantmentTypeTags.key(ResourceKey.minecraft("exclusive_set/lunge"));
-
     public static final DefaultedTag<EnchantmentType> EXCLUSIVE_SET_MINING = EnchantmentTypeTags.key(ResourceKey.minecraft("exclusive_set/mining"));
 
     public static final DefaultedTag<EnchantmentType> EXCLUSIVE_SET_RIPTIDE = EnchantmentTypeTags.key(ResourceKey.minecraft("exclusive_set/riptide"));

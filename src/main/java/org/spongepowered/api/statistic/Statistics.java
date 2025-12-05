@@ -134,6 +134,8 @@ public final class Statistics {
 
     public static final DefaultedRegistryReference<Statistic> MOB_KILLS = Statistics.key(ResourceKey.minecraft("mob_kills"));
 
+    public static final DefaultedRegistryReference<Statistic> NAUTILUS_ONE_CM = Statistics.key(ResourceKey.minecraft("nautilus_one_cm"));
+
     public static final DefaultedRegistryReference<Statistic> OPEN_BARREL = Statistics.key(ResourceKey.minecraft("open_barrel"));
 
     public static final DefaultedRegistryReference<Statistic> OPEN_CHEST = Statistics.key(ResourceKey.minecraft("open_chest"));

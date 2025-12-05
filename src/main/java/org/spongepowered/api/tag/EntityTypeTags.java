@@ -61,6 +61,8 @@ public final class EntityTypeTags {
 
     public static final DefaultedTag<EntityType<?>> CAN_EQUIP_SADDLE = EntityTypeTags.key(ResourceKey.minecraft("can_equip_saddle"));
 
+    public static final DefaultedTag<EntityType<?>> CAN_FLOAT_WHILE_RIDDEN = EntityTypeTags.key(ResourceKey.minecraft("can_float_while_ridden"));
+
     public static final DefaultedTag<EntityType<?>> CAN_TURN_IN_BOATS = EntityTypeTags.key(ResourceKey.minecraft("can_turn_in_boats"));
 
     public static final DefaultedTag<EntityType<?>> CAN_WEAR_HORSE_ARMOR = EntityTypeTags.key(ResourceKey.minecraft("can_wear_horse_armor"));

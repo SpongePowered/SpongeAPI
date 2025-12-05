@@ -79,6 +79,8 @@ public final class ItemTypeTags {
 
     public static final DefaultedTag<ItemType> CAMEL_FOOD = ItemTypeTags.key(ResourceKey.minecraft("camel_food"));
 
+    public static final DefaultedTag<ItemType> CAMEL_HUSK_FOOD = ItemTypeTags.key(ResourceKey.minecraft("camel_husk_food"));
+
     public static final DefaultedTag<ItemType> CANDLES = ItemTypeTags.key(ResourceKey.minecraft("candles"));
 
     public static final DefaultedTag<ItemType> CAT_FOOD = ItemTypeTags.key(ResourceKey.minecraft("cat_food"));

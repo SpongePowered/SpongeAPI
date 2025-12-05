@@ -61,11 +61,12 @@ import org.spongepowered.api.entity.living.animal.Strider;
 import org.spongepowered.api.entity.living.animal.Turtle;
 import org.spongepowered.api.entity.living.animal.Wolf;
 import org.spongepowered.api.entity.living.animal.ZombieNautilus;
+import org.spongepowered.api.entity.living.animal.camel.Camel;
+import org.spongepowered.api.entity.living.animal.camel.CamelHusk;
 import org.spongepowered.api.entity.living.animal.cow.Cow;
 import org.spongepowered.api.entity.living.animal.cow.Mooshroom;
 import org.spongepowered.api.entity.living.animal.frog.Frog;
 import org.spongepowered.api.entity.living.animal.frog.Tadpole;
-import org.spongepowered.api.entity.living.animal.horse.Camel;
 import org.spongepowered.api.entity.living.animal.horse.Donkey;
 import org.spongepowered.api.entity.living.animal.horse.Horse;
 import org.spongepowered.api.entity.living.animal.horse.Mule;
@@ -110,6 +111,7 @@ import org.spongepowered.api.entity.living.monster.raider.illager.Vindicator;
 import org.spongepowered.api.entity.living.monster.raider.illager.spellcaster.Evoker;
 import org.spongepowered.api.entity.living.monster.raider.illager.spellcaster.Illusioner;
 import org.spongepowered.api.entity.living.monster.skeleton.Bogged;
+import org.spongepowered.api.entity.living.monster.skeleton.Parched;
 import org.spongepowered.api.entity.living.monster.skeleton.Skeleton;
 import org.spongepowered.api.entity.living.monster.skeleton.Stray;
 import org.spongepowered.api.entity.living.monster.skeleton.WitherSkeleton;
@@ -209,6 +211,8 @@ public final class EntityTypes {
     public static final DefaultedRegistryReference<EntityType<BreezeWindCharge>> BREEZE_WIND_CHARGE = EntityTypes.key(ResourceKey.minecraft("breeze_wind_charge"));
 
     public static final DefaultedRegistryReference<EntityType<Camel>> CAMEL = EntityTypes.key(ResourceKey.minecraft("camel"));
+
+    public static final DefaultedRegistryReference<EntityType<CamelHusk>> CAMEL_HUSK = EntityTypes.key(ResourceKey.minecraft("camel_husk"));
 
     public static final DefaultedRegistryReference<EntityType<Cat>> CAT = EntityTypes.key(ResourceKey.minecraft("cat"));
 
@@ -367,6 +371,8 @@ public final class EntityTypes {
     public static final DefaultedRegistryReference<EntityType<ChestBoat>> PALE_OAK_CHEST_BOAT = EntityTypes.key(ResourceKey.minecraft("pale_oak_chest_boat"));
 
     public static final DefaultedRegistryReference<EntityType<Panda>> PANDA = EntityTypes.key(ResourceKey.minecraft("panda"));
+
+    public static final DefaultedRegistryReference<EntityType<Parched>> PARCHED = EntityTypes.key(ResourceKey.minecraft("parched"));
 
     public static final DefaultedRegistryReference<EntityType<Parrot>> PARROT = EntityTypes.key(ResourceKey.minecraft("parrot"));
 

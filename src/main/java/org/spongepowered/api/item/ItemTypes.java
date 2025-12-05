@@ -428,6 +428,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> CALIBRATED_SCULK_SENSOR = ItemTypes.key(ResourceKey.minecraft("calibrated_sculk_sensor"));
 
+    public static final DefaultedRegistryReference<ItemType> CAMEL_HUSK_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("camel_husk_spawn_egg"));
+
     public static final DefaultedRegistryReference<ItemType> CAMEL_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("camel_spawn_egg"));
 
     public static final DefaultedRegistryReference<ItemType> CAMPFIRE = ItemTypes.key(ResourceKey.minecraft("campfire"));
@@ -1971,6 +1973,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> PANDA_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("panda_spawn_egg"));
 
     public static final DefaultedRegistryReference<ItemType> PAPER = ItemTypes.key(ResourceKey.minecraft("paper"));
+
+    public static final DefaultedRegistryReference<ItemType> PARCHED_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("parched_spawn_egg"));
 
     public static final DefaultedRegistryReference<ItemType> PARROT_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("parrot_spawn_egg"));
 
