@@ -22,12 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.item.inventory.equipment;
 
+import net.kyori.adventure.text.ComponentLike;
+import org.spongepowered.api.data.type.StringRepresentable;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
-@CatalogedBy(BoatTypes.class)
-public interface BoatType extends DefaultedRegistryValue<BoatType> {
+import java.util.Objects;
+import java.util.function.Supplier;
 
+/**
+ * Represents some condition for {@link EquipmentType}.
+ */
+@CatalogedBy(EquipmentConditions.class)
+public interface EquipmentCondition extends DefaultedRegistryValue<EquipmentCondition>, StringRepresentable, ComponentLike {
+
+    /**
+     * Tests whether the equipment type is suitable for this condition.
+     *
+     * @param type The equipment type to test
+     * @return True if the equipment type is suitable for this condition
+     */
+    default boolean test(final Supplier<? extends EquipmentType> type) {
+        return this.test(Objects.requireNonNull(type, "type").get());
+    }
+
+    /**
+     * Tests whether the equipment type is suitable for this condition.
+     *
+     * @param type The equipment type to test
+     * @return True if the equipment type is suitable for this condition
+     */
+    boolean test(EquipmentType type);
 }

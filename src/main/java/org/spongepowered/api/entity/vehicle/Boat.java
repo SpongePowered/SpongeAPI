@@ -25,7 +25,6 @@
 package org.spongepowered.api.entity.vehicle;
 
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.type.BoatType;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.Leashable;
 
@@ -33,15 +32,6 @@ import org.spongepowered.api.entity.Leashable;
  * Represents a Boat entity.
  */
 public interface Boat extends Vehicle, Leashable {
-
-    /**
-     * {@link Keys#BOAT_TYPE}
-     *
-     * @return The type of the boat
-     */
-    default Value.Mutable<BoatType> boatType() {
-        return this.requireValue(Keys.BOAT_TYPE).asMutable();
-    }
 
     /**
      * {@link Keys#IS_IN_WATER}

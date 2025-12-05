@@ -50,7 +50,6 @@ import org.spongepowered.api.data.type.AxolotlVariant;
 import org.spongepowered.api.data.type.BambooLeavesType;
 import org.spongepowered.api.data.type.BannerPatternShape;
 import org.spongepowered.api.data.type.BellAttachmentType;
-import org.spongepowered.api.data.type.BoatType;
 import org.spongepowered.api.data.type.BodyPart;
 import org.spongepowered.api.data.type.CatType;
 import org.spongepowered.api.data.type.ChestAttachmentType;
@@ -137,6 +136,7 @@ import org.spongepowered.api.item.ItemRarity;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.enchantment.EnchantmentType;
 import org.spongepowered.api.item.inventory.ContainerType;
+import org.spongepowered.api.item.inventory.equipment.EquipmentCondition;
 import org.spongepowered.api.item.inventory.equipment.EquipmentGroup;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.inventory.menu.ClickType;
@@ -325,8 +325,6 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<BillboardType> BILLBOARD_TYPE = RegistryTypes.spongeKeyInGame("billboard_type");
 
-    public static final DefaultedRegistryType<BoatType> BOAT_TYPE = RegistryTypes.spongeKeyInGame("boat_type");
-
     public static final DefaultedRegistryType<BodyPart> BODY_PART = RegistryTypes.spongeKeyInGame("body_part");
 
     public static final DefaultedRegistryType<CatType> CAT_TYPE = RegistryTypes.minecraftKeyInGame("cat_variant");
@@ -390,6 +388,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<DripstoneSegment> DRIPSTONE_SEGMENT = RegistryTypes.spongeKeyInGame("dripstone_segment");
 
     public static final DefaultedRegistryType<DyeColor> DYE_COLOR = RegistryTypes.spongeKeyInGame("dye_color");
+
+    public static final DefaultedRegistryType<EquipmentCondition> EQUIPMENT_CONDITION = RegistryTypes.spongeKeyInGame("equipment_condition");
 
     public static final DefaultedRegistryType<EquipmentGroup> EQUIPMENT_GROUP = RegistryTypes.spongeKeyInGame("equipment_group");
 

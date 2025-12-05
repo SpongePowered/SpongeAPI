@@ -57,6 +57,8 @@ public final class MovementTypes {
 
     public static final DefaultedRegistryReference<MovementType> PORTAL = MovementTypes.key(ResourceKey.sponge("portal"));
 
+    public static final DefaultedRegistryReference<MovementType> SPECTATOR = MovementTypes.key(ResourceKey.sponge("spectator"));
+
     // SORTFIELDS:OFF
 
     // @formatter:on

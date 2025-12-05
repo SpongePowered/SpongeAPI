@@ -55,13 +55,14 @@ import org.spongepowered.api.data.type.ArmorMaterial;
 import org.spongepowered.api.data.type.ArtType;
 import org.spongepowered.api.data.type.AttachmentSurface;
 import org.spongepowered.api.data.type.AxolotlVariant;
-import org.spongepowered.api.data.type.BoatType;
 import org.spongepowered.api.data.type.BodyPart;
 import org.spongepowered.api.data.type.BodyParts;
 import org.spongepowered.api.data.type.CatType;
 import org.spongepowered.api.data.type.ChestAttachmentType;
+import org.spongepowered.api.data.type.ChickenVariant;
 import org.spongepowered.api.data.type.ComparatorMode;
 import org.spongepowered.api.data.type.CopperOxidation;
+import org.spongepowered.api.data.type.CowVariant;
 import org.spongepowered.api.data.type.DoorHinge;
 import org.spongepowered.api.data.type.DripstoneSegment;
 import org.spongepowered.api.data.type.DyeColor;
@@ -134,6 +135,7 @@ import org.spongepowered.api.entity.FallingBlock;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.Ownable;
 import org.spongepowered.api.entity.ai.goal.GoalExecutorTypes;
+import org.spongepowered.api.entity.attribute.ItemAttribute;
 import org.spongepowered.api.entity.display.BillboardType;
 import org.spongepowered.api.entity.display.DisplayEntity;
 import org.spongepowered.api.entity.display.ItemDisplayType;
@@ -167,6 +169,7 @@ import org.spongepowered.api.entity.living.animal.Sheep;
 import org.spongepowered.api.entity.living.animal.TameableAnimal;
 import org.spongepowered.api.entity.living.animal.Turtle;
 import org.spongepowered.api.entity.living.animal.Wolf;
+import org.spongepowered.api.entity.living.animal.cow.Cow;
 import org.spongepowered.api.entity.living.animal.cow.Mooshroom;
 import org.spongepowered.api.entity.living.animal.frog.Frog;
 import org.spongepowered.api.entity.living.animal.horse.Horse;
@@ -579,11 +582,6 @@ public final class Keys {
     public static final Key<Value<Double>> BLOCK_TEMPERATURE = Keys.key(ResourceKey.sponge("block_temperature"), Double.class);
 
     /**
-     * The type of the boat.
-     */
-    public static final Key<Value<BoatType>> BOAT_TYPE = Keys.key(ResourceKey.sponge("boat_type"), BoatType.class);
-
-    /**
      * The rotation of specific body parts of a {@link ArmorStand} or {@link Living}.
      *
      * <p>This value provides a mapping, effectively combining the data
@@ -755,6 +753,11 @@ public final class Keys {
     public static final Key<Value<Vector3d>> CHEST_ROTATION = Keys.key(ResourceKey.sponge("chest_rotation"), Vector3d.class);
 
     /**
+     * The {@link ChickenVariant} of a {@link Chicken}.
+     */
+    public static final Key<Value<ChickenVariant>> CHICKEN_VARIANT = Keys.key(ResourceKey.sponge("chicken_variant"), ChickenVariant.class);
+
+    /**
      * The chunk generator of a {@link World}
      * Readonly
      */
@@ -811,6 +814,11 @@ public final class Keys {
      * a {@link CopperGolem}
      */
     public static final Key<Value<CopperOxidation>> COPPER_OXIDATION = Keys.key(ResourceKey.sponge("copper_oxidation"), CopperOxidation.class);
+
+    /**
+     * The {@link CowVariant} of a {@link Cow}.
+     */
+    public static final Key<Value<CowVariant>> COW_VARIANT = Keys.key(ResourceKey.sponge("cow_variant"), CowVariant.class);
 
     /**
      * The {@link ItemStack} a food {@link ItemStack} converts to when eaten.
@@ -2211,6 +2219,11 @@ public final class Keys {
      * Readonly(Entity.class) except Wolf
      */
     public static final Key<Value<Boolean>> IS_WET = Keys.key(ResourceKey.sponge("is_wet"), Boolean.class);
+
+    /**
+     * The {@link ItemAttribute}s an {@link ItemStackLike} can apply.
+     */
+    public static final Key<ListValue<ItemAttribute>> ITEM_ATTRIBUTES = Keys.listKey(ResourceKey.sponge("item_attributes"), ItemAttribute.class);
 
     /**
      * The {@link ItemDisplayType display type} of a {@link org.spongepowered.api.entity.display.ItemDisplay}.

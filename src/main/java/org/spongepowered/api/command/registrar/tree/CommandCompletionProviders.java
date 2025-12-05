@@ -28,7 +28,6 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryKey;
@@ -43,15 +42,6 @@ public final class CommandCompletionProviders {
     // @formatter:off
 
     // SORTFIELDS:ON
-
-    /**
-     * Instructs the node represented by a {@link CommandTreeNode} to display
-     * all known {@link Recipe recipes}.
-     *
-     * <p>This provider is intended for use with a {@link ResourceKey} parser.
-     * </p>
-     */
-    public static final DefaultedRegistryReference<CommandCompletionProvider> ALL_RECIPES = CommandCompletionProviders.key(ResourceKey.minecraft("all_recipes"));
 
     /**
      * Instructs the node represented by a {@link CommandTreeNode} to display

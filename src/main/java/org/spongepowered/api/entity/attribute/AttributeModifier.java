@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.entity.attribute;
 
+import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -37,6 +38,30 @@ import java.util.function.Supplier;
  * <p>Modifiers are usually found on {@link ItemStack}s.</p>
  */
 public interface AttributeModifier extends ResourceKeyed {
+
+    /**
+     * Creates an attribute modifier with the given values.
+     *
+     * @param key The resource key
+     * @param operation The attribute operation
+     * @param amount The amount
+     * @return The attribute modifier
+     */
+    static AttributeModifier of(final ResourceKey key, final Supplier<? extends AttributeOperation> operation, final double amount) {
+        return AttributeModifier.builder().key(key).operation(operation).amount(amount).build();
+    }
+
+    /**
+     * Creates an attribute modifier with the given values.
+     *
+     * @param key The resource key
+     * @param operation The attribute operation
+     * @param amount The amount
+     * @return The attribute modifier
+     */
+    static AttributeModifier of(final ResourceKey key, final AttributeOperation operation, final double amount) {
+        return AttributeModifier.builder().key(key).operation(operation).amount(amount).build();
+    }
 
     /**
      * Creates a new {@link Builder} to create an {@link AttributeModifier}.
