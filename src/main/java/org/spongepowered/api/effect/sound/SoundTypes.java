@@ -3278,6 +3278,8 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_ZOMBIE_HORSE_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.zombie_horse.death"));
 
+    public static final DefaultedRegistryReference<SoundType> ENTITY_ZOMBIE_HORSE_EAT = SoundTypes.key(ResourceKey.minecraft("entity.zombie_horse.eat"));
+
     public static final DefaultedRegistryReference<SoundType> ENTITY_ZOMBIE_HORSE_HURT = SoundTypes.key(ResourceKey.minecraft("entity.zombie_horse.hurt"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_ZOMBIE_HURT = SoundTypes.key(ResourceKey.minecraft("entity.zombie.hurt"));

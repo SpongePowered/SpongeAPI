@@ -24,10 +24,12 @@
  */
 package org.spongepowered.api.entity.living.animal;
 
+import org.spongepowered.api.item.inventory.Carrier;
+
 /**
  * Represents a Nautilus-like entity, all of which can be mounted.
  * <p>
  * See <a href="https://minecraft.wiki/w/Nautilus">Minecraft Wiki</a>
  */
-public interface NautilusLike extends TameableAnimal {
+public interface NautilusLike extends TameableAnimal, Carrier {
 }
