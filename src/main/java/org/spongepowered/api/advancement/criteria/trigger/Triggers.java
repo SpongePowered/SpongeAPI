@@ -130,6 +130,8 @@ public final class Triggers {
 
     public static final DefaultedRegistryReference<Trigger<?>> SLIDE_DOWN_BLOCK = Triggers.key(ResourceKey.minecraft("slide_down_block"));
 
+    public static final DefaultedRegistryReference<Trigger<?>> SPEAR_MOBS = Triggers.key(ResourceKey.minecraft("spear_mobs"));
+
     public static final DefaultedRegistryReference<Trigger<?>> STARTED_RIDING = Triggers.key(ResourceKey.minecraft("started_riding"));
 
     public static final DefaultedRegistryReference<Trigger<?>> SUMMONED_ENTITY = Triggers.key(ResourceKey.minecraft("summoned_entity"));

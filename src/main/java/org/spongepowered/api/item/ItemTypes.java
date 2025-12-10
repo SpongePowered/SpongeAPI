@@ -1762,6 +1762,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> NETHERITE_HOE = ItemTypes.key(ResourceKey.minecraft("netherite_hoe"));
 
+    public static final DefaultedRegistryReference<ItemType> NETHERITE_HORSE_ARMOR = ItemTypes.key(ResourceKey.minecraft("netherite_horse_armor"));
+
     public static final DefaultedRegistryReference<ItemType> NETHERITE_INGOT = ItemTypes.key(ResourceKey.minecraft("netherite_ingot"));
 
     public static final DefaultedRegistryReference<ItemType> NETHERITE_LEGGINGS = ItemTypes.key(ResourceKey.minecraft("netherite_leggings"));

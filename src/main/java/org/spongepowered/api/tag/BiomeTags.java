@@ -153,6 +153,8 @@ public final class BiomeTags {
 
     public static final DefaultedTag<Biome> SPAWNS_COLD_VARIANT_FROGS = BiomeTags.key(ResourceKey.minecraft("spawns_cold_variant_frogs"));
 
+    public static final DefaultedTag<Biome> SPAWNS_CORAL_VARIANT_ZOMBIE_NAUTILUS = BiomeTags.key(ResourceKey.minecraft("spawns_coral_variant_zombie_nautilus"));
+
     public static final DefaultedTag<Biome> SPAWNS_GOLD_RABBITS = BiomeTags.key(ResourceKey.minecraft("spawns_gold_rabbits"));
 
     public static final DefaultedTag<Biome> SPAWNS_SNOW_FOXES = BiomeTags.key(ResourceKey.minecraft("spawns_snow_foxes"));
@@ -166,8 +168,6 @@ public final class BiomeTags {
     public static final DefaultedTag<Biome> STRONGHOLD_BIASED_TO = BiomeTags.key(ResourceKey.minecraft("stronghold_biased_to"));
 
     public static final DefaultedTag<Biome> WATER_ON_MAP_OUTLINES = BiomeTags.key(ResourceKey.minecraft("water_on_map_outlines"));
-
-    public static final DefaultedTag<Biome> WITHOUT_PATROL_SPAWNS = BiomeTags.key(ResourceKey.minecraft("without_patrol_spawns"));
 
     public static final DefaultedTag<Biome> WITHOUT_WANDERING_TRADER_SPAWNS = BiomeTags.key(ResourceKey.minecraft("without_wandering_trader_spawns"));
 
