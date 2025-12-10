@@ -22,14 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
+package org.spongepowered.api.entity.living.animal;
 
-import org.spongepowered.api.registry.DefaultedRegistryValue;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+import org.spongepowered.api.item.inventory.Carrier;
 
 /**
- * Represents a possible type of {@link ItemAction}.
+ * Represents a Nautilus-like entity, all of which can be mounted.
+ * <p>
+ * See <a href="https://minecraft.wiki/w/Nautilus">Minecraft Wiki</a>
  */
-@CatalogedBy(ItemActionTypes.class)
-public interface ItemActionType extends DefaultedRegistryValue<ItemActionType> {
+public interface NautilusLike extends TameableAnimal, Carrier {
 }

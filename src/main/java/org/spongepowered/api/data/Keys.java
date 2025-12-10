@@ -410,7 +410,7 @@ public final class Keys {
      * fade over time and the entity will become peaceful again once its anger
      * reaches its minimum.</p>
      */
-    public static final Key<Value<Integer>> ANGER_LEVEL = Keys.key(ResourceKey.sponge("anger_level"), Integer.class);
+    public static final Key<Value<Long>> ANGER_LEVEL = Keys.key(ResourceKey.sponge("anger_level"), Long.class);
 
     /**
      * The set of {@link PotionEffect}s applied on use of an {@link ItemStack}.

@@ -165,6 +165,14 @@ public final class EnchantmentTypes {
     public static final DefaultedRegistryReference<EnchantmentType> LUCK_OF_THE_SEA = EnchantmentTypes.key(ResourceKey.minecraft("luck_of_the_sea"));
 
     /**
+     * Lunge is an enchantment applied to spears that causes jab attacks to propel the wielder forward horizontally at the cost of draining durability.
+     *
+     * <p>In vanilla, the maximum level is 3.</p>
+     * See <a href="https://minecraft.wiki/w/Lunge">Lunge</a> on the Minecraft Wiki.
+     */
+    public static final DefaultedRegistryReference<EnchantmentType> LUNGE = EnchantmentTypes.key(ResourceKey.minecraft("lunge"));
+
+    /**
      * Increases rate of fish biting your hook while fishing.
      *
      * <p>In vanilla the maximum level is 3.</p>

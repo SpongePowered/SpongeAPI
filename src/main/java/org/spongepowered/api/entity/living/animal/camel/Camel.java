@@ -22,9 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.animal.horse;
+package org.spongepowered.api.entity.living.animal.camel;
 
 import org.spongepowered.api.entity.living.animal.Sittable;
+import org.spongepowered.api.entity.living.animal.horse.HorseLike;
 
 /**
  * Represents a Camel.

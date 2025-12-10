@@ -41,8 +41,6 @@ public final class BiomeTags {
 
     public static final DefaultedTag<Biome> ALLOWS_TROPICAL_FISH_SPAWNS_AT_ANY_HEIGHT = BiomeTags.key(ResourceKey.minecraft("allows_tropical_fish_spawns_at_any_height"));
 
-    public static final DefaultedTag<Biome> HAS_CLOSER_WATER_FOG = BiomeTags.key(ResourceKey.minecraft("has_closer_water_fog"));
-
     public static final DefaultedTag<Biome> HAS_STRUCTURE_ANCIENT_CITY = BiomeTags.key(ResourceKey.minecraft("has_structure/ancient_city"));
 
     public static final DefaultedTag<Biome> HAS_STRUCTURE_BASTION_REMNANT = BiomeTags.key(ResourceKey.minecraft("has_structure/bastion_remnant"));
@@ -111,8 +109,6 @@ public final class BiomeTags {
 
     public static final DefaultedTag<Biome> HAS_STRUCTURE_WOODLAND_MANSION = BiomeTags.key(ResourceKey.minecraft("has_structure/woodland_mansion"));
 
-    public static final DefaultedTag<Biome> INCREASED_FIRE_BURNOUT = BiomeTags.key(ResourceKey.minecraft("increased_fire_burnout"));
-
     public static final DefaultedTag<Biome> IS_BADLANDS = BiomeTags.key(ResourceKey.minecraft("is_badlands"));
 
     public static final DefaultedTag<Biome> IS_BEACH = BiomeTags.key(ResourceKey.minecraft("is_beach"));
@@ -145,8 +141,6 @@ public final class BiomeTags {
 
     public static final DefaultedTag<Biome> MORE_FREQUENT_DROWNED_SPAWNS = BiomeTags.key(ResourceKey.minecraft("more_frequent_drowned_spawns"));
 
-    public static final DefaultedTag<Biome> PLAYS_UNDERWATER_MUSIC = BiomeTags.key(ResourceKey.minecraft("plays_underwater_music"));
-
     public static final DefaultedTag<Biome> POLAR_BEARS_SPAWN_ON_ALTERNATE_BLOCKS = BiomeTags.key(ResourceKey.minecraft("polar_bears_spawn_on_alternate_blocks"));
 
     public static final DefaultedTag<Biome> PRODUCES_CORALS_FROM_BONEMEAL = BiomeTags.key(ResourceKey.minecraft("produces_corals_from_bonemeal"));
@@ -155,11 +149,11 @@ public final class BiomeTags {
 
     public static final DefaultedTag<Biome> REQUIRED_OCEAN_MONUMENT_SURROUNDING = BiomeTags.key(ResourceKey.minecraft("required_ocean_monument_surrounding"));
 
-    public static final DefaultedTag<Biome> SNOW_GOLEM_MELTS = BiomeTags.key(ResourceKey.minecraft("snow_golem_melts"));
-
     public static final DefaultedTag<Biome> SPAWNS_COLD_VARIANT_FARM_ANIMALS = BiomeTags.key(ResourceKey.minecraft("spawns_cold_variant_farm_animals"));
 
     public static final DefaultedTag<Biome> SPAWNS_COLD_VARIANT_FROGS = BiomeTags.key(ResourceKey.minecraft("spawns_cold_variant_frogs"));
+
+    public static final DefaultedTag<Biome> SPAWNS_CORAL_VARIANT_ZOMBIE_NAUTILUS = BiomeTags.key(ResourceKey.minecraft("spawns_coral_variant_zombie_nautilus"));
 
     public static final DefaultedTag<Biome> SPAWNS_GOLD_RABBITS = BiomeTags.key(ResourceKey.minecraft("spawns_gold_rabbits"));
 
@@ -174,8 +168,6 @@ public final class BiomeTags {
     public static final DefaultedTag<Biome> STRONGHOLD_BIASED_TO = BiomeTags.key(ResourceKey.minecraft("stronghold_biased_to"));
 
     public static final DefaultedTag<Biome> WATER_ON_MAP_OUTLINES = BiomeTags.key(ResourceKey.minecraft("water_on_map_outlines"));
-
-    public static final DefaultedTag<Biome> WITHOUT_PATROL_SPAWNS = BiomeTags.key(ResourceKey.minecraft("without_patrol_spawns"));
 
     public static final DefaultedTag<Biome> WITHOUT_WANDERING_TRADER_SPAWNS = BiomeTags.key(ResourceKey.minecraft("without_wandering_trader_spawns"));
 

@@ -407,7 +407,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<GameMode> GAME_MODE = RegistryTypes.spongeKeyInGame("game_mode");
 
-    public static final DefaultedRegistryType<GameRule<?>> GAME_RULE = RegistryTypes.spongeKeyInGame("game_rule");
+    public static final DefaultedRegistryType<GameRule<?>> GAME_RULE = RegistryTypes.minecraftKeyInGame("game_rule");
 
     public static final DefaultedRegistryType<GoalExecutorType> GOAL_EXECUTOR_TYPE = RegistryTypes.spongeKeyInGame("goal_executor_type");
 

@@ -56,6 +56,8 @@ public final class EquipmentConditions {
 
     public static final DefaultedRegistryReference<EquipmentCondition> OFFHAND = EquipmentConditions.key(ResourceKey.sponge("offhand"));
 
+    public static final DefaultedRegistryReference<EquipmentCondition> SADDLE = EquipmentConditions.key(ResourceKey.sponge("saddle"));
+
     private EquipmentConditions() {
     }
 

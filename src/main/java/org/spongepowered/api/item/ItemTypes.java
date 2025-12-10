@@ -428,6 +428,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> CALIBRATED_SCULK_SENSOR = ItemTypes.key(ResourceKey.minecraft("calibrated_sculk_sensor"));
 
+    public static final DefaultedRegistryReference<ItemType> CAMEL_HUSK_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("camel_husk_spawn_egg"));
+
     public static final DefaultedRegistryReference<ItemType> CAMEL_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("camel_spawn_egg"));
 
     public static final DefaultedRegistryReference<ItemType> CAMPFIRE = ItemTypes.key(ResourceKey.minecraft("campfire"));
@@ -644,6 +646,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> COPPER_LEGGINGS = ItemTypes.key(ResourceKey.minecraft("copper_leggings"));
 
+    public static final DefaultedRegistryReference<ItemType> COPPER_NAUTILUS_ARMOR = ItemTypes.key(ResourceKey.minecraft("copper_nautilus_armor"));
+
     public static final DefaultedRegistryReference<ItemType> COPPER_NUGGET = ItemTypes.key(ResourceKey.minecraft("copper_nugget"));
 
     public static final DefaultedRegistryReference<ItemType> COPPER_ORE = ItemTypes.key(ResourceKey.minecraft("copper_ore"));
@@ -651,6 +655,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> COPPER_PICKAXE = ItemTypes.key(ResourceKey.minecraft("copper_pickaxe"));
 
     public static final DefaultedRegistryReference<ItemType> COPPER_SHOVEL = ItemTypes.key(ResourceKey.minecraft("copper_shovel"));
+
+    public static final DefaultedRegistryReference<ItemType> COPPER_SPEAR = ItemTypes.key(ResourceKey.minecraft("copper_spear"));
 
     public static final DefaultedRegistryReference<ItemType> COPPER_SWORD = ItemTypes.key(ResourceKey.minecraft("copper_sword"));
 
@@ -908,11 +914,15 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> DIAMOND_LEGGINGS = ItemTypes.key(ResourceKey.minecraft("diamond_leggings"));
 
+    public static final DefaultedRegistryReference<ItemType> DIAMOND_NAUTILUS_ARMOR = ItemTypes.key(ResourceKey.minecraft("diamond_nautilus_armor"));
+
     public static final DefaultedRegistryReference<ItemType> DIAMOND_ORE = ItemTypes.key(ResourceKey.minecraft("diamond_ore"));
 
     public static final DefaultedRegistryReference<ItemType> DIAMOND_PICKAXE = ItemTypes.key(ResourceKey.minecraft("diamond_pickaxe"));
 
     public static final DefaultedRegistryReference<ItemType> DIAMOND_SHOVEL = ItemTypes.key(ResourceKey.minecraft("diamond_shovel"));
+
+    public static final DefaultedRegistryReference<ItemType> DIAMOND_SPEAR = ItemTypes.key(ResourceKey.minecraft("diamond_spear"));
 
     public static final DefaultedRegistryReference<ItemType> DIAMOND_SWORD = ItemTypes.key(ResourceKey.minecraft("diamond_sword"));
 
@@ -1154,9 +1164,13 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> GOLDEN_LEGGINGS = ItemTypes.key(ResourceKey.minecraft("golden_leggings"));
 
+    public static final DefaultedRegistryReference<ItemType> GOLDEN_NAUTILUS_ARMOR = ItemTypes.key(ResourceKey.minecraft("golden_nautilus_armor"));
+
     public static final DefaultedRegistryReference<ItemType> GOLDEN_PICKAXE = ItemTypes.key(ResourceKey.minecraft("golden_pickaxe"));
 
     public static final DefaultedRegistryReference<ItemType> GOLDEN_SHOVEL = ItemTypes.key(ResourceKey.minecraft("golden_shovel"));
+
+    public static final DefaultedRegistryReference<ItemType> GOLDEN_SPEAR = ItemTypes.key(ResourceKey.minecraft("golden_spear"));
 
     public static final DefaultedRegistryReference<ItemType> GOLDEN_SWORD = ItemTypes.key(ResourceKey.minecraft("golden_sword"));
 
@@ -1338,6 +1352,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> IRON_LEGGINGS = ItemTypes.key(ResourceKey.minecraft("iron_leggings"));
 
+    public static final DefaultedRegistryReference<ItemType> IRON_NAUTILUS_ARMOR = ItemTypes.key(ResourceKey.minecraft("iron_nautilus_armor"));
+
     public static final DefaultedRegistryReference<ItemType> IRON_NUGGET = ItemTypes.key(ResourceKey.minecraft("iron_nugget"));
 
     public static final DefaultedRegistryReference<ItemType> IRON_ORE = ItemTypes.key(ResourceKey.minecraft("iron_ore"));
@@ -1345,6 +1361,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> IRON_PICKAXE = ItemTypes.key(ResourceKey.minecraft("iron_pickaxe"));
 
     public static final DefaultedRegistryReference<ItemType> IRON_SHOVEL = ItemTypes.key(ResourceKey.minecraft("iron_shovel"));
+
+    public static final DefaultedRegistryReference<ItemType> IRON_SPEAR = ItemTypes.key(ResourceKey.minecraft("iron_spear"));
 
     public static final DefaultedRegistryReference<ItemType> IRON_SWORD = ItemTypes.key(ResourceKey.minecraft("iron_sword"));
 
@@ -1730,6 +1748,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> NAUTILUS_SHELL = ItemTypes.key(ResourceKey.minecraft("nautilus_shell"));
 
+    public static final DefaultedRegistryReference<ItemType> NAUTILUS_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("nautilus_spawn_egg"));
+
     public static final DefaultedRegistryReference<ItemType> NETHERITE_AXE = ItemTypes.key(ResourceKey.minecraft("netherite_axe"));
 
     public static final DefaultedRegistryReference<ItemType> NETHERITE_BLOCK = ItemTypes.key(ResourceKey.minecraft("netherite_block"));
@@ -1742,15 +1762,21 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> NETHERITE_HOE = ItemTypes.key(ResourceKey.minecraft("netherite_hoe"));
 
+    public static final DefaultedRegistryReference<ItemType> NETHERITE_HORSE_ARMOR = ItemTypes.key(ResourceKey.minecraft("netherite_horse_armor"));
+
     public static final DefaultedRegistryReference<ItemType> NETHERITE_INGOT = ItemTypes.key(ResourceKey.minecraft("netherite_ingot"));
 
     public static final DefaultedRegistryReference<ItemType> NETHERITE_LEGGINGS = ItemTypes.key(ResourceKey.minecraft("netherite_leggings"));
+
+    public static final DefaultedRegistryReference<ItemType> NETHERITE_NAUTILUS_ARMOR = ItemTypes.key(ResourceKey.minecraft("netherite_nautilus_armor"));
 
     public static final DefaultedRegistryReference<ItemType> NETHERITE_PICKAXE = ItemTypes.key(ResourceKey.minecraft("netherite_pickaxe"));
 
     public static final DefaultedRegistryReference<ItemType> NETHERITE_SCRAP = ItemTypes.key(ResourceKey.minecraft("netherite_scrap"));
 
     public static final DefaultedRegistryReference<ItemType> NETHERITE_SHOVEL = ItemTypes.key(ResourceKey.minecraft("netherite_shovel"));
+
+    public static final DefaultedRegistryReference<ItemType> NETHERITE_SPEAR = ItemTypes.key(ResourceKey.minecraft("netherite_spear"));
 
     public static final DefaultedRegistryReference<ItemType> NETHERITE_SWORD = ItemTypes.key(ResourceKey.minecraft("netherite_sword"));
 
@@ -1949,6 +1975,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> PANDA_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("panda_spawn_egg"));
 
     public static final DefaultedRegistryReference<ItemType> PAPER = ItemTypes.key(ResourceKey.minecraft("paper"));
+
+    public static final DefaultedRegistryReference<ItemType> PARCHED_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("parched_spawn_egg"));
 
     public static final DefaultedRegistryReference<ItemType> PARROT_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("parrot_spawn_egg"));
 
@@ -2530,6 +2558,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> STONE_SLAB = ItemTypes.key(ResourceKey.minecraft("stone_slab"));
 
+    public static final DefaultedRegistryReference<ItemType> STONE_SPEAR = ItemTypes.key(ResourceKey.minecraft("stone_spear"));
+
     public static final DefaultedRegistryReference<ItemType> STONE_STAIRS = ItemTypes.key(ResourceKey.minecraft("stone_stairs"));
 
     public static final DefaultedRegistryReference<ItemType> STONE_SWORD = ItemTypes.key(ResourceKey.minecraft("stone_sword"));
@@ -2968,6 +2998,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> WOODEN_SHOVEL = ItemTypes.key(ResourceKey.minecraft("wooden_shovel"));
 
+    public static final DefaultedRegistryReference<ItemType> WOODEN_SPEAR = ItemTypes.key(ResourceKey.minecraft("wooden_spear"));
+
     public static final DefaultedRegistryReference<ItemType> WOODEN_SWORD = ItemTypes.key(ResourceKey.minecraft("wooden_sword"));
 
     public static final DefaultedRegistryReference<ItemType> WRITABLE_BOOK = ItemTypes.key(ResourceKey.minecraft("writable_book"));
@@ -3009,6 +3041,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> ZOMBIE_HEAD = ItemTypes.key(ResourceKey.minecraft("zombie_head"));
 
     public static final DefaultedRegistryReference<ItemType> ZOMBIE_HORSE_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("zombie_horse_spawn_egg"));
+
+    public static final DefaultedRegistryReference<ItemType> ZOMBIE_NAUTILUS_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("zombie_nautilus_spawn_egg"));
 
     public static final DefaultedRegistryReference<ItemType> ZOMBIE_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("zombie_spawn_egg"));
 

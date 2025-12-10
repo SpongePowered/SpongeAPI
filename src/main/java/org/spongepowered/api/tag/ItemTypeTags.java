@@ -79,6 +79,8 @@ public final class ItemTypeTags {
 
     public static final DefaultedTag<ItemType> CAMEL_FOOD = ItemTypeTags.key(ResourceKey.minecraft("camel_food"));
 
+    public static final DefaultedTag<ItemType> CAMEL_HUSK_FOOD = ItemTypeTags.key(ResourceKey.minecraft("camel_husk_food"));
+
     public static final DefaultedTag<ItemType> CANDLES = ItemTypeTags.key(ResourceKey.minecraft("candles"));
 
     public static final DefaultedTag<ItemType> CAT_FOOD = ItemTypeTags.key(ResourceKey.minecraft("cat_food"));
@@ -169,7 +171,11 @@ public final class ItemTypeTags {
 
     public static final DefaultedTag<ItemType> ENCHANTABLE_LEG_ARMOR = ItemTypeTags.key(ResourceKey.minecraft("enchantable/leg_armor"));
 
+    public static final DefaultedTag<ItemType> ENCHANTABLE_LUNGE = ItemTypeTags.key(ResourceKey.minecraft("enchantable/lunge"));
+
     public static final DefaultedTag<ItemType> ENCHANTABLE_MACE = ItemTypeTags.key(ResourceKey.minecraft("enchantable/mace"));
+
+    public static final DefaultedTag<ItemType> ENCHANTABLE_MELEE_WEAPON = ItemTypeTags.key(ResourceKey.minecraft("enchantable/melee_weapon"));
 
     public static final DefaultedTag<ItemType> ENCHANTABLE_MINING = ItemTypeTags.key(ResourceKey.minecraft("enchantable/mining"));
 
@@ -177,7 +183,7 @@ public final class ItemTypeTags {
 
     public static final DefaultedTag<ItemType> ENCHANTABLE_SHARP_WEAPON = ItemTypeTags.key(ResourceKey.minecraft("enchantable/sharp_weapon"));
 
-    public static final DefaultedTag<ItemType> ENCHANTABLE_SWORD = ItemTypeTags.key(ResourceKey.minecraft("enchantable/sword"));
+    public static final DefaultedTag<ItemType> ENCHANTABLE_SWEEPING = ItemTypeTags.key(ResourceKey.minecraft("enchantable/sweeping"));
 
     public static final DefaultedTag<ItemType> ENCHANTABLE_TRIDENT = ItemTypeTags.key(ResourceKey.minecraft("enchantable/trident"));
 
@@ -262,6 +268,12 @@ public final class ItemTypeTags {
     public static final DefaultedTag<ItemType> MAP_INVISIBILITY_EQUIPMENT = ItemTypeTags.key(ResourceKey.minecraft("map_invisibility_equipment"));
 
     public static final DefaultedTag<ItemType> MEAT = ItemTypeTags.key(ResourceKey.minecraft("meat"));
+
+    public static final DefaultedTag<ItemType> NAUTILUS_BUCKET_FOOD = ItemTypeTags.key(ResourceKey.minecraft("nautilus_bucket_food"));
+
+    public static final DefaultedTag<ItemType> NAUTILUS_FOOD = ItemTypeTags.key(ResourceKey.minecraft("nautilus_food"));
+
+    public static final DefaultedTag<ItemType> NAUTILUS_TAMING_ITEMS = ItemTypeTags.key(ResourceKey.minecraft("nautilus_taming_items"));
 
     public static final DefaultedTag<ItemType> NETHERITE_TOOL_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("netherite_tool_materials"));
 
@@ -353,6 +365,8 @@ public final class ItemTypeTags {
 
     public static final DefaultedTag<ItemType> SOUL_FIRE_BASE_BLOCKS = ItemTypeTags.key(ResourceKey.minecraft("soul_fire_base_blocks"));
 
+    public static final DefaultedTag<ItemType> SPEARS = ItemTypeTags.key(ResourceKey.minecraft("spears"));
+
     public static final DefaultedTag<ItemType> SPRUCE_LOGS = ItemTypeTags.key(ResourceKey.minecraft("spruce_logs"));
 
     public static final DefaultedTag<ItemType> STAIRS = ItemTypeTags.key(ResourceKey.minecraft("stairs"));
@@ -416,6 +430,8 @@ public final class ItemTypeTags {
     public static final DefaultedTag<ItemType> WOOL = ItemTypeTags.key(ResourceKey.minecraft("wool"));
 
     public static final DefaultedTag<ItemType> WOOL_CARPETS = ItemTypeTags.key(ResourceKey.minecraft("wool_carpets"));
+
+    public static final DefaultedTag<ItemType> ZOMBIE_HORSE_FOOD = ItemTypeTags.key(ResourceKey.minecraft("zombie_horse_food"));
 
     private ItemTypeTags() {
     }

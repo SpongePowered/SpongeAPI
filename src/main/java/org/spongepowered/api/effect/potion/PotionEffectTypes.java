@@ -46,6 +46,8 @@ public final class PotionEffectTypes {
 
     public static final DefaultedRegistryReference<PotionEffectType> BLINDNESS = PotionEffectTypes.key(ResourceKey.minecraft("blindness"));
 
+    public static final DefaultedRegistryReference<PotionEffectType> BREATH_OF_THE_NAUTILUS = PotionEffectTypes.key(ResourceKey.minecraft("breath_of_the_nautilus"));
+
     public static final DefaultedRegistryReference<PotionEffectType> CONDUIT_POWER = PotionEffectTypes.key(ResourceKey.minecraft("conduit_power"));
 
     public static final DefaultedRegistryReference<PotionEffectType> DARKNESS = PotionEffectTypes.key(ResourceKey.minecraft("darkness"));

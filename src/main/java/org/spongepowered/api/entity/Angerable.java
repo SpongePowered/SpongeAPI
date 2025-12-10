@@ -43,7 +43,7 @@ public interface Angerable extends Entity {
      *
      * @return The anger level, decays over time
      */
-    default Value.Mutable<Integer> angerLevel() {
+    default Value.Mutable<Long> angerLevel() {
         return this.requireValue(Keys.ANGER_LEVEL).asMutable();
     }
 }

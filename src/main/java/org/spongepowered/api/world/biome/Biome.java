@@ -37,7 +37,6 @@ import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.golem.SnowGolem;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.tag.Taggable;
-import org.spongepowered.api.util.Builder;
 import org.spongepowered.api.util.Color;
 import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.annotation.CatalogedBy;

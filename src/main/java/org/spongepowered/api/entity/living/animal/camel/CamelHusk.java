@@ -22,14 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.type;
-
-import org.spongepowered.api.registry.DefaultedRegistryValue;
-import org.spongepowered.api.util.annotation.CatalogedBy;
+package org.spongepowered.api.entity.living.animal.camel;
 
 /**
- * Represents a possible type of {@link ItemAction}.
+ * Represents a Camel Husk.
+ * @see <a href="https://minecraft.wiki/w/Camel_Husk">Minecraft Wiki</a>
  */
-@CatalogedBy(ItemActionTypes.class)
-public interface ItemActionType extends DefaultedRegistryValue<ItemActionType> {
+public interface CamelHusk extends Camel {
 }
