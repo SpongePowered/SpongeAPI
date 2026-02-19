@@ -868,6 +868,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> GLOW_LICHEN = BlockTypes.key(ResourceKey.minecraft("glow_lichen"));
 
+    public static final DefaultedRegistryReference<BlockType> GOLDEN_DANDELION = BlockTypes.key(ResourceKey.minecraft("golden_dandelion"));
+
     public static final DefaultedRegistryReference<BlockType> GOLD_BLOCK = BlockTypes.key(ResourceKey.minecraft("gold_block"));
 
     public static final DefaultedRegistryReference<BlockType> GOLD_ORE = BlockTypes.key(ResourceKey.minecraft("gold_ore"));
@@ -1607,6 +1609,8 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> POTTED_FERN = BlockTypes.key(ResourceKey.minecraft("potted_fern"));
 
     public static final DefaultedRegistryReference<BlockType> POTTED_FLOWERING_AZALEA_BUSH = BlockTypes.key(ResourceKey.minecraft("potted_flowering_azalea_bush"));
+
+    public static final DefaultedRegistryReference<BlockType> POTTED_GOLDEN_DANDELION = BlockTypes.key(ResourceKey.minecraft("potted_golden_dandelion"));
 
     public static final DefaultedRegistryReference<BlockType> POTTED_JUNGLE_SAPLING = BlockTypes.key(ResourceKey.minecraft("potted_jungle_sapling"));
 

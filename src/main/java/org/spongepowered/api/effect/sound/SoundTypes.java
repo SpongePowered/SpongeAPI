@@ -1774,6 +1774,12 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_CAT_STRAY_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.baby_cat.stray_ambient"));
 
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_CHICKEN_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.baby_chicken.ambient"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_CHICKEN_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.baby_chicken.death"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_CHICKEN_HURT = SoundTypes.key(ResourceKey.minecraft("entity.baby_chicken.hurt"));
+
     public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_HORSE_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.baby_horse.ambient"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_HORSE_ANGRY = SoundTypes.key(ResourceKey.minecraft("entity.baby_horse.angry"));
@@ -3547,6 +3553,10 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> ITEM_GOAT_HORN_SOUND_6 = SoundTypes.key(ResourceKey.minecraft("item.goat_horn.sound.6"));
 
     public static final DefaultedRegistryReference<SoundType> ITEM_GOAT_HORN_SOUND_7 = SoundTypes.key(ResourceKey.minecraft("item.goat_horn.sound.7"));
+
+    public static final DefaultedRegistryReference<SoundType> ITEM_GOLDEN_DANDELION_UNUSE = SoundTypes.key(ResourceKey.minecraft("item.golden_dandelion.unuse"));
+
+    public static final DefaultedRegistryReference<SoundType> ITEM_GOLDEN_DANDELION_USE = SoundTypes.key(ResourceKey.minecraft("item.golden_dandelion.use"));
 
     public static final DefaultedRegistryReference<SoundType> ITEM_HOE_TILL = SoundTypes.key(ResourceKey.minecraft("item.hoe.till"));
 

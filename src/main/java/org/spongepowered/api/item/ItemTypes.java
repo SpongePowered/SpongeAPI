@@ -1156,6 +1156,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> GOLDEN_CHESTPLATE = ItemTypes.key(ResourceKey.minecraft("golden_chestplate"));
 
+    public static final DefaultedRegistryReference<ItemType> GOLDEN_DANDELION = ItemTypes.key(ResourceKey.minecraft("golden_dandelion"));
+
     public static final DefaultedRegistryReference<ItemType> GOLDEN_HELMET = ItemTypes.key(ResourceKey.minecraft("golden_helmet"));
 
     public static final DefaultedRegistryReference<ItemType> GOLDEN_HOE = ItemTypes.key(ResourceKey.minecraft("golden_hoe"));

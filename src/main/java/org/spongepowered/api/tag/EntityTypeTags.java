@@ -71,6 +71,8 @@ public final class EntityTypeTags {
 
     public static final DefaultedTag<EntityType<?>> CANDIDATE_FOR_IRON_GOLEM_GIFT = EntityTypeTags.key(ResourceKey.minecraft("candidate_for_iron_golem_gift"));
 
+    public static final DefaultedTag<EntityType<?>> CANNOT_BE_AGE_LOCKED = EntityTypeTags.key(ResourceKey.minecraft("cannot_be_age_locked"));
+
     public static final DefaultedTag<EntityType<?>> CANNOT_BE_PUSHED_ONTO_BOATS = EntityTypeTags.key(ResourceKey.minecraft("cannot_be_pushed_onto_boats"));
 
     public static final DefaultedTag<EntityType<?>> DEFLECTS_PROJECTILES = EntityTypeTags.key(ResourceKey.minecraft("deflects_projectiles"));

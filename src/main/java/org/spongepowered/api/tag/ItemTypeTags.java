@@ -83,7 +83,11 @@ public final class ItemTypeTags {
 
     public static final DefaultedTag<ItemType> CANDLES = ItemTypeTags.key(ResourceKey.minecraft("candles"));
 
+    public static final DefaultedTag<ItemType> CAT_COLLAR_DYES = ItemTypeTags.key(ResourceKey.minecraft("cat_collar_dyes"));
+
     public static final DefaultedTag<ItemType> CAT_FOOD = ItemTypeTags.key(ResourceKey.minecraft("cat_food"));
+
+    public static final DefaultedTag<ItemType> CAULDRON_CAN_REMOVE_DYE = ItemTypeTags.key(ResourceKey.minecraft("cauldron_can_remove_dye"));
 
     public static final DefaultedTag<ItemType> CHAINS = ItemTypeTags.key(ResourceKey.minecraft("chains"));
 
@@ -143,7 +147,7 @@ public final class ItemTypeTags {
 
     public static final DefaultedTag<ItemType> DUPLICATES_ALLAYS = ItemTypeTags.key(ResourceKey.minecraft("duplicates_allays"));
 
-    public static final DefaultedTag<ItemType> DYEABLE = ItemTypeTags.key(ResourceKey.minecraft("dyeable"));
+    public static final DefaultedTag<ItemType> DYES = ItemTypeTags.key(ResourceKey.minecraft("dyes"));
 
     public static final DefaultedTag<ItemType> EGGS = ItemTypeTags.key(ResourceKey.minecraft("eggs"));
 
@@ -262,6 +266,10 @@ public final class ItemTypeTags {
     public static final DefaultedTag<ItemType> LOGS = ItemTypeTags.key(ResourceKey.minecraft("logs"));
 
     public static final DefaultedTag<ItemType> LOGS_THAT_BURN = ItemTypeTags.key(ResourceKey.minecraft("logs_that_burn"));
+
+    public static final DefaultedTag<ItemType> LOOM_DYES = ItemTypeTags.key(ResourceKey.minecraft("loom_dyes"));
+
+    public static final DefaultedTag<ItemType> LOOM_PATTERNS = ItemTypeTags.key(ResourceKey.minecraft("loom_patterns"));
 
     public static final DefaultedTag<ItemType> MANGROVE_LOGS = ItemTypeTags.key(ResourceKey.minecraft("mangrove_logs"));
 
@@ -408,6 +416,8 @@ public final class ItemTypeTags {
     public static final DefaultedTag<ItemType> WART_BLOCKS = ItemTypeTags.key(ResourceKey.minecraft("wart_blocks"));
 
     public static final DefaultedTag<ItemType> WITHER_SKELETON_DISLIKED_WEAPONS = ItemTypeTags.key(ResourceKey.minecraft("wither_skeleton_disliked_weapons"));
+
+    public static final DefaultedTag<ItemType> WOLF_COLLAR_DYES = ItemTypeTags.key(ResourceKey.minecraft("wolf_collar_dyes"));
 
     public static final DefaultedTag<ItemType> WOLF_FOOD = ItemTypeTags.key(ResourceKey.minecraft("wolf_food"));
 
