@@ -1756,6 +1756,24 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_AXOLOTL_SWIM = SoundTypes.key(ResourceKey.minecraft("entity.axolotl.swim"));
 
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_CAT_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.baby_cat.ambient"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_CAT_BEG_FOR_FOOD = SoundTypes.key(ResourceKey.minecraft("entity.baby_cat.beg_for_food"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_CAT_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.baby_cat.death"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_CAT_EAT = SoundTypes.key(ResourceKey.minecraft("entity.baby_cat.eat"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_CAT_HISS = SoundTypes.key(ResourceKey.minecraft("entity.baby_cat.hiss"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_CAT_HURT = SoundTypes.key(ResourceKey.minecraft("entity.baby_cat.hurt"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_CAT_PURR = SoundTypes.key(ResourceKey.minecraft("entity.baby_cat.purr"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_CAT_PURREOW = SoundTypes.key(ResourceKey.minecraft("entity.baby_cat.purreow"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_CAT_STRAY_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.baby_cat.stray_ambient"));
+
     public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_NAUTILUS_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.baby_nautilus.ambient"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_NAUTILUS_AMBIENT_LAND = SoundTypes.key(ResourceKey.minecraft("entity.baby_nautilus.ambient_land"));
@@ -1771,6 +1789,28 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_NAUTILUS_HURT_LAND = SoundTypes.key(ResourceKey.minecraft("entity.baby_nautilus.hurt_land"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_NAUTILUS_SWIM = SoundTypes.key(ResourceKey.minecraft("entity.baby_nautilus.swim"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_PIG_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.baby_pig.ambient"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_PIG_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.baby_pig.death"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_PIG_HURT = SoundTypes.key(ResourceKey.minecraft("entity.baby_pig.hurt"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_PIG_STEP = SoundTypes.key(ResourceKey.minecraft("entity.baby_pig.step"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_WOLF_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.baby_wolf.ambient"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_WOLF_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.baby_wolf.death"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_WOLF_GROWL = SoundTypes.key(ResourceKey.minecraft("entity.baby_wolf.growl"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_WOLF_HURT = SoundTypes.key(ResourceKey.minecraft("entity.baby_wolf.hurt"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_WOLF_PANT = SoundTypes.key(ResourceKey.minecraft("entity.baby_wolf.pant"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_WOLF_STEP = SoundTypes.key(ResourceKey.minecraft("entity.baby_wolf.step"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_WOLF_WHINE = SoundTypes.key(ResourceKey.minecraft("entity.baby_wolf.whine"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_BAT_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.bat.ambient"));
 

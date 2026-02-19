@@ -37,7 +37,15 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class FluidTypeTags {
 
+    public static final DefaultedTag<FluidType> BUBBLE_COLUMN_CAN_OCCUPY = FluidTypeTags.key(ResourceKey.minecraft("bubble_column_can_occupy"));
+
     public static final DefaultedTag<FluidType> LAVA = FluidTypeTags.key(ResourceKey.minecraft("lava"));
+
+    public static final DefaultedTag<FluidType> SUPPORTS_FROGSPAWN = FluidTypeTags.key(ResourceKey.minecraft("supports_frogspawn"));
+
+    public static final DefaultedTag<FluidType> SUPPORTS_LILY_PAD = FluidTypeTags.key(ResourceKey.minecraft("supports_lily_pad"));
+
+    public static final DefaultedTag<FluidType> SUPPORTS_SUGAR_CANE_ADJACENTLY = FluidTypeTags.key(ResourceKey.minecraft("supports_sugar_cane_adjacently"));
 
     public static final DefaultedTag<FluidType> WATER = FluidTypeTags.key(ResourceKey.minecraft("water"));
 

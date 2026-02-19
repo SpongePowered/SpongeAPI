@@ -269,6 +269,8 @@ public final class ItemTypeTags {
 
     public static final DefaultedTag<ItemType> MEAT = ItemTypeTags.key(ResourceKey.minecraft("meat"));
 
+    public static final DefaultedTag<ItemType> METAL_NUGGETS = ItemTypeTags.key(ResourceKey.minecraft("metal_nuggets"));
+
     public static final DefaultedTag<ItemType> NAUTILUS_BUCKET_FOOD = ItemTypeTags.key(ResourceKey.minecraft("nautilus_bucket_food"));
 
     public static final DefaultedTag<ItemType> NAUTILUS_FOOD = ItemTypeTags.key(ResourceKey.minecraft("nautilus_food"));

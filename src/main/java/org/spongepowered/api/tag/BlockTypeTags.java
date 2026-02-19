@@ -63,8 +63,6 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> BAMBOO_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("bamboo_blocks"));
 
-    public static final DefaultedTag<BlockType> BAMBOO_PLANTABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("bamboo_plantable_on"));
-
     public static final DefaultedTag<BlockType> BANNERS = BlockTypeTags.key(ResourceKey.minecraft("banners"));
 
     public static final DefaultedTag<BlockType> BARS = BlockTypeTags.key(ResourceKey.minecraft("bars"));
@@ -85,8 +83,6 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> BEEHIVES = BlockTypeTags.key(ResourceKey.minecraft("beehives"));
 
-    public static final DefaultedTag<BlockType> BIG_DRIPLEAF_PLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("big_dripleaf_placeable"));
-
     public static final DefaultedTag<BlockType> BIRCH_LOGS = BlockTypeTags.key(ResourceKey.minecraft("birch_logs"));
 
     public static final DefaultedTag<BlockType> BLOCKS_WIND_CHARGE_EXPLOSIONS = BlockTypeTags.key(ResourceKey.minecraft("blocks_wind_charge_explosions"));
@@ -104,6 +100,12 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> CANDLE_CAKES = BlockTypeTags.key(ResourceKey.minecraft("candle_cakes"));
 
     public static final DefaultedTag<BlockType> CANDLES = BlockTypeTags.key(ResourceKey.minecraft("candles"));
+
+    public static final DefaultedTag<BlockType> CANNOT_SUPPORT_KELP = BlockTypeTags.key(ResourceKey.minecraft("cannot_support_kelp"));
+
+    public static final DefaultedTag<BlockType> CANNOT_SUPPORT_SEAGRASS = BlockTypeTags.key(ResourceKey.minecraft("cannot_support_seagrass"));
+
+    public static final DefaultedTag<BlockType> CANNOT_SUPPORT_SNOW_LAYER = BlockTypeTags.key(ResourceKey.minecraft("cannot_support_snow_layer"));
 
     public static final DefaultedTag<BlockType> CAULDRONS = BlockTypeTags.key(ResourceKey.minecraft("cauldrons"));
 
@@ -167,11 +169,13 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> DRIPSTONE_REPLACEABLE_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("dripstone_replaceable_blocks"));
 
-    public static final DefaultedTag<BlockType> DRY_VEGETATION_MAY_PLACE_ON = BlockTypeTags.key(ResourceKey.minecraft("dry_vegetation_may_place_on"));
-
     public static final DefaultedTag<BlockType> EDIBLE_FOR_SHEEP = BlockTypeTags.key(ResourceKey.minecraft("edible_for_sheep"));
 
     public static final DefaultedTag<BlockType> EMERALD_ORES = BlockTypeTags.key(ResourceKey.minecraft("emerald_ores"));
+
+    public static final DefaultedTag<BlockType> ENABLES_BUBBLE_COLUMN_DRAG_DOWN = BlockTypeTags.key(ResourceKey.minecraft("enables_bubble_column_drag_down"));
+
+    public static final DefaultedTag<BlockType> ENABLES_BUBBLE_COLUMN_PUSH_UP = BlockTypeTags.key(ResourceKey.minecraft("enables_bubble_column_push_up"));
 
     public static final DefaultedTag<BlockType> ENCHANTMENT_POWER_PROVIDER = BlockTypeTags.key(ResourceKey.minecraft("enchantment_power_provider"));
 
@@ -204,6 +208,8 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> GOATS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("goats_spawnable_on"));
 
     public static final DefaultedTag<BlockType> GOLD_ORES = BlockTypeTags.key(ResourceKey.minecraft("gold_ores"));
+
+    public static final DefaultedTag<BlockType> GROWS_CROPS = BlockTypeTags.key(ResourceKey.minecraft("grows_crops"));
 
     public static final DefaultedTag<BlockType> GUARDED_BY_PIGLINS = BlockTypeTags.key(ResourceKey.minecraft("guarded_by_piglins"));
 
@@ -281,8 +287,6 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> MOSS_REPLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("moss_replaceable"));
 
-    public static final DefaultedTag<BlockType> MUSHROOM_GROW_BLOCK = BlockTypeTags.key(ResourceKey.minecraft("mushroom_grow_block"));
-
     public static final DefaultedTag<BlockType> NEEDS_DIAMOND_TOOL = BlockTypeTags.key(ResourceKey.minecraft("needs_diamond_tool"));
 
     public static final DefaultedTag<BlockType> NEEDS_IRON_TOOL = BlockTypeTags.key(ResourceKey.minecraft("needs_iron_tool"));
@@ -296,6 +300,8 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> OAK_LOGS = BlockTypeTags.key(ResourceKey.minecraft("oak_logs"));
 
     public static final DefaultedTag<BlockType> OCCLUDES_VIBRATION_SIGNALS = BlockTypeTags.key(ResourceKey.minecraft("occludes_vibration_signals"));
+
+    public static final DefaultedTag<BlockType> OVERRIDES_MUSHROOM_LIGHT_REQUIREMENT = BlockTypeTags.key(ResourceKey.minecraft("overrides_mushroom_light_requirement"));
 
     public static final DefaultedTag<BlockType> OVERWORLD_CARVER_REPLACEABLES = BlockTypeTags.key(ResourceKey.minecraft("overworld_carver_replaceables"));
 
@@ -343,8 +349,6 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> SLABS = BlockTypeTags.key(ResourceKey.minecraft("slabs"));
 
-    public static final DefaultedTag<BlockType> SMALL_DRIPLEAF_PLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("small_dripleaf_placeable"));
-
     public static final DefaultedTag<BlockType> SMALL_FLOWERS = BlockTypeTags.key(ResourceKey.minecraft("small_flowers"));
 
     public static final DefaultedTag<BlockType> SMELTS_TO_GLASS = BlockTypeTags.key(ResourceKey.minecraft("smelts_to_glass"));
@@ -356,10 +360,6 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> SNIFFER_EGG_HATCH_BOOST = BlockTypeTags.key(ResourceKey.minecraft("sniffer_egg_hatch_boost"));
 
     public static final DefaultedTag<BlockType> SNOW = BlockTypeTags.key(ResourceKey.minecraft("snow"));
-
-    public static final DefaultedTag<BlockType> SNOW_LAYER_CAN_SURVIVE_ON = BlockTypeTags.key(ResourceKey.minecraft("snow_layer_can_survive_on"));
-
-    public static final DefaultedTag<BlockType> SNOW_LAYER_CANNOT_SURVIVE_ON = BlockTypeTags.key(ResourceKey.minecraft("snow_layer_cannot_survive_on"));
 
     public static final DefaultedTag<BlockType> SOUL_FIRE_BASE_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("soul_fire_base_blocks"));
 
@@ -380,6 +380,64 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> STONE_PRESSURE_PLATES = BlockTypeTags.key(ResourceKey.minecraft("stone_pressure_plates"));
 
     public static final DefaultedTag<BlockType> STRIDER_WARM_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("strider_warm_blocks"));
+
+    public static final DefaultedTag<BlockType> SUPPORT_OVERRIDE_CACTUS_FLOWER = BlockTypeTags.key(ResourceKey.minecraft("support_override_cactus_flower"));
+
+    public static final DefaultedTag<BlockType> SUPPORT_OVERRIDE_SNOW_LAYER = BlockTypeTags.key(ResourceKey.minecraft("support_override_snow_layer"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_AZALEA = BlockTypeTags.key(ResourceKey.minecraft("supports_azalea"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_BAMBOO = BlockTypeTags.key(ResourceKey.minecraft("supports_bamboo"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_BIG_DRIPLEAF = BlockTypeTags.key(ResourceKey.minecraft("supports_big_dripleaf"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_CACTUS = BlockTypeTags.key(ResourceKey.minecraft("supports_cactus"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_CHORUS_FLOWER = BlockTypeTags.key(ResourceKey.minecraft("supports_chorus_flower"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_CHORUS_PLANT = BlockTypeTags.key(ResourceKey.minecraft("supports_chorus_plant"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_COCOA = BlockTypeTags.key(ResourceKey.minecraft("supports_cocoa"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_CRIMSON_FUNGUS = BlockTypeTags.key(ResourceKey.minecraft("supports_crimson_fungus"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_CRIMSON_ROOTS = BlockTypeTags.key(ResourceKey.minecraft("supports_crimson_roots"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_CROPS = BlockTypeTags.key(ResourceKey.minecraft("supports_crops"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_DRY_VEGETATION = BlockTypeTags.key(ResourceKey.minecraft("supports_dry_vegetation"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_FROGSPAWN = BlockTypeTags.key(ResourceKey.minecraft("supports_frogspawn"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_HANGING_MANGROVE_PROPAGULE = BlockTypeTags.key(ResourceKey.minecraft("supports_hanging_mangrove_propagule"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_LILY_PAD = BlockTypeTags.key(ResourceKey.minecraft("supports_lily_pad"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_MANGROVE_PROPAGULE = BlockTypeTags.key(ResourceKey.minecraft("supports_mangrove_propagule"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_MELON_STEM = BlockTypeTags.key(ResourceKey.minecraft("supports_melon_stem"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_NETHER_SPROUTS = BlockTypeTags.key(ResourceKey.minecraft("supports_nether_sprouts"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_NETHER_WART = BlockTypeTags.key(ResourceKey.minecraft("supports_nether_wart"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_PUMPKIN_STEM = BlockTypeTags.key(ResourceKey.minecraft("supports_pumpkin_stem"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_SMALL_DRIPLEAF = BlockTypeTags.key(ResourceKey.minecraft("supports_small_dripleaf"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_STEM_CROPS = BlockTypeTags.key(ResourceKey.minecraft("supports_stem_crops"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_SUGAR_CANE = BlockTypeTags.key(ResourceKey.minecraft("supports_sugar_cane"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_SUGAR_CANE_ADJACENTLY = BlockTypeTags.key(ResourceKey.minecraft("supports_sugar_cane_adjacently"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_VEGETATION = BlockTypeTags.key(ResourceKey.minecraft("supports_vegetation"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_WARPED_FUNGUS = BlockTypeTags.key(ResourceKey.minecraft("supports_warped_fungus"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_WARPED_ROOTS = BlockTypeTags.key(ResourceKey.minecraft("supports_warped_roots"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_WITHER_ROSE = BlockTypeTags.key(ResourceKey.minecraft("supports_wither_rose"));
 
     public static final DefaultedTag<BlockType> SWORD_EFFICIENT = BlockTypeTags.key(ResourceKey.minecraft("sword_efficient"));
 
