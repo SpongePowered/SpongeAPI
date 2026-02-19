@@ -1774,6 +1774,22 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_CAT_STRAY_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.baby_cat.stray_ambient"));
 
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_HORSE_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.baby_horse.ambient"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_HORSE_ANGRY = SoundTypes.key(ResourceKey.minecraft("entity.baby_horse.angry"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_HORSE_BREATHE = SoundTypes.key(ResourceKey.minecraft("entity.baby_horse.breathe"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_HORSE_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.baby_horse.death"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_HORSE_EAT = SoundTypes.key(ResourceKey.minecraft("entity.baby_horse.eat"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_HORSE_HURT = SoundTypes.key(ResourceKey.minecraft("entity.baby_horse.hurt"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_HORSE_LAND = SoundTypes.key(ResourceKey.minecraft("entity.baby_horse.land"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_HORSE_STEP = SoundTypes.key(ResourceKey.minecraft("entity.baby_horse.step"));
+
     public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_NAUTILUS_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.baby_nautilus.ambient"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_NAUTILUS_AMBIENT_LAND = SoundTypes.key(ResourceKey.minecraft("entity.baby_nautilus.ambient_land"));

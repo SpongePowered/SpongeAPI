@@ -417,15 +417,21 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> SUPPORTS_MELON_STEM = BlockTypeTags.key(ResourceKey.minecraft("supports_melon_stem"));
 
+    public static final DefaultedTag<BlockType> SUPPORTS_MELON_STEM_FRUIT = BlockTypeTags.key(ResourceKey.minecraft("supports_melon_stem_fruit"));
+
     public static final DefaultedTag<BlockType> SUPPORTS_NETHER_SPROUTS = BlockTypeTags.key(ResourceKey.minecraft("supports_nether_sprouts"));
 
     public static final DefaultedTag<BlockType> SUPPORTS_NETHER_WART = BlockTypeTags.key(ResourceKey.minecraft("supports_nether_wart"));
 
     public static final DefaultedTag<BlockType> SUPPORTS_PUMPKIN_STEM = BlockTypeTags.key(ResourceKey.minecraft("supports_pumpkin_stem"));
 
+    public static final DefaultedTag<BlockType> SUPPORTS_PUMPKIN_STEM_FRUIT = BlockTypeTags.key(ResourceKey.minecraft("supports_pumpkin_stem_fruit"));
+
     public static final DefaultedTag<BlockType> SUPPORTS_SMALL_DRIPLEAF = BlockTypeTags.key(ResourceKey.minecraft("supports_small_dripleaf"));
 
     public static final DefaultedTag<BlockType> SUPPORTS_STEM_CROPS = BlockTypeTags.key(ResourceKey.minecraft("supports_stem_crops"));
+
+    public static final DefaultedTag<BlockType> SUPPORTS_STEM_FRUIT = BlockTypeTags.key(ResourceKey.minecraft("supports_stem_fruit"));
 
     public static final DefaultedTag<BlockType> SUPPORTS_SUGAR_CANE = BlockTypeTags.key(ResourceKey.minecraft("supports_sugar_cane"));
 
