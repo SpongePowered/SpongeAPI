@@ -132,6 +132,17 @@ public interface ResourceKey extends Key {
     }
 
     /**
+     * Creates a resource key.
+     *
+     * @param key The Key
+     * @return A new resource key
+     */
+    static ResourceKey of(final Key key) {
+        Objects.requireNonNull(key, "key");
+        return ResourceKey.of(key.namespace(), key.value());
+    }
+
+    /**
      * Resolves a resource key from a string.
      *
      * @implNote If no namespace is found in {@code formatted} then
