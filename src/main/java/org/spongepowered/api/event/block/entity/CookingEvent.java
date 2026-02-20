@@ -29,7 +29,10 @@ import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.event.Cancellable;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.item.inventory.AffectSlotEvent;
+import org.spongepowered.api.event.item.inventory.container.ClickContainerEvent;
+import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
+import org.spongepowered.api.item.inventory.slot.FuelSlot;
 import org.spongepowered.api.item.recipe.cooking.CookingRecipe;
 
 import java.util.Optional;
@@ -63,6 +66,23 @@ public interface CookingEvent extends Event {
     Optional<CookingRecipe> recipe();
 
     Optional<ResourceKey> recipeKey();
+
+    /**
+     * Called when a {@link CookingRecipe} is used to place an
+     * {@link ItemStack} into an {@link FuelSlot}
+     */
+    interface Recipe extends CookingEvent, ClickContainerEvent, Cancellable {
+
+        /**
+         * Fires when the Client requests a recipe to be smelted once.
+         */
+        interface Single extends CookingEvent.Recipe {}
+
+        /**
+         * Fires when the client requests a recipe to be cooking as much as possible.
+         */
+        interface All extends CookingEvent.Recipe {}
+    }
 
     /**
      * The first tick of an item cooking.
