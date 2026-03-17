@@ -279,6 +279,7 @@ public interface ServerWorldProperties extends WorldProperties, GameRuleHolder, 
      *
      * @return The delay, in ticks
      */
+    @Deprecated(forRemoval = true, since = "19.0")
     Ticks wanderingTraderSpawnDelay();
 
     /**
@@ -286,6 +287,7 @@ public interface ServerWorldProperties extends WorldProperties, GameRuleHolder, 
      *
      * @param delay The delay, in ticks
      */
+    @Deprecated(forRemoval = true, since = "19.0")
     void setWanderingTraderSpawnDelay(Ticks delay);
 
     /**
@@ -297,6 +299,7 @@ public interface ServerWorldProperties extends WorldProperties, GameRuleHolder, 
      *
      * @return The delay, as a percentage
      */
+    @Deprecated(forRemoval = true, since = "19.0")
     int wanderingTraderSpawnChance();
 
     /**
@@ -304,6 +307,7 @@ public interface ServerWorldProperties extends WorldProperties, GameRuleHolder, 
      *
      * @param chance The chance, as a percentage
      */
+    @Deprecated(forRemoval = true, since = "19.0")
     void setWanderingTraderSpawnChance(int chance);
 
     /**
@@ -311,6 +315,7 @@ public interface ServerWorldProperties extends WorldProperties, GameRuleHolder, 
      *
      * @return The unique id or {@link Optional#empty()} if one has not been spawned
      */
+    @Deprecated(forRemoval = true, since = "19.0")
     Optional<UUID> wanderTraderUniqueId();
 
     /**
@@ -322,6 +327,7 @@ public interface ServerWorldProperties extends WorldProperties, GameRuleHolder, 
      *
      * @param trader The trader
      */
+    @Deprecated(forRemoval = true, since = "19.0")
     void setWanderingTrader(@Nullable WanderingTrader trader);
 
     /**
@@ -374,6 +380,7 @@ public interface ServerWorldProperties extends WorldProperties, GameRuleHolder, 
     }
 
     @Override
+    @Deprecated(forRemoval = true, since = "19.0")
     default Weather weather() {
         return this.require(Keys.WEATHER);
     }
