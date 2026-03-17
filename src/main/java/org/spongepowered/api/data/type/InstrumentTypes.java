@@ -80,6 +80,14 @@ public final class InstrumentTypes {
 
     public static final DefaultedRegistryReference<InstrumentType> SNARE = InstrumentTypes.key(ResourceKey.sponge("snare"));
 
+    public static final DefaultedRegistryReference<InstrumentType> TRUMPET = InstrumentTypes.key(ResourceKey.sponge("trumpet"));
+
+    public static final DefaultedRegistryReference<InstrumentType> TRUMPET_EXPOSED = InstrumentTypes.key(ResourceKey.sponge("trumpet_exposed"));
+
+    public static final DefaultedRegistryReference<InstrumentType> TRUMPET_OXIDIZED = InstrumentTypes.key(ResourceKey.sponge("trumpet_oxidized"));
+
+    public static final DefaultedRegistryReference<InstrumentType> TRUMPET_WEATHERED = InstrumentTypes.key(ResourceKey.sponge("trumpet_weathered"));
+
     public static final DefaultedRegistryReference<InstrumentType> WITHER_SKELETON = InstrumentTypes.key(ResourceKey.sponge("wither_skeleton"));
 
     public static final DefaultedRegistryReference<InstrumentType> XYLOPHONE = InstrumentTypes.key(ResourceKey.sponge("xylophone"));

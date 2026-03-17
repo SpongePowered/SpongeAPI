@@ -1092,6 +1092,14 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_NOTE_BLOCK_SNARE = SoundTypes.key(ResourceKey.minecraft("block.note_block.snare"));
 
+    public static final DefaultedRegistryReference<SoundType> BLOCK_NOTE_BLOCK_TRUMPET = SoundTypes.key(ResourceKey.minecraft("block.note_block.trumpet"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_NOTE_BLOCK_TRUMPET_EXPOSED = SoundTypes.key(ResourceKey.minecraft("block.note_block.trumpet_exposed"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_NOTE_BLOCK_TRUMPET_OXIDIZED = SoundTypes.key(ResourceKey.minecraft("block.note_block.trumpet_oxidized"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_NOTE_BLOCK_TRUMPET_WEATHERED = SoundTypes.key(ResourceKey.minecraft("block.note_block.trumpet_weathered"));
+
     public static final DefaultedRegistryReference<SoundType> BLOCK_NOTE_BLOCK_XYLOPHONE = SoundTypes.key(ResourceKey.minecraft("block.note_block.xylophone"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_NYLIUM_BREAK = SoundTypes.key(ResourceKey.minecraft("block.nylium.break"));
@@ -1968,6 +1976,24 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_CAT_PURREOW = SoundTypes.key(ResourceKey.minecraft("entity.cat.purreow"));
 
+    public static final DefaultedRegistryReference<SoundType> ENTITY_CAT_ROYAL_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.cat_royal.ambient"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_CAT_ROYAL_BEG_FOR_FOOD = SoundTypes.key(ResourceKey.minecraft("entity.cat_royal.beg_for_food"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_CAT_ROYAL_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.cat_royal.death"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_CAT_ROYAL_EAT = SoundTypes.key(ResourceKey.minecraft("entity.cat_royal.eat"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_CAT_ROYAL_HISS = SoundTypes.key(ResourceKey.minecraft("entity.cat_royal.hiss"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_CAT_ROYAL_HURT = SoundTypes.key(ResourceKey.minecraft("entity.cat_royal.hurt"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_CAT_ROYAL_PURR = SoundTypes.key(ResourceKey.minecraft("entity.cat_royal.purr"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_CAT_ROYAL_PURREOW = SoundTypes.key(ResourceKey.minecraft("entity.cat_royal.purreow"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_CAT_ROYAL_STRAY_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.cat_royal.stray_ambient"));
+
     public static final DefaultedRegistryReference<SoundType> ENTITY_CAT_STRAY_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.cat.stray_ambient"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_CHICKEN_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.chicken.ambient"));
@@ -1977,6 +2003,12 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> ENTITY_CHICKEN_EGG = SoundTypes.key(ResourceKey.minecraft("entity.chicken.egg"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_CHICKEN_HURT = SoundTypes.key(ResourceKey.minecraft("entity.chicken.hurt"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_CHICKEN_PICKY_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.chicken_picky.ambient"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_CHICKEN_PICKY_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.chicken_picky.death"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_CHICKEN_PICKY_HURT = SoundTypes.key(ResourceKey.minecraft("entity.chicken_picky.hurt"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_CHICKEN_STEP = SoundTypes.key(ResourceKey.minecraft("entity.chicken.step"));
 
@@ -2033,6 +2065,14 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> ENTITY_COW_HURT = SoundTypes.key(ResourceKey.minecraft("entity.cow.hurt"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_COW_MILK = SoundTypes.key(ResourceKey.minecraft("entity.cow.milk"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_COW_MOODY_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.cow_moody.ambient"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_COW_MOODY_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.cow_moody.death"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_COW_MOODY_HURT = SoundTypes.key(ResourceKey.minecraft("entity.cow_moody.hurt"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_COW_MOODY_STEP = SoundTypes.key(ResourceKey.minecraft("entity.cow_moody.step"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_COW_STEP = SoundTypes.key(ResourceKey.minecraft("entity.cow.step"));
 
@@ -2762,9 +2802,21 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_PIG_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.pig.ambient"));
 
+    public static final DefaultedRegistryReference<SoundType> ENTITY_PIG_BIG_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.pig_big.ambient"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_PIG_BIG_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.pig_big.death"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_PIG_BIG_HURT = SoundTypes.key(ResourceKey.minecraft("entity.pig_big.hurt"));
+
     public static final DefaultedRegistryReference<SoundType> ENTITY_PIG_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.pig.death"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_PIG_HURT = SoundTypes.key(ResourceKey.minecraft("entity.pig.hurt"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_PIG_MINI_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.pig_mini.ambient"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_PIG_MINI_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.pig_mini.death"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_PIG_MINI_HURT = SoundTypes.key(ResourceKey.minecraft("entity.pig_mini.hurt"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_PIG_SADDLE = SoundTypes.key(ResourceKey.minecraft("entity.pig.saddle"));
 
