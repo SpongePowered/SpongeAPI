@@ -1780,6 +1780,8 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_CHICKEN_HURT = SoundTypes.key(ResourceKey.minecraft("entity.baby_chicken.hurt"));
 
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_CHICKEN_STEP = SoundTypes.key(ResourceKey.minecraft("entity.baby_chicken.step"));
+
     public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_HORSE_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.baby_horse.ambient"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_HORSE_ANGRY = SoundTypes.key(ResourceKey.minecraft("entity.baby_horse.angry"));

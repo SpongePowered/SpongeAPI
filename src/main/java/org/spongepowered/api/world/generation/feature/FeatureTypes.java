@@ -46,6 +46,8 @@ public final class FeatureTypes {
 
     public static final DefaultedRegistryReference<FeatureType> BASALT_PILLAR = FeatureTypes.key(ResourceKey.minecraft("basalt_pillar"));
 
+    public static final DefaultedRegistryReference<FeatureType> BLOCK_BLOB = FeatureTypes.key(ResourceKey.minecraft("block_blob"));
+
     public static final DefaultedRegistryReference<FeatureType> BLOCK_COLUMN = FeatureTypes.key(ResourceKey.minecraft("block_column"));
 
     public static final DefaultedRegistryReference<FeatureType> BLOCK_PILE = FeatureTypes.key(ResourceKey.minecraft("block_pile"));
@@ -84,8 +86,6 @@ public final class FeatureTypes {
 
     public static final DefaultedRegistryReference<FeatureType> FLOWER = FeatureTypes.key(ResourceKey.minecraft("flower"));
 
-    public static final DefaultedRegistryReference<FeatureType> FOREST_ROCK = FeatureTypes.key(ResourceKey.minecraft("forest_rock"));
-
     public static final DefaultedRegistryReference<FeatureType> FOSSIL = FeatureTypes.key(ResourceKey.minecraft("fossil"));
 
     public static final DefaultedRegistryReference<FeatureType> FREEZE_TOP_LAYER = FeatureTypes.key(ResourceKey.minecraft("freeze_top_layer"));
@@ -101,8 +101,6 @@ public final class FeatureTypes {
     public static final DefaultedRegistryReference<FeatureType> HUGE_RED_MUSHROOM = FeatureTypes.key(ResourceKey.minecraft("huge_red_mushroom"));
 
     public static final DefaultedRegistryReference<FeatureType> ICEBERG = FeatureTypes.key(ResourceKey.minecraft("iceberg"));
-
-    public static final DefaultedRegistryReference<FeatureType> ICE_SPIKE = FeatureTypes.key(ResourceKey.minecraft("ice_spike"));
 
     public static final DefaultedRegistryReference<FeatureType> KELP = FeatureTypes.key(ResourceKey.minecraft("kelp"));
 
@@ -147,6 +145,8 @@ public final class FeatureTypes {
     public static final DefaultedRegistryReference<FeatureType> SIMPLE_BLOCK = FeatureTypes.key(ResourceKey.minecraft("simple_block"));
 
     public static final DefaultedRegistryReference<FeatureType> SIMPLE_RANDOM_SELECTOR = FeatureTypes.key(ResourceKey.minecraft("simple_random_selector"));
+
+    public static final DefaultedRegistryReference<FeatureType> SPIKE = FeatureTypes.key(ResourceKey.minecraft("spike"));
 
     public static final DefaultedRegistryReference<FeatureType> SPRING_FEATURE = FeatureTypes.key(ResourceKey.minecraft("spring_feature"));
 

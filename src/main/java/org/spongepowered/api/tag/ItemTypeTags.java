@@ -221,6 +221,8 @@ public final class ItemTypeTags {
 
     public static final DefaultedTag<ItemType> GOLD_TOOL_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("gold_tool_materials"));
 
+    public static final DefaultedTag<ItemType> GRASS_BLOCKS = ItemTypeTags.key(ResourceKey.minecraft("grass_blocks"));
+
     public static final DefaultedTag<ItemType> HANGING_SIGNS = ItemTypeTags.key(ResourceKey.minecraft("hanging_signs"));
 
     public static final DefaultedTag<ItemType> HAPPY_GHAST_FOOD = ItemTypeTags.key(ResourceKey.minecraft("happy_ghast_food"));
@@ -278,6 +280,10 @@ public final class ItemTypeTags {
     public static final DefaultedTag<ItemType> MEAT = ItemTypeTags.key(ResourceKey.minecraft("meat"));
 
     public static final DefaultedTag<ItemType> METAL_NUGGETS = ItemTypeTags.key(ResourceKey.minecraft("metal_nuggets"));
+
+    public static final DefaultedTag<ItemType> MOSS_BLOCKS = ItemTypeTags.key(ResourceKey.minecraft("moss_blocks"));
+
+    public static final DefaultedTag<ItemType> MUD = ItemTypeTags.key(ResourceKey.minecraft("mud"));
 
     public static final DefaultedTag<ItemType> NAUTILUS_BUCKET_FOOD = ItemTypeTags.key(ResourceKey.minecraft("nautilus_bucket_food"));
 
