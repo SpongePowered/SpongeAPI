@@ -1826,6 +1826,8 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_PIG_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.baby_pig.death"));
 
+    public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_PIG_EAT = SoundTypes.key(ResourceKey.minecraft("entity.baby_pig.eat"));
+
     public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_PIG_HURT = SoundTypes.key(ResourceKey.minecraft("entity.baby_pig.hurt"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_BABY_PIG_STEP = SoundTypes.key(ResourceKey.minecraft("entity.baby_pig.step"));
@@ -2806,15 +2808,21 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_PIG_BIG_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.pig_big.death"));
 
+    public static final DefaultedRegistryReference<SoundType> ENTITY_PIG_BIG_EAT = SoundTypes.key(ResourceKey.minecraft("entity.pig_big.eat"));
+
     public static final DefaultedRegistryReference<SoundType> ENTITY_PIG_BIG_HURT = SoundTypes.key(ResourceKey.minecraft("entity.pig_big.hurt"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_PIG_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.pig.death"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_PIG_EAT = SoundTypes.key(ResourceKey.minecraft("entity.pig.eat"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_PIG_HURT = SoundTypes.key(ResourceKey.minecraft("entity.pig.hurt"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_PIG_MINI_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.pig_mini.ambient"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_PIG_MINI_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.pig_mini.death"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_PIG_MINI_EAT = SoundTypes.key(ResourceKey.minecraft("entity.pig_mini.eat"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_PIG_MINI_HURT = SoundTypes.key(ResourceKey.minecraft("entity.pig_mini.hurt"));
 

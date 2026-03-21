@@ -343,6 +343,8 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> PREVENT_MOB_SPAWNING_INSIDE = BlockTypeTags.key(ResourceKey.minecraft("prevent_mob_spawning_inside"));
 
+    public static final DefaultedTag<BlockType> PREVENTS_NEARBY_LEAF_DECAY = BlockTypeTags.key(ResourceKey.minecraft("prevents_nearby_leaf_decay"));
+
     public static final DefaultedTag<BlockType> RABBITS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("rabbits_spawnable_on"));
 
     public static final DefaultedTag<BlockType> RAILS = BlockTypeTags.key(ResourceKey.minecraft("rails"));

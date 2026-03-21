@@ -90,6 +90,10 @@ public final class Noises {
 
     public static final DefaultedRegistryReference<Noise> NETHER_STATE_SELECTOR = Noises.key(ResourceKey.minecraft("nether_state_selector"));
 
+    public static final DefaultedRegistryReference<Noise> NETHER_TEMPERATURE = Noises.key(ResourceKey.minecraft("nether/temperature"));
+
+    public static final DefaultedRegistryReference<Noise> NETHER_VEGETATION = Noises.key(ResourceKey.minecraft("nether/vegetation"));
+
     public static final DefaultedRegistryReference<Noise> NETHER_WART = Noises.key(ResourceKey.minecraft("nether_wart"));
 
     public static final DefaultedRegistryReference<Noise> NOODLE = Noises.key(ResourceKey.minecraft("noodle"));

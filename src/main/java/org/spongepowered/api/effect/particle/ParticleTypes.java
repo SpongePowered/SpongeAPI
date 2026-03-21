@@ -194,6 +194,8 @@ public final class ParticleTypes {
 
     public static final DefaultedRegistryReference<ParticleType> PALE_OAK_LEAVES = ParticleTypes.key(ResourceKey.minecraft("pale_oak_leaves"));
 
+    public static final DefaultedRegistryReference<ParticleType> PAUSE_MOB_GROWTH = ParticleTypes.key(ResourceKey.minecraft("pause_mob_growth"));
+
     public static final DefaultedRegistryReference<ParticleType> POOF = ParticleTypes.key(ResourceKey.minecraft("poof"));
 
     public static final DefaultedRegistryReference<ParticleType> PORTAL = ParticleTypes.key(ResourceKey.minecraft("portal"));
@@ -201,6 +203,8 @@ public final class ParticleTypes {
     public static final DefaultedRegistryReference<ParticleType> RAID_OMEN = ParticleTypes.key(ResourceKey.minecraft("raid_omen"));
 
     public static final DefaultedRegistryReference<ParticleType> RAIN = ParticleTypes.key(ResourceKey.minecraft("rain"));
+
+    public static final DefaultedRegistryReference<ParticleType> RESET_MOB_GROWTH = ParticleTypes.key(ResourceKey.minecraft("reset_mob_growth"));
 
     public static final DefaultedRegistryReference<ParticleType> REVERSE_PORTAL = ParticleTypes.key(ResourceKey.minecraft("reverse_portal"));
 
