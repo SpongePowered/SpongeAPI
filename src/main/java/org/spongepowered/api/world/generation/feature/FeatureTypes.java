@@ -84,8 +84,6 @@ public final class FeatureTypes {
 
     public static final DefaultedRegistryReference<FeatureType> FILL_LAYER = FeatureTypes.key(ResourceKey.minecraft("fill_layer"));
 
-    public static final DefaultedRegistryReference<FeatureType> FLOWER = FeatureTypes.key(ResourceKey.minecraft("flower"));
-
     public static final DefaultedRegistryReference<FeatureType> FOSSIL = FeatureTypes.key(ResourceKey.minecraft("fossil"));
 
     public static final DefaultedRegistryReference<FeatureType> FREEZE_TOP_LAYER = FeatureTypes.key(ResourceKey.minecraft("freeze_top_layer"));
@@ -116,8 +114,6 @@ public final class FeatureTypes {
 
     public static final DefaultedRegistryReference<FeatureType> NETHER_FOREST_VEGETATION = FeatureTypes.key(ResourceKey.minecraft("nether_forest_vegetation"));
 
-    public static final DefaultedRegistryReference<FeatureType> NO_BONEMEAL_FLOWER = FeatureTypes.key(ResourceKey.minecraft("no_bonemeal_flower"));
-
     public static final DefaultedRegistryReference<FeatureType> NO_OP = FeatureTypes.key(ResourceKey.minecraft("no_op"));
 
     public static final DefaultedRegistryReference<FeatureType> ORE = FeatureTypes.key(ResourceKey.minecraft("ore"));
@@ -125,8 +121,6 @@ public final class FeatureTypes {
     public static final DefaultedRegistryReference<FeatureType> POINTED_DRIPSTONE = FeatureTypes.key(ResourceKey.minecraft("pointed_dripstone"));
 
     public static final DefaultedRegistryReference<FeatureType> RANDOM_BOOLEAN_SELECTOR = FeatureTypes.key(ResourceKey.minecraft("random_boolean_selector"));
-
-    public static final DefaultedRegistryReference<FeatureType> RANDOM_PATCH = FeatureTypes.key(ResourceKey.minecraft("random_patch"));
 
     public static final DefaultedRegistryReference<FeatureType> RANDOM_SELECTOR = FeatureTypes.key(ResourceKey.minecraft("random_selector"));
 
