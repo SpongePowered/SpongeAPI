@@ -195,7 +195,6 @@ import org.spongepowered.api.world.generation.structure.StructureSet;
 import org.spongepowered.api.world.generation.structure.StructureType;
 import org.spongepowered.api.world.generation.structure.jigsaw.JigsawPool;
 import org.spongepowered.api.world.generation.structure.jigsaw.ProcessorList;
-import org.spongepowered.api.world.generation.structure.jigsaw.ProcessorType;
 import org.spongepowered.api.world.schematic.PaletteType;
 import org.spongepowered.api.world.server.WorldArchetypeType;
 import org.spongepowered.api.world.teleport.TeleportHelperFilter;
@@ -271,8 +270,6 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<PotionEffectType> POTION_EFFECT_TYPE = RegistryTypes.minecraftKeyInGame("mob_effect");
 
     public static final DefaultedRegistryType<ProcessorList> PROCESSOR_LIST = RegistryTypes.minecraftKeyInServer("worldgen/processor_list");
-
-    public static final DefaultedRegistryType<ProcessorType> PROCESSOR_TYPE = RegistryTypes.minecraftKeyInGame("worldgen/structure_processor");
 
     public static final DefaultedRegistryType<ProfessionType> PROFESSION_TYPE = RegistryTypes.minecraftKeyInGame("villager_profession");
 

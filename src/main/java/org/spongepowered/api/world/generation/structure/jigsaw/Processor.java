@@ -24,24 +24,71 @@
  */
 package org.spongepowered.api.world.generation.structure.jigsaw;
 
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataContainer;
+import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.registry.RegistryHolder;
+
+import java.io.IOException;
 
 /**
  * A structure processor affecting blocks in a structure.
+ *
+ * <p>Minecraft 26.2-snapshot-1 collapsed the previous split between a
+ * processor instance and a standalone "processor type" object. A processor now
+ * carries its own codec, and the vanilla {@code
+ * minecraft:worldgen/structure_processor} registry stores those codecs keyed
+ * by {@link ResourceKey resource keys}. See {@link Processors} for the set of
+ * vanilla-provided processor IDs.</p>
  */
 public interface Processor {
 
     /**
-     * Returns the type of processor
+     * Parses a {@link Processor} of the given registry ID from a serialized
+     * {@link DataView configuration}.
      *
-     * @return The type of processor
+     * <p>The {@link RegistryHolder} is required because processor codecs may
+     * reference holder entries from other registries (tags, block states,
+     * etc.) during deserialization.</p>
+     *
+     * @param registries the registry holder used to resolve holder references
+     * @param id the registry ID of the processor, as registered in {@code
+     *     minecraft:worldgen/structure_processor} (see {@link Processors})
+     * @param config the serialized processor configuration
+     * @return the parsed processor
+     * @throws IOException if the configuration is malformed or the ID is
+     *     unknown
      */
-    ProcessorType type();
+    static Processor parse(final RegistryHolder registries, final ResourceKey id, final DataView config) throws IOException {
+        return Sponge.game().factoryProvider().provide(Factory.class).parse(registries, id, config);
+    }
 
     /**
-     * Returns the processor configuration
+     * Returns the registry ID of this processor.
      *
-     * @return The processor configuration
+     * <p>This is the key under which this processor's codec is registered in
+     * the {@code minecraft:worldgen/structure_processor} registry.</p>
+     *
+     * @return the processor registry ID
+     */
+    ResourceKey type();
+
+    /**
+     * Returns the processor configuration.
+     *
+     * @return the processor configuration
      */
     DataContainer toContainer();
+
+    /**
+     * Implementation-provided factory for {@link Processor}.
+     */
+    interface Factory {
+
+        /**
+         * @see Processor#parse(RegistryHolder, ResourceKey, DataView)
+         */
+        Processor parse(RegistryHolder registries, ResourceKey id, DataView config) throws IOException;
+    }
 }
