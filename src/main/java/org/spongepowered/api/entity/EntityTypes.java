@@ -39,6 +39,7 @@ import org.spongepowered.api.entity.living.Allay;
 import org.spongepowered.api.entity.living.ArmorStand;
 import org.spongepowered.api.entity.living.Bat;
 import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.animal.Armadillo;
 import org.spongepowered.api.entity.living.animal.Axolotl;
 import org.spongepowered.api.entity.living.animal.Bee;
@@ -438,7 +439,7 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<Strider>> STRIDER = EntityTypes.key(ResourceKey.minecraft("strider"));
 
-    public static final DefaultedRegistryReference<FixMe> SULFUR_CUBE = EntityTypes.key(ResourceKey.minecraft("sulfur_cube"));
+    public static final DefaultedRegistryReference<EntityType<Living>> SULFUR_CUBE = EntityTypes.key(ResourceKey.minecraft("sulfur_cube"));
 
     public static final DefaultedRegistryReference<EntityType<Tadpole>> TADPOLE = EntityTypes.key(ResourceKey.minecraft("tadpole"));
 
