@@ -110,6 +110,8 @@ public final class BlockEntityTypes {
 
     public static final DefaultedRegistryReference<BlockEntityType> PISTON = BlockEntityTypes.key(ResourceKey.minecraft("piston"));
 
+    public static final DefaultedRegistryReference<BlockEntityType> POTENT_SULFUR = BlockEntityTypes.key(ResourceKey.minecraft("potent_sulfur"));
+
     public static final DefaultedRegistryReference<BlockEntityType> SCULK_CATALYST = BlockEntityTypes.key(ResourceKey.minecraft("sculk_catalyst"));
 
     public static final DefaultedRegistryReference<BlockEntityType> SCULK_SENSOR = BlockEntityTypes.key(ResourceKey.minecraft("sculk_sensor"));

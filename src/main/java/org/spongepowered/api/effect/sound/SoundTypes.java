@@ -426,6 +426,16 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_CHORUS_FLOWER_GROW = SoundTypes.key(ResourceKey.minecraft("block.chorus_flower.grow"));
 
+    public static final DefaultedRegistryReference<SoundType> BLOCK_CINNABAR_BREAK = SoundTypes.key(ResourceKey.minecraft("block.cinnabar.break"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_CINNABAR_FALL = SoundTypes.key(ResourceKey.minecraft("block.cinnabar.fall"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_CINNABAR_HIT = SoundTypes.key(ResourceKey.minecraft("block.cinnabar.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_CINNABAR_PLACE = SoundTypes.key(ResourceKey.minecraft("block.cinnabar.place"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_CINNABAR_STEP = SoundTypes.key(ResourceKey.minecraft("block.cinnabar.step"));
+
     public static final DefaultedRegistryReference<SoundType> BLOCK_COBWEB_BREAK = SoundTypes.key(ResourceKey.minecraft("block.cobweb.break"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_COBWEB_FALL = SoundTypes.key(ResourceKey.minecraft("block.cobweb.fall"));
@@ -1184,6 +1194,18 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_PORTAL_TRIGGER = SoundTypes.key(ResourceKey.minecraft("block.portal.trigger"));
 
+    public static final DefaultedRegistryReference<SoundType> BLOCK_POTENT_SULFUR_BREAK = SoundTypes.key(ResourceKey.minecraft("block.potent_sulfur.break"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_POTENT_SULFUR_FALL = SoundTypes.key(ResourceKey.minecraft("block.potent_sulfur.fall"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_POTENT_SULFUR_HIT = SoundTypes.key(ResourceKey.minecraft("block.potent_sulfur.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_POTENT_SULFUR_NOXIOUS_GAS = SoundTypes.key(ResourceKey.minecraft("block.potent_sulfur.noxious_gas"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_POTENT_SULFUR_PLACE = SoundTypes.key(ResourceKey.minecraft("block.potent_sulfur.place"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_POTENT_SULFUR_STEP = SoundTypes.key(ResourceKey.minecraft("block.potent_sulfur.step"));
+
     public static final DefaultedRegistryReference<SoundType> BLOCK_POWDER_SNOW_BREAK = SoundTypes.key(ResourceKey.minecraft("block.powder_snow.break"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_POWDER_SNOW_FALL = SoundTypes.key(ResourceKey.minecraft("block.powder_snow.fall"));
@@ -1489,6 +1511,16 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> BLOCK_STONE_PRESSURE_PLATE_CLICK_ON = SoundTypes.key(ResourceKey.minecraft("block.stone_pressure_plate.click_on"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_STONE_STEP = SoundTypes.key(ResourceKey.minecraft("block.stone.step"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SULFUR_BREAK = SoundTypes.key(ResourceKey.minecraft("block.sulfur.break"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SULFUR_FALL = SoundTypes.key(ResourceKey.minecraft("block.sulfur.fall"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SULFUR_HIT = SoundTypes.key(ResourceKey.minecraft("block.sulfur.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SULFUR_PLACE = SoundTypes.key(ResourceKey.minecraft("block.sulfur.place"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SULFUR_STEP = SoundTypes.key(ResourceKey.minecraft("block.sulfur.step"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_SUSPICIOUS_GRAVEL_BREAK = SoundTypes.key(ResourceKey.minecraft("block.suspicious_gravel.break"));
 
@@ -3022,6 +3054,14 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_SLIME_SQUISH_SMALL = SoundTypes.key(ResourceKey.minecraft("entity.slime.squish_small"));
 
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SMALL_SULFUR_CUBE_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.small_sulfur_cube.death"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SMALL_SULFUR_CUBE_HURT = SoundTypes.key(ResourceKey.minecraft("entity.small_sulfur_cube.hurt"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SMALL_SULFUR_CUBE_JUMP = SoundTypes.key(ResourceKey.minecraft("entity.small_sulfur_cube.jump"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SMALL_SULFUR_CUBE_SQUISH = SoundTypes.key(ResourceKey.minecraft("entity.small_sulfur_cube.squish"));
+
     public static final DefaultedRegistryReference<SoundType> ENTITY_SNIFFER_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.sniffer.death"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_SNIFFER_DIGGING = SoundTypes.key(ResourceKey.minecraft("entity.sniffer.digging"));
@@ -3103,6 +3143,24 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> ENTITY_STRIDER_STEP = SoundTypes.key(ResourceKey.minecraft("entity.strider.step"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_STRIDER_STEP_LAVA = SoundTypes.key(ResourceKey.minecraft("entity.strider.step_lava"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_ABSORB = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.absorb"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_BOUNCE = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.bounce"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.death"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_EJECT = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.eject"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_HIT = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_HURT = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.hurt"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_JUMP = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.jump"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_PUSH = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.push"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_SQUISH = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.squish"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_TADPOLE_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.tadpole.death"));
 

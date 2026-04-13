@@ -418,6 +418,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> CHISELED_BOOKSHELF = BlockTypes.key(ResourceKey.minecraft("chiseled_bookshelf"));
 
+    public static final DefaultedRegistryReference<BlockType> CHISELED_CINNABAR = BlockTypes.key(ResourceKey.minecraft("chiseled_cinnabar"));
+
     public static final DefaultedRegistryReference<BlockType> CHISELED_COPPER = BlockTypes.key(ResourceKey.minecraft("chiseled_copper"));
 
     public static final DefaultedRegistryReference<BlockType> CHISELED_DEEPSLATE = BlockTypes.key(ResourceKey.minecraft("chiseled_deepslate"));
@@ -436,6 +438,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> CHISELED_STONE_BRICKS = BlockTypes.key(ResourceKey.minecraft("chiseled_stone_bricks"));
 
+    public static final DefaultedRegistryReference<BlockType> CHISELED_SULFUR = BlockTypes.key(ResourceKey.minecraft("chiseled_sulfur"));
+
     public static final DefaultedRegistryReference<BlockType> CHISELED_TUFF = BlockTypes.key(ResourceKey.minecraft("chiseled_tuff"));
 
     public static final DefaultedRegistryReference<BlockType> CHISELED_TUFF_BRICKS = BlockTypes.key(ResourceKey.minecraft("chiseled_tuff_bricks"));
@@ -443,6 +447,22 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> CHORUS_FLOWER = BlockTypes.key(ResourceKey.minecraft("chorus_flower"));
 
     public static final DefaultedRegistryReference<BlockType> CHORUS_PLANT = BlockTypes.key(ResourceKey.minecraft("chorus_plant"));
+
+    public static final DefaultedRegistryReference<BlockType> CINNABAR = BlockTypes.key(ResourceKey.minecraft("cinnabar"));
+
+    public static final DefaultedRegistryReference<BlockType> CINNABAR_BRICKS = BlockTypes.key(ResourceKey.minecraft("cinnabar_bricks"));
+
+    public static final DefaultedRegistryReference<BlockType> CINNABAR_BRICK_SLAB = BlockTypes.key(ResourceKey.minecraft("cinnabar_brick_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> CINNABAR_BRICK_STAIRS = BlockTypes.key(ResourceKey.minecraft("cinnabar_brick_stairs"));
+
+    public static final DefaultedRegistryReference<BlockType> CINNABAR_BRICK_WALL = BlockTypes.key(ResourceKey.minecraft("cinnabar_brick_wall"));
+
+    public static final DefaultedRegistryReference<BlockType> CINNABAR_SLAB = BlockTypes.key(ResourceKey.minecraft("cinnabar_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> CINNABAR_STAIRS = BlockTypes.key(ResourceKey.minecraft("cinnabar_stairs"));
+
+    public static final DefaultedRegistryReference<BlockType> CINNABAR_WALL = BlockTypes.key(ResourceKey.minecraft("cinnabar_wall"));
 
     public static final DefaultedRegistryReference<BlockType> CLAY = BlockTypes.key(ResourceKey.minecraft("clay"));
 
@@ -1540,6 +1560,14 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> POLISHED_BLACKSTONE_WALL = BlockTypes.key(ResourceKey.minecraft("polished_blackstone_wall"));
 
+    public static final DefaultedRegistryReference<BlockType> POLISHED_CINNABAR = BlockTypes.key(ResourceKey.minecraft("polished_cinnabar"));
+
+    public static final DefaultedRegistryReference<BlockType> POLISHED_CINNABAR_SLAB = BlockTypes.key(ResourceKey.minecraft("polished_cinnabar_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> POLISHED_CINNABAR_STAIRS = BlockTypes.key(ResourceKey.minecraft("polished_cinnabar_stairs"));
+
+    public static final DefaultedRegistryReference<BlockType> POLISHED_CINNABAR_WALL = BlockTypes.key(ResourceKey.minecraft("polished_cinnabar_wall"));
+
     public static final DefaultedRegistryReference<BlockType> POLISHED_DEEPSLATE = BlockTypes.key(ResourceKey.minecraft("polished_deepslate"));
 
     public static final DefaultedRegistryReference<BlockType> POLISHED_DEEPSLATE_SLAB = BlockTypes.key(ResourceKey.minecraft("polished_deepslate_slab"));
@@ -1560,6 +1588,14 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> POLISHED_GRANITE_STAIRS = BlockTypes.key(ResourceKey.minecraft("polished_granite_stairs"));
 
+    public static final DefaultedRegistryReference<BlockType> POLISHED_SULFUR = BlockTypes.key(ResourceKey.minecraft("polished_sulfur"));
+
+    public static final DefaultedRegistryReference<BlockType> POLISHED_SULFUR_SLAB = BlockTypes.key(ResourceKey.minecraft("polished_sulfur_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> POLISHED_SULFUR_STAIRS = BlockTypes.key(ResourceKey.minecraft("polished_sulfur_stairs"));
+
+    public static final DefaultedRegistryReference<BlockType> POLISHED_SULFUR_WALL = BlockTypes.key(ResourceKey.minecraft("polished_sulfur_wall"));
+
     public static final DefaultedRegistryReference<BlockType> POLISHED_TUFF = BlockTypes.key(ResourceKey.minecraft("polished_tuff"));
 
     public static final DefaultedRegistryReference<BlockType> POLISHED_TUFF_SLAB = BlockTypes.key(ResourceKey.minecraft("polished_tuff_slab"));
@@ -1571,6 +1607,8 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> POPPY = BlockTypes.key(ResourceKey.minecraft("poppy"));
 
     public static final DefaultedRegistryReference<BlockType> POTATOES = BlockTypes.key(ResourceKey.minecraft("potatoes"));
+
+    public static final DefaultedRegistryReference<BlockType> POTENT_SULFUR = BlockTypes.key(ResourceKey.minecraft("potent_sulfur"));
 
     public static final DefaultedRegistryReference<BlockType> POTTED_ACACIA_SAPLING = BlockTypes.key(ResourceKey.minecraft("potted_acacia_sapling"));
 
@@ -2023,6 +2061,22 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> STRUCTURE_VOID = BlockTypes.key(ResourceKey.minecraft("structure_void"));
 
     public static final DefaultedRegistryReference<BlockType> SUGAR_CANE = BlockTypes.key(ResourceKey.minecraft("sugar_cane"));
+
+    public static final DefaultedRegistryReference<BlockType> SULFUR = BlockTypes.key(ResourceKey.minecraft("sulfur"));
+
+    public static final DefaultedRegistryReference<BlockType> SULFUR_BRICKS = BlockTypes.key(ResourceKey.minecraft("sulfur_bricks"));
+
+    public static final DefaultedRegistryReference<BlockType> SULFUR_BRICK_SLAB = BlockTypes.key(ResourceKey.minecraft("sulfur_brick_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> SULFUR_BRICK_STAIRS = BlockTypes.key(ResourceKey.minecraft("sulfur_brick_stairs"));
+
+    public static final DefaultedRegistryReference<BlockType> SULFUR_BRICK_WALL = BlockTypes.key(ResourceKey.minecraft("sulfur_brick_wall"));
+
+    public static final DefaultedRegistryReference<BlockType> SULFUR_SLAB = BlockTypes.key(ResourceKey.minecraft("sulfur_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> SULFUR_STAIRS = BlockTypes.key(ResourceKey.minecraft("sulfur_stairs"));
+
+    public static final DefaultedRegistryReference<BlockType> SULFUR_WALL = BlockTypes.key(ResourceKey.minecraft("sulfur_wall"));
 
     public static final DefaultedRegistryReference<BlockType> SUNFLOWER = BlockTypes.key(ResourceKey.minecraft("sunflower"));
 

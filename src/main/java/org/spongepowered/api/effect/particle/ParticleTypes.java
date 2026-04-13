@@ -190,6 +190,10 @@ public final class ParticleTypes {
 
     public static final DefaultedRegistryReference<ParticleType> NOTE = ParticleTypes.key(ResourceKey.minecraft("note"));
 
+    public static final DefaultedRegistryReference<ParticleType> NOXIOUS_GAS = ParticleTypes.key(ResourceKey.minecraft("noxious_gas"));
+
+    public static final DefaultedRegistryReference<ParticleType> NOXIOUS_GAS_CLOUD = ParticleTypes.key(ResourceKey.minecraft("noxious_gas_cloud"));
+
     public static final DefaultedRegistryReference<ParticleType> OMINOUS_SPAWNING = ParticleTypes.key(ResourceKey.minecraft("ominous_spawning"));
 
     public static final DefaultedRegistryReference<ParticleType> PALE_OAK_LEAVES = ParticleTypes.key(ResourceKey.minecraft("pale_oak_leaves"));
@@ -241,6 +245,10 @@ public final class ParticleTypes {
     public static final DefaultedRegistryReference<ParticleType> SPORE_BLOSSOM_AIR = ParticleTypes.key(ResourceKey.minecraft("spore_blossom_air"));
 
     public static final DefaultedRegistryReference<ParticleType> SQUID_INK = ParticleTypes.key(ResourceKey.minecraft("squid_ink"));
+
+    public static final DefaultedRegistryReference<ParticleType> SULFUR_BUBBLES = ParticleTypes.key(ResourceKey.minecraft("sulfur_bubbles"));
+
+    public static final DefaultedRegistryReference<ParticleType> SULFUR_CUBE_GOO = ParticleTypes.key(ResourceKey.minecraft("sulfur_cube_goo"));
 
     public static final DefaultedRegistryReference<ParticleType> SWEEP_ATTACK = ParticleTypes.key(ResourceKey.minecraft("sweep_attack"));
 

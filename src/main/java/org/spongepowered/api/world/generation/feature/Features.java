@@ -376,6 +376,8 @@ public final class Features {
 
     public static final DefaultedRegistryReference<Feature> ROOTED_AZALEA_TREE = Features.key(ResourceKey.minecraft("rooted_azalea_tree"));
 
+    public static final DefaultedRegistryReference<Feature> ROOTED_SULFUR_SPRING = Features.key(ResourceKey.minecraft("rooted_sulfur_spring"));
+
     public static final DefaultedRegistryReference<Feature> SCULK_PATCH_ANCIENT_CITY = Features.key(ResourceKey.minecraft("sculk_patch_ancient_city"));
 
     public static final DefaultedRegistryReference<Feature> SCULK_PATCH_DEEP_DARK = Features.key(ResourceKey.minecraft("sculk_patch_deep_dark"));
@@ -411,6 +413,10 @@ public final class Features {
     public static final DefaultedRegistryReference<Feature> SPRUCE = Features.key(ResourceKey.minecraft("spruce"));
 
     public static final DefaultedRegistryReference<Feature> SUGAR_CANE = Features.key(ResourceKey.minecraft("sugar_cane"));
+
+    public static final DefaultedRegistryReference<Feature> SULFUR_POOL = Features.key(ResourceKey.minecraft("sulfur_pool"));
+
+    public static final DefaultedRegistryReference<Feature> SULFUR_SPRING = Features.key(ResourceKey.minecraft("sulfur_spring"));
 
     public static final DefaultedRegistryReference<Feature> SUNFLOWER = Features.key(ResourceKey.minecraft("sunflower"));
 

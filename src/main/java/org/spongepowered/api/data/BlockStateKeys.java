@@ -128,8 +128,6 @@ public final class BlockStateKeys {
 
     public static final Key<Value<Integer>> DRIED_GHAST_HYDRATION_LEVELS = BlockStateKeys.key(ResourceKey.minecraft("property/hydration"), Integer.class);
 
-    public static final Key<Value<DripstoneSegment>> DRIPSTONE_THICKNESS = BlockStateKeys.key(ResourceKey.minecraft("property/thickness"), DripstoneSegment.class);
-
     public static final Key<Value<Integer>> DUSTED = BlockStateKeys.key(ResourceKey.minecraft("property/dusted"), Integer.class);
 
     public static final Key<Value<Boolean>> EAST = BlockStateKeys.key(ResourceKey.minecraft("property/east"), Boolean.class);
@@ -271,6 +269,8 @@ public final class BlockStateKeys {
     public static final Key<Value<WireAttachmentType>> SOUTH_REDSTONE = BlockStateKeys.key(ResourceKey.minecraft("property/south"), WireAttachmentType.class);
 
     public static final Key<Value<WallConnectionState>> SOUTH_WALL = BlockStateKeys.key(ResourceKey.minecraft("property/south"), WallConnectionState.class);
+
+    public static final Key<Value<DripstoneSegment>> SPELEOTHEM_THICKNESS = BlockStateKeys.key(ResourceKey.minecraft("property/thickness"), DripstoneSegment.class);
 
     public static final Key<Value<Integer>> STABILITY_DISTANCE = BlockStateKeys.key(ResourceKey.minecraft("property/distance"), Integer.class);
 

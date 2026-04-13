@@ -40,6 +40,8 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class AttributeTypes {
 
+    public static final DefaultedRegistryReference<RangedAttributeType> AIR_DRAG_MODIFIER = AttributeTypes.key(ResourceKey.minecraft("air_drag_modifier"));
+
     public static final DefaultedRegistryReference<RangedAttributeType> ARMOR = AttributeTypes.key(ResourceKey.minecraft("armor"));
 
     public static final DefaultedRegistryReference<RangedAttributeType> ARMOR_TOUGHNESS = AttributeTypes.key(ResourceKey.minecraft("armor_toughness"));
@@ -54,6 +56,8 @@ public final class AttributeTypes {
 
     public static final DefaultedRegistryReference<RangedAttributeType> BLOCK_INTERACTION_RANGE = AttributeTypes.key(ResourceKey.minecraft("block_interaction_range"));
 
+    public static final DefaultedRegistryReference<RangedAttributeType> BOUNCINESS = AttributeTypes.key(ResourceKey.minecraft("bounciness"));
+
     public static final DefaultedRegistryReference<RangedAttributeType> BURNING_TIME = AttributeTypes.key(ResourceKey.minecraft("burning_time"));
 
     public static final DefaultedRegistryReference<RangedAttributeType> CAMERA_DISTANCE = AttributeTypes.key(ResourceKey.minecraft("camera_distance"));
@@ -67,6 +71,8 @@ public final class AttributeTypes {
     public static final DefaultedRegistryReference<RangedAttributeType> FLYING_SPEED = AttributeTypes.key(ResourceKey.minecraft("flying_speed"));
 
     public static final DefaultedRegistryReference<RangedAttributeType> FOLLOW_RANGE = AttributeTypes.key(ResourceKey.minecraft("follow_range"));
+
+    public static final DefaultedRegistryReference<RangedAttributeType> FRICTION_MODIFIER = AttributeTypes.key(ResourceKey.minecraft("friction_modifier"));
 
     public static final DefaultedRegistryReference<RangedAttributeType> GRAVITY = AttributeTypes.key(ResourceKey.minecraft("gravity"));
 

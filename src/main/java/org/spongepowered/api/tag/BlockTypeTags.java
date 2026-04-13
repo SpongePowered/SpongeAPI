@@ -131,7 +131,9 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> COMPLETES_FIND_TREE_TUTORIAL = BlockTypeTags.key(ResourceKey.minecraft("completes_find_tree_tutorial"));
 
-    public static final DefaultedTag<BlockType> CONCRETE_POWDER = BlockTypeTags.key(ResourceKey.minecraft("concrete_powder"));
+    public static final DefaultedTag<BlockType> CONCRETE = BlockTypeTags.key(ResourceKey.minecraft("concrete"));
+
+    public static final DefaultedTag<BlockType> CONCRETE_POWDERS = BlockTypeTags.key(ResourceKey.minecraft("concrete_powders"));
 
     public static final DefaultedTag<BlockType> CONVERTABLE_TO_MUD = BlockTypeTags.key(ResourceKey.minecraft("convertable_to_mud"));
 
@@ -212,6 +214,8 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> FROGS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("frogs_spawnable_on"));
 
     public static final DefaultedTag<BlockType> GEODE_INVALID_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("geode_invalid_blocks"));
+
+    public static final DefaultedTag<BlockType> GLAZED_TERRACOTTA = BlockTypeTags.key(ResourceKey.minecraft("glazed_terracotta"));
 
     public static final DefaultedTag<BlockType> GOATS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("goats_spawnable_on"));
 
@@ -365,6 +369,12 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> SCULK_REPLACEABLE_WORLD_GEN = BlockTypeTags.key(ResourceKey.minecraft("sculk_replaceable_world_gen"));
 
+    public static final DefaultedTag<BlockType> SHEARS_EXTREME_BREAKING_SPEED = BlockTypeTags.key(ResourceKey.minecraft("shears_extreme_breaking_speed"));
+
+    public static final DefaultedTag<BlockType> SHEARS_MAJOR_BREAKING_SPEED = BlockTypeTags.key(ResourceKey.minecraft("shears_major_breaking_speed"));
+
+    public static final DefaultedTag<BlockType> SHEARS_MINOR_BREAKING_SPEED = BlockTypeTags.key(ResourceKey.minecraft("shears_minor_breaking_speed"));
+
     public static final DefaultedTag<BlockType> SHULKER_BOXES = BlockTypeTags.key(ResourceKey.minecraft("shulker_boxes"));
 
     public static final DefaultedTag<BlockType> SIGNS = BlockTypeTags.key(ResourceKey.minecraft("signs"));
@@ -468,6 +478,8 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> SUPPORTS_WARPED_ROOTS = BlockTypeTags.key(ResourceKey.minecraft("supports_warped_roots"));
 
     public static final DefaultedTag<BlockType> SUPPORTS_WITHER_ROSE = BlockTypeTags.key(ResourceKey.minecraft("supports_wither_rose"));
+
+    public static final DefaultedTag<BlockType> SUPPRESSES_BOUNCE = BlockTypeTags.key(ResourceKey.minecraft("suppresses_bounce"));
 
     public static final DefaultedTag<BlockType> SWORD_EFFICIENT = BlockTypeTags.key(ResourceKey.minecraft("sword_efficient"));
 

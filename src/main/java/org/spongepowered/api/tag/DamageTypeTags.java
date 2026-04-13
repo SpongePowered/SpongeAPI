@@ -99,6 +99,8 @@ public final class DamageTypeTags {
 
     public static final DefaultedTag<DamageType> PANIC_ENVIRONMENTAL_CAUSES = DamageTypeTags.key(ResourceKey.minecraft("panic_environmental_causes"));
 
+    public static final DefaultedTag<DamageType> SULFUR_CUBE_WITH_BLOCK_IMMUNE_TO = DamageTypeTags.key(ResourceKey.minecraft("sulfur_cube_with_block_immune_to"));
+
     public static final DefaultedTag<DamageType> WITCH_RESISTANT_TO = DamageTypeTags.key(ResourceKey.minecraft("witch_resistant_to"));
 
     public static final DefaultedTag<DamageType> WITHER_IMMUNE_TO = DamageTypeTags.key(ResourceKey.minecraft("wither_immune_to"));

@@ -109,6 +109,10 @@ public final class ItemTypeTags {
 
     public static final DefaultedTag<ItemType> COMPLETES_FIND_TREE_TUTORIAL = ItemTypeTags.key(ResourceKey.minecraft("completes_find_tree_tutorial"));
 
+    public static final DefaultedTag<ItemType> CONCRETE = ItemTypeTags.key(ResourceKey.minecraft("concrete"));
+
+    public static final DefaultedTag<ItemType> CONCRETE_POWDERS = ItemTypeTags.key(ResourceKey.minecraft("concrete_powders"));
+
     public static final DefaultedTag<ItemType> COPPER = ItemTypeTags.key(ResourceKey.minecraft("copper"));
 
     public static final DefaultedTag<ItemType> COPPER_CHESTS = ItemTypeTags.key(ResourceKey.minecraft("copper_chests"));
@@ -214,6 +218,8 @@ public final class ItemTypeTags {
     public static final DefaultedTag<ItemType> FURNACE_MINECART_FUEL = ItemTypeTags.key(ResourceKey.minecraft("furnace_minecart_fuel"));
 
     public static final DefaultedTag<ItemType> GAZE_DISGUISE_EQUIPMENT = ItemTypeTags.key(ResourceKey.minecraft("gaze_disguise_equipment"));
+
+    public static final DefaultedTag<ItemType> GLAZED_TERRACOTTA = ItemTypeTags.key(ResourceKey.minecraft("glazed_terracotta"));
 
     public static final DefaultedTag<ItemType> GOAT_FOOD = ItemTypeTags.key(ResourceKey.minecraft("goat_food"));
 
@@ -398,6 +404,28 @@ public final class ItemTypeTags {
     public static final DefaultedTag<ItemType> STRIDER_FOOD = ItemTypeTags.key(ResourceKey.minecraft("strider_food"));
 
     public static final DefaultedTag<ItemType> STRIDER_TEMPT_ITEMS = ItemTypeTags.key(ResourceKey.minecraft("strider_tempt_items"));
+
+    public static final DefaultedTag<ItemType> SULFUR_CUBE_ARCHETYPE_BOUNCY = ItemTypeTags.key(ResourceKey.minecraft("sulfur_cube_archetype/bouncy"));
+
+    public static final DefaultedTag<ItemType> SULFUR_CUBE_ARCHETYPE_FAST_FLAT = ItemTypeTags.key(ResourceKey.minecraft("sulfur_cube_archetype/fast_flat"));
+
+    public static final DefaultedTag<ItemType> SULFUR_CUBE_ARCHETYPE_FAST_SLIDING = ItemTypeTags.key(ResourceKey.minecraft("sulfur_cube_archetype/fast_sliding"));
+
+    public static final DefaultedTag<ItemType> SULFUR_CUBE_ARCHETYPE_HIGH_RESISTANCE = ItemTypeTags.key(ResourceKey.minecraft("sulfur_cube_archetype/high_resistance"));
+
+    public static final DefaultedTag<ItemType> SULFUR_CUBE_ARCHETYPE_LIGHT = ItemTypeTags.key(ResourceKey.minecraft("sulfur_cube_archetype/light"));
+
+    public static final DefaultedTag<ItemType> SULFUR_CUBE_ARCHETYPE_REGULAR = ItemTypeTags.key(ResourceKey.minecraft("sulfur_cube_archetype/regular"));
+
+    public static final DefaultedTag<ItemType> SULFUR_CUBE_ARCHETYPE_SLOW_FLAT = ItemTypeTags.key(ResourceKey.minecraft("sulfur_cube_archetype/slow_flat"));
+
+    public static final DefaultedTag<ItemType> SULFUR_CUBE_ARCHETYPE_SLOW_SLIDING = ItemTypeTags.key(ResourceKey.minecraft("sulfur_cube_archetype/slow_sliding"));
+
+    public static final DefaultedTag<ItemType> SULFUR_CUBE_ARCHETYPE_STICKY = ItemTypeTags.key(ResourceKey.minecraft("sulfur_cube_archetype/sticky"));
+
+    public static final DefaultedTag<ItemType> SULFUR_CUBE_FOOD = ItemTypeTags.key(ResourceKey.minecraft("sulfur_cube_food"));
+
+    public static final DefaultedTag<ItemType> SULFUR_CUBE_SWALLOWABLE = ItemTypeTags.key(ResourceKey.minecraft("sulfur_cube_swallowable"));
 
     public static final DefaultedTag<ItemType> SWORDS = ItemTypeTags.key(ResourceKey.minecraft("swords"));
 

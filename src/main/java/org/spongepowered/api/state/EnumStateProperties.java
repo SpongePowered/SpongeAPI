@@ -101,10 +101,6 @@ public final class EnumStateProperties {
         return EnumStateProperty.of("DOUBLE_BLOCK_HALF");
     }
 
-    public static EnumStateProperty<DripstoneSegment> property_DRIPSTONE_THICKNESS() {
-        return EnumStateProperty.of("DRIPSTONE_THICKNESS");
-    }
-
     public static EnumStateProperty<WireAttachmentType> property_EAST_REDSTONE() {
         return EnumStateProperty.of("EAST_REDSTONE");
     }
@@ -183,6 +179,10 @@ public final class EnumStateProperties {
 
     public static EnumStateProperty<WallConnectionState> property_SOUTH_WALL() {
         return EnumStateProperty.of("SOUTH_WALL");
+    }
+
+    public static EnumStateProperty<DripstoneSegment> property_SPELEOTHEM_THICKNESS() {
+        return EnumStateProperty.of("SPELEOTHEM_THICKNESS");
     }
 
     public static EnumStateProperty<StairShape> property_STAIRS_SHAPE() {

@@ -440,6 +440,8 @@ public final class PlacedFeatures {
 
     public static final DefaultedRegistryReference<PlacedFeature> ROOTED_AZALEA_TREE = PlacedFeatures.key(ResourceKey.minecraft("rooted_azalea_tree"));
 
+    public static final DefaultedRegistryReference<PlacedFeature> ROOTED_SULFUR_SPRING = PlacedFeatures.key(ResourceKey.minecraft("rooted_sulfur_spring"));
+
     public static final DefaultedRegistryReference<PlacedFeature> SCULK_PATCH_ANCIENT_CITY = PlacedFeatures.key(ResourceKey.minecraft("sculk_patch_ancient_city"));
 
     public static final DefaultedRegistryReference<PlacedFeature> SCULK_PATCH_DEEP_DARK = PlacedFeatures.key(ResourceKey.minecraft("sculk_patch_deep_dark"));
@@ -487,6 +489,8 @@ public final class PlacedFeatures {
     public static final DefaultedRegistryReference<PlacedFeature> SPRUCE_CHECKED = PlacedFeatures.key(ResourceKey.minecraft("spruce_checked"));
 
     public static final DefaultedRegistryReference<PlacedFeature> SPRUCE_ON_SNOW = PlacedFeatures.key(ResourceKey.minecraft("spruce_on_snow"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> SULFUR_POOL = PlacedFeatures.key(ResourceKey.minecraft("sulfur_pool"));
 
     public static final DefaultedRegistryReference<PlacedFeature> SUPER_BIRCH_BEES = PlacedFeatures.key(ResourceKey.minecraft("super_birch_bees"));
 

@@ -150,6 +150,8 @@ public final class Noises {
 
     public static final DefaultedRegistryReference<Noise> SPAGHETTI_ROUGHNESS_MODULATOR = Noises.key(ResourceKey.minecraft("spaghetti_roughness_modulator"));
 
+    public static final DefaultedRegistryReference<Noise> SULFUR_CAVE_GRADIENT = Noises.key(ResourceKey.minecraft("sulfur_cave_gradient"));
+
     public static final DefaultedRegistryReference<Noise> SURFACE = Noises.key(ResourceKey.minecraft("surface"));
 
     public static final DefaultedRegistryReference<Noise> SURFACE_SECONDARY = Noises.key(ResourceKey.minecraft("surface_secondary"));

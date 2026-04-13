@@ -146,6 +146,8 @@ public final class Biomes {
 
     public static final DefaultedRegistryReference<Biome> STONY_SHORE = Biomes.key(ResourceKey.minecraft("stony_shore"));
 
+    public static final DefaultedRegistryReference<Biome> SULFUR_CAVES = Biomes.key(ResourceKey.minecraft("sulfur_caves"));
+
     public static final DefaultedRegistryReference<Biome> SUNFLOWER_PLAINS = Biomes.key(ResourceKey.minecraft("sunflower_plains"));
 
     public static final DefaultedRegistryReference<Biome> SWAMP = Biomes.key(ResourceKey.minecraft("swamp"));

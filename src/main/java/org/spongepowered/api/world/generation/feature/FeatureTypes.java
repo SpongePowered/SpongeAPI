@@ -70,8 +70,6 @@ public final class FeatureTypes {
 
     public static final DefaultedRegistryReference<FeatureType> DISK = FeatureTypes.key(ResourceKey.minecraft("disk"));
 
-    public static final DefaultedRegistryReference<FeatureType> DRIPSTONE_CLUSTER = FeatureTypes.key(ResourceKey.minecraft("dripstone_cluster"));
-
     public static final DefaultedRegistryReference<FeatureType> END_GATEWAY = FeatureTypes.key(ResourceKey.minecraft("end_gateway"));
 
     public static final DefaultedRegistryReference<FeatureType> END_ISLAND = FeatureTypes.key(ResourceKey.minecraft("end_island"));
@@ -118,8 +116,6 @@ public final class FeatureTypes {
 
     public static final DefaultedRegistryReference<FeatureType> ORE = FeatureTypes.key(ResourceKey.minecraft("ore"));
 
-    public static final DefaultedRegistryReference<FeatureType> POINTED_DRIPSTONE = FeatureTypes.key(ResourceKey.minecraft("pointed_dripstone"));
-
     public static final DefaultedRegistryReference<FeatureType> RANDOM_BOOLEAN_SELECTOR = FeatureTypes.key(ResourceKey.minecraft("random_boolean_selector"));
 
     public static final DefaultedRegistryReference<FeatureType> RANDOM_SELECTOR = FeatureTypes.key(ResourceKey.minecraft("random_selector"));
@@ -136,13 +132,21 @@ public final class FeatureTypes {
 
     public static final DefaultedRegistryReference<FeatureType> SEA_PICKLE = FeatureTypes.key(ResourceKey.minecraft("sea_pickle"));
 
+    public static final DefaultedRegistryReference<FeatureType> SEQUENCE = FeatureTypes.key(ResourceKey.minecraft("sequence"));
+
     public static final DefaultedRegistryReference<FeatureType> SIMPLE_BLOCK = FeatureTypes.key(ResourceKey.minecraft("simple_block"));
 
     public static final DefaultedRegistryReference<FeatureType> SIMPLE_RANDOM_SELECTOR = FeatureTypes.key(ResourceKey.minecraft("simple_random_selector"));
 
+    public static final DefaultedRegistryReference<FeatureType> SPELEOTHEM = FeatureTypes.key(ResourceKey.minecraft("speleothem"));
+
+    public static final DefaultedRegistryReference<FeatureType> SPELEOTHEM_CLUSTER = FeatureTypes.key(ResourceKey.minecraft("speleothem_cluster"));
+
     public static final DefaultedRegistryReference<FeatureType> SPIKE = FeatureTypes.key(ResourceKey.minecraft("spike"));
 
     public static final DefaultedRegistryReference<FeatureType> SPRING_FEATURE = FeatureTypes.key(ResourceKey.minecraft("spring_feature"));
+
+    public static final DefaultedRegistryReference<FeatureType> TEMPLATE = FeatureTypes.key(ResourceKey.minecraft("template"));
 
     public static final DefaultedRegistryReference<FeatureType> TREE = FeatureTypes.key(ResourceKey.minecraft("tree"));
 

@@ -438,6 +438,8 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<Strider>> STRIDER = EntityTypes.key(ResourceKey.minecraft("strider"));
 
+    public static final DefaultedRegistryReference<FixMe> SULFUR_CUBE = EntityTypes.key(ResourceKey.minecraft("sulfur_cube"));
+
     public static final DefaultedRegistryReference<EntityType<Tadpole>> TADPOLE = EntityTypes.key(ResourceKey.minecraft("tadpole"));
 
     public static final DefaultedRegistryReference<EntityType<TextDisplay>> TEXT_DISPLAY = EntityTypes.key(ResourceKey.minecraft("text_display"));

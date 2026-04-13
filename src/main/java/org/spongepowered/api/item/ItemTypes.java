@@ -510,6 +510,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> CHISELED_BOOKSHELF = ItemTypes.key(ResourceKey.minecraft("chiseled_bookshelf"));
 
+    public static final DefaultedRegistryReference<ItemType> CHISELED_CINNABAR = ItemTypes.key(ResourceKey.minecraft("chiseled_cinnabar"));
+
     public static final DefaultedRegistryReference<ItemType> CHISELED_COPPER = ItemTypes.key(ResourceKey.minecraft("chiseled_copper"));
 
     public static final DefaultedRegistryReference<ItemType> CHISELED_DEEPSLATE = ItemTypes.key(ResourceKey.minecraft("chiseled_deepslate"));
@@ -528,6 +530,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> CHISELED_STONE_BRICKS = ItemTypes.key(ResourceKey.minecraft("chiseled_stone_bricks"));
 
+    public static final DefaultedRegistryReference<ItemType> CHISELED_SULFUR = ItemTypes.key(ResourceKey.minecraft("chiseled_sulfur"));
+
     public static final DefaultedRegistryReference<ItemType> CHISELED_TUFF = ItemTypes.key(ResourceKey.minecraft("chiseled_tuff"));
 
     public static final DefaultedRegistryReference<ItemType> CHISELED_TUFF_BRICKS = ItemTypes.key(ResourceKey.minecraft("chiseled_tuff_bricks"));
@@ -537,6 +541,22 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> CHORUS_FRUIT = ItemTypes.key(ResourceKey.minecraft("chorus_fruit"));
 
     public static final DefaultedRegistryReference<ItemType> CHORUS_PLANT = ItemTypes.key(ResourceKey.minecraft("chorus_plant"));
+
+    public static final DefaultedRegistryReference<ItemType> CINNABAR = ItemTypes.key(ResourceKey.minecraft("cinnabar"));
+
+    public static final DefaultedRegistryReference<ItemType> CINNABAR_BRICKS = ItemTypes.key(ResourceKey.minecraft("cinnabar_bricks"));
+
+    public static final DefaultedRegistryReference<ItemType> CINNABAR_BRICK_SLAB = ItemTypes.key(ResourceKey.minecraft("cinnabar_brick_slab"));
+
+    public static final DefaultedRegistryReference<ItemType> CINNABAR_BRICK_STAIRS = ItemTypes.key(ResourceKey.minecraft("cinnabar_brick_stairs"));
+
+    public static final DefaultedRegistryReference<ItemType> CINNABAR_BRICK_WALL = ItemTypes.key(ResourceKey.minecraft("cinnabar_brick_wall"));
+
+    public static final DefaultedRegistryReference<ItemType> CINNABAR_SLAB = ItemTypes.key(ResourceKey.minecraft("cinnabar_slab"));
+
+    public static final DefaultedRegistryReference<ItemType> CINNABAR_STAIRS = ItemTypes.key(ResourceKey.minecraft("cinnabar_stairs"));
+
+    public static final DefaultedRegistryReference<ItemType> CINNABAR_WALL = ItemTypes.key(ResourceKey.minecraft("cinnabar_wall"));
 
     public static final DefaultedRegistryReference<ItemType> CLAY = ItemTypes.key(ResourceKey.minecraft("clay"));
 
@@ -2084,6 +2104,14 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> POLISHED_BLACKSTONE_WALL = ItemTypes.key(ResourceKey.minecraft("polished_blackstone_wall"));
 
+    public static final DefaultedRegistryReference<ItemType> POLISHED_CINNABAR = ItemTypes.key(ResourceKey.minecraft("polished_cinnabar"));
+
+    public static final DefaultedRegistryReference<ItemType> POLISHED_CINNABAR_SLAB = ItemTypes.key(ResourceKey.minecraft("polished_cinnabar_slab"));
+
+    public static final DefaultedRegistryReference<ItemType> POLISHED_CINNABAR_STAIRS = ItemTypes.key(ResourceKey.minecraft("polished_cinnabar_stairs"));
+
+    public static final DefaultedRegistryReference<ItemType> POLISHED_CINNABAR_WALL = ItemTypes.key(ResourceKey.minecraft("polished_cinnabar_wall"));
+
     public static final DefaultedRegistryReference<ItemType> POLISHED_DEEPSLATE = ItemTypes.key(ResourceKey.minecraft("polished_deepslate"));
 
     public static final DefaultedRegistryReference<ItemType> POLISHED_DEEPSLATE_SLAB = ItemTypes.key(ResourceKey.minecraft("polished_deepslate_slab"));
@@ -2104,6 +2132,14 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> POLISHED_GRANITE_STAIRS = ItemTypes.key(ResourceKey.minecraft("polished_granite_stairs"));
 
+    public static final DefaultedRegistryReference<ItemType> POLISHED_SULFUR = ItemTypes.key(ResourceKey.minecraft("polished_sulfur"));
+
+    public static final DefaultedRegistryReference<ItemType> POLISHED_SULFUR_SLAB = ItemTypes.key(ResourceKey.minecraft("polished_sulfur_slab"));
+
+    public static final DefaultedRegistryReference<ItemType> POLISHED_SULFUR_STAIRS = ItemTypes.key(ResourceKey.minecraft("polished_sulfur_stairs"));
+
+    public static final DefaultedRegistryReference<ItemType> POLISHED_SULFUR_WALL = ItemTypes.key(ResourceKey.minecraft("polished_sulfur_wall"));
+
     public static final DefaultedRegistryReference<ItemType> POLISHED_TUFF = ItemTypes.key(ResourceKey.minecraft("polished_tuff"));
 
     public static final DefaultedRegistryReference<ItemType> POLISHED_TUFF_SLAB = ItemTypes.key(ResourceKey.minecraft("polished_tuff_slab"));
@@ -2119,6 +2155,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> PORKCHOP = ItemTypes.key(ResourceKey.minecraft("porkchop"));
 
     public static final DefaultedRegistryReference<ItemType> POTATO = ItemTypes.key(ResourceKey.minecraft("potato"));
+
+    public static final DefaultedRegistryReference<ItemType> POTENT_SULFUR = ItemTypes.key(ResourceKey.minecraft("potent_sulfur"));
 
     public static final DefaultedRegistryReference<ItemType> POTION = ItemTypes.key(ResourceKey.minecraft("potion"));
 
@@ -2625,6 +2663,26 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> SUGAR = ItemTypes.key(ResourceKey.minecraft("sugar"));
 
     public static final DefaultedRegistryReference<ItemType> SUGAR_CANE = ItemTypes.key(ResourceKey.minecraft("sugar_cane"));
+
+    public static final DefaultedRegistryReference<ItemType> SULFUR = ItemTypes.key(ResourceKey.minecraft("sulfur"));
+
+    public static final DefaultedRegistryReference<ItemType> SULFUR_BRICKS = ItemTypes.key(ResourceKey.minecraft("sulfur_bricks"));
+
+    public static final DefaultedRegistryReference<ItemType> SULFUR_BRICK_SLAB = ItemTypes.key(ResourceKey.minecraft("sulfur_brick_slab"));
+
+    public static final DefaultedRegistryReference<ItemType> SULFUR_BRICK_STAIRS = ItemTypes.key(ResourceKey.minecraft("sulfur_brick_stairs"));
+
+    public static final DefaultedRegistryReference<ItemType> SULFUR_BRICK_WALL = ItemTypes.key(ResourceKey.minecraft("sulfur_brick_wall"));
+
+    public static final DefaultedRegistryReference<ItemType> SULFUR_CUBE_BUCKET = ItemTypes.key(ResourceKey.minecraft("sulfur_cube_bucket"));
+
+    public static final DefaultedRegistryReference<ItemType> SULFUR_CUBE_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("sulfur_cube_spawn_egg"));
+
+    public static final DefaultedRegistryReference<ItemType> SULFUR_SLAB = ItemTypes.key(ResourceKey.minecraft("sulfur_slab"));
+
+    public static final DefaultedRegistryReference<ItemType> SULFUR_STAIRS = ItemTypes.key(ResourceKey.minecraft("sulfur_stairs"));
+
+    public static final DefaultedRegistryReference<ItemType> SULFUR_WALL = ItemTypes.key(ResourceKey.minecraft("sulfur_wall"));
 
     public static final DefaultedRegistryReference<ItemType> SUNFLOWER = ItemTypes.key(ResourceKey.minecraft("sunflower"));
 
