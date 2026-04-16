@@ -46,8 +46,6 @@ public final class BlockEntityTypes {
 
     public static final DefaultedRegistryReference<BlockEntityType> BEACON = BlockEntityTypes.key(ResourceKey.minecraft("beacon"));
 
-    public static final DefaultedRegistryReference<BlockEntityType> BED = BlockEntityTypes.key(ResourceKey.minecraft("bed"));
-
     public static final DefaultedRegistryReference<BlockEntityType> BEEHIVE = BlockEntityTypes.key(ResourceKey.minecraft("beehive"));
 
     public static final DefaultedRegistryReference<BlockEntityType> BELL = BlockEntityTypes.key(ResourceKey.minecraft("bell"));

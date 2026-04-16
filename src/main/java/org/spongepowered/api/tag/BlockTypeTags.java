@@ -397,6 +397,8 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> SOUL_SPEED_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("soul_speed_blocks"));
 
+    public static final DefaultedTag<BlockType> SPELEOTHEMS = BlockTypeTags.key(ResourceKey.minecraft("speleothems"));
+
     public static final DefaultedTag<BlockType> SPRUCE_LOGS = BlockTypeTags.key(ResourceKey.minecraft("spruce_logs"));
 
     public static final DefaultedTag<BlockType> STAIRS = BlockTypeTags.key(ResourceKey.minecraft("stairs"));
@@ -414,6 +416,8 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> STRIDER_WARM_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("strider_warm_blocks"));
 
     public static final DefaultedTag<BlockType> SUBSTRATE_OVERWORLD = BlockTypeTags.key(ResourceKey.minecraft("substrate_overworld"));
+
+    public static final DefaultedTag<BlockType> SULFUR_SPIKE_REPLACEABLE_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("sulfur_spike_replaceable_blocks"));
 
     public static final DefaultedTag<BlockType> SUPPORT_OVERRIDE_CACTUS_FLOWER = BlockTypeTags.key(ResourceKey.minecraft("support_override_cactus_flower"));
 

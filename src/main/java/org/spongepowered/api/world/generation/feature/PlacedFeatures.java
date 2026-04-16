@@ -492,6 +492,10 @@ public final class PlacedFeatures {
 
     public static final DefaultedRegistryReference<PlacedFeature> SULFUR_POOL = PlacedFeatures.key(ResourceKey.minecraft("sulfur_pool"));
 
+    public static final DefaultedRegistryReference<PlacedFeature> SULFUR_SPIKE = PlacedFeatures.key(ResourceKey.minecraft("sulfur_spike"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> SULFUR_SPIKE_CLUSTER = PlacedFeatures.key(ResourceKey.minecraft("sulfur_spike_cluster"));
+
     public static final DefaultedRegistryReference<PlacedFeature> SUPER_BIRCH_BEES = PlacedFeatures.key(ResourceKey.minecraft("super_birch_bees"));
 
     public static final DefaultedRegistryReference<PlacedFeature> SUPER_BIRCH_BEES_0002 = PlacedFeatures.key(ResourceKey.minecraft("super_birch_bees_0002"));

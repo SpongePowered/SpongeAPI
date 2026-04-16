@@ -2680,6 +2680,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> SULFUR_SLAB = ItemTypes.key(ResourceKey.minecraft("sulfur_slab"));
 
+    public static final DefaultedRegistryReference<ItemType> SULFUR_SPIKE = ItemTypes.key(ResourceKey.minecraft("sulfur_spike"));
+
     public static final DefaultedRegistryReference<ItemType> SULFUR_STAIRS = ItemTypes.key(ResourceKey.minecraft("sulfur_stairs"));
 
     public static final DefaultedRegistryReference<ItemType> SULFUR_WALL = ItemTypes.key(ResourceKey.minecraft("sulfur_wall"));

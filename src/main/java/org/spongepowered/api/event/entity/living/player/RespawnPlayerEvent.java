@@ -24,7 +24,6 @@
  */
 package org.spongepowered.api.event.entity.living.player;
 
-import org.spongepowered.api.block.entity.Bed;
 import org.spongepowered.api.block.entity.EndPortal;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.entity.ChangeEntityWorldEvent;
@@ -74,7 +73,7 @@ public interface RespawnPlayerEvent extends ChangeEntityWorldEvent {
         ServerPlayer recreatedPlayer();
 
         /**
-         * Gets whether the position of spawn was set by a {@link Bed}.
+         * Gets whether the position of spawn was set by a bed block.
          *
          * @return True if the position of spawn was due to a bed, false otherwise
          */

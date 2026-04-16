@@ -2074,6 +2074,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> SULFUR_SLAB = BlockTypes.key(ResourceKey.minecraft("sulfur_slab"));
 
+    public static final DefaultedRegistryReference<BlockType> SULFUR_SPIKE = BlockTypes.key(ResourceKey.minecraft("sulfur_spike"));
+
     public static final DefaultedRegistryReference<BlockType> SULFUR_STAIRS = BlockTypes.key(ResourceKey.minecraft("sulfur_stairs"));
 
     public static final DefaultedRegistryReference<BlockType> SULFUR_WALL = BlockTypes.key(ResourceKey.minecraft("sulfur_wall"));

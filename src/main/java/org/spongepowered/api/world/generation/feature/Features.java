@@ -416,6 +416,10 @@ public final class Features {
 
     public static final DefaultedRegistryReference<Feature> SULFUR_POOL = Features.key(ResourceKey.minecraft("sulfur_pool"));
 
+    public static final DefaultedRegistryReference<Feature> SULFUR_SPIKE = Features.key(ResourceKey.minecraft("sulfur_spike"));
+
+    public static final DefaultedRegistryReference<Feature> SULFUR_SPIKE_CLUSTER = Features.key(ResourceKey.minecraft("sulfur_spike_cluster"));
+
     public static final DefaultedRegistryReference<Feature> SULFUR_SPRING = Features.key(ResourceKey.minecraft("sulfur_spring"));
 
     public static final DefaultedRegistryReference<Feature> SUNFLOWER = Features.key(ResourceKey.minecraft("sunflower"));
