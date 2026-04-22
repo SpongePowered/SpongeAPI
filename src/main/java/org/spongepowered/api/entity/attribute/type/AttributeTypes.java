@@ -52,6 +52,8 @@ public final class AttributeTypes {
 
     public static final DefaultedRegistryReference<RangedAttributeType> ATTACK_SPEED = AttributeTypes.key(ResourceKey.minecraft("attack_speed"));
 
+    public static final DefaultedRegistryReference<RangedAttributeType> BELOW_NAME_DISTANCE = AttributeTypes.key(ResourceKey.minecraft("below_name_distance"));
+
     public static final DefaultedRegistryReference<RangedAttributeType> BLOCK_BREAK_SPEED = AttributeTypes.key(ResourceKey.minecraft("block_break_speed"));
 
     public static final DefaultedRegistryReference<RangedAttributeType> BLOCK_INTERACTION_RANGE = AttributeTypes.key(ResourceKey.minecraft("block_interaction_range"));
@@ -91,6 +93,8 @@ public final class AttributeTypes {
     public static final DefaultedRegistryReference<RangedAttributeType> MOVEMENT_EFFICIENCY = AttributeTypes.key(ResourceKey.minecraft("movement_efficiency"));
 
     public static final DefaultedRegistryReference<RangedAttributeType> MOVEMENT_SPEED = AttributeTypes.key(ResourceKey.minecraft("movement_speed"));
+
+    public static final DefaultedRegistryReference<RangedAttributeType> NAMEPLATE_DISTANCE = AttributeTypes.key(ResourceKey.minecraft("nameplate_distance"));
 
     public static final DefaultedRegistryReference<RangedAttributeType> OXYGEN_BONUS = AttributeTypes.key(ResourceKey.minecraft("oxygen_bonus"));
 

@@ -3606,6 +3606,8 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ITEM_BUCKET_EMPTY_POWDER_SNOW = SoundTypes.key(ResourceKey.minecraft("item.bucket.empty_powder_snow"));
 
+    public static final DefaultedRegistryReference<SoundType> ITEM_BUCKET_EMPTY_SULFUR_CUBE = SoundTypes.key(ResourceKey.minecraft("item.bucket.empty_sulfur_cube"));
+
     public static final DefaultedRegistryReference<SoundType> ITEM_BUCKET_EMPTY_TADPOLE = SoundTypes.key(ResourceKey.minecraft("item.bucket.empty_tadpole"));
 
     public static final DefaultedRegistryReference<SoundType> ITEM_BUCKET_FILL = SoundTypes.key(ResourceKey.minecraft("item.bucket.fill"));
@@ -3617,6 +3619,8 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> ITEM_BUCKET_FILL_LAVA = SoundTypes.key(ResourceKey.minecraft("item.bucket.fill_lava"));
 
     public static final DefaultedRegistryReference<SoundType> ITEM_BUCKET_FILL_POWDER_SNOW = SoundTypes.key(ResourceKey.minecraft("item.bucket.fill_powder_snow"));
+
+    public static final DefaultedRegistryReference<SoundType> ITEM_BUCKET_FILL_SULFUR_CUBE = SoundTypes.key(ResourceKey.minecraft("item.bucket.fill_sulfur_cube"));
 
     public static final DefaultedRegistryReference<SoundType> ITEM_BUCKET_FILL_TADPOLE = SoundTypes.key(ResourceKey.minecraft("item.bucket.fill_tadpole"));
 
