@@ -83,6 +83,7 @@ import org.spongepowered.api.data.type.PickupRule;
 import org.spongepowered.api.data.type.PigType;
 import org.spongepowered.api.data.type.PistonType;
 import org.spongepowered.api.data.type.PortionType;
+import org.spongepowered.api.data.type.PotentSulfurState;
 import org.spongepowered.api.data.type.ProfessionType;
 import org.spongepowered.api.data.type.PushReaction;
 import org.spongepowered.api.data.type.RabbitType;
@@ -483,6 +484,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<PlaceholderParser> PLACEHOLDER_PARSER = RegistryTypes.spongeKeyInGame("placeholder_parser");
 
     public static final DefaultedRegistryType<PortionType> PORTION_TYPE = RegistryTypes.spongeKeyInGame("portion_type");
+
+    public static final DefaultedRegistryType<PotentSulfurState> POTENT_SULFUR_STATE = RegistryTypes.spongeKeyInGame("potent_sulfur_state");
 
     public static final DefaultedRegistryType<Precipitation> PRECIPITATION = RegistryTypes.spongeKeyInGame("precipitation");
 

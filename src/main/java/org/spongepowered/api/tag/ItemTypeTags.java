@@ -407,6 +407,8 @@ public final class ItemTypeTags {
 
     public static final DefaultedTag<ItemType> SULFUR_CUBE_ARCHETYPE_BOUNCY = ItemTypeTags.key(ResourceKey.minecraft("sulfur_cube_archetype/bouncy"));
 
+    public static final DefaultedTag<ItemType> SULFUR_CUBE_ARCHETYPE_EXPLOSIVE = ItemTypeTags.key(ResourceKey.minecraft("sulfur_cube_archetype/explosive"));
+
     public static final DefaultedTag<ItemType> SULFUR_CUBE_ARCHETYPE_FAST_FLAT = ItemTypeTags.key(ResourceKey.minecraft("sulfur_cube_archetype/fast_flat"));
 
     public static final DefaultedTag<ItemType> SULFUR_CUBE_ARCHETYPE_FAST_SLIDING = ItemTypeTags.key(ResourceKey.minecraft("sulfur_cube_archetype/fast_sliding"));

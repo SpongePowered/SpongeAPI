@@ -1198,6 +1198,10 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_POTENT_SULFUR_FALL = SoundTypes.key(ResourceKey.minecraft("block.potent_sulfur.fall"));
 
+    public static final DefaultedRegistryReference<SoundType> BLOCK_POTENT_SULFUR_GEYSER_ERUPTION = SoundTypes.key(ResourceKey.minecraft("block.potent_sulfur.geyser_eruption"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_POTENT_SULFUR_GEYSER_ERUPTION_ACTIVE = SoundTypes.key(ResourceKey.minecraft("block.potent_sulfur.geyser_eruption_active"));
+
     public static final DefaultedRegistryReference<SoundType> BLOCK_POTENT_SULFUR_HIT = SoundTypes.key(ResourceKey.minecraft("block.potent_sulfur.hit"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_POTENT_SULFUR_NOXIOUS_GAS = SoundTypes.key(ResourceKey.minecraft("block.potent_sulfur.noxious_gas"));
@@ -1519,6 +1523,18 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> BLOCK_SULFUR_HIT = SoundTypes.key(ResourceKey.minecraft("block.sulfur.hit"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_SULFUR_PLACE = SoundTypes.key(ResourceKey.minecraft("block.sulfur.place"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SULFUR_SPIKE_BREAK = SoundTypes.key(ResourceKey.minecraft("block.sulfur_spike.break"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SULFUR_SPIKE_FALL = SoundTypes.key(ResourceKey.minecraft("block.sulfur_spike.fall"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SULFUR_SPIKE_HIT = SoundTypes.key(ResourceKey.minecraft("block.sulfur_spike.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SULFUR_SPIKE_LAND = SoundTypes.key(ResourceKey.minecraft("block.sulfur_spike.land"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SULFUR_SPIKE_PLACE = SoundTypes.key(ResourceKey.minecraft("block.sulfur_spike.place"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SULFUR_SPIKE_STEP = SoundTypes.key(ResourceKey.minecraft("block.sulfur_spike.step"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_SULFUR_STEP = SoundTypes.key(ResourceKey.minecraft("block.sulfur.step"));
 

@@ -54,7 +54,13 @@ public final class CommandTreeNodeTypes {
 
     public static final DefaultedRegistryReference<CommandTreeNodeType<CommandTreeNode.Basic>> BOOL = CommandTreeNodeTypes.key(ResourceKey.brigadier("bool"));
 
-    public static final DefaultedRegistryReference<CommandTreeNodeType<CommandTreeNode.Basic>> COLOR = CommandTreeNodeTypes.key(ResourceKey.minecraft("color"));
+    /**
+     * @deprecated since 26.2-snapshot-5 vanilla split {@code minecraft:color} into {@code team_color} and {@code hex_color};
+     *     this constant now resolves to the {@link #TEAM_COLOR} target. Prefer {@link #TEAM_COLOR} or {@link #HEX_COLOR}
+     *     directly.
+     */
+    @Deprecated
+    public static final DefaultedRegistryReference<CommandTreeNodeType<CommandTreeNode.Basic>> COLOR = CommandTreeNodeTypes.key(ResourceKey.minecraft("team_color"));
 
     public static final DefaultedRegistryReference<CommandTreeNodeType<CommandTreeNode.Basic>> COLUMN_POS = CommandTreeNodeTypes.key(ResourceKey.minecraft("column_pos"));
 
@@ -75,6 +81,8 @@ public final class CommandTreeNodeTypes {
     public static final DefaultedRegistryReference<CommandTreeNodeType<CommandTreeNode.Basic>> FUNCTION = CommandTreeNodeTypes.key(ResourceKey.minecraft("function"));
 
     public static final DefaultedRegistryReference<CommandTreeNodeType<CommandTreeNode.Basic>> GAME_PROFILE = CommandTreeNodeTypes.key(ResourceKey.minecraft("game_profile"));
+
+    public static final DefaultedRegistryReference<CommandTreeNodeType<CommandTreeNode.Basic>> HEX_COLOR = CommandTreeNodeTypes.key(ResourceKey.minecraft("hex_color"));
 
     public static final DefaultedRegistryReference<CommandTreeNodeType<CommandTreeNode.Range<Integer>>> INTEGER = CommandTreeNodeTypes.key(ResourceKey.brigadier("integer"));
 
@@ -117,6 +125,8 @@ public final class CommandTreeNodeTypes {
     public static final DefaultedRegistryReference<CommandTreeNodeType<CommandTreeNode.Basic>> SWIZZLE = CommandTreeNodeTypes.key(ResourceKey.minecraft("swizzle"));
 
     public static final DefaultedRegistryReference<CommandTreeNodeType<CommandTreeNode.Basic>> TEAM = CommandTreeNodeTypes.key(ResourceKey.minecraft("team"));
+
+    public static final DefaultedRegistryReference<CommandTreeNodeType<CommandTreeNode.Basic>> TEAM_COLOR = CommandTreeNodeTypes.key(ResourceKey.minecraft("team_color"));
 
     public static final DefaultedRegistryReference<CommandTreeNodeType<CommandTreeNode.Basic>> TIME = CommandTreeNodeTypes.key(ResourceKey.minecraft("time"));
 

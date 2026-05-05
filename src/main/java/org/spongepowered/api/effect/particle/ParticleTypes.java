@@ -148,6 +148,14 @@ public final class ParticleTypes {
 
     public static final DefaultedRegistryReference<ParticleType> FLASH = ParticleTypes.key(ResourceKey.minecraft("flash"));
 
+    public static final DefaultedRegistryReference<ParticleType> GEYSER = ParticleTypes.key(ResourceKey.minecraft("geyser"));
+
+    public static final DefaultedRegistryReference<ParticleType> GEYSER_BASE = ParticleTypes.key(ResourceKey.minecraft("geyser_base"));
+
+    public static final DefaultedRegistryReference<ParticleType> GEYSER_PLUME = ParticleTypes.key(ResourceKey.minecraft("geyser_plume"));
+
+    public static final DefaultedRegistryReference<ParticleType> GEYSER_POOF = ParticleTypes.key(ResourceKey.minecraft("geyser_poof"));
+
     public static final DefaultedRegistryReference<ParticleType> GLOW = ParticleTypes.key(ResourceKey.minecraft("glow"));
 
     public static final DefaultedRegistryReference<ParticleType> GLOW_SQUID_INK = ParticleTypes.key(ResourceKey.minecraft("glow_squid_ink"));

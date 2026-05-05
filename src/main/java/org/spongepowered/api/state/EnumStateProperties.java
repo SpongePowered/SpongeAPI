@@ -153,6 +153,10 @@ public final class EnumStateProperties {
         return EnumStateProperty.of("PISTON_TYPE");
     }
 
+    public static EnumStateProperty<?> property_POTENT_SULFUR_STATE() {
+        return EnumStateProperty.of("POTENT_SULFUR_STATE");
+    }
+
     public static EnumStateProperty<RailDirection> property_RAIL_SHAPE() {
         return EnumStateProperty.of("RAIL_SHAPE");
     }

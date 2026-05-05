@@ -94,7 +94,7 @@ public final class AttributeTypes {
 
     public static final DefaultedRegistryReference<RangedAttributeType> MOVEMENT_SPEED = AttributeTypes.key(ResourceKey.minecraft("movement_speed"));
 
-    public static final DefaultedRegistryReference<RangedAttributeType> NAMEPLATE_DISTANCE = AttributeTypes.key(ResourceKey.minecraft("nameplate_distance"));
+    public static final DefaultedRegistryReference<RangedAttributeType> NAME_TAG_DISTANCE = AttributeTypes.key(ResourceKey.minecraft("name_tag_distance"));
 
     public static final DefaultedRegistryReference<RangedAttributeType> OXYGEN_BONUS = AttributeTypes.key(ResourceKey.minecraft("oxygen_bonus"));
 

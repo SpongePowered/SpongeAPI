@@ -163,6 +163,8 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> DEEPSLATE_ORE_REPLACEABLES = BlockTypeTags.key(ResourceKey.minecraft("deepslate_ore_replaceables"));
 
+    public static final DefaultedTag<BlockType> DEFAULT_IMMUNE_TO = BlockTypeTags.key(ResourceKey.minecraft("default_immune_to"));
+
     public static final DefaultedTag<BlockType> DIAMOND_ORES = BlockTypeTags.key(ResourceKey.minecraft("diamond_ores"));
 
     public static final DefaultedTag<BlockType> DIRT = BlockTypeTags.key(ResourceKey.minecraft("dirt"));
@@ -206,6 +208,8 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> FLOWERS = BlockTypeTags.key(ResourceKey.minecraft("flowers"));
 
     public static final DefaultedTag<BlockType> FOREST_ROCK_CAN_PLACE_ON = BlockTypeTags.key(ResourceKey.minecraft("forest_rock_can_place_on"));
+
+    public static final DefaultedTag<BlockType> FOX_IMMUNE_TO = BlockTypeTags.key(ResourceKey.minecraft("fox_immune_to"));
 
     public static final DefaultedTag<BlockType> FOXES_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("foxes_spawnable_on"));
 
@@ -339,6 +343,8 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> PLANKS = BlockTypeTags.key(ResourceKey.minecraft("planks"));
 
+    public static final DefaultedTag<BlockType> POLAR_BEAR_IMMUNE_TO = BlockTypeTags.key(ResourceKey.minecraft("polar_bear_immune_to"));
+
     public static final DefaultedTag<BlockType> POLAR_BEARS_SPAWNABLE_ON_ALTERNATE = BlockTypeTags.key(ResourceKey.minecraft("polar_bears_spawnable_on_alternate"));
 
     public static final DefaultedTag<BlockType> PORTALS = BlockTypeTags.key(ResourceKey.minecraft("portals"));
@@ -393,6 +399,8 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> SNOW = BlockTypeTags.key(ResourceKey.minecraft("snow"));
 
+    public static final DefaultedTag<BlockType> SNOW_GOLEM_IMMUNE_TO = BlockTypeTags.key(ResourceKey.minecraft("snow_golem_immune_to"));
+
     public static final DefaultedTag<BlockType> SOUL_FIRE_BASE_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("soul_fire_base_blocks"));
 
     public static final DefaultedTag<BlockType> SOUL_SPEED_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("soul_speed_blocks"));
@@ -412,6 +420,8 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> STONE_ORE_REPLACEABLES = BlockTypeTags.key(ResourceKey.minecraft("stone_ore_replaceables"));
 
     public static final DefaultedTag<BlockType> STONE_PRESSURE_PLATES = BlockTypeTags.key(ResourceKey.minecraft("stone_pressure_plates"));
+
+    public static final DefaultedTag<BlockType> STRAY_IMMUNE_TO = BlockTypeTags.key(ResourceKey.minecraft("stray_immune_to"));
 
     public static final DefaultedTag<BlockType> STRIDER_WARM_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("strider_warm_blocks"));
 
@@ -524,6 +534,10 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> WART_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("wart_blocks"));
 
     public static final DefaultedTag<BlockType> WITHER_IMMUNE = BlockTypeTags.key(ResourceKey.minecraft("wither_immune"));
+
+    public static final DefaultedTag<BlockType> WITHER_IMMUNE_TO = BlockTypeTags.key(ResourceKey.minecraft("wither_immune_to"));
+
+    public static final DefaultedTag<BlockType> WITHER_SKELETON_IMMUNE_TO = BlockTypeTags.key(ResourceKey.minecraft("wither_skeleton_immune_to"));
 
     public static final DefaultedTag<BlockType> WITHER_SUMMON_BASE_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("wither_summon_base_blocks"));
 

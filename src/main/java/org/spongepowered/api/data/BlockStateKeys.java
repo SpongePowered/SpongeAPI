@@ -38,6 +38,7 @@ import org.spongepowered.api.data.type.InstrumentType;
 import org.spongepowered.api.data.type.JigsawBlockOrientation;
 import org.spongepowered.api.data.type.PistonType;
 import org.spongepowered.api.data.type.PortionType;
+import org.spongepowered.api.data.type.PotentSulfurState;
 import org.spongepowered.api.data.type.RailDirection;
 import org.spongepowered.api.data.type.SculkSensorState;
 import org.spongepowered.api.data.type.SideChain;
@@ -223,6 +224,8 @@ public final class BlockStateKeys {
     public static final Key<Value<Integer>> PICKLES = BlockStateKeys.key(ResourceKey.minecraft("property/pickles"), Integer.class);
 
     public static final Key<Value<PistonType>> PISTON_TYPE = BlockStateKeys.key(ResourceKey.minecraft("property/type"), PistonType.class);
+
+    public static final Key<Value<PotentSulfurState>> POTENT_SULFUR_STATE = BlockStateKeys.key(ResourceKey.minecraft("property/potent_sulfur_state"), PotentSulfurState.class);
 
     public static final Key<Value<Integer>> POWER = BlockStateKeys.key(ResourceKey.minecraft("property/power"), Integer.class);
 
