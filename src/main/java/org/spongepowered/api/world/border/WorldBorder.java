@@ -104,15 +104,15 @@ public interface WorldBorder {
     double targetDiameter();
 
     /**
-     * Gets the time remaining until the world border stops expanding or
+     * Gets the remaining transition time in ticks until the world border stops expanding or
      * contracting to the {@link #targetDiameter()}.
      *
      * <p>If {@link #diameter()} and {@link #targetDiameter()} are the same,
-     * this will be {@link Duration#ZERO}.</p>
+     * this will be {@link Ticks#zero()}.</p>
      *
-     * @return The time remaining
+     * @return The ticks remaining
      */
-    Duration timeUntilTargetDiameter();
+    Ticks timeUntilTargetDiameter();
 
     /**
      * Gets the distance a player may be outside the world border before taking
@@ -223,7 +223,7 @@ public interface WorldBorder {
          * {@link #initialDiameter(double) the initial diameter} to
          * {@link #targetDiameter(double) its target diameter}.
          *
-         * @param ticks The time, as a {@link Ticks}
+         * @param ticks The transition duration in ticks
          * @return The builder, for chaining.
          */
         Builder timeToTargetDiameter(final Ticks ticks);
