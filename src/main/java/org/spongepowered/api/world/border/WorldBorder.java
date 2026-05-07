@@ -26,6 +26,7 @@ package org.spongepowered.api.world.border;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.util.Ticks;
 import org.spongepowered.math.vector.Vector2d;
 
 import java.time.Duration;
@@ -189,7 +190,7 @@ public interface WorldBorder {
          * <p>If this differs from the the value supplied to
          * {@link #targetDiameter(double)}, then the border size starts at the
          * diameter specified here, growing or shrinking at a constant speed for
-         * the time provided in {@link #timeToTargetDiameter(Duration)} where it
+         * the time provided in {@link #timeToTargetDiameter(Ticks)} where it
          * will stop at the supplied target. If the supplied time is zero or not
          * given, then this value is ignored and the target diameter is used.</p>
          *
@@ -205,7 +206,7 @@ public interface WorldBorder {
         /**
          * Sets the final diameter of this world border.
          *
-         * <p>If no {@link #timeToTargetDiameter(Duration)} is set, or it is set
+         * <p>If no {@link #timeToTargetDiameter(Ticks)} is set, or it is set
          * to {@link Duration#ZERO}, then the {@link #initialDiameter(double)}
          * is ignored and this is the only diameter used.</p>
          *
@@ -222,10 +223,10 @@ public interface WorldBorder {
          * {@link #initialDiameter(double) the initial diameter} to
          * {@link #targetDiameter(double) its target diameter}.
          *
-         * @param time The time, as a {@link Duration}
+         * @param ticks The time, as a {@link Ticks}
          * @return The builder, for chaining.
          */
-        Builder timeToTargetDiameter(final Duration time);
+        Builder timeToTargetDiameter(final Ticks ticks);
 
         /**
          * Sets the distance beyond this world border that an entity may travel
