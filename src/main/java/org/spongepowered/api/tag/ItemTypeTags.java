@@ -415,9 +415,13 @@ public final class ItemTypeTags {
 
     public static final DefaultedTag<ItemType> SULFUR_CUBE_ARCHETYPE_HIGH_RESISTANCE = ItemTypeTags.key(ResourceKey.minecraft("sulfur_cube_archetype/high_resistance"));
 
+    public static final DefaultedTag<ItemType> SULFUR_CUBE_ARCHETYPE_HOT = ItemTypeTags.key(ResourceKey.minecraft("sulfur_cube_archetype/hot"));
+
     public static final DefaultedTag<ItemType> SULFUR_CUBE_ARCHETYPE_LIGHT = ItemTypeTags.key(ResourceKey.minecraft("sulfur_cube_archetype/light"));
 
     public static final DefaultedTag<ItemType> SULFUR_CUBE_ARCHETYPE_REGULAR = ItemTypeTags.key(ResourceKey.minecraft("sulfur_cube_archetype/regular"));
+
+    public static final DefaultedTag<ItemType> SULFUR_CUBE_ARCHETYPE_SLOW_BOUNCY = ItemTypeTags.key(ResourceKey.minecraft("sulfur_cube_archetype/slow_bouncy"));
 
     public static final DefaultedTag<ItemType> SULFUR_CUBE_ARCHETYPE_SLOW_FLAT = ItemTypeTags.key(ResourceKey.minecraft("sulfur_cube_archetype/slow_flat"));
 

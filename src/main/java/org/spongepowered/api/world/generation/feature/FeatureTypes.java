@@ -164,6 +164,8 @@ public final class FeatureTypes {
 
     public static final DefaultedRegistryReference<FeatureType> WEEPING_VINES = FeatureTypes.key(ResourceKey.minecraft("weeping_vines"));
 
+    public static final DefaultedRegistryReference<FeatureType> WEIGHTED_RANDOM_SELECTOR = FeatureTypes.key(ResourceKey.minecraft("weighted_random_selector"));
+
     private FeatureTypes() {
     }
 
