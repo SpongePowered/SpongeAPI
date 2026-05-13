@@ -1102,6 +1102,15 @@ public final class Keys {
     public static final Key<Value<Ticks>> END_GATEWAY_AGE = Keys.key(ResourceKey.sponge("end_gateway_age"), Ticks.class);
 
     /**
+     * The remaining ticks until a {@link org.spongepowered.api.block.entity.PotentSulfur}
+     * block entity toggles between its dormant and erupting states.
+     *
+     * <p>The value is absent when the block entity has not yet evaluated
+     * its surroundings or when no suitable noxious source is present.</p>
+     */
+    public static final Key<Value<Ticks>> ERUPTION_COUNTDOWN = Keys.key(ResourceKey.sponge("eruption_countdown"), Ticks.class);
+
+    /**
      * The {@link EntityType entity type} of a spawn egg, which may be one of
      * several based on {@link ItemTypes#ZOMBIE_SPAWN_EGG}, etc. It is not
      * guaranteed that the type of entity is the same as the one that will be
