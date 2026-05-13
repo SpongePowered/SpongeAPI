@@ -115,6 +115,10 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> CAULDRONS = BlockTypeTags.key(ResourceKey.minecraft("cauldrons"));
 
+    public static final DefaultedTag<BlockType> CAUSES_CONTINUOUS_GEYSER_ERUPTIONS = BlockTypeTags.key(ResourceKey.minecraft("causes_continuous_geyser_eruptions"));
+
+    public static final DefaultedTag<BlockType> CAUSES_PERIODIC_GEYSER_ERUPTIONS = BlockTypeTags.key(ResourceKey.minecraft("causes_periodic_geyser_eruptions"));
+
     public static final DefaultedTag<BlockType> CAVE_VINES = BlockTypeTags.key(ResourceKey.minecraft("cave_vines"));
 
     public static final DefaultedTag<BlockType> CEILING_HANGING_SIGNS = BlockTypeTags.key(ResourceKey.minecraft("ceiling_hanging_signs"));

@@ -1728,6 +1728,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> MUSIC_DISC_BLOCKS = ItemTypes.key(ResourceKey.minecraft("music_disc_blocks"));
 
+    public static final DefaultedRegistryReference<ItemType> MUSIC_DISC_BOUNCE = ItemTypes.key(ResourceKey.minecraft("music_disc_bounce"));
+
     public static final DefaultedRegistryReference<ItemType> MUSIC_DISC_CAT = ItemTypes.key(ResourceKey.minecraft("music_disc_cat"));
 
     public static final DefaultedRegistryReference<ItemType> MUSIC_DISC_CHIRP = ItemTypes.key(ResourceKey.minecraft("music_disc_chirp"));

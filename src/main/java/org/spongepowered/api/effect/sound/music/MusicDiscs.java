@@ -42,6 +42,8 @@ public final class MusicDiscs {
 
     public static final DefaultedRegistryReference<MusicDisc> BLOCKS = MusicDiscs.key(ResourceKey.minecraft("blocks"));
 
+    public static final DefaultedRegistryReference<MusicDisc> BOUNCE = MusicDiscs.key(ResourceKey.minecraft("bounce"));
+
     public static final DefaultedRegistryReference<MusicDisc> CAT = MusicDiscs.key(ResourceKey.minecraft("cat"));
 
     public static final DefaultedRegistryReference<MusicDisc> CHIRP = MusicDiscs.key(ResourceKey.minecraft("chirp"));

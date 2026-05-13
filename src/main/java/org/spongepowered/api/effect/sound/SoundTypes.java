@@ -1198,6 +1198,10 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_POTENT_SULFUR_FALL = SoundTypes.key(ResourceKey.minecraft("block.potent_sulfur.fall"));
 
+    public static final DefaultedRegistryReference<SoundType> BLOCK_POTENT_SULFUR_GEYSER_CONTINUOUS_ERUPTION = SoundTypes.key(ResourceKey.minecraft("block.potent_sulfur.geyser_continuous_eruption"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_POTENT_SULFUR_GEYSER_CONTINUOUS_ERUPTION_ACTIVE = SoundTypes.key(ResourceKey.minecraft("block.potent_sulfur.geyser_continuous_eruption_active"));
+
     public static final DefaultedRegistryReference<SoundType> BLOCK_POTENT_SULFUR_GEYSER_ERUPTION = SoundTypes.key(ResourceKey.minecraft("block.potent_sulfur.geyser_eruption"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_POTENT_SULFUR_GEYSER_ERUPTION_ACTIVE = SoundTypes.key(ResourceKey.minecraft("block.potent_sulfur.geyser_eruption_active"));
@@ -3802,6 +3806,8 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_BLOCKS = SoundTypes.key(ResourceKey.minecraft("music_disc.blocks"));
 
+    public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_BOUNCE = SoundTypes.key(ResourceKey.minecraft("music_disc.bounce"));
+
     public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_CAT = SoundTypes.key(ResourceKey.minecraft("music_disc.cat"));
 
     public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_CHIRP = SoundTypes.key(ResourceKey.minecraft("music_disc.chirp"));
@@ -3889,6 +3895,8 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_SPARSE_JUNGLE = SoundTypes.key(ResourceKey.minecraft("music.overworld.sparse_jungle"));
 
     public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_STONY_PEAKS = SoundTypes.key(ResourceKey.minecraft("music.overworld.stony_peaks"));
+
+    public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_SULFUR_CAVES = SoundTypes.key(ResourceKey.minecraft("music.overworld.sulfur_caves"));
 
     public static final DefaultedRegistryReference<SoundType> MUSIC_OVERWORLD_SWAMP = SoundTypes.key(ResourceKey.minecraft("music.overworld.swamp"));
 
