@@ -124,6 +124,8 @@ public final class DamageTypes {
 
     public static final DefaultedRegistryReference<DamageType> STING = DamageTypes.key(ResourceKey.minecraft("sting"));
 
+    public static final DefaultedRegistryReference<DamageType> SULFUR_CUBE_HOT = DamageTypes.key(ResourceKey.minecraft("sulfur_cube_hot"));
+
     public static final DefaultedRegistryReference<DamageType> SWEET_BERRY_BUSH = DamageTypes.key(ResourceKey.minecraft("sweet_berry_bush"));
 
     public static final DefaultedRegistryReference<DamageType> THORNS = DamageTypes.key(ResourceKey.minecraft("thorns"));
