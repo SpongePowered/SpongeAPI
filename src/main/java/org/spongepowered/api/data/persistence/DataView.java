@@ -108,6 +108,15 @@ public interface DataView {
     Set<DataQuery> keys(boolean deep);
 
     /**
+     * Gets a Stream containing all root keys for this {@link DataView}.
+     *
+     * @return Stream of root keys of this container
+     */
+    default Stream<String> streamRootKeys() {
+        return this.keys(false).stream().map(k -> k.parts().getFirst());
+    }
+
+    /**
      * Gets a Map containing all keys and their values for this {@link DataView}.
      *
      * <p>If deep is set to true, then this will contain all the keys and
