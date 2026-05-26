@@ -38,6 +38,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 /**
  * Represents an object of data represented by a map.
@@ -122,6 +123,15 @@ public interface DataView {
     Map<DataQuery, Object> values(boolean deep);
 
     /**
+     * Gets a Stream containing all root keys and their values for this {@link DataView}.
+     *
+     * @return Stream of root keys and values of this container
+     */
+    default Stream<Map.Entry<String, Object>> streamRootValues() {
+        return this.values(false).entrySet().stream().map(entry -> Map.entry(entry.getKey().parts().getFirst(), entry.getValue()));
+    }
+
+    /**
      * Returns whether this {@link DataView} contains the given path.
      *
      * @param path The path relative to this data view
@@ -157,6 +167,17 @@ public interface DataView {
      * @return This view, for chaining
      */
     DataView set(DataQuery path, Object value);
+
+    /**
+     * Sets the given Object value to this {@link DataView}'s key.
+     *
+     * @param key The key of the object to set
+     * @param value The value of the data
+     * @return This view, for chaining
+     */
+    default DataView set(String key, Object value) {
+        return this.set(DataQuery.of(key), value);
+    }
 
     /**
      * Removes the data associated to the given path relative to this

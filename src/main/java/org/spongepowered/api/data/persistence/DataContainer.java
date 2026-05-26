@@ -59,5 +59,10 @@ public interface DataContainer extends DataView {
     DataContainer set(DataQuery path, Object value);
 
     @Override
+    default DataContainer set(String key, Object value) {
+        return this.set(DataQuery.of(key), value);
+    }
+
+    @Override
     DataContainer remove(DataQuery path);
 }
