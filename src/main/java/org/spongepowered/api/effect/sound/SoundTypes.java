@@ -3076,6 +3076,8 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_SMALL_SULFUR_CUBE_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.small_sulfur_cube.death"));
 
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SMALL_SULFUR_CUBE_EAT = SoundTypes.key(ResourceKey.minecraft("entity.small_sulfur_cube.eat"));
+
     public static final DefaultedRegistryReference<SoundType> ENTITY_SMALL_SULFUR_CUBE_HURT = SoundTypes.key(ResourceKey.minecraft("entity.small_sulfur_cube.hurt"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_SMALL_SULFUR_CUBE_JUMP = SoundTypes.key(ResourceKey.minecraft("entity.small_sulfur_cube.jump"));
@@ -3168,19 +3170,63 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_BOUNCE = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.bounce"));
 
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_BOUNCY_HIT = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.bouncy.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_BOUNCY_PUSH = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.bouncy.push"));
+
     public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.death"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_EJECT = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.eject"));
 
-    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_HIT = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.hit"));
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_EXPLOSIVE_HIT = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.explosive.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_EXPLOSIVE_PUSH = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.explosive.push"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_FAST_FLAT_HIT = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.fast_flat.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_FAST_FLAT_PUSH = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.fast_flat.push"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_FAST_SLIDING_HIT = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.fast_sliding.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_FAST_SLIDING_PUSH = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.fast_sliding.push"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_HIGH_RESISTANCE_HIT = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.high_resistance.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_HIGH_RESISTANCE_PUSH = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.high_resistance.push"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_HOT_HIT = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.hot.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_HOT_PUSH = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.hot.push"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_HURT = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.hurt"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_JUMP = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.jump"));
 
-    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_PUSH = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.push"));
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_LIGHT_HIT = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.light.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_LIGHT_PUSH = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.light.push"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_REGULAR_HIT = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.regular.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_REGULAR_PUSH = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.regular.push"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_SLOW_BOUNCY_HIT = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.slow_bouncy.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_SLOW_BOUNCY_PUSH = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.slow_bouncy.push"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_SLOW_FLAT_HIT = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.slow_flat.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_SLOW_FLAT_PUSH = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.slow_flat.push"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_SLOW_SLIDING_HIT = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.slow_sliding.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_SLOW_SLIDING_PUSH = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.slow_sliding.push"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_SQUISH = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.squish"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_STICKY_HIT = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.sticky.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_SULFUR_CUBE_STICKY_PUSH = SoundTypes.key(ResourceKey.minecraft("entity.sulfur_cube.sticky.push"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_TADPOLE_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.tadpole.death"));
 

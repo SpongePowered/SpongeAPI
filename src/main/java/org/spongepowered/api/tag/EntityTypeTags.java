@@ -109,6 +109,8 @@ public final class EntityTypeTags {
 
     public static final DefaultedTag<EntityType<?>> NON_CONTROLLING_RIDER = EntityTypeTags.key(ResourceKey.minecraft("non_controlling_rider"));
 
+    public static final DefaultedTag<EntityType<?>> NOT_AFFECTED_BY_GEYSERS = EntityTypeTags.key(ResourceKey.minecraft("not_affected_by_geysers"));
+
     public static final DefaultedTag<EntityType<?>> NOT_SCARY_FOR_PUFFERFISH = EntityTypeTags.key(ResourceKey.minecraft("not_scary_for_pufferfish"));
 
     public static final DefaultedTag<EntityType<?>> POWDER_SNOW_WALKABLE_MOBS = EntityTypeTags.key(ResourceKey.minecraft("powder_snow_walkable_mobs"));
