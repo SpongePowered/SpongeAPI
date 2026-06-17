@@ -26,6 +26,8 @@ package org.spongepowered.api.data.persistence;
 
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -34,7 +36,6 @@ import java.util.StringJoiner;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Represents a query that can be done on views. Queries do not depend on
@@ -80,7 +81,7 @@ public final class DataQuery implements Iterable<String> {
      * @param parts The parts
      */
     private DataQuery(final List<String> parts) {
-        this.parts = List.copyOf(parts);
+        this.parts = parts;
     }
 
     /**
@@ -132,7 +133,7 @@ public final class DataQuery implements Iterable<String> {
         if (parts.isEmpty()) {
             return DataQuery.EMPTY;
         }
-        return new DataQuery(parts);
+        return new DataQuery(List.copyOf(parts));
     }
 
     /**
@@ -152,8 +153,10 @@ public final class DataQuery implements Iterable<String> {
      * @return The constructed query
      */
     public DataQuery then(final DataQuery that) {
-        final var parts = Stream.concat(this.parts.stream(), that.parts.stream()).collect(Collectors.toUnmodifiableList());
-        return new DataQuery(parts);
+        final ArrayList<String> parts = new ArrayList<>(this.parts.size() + that.parts.size());
+        parts.addAll(this.parts);
+        parts.addAll(that.parts);
+        return new DataQuery(Collections.unmodifiableList(parts));
     }
 
     /**
@@ -164,8 +167,10 @@ public final class DataQuery implements Iterable<String> {
      * @return The constructed query
      */
     public DataQuery then(final String that) {
-        final var parts = Stream.concat(this.parts.stream(), Stream.of(that)).collect(Collectors.toUnmodifiableList());
-        return new DataQuery(parts);
+        final ArrayList<String> parts = new ArrayList<>(this.parts.size() + 1);
+        parts.addAll(this.parts);
+        parts.add(that);
+        return new DataQuery(Collections.unmodifiableList(parts));
     }
 
     /**
@@ -192,7 +197,10 @@ public final class DataQuery implements Iterable<String> {
         if (this.parts.size() <= 1) {
             return DataQuery.of();
         }
-        final var parts = this.parts.stream().limit(this.parts.size() - 1L).collect(Collectors.toUnmodifiableList());
+        final ArrayList<String> parts = new ArrayList<>(this.parts.size() - 1);
+        for (int i = 0; i < this.parts.size() - 1; i++) {
+            parts.add(this.parts.get(i));
+        }
         return new DataQuery(parts);
     }
 
@@ -207,8 +215,11 @@ public final class DataQuery implements Iterable<String> {
         if (this.parts.size() <= 1) {
             return DataQuery.of();
         }
-        final var parts = this.parts.stream().skip(1L).collect(Collectors.toUnmodifiableList());
-        return new DataQuery(parts);
+        final ArrayList<String> parts = new ArrayList<>(this.parts.size() - 1);
+        for (int i = 1; i < this.parts.size(); i++) {
+            parts.add(this.parts.get(i));
+        }
+        return new DataQuery(Collections.unmodifiableList(parts));
     }
 
     /**
