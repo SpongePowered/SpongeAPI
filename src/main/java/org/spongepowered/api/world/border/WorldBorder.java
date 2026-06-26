@@ -29,7 +29,6 @@ import org.spongepowered.api.util.CopyableBuilder;
 import org.spongepowered.api.util.Ticks;
 import org.spongepowered.math.vector.Vector2d;
 
-import java.time.Duration;
 
 /**
  * A world border is a square boundary, extending through the entire y-axis.
@@ -132,14 +131,14 @@ public interface WorldBorder {
 
     /**
      * Gets the time when a contracting world border will warn a player for whom
-     * the world border will reach in {@code time} seconds.
+     * the world border will reach in {@code time} ticks.
      *
      * <p>In Minecraft, the warning is displayed in the form of a reddish
      * tint.</p>
      *
      * @return The warning time
      */
-    Duration warningTime();
+    Ticks warningTime();
 
     /**
      * Gets the distance when a contracting world border will warn a player for
@@ -207,7 +206,7 @@ public interface WorldBorder {
          * Sets the final diameter of this world border.
          *
          * <p>If no {@link #timeToTargetDiameter(Ticks)} is set, or it is set
-         * to {@link Duration#ZERO}, then the {@link #initialDiameter(double)}
+         * to {@link Ticks#zero()}, then the {@link #initialDiameter(double)}
          * is ignored and this is the only diameter used.</p>
          *
          * <p>If this is set but {@link #initialDiameter(double)} has not, then
@@ -251,7 +250,7 @@ public interface WorldBorder {
          * @param warningTime The warning time
          * @return The builder, for chaining
          */
-        Builder warningTime(final Duration warningTime);
+        Builder warningTime(final Ticks warningTime);
 
         /**
          * Sets the warning distance of this world border.
