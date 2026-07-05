@@ -26,6 +26,7 @@ package org.spongepowered.api.adventure;
 
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.ClickCallback;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.flattener.ComponentFlattener;
 import org.spongepowered.api.Sponge;
@@ -48,7 +49,11 @@ public final class SpongeComponents {
      *
      * @param callback The callback to execute
      * @return The created click event instance
+     *
+     * @deprecated Use {@link ClickEvent#callback(ClickCallback, ClickCallback.Options)} instead.
+     *
      */
+    @Deprecated(forRemoval = true)
     public static ClickEvent executeCallback(final Consumer<CommandCause> callback) {
         return SpongeComponents.factory().callbackClickEvent(callback);
     }
