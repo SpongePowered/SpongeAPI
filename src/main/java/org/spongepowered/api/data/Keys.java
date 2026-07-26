@@ -702,6 +702,11 @@ public final class Keys {
     public static final Key<Value<Boolean>> CAN_MOVE_ON_LAND = Keys.key(ResourceKey.sponge("can_move_on_land"), Boolean.class);
 
     /**
+     * Whether a {@link Living} can pick up loot.
+     */
+    public static final Key<Value<Boolean>> CAN_PICK_UP_LOOT = Keys.key(ResourceKey.sponge("can_pick_up_loot"), Boolean.class);
+
+    /**
      * Whether a {@link FallingBlock} will place itself upon landing.
      */
     public static final Key<Value<Boolean>> CAN_PLACE_AS_BLOCK = Keys.key(ResourceKey.sponge("can_place_as_block"), Boolean.class);

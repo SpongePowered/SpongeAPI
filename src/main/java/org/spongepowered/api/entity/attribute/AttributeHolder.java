@@ -52,4 +52,24 @@ public interface AttributeHolder {
      * @return An attribute, if present.
      */
     Optional<Attribute> attribute(final AttributeType type);
+
+    /**
+     * Gets an immutable copy of the default {@link Attribute}
+     * from this entity.
+     *
+     * @param type The attribute type.
+     * @return An attribute, if present.
+     */
+    default Optional<Attribute> defaultAttribute(final Supplier<? extends AttributeType> type) {
+        return this.defaultAttribute(type.get());
+    }
+
+    /**
+     * Gets an immutable copy of the default {@link Attribute}
+     * from this entity.
+     *
+     * @param type The attribute type.
+     * @return An attribute, if present.
+     */
+    Optional<Attribute> defaultAttribute(final AttributeType type);
 }
