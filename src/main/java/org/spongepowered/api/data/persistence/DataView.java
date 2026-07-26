@@ -38,6 +38,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 /**
  * Represents an object of data represented by a map.
@@ -107,6 +108,15 @@ public interface DataView {
     Set<DataQuery> keys(boolean deep);
 
     /**
+     * Gets a Stream containing all root keys for this {@link DataView}.
+     *
+     * @return Stream of root keys of this container
+     */
+    default Stream<String> streamRootKeys() {
+        return this.keys(false).stream().map(k -> k.parts().getFirst());
+    }
+
+    /**
      * Gets a Map containing all keys and their values for this {@link DataView}.
      *
      * <p>If deep is set to true, then this will contain all the keys and
@@ -120,6 +130,15 @@ public interface DataView {
      * @return Map of keys and values of this container
      */
     Map<DataQuery, Object> values(boolean deep);
+
+    /**
+     * Gets a Stream containing all root keys and their values for this {@link DataView}.
+     *
+     * @return Stream of root keys and values of this container
+     */
+    default Stream<Map.Entry<String, Object>> streamRootValues() {
+        return this.values(false).entrySet().stream().map(entry -> Map.entry(entry.getKey().parts().getFirst(), entry.getValue()));
+    }
 
     /**
      * Returns whether this {@link DataView} contains the given path.
@@ -159,6 +178,201 @@ public interface DataView {
     DataView set(DataQuery path, Object value);
 
     /**
+     * Sets the given String value according to the given path relative to
+     * this {@link DataView}'s path.
+     *
+     * @param path The path of the string to set
+     * @param value The value of the data
+     * @return This view, for chaining
+     */
+    default DataView set(DataQuery path, String value) {
+        return this.set(path, (Object) value);
+    }
+
+    /**
+     * Sets the given boolean value according to the given path relative to
+     * this {@link DataView}'s path.
+     *
+     * @param path The path of the boolean to set
+     * @param value The value of the data
+     * @return This view, for chaining
+     */
+    default DataView set(DataQuery path, boolean value) {
+        return this.set(path, (Object) value);
+    }
+
+    /**
+     * Sets the given byte value according to the given path relative to
+     * this {@link DataView}'s path.
+     *
+     * @param path The path of the byte to set
+     * @param value The value of the data
+     * @return This view, for chaining
+     */
+    default DataView set(DataQuery path, byte value) {
+        return this.set(path, (Object) value);
+    }
+
+    /**
+     * Sets the given short value according to the given path relative to
+     * this {@link DataView}'s path.
+     *
+     * @param path The path of the short to set
+     * @param value The value of the data
+     * @return This view, for chaining
+     */
+    default DataView set(DataQuery path, short value) {
+        return this.set(path, (Object) value);
+    }
+
+    /**
+     * Sets the given int value according to the given path relative to
+     * this {@link DataView}'s path.
+     *
+     * @param path The path of the int to set
+     * @param value The value of the data
+     * @return This view, for chaining
+     */
+    default DataView set(DataQuery path, int value) {
+        return this.set(path, (Object) value);
+    }
+
+    /**
+     * Sets the given long value according to the given path relative to
+     * this {@link DataView}'s path.
+     *
+     * @param path The path of the long to set
+     * @param value The value of the data
+     * @return This view, for chaining
+     */
+    default DataView set(DataQuery path, long value) {
+        return this.set(path, (Object) value);
+    }
+
+    /**
+     * Sets the given float value according to the given path relative to
+     * this {@link DataView}'s path.
+     *
+     * @param path The path of the float to set
+     * @param value The value of the data
+     * @return This view, for chaining
+     */
+    default DataView set(DataQuery path, float value) {
+        return this.set(path, (Object) value);
+    }
+
+    /**
+     * Sets the given double value according to the given path relative to
+     * this {@link DataView}'s path.
+     *
+     * @param path The path of the double to set
+     * @param value The value of the data
+     * @return This view, for chaining
+     */
+    default DataView set(DataQuery path, double value) {
+        return this.set(path, (Object) value);
+    }
+
+    /**
+     * Sets the given Object value to this {@link DataView}'s key.
+     *
+     * @param key The key of the object to set
+     * @param value The value of the data
+     * @return This view, for chaining
+     */
+    default DataView set(String key, Object value) {
+        return this.set(DataQuery.of(key), value);
+    }
+
+    /**
+     * Sets the given String value to this {@link DataView}'s key.
+     *
+     * @param key The key of the object to set
+     * @param value The value of the data
+     * @return This view, for chaining
+     */
+    default DataView set(String key, String value) {
+        return this.set(key, (Object) value);
+    }
+
+    /**
+     * Sets the given boolean value to this {@link DataView}'s key.
+     *
+     * @param key The key of the object to set
+     * @param value The value of the data
+     * @return This view, for chaining
+     */
+    default DataView set(String key, boolean value) {
+        return this.set(key, (Object) value);
+    }
+
+    /**
+     * Sets the given byte value to this {@link DataView}'s key.
+     *
+     * @param key The key of the object to set
+     * @param value The value of the data
+     * @return This view, for chaining
+     */
+    default DataView set(String key, byte value) {
+        return this.set(key, (Object) value);
+    }
+
+    /**
+     * Sets the given short value to this {@link DataView}'s key.
+     *
+     * @param key The key of the object to set
+     * @param value The value of the data
+     * @return This view, for chaining
+     */
+    default DataView set(String key, short value) {
+        return this.set(key, (Object) value);
+    }
+
+    /**
+     * Sets the given int value to this {@link DataView}'s key.
+     *
+     * @param key The key of the object to set
+     * @param value The value of the data
+     * @return This view, for chaining
+     */
+    default DataView set(String key, int value) {
+        return this.set(key, (Object) value);
+    }
+
+    /**
+     * Sets the given long value to this {@link DataView}'s key.
+     *
+     * @param key The key of the object to set
+     * @param value The value of the data
+     * @return This view, for chaining
+     */
+    default DataView set(String key, long value) {
+        return this.set(key, (Object) value);
+    }
+
+    /**
+     * Sets the given float value to this {@link DataView}'s key.
+     *
+     * @param key The key of the object to set
+     * @param value The value of the data
+     * @return This view, for chaining
+     */
+    default DataView set(String key, float value) {
+        return this.set(key, (Object) value);
+    }
+
+    /**
+     * Sets the given double value to this {@link DataView}'s key.
+     *
+     * @param key The key of the object to set
+     * @param value The value of the data
+     * @return This view, for chaining
+     */
+    default DataView set(String key, double value) {
+        return this.set(key, (Object) value);
+    }
+
+    /**
      * Removes the data associated to the given path relative to this
      * {@link DataView}'s path.
      * <p>Path can not be empty, to remove this {@link DataView}, call
@@ -178,6 +392,18 @@ public interface DataView {
      * @return The newly created view
      */
     DataView createView(DataQuery path);
+
+    /**
+     * Creates a new {@link DataView} at the desired key.
+     * <p>If any data existed at the given path, that data will be
+     * overwritten with the newly constructed {@link DataView}.</p>
+     *
+     * @param key The key of the new view
+     * @return The newly created view
+     */
+    default DataView createView(String key) {
+        return this.createView(DataQuery.of(key));
+    }
 
     /**
      * Creates a new {@link DataView} with the given data at the desired
@@ -203,6 +429,20 @@ public interface DataView {
      * @return The data view, if available
      */
     Optional<DataView> getView(DataQuery path);
+
+    /**
+     * Gets the {@link DataView} by key, if available.
+     *
+     * <p>If a {@link DataView} does not exist, or the data residing at
+     * the path is not an instance of a {@link DataView}, an absent is
+     * returned.</p>
+     *
+     * @param key The key of the value to get
+     * @return The data view, if available
+     */
+    default Optional<DataView> getView(String key) {
+        return this.getView(DataQuery.of(key));
+    }
 
     /**
      * Gets the underlying {@link Map} by path, if available.

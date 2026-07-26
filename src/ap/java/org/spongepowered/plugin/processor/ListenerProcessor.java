@@ -58,7 +58,7 @@ import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
 
 @SupportedAnnotationTypes(ListenerProcessor.LISTENER_ANNOTATION_CLASS)
-@SupportedSourceVersion(SourceVersion.RELEASE_21)
+@SupportedSourceVersion(SourceVersion.RELEASE_25)
 public class ListenerProcessor extends AbstractProcessor {
 
     static final String LISTENER_ANNOTATION_CLASS = "org.spongepowered.api.event.Listener";
@@ -100,11 +100,11 @@ public class ListenerProcessor extends AbstractProcessor {
                 }
                 final List<? extends VariableElement> parameters = method.getParameters();
                 final @Nullable DeclaredType eventType;
-                if (parameters.isEmpty() || !this.isTypeSubclass(parameters.get(0), ListenerProcessor.EVENT_CLASS)) {
+                if (parameters.isEmpty() || !this.isTypeSubclass(parameters.getFirst(), ListenerProcessor.EVENT_CLASS)) {
                     this.error("Event listener method must have an Event as its first parameter", method);
                     eventType = null;
                 } else {
-                    eventType = (DeclaredType) parameters.get(0).asType();
+                    eventType = (DeclaredType) parameters.getFirst().asType();
                 }
 
                 final Types types = this.processingEnv.getTypeUtils();

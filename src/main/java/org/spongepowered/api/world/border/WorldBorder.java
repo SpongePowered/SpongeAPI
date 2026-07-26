@@ -26,9 +26,9 @@ package org.spongepowered.api.world.border;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.util.CopyableBuilder;
+import org.spongepowered.api.util.Ticks;
 import org.spongepowered.math.vector.Vector2d;
 
-import java.time.Duration;
 
 /**
  * A world border is a square boundary, extending through the entire y-axis.
@@ -103,15 +103,15 @@ public interface WorldBorder {
     double targetDiameter();
 
     /**
-     * Gets the time remaining until the world border stops expanding or
+     * Gets the remaining transition time in ticks until the world border stops expanding or
      * contracting to the {@link #targetDiameter()}.
      *
      * <p>If {@link #diameter()} and {@link #targetDiameter()} are the same,
-     * this will be {@link Duration#ZERO}.</p>
+     * this will be {@link Ticks#zero()}.</p>
      *
-     * @return The time remaining
+     * @return The ticks remaining
      */
-    Duration timeUntilTargetDiameter();
+    Ticks timeUntilTargetDiameter();
 
     /**
      * Gets the distance a player may be outside the world border before taking
@@ -131,14 +131,14 @@ public interface WorldBorder {
 
     /**
      * Gets the time when a contracting world border will warn a player for whom
-     * the world border will reach in {@code time} seconds.
+     * the world border will reach in {@code time} ticks.
      *
      * <p>In Minecraft, the warning is displayed in the form of a reddish
      * tint.</p>
      *
      * @return The warning time
      */
-    Duration warningTime();
+    Ticks warningTime();
 
     /**
      * Gets the distance when a contracting world border will warn a player for
@@ -189,7 +189,7 @@ public interface WorldBorder {
          * <p>If this differs from the the value supplied to
          * {@link #targetDiameter(double)}, then the border size starts at the
          * diameter specified here, growing or shrinking at a constant speed for
-         * the time provided in {@link #timeToTargetDiameter(Duration)} where it
+         * the time provided in {@link #timeToTargetDiameter(Ticks)} where it
          * will stop at the supplied target. If the supplied time is zero or not
          * given, then this value is ignored and the target diameter is used.</p>
          *
@@ -205,8 +205,8 @@ public interface WorldBorder {
         /**
          * Sets the final diameter of this world border.
          *
-         * <p>If no {@link #timeToTargetDiameter(Duration)} is set, or it is set
-         * to {@link Duration#ZERO}, then the {@link #initialDiameter(double)}
+         * <p>If no {@link #timeToTargetDiameter(Ticks)} is set, or it is set
+         * to {@link Ticks#zero()}, then the {@link #initialDiameter(double)}
          * is ignored and this is the only diameter used.</p>
          *
          * <p>If this is set but {@link #initialDiameter(double)} has not, then
@@ -222,10 +222,10 @@ public interface WorldBorder {
          * {@link #initialDiameter(double) the initial diameter} to
          * {@link #targetDiameter(double) its target diameter}.
          *
-         * @param time The time, as a {@link Duration}
+         * @param ticks The transition duration in ticks
          * @return The builder, for chaining.
          */
-        Builder timeToTargetDiameter(final Duration time);
+        Builder timeToTargetDiameter(final Ticks ticks);
 
         /**
          * Sets the distance beyond this world border that an entity may travel
@@ -250,7 +250,7 @@ public interface WorldBorder {
          * @param warningTime The warning time
          * @return The builder, for chaining
          */
-        Builder warningTime(final Duration warningTime);
+        Builder warningTime(final Ticks warningTime);
 
         /**
          * Sets the warning distance of this world border.
