@@ -246,9 +246,9 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<EntityType<?>> ENTITY_TYPE = RegistryTypes.minecraftKeyInGame("entity_type");
 
-    public static final DefaultedRegistryType<Feature> FEATURE = RegistryTypes.minecraftKeyInServer("worldgen/configured_feature");
+    public static final DefaultedRegistryType<Feature> FEATURE = RegistryTypes.minecraftKeyInServer("worldgen/feature");
 
-    public static final DefaultedRegistryType<FeatureType> FEATURE_TYPE = RegistryTypes.minecraftKeyInGame("worldgen/feature");
+    public static final DefaultedRegistryType<FeatureType> FEATURE_TYPE = RegistryTypes.spongeKeyInGame("feature_type");
 
     public static final DefaultedRegistryType<FluidType> FLUID_TYPE = RegistryTypes.minecraftKeyInGame("fluid");
 
