@@ -1188,6 +1188,8 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_POLISHED_TUFF_STEP = SoundTypes.key(ResourceKey.minecraft("block.polished_tuff.step"));
 
+    public static final DefaultedRegistryReference<SoundType> BLOCK_POPLAR_LEAVES_AMBIENT = SoundTypes.key(ResourceKey.minecraft("block.poplar_leaves.ambient"));
+
     public static final DefaultedRegistryReference<SoundType> BLOCK_PORTAL_AMBIENT = SoundTypes.key(ResourceKey.minecraft("block.portal.ambient"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_PORTAL_TRAVEL = SoundTypes.key(ResourceKey.minecraft("block.portal.travel"));
@@ -1369,6 +1371,16 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> BLOCK_SHELF_HIT = SoundTypes.key(ResourceKey.minecraft("block.shelf.hit"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_SHELF_MULTI_SWAP = SoundTypes.key(ResourceKey.minecraft("block.shelf.multi_swap"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SHELF_MUSHROOM_BOUNCE = SoundTypes.key(ResourceKey.minecraft("block.shelf_mushroom.bounce"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SHELF_MUSHROOM_BREAK = SoundTypes.key(ResourceKey.minecraft("block.shelf_mushroom.break"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SHELF_MUSHROOM_FALL = SoundTypes.key(ResourceKey.minecraft("block.shelf_mushroom.fall"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SHELF_MUSHROOM_PLACE = SoundTypes.key(ResourceKey.minecraft("block.shelf_mushroom.place"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_SHELF_MUSHROOM_STEP = SoundTypes.key(ResourceKey.minecraft("block.shelf_mushroom.step"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_SHELF_PLACE = SoundTypes.key(ResourceKey.minecraft("block.shelf.place"));
 

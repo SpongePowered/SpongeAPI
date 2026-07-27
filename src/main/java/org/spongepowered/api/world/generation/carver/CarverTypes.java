@@ -44,8 +44,6 @@ public final class CarverTypes {
 
     public static final DefaultedRegistryReference<CarverType> CAVE = CarverTypes.key(ResourceKey.minecraft("cave"));
 
-    public static final DefaultedRegistryReference<CarverType> NETHER_CAVE = CarverTypes.key(ResourceKey.minecraft("nether_cave"));
-
     private CarverTypes() {
     }
 

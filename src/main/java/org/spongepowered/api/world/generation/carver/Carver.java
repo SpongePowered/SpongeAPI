@@ -25,6 +25,7 @@
 package org.spongepowered.api.world.generation.carver;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.datapack.DataPackSerializable;
 import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.Builder;
@@ -52,6 +53,14 @@ public interface Carver extends DefaultedRegistryValue<Carver>, DataPackSerializ
      * @return The carver type
      */
     CarverType type();
+
+    /**
+     * Returns the serialized carver configuration.
+     * <p>Reconfigure a carver using {@link CarverType#configure(DataView)}</p>
+     *
+     * @return The serialized carver configuration
+     */
+    DataView toContainer();
 
     /**
      * A builder to create {@link Carver}s.

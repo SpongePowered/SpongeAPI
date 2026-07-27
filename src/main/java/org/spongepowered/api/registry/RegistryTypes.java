@@ -226,9 +226,9 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<BlockEntityType> BLOCK_ENTITY_TYPE = RegistryTypes.minecraftKeyInGame("block_entity_type");
 
-    public static final DefaultedRegistryType<CarverType> CARVER_TYPE = RegistryTypes.minecraftKeyInGame("worldgen/carver");
+    public static final DefaultedRegistryType<CarverType> CARVER_TYPE = RegistryTypes.spongeKeyInGame("carver_type");
 
-    public static final DefaultedRegistryType<Carver> CARVER = RegistryTypes.minecraftKeyInServer("worldgen/configured_carver");
+    public static final DefaultedRegistryType<Carver> CARVER = RegistryTypes.minecraftKeyInServer("worldgen/carver");
 
     public static final DefaultedRegistryType<ChatType> CHAT_TYPE = RegistryTypes.minecraftKeyInServer("chat_type");
 
@@ -266,7 +266,7 @@ public final class RegistryTypes {
 
     public static final DefaultedRegistryType<PlacedFeature> PLACED_FEATURE = RegistryTypes.minecraftKeyInServer("worldgen/placed_feature");
 
-    public static final DefaultedRegistryType<PlacementModifierType> PLACEMENT_MODIFIER = RegistryTypes.minecraftKeyInGame("worldgen/placement_modifier_type");
+    public static final DefaultedRegistryType<PlacementModifierType> PLACEMENT_MODIFIER = RegistryTypes.spongeKeyInGame("placement_modifier_type");
 
     public static final DefaultedRegistryType<PotionEffectType> POTION_EFFECT_TYPE = RegistryTypes.minecraftKeyInGame("mob_effect");
 

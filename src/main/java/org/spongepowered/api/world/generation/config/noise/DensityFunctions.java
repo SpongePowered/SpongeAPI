@@ -94,6 +94,10 @@ public final class DensityFunctions {
 
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_LARGE_BIOMES_SLOPED_CHEESE = DensityFunctions.key(ResourceKey.minecraft("overworld_large_biomes/sloped_cheese"));
 
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_LARGE_BIOMES_TEMPERATURE = DensityFunctions.key(ResourceKey.minecraft("overworld_large_biomes/temperature"));
+
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_LARGE_BIOMES_VEGETATION = DensityFunctions.key(ResourceKey.minecraft("overworld_large_biomes/vegetation"));
+
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_OFFSET = DensityFunctions.key(ResourceKey.minecraft("overworld/offset"));
 
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_RIDGES = DensityFunctions.key(ResourceKey.minecraft("overworld/ridges"));
@@ -101,6 +105,10 @@ public final class DensityFunctions {
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_RIDGES_FOLDED = DensityFunctions.key(ResourceKey.minecraft("overworld/ridges_folded"));
 
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_SLOPED_CHEESE = DensityFunctions.key(ResourceKey.minecraft("overworld/sloped_cheese"));
+
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_TEMPERATURE = DensityFunctions.key(ResourceKey.minecraft("overworld/temperature"));
+
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_VEGETATION = DensityFunctions.key(ResourceKey.minecraft("overworld/vegetation"));
 
     public static final DefaultedRegistryReference<DensityFunction> SHIFT_X = DensityFunctions.key(ResourceKey.minecraft("shift_x"));
 

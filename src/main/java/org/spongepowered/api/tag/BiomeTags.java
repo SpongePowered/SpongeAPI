@@ -41,6 +41,42 @@ public final class BiomeTags {
 
     public static final DefaultedTag<Biome> ALLOWS_TROPICAL_FISH_SPAWNS_AT_ANY_HEIGHT = BiomeTags.key(ResourceKey.minecraft("allows_tropical_fish_spawns_at_any_height"));
 
+    public static final DefaultedTag<Biome> HAS_STRUCTURE_ABANDONED_CAMP_BAMBOO_JUNGLE = BiomeTags.key(ResourceKey.minecraft("has_structure/abandoned_camp_bamboo_jungle"));
+
+    public static final DefaultedTag<Biome> HAS_STRUCTURE_ABANDONED_CAMP_BIRCH_FOREST = BiomeTags.key(ResourceKey.minecraft("has_structure/abandoned_camp_birch_forest"));
+
+    public static final DefaultedTag<Biome> HAS_STRUCTURE_ABANDONED_CAMP_CHERRY_GROVE = BiomeTags.key(ResourceKey.minecraft("has_structure/abandoned_camp_cherry_grove"));
+
+    public static final DefaultedTag<Biome> HAS_STRUCTURE_ABANDONED_CAMP_DAPPLED_FOREST = BiomeTags.key(ResourceKey.minecraft("has_structure/abandoned_camp_dappled_forest"));
+
+    public static final DefaultedTag<Biome> HAS_STRUCTURE_ABANDONED_CAMP_FLOWER_FOREST = BiomeTags.key(ResourceKey.minecraft("has_structure/abandoned_camp_flower_forest"));
+
+    public static final DefaultedTag<Biome> HAS_STRUCTURE_ABANDONED_CAMP_FOREST = BiomeTags.key(ResourceKey.minecraft("has_structure/abandoned_camp_forest"));
+
+    public static final DefaultedTag<Biome> HAS_STRUCTURE_ABANDONED_CAMP_MEADOW = BiomeTags.key(ResourceKey.minecraft("has_structure/abandoned_camp_meadow"));
+
+    public static final DefaultedTag<Biome> HAS_STRUCTURE_ABANDONED_CAMP_OLD_GROWTH_BIRCH_FOREST = BiomeTags.key(ResourceKey.minecraft("has_structure/abandoned_camp_old_growth_birch_forest"));
+
+    public static final DefaultedTag<Biome> HAS_STRUCTURE_ABANDONED_CAMP_OLD_GROWTH_PINE_TAIGA = BiomeTags.key(ResourceKey.minecraft("has_structure/abandoned_camp_old_growth_pine_taiga"));
+
+    public static final DefaultedTag<Biome> HAS_STRUCTURE_ABANDONED_CAMP_OLD_GROWTH_SPRUCE_TAIGA = BiomeTags.key(ResourceKey.minecraft("has_structure/abandoned_camp_old_growth_spruce_taiga"));
+
+    public static final DefaultedTag<Biome> HAS_STRUCTURE_ABANDONED_CAMP_PALE_GARDEN = BiomeTags.key(ResourceKey.minecraft("has_structure/abandoned_camp_pale_garden"));
+
+    public static final DefaultedTag<Biome> HAS_STRUCTURE_ABANDONED_CAMP_SAVANNA = BiomeTags.key(ResourceKey.minecraft("has_structure/abandoned_camp_savanna"));
+
+    public static final DefaultedTag<Biome> HAS_STRUCTURE_ABANDONED_CAMP_SNOWY_TAIGA = BiomeTags.key(ResourceKey.minecraft("has_structure/abandoned_camp_snowy_taiga"));
+
+    public static final DefaultedTag<Biome> HAS_STRUCTURE_ABANDONED_CAMP_SPARSE_JUNGLE = BiomeTags.key(ResourceKey.minecraft("has_structure/abandoned_camp_sparse_jungle"));
+
+    public static final DefaultedTag<Biome> HAS_STRUCTURE_ABANDONED_CAMP_SWAMP = BiomeTags.key(ResourceKey.minecraft("has_structure/abandoned_camp_swamp"));
+
+    public static final DefaultedTag<Biome> HAS_STRUCTURE_ABANDONED_CAMP_TAIGA = BiomeTags.key(ResourceKey.minecraft("has_structure/abandoned_camp_taiga"));
+
+    public static final DefaultedTag<Biome> HAS_STRUCTURE_ABANDONED_CAMP_WINDSWEPT_FOREST = BiomeTags.key(ResourceKey.minecraft("has_structure/abandoned_camp_windswept_forest"));
+
+    public static final DefaultedTag<Biome> HAS_STRUCTURE_ABANDONED_CAMP_WOODED_BADLANDS = BiomeTags.key(ResourceKey.minecraft("has_structure/abandoned_camp_wooded_badlands"));
+
     public static final DefaultedTag<Biome> HAS_STRUCTURE_ANCIENT_CITY = BiomeTags.key(ResourceKey.minecraft("has_structure/ancient_city"));
 
     public static final DefaultedTag<Biome> HAS_STRUCTURE_BASTION_REMNANT = BiomeTags.key(ResourceKey.minecraft("has_structure/bastion_remnant"));

@@ -40,6 +40,78 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.ENGINE)
 public final class JigsawPools {
 
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_CAMP_BAMBOO_JUNGLE = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/camp/bamboo_jungle"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_CAMP_BIRCH_FOREST = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/camp/birch_forest"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_CAMP_CHERRY_GROVE = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/camp/cherry_grove"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_CAMP_DAPPLED_FOREST = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/camp/dappled_forest"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_CAMP_FLOWER_FOREST = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/camp/flower_forest"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_CAMP_FOREST = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/camp/forest"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_CAMP_MEADOW = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/camp/meadow"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_CAMP_OLD_GROWTH_BIRCH_FOREST = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/camp/old_growth_birch_forest"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_CAMP_OLD_GROWTH_PINE_TAIGA = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/camp/old_growth_pine_taiga"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_CAMP_OLD_GROWTH_SPRUCE_TAIGA = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/camp/old_growth_spruce_taiga"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_CAMP_PALE_GARDEN = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/camp/pale_garden"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_CAMP_SAVANNA = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/camp/savanna"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_CAMP_SNOWY_TAIGA = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/camp/snowy_taiga"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_CAMP_SPARSE_JUNGLE = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/camp/sparse_jungle"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_CAMP_SWAMP = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/camp/swamp"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_CAMP_TAIGA = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/camp/taiga"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_CAMP_WINDSWEPT_FOREST = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/camp/windswept_forest"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_CAMP_WOODED_BADLANDS = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/camp/wooded_badlands"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TENT_BAMBOO_JUNGLE = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/tent/bamboo_jungle"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TENT_BIRCH_FOREST = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/tent/birch_forest"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TENT_CHERRY_GROVE = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/tent/cherry_grove"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TENT_DAPPLED_FOREST = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/tent/dappled_forest"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TENT_FLOWER_FOREST = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/tent/flower_forest"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TENT_FOREST = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/tent/forest"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TENT_MEADOW = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/tent/meadow"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TENT_OLD_GROWTH_BIRCH_FOREST = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/tent/old_growth_birch_forest"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TENT_OLD_GROWTH_PINE_TAIGA = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/tent/old_growth_pine_taiga"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TENT_OLD_GROWTH_SPRUCE_TAIGA = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/tent/old_growth_spruce_taiga"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TENT_PALE_GARDEN = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/tent/pale_garden"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TENT_SAVANNA = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/tent/savanna"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TENT_SNOWY_TAIGA = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/tent/snowy_taiga"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TENT_SPARSE_JUNGLE = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/tent/sparse_jungle"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TENT_SWAMP = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/tent/swamp"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TENT_TAIGA = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/tent/taiga"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TENT_WINDSWEPT_FOREST = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/tent/windswept_forest"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TENT_WOODED_BADLANDS = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/tent/wooded_badlands"));
+
     public static final DefaultedRegistryReference<JigsawPool> ANCIENT_CITY_CITY_CENTER = JigsawPools.key(ResourceKey.minecraft("ancient_city/city_center"));
 
     public static final DefaultedRegistryReference<JigsawPool> ANCIENT_CITY_CITY_CENTER_WALLS = JigsawPools.key(ResourceKey.minecraft("ancient_city/city_center/walls"));

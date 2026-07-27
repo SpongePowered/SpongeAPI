@@ -204,6 +204,8 @@ public final class ParticleTypes {
 
     public static final DefaultedRegistryReference<ParticleType> OMINOUS_SPAWNING = ParticleTypes.key(ResourceKey.minecraft("ominous_spawning"));
 
+    public static final DefaultedRegistryReference<ParticleType> ORANGE_POPLAR_LEAVES = ParticleTypes.key(ResourceKey.minecraft("orange_poplar_leaves"));
+
     public static final DefaultedRegistryReference<ParticleType> PALE_OAK_LEAVES = ParticleTypes.key(ResourceKey.minecraft("pale_oak_leaves"));
 
     public static final DefaultedRegistryReference<ParticleType> PAUSE_MOB_GROWTH = ParticleTypes.key(ResourceKey.minecraft("pause_mob_growth"));
@@ -215,6 +217,8 @@ public final class ParticleTypes {
     public static final DefaultedRegistryReference<ParticleType> RAID_OMEN = ParticleTypes.key(ResourceKey.minecraft("raid_omen"));
 
     public static final DefaultedRegistryReference<ParticleType> RAIN = ParticleTypes.key(ResourceKey.minecraft("rain"));
+
+    public static final DefaultedRegistryReference<ParticleType> RED_POPLAR_LEAVES = ParticleTypes.key(ResourceKey.minecraft("red_poplar_leaves"));
 
     public static final DefaultedRegistryReference<ParticleType> RESET_MOB_GROWTH = ParticleTypes.key(ResourceKey.minecraft("reset_mob_growth"));
 
@@ -289,6 +293,8 @@ public final class ParticleTypes {
     public static final DefaultedRegistryReference<ParticleType> WHITE_SMOKE = ParticleTypes.key(ResourceKey.minecraft("white_smoke"));
 
     public static final DefaultedRegistryReference<ParticleType> WITCH = ParticleTypes.key(ResourceKey.minecraft("witch"));
+
+    public static final DefaultedRegistryReference<ParticleType> YELLOW_POPLAR_LEAVES = ParticleTypes.key(ResourceKey.minecraft("yellow_poplar_leaves"));
 
     private ParticleTypes() {
     }

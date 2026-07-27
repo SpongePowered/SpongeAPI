@@ -95,6 +95,8 @@ public final class DamageTypeTags {
 
     public static final DefaultedTag<DamageType> NO_KNOCKBACK = DamageTypeTags.key(ResourceKey.minecraft("no_knockback"));
 
+    public static final DefaultedTag<DamageType> NO_WOLF_RETALIATION = DamageTypeTags.key(ResourceKey.minecraft("no_wolf_retaliation"));
+
     public static final DefaultedTag<DamageType> PANIC_CAUSES = DamageTypeTags.key(ResourceKey.minecraft("panic_causes"));
 
     public static final DefaultedTag<DamageType> PANIC_ENVIRONMENTAL_CAUSES = DamageTypeTags.key(ResourceKey.minecraft("panic_environmental_causes"));

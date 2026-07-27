@@ -242,6 +242,10 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> BLACK_WOOL = BlockTypes.key(ResourceKey.minecraft("black_wool"));
 
+    public static final DefaultedRegistryReference<BlockType> BLACK_WOOL_SLAB = BlockTypes.key(ResourceKey.minecraft("black_wool_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> BLACK_WOOL_STAIRS = BlockTypes.key(ResourceKey.minecraft("black_wool_stairs"));
+
     public static final DefaultedRegistryReference<BlockType> BLAST_FURNACE = BlockTypes.key(ResourceKey.minecraft("blast_furnace"));
 
     public static final DefaultedRegistryReference<BlockType> BLUE_BANNER = BlockTypes.key(ResourceKey.minecraft("blue_banner"));
@@ -275,6 +279,10 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> BLUE_WALL_BANNER = BlockTypes.key(ResourceKey.minecraft("blue_wall_banner"));
 
     public static final DefaultedRegistryReference<BlockType> BLUE_WOOL = BlockTypes.key(ResourceKey.minecraft("blue_wool"));
+
+    public static final DefaultedRegistryReference<BlockType> BLUE_WOOL_SLAB = BlockTypes.key(ResourceKey.minecraft("blue_wool_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> BLUE_WOOL_STAIRS = BlockTypes.key(ResourceKey.minecraft("blue_wool_stairs"));
 
     public static final DefaultedRegistryReference<BlockType> BONE_BLOCK = BlockTypes.key(ResourceKey.minecraft("bone_block"));
 
@@ -329,6 +337,10 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> BROWN_WALL_BANNER = BlockTypes.key(ResourceKey.minecraft("brown_wall_banner"));
 
     public static final DefaultedRegistryReference<BlockType> BROWN_WOOL = BlockTypes.key(ResourceKey.minecraft("brown_wool"));
+
+    public static final DefaultedRegistryReference<BlockType> BROWN_WOOL_SLAB = BlockTypes.key(ResourceKey.minecraft("brown_wool_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> BROWN_WOOL_STAIRS = BlockTypes.key(ResourceKey.minecraft("brown_wool_stairs"));
 
     public static final DefaultedRegistryReference<BlockType> BUBBLE_COLUMN = BlockTypes.key(ResourceKey.minecraft("bubble_column"));
 
@@ -632,6 +644,10 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> CYAN_WOOL = BlockTypes.key(ResourceKey.minecraft("cyan_wool"));
 
+    public static final DefaultedRegistryReference<BlockType> CYAN_WOOL_SLAB = BlockTypes.key(ResourceKey.minecraft("cyan_wool_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> CYAN_WOOL_STAIRS = BlockTypes.key(ResourceKey.minecraft("cyan_wool_stairs"));
+
     public static final DefaultedRegistryReference<BlockType> DAMAGED_ANVIL = BlockTypes.key(ResourceKey.minecraft("damaged_anvil"));
 
     public static final DefaultedRegistryReference<BlockType> DANDELION = BlockTypes.key(ResourceKey.minecraft("dandelion"));
@@ -934,6 +950,10 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> GRAY_WOOL = BlockTypes.key(ResourceKey.minecraft("gray_wool"));
 
+    public static final DefaultedRegistryReference<BlockType> GRAY_WOOL_SLAB = BlockTypes.key(ResourceKey.minecraft("gray_wool_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> GRAY_WOOL_STAIRS = BlockTypes.key(ResourceKey.minecraft("gray_wool_stairs"));
+
     public static final DefaultedRegistryReference<BlockType> GREEN_BANNER = BlockTypes.key(ResourceKey.minecraft("green_banner"));
 
     public static final DefaultedRegistryReference<BlockType> GREEN_BED = BlockTypes.key(ResourceKey.minecraft("green_bed"));
@@ -961,6 +981,10 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> GREEN_WALL_BANNER = BlockTypes.key(ResourceKey.minecraft("green_wall_banner"));
 
     public static final DefaultedRegistryReference<BlockType> GREEN_WOOL = BlockTypes.key(ResourceKey.minecraft("green_wool"));
+
+    public static final DefaultedRegistryReference<BlockType> GREEN_WOOL_SLAB = BlockTypes.key(ResourceKey.minecraft("green_wool_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> GREEN_WOOL_STAIRS = BlockTypes.key(ResourceKey.minecraft("green_wool_stairs"));
 
     public static final DefaultedRegistryReference<BlockType> GRINDSTONE = BlockTypes.key(ResourceKey.minecraft("grindstone"));
 
@@ -1114,6 +1138,10 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> LIGHT_BLUE_WOOL = BlockTypes.key(ResourceKey.minecraft("light_blue_wool"));
 
+    public static final DefaultedRegistryReference<BlockType> LIGHT_BLUE_WOOL_SLAB = BlockTypes.key(ResourceKey.minecraft("light_blue_wool_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> LIGHT_BLUE_WOOL_STAIRS = BlockTypes.key(ResourceKey.minecraft("light_blue_wool_stairs"));
+
     public static final DefaultedRegistryReference<BlockType> LIGHT_GRAY_BANNER = BlockTypes.key(ResourceKey.minecraft("light_gray_banner"));
 
     public static final DefaultedRegistryReference<BlockType> LIGHT_GRAY_BED = BlockTypes.key(ResourceKey.minecraft("light_gray_bed"));
@@ -1141,6 +1169,10 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> LIGHT_GRAY_WALL_BANNER = BlockTypes.key(ResourceKey.minecraft("light_gray_wall_banner"));
 
     public static final DefaultedRegistryReference<BlockType> LIGHT_GRAY_WOOL = BlockTypes.key(ResourceKey.minecraft("light_gray_wool"));
+
+    public static final DefaultedRegistryReference<BlockType> LIGHT_GRAY_WOOL_SLAB = BlockTypes.key(ResourceKey.minecraft("light_gray_wool_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> LIGHT_GRAY_WOOL_STAIRS = BlockTypes.key(ResourceKey.minecraft("light_gray_wool_stairs"));
 
     public static final DefaultedRegistryReference<BlockType> LIGHT_WEIGHTED_PRESSURE_PLATE = BlockTypes.key(ResourceKey.minecraft("light_weighted_pressure_plate"));
 
@@ -1178,6 +1210,10 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> LIME_WOOL = BlockTypes.key(ResourceKey.minecraft("lime_wool"));
 
+    public static final DefaultedRegistryReference<BlockType> LIME_WOOL_SLAB = BlockTypes.key(ResourceKey.minecraft("lime_wool_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> LIME_WOOL_STAIRS = BlockTypes.key(ResourceKey.minecraft("lime_wool_stairs"));
+
     public static final DefaultedRegistryReference<BlockType> LODESTONE = BlockTypes.key(ResourceKey.minecraft("lodestone"));
 
     public static final DefaultedRegistryReference<BlockType> LOOM = BlockTypes.key(ResourceKey.minecraft("loom"));
@@ -1209,6 +1245,10 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> MAGENTA_WALL_BANNER = BlockTypes.key(ResourceKey.minecraft("magenta_wall_banner"));
 
     public static final DefaultedRegistryReference<BlockType> MAGENTA_WOOL = BlockTypes.key(ResourceKey.minecraft("magenta_wool"));
+
+    public static final DefaultedRegistryReference<BlockType> MAGENTA_WOOL_SLAB = BlockTypes.key(ResourceKey.minecraft("magenta_wool_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> MAGENTA_WOOL_STAIRS = BlockTypes.key(ResourceKey.minecraft("magenta_wool_stairs"));
 
     public static final DefaultedRegistryReference<BlockType> MAGMA_BLOCK = BlockTypes.key(ResourceKey.minecraft("magma_block"));
 
@@ -1382,6 +1422,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> ORANGE_GLAZED_TERRACOTTA = BlockTypes.key(ResourceKey.minecraft("orange_glazed_terracotta"));
 
+    public static final DefaultedRegistryReference<BlockType> ORANGE_POPLAR_LEAVES = BlockTypes.key(ResourceKey.minecraft("orange_poplar_leaves"));
+
     public static final DefaultedRegistryReference<BlockType> ORANGE_SHULKER_BOX = BlockTypes.key(ResourceKey.minecraft("orange_shulker_box"));
 
     public static final DefaultedRegistryReference<BlockType> ORANGE_STAINED_GLASS = BlockTypes.key(ResourceKey.minecraft("orange_stained_glass"));
@@ -1395,6 +1437,10 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> ORANGE_WALL_BANNER = BlockTypes.key(ResourceKey.minecraft("orange_wall_banner"));
 
     public static final DefaultedRegistryReference<BlockType> ORANGE_WOOL = BlockTypes.key(ResourceKey.minecraft("orange_wool"));
+
+    public static final DefaultedRegistryReference<BlockType> ORANGE_WOOL_SLAB = BlockTypes.key(ResourceKey.minecraft("orange_wool_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> ORANGE_WOOL_STAIRS = BlockTypes.key(ResourceKey.minecraft("orange_wool_stairs"));
 
     public static final DefaultedRegistryReference<BlockType> OXEYE_DAISY = BlockTypes.key(ResourceKey.minecraft("oxeye_daisy"));
 
@@ -1516,6 +1562,10 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> PINK_WOOL = BlockTypes.key(ResourceKey.minecraft("pink_wool"));
 
+    public static final DefaultedRegistryReference<BlockType> PINK_WOOL_SLAB = BlockTypes.key(ResourceKey.minecraft("pink_wool_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> PINK_WOOL_STAIRS = BlockTypes.key(ResourceKey.minecraft("pink_wool_stairs"));
+
     public static final DefaultedRegistryReference<BlockType> PISTON = BlockTypes.key(ResourceKey.minecraft("piston"));
 
     public static final DefaultedRegistryReference<BlockType> PISTON_HEAD = BlockTypes.key(ResourceKey.minecraft("piston_head"));
@@ -1604,6 +1654,40 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> POLISHED_TUFF_WALL = BlockTypes.key(ResourceKey.minecraft("polished_tuff_wall"));
 
+    public static final DefaultedRegistryReference<BlockType> POPLAR_BUTTON = BlockTypes.key(ResourceKey.minecraft("poplar_button"));
+
+    public static final DefaultedRegistryReference<BlockType> POPLAR_DOOR = BlockTypes.key(ResourceKey.minecraft("poplar_door"));
+
+    public static final DefaultedRegistryReference<BlockType> POPLAR_FENCE = BlockTypes.key(ResourceKey.minecraft("poplar_fence"));
+
+    public static final DefaultedRegistryReference<BlockType> POPLAR_FENCE_GATE = BlockTypes.key(ResourceKey.minecraft("poplar_fence_gate"));
+
+    public static final DefaultedRegistryReference<BlockType> POPLAR_HANGING_SIGN = BlockTypes.key(ResourceKey.minecraft("poplar_hanging_sign"));
+
+    public static final DefaultedRegistryReference<BlockType> POPLAR_LOG = BlockTypes.key(ResourceKey.minecraft("poplar_log"));
+
+    public static final DefaultedRegistryReference<BlockType> POPLAR_PLANKS = BlockTypes.key(ResourceKey.minecraft("poplar_planks"));
+
+    public static final DefaultedRegistryReference<BlockType> POPLAR_PRESSURE_PLATE = BlockTypes.key(ResourceKey.minecraft("poplar_pressure_plate"));
+
+    public static final DefaultedRegistryReference<BlockType> POPLAR_SAPLING = BlockTypes.key(ResourceKey.minecraft("poplar_sapling"));
+
+    public static final DefaultedRegistryReference<BlockType> POPLAR_SHELF = BlockTypes.key(ResourceKey.minecraft("poplar_shelf"));
+
+    public static final DefaultedRegistryReference<BlockType> POPLAR_SIGN = BlockTypes.key(ResourceKey.minecraft("poplar_sign"));
+
+    public static final DefaultedRegistryReference<BlockType> POPLAR_SLAB = BlockTypes.key(ResourceKey.minecraft("poplar_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> POPLAR_STAIRS = BlockTypes.key(ResourceKey.minecraft("poplar_stairs"));
+
+    public static final DefaultedRegistryReference<BlockType> POPLAR_TRAPDOOR = BlockTypes.key(ResourceKey.minecraft("poplar_trapdoor"));
+
+    public static final DefaultedRegistryReference<BlockType> POPLAR_WALL_HANGING_SIGN = BlockTypes.key(ResourceKey.minecraft("poplar_wall_hanging_sign"));
+
+    public static final DefaultedRegistryReference<BlockType> POPLAR_WALL_SIGN = BlockTypes.key(ResourceKey.minecraft("poplar_wall_sign"));
+
+    public static final DefaultedRegistryReference<BlockType> POPLAR_WOOD = BlockTypes.key(ResourceKey.minecraft("poplar_wood"));
+
     public static final DefaultedRegistryReference<BlockType> POPPY = BlockTypes.key(ResourceKey.minecraft("poppy"));
 
     public static final DefaultedRegistryReference<BlockType> POTATOES = BlockTypes.key(ResourceKey.minecraft("potatoes"));
@@ -1667,6 +1751,8 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> POTTED_PALE_OAK_SAPLING = BlockTypes.key(ResourceKey.minecraft("potted_pale_oak_sapling"));
 
     public static final DefaultedRegistryReference<BlockType> POTTED_PINK_TULIP = BlockTypes.key(ResourceKey.minecraft("potted_pink_tulip"));
+
+    public static final DefaultedRegistryReference<BlockType> POTTED_POPLAR_SAPLING = BlockTypes.key(ResourceKey.minecraft("potted_poplar_sapling"));
 
     public static final DefaultedRegistryReference<BlockType> POTTED_POPPY = BlockTypes.key(ResourceKey.minecraft("potted_poppy"));
 
@@ -1738,6 +1824,10 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> PURPLE_WOOL = BlockTypes.key(ResourceKey.minecraft("purple_wool"));
 
+    public static final DefaultedRegistryReference<BlockType> PURPLE_WOOL_SLAB = BlockTypes.key(ResourceKey.minecraft("purple_wool_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> PURPLE_WOOL_STAIRS = BlockTypes.key(ResourceKey.minecraft("purple_wool_stairs"));
+
     public static final DefaultedRegistryReference<BlockType> PURPUR_BLOCK = BlockTypes.key(ResourceKey.minecraft("purpur_block"));
 
     public static final DefaultedRegistryReference<BlockType> PURPUR_PILLAR = BlockTypes.key(ResourceKey.minecraft("purpur_pillar"));
@@ -1804,6 +1894,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> RED_NETHER_BRICK_WALL = BlockTypes.key(ResourceKey.minecraft("red_nether_brick_wall"));
 
+    public static final DefaultedRegistryReference<BlockType> RED_POPLAR_LEAVES = BlockTypes.key(ResourceKey.minecraft("red_poplar_leaves"));
+
     public static final DefaultedRegistryReference<BlockType> RED_SAND = BlockTypes.key(ResourceKey.minecraft("red_sand"));
 
     public static final DefaultedRegistryReference<BlockType> RED_SANDSTONE = BlockTypes.key(ResourceKey.minecraft("red_sandstone"));
@@ -1813,6 +1905,8 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> RED_SANDSTONE_STAIRS = BlockTypes.key(ResourceKey.minecraft("red_sandstone_stairs"));
 
     public static final DefaultedRegistryReference<BlockType> RED_SANDSTONE_WALL = BlockTypes.key(ResourceKey.minecraft("red_sandstone_wall"));
+
+    public static final DefaultedRegistryReference<BlockType> RED_SHRUB = BlockTypes.key(ResourceKey.minecraft("red_shrub"));
 
     public static final DefaultedRegistryReference<BlockType> RED_SHULKER_BOX = BlockTypes.key(ResourceKey.minecraft("red_shulker_box"));
 
@@ -1827,6 +1921,10 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> RED_WALL_BANNER = BlockTypes.key(ResourceKey.minecraft("red_wall_banner"));
 
     public static final DefaultedRegistryReference<BlockType> RED_WOOL = BlockTypes.key(ResourceKey.minecraft("red_wool"));
+
+    public static final DefaultedRegistryReference<BlockType> RED_WOOL_SLAB = BlockTypes.key(ResourceKey.minecraft("red_wool_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> RED_WOOL_STAIRS = BlockTypes.key(ResourceKey.minecraft("red_wool_stairs"));
 
     public static final DefaultedRegistryReference<BlockType> REINFORCED_DEEPSLATE = BlockTypes.key(ResourceKey.minecraft("reinforced_deepslate"));
 
@@ -1879,6 +1977,8 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> SEA_LANTERN = BlockTypes.key(ResourceKey.minecraft("sea_lantern"));
 
     public static final DefaultedRegistryReference<BlockType> SEA_PICKLE = BlockTypes.key(ResourceKey.minecraft("sea_pickle"));
+
+    public static final DefaultedRegistryReference<BlockType> SHELF_MUSHROOM = BlockTypes.key(ResourceKey.minecraft("shelf_mushroom"));
 
     public static final DefaultedRegistryReference<BlockType> SHORT_DRY_GRASS = BlockTypes.key(ResourceKey.minecraft("short_dry_grass"));
 
@@ -2047,6 +2147,10 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> STRIPPED_PALE_OAK_LOG = BlockTypes.key(ResourceKey.minecraft("stripped_pale_oak_log"));
 
     public static final DefaultedRegistryReference<BlockType> STRIPPED_PALE_OAK_WOOD = BlockTypes.key(ResourceKey.minecraft("stripped_pale_oak_wood"));
+
+    public static final DefaultedRegistryReference<BlockType> STRIPPED_POPLAR_LOG = BlockTypes.key(ResourceKey.minecraft("stripped_poplar_log"));
+
+    public static final DefaultedRegistryReference<BlockType> STRIPPED_POPLAR_WOOD = BlockTypes.key(ResourceKey.minecraft("stripped_poplar_wood"));
 
     public static final DefaultedRegistryReference<BlockType> STRIPPED_SPRUCE_LOG = BlockTypes.key(ResourceKey.minecraft("stripped_spruce_log"));
 
@@ -2392,6 +2496,10 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> WHITE_WOOL = BlockTypes.key(ResourceKey.minecraft("white_wool"));
 
+    public static final DefaultedRegistryReference<BlockType> WHITE_WOOL_SLAB = BlockTypes.key(ResourceKey.minecraft("white_wool_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> WHITE_WOOL_STAIRS = BlockTypes.key(ResourceKey.minecraft("white_wool_stairs"));
+
     public static final DefaultedRegistryReference<BlockType> WILDFLOWERS = BlockTypes.key(ResourceKey.minecraft("wildflowers"));
 
     public static final DefaultedRegistryReference<BlockType> WITHER_ROSE = BlockTypes.key(ResourceKey.minecraft("wither_rose"));
@@ -2416,6 +2524,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> YELLOW_GLAZED_TERRACOTTA = BlockTypes.key(ResourceKey.minecraft("yellow_glazed_terracotta"));
 
+    public static final DefaultedRegistryReference<BlockType> YELLOW_POPLAR_LEAVES = BlockTypes.key(ResourceKey.minecraft("yellow_poplar_leaves"));
+
     public static final DefaultedRegistryReference<BlockType> YELLOW_SHULKER_BOX = BlockTypes.key(ResourceKey.minecraft("yellow_shulker_box"));
 
     public static final DefaultedRegistryReference<BlockType> YELLOW_STAINED_GLASS = BlockTypes.key(ResourceKey.minecraft("yellow_stained_glass"));
@@ -2427,6 +2537,10 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> YELLOW_WALL_BANNER = BlockTypes.key(ResourceKey.minecraft("yellow_wall_banner"));
 
     public static final DefaultedRegistryReference<BlockType> YELLOW_WOOL = BlockTypes.key(ResourceKey.minecraft("yellow_wool"));
+
+    public static final DefaultedRegistryReference<BlockType> YELLOW_WOOL_SLAB = BlockTypes.key(ResourceKey.minecraft("yellow_wool_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> YELLOW_WOOL_STAIRS = BlockTypes.key(ResourceKey.minecraft("yellow_wool_stairs"));
 
     public static final DefaultedRegistryReference<BlockType> ZOMBIE_HEAD = BlockTypes.key(ResourceKey.minecraft("zombie_head"));
 

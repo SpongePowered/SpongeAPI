@@ -89,6 +89,20 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> BIRCH_LOGS = BlockTypeTags.key(ResourceKey.minecraft("birch_logs"));
 
+    public static final DefaultedTag<BlockType> BLOCKS_DOLPHIN_JUMP = BlockTypeTags.key(ResourceKey.minecraft("blocks_dolphin_jump"));
+
+    public static final DefaultedTag<BlockType> BLOCKS_FLUID_FLOW = BlockTypeTags.key(ResourceKey.minecraft("blocks_fluid_flow"));
+
+    public static final DefaultedTag<BlockType> BLOCKS_LAVA_FIRE_SPREAD = BlockTypeTags.key(ResourceKey.minecraft("blocks_lava_fire_spread"));
+
+    public static final DefaultedTag<BlockType> BLOCKS_MOTION = BlockTypeTags.key(ResourceKey.minecraft("blocks_motion"));
+
+    public static final DefaultedTag<BlockType> BLOCKS_MOTION_IN_HEIGHTMAP = BlockTypeTags.key(ResourceKey.minecraft("blocks_motion_in_heightmap"));
+
+    public static final DefaultedTag<BlockType> BLOCKS_MOTION_IN_HEIGHTMAP_NO_LEAVES = BlockTypeTags.key(ResourceKey.minecraft("blocks_motion_in_heightmap_no_leaves"));
+
+    public static final DefaultedTag<BlockType> BLOCKS_MOTION_NO_LEAVES = BlockTypeTags.key(ResourceKey.minecraft("blocks_motion_no_leaves"));
+
     public static final DefaultedTag<BlockType> BLOCKS_WIND_CHARGE_EXPLOSIONS = BlockTypeTags.key(ResourceKey.minecraft("blocks_wind_charge_explosions"));
 
     public static final DefaultedTag<BlockType> BUTTONS = BlockTypeTags.key(ResourceKey.minecraft("buttons"));
@@ -105,6 +119,8 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> CANDLES = BlockTypeTags.key(ResourceKey.minecraft("candles"));
 
+    public static final DefaultedTag<BlockType> CANNOT_PLACE_BASALT_PILLAR_ON = BlockTypeTags.key(ResourceKey.minecraft("cannot_place_basalt_pillar_on"));
+
     public static final DefaultedTag<BlockType> CANNOT_REPLACE_BELOW_TREE_TRUNK = BlockTypeTags.key(ResourceKey.minecraft("cannot_replace_below_tree_trunk"));
 
     public static final DefaultedTag<BlockType> CANNOT_SUPPORT_KELP = BlockTypeTags.key(ResourceKey.minecraft("cannot_support_kelp"));
@@ -118,6 +134,8 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> CAUSES_CONTINUOUS_GEYSER_ERUPTIONS = BlockTypeTags.key(ResourceKey.minecraft("causes_continuous_geyser_eruptions"));
 
     public static final DefaultedTag<BlockType> CAUSES_PERIODIC_GEYSER_ERUPTIONS = BlockTypeTags.key(ResourceKey.minecraft("causes_periodic_geyser_eruptions"));
+
+    public static final DefaultedTag<BlockType> CAUSES_SUFFOCATION = BlockTypeTags.key(ResourceKey.minecraft("causes_suffocation"));
 
     public static final DefaultedTag<BlockType> CAVE_VINES = BlockTypeTags.key(ResourceKey.minecraft("cave_vines"));
 
@@ -197,6 +215,8 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> ENDERMAN_HOLDABLE = BlockTypeTags.key(ResourceKey.minecraft("enderman_holdable"));
 
+    public static final DefaultedTag<BlockType> ENTITIES_CAN_TELEPORT_TO = BlockTypeTags.key(ResourceKey.minecraft("entities_can_teleport_to"));
+
     public static final DefaultedTag<BlockType> FALL_DAMAGE_RESETTING = BlockTypeTags.key(ResourceKey.minecraft("fall_damage_resetting"));
 
     public static final DefaultedTag<BlockType> FEATURES_CANNOT_REPLACE = BlockTypeTags.key(ResourceKey.minecraft("features_cannot_replace"));
@@ -244,6 +264,8 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> HUGE_RED_MUSHROOM_CAN_PLACE_ON = BlockTypeTags.key(ResourceKey.minecraft("huge_red_mushroom_can_place_on"));
 
     public static final DefaultedTag<BlockType> ICE = BlockTypeTags.key(ResourceKey.minecraft("ice"));
+
+    public static final DefaultedTag<BlockType> ICE_MELTS_WHEN_DESTROYED_ABOVE = BlockTypeTags.key(ResourceKey.minecraft("ice_melts_when_destroyed_above"));
 
     public static final DefaultedTag<BlockType> ICE_SPIKE_REPLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("ice_spike_replaceable"));
 
@@ -325,17 +347,15 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> NEEDS_STONE_TOOL = BlockTypeTags.key(ResourceKey.minecraft("needs_stone_tool"));
 
-    public static final DefaultedTag<BlockType> NETHER_CARVER_REPLACEABLES = BlockTypeTags.key(ResourceKey.minecraft("nether_carver_replaceables"));
-
     public static final DefaultedTag<BlockType> NYLIUM = BlockTypeTags.key(ResourceKey.minecraft("nylium"));
 
     public static final DefaultedTag<BlockType> OAK_LOGS = BlockTypeTags.key(ResourceKey.minecraft("oak_logs"));
 
     public static final DefaultedTag<BlockType> OCCLUDES_VIBRATION_SIGNALS = BlockTypeTags.key(ResourceKey.minecraft("occludes_vibration_signals"));
 
-    public static final DefaultedTag<BlockType> OVERRIDES_MUSHROOM_LIGHT_REQUIREMENT = BlockTypeTags.key(ResourceKey.minecraft("overrides_mushroom_light_requirement"));
+    public static final DefaultedTag<BlockType> ORES = BlockTypeTags.key(ResourceKey.minecraft("ores"));
 
-    public static final DefaultedTag<BlockType> OVERWORLD_CARVER_REPLACEABLES = BlockTypeTags.key(ResourceKey.minecraft("overworld_carver_replaceables"));
+    public static final DefaultedTag<BlockType> OVERRIDES_MUSHROOM_LIGHT_REQUIREMENT = BlockTypeTags.key(ResourceKey.minecraft("overrides_mushroom_light_requirement"));
 
     public static final DefaultedTag<BlockType> OVERWORLD_NATURAL_LOGS = BlockTypeTags.key(ResourceKey.minecraft("overworld_natural_logs"));
 
@@ -350,6 +370,8 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> POLAR_BEAR_IMMUNE_TO = BlockTypeTags.key(ResourceKey.minecraft("polar_bear_immune_to"));
 
     public static final DefaultedTag<BlockType> POLAR_BEARS_SPAWNABLE_ON_ALTERNATE = BlockTypeTags.key(ResourceKey.minecraft("polar_bears_spawnable_on_alternate"));
+
+    public static final DefaultedTag<BlockType> POPLAR_LOGS = BlockTypeTags.key(ResourceKey.minecraft("poplar_logs"));
 
     public static final DefaultedTag<BlockType> PORTALS = BlockTypeTags.key(ResourceKey.minecraft("portals"));
 
@@ -371,6 +393,8 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> REPLACEABLE_BY_TREES = BlockTypeTags.key(ResourceKey.minecraft("replaceable_by_trees"));
 
+    public static final DefaultedTag<BlockType> REQUIRED_FOR_POPLAR_LEAF_AMBIENCE = BlockTypeTags.key(ResourceKey.minecraft("required_for_poplar_leaf_ambience"));
+
     public static final DefaultedTag<BlockType> SAND = BlockTypeTags.key(ResourceKey.minecraft("sand"));
 
     public static final DefaultedTag<BlockType> SAPLINGS = BlockTypeTags.key(ResourceKey.minecraft("saplings"));
@@ -388,6 +412,8 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> SHULKER_BOXES = BlockTypeTags.key(ResourceKey.minecraft("shulker_boxes"));
 
     public static final DefaultedTag<BlockType> SIGNS = BlockTypeTags.key(ResourceKey.minecraft("signs"));
+
+    public static final DefaultedTag<BlockType> SKULLS = BlockTypeTags.key(ResourceKey.minecraft("skulls"));
 
     public static final DefaultedTag<BlockType> SLABS = BlockTypeTags.key(ResourceKey.minecraft("slabs"));
 
@@ -515,6 +541,10 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> TRIGGERS_AMBIENT_DRIED_GHAST_BLOCK_SOUNDS = BlockTypeTags.key(ResourceKey.minecraft("triggers_ambient_dried_ghast_block_sounds"));
 
+    public static final DefaultedTag<BlockType> TURNS_INTO_DIRT_PATH = BlockTypeTags.key(ResourceKey.minecraft("turns_into_dirt_path"));
+
+    public static final DefaultedTag<BlockType> TURNS_INTO_FARMLAND = BlockTypeTags.key(ResourceKey.minecraft("turns_into_farmland"));
+
     public static final DefaultedTag<BlockType> UNDERWATER_BONEMEALS = BlockTypeTags.key(ResourceKey.minecraft("underwater_bonemeals"));
 
     public static final DefaultedTag<BlockType> UNSTABLE_BOTTOM_CENTER = BlockTypeTags.key(ResourceKey.minecraft("unstable_bottom_center"));
@@ -536,6 +566,8 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> WARPED_STEMS = BlockTypeTags.key(ResourceKey.minecraft("warped_stems"));
 
     public static final DefaultedTag<BlockType> WART_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("wart_blocks"));
+
+    public static final DefaultedTag<BlockType> WASHED_AWAY_BY_FLUIDS = BlockTypeTags.key(ResourceKey.minecraft("washed_away_by_fluids"));
 
     public static final DefaultedTag<BlockType> WITHER_IMMUNE = BlockTypeTags.key(ResourceKey.minecraft("wither_immune"));
 
@@ -566,6 +598,10 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> WOOL = BlockTypeTags.key(ResourceKey.minecraft("wool"));
 
     public static final DefaultedTag<BlockType> WOOL_CARPETS = BlockTypeTags.key(ResourceKey.minecraft("wool_carpets"));
+
+    public static final DefaultedTag<BlockType> WOOL_SLABS = BlockTypeTags.key(ResourceKey.minecraft("wool_slabs"));
+
+    public static final DefaultedTag<BlockType> WOOL_STAIRS = BlockTypeTags.key(ResourceKey.minecraft("wool_stairs"));
 
     private BlockTypeTags() {
     }

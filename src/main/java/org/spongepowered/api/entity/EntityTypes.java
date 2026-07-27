@@ -391,6 +391,10 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<PolarBear>> POLAR_BEAR = EntityTypes.key(ResourceKey.minecraft("polar_bear"));
 
+    public static final DefaultedRegistryReference<EntityType<Boat>> POPLAR_BOAT = EntityTypes.key(ResourceKey.minecraft("poplar_boat"));
+
+    public static final DefaultedRegistryReference<EntityType<ChestBoat>> POPLAR_CHEST_BOAT = EntityTypes.key(ResourceKey.minecraft("poplar_chest_boat"));
+
     public static final DefaultedRegistryReference<EntityType<Pufferfish>> PUFFERFISH = EntityTypes.key(ResourceKey.minecraft("pufferfish"));
 
     public static final DefaultedRegistryReference<EntityType<Rabbit>> RABBIT = EntityTypes.key(ResourceKey.minecraft("rabbit"));

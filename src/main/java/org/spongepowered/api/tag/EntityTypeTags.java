@@ -73,6 +73,8 @@ public final class EntityTypeTags {
 
     public static final DefaultedTag<EntityType<?>> CANNOT_BE_AGE_LOCKED = EntityTypeTags.key(ResourceKey.minecraft("cannot_be_age_locked"));
 
+    public static final DefaultedTag<EntityType<?>> CANNOT_BE_DISMOUNTED_BY_ITEM_USAGE = EntityTypeTags.key(ResourceKey.minecraft("cannot_be_dismounted_by_item_usage"));
+
     public static final DefaultedTag<EntityType<?>> CANNOT_BE_PUSHED_ONTO_BOATS = EntityTypeTags.key(ResourceKey.minecraft("cannot_be_pushed_onto_boats"));
 
     public static final DefaultedTag<EntityType<?>> DEFLECTS_PROJECTILES = EntityTypeTags.key(ResourceKey.minecraft("deflects_projectiles"));

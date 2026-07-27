@@ -56,6 +56,8 @@ public final class Biomes {
 
     public static final DefaultedRegistryReference<Biome> CRIMSON_FOREST = Biomes.key(ResourceKey.minecraft("crimson_forest"));
 
+    public static final DefaultedRegistryReference<Biome> DAPPLED_FOREST = Biomes.key(ResourceKey.minecraft("dappled_forest"));
+
     public static final DefaultedRegistryReference<Biome> DARK_FOREST = Biomes.key(ResourceKey.minecraft("dark_forest"));
 
     public static final DefaultedRegistryReference<Biome> DEEP_COLD_OCEAN = Biomes.key(ResourceKey.minecraft("deep_cold_ocean"));

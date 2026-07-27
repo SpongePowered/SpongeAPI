@@ -128,6 +128,8 @@ public final class Noises {
 
     public static final DefaultedRegistryReference<Noise> RIDGE = Noises.key(ResourceKey.minecraft("ridge"));
 
+    public static final DefaultedRegistryReference<Noise> SMALL_PATCH = Noises.key(ResourceKey.minecraft("small_patch"));
+
     public static final DefaultedRegistryReference<Noise> SOUL_SAND_LAYER = Noises.key(ResourceKey.minecraft("soul_sand_layer"));
 
     public static final DefaultedRegistryReference<Noise> SPAGHETTI_2D = Noises.key(ResourceKey.minecraft("spaghetti_2d"));

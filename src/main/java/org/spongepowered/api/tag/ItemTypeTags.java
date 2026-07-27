@@ -147,6 +147,8 @@ public final class ItemTypeTags {
 
     public static final DefaultedTag<ItemType> DOORS = ItemTypeTags.key(ResourceKey.minecraft("doors"));
 
+    public static final DefaultedTag<ItemType> DOWSES_CAMPFIRES = ItemTypeTags.key(ResourceKey.minecraft("dowses_campfires"));
+
     public static final DefaultedTag<ItemType> DROWNED_PREFERRED_WEAPONS = ItemTypeTags.key(ResourceKey.minecraft("drowned_preferred_weapons"));
 
     public static final DefaultedTag<ItemType> DUPLICATES_ALLAYS = ItemTypeTags.key(ResourceKey.minecraft("duplicates_allays"));
@@ -291,6 +293,8 @@ public final class ItemTypeTags {
 
     public static final DefaultedTag<ItemType> MUD = ItemTypeTags.key(ResourceKey.minecraft("mud"));
 
+    public static final DefaultedTag<ItemType> MUSHROOMS = ItemTypeTags.key(ResourceKey.minecraft("mushrooms"));
+
     public static final DefaultedTag<ItemType> NAUTILUS_BUCKET_FOOD = ItemTypeTags.key(ResourceKey.minecraft("nautilus_bucket_food"));
 
     public static final DefaultedTag<ItemType> NAUTILUS_FOOD = ItemTypeTags.key(ResourceKey.minecraft("nautilus_food"));
@@ -306,6 +310,8 @@ public final class ItemTypeTags {
     public static final DefaultedTag<ItemType> OAK_LOGS = ItemTypeTags.key(ResourceKey.minecraft("oak_logs"));
 
     public static final DefaultedTag<ItemType> OCELOT_FOOD = ItemTypeTags.key(ResourceKey.minecraft("ocelot_food"));
+
+    public static final DefaultedTag<ItemType> ORES = ItemTypeTags.key(ResourceKey.minecraft("ores"));
 
     public static final DefaultedTag<ItemType> PALE_OAK_LOGS = ItemTypeTags.key(ResourceKey.minecraft("pale_oak_logs"));
 
@@ -334,6 +340,8 @@ public final class ItemTypeTags {
     public static final DefaultedTag<ItemType> PILLAGER_PREFERRED_WEAPONS = ItemTypeTags.key(ResourceKey.minecraft("pillager_preferred_weapons"));
 
     public static final DefaultedTag<ItemType> PLANKS = ItemTypeTags.key(ResourceKey.minecraft("planks"));
+
+    public static final DefaultedTag<ItemType> POPLAR_LOGS = ItemTypeTags.key(ResourceKey.minecraft("poplar_logs"));
 
     public static final DefaultedTag<ItemType> RABBIT_FOOD = ItemTypeTags.key(ResourceKey.minecraft("rabbit_food"));
 
@@ -482,6 +490,10 @@ public final class ItemTypeTags {
     public static final DefaultedTag<ItemType> WOOL = ItemTypeTags.key(ResourceKey.minecraft("wool"));
 
     public static final DefaultedTag<ItemType> WOOL_CARPETS = ItemTypeTags.key(ResourceKey.minecraft("wool_carpets"));
+
+    public static final DefaultedTag<ItemType> WOOL_SLABS = ItemTypeTags.key(ResourceKey.minecraft("wool_slabs"));
+
+    public static final DefaultedTag<ItemType> WOOL_STAIRS = ItemTypeTags.key(ResourceKey.minecraft("wool_stairs"));
 
     public static final DefaultedTag<ItemType> ZOMBIE_HORSE_FOOD = ItemTypeTags.key(ResourceKey.minecraft("zombie_horse_food"));
 

@@ -40,6 +40,42 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.ENGINE)
 public final class Structures {
 
+    public static final DefaultedRegistryReference<Structure> ABANDONED_CAMP_BAMBOO_JUNGLE = Structures.key(ResourceKey.minecraft("abandoned_camp_bamboo_jungle"));
+
+    public static final DefaultedRegistryReference<Structure> ABANDONED_CAMP_BIRCH_FOREST = Structures.key(ResourceKey.minecraft("abandoned_camp_birch_forest"));
+
+    public static final DefaultedRegistryReference<Structure> ABANDONED_CAMP_CHERRY_GROVE = Structures.key(ResourceKey.minecraft("abandoned_camp_cherry_grove"));
+
+    public static final DefaultedRegistryReference<Structure> ABANDONED_CAMP_DAPPLED_FOREST = Structures.key(ResourceKey.minecraft("abandoned_camp_dappled_forest"));
+
+    public static final DefaultedRegistryReference<Structure> ABANDONED_CAMP_FLOWER_FOREST = Structures.key(ResourceKey.minecraft("abandoned_camp_flower_forest"));
+
+    public static final DefaultedRegistryReference<Structure> ABANDONED_CAMP_FOREST = Structures.key(ResourceKey.minecraft("abandoned_camp_forest"));
+
+    public static final DefaultedRegistryReference<Structure> ABANDONED_CAMP_MEADOW = Structures.key(ResourceKey.minecraft("abandoned_camp_meadow"));
+
+    public static final DefaultedRegistryReference<Structure> ABANDONED_CAMP_OLD_GROWTH_BIRCH_FOREST = Structures.key(ResourceKey.minecraft("abandoned_camp_old_growth_birch_forest"));
+
+    public static final DefaultedRegistryReference<Structure> ABANDONED_CAMP_OLD_GROWTH_PINE_TAIGA = Structures.key(ResourceKey.minecraft("abandoned_camp_old_growth_pine_taiga"));
+
+    public static final DefaultedRegistryReference<Structure> ABANDONED_CAMP_OLD_GROWTH_SPRUCE_TAIGA = Structures.key(ResourceKey.minecraft("abandoned_camp_old_growth_spruce_taiga"));
+
+    public static final DefaultedRegistryReference<Structure> ABANDONED_CAMP_PALE_GARDEN = Structures.key(ResourceKey.minecraft("abandoned_camp_pale_garden"));
+
+    public static final DefaultedRegistryReference<Structure> ABANDONED_CAMP_SAVANNA = Structures.key(ResourceKey.minecraft("abandoned_camp_savanna"));
+
+    public static final DefaultedRegistryReference<Structure> ABANDONED_CAMP_SNOWY_TAIGA = Structures.key(ResourceKey.minecraft("abandoned_camp_snowy_taiga"));
+
+    public static final DefaultedRegistryReference<Structure> ABANDONED_CAMP_SPARSE_JUNGLE = Structures.key(ResourceKey.minecraft("abandoned_camp_sparse_jungle"));
+
+    public static final DefaultedRegistryReference<Structure> ABANDONED_CAMP_SWAMP = Structures.key(ResourceKey.minecraft("abandoned_camp_swamp"));
+
+    public static final DefaultedRegistryReference<Structure> ABANDONED_CAMP_TAIGA = Structures.key(ResourceKey.minecraft("abandoned_camp_taiga"));
+
+    public static final DefaultedRegistryReference<Structure> ABANDONED_CAMP_WINDSWEPT_FOREST = Structures.key(ResourceKey.minecraft("abandoned_camp_windswept_forest"));
+
+    public static final DefaultedRegistryReference<Structure> ABANDONED_CAMP_WOODED_BADLANDS = Structures.key(ResourceKey.minecraft("abandoned_camp_wooded_badlands"));
+
     public static final DefaultedRegistryReference<Structure> ANCIENT_CITY = Structures.key(ResourceKey.minecraft("ancient_city"));
 
     public static final DefaultedRegistryReference<Structure> BASTION_REMNANT = Structures.key(ResourceKey.minecraft("bastion_remnant"));
