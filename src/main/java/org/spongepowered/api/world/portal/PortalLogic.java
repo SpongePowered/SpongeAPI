@@ -54,6 +54,8 @@ public interface PortalLogic {
 
     Optional<PortalFinder> finder();
 
+    Optional<TeleportBehavior> teleporter();
+
     Optional<PortalGenerator> generator();
 
     /**
@@ -70,8 +72,12 @@ public interface PortalLogic {
      * @param generateDestinationPortal True if the portal should generate a destination one
      * @return True if teleport successful, false if not
      */
-    boolean teleport(Entity entity, ServerLocation destination, boolean generateDestinationPortal);
+    @Deprecated
+    default boolean teleport(Entity entity, ServerLocation destination, boolean generateDestinationPortal) {
+        return teleport(entity.serverLocation(), entity, destination, generateDestinationPortal);
+    }
 
+    boolean teleport(ServerLocation origin, Entity entity, ServerLocation destination, boolean generateDestinationPortal);
 
     interface Factory {
 
@@ -192,16 +198,16 @@ public interface PortalLogic {
 
     interface Builder extends ResettableBuilder<PortalLogic, Builder> {
 
-        default Builder addSimplePortal(PortalExitCalculator calulator) {
-            return this.addPortalWithFinder(calulator, PortalLogic.factory().noOpFinder());
+        default Builder addSimplePortal(PortalExitCalculator calculator) {
+            return this.addPortalWithFinder(calculator, PortalLogic.factory().noOpFinder());
         }
 
-        default Builder addPortalWithFinder(PortalExitCalculator calulator, PortalFinder finder) {
-            return this.addPortal(calulator, finder, (at, axis) -> Optional.empty());
+        default Builder addPortalWithFinder(PortalExitCalculator calculator, PortalFinder finder) {
+            return this.addPortal(calculator, finder, (from, to, entity) -> to, (at, axis) -> Optional.empty());
         }
 
-        default Builder addPortalWithGenerator(PortalExitCalculator calulator, PortalGenerator generator) {
-            return this.addPortal(calulator, (at, r) -> Optional.empty(), generator);
+        default Builder addPortalWithGenerator(PortalExitCalculator calculator, PortalGenerator generator) {
+            return this.addPortal(calculator, (at, r) -> Optional.empty(), (from, to, entity) -> to, generator);
         }
 
         /**
@@ -209,16 +215,18 @@ public interface PortalLogic {
          * <p>For a portal to work it needs to calculate a valid exit
          * location then find an existing or generate a new portal</p>
          *
-         * @param calulator the portal exit calculator
+         * @param calculator the portal exit calculator
          * @param finder the portal finder
          * @param generator the portal generator
          *
          * @return this builder for chaining
          */
-        Builder addPortal(PortalExitCalculator calulator, PortalFinder finder, PortalGenerator generator);
+        @Deprecated
+        Builder addPortal(PortalExitCalculator calculator, PortalFinder finder, PortalGenerator generator);
 
-        <T extends PortalExitCalculator & PortalFinder & PortalGenerator> Builder addPortal(T logic);
+        Builder addPortal(PortalExitCalculator calculator, PortalFinder finder, TeleportBehavior teleportBehavior, PortalGenerator generator);
 
+        <T extends PortalLogic.PortalExitCalculator & PortalLogic.PortalFinder & PortalLogic.TeleportBehavior & PortalLogic.PortalGenerator> Builder addPortal(T logic);
 
         PortalLogic build();
     }
@@ -265,6 +273,25 @@ public interface PortalLogic {
          * @return the position of an existing portal if found
          */
         Optional<Portal> findPortal(ServerLocation location, int searchRange);
+    }
+
+    @FunctionalInterface
+    interface TeleportBehavior {
+
+        /**
+         * Calculates a desired location to teleport to,
+         * given an original pre-teleport block location
+         * and a destination block location inside the
+         * destination portal.
+         *
+         * @param from    the origin location
+         * @param to      the destination location in the portal
+         * @param entity  the entity
+         *
+         * @return the location to teleport to
+         */
+        ServerLocation spawnLocation(ServerLocation from, ServerLocation to, Entity entity);
+
     }
 
 
