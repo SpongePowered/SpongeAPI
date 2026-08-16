@@ -278,6 +278,18 @@ public interface PortalLogic {
     @FunctionalInterface
     interface TeleportBehavior {
 
+        /**
+         * Calculates a desired location to teleport to,
+         * given an original pre-teleport block location
+         * and a destination block location inside the
+         * destination portal.
+         *
+         * @param from    the origin location
+         * @param to      the destination location in the portal
+         * @param entity  the entity
+         *
+         * @return the location to teleport to
+         */
         ServerLocation spawnLocation(ServerLocation from, ServerLocation to, Entity entity);
 
     }
