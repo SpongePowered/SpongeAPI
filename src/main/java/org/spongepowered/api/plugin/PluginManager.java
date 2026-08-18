@@ -43,6 +43,7 @@ public interface PluginManager {
      * @param instance The instance
      * @return The container
      */
+    @Deprecated(forRemoval = true, since = "18")
     Optional<PluginContainer> fromInstance(Object instance);
 
     /**
