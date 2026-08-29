@@ -1569,9 +1569,24 @@ public final class Keys {
     public static final Key<Value<PandaGene>> HIDDEN_GENE = Keys.key(ResourceKey.sponge("hidden_gene"), PandaGene.class);
 
     /**
+     * Whether the {@link #ARMOR_TRIM} of an {@link ItemStack} is hidden.
+     */
+    public static final Key<Value<Boolean>> HIDE_ARMOR_TRIM = Keys.key(ResourceKey.sponge("hide_armor_trim"), Boolean.class);
+
+    /**
      * Whether the attributes of an {@link ItemStack} are hidden.
      */
     public static final Key<Value<Boolean>> HIDE_ATTRIBUTES = Keys.key(ResourceKey.sponge("hide_attributes"), Boolean.class);
+
+    /**
+     * Whether the {@link #BANNER_PATTERN_LAYERS} of an {@link ItemStack} are hidden in the item description.
+     */
+    public static final Key<Value<Boolean>> HIDE_BANNER_PATTERNS = Keys.key(ResourceKey.sponge("hide_banner_patterns"), Boolean.class);
+
+    /**
+     * Whether the bundle contents of an {@link ItemStack} are hidden.
+     */
+    public static final Key<Value<Boolean>> HIDE_BUNDLE_CONTENTS = Keys.key(ResourceKey.sponge("hide_bundle_contents"), Boolean.class);
 
     /**
      * Whether the {@link #BREAKABLE_BLOCK_TYPES} of an {@link ItemStack} are hidden.
@@ -1584,15 +1599,34 @@ public final class Keys {
     public static final Key<Value<Boolean>> HIDE_CAN_PLACE = Keys.key(ResourceKey.sponge("hide_can_place"), Boolean.class);
 
     /**
+     * Whether the {@link #COLOR} of an {@link ItemStack} is hidden in the item description.
+     */
+    public static final Key<Value<Boolean>> HIDE_COLOR = Keys.key(ResourceKey.sponge("hide_color"), Boolean.class);
+
+    /**
      * Whether the {@link #APPLIED_ENCHANTMENTS} of an {@link ItemStack} are hidden.
      */
     public static final Key<Value<Boolean>> HIDE_ENCHANTMENTS = Keys.key(ResourceKey.sponge("hide_enchantments"), Boolean.class);
 
     /**
+     * Whether the instrument of an {@link ItemStack} (e.g. {@link ItemTypes#GOAT_HORN}) is hidden.
+     */
+    public static final Key<Value<Boolean>> HIDE_INSTRUMENT = Keys.key(ResourceKey.sponge("hide_instrument"), Boolean.class);
+
+    /**
      * Whether miscellaneous values of an {@link ItemStack} are hidden.
-     * e.g. potion effects or shield pattern info
      */
     public static final Key<Value<Boolean>> HIDE_MISCELLANEOUS = Keys.key(ResourceKey.sponge("hide_miscellaneous"), Boolean.class);
+
+    /**
+     * Whether the {@link #MUSIC_DISC} of and {@link ItemStack} is hidden in the item description.
+     */
+    public static final Key<Value<Boolean>> HIDE_MUSIC_DISC = Keys.key(ResourceKey.sponge("hide_music_disc"), Boolean.class);
+
+    /**
+     * Whether the potion effects (e.g. {@link #CUSTOM_POTION_EFFECTS}) of an {@link ItemStack} are hidden.
+     */
+    public static final Key<Value<Boolean>> HIDE_POTION_EFFECTS = Keys.key(ResourceKey.sponge("hide_potion_effects"), Boolean.class);
 
     /**
      * Whether the {@link #STORED_ENCHANTMENTS} of an {@link ItemStack} are hidden.
