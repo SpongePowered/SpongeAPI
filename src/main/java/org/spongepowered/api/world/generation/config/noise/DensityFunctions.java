@@ -42,6 +42,8 @@ public final class DensityFunctions {
 
     public static final DefaultedRegistryReference<DensityFunction> END_BASE_3D_NOISE = DensityFunctions.key(ResourceKey.minecraft("end/base_3d_noise"));
 
+    public static final DefaultedRegistryReference<DensityFunction> END_ISLANDS = DensityFunctions.key(ResourceKey.minecraft("end/islands"));
+
     public static final DefaultedRegistryReference<DensityFunction> END_SLOPED_CHEESE = DensityFunctions.key(ResourceKey.minecraft("end/sloped_cheese"));
 
     public static final DefaultedRegistryReference<DensityFunction> NETHER_BASE_3D_NOISE = DensityFunctions.key(ResourceKey.minecraft("nether/base_3d_noise"));
