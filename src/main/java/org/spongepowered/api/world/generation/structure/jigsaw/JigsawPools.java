@@ -112,6 +112,48 @@ public final class JigsawPools {
 
     public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TENT_WOODED_BADLANDS = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/tent/wooded_badlands"));
 
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TREES_ACACIA = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/trees/acacia"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TREES_BAMBOO = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/trees/bamboo"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TREES_BIRCH = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/trees/birch"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TREES_BIRCH_BEES = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/trees/birch_bees"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TREES_CHERRY = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/trees/cherry"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TREES_CHERRY_BEES = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/trees/cherry_bees"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TREES_FANCY_OAK = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/trees/fancy_oak"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TREES_FANCY_OAK_BEES = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/trees/fancy_oak_bees"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TREES_JUNGLE = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/trees/jungle"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TREES_MEGA_JUNGLE = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/trees/mega_jungle"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TREES_MEGA_PINE = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/trees/mega_pine"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TREES_OAK = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/trees/oak"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TREES_ORANGE_POPLAR = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/trees/orange_poplar"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TREES_PALE_OAK = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/trees/pale_oak"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TREES_PINE = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/trees/pine"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TREES_RED_POPLAR = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/trees/red_poplar"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TREES_SPRUCE = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/trees/spruce"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TREES_SPRUCE_ON_SNOW = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/trees/spruce_on_snow"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TREES_SUPER_BIRCH_BEES = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/trees/super_birch_bees"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TREES_THICK_SPRUCE = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/trees/thick_spruce"));
+
+    public static final DefaultedRegistryReference<JigsawPool> ABANDONED_CAMP_TREES_YELLOW_POPLAR = JigsawPools.key(ResourceKey.minecraft("abandoned_camp/trees/yellow_poplar"));
+
     public static final DefaultedRegistryReference<JigsawPool> ANCIENT_CITY_CITY_CENTER = JigsawPools.key(ResourceKey.minecraft("ancient_city/city_center"));
 
     public static final DefaultedRegistryReference<JigsawPool> ANCIENT_CITY_CITY_CENTER_WALLS = JigsawPools.key(ResourceKey.minecraft("ancient_city/city_center/walls"));

@@ -256,6 +256,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> BLACK_CONCRETE_POWDER = ItemTypes.key(ResourceKey.minecraft("black_concrete_powder"));
 
+    public static final DefaultedRegistryReference<ItemType> BLACK_CUSHION = ItemTypes.key(ResourceKey.minecraft("black_cushion"));
+
     public static final DefaultedRegistryReference<ItemType> BLACK_DYE = ItemTypes.key(ResourceKey.minecraft("black_dye"));
 
     public static final DefaultedRegistryReference<ItemType> BLACK_GLAZED_TERRACOTTA = ItemTypes.key(ResourceKey.minecraft("black_glazed_terracotta"));
@@ -299,6 +301,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> BLUE_CONCRETE = ItemTypes.key(ResourceKey.minecraft("blue_concrete"));
 
     public static final DefaultedRegistryReference<ItemType> BLUE_CONCRETE_POWDER = ItemTypes.key(ResourceKey.minecraft("blue_concrete_powder"));
+
+    public static final DefaultedRegistryReference<ItemType> BLUE_CUSHION = ItemTypes.key(ResourceKey.minecraft("blue_cushion"));
 
     public static final DefaultedRegistryReference<ItemType> BLUE_DYE = ItemTypes.key(ResourceKey.minecraft("blue_dye"));
 
@@ -385,6 +389,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> BROWN_CONCRETE = ItemTypes.key(ResourceKey.minecraft("brown_concrete"));
 
     public static final DefaultedRegistryReference<ItemType> BROWN_CONCRETE_POWDER = ItemTypes.key(ResourceKey.minecraft("brown_concrete_powder"));
+
+    public static final DefaultedRegistryReference<ItemType> BROWN_CUSHION = ItemTypes.key(ResourceKey.minecraft("brown_cushion"));
 
     public static final DefaultedRegistryReference<ItemType> BROWN_DYE = ItemTypes.key(ResourceKey.minecraft("brown_dye"));
 
@@ -789,6 +795,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> CYAN_CONCRETE = ItemTypes.key(ResourceKey.minecraft("cyan_concrete"));
 
     public static final DefaultedRegistryReference<ItemType> CYAN_CONCRETE_POWDER = ItemTypes.key(ResourceKey.minecraft("cyan_concrete_powder"));
+
+    public static final DefaultedRegistryReference<ItemType> CYAN_CUSHION = ItemTypes.key(ResourceKey.minecraft("cyan_cushion"));
 
     public static final DefaultedRegistryReference<ItemType> CYAN_DYE = ItemTypes.key(ResourceKey.minecraft("cyan_dye"));
 
@@ -1246,6 +1254,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> GRAY_CONCRETE_POWDER = ItemTypes.key(ResourceKey.minecraft("gray_concrete_powder"));
 
+    public static final DefaultedRegistryReference<ItemType> GRAY_CUSHION = ItemTypes.key(ResourceKey.minecraft("gray_cushion"));
+
     public static final DefaultedRegistryReference<ItemType> GRAY_DYE = ItemTypes.key(ResourceKey.minecraft("gray_dye"));
 
     public static final DefaultedRegistryReference<ItemType> GRAY_GLAZED_TERRACOTTA = ItemTypes.key(ResourceKey.minecraft("gray_glazed_terracotta"));
@@ -1279,6 +1289,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> GREEN_CONCRETE = ItemTypes.key(ResourceKey.minecraft("green_concrete"));
 
     public static final DefaultedRegistryReference<ItemType> GREEN_CONCRETE_POWDER = ItemTypes.key(ResourceKey.minecraft("green_concrete_powder"));
+
+    public static final DefaultedRegistryReference<ItemType> GREEN_CUSHION = ItemTypes.key(ResourceKey.minecraft("green_cushion"));
 
     public static final DefaultedRegistryReference<ItemType> GREEN_DYE = ItemTypes.key(ResourceKey.minecraft("green_dye"));
 
@@ -1516,6 +1528,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> LIGHT_BLUE_CONCRETE_POWDER = ItemTypes.key(ResourceKey.minecraft("light_blue_concrete_powder"));
 
+    public static final DefaultedRegistryReference<ItemType> LIGHT_BLUE_CUSHION = ItemTypes.key(ResourceKey.minecraft("light_blue_cushion"));
+
     public static final DefaultedRegistryReference<ItemType> LIGHT_BLUE_DYE = ItemTypes.key(ResourceKey.minecraft("light_blue_dye"));
 
     public static final DefaultedRegistryReference<ItemType> LIGHT_BLUE_GLAZED_TERRACOTTA = ItemTypes.key(ResourceKey.minecraft("light_blue_glazed_terracotta"));
@@ -1549,6 +1563,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> LIGHT_GRAY_CONCRETE = ItemTypes.key(ResourceKey.minecraft("light_gray_concrete"));
 
     public static final DefaultedRegistryReference<ItemType> LIGHT_GRAY_CONCRETE_POWDER = ItemTypes.key(ResourceKey.minecraft("light_gray_concrete_powder"));
+
+    public static final DefaultedRegistryReference<ItemType> LIGHT_GRAY_CUSHION = ItemTypes.key(ResourceKey.minecraft("light_gray_cushion"));
 
     public static final DefaultedRegistryReference<ItemType> LIGHT_GRAY_DYE = ItemTypes.key(ResourceKey.minecraft("light_gray_dye"));
 
@@ -1591,6 +1607,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> LIME_CONCRETE = ItemTypes.key(ResourceKey.minecraft("lime_concrete"));
 
     public static final DefaultedRegistryReference<ItemType> LIME_CONCRETE_POWDER = ItemTypes.key(ResourceKey.minecraft("lime_concrete_powder"));
+
+    public static final DefaultedRegistryReference<ItemType> LIME_CUSHION = ItemTypes.key(ResourceKey.minecraft("lime_cushion"));
 
     public static final DefaultedRegistryReference<ItemType> LIME_DYE = ItemTypes.key(ResourceKey.minecraft("lime_dye"));
 
@@ -1635,6 +1653,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> MAGENTA_CONCRETE = ItemTypes.key(ResourceKey.minecraft("magenta_concrete"));
 
     public static final DefaultedRegistryReference<ItemType> MAGENTA_CONCRETE_POWDER = ItemTypes.key(ResourceKey.minecraft("magenta_concrete_powder"));
+
+    public static final DefaultedRegistryReference<ItemType> MAGENTA_CUSHION = ItemTypes.key(ResourceKey.minecraft("magenta_cushion"));
 
     public static final DefaultedRegistryReference<ItemType> MAGENTA_DYE = ItemTypes.key(ResourceKey.minecraft("magenta_dye"));
 
@@ -1938,6 +1958,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> ORANGE_CONCRETE_POWDER = ItemTypes.key(ResourceKey.minecraft("orange_concrete_powder"));
 
+    public static final DefaultedRegistryReference<ItemType> ORANGE_CUSHION = ItemTypes.key(ResourceKey.minecraft("orange_cushion"));
+
     public static final DefaultedRegistryReference<ItemType> ORANGE_DYE = ItemTypes.key(ResourceKey.minecraft("orange_dye"));
 
     public static final DefaultedRegistryReference<ItemType> ORANGE_GLAZED_TERRACOTTA = ItemTypes.key(ResourceKey.minecraft("orange_glazed_terracotta"));
@@ -2085,6 +2107,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> PINK_CONCRETE = ItemTypes.key(ResourceKey.minecraft("pink_concrete"));
 
     public static final DefaultedRegistryReference<ItemType> PINK_CONCRETE_POWDER = ItemTypes.key(ResourceKey.minecraft("pink_concrete_powder"));
+
+    public static final DefaultedRegistryReference<ItemType> PINK_CUSHION = ItemTypes.key(ResourceKey.minecraft("pink_cushion"));
 
     public static final DefaultedRegistryReference<ItemType> PINK_DYE = ItemTypes.key(ResourceKey.minecraft("pink_dye"));
 
@@ -2296,6 +2320,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> PURPLE_CONCRETE_POWDER = ItemTypes.key(ResourceKey.minecraft("purple_concrete_powder"));
 
+    public static final DefaultedRegistryReference<ItemType> PURPLE_CUSHION = ItemTypes.key(ResourceKey.minecraft("purple_cushion"));
+
     public static final DefaultedRegistryReference<ItemType> PURPLE_DYE = ItemTypes.key(ResourceKey.minecraft("purple_dye"));
 
     public static final DefaultedRegistryReference<ItemType> PURPLE_GLAZED_TERRACOTTA = ItemTypes.key(ResourceKey.minecraft("purple_glazed_terracotta"));
@@ -2389,6 +2415,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> RED_CONCRETE = ItemTypes.key(ResourceKey.minecraft("red_concrete"));
 
     public static final DefaultedRegistryReference<ItemType> RED_CONCRETE_POWDER = ItemTypes.key(ResourceKey.minecraft("red_concrete_powder"));
+
+    public static final DefaultedRegistryReference<ItemType> RED_CUSHION = ItemTypes.key(ResourceKey.minecraft("red_cushion"));
 
     public static final DefaultedRegistryReference<ItemType> RED_DYE = ItemTypes.key(ResourceKey.minecraft("red_dye"));
 
@@ -2703,6 +2731,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> STONE_STAIRS = ItemTypes.key(ResourceKey.minecraft("stone_stairs"));
 
     public static final DefaultedRegistryReference<ItemType> STONE_SWORD = ItemTypes.key(ResourceKey.minecraft("stone_sword"));
+
+    public static final DefaultedRegistryReference<ItemType> STRAW_BED = ItemTypes.key(ResourceKey.minecraft("straw_bed"));
 
     public static final DefaultedRegistryReference<ItemType> STRAY_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("stray_spawn_egg"));
 
@@ -3118,6 +3148,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> WHITE_CONCRETE_POWDER = ItemTypes.key(ResourceKey.minecraft("white_concrete_powder"));
 
+    public static final DefaultedRegistryReference<ItemType> WHITE_CUSHION = ItemTypes.key(ResourceKey.minecraft("white_cushion"));
+
     public static final DefaultedRegistryReference<ItemType> WHITE_DYE = ItemTypes.key(ResourceKey.minecraft("white_dye"));
 
     public static final DefaultedRegistryReference<ItemType> WHITE_GLAZED_TERRACOTTA = ItemTypes.key(ResourceKey.minecraft("white_glazed_terracotta"));
@@ -3189,6 +3221,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> YELLOW_CONCRETE = ItemTypes.key(ResourceKey.minecraft("yellow_concrete"));
 
     public static final DefaultedRegistryReference<ItemType> YELLOW_CONCRETE_POWDER = ItemTypes.key(ResourceKey.minecraft("yellow_concrete_powder"));
+
+    public static final DefaultedRegistryReference<ItemType> YELLOW_CUSHION = ItemTypes.key(ResourceKey.minecraft("yellow_cushion"));
 
     public static final DefaultedRegistryReference<ItemType> YELLOW_DYE = ItemTypes.key(ResourceKey.minecraft("yellow_dye"));
 

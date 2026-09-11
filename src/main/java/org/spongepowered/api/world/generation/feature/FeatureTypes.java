@@ -56,8 +56,6 @@ public final class FeatureTypes {
 
     public static final DefaultedRegistryReference<FeatureType> CORAL_CLAW = FeatureTypes.key(ResourceKey.minecraft("coral_claw"));
 
-    public static final DefaultedRegistryReference<FeatureType> CORAL_MUSHROOM = FeatureTypes.key(ResourceKey.minecraft("coral_mushroom"));
-
     public static final DefaultedRegistryReference<FeatureType> CORAL_TREE = FeatureTypes.key(ResourceKey.minecraft("coral_tree"));
 
     public static final DefaultedRegistryReference<FeatureType> DELTA_FEATURE = FeatureTypes.key(ResourceKey.minecraft("delta_feature"));
@@ -94,8 +92,6 @@ public final class FeatureTypes {
 
     public static final DefaultedRegistryReference<FeatureType> ICEBERG = FeatureTypes.key(ResourceKey.minecraft("iceberg"));
 
-    public static final DefaultedRegistryReference<FeatureType> KELP = FeatureTypes.key(ResourceKey.minecraft("kelp"));
-
     public static final DefaultedRegistryReference<FeatureType> LAKE = FeatureTypes.key(ResourceKey.minecraft("lake"));
 
     public static final DefaultedRegistryReference<FeatureType> LARGE_DRIPSTONE = FeatureTypes.key(ResourceKey.minecraft("large_dripstone"));
@@ -129,10 +125,6 @@ public final class FeatureTypes {
     public static final DefaultedRegistryReference<FeatureType> SCATTERED_ORE = FeatureTypes.key(ResourceKey.minecraft("scattered_ore"));
 
     public static final DefaultedRegistryReference<FeatureType> SCULK_PATCH = FeatureTypes.key(ResourceKey.minecraft("sculk_patch"));
-
-    public static final DefaultedRegistryReference<FeatureType> SEAGRASS = FeatureTypes.key(ResourceKey.minecraft("seagrass"));
-
-    public static final DefaultedRegistryReference<FeatureType> SEA_PICKLE = FeatureTypes.key(ResourceKey.minecraft("sea_pickle"));
 
     public static final DefaultedRegistryReference<FeatureType> SEQUENCE = FeatureTypes.key(ResourceKey.minecraft("sequence"));
 

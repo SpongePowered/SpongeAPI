@@ -2110,6 +2110,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> STONE_STAIRS = BlockTypes.key(ResourceKey.minecraft("stone_stairs"));
 
+    public static final DefaultedRegistryReference<BlockType> STRAW_BED = BlockTypes.key(ResourceKey.minecraft("straw_bed"));
+
     public static final DefaultedRegistryReference<BlockType> STRIPPED_ACACIA_LOG = BlockTypes.key(ResourceKey.minecraft("stripped_acacia_log"));
 
     public static final DefaultedRegistryReference<BlockType> STRIPPED_ACACIA_WOOD = BlockTypes.key(ResourceKey.minecraft("stripped_acacia_wood"));

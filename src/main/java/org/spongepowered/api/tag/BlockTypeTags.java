@@ -129,6 +129,10 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> CANNOT_SUPPORT_SNOW_LAYER = BlockTypeTags.key(ResourceKey.minecraft("cannot_support_snow_layer"));
 
+    public static final DefaultedTag<BlockType> CATS_CAN_LIE_ON = BlockTypeTags.key(ResourceKey.minecraft("cats_can_lie_on"));
+
+    public static final DefaultedTag<BlockType> CATS_CAN_SIT_ON = BlockTypeTags.key(ResourceKey.minecraft("cats_can_sit_on"));
+
     public static final DefaultedTag<BlockType> CAULDRONS = BlockTypeTags.key(ResourceKey.minecraft("cauldrons"));
 
     public static final DefaultedTag<BlockType> CAUSES_CONTINUOUS_GEYSER_ERUPTIONS = BlockTypeTags.key(ResourceKey.minecraft("causes_continuous_geyser_eruptions"));
@@ -157,7 +161,7 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> CONCRETE_POWDERS = BlockTypeTags.key(ResourceKey.minecraft("concrete_powders"));
 
-    public static final DefaultedTag<BlockType> CONVERTABLE_TO_MUD = BlockTypeTags.key(ResourceKey.minecraft("convertable_to_mud"));
+    public static final DefaultedTag<BlockType> CONVERTIBLE_TO_MUD = BlockTypeTags.key(ResourceKey.minecraft("convertible_to_mud"));
 
     public static final DefaultedTag<BlockType> COPPER = BlockTypeTags.key(ResourceKey.minecraft("copper"));
 
@@ -256,6 +260,8 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> GUARDED_BY_PIGLINS = BlockTypeTags.key(ResourceKey.minecraft("guarded_by_piglins"));
 
     public static final DefaultedTag<BlockType> HAPPY_GHAST_AVOIDS = BlockTypeTags.key(ResourceKey.minecraft("happy_ghast_avoids"));
+
+    public static final DefaultedTag<BlockType> HEIGHT_SPECIFIC_ORE_REPLACEABLES = BlockTypeTags.key(ResourceKey.minecraft("height_specific_ore_replaceables"));
 
     public static final DefaultedTag<BlockType> HOGLIN_REPELLENTS = BlockTypeTags.key(ResourceKey.minecraft("hoglin_repellents"));
 
@@ -399,6 +405,8 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> SAPLINGS = BlockTypeTags.key(ResourceKey.minecraft("saplings"));
 
+    public static final DefaultedTag<BlockType> SCULK_GROWTH_INHIBITORS = BlockTypeTags.key(ResourceKey.minecraft("sculk_growth_inhibitors"));
+
     public static final DefaultedTag<BlockType> SCULK_REPLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("sculk_replaceable"));
 
     public static final DefaultedTag<BlockType> SCULK_REPLACEABLE_WORLD_GEN = BlockTypeTags.key(ResourceKey.minecraft("sculk_replaceable_world_gen"));
@@ -434,6 +442,8 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> SOUL_FIRE_BASE_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("soul_fire_base_blocks"));
 
     public static final DefaultedTag<BlockType> SOUL_SPEED_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("soul_speed_blocks"));
+
+    public static final DefaultedTag<BlockType> SPEEDS_UP_ZOMBIE_VILLAGER_CURING = BlockTypeTags.key(ResourceKey.minecraft("speeds_up_zombie_villager_curing"));
 
     public static final DefaultedTag<BlockType> SPELEOTHEMS = BlockTypeTags.key(ResourceKey.minecraft("speleothems"));
 
@@ -552,6 +562,10 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> VALID_SPAWN = BlockTypeTags.key(ResourceKey.minecraft("valid_spawn"));
 
     public static final DefaultedTag<BlockType> VIBRATION_RESONATORS = BlockTypeTags.key(ResourceKey.minecraft("vibration_resonators"));
+
+    public static final DefaultedTag<BlockType> VILLAGER_BABIES_CAN_JUMP_ON_BED = BlockTypeTags.key(ResourceKey.minecraft("villager_babies_can_jump_on_bed"));
+
+    public static final DefaultedTag<BlockType> VILLAGERS_CAN_SLEEP_ON_BED = BlockTypeTags.key(ResourceKey.minecraft("villagers_can_sleep_on_bed"));
 
     public static final DefaultedTag<BlockType> WALL_CORALS = BlockTypeTags.key(ResourceKey.minecraft("wall_corals"));
 

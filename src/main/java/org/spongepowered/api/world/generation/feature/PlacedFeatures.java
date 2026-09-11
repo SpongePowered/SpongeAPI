@@ -48,6 +48,8 @@ public final class PlacedFeatures {
 
     public static final DefaultedRegistryReference<PlacedFeature> BAMBOO = PlacedFeatures.key(ResourceKey.minecraft("bamboo"));
 
+    public static final DefaultedRegistryReference<PlacedFeature> BAMBOO_IN_STRUCTURE = PlacedFeatures.key(ResourceKey.minecraft("bamboo_in_structure"));
+
     public static final DefaultedRegistryReference<PlacedFeature> BAMBOO_LIGHT = PlacedFeatures.key(ResourceKey.minecraft("bamboo_light"));
 
     public static final DefaultedRegistryReference<PlacedFeature> BAMBOO_VEGETATION = PlacedFeatures.key(ResourceKey.minecraft("bamboo_vegetation"));
@@ -241,6 +243,8 @@ public final class PlacedFeatures {
     public static final DefaultedRegistryReference<PlacedFeature> OAK_CHECKED = PlacedFeatures.key(ResourceKey.minecraft("oak_checked"));
 
     public static final DefaultedRegistryReference<PlacedFeature> OAK_LEAF_LITTER = PlacedFeatures.key(ResourceKey.minecraft("oak_leaf_litter"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> ORANGE_POPLAR = PlacedFeatures.key(ResourceKey.minecraft("orange_poplar"));
 
     public static final DefaultedRegistryReference<PlacedFeature> ORANGE_POPLAR_LEAF_LITTER = PlacedFeatures.key(ResourceKey.minecraft("orange_poplar_leaf_litter"));
 
@@ -446,6 +450,8 @@ public final class PlacedFeatures {
 
     public static final DefaultedRegistryReference<PlacedFeature> RED_MUSHROOM_TAIGA = PlacedFeatures.key(ResourceKey.minecraft("red_mushroom_taiga"));
 
+    public static final DefaultedRegistryReference<PlacedFeature> RED_POPLAR = PlacedFeatures.key(ResourceKey.minecraft("red_poplar"));
+
     public static final DefaultedRegistryReference<PlacedFeature> RED_POPLAR_LEAF_LITTER = PlacedFeatures.key(ResourceKey.minecraft("red_poplar_leaf_litter"));
 
     public static final DefaultedRegistryReference<PlacedFeature> ROOTED_AZALEA_TREE = PlacedFeatures.key(ResourceKey.minecraft("rooted_azalea_tree"));
@@ -575,6 +581,8 @@ public final class PlacedFeatures {
     public static final DefaultedRegistryReference<PlacedFeature> WILDFLOWERS_BIRCH_FOREST = PlacedFeatures.key(ResourceKey.minecraft("wildflowers_birch_forest"));
 
     public static final DefaultedRegistryReference<PlacedFeature> WILDFLOWERS_MEADOW = PlacedFeatures.key(ResourceKey.minecraft("wildflowers_meadow"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> YELLOW_POPLAR = PlacedFeatures.key(ResourceKey.minecraft("yellow_poplar"));
 
     public static final DefaultedRegistryReference<PlacedFeature> YELLOW_POPLAR_LEAF_LITTER = PlacedFeatures.key(ResourceKey.minecraft("yellow_poplar_leaf_litter"));
 

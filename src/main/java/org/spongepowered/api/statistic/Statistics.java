@@ -162,6 +162,8 @@ public final class Statistics {
 
     public static final DefaultedRegistryReference<Statistic> SLEEP_IN_BED = Statistics.key(ResourceKey.minecraft("sleep_in_bed"));
 
+    public static final DefaultedRegistryReference<Statistic> SLEEP_IN_STRAW_BED = Statistics.key(ResourceKey.minecraft("sleep_in_straw_bed"));
+
     public static final DefaultedRegistryReference<Statistic> SNEAK_TIME = Statistics.key(ResourceKey.minecraft("sneak_time"));
 
     public static final DefaultedRegistryReference<Statistic> SPRINT_ONE_CM = Statistics.key(ResourceKey.minecraft("sprint_one_cm"));

@@ -31,6 +31,7 @@ import org.spongepowered.api.entity.display.ItemDisplay;
 import org.spongepowered.api.entity.display.TextDisplay;
 import org.spongepowered.api.entity.explosive.EndCrystal;
 import org.spongepowered.api.entity.explosive.fused.PrimedTNT;
+import org.spongepowered.api.entity.hanging.Cushion;
 import org.spongepowered.api.entity.hanging.GlowItemFrame;
 import org.spongepowered.api.entity.hanging.ItemFrame;
 import org.spongepowered.api.entity.hanging.LeashKnot;
@@ -238,6 +239,8 @@ public final class EntityTypes {
     public static final DefaultedRegistryReference<EntityType<Creaking>> CREAKING = EntityTypes.key(ResourceKey.minecraft("creaking"));
 
     public static final DefaultedRegistryReference<EntityType<Creeper>> CREEPER = EntityTypes.key(ResourceKey.minecraft("creeper"));
+
+    public static final DefaultedRegistryReference<EntityType<Cushion>> CUSHION = EntityTypes.key(ResourceKey.minecraft("cushion"));
 
     public static final DefaultedRegistryReference<EntityType<Boat>> DARK_OAK_BOAT = EntityTypes.key(ResourceKey.minecraft("dark_oak_boat"));
 

@@ -131,6 +131,8 @@ public final class ItemTypeTags {
 
     public static final DefaultedTag<ItemType> CRIMSON_STEMS = ItemTypeTags.key(ResourceKey.minecraft("crimson_stems"));
 
+    public static final DefaultedTag<ItemType> CUSHIONS = ItemTypeTags.key(ResourceKey.minecraft("cushions"));
+
     public static final DefaultedTag<ItemType> DAMPENS_VIBRATIONS = ItemTypeTags.key(ResourceKey.minecraft("dampens_vibrations"));
 
     public static final DefaultedTag<ItemType> DARK_OAK_LOGS = ItemTypeTags.key(ResourceKey.minecraft("dark_oak_logs"));
@@ -147,7 +149,7 @@ public final class ItemTypeTags {
 
     public static final DefaultedTag<ItemType> DOORS = ItemTypeTags.key(ResourceKey.minecraft("doors"));
 
-    public static final DefaultedTag<ItemType> DOWSES_CAMPFIRES = ItemTypeTags.key(ResourceKey.minecraft("dowses_campfires"));
+    public static final DefaultedTag<ItemType> DOUSES_CAMPFIRES = ItemTypeTags.key(ResourceKey.minecraft("douses_campfires"));
 
     public static final DefaultedTag<ItemType> DROWNED_PREFERRED_WEAPONS = ItemTypeTags.key(ResourceKey.minecraft("drowned_preferred_weapons"));
 

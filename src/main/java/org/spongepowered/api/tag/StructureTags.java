@@ -37,6 +37,8 @@ import org.spongepowered.api.world.generation.structure.Structure;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class StructureTags {
 
+    public static final DefaultedTag<Structure> ABANDONED_CAMP = StructureTags.key(ResourceKey.minecraft("abandoned_camp"));
+
     public static final DefaultedTag<Structure> CATS_SPAWN_AS_BLACK = StructureTags.key(ResourceKey.minecraft("cats_spawn_as_black"));
 
     public static final DefaultedTag<Structure> CATS_SPAWN_IN = StructureTags.key(ResourceKey.minecraft("cats_spawn_in"));

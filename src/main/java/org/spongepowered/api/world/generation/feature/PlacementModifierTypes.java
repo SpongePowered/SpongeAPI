@@ -48,6 +48,8 @@ public final class PlacementModifierTypes {
 
     public static final DefaultedRegistryReference<PlacementModifierType> COUNT_ON_EVERY_LAYER = PlacementModifierTypes.key(ResourceKey.minecraft("count_on_every_layer"));
 
+    public static final DefaultedRegistryReference<PlacementModifierType> CUBOID = PlacementModifierTypes.key(ResourceKey.minecraft("cuboid"));
+
     public static final DefaultedRegistryReference<PlacementModifierType> ENVIRONMENT_SCAN = PlacementModifierTypes.key(ResourceKey.minecraft("environment_scan"));
 
     public static final DefaultedRegistryReference<PlacementModifierType> FIXED_PLACEMENT = PlacementModifierTypes.key(ResourceKey.minecraft("fixed_placement"));
@@ -63,6 +65,8 @@ public final class PlacementModifierTypes {
     public static final DefaultedRegistryReference<PlacementModifierType> NOISE_THRESHOLD_COUNT = PlacementModifierTypes.key(ResourceKey.minecraft("noise_threshold_count"));
 
     public static final DefaultedRegistryReference<PlacementModifierType> OFFSET = PlacementModifierTypes.key(ResourceKey.minecraft("offset"));
+
+    public static final DefaultedRegistryReference<PlacementModifierType> RANDOM_CHANCE = PlacementModifierTypes.key(ResourceKey.minecraft("random_chance"));
 
     public static final DefaultedRegistryReference<PlacementModifierType> RARITY_FILTER = PlacementModifierTypes.key(ResourceKey.minecraft("rarity_filter"));
 
