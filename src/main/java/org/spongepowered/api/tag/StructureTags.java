@@ -51,11 +51,35 @@ public final class StructureTags {
 
     public static final DefaultedTag<Structure> OCEAN_RUIN = StructureTags.key(ResourceKey.minecraft("ocean_ruin"));
 
+    public static final DefaultedTag<Structure> ON_ABANDONED_CAMP_BAMBOO_JUNGLE = StructureTags.key(ResourceKey.minecraft("on_abandoned_camp_bamboo_jungle"));
+
+    public static final DefaultedTag<Structure> ON_ABANDONED_CAMP_BIRCH_FOREST = StructureTags.key(ResourceKey.minecraft("on_abandoned_camp_birch_forest"));
+
+    public static final DefaultedTag<Structure> ON_ABANDONED_CAMP_CHERRY_GROVE = StructureTags.key(ResourceKey.minecraft("on_abandoned_camp_cherry_grove"));
+
+    public static final DefaultedTag<Structure> ON_ABANDONED_CAMP_DAPPLED_FOREST = StructureTags.key(ResourceKey.minecraft("on_abandoned_camp_dappled_forest"));
+
+    public static final DefaultedTag<Structure> ON_ABANDONED_CAMP_FLOWER_FOREST = StructureTags.key(ResourceKey.minecraft("on_abandoned_camp_flower_forest"));
+
+    public static final DefaultedTag<Structure> ON_ABANDONED_CAMP_PALE_GARDEN = StructureTags.key(ResourceKey.minecraft("on_abandoned_camp_pale_garden"));
+
+    public static final DefaultedTag<Structure> ON_ABANDONED_CAMP_SWAMP = StructureTags.key(ResourceKey.minecraft("on_abandoned_camp_swamp"));
+
+    public static final DefaultedTag<Structure> ON_ABANDONED_CAMP_WINDSWEPT = StructureTags.key(ResourceKey.minecraft("on_abandoned_camp_windswept"));
+
+    public static final DefaultedTag<Structure> ON_ANCIENT_CITY_MAPS = StructureTags.key(ResourceKey.minecraft("on_ancient_city_maps"));
+
+    public static final DefaultedTag<Structure> ON_DESERT_PYRAMID_MAPS = StructureTags.key(ResourceKey.minecraft("on_desert_pyramid_maps"));
+
     public static final DefaultedTag<Structure> ON_DESERT_VILLAGE_MAPS = StructureTags.key(ResourceKey.minecraft("on_desert_village_maps"));
 
     public static final DefaultedTag<Structure> ON_JUNGLE_EXPLORER_MAPS = StructureTags.key(ResourceKey.minecraft("on_jungle_explorer_maps"));
 
+    public static final DefaultedTag<Structure> ON_MINESHAFT_MAPS = StructureTags.key(ResourceKey.minecraft("on_mineshaft_maps"));
+
     public static final DefaultedTag<Structure> ON_OCEAN_EXPLORER_MAPS = StructureTags.key(ResourceKey.minecraft("on_ocean_explorer_maps"));
+
+    public static final DefaultedTag<Structure> ON_OCEAN_RUIN_WARM_MAPS = StructureTags.key(ResourceKey.minecraft("on_ocean_ruin_warm_maps"));
 
     public static final DefaultedTag<Structure> ON_PLAINS_VILLAGE_MAPS = StructureTags.key(ResourceKey.minecraft("on_plains_village_maps"));
 

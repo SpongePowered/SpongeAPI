@@ -97,6 +97,8 @@ public final class ItemTypeTags {
 
     public static final DefaultedTag<ItemType> CHICKEN_FOOD = ItemTypeTags.key(ResourceKey.minecraft("chicken_food"));
 
+    public static final DefaultedTag<ItemType> CLONABLE_MAPS = ItemTypeTags.key(ResourceKey.minecraft("clonable_maps"));
+
     public static final DefaultedTag<ItemType> CLUSTER_MAX_HARVESTABLES = ItemTypeTags.key(ResourceKey.minecraft("cluster_max_harvestables"));
 
     public static final DefaultedTag<ItemType> COAL_ORES = ItemTypeTags.key(ResourceKey.minecraft("coal_ores"));
@@ -110,6 +112,10 @@ public final class ItemTypeTags {
     public static final DefaultedTag<ItemType> CONCRETE = ItemTypeTags.key(ResourceKey.minecraft("concrete"));
 
     public static final DefaultedTag<ItemType> CONCRETE_POWDERS = ItemTypeTags.key(ResourceKey.minecraft("concrete_powders"));
+
+    public static final DefaultedTag<ItemType> CONCRETE_SLABS = ItemTypeTags.key(ResourceKey.minecraft("concrete_slabs"));
+
+    public static final DefaultedTag<ItemType> CONCRETE_STAIRS = ItemTypeTags.key(ResourceKey.minecraft("concrete_stairs"));
 
     public static final DefaultedTag<ItemType> COPPER = ItemTypeTags.key(ResourceKey.minecraft("copper"));
 
@@ -200,6 +206,8 @@ public final class ItemTypeTags {
     public static final DefaultedTag<ItemType> ENCHANTABLE_VANISHING = ItemTypeTags.key(ResourceKey.minecraft("enchantable/vanishing"));
 
     public static final DefaultedTag<ItemType> ENCHANTABLE_WEAPON = ItemTypeTags.key(ResourceKey.minecraft("enchantable/weapon"));
+
+    public static final DefaultedTag<ItemType> EXTENDABLE_MAPS = ItemTypeTags.key(ResourceKey.minecraft("extendable_maps"));
 
     public static final DefaultedTag<ItemType> FENCE_GATES = ItemTypeTags.key(ResourceKey.minecraft("fence_gates"));
 

@@ -40,6 +40,10 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class MapDecorationTypes {
 
+    public static final DefaultedRegistryReference<MapDecorationType> ABANDONED_CAMP = MapDecorationTypes.key(ResourceKey.minecraft("abandoned_camp"));
+
+    public static final DefaultedRegistryReference<MapDecorationType> ANCIENT_CITY = MapDecorationTypes.key(ResourceKey.minecraft("ancient_city"));
+
     public static final DefaultedRegistryReference<MapDecorationType> BANNER_BLACK = MapDecorationTypes.key(ResourceKey.minecraft("banner_black"));
 
     public static final DefaultedRegistryReference<MapDecorationType> BANNER_BLUE = MapDecorationTypes.key(ResourceKey.minecraft("banner_blue"));
@@ -74,13 +78,19 @@ public final class MapDecorationTypes {
 
     public static final DefaultedRegistryReference<MapDecorationType> BLUE_MARKER = MapDecorationTypes.key(ResourceKey.minecraft("blue_marker"));
 
+    public static final DefaultedRegistryReference<MapDecorationType> DESERT_PYRAMID = MapDecorationTypes.key(ResourceKey.minecraft("desert_pyramid"));
+
     public static final DefaultedRegistryReference<MapDecorationType> FRAME = MapDecorationTypes.key(ResourceKey.minecraft("frame"));
 
     public static final DefaultedRegistryReference<MapDecorationType> JUNGLE_TEMPLE = MapDecorationTypes.key(ResourceKey.minecraft("jungle_temple"));
 
     public static final DefaultedRegistryReference<MapDecorationType> MANSION = MapDecorationTypes.key(ResourceKey.minecraft("mansion"));
 
+    public static final DefaultedRegistryReference<MapDecorationType> MINESHAFT = MapDecorationTypes.key(ResourceKey.minecraft("mineshaft"));
+
     public static final DefaultedRegistryReference<MapDecorationType> MONUMENT = MapDecorationTypes.key(ResourceKey.minecraft("monument"));
+
+    public static final DefaultedRegistryReference<MapDecorationType> OCEAN_RUIN_WARM = MapDecorationTypes.key(ResourceKey.minecraft("ocean_ruin_warm"));
 
     public static final DefaultedRegistryReference<MapDecorationType> PLAYER = MapDecorationTypes.key(ResourceKey.minecraft("player"));
 

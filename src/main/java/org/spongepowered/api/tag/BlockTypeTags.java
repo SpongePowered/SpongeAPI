@@ -161,6 +161,10 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> CONCRETE_POWDERS = BlockTypeTags.key(ResourceKey.minecraft("concrete_powders"));
 
+    public static final DefaultedTag<BlockType> CONCRETE_SLABS = BlockTypeTags.key(ResourceKey.minecraft("concrete_slabs"));
+
+    public static final DefaultedTag<BlockType> CONCRETE_STAIRS = BlockTypeTags.key(ResourceKey.minecraft("concrete_stairs"));
+
     public static final DefaultedTag<BlockType> CONVERTIBLE_TO_MUD = BlockTypeTags.key(ResourceKey.minecraft("convertible_to_mud"));
 
     public static final DefaultedTag<BlockType> COPPER = BlockTypeTags.key(ResourceKey.minecraft("copper"));
