@@ -102,8 +102,6 @@ public final class FeatureTypes {
 
     public static final DefaultedRegistryReference<FeatureType> NETHERRACK_REPLACE_BLOBS = FeatureTypes.key(ResourceKey.minecraft("netherrack_replace_blobs"));
 
-    public static final DefaultedRegistryReference<FeatureType> NETHER_FOREST_VEGETATION = FeatureTypes.key(ResourceKey.minecraft("nether_forest_vegetation"));
-
     public static final DefaultedRegistryReference<FeatureType> NO_OP = FeatureTypes.key(ResourceKey.minecraft("no_op"));
 
     public static final DefaultedRegistryReference<FeatureType> ORE = FeatureTypes.key(ResourceKey.minecraft("ore"));
@@ -148,8 +146,6 @@ public final class FeatureTypes {
 
     public static final DefaultedRegistryReference<FeatureType> TREE = FeatureTypes.key(ResourceKey.minecraft("tree"));
 
-    public static final DefaultedRegistryReference<FeatureType> TWISTING_VINES = FeatureTypes.key(ResourceKey.minecraft("twisting_vines"));
-
     public static final DefaultedRegistryReference<FeatureType> UNDERWATER_MAGMA = FeatureTypes.key(ResourceKey.minecraft("underwater_magma"));
 
     public static final DefaultedRegistryReference<FeatureType> VEGETATION_PATCH = FeatureTypes.key(ResourceKey.minecraft("vegetation_patch"));
@@ -159,8 +155,6 @@ public final class FeatureTypes {
     public static final DefaultedRegistryReference<FeatureType> VOID_START_PLATFORM = FeatureTypes.key(ResourceKey.minecraft("void_start_platform"));
 
     public static final DefaultedRegistryReference<FeatureType> WATERLOGGED_VEGETATION_PATCH = FeatureTypes.key(ResourceKey.minecraft("waterlogged_vegetation_patch"));
-
-    public static final DefaultedRegistryReference<FeatureType> WEEPING_VINES = FeatureTypes.key(ResourceKey.minecraft("weeping_vines"));
 
     public static final DefaultedRegistryReference<FeatureType> WEIGHTED_RANDOM_SELECTOR = FeatureTypes.key(ResourceKey.minecraft("weighted_random_selector"));
 

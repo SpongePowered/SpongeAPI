@@ -54,6 +54,8 @@ public final class DensityFunctions {
 
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_AMPLIFIED_OFFSET = DensityFunctions.key(ResourceKey.minecraft("overworld_amplified/offset"));
 
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_AMPLIFIED_PRELIMINARY_SURFACE_LEVEL = DensityFunctions.key(ResourceKey.minecraft("overworld_amplified/preliminary_surface_level"));
+
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_AMPLIFIED_SLOPED_CHEESE = DensityFunctions.key(ResourceKey.minecraft("overworld_amplified/sloped_cheese"));
 
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_BASE_3D_NOISE = DensityFunctions.key(ResourceKey.minecraft("overworld/base_3d_noise"));
@@ -92,6 +94,8 @@ public final class DensityFunctions {
 
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_LARGE_BIOMES_OFFSET = DensityFunctions.key(ResourceKey.minecraft("overworld_large_biomes/offset"));
 
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_LARGE_BIOMES_PRELIMINARY_SURFACE_LEVEL = DensityFunctions.key(ResourceKey.minecraft("overworld_large_biomes/preliminary_surface_level"));
+
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_LARGE_BIOMES_SLOPED_CHEESE = DensityFunctions.key(ResourceKey.minecraft("overworld_large_biomes/sloped_cheese"));
 
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_LARGE_BIOMES_TEMPERATURE = DensityFunctions.key(ResourceKey.minecraft("overworld_large_biomes/temperature"));
@@ -99,6 +103,20 @@ public final class DensityFunctions {
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_LARGE_BIOMES_VEGETATION = DensityFunctions.key(ResourceKey.minecraft("overworld_large_biomes/vegetation"));
 
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_OFFSET = DensityFunctions.key(ResourceKey.minecraft("overworld/offset"));
+
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_ORE_VEIN_COPPER_DENSITY = DensityFunctions.key(ResourceKey.minecraft("overworld/ore_vein/copper_density"));
+
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_ORE_VEIN_GAP = DensityFunctions.key(ResourceKey.minecraft("overworld/ore_vein/gap"));
+
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_ORE_VEIN_IRON_DENSITY = DensityFunctions.key(ResourceKey.minecraft("overworld/ore_vein/iron_density"));
+
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_ORE_VEIN_MASK = DensityFunctions.key(ResourceKey.minecraft("overworld/ore_vein/mask"));
+
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_ORE_VEIN_RICHNESS = DensityFunctions.key(ResourceKey.minecraft("overworld/ore_vein/richness"));
+
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_ORE_VEIN_TOGGLE = DensityFunctions.key(ResourceKey.minecraft("overworld/ore_vein/toggle"));
+
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_PRELIMINARY_SURFACE_LEVEL = DensityFunctions.key(ResourceKey.minecraft("overworld/preliminary_surface_level"));
 
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_RIDGES = DensityFunctions.key(ResourceKey.minecraft("overworld/ridges"));
 

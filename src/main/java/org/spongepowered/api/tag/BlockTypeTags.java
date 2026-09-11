@@ -183,6 +183,8 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> CRYSTAL_SOUND_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("crystal_sound_blocks"));
 
+    public static final DefaultedTag<BlockType> CUSHION_USES_COLLISION_SHAPE = BlockTypeTags.key(ResourceKey.minecraft("cushion_uses_collision_shape"));
+
     public static final DefaultedTag<BlockType> DAMPENS_VIBRATIONS = BlockTypeTags.key(ResourceKey.minecraft("dampens_vibrations"));
 
     public static final DefaultedTag<BlockType> DARK_OAK_LOGS = BlockTypeTags.key(ResourceKey.minecraft("dark_oak_logs"));

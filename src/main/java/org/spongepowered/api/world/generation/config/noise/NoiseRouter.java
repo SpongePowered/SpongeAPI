@@ -31,34 +31,6 @@ package org.spongepowered.api.world.generation.config.noise;
 public interface NoiseRouter {
 
     /**
-     * Returns the density function for barrierNoise
-     *
-     * @return The density function
-     */
-    DensityFunction barrierNoise();
-
-    /**
-     * Returns the density function for fluidLevelFloodednessNoise
-     *
-     * @return The density function
-     */
-    DensityFunction fluidLevelFloodednessNoise();
-
-    /**
-     * Returns the density function for fluidLevelSpreadNoise
-     *
-     * @return The density function
-     */
-    DensityFunction fluidLevelSpreadNoise();
-
-    /**
-     * Returns the density function for lavaNoise
-     *
-     * @return The density function
-     */
-    DensityFunction lavaNoise();
-
-    /**
      * Returns the density function for temperature
      *
      * @return The density function
@@ -106,26 +78,5 @@ public interface NoiseRouter {
      * @return The density function
      */
     DensityFunction finalDensity();
-
-    /**
-     * Returns the density function for veinToggle
-     *
-     * @return The density function
-     */
-    DensityFunction veinToggle();
-
-    /**
-     * Returns the density function for veinRidged
-     *
-     * @return The density function
-     */
-    DensityFunction veinRidged();
-
-    /**
-     * Returns the density function for veinGap
-     *
-     * @return The density function
-     */
-    DensityFunction veinGap();
 
 }

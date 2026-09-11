@@ -39,15 +39,15 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class PushReactions {
 
-    public static final DefaultedRegistryReference<PushReaction> BLOCK = PushReactions.key(ResourceKey.sponge("block"));
+    public static final DefaultedRegistryReference<PushReaction> IGNORE_ENTITY = PushReactions.key(ResourceKey.sponge("ignore_entity"));
 
-    public static final DefaultedRegistryReference<PushReaction> DESTROY = PushReactions.key(ResourceKey.sponge("destroy"));
+    public static final DefaultedRegistryReference<PushReaction> IMMOVEABLE = PushReactions.key(ResourceKey.sponge("immoveable"));
 
-    public static final DefaultedRegistryReference<PushReaction> IGNORE = PushReactions.key(ResourceKey.sponge("ignore"));
+    public static final DefaultedRegistryReference<PushReaction> POPPED = PushReactions.key(ResourceKey.sponge("popped"));
 
-    public static final DefaultedRegistryReference<PushReaction> NORMAL = PushReactions.key(ResourceKey.sponge("normal"));
+    public static final DefaultedRegistryReference<PushReaction> PUSH = PushReactions.key(ResourceKey.sponge("push"));
 
-    public static final DefaultedRegistryReference<PushReaction> PUSH_ONLY = PushReactions.key(ResourceKey.sponge("push_only"));
+    public static final DefaultedRegistryReference<PushReaction> PUSH_PULL = PushReactions.key(ResourceKey.sponge("push_pull"));
 
     private PushReactions() {
     }

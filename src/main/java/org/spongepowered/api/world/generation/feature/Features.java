@@ -98,9 +98,19 @@ public final class Features {
 
     public static final DefaultedRegistryReference<Feature> CLAY_WITH_DRIPLEAVES = Features.key(ResourceKey.minecraft("clay_with_dripleaves"));
 
-    public static final DefaultedRegistryReference<Feature> CRIMSON_FOREST_VEGETATION = Features.key(ResourceKey.minecraft("crimson_forest_vegetation"));
+    public static final DefaultedRegistryReference<Feature> CORAL_BLOCK_DECORATION = Features.key(ResourceKey.minecraft("coral/block_decoration"));
 
-    public static final DefaultedRegistryReference<Feature> CRIMSON_FOREST_VEGETATION_BONEMEAL = Features.key(ResourceKey.minecraft("crimson_forest_vegetation_bonemeal"));
+    public static final DefaultedRegistryReference<Feature> CORAL_BRAIN_BLOCK = Features.key(ResourceKey.minecraft("coral/brain_block"));
+
+    public static final DefaultedRegistryReference<Feature> CORAL_BUBBLE_BLOCK = Features.key(ResourceKey.minecraft("coral/bubble_block"));
+
+    public static final DefaultedRegistryReference<Feature> CORAL_FIRE_BLOCK = Features.key(ResourceKey.minecraft("coral/fire_block"));
+
+    public static final DefaultedRegistryReference<Feature> CORAL_HORN_BLOCK = Features.key(ResourceKey.minecraft("coral/horn_block"));
+
+    public static final DefaultedRegistryReference<Feature> CORAL_TUBE_BLOCK = Features.key(ResourceKey.minecraft("coral/tube_block"));
+
+    public static final DefaultedRegistryReference<Feature> CRIMSON_FOREST_VEGETATION = Features.key(ResourceKey.minecraft("crimson_forest_vegetation"));
 
     public static final DefaultedRegistryReference<Feature> CRIMSON_FUNGUS = Features.key(ResourceKey.minecraft("crimson_fungus"));
 
@@ -266,7 +276,7 @@ public final class Features {
 
     public static final DefaultedRegistryReference<Feature> NETHER_SPROUTS = Features.key(ResourceKey.minecraft("nether_sprouts"));
 
-    public static final DefaultedRegistryReference<Feature> NETHER_SPROUTS_BONEMEAL = Features.key(ResourceKey.minecraft("nether_sprouts_bonemeal"));
+    public static final DefaultedRegistryReference<Feature> NYLIUM_BONEMEAL = Features.key(ResourceKey.minecraft("nylium_bonemeal"));
 
     public static final DefaultedRegistryReference<Feature> OAK = Features.key(ResourceKey.minecraft("oak"));
 
@@ -486,8 +496,6 @@ public final class Features {
 
     public static final DefaultedRegistryReference<Feature> TWISTING_VINES = Features.key(ResourceKey.minecraft("twisting_vines"));
 
-    public static final DefaultedRegistryReference<Feature> TWISTING_VINES_BONEMEAL = Features.key(ResourceKey.minecraft("twisting_vines_bonemeal"));
-
     public static final DefaultedRegistryReference<Feature> UNDERWATER_MAGMA = Features.key(ResourceKey.minecraft("underwater_magma"));
 
     public static final DefaultedRegistryReference<Feature> VINES = Features.key(ResourceKey.minecraft("vines"));
@@ -497,8 +505,6 @@ public final class Features {
     public static final DefaultedRegistryReference<Feature> WARM_OCEAN_VEGETATION = Features.key(ResourceKey.minecraft("warm_ocean_vegetation"));
 
     public static final DefaultedRegistryReference<Feature> WARPED_FOREST_VEGETATION = Features.key(ResourceKey.minecraft("warped_forest_vegetation"));
-
-    public static final DefaultedRegistryReference<Feature> WARPED_FOREST_VEGETATION_BONEMEAL = Features.key(ResourceKey.minecraft("warped_forest_vegetation_bonemeal"));
 
     public static final DefaultedRegistryReference<Feature> WARPED_FUNGUS = Features.key(ResourceKey.minecraft("warped_fungus"));
 

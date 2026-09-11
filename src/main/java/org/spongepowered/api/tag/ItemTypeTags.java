@@ -71,8 +71,6 @@ public final class ItemTypeTags {
 
     public static final DefaultedTag<ItemType> BREAKS_DECORATED_POTS = ItemTypeTags.key(ResourceKey.minecraft("breaks_decorated_pots"));
 
-    public static final DefaultedTag<ItemType> BREWING_FUEL = ItemTypeTags.key(ResourceKey.minecraft("brewing_fuel"));
-
     public static final DefaultedTag<ItemType> BUNDLES = ItemTypeTags.key(ResourceKey.minecraft("bundles"));
 
     public static final DefaultedTag<ItemType> BUTTONS = ItemTypeTags.key(ResourceKey.minecraft("buttons"));
