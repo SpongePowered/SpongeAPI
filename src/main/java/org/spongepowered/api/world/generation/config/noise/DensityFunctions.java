@@ -50,6 +50,8 @@ public final class DensityFunctions {
 
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_AMPLIFIED_FACTOR = DensityFunctions.key(ResourceKey.minecraft("overworld_amplified/factor"));
 
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_AMPLIFIED_FINAL_DENSITY = DensityFunctions.key(ResourceKey.minecraft("overworld_amplified/final_density"));
+
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_AMPLIFIED_JAGGEDNESS = DensityFunctions.key(ResourceKey.minecraft("overworld_amplified/jaggedness"));
 
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_AMPLIFIED_OFFSET = DensityFunctions.key(ResourceKey.minecraft("overworld_amplified/offset"));
@@ -80,6 +82,8 @@ public final class DensityFunctions {
 
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_FACTOR = DensityFunctions.key(ResourceKey.minecraft("overworld/factor"));
 
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_FINAL_DENSITY = DensityFunctions.key(ResourceKey.minecraft("overworld/final_density"));
+
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_JAGGEDNESS = DensityFunctions.key(ResourceKey.minecraft("overworld/jaggedness"));
 
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_LARGE_BIOMES_CONTINENTS = DensityFunctions.key(ResourceKey.minecraft("overworld_large_biomes/continents"));
@@ -89,6 +93,8 @@ public final class DensityFunctions {
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_LARGE_BIOMES_EROSION = DensityFunctions.key(ResourceKey.minecraft("overworld_large_biomes/erosion"));
 
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_LARGE_BIOMES_FACTOR = DensityFunctions.key(ResourceKey.minecraft("overworld_large_biomes/factor"));
+
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_LARGE_BIOMES_FINAL_DENSITY = DensityFunctions.key(ResourceKey.minecraft("overworld_large_biomes/final_density"));
 
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_LARGE_BIOMES_JAGGEDNESS = DensityFunctions.key(ResourceKey.minecraft("overworld_large_biomes/jaggedness"));
 
