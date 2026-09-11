@@ -66,6 +66,8 @@ public final class PlacementModifierTypes {
 
     public static final DefaultedRegistryReference<PlacementModifierType> OFFSET = PlacementModifierTypes.key(ResourceKey.minecraft("offset"));
 
+    public static final DefaultedRegistryReference<PlacementModifierType> RANDOMLY_SELECTED = PlacementModifierTypes.key(ResourceKey.minecraft("randomly_selected"));
+
     public static final DefaultedRegistryReference<PlacementModifierType> RANDOM_CHANCE = PlacementModifierTypes.key(ResourceKey.minecraft("random_chance"));
 
     public static final DefaultedRegistryReference<PlacementModifierType> RARITY_FILTER = PlacementModifierTypes.key(ResourceKey.minecraft("rarity_filter"));

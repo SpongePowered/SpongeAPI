@@ -40,7 +40,7 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class ItemTypes {
 
-    public static final DefaultedRegistryReference<ItemType> ABANDONED_CAMPSITE_MAP = ItemTypes.key(ResourceKey.minecraft("abandoned_campsite_map"));
+    public static final DefaultedRegistryReference<ItemType> ABANDONED_CAMP_MAP = ItemTypes.key(ResourceKey.minecraft("abandoned_camp_map"));
 
     public static final DefaultedRegistryReference<ItemType> ACACIA_BOAT = ItemTypes.key(ResourceKey.minecraft("acacia_boat"));
 
@@ -91,8 +91,6 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> AMETHYST_CLUSTER = ItemTypes.key(ResourceKey.minecraft("amethyst_cluster"));
 
     public static final DefaultedRegistryReference<ItemType> AMETHYST_SHARD = ItemTypes.key(ResourceKey.minecraft("amethyst_shard"));
-
-    public static final DefaultedRegistryReference<ItemType> ANCIENT_CITY_MAP = ItemTypes.key(ResourceKey.minecraft("ancient_city_map"));
 
     public static final DefaultedRegistryReference<ItemType> ANCIENT_DEBRIS = ItemTypes.key(ResourceKey.minecraft("ancient_debris"));
 
@@ -447,6 +445,10 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> BUDDING_AMETHYST = ItemTypes.key(ResourceKey.minecraft("budding_amethyst"));
 
     public static final DefaultedRegistryReference<ItemType> BUNDLE = ItemTypes.key(ResourceKey.minecraft("bundle"));
+
+    public static final DefaultedRegistryReference<ItemType> BURIED_ANCIENT_CITY_MAP = ItemTypes.key(ResourceKey.minecraft("buried_ancient_city_map"));
+
+    public static final DefaultedRegistryReference<ItemType> BURIED_MINESHAFT_MAP = ItemTypes.key(ResourceKey.minecraft("buried_mineshaft_map"));
 
     public static final DefaultedRegistryReference<ItemType> BURIED_TREASURE_MAP = ItemTypes.key(ResourceKey.minecraft("buried_treasure_map"));
 
@@ -1787,8 +1789,6 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> MINECART = ItemTypes.key(ResourceKey.minecraft("minecart"));
 
     public static final DefaultedRegistryReference<ItemType> MINER_POTTERY_SHERD = ItemTypes.key(ResourceKey.minecraft("miner_pottery_sherd"));
-
-    public static final DefaultedRegistryReference<ItemType> MINESHAFT_MAP = ItemTypes.key(ResourceKey.minecraft("mineshaft_map"));
 
     public static final DefaultedRegistryReference<ItemType> MOJANG_BANNER_PATTERN = ItemTypes.key(ResourceKey.minecraft("mojang_banner_pattern"));
 

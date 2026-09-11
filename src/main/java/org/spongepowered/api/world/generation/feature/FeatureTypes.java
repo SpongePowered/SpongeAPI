@@ -60,8 +60,6 @@ public final class FeatureTypes {
 
     public static final DefaultedRegistryReference<FeatureType> DELTA_FEATURE = FeatureTypes.key(ResourceKey.minecraft("delta_feature"));
 
-    public static final DefaultedRegistryReference<FeatureType> DESERT_WELL = FeatureTypes.key(ResourceKey.minecraft("desert_well"));
-
     public static final DefaultedRegistryReference<FeatureType> DISK = FeatureTypes.key(ResourceKey.minecraft("disk"));
 
     public static final DefaultedRegistryReference<FeatureType> END_GATEWAY = FeatureTypes.key(ResourceKey.minecraft("end_gateway"));
