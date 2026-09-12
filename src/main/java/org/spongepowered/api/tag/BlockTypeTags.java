@@ -167,6 +167,8 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> CONCRETE_STAIRS = BlockTypeTags.key(ResourceKey.minecraft("concrete_stairs"));
 
+    public static final DefaultedTag<BlockType> CONDUIT_EFFECT_BLOCK = BlockTypeTags.key(ResourceKey.minecraft("conduit_effect_block"));
+
     public static final DefaultedTag<BlockType> CONVERTIBLE_TO_MUD = BlockTypeTags.key(ResourceKey.minecraft("convertible_to_mud"));
 
     public static final DefaultedTag<BlockType> COPPER = BlockTypeTags.key(ResourceKey.minecraft("copper"));
@@ -364,6 +366,8 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> NEEDS_IRON_TOOL = BlockTypeTags.key(ResourceKey.minecraft("needs_iron_tool"));
 
     public static final DefaultedTag<BlockType> NEEDS_STONE_TOOL = BlockTypeTags.key(ResourceKey.minecraft("needs_stone_tool"));
+
+    public static final DefaultedTag<BlockType> NETHER_PORTAL_FRAME = BlockTypeTags.key(ResourceKey.minecraft("nether_portal_frame"));
 
     public static final DefaultedTag<BlockType> NYLIUM = BlockTypeTags.key(ResourceKey.minecraft("nylium"));
 

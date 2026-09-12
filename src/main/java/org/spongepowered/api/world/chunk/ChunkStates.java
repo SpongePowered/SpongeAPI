@@ -53,12 +53,6 @@ public final class ChunkStates {
     public static final DefaultedRegistryReference<ChunkState> BIOMES = ChunkStates.key(ResourceKey.minecraft("biomes"));
 
     /**
-     * A {@link Chunk} that is being "carved out" for general terrain
-     * features that require things like "caves" or "canyons".
-     */
-    public static final DefaultedRegistryReference<ChunkState> CARVERS = ChunkStates.key(ResourceKey.minecraft("carvers"));
-
-    /**
      * Identifies a {@link Chunk} that is considered empty. The method
      * {@link Chunk#isEmpty()} would return {@code true}. Identifies the
      * chunk has nothing contained within it, but can be used as a dummy chunk
@@ -91,12 +85,6 @@ public final class ChunkStates {
     public static final DefaultedRegistryReference<ChunkState> LIGHT = ChunkStates.key(ResourceKey.minecraft("light"));
 
     /**
-     * A {@link Chunk} where the {@link BlockState block states} are being
-     * set and structure locations are set.
-     */
-    public static final DefaultedRegistryReference<ChunkState> NOISE = ChunkStates.key(ResourceKey.minecraft("noise"));
-
-    /**
      * A {@link Chunk} state that is being used for entity spawning.
      * Generally requires that the neighboring chunks are adequately populated,
      * and requires that this chunk has proper lighting, for mob placement
@@ -117,14 +105,17 @@ public final class ChunkStates {
     public static final DefaultedRegistryReference<ChunkState> STRUCTURE_STARTS = ChunkStates.key(ResourceKey.minecraft("structure_starts"));
 
     /**
-     * A {@link Chunk} that is at this state means that it is being
-     * generated with a "base" layer of terrain.
+     * A {@link Chunk} that is being generated with a "base" layer of terrain:
+     * carving out caves and canyons, setting {@link BlockState block states},
+     * and placing structure locations. Replaces the former separate
+     * {@code carvers}, {@code noise}, and {@code surface} states, which were
+     * merged into this single step.
      *
      * <p>The chunk should not have any {@link Entity} instances or
      * {@link BlockEntity} instances and may have a valid {@link WorldLike}
      * used for world generation.</p>
      */
-    public static final DefaultedRegistryReference<ChunkState> SURFACE = ChunkStates.key(ResourceKey.minecraft("surface"));
+    public static final DefaultedRegistryReference<ChunkState> TERRAIN = ChunkStates.key(ResourceKey.minecraft("terrain"));
 
     private ChunkStates() {
     }

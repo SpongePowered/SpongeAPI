@@ -452,6 +452,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> BURIED_TREASURE_MAP = ItemTypes.key(ResourceKey.minecraft("buried_treasure_map"));
 
+    public static final DefaultedRegistryReference<ItemType> BURIED_TRIAL_CHAMBERS_MAP = ItemTypes.key(ResourceKey.minecraft("buried_trial_chambers_map"));
+
     public static final DefaultedRegistryReference<ItemType> BURN_POTTERY_SHERD = ItemTypes.key(ResourceKey.minecraft("burn_pottery_sherd"));
 
     public static final DefaultedRegistryReference<ItemType> BUSH = ItemTypes.key(ResourceKey.minecraft("bush"));
@@ -1478,8 +1480,6 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> JUNGLE_DOOR = ItemTypes.key(ResourceKey.minecraft("jungle_door"));
 
-    public static final DefaultedRegistryReference<ItemType> JUNGLE_EXPLORER_MAP = ItemTypes.key(ResourceKey.minecraft("jungle_explorer_map"));
-
     public static final DefaultedRegistryReference<ItemType> JUNGLE_FENCE = ItemTypes.key(ResourceKey.minecraft("jungle_fence"));
 
     public static final DefaultedRegistryReference<ItemType> JUNGLE_FENCE_GATE = ItemTypes.key(ResourceKey.minecraft("jungle_fence_gate"));
@@ -1493,6 +1493,8 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> JUNGLE_PLANKS = ItemTypes.key(ResourceKey.minecraft("jungle_planks"));
 
     public static final DefaultedRegistryReference<ItemType> JUNGLE_PRESSURE_PLATE = ItemTypes.key(ResourceKey.minecraft("jungle_pressure_plate"));
+
+    public static final DefaultedRegistryReference<ItemType> JUNGLE_PYRAMID_MAP = ItemTypes.key(ResourceKey.minecraft("jungle_pyramid_map"));
 
     public static final DefaultedRegistryReference<ItemType> JUNGLE_SAPLING = ItemTypes.key(ResourceKey.minecraft("jungle_sapling"));
 
@@ -1988,7 +1990,7 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> OBSIDIAN = ItemTypes.key(ResourceKey.minecraft("obsidian"));
 
-    public static final DefaultedRegistryReference<ItemType> OCEAN_EXPLORER_MAP = ItemTypes.key(ResourceKey.minecraft("ocean_explorer_map"));
+    public static final DefaultedRegistryReference<ItemType> OCEAN_MONUMENT_MAP = ItemTypes.key(ResourceKey.minecraft("ocean_monument_map"));
 
     public static final DefaultedRegistryReference<ItemType> OCELOT_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("ocelot_spawn_egg"));
 
@@ -2906,7 +2908,7 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> SUSPICIOUS_STEW = ItemTypes.key(ResourceKey.minecraft("suspicious_stew"));
 
-    public static final DefaultedRegistryReference<ItemType> SWAMP_EXPLORER_MAP = ItemTypes.key(ResourceKey.minecraft("swamp_explorer_map"));
+    public static final DefaultedRegistryReference<ItemType> SWAMP_HUT_MAP = ItemTypes.key(ResourceKey.minecraft("swamp_hut_map"));
 
     public static final DefaultedRegistryReference<ItemType> SWEET_BERRIES = ItemTypes.key(ResourceKey.minecraft("sweet_berries"));
 
@@ -2949,8 +2951,6 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> TRADER_LLAMA_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("trader_llama_spawn_egg"));
 
     public static final DefaultedRegistryReference<ItemType> TRAPPED_CHEST = ItemTypes.key(ResourceKey.minecraft("trapped_chest"));
-
-    public static final DefaultedRegistryReference<ItemType> TRIAL_EXPLORER_MAP = ItemTypes.key(ResourceKey.minecraft("trial_explorer_map"));
 
     public static final DefaultedRegistryReference<ItemType> TRIAL_KEY = ItemTypes.key(ResourceKey.minecraft("trial_key"));
 
@@ -3294,7 +3294,7 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> WOODEN_SWORD = ItemTypes.key(ResourceKey.minecraft("wooden_sword"));
 
-    public static final DefaultedRegistryReference<ItemType> WOODLAND_EXPLORER_MAP = ItemTypes.key(ResourceKey.minecraft("woodland_explorer_map"));
+    public static final DefaultedRegistryReference<ItemType> WOODLAND_MANSION_MAP = ItemTypes.key(ResourceKey.minecraft("woodland_mansion_map"));
 
     public static final DefaultedRegistryReference<ItemType> WRITABLE_BOOK = ItemTypes.key(ResourceKey.minecraft("writable_book"));
 

@@ -37,7 +37,15 @@ import org.spongepowered.api.registry.RegistryTypes;
 @RegistryScopes(scopes = RegistryScope.GAME)
 public final class FluidTypeTags {
 
+    public static final DefaultedTag<FluidType> AXOLOTL_TRIES_TO_FIND = FluidTypeTags.key(ResourceKey.minecraft("axolotl_tries_to_find"));
+
     public static final DefaultedTag<FluidType> BUBBLE_COLUMN_CAN_OCCUPY = FluidTypeTags.key(ResourceKey.minecraft("bubble_column_can_occupy"));
+
+    public static final DefaultedTag<FluidType> DOLPHIN_TRIES_TO_FIND = FluidTypeTags.key(ResourceKey.minecraft("dolphin_tries_to_find"));
+
+    public static final DefaultedTag<FluidType> ENTITY_FLOATABLE = FluidTypeTags.key(ResourceKey.minecraft("entity_floatable"));
+
+    public static final DefaultedTag<FluidType> FROG_TRIES_TO_FIND_LAND_NEAR = FluidTypeTags.key(ResourceKey.minecraft("frog_tries_to_find_land_near"));
 
     public static final DefaultedTag<FluidType> LAVA = FluidTypeTags.key(ResourceKey.minecraft("lava"));
 

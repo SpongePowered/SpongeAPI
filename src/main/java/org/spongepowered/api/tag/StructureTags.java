@@ -69,15 +69,17 @@ public final class StructureTags {
 
     public static final DefaultedTag<Structure> ON_ANCIENT_CITY_MAPS = StructureTags.key(ResourceKey.minecraft("on_ancient_city_maps"));
 
+    public static final DefaultedTag<Structure> ON_BURIED_TRIAL_CHAMBERS_MAPS = StructureTags.key(ResourceKey.minecraft("on_buried_trial_chambers_maps"));
+
     public static final DefaultedTag<Structure> ON_DESERT_PYRAMID_MAPS = StructureTags.key(ResourceKey.minecraft("on_desert_pyramid_maps"));
 
     public static final DefaultedTag<Structure> ON_DESERT_VILLAGE_MAPS = StructureTags.key(ResourceKey.minecraft("on_desert_village_maps"));
 
-    public static final DefaultedTag<Structure> ON_JUNGLE_EXPLORER_MAPS = StructureTags.key(ResourceKey.minecraft("on_jungle_explorer_maps"));
+    public static final DefaultedTag<Structure> ON_JUNGLE_PYRAMID_MAPS = StructureTags.key(ResourceKey.minecraft("on_jungle_pyramid_maps"));
 
     public static final DefaultedTag<Structure> ON_MINESHAFT_MAPS = StructureTags.key(ResourceKey.minecraft("on_mineshaft_maps"));
 
-    public static final DefaultedTag<Structure> ON_OCEAN_EXPLORER_MAPS = StructureTags.key(ResourceKey.minecraft("on_ocean_explorer_maps"));
+    public static final DefaultedTag<Structure> ON_OCEAN_MONUMENT_MAPS = StructureTags.key(ResourceKey.minecraft("on_ocean_monument_maps"));
 
     public static final DefaultedTag<Structure> ON_OCEAN_RUIN_WARM_MAPS = StructureTags.key(ResourceKey.minecraft("on_ocean_ruin_warm_maps"));
 
@@ -87,15 +89,13 @@ public final class StructureTags {
 
     public static final DefaultedTag<Structure> ON_SNOWY_VILLAGE_MAPS = StructureTags.key(ResourceKey.minecraft("on_snowy_village_maps"));
 
-    public static final DefaultedTag<Structure> ON_SWAMP_EXPLORER_MAPS = StructureTags.key(ResourceKey.minecraft("on_swamp_explorer_maps"));
+    public static final DefaultedTag<Structure> ON_SWAMP_HUT_MAPS = StructureTags.key(ResourceKey.minecraft("on_swamp_hut_maps"));
 
     public static final DefaultedTag<Structure> ON_TAIGA_VILLAGE_MAPS = StructureTags.key(ResourceKey.minecraft("on_taiga_village_maps"));
 
     public static final DefaultedTag<Structure> ON_TREASURE_MAPS = StructureTags.key(ResourceKey.minecraft("on_treasure_maps"));
 
-    public static final DefaultedTag<Structure> ON_TRIAL_CHAMBERS_MAPS = StructureTags.key(ResourceKey.minecraft("on_trial_chambers_maps"));
-
-    public static final DefaultedTag<Structure> ON_WOODLAND_EXPLORER_MAPS = StructureTags.key(ResourceKey.minecraft("on_woodland_explorer_maps"));
+    public static final DefaultedTag<Structure> ON_WOODLAND_MANSION_MAPS = StructureTags.key(ResourceKey.minecraft("on_woodland_mansion_maps"));
 
     public static final DefaultedTag<Structure> RUINED_PORTAL = StructureTags.key(ResourceKey.minecraft("ruined_portal"));
 

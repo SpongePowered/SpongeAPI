@@ -48,6 +48,8 @@ public final class DensityFunctions {
 
     public static final DefaultedRegistryReference<DensityFunction> NETHER_BASE_3D_NOISE = DensityFunctions.key(ResourceKey.minecraft("nether/base_3d_noise"));
 
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_AMPLIFIED_CHUNK_SURFACE_LEVEL = DensityFunctions.key(ResourceKey.minecraft("overworld_amplified/chunk_surface_level"));
+
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_AMPLIFIED_DEPTH = DensityFunctions.key(ResourceKey.minecraft("overworld_amplified/depth"));
 
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_AMPLIFIED_FACTOR = DensityFunctions.key(ResourceKey.minecraft("overworld_amplified/factor"));
@@ -76,6 +78,8 @@ public final class DensityFunctions {
 
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_CAVES_SPAGHETTI_ROUGHNESS_FUNCTION = DensityFunctions.key(ResourceKey.minecraft("overworld/caves/spaghetti_roughness_function"));
 
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_CHUNK_SURFACE_LEVEL = DensityFunctions.key(ResourceKey.minecraft("overworld/chunk_surface_level"));
+
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_CONTINENTS = DensityFunctions.key(ResourceKey.minecraft("overworld/continents"));
 
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_DEPTH = DensityFunctions.key(ResourceKey.minecraft("overworld/depth"));
@@ -87,6 +91,8 @@ public final class DensityFunctions {
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_FINAL_DENSITY = DensityFunctions.key(ResourceKey.minecraft("overworld/final_density"));
 
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_JAGGEDNESS = DensityFunctions.key(ResourceKey.minecraft("overworld/jaggedness"));
+
+    public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_LARGE_BIOMES_CHUNK_SURFACE_LEVEL = DensityFunctions.key(ResourceKey.minecraft("overworld_large_biomes/chunk_surface_level"));
 
     public static final DefaultedRegistryReference<DensityFunction> OVERWORLD_LARGE_BIOMES_CONTINENTS = DensityFunctions.key(ResourceKey.minecraft("overworld_large_biomes/continents"));
 
