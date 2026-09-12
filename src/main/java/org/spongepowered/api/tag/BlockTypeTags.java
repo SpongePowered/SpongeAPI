@@ -129,6 +129,8 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> CANNOT_SUPPORT_SNOW_LAYER = BlockTypeTags.key(ResourceKey.minecraft("cannot_support_snow_layer"));
 
+    public static final DefaultedTag<BlockType> CAT_DOES_NOT_TELEPORT_TO = BlockTypeTags.key(ResourceKey.minecraft("cat_does_not_teleport_to"));
+
     public static final DefaultedTag<BlockType> CATS_CAN_LIE_ON = BlockTypeTags.key(ResourceKey.minecraft("cats_can_lie_on"));
 
     public static final DefaultedTag<BlockType> CATS_CAN_SIT_ON = BlockTypeTags.key(ResourceKey.minecraft("cats_can_sit_on"));
@@ -191,6 +193,8 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> DAMPENS_VIBRATIONS = BlockTypeTags.key(ResourceKey.minecraft("dampens_vibrations"));
 
+    public static final DefaultedTag<BlockType> DANGEROUS_FOR_TELEPORTATION = BlockTypeTags.key(ResourceKey.minecraft("dangerous_for_teleportation"));
+
     public static final DefaultedTag<BlockType> DARK_OAK_LOGS = BlockTypeTags.key(ResourceKey.minecraft("dark_oak_logs"));
 
     public static final DefaultedTag<BlockType> DEEPSLATE_ORE_REPLACEABLES = BlockTypeTags.key(ResourceKey.minecraft("deepslate_ore_replaceables"));
@@ -222,6 +226,8 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> ENCHANTMENT_POWER_PROVIDER = BlockTypeTags.key(ResourceKey.minecraft("enchantment_power_provider"));
 
     public static final DefaultedTag<BlockType> ENCHANTMENT_POWER_TRANSMITTER = BlockTypeTags.key(ResourceKey.minecraft("enchantment_power_transmitter"));
+
+    public static final DefaultedTag<BlockType> ENDERMAN_DOES_NOT_TELEPORT_TO = BlockTypeTags.key(ResourceKey.minecraft("enderman_does_not_teleport_to"));
 
     public static final DefaultedTag<BlockType> ENDERMAN_HOLDABLE = BlockTypeTags.key(ResourceKey.minecraft("enderman_holdable"));
 
@@ -425,6 +431,8 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> SHULKER_BOXES = BlockTypeTags.key(ResourceKey.minecraft("shulker_boxes"));
 
+    public static final DefaultedTag<BlockType> SHULKER_DOES_NOT_TELEPORT_TO = BlockTypeTags.key(ResourceKey.minecraft("shulker_does_not_teleport_to"));
+
     public static final DefaultedTag<BlockType> SIGNS = BlockTypeTags.key(ResourceKey.minecraft("signs"));
 
     public static final DefaultedTag<BlockType> SKULLS = BlockTypeTags.key(ResourceKey.minecraft("skulls"));
@@ -560,6 +568,8 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> TURNS_INTO_DIRT_PATH = BlockTypeTags.key(ResourceKey.minecraft("turns_into_dirt_path"));
 
     public static final DefaultedTag<BlockType> TURNS_INTO_FARMLAND = BlockTypeTags.key(ResourceKey.minecraft("turns_into_farmland"));
+
+    public static final DefaultedTag<BlockType> UNCARVABLE = BlockTypeTags.key(ResourceKey.minecraft("uncarvable"));
 
     public static final DefaultedTag<BlockType> UNDERWATER_BONEMEALS = BlockTypeTags.key(ResourceKey.minecraft("underwater_bonemeals"));
 

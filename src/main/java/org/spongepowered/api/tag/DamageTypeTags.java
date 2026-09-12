@@ -53,6 +53,8 @@ public final class DamageTypeTags {
 
     public static final DefaultedTag<DamageType> BYPASSES_ARMOR = DamageTypeTags.key(ResourceKey.minecraft("bypasses_armor"));
 
+    public static final DefaultedTag<DamageType> BYPASSES_COOLDOWN = DamageTypeTags.key(ResourceKey.minecraft("bypasses_cooldown"));
+
     public static final DefaultedTag<DamageType> BYPASSES_EFFECTS = DamageTypeTags.key(ResourceKey.minecraft("bypasses_effects"));
 
     public static final DefaultedTag<DamageType> BYPASSES_ENCHANTMENTS = DamageTypeTags.key(ResourceKey.minecraft("bypasses_enchantments"));
