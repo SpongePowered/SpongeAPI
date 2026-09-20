@@ -26,7 +26,6 @@ package org.spongepowered.api.data;
 
 import io.leangen.geantyref.TypeToken;
 import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.data.value.ValueLike;
 import org.spongepowered.api.util.Builder;
 
 import java.util.function.BiConsumer;
@@ -35,7 +34,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-public interface MutableDataProviderBuilder<H extends DataHolder.Mutable, V extends ValueLike<E>, E> extends
+public interface MutableDataProviderBuilder<H extends DataHolder.Mutable, V extends Value<E>, E> extends
         Builder<DataProvider<V, E>, MutableDataProviderBuilder<H, V, E>> {
 
     <NV extends Value<NE>, NE> MutableDataProviderBuilder<H, NV, NE> key(Key<NV> key);
