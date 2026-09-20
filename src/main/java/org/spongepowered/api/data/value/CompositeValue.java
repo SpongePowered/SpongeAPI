@@ -52,26 +52,26 @@ public interface CompositeValue<K, E> extends ValueLike<E> {
     }
 
     @Override
-    CompositeValue.Mutable<K ,E> asMutable();
+    CompositeValue.Mutable<K, E> asMutable();
 
     @Override
-    CompositeValue.Mutable<K ,E> asMutableCopy();
+    CompositeValue.Mutable<K, E> asMutableCopy();
 
     @Override
-    CompositeValue.Immutable<K ,E> asImmutable();
+    CompositeValue.Immutable<K, E> asImmutable();
 
     interface Parent<K, E> extends CompositeValue<K, E> {
 
         Collection<? extends Child<K, E>> children();
 
         @Override
-        Parent.Mutable<K ,E> asMutable();
+        Parent.Mutable<K, E> asMutable();
 
         @Override
-        Parent.Mutable<K ,E> asMutableCopy();
+        Parent.Mutable<K, E> asMutableCopy();
 
         @Override
-        Parent.Immutable<K ,E> asImmutable();
+        Parent.Immutable<K, E> asImmutable();
 
         interface Mutable<K, E> extends Parent<K, E>, CompositeValue.Mutable<K, E> {
 
@@ -124,13 +124,13 @@ public interface CompositeValue<K, E> extends ValueLike<E> {
         K valueKey();
 
         @Override
-        Child.Mutable<K ,E> asMutable();
+        Child.Mutable<K, E> asMutable();
 
         @Override
-        Child.Mutable<K ,E> asMutableCopy();
+        Child.Mutable<K, E> asMutableCopy();
 
         @Override
-        Child.Immutable<K ,E> asImmutable();
+        Child.Immutable<K, E> asImmutable();
 
         interface Mutable<K, E> extends Child<K, E>, CompositeValue.Mutable<K, E> {
 
@@ -179,13 +179,13 @@ public interface CompositeValue<K, E> extends ValueLike<E> {
     interface Mutable<K, E> extends CompositeValue<K, E>, ValueLike.Mutable<E> {
 
         @Override
-        CompositeValue.Mutable<K ,E> asMutable();
+        CompositeValue.Mutable<K, E> asMutable();
 
         @Override
-        CompositeValue.Mutable<K ,E> asMutableCopy();
+        CompositeValue.Mutable<K, E> asMutableCopy();
 
         @Override
-        CompositeValue.Immutable<K ,E> asImmutable();
+        CompositeValue.Immutable<K, E> asImmutable();
     }
 
     interface Immutable<K, E> extends CompositeValue<K, E>, ValueLike.Immutable<E> {
