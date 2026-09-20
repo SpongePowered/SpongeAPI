@@ -24,13 +24,13 @@
  */
 package org.spongepowered.api.data;
 
-import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
+import org.spongepowered.api.data.value.ValueLike;
 import org.spongepowered.api.util.Direction;
 
 import java.util.Optional;
 
-public interface DirectionRelativeDataProvider<V extends Value<E>, E> extends DataProvider<V, E> {
+public interface DirectionRelativeDataProvider<V extends ValueLike<E>, E> extends DataProvider<V, E> {
 
     @Override
     default Optional<E> get(DataHolder dataHolder) {
@@ -63,7 +63,7 @@ public interface DirectionRelativeDataProvider<V extends Value<E>, E> extends Da
     Optional<E> get(DataHolder dataHolder, Direction direction);
 
     /**
-     * Gets a constructed {@link Value} for the provided {@link DataHolder}.
+     * Gets a constructed {@link ValueLike} for the provided {@link DataHolder}.
      * Much like {@link #get(DataHolder)}, this is generally considered the
      * underlying implementation access for any {@link DataHolder#get(Key)}
      * where the {@link Key} is registered with this {@link DataProvider}.
@@ -76,9 +76,7 @@ public interface DirectionRelativeDataProvider<V extends Value<E>, E> extends Da
      * @param direction The related relative direction to the data provider
      * @return The value
      */
-    default Optional<V> value(DataHolder dataHolder, Direction direction) {
-        return this.get(dataHolder, direction).map(element -> Value.genericMutableOf(this.key(), element));
-    }
+    Optional<V> value(DataHolder dataHolder, Direction direction);
 
     /**
      * Gets whether this value provider is supported by the given {@link ValueContainer}.

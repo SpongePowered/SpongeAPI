@@ -28,11 +28,13 @@ import io.leangen.geantyref.TypeToken;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.value.CompositeValue;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
+import org.spongepowered.api.data.value.ValueLike;
 import org.spongepowered.api.data.value.WeightedCollectionValue;
 import org.spongepowered.api.event.EventListener;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
@@ -70,7 +72,7 @@ import java.util.function.BiPredicate;
  * @param <V> The type of {@link Value}
  */
 @CatalogedBy(Keys.class)
-public interface Key<V extends Value<?>> extends ResourceKeyed {
+public interface Key<V extends ValueLike<?>> extends ResourceKeyed {
 
     /**
      * Creates a {@link Key.Builder} which allows creation of a {@link Key}
@@ -181,7 +183,7 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
      */
     <E extends DataHolder> void registerEvent(PluginContainer plugin, Class<E> holderFilter, EventListener<ChangeDataHolderEvent.ValueChange> listener);
 
-    interface Builder<E, V extends Value<E>> extends ResourceKeyedBuilder<Key<V>, Builder<E, V>> {
+    interface Builder<E, V extends ValueLike<E>> extends ResourceKeyedBuilder<Key<V>, Builder<E, V>> {
 
         /**
          * Starter method for the builder, to be used immediately after
@@ -344,6 +346,38 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
          * @return This builder, generified
          */
         <T> Builder<WeightedTable<T>, WeightedCollectionValue<T>> weightedCollectionElementType(TypeToken<T> type);
+
+        /**
+         * Starter method for the builder, to be used immediately after
+         * {@link Key#builder()} is called. This defines the generics for the
+         * builder itself to provide the properly generified {@link Key}.
+         *
+         * <p>This overload is provided for simple cases where a plain
+         * {@link CompositeValue} is used.</p>
+         *
+         * @param keyType The key type
+         * @param elementType The element type
+         * @param <K> The element type of the Key's key type
+         * @param <E> The element type of the Key's element type
+         * @return This builder, generified
+         */
+        <K, E> Builder<E, CompositeValue.Parent<K, E>> compositeValueElementType(Class<K> keyType, Class<E> elementType);
+
+        /**
+         * Starter method for the builder, to be used immediately after
+         * {@link Key#builder()} is called. This defines the generics for the
+         * builder itself to provide the properly generified {@link Key}.
+         *
+         * <p>This overload is provided for simple cases where a plain
+         * {@link CompositeValue} is used.</p>
+         *
+         * @param keyType The key type
+         * @param elementType The element type
+         * @param <K> The element type of the Key's key type
+         * @param <E> The element type of the Key's element type
+         * @return This builder, generified
+         */
+        <K, E> Builder<E, CompositeValue.Parent<K, E>> compositeValueElementType(TypeToken<K> keyType, TypeToken<E> elementType);
 
         /**
          * Sets the {@link Comparator} that can be used to compare

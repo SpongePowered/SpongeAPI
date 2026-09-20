@@ -29,6 +29,7 @@ import org.spongepowered.api.data.value.CopyableValueContainer;
 import org.spongepowered.api.data.value.MergeFunction;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
+import org.spongepowered.api.data.value.ValueLike;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.world.World;
 import org.spongepowered.eventgen.annotations.TransformWith;
@@ -56,21 +57,21 @@ public interface DataManipulator extends CopyableValueContainer {
 
     /**
      * Creates a {@link Immutable} view directly based on the
-     * {@link Value}s. No unnecessary copies of the {@link Value}s
+     * {@link ValueLike}s. No unnecessary copies of the {@link ValueLike}s
      * will be created.
      *
      * @param values The values
      * @return The immutable data manipulator view
      */
-    static Immutable immutableOf(final Iterable<? extends Value<?>> values) {
+    static Immutable immutableOf(final Iterable<? extends ValueLike<?>> values) {
         return Sponge.game().factoryProvider().provide(Immutable.Factory.class).of(values);
     }
 
     /**
      * Creates an {@link Immutable} view directly based on the
-     * {@link Value}s provided by the given {@link ValueContainer},
+     * {@link ValueLike}s provided by the given {@link ValueContainer},
      * such that all {@link ValueContainer#getValues()} will be
-     * converted via {@link Value#asImmutable()} and constructed
+     * converted via {@link ValueLike#asImmutable()} and constructed
      * into an {@link Immutable}.
      *
      * @param valueContainer The value container to populate values from
@@ -102,21 +103,21 @@ public interface DataManipulator extends CopyableValueContainer {
     /**
      * Creates a new {@link DataManipulator} with the provided
      * {@link Iterable Values} such that the resulting {@link Mutable} will
-     * contain all said {@link Value values}. The returned
+     * contain all said {@link ValueLike values}. The returned
      * {@link DataManipulator manipulator} is still {@link Mutable mutable}.
      *
      * @param values The values to populate the mutable container
      * @return The mutable manipulator containing all values
      */
-    static Mutable mutableOf(final Iterable<? extends Value<?>> values) {
+    static Mutable mutableOf(final Iterable<? extends ValueLike<?>> values) {
         return Sponge.game().factoryProvider().provide(Mutable.Factory.class).of(values);
     }
 
     /**
-     * Creates a new {@link DataManipulator} with all {@link Value values}
+     * Creates a new {@link DataManipulator} with all {@link ValueLike values}
      * retrievable through the given {@link ValueContainer} by
      * {@link ValueContainer#getValues()} with the connotation that all
-     * {@link Value}s are provided, even those that are not persisted or
+     * {@link ValueLike}s are provided, even those that are not persisted or
      * registered through a {@link DataRegistration}.
      *
      * @param valueContainer The value container providing all values
@@ -144,7 +145,7 @@ public interface DataManipulator extends CopyableValueContainer {
     /**
      * Gets a {@link Mutable} copy of this
      * {@link DataManipulator} such that all backed
-     * {@link Value}s are copied into their {@link org.spongepowered.api.data.value.Value.Mutable}
+     * {@link ValueLike}s are copied into their {@link org.spongepowered.api.data.value.ValueLike.Mutable}
      * counterparts. Any changes to this {@link DataManipulator} will
      * NOT be reflected on the returned {@link Mutable} and vice versa.
      *
@@ -158,8 +159,8 @@ public interface DataManipulator extends CopyableValueContainer {
 
     /**
      * Gets an {@link Immutable} copy of this
-     * {@link DataManipulator} such that all backed {@link org.spongepowered.api.data.value.Value.Mutable}s are copied
-     * into {@link org.spongepowered.api.data.value.Value.Immutable} counterparts. Any changes to this
+     * {@link DataManipulator} such that all backed {@link org.spongepowered.api.data.value.ValueLike.Mutable}s are copied
+     * into {@link org.spongepowered.api.data.value.ValueLike.Immutable} counterparts. Any changes to this
      * {@link DataManipulator} will NOT be reflected on the returned
      * {@link Immutable} and vice versa.
      *
@@ -171,13 +172,13 @@ public interface DataManipulator extends CopyableValueContainer {
     /**
      * Represents an immutable {@link DataManipulator}. Immutable meaning that
      * the contained {@link #getValues() values} are all likewise
-     * {@link org.spongepowered.api.data.value.Value.Immutable}, and as such,
+     * {@link org.spongepowered.api.data.value.ValueLike.Immutable}, and as such,
      * cannot be changed themselves, nor can the manipulator be modified to add
-     * or remove values. All methods such as {@link #with(Value)} return new
+     * or remove values. All methods such as {@link #with(ValueLike)} return new
      * instances. It is guaranteed to be thread safe to access values from this
      * container, and seeing as it does not change, can be passed around as a
      * pseudo cache for templating. It is important to note that there is no
-     * guarantee on the validity of the stored {@link Value}s that their own data
+     * guarantee on the validity of the stored {@link ValueLike}s that their own data
      * does not "expire", cases may include outdated references of
      * {@link Entity entities} or {@link World worlds} that no longer serve valid
      * purposes.
@@ -222,15 +223,15 @@ public interface DataManipulator extends CopyableValueContainer {
 
         /**
          * Creates a new {@link Immutable} with the provided
-         * {@link Value} provided that the {@link Value} is supported by
+         * {@link ValueLike} provided that the {@link ValueLike} is supported by
          * this {@link Immutable}.
          *
          * @param <E> The type of value
          * @param value The value to set
          * @return The new immutable data manipulator
          */
-        default <E> Immutable with(final Value<E> value) {
-            return this.with(value.key(), value.get());
+        default <E> Immutable with(final ValueLike<E> value) {
+            return this.asMutable().set(value).asImmutable();
         }
 
         /**
@@ -262,23 +263,23 @@ public interface DataManipulator extends CopyableValueContainer {
 
             /**
              * Creates an {@link Immutable} view directly based on the
-             * {@link Value}s provided by the given {@link Iterable},
+             * {@link ValueLike}s provided by the given {@link Iterable},
              * such that all {@link Iterable#forEach(Consumer)} will be
-             * converted via {@link Value#asImmutable()} and constructed
+             * converted via {@link ValueLike#asImmutable()} and constructed
              * into an {@link Immutable}.
              *
              * @see DataManipulator#immutableOf(Iterable)
              * @param values The value container to populate values from
              * @return The immutable manipulator
              */
-            Immutable of(Iterable<? extends Value<?>> values);
+            Immutable of(Iterable<? extends ValueLike<?>> values);
 
 
             /**
              * Creates an {@link Immutable} view directly based on the
-             * {@link Value}s provided by the given {@link ValueContainer},
+             * {@link ValueLike}s provided by the given {@link ValueContainer},
              * such that all {@link ValueContainer#getValues()} will be
-             * converted via {@link Value#asImmutable()} and constructed
+             * converted via {@link ValueLike#asImmutable()} and constructed
              * into an {@link Immutable}.
              *
              * @see DataManipulator#immutableOf(ValueContainer)
@@ -445,9 +446,9 @@ public interface DataManipulator extends CopyableValueContainer {
         /**
          * Sets the supported {@link Key}'s value such that the value is set on
          * this {@link Mutable} without having to directly set the
-         * {@link org.spongepowered.api.data.value.Value.Mutable} and {@link #set(Value)} afterwards. The requirement
+         * {@link org.spongepowered.api.data.value.ValueLike.Mutable} and {@link #set(ValueLike)} afterwards. The requirement
          * for this to succeed is that the {@link Key} must be checked that it is
-         * supported via {@link #supports(Value)} or {@link #supports(Key)}
+         * supported via {@link #supports(ValueLike)} or {@link #supports(Key)}
          * otherwise an {@link IllegalArgumentException} may be thrown. For
          * fluency, after setting, this {@link Mutable} is returned.
          *
@@ -456,7 +457,9 @@ public interface DataManipulator extends CopyableValueContainer {
          * @param <E> The type of value
          * @return This manipulator, for chaining
          */
-        <E> Mutable set(Key<? extends Value<E>> key, E value);
+        default <E> Mutable set(Key<? extends Value<E>> key, E value) {
+            return this.set(Value.immutableOf(key, value));
+        }
 
         default <E, V extends Value<E>> Mutable set(final Supplier<Key<V>> key, final E value) {
             return this.set(key.get(), value);
@@ -468,9 +471,9 @@ public interface DataManipulator extends CopyableValueContainer {
         }
 
         /**
-         * Sets the supported {@link Value} onto this {@link Mutable}.
-         * The requirement for this to succeed is that the {@link Value} is
-         * checked for support via {@link #supports(Value)} or
+         * Sets the supported {@link ValueLike} onto this {@link Mutable}.
+         * The requirement for this to succeed is that the {@link ValueLike} is
+         * checked for support via {@link #supports(ValueLike)} or
          * {@link #supports(Key)} otherwise an {@link IllegalArgumentException}
          * may be thrown. For fluency, after setting, this {@link Mutable}
          * is returned.
@@ -478,15 +481,12 @@ public interface DataManipulator extends CopyableValueContainer {
          * @param value The actual value to set
          * @return This manipulator, for chaining
          */
-        @SuppressWarnings("unchecked")
-        default Mutable set(final Value<?> value) {
-            return this.set((Key<? extends Value<Object>>) value.key(), value.get());
-        }
+        Mutable set(final ValueLike<?> value);
 
         /**
-         * Sets the supported {@link Value}s onto this {@link Mutable}.
-         * The requirement for this to succeed is that the {@link Value} is
-         * checked for support via {@link #supports(Value)} or
+         * Sets the supported {@link ValueLike}s onto this {@link Mutable}.
+         * The requirement for this to succeed is that the {@link ValueLike} is
+         * checked for support via {@link #supports(ValueLike)} or
          * {@link #supports(Key)} otherwise an {@link IllegalArgumentException}
          * may be thrown. For fluency, after setting, this {@link Mutable}
          * is returned.
@@ -494,17 +494,17 @@ public interface DataManipulator extends CopyableValueContainer {
          * @param values The actual values to set
          * @return This manipulator, for chaining
          */
-        default Mutable set(final Value<?>... values) {
-            for (final Value<?> value : Objects.requireNonNull(values)) {
+        default Mutable set(final ValueLike<?>... values) {
+            for (final ValueLike<?> value : Objects.requireNonNull(values)) {
                 this.set(Objects.requireNonNull(value, "A null value was provided!"));
             }
             return this;
         }
 
         /**
-         * Sets the supported {@link Value}s onto this {@link Mutable}.
-         * The requirement for this to succeed is that the {@link Value} is
-         * checked for support via {@link #supports(Value)} or
+         * Sets the supported {@link ValueLike}s onto this {@link Mutable}.
+         * The requirement for this to succeed is that the {@link ValueLike} is
+         * checked for support via {@link #supports(ValueLike)} or
          * {@link #supports(Key)} otherwise an {@link IllegalArgumentException}
          * may be thrown. For fluency, after setting, this {@link Mutable}
          * is returned.
@@ -512,8 +512,8 @@ public interface DataManipulator extends CopyableValueContainer {
          * @param values The actual values to set
          * @return This manipulator, for chaining
          */
-        default Mutable set(final Iterable<? extends Value<?>> values) {
-            for (final Value<?> value : Objects.requireNonNull(values)) {
+        default Mutable set(final Iterable<? extends ValueLike<?>> values) {
+            for (final ValueLike<?> value : Objects.requireNonNull(values)) {
                 this.set(Objects.requireNonNull(value, "A null value was provided!"));
             }
             return this;
@@ -564,7 +564,7 @@ public interface DataManipulator extends CopyableValueContainer {
              * @param values the values to populate
              * @return The new manipulator with the provided values
              */
-            Mutable of(Iterable<? extends Value<?>> values);
+            Mutable of(Iterable<? extends ValueLike<?>> values);
 
             /**
              * Creates a new manipulator with all the possible values

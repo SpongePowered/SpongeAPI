@@ -25,17 +25,20 @@
 package org.spongepowered.api.data;
 
 import io.leangen.geantyref.TypeToken;
+import org.checkerframework.checker.units.qual.K;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.value.CompositeValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
+import org.spongepowered.api.data.value.ValueLike;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
 
 import java.lang.reflect.Type;
 import java.util.Optional;
 
 @SuppressWarnings("unchecked")
-public interface DataProvider<V extends Value<E>, E> {
+public interface DataProvider<V extends ValueLike<E>, E> {
 
     /**
      * Constructs a new {@link MutableDataProviderBuilder}.
@@ -72,7 +75,7 @@ public interface DataProvider<V extends Value<E>, E> {
      * <p>A list of methods that are constrained by this check are:
      * <ul>
      *     <li>- {@link #get(DataHolder)}</li>
-     *     <li>- {@link #offer(DataHolder.Mutable, Object)}</li>
+     *     <li>- {@link #offerValue(DataHolder.Mutable, ValueLike)}</li>
      *     <li>- {@link #remove(DataHolder.Mutable)}</li>
      * </ul>
      * Conceptually, an immutable {@link DataHolder} will be ignorant of
@@ -97,10 +100,12 @@ public interface DataProvider<V extends Value<E>, E> {
      * @param dataHolder The data holder
      * @return The value, if it's supported and exists
      */
-    Optional<E> get(DataHolder dataHolder);
+    default Optional<E> get(DataHolder dataHolder) {
+        return this.value(dataHolder).map(ValueLike::get);
+    }
 
     /**
-     * Gets a constructed {@link Value} for the provided {@link DataHolder}.
+     * Gets a constructed {@link ValueLike} for the provided {@link DataHolder}.
      * Much like {@link #get(DataHolder)}, this is generally considered the
      * underlying implementation access for any {@link DataHolder#get(Key)}
      * where the {@link Key} is registered with this {@link DataProvider}.
@@ -112,9 +117,7 @@ public interface DataProvider<V extends Value<E>, E> {
      * @param dataHolder The data holder to get the constructed value from
      * @return The value
      */
-    default Optional<V> value(DataHolder dataHolder) {
-        return this.get(dataHolder).map(element -> Value.genericMutableOf(this.key(), element));
-    }
+    Optional<V> value(DataHolder dataHolder);
 
     /**
      * Gets whether this value provider is supported by the given {@link ValueContainer}.
@@ -130,23 +133,15 @@ public interface DataProvider<V extends Value<E>, E> {
 
     boolean isSupported(Type dataHolder);
 
-    DataTransactionResult offer(DataHolder.Mutable dataHolder, E element);
-
-    default DataTransactionResult offerValue(DataHolder.Mutable dataHolder, V value) {
-        return this.offer(dataHolder, value.get());
-    }
+    DataTransactionResult offerValue(DataHolder.Mutable dataHolder, V value);
 
     DataTransactionResult remove(DataHolder.Mutable dataHolder);
 
-    <I extends DataHolder.Immutable<I>> Optional<I> with(I immutable, E element);
-
-    default <I extends DataHolder.Immutable<I>> Optional<I> withValue(I immutable, V value) {
-        return this.with(immutable, value.get());
-    }
+    <I extends DataHolder.Immutable<I>> Optional<I> withValue(I immutable, V value);
 
     /**
      * Gets a {@link DataHolder.Immutable} without
-     * a {@link Value} with the target {@link Key}, if successful.
+     * a {@link ValueLike} with the target {@link Key}, if successful.
      *
      * @param immutable The immutable value store
      * @param <I> The type of the immutable value store
@@ -154,4 +149,10 @@ public interface DataProvider<V extends Value<E>, E> {
      */
     <I extends DataHolder.Immutable<I>> Optional<I> without(I immutable);
 
+    interface Composite<K, V extends CompositeValue<K, E>, E> extends DataProvider<V, E> {
+
+        DataTransactionResult remove(DataHolder.Mutable dataHolder, K valueKey);
+
+        <I extends DataHolder.Immutable<I>, K> Optional<I> without(I immutable, K valueKey);
+    }
 }

@@ -33,6 +33,7 @@ import org.spongepowered.api.data.SerializableDataHolder;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.ValueLike;
 import org.spongepowered.api.effect.VanishState;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSource;
 import org.spongepowered.api.projectile.source.EntityProjectileSource;

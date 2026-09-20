@@ -31,7 +31,7 @@ import java.util.function.Function;
 
 /**
  * Represents a unique form of {@link Function} that attempts to merge
- * two separate {@link Value}s into a singular {@link Value}.
+ * two separate {@link ValueLike}s into a singular {@link ValueLike}.
  * A merge function is similar to a {@link Function} such that it can be reused
  * for multiple purposes and should be "stateless" on its own.
  */
@@ -39,9 +39,9 @@ import java.util.function.Function;
 public interface MergeFunction {
 
     /**
-     * Performs a merge of a type of {@link Value} such that a merge has been
-     * performed and the resulting merged {@link Value} is returned. It is
-     * suffice to say that only one of the {@link Value}s may be {@code null},
+     * Performs a merge of a type of {@link ValueLike} such that a merge has been
+     * performed and the resulting merged {@link ValueLike} is returned. It is
+     * suffice to say that only one of the {@link ValueLike}s may be {@code null},
      * such that <pre> {@code
      * if (original == null) {
      *     return checkNotNull(replacement);
@@ -54,18 +54,18 @@ public interface MergeFunction {
      * It can be therefor discerned that both values are passed in as copies
      * and therefor either one can be modified and returned.
      *
-     * @param original The original {@link Value} from the value store
+     * @param original The original {@link ValueLike} from the value store
      * @param replacement The replacing value container
-     * @param <V> The type of {@link Value} being passed in
-     * @param <E> The type of {@code value} for the {@link Value}
-     * @return The "merged" {@link Value}
+     * @param <V> The type of {@link ValueLike} being passed in
+     * @param <E> The type of {@code value} for the {@link ValueLike}
+     * @return The "merged" {@link ValueLike}
      */
-    <V extends Value<E>, E> V merge(@Nullable V original, @Nullable V replacement);
+    <V extends ValueLike<E>, E> V merge(@Nullable V original, @Nullable V replacement);
 
     /**
      * Creates a new {@link MergeFunction} chaining this current merge function
      * with the provided merge function. The order of the merge is this
-     * performs {@link #merge(Value, Value)} then, the
+     * performs {@link #merge(ValueLike, ValueLike)} then, the
      * provided {@link MergeFunction} merges the returned merged
      * {@link ValueContainer} and the {@code replacement}. This can be used to
      * apply a custom merge strategy after a pre-defined {@link MergeFunction}
@@ -78,7 +78,7 @@ public interface MergeFunction {
         final MergeFunction self = this;
         return new MergeFunction() {
             @Override
-            public <V extends Value<E>, E> V merge(@Nullable V original, @Nullable V replacement) {
+            public <V extends ValueLike<E>, E> V merge(@Nullable V original, @Nullable V replacement) {
                 return that.merge(self.merge(original, replacement), replacement);
             }
         };
@@ -90,7 +90,7 @@ public interface MergeFunction {
      */
     MergeFunction REPLACEMENT_PREFERRED = new MergeFunction() {
         @Override
-        public <V extends Value<E>, E> V merge(@Nullable V original, @Nullable V replacement) {
+        public <V extends ValueLike<E>, E> V merge(@Nullable V original, @Nullable V replacement) {
             return replacement == null ? Objects.requireNonNull(original, "Original and replacement cannot be null!") : replacement;
         }
     };
@@ -101,7 +101,7 @@ public interface MergeFunction {
      */
     MergeFunction ORIGINAL_PREFERRED = new MergeFunction() {
         @Override
-        public <V extends Value<E>, E> V merge(@Nullable V original, @Nullable V replacement) {
+        public <V extends ValueLike<E>, E> V merge(@Nullable V original, @Nullable V replacement) {
             return original == null ? Objects.requireNonNull(replacement, "Replacement and original cannot be null!") : original;
         }
     };

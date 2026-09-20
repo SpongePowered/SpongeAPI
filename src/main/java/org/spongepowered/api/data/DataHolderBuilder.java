@@ -25,6 +25,7 @@
 package org.spongepowered.api.data;
 
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.ValueLike;
 import org.spongepowered.api.util.Builder;
 import org.spongepowered.api.util.CopyableBuilder;
 
@@ -33,35 +34,32 @@ import java.util.function.Supplier;
 public interface DataHolderBuilder<H extends DataHolder, B extends DataHolderBuilder<H, B>> extends Builder<H, B>, CopyableBuilder<H, B> {
 
     /**
-     * Adds the given {@link Value} to the builder. The
-     * {@link Value} is copied when the {@link DataHolder}
+     * Adds the given {@link ValueLike} to the builder. The
+     * {@link ValueLike} is copied when the {@link DataHolder}
      * is created.
      *
      * @param value The value to add
      * @return This builder, for chaining
      */
-    @SuppressWarnings({"unchecked", "rawtypes"})
-    default B add(Value<?> value) {
-        return (B) this.add((Key) value.key(), value.get());
-    }
+    B add(ValueLike<?> value);
 
     /**
-     * Adds all the {@link Value}s to the builder. The
-     * {@link Value}s are copied when the {@link DataHolder}
+     * Adds all the {@link ValueLike}s to the builder. The
+     * {@link ValueLike}s are copied when the {@link DataHolder}
      * is created.
      *
      * @param values The values to add
      * @return This builder, for chaining
      */
     @SuppressWarnings("unchecked")
-    default B add(Iterable<? extends Value<?>> values) {
+    default B add(Iterable<? extends ValueLike<?>> values) {
         values.forEach(this::add);
         return (B) this;
     }
 
     /**
-     * Adds all the {@link Value}s from the {@link DataManipulator}
-     * to the builder. The {@link Value}s are copied when the
+     * Adds all the {@link ValueLike}s from the {@link DataManipulator}
+     * to the builder. The {@link ValueLike}s are copied when the
      * {@link DataHolder} is created.
      *
      * @param manipulator The manipulator to add
@@ -72,8 +70,8 @@ public interface DataHolderBuilder<H extends DataHolder, B extends DataHolderBui
     }
 
     /**
-     * Adds all the {@link Value}s from the {@link DataHolder}
-     * to the builder. The {@link Value}s are copied when the
+     * Adds all the {@link ValueLike}s from the {@link DataHolder}
+     * to the builder. The {@link ValueLike}s are copied when the
      * {@link DataHolder} is created.
      *
      * @param dataHolder The data holder to add data from
@@ -91,7 +89,9 @@ public interface DataHolderBuilder<H extends DataHolder, B extends DataHolderBui
      * @param <V> The type of the value
      * @return This builder, for chaining
      */
-    <V> B add(Key<? extends Value<V>> key, V value);
+    default <V> B add(Key<? extends Value<V>> key, V value) {
+        return this.add(Value.immutableOf(key, value));
+    }
 
     /**
      * Adds the given {@link Key} with the given value.

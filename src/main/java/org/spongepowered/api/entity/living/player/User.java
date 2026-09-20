@@ -31,6 +31,7 @@ import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.ValueLike;
 import org.spongepowered.api.effect.VanishState;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Tamer;

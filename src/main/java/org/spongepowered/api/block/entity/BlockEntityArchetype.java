@@ -33,7 +33,7 @@ import org.spongepowered.api.data.SerializableDataHolderBuilder;
 import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.persistence.InvalidDataException;
-import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.ValueLike;
 import org.spongepowered.api.world.Archetype;
 import org.spongepowered.api.world.server.ServerLocation;
 
@@ -149,7 +149,7 @@ public interface BlockEntityArchetype extends Archetype<BlockSnapshot, BlockEnti
          *     <li>{@link #state(BlockState)}</li>
          *     <li>{@link #blockEntity(BlockEntityType)}</li>
          *     <li>{@link #blockEntityData(DataView)}</li>
-         *     <li>{@link #add(Value)}</li>
+         *     <li>{@link #add(ValueLike)}</li>
          *     <li>{@link #add(Key, Object)}</li>
          *     <li>{@link #add(DataManipulator)}</li>
          * </ul>

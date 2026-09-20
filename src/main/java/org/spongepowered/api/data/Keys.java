@@ -108,6 +108,7 @@ import org.spongepowered.api.data.type.WallConnectionState;
 import org.spongepowered.api.data.type.WireAttachmentType;
 import org.spongepowered.api.data.type.WolfSoundVariant;
 import org.spongepowered.api.data.type.WolfVariant;
+import org.spongepowered.api.data.value.CompositeValue;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.data.value.SetValue;
@@ -3834,6 +3835,10 @@ public final class Keys {
 
     private static <T> Key<WeightedCollectionValue<T>> weightedKey(final ResourceKey resourceKey, final TypeToken<T> elementType) {
         return Key.builder().key(resourceKey).weightedCollectionElementType(elementType).build();
+    }
+
+    private static <K, E> Key<CompositeValue.Parent<K, E>> compositeKey(final ResourceKey resourceKey, final Class<K> keyType, final Class<E> elementType) {
+        return Key.builder().key(resourceKey).compositeValueElementType(keyType, elementType).build();
     }
 
     private Keys() {

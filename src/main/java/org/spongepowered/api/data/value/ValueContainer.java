@@ -39,13 +39,13 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 /**
- * A value holder is a holder of a particular set of {@link Value}s. While
+ * A value holder is a holder of a particular set of {@link ValueLike}s. While
  * there exists a {@link DataHolder} and {@link DataManipulator},
  * the emphasis of {@link ValueContainer} is that it only contains "data". It
  * is not known whether a {@code ValueHolder} is mutable or immutable.
  *
  * <p>Being that a {@code ValueHolder} is literally a container of
- * {@link Value}s, it itself does not contain the underlying values of
+ * {@link ValueLike}s, it itself does not contain the underlying values of
  * data. A {@link ValueContainer} may not always be parented by another
  * {@link ValueContainer}, such as the case for {@link DataManipulator}s and
  * {@link org.spongepowered.api.data.DataHolder.Mutable}s, it is recommended to knowingly understand the
@@ -54,62 +54,62 @@ import java.util.stream.Stream;
 public interface ValueContainer {
 
     /**
-     * Attempts to get the underlying value backed by a {@link Value}
+     * Attempts to get the underlying value backed by a {@link ValueLike}
      * linked to the provided {@link Key}. If the {@link Key} is not
      * supported, {@link Optional#empty()} is returned. It is important
      * to check for support of a {@link Key} by either calling
-     * {@link #supports(Value)} or {@link #supports(Key)}.
+     * {@link #supports(ValueLike)} or {@link #supports(Key)}.
      *
      * @param key The key to retrieve the value for
      * @param <E> The type of value
      * @return The value, if available
      */
-    <E> Optional<E> get(Key<? extends Value<E>> key);
+    <E> Optional<E> get(Key<? extends ValueLike<E>> key);
 
     /**
-     * Attempts to get the underlying int value backed by a {@link Value}
+     * Attempts to get the underlying int value backed by a {@link ValueLike}
      * linked to the provided {@link Key}. If the {@link Key} is not
      * supported, {@link Optional#empty()} is returned. It is important
      * to check for support of a {@link Key} by either calling
-     * {@link #supports(Value)} or {@link #supports(Key)}.
+     * {@link #supports(ValueLike)} or {@link #supports(Key)}.
      *
      * @param key The key to retrieve the value for
      * @return The value, if available
      */
-    default OptionalInt getInt(final Key<? extends Value<Integer>> key) {
+    default OptionalInt getInt(final Key<? extends ValueLike<Integer>> key) {
         return this.get(key).map(OptionalInt::of).orElseGet(OptionalInt::empty);
     }
 
     /**
-     * Attempts to get the underlying double value backed by a {@link Value}
+     * Attempts to get the underlying double value backed by a {@link ValueLike}
      * linked to the provided {@link Key}. If the {@link Key} is not
      * supported, {@link Optional#empty()} is returned. It is important
      * to check for support of a {@link Key} by either calling
-     * {@link #supports(Value)} or {@link #supports(Key)}.
+     * {@link #supports(ValueLike)} or {@link #supports(Key)}.
      *
      * @param key The key to retrieve the value for
      * @return The value, if available
      */
-    default OptionalDouble getDouble(final Key<? extends Value<Double>> key) {
+    default OptionalDouble getDouble(final Key<? extends ValueLike<Double>> key) {
         return this.get(key).map(OptionalDouble::of).orElseGet(OptionalDouble::empty);
     }
 
     /**
-     * Attempts to get the underlying long value backed by a {@link Value}
+     * Attempts to get the underlying long value backed by a {@link ValueLike}
      * linked to the provided {@link Key}. If the {@link Key} is not
      * supported, {@link Optional#empty()} is returned. It is important
      * to check for support of a {@link Key} by either calling
-     * {@link #supports(Value)} or {@link #supports(Key)}.
+     * {@link #supports(ValueLike)} or {@link #supports(Key)}.
      *
      * @param key The key to retrieve the value for
      * @return The value, if available
      */
-    default OptionalLong getLong(final Key<? extends Value<Long>> key) {
+    default OptionalLong getLong(final Key<? extends ValueLike<Long>> key) {
         return this.get(key).map(OptionalLong::of).orElseGet(OptionalLong::empty);
     }
 
     /**
-     * Attempts to get the underlying value backed by a {@link Value}
+     * Attempts to get the underlying value backed by a {@link ValueLike}
      * linked to the provided {@link Key}.
      *
      * <p>If the {@link Key} is not supported or
@@ -120,21 +120,21 @@ public interface ValueContainer {
      * @return The value
      * @throws NoSuchElementException If the value is not supported or present
      */
-    default <E> E require(final Key<? extends Value<E>> key) {
+    default <E> E require(final Key<? extends ValueLike<E>> key) {
         return this.get(key).orElseThrow(() -> new NoSuchElementException(String.format(
                 "Could not retrieve value for key '%s'", key.toString())));
     }
 
     /**
      * Attempts to get the underlying value if available and supported. If the
-     * {@link Value} is not supported whatsoever by this
+     * {@link ValueLike} is not supported whatsoever by this
      * {@link ValueContainer}, an exception is thrown.
      *
-     * @param key The {@link Key} backing the {@link Value}
+     * @param key The {@link Key} backing the {@link ValueLike}
      * @param <E> The type of value
      * @return The value, or null if not set
      */
-    default <E> @Nullable E getOrNull(final Key<? extends Value<E>> key) {
+    default <E> @Nullable E getOrNull(final Key<? extends ValueLike<E>> key) {
         final Optional<E> value = this.get(key);
         if (value.isPresent()) {
             return value.get();
@@ -148,29 +148,29 @@ public interface ValueContainer {
     /**
      * Attempts to get the underlying value if available. If the value is not
      * set, the given {@code defaultValue} is returned, if the
-     * {@link Value} is even supported.
+     * {@link ValueLike} is even supported.
      *
-     * @param key The key backing the {@link Value}
+     * @param key The key backing the {@link ValueLike}
      * @param defaultValue The value to default to if not set
      * @param <E> The type of value
      * @return The value, or default if not set
      */
-    default <E> E getOrElse(final Key<? extends Value<E>> key, E defaultValue) {
+    default <E> E getOrElse(final Key<? extends ValueLike<E>> key, E defaultValue) {
         return this.get(key).orElse(Objects.requireNonNull(defaultValue, "defaultValue"));
     }
 
     /**
-     * Gets the {@link Value} for the given {@link Key}.
+     * Gets the {@link ValueLike} for the given {@link Key}.
      *
-     * @param key The key linked to the {@link Value}
+     * @param key The key linked to the {@link ValueLike}
      * @param <E> The type of the return type
      * @param <V> The type of value
      * @return The value, if available
      */
-    <E, V extends Value<E>> Optional<V> getValue(Key<V> key);
+    <E, V extends ValueLike<E>> Optional<V> getValue(Key<V> key);
 
     /**
-     * Attempts to get the underlying value backed by a {@link Value}
+     * Attempts to get the underlying value backed by a {@link ValueLike}
      * linked to the provided {@link Key}.
      *
      * <p>If the {@link Key} is not supported or
@@ -182,7 +182,7 @@ public interface ValueContainer {
      * @return The value
      * @throws NoSuchElementException If the value is not supported or present
      */
-    default <E, V extends Value<E>> V requireValue(final Key<V> key) {
+    default <E, V extends ValueLike<E>> V requireValue(final Key<V> key) {
         return this.getValue(key).orElseThrow(() -> new NoSuchElementException(String.format(
                 "Could not retrieve value for key '%s'", key.toString())));
     }
@@ -197,19 +197,19 @@ public interface ValueContainer {
     boolean supports(Key<?> key);
 
     /**
-     * Checks if the provided {@link Value} is supported.
+     * Checks if the provided {@link ValueLike} is supported.
      *
      * @param value The base value to check
      * @return True if the base value is supported
      */
-    default boolean supports(final Value<?> value) {
+    default boolean supports(final ValueLike<?> value) {
         return this.supports(value.key());
     }
 
     /**
      * Gets all applicable {@link Key}s for this {@link ValueContainer}.
      * Changes can not be made to the set to alter the {@link ValueContainer},
-     * nor can the {@link Value}s be changed with the provided
+     * nor can the {@link ValueLike}s be changed with the provided
      * {@link Set}.
      *
      * @return An immutable set of known {@link Key}s
@@ -226,24 +226,24 @@ public interface ValueContainer {
     }
 
     /**
-     * Gets all applicable {@link Value}s associated with this
+     * Gets all applicable {@link ValueLike}s associated with this
      * {@link ValueContainer}. As the data backed by the values are copied,
-     * any modifications to the {@link Value}s will not be reflected onto
+     * any modifications to the {@link ValueLike}s will not be reflected onto
      * this {@link ValueContainer}.
      *
      * @return An immutable set of copied values
      */
-    Set<Value.Immutable<?>> getValues();
+    Set<ValueLike.Immutable<?>> getValues();
 
     /**
-     * Gets all applicable {@link Value}s associated with this
+     * Gets all applicable {@link ValueLike}s associated with this
      * {@link ValueContainer}. As the data backed by the values are copied,
-     * any modifications to the {@link Value}s will not be reflected onto
+     * any modifications to the {@link ValueLike}s will not be reflected onto
      * this {@link ValueContainer}.
      *
      * @return A stream of copied values
      */
-    default Stream<Value.Immutable<?>> streamValues() {
+    default Stream<ValueLike.Immutable<?>> streamValues() {
         return this.getValues().stream();
     }
 }

@@ -33,6 +33,7 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.ValueLike;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.enchantment.Enchantment;
 import org.spongepowered.api.item.enchantment.EnchantmentType;
@@ -440,7 +441,7 @@ public final class ItemStackBuilderPopulators {
     }
 
     /**
-     * Creates a new {@link BiConsumer} that applies the provided {@link org.spongepowered.api.data.value.Value.Mutable}
+     * Creates a new {@link BiConsumer} that applies the provided {@link org.spongepowered.api.data.value.ValueLike.Mutable}
      * to the generated {@link ItemStack}.
      *
      * @param value The value to use
@@ -448,7 +449,7 @@ public final class ItemStackBuilderPopulators {
      * @param <V> The type of value
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static <E, V extends Value<E>> BiConsumer<ItemStack.Builder, Random> value(final V value) {
+    public static <E, V extends ValueLike<E>> BiConsumer<ItemStack.Builder, Random> value(final V value) {
         return (builder, random) -> {
             final ItemStack itemStack = builder.build();
             final DataTransactionResult dataTransactionResult = itemStack.offer(value);
@@ -460,14 +461,14 @@ public final class ItemStackBuilderPopulators {
 
     /**
      * Creates a new {@link BiConsumer} that applies a random selection of the
-     * provided {@link Value}s.
+     * provided {@link ValueLike}s.
      *
      * @param values The iterable collection of values to choose from
      * @param <E> The type of element
      * @param <V> The type of value
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static <E, V extends Value<E>> BiConsumer<ItemStack.Builder, Random> values(final Iterable<V> values) {
+    public static <E, V extends ValueLike<E>> BiConsumer<ItemStack.Builder, Random> values(final Iterable<V> values) {
         final WeightedTable<V> tableEntries = new WeightedTable<>(1);
         for (final V value : values) {
             tableEntries.add(Objects.requireNonNull(value, "Value cannot be null!"), 1);
@@ -484,7 +485,7 @@ public final class ItemStackBuilderPopulators {
 
     /**
      * Creates a new {@link BiConsumer} that provides a {@link VariableAmount}
-     * of {@link Value}s from the provided pool. Note that no
+     * of {@link ValueLike}s from the provided pool. Note that no
      * validation can be performed, however the builder will ignore unsupported
      * data.
      *
@@ -492,11 +493,11 @@ public final class ItemStackBuilderPopulators {
      * @param rolls The variable amount of manipulators to apply
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static BiConsumer<ItemStack.Builder, Random> values(final Collection<Value.Immutable<?>> manipulators, final VariableAmount rolls) {
+    public static BiConsumer<ItemStack.Builder, Random> values(final Collection<ValueLike.Immutable<?>> manipulators, final VariableAmount rolls) {
         Objects.requireNonNull(manipulators, "Manipulators cannot be null!");
         Objects.requireNonNull(rolls, "VariableAmount cannot be null!");
-        final List<Value.Immutable<?>> copied = List.copyOf(manipulators);
-        final WeightedTable<Value.Immutable<?>> table = new WeightedTable<>();
+        final List<ValueLike.Immutable<?>> copied = List.copyOf(manipulators);
+        final WeightedTable<ValueLike.Immutable<?>> table = new WeightedTable<>();
         table.setRolls(rolls);
         copied.forEach(manipulator1 -> table.add(manipulator1, 1));
         return ItemStackBuilderPopulators.values(table);
@@ -504,14 +505,14 @@ public final class ItemStackBuilderPopulators {
 
     /**
      * Creates a new {@link BiConsumer} that provides a variable
-     * amount of {@link Value}s from the provided
+     * amount of {@link ValueLike}s from the provided
      * {@link WeightedTable}. Note that no validation can be performed, however
      * the builder will ignore unsupported data.
      *
      * @param weightedTable The weighted table containing manipulators
      * @return The new biconsumer to apply to an itemstack builder
      */
-    public static BiConsumer<ItemStack.Builder, Random> values(final WeightedTable<Value.Immutable<?>> weightedTable) {
+    public static BiConsumer<ItemStack.Builder, Random> values(final WeightedTable<ValueLike.Immutable<?>> weightedTable) {
         Objects.requireNonNull(weightedTable, "WeightedTable cannot be null!");
         return (builder, random) -> weightedTable.get(random).forEach(builder::add);
     }

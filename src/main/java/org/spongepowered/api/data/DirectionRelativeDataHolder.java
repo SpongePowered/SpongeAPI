@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data;
 
-import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.ValueLike;
 import org.spongepowered.api.util.Direction;
 
 import java.util.Optional;
@@ -35,61 +35,61 @@ import java.util.OptionalLong;
 public interface DirectionRelativeDataHolder extends DataHolder {
 
     /**
-     * Attempts to get the underlying value backed by a {@link Value}
+     * Attempts to get the underlying value backed by a {@link ValueLike}
      * linked to the provided {@link Key} and {@link Direction}. If the
      * {@link Key} is not supported, {@link Optional#empty()} is returned.
      * It is important to check for support of a {@link Key} by either
-     * calling {@link #supports(Value)} or {@link #supports(Key)}.
+     * calling {@link #supports(ValueLike)} or {@link #supports(Key)}.
      *
      * @param direction The direction
      * @param key The key to retrieve the value for
      * @param <E> The type of value
      * @return The value, if available
      */
-    <E> Optional<E> get(Direction direction, Key<? extends Value<E>> key);
+    <E> Optional<E> get(Direction direction, Key<? extends ValueLike<E>> key);
 
     /**
-     * Attempts to get the underlying int value backed by a {@link Value}
+     * Attempts to get the underlying int value backed by a {@link ValueLike}
      * linked to the provided {@link Key} and {@link Direction}. If the
      * {@link Key} is not supported, {@link Optional#empty()} is returned.
      * It is important to check for support of a {@link Key} by either
-     * calling {@link #supports(Value)} or {@link #supports(Key)}.
+     * calling {@link #supports(ValueLike)} or {@link #supports(Key)}.
      *
      * @param direction The direction
      * @param key The key to retrieve the value for
      * @return The value, if available
      */
-    default OptionalInt getInt(Direction direction, Key<? extends Value<Integer>> key) {
+    default OptionalInt getInt(Direction direction, Key<? extends ValueLike<Integer>> key) {
         return this.get(direction, key).map(OptionalInt::of).orElse(OptionalInt.empty());
     }
 
     /**
-     * Attempts to get the underlying double value backed by a {@link Value}
+     * Attempts to get the underlying double value backed by a {@link ValueLike}
      * linked to the provided {@link Key} and {@link Direction}. If the
      * {@link Key} is not supported, {@link Optional#empty()} is returned.
      * It is important to check for support of a {@link Key} by either
-     * calling {@link #supports(Value)} or {@link #supports(Key)}.
+     * calling {@link #supports(ValueLike)} or {@link #supports(Key)}.
      *
      * @param direction The direction
      * @param key The key to retrieve the value for
      * @return The value, if available
      */
-    default OptionalDouble getDouble(Direction direction, Key<? extends Value<Double>> key) {
+    default OptionalDouble getDouble(Direction direction, Key<? extends ValueLike<Double>> key) {
         return this.get(direction, key).map(OptionalDouble::of).orElse(OptionalDouble.empty());
     }
 
     /**
-     * Attempts to get the underlying long value backed by a {@link Value}
+     * Attempts to get the underlying long value backed by a {@link ValueLike}
      * linked to the provided {@link Key} and {@link Direction}. If the
      * {@link Key} is not supported, {@link Optional#empty()} is returned.
      * It is important to check for support of a {@link Key} by either
-     * calling {@link #supports(Value)} or {@link #supports(Key)}.
+     * calling {@link #supports(ValueLike)} or {@link #supports(Key)}.
      *
      * @param direction The direction
      * @param key The key to retrieve the value for
      * @return The value, if available
      */
-    default OptionalLong getLong(Direction direction, Key<? extends Value<Long>> key) {
+    default OptionalLong getLong(Direction direction, Key<? extends ValueLike<Long>> key) {
         return this.get(direction, key).map(OptionalLong::of).orElse(OptionalLong.empty());
     }
 
