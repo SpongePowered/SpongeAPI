@@ -26,6 +26,7 @@ package org.spongepowered.api.effect;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.living.player.tab.TabListEntry;
 
 /**
  * Represents the state of an {@link Entity}'s vanish state.
@@ -216,6 +217,26 @@ public interface VanishState {
      */
     VanishState triggerVibrations(boolean triggerVibrations);
 
+    /***
+     * Gets if the {@link Entity}'s associated {@link TabListEntry}
+     * should be hidden while invisible.
+     *
+     * @return Whatever the associated {@link TabListEntry}
+     * should be hidden while invisible
+     */
+    boolean hidesTabListEntry();
+
+    /**
+     * If {@link #invisible()} returns true, this will return the
+     * {@link VanishState} with the desired flag replacing
+     * {@link #hidesTabListEntry()}.
+     *
+     * @param hideTabListEntry Whatever the associated {@link TabListEntry}
+     *     is hidden while invisible
+     * @return The new VanishState
+     */
+    VanishState hideTabListEntry(boolean hideTabListEntry);
+
     interface Factory {
 
         /**
@@ -228,6 +249,7 @@ public interface VanishState {
          *     <li>{@link VanishState#createsSounds()} = {@code false}</li>
          *     <li>{@link VanishState#createsParticles()} = {@code false}</li>
          *     <li>{@link VanishState#triggerVibrations()} = {@code false}</li>
+         *     <li>{@link VanishState#hidesTabListEntry()} = {@code true}</li>
          * </ul>
          *
          * @return A newly created invisible {@link VanishState}
@@ -243,6 +265,7 @@ public interface VanishState {
          *     <li>{@link VanishState#createsSounds()} = {@code true}</li>
          *     <li>{@link VanishState#createsParticles()} = {@code true}</li>
          *     <li>{@link VanishState#triggerVibrations()} = {@code false}</li>
+         *     <li>{@link VanishState#hidesTabListEntry()} = {@code false}</li>
          * </ul>
          *
          * @return A newly created visible {@link VanishState}
