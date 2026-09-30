@@ -59,5 +59,90 @@ public interface DataContainer extends DataView {
     DataContainer set(DataQuery path, Object value);
 
     @Override
+    default DataContainer set(DataQuery path, String value) {
+        return this.set(path, (Object) value);
+    }
+
+    @Override
+    default DataContainer set(DataQuery path, boolean value) {
+        return this.set(path, (Object) value);
+    }
+
+    @Override
+    default DataContainer set(DataQuery path, byte value) {
+        return this.set(path, (Object) value);
+    }
+
+    @Override
+    default DataContainer set(DataQuery path, short value) {
+        return this.set(path, (Object) value);
+    }
+
+    @Override
+    default DataContainer set(DataQuery path, int value) {
+        return this.set(path, (Object) value);
+    }
+
+    @Override
+    default DataContainer set(DataQuery path, long value) {
+        return this.set(path, (Object) value);
+    }
+
+    @Override
+    default DataContainer set(DataQuery path, float value) {
+        return this.set(path, (Object) value);
+    }
+
+    @Override
+    default DataContainer set(DataQuery path, double value) {
+        return this.set(path, (Object) value);
+    }
+
+    @Override
+    default DataContainer set(String key, Object value) {
+        return this.set(DataQuery.of(key), value);
+    }
+
+    @Override
+    default DataContainer set(String key, String value) {
+        return this.set(key, (Object) value);
+    }
+
+    @Override
+    default DataContainer set(String key, boolean value) {
+        return this.set(key, (Object) value);
+    }
+
+    @Override
+    default DataContainer set(String key, byte value) {
+        return this.set(key, (Object) value);
+    }
+
+    @Override
+    default DataContainer set(String key, short value) {
+        return this.set(key, (Object) value);
+    }
+
+    @Override
+    default DataContainer set(String key, int value) {
+        return this.set(key, (Object) value);
+    }
+
+    @Override
+    default DataContainer set(String key, long value) {
+        return this.set(key, (Object) value);
+    }
+
+    @Override
+    default DataContainer set(String key, float value) {
+        return this.set(key, (Object) value);
+    }
+
+    @Override
+    default DataContainer set(String key, double value) {
+        return this.set(key, (Object) value);
+    }
+
+    @Override
     DataContainer remove(DataQuery path);
 }

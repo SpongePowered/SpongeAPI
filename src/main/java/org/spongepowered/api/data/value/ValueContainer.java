@@ -36,6 +36,7 @@ import java.util.OptionalDouble;
 import java.util.OptionalInt;
 import java.util.OptionalLong;
 import java.util.Set;
+import java.util.stream.Stream;
 
 /**
  * A value holder is a holder of a particular set of {@link Value}s. While
@@ -216,6 +217,15 @@ public interface ValueContainer {
     Set<Key<?>> getKeys();
 
     /**
+     * Gets all applicable {@link Key}s for this {@link ValueContainer}.
+     *
+     * @return A stream of known {@link Key}s
+     */
+    default Stream<Key<?>> streamKeys() {
+        return this.getKeys().stream();
+    }
+
+    /**
      * Gets all applicable {@link Value}s associated with this
      * {@link ValueContainer}. As the data backed by the values are copied,
      * any modifications to the {@link Value}s will not be reflected onto
@@ -224,4 +234,16 @@ public interface ValueContainer {
      * @return An immutable set of copied values
      */
     Set<Value.Immutable<?>> getValues();
+
+    /**
+     * Gets all applicable {@link Value}s associated with this
+     * {@link ValueContainer}. As the data backed by the values are copied,
+     * any modifications to the {@link Value}s will not be reflected onto
+     * this {@link ValueContainer}.
+     *
+     * @return A stream of copied values
+     */
+    default Stream<Value.Immutable<?>> streamValues() {
+        return this.getValues().stream();
+    }
 }
