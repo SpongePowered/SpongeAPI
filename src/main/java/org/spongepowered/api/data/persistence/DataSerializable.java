@@ -52,4 +52,16 @@ public interface DataSerializable {
      */
     DataContainer toContainer();
 
+    /**
+     * Serializes this object and applies the provided
+     * data to the provided {@link DataView} instead of creating
+     * a new {@link DataContainer}, reducing nested information.
+     *
+     * @param container The data view to serialize to
+     * @return The provided data view, for chaining
+     */
+    default DataView toView(DataView container) {
+        this.toContainer().streamRootValues().forEach(entry -> container.set(entry.getKey(), entry.getValue()));
+        return container;
+    }
 }
