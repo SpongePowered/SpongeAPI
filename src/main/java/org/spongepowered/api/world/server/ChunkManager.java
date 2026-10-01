@@ -33,7 +33,6 @@ import org.spongepowered.math.vector.Vector3i;
 
 import java.util.Collection;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -56,14 +55,14 @@ public interface ChunkManager {
      * @param ticket The ticket to check.
      * @return true if so
      */
-    boolean valid(Ticket<?> ticket);
+    boolean valid(Ticket ticket);
 
     /**
      * Gets the {@link Ticks} remaining on the supplied ticket.
      *
      * @return The {@link Ticks}
      */
-    Ticks timeLeft(Ticket<?> ticket);
+    Ticks timeLeft(Ticket ticket);
 
     /**
      * Request a {@link Ticket} for the given {@link TicketType}.
@@ -71,24 +70,22 @@ public interface ChunkManager {
      * @param type The type of ticket to request.
      * @param chunkOrigin The chunk co-ordinates of the central {@link WorldChunk}
      *                    affected by this {@link Ticket}
-     * @param value The value to register the ticket with.
      * @param radius The radius of the area, in chunks, that this {@link Ticket}
      *               affects.
-     * @param <T> The type of the supplied {@code value}.
      * @return The ticket, if granted.
      */
-    <T> Optional<Ticket<T>> requestTicket(TicketType<T> type, Vector3i chunkOrigin, T value, int radius);
+    Ticket requestTicket(TicketType type, Vector3i chunkOrigin, int radius);
 
     /**
      * Attempts to renew this ticket, resetting the lifetime to the default.
      *
      * <p>If this ticket is no longer valid, it cannot be renewed. Instead,
-     * you should {@link #requestTicket(TicketType, Vector3i, Object, int)} a new one.</p>
+     * you should {@link #requestTicket(TicketType, Vector3i, int)} a new one.</p>
      *
      * @param ticket The ticket to attempt to renew
      * @return {@code true} if successful
      */
-    boolean renewTicket(Ticket<?> ticket);
+    boolean renewTicket(Ticket ticket);
 
     /**
      * Releases the provided {@link Ticket}, allowing the chunk position
@@ -97,7 +94,7 @@ public interface ChunkManager {
      *
      * @param ticket The ticket to release.
      */
-    boolean releaseTicket(Ticket<?> ticket);
+    boolean releaseTicket(Ticket ticket);
 
     /**
      * Gets all currently active {@link Ticket tickets} that are of the
@@ -107,7 +104,7 @@ public interface ChunkManager {
      * @param <T> The type of value the {@link Ticket} holds
      * @return A {@link Collection} of {@link Ticket tickets}
      */
-    <T> Collection<Ticket<T>> findTickets(TicketType<T> type);
+    <T> Collection<Ticket> findTickets(TicketType type);
 
     /**
      * Regenerates a chunk at the given chunk coordinate position.

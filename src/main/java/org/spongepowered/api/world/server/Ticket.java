@@ -26,8 +26,20 @@ package org.spongepowered.api.world.server;
 
 /**
  * Represents a chunk loading ticket.
- *
- * @param <T> The type of value this ticket holds.
  */
-public interface Ticket<T> {
+public interface Ticket {
+
+    /**
+     * Gets the {@link TicketType} of this ticket.
+     *
+     * @return The {@link TicketType}
+     */
+    TicketType type();
+
+    /**
+     * Gets the radius of this ticket.
+     *
+     * @return The radius
+     */
+    int radius();
 }
