@@ -24,34 +24,50 @@
  */
 package org.spongepowered.api.world.server;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.registry.DefaultedRegistryValue;
 import org.spongepowered.api.util.ResettableBuilder;
 import org.spongepowered.api.util.Ticks;
-
-import java.util.Comparator;
+import org.spongepowered.api.util.annotation.CatalogedBy;
 
 /**
  * Represents a type of {@link Ticket chunk loading ticket} that can be obtained
  * to ensure chunks remain loaded in a {@link ServerWorld}.
- *
- * @param <T> The type of value that is associated with a {@link Ticket} of this
- *      type.
  */
-@SuppressWarnings("unchecked")
-public interface TicketType<T>  {
+@CatalogedBy(TicketTypes.class)
+public interface TicketType extends DefaultedRegistryValue<TicketType> {
 
-    static <T> Builder<T> builder() {
+    static Builder builder() {
         return Sponge.game().builderProvider().provide(Builder.class);
     }
 
     /**
-     * The name of this type.
-     *
-     * @return The name
+     * @return Whether tickets of this type are persisted when the world is shut down.
      */
-    String name();
+    boolean persists();
+
+    /**
+     * @return Whether tickets of this type will load chunks.
+     */
+    boolean loadsChunks();
+
+    /**
+     * @return Whether tickets of this type will cause chunks to update their blocks and entities.
+     */
+    boolean simulatesChunks();
+
+    /**
+     * Gets whether tickets of this type keeps the world active.
+     * The world may stop processing after being inactive for a certain amount of time.
+     *
+     * @return Whether tickets of this type keeps the world active.
+     */
+    boolean keepsWorldActive();
+
+    /**
+     * @return Whether tickets of this type count down their remaining ticks even their chunks are not loaded.
+     */
+    boolean canExpireIfUnloaded();
 
     /**
      * Gets the lifetime of any {@link Ticket tickets} of this type.
@@ -61,27 +77,40 @@ public interface TicketType<T>  {
      */
     Ticks lifetime();
 
-    interface Builder<T> extends ResettableBuilder<T, Builder<T>> {
+    interface Builder extends ResettableBuilder<TicketType, Builder> {
 
         /**
-         * Sets the name of the {@link TicketType type}.
-         *
-         * @param name The name
-         * @return The builder, for chaining
+         * @param persists Whether tickets of this type are persisted when the world is shut down.
+         * @return This builder, for chaining
          */
-        Builder<T> name(@NonNull String name);
+        Builder persists(boolean persists);
 
         /**
-         * Sets the {@link Comparator comparator} used by requested {@link Ticket tickets}
-         * of this type used to determine the appropriate ticket to be used during collisions.
-         * <p>
-         * If this call is omitted, it is up to the implementation on how the comparison is handled.
-         * In the official implementation, the resulting comparison value is '0'.
-         *
-         * @param comparator The comparator
-         * @return The builder, for chaining
+         * @param loadsChunks Whether tickets of this type will load chunks.
+         * @return This builder, for chaining
          */
-        Builder<T> comparator(@Nullable Comparator<T> comparator);
+        Builder loadsChunks(boolean loadsChunks);
+
+        /**
+         * @param simulatesChunks Whether tickets of this type will cause chunks to update their blocks and entities.
+         * @return This builder, for chaining
+         */
+        Builder simulatesChunks(boolean simulatesChunks);
+
+        /**
+         * Sets whether tickets of this type keeps the world active.
+         * The world may stop processing after being inactive for a certain amount of time.
+         *
+         * @param keepsWorldActive Whether tickets of this type keeps the world active.
+         * @return This builder, for chaining
+         */
+        Builder keepsWorldActive(boolean keepsWorldActive);
+
+        /**
+         * @param canExpireIfUnloaded Whether tickets of this type count down their remaining ticks even their chunks are not loaded.
+         * @return This builder, for chaining
+         */
+        Builder canExpireIfUnloaded(boolean canExpireIfUnloaded);
 
         /**
          * Sets the lifetime of the {@link TicketType type}.
@@ -89,13 +118,13 @@ public interface TicketType<T>  {
          * @param lifetime The lifetime
          * @return The builder, for chaining
          */
-        Builder<T> lifetime(Ticks lifetime);
+        Builder lifetime(Ticks lifetime);
 
         /**
          * Builds a new {@link TicketType type}.
          *
          * @return The type
          */
-        TicketType<T> build();
+        TicketType build();
     }
 }

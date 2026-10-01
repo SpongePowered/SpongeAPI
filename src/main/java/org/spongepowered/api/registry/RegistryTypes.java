@@ -197,6 +197,7 @@ import org.spongepowered.api.world.generation.structure.jigsaw.JigsawPool;
 import org.spongepowered.api.world.generation.structure.jigsaw.ProcessorList;
 import org.spongepowered.api.world.generation.structure.jigsaw.ProcessorType;
 import org.spongepowered.api.world.schematic.PaletteType;
+import org.spongepowered.api.world.server.TicketType;
 import org.spongepowered.api.world.server.WorldArchetypeType;
 import org.spongepowered.api.world.teleport.TeleportHelperFilter;
 import org.spongepowered.api.world.weather.WeatherType;
@@ -293,6 +294,8 @@ public final class RegistryTypes {
     public static final DefaultedRegistryType<StructureSet> STRUCTURE_SET = RegistryTypes.minecraftKeyInServer("worldgen/structure_set");
 
     public static final DefaultedRegistryType<StructureType> STRUCTURE_TYPE = RegistryTypes.minecraftKeyInGame("worldgen/structure_type");
+
+    public static final DefaultedRegistryType<TicketType> TICKET_TYPE = RegistryTypes.minecraftKeyInGame("ticket_type");
 
     public static final DefaultedRegistryType<Trigger<?>> TRIGGER = RegistryTypes.minecraftKeyInGame("trigger_type");
 

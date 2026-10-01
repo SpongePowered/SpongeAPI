@@ -24,10 +24,32 @@
  */
 package org.spongepowered.api.world.server;
 
+import org.spongepowered.api.world.chunk.WorldChunk;
+import org.spongepowered.math.vector.Vector3i;
+
 /**
  * Represents a chunk loading ticket.
- *
- * @param <T> The type of value this ticket holds.
  */
-public interface Ticket<T> {
+public interface Ticket {
+
+    /**
+     * Gets the type of this ticket.
+     *
+     * @return The type
+     */
+    TicketType type();
+
+    /**
+     * Gets the chunk co-ordinates of the central {@link WorldChunk} affected by this ticket.
+     *
+     * @return The chunk co-ordinates
+     */
+    Vector3i chunkOrigin();
+
+    /**
+     * Gets the radius of this ticket.
+     *
+     * @return The radius
+     */
+    int radius();
 }
