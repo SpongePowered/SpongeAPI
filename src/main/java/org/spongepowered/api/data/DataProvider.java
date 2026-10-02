@@ -25,10 +25,8 @@
 package org.spongepowered.api.data;
 
 import io.leangen.geantyref.TypeToken;
-import org.checkerframework.checker.units.qual.K;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.value.CompositeValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.data.value.ValueLike;
@@ -63,7 +61,7 @@ public interface DataProvider<V extends ValueLike<E>, E> {
      *
      * @return The key
      */
-    Key<V> key();
+    Key<? extends ValueLike<?>> key();
 
     /**
      * Gets whether this provider will allow asynchronous access for retrieving
@@ -74,9 +72,9 @@ public interface DataProvider<V extends ValueLike<E>, E> {
      *
      * <p>A list of methods that are constrained by this check are:
      * <ul>
-     *     <li>- {@link #get(DataHolder)}</li>
+     *     <li>- {@link #get(DataHolder, Key)}</li>
      *     <li>- {@link #offerValue(DataHolder.Mutable, ValueLike)}</li>
-     *     <li>- {@link #remove(DataHolder.Mutable)}</li>
+     *     <li>- {@link #remove(DataHolder.Mutable, Key)}</li>
      * </ul>
      * Conceptually, an immutable {@link DataHolder} will be ignorant of
      * asynchronous access, however, some cases may exist where attempting to
@@ -100,13 +98,17 @@ public interface DataProvider<V extends ValueLike<E>, E> {
      * @param dataHolder The data holder
      * @return The value, if it's supported and exists
      */
+    default Optional<E> get(DataHolder dataHolder, Key<?> key) {
+        return this.value(dataHolder, key).map(ValueLike::get);
+    }
+
     default Optional<E> get(DataHolder dataHolder) {
-        return this.value(dataHolder).map(ValueLike::get);
+        return this.get(dataHolder, this.key());
     }
 
     /**
      * Gets a constructed {@link ValueLike} for the provided {@link DataHolder}.
-     * Much like {@link #get(DataHolder)}, this is generally considered the
+     * Much like {@link #get(DataHolder, Key)}, this is generally considered the
      * underlying implementation access for any {@link DataHolder#get(Key)}
      * where the {@link Key} is registered with this {@link DataProvider}.
      * Nominally, this means the data is provided outside traditional serialized
@@ -117,7 +119,11 @@ public interface DataProvider<V extends ValueLike<E>, E> {
      * @param dataHolder The data holder to get the constructed value from
      * @return The value
      */
-    Optional<V> value(DataHolder dataHolder);
+    Optional<V> value(DataHolder dataHolder, Key<?> key);
+
+    default Optional<V> value(DataHolder dataHolder) {
+        return this.value(dataHolder, this.key());
+    }
 
     /**
      * Gets whether this value provider is supported by the given {@link ValueContainer}.
@@ -125,17 +131,29 @@ public interface DataProvider<V extends ValueLike<E>, E> {
      * @param dataHolder The data holder
      * @return Whether it's supported
      */
-    boolean isSupported(DataHolder dataHolder);
+    boolean isSupported(DataHolder dataHolder, Key<?> key);
 
-    default boolean isSupported(final TypeToken<? extends DataHolder> dataHolder) {
-        return this.isSupported(dataHolder.getType());
+    default boolean isSupported(DataHolder dataHolder) {
+        return this.isSupported(dataHolder, this.key());
     }
 
-    boolean isSupported(Type dataHolder);
+    default boolean isSupported(final TypeToken<? extends DataHolder> dataHolder, Key<?> key) {
+        return this.isSupported(dataHolder.getType(), key);
+    }
+
+    boolean isSupported(Type dataHolder, Key<?> key);
+
+    default boolean isSupported(Type dataHolder) {
+        return this.isSupported(dataHolder, this.key());
+    }
 
     DataTransactionResult offerValue(DataHolder.Mutable dataHolder, V value);
 
-    DataTransactionResult remove(DataHolder.Mutable dataHolder);
+    DataTransactionResult remove(DataHolder.Mutable dataHolder, Key<?> key);
+
+    default DataTransactionResult remove(DataHolder.Mutable dataHolder) {
+        return this.remove(dataHolder, this.key());
+    }
 
     <I extends DataHolder.Immutable<I>> Optional<I> withValue(I immutable, V value);
 
@@ -147,12 +165,9 @@ public interface DataProvider<V extends ValueLike<E>, E> {
      * @param <I> The type of the immutable value store
      * @return The new value store, if successful
      */
-    <I extends DataHolder.Immutable<I>> Optional<I> without(I immutable);
+    <I extends DataHolder.Immutable<I>> Optional<I> without(I immutable, Key<?> key);
 
-    interface Composite<K, V extends CompositeValue<K, E>, E> extends DataProvider<V, E> {
-
-        DataTransactionResult remove(DataHolder.Mutable dataHolder, K valueKey);
-
-        <I extends DataHolder.Immutable<I>, K> Optional<I> without(I immutable, K valueKey);
+    default <I extends DataHolder.Immutable<I>> Optional<I> without(I immutable) {
+        return this.without(immutable, this.key());
     }
 }

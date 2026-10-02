@@ -108,7 +108,7 @@ public interface DataHolder extends ValueContainer {
             return this.offer(Value.immutableOf(key, value));
         }
 
-        default <K, E> DataTransactionResult offer(Key<? extends CompositeValue<K, E>> key, K valueKey, E value) {
+        default <K, E> DataTransactionResult offer(CompositeKey<K, ? extends CompositeValue<K, E>> key, K valueKey, E value) {
             return this.offer(CompositeValue.immutableChildOf(key, valueKey, value));
         }
 
@@ -290,7 +290,9 @@ public interface DataHolder extends ValueContainer {
          */
         DataTransactionResult remove(Key<?> key);
 
-        <K> DataTransactionResult remove(Key<? extends CompositeValue<K, ?>> key, K valueKey);
+        default <K> DataTransactionResult remove(CompositeKey<K, ? extends CompositeValue<K, ?>> key, K valueKey) {
+            return this.remove(key.child(valueKey));
+        }
 
         /**
          * Attempts to remove the data associated with the provided {@link Key}.
@@ -390,7 +392,7 @@ public interface DataHolder extends ValueContainer {
             return this.with(Value.immutableOf(key, value));
         }
 
-        default <K, E> Optional<I> with(Key<? extends CompositeValue<K, E>> key, K valueKey, E value) {
+        default <K, E> Optional<I> with(CompositeKey<K, ? extends CompositeValue<K, E>> key, K valueKey, E value) {
             return this.with(CompositeValue.immutableChildOf(key, valueKey, value));
         }
 
@@ -440,7 +442,9 @@ public interface DataHolder extends ValueContainer {
          */
         Optional<I> without(Key<?> key);
 
-        <K> Optional<I> without(Key<? extends CompositeValue<K, ?>> key, K valueKey);
+        default <K> Optional<I> without(CompositeKey<K, ? extends CompositeValue<K, ?>> key, K valueKey) {
+            return this.without(key.child(valueKey));
+        }
 
         /**
          * Creates a new {@link Immutable} without the provided {@link Key}. If the

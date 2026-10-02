@@ -25,7 +25,7 @@
 package org.spongepowered.api.data.value;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.data.Key;
+import org.spongepowered.api.data.CompositeKey;
 
 import java.util.Collection;
 import java.util.function.Function;
@@ -33,21 +33,21 @@ import java.util.function.Function;
 public interface CompositeValue<K, E> extends ValueLike<E> {
 
     @Override
-    Key<? extends CompositeValue<K, E>> key();
+    CompositeKey<K, ? extends CompositeValue<K, E>> key();
 
-    static <K, E> CompositeValue.Parent.Mutable<K, E> mutableOf(Key<? extends CompositeValue<K, E>> key, ElementMergeFunction.Defaulted<E> mergeFunction, Collection<Child<K, E>> children) {
+    static <K, E> CompositeValue.Parent.Mutable<K, E> mutableOf(CompositeKey<K, ? extends CompositeValue<K, E>> key, ElementMergeFunction.Defaulted<E> mergeFunction, Collection<Child<K, E>> children) {
         return Sponge.game().factoryProvider().provide(CompositeValue.Factory.class).mutableOf(key, mergeFunction, children);
     }
 
-    static <K, E> CompositeValue.Parent.Immutable<K, E> immutableOf(Key<? extends CompositeValue<K, E>> key, ElementMergeFunction.Defaulted<E> mergeFunction, Collection<Child<K, E>> children) {
+    static <K, E> CompositeValue.Parent.Immutable<K, E> immutableOf(CompositeKey<K, ? extends CompositeValue<K, E>> key, ElementMergeFunction.Defaulted<E> mergeFunction, Collection<Child<K, E>> children) {
         return Sponge.game().factoryProvider().provide(CompositeValue.Factory.class).immutableOf(key, mergeFunction, children);
     }
 
-    static <K, E> Child.Mutable<K, E> mutableChildOf(Key<? extends CompositeValue<K, E>> key, K valueKey, E value) {
+    static <K, E> Child.Mutable<K, E> mutableChildOf(CompositeKey<K, ? extends CompositeValue<K, E>> key, K valueKey, E value) {
         return Sponge.game().factoryProvider().provide(CompositeValue.Factory.class).mutableChildOf(key, valueKey, value);
     }
 
-    static <K, E> Child.Immutable<K, E> immutableChildOf(Key<? extends CompositeValue<K, E>> key, K valueKey, E value) {
+    static <K, E> Child.Immutable<K, E> immutableChildOf(CompositeKey<K, ? extends CompositeValue<K, E>> key, K valueKey, E value) {
         return Sponge.game().factoryProvider().provide(CompositeValue.Factory.class).immutableChildOf(key, valueKey, value);
     }
 
@@ -61,6 +61,9 @@ public interface CompositeValue<K, E> extends ValueLike<E> {
     CompositeValue.Immutable<K, E> asImmutable();
 
     interface Parent<K, E> extends CompositeValue<K, E> {
+
+        @Override
+        CompositeKey.Parent<K, ? extends CompositeValue.Parent<K, E>> key();
 
         Collection<? extends Child<K, E>> children();
 
@@ -121,7 +124,8 @@ public interface CompositeValue<K, E> extends ValueLike<E> {
 
     interface Child<K, E> extends CompositeValue<K, E> {
 
-        K valueKey();
+        @Override
+        CompositeKey.Child<K, ? extends CompositeValue.Child<K, E>> key();
 
         @Override
         Child.Mutable<K, E> asMutable();
@@ -179,13 +183,20 @@ public interface CompositeValue<K, E> extends ValueLike<E> {
     interface Mutable<K, E> extends CompositeValue<K, E>, ValueLike.Mutable<E> {
 
         @Override
-        CompositeValue.Mutable<K, E> asMutable();
-
-        @Override
-        CompositeValue.Mutable<K, E> asMutableCopy();
-
-        @Override
         CompositeValue.Immutable<K, E> asImmutable();
+
+        @Override
+        default CompositeValue.Mutable<K, E> asMutable() {
+            return this;
+        }
+
+        @Override
+        default CompositeValue.Mutable<K, E> asMutableCopy() {
+            return this.copy();
+        }
+
+        @Override
+        CompositeValue.Mutable<K, E> copy();
     }
 
     interface Immutable<K, E> extends CompositeValue<K, E>, ValueLike.Immutable<E> {
@@ -206,12 +217,14 @@ public interface CompositeValue<K, E> extends ValueLike<E> {
 
     interface Factory {
 
-        <K, E> CompositeValue.Parent.Mutable<K, E> mutableOf(Key<? extends CompositeValue<K, E>> key, ElementMergeFunction.Defaulted<E> mergeFunction, Collection<Child<K, E>> children);
+        <K, E> CompositeValue.Immutable<K, E> of(CompositeKey<K, ? extends CompositeValue<K, E>> key, E value);
 
-        <K, E> CompositeValue.Parent.Immutable<K, E> immutableOf(Key<? extends CompositeValue<K, E>> key, ElementMergeFunction.Defaulted<E> mergeFunction, Collection<Child<K, E>> children);
+        <K, E> CompositeValue.Parent.Mutable<K, E> mutableOf(CompositeKey<K, ? extends CompositeValue<K, E>> key, ElementMergeFunction.Defaulted<E> mergeFunction, Collection<Child<K, E>> children);
 
-        <K, E> CompositeValue.Child.Mutable<K, E> mutableChildOf(Key<? extends CompositeValue<K, E>> key, K valueKey, E value);
+        <K, E> CompositeValue.Parent.Immutable<K, E> immutableOf(CompositeKey<K, ? extends CompositeValue<K, E>> key, ElementMergeFunction.Defaulted<E> mergeFunction, Collection<Child<K, E>> children);
 
-        <K, E> CompositeValue.Child.Immutable<K, E> immutableChildOf(Key<? extends CompositeValue<K, E>> key, K valueKey, E value);
+        <K, E> CompositeValue.Child.Mutable<K, E> mutableChildOf(CompositeKey<K, ? extends CompositeValue<K, E>> key, K valueKey, E value);
+
+        <K, E> CompositeValue.Child.Immutable<K, E> immutableChildOf(CompositeKey<K, ? extends CompositeValue<K, E>> key, K valueKey, E value);
     }
 }
