@@ -27,6 +27,7 @@ package org.spongepowered.api.entity.living.golem;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.CopperOxidation;
 import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.ValueLike;
 
 public interface CopperGolem extends Golem {
 
@@ -34,7 +35,7 @@ public interface CopperGolem extends Golem {
      * Gets the {@link Value.Mutable} value of the current {@link CopperOxidation} state
      * for this golem.
      *
-     * @return The mutable value, to set it back, use {@link #offer(Value)}
+     * @return The mutable value, to set it back, use {@link #offer(ValueLike)}
      * @see <a href="https://minecraft.wiki/w/Oxidation">Oxidation</a>
      */
     default Value.Mutable<CopperOxidation> oxidation() {
@@ -44,7 +45,7 @@ public interface CopperGolem extends Golem {
     /**
      * Gets the {@link Value.Mutable} value of the current waxed state.
      *
-     * @return The mutable value, to set it back, use {@link #offer(Value)}
+     * @return The mutable value, to set it back, use {@link #offer(ValueLike)}
      * @see <a href="https://minecraft.wiki/w/Oxidation#Waxing">Waxing</a>
      */
     default Value.Mutable<Boolean> waxed() {

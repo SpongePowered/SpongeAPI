@@ -22,20 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.data.value;
+package org.spongepowered.api.data;
 
-/**
- * Represents a {@link ValueContainer} that can be copied.
- */
-public interface CopyableValueContainer extends ValueContainer {
+import org.spongepowered.api.data.value.CompositeValue;
 
-    /**
-     * Creates a clone copy of this {@link CopyableValueContainer} as a new
-     * {@link CopyableValueContainer} such that all the {@link ValueLike}s are
-     * safely duplicated to the new instance. It is not guaranteed that
-     * the returning container is of the same type as this container.
-     *
-     * @return The new copy
-     */
-    CopyableValueContainer copy();
+public interface CompositeKey<K, V extends CompositeValue<K, ?>> extends Key<V> {
+
+    @Override
+    CompositeKey<K, ? extends CompositeValue<K, ?>> root();
+
+    Parent<K, ? extends CompositeValue.Parent<K, ?>> parent();
+
+    Child<K, ? extends CompositeValue.Child<K, ?>> child(K valueKey);
+
+    interface Parent<K, V extends CompositeValue.Parent<K, ?>> extends CompositeKey<K, V> {
+
+    }
+
+    interface Child<K, V extends CompositeValue.Child<K, ?>> extends CompositeKey<K, V> {
+
+        K valueKey();
+    }
 }

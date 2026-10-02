@@ -28,8 +28,8 @@ import io.leangen.geantyref.TypeToken;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.persistence.DataQuery;
 import org.spongepowered.api.data.persistence.DataStore;
-import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
+import org.spongepowered.api.data.value.ValueLike;
 import org.spongepowered.plugin.PluginContainer;
 
 import java.util.Collection;
@@ -37,7 +37,7 @@ import java.util.Optional;
 
 /**
  * An optional registration of {@link Key keys} to associate a semi-persistent
- * state of their associated {@link Value values} that can be stored, retrieved,
+ * state of their associated {@link ValueLike values} that can be stored, retrieved,
  * persisted, and/or associated with {@link DataHolder DataHolders}. A
  * registration identifies the given {@link #keys() Keys} are provided by an
  * implementation for specific {@link DataHolder DataHolders} that may support
@@ -46,9 +46,9 @@ import java.util.Optional;
  * by the implementation of the API, whether they are usable through
  * {@link DataProvider DataProviders} or {@link DataStore DataStores}.
  *
- * <p>If dynamic or persistent retention of the {@link Value Values} by
+ * <p>If dynamic or persistent retention of the {@link ValueLike Values} by
  * {@link Key keys} is not desired, a registration is optional. This would mean
- * that any submitted {@link Value}s of a {@link Key} without an associated
+ * that any submitted {@link ValueLike}s of a {@link Key} without an associated
  * {@link DataRegistration} will be only stored on a
  * {@link org.spongepowered.api.data.DataHolder.Mutable mutable DataHolder} for
  * the duration that that holder exists. The value would not persist between
@@ -69,7 +69,7 @@ public interface DataRegistration {
 
     /**
      * Gets the {@link DataProvider} for the given {@link Key} to potentially
-     * get or offer {@link Value}s from any {@link ValueContainer} provided
+     * get or offer {@link ValueLike}s from any {@link ValueContainer} provided
      * that the container is supported by the {@code DataProvider}. If the
      * {@code key} is not actually registered with this {@link DataRegistration},
      * an {@link UnregisteredKeyException} is thrown. If there is no
@@ -83,7 +83,7 @@ public interface DataRegistration {
      * @throws UnregisteredKeyException If the key is not registered in this
      *     registration
      */
-    <V extends Value<E>, E> Collection<DataProvider<V, E>> providersFor(Key<V> key) throws UnregisteredKeyException;
+    <V extends ValueLike<E>, E> Collection<DataProvider<V, E>> providersFor(Key<V> key) throws UnregisteredKeyException;
 
     /**
      * Gets the appropriate {@link DataStore} for the context of the
@@ -134,7 +134,7 @@ public interface DataRegistration {
      * @return The built data registration
      */
     @SafeVarargs
-    static <T, V extends Value<T>> DataRegistration of(final Key<V> key, final Class<? extends DataHolder> dataHolder, final Class<? extends DataHolder>... dataHolders) {
+    static <T, V extends ValueLike<T>> DataRegistration of(final Key<V> key, final Class<? extends DataHolder> dataHolder, final Class<? extends DataHolder>... dataHolders) {
         final DataStore dataStore = DataStore.of(key, DataQuery.of(key.key().namespace(), key.key().value()), dataHolder, dataHolders);
         return DataRegistration.builder().dataKey(key).store(dataStore).build();
     }
@@ -149,11 +149,11 @@ public interface DataRegistration {
 
         /**
          * Gives the builder a {@link DataStore} that will enable supporting
-         * serializing and de-serializing {@link Value}s given a context of a
+         * serializing and de-serializing {@link ValueLike}s given a context of a
          * specific {@link DataHolder} by {@link TypeToken}. It is recommended
          * that if the {@link Key}s are meant to be all grouped/controlled
          * together, a single {@link DataStore} is to serialize/de-serialize any
-         * and all {@link Value Values} for those {@link Key Keys}.
+         * and all {@link ValueLike Values} for those {@link Key Keys}.
          *
          * @param store The data store providing the serialization process
          * @return This builder, for chaining
@@ -167,7 +167,7 @@ public interface DataRegistration {
          * particular {@link Key}. If a {@link DataProvider} already exists for
          * the {@link Key}, a {@link DuplicateProviderException} can be thrown.
          *
-         * <p>Note that by supplying a {@link DataProvider}, the {@link Value
+         * <p>Note that by supplying a {@link DataProvider}, the {@link ValueLike
          * Values} with the provider's {@link Key} will <strong>NOT</strong> be
          * passed to any potentially registered {@link DataStore DataStores} for
          * serialization. A {@link Key} that has a {@link DataProvider} will
@@ -186,7 +186,7 @@ public interface DataRegistration {
          * registered either with an applicable {@link DataProvider} or an
          * associated {@link DataStore} that will provide serialization/deserialization
          * behaviors. A {@link Key} alone in the registration will allow for the
-         * understanding that the {@link Key Key's} {@link Value} will be
+         * understanding that the {@link Key Key's} {@link ValueLike} will be
          * constructed/provided for for various {@link DataHolder}s either
          * through a {@link DataProvider} dynamically, or by a serialization
          * strategy by {@link DataStore a contextualized DataStore}.
@@ -201,7 +201,7 @@ public interface DataRegistration {
          * registered either with an applicable {@link DataProvider} or an
          * associated {@link DataStore} that will provide serialization/deserialization
          * behaviors. A {@link Key} alone in the registration will allow for the
-         * understanding that the {@link Key Key's} {@link Value} will be
+         * understanding that the {@link Key Key's} {@link ValueLike} will be
          * constructed/provided for for various {@link DataHolder}s either
          * through a {@link DataProvider} dynamically, or by a serialization
          * strategy by {@link DataStore a contextualized DataStore}.
@@ -217,7 +217,7 @@ public interface DataRegistration {
          * registered either with an applicable {@link DataProvider} or an
          * associated {@link DataStore} that will provide serialization/deserialization
          * behaviors. A {@link Key} alone in the registration will allow for the
-         * understanding that the {@link Key Key's} {@link Value} will be
+         * understanding that the {@link Key Key's} {@link ValueLike} will be
          * constructed/provided for for various {@link DataHolder}s either
          * through a {@link DataProvider} dynamically, or by a serialization
          * strategy by {@link DataStore a contextualized DataStore}.

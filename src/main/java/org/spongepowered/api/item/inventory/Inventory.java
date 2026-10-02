@@ -28,8 +28,8 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.KeyValueMatcher;
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
+import org.spongepowered.api.data.value.ValueLike;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.query.Query;
@@ -303,7 +303,7 @@ public interface Inventory extends ValueContainer {
      *
      * @return The key value, if available
      */
-    <V> Optional<V> get(Inventory child, Key<? extends Value<V>> key);
+    <V> Optional<V> get(Inventory child, Key<? extends ValueLike<V>> key);
 
     /**
      * Gets a key defined directly on this Inventory if one is defined.
@@ -318,7 +318,7 @@ public interface Inventory extends ValueContainer {
      * @return The key value, if available
      */
     @Override
-    <V> Optional<V> get(Key<? extends Value<V>> key);
+    <V> Optional<V> get(Key<? extends ValueLike<V>> key);
 
     /**
      * Query this inventory with given {@link Query}

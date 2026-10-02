@@ -30,8 +30,8 @@ import net.kyori.adventure.text.event.HoverEventSource;
 import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.SerializableDataHolder;
-import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
+import org.spongepowered.api.data.value.ValueLike;
 import org.spongepowered.api.entity.attribute.AttributeModifier;
 import org.spongepowered.api.entity.attribute.type.AttributeType;
 import org.spongepowered.api.item.ItemType;
@@ -160,7 +160,7 @@ public interface ItemStackLike extends SerializableDataHolder, ComponentLike, Ho
      * Retrieves an immutable form of this {@link ItemStackLike}. If this
      * ItemStackLike is already immutable, this would simply return itself.
      * In other cases, a new {@link ItemStackSnapshot} is created with all
-     * known {@link Value}s existing on this {@link ItemStackLike} added
+     * known {@link ValueLike}s existing on this {@link ItemStackLike} added
      * as copies to the {@link ItemStackSnapshot}.
      *
      * @return An ItemStackSnapshot

@@ -24,18 +24,27 @@
  */
 package org.spongepowered.api.data.value;
 
-/**
- * Represents a {@link ValueContainer} that can be copied.
- */
-public interface CopyableValueContainer extends ValueContainer {
+import org.checkerframework.checker.nullness.qual.Nullable;
 
-    /**
-     * Creates a clone copy of this {@link CopyableValueContainer} as a new
-     * {@link CopyableValueContainer} such that all the {@link ValueLike}s are
-     * safely duplicated to the new instance. It is not guaranteed that
-     * the returning container is of the same type as this container.
-     *
-     * @return The new copy
-     */
-    CopyableValueContainer copy();
+@FunctionalInterface
+public interface ElementMergeFunction<E> {
+
+    E merge(@Nullable E original, @Nullable E replacement);
+
+    default <V extends ValueLike<E>> E merge(@Nullable V original, @Nullable V replacement) {
+        return this.merge(original != null ? original.get() : null, replacement != null ? replacement.get() : null);
+    }
+
+    default <V extends ValueLike<E>> E merge(E original, Iterable<? extends V> replacement) {
+        E merged = original;
+        for (V value : replacement) {
+            merged = this.merge(merged, value.get());
+        }
+        return merged;
+    }
+
+    interface Defaulted<E> extends ElementMergeFunction<E> {
+
+        <V extends ValueLike<E>> E merge(Iterable<? extends V> replacement);
+    }
 }

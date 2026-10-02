@@ -30,7 +30,7 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataManipulator;
 import org.spongepowered.api.data.Key;
-import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.ValueLike;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import java.lang.reflect.Type;
@@ -63,23 +63,23 @@ public interface DataStore {
     DataView serialize(DataManipulator dataManipulator, DataView view);
 
     /**
-     * Serializes the passed in {@link Value values} to the {@link DataView view}.
+     * Serializes the passed in {@link ValueLike values} to the {@link DataView view}.
      *
      * @param values The values to serialize
      * @param view The view
      * @return The view, for chaining
      */
-    default DataView serialize(Iterable<Value<?>> values, DataView view) {
+    default DataView serialize(Iterable<? extends ValueLike<?>> values, DataView view) {
         return this.serialize(DataManipulator.immutableOf(values), view);
     }
 
     /**
-     * Serializes the {@link Value}s.
+     * Serializes the {@link ValueLike}s.
      *
      * @param values The value container
      * @return This view, for chaining
      */
-    default DataView serialize(Iterable<Value<?>> values) {
+    default DataView serialize(Iterable<? extends ValueLike<?>> values) {
         return this.serialize(DataManipulator.immutableOf(values));
     }
 
@@ -131,7 +131,7 @@ public interface DataStore {
      */
     @SafeVarargs
     @SuppressWarnings("unchecked")
-    static <T, V extends Value<T>> DataStore of(final Key<V> key, final DataQuery dataQuery, final TypeToken<? extends DataHolder> typeToken, final TypeToken<? extends DataHolder>... typeTokens) {
+    static <T, V extends ValueLike<T>> DataStore of(final Key<V> key, final DataQuery dataQuery, final TypeToken<? extends DataHolder> typeToken, final TypeToken<? extends DataHolder>... typeTokens) {
         return DataStore.builder().pluginData(key.key()).holder(typeToken).holder(typeTokens).key(key, dataQuery).build();
     }
 
@@ -150,7 +150,7 @@ public interface DataStore {
      */
     @SafeVarargs
     @SuppressWarnings("unchecked")
-    static <T, V extends Value<T>> DataStore of(final Key<V> key, final DataQuery dataQuery, final Class<?extends DataHolder> type, final Class<? extends DataHolder>... types) {
+    static <T, V extends ValueLike<T>> DataStore of(final Key<V> key, final DataQuery dataQuery, final Class<?extends DataHolder> type, final Class<? extends DataHolder>... types) {
         return DataStore.builder().pluginData(key.key()).holder(type).holder(types).key(key, dataQuery).build();
     }
 
@@ -253,7 +253,7 @@ public interface DataStore {
              *
              * @return this builder for chaining
              */
-            default <T, V extends Value<T>> Builder.EndStep key(final Key<V> key, final String... dataQueries) {
+            default <T, V extends ValueLike<T>> Builder.EndStep key(final Key<V> key, final String... dataQueries) {
                 if (dataQueries.length == 0) {
                     throw new IllegalArgumentException("dataQueries cannot be empty");
                 }
@@ -268,7 +268,7 @@ public interface DataStore {
              *
              * @return this builder for chaining
              */
-            <T, V extends Value<T>> Builder.EndStep key(final Key<V> key, final DataQuery dataQuery);
+            <T, V extends ValueLike<T>> Builder.EndStep key(final Key<V> key, final DataQuery dataQuery);
 
             /**
              * Adds the serializers for the given key.
@@ -279,7 +279,7 @@ public interface DataStore {
              *
              * @return this builder for chaining
              */
-            <T, V extends Value<T>> Builder.EndStep key(Key<V> key, BiConsumer<DataView, T> serializer, Function<DataView, Optional<T>> deserializer);
+            <T, V extends ValueLike<T>> Builder.EndStep key(Key<V> key, BiConsumer<DataView, T> serializer, Function<DataView, Optional<T>> deserializer);
         }
 
         interface EndStep extends SerializersStep, ResettableBuilder<DataStore, Builder> {

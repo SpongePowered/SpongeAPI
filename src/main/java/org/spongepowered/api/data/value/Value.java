@@ -60,7 +60,7 @@ import java.util.function.Supplier;
  *
  * @param <E> The type of element wrapped by this value
  */
-public interface Value<E> {
+public interface Value<E> extends ValueLike<E> {
 
     /**
      * Constructs a mutable {@link Value} of the appropriate type based
@@ -359,56 +359,29 @@ public interface Value<E> {
     }
 
     /**
-     * Gets the held value.
-     *
-     * @return The held value
-     */
-    E get();
-
-    /**
      * Gets the key for this {@link Value}.
      *
      * @return The key for this value
      */
+    @Override
     Key<? extends Value<E>> key();
 
-    /**
-     * Retrieves a mutable form of this value. Due to the vague nature of the
-     * value itself, some cases can already provide a {@link Mutable} instance
-     * where this would simply return itself. In other cases, where the retrieved
-     * value is an {@link Immutable} instance, a new mutable value is created
-     * with the same key and values.
-     *
-     * @return A mutable value
-     */
+    @Override
     Mutable<E> asMutable();
 
-    /**
-     * Retrieves a copy in the mutable form of this value. The new is created
-     * with the same key and values.
-     *
-     * @return A mutable value
-     */
+    @Override
     Mutable<E> asMutableCopy();
 
-    /**
-     * Retrieves an immutable form of this value. Due to the vague nature of the
-     * value itself, some cases can already provide a {@link Immutable} instance
-     * where this would simply return itself. In other cases, where the retrieved
-     * value is a {@link Mutable} instance, a new immutable value is created
-     * with the same key and values.
-     *
-     * @return An immutable value
-     */
+    @Override
     Immutable<E> asImmutable();
 
     /**
      * Represents a type of {@link Value} that is mutable. Simply put, the
-     * underlying value can always be changed without creating a new {@link Mutable}.
+     * underlying value can always be changed without creating a new {@link Value.Mutable}.
      *
      * @param <E> The type of element
      */
-    interface Mutable<E> extends Value<E> {
+    interface Mutable<E> extends Value<E>, ValueLike.Mutable<E> {
 
         /**
          * Sets the underlying value to the provided {@code value}.
@@ -416,7 +389,7 @@ public interface Value<E> {
          * @param value The value to set
          * @return The owning {@link ValueContainer}
          */
-        Mutable<E> set(E value);
+        Value.Mutable<E> set(E value);
 
         /**
          * Attempts to transform the underlying value based on the provided
@@ -426,74 +399,68 @@ public interface Value<E> {
          * @param function The function to apply on the existing value
          * @return The owning {@link ValueContainer}
          */
-        Mutable<E> transform(Function<E, E> function);
+        Value.Mutable<E> transform(Function<E, E> function);
 
         /**
-         * Gets the {@link Immutable} version of this {@link Mutable} such that
-         * all data is duplicated across to the new {@link Immutable}. Note
-         * that once created, the {@link Immutable} is not going to change.
+         * Gets the {@link Value.Immutable} version of this {@link Value.Mutable} such that
+         * all data is duplicated across to the new {@link Value.Immutable}. Note
+         * that once created, the {@link Value.Immutable} is not going to change.
          *
-         * @return A new {@link Immutable} instance
+         * @return A new {@link Value.Immutable} instance
          */
         @Override
-        Immutable<E> asImmutable();
+        Value.Immutable<E> asImmutable();
 
         @Override
-        default Mutable<E> asMutable() {
+        default Value.Mutable<E> asMutable() {
             return this;
         }
 
         @Override
-        default Mutable<E> asMutableCopy() {
+        default Value.Mutable<E> asMutableCopy() {
             return this.copy();
         }
 
-        /**
-         * Makes an independent copy of this {@link Mutable} with the same initial
-         * data. Both this value and the new value will refer to the same object
-         * initially.
-         *
-         * @return A new copy of this {@link Mutable}
-         */
-        Mutable<E> copy();
+        @Override
+        Value.Mutable<E> copy();
 
     }
 
     /**
      * Represents an immutable representation of a {@link Value} where any
      * modifications of the underlying value result in a new instance of an
-     * {@link Immutable} and/or the {@link ValueContainer} if the
+     * {@link Value.Immutable} and/or the {@link ValueContainer} if the
      * {@link ValueContainer} too is immutable.
      *
      * <p>The basis for immutability is that once created, the value can not be
      * changed for any reason. Change requires a new instance to be created. As the
-     * {@link Immutable} always has a {@link ValueContainer}, it is
+     * {@link Value.Immutable} always has a {@link ValueContainer}, it is
      * recommended that the owning {@link ValueContainer} too is immutable, unless
-     * the {@link Immutable} is being passed around for data processing. The
-     * underlying value of an {@link Immutable} may be itself mutable, however
-     * utilizing any provided methods by any of the {@link Immutable} classes
+     * the {@link Value.Immutable} is being passed around for data processing. The
+     * underlying value of an {@link Value.Immutable} may be itself mutable, however
+     * utilizing any provided methods by any of the {@link Value.Immutable} classes
      * is recommended.</p>
      *
      * @param <E> The type of value
      */
-    interface Immutable<E> extends Value<E> {
+    interface Immutable<E> extends Value<E>, ValueLike.Immutable<E> {
 
         /**
-         * Creates a new {@link Immutable} with the given <code>E</code> typed
+         * Creates a new {@link Value.Immutable} with the given <code>E</code> typed
          * value, such that if the owning {@link ValueContainer} is immutable, the
          * {@link ValueContainer} too is recreated as a new instance with the new
-         * {@link Immutable}.
+         * {@link Value.Immutable}.
          *
          * @param value The value to replace
          * @return The owning {@link ValueContainer}, a new instance if it too is
          *     immutable
          */
-        Immutable<E> with(E value);
+        Value.Immutable<E> with(E value);
 
         /**
-         * Retrieves the underlying value for this {@link Immutable} and
+         * Retrieves the underlying value for this {@link Value.Immutable} and
          * applies the given {@link Function} onto that value, after which, the
-         * product is sent to a new {@link Immutable} replacing this one.
+         * product is sent to a new {@link Value.Immutable} replacing this one.
          *
          * <p>If the {@link ValueContainer} too is immutable, a new instance of
          * the {@link ValueContainer} may be created. If the {@link ValueContainer}
@@ -504,23 +471,23 @@ public interface Value<E> {
          * @return The owning {@link ValueContainer}, a new instance if it too is
          *     immutable
          */
-        Immutable<E> transform(Function<E, E> function);
+        Value.Immutable<E> transform(Function<E, E> function);
 
         /**
-         * Creates a mutable {@link Mutable} for this {@link Immutable}.
+         * Creates a mutable {@link Value.Mutable} for this {@link Value.Immutable}.
          *
          * @return A mutable value
          */
         @Override
-        Mutable<E> asMutable();
+        Value.Mutable<E> asMutable();
 
         @Override
-        default Mutable<E> asMutableCopy() {
+        default Value.Mutable<E> asMutableCopy() {
             return this.asMutable();
         }
 
         @Override
-        default Immutable<E> asImmutable() {
+        default Value.Immutable<E> asImmutable() {
             return this;
         }
 

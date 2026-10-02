@@ -24,7 +24,7 @@
  */
 package org.spongepowered.api.data;
 
-import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.ValueLike;
 
 /**
  * Represents a {@link DataHolder} that can be copied.
@@ -33,7 +33,7 @@ public interface CopyableDataHolder extends DataHolder {
 
     /**
      * Creates a clone copy of this {@link CopyableDataHolder} as a new
-     * {@link CopyableDataHolder} such that all the {@link Value}s are
+     * {@link CopyableDataHolder} such that all the {@link ValueLike}s are
      * safely duplicated to the new instance. It is not guaranteed that
      * the returning container is of the same type as this container.
      *

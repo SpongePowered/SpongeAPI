@@ -24,27 +24,27 @@
  */
 package org.spongepowered.api.data;
 
-import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
+import org.spongepowered.api.data.value.ValueLike;
 import org.spongepowered.api.util.Direction;
 
 import java.util.Optional;
 
-public interface DirectionRelativeDataProvider<V extends Value<E>, E> extends DataProvider<V, E> {
+public interface DirectionRelativeDataProvider<V extends ValueLike<E>, E> extends DataProvider<V, E> {
 
     @Override
-    default Optional<E> get(DataHolder dataHolder) {
-        return this.get(dataHolder, Direction.NONE);
+    default Optional<E> get(DataHolder dataHolder, Key<?> key) {
+        return this.get(dataHolder, key, Direction.NONE);
     }
 
     @Override
-    default Optional<V> value(DataHolder dataHolder) {
-        return this.value(dataHolder, Direction.NONE);
+    default Optional<V> value(DataHolder dataHolder, Key<?> key) {
+        return this.value(dataHolder, key, Direction.NONE);
     }
 
     @Override
-    default boolean isSupported(DataHolder dataHolder) {
-        return this.isSupported(dataHolder, Direction.NONE);
+    default boolean isSupported(DataHolder dataHolder, Key<?> key) {
+        return this.isSupported(dataHolder, key, Direction.NONE);
     }
 
     /**
@@ -60,11 +60,11 @@ public interface DirectionRelativeDataProvider<V extends Value<E>, E> extends Da
      * @param direction The related relative direction to the data provider
      * @return The value, if it's supported and exists
      */
-    Optional<E> get(DataHolder dataHolder, Direction direction);
+    Optional<E> get(DataHolder dataHolder, Key<?> key, Direction direction);
 
     /**
-     * Gets a constructed {@link Value} for the provided {@link DataHolder}.
-     * Much like {@link #get(DataHolder)}, this is generally considered the
+     * Gets a constructed {@link ValueLike} for the provided {@link DataHolder}.
+     * Much like {@link #get(DataHolder, Key)}, this is generally considered the
      * underlying implementation access for any {@link DataHolder#get(Key)}
      * where the {@link Key} is registered with this {@link DataProvider}.
      * Nominally, this means the data is provided outside traditional serialized
@@ -76,9 +76,7 @@ public interface DirectionRelativeDataProvider<V extends Value<E>, E> extends Da
      * @param direction The related relative direction to the data provider
      * @return The value
      */
-    default Optional<V> value(DataHolder dataHolder, Direction direction) {
-        return this.get(dataHolder, direction).map(element -> Value.genericMutableOf(this.key(), element));
-    }
+    Optional<V> value(DataHolder dataHolder, Key<?> key, Direction direction);
 
     /**
      * Gets whether this value provider is supported by the given {@link ValueContainer}.
@@ -87,5 +85,5 @@ public interface DirectionRelativeDataProvider<V extends Value<E>, E> extends Da
      * @param direction The related relative direction to the data provider
      * @return Whether it's supported
      */
-    boolean isSupported(DataHolder dataHolder, Direction direction);
+    boolean isSupported(DataHolder dataHolder, Key<?> key, Direction direction);
 }

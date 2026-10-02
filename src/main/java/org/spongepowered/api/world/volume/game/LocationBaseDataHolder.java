@@ -35,6 +35,7 @@ import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.value.MergeFunction;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
+import org.spongepowered.api.data.value.ValueLike;
 import org.spongepowered.api.registry.DefaultedRegistryReference;
 import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.math.vector.Vector3i;
@@ -64,7 +65,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data, if available
      */
-    default <E> Optional<E> get(final Vector3i position, final Key<? extends Value<E>> key) {
+    default <E> Optional<E> get(final Vector3i position, final Key<? extends ValueLike<E>> key) {
         return this.get(position.x(), position.y(), position.z(), key);
     }
 
@@ -77,7 +78,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data, if available
      */
-    default <E> Optional<E> get(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
+    default <E> Optional<E> get(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends ValueLike<E>>> key) {
         return this.get(position.x(), position.y(), position.z(), key.get());
     }
 
@@ -92,7 +93,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data, if available
      */
-    <E> Optional<E> get(int x, int y, int z, Key<? extends Value<E>> key);
+    <E> Optional<E> get(int x, int y, int z, Key<? extends ValueLike<E>> key);
 
     /**
      * Gets the value of data that is keyed to the provided {@link Key} at the
@@ -105,7 +106,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data, if available
      */
-    default <E> Optional<E> get(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
+    default <E> Optional<E> get(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends ValueLike<E>>> key) {
         return this.get(x, y, z, key.get());
     }
 
@@ -117,7 +118,7 @@ public interface LocationBaseDataHolder {
      * @param key The key to the data
      * @return The data, if available
      */
-    default OptionalInt getInt(final Vector3i position, final Key<? extends Value<Integer>> key) {
+    default OptionalInt getInt(final Vector3i position, final Key<? extends ValueLike<Integer>> key) {
         return this.getInt(position.x(), position.y(), position.z(), key);
     }
 
@@ -129,7 +130,7 @@ public interface LocationBaseDataHolder {
      * @param key The key to the data
      * @return The data, if available
      */
-    default OptionalInt getInt(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<Integer>>> key) {
+    default OptionalInt getInt(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends ValueLike<Integer>>> key) {
         return this.getInt(position.x(), position.y(), position.z(), key.get());
     }
 
@@ -143,7 +144,7 @@ public interface LocationBaseDataHolder {
      * @param key The key to the data
      * @return The data, if available
      */
-    default OptionalInt getInt(final int x, final int y, final int z, final Key<? extends Value<Integer>> key) {
+    default OptionalInt getInt(final int x, final int y, final int z, final Key<? extends ValueLike<Integer>> key) {
         return this.get(x, y, z, key).map(OptionalInt::of).orElseGet(OptionalInt::empty);
     }
 
@@ -157,7 +158,7 @@ public interface LocationBaseDataHolder {
      * @param key The key to the data
      * @return The data, if available
      */
-    default OptionalInt getInt(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<Integer>>> key) {
+    default OptionalInt getInt(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends ValueLike<Integer>>> key) {
         return this.get(x, y, z, key.get()).map(OptionalInt::of).orElseGet(OptionalInt::empty);
     }
 
@@ -169,7 +170,7 @@ public interface LocationBaseDataHolder {
      * @param key The key to the data
      * @return The data, if available
      */
-    default OptionalDouble getDouble(final Vector3i position, final Key<? extends Value<Double>> key) {
+    default OptionalDouble getDouble(final Vector3i position, final Key<? extends ValueLike<Double>> key) {
         return this.getDouble(position.x(), position.y(), position.z(), key);
     }
 
@@ -181,7 +182,7 @@ public interface LocationBaseDataHolder {
      * @param key The key to the data
      * @return The data, if available
      */
-    default OptionalDouble getDouble(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<Double>>> key) {
+    default OptionalDouble getDouble(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends ValueLike<Double>>> key) {
         return this.getDouble(position.x(), position.y(), position.z(), key.get());
     }
 
@@ -195,7 +196,7 @@ public interface LocationBaseDataHolder {
      * @param key The key to the data
      * @return The data, if available
      */
-    default OptionalDouble getDouble(final int x, final int y, final int z, final Key<? extends Value<Double>> key) {
+    default OptionalDouble getDouble(final int x, final int y, final int z, final Key<? extends ValueLike<Double>> key) {
         return this.get(x, y, z, key).map(OptionalDouble::of).orElseGet(OptionalDouble::empty);
     }
 
@@ -209,7 +210,7 @@ public interface LocationBaseDataHolder {
      * @param key The key to the data
      * @return The data, if available
      */
-    default OptionalDouble getDouble(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<Double>>> key) {
+    default OptionalDouble getDouble(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends ValueLike<Double>>> key) {
         return this.get(x, y, z, key).map(OptionalDouble::of).orElseGet(OptionalDouble::empty);
     }
 
@@ -221,7 +222,7 @@ public interface LocationBaseDataHolder {
      * @param key The key to the data
      * @return The data, if available
      */
-    default OptionalLong getLong(final Vector3i position, final Key<? extends Value<Long>> key) {
+    default OptionalLong getLong(final Vector3i position, final Key<? extends ValueLike<Long>> key) {
         return this.getLong(position.x(), position.y(), position.z(), key);
     }
 
@@ -233,7 +234,7 @@ public interface LocationBaseDataHolder {
      * @param key The key to the data
      * @return The data, if available
      */
-    default OptionalLong getLong(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<Long>>> key) {
+    default OptionalLong getLong(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends ValueLike<Long>>> key) {
         return this.getLong(position.x(), position.y(), position.z(), key.get());
     }
 
@@ -247,7 +248,7 @@ public interface LocationBaseDataHolder {
      * @param key The key to the data
      * @return The data, if available
      */
-    default OptionalLong getLong(final int x, final int y, final int z, final Key<? extends Value<Long>> key) {
+    default OptionalLong getLong(final int x, final int y, final int z, final Key<? extends ValueLike<Long>> key) {
         return this.get(x, y, z, key).map(OptionalLong::of).orElseGet(OptionalLong::empty);
     }
 
@@ -261,12 +262,12 @@ public interface LocationBaseDataHolder {
      * @param key The key to the data
      * @return The data, if available
      */
-    default OptionalLong getLong(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<Long>>> key) {
+    default OptionalLong getLong(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends ValueLike<Long>>> key) {
         return this.get(x, y, z, key).map(OptionalLong::of).orElseGet(OptionalLong::empty);
     }
 
     /**
-     * Attempts to get the underlying value backed by a {@link Value}
+     * Attempts to get the underlying value backed by a {@link ValueLike}
      * linked to the provided {@link Key}.
      *
      * <p>If the {@link Key} is not supported or
@@ -278,12 +279,12 @@ public interface LocationBaseDataHolder {
      * @return The value
      * @throws NoSuchElementException If the value is not supported or present
      */
-    default <E> E require(final Vector3i position, final Key<? extends Value<E>> key) {
+    default <E> E require(final Vector3i position, final Key<? extends ValueLike<E>> key) {
         return this.require(position.x(), position.y(), position.z(), key);
     }
 
     /**
-     * Attempts to get the underlying value backed by a {@link Value}
+     * Attempts to get the underlying value backed by a {@link ValueLike}
      * linked to the provided {@link Key}.
      *
      * <p>If the {@link Key} is not supported or
@@ -295,12 +296,12 @@ public interface LocationBaseDataHolder {
      * @return The value
      * @throws NoSuchElementException If the value is not supported or present
      */
-    default <E> E require(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
+    default <E> E require(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends ValueLike<E>>> key) {
         return this.require(position.x(), position.y(), position.z(), key.get());
     }
 
     /**
-     * Attempts to get the underlying value backed by a {@link Value}
+     * Attempts to get the underlying value backed by a {@link ValueLike}
      * linked to the provided {@link Key}.
      *
      * <p>If the {@link Key} is not supported or
@@ -314,7 +315,7 @@ public interface LocationBaseDataHolder {
      * @return The value
      * @throws NoSuchElementException If the value is not supported or present
      */
-    default <E> E require(final int x, final int y, final int z, final Key<? extends Value<E>> key) {
+    default <E> E require(final int x, final int y, final int z, final Key<? extends ValueLike<E>> key) {
         final Optional<E> optional = this.get(x, y, z, key);
         if (optional.isPresent()) {
             return optional.get();
@@ -323,7 +324,7 @@ public interface LocationBaseDataHolder {
     }
 
     /**
-     * Attempts to get the underlying value backed by a {@link Value}
+     * Attempts to get the underlying value backed by a {@link ValueLike}
      * linked to the provided {@link Key}.
      *
      * <p>If the {@link Key} is not supported or
@@ -337,7 +338,7 @@ public interface LocationBaseDataHolder {
      * @return The value
      * @throws NoSuchElementException If the value is not supported or present
      */
-    default <E> E require(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
+    default <E> E require(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends ValueLike<E>>> key) {
         final Optional<E> optional = this.get(x, y, z, key.get());
         if (optional.isPresent()) {
             return optional.get();
@@ -355,7 +356,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> @Nullable E orNull(final Vector3i position, final Key<? extends Value<E>> key) {
+    default <E> @Nullable E orNull(final Vector3i position, final Key<? extends ValueLike<E>> key) {
         return this.get(position.x(), position.y(), position.z(), key).orElse(null);
     }
 
@@ -369,7 +370,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> @Nullable E orNull(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
+    default <E> @Nullable E orNull(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends ValueLike<E>>> key) {
         return this.get(position.x(), position.y(), position.z(), key.get()).orElse(null);
     }
 
@@ -385,7 +386,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> @Nullable E orNull(final int x, final int y, final int z, final Key<? extends Value<E>> key) {
+    default <E> @Nullable E orNull(final int x, final int y, final int z, final Key<? extends ValueLike<E>> key) {
         return this.get(x, y, z, key).orElse(null);
     }
 
@@ -401,7 +402,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> @Nullable E orNull(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key) {
+    default <E> @Nullable E orNull(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends ValueLike<E>>> key) {
         return this.get(x, y, z, key.get()).orElse(null);
     }
 
@@ -416,7 +417,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> E orElse(final Vector3i position, final Key<? extends Value<E>> key, final E defaultValue) {
+    default <E> E orElse(final Vector3i position, final Key<? extends ValueLike<E>> key, final E defaultValue) {
         return this.get(position.x(), position.y(), position.z(), key).orElse(Objects.requireNonNull(defaultValue));
     }
 
@@ -431,7 +432,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> E orElse(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final E defaultValue) {
+    default <E> E orElse(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends ValueLike<E>>> key, final E defaultValue) {
         return this.get(position.x(), position.y(), position.z(), key.get()).orElse(Objects.requireNonNull(defaultValue));
     }
 
@@ -448,7 +449,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> E orElse(final int x, final int y, final int z, final Key<? extends Value<E>> key, final E defaultValue) {
+    default <E> E orElse(final int x, final int y, final int z, final Key<? extends ValueLike<E>> key, final E defaultValue) {
         return this.get(x, y, z, key).orElse(Objects.requireNonNull(defaultValue));
     }
 
@@ -465,7 +466,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> E orElse(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final E defaultValue) {
+    default <E> E orElse(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends ValueLike<E>>> key, final E defaultValue) {
         return this.get(x, y, z, key.get()).orElse(Objects.requireNonNull(defaultValue));
     }
 
@@ -481,7 +482,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> E orElse(final Vector3i position, final Key<? extends Value<E>> key, final Supplier<? extends E> defaultValue) {
+    default <E> E orElse(final Vector3i position, final Key<? extends ValueLike<E>> key, final Supplier<? extends E> defaultValue) {
         return this.get(position.x(), position.y(), position.z(), key).orElseGet(Objects.requireNonNull(defaultValue));
     }
 
@@ -496,7 +497,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> E orElse(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final Supplier<? extends E> defaultValue) {
+    default <E> E orElse(final Vector3i position, final DefaultedRegistryReference<? extends Key<? extends ValueLike<E>>> key, final Supplier<? extends E> defaultValue) {
         return this.get(position.x(), position.y(), position.z(), key.get()).orElseGet(Objects.requireNonNull(defaultValue));
     }
 
@@ -513,7 +514,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> E orElse(final int x, final int y, final int z, final Key<? extends Value<E>> key, final Supplier<E> defaultValue) {
+    default <E> E orElse(final int x, final int y, final int z, final Key<? extends ValueLike<E>> key, final Supplier<E> defaultValue) {
         return this.get(x, y, z, key).orElseGet(Objects.requireNonNull(defaultValue));
     }
 
@@ -530,7 +531,7 @@ public interface LocationBaseDataHolder {
      * @param <E> The type of element of data
      * @return The data or null
      */
-    default <E> E orElse(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends Value<E>>> key, final Supplier<? extends E> defaultValue) {
+    default <E> E orElse(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<? extends ValueLike<E>>> key, final Supplier<? extends E> defaultValue) {
         return this.get(x, y, z, key.get()).orElseGet(Objects.requireNonNull(defaultValue));
     }
 
@@ -545,7 +546,7 @@ public interface LocationBaseDataHolder {
      * @param <V> The type of value
      * @return The base value, if available
      */
-    default <E, V extends Value<E>> Optional<V> getValue(final Vector3i position, final Key<V> key) {
+    default <E, V extends ValueLike<E>> Optional<V> getValue(final Vector3i position, final Key<V> key) {
         return this.getValue(position.x(), position.y(), position.z(), key);
     }
 
@@ -560,7 +561,7 @@ public interface LocationBaseDataHolder {
      * @param <V> The type of value
      * @return The base value, if available
      */
-    default <E, V extends Value<E>> Optional<V> getValue(final Vector3i position, final Supplier<? extends Key<V>> key) {
+    default <E, V extends ValueLike<E>> Optional<V> getValue(final Vector3i position, final Supplier<? extends Key<V>> key) {
         return this.getValue(position.x(), position.y(), position.z(), key.get());
     }
 
@@ -576,7 +577,7 @@ public interface LocationBaseDataHolder {
      * @param <V> The type of value
      * @return The base value, if available
      */
-    <E, V extends Value<E>> Optional<V> getValue(int x, int y, int z, Key<V> key);
+    <E, V extends ValueLike<E>> Optional<V> getValue(int x, int y, int z, Key<V> key);
 
     /**
      * Gets the value of data that is keyed to the provided {@link Key} at the
@@ -590,7 +591,7 @@ public interface LocationBaseDataHolder {
      * @param <V> The type of value
      * @return The base value, if available
      */
-    default <E, V extends Value<E>> Optional<V> getValue(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<V>> key) {
+    default <E, V extends ValueLike<E>> Optional<V> getValue(final int x, final int y, final int z, final DefaultedRegistryReference<? extends Key<V>> key) {
         return this.getValue(x, y, z, key.get());
     }
 
@@ -645,19 +646,19 @@ public interface LocationBaseDataHolder {
     }
 
     /**
-     * Checks if the provided {@link Value} is supported by the block at the
+     * Checks if the provided {@link ValueLike} is supported by the block at the
      * provided location.
      *
      * @param position The position of the block
      * @param value The value of data
      * @return True if the block supports the data
      */
-    default boolean supports(final Vector3i position, final Value<?> value) {
+    default boolean supports(final Vector3i position, final ValueLike<?> value) {
         return this.supports(position.x(), position.y(), position.z(), value.key());
     }
 
     /**
-     * Checks if the provided {@link Value} is supported by the block at the
+     * Checks if the provided {@link ValueLike} is supported by the block at the
      * provided location.
      *
      * @param x The X coordinate
@@ -666,7 +667,7 @@ public interface LocationBaseDataHolder {
      * @param value The value of data
      * @return True if the block supports the data
      */
-    default boolean supports(final int x, final int y, final int z, final Value<?> value) {
+    default boolean supports(final int x, final int y, final int z, final ValueLike<?> value) {
         return this.supports(x, y, z, value.key());
     }
 
@@ -693,18 +694,18 @@ public interface LocationBaseDataHolder {
     Set<Key<?>> keys(int x, int y, int z);
 
     /**
-     * Gets an immutable {@link Set} of {@link org.spongepowered.api.data.value.Value.Immutable}s for the block at
+     * Gets an immutable {@link Set} of {@link org.spongepowered.api.data.value.ValueLike.Immutable}s for the block at
      * the given location.
      *
      * @param position The position of the block
      * @return The immutable set of values for the block
      */
-    default Set<Value.Immutable<?>> getValues(final Vector3i position) {
+    default Set<ValueLike.Immutable<?>> getValues(final Vector3i position) {
         return this.getValues(position.x(), position.y(), position.z());
     }
 
     /**
-     * Gets an immutable {@link Set} of {@link org.spongepowered.api.data.value.Value.Immutable}s for the block at
+     * Gets an immutable {@link Set} of {@link org.spongepowered.api.data.value.ValueLike.Immutable}s for the block at
      * the given location.
      *
      * @param x The X position
@@ -712,7 +713,7 @@ public interface LocationBaseDataHolder {
      * @param z The Z position
      * @return The immutable set of values for the block
      */
-    Set<Value.Immutable<?>> getValues(int x, int y, int z);
+    Set<ValueLike.Immutable<?>> getValues(int x, int y, int z);
 
     interface Mutable extends LocationBaseDataHolder {
 
@@ -846,7 +847,9 @@ public interface LocationBaseDataHolder {
          * @param <E> The type of data being offered
          * @return The transaction result
          */
-        <E> DataTransactionResult offer(int x, int y, int z, Key<? extends Value<E>> key, E value);
+        default <E> DataTransactionResult offer(int x, int y, int z, Key<? extends Value<E>> key, E value) {
+            return this.offer(x, y, z, Value.immutableOf(key, value));
+        }
 
         /**
          * Offers the given <code>E</code> value that is keyed by the provided
@@ -870,7 +873,7 @@ public interface LocationBaseDataHolder {
         }
 
         /**
-         * Offers the given {@link Value} to the block at the given position.
+         * Offers the given {@link ValueLike} to the block at the given position.
          *
          * <p>If any data is rejected or existing data is replaced, the
          * {@link DataTransactionResult} will retain the rejected and replaced
@@ -881,12 +884,12 @@ public interface LocationBaseDataHolder {
          * @param <E> The type of the element wrapped by the value
          * @return The transaction result
          */
-        default <E> DataTransactionResult offer(final Vector3i position, final Value<E> value) {
-            return this.offer(position.x(), position.y(), position.z(), value.key(), value.get());
+        default <E> DataTransactionResult offer(final Vector3i position, final ValueLike<E> value) {
+            return this.offer(position.x(), position.y(), position.z(), value);
         }
 
         /**
-         * Offers the given {@link Value} to the block at the given position.
+         * Offers the given {@link ValueLike} to the block at the given position.
          *
          * <p>If any data is rejected or existing data is replaced, the
          * {@link DataTransactionResult} will retain the rejected and replaced
@@ -899,9 +902,7 @@ public interface LocationBaseDataHolder {
          * @param <E> The type of the element wrapped by the value
          * @return The transaction result
          */
-        default <E> DataTransactionResult offer(final int x, final int y, final int z, final Value<E> value) {
-            return this.offer(x, y, z, value.key(), value.get());
-        }
+        <E> DataTransactionResult offer(final int x, final int y, final int z, final ValueLike<E> value);
 
         /**
          * Attempts to remove the data associated with the provided {@link Key} from
@@ -955,8 +956,8 @@ public interface LocationBaseDataHolder {
 
         /**
          * Attempts to undo a {@link DataTransactionResult}. Specifically, all
-         * {@link org.spongepowered.api.data.value.Value.Immutable}s that were successfully added are removed, and all
-         * replaced {@link org.spongepowered.api.data.value.Value.Immutable}s are offered.
+         * {@link org.spongepowered.api.data.value.ValueLike.Immutable}s that were successfully added are removed, and all
+         * replaced {@link org.spongepowered.api.data.value.ValueLike.Immutable}s are offered.
          *
          * @param position The position of the block
          * @param result The transaction result to undo
@@ -968,8 +969,8 @@ public interface LocationBaseDataHolder {
 
         /**
          * Attempts to undo a {@link DataTransactionResult}. Specifically, all
-         * {@link org.spongepowered.api.data.value.Value.Immutable}s that were successfully added are removed, and all
-         * replaced {@link org.spongepowered.api.data.value.Value.Immutable}s are offered.
+         * {@link org.spongepowered.api.data.value.ValueLike.Immutable}s that were successfully added are removed, and all
+         * replaced {@link org.spongepowered.api.data.value.ValueLike.Immutable}s are offered.
          *
          * @param x The X position
          * @param y The Y position
@@ -1018,7 +1019,7 @@ public interface LocationBaseDataHolder {
         }
 
         /**
-         * Attempts to copy all {@link org.spongepowered.api.data.value.Value.Immutable}s from the provided block to
+         * Attempts to copy all {@link org.spongepowered.api.data.value.ValueLike.Immutable}s from the provided block to
          * provided block to the provided block position.
          *
          * @param xTo The X position of the block to copy data to
@@ -1034,7 +1035,7 @@ public interface LocationBaseDataHolder {
         }
 
         /**
-         * Attempts to copy all {@link org.spongepowered.api.data.value.Value.Immutable}s from the provided block to
+         * Attempts to copy all {@link org.spongepowered.api.data.value.ValueLike.Immutable}s from the provided block to
          * provided block to the provided block position. Any conflicting data is
          * handled through the provided {@link MergeFunction}.
          *
@@ -1048,7 +1049,7 @@ public interface LocationBaseDataHolder {
         }
 
         /**
-         * Attempts to copy all {@link org.spongepowered.api.data.value.Value.Immutable}s from the provided block to
+         * Attempts to copy all {@link org.spongepowered.api.data.value.ValueLike.Immutable}s from the provided block to
          * provided block to the provided block position. Any conflicting data is
          * handled through the provided {@link MergeFunction}.
          *
@@ -1062,7 +1063,7 @@ public interface LocationBaseDataHolder {
         DataTransactionResult copyFrom(int xTo, int yTo, int zTo, ValueContainer from, MergeFunction function);
 
         /**
-         * Attempts to copy all {@link org.spongepowered.api.data.value.Value.Immutable}s from the provided block to
+         * Attempts to copy all {@link org.spongepowered.api.data.value.ValueLike.Immutable}s from the provided block to
          * provided block to the provided block position. Any conflicting data is
          * handled through the provided {@link MergeFunction}.
          *
@@ -1077,7 +1078,7 @@ public interface LocationBaseDataHolder {
         }
 
         /**
-         * Attempts to copy all {@link org.spongepowered.api.data.value.Value.Immutable}s from the provided block to
+         * Attempts to copy all {@link org.spongepowered.api.data.value.ValueLike.Immutable}s from the provided block to
          * provided block to the provided block position. Any conflicting data is
          * handled through the provided {@link MergeFunction}.
          *

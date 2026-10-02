@@ -25,10 +25,12 @@
 package org.spongepowered.api.data;
 
 import org.spongepowered.api.data.value.CollectionValue;
+import org.spongepowered.api.data.value.CompositeValue;
 import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.data.value.MergeFunction;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
+import org.spongepowered.api.data.value.ValueLike;
 import org.spongepowered.api.util.annotation.DoNotStore;
 
 import java.util.Collection;
@@ -102,7 +104,13 @@ public interface DataHolder extends ValueContainer {
          * @param <E> The type of value
          * @return The transaction result
          */
-        <E> DataTransactionResult offer(Key<? extends Value<E>> key, E value);
+        default <E> DataTransactionResult offer(Key<? extends Value<E>> key, E value) {
+            return this.offer(Value.immutableOf(key, value));
+        }
+
+        default <K, E> DataTransactionResult offer(CompositeKey<K, ? extends CompositeValue<K, E>> key, K valueKey, E value) {
+            return this.offer(CompositeValue.immutableChildOf(key, valueKey, value));
+        }
 
         /**
          * Offers the given {@code value} as defined by the provided {@link Key}
@@ -135,15 +143,15 @@ public interface DataHolder extends ValueContainer {
         }
 
         /**
-         * Offers the given {@link Value} as defined by the provided
+         * Offers the given {@link ValueLike} as defined by the provided
          * {@link Key} such that a {@link DataTransactionResult} is returned for
-         * any successful, rejected, and replaced {@link Value}s from this
+         * any successful, rejected, and replaced {@link ValueLike}s from this
          * {@link Mutable}.
          *
          * @param value The value to set
          * @return The transaction result
          */
-        DataTransactionResult offer(Value<?> value);
+        DataTransactionResult offer(ValueLike<?> value);
 
         <E> DataTransactionResult offerSingle(Key<? extends CollectionValue<E, ?>> key, E element);
 
@@ -238,7 +246,7 @@ public interface DataHolder extends ValueContainer {
         /**
          * Offers the given {@code value} as defined by the provided {@link Key}
          * such that a {@link DataTransactionResult} is returned for any
-         * successful {@link Value}s from this {@link Mutable}.
+         * successful {@link ValueLike}s from this {@link Mutable}.
          * Intentionally, however, this differs from {@link #offer(Key, Object)}
          * as it will intentionally throw an exception if the result was a failure.
          *
@@ -248,8 +256,8 @@ public interface DataHolder extends ValueContainer {
          * @throws IllegalArgumentException If the result is a failure likely due to
          *     incompatibility
          */
-        default <E> DataTransactionResult tryOffer(Value<E> value) throws IllegalArgumentException {
-            final DataTransactionResult result = this.offer(value.key(), value.get());
+        default <E> DataTransactionResult tryOffer(ValueLike<E> value) throws IllegalArgumentException {
+            final DataTransactionResult result = this.offer(value);
             if (!result.isSuccessful()) {
                 throw new IllegalArgumentException("Failed offer transaction!");
             }
@@ -257,7 +265,7 @@ public interface DataHolder extends ValueContainer {
         }
 
         /**
-         * Attempts to remove the provided {@link Value}. All values that were
+         * Attempts to remove the provided {@link ValueLike}. All values that were
          * successfully removed will be provided in
          * {@link DataTransactionResult#replacedData()}. If the data can not be
          * removed, the result will be an expected
@@ -266,7 +274,7 @@ public interface DataHolder extends ValueContainer {
          * @param value The value to remove
          * @return The transaction result
          */
-        default DataTransactionResult remove(Value<?> value) {
+        default DataTransactionResult remove(ValueLike<?> value) {
             return this.remove(value.key());
         }
 
@@ -281,6 +289,10 @@ public interface DataHolder extends ValueContainer {
          * @return The transaction result
          */
         DataTransactionResult remove(Key<?> key);
+
+        default <K> DataTransactionResult remove(CompositeKey<K, ? extends CompositeValue<K, ?>> key, K valueKey) {
+            return this.remove(key.child(valueKey));
+        }
 
         /**
          * Attempts to remove the data associated with the provided {@link Key}.
@@ -309,9 +321,9 @@ public interface DataHolder extends ValueContainer {
         DataTransactionResult undo(DataTransactionResult result);
 
         /**
-         * Performs an absolute copy of all {@link org.spongepowered.api.data.value.Value.Mutable}s and
+         * Performs an absolute copy of all {@link org.spongepowered.api.data.value.ValueLike.Mutable}s and
          * {@link ValueContainer}s to this {@link Mutable} such that
-         * any overlapping {@link org.spongepowered.api.data.value.Value.Mutable}s are offered for replacement. The
+         * any overlapping {@link org.spongepowered.api.data.value.ValueLike.Mutable}s are offered for replacement. The
          * result is provided as a {@link DataTransactionResult}.
          *
          * @param that The other {@link Mutable} to copy values from
@@ -322,9 +334,9 @@ public interface DataHolder extends ValueContainer {
         }
 
         /**
-         * Performs an absolute copy of all {@link org.spongepowered.api.data.value.Value.Mutable}s and
+         * Performs an absolute copy of all {@link org.spongepowered.api.data.value.ValueLike.Mutable}s and
          * {@link ValueContainer}s to this {@link Mutable} such that
-         * any overlapping {@link org.spongepowered.api.data.value.Value.Mutable}s are offered for replacement. The
+         * any overlapping {@link org.spongepowered.api.data.value.ValueLike.Mutable}s are offered for replacement. The
          * result is provided as a {@link DataTransactionResult}.
          *
          * @param that The other {@link Mutable} to copy values from
@@ -376,7 +388,13 @@ public interface DataHolder extends ValueContainer {
          * @param <E> The type of value
          * @return The new immutable value store
          */
-        <E> Optional<I> with(Key<? extends Value<E>> key, E value);
+        default <E> Optional<I> with(Key<? extends Value<E>> key, E value) {
+            return this.with(Value.immutableOf(key, value));
+        }
+
+        default <K, E> Optional<I> with(CompositeKey<K, ? extends CompositeValue<K, E>> key, K valueKey, E value) {
+            return this.with(CompositeValue.immutableChildOf(key, valueKey, value));
+        }
 
         /**
          * Creates a new {@link Immutable} with the provided
@@ -400,17 +418,17 @@ public interface DataHolder extends ValueContainer {
          * @param value The value to set
          * @return The new immutable value store
          */
-        Optional<I> with(Value<?> value);
+        Optional<I> with(ValueLike<?> value);
 
         /**
          * Creates a new {@link Immutable} without the key of the provided
-         * {@link Value}. If the key is supported by this value store,
+         * {@link ValueLike}. If the key is supported by this value store,
          * the returned value store will be present.
          *
          * @param value The value
          * @return The new immutable value store
          */
-        default Optional<I> without(Value<?> value) {
+        default Optional<I> without(ValueLike<?> value) {
             return this.without(value.key());
         }
 
@@ -423,6 +441,10 @@ public interface DataHolder extends ValueContainer {
          * @return The new immutable value store
          */
         Optional<I> without(Key<?> key);
+
+        default <K> Optional<I> without(CompositeKey<K, ? extends CompositeValue<K, ?>> key, K valueKey) {
+            return this.without(key.child(valueKey));
+        }
 
         /**
          * Creates a new {@link Immutable} without the provided {@link Key}. If the
@@ -437,7 +459,7 @@ public interface DataHolder extends ValueContainer {
         }
 
         /**
-         * Attempts to merge the {@link org.spongepowered.api.data.value.Value.Immutable}s from this
+         * Attempts to merge the {@link org.spongepowered.api.data.value.ValueLike.Immutable}s from this
          * {@link Immutable} and the given {@link Immutable} to
          * produce a new instance of the merged result.
          *
@@ -449,7 +471,7 @@ public interface DataHolder extends ValueContainer {
         }
 
         /**
-         * Attempts to merge the {@link org.spongepowered.api.data.value.Value.Immutable}s from this
+         * Attempts to merge the {@link org.spongepowered.api.data.value.ValueLike.Immutable}s from this
          * {@link Immutable} and the given {@link Immutable} to
          * produce a new instance of the merged result. Any overlapping
          * {@link ValueContainer}s are merged through the {@link MergeFunction}.

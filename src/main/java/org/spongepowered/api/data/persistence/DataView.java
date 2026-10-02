@@ -28,7 +28,7 @@ import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataManager;
 import org.spongepowered.api.data.Key;
-import org.spongepowered.api.data.value.Value;
+import org.spongepowered.api.data.value.ValueLike;
 import org.spongepowered.api.registry.RegistryHolder;
 import org.spongepowered.api.registry.RegistryType;
 
@@ -875,7 +875,7 @@ public interface DataView {
      * @param <V> The value type
      * @return The key, if available
      */
-    <E, V extends Value<E>> Optional<Key<V>> getDataKey(DataQuery path);
+    <E, V extends ValueLike<E>> Optional<Key<V>> getDataKey(DataQuery path);
 
     /**
      * Gets the {@link List} of {@link Key values} by path, if available.
@@ -883,7 +883,7 @@ public interface DataView {
      * @param path The path of the value to get
      * @return The list of keys, if available
      */
-    Optional<List<Key<? extends Value<?>>>> getDataKeyList(DataQuery path);
+    Optional<List<Key<? extends ValueLike<?>>>> getDataKeyList(DataQuery path);
 
     /**
      * Copies this {@link DataView} and all of it's contents into a new

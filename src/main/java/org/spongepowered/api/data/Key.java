@@ -28,11 +28,13 @@ import io.leangen.geantyref.TypeToken;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.ResourceKeyed;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.value.CompositeValue;
 import org.spongepowered.api.data.value.ListValue;
 import org.spongepowered.api.data.value.MapValue;
 import org.spongepowered.api.data.value.SetValue;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.data.value.ValueContainer;
+import org.spongepowered.api.data.value.ValueLike;
 import org.spongepowered.api.data.value.WeightedCollectionValue;
 import org.spongepowered.api.event.EventListener;
 import org.spongepowered.api.event.data.ChangeDataHolderEvent;
@@ -70,7 +72,7 @@ import java.util.function.BiPredicate;
  * @param <V> The type of {@link Value}
  */
 @CatalogedBy(Keys.class)
-public interface Key<V extends Value<?>> extends ResourceKeyed {
+public interface Key<V extends ValueLike<?>> extends ResourceKeyed {
 
     /**
      * Creates a {@link Key.Builder} which allows creation of a {@link Key}
@@ -84,7 +86,7 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
      * @return The key builder
      */
     @SuppressWarnings("unchecked")
-    static Builder<?, ?> builder() {
+    static Builder<?, ?, ?> builder() {
         return Sponge.game().builderProvider().provide(Builder.class);
     }
 
@@ -131,6 +133,8 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
             .mapElementType(Objects.requireNonNull(keyType, "keyType"), Objects.requireNonNull(valueType, "valueType"))
             .build();
     }
+
+    Key<? extends ValueLike<?>> root();
 
     /**
      * Gets the type of the {@link Value} this {@link Key} is representing.
@@ -181,7 +185,7 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
      */
     <E extends DataHolder> void registerEvent(PluginContainer plugin, Class<E> holderFilter, EventListener<ChangeDataHolderEvent.ValueChange> listener);
 
-    interface Builder<E, V extends Value<E>> extends ResourceKeyedBuilder<Key<V>, Builder<E, V>> {
+    interface Builder<K extends Key<V>, E, V extends ValueLike<E>> extends ResourceKeyedBuilder<K, Builder<K, E, V>> {
 
         /**
          * Starter method for the builder, to be used immediately after
@@ -199,7 +203,7 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
          * @param <B> The base value type of the key
          * @return This builder, generified
          */
-        <T, B extends Value<T>> Builder<T, B> type(TypeToken<B> token);
+        <T, B extends Value<T>> Builder<Key<B>, T, B> type(TypeToken<B> token);
 
         /**
          * Starter method for the builder, to be used immediately after
@@ -213,7 +217,7 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
          * @param <T> The element type of the Key
          * @return This builder, generified
          */
-        <T> Builder<T, Value<T>> elementType(Class<T> type);
+        <T> Builder<Key<Value<T>>, T, Value<T>> elementType(Class<T> type);
 
         /**
          * Starter method for the builder, to be used immediately after
@@ -227,7 +231,7 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
          * @param <T> The element type of the Key
          * @return This builder, generified
          */
-        <T> Builder<T, Value<T>> elementType(TypeToken<T> type);
+        <T> Builder<Key<Value<T>>, T, Value<T>> elementType(TypeToken<T> type);
 
         /**
          * Starter method for the builder, to be used immediately after
@@ -241,7 +245,7 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
          * @param <T> The element type of the Key
          * @return This builder, generified
          */
-        <T> Builder<List<T>, ListValue<T>> listElementType(Class<T> type);
+        <T> Builder<Key<ListValue<T>>, List<T>, ListValue<T>> listElementType(Class<T> type);
 
         /**
          * Starter method for the builder, to be used immediately after
@@ -255,7 +259,7 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
          * @param <T> The element type of the Key
          * @return This builder, generified
          */
-        <T> Builder<List<T>, ListValue<T>> listElementType(TypeToken<T> type);
+        <T> Builder<Key<ListValue<T>>, List<T>, ListValue<T>> listElementType(TypeToken<T> type);
 
         /**
          * Starter method for the builder, to be used immediately after
@@ -269,7 +273,7 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
          * @param <T> The element type of the Key
          * @return This builder, generified
          */
-        <T> Builder<Set<T>, SetValue<T>> setElementType(Class<T> type);
+        <T> Builder<Key<SetValue<T>>, Set<T>, SetValue<T>> setElementType(Class<T> type);
 
         /**
          * Starter method for the builder, to be used immediately after
@@ -283,7 +287,7 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
          * @param <T> The element type of the Key
          * @return This builder, generified
          */
-        <T> Builder<Set<T>, SetValue<T>> setElementType(TypeToken<T> type);
+        <T> Builder<Key<SetValue<T>>, Set<T>, SetValue<T>> setElementType(TypeToken<T> type);
 
         /**
          * Starter method for the builder, to be used immediately after
@@ -299,7 +303,7 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
          * @param <V> The element type of the Key's value type
          * @return This builder, generified
          */
-        <K, V> Builder<Map<K, V>, MapValue<K, V>> mapElementType(Class<K> keyType, Class<V> valueType);
+        <K, V> Builder<Key<MapValue<K, V>>, Map<K, V>, MapValue<K, V>> mapElementType(Class<K> keyType, Class<V> valueType);
 
         /**
          * Starter method for the builder, to be used immediately after
@@ -315,7 +319,7 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
          * @param <V> The element type of the Key's value type
          * @return This builder, generified
          */
-        <K, V> Builder<Map<K, V>, MapValue<K, V>> mapElementType(TypeToken<K> keyType, TypeToken<V> valueType);
+        <K, V> Builder<Key<MapValue<K, V>>, Map<K, V>, MapValue<K, V>> mapElementType(TypeToken<K> keyType, TypeToken<V> valueType);
 
         /**
          * Starter method for the builder, to be used immediately after
@@ -329,7 +333,7 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
          * @param <T> The element type of the Key
          * @return This builder, generified
          */
-        <T> Builder<WeightedTable<T>, WeightedCollectionValue<T>> weightedCollectionElementType(Class<T> type);
+        <T> Builder<Key<WeightedCollectionValue<T>>, WeightedTable<T>, WeightedCollectionValue<T>> weightedCollectionElementType(Class<T> type);
 
         /**
          * Starter method for the builder, to be used immediately after
@@ -343,7 +347,39 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
          * @param <T> The element type of the Key
          * @return This builder, generified
          */
-        <T> Builder<WeightedTable<T>, WeightedCollectionValue<T>> weightedCollectionElementType(TypeToken<T> type);
+        <T> Builder<Key<WeightedCollectionValue<T>>, WeightedTable<T>, WeightedCollectionValue<T>> weightedCollectionElementType(TypeToken<T> type);
+
+        /**
+         * Starter method for the builder, to be used immediately after
+         * {@link Key#builder()} is called. This defines the generics for the
+         * builder itself to provide the properly generified {@link Key}.
+         *
+         * <p>This overload is provided for simple cases where a plain
+         * {@link CompositeValue} is used.</p>
+         *
+         * @param keyType The key type
+         * @param elementType The element type
+         * @param <K> The element type of the Key's key type
+         * @param <E> The element type of the Key's element type
+         * @return This builder, generified
+         */
+        <K, E> Builder<CompositeKey<K, CompositeValue<K, E>>, E, CompositeValue<K, E>> compositeValueElementType(Class<K> keyType, Class<E> elementType);
+
+        /**
+         * Starter method for the builder, to be used immediately after
+         * {@link Key#builder()} is called. This defines the generics for the
+         * builder itself to provide the properly generified {@link Key}.
+         *
+         * <p>This overload is provided for simple cases where a plain
+         * {@link CompositeValue} is used.</p>
+         *
+         * @param keyType The key type
+         * @param elementType The element type
+         * @param <K> The element type of the Key's key type
+         * @param <E> The element type of the Key's element type
+         * @return This builder, generified
+         */
+        <K, E> Builder<CompositeKey<K, CompositeValue<K, E>>, E, CompositeValue<K, E>> compositeValueElementType(TypeToken<K> keyType, TypeToken<E> elementType);
 
         /**
          * Sets the {@link Comparator} that can be used to compare
@@ -355,7 +391,7 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
          * @param comparator The comparator
          * @return This builder, for chaining
          */
-        Builder<E, V> comparator(Comparator<? super E> comparator);
+        Builder<K, E, V> comparator(Comparator<? super E> comparator);
 
         /**
          * Sets the includes tester {@link BiPredicate}. This predicate should
@@ -368,7 +404,7 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
          * @see KeyValueMatcher.Operator#INCLUDES
          * @see KeyValueMatcher.Operator#EXCLUDES
          */
-        Builder<E, V> includesTester(BiPredicate<? super E, ? super E> predicate);
+        Builder<K, E, V> includesTester(BiPredicate<? super E, ? super E> predicate);
 
         /**
          * Builds the {@link Key}.
@@ -378,7 +414,7 @@ public interface Key<V extends Value<?>> extends ResourceKeyed {
          *                               {@link #type(TypeToken)}.
          */
         @Override
-        Key<V> build();
+        K build();
 
     }
 }
