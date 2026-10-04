@@ -34,7 +34,6 @@ import org.spongepowered.math.vector.Vector3i;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Predicate;
 
 /**
  * Manages {@link WorldChunk chunks} for a {@link ServerWorld}.
@@ -98,25 +97,28 @@ public interface ChunkManager {
     boolean releaseTicket(Ticket ticket);
 
     /**
+     * Gets all currently active {@link Ticket tickets} that have the given chunk origin.
+     *
+     * @param chunkOrigin The chunk co-ordinates of the origin.
+     * @return A {@link Collection} of {@link Ticket tickets}
+     */
+    Collection<Ticket> findTickets(Vector3i chunkOrigin);
+
+    /**
      * Gets all currently active {@link Ticket tickets} that are of the
      * provided {@link TicketType}.
      *
      * @param type The {@link TicketType} to retrieve tickets for
      * @return A {@link Collection} of {@link Ticket tickets}
      */
-    default Collection<Ticket> findTickets(TicketType type) {
-        Objects.requireNonNull(type, "type");
-        return this.findTickets(type::equals);
-    }
+    Collection<Ticket> findTickets(TicketType type);
 
     /**
-     * Gets all currently active {@link Ticket tickets} whose type
-     * matches the given predicate.
+     * Gets all currently active {@link Ticket tickets}.
      *
-     * @param typePredicate The predicate on {@link TicketType}
      * @return A {@link Collection} of {@link Ticket tickets}
      */
-    Collection<Ticket> findTickets(Predicate<TicketType> typePredicate);
+    Collection<Ticket> findTickets();
 
     /**
      * Regenerates a chunk at the given chunk coordinate position.
