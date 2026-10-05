@@ -28,8 +28,9 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.data.type.HandPreference;
 import org.spongepowered.api.data.value.Value;
 import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.item.inventory.ArmorEquipable;
 
-public interface Mannequin extends Living {
+public interface Mannequin extends Living, ArmorEquipable {
 
     /**
      * {@link Keys#DOMINANT_HAND}
