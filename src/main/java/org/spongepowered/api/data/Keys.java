@@ -398,6 +398,11 @@ public final class Keys {
     public static final Key<Value<ParticleConfig>> AMBIENT_PARTICLE = Keys.key(ResourceKey.sponge("ambient_particle"), ParticleConfig.class);
 
     /**
+     * The set of {@link EntityType} allowed to equip an {@link ItemStack}.
+     */
+    public static final Key<SetValue<EntityType<?>>> ALLOWED_ENTITIES = Keys.setKey(ResourceKey.sponge("allowed_entities"), new TypeToken<>() {});
+
+    /**
      * The ambient sound in a {@link Biome}
      * Readonly
      */
@@ -647,6 +652,16 @@ public final class Keys {
      * The {@link DamageType} tag that bypasses a shield-like {@link ItemStack}.
      */
     public static final Key<Value<Tag<DamageType>>> BYPASS_DAMAGE_TAG = Keys.key(ResourceKey.sponge("bypass_damage_tag"), new TypeToken<>() {});
+
+    /**
+     * The {@link ResourceKey} overlay rendered when {@link ItemStack} equipped on head.
+     */
+    public static final Key<Value<ResourceKey>> CAMERA_OVERLAY = Keys.key(ResourceKey.sponge("camera_overlay"), ResourceKey.class);
+
+    /**
+     * Whether an equipped {@link ItemStack} can be removed using shears.
+     */
+    public static final Key<Value<Boolean>> CAN_BE_SHEARED = Keys.key(ResourceKey.sponge("can_be_sheared"), Boolean.class);
 
     /**
      * Whether an {@link ItemStack} can always be eaten.
@@ -961,6 +976,11 @@ public final class Keys {
     public static final Key<Value<Double>> DAMAGE_ABSORPTION = Keys.key(ResourceKey.sponge("damage_absorption"), Double.class);
 
     /**
+     * Whether an equipped {@link ItemStack} is damaged when the wearer is hurt.
+     */
+    public static final Key<Value<Boolean>> DAMAGE_ON_HURT = Keys.key(ResourceKey.sponge("damage_on_hurt"), Boolean.class);
+
+    /**
      * How much damage a {@link FallingBlock} deals to {@link Living} entities
      * it hits per block fallen.
      *
@@ -1138,10 +1158,19 @@ public final class Keys {
     public static final Key<Value<EntityArchetype>> ENTITY_TO_SPAWN = Keys.key(ResourceKey.sponge("entity_to_spawn"), EntityArchetype.class);
 
     /**
+     * Whether an item is equipped when interacting with it.
+     */
+    public static final Key<Value<Boolean>> EQUIP_ON_INTERACT = Keys.key(ResourceKey.sponge("equip_on_interact"), Boolean.class);
+
+    /**
+     * The {@link SoundType} played when equipping an item.
+     */
+    public static final Key<Value<SoundType>> EQUIP_SOUND = Keys.key(ResourceKey.sponge("equip_sound"), SoundType.class);
+
+    /**
      * The {@link EquipmentType} that the target inventory supports. This usually applies to {@link EquipmentSlot}s.
      * or
      * The {@link EquipmentType} of an {@link ItemStack}
-     * Readonly
      */
     public static final Key<Value<EquipmentType>> EQUIPMENT_TYPE = Keys.key(ResourceKey.sponge("equipment_type"), EquipmentType.class);
 
@@ -1578,9 +1607,24 @@ public final class Keys {
     public static final Key<Value<PandaGene>> HIDDEN_GENE = Keys.key(ResourceKey.sponge("hidden_gene"), PandaGene.class);
 
     /**
+     * Whether the {@link #ARMOR_TRIM} of an {@link ItemStack} is hidden.
+     */
+    public static final Key<Value<Boolean>> HIDE_ARMOR_TRIM = Keys.key(ResourceKey.sponge("hide_armor_trim"), Boolean.class);
+
+    /**
      * Whether the attributes of an {@link ItemStack} are hidden.
      */
     public static final Key<Value<Boolean>> HIDE_ATTRIBUTES = Keys.key(ResourceKey.sponge("hide_attributes"), Boolean.class);
+
+    /**
+     * Whether the {@link #BANNER_PATTERN_LAYERS} of an {@link ItemStack} are hidden in the item description.
+     */
+    public static final Key<Value<Boolean>> HIDE_BANNER_PATTERNS = Keys.key(ResourceKey.sponge("hide_banner_patterns"), Boolean.class);
+
+    /**
+     * Whether the bundle contents of an {@link ItemStack} are hidden.
+     */
+    public static final Key<Value<Boolean>> HIDE_BUNDLE_CONTENTS = Keys.key(ResourceKey.sponge("hide_bundle_contents"), Boolean.class);
 
     /**
      * Whether the {@link #BREAKABLE_BLOCK_TYPES} of an {@link ItemStack} are hidden.
@@ -1593,15 +1637,34 @@ public final class Keys {
     public static final Key<Value<Boolean>> HIDE_CAN_PLACE = Keys.key(ResourceKey.sponge("hide_can_place"), Boolean.class);
 
     /**
+     * Whether the {@link #COLOR} of an {@link ItemStack} is hidden in the item description.
+     */
+    public static final Key<Value<Boolean>> HIDE_COLOR = Keys.key(ResourceKey.sponge("hide_color"), Boolean.class);
+
+    /**
      * Whether the {@link #APPLIED_ENCHANTMENTS} of an {@link ItemStack} are hidden.
      */
     public static final Key<Value<Boolean>> HIDE_ENCHANTMENTS = Keys.key(ResourceKey.sponge("hide_enchantments"), Boolean.class);
 
     /**
+     * Whether the instrument of an {@link ItemStack} (e.g. {@link ItemTypes#GOAT_HORN}) is hidden.
+     */
+    public static final Key<Value<Boolean>> HIDE_INSTRUMENT = Keys.key(ResourceKey.sponge("hide_instrument"), Boolean.class);
+
+    /**
      * Whether miscellaneous values of an {@link ItemStack} are hidden.
-     * e.g. potion effects or shield pattern info
      */
     public static final Key<Value<Boolean>> HIDE_MISCELLANEOUS = Keys.key(ResourceKey.sponge("hide_miscellaneous"), Boolean.class);
+
+    /**
+     * Whether the {@link #MUSIC_DISC} of and {@link ItemStack} is hidden in the item description.
+     */
+    public static final Key<Value<Boolean>> HIDE_MUSIC_DISC = Keys.key(ResourceKey.sponge("hide_music_disc"), Boolean.class);
+
+    /**
+     * Whether the potion effects (e.g. {@link #CUSTOM_POTION_EFFECTS}) of an {@link ItemStack} are hidden.
+     */
+    public static final Key<Value<Boolean>> HIDE_POTION_EFFECTS = Keys.key(ResourceKey.sponge("hide_potion_effects"), Boolean.class);
 
     /**
      * Whether the {@link #STORED_ENCHANTMENTS} of an {@link ItemStack} are hidden.
@@ -1822,6 +1885,11 @@ public final class Keys {
      * e.g. {@link BlockTypes#TRIPWIRE}s and {@link BlockTypes#TRIPWIRE_HOOK}s.
      */
     public static final Key<Value<Boolean>> IS_DISARMED = Keys.key(ResourceKey.sponge("is_disarmed"), Boolean.class);
+
+    /**
+     * Whether an item can be equipped using a dispenser.
+     */
+    public static final Key<Value<Boolean>> IS_DISPENSABLE = Keys.key(ResourceKey.sponge("is_dispensable"), Boolean.class);
 
     /**
      * Whether an entity is eating.
@@ -2187,6 +2255,11 @@ public final class Keys {
      * Readonly
      */
     public static final Key<Value<Boolean>> IS_SURROGATE_BLOCK = Keys.key(ResourceKey.sponge("is_surrogate_block"), Boolean.class);
+
+    /**
+     * Whether an equipped item can be swapped by interacting with it.
+     */
+    public static final Key<Value<Boolean>> IS_SWAPPABLE = Keys.key(ResourceKey.sponge("is_swappable"), Boolean.class);
 
     /**
      * Whether players are prevented from taking
@@ -3101,6 +3174,11 @@ public final class Keys {
      * The shadow strength duration of a {@link DisplayEntity}
      */
     public static final Key<Value<Double>> SHADOW_STRENGTH = Keys.key(ResourceKey.sponge("shadow_strength"), Double.class);
+
+    /**
+     * The {@link SoundType} played when removing an equipped {@link ItemStack} using shears.
+     */
+    public static final Key<Value<SoundType>> SHEARING_SOUND = Keys.key(ResourceKey.sponge("shearing_sound"), SoundType.class);
 
     /**
      * The sound played when blocking an attack with a shield-like {@link ItemStack}.
