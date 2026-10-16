@@ -41,6 +41,8 @@ public final class BiomeTags {
 
     public static final DefaultedTag<Biome> ALLOWS_TROPICAL_FISH_SPAWNS_AT_ANY_HEIGHT = BiomeTags.key(ResourceKey.minecraft("allows_tropical_fish_spawns_at_any_height"));
 
+    public static final DefaultedTag<Biome> GENERATED_IN_BELOW_ZERO_RETROGEN = BiomeTags.key(ResourceKey.minecraft("generated_in_below_zero_retrogen"));
+
     public static final DefaultedTag<Biome> HAS_STRUCTURE_ABANDONED_CAMP_BAMBOO_JUNGLE = BiomeTags.key(ResourceKey.minecraft("has_structure/abandoned_camp_bamboo_jungle"));
 
     public static final DefaultedTag<Biome> HAS_STRUCTURE_ABANDONED_CAMP_BIRCH_FOREST = BiomeTags.key(ResourceKey.minecraft("has_structure/abandoned_camp_birch_forest"));
@@ -148,6 +150,8 @@ public final class BiomeTags {
     public static final DefaultedTag<Biome> IS_BADLANDS = BiomeTags.key(ResourceKey.minecraft("is_badlands"));
 
     public static final DefaultedTag<Biome> IS_BEACH = BiomeTags.key(ResourceKey.minecraft("is_beach"));
+
+    public static final DefaultedTag<Biome> IS_CAVE = BiomeTags.key(ResourceKey.minecraft("is_cave"));
 
     public static final DefaultedTag<Biome> IS_DEEP_OCEAN = BiomeTags.key(ResourceKey.minecraft("is_deep_ocean"));
 

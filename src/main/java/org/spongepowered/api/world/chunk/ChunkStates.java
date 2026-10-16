@@ -85,6 +85,14 @@ public final class ChunkStates {
     public static final DefaultedRegistryReference<ChunkState> LIGHT = ChunkStates.key(ResourceKey.minecraft("light"));
 
     /**
+     * A {@link Chunk} that is having its coarse, noise-resolution
+     * {@link Biome biomes} sampled from the biome source. The
+     * {@link #BIOMES} step then upscales these into the final biomes, which
+     * requires the neighboring chunks to have completed this step as well.
+     */
+    public static final DefaultedRegistryReference<ChunkState> NOISE_BIOMES = ChunkStates.key(ResourceKey.minecraft("noise_biomes"));
+
+    /**
      * A {@link Chunk} state that is being used for entity spawning.
      * Generally requires that the neighboring chunks are adequately populated,
      * and requires that this chunk has proper lighting, for mob placement
