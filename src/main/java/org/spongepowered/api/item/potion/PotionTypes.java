@@ -44,6 +44,8 @@ public final class PotionTypes {
 
     public static final DefaultedRegistryReference<PotionType> FIRE_RESISTANCE = PotionTypes.key(ResourceKey.minecraft("fire_resistance"));
 
+    public static final DefaultedRegistryReference<PotionType> FREEZING = PotionTypes.key(ResourceKey.minecraft("freezing"));
+
     public static final DefaultedRegistryReference<PotionType> HARMING = PotionTypes.key(ResourceKey.minecraft("harming"));
 
     public static final DefaultedRegistryReference<PotionType> HEALING = PotionTypes.key(ResourceKey.minecraft("healing"));
@@ -55,6 +57,8 @@ public final class PotionTypes {
     public static final DefaultedRegistryReference<PotionType> LEAPING = PotionTypes.key(ResourceKey.minecraft("leaping"));
 
     public static final DefaultedRegistryReference<PotionType> LONG_FIRE_RESISTANCE = PotionTypes.key(ResourceKey.minecraft("long_fire_resistance"));
+
+    public static final DefaultedRegistryReference<PotionType> LONG_FREEZING = PotionTypes.key(ResourceKey.minecraft("long_freezing"));
 
     public static final DefaultedRegistryReference<PotionType> LONG_INVISIBILITY = PotionTypes.key(ResourceKey.minecraft("long_invisibility"));
 

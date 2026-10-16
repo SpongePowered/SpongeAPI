@@ -227,6 +227,8 @@ public final class ItemTypeTags {
 
     public static final DefaultedTag<ItemType> FROG_FOOD = ItemTypeTags.key(ResourceKey.minecraft("frog_food"));
 
+    public static final DefaultedTag<ItemType> FROSTBITE_PREFERRED_WEAPONS = ItemTypeTags.key(ResourceKey.minecraft("frostbite_preferred_weapons"));
+
     public static final DefaultedTag<ItemType> FURNACE_FUEL_BOTTOM_TAKEABLE = ItemTypeTags.key(ResourceKey.minecraft("furnace_fuel_bottom_takeable"));
 
     public static final DefaultedTag<ItemType> FURNACE_MINECART_FUEL = ItemTypeTags.key(ResourceKey.minecraft("furnace_minecart_fuel"));
@@ -268,6 +270,8 @@ public final class ItemTypeTags {
     public static final DefaultedTag<ItemType> IRON_TOOL_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("iron_tool_materials"));
 
     public static final DefaultedTag<ItemType> JUNGLE_LOGS = ItemTypeTags.key(ResourceKey.minecraft("jungle_logs"));
+
+    public static final DefaultedTag<ItemType> KNOCKS_BACK_PLAYERS_EVEN_WITH_ZERO_DAMAGE = ItemTypeTags.key(ResourceKey.minecraft("knocks_back_players_even_with_zero_damage"));
 
     public static final DefaultedTag<ItemType> LANTERNS = ItemTypeTags.key(ResourceKey.minecraft("lanterns"));
 
@@ -386,6 +390,8 @@ public final class ItemTypeTags {
     public static final DefaultedTag<ItemType> SHEARABLE_FROM_COPPER_GOLEM = ItemTypeTags.key(ResourceKey.minecraft("shearable_from_copper_golem"));
 
     public static final DefaultedTag<ItemType> SHEEP_FOOD = ItemTypeTags.key(ResourceKey.minecraft("sheep_food"));
+
+    public static final DefaultedTag<ItemType> SHEEP_WOOL_DYES = ItemTypeTags.key(ResourceKey.minecraft("sheep_wool_dyes"));
 
     public static final DefaultedTag<ItemType> SHOVELS = ItemTypeTags.key(ResourceKey.minecraft("shovels"));
 

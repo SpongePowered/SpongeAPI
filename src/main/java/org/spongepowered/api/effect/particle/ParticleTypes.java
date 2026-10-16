@@ -148,6 +148,8 @@ public final class ParticleTypes {
 
     public static final DefaultedRegistryReference<ParticleType> FLASH = ParticleTypes.key(ResourceKey.minecraft("flash"));
 
+    public static final DefaultedRegistryReference<ParticleType> FREEZING = ParticleTypes.key(ResourceKey.minecraft("freezing"));
+
     public static final DefaultedRegistryReference<ParticleType> GEYSER = ParticleTypes.key(ResourceKey.minecraft("geyser"));
 
     public static final DefaultedRegistryReference<ParticleType> GEYSER_BASE = ParticleTypes.key(ResourceKey.minecraft("geyser_base"));
@@ -179,8 +181,6 @@ public final class ParticleTypes {
     public static final DefaultedRegistryReference<ParticleType> ITEM_COBWEB = ParticleTypes.key(ResourceKey.minecraft("item_cobweb"));
 
     public static final DefaultedRegistryReference<ParticleType> ITEM_SLIME = ParticleTypes.key(ResourceKey.minecraft("item_slime"));
-
-    public static final DefaultedRegistryReference<ParticleType> ITEM_SNOWBALL = ParticleTypes.key(ResourceKey.minecraft("item_snowball"));
 
     public static final DefaultedRegistryReference<ParticleType> LANDING_HONEY = ParticleTypes.key(ResourceKey.minecraft("landing_honey"));
 

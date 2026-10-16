@@ -120,6 +120,7 @@ import org.spongepowered.api.entity.living.monster.skeleton.WitherSkeleton;
 import org.spongepowered.api.entity.living.monster.spider.CaveSpider;
 import org.spongepowered.api.entity.living.monster.spider.Spider;
 import org.spongepowered.api.entity.living.monster.zombie.Drowned;
+import org.spongepowered.api.entity.living.monster.zombie.Frostbite;
 import org.spongepowered.api.entity.living.monster.zombie.Husk;
 import org.spongepowered.api.entity.living.monster.zombie.Zombie;
 import org.spongepowered.api.entity.living.monster.zombie.ZombieVillager;
@@ -135,6 +136,7 @@ import org.spongepowered.api.entity.projectile.EvokerFangs;
 import org.spongepowered.api.entity.projectile.ExperienceBottle;
 import org.spongepowered.api.entity.projectile.EyeOfEnder;
 import org.spongepowered.api.entity.projectile.FishingBobber;
+import org.spongepowered.api.entity.projectile.IceBall;
 import org.spongepowered.api.entity.projectile.LlamaSpit;
 import org.spongepowered.api.entity.projectile.Potion;
 import org.spongepowered.api.entity.projectile.ShulkerBullet;
@@ -290,6 +292,8 @@ public final class EntityTypes {
 
     public static final DefaultedRegistryReference<EntityType<Frog>> FROG = EntityTypes.key(ResourceKey.minecraft("frog"));
 
+    public static final DefaultedRegistryReference<EntityType<Frostbite>> FROSTBITE = EntityTypes.key(ResourceKey.minecraft("frostbite"));
+
     public static final DefaultedRegistryReference<EntityType<FurnaceMinecart>> FURNACE_MINECART = EntityTypes.key(ResourceKey.minecraft("furnace_minecart"));
 
     public static final DefaultedRegistryReference<EntityType<Ghast>> GHAST = EntityTypes.key(ResourceKey.minecraft("ghast"));
@@ -315,6 +319,8 @@ public final class EntityTypes {
     public static final DefaultedRegistryReference<EntityType<Human>> HUMAN = EntityTypes.key(ResourceKey.sponge("human"));
 
     public static final DefaultedRegistryReference<EntityType<Husk>> HUSK = EntityTypes.key(ResourceKey.minecraft("husk"));
+
+    public static final DefaultedRegistryReference<EntityType<IceBall>> ICE_BALL = EntityTypes.key(ResourceKey.minecraft("ice_ball"));
 
     public static final DefaultedRegistryReference<EntityType<Illusioner>> ILLUSIONER = EntityTypes.key(ResourceKey.minecraft("illusioner"));
 

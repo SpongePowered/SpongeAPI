@@ -56,6 +56,8 @@ public final class PotionEffectTypes {
 
     public static final DefaultedRegistryReference<PotionEffectType> FIRE_RESISTANCE = PotionEffectTypes.key(ResourceKey.minecraft("fire_resistance"));
 
+    public static final DefaultedRegistryReference<PotionEffectType> FREEZING = PotionEffectTypes.key(ResourceKey.minecraft("freezing"));
+
     public static final DefaultedRegistryReference<PotionEffectType> GLOWING = PotionEffectTypes.key(ResourceKey.minecraft("glowing"));
 
     public static final DefaultedRegistryReference<PotionEffectType> HASTE = PotionEffectTypes.key(ResourceKey.minecraft("haste"));

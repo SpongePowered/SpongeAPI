@@ -84,6 +84,8 @@ public final class Noises {
 
     public static final DefaultedRegistryReference<Noise> ICEBERG_SURFACE = Noises.key(ResourceKey.minecraft("iceberg_surface"));
 
+    public static final DefaultedRegistryReference<Noise> ICE_CAVE_GRADIENT = Noises.key(ResourceKey.minecraft("ice_cave_gradient"));
+
     public static final DefaultedRegistryReference<Noise> JAGGED = Noises.key(ResourceKey.minecraft("jagged"));
 
     public static final DefaultedRegistryReference<Noise> NETHERRACK = Noises.key(ResourceKey.minecraft("netherrack"));

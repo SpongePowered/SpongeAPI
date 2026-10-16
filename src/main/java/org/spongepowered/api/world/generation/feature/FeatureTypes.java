@@ -92,7 +92,7 @@ public final class FeatureTypes {
 
     public static final DefaultedRegistryReference<FeatureType> LAKE = FeatureTypes.key(ResourceKey.minecraft("lake"));
 
-    public static final DefaultedRegistryReference<FeatureType> LARGE_DRIPSTONE = FeatureTypes.key(ResourceKey.minecraft("large_dripstone"));
+    public static final DefaultedRegistryReference<FeatureType> LARGE_SPELEOTHEM = FeatureTypes.key(ResourceKey.minecraft("large_speleothem"));
 
     public static final DefaultedRegistryReference<FeatureType> MONSTER_ROOM = FeatureTypes.key(ResourceKey.minecraft("monster_room"));
 

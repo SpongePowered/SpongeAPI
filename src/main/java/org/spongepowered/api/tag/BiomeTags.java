@@ -199,6 +199,8 @@ public final class BiomeTags {
 
     public static final DefaultedTag<Biome> SPAWNS_SNOW_FOXES = BiomeTags.key(ResourceKey.minecraft("spawns_snow_foxes"));
 
+    public static final DefaultedTag<Biome> SPAWNS_STRAYS_WITHOUT_POWDER_SNOW = BiomeTags.key(ResourceKey.minecraft("spawns_strays_without_powder_snow"));
+
     public static final DefaultedTag<Biome> SPAWNS_WARM_VARIANT_FARM_ANIMALS = BiomeTags.key(ResourceKey.minecraft("spawns_warm_variant_farm_animals"));
 
     public static final DefaultedTag<Biome> SPAWNS_WARM_VARIANT_FROGS = BiomeTags.key(ResourceKey.minecraft("spawns_warm_variant_frogs"));

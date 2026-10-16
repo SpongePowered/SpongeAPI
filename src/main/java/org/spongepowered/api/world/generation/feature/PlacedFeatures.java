@@ -192,9 +192,55 @@ public final class PlacedFeatures {
 
     public static final DefaultedRegistryReference<PlacedFeature> ICEBERG_PACKED = PlacedFeatures.key(ResourceKey.minecraft("iceberg_packed"));
 
+    public static final DefaultedRegistryReference<PlacedFeature> ICE_CAVE_ORE_ANDESITE_LOWER = PlacedFeatures.key(ResourceKey.minecraft("ice_cave_ore_andesite_lower"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> ICE_CAVE_ORE_ANDESITE_UPPER = PlacedFeatures.key(ResourceKey.minecraft("ice_cave_ore_andesite_upper"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> ICE_CAVE_ORE_COAL_LOWER = PlacedFeatures.key(ResourceKey.minecraft("ice_cave_ore_coal_lower"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> ICE_CAVE_ORE_COAL_UPPER = PlacedFeatures.key(ResourceKey.minecraft("ice_cave_ore_coal_upper"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> ICE_CAVE_ORE_COPPER = PlacedFeatures.key(ResourceKey.minecraft("ice_cave_ore_copper"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> ICE_CAVE_ORE_DIAMOND = PlacedFeatures.key(ResourceKey.minecraft("ice_cave_ore_diamond"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> ICE_CAVE_ORE_DIAMOND_BURIED = PlacedFeatures.key(ResourceKey.minecraft("ice_cave_ore_diamond_buried"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> ICE_CAVE_ORE_DIAMOND_LARGE = PlacedFeatures.key(ResourceKey.minecraft("ice_cave_ore_diamond_large"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> ICE_CAVE_ORE_DIAMOND_MEDIUM = PlacedFeatures.key(ResourceKey.minecraft("ice_cave_ore_diamond_medium"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> ICE_CAVE_ORE_DIORITE_LOWER = PlacedFeatures.key(ResourceKey.minecraft("ice_cave_ore_diorite_lower"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> ICE_CAVE_ORE_DIORITE_UPPER = PlacedFeatures.key(ResourceKey.minecraft("ice_cave_ore_diorite_upper"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> ICE_CAVE_ORE_GOLD = PlacedFeatures.key(ResourceKey.minecraft("ice_cave_ore_gold"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> ICE_CAVE_ORE_GOLD_LOWER = PlacedFeatures.key(ResourceKey.minecraft("ice_cave_ore_gold_lower"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> ICE_CAVE_ORE_GRAVEL = PlacedFeatures.key(ResourceKey.minecraft("ice_cave_ore_gravel"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> ICE_CAVE_ORE_IRON_MIDDLE = PlacedFeatures.key(ResourceKey.minecraft("ice_cave_ore_iron_middle"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> ICE_CAVE_ORE_IRON_SMALL = PlacedFeatures.key(ResourceKey.minecraft("ice_cave_ore_iron_small"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> ICE_CAVE_ORE_IRON_UPPER = PlacedFeatures.key(ResourceKey.minecraft("ice_cave_ore_iron_upper"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> ICE_CAVE_ORE_LAPIS = PlacedFeatures.key(ResourceKey.minecraft("ice_cave_ore_lapis"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> ICE_CAVE_ORE_LAPIS_BURIED = PlacedFeatures.key(ResourceKey.minecraft("ice_cave_ore_lapis_buried"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> ICE_CAVE_ORE_REDSTONE = PlacedFeatures.key(ResourceKey.minecraft("ice_cave_ore_redstone"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> ICE_CAVE_ORE_REDSTONE_LOWER = PlacedFeatures.key(ResourceKey.minecraft("ice_cave_ore_redstone_lower"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> ICE_CRYSTALS = PlacedFeatures.key(ResourceKey.minecraft("ice_crystals"));
+
     public static final DefaultedRegistryReference<PlacedFeature> ICE_PATCH = PlacedFeatures.key(ResourceKey.minecraft("ice_patch"));
 
     public static final DefaultedRegistryReference<PlacedFeature> ICE_SPIKE = PlacedFeatures.key(ResourceKey.minecraft("ice_spike"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> ICICLE_CLUSTER = PlacedFeatures.key(ResourceKey.minecraft("icicle_cluster"));
 
     public static final DefaultedRegistryReference<PlacedFeature> JUNGLE_BUSH = PlacedFeatures.key(ResourceKey.minecraft("jungle_bush"));
 
@@ -211,6 +257,8 @@ public final class PlacedFeatures {
     public static final DefaultedRegistryReference<PlacedFeature> LARGE_BASALT_COLUMNS = PlacedFeatures.key(ResourceKey.minecraft("large_basalt_columns"));
 
     public static final DefaultedRegistryReference<PlacedFeature> LARGE_DRIPSTONE = PlacedFeatures.key(ResourceKey.minecraft("large_dripstone"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> LARGE_ICICLE = PlacedFeatures.key(ResourceKey.minecraft("large_icicle"));
 
     public static final DefaultedRegistryReference<PlacedFeature> LUSH_CAVES_CEILING_VEGETATION = PlacedFeatures.key(ResourceKey.minecraft("lush_caves_ceiling_vegetation"));
 
@@ -483,6 +531,8 @@ public final class PlacedFeatures {
     public static final DefaultedRegistryReference<PlacedFeature> SEA_PICKLE = PlacedFeatures.key(ResourceKey.minecraft("sea_pickle"));
 
     public static final DefaultedRegistryReference<PlacedFeature> SMALL_BASALT_COLUMNS = PlacedFeatures.key(ResourceKey.minecraft("small_basalt_columns"));
+
+    public static final DefaultedRegistryReference<PlacedFeature> SNOW_LAYERS = PlacedFeatures.key(ResourceKey.minecraft("snow_layers"));
 
     public static final DefaultedRegistryReference<PlacedFeature> SPORE_BLOSSOM = PlacedFeatures.key(ResourceKey.minecraft("spore_blossom"));
 

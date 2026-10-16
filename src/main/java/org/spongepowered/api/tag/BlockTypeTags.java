@@ -285,6 +285,8 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> ICE = BlockTypeTags.key(ResourceKey.minecraft("ice"));
 
+    public static final DefaultedTag<BlockType> ICE_CAVE_ORE_REPLACEABLES = BlockTypeTags.key(ResourceKey.minecraft("ice_cave_ore_replaceables"));
+
     public static final DefaultedTag<BlockType> ICE_MELTS_WHEN_DESTROYED_ABOVE = BlockTypeTags.key(ResourceKey.minecraft("ice_melts_when_destroyed_above"));
 
     public static final DefaultedTag<BlockType> ICE_SPIKE_REPLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("ice_spike_replaceable"));
@@ -323,6 +325,8 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> LAPIS_ORES = BlockTypeTags.key(ResourceKey.minecraft("lapis_ores"));
 
+    public static final DefaultedTag<BlockType> LARGE_ICICLE_REPLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("large_icicle_replaceable"));
+
     public static final DefaultedTag<BlockType> LAVA_POOL_STONE_CANNOT_REPLACE = BlockTypeTags.key(ResourceKey.minecraft("lava_pool_stone_cannot_replace"));
 
     public static final DefaultedTag<BlockType> LEAVES = BlockTypeTags.key(ResourceKey.minecraft("leaves"));
@@ -342,6 +346,8 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> MANGROVE_LOGS_CAN_GROW_THROUGH = BlockTypeTags.key(ResourceKey.minecraft("mangrove_logs_can_grow_through"));
 
     public static final DefaultedTag<BlockType> MANGROVE_ROOTS_CAN_GROW_THROUGH = BlockTypeTags.key(ResourceKey.minecraft("mangrove_roots_can_grow_through"));
+
+    public static final DefaultedTag<BlockType> MELTS_ICICLE_ABOVE = BlockTypeTags.key(ResourceKey.minecraft("melts_icicle_above"));
 
     public static final DefaultedTag<BlockType> MINEABLE_AXE = BlockTypeTags.key(ResourceKey.minecraft("mineable/axe"));
 
@@ -384,6 +390,24 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> PALE_OAK_LOGS = BlockTypeTags.key(ResourceKey.minecraft("pale_oak_logs"));
 
     public static final DefaultedTag<BlockType> PARROTS_SPAWNABLE_ON = BlockTypeTags.key(ResourceKey.minecraft("parrots_spawnable_on"));
+
+    public static final DefaultedTag<BlockType> PATHFINDING_AVOID_IN_AIR = BlockTypeTags.key(ResourceKey.minecraft("pathfinding/avoid_in_air"));
+
+    public static final DefaultedTag<BlockType> PATHFINDING_DAMAGE_CAUTIOUS = BlockTypeTags.key(ResourceKey.minecraft("pathfinding/damage_cautious"));
+
+    public static final DefaultedTag<BlockType> PATHFINDING_DAMAGING = BlockTypeTags.key(ResourceKey.minecraft("pathfinding/damaging"));
+
+    public static final DefaultedTag<BlockType> PATHFINDING_DROP_DOWN = BlockTypeTags.key(ResourceKey.minecraft("pathfinding/drop_down"));
+
+    public static final DefaultedTag<BlockType> PATHFINDING_LEAVES = BlockTypeTags.key(ResourceKey.minecraft("pathfinding/leaves"));
+
+    public static final DefaultedTag<BlockType> PATHFINDING_OPEN = BlockTypeTags.key(ResourceKey.minecraft("pathfinding/open"));
+
+    public static final DefaultedTag<BlockType> PATHFINDING_POWDER_SNOW = BlockTypeTags.key(ResourceKey.minecraft("pathfinding/powder_snow"));
+
+    public static final DefaultedTag<BlockType> PATHFINDING_RAILS = BlockTypeTags.key(ResourceKey.minecraft("pathfinding/rails"));
+
+    public static final DefaultedTag<BlockType> PATHFINDING_STICKY = BlockTypeTags.key(ResourceKey.minecraft("pathfinding/sticky"));
 
     public static final DefaultedTag<BlockType> PIGLIN_REPELLENTS = BlockTypeTags.key(ResourceKey.minecraft("piglin_repellents"));
 

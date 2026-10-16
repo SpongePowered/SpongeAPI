@@ -224,9 +224,45 @@ public final class Features {
 
     public static final DefaultedRegistryReference<Feature> ICEBERG_PACKED = Features.key(ResourceKey.minecraft("iceberg_packed"));
 
+    public static final DefaultedRegistryReference<Feature> ICE_CAVE_ORE_ANDESITE = Features.key(ResourceKey.minecraft("ice_cave_ore_andesite"));
+
+    public static final DefaultedRegistryReference<Feature> ICE_CAVE_ORE_COAL = Features.key(ResourceKey.minecraft("ice_cave_ore_coal"));
+
+    public static final DefaultedRegistryReference<Feature> ICE_CAVE_ORE_COAL_BURIED = Features.key(ResourceKey.minecraft("ice_cave_ore_coal_buried"));
+
+    public static final DefaultedRegistryReference<Feature> ICE_CAVE_ORE_COPPER_SMALL = Features.key(ResourceKey.minecraft("ice_cave_ore_copper_small"));
+
+    public static final DefaultedRegistryReference<Feature> ICE_CAVE_ORE_DIAMOND_BURIED = Features.key(ResourceKey.minecraft("ice_cave_ore_diamond_buried"));
+
+    public static final DefaultedRegistryReference<Feature> ICE_CAVE_ORE_DIAMOND_LARGE = Features.key(ResourceKey.minecraft("ice_cave_ore_diamond_large"));
+
+    public static final DefaultedRegistryReference<Feature> ICE_CAVE_ORE_DIAMOND_MEDIUM = Features.key(ResourceKey.minecraft("ice_cave_ore_diamond_medium"));
+
+    public static final DefaultedRegistryReference<Feature> ICE_CAVE_ORE_DIAMOND_SMALL = Features.key(ResourceKey.minecraft("ice_cave_ore_diamond_small"));
+
+    public static final DefaultedRegistryReference<Feature> ICE_CAVE_ORE_DIORITE = Features.key(ResourceKey.minecraft("ice_cave_ore_diorite"));
+
+    public static final DefaultedRegistryReference<Feature> ICE_CAVE_ORE_GOLD_BURIED = Features.key(ResourceKey.minecraft("ice_cave_ore_gold_buried"));
+
+    public static final DefaultedRegistryReference<Feature> ICE_CAVE_ORE_GRAVEL = Features.key(ResourceKey.minecraft("ice_cave_ore_gravel"));
+
+    public static final DefaultedRegistryReference<Feature> ICE_CAVE_ORE_IRON = Features.key(ResourceKey.minecraft("ice_cave_ore_iron"));
+
+    public static final DefaultedRegistryReference<Feature> ICE_CAVE_ORE_IRON_SMALL = Features.key(ResourceKey.minecraft("ice_cave_ore_iron_small"));
+
+    public static final DefaultedRegistryReference<Feature> ICE_CAVE_ORE_LAPIS = Features.key(ResourceKey.minecraft("ice_cave_ore_lapis"));
+
+    public static final DefaultedRegistryReference<Feature> ICE_CAVE_ORE_LAPIS_BURIED = Features.key(ResourceKey.minecraft("ice_cave_ore_lapis_buried"));
+
+    public static final DefaultedRegistryReference<Feature> ICE_CAVE_ORE_REDSTONE = Features.key(ResourceKey.minecraft("ice_cave_ore_redstone"));
+
+    public static final DefaultedRegistryReference<Feature> ICE_CRYSTAL = Features.key(ResourceKey.minecraft("ice_crystal"));
+
     public static final DefaultedRegistryReference<Feature> ICE_PATCH = Features.key(ResourceKey.minecraft("ice_patch"));
 
     public static final DefaultedRegistryReference<Feature> ICE_SPIKE = Features.key(ResourceKey.minecraft("ice_spike"));
+
+    public static final DefaultedRegistryReference<Feature> ICICLE_CLUSTER = Features.key(ResourceKey.minecraft("icicle_cluster"));
 
     public static final DefaultedRegistryReference<Feature> JUNGLE_BUSH = Features.key(ResourceKey.minecraft("jungle_bush"));
 
@@ -243,6 +279,8 @@ public final class Features {
     public static final DefaultedRegistryReference<Feature> LARGE_DRIPSTONE = Features.key(ResourceKey.minecraft("large_dripstone"));
 
     public static final DefaultedRegistryReference<Feature> LARGE_FERN = Features.key(ResourceKey.minecraft("large_fern"));
+
+    public static final DefaultedRegistryReference<Feature> LARGE_ICICLE = Features.key(ResourceKey.minecraft("large_icicle"));
 
     public static final DefaultedRegistryReference<Feature> LEAF_LITTER = Features.key(ResourceKey.minecraft("leaf_litter"));
 
@@ -421,6 +459,8 @@ public final class Features {
     public static final DefaultedRegistryReference<Feature> SEA_PICKLE = Features.key(ResourceKey.minecraft("sea_pickle"));
 
     public static final DefaultedRegistryReference<Feature> SMALL_BASALT_COLUMNS = Features.key(ResourceKey.minecraft("small_basalt_columns"));
+
+    public static final DefaultedRegistryReference<Feature> SNOW_LAYER = Features.key(ResourceKey.minecraft("snow_layer"));
 
     public static final DefaultedRegistryReference<Feature> SPORE_BLOSSOM = Features.key(ResourceKey.minecraft("spore_blossom"));
 

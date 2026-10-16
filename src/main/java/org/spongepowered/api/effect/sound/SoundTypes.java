@@ -808,6 +808,38 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_HONEY_BLOCK_STEP = SoundTypes.key(ResourceKey.minecraft("block.honey_block.step"));
 
+    public static final DefaultedRegistryReference<SoundType> BLOCK_ICE_BREAK = SoundTypes.key(ResourceKey.minecraft("block.ice.break"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_ICE_CRYSTAL_BREAK = SoundTypes.key(ResourceKey.minecraft("block.ice_crystal.break"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_ICE_CRYSTAL_FALL = SoundTypes.key(ResourceKey.minecraft("block.ice_crystal.fall"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_ICE_CRYSTAL_HIT = SoundTypes.key(ResourceKey.minecraft("block.ice_crystal.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_ICE_CRYSTAL_PLACE = SoundTypes.key(ResourceKey.minecraft("block.ice_crystal.place"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_ICE_CRYSTAL_STEP = SoundTypes.key(ResourceKey.minecraft("block.ice_crystal.step"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_ICE_FALL = SoundTypes.key(ResourceKey.minecraft("block.ice.fall"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_ICE_HIT = SoundTypes.key(ResourceKey.minecraft("block.ice.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_ICE_PLACE = SoundTypes.key(ResourceKey.minecraft("block.ice.place"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_ICE_STEP = SoundTypes.key(ResourceKey.minecraft("block.ice.step"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_ICICLE_BREAK = SoundTypes.key(ResourceKey.minecraft("block.icicle.break"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_ICICLE_FALL = SoundTypes.key(ResourceKey.minecraft("block.icicle.fall"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_ICICLE_HIT = SoundTypes.key(ResourceKey.minecraft("block.icicle.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_ICICLE_LAND = SoundTypes.key(ResourceKey.minecraft("block.icicle.land"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_ICICLE_PLACE = SoundTypes.key(ResourceKey.minecraft("block.icicle.place"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_ICICLE_STEP = SoundTypes.key(ResourceKey.minecraft("block.icicle.step"));
+
     public static final DefaultedRegistryReference<SoundType> BLOCK_IRON_BREAK = SoundTypes.key(ResourceKey.minecraft("block.iron.break"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_IRON_DOOR_CLOSE = SoundTypes.key(ResourceKey.minecraft("block.iron_door.close"));
@@ -2398,6 +2430,16 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_FROG_TONGUE = SoundTypes.key(ResourceKey.minecraft("entity.frog.tongue"));
 
+    public static final DefaultedRegistryReference<SoundType> ENTITY_FROSTBITE_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.frostbite.ambient"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_FROSTBITE_CONVERTED_TO_ZOMBIE = SoundTypes.key(ResourceKey.minecraft("entity.frostbite.converted_to_zombie"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_FROSTBITE_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.frostbite.death"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_FROSTBITE_HURT = SoundTypes.key(ResourceKey.minecraft("entity.frostbite.hurt"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_FROSTBITE_STEP = SoundTypes.key(ResourceKey.minecraft("entity.frostbite.step"));
+
     public static final DefaultedRegistryReference<SoundType> ENTITY_GENERIC_BIG_FALL = SoundTypes.key(ResourceKey.minecraft("entity.generic.big_fall"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_GENERIC_BURN = SoundTypes.key(ResourceKey.minecraft("entity.generic.burn"));
@@ -2589,6 +2631,10 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> ENTITY_HUSK_HURT = SoundTypes.key(ResourceKey.minecraft("entity.husk.hurt"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_HUSK_STEP = SoundTypes.key(ResourceKey.minecraft("entity.husk.step"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_ICE_BALL_BREAK = SoundTypes.key(ResourceKey.minecraft("entity.ice_ball.break"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_ICE_BALL_THROW = SoundTypes.key(ResourceKey.minecraft("entity.ice_ball.throw"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_ILLUSIONER_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.illusioner.ambient"));
 
@@ -3578,6 +3624,8 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_ZOMBIE_CONVERTED_TO_DROWNED = SoundTypes.key(ResourceKey.minecraft("entity.zombie.converted_to_drowned"));
 
+    public static final DefaultedRegistryReference<SoundType> ENTITY_ZOMBIE_CONVERTED_TO_FROSTBITE = SoundTypes.key(ResourceKey.minecraft("entity.zombie.converted_to_frostbite"));
+
     public static final DefaultedRegistryReference<SoundType> ENTITY_ZOMBIE_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.zombie.death"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_ZOMBIE_DESTROY_EGG = SoundTypes.key(ResourceKey.minecraft("entity.zombie.destroy_egg"));
@@ -3645,6 +3693,8 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> ENTITY_ZOMBIFIED_PIGLIN_HURT = SoundTypes.key(ResourceKey.minecraft("entity.zombified_piglin.hurt"));
 
     public static final DefaultedRegistryReference<SoundType> EVENT_MOB_EFFECT_BAD_OMEN = SoundTypes.key(ResourceKey.minecraft("event.mob_effect.bad_omen"));
+
+    public static final DefaultedRegistryReference<SoundType> EVENT_MOB_EFFECT_FREEZING = SoundTypes.key(ResourceKey.minecraft("event.mob_effect.freezing"));
 
     public static final DefaultedRegistryReference<SoundType> EVENT_MOB_EFFECT_RAID_OMEN = SoundTypes.key(ResourceKey.minecraft("event.mob_effect.raid_omen"));
 

@@ -94,6 +94,8 @@ public final class Biomes {
 
     public static final DefaultedRegistryReference<Biome> GROVE = Biomes.key(ResourceKey.minecraft("grove"));
 
+    public static final DefaultedRegistryReference<Biome> ICE_CAVES = Biomes.key(ResourceKey.minecraft("ice_caves"));
+
     public static final DefaultedRegistryReference<Biome> ICE_SPIKES = Biomes.key(ResourceKey.minecraft("ice_spikes"));
 
     public static final DefaultedRegistryReference<Biome> JAGGED_PEAKS = Biomes.key(ResourceKey.minecraft("jagged_peaks"));

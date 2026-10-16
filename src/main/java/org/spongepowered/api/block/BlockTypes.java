@@ -1036,6 +1036,10 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> ICE = BlockTypes.key(ResourceKey.minecraft("ice"));
 
+    public static final DefaultedRegistryReference<BlockType> ICE_CRYSTAL = BlockTypes.key(ResourceKey.minecraft("ice_crystal"));
+
+    public static final DefaultedRegistryReference<BlockType> ICICLE = BlockTypes.key(ResourceKey.minecraft("icicle"));
+
     public static final DefaultedRegistryReference<BlockType> INFESTED_CHISELED_STONE_BRICKS = BlockTypes.key(ResourceKey.minecraft("infested_chiseled_stone_bricks"));
 
     public static final DefaultedRegistryReference<BlockType> INFESTED_COBBLESTONE = BlockTypes.key(ResourceKey.minecraft("infested_cobblestone"));

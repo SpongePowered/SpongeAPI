@@ -1182,6 +1182,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> FROG_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("frog_spawn_egg"));
 
+    public static final DefaultedRegistryReference<ItemType> FROSTBITE_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("frostbite_spawn_egg"));
+
     public static final DefaultedRegistryReference<ItemType> FURNACE = ItemTypes.key(ResourceKey.minecraft("furnace"));
 
     public static final DefaultedRegistryReference<ItemType> FURNACE_MINECART = ItemTypes.key(ResourceKey.minecraft("furnace_minecart"));
@@ -1405,6 +1407,12 @@ public final class ItemTypes {
     public static final DefaultedRegistryReference<ItemType> HUSK_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("husk_spawn_egg"));
 
     public static final DefaultedRegistryReference<ItemType> ICE = ItemTypes.key(ResourceKey.minecraft("ice"));
+
+    public static final DefaultedRegistryReference<ItemType> ICE_BALL = ItemTypes.key(ResourceKey.minecraft("ice_ball"));
+
+    public static final DefaultedRegistryReference<ItemType> ICE_CRYSTAL = ItemTypes.key(ResourceKey.minecraft("ice_crystal"));
+
+    public static final DefaultedRegistryReference<ItemType> ICICLE = ItemTypes.key(ResourceKey.minecraft("icicle"));
 
     public static final DefaultedRegistryReference<ItemType> INFESTED_CHISELED_STONE_BRICKS = ItemTypes.key(ResourceKey.minecraft("infested_chiseled_stone_bricks"));
 
