@@ -149,8 +149,6 @@ public final class BlockStateKeys {
 
     public static final Key<Value<Direction>> FACING_HOPPER = BlockStateKeys.key(ResourceKey.minecraft("property/facing"), Direction.class);
 
-    public static final Key<Value<Boolean>> FALLING = BlockStateKeys.key(ResourceKey.minecraft("property/falling"), Boolean.class);
-
     public static final Key<Value<Integer>> FLOWER_AMOUNT = BlockStateKeys.key(ResourceKey.minecraft("property/flower_amount"), Integer.class);
 
     public static final Key<Value<PortionType>> HALF = BlockStateKeys.key(ResourceKey.minecraft("property/half"), PortionType.class);
@@ -225,6 +223,8 @@ public final class BlockStateKeys {
 
     public static final Key<Value<PistonType>> PISTON_TYPE = BlockStateKeys.key(ResourceKey.minecraft("property/type"), PistonType.class);
 
+    public static final Key<Value<Boolean>> PLAYLIST_MODE = BlockStateKeys.key(ResourceKey.minecraft("property/playlist_mode"), Boolean.class);
+
     public static final Key<Value<PotentSulfurState>> POTENT_SULFUR_STATE = BlockStateKeys.key(ResourceKey.minecraft("property/potent_sulfur_state"), PotentSulfurState.class);
 
     public static final Key<Value<Integer>> POWER = BlockStateKeys.key(ResourceKey.minecraft("property/power"), Integer.class);
@@ -266,6 +266,8 @@ public final class BlockStateKeys {
     public static final Key<Value<Boolean>> SLOT_5_OCCUPIED = BlockStateKeys.key(ResourceKey.minecraft("property/slot_5_occupied"), Boolean.class);
 
     public static final Key<Value<Boolean>> SNOWY = BlockStateKeys.key(ResourceKey.minecraft("property/snowy"), Boolean.class);
+
+    public static final Key<Value<Boolean>> SOURCE = BlockStateKeys.key(ResourceKey.minecraft("property/source"), Boolean.class);
 
     public static final Key<Value<Boolean>> SOUTH = BlockStateKeys.key(ResourceKey.minecraft("property/south"), Boolean.class);
 

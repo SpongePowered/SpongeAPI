@@ -3129,7 +3129,7 @@ public final class Keys {
 
     /**
      * Whether a {@link WorldType} is considered scorching hot.
-     * <p>Affects {@link BlockTypes#WATER}, {@link BlockTypes#WET_SPONGE} and flow of {@link FluidTypes#FLOWING_LAVA}</p>
+     * <p>Affects {@link BlockTypes#WATER}, {@link BlockTypes#WET_SPONGE} and flow of {@link FluidTypes#LAVA}</p>
      * Readonly
      */
     public static final Key<Value<Boolean>> SCORCHING = Keys.key(ResourceKey.sponge("scorching"), Boolean.class);

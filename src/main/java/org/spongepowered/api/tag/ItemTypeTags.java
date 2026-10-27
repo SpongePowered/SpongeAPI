@@ -269,6 +269,8 @@ public final class ItemTypeTags {
 
     public static final DefaultedTag<ItemType> IRON_TOOL_MATERIALS = ItemTypeTags.key(ResourceKey.minecraft("iron_tool_materials"));
 
+    public static final DefaultedTag<ItemType> JUKEBOX_CONTAINERS = ItemTypeTags.key(ResourceKey.minecraft("jukebox_containers"));
+
     public static final DefaultedTag<ItemType> JUNGLE_LOGS = ItemTypeTags.key(ResourceKey.minecraft("jungle_logs"));
 
     public static final DefaultedTag<ItemType> KNOCKS_BACK_PLAYERS_EVEN_WITH_ZERO_DAMAGE = ItemTypeTags.key(ResourceKey.minecraft("knocks_back_players_even_with_zero_damage"));

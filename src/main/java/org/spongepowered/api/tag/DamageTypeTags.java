@@ -93,6 +93,8 @@ public final class DamageTypeTags {
 
     public static final DefaultedTag<DamageType> NO_ANGER = DamageTypeTags.key(ResourceKey.minecraft("no_anger"));
 
+    public static final DefaultedTag<DamageType> NO_HURT_SOUND = DamageTypeTags.key(ResourceKey.minecraft("no_hurt_sound"));
+
     public static final DefaultedTag<DamageType> NO_IMPACT = DamageTypeTags.key(ResourceKey.minecraft("no_impact"));
 
     public static final DefaultedTag<DamageType> NO_KNOCKBACK = DamageTypeTags.key(ResourceKey.minecraft("no_knockback"));

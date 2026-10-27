@@ -386,6 +386,8 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> BRICK_WALL = ItemTypes.key(ResourceKey.minecraft("brick_wall"));
 
+    public static final DefaultedRegistryReference<ItemType> BRITTLE_ICE = ItemTypes.key(ResourceKey.minecraft("brittle_ice"));
+
     public static final DefaultedRegistryReference<ItemType> BROWN_BANNER = ItemTypes.key(ResourceKey.minecraft("brown_banner"));
 
     public static final DefaultedRegistryReference<ItemType> BROWN_BED = ItemTypes.key(ResourceKey.minecraft("brown_bed"));

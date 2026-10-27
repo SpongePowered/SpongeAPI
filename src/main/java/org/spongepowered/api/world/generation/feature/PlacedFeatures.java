@@ -234,6 +234,8 @@ public final class PlacedFeatures {
 
     public static final DefaultedRegistryReference<PlacedFeature> ICE_CAVE_ORE_REDSTONE_LOWER = PlacedFeatures.key(ResourceKey.minecraft("ice_cave_ore_redstone_lower"));
 
+    public static final DefaultedRegistryReference<PlacedFeature> ICE_CREVASSE = PlacedFeatures.key(ResourceKey.minecraft("ice_crevasse"));
+
     public static final DefaultedRegistryReference<PlacedFeature> ICE_CRYSTALS = PlacedFeatures.key(ResourceKey.minecraft("ice_crystals"));
 
     public static final DefaultedRegistryReference<PlacedFeature> ICE_PATCH = PlacedFeatures.key(ResourceKey.minecraft("ice_patch"));

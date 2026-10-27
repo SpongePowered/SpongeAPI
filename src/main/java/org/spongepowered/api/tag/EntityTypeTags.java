@@ -81,6 +81,8 @@ public final class EntityTypeTags {
 
     public static final DefaultedTag<EntityType<?>> DISMOUNTS_UNDERWATER = EntityTypeTags.key(ResourceKey.minecraft("dismounts_underwater"));
 
+    public static final DefaultedTag<EntityType<?>> DOES_NOT_BREAK_BRITTLE_ICE = EntityTypeTags.key(ResourceKey.minecraft("does_not_break_brittle_ice"));
+
     public static final DefaultedTag<EntityType<?>> FALL_DAMAGE_IMMUNE = EntityTypeTags.key(ResourceKey.minecraft("fall_damage_immune"));
 
     public static final DefaultedTag<EntityType<?>> FOLLOWABLE_FRIENDLY_MOBS = EntityTypeTags.key(ResourceKey.minecraft("followable_friendly_mobs"));

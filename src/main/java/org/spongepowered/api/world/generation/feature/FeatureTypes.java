@@ -58,6 +58,8 @@ public final class FeatureTypes {
 
     public static final DefaultedRegistryReference<FeatureType> CORAL_TREE = FeatureTypes.key(ResourceKey.minecraft("coral_tree"));
 
+    public static final DefaultedRegistryReference<FeatureType> CREVASSE = FeatureTypes.key(ResourceKey.minecraft("crevasse"));
+
     public static final DefaultedRegistryReference<FeatureType> DELTA_FEATURE = FeatureTypes.key(ResourceKey.minecraft("delta_feature"));
 
     public static final DefaultedRegistryReference<FeatureType> DISK = FeatureTypes.key(ResourceKey.minecraft("disk"));

@@ -262,6 +262,16 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_BLASTFURNACE_FIRE_CRACKLE = SoundTypes.key(ResourceKey.minecraft("block.blastfurnace.fire_crackle"));
 
+    public static final DefaultedRegistryReference<SoundType> BLOCK_BLUE_ICE_BREAK = SoundTypes.key(ResourceKey.minecraft("block.blue_ice.break"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_BLUE_ICE_FALL = SoundTypes.key(ResourceKey.minecraft("block.blue_ice.fall"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_BLUE_ICE_HIT = SoundTypes.key(ResourceKey.minecraft("block.blue_ice.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_BLUE_ICE_PLACE = SoundTypes.key(ResourceKey.minecraft("block.blue_ice.place"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_BLUE_ICE_STEP = SoundTypes.key(ResourceKey.minecraft("block.blue_ice.step"));
+
     public static final DefaultedRegistryReference<SoundType> BLOCK_BONE_BLOCK_BREAK = SoundTypes.key(ResourceKey.minecraft("block.bone_block.break"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_BONE_BLOCK_FALL = SoundTypes.key(ResourceKey.minecraft("block.bone_block.fall"));
@@ -273,6 +283,18 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> BLOCK_BONE_BLOCK_STEP = SoundTypes.key(ResourceKey.minecraft("block.bone_block.step"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_BREWING_STAND_BREW = SoundTypes.key(ResourceKey.minecraft("block.brewing_stand.brew"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_BRITTLE_ICE_BREAK = SoundTypes.key(ResourceKey.minecraft("block.brittle_ice.break"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_BRITTLE_ICE_CRACK = SoundTypes.key(ResourceKey.minecraft("block.brittle_ice.crack"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_BRITTLE_ICE_FALL = SoundTypes.key(ResourceKey.minecraft("block.brittle_ice.fall"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_BRITTLE_ICE_HIT = SoundTypes.key(ResourceKey.minecraft("block.brittle_ice.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_BRITTLE_ICE_PLACE = SoundTypes.key(ResourceKey.minecraft("block.brittle_ice.place"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_BRITTLE_ICE_STEP = SoundTypes.key(ResourceKey.minecraft("block.brittle_ice.step"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_BUBBLE_COLUMN_BUBBLE_POP = SoundTypes.key(ResourceKey.minecraft("block.bubble_column.bubble_pop"));
 
@@ -707,6 +729,16 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> BLOCK_FROGSPAWN_PLACE = SoundTypes.key(ResourceKey.minecraft("block.frogspawn.place"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_FROGSPAWN_STEP = SoundTypes.key(ResourceKey.minecraft("block.frogspawn.step"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_FROSTED_ICE_BREAK = SoundTypes.key(ResourceKey.minecraft("block.frosted_ice.break"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_FROSTED_ICE_FALL = SoundTypes.key(ResourceKey.minecraft("block.frosted_ice.fall"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_FROSTED_ICE_HIT = SoundTypes.key(ResourceKey.minecraft("block.frosted_ice.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_FROSTED_ICE_PLACE = SoundTypes.key(ResourceKey.minecraft("block.frosted_ice.place"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_FROSTED_ICE_STEP = SoundTypes.key(ResourceKey.minecraft("block.frosted_ice.step"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_FUNGUS_BREAK = SoundTypes.key(ResourceKey.minecraft("block.fungus.break"));
 
@@ -1153,6 +1185,16 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> BLOCK_NYLIUM_PLACE = SoundTypes.key(ResourceKey.minecraft("block.nylium.place"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_NYLIUM_STEP = SoundTypes.key(ResourceKey.minecraft("block.nylium.step"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_PACKED_ICE_BREAK = SoundTypes.key(ResourceKey.minecraft("block.packed_ice.break"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_PACKED_ICE_FALL = SoundTypes.key(ResourceKey.minecraft("block.packed_ice.fall"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_PACKED_ICE_HIT = SoundTypes.key(ResourceKey.minecraft("block.packed_ice.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_PACKED_ICE_PLACE = SoundTypes.key(ResourceKey.minecraft("block.packed_ice.place"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_PACKED_ICE_STEP = SoundTypes.key(ResourceKey.minecraft("block.packed_ice.step"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_PACKED_MUD_BREAK = SoundTypes.key(ResourceKey.minecraft("block.packed_mud.break"));
 
@@ -2134,6 +2176,8 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_CHICKEN_PICKY_HURT = SoundTypes.key(ResourceKey.minecraft("entity.chicken_picky.hurt"));
 
+    public static final DefaultedRegistryReference<SoundType> ENTITY_CHICKEN_PICKY_STEP = SoundTypes.key(ResourceKey.minecraft("entity.chicken_picky.step"));
+
     public static final DefaultedRegistryReference<SoundType> ENTITY_CHICKEN_STEP = SoundTypes.key(ResourceKey.minecraft("entity.chicken.step"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_COD_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.cod.ambient"));
@@ -2275,6 +2319,8 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> ENTITY_DROWNED_AMBIENT = SoundTypes.key(ResourceKey.minecraft("entity.drowned.ambient"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_DROWNED_AMBIENT_WATER = SoundTypes.key(ResourceKey.minecraft("entity.drowned.ambient_water"));
+
+    public static final DefaultedRegistryReference<SoundType> ENTITY_DROWNED_CONVERTED_TO_ZOMBIE = SoundTypes.key(ResourceKey.minecraft("entity.drowned.converted_to_zombie"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_DROWNED_DEATH = SoundTypes.key(ResourceKey.minecraft("entity.drowned.death"));
 
@@ -3701,8 +3747,6 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> EVENT_MOB_EFFECT_TRIAL_OMEN = SoundTypes.key(ResourceKey.minecraft("event.mob_effect.trial_omen"));
 
     public static final DefaultedRegistryReference<SoundType> EVENT_RAID_HORN = SoundTypes.key(ResourceKey.minecraft("event.raid.horn"));
-
-    public static final DefaultedRegistryReference<SoundType> INTENTIONALLY_EMPTY = SoundTypes.key(ResourceKey.minecraft("intentionally_empty"));
 
     public static final DefaultedRegistryReference<SoundType> ITEM_ARMOR_EQUIP_CHAIN = SoundTypes.key(ResourceKey.minecraft("item.armor.equip_chain"));
 

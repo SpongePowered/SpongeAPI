@@ -314,6 +314,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> BRICK_WALL = BlockTypes.key(ResourceKey.minecraft("brick_wall"));
 
+    public static final DefaultedRegistryReference<BlockType> BRITTLE_ICE = BlockTypes.key(ResourceKey.minecraft("brittle_ice"));
+
     public static final DefaultedRegistryReference<BlockType> BROWN_BANNER = BlockTypes.key(ResourceKey.minecraft("brown_banner"));
 
     public static final DefaultedRegistryReference<BlockType> BROWN_BED = BlockTypes.key(ResourceKey.minecraft("brown_bed"));

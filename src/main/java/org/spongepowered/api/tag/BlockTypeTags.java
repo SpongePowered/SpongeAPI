@@ -235,6 +235,8 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> ENTITIES_CAN_TELEPORT_TO = BlockTypeTags.key(ResourceKey.minecraft("entities_can_teleport_to"));
 
+    public static final DefaultedTag<BlockType> FACE_OCCLUDING_ICE_BLOCKS = BlockTypeTags.key(ResourceKey.minecraft("face_occluding_ice_blocks"));
+
     public static final DefaultedTag<BlockType> FALL_DAMAGE_RESETTING = BlockTypeTags.key(ResourceKey.minecraft("fall_damage_resetting"));
 
     public static final DefaultedTag<BlockType> FEATURES_CANNOT_REPLACE = BlockTypeTags.key(ResourceKey.minecraft("features_cannot_replace"));
@@ -287,6 +289,8 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> ICE_CAVE_ORE_REPLACEABLES = BlockTypeTags.key(ResourceKey.minecraft("ice_cave_ore_replaceables"));
 
+    public static final DefaultedTag<BlockType> ICE_CREVASSE_REPLACEABLES = BlockTypeTags.key(ResourceKey.minecraft("ice_crevasse_replaceables"));
+
     public static final DefaultedTag<BlockType> ICE_MELTS_WHEN_DESTROYED_ABOVE = BlockTypeTags.key(ResourceKey.minecraft("ice_melts_when_destroyed_above"));
 
     public static final DefaultedTag<BlockType> ICE_SPIKE_REPLACEABLE = BlockTypeTags.key(ResourceKey.minecraft("ice_spike_replaceable"));
@@ -318,6 +322,8 @@ public final class BlockTypeTags {
     public static final DefaultedTag<BlockType> INVALID_SPAWN_INSIDE = BlockTypeTags.key(ResourceKey.minecraft("invalid_spawn_inside"));
 
     public static final DefaultedTag<BlockType> IRON_ORES = BlockTypeTags.key(ResourceKey.minecraft("iron_ores"));
+
+    public static final DefaultedTag<BlockType> JUKEBOX_CONTAINERS = BlockTypeTags.key(ResourceKey.minecraft("jukebox_containers"));
 
     public static final DefaultedTag<BlockType> JUNGLE_LOGS = BlockTypeTags.key(ResourceKey.minecraft("jungle_logs"));
 

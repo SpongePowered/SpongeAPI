@@ -27,6 +27,8 @@ package org.spongepowered.api.block;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.entity.living.Living;
 
+import java.util.Optional;
+
 /**
  * Represents sounds for a block.
  */
@@ -49,35 +51,35 @@ public interface BlockSoundGroup {
     /**
      * Gets the sound played when the block is breaking.
      *
-     * @return The break sound
+     * @return The break sound, if the block has one
      */
-    SoundType breakSound();
+    Optional<SoundType> breakSound();
 
     /**
      * Gets the sound played when the block is stepped on.
      *
-     * @return The step sound
+     * @return The step sound, if the block has one
      */
-    SoundType stepSound();
+    Optional<SoundType> stepSound();
 
     /**
      * Gets the sound played when the block is placed.
      *
-     * @return The place sound
+     * @return The place sound, if the block has one
      */
-    SoundType placeSound();
+    Optional<SoundType> placeSound();
 
     /**
      * Gets the sound played when the block is hit.
      *
-     * @return The hit sound
+     * @return The hit sound, if the block has one
      */
-    SoundType hitSound();
+    Optional<SoundType> hitSound();
 
     /**
      * Gets the sound played when a {@link Living} entity falls onto the block.
      *
-     * @return The fall sound
+     * @return The fall sound, if the block has one
      */
-    SoundType fallSound();
+    Optional<SoundType> fallSound();
 }

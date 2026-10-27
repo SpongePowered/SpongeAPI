@@ -256,6 +256,8 @@ public final class Features {
 
     public static final DefaultedRegistryReference<Feature> ICE_CAVE_ORE_REDSTONE = Features.key(ResourceKey.minecraft("ice_cave_ore_redstone"));
 
+    public static final DefaultedRegistryReference<Feature> ICE_CREVASSE = Features.key(ResourceKey.minecraft("ice_crevasse"));
+
     public static final DefaultedRegistryReference<Feature> ICE_CRYSTAL = Features.key(ResourceKey.minecraft("ice_crystal"));
 
     public static final DefaultedRegistryReference<Feature> ICE_PATCH = Features.key(ResourceKey.minecraft("ice_patch"));

@@ -157,6 +157,10 @@ public final class BooleanStateProperties {
         return BooleanStateProperty.of("PERSISTENT");
     }
 
+    public static BooleanStateProperty property_PLAYLIST_MODE() {
+        return BooleanStateProperty.of("PLAYLIST_MODE");
+    }
+
     public static BooleanStateProperty property_POWERED() {
         return BooleanStateProperty.of("POWERED");
     }

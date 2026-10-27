@@ -42,10 +42,6 @@ public final class FluidTypes {
 
     public static final DefaultedRegistryReference<FluidType> EMPTY = FluidTypes.key(ResourceKey.minecraft("empty"));
 
-    public static final DefaultedRegistryReference<FluidType> FLOWING_LAVA = FluidTypes.key(ResourceKey.minecraft("flowing_lava"));
-
-    public static final DefaultedRegistryReference<FluidType> FLOWING_WATER = FluidTypes.key(ResourceKey.minecraft("flowing_water"));
-
     public static final DefaultedRegistryReference<FluidType> LAVA = FluidTypes.key(ResourceKey.minecraft("lava"));
 
     public static final DefaultedRegistryReference<FluidType> WATER = FluidTypes.key(ResourceKey.minecraft("water"));

@@ -60,7 +60,7 @@ public interface WorldTypeDataFetcher extends DataHolder {
 
     /**
      * Gets if {@link BlockTypes#WATER} will evaporate or {@link BlockTypes#WET_SPONGE} will
-     * become a {@link BlockTypes#SPONGE}. Additionally {@link FluidTypes#FLOWING_LAVA} will
+     * become a {@link BlockTypes#SPONGE}. Additionally {@link FluidTypes#LAVA} will
      * spread faster and thinner.
      *
      * @return True if scorching, false if not
