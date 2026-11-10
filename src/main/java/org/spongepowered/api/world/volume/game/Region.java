@@ -40,6 +40,7 @@ import java.util.Objects;
 
 public interface Region<R extends Region<R>> extends
     EnvironmentalVolume,
+    SignalAwareVolume,
     BiomeVolume.Streamable<R>,
     BlockVolume.Streamable<R>,
     BlockEntityVolume.Streamable<R>,
