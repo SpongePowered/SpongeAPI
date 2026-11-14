@@ -89,19 +89,25 @@ public final class EntityTypeTags {
 
     public static final DefaultedTag<EntityType<?>> FREEZE_HURTS_EXTRA_TYPES = EntityTypeTags.key(ResourceKey.minecraft("freeze_hurts_extra_types"));
 
-    public static final DefaultedTag<EntityType<?>> FREEZE_IMMUNE_ENTITY_TYPES = EntityTypeTags.key(ResourceKey.minecraft("freeze_immune_entity_types"));
-
     public static final DefaultedTag<EntityType<?>> FROG_FOOD = EntityTypeTags.key(ResourceKey.minecraft("frog_food"));
-
-    public static final DefaultedTag<EntityType<?>> IGNORES_POISON_AND_REGEN = EntityTypeTags.key(ResourceKey.minecraft("ignores_poison_and_regen"));
 
     public static final DefaultedTag<EntityType<?>> ILLAGER = EntityTypeTags.key(ResourceKey.minecraft("illager"));
 
     public static final DefaultedTag<EntityType<?>> ILLAGER_FRIENDS = EntityTypeTags.key(ResourceKey.minecraft("illager_friends"));
 
+    public static final DefaultedTag<EntityType<?>> IMMUNE_TO_FREEZING = EntityTypeTags.key(ResourceKey.minecraft("immune_to_freezing"));
+
     public static final DefaultedTag<EntityType<?>> IMMUNE_TO_INFESTED = EntityTypeTags.key(ResourceKey.minecraft("immune_to_infested"));
 
     public static final DefaultedTag<EntityType<?>> IMMUNE_TO_OOZING = EntityTypeTags.key(ResourceKey.minecraft("immune_to_oozing"));
+
+    public static final DefaultedTag<EntityType<?>> IMMUNE_TO_POISON = EntityTypeTags.key(ResourceKey.minecraft("immune_to_poison"));
+
+    public static final DefaultedTag<EntityType<?>> IMMUNE_TO_REGENERATION = EntityTypeTags.key(ResourceKey.minecraft("immune_to_regeneration"));
+
+    public static final DefaultedTag<EntityType<?>> IMMUNE_TO_WEAKNESS = EntityTypeTags.key(ResourceKey.minecraft("immune_to_weakness"));
+
+    public static final DefaultedTag<EntityType<?>> IMMUNE_TO_WITHER = EntityTypeTags.key(ResourceKey.minecraft("immune_to_wither"));
 
     public static final DefaultedTag<EntityType<?>> IMPACT_PROJECTILES = EntityTypeTags.key(ResourceKey.minecraft("impact_projectiles"));
 

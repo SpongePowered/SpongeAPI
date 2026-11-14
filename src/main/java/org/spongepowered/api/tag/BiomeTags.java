@@ -193,13 +193,13 @@ public final class BiomeTags {
 
     public static final DefaultedTag<Biome> SPAWNS_COLD_VARIANT_FROGS = BiomeTags.key(ResourceKey.minecraft("spawns_cold_variant_frogs"));
 
+    public static final DefaultedTag<Biome> SPAWNS_COLD_VARIANTS_UNDERGROUND = BiomeTags.key(ResourceKey.minecraft("spawns_cold_variants_underground"));
+
     public static final DefaultedTag<Biome> SPAWNS_CORAL_VARIANT_ZOMBIE_NAUTILUS = BiomeTags.key(ResourceKey.minecraft("spawns_coral_variant_zombie_nautilus"));
 
     public static final DefaultedTag<Biome> SPAWNS_GOLD_RABBITS = BiomeTags.key(ResourceKey.minecraft("spawns_gold_rabbits"));
 
     public static final DefaultedTag<Biome> SPAWNS_SNOW_FOXES = BiomeTags.key(ResourceKey.minecraft("spawns_snow_foxes"));
-
-    public static final DefaultedTag<Biome> SPAWNS_STRAYS_WITHOUT_POWDER_SNOW = BiomeTags.key(ResourceKey.minecraft("spawns_strays_without_powder_snow"));
 
     public static final DefaultedTag<Biome> SPAWNS_WARM_VARIANT_FARM_ANIMALS = BiomeTags.key(ResourceKey.minecraft("spawns_warm_variant_farm_animals"));
 

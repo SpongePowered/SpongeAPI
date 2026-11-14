@@ -452,6 +452,8 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> CHISELED_NETHER_BRICKS = BlockTypes.key(ResourceKey.minecraft("chiseled_nether_bricks"));
 
+    public static final DefaultedRegistryReference<BlockType> CHISELED_PACKED_ICE = BlockTypes.key(ResourceKey.minecraft("chiseled_packed_ice"));
+
     public static final DefaultedRegistryReference<BlockType> CHISELED_POLISHED_BLACKSTONE = BlockTypes.key(ResourceKey.minecraft("chiseled_polished_blackstone"));
 
     public static final DefaultedRegistryReference<BlockType> CHISELED_QUARTZ_BLOCK = BlockTypes.key(ResourceKey.minecraft("chiseled_quartz_block"));
@@ -1525,6 +1527,14 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> OXIDIZED_LIGHTNING_ROD = BlockTypes.key(ResourceKey.minecraft("oxidized_lightning_rod"));
 
     public static final DefaultedRegistryReference<BlockType> PACKED_ICE = BlockTypes.key(ResourceKey.minecraft("packed_ice"));
+
+    public static final DefaultedRegistryReference<BlockType> PACKED_ICE_BRICKS = BlockTypes.key(ResourceKey.minecraft("packed_ice_bricks"));
+
+    public static final DefaultedRegistryReference<BlockType> PACKED_ICE_BRICK_SLAB = BlockTypes.key(ResourceKey.minecraft("packed_ice_brick_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> PACKED_ICE_BRICK_STAIRS = BlockTypes.key(ResourceKey.minecraft("packed_ice_brick_stairs"));
+
+    public static final DefaultedRegistryReference<BlockType> PACKED_ICE_BRICK_WALL = BlockTypes.key(ResourceKey.minecraft("packed_ice_brick_wall"));
 
     public static final DefaultedRegistryReference<BlockType> PACKED_MUD = BlockTypes.key(ResourceKey.minecraft("packed_mud"));
 
