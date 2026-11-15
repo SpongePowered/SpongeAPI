@@ -444,6 +444,16 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_CHISELED_BOOKSHELF_STEP = SoundTypes.key(ResourceKey.minecraft("block.chiseled_bookshelf.step"));
 
+    public static final DefaultedRegistryReference<SoundType> BLOCK_CHISELED_SOULSHALE_BREAK = SoundTypes.key(ResourceKey.minecraft("block.chiseled_soulshale.break"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_CHISELED_SOULSHALE_FALL = SoundTypes.key(ResourceKey.minecraft("block.chiseled_soulshale.fall"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_CHISELED_SOULSHALE_HIT = SoundTypes.key(ResourceKey.minecraft("block.chiseled_soulshale.hit"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_CHISELED_SOULSHALE_PLACE = SoundTypes.key(ResourceKey.minecraft("block.chiseled_soulshale.place"));
+
+    public static final DefaultedRegistryReference<SoundType> BLOCK_CHISELED_SOULSHALE_STEP = SoundTypes.key(ResourceKey.minecraft("block.chiseled_soulshale.step"));
+
     public static final DefaultedRegistryReference<SoundType> BLOCK_CHORUS_FLOWER_DEATH = SoundTypes.key(ResourceKey.minecraft("block.chorus_flower.death"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_CHORUS_FLOWER_GROW = SoundTypes.key(ResourceKey.minecraft("block.chorus_flower.grow"));
@@ -2892,6 +2902,8 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_PARROT_IMITATE_EVOKER = SoundTypes.key(ResourceKey.minecraft("entity.parrot.imitate.evoker"));
 
+    public static final DefaultedRegistryReference<SoundType> ENTITY_PARROT_IMITATE_FROSTBITE = SoundTypes.key(ResourceKey.minecraft("entity.parrot.imitate.frostbite"));
+
     public static final DefaultedRegistryReference<SoundType> ENTITY_PARROT_IMITATE_GHAST = SoundTypes.key(ResourceKey.minecraft("entity.parrot.imitate.ghast"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_PARROT_IMITATE_GUARDIAN = SoundTypes.key(ResourceKey.minecraft("entity.parrot.imitate.guardian"));
@@ -4009,6 +4021,8 @@ public final class SoundTypes {
     public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_CREATOR_MUSIC_BOX = SoundTypes.key(ResourceKey.minecraft("music_disc.creator_music_box"));
 
     public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_FAR = SoundTypes.key(ResourceKey.minecraft("music_disc.far"));
+
+    public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_FLURRY = SoundTypes.key(ResourceKey.minecraft("music_disc.flurry"));
 
     public static final DefaultedRegistryReference<SoundType> MUSIC_DISC_LAVA_CHICKEN = SoundTypes.key(ResourceKey.minecraft("music_disc.lava_chicken"));
 

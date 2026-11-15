@@ -85,8 +85,6 @@ public final class EntityTypeTags {
 
     public static final DefaultedTag<EntityType<?>> FALL_DAMAGE_IMMUNE = EntityTypeTags.key(ResourceKey.minecraft("fall_damage_immune"));
 
-    public static final DefaultedTag<EntityType<?>> FLYING = EntityTypeTags.key(ResourceKey.minecraft("flying"));
-
     public static final DefaultedTag<EntityType<?>> FOLLOWABLE_FRIENDLY_MOBS = EntityTypeTags.key(ResourceKey.minecraft("followable_friendly_mobs"));
 
     public static final DefaultedTag<EntityType<?>> FREEZE_HURTS_EXTRA_TYPES = EntityTypeTags.key(ResourceKey.minecraft("freeze_hurts_extra_types"));
@@ -138,8 +136,6 @@ public final class EntityTypeTags {
     public static final DefaultedTag<EntityType<?>> SENSITIVE_TO_SMITE = EntityTypeTags.key(ResourceKey.minecraft("sensitive_to_smite"));
 
     public static final DefaultedTag<EntityType<?>> SKELETONS = EntityTypeTags.key(ResourceKey.minecraft("skeletons"));
-
-    public static final DefaultedTag<EntityType<?>> SWIMMING = EntityTypeTags.key(ResourceKey.minecraft("swimming"));
 
     public static final DefaultedTag<EntityType<?>> UNDEAD = EntityTypeTags.key(ResourceKey.minecraft("undead"));
 

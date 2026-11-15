@@ -378,6 +378,14 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> CALCITE = BlockTypes.key(ResourceKey.minecraft("calcite"));
 
+    public static final DefaultedRegistryReference<BlockType> CALCITE_PILLAR = BlockTypes.key(ResourceKey.minecraft("calcite_pillar"));
+
+    public static final DefaultedRegistryReference<BlockType> CALCITE_SLAB = BlockTypes.key(ResourceKey.minecraft("calcite_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> CALCITE_STAIRS = BlockTypes.key(ResourceKey.minecraft("calcite_stairs"));
+
+    public static final DefaultedRegistryReference<BlockType> CALCITE_WALL = BlockTypes.key(ResourceKey.minecraft("calcite_wall"));
+
     public static final DefaultedRegistryReference<BlockType> CALIBRATED_SCULK_SENSOR = BlockTypes.key(ResourceKey.minecraft("calibrated_sculk_sensor"));
 
     public static final DefaultedRegistryReference<BlockType> CAMPFIRE = BlockTypes.key(ResourceKey.minecraft("campfire"));
@@ -463,6 +471,8 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> CHISELED_RESIN_BRICKS = BlockTypes.key(ResourceKey.minecraft("chiseled_resin_bricks"));
 
     public static final DefaultedRegistryReference<BlockType> CHISELED_SANDSTONE = BlockTypes.key(ResourceKey.minecraft("chiseled_sandstone"));
+
+    public static final DefaultedRegistryReference<BlockType> CHISELED_SOULSHALE = BlockTypes.key(ResourceKey.minecraft("chiseled_soulshale"));
 
     public static final DefaultedRegistryReference<BlockType> CHISELED_STONE_BRICKS = BlockTypes.key(ResourceKey.minecraft("chiseled_stone_bricks"));
 
@@ -1673,6 +1683,22 @@ public final class BlockTypes {
     public static final DefaultedRegistryReference<BlockType> POLISHED_BLACKSTONE_STAIRS = BlockTypes.key(ResourceKey.minecraft("polished_blackstone_stairs"));
 
     public static final DefaultedRegistryReference<BlockType> POLISHED_BLACKSTONE_WALL = BlockTypes.key(ResourceKey.minecraft("polished_blackstone_wall"));
+
+    public static final DefaultedRegistryReference<BlockType> POLISHED_CALCITE = BlockTypes.key(ResourceKey.minecraft("polished_calcite"));
+
+    public static final DefaultedRegistryReference<BlockType> POLISHED_CALCITE_BRICKS = BlockTypes.key(ResourceKey.minecraft("polished_calcite_bricks"));
+
+    public static final DefaultedRegistryReference<BlockType> POLISHED_CALCITE_BRICK_SLAB = BlockTypes.key(ResourceKey.minecraft("polished_calcite_brick_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> POLISHED_CALCITE_BRICK_STAIRS = BlockTypes.key(ResourceKey.minecraft("polished_calcite_brick_stairs"));
+
+    public static final DefaultedRegistryReference<BlockType> POLISHED_CALCITE_BRICK_WALL = BlockTypes.key(ResourceKey.minecraft("polished_calcite_brick_wall"));
+
+    public static final DefaultedRegistryReference<BlockType> POLISHED_CALCITE_SLAB = BlockTypes.key(ResourceKey.minecraft("polished_calcite_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> POLISHED_CALCITE_STAIRS = BlockTypes.key(ResourceKey.minecraft("polished_calcite_stairs"));
+
+    public static final DefaultedRegistryReference<BlockType> POLISHED_CALCITE_WALL = BlockTypes.key(ResourceKey.minecraft("polished_calcite_wall"));
 
     public static final DefaultedRegistryReference<BlockType> POLISHED_CINNABAR = BlockTypes.key(ResourceKey.minecraft("polished_cinnabar"));
 

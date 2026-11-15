@@ -58,6 +58,8 @@ public final class MusicDiscs {
 
     public static final DefaultedRegistryReference<MusicDisc> FIVE = MusicDiscs.key(ResourceKey.minecraft("5"));
 
+    public static final DefaultedRegistryReference<MusicDisc> FLURRY = MusicDiscs.key(ResourceKey.minecraft("flurry"));
+
     public static final DefaultedRegistryReference<MusicDisc> LAVA_CHICKEN = MusicDiscs.key(ResourceKey.minecraft("lava_chicken"));
 
     public static final DefaultedRegistryReference<MusicDisc> MALL = MusicDiscs.key(ResourceKey.minecraft("mall"));
