@@ -2104,6 +2104,14 @@ public final class BlockTypes {
 
     public static final DefaultedRegistryReference<BlockType> SNOW_BLOCK = BlockTypes.key(ResourceKey.minecraft("snow_block"));
 
+    public static final DefaultedRegistryReference<BlockType> SNOW_BRICKS = BlockTypes.key(ResourceKey.minecraft("snow_bricks"));
+
+    public static final DefaultedRegistryReference<BlockType> SNOW_BRICK_SLAB = BlockTypes.key(ResourceKey.minecraft("snow_brick_slab"));
+
+    public static final DefaultedRegistryReference<BlockType> SNOW_BRICK_STAIRS = BlockTypes.key(ResourceKey.minecraft("snow_brick_stairs"));
+
+    public static final DefaultedRegistryReference<BlockType> SNOW_BRICK_WALL = BlockTypes.key(ResourceKey.minecraft("snow_brick_wall"));
+
     public static final DefaultedRegistryReference<BlockType> SOUL_CAMPFIRE = BlockTypes.key(ResourceKey.minecraft("soul_campfire"));
 
     public static final DefaultedRegistryReference<BlockType> SOUL_FIRE = BlockTypes.key(ResourceKey.minecraft("soul_fire"));

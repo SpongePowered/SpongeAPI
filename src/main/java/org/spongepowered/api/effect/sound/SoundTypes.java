@@ -844,6 +844,8 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_ICE_BREAK = SoundTypes.key(ResourceKey.minecraft("block.ice.break"));
 
+    public static final DefaultedRegistryReference<SoundType> BLOCK_ICE_CRYSTAL_AMBIENT = SoundTypes.key(ResourceKey.minecraft("block.ice_crystal.ambient"));
+
     public static final DefaultedRegistryReference<SoundType> BLOCK_ICE_CRYSTAL_BREAK = SoundTypes.key(ResourceKey.minecraft("block.ice_crystal.break"));
 
     public static final DefaultedRegistryReference<SoundType> BLOCK_ICE_CRYSTAL_FALL = SoundTypes.key(ResourceKey.minecraft("block.ice_crystal.fall"));

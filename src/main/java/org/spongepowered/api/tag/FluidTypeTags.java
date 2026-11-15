@@ -55,6 +55,8 @@ public final class FluidTypeTags {
 
     public static final DefaultedTag<FluidType> SUPPORTS_SUGAR_CANE_ADJACENTLY = FluidTypeTags.key(ResourceKey.minecraft("supports_sugar_cane_adjacently"));
 
+    public static final DefaultedTag<FluidType> SWIMMABLE = FluidTypeTags.key(ResourceKey.minecraft("swimmable"));
+
     public static final DefaultedTag<FluidType> WATER = FluidTypeTags.key(ResourceKey.minecraft("water"));
 
     private FluidTypeTags() {

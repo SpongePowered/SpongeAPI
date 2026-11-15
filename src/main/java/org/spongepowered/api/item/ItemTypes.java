@@ -2728,6 +2728,14 @@ public final class ItemTypes {
 
     public static final DefaultedRegistryReference<ItemType> SNOW_BLOCK = ItemTypes.key(ResourceKey.minecraft("snow_block"));
 
+    public static final DefaultedRegistryReference<ItemType> SNOW_BRICKS = ItemTypes.key(ResourceKey.minecraft("snow_bricks"));
+
+    public static final DefaultedRegistryReference<ItemType> SNOW_BRICK_SLAB = ItemTypes.key(ResourceKey.minecraft("snow_brick_slab"));
+
+    public static final DefaultedRegistryReference<ItemType> SNOW_BRICK_STAIRS = ItemTypes.key(ResourceKey.minecraft("snow_brick_stairs"));
+
+    public static final DefaultedRegistryReference<ItemType> SNOW_BRICK_WALL = ItemTypes.key(ResourceKey.minecraft("snow_brick_wall"));
+
     public static final DefaultedRegistryReference<ItemType> SNOW_GOLEM_SPAWN_EGG = ItemTypes.key(ResourceKey.minecraft("snow_golem_spawn_egg"));
 
     public static final DefaultedRegistryReference<ItemType> SOUL_CAMPFIRE = ItemTypes.key(ResourceKey.minecraft("soul_campfire"));
