@@ -599,6 +599,10 @@ public final class BlockTypeTags {
 
     public static final DefaultedTag<BlockType> TRIGGERS_AMBIENT_DRIED_GHAST_BLOCK_SOUNDS = BlockTypeTags.key(ResourceKey.minecraft("triggers_ambient_dried_ghast_block_sounds"));
 
+    public static final DefaultedTag<BlockType> TRIGGERS_AMBIENT_ICE_BLOCK_SOUNDS = BlockTypeTags.key(ResourceKey.minecraft("triggers_ambient_ice_block_sounds"));
+
+    public static final DefaultedTag<BlockType> TRIGGERS_AMBIENT_ICE_CRYSTAL_SOUNDS = BlockTypeTags.key(ResourceKey.minecraft("triggers_ambient_ice_crystal_sounds"));
+
     public static final DefaultedTag<BlockType> TURNS_INTO_DIRT_PATH = BlockTypeTags.key(ResourceKey.minecraft("turns_into_dirt_path"));
 
     public static final DefaultedTag<BlockType> TURNS_INTO_FARMLAND = BlockTypeTags.key(ResourceKey.minecraft("turns_into_farmland"));

@@ -2500,6 +2500,8 @@ public final class SoundTypes {
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_FROSTBITE_STEP = SoundTypes.key(ResourceKey.minecraft("entity.frostbite.step"));
 
+    public static final DefaultedRegistryReference<SoundType> ENTITY_FROSTBITE_THROW = SoundTypes.key(ResourceKey.minecraft("entity.frostbite.throw"));
+
     public static final DefaultedRegistryReference<SoundType> ENTITY_GENERIC_BIG_FALL = SoundTypes.key(ResourceKey.minecraft("entity.generic.big_fall"));
 
     public static final DefaultedRegistryReference<SoundType> ENTITY_GENERIC_BURN = SoundTypes.key(ResourceKey.minecraft("entity.generic.burn"));
