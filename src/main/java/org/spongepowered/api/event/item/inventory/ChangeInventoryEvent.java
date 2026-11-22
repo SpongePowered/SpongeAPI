@@ -36,7 +36,6 @@ import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.eventgen.annotations.GenerateFactoryMethod;
 import org.spongepowered.eventgen.annotations.PropertySettings;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -186,7 +185,7 @@ public interface ChangeInventoryEvent extends Event, AffectSlotEvent {
          *
          * @return The keys
          */
-        Collection<Key<?>> affectedKeys();
+        List<Key<?>> affectedKeys();
 
     }
 }
