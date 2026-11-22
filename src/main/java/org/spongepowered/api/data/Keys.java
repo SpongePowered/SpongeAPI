@@ -1705,7 +1705,7 @@ public final class Keys {
     public static final Key<Value<Ticks>> INTERPOLATION_DURATION = Keys.key(ResourceKey.sponge("interpolation_duration"), Ticks.class);
 
     /**
-     * The {@link Inventory} held in an {@link ItemStack} such as {@link ItemTypes#SHULKER_BOX}.
+     * The {@link Inventory} held in an {@link ItemStack} such as {@link ItemTypes#SHULKER_BOX} or {@link ItemTypes#BUNDLE}.
      */
     public static final Key<Value<Inventory>> INVENTORY = Keys.key(ResourceKey.sponge("inventory"), Inventory.class);
 
@@ -3234,10 +3234,17 @@ public final class Keys {
     public static final Key<Value<Integer>> SLEEP_TIMER = Keys.key(ResourceKey.sponge("sleep_timer"), Integer.class);
 
     /**
-     * The index of a {@link Slot} in an {@link Inventory}
+     * The index of a {@link Slot} in an {@link Inventory}.
+     * The selected slot of a {@link ItemTypes#BUNDLE}.
      * Readonly
      */
     public static final Key<Value<Integer>> SLOT_INDEX = Keys.key(ResourceKey.sponge("slot_index"), Integer.class);
+
+    /**
+     * The {@link ItemStackSnapshot} at {@link #SLOT_INDEX}.
+     * The selected item of a {@link ItemTypes#BUNDLE}.
+     */
+    public static final Key<Value<ItemStackSnapshot>> SLOT_ITEM_STACK_SNAPSHOT = Keys.key(ResourceKey.sponge("slot_item_stack_snapshot"), ItemStackSnapshot.class);
 
     /**
      * The position of a {@link Slot} within a {@link GridInventory}.
