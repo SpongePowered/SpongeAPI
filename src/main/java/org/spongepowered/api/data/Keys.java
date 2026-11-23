@@ -1705,7 +1705,7 @@ public final class Keys {
     public static final Key<Value<Ticks>> INTERPOLATION_DURATION = Keys.key(ResourceKey.sponge("interpolation_duration"), Ticks.class);
 
     /**
-     * The {@link Inventory} held in an {@link ItemStack} such as {@link ItemTypes#SHULKER_BOX}.
+     * The {@link Inventory} held in an {@link ItemStack} such as {@link ItemTypes#SHULKER_BOX} or {@link ItemTypes#BUNDLE}.
      */
     public static final Key<Value<Inventory>> INVENTORY = Keys.key(ResourceKey.sponge("inventory"), Inventory.class);
 
@@ -3234,10 +3234,34 @@ public final class Keys {
     public static final Key<Value<Integer>> SLEEP_TIMER = Keys.key(ResourceKey.sponge("sleep_timer"), Integer.class);
 
     /**
-     * The index of a {@link Slot} in an {@link Inventory}
+     * The index of a {@link Slot} in an {@link Inventory}.
+     * The selected slot of an {@link ItemStack}. For example, the selected slot of a {@link ItemTypes#BUNDLE}.
      * Readonly
      */
     public static final Key<Value<Integer>> SLOT_INDEX = Keys.key(ResourceKey.sponge("slot_index"), Integer.class);
+
+    /**
+     * The {@link ItemStackSnapshot} stored in the holder’s {@link Inventory} at the {@link Slot} indexed by {@link #SLOT_INDEX}.
+     * For example, the item in the selected slot of a {@link ItemTypes#BUNDLE}.
+     * <p>
+     * Usage with {@link ItemStack}s:
+     * <pre>{@code
+     *   final ItemStack stack = ...;
+     *
+     *   // Get
+     *   final ItemStackSnapshot selectedItem = stack.require(Keys.SLOT_ITEM_STACK_SNAPSHOT); // Get the item in the selected slot of a bundle
+     *   // Equivalent to:
+     *   final ItemStackSnapshot selectedItem = stack.require(Keys.INVENTORY).slot(stack.require(Keys.SLOT_INDEX)).get().peek();
+     *
+     *   // Set
+     *   stack.offer(Keys.SLOT_ITEM_STACK_SNAPSHOT, ItemStack.of(ItemTypes.DIRT).asImmutable()); // Set the item in the selected slot of a bundle
+     *   // Equivalent to:
+     *   final Inventory itemInventory = stack.require(Keys.INVENTORY);
+     *   itemInventory.set(stack.require(Keys.SLOT_INDEX), ItemStack.of(ItemTypes.DIRT));
+     *   stack.offer(Keys.INVENTORY, itemInventory);
+     * }</pre>
+     */
+    public static final Key<Value<ItemStackSnapshot>> SLOT_ITEM_STACK_SNAPSHOT = Keys.key(ResourceKey.sponge("slot_item_stack_snapshot"), ItemStackSnapshot.class);
 
     /**
      * The position of a {@link Slot} within a {@link GridInventory}.

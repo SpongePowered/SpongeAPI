@@ -24,6 +24,7 @@
  */
 package org.spongepowered.api.event.item.inventory;
 
+import org.spongepowered.api.data.Key;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
@@ -171,5 +172,20 @@ public interface ChangeInventoryEvent extends Event, AffectSlotEvent {
             List<ItemStackSnapshot> finalStacks();
 
         }
+    }
+
+    /**
+     * Fired when a value related to a {@link Key} is changed for an {@link org.spongepowered.api.item.inventory.ItemStack}.
+     */
+    @GenerateFactoryMethod
+    interface ValueChange extends ChangeInventoryEvent {
+
+        /**
+         * Gets the keys affected by this event.
+         *
+         * @return The keys
+         */
+        List<Key<?>> affectedKeys();
+
     }
 }
