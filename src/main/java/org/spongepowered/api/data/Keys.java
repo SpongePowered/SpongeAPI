@@ -3243,6 +3243,22 @@ public final class Keys {
     /**
      * The {@link ItemStackSnapshot} at {@link #SLOT_INDEX}.
      * The selected item of an {@link ItemStack}. For example, the item in the selected slot of a {@link ItemTypes#BUNDLE}.
+     * <p>
+     * Usage for {@link ItemStack}s:
+     * <pre>{@code
+     *   final ItemStack stack = ...;
+     *
+     *   // Get
+     *   final ItemStackSnapshot selectedItem = stack.require(Keys.SLOT_ITEM_STACK_SNAPSHOT); // Get the item in the selected slot of a bundle
+     *   assert selectedItem.asMutable().equalTo(stack.require(Keys.INVENTORY).slot(stack.require(Keys.SLOT_INDEX)).get().peek());
+     *
+     *   // Set
+     *   stack.offer(Keys.SLOT_ITEM_STACK_SNAPSHOT, ItemStack.of(ItemTypes.DIRT).asImmutable()); // Set the item in the selected slot of a bundle
+     *   // Equivalent to:
+     *   final Inventory itemInventory = stack.require(Keys.INVENTORY);
+     *   itemInventory.set(stack.require(Keys.SLOT_INDEX), ItemStack.of(ItemTypes.DIRT));
+     *   stack.offer(Keys.INVENTORY, itemInventory);
+     * }</pre>
      */
     public static final Key<Value<ItemStackSnapshot>> SLOT_ITEM_STACK_SNAPSHOT = Keys.key(ResourceKey.sponge("slot_item_stack_snapshot"), ItemStackSnapshot.class);
 
