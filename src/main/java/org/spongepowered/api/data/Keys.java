@@ -3241,10 +3241,10 @@ public final class Keys {
     public static final Key<Value<Integer>> SLOT_INDEX = Keys.key(ResourceKey.sponge("slot_index"), Integer.class);
 
     /**
-     * The {@link ItemStackSnapshot} stored in the holder’s {@link Inventory} at the {@link Slot} indexed by {@link #SLOT_INDEX}
+     * The {@link ItemStackSnapshot} stored in the holder’s {@link Inventory} at the {@link Slot} indexed by {@link #SLOT_INDEX}.
      * For example, the item in the selected slot of a {@link ItemTypes#BUNDLE}.
      * <p>
-     * Usage for {@link ItemStack}s:
+     * Usage with {@link ItemStack}s:
      * <pre>{@code
      *   final ItemStack stack = ...;
      *
