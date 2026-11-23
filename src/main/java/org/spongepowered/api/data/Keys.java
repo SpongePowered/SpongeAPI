@@ -3235,14 +3235,14 @@ public final class Keys {
 
     /**
      * The index of a {@link Slot} in an {@link Inventory}.
-     * The selected slot of a {@link ItemTypes#BUNDLE}.
+     * The selected slot of an {@link ItemStack}. For example, the selected slot of a {@link ItemTypes#BUNDLE}.
      * Readonly
      */
     public static final Key<Value<Integer>> SLOT_INDEX = Keys.key(ResourceKey.sponge("slot_index"), Integer.class);
 
     /**
      * The {@link ItemStackSnapshot} at {@link #SLOT_INDEX}.
-     * The selected item of a {@link ItemTypes#BUNDLE}.
+     * The selected item of an {@link ItemStack}. For example, the item in the selected slot of a {@link ItemTypes#BUNDLE}.
      */
     public static final Key<Value<ItemStackSnapshot>> SLOT_ITEM_STACK_SNAPSHOT = Keys.key(ResourceKey.sponge("slot_item_stack_snapshot"), ItemStackSnapshot.class);
 
