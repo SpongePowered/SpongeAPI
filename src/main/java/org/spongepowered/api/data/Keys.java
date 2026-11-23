@@ -3241,8 +3241,8 @@ public final class Keys {
     public static final Key<Value<Integer>> SLOT_INDEX = Keys.key(ResourceKey.sponge("slot_index"), Integer.class);
 
     /**
-     * The {@link ItemStackSnapshot} at {@link #SLOT_INDEX}.
-     * The selected item of an {@link ItemStack}. For example, the item in the selected slot of a {@link ItemTypes#BUNDLE}.
+     * The {@link ItemStackSnapshot} stored in the holder’s {@link Inventory} at the {@link Slot} indexed by {@link #SLOT_INDEX}
+     * For example, the item in the selected slot of a {@link ItemTypes#BUNDLE}.
      * <p>
      * Usage for {@link ItemStack}s:
      * <pre>{@code
@@ -3250,7 +3250,8 @@ public final class Keys {
      *
      *   // Get
      *   final ItemStackSnapshot selectedItem = stack.require(Keys.SLOT_ITEM_STACK_SNAPSHOT); // Get the item in the selected slot of a bundle
-     *   assert selectedItem.asMutable().equalTo(stack.require(Keys.INVENTORY).slot(stack.require(Keys.SLOT_INDEX)).get().peek());
+     *   // Equivalent to:
+     *   final ItemStackSnapshot selectedItem = stack.require(Keys.INVENTORY).slot(stack.require(Keys.SLOT_INDEX)).get().peek();
      *
      *   // Set
      *   stack.offer(Keys.SLOT_ITEM_STACK_SNAPSHOT, ItemStack.of(ItemTypes.DIRT).asImmutable()); // Set the item in the selected slot of a bundle
