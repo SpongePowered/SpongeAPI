@@ -69,6 +69,8 @@ public final class DamageTypeTags {
 
     public static final DefaultedTag<DamageType> CAN_BREAK_ARMOR_STAND = DamageTypeTags.key(ResourceKey.minecraft("can_break_armor_stand"));
 
+    public static final DefaultedTag<DamageType> CANNOT_HURT_PERCHING_ENDER_DRAGON = DamageTypeTags.key(ResourceKey.minecraft("cannot_hurt_perching_ender_dragon"));
+
     public static final DefaultedTag<DamageType> DAMAGES_HELMET = DamageTypeTags.key(ResourceKey.minecraft("damages_helmet"));
 
     public static final DefaultedTag<DamageType> IGNITES_ARMOR_STANDS = DamageTypeTags.key(ResourceKey.minecraft("ignites_armor_stands"));
